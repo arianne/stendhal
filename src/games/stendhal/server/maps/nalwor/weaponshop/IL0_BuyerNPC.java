@@ -62,7 +62,7 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 					"Look at the blackboard on the wall to see what I will buy.",
 					null);
 				add(ConversationStates.ATTENDING,
-					"task, quest",
+					SpeakerNPC.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"You think I'd trust a human with anything important? You're wrong!",

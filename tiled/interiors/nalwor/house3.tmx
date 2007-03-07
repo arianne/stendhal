@@ -52,7 +52,7 @@
  </layer>
  <layer name="2_object" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIAwm8jEwTOIjQiESWAtUv45EPfjAaaBZZ5DMU2KGYHoDd37s4guA4gtxyBECb7CEE7XN0yDTLFwAm/s8+DExuealAdlNQNyMhFuAOJ1IM7H515MfE2MDqVQOK2qbhw1kUGAHF5Xdh808Nxq5D1d+HGxAEVpWgdzbxo/f3SoDUK6RCwC1D9CgQAYAAA==
+   H4sIAAAAAAAAAGNgIAwm8jEwTOIjQiESWAtUv45EPfjAaaBZZ5DMU2KGYHyAh5969sOAOw4zFwDFF5Jp3xss4URt8zSoHBbY3OfBj4nJNS8NyG4C4mYk3ALE6USaic2/nvyYGBtIpXJYUds8bCCDAju4qOw+bOa50ch9uPLjYAOK0LIK5N42fvzuViFQrg0mAADPyUPEQAYAAA==
   </data>
  </layer>
  <layer name="3_roof" width="20" height="20">
@@ -67,12 +67,12 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGL6Ahx9Cn+McWHdQE8wF+mXOMPIPKYCXf6BdQB+wgBOCRwFtwFM8YTt7AMK9mgZ2ptHJHwDcmnU+QAYAAA==
+   H4sIAAAAAAAAAGNgGP7gLOdAu4B6YC7QL3OGkX9GASZYwAnBo4A24CmesJ09AOFeTQM70+jkDwCHd7MSQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGkKYEEBWQ4k5xNhDLXOp7U5a+JnaZhJjHin20dq/lILBbB490gq1zaNH+qPEPEJqyXUfKeUkLcthGAYAoM07gUAGAAA=
+   H4sIAAAAAAAAANPiYmDQGkKYEEBWg6yHVHOIsYcc95FiFrXNowRQ20xizCPFPlr7l1IwmM2jR1qhtnn0SH+UmEdILbnuI6WcpHVZDMIAdIg6BEAGAAA=
   </data>
  </layer>
  <layer name="navigation" width="20" height="20">

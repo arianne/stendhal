@@ -67,12 +67,12 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBoghXNg7a8eYPtJAUPJrbQG9A6LHCrYh8sMaphNTXNGEljAiZ8/WEAand0FAManKN5ABgAA
+   H4sIAAAAAAAAAGNgGBogjXNg7a8eYPtJAUPJrbQG9A6LHCrYBzNjLyd2cVIBtcwh1Z7hBBZw4ucPFkDvchIAQXYLgUAGAAA=
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGgKYUkCJ+TB5ZJoa5pHiPlLDgB5mUQJoaRY2M6md/qgRhoTMw2UHqe4jJj2S4z5CdhJy30CVCfQqX2Di+GhizSIlTKgRtsRiAIN0vv5ABgAA
+   H4sIAAAAAAAAANPiYmDQGgKYUkCJ+TB5ZJoa5pHiPlLDgB5mUQJoaRY2M6md/qgRhuSaR233ERt+pABi3DdQZQK9yheYOD6aWLNICRNqhC2xGAAeD5q4QAYAAA==
   </data>
  </layer>
  <layer name="navigation" width="20" height="20">

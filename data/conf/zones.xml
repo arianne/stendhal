@@ -1173,7 +1173,89 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
     <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
    </portal>
  </zone> 
+
+ <zone name="int_nalwor_royal_hall" file="int_nalwor_royal.xstend">
+   <title/>
+   <portal x="7" y="29" ref="entrance">
+    <destination zone="0_nalwor_city" ref="royal_entrance"/>
+   </portal>
+ <portal x="8" y="29" ref="entrance">
+    <destination zone="0_nalwor_city" ref="royal_entrance"/>
+   </portal>
+ <portal x="9" y="29" ref="entrance">
+    <destination zone="0_nalwor_city" ref="royal_entrance"/>
+   </portal>
+  <portal x="43" y="2" ref="upstairs">
+    <destination zone="int_nalwor_royal_hall_1" ref="downstairs"/>
+   </portal> 
+ </zone> 
+
+ <zone name="int_nalwor_royal_hall_1" file="int_nalwor_royal_2ndfloor.xstend">
+   <title/>
+   <portal x="43" y="2" ref="downstairs">
+    <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
+   </portal>
+ </zone> 
+
+<zone name="int_nalwor_house1" file="int_nalwor_house1.xstend">
+   <title/>
+  <portal x="7" y="14" ref="entrance">
+    <destination zone="0_nalwor_city" ref="house1_entrance"/>
+   </portal>
+   <portal x="7" y="3" ref="downstairs">
+    <destination zone="int_nalwor_house1_basement" ref="upstairs"/>
+   </portal>
+ </zone> 
+
+<zone name="int_nalwor_house1_basement" file="int_nalwor_house1_basement.xstend">
+   <title/>
+   <portal x="3" y="1" ref="upstairs">
+    <destination zone="int_nalwor_house1" ref="downstairs"/>
+   </portal>
+ </zone>
+
+<zone name="int_nalwor_house2" file="int_nalwor_house2.xstend">
+   <title/>
+  <portal x="8" y="18" ref="entrance">
+    <destination zone="0_nalwor_city" ref="house2_entrance"/>
+   </portal>
+ </zone>
+
  
+<zone name="int_nalwor_house3" file="int_nalwor_house3.xstend">
+   <title/>
+  <portal x="14" y="18" ref="entrance">
+    <destination zone="0_nalwor_city" ref="house3_entrance"/>
+   </portal>
+ </zone>
+
+<zone name="int_nalwor_house4" file="int_nalwor_house4.xstend">
+   <title/>
+  <portal x="12" y="18" ref="entrance">
+    <destination zone="0_nalwor_city" ref="house4_entrance"/>
+   </portal>
+   <portal x="2" y="2" ref="upstairs">
+    <destination zone="int_nalwor_house4_1" ref="downstairs"/>
+   </portal>
+ </zone> 
+
+<zone name="int_nalwor_house4_1" file="int_nalwor_house4_1.xstend">
+   <title/>
+  <portal x="2" y="3" ref="downstairs">
+    <destination zone="int_nalwor_house4" ref="upstairs"/>
+   </portal>
+   <portal x="12" y="6" ref="upstairs">
+    <destination zone="int_nalwor_house4_2" ref="downstairs"/>
+   </portal>
+ </zone> 
+
+ <zone name="int_nalwor_house4_2" file="int_nalwor_house4_2.xstend">
+   <title/>
+   <portal x="2" y="2" ref="downstairs">
+    <destination zone="int_nalwor_house4_1" ref="upstairs"/>
+   </portal>
+ </zone>
+
  <zone name="0_nalwor_city" file="0_nalwor_city.xstend">
   <title/>
   <portal x="73" y="93" ref="pottery_entrance">
@@ -1200,9 +1282,21 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <portal x="59" y="105" ref="weaponshop_entrance">
    <destination zone="int_nalwor_weaponshop" ref="entrance"/>
   </portal>
- <!--<portal x="38" y="58" ref="royal_entrance">
+  <portal x="38" y="58" ref="royal_entrance">
    <destination zone="int_nalwor_royal_hall" ref="entrance"/>
-  </portal>-->
+  </portal>
+  <portal x="36" y="81" ref="house1_entrance">
+   <destination zone="int_nalwor_house1" ref="entrance"/>
+  </portal>
+  <portal x="79" y="81" ref="house2_entrance">
+   <destination zone="int_nalwor_house2" ref="entrance"/>
+  </portal>
+  <portal x="59" y="95" ref="house3_entrance">
+   <destination zone="int_nalwor_house3" ref="entrance"/>
+  </portal>
+  <portal x="84" y="81" ref="house4_entrance">
+   <destination zone="int_nalwor_house4" ref="entrance"/>
+  </portal>
  </zone>
 
  <zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
