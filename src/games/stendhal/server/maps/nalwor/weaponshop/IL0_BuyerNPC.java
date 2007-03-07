@@ -59,13 +59,19 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"Look at the blackboard on the wall to see my offers.",
+					"Look at the blackboard on the wall to see what I will buy.",
+					null);
+				add(ConversationStates.ATTENDING,
+					"task, quest",
+					null,
+					ConversationStates.ATTENDING,
+					"You think I'd trust a human with anything important? You're wrong!",
 					null);
 				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")),false); //why does this false go here? what is it?
-				addGoodbye();
+				addGoodbye("Bye - be careful not to annoy the other elves as much");
 			}
 		};
-		npc.setDescription("You see a young looking elf.");
+		npc.setDescription("You see Elodrin, a mean looking elf.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "elfbuyernpc");
