@@ -79,6 +79,17 @@ public class ShopList {
 		shops.add("buyrare", "plate_armor", 62);
 		shops.add("buyrare", "plate_shield", 40);
 		shops.add("buyrare", "lion_shield", 50);
+
+		//rare elf weapons buyer
+		shops.add("elfbuyrare", "battle_axe", 50);
+		shops.add("elfbuyrare", "twoside_axe", 60);
+		shops.add("elfbuyrare", "claymore", 90);
+		shops.add("elfbuyrare", "broadsword", 70);
+		shops.add("elfbuyrare", "staff", 75);
+		shops.add("elfbuyrare", "lion_shield+1", 52);
+		shops.add("elfbuyrare", "crown_shield", 80);
+
+
 	}
 
 	static private ShopList instance;

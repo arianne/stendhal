@@ -1117,6 +1117,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   
  <zone name="int_nalwor_weaponshop" file="int_nalwor_weaponshop.xstend">
    <title/>
+ <configurator class-name="games.stendhal.server.maps.nalwor.weaponshop.IL0_BuyerNPC"/>
    <portal x="3" y="11" ref="entrance">
     <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
    </portal>
