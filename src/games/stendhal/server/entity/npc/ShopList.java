@@ -86,7 +86,7 @@ public class ShopList {
 		shops.add("elfbuyrare", "claymore", 90);
 		shops.add("elfbuyrare", "broadsword", 70);
 		shops.add("elfbuyrare", "staff", 75);
-		shops.add("elfbuyrare", "lion_shield+1", 52);
+		shops.add("elfbuyrare", "lion_shield_+1", 52);
 		shops.add("elfbuyrare", "crown_shield", 80);
 
 
