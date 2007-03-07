@@ -103,7 +103,7 @@ public class Sheep extends NPC {
 		switch (at) {
 		case OWN:
 			RPAction rpaction = new RPAction();
-			rpaction.put("type", "own");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			at.send(rpaction);

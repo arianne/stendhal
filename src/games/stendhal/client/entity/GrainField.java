@@ -130,7 +130,7 @@ public class GrainField extends AnimatedEntity {
 		switch (at) {
 		case HARVEST:
 			RPAction rpaction = new RPAction();
-			rpaction.put("type", "use");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			at.send(rpaction);

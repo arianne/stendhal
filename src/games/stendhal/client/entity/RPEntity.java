@@ -633,14 +633,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		switch (at) {
 		case ATTACK:
 			rpaction = new RPAction();
-			rpaction.put("type", "attack");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			at.send(rpaction);
 			break;
 		case STOP_ATTACK:
 			rpaction = new RPAction();
-			rpaction.put("type", "stop");
+			rpaction.put("type", at.toString());
 			rpaction.put("attack", "");
 			at.send(rpaction);
 			break;

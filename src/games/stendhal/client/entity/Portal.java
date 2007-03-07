@@ -65,7 +65,7 @@ public class Portal extends Entity {
 		switch (at) {
 		case USE:
 			RPAction rpaction = new RPAction();
-			rpaction.put("type", "use");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			at.send(rpaction);

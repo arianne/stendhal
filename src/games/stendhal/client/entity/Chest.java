@@ -68,8 +68,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 			animation = "open";
 			// we're wanted to open this?
 			if (requestOpen) {
-				wtEntityContainer = client.getGameGUI().inspect(this, content,
-						4, 5);
+				wtEntityContainer = _inspector.inspectMe(this, content,wtEntityContainer);
 				requestOpen = false;
 			}
 		}
@@ -121,10 +120,10 @@ public class Chest extends AnimatedEntity implements Inspectable {
 		super.buildOfferedActions(list);
 
 		if (open) {
-			list.add("Inspect");
-			list.add("Close");
+			list.add(ActionType.INSPECT.getRepresentation());
+			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
-			list.add("Open");
+			list.add(ActionType.OPEN.getRepresentation());
 		}
 	}
 
@@ -144,7 +143,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 			}
 
 			RPAction rpaction = new RPAction();
-			rpaction.put("type", "use");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			at.send(rpaction);

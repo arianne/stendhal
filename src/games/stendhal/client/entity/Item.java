@@ -70,7 +70,7 @@ public class Item extends PassiveEntity {
 		switch (at) {
 		case USE:
 			RPAction rpaction = new RPAction();
-			rpaction.put("type", "use");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 
 			if (params.length > 0) {

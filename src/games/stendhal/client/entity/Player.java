@@ -165,14 +165,14 @@ public class Player extends RPEntity {
 			client.getOutfitDialog(outfitTemp).setVisible(true);
 		case LEAVE_SHEEP:
 			rpaction = new RPAction();
-			rpaction.put("type", "own");
+			rpaction.put("type", at.toString());
 			rpaction.put("target", "-1");
 			at.send(rpaction);
 			playSound("sheep-chat-2", 15, 50);
 			break;
 		case ADD_BUDDY:
 			rpaction = new RPAction();
-			rpaction.put("type", "addbuddy");
+			rpaction.put("type", at.toString());
 			rpaction.put("target", getName());
 			at.send(rpaction);
 		default:

@@ -453,19 +453,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	}
 
-	protected final ActionType handleAction(String action) {
-		System.out.print(action);
-		ActionType at;
-		try {
-			at = ActionType.getbyRep(action);
-			System.out.println("=code: " + at);
-			return at;
-		} catch (Exception e) {
-			System.out.println("=code: not found");
-			return null;
-		}
-	}
-
 	public void onAction(ActionType at, String... params) {
 		// ActionType at =handleAction(action);
 		int id;

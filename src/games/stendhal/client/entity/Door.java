@@ -125,7 +125,7 @@ public class Door extends AnimatedEntity {
 		case OPEN:
 		case CLOSE:
 			RPAction rpaction = new RPAction();
-			rpaction.put("type", "use");
+			rpaction.put("type", at.toString());
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
 			at.send(rpaction);
