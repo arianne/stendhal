@@ -1193,6 +1193,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="int_nalwor_royal_hall_1" file="int_nalwor_royal_2ndfloor.xstend">
    <title/>
+<configurator class-name="games.stendhal.server.maps.nalwor.royal.IL0_MayorNPC"/>
    <portal x="43" y="2" ref="downstairs">
     <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
    </portal>
