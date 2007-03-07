@@ -1,6 +1,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
 public enum ActionType {
@@ -23,34 +24,54 @@ public enum ActionType {
 	DEBUG_ENABLE_WATCH("[enable watch]","Enable Watch"),
 	DEBUG_DISABLE_WATCH("[disable watch]","Disable Watch"),
 	SET_OUTFIT("set outfit","Set outfit");
+	/**
+	 *  the String send to the server, if so
+	 */
 	private final String actionCode;
+	/**
+	 *  the String which is shown to the user;
+	 */
 	private final String actionRepresentation;
 	
-	ActionType(String actCode,String actionRep){
+	private ActionType(String actCode,String actionRep){
 		actionCode=actCode;
 		actionRepresentation=actionRep;
 		
 	}
 	
-	public static ActionType getbyRep(String code){
+	/**
+	 * changes the visual String representation on menus to the Actiontype object 
+	 * @param representation the menu String
+	 * @return the Action Element or null if not found
+	 */
+	public static ActionType getbyRep(String representation){
        for (ActionType at : ActionType.values()){
-			if (at.actionRepresentation.equals(code)){
+			if (at.actionRepresentation.equals(representation)){
 				return at;
 			}
 			
 		}
-		System.out.print(code);
-		System.out.println("=code: not found");
+		Log4J.getLogger(ActionType.class).error(representation +" =code: not found");
 		return null;
 	}
 	
+	/** 
+	 * @return the command code for usage on server side 
+	 **/
 	public String toString(){
 		return actionCode;
 	}
+	/**
+	 * @return the String the user should see on the menu
+	 */
 	public String getRepresentation(){
 		return actionRepresentation;
 	}
 	
+	/**
+	 * sends the requested action to the server
+	 * @param rpaction action to be sent
+	 */
 	public void send(RPAction rpaction){
 		StendhalClient.get().send(rpaction);
 	}
