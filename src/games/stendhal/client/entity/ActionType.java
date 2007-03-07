@@ -33,6 +33,11 @@ public enum ActionType {
 	 */
 	private final String actionRepresentation;
 	
+	/**
+	 * Constructor
+	 * @param actCode the code to be sent to the server
+	 * @param actionRep the String to be shown to the user
+	 */
 	private ActionType(String actCode,String actionRep){
 		actionCode=actCode;
 		actionRepresentation=actionRep;
@@ -40,7 +45,7 @@ public enum ActionType {
 	}
 	
 	/**
-	 * changes the visual String representation on menus to the Actiontype object 
+	 * finds the ActionType that belongs to a visual String representation 
 	 * @param representation the menu String
 	 * @return the Action Element or null if not found
 	 */

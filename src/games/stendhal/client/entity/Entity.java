@@ -454,7 +454,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	public void onAction(ActionType at, String... params) {
-		// ActionType at =handleAction(action);
 		int id;
 		RPAction rpaction;
 		switch (at) {
