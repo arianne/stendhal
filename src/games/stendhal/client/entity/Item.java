@@ -13,20 +13,19 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class Item extends PassiveEntity {
 
-	public Item(RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public Item(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
@@ -54,10 +53,9 @@ public class Item extends PassiveEntity {
 	}
 
 	@Override
-	public String defaultAction() {
-		return "Use";
+	public ActionType defaultAction() {
+		return ActionType.USE;
 	}
-
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
@@ -65,10 +63,12 @@ public class Item extends PassiveEntity {
 		super.buildOfferedActions(list);
 	}
 
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Use")) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at =handleAction(action);
+
+		switch (at) {
+		case USE:
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
@@ -81,12 +81,15 @@ public class Item extends PassiveEntity {
 				rpaction.put("target", id);
 			}
 
-			client.send(rpaction);
-		} else {
-			super.onAction(client, action, params);
-		}
-	}
+			at.send(rpaction);
+			break;
 
+		default:
+			super.onAction(at, params);
+			break;
+		}
+
+	}
 
 	@Override
 	public int getZIndex() {

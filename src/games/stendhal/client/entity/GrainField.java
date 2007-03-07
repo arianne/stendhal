@@ -14,28 +14,31 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class GrainField extends AnimatedEntity {
 	private String actionName;
+
 	private int width;
+
 	private int height;
+
 	private String clazz;
+
 	private int maxRipeness;
-	
-	public GrainField( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+
+	public GrainField(RPObject object) throws AttributeNotFoundException {
+		super(object);
 		init(object);
 	}
-	
+
 	private void init(RPObject object) {
 		// default values are for compatibility to server <= 0.56
 		actionName = "Harvest";
@@ -65,16 +68,16 @@ public class GrainField extends AnimatedEntity {
 	@Override
 	protected void buildAnimations(RPObject object) {
 		// Note: This method is called from the parent constructor, so our
-		//       own constructor was not able to do any initialisation, yet.
-		//       So we have to load the object now. But after this method
-		//       The values we loaded are overriden by the default values, so
-		//       init has to be called again in our constructor.
+		// own constructor was not able to do any initialisation, yet.
+		// So we have to load the object now. But after this method
+		// The values we loaded are overriden by the default values, so
+		// init has to be called again in our constructor.
 		init(object);
 
 		SpriteStore store = SpriteStore.get();
 		for (int i = 0; i <= maxRipeness; i++) {
-			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(clazz),
-					i, 1, width, height));
+			sprites.put(Integer.toString(i), store.getAnimatedSprite(
+					translate(clazz), i, 1, width, height));
 		}
 	}
 
@@ -98,7 +101,7 @@ public class GrainField extends AnimatedEntity {
 	}
 
 	//
-	
+
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y + height - 1, 1, 1);
@@ -108,31 +111,36 @@ public class GrainField extends AnimatedEntity {
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y + height - 1, 1, 1);
 	}
-	
-	@Override
-	public String defaultAction() {
-		return actionName;
-	}
 
+	@Override
+	public ActionType defaultAction() {
+		return ActionType.HARVEST;
+	}
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);;
+		super.buildOfferedActions(list);
+		;
 		list.add(actionName);
 	}
 
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals(actionName)) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at=handleAction(action);
+		switch (at) {
+		case HARVEST:
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
-			client.send(rpaction);
-		} else {
-			super.onAction(client, action, params);
+			at.send(rpaction);
+			break;
+
+		default:
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	@Override

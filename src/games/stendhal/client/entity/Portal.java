@@ -13,25 +13,24 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**
- * A portal which can be "used" by the player. Use a Door
- * if you want some sprites for it.
+ * A portal which can be "used" by the player. Use a Door if you want some
+ * sprites for it.
  */
 public class Portal extends Entity {
 	private boolean hidden = false;
 
-	public Portal( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public Portal(RPObject object) throws AttributeNotFoundException {
+		super(object);
 
 		this.hidden = object.has("hidden");
 	}
@@ -52,23 +51,31 @@ public class Portal extends Entity {
 	}
 
 	@Override
-	public String defaultAction() {
-		return "Use";
+	public ActionType defaultAction() {
+		if (!hidden) {
+			return ActionType.USE;
+		} else {
+			return ActionType.LOOK;
+		}
 	}
 
-	
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Use")) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at =handleAction(action);
+		switch (at) {
+		case USE:
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
-			client.send(rpaction);
-		} else {
-			super.onAction(client, action, params);
+			at.send(rpaction);
+			break;
+
+		default:
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	@Override
@@ -81,21 +88,22 @@ public class Portal extends Entity {
 		return 5000;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
 	 */
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		// TODO Auto-generated method stub
 		super.buildOfferedActions(list);
-		
+
 		if (!hidden) {
 			list.add("Use");
 			if (client.isAdmin()) {
-				list.add("(*)Inspect");
-				list.add("(*)Destroy");
+				list.remove(ActionType.ADMIN_ALTER);
 			}
 		}
-		
+
 	}
 }

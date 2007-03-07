@@ -81,13 +81,15 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** called when an object is dropped. */
 	public boolean onDrop(WtDraggable droppedObject) {
-		if ((droppedObject instanceof MoveableEntityContainer) && (parent != null)) {
+		if ((droppedObject instanceof MoveableEntityContainer)
+				&& (parent != null)) {
 			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
-			
+
 			// Don't drag an item into the same slot
-			if (container != null && content!=null)
-				if (container.getContent()==content.getID().getObjectID()) return false;
-				
+			if (container != null && content != null)
+				if (container.getContent() == content.getID().getObjectID())
+					return false;
+
 			RPAction action = new RPAction();
 
 			// Entity contained=container.getEntity();
@@ -150,7 +152,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 
@@ -195,10 +197,10 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (content != null) {
 			// create the context menu
-			StendhalClient client = StendhalClient.get();
+
 			Entity entity = EntityFabric.createEntity(content);
 			CommandList list = new CommandList(getName(), entity
-					.offeredActions(), client, entity);
+					.offeredActions(), entity);
 			list.setContext(parent.getID().getObjectID(), getName());
 			setContextMenu(list);
 		}
@@ -212,23 +214,24 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		if (super.onMouseDoubleClick(p)) {
 			return true;
 		}
-    
-    // click into an empty slot should be ignored
-    if(content == null) {
-      return(false);
-    }
-    
-    // moveto events are not the default for items in a bag
-    if(parent instanceof Player) {
-      Entity entity = EntityFabric.createEntity(content);
-      if(entity != null) {
-        String action = entity.defaultAction();
-        entity.onAction(StendhalClient.get(), action, Integer.toString(parent.getID().getObjectID()), getName());
-        return(true);
-      }
-      return (false);
-    }
-    
+
+		// click into an empty slot should be ignored
+		if (content == null) {
+			return (false);
+		}
+
+		// moveto events are not the default for items in a bag
+		if (parent instanceof Player) {
+			Entity entity = EntityFabric.createEntity(content);
+			if (entity != null) {
+
+				entity.onAction(entity.defaultAction(), Integer.toString(parent
+						.getID().getObjectID()), getName());
+				return (true);
+			}
+			return (false);
+		}
+
 		RPObject player = StendhalClient.get().getPlayer();
 
 		// if(parent.distance(StendhalClient.get().getPlayer())>2)

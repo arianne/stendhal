@@ -1,18 +1,17 @@
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.gui.wt.core.WtPopupMenu;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
-
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.entity.Entity;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
-import games.stendhal.client.gui.wt.core.WtPopupMenu;
 
 /**
  * This is the command list of any entities
@@ -22,9 +21,6 @@ import games.stendhal.client.gui.wt.core.WtPopupMenu;
 public class CommandList extends WtPopupMenu {
 	/** the entity associated with the command list */
 	private Entity entity;
-
-	/** the client */
-	private StendhalClient client;
 
 	/** This flag will be true of the object is contained inside another one */
 	private boolean contained;
@@ -39,30 +35,27 @@ public class CommandList extends WtPopupMenu {
 	private String baseSlot;
 
 	/** creates a new CommandList */
-	public CommandList(String name, String [] items, StendhalClient client,
-	 Entity entity) {
+	public CommandList(String name, String[] items, Entity entity) {
 		super(name);
 
 		this.entity = entity;
-		this.client = client;
+
 		this.contained = false;
 
 		populate(items);
 	}
 
-
-	protected void populate(String [] items) {
-		ActionListener	listener;
-		Icon		adminIcon;
-		Icon		icon;
-		String		label;
-
+	protected void populate(String[] items) {
+		ActionListener listener;
+		Icon adminIcon;
+		Icon icon;
+		String label;
 
 		listener = new ActionSelectedCB();
 		adminIcon = new AdminIcon();
 
-		for(String item : items) {
-			if(item.startsWith("(*)")) {
+		for (String item : items) {
+			if (item.startsWith("(*)")) {
 				icon = adminIcon;
 				label = item.substring(3);
 			} else {
@@ -77,7 +70,6 @@ public class CommandList extends WtPopupMenu {
 		}
 	}
 
-
 	public void setContext(int baseObject, String baseSlot) {
 		this.baseObject = Integer.toString(baseObject);
 		this.baseSlot = baseSlot;
@@ -88,9 +80,9 @@ public class CommandList extends WtPopupMenu {
 	protected void doAction(String command) {
 		// tell the entity what happened
 		if (contained) {
-			entity.onAction(client, command, baseObject, baseSlot);
+			entity.onAction(ActionType.getbyRep(command), baseObject, baseSlot);
 		} else {
-			entity.onAction(client, command);
+			entity.onAction(ActionType.getbyRep(command));
 		}
 	}
 
@@ -110,13 +102,13 @@ public class CommandList extends WtPopupMenu {
 		}
 	}
 
-
 	/**
 	 * A pretty icon to indicate an admin option.
 	 * </p>
-	 *
+	 * 
 	 * <p>
 	 * It looks something like:
+	 * 
 	 * <pre>
 	 *      :
 	 *      :
@@ -136,14 +128,12 @@ public class CommandList extends WtPopupMenu {
 			return 7;
 		}
 
-
 		public int getIconWidth() {
 			return 7;
 		}
 
-
 		public void paintIcon(Component c, Graphics g, int x, int y) {
-			Color	oldColor;
+			Color oldColor;
 
 			oldColor = g.getColor();
 

@@ -34,7 +34,6 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-
 public abstract class Creature extends NPC {
 	@Override
 	protected void nonCreatureClientAddEventLine(String text) {
@@ -51,23 +50,23 @@ public abstract class Creature extends NPC {
 	/** display all debug messages for this creature in the game log */
 	public boolean watch = false;
 
-//	/** creature is sleeping */
-//	private boolean sleeping = false;
-//
-//	/** creature has been attacked */
-//	private boolean attacked = false;
-//
-//	/** objectid of the attacking rpobject */
-//	private int attackedBy = 0;
-//
-//	/** true when this creature canceled the attack */
-//	private boolean cancelAttack = false;
-//
-//	/** creature has choosen a new target */
-//	private boolean newTarget = false;
-//
-//	/** id of the new target */
-//	private int newTargetId = 0;
+	// /** creature is sleeping */
+	// private boolean sleeping = false;
+	//
+	// /** creature has been attacked */
+	// private boolean attacked = false;
+	//
+	// /** objectid of the attacking rpobject */
+	// private int attackedBy = 0;
+	//
+	// /** true when this creature canceled the attack */
+	// private boolean cancelAttack = false;
+	//
+	// /** creature has choosen a new target */
+	// private boolean newTarget = false;
+	//
+	// /** id of the new target */
+	// private int newTargetId = 0;
 
 	/** creature patrols along its path */
 	private boolean patrol = false;
@@ -75,8 +74,8 @@ public abstract class Creature extends NPC {
 	/** the patrolpath */
 	private List<Node> patrolPath;
 
-//	/** target is out of reach */
-//	private boolean outOfReach = false;
+	// /** target is out of reach */
+	// private boolean outOfReach = false;
 
 	/** the target moved, so we'return trying to find a new path */
 	private boolean targetMoved = false;
@@ -84,17 +83,17 @@ public abstract class Creature extends NPC {
 	/** new path to the target */
 	private List<Node> targetMovedPath;
 
-//	/** we're attacking */
-//	private boolean attacking = false;
+	// /** we're attacking */
+	// private boolean attacking = false;
 
 	/** we're moving towards the target */
 	private boolean moveToTarget = false;
 
-//	/** we're ran against a obstacle */
-//	private boolean moveToTargetBlocked = false;
-//
-//	/** we're waiting for the path to clear */
-//	private boolean moveToTargetWaiting = false;
+	// /** we're ran against a obstacle */
+	// private boolean moveToTargetBlocked = false;
+	//
+	// /** we're waiting for the path to clear */
+	// private boolean moveToTargetWaiting = false;
 
 	/** searching new path to the target */
 	private boolean moveToTargetNew = false;
@@ -102,9 +101,8 @@ public abstract class Creature extends NPC {
 	/** the path we got */
 	private List<Node> moveToTargetPath;
 
-	public Creature( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public Creature(RPObject object) throws AttributeNotFoundException {
+		super(object);
 
 		String type = getType();
 		String name = object.get("name");
@@ -236,17 +234,17 @@ public abstract class Creature extends NPC {
 
 		// Check if debug is enabled
 		if (diff.has("debug") && Debug.CREATURES_DEBUG_CLIENT) {
-//			sleeping = false;
-//			attacked = false;
-//			cancelAttack = false;
-//			newTarget = false;
+			// sleeping = false;
+			// attacked = false;
+			// cancelAttack = false;
+			// newTarget = false;
 			patrol = false;
-//			outOfReach = false;
+			// outOfReach = false;
 			targetMoved = false;
-//			attacking = false;
+			// attacking = false;
 			moveToTarget = false;
-//			moveToTargetBlocked = false;
-//			moveToTargetWaiting = false;
+			// moveToTargetBlocked = false;
+			// moveToTargetWaiting = false;
 			moveToTargetNew = false;
 
 			String debug = diff.get("debug");
@@ -265,42 +263,42 @@ public abstract class Creature extends NPC {
 						String token = tokenizer.nextToken();
 						System.out.println("- creature action: " + token);
 						if (token.equals("sleep")) {
-//							sleeping = true;
+							// sleeping = true;
 							break;
-//						} else if (token.equals("attacked")) {
-//							attacked = true;
-//							attackedBy = Integer
-//									.parseInt(tokenizer.nextToken());
-//						} else if (token.equals("cancelattack")) {
-//							cancelAttack = true;
-//						} else if (token.equals("newtarget")) {
-//							newTarget = true;
-//							newTargetId = Integer.parseInt(tokenizer
-//									.nextToken());
+							// } else if (token.equals("attacked")) {
+							// attacked = true;
+							// attackedBy = Integer
+							// .parseInt(tokenizer.nextToken());
+							// } else if (token.equals("cancelattack")) {
+							// cancelAttack = true;
+							// } else if (token.equals("newtarget")) {
+							// newTarget = true;
+							// newTargetId = Integer.parseInt(tokenizer
+							// .nextToken());
 						} else if (token.equals("patrol")) {
 							patrol = true;
 							patrolPath = getPath(tokenizer.nextToken());
-//						} else if (token.equals("outofreachstopped")) {
-//							outOfReach = true;
+							// } else if (token.equals("outofreachstopped")) {
+							// outOfReach = true;
 						} else if (token.equals("targetmoved")) {
 							targetMoved = true;
 							targetMovedPath = getPath(tokenizer.nextToken());
 						} else if (token.equals("attacking")) {
-//							attacking = true;
+							// attacking = true;
 						} else if (token.equals("movetotarget")) {
 							moveToTarget = true;
-//							moveToTargetBlocked = false;
-//							moveToTargetWaiting = false;
+							// moveToTargetBlocked = false;
+							// moveToTargetWaiting = false;
 							moveToTargetNew = false;
 							String nextToken = tokenizer.nextToken();
 
 							if (nextToken.equals("blocked")) {
-//								moveToTargetBlocked = true;
+								// moveToTargetBlocked = true;
 								nextToken = tokenizer.nextToken();
 							}
 
 							if (nextToken.equals("waiting")) {
-//								moveToTargetWaiting = true;
+								// moveToTargetWaiting = true;
 								nextToken = tokenizer.nextToken();
 							}
 
@@ -325,27 +323,34 @@ public abstract class Creature extends NPC {
 	}
 
 	@Override
-	public String defaultAction() {
-		return "Attack";
+	public ActionType defaultAction() {
+		return ActionType.ATTACK;
 	}
 
-//	@Override
-//	public String[] offeredActions() {
-//		ret
-//	}
+	// @Override
+	// public String[] offeredActions() {
+	// ret
+	// }
 
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("[show path]")) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at = handleAction(action);
+		switch (at) {
+		case DEBUG_SHOW_PATH:
 			hidePath = false;
-		} else if (action.equals("[hide path]")) {
+			break;
+		case DEBUG_HIDE_PATH:
 			hidePath = true;
-		} else if (action.equals("[enable watch]")) {
+			break;
+		case DEBUG_ENABLE_WATCH:
 			watch = true;
-		} else if (action.equals("[disable watch]")) {
+			break;
+		case DEBUG_DISABLE_WATCH:
 			watch = false;
-		} else {
-			super.onAction(client, action, params);
+			break;
+		default:
+			super.onAction(at, params);
+			break;
 		}
 	}
 
@@ -372,17 +377,19 @@ public abstract class Creature extends NPC {
 		return sprite;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
 	 */
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 		if (Debug.CREATURES_DEBUG_CLIENT) {
-				list.add("[" + (hidePath ? "show" : "hide")+ " path]");
-            	list.add( "[" + (watch ? "disable" : "enable")+ " watch]");
+			list.add("[" + (hidePath ? "show" : "hide") + " path]");
+			list.add("[" + (watch ? "disable" : "enable") + " watch]");
 		}
-		
+
 	}
 
 }

@@ -13,19 +13,20 @@
 
 package games.stendhal.client.gui.wt;
 
-import java.awt.geom.Point2D;
-import java.awt.Point;
-import java.util.Arrays;
-import java.util.List;
-import marauroa.common.game.RPAction;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtPanel;
+
+import java.awt.Point;
+import java.awt.geom.Point2D;
+
+import marauroa.common.game.RPAction;
 
 /**
  * 
@@ -112,7 +113,8 @@ public class GroundContainer extends WtPanel {
 			return other;
 		}
 		Point2D point = screen.translate(new Point2D.Double(x, y));
-		Entity object = gameObjects.at_undercreature(point.getX(), point.getY());
+		Entity object = gameObjects
+				.at_undercreature(point.getX(), point.getY());
 
 		// only Items can be dragged
 		if ((object != null) && (object instanceof PassiveEntity)) {
@@ -141,11 +143,11 @@ public class GroundContainer extends WtPanel {
 
 		// for the clicked entity....
 		if (entity != null) {
-			StendhalClient client = StendhalClient.get();
+
 			if (ingameGUI.isCtrlDown()) {
-				entity.onAction(client, entity.defaultAction());
+				entity.onAction(entity.defaultAction());
 			} else if (ingameGUI.isShiftDown()) {
-				entity.onAction(client, "Look");
+				entity.onAction(ActionType.LOOK);
 			}
 		}
 		return true;
@@ -161,12 +163,11 @@ public class GroundContainer extends WtPanel {
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
 		Entity entity = gameObjects.at(point.getX(), point.getY());
-		StendhalClient client = StendhalClient.get();
 
 		if (entity != null) {
 			// ... do the default action
-			String action = entity.defaultAction();
-			entity.onAction(client, action);
+			// String action = entity.defaultAction();
+			entity.onAction(entity.defaultAction());
 		} else {
 			// moveto action
 			RPAction action = new RPAction();
@@ -174,6 +175,7 @@ public class GroundContainer extends WtPanel {
 			action.put("x", (int) point.getX());
 			action.put("y", (int) point.getY());
 			StendhalClient.get().send(action);
+			// TODO: let action do this
 			return true;
 		}
 		return true;
@@ -190,13 +192,13 @@ public class GroundContainer extends WtPanel {
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
 		Entity entity = gameObjects.at(point.getX(), point.getY());
-		StendhalClient client = StendhalClient.get();
+
 		if (entity != null) {
 			// ... show context menu (aka command list)
 			String[] actions = entity.offeredActions();
 			if (actions.length > 0) {
 				CommandList list = new CommandList(entity.getType(), actions,
-						client, entity);
+						entity);
 				ingameGUI.getFrame().setContextMenu(list);
 			}
 		}

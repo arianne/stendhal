@@ -17,16 +17,15 @@ import games.stendhal.common.Direction;
 import games.stendhal.client.*;
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.List;
 
 public class Door extends AnimatedEntity {
 	private boolean open;
 
 	private int orientation;
 
-
-	public Door( RPObject base)
-			throws AttributeNotFoundException {
-		super( base);
+	public Door(RPObject base) throws AttributeNotFoundException {
+		super(base);
 
 	}
 
@@ -110,37 +109,50 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public String defaultAction() {
-		return "Open";
-	}
+	public ActionType defaultAction() {
+		if (open) {
+			return ActionType.CLOSE;
+		} else {
+			return ActionType.OPEN;
 
-
-	protected void buildOfferedActions(List list) {
-		list.add("Look");
-		list.add("Open");
-
-		if(open) {
-			list.add("Close");
 		}
 	}
 
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Open") || action.equals("Close")) {
-			
+	public void onAction(ActionType at, String... params) {
+		// ActionType at =handleAction(action);
+		switch (at) {
+		case OPEN:
+		case CLOSE:
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
-			client.send(rpaction);
-		} else {
-			super.onAction(client, action, params);
+			at.send(rpaction);
+			break;
+
+		default:
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	@Override
 	public int getZIndex() {
 		return 5000;
 	}
+
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+
+		super.buildOfferedActions(list);
+		if (open) {
+			list.add(ActionType.CLOSE.getRepresentation());
+		} else {
+			list.add(ActionType.OPEN.getRepresentation());
+
+		}
+	}
+
 }

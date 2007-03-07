@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
@@ -26,19 +25,20 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class Chest extends AnimatedEntity {
+public class Chest extends AnimatedEntity implements Inspectable {
 	private boolean open;
 
+	Inspector _inspector;
+
 	private RPSlot content;
-	
+
 	private EntityContainer wtEntityContainer;
 
 	/** true means the user requested to open this chest */
 	private boolean requestOpen;
 
-	public Chest(RPObject base)
-			throws AttributeNotFoundException {
-		super( base);
+	public Chest(RPObject base) throws AttributeNotFoundException {
+		super(base);
 		requestOpen = false;
 	}
 
@@ -68,7 +68,8 @@ public class Chest extends AnimatedEntity {
 			animation = "open";
 			// we're wanted to open this?
 			if (requestOpen) {
-				wtEntityContainer=client.getGameGUI().inspect(this, content, 4, 5);
+				wtEntityContainer = client.getGameGUI().inspect(this, content,
+						4, 5);
 				requestOpen = false;
 			}
 		}
@@ -91,12 +92,11 @@ public class Chest extends AnimatedEntity {
 			open = false;
 			animation = "close";
 			requestOpen = false;
-			
-			if(wtEntityContainer!=null) {
+
+			if (wtEntityContainer != null) {
 				wtEntityContainer.destroy();
-				wtEntityContainer=null;
+				wtEntityContainer = null;
 			}
-				 
 
 		}
 	}
@@ -112,10 +112,9 @@ public class Chest extends AnimatedEntity {
 	}
 
 	@Override
-	public String defaultAction() {
-		return "Look";
+	public ActionType defaultAction() {
+		return ActionType.LOOK;
 	}
-
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
@@ -129,12 +128,16 @@ public class Chest extends AnimatedEntity {
 		}
 	}
 
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Inspect")) {
-			client.getGameGUI().inspect(this, content, 4, 5);
-		} else if (action.equals("Open") || action.equals("Close")) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at =handleAction(action);
+		switch (at) {
+		case INSPECT:
+			wtEntityContainer = _inspector.inspectMe(this, content,
+					wtEntityContainer);// inspect(this, content, 4, 5);
+			break;
+		case OPEN:
+		case CLOSE:
 			if (!open) {
 				// If it was closed, open it and inspect it...
 				requestOpen = true;
@@ -144,14 +147,22 @@ public class Chest extends AnimatedEntity {
 			rpaction.put("type", "use");
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
-			client.send(rpaction);
-		} else {
-			super.onAction(client, action, params);
+			at.send(rpaction);
+			break;
+		default:
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+	public void setInspector(Inspector gadget) {
+		_inspector = gadget;
+
 	}
 }

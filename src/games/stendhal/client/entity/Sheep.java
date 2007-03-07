@@ -14,11 +14,11 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -27,9 +27,8 @@ import marauroa.common.game.RPObject;
 public class Sheep extends NPC {
 	private int weight;
 
-	public Sheep( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public Sheep(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
@@ -80,7 +79,6 @@ public class Sheep extends NPC {
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -99,30 +97,25 @@ public class Sheep extends NPC {
 		return sprites.get("move_up")[0];
 	}
 
-//	@Override
-//	public String[] offeredActions() {
-//		java.util.ArrayList<String> list = new java.util.ArrayList<String>();
-//		for (String item : super.offeredActions()) {
-//			list.add(item);
-//		}
-//
-//	
-//		return list.toArray(new String[0]);
-//	}
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Own")) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at = handleAction(action);
+		switch (at) {
+		case OWN:
 			RPAction rpaction = new RPAction();
 			rpaction.put("type", "own");
 			int id = getID().getObjectID();
 			rpaction.put("target", id);
-			client.send(rpaction);
+			at.send(rpaction);
 			playSound("sheep-chat-2", 25, 60);
-		} else {
+			break;
+
+		default:
 			playSound((weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40);
-			super.onAction(client, action, params);
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	private void probableChat(int chance) {
@@ -130,7 +123,9 @@ public class Sheep extends NPC {
 		playSound(token, 20, 35, chance);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see games.stendhal.client.entity.AnimatedEntity#nextFrame()
 	 */
 	@Override
@@ -141,18 +136,19 @@ public class Sheep extends NPC {
 		return super.nextFrame();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
 	 */
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-	
+
 		super.buildOfferedActions(list);
 		if (!client.getPlayer().has("sheep")) {
 			list.add("Own");
 		}
 
 	}
-
 
 }

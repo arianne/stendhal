@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
@@ -23,29 +22,28 @@ import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
-public class Corpse extends PassiveEntity {
+public class Corpse extends PassiveEntity implements Inspectable {
+	private Inspector _inspector;
 
 	private EntityContainer contentWindow;
 
-	public Corpse( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public Corpse(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
 	public Rectangle2D getArea() {
 
-		return new Rectangle.Double(x, y, (double)sprite.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, (double)sprite.getHeight()
+		return new Rectangle.Double(x, y, (double) sprite.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, (double) sprite.getHeight()
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	@Override
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, (double)sprite.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, (double)sprite.getHeight()
+		return new Rectangle.Double(x, y, (double) sprite.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, (double) sprite.getHeight()
 				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
@@ -74,39 +72,45 @@ public class Corpse extends PassiveEntity {
 	}
 
 	@Override
-	public String defaultAction() {
-		return "Inspect";
+	public ActionType defaultAction() {
+		return ActionType.INSPECT;
 	}
-
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-		
-		super.buildOfferedActions(list);;
-		
+
+		super.buildOfferedActions(list);
+		;
+
 	}
 
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Inspect")) {
-			if (!isContentShowing()) {
-				RPSlot content = rpObject.getSlot("content");
-				contentWindow = client.getGameGUI().inspect(this, content);
-			}
-		} else {
-			super.onAction(client, action, params);
+	public void onAction(ActionType at, String... params) {
+		// ActionType at=handleAction(action);
+		switch (at) {
+		case INSPECT:
+			contentWindow = _inspector.inspectMe(this, rpObject
+					.getSlot("content"), contentWindow);
+			break;
+
+		default:
+			super.onAction(at, params);
+			break;
 		}
 	}
 
-	/** whether the inspect window is showing for this corpse. */
-	public boolean isContentShowing() {
-		return (contentWindow != null) && !contentWindow.isClosed();
-	}
-
+	// /** whether the inspect window is showing for this corpse. */
+	// public boolean isContentShowing(EntityContainer entityContainer) {
+	// return (entityContainer != null) && !contentWindow.isClosed();
+	// }
 
 	@Override
 	public int getZIndex() {
 		return 5500;
+	}
+
+	public void setInspector(Inspector gadget) {
+		_inspector = gadget;
+
 	}
 }

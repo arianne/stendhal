@@ -14,13 +14,13 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
 
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -36,15 +36,15 @@ public class Player extends RPEntity {
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
 	private int outfit;
+
 	private int outfitOrg;
 
 	private double hearingRange;
 
-	public Player( RPObject base)
-			throws AttributeNotFoundException {
-		super( base);
-		hearingRange= DEFAULT_HEARINGRANGE ;
-		//setHearingRange(DEFAULT_HEARINGRANGE);
+	public Player(RPObject base) throws AttributeNotFoundException {
+		super(base);
+		hearingRange = DEFAULT_HEARINGRANGE;
+		// setHearingRange(DEFAULT_HEARINGRANGE);
 	}
 
 	@Override
@@ -148,44 +148,51 @@ public class Player extends RPEntity {
 	 * @param range
 	 *            double approx. hearing area radius in coordinate units
 	 */
-//	public void setHearingRange(double range) {
-//		hearingRange = range;
-//	}
-
-
+	// public void setHearingRange(double range) {
+	// hearingRange = range;
+	// }
 
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Set outfit")) {
+	public void onAction(ActionType at, String... params) {
+		// ActionType at =handleAction(action);
+		RPAction rpaction;
+		switch (at) {
+		case SET_OUTFIT:
 			int outfitTemp = outfit;
 			if (outfitOrg > 0) {
 				outfitTemp = outfitOrg;
 			}
 			client.getOutfitDialog(outfitTemp).setVisible(true);
-		} else if (action.equals("Leave sheep")) {
-			RPAction rpaction = new RPAction();
+		case LEAVE_SHEEP:
+			rpaction = new RPAction();
 			rpaction.put("type", "own");
 			rpaction.put("target", "-1");
-			client.send(rpaction);
+			at.send(rpaction);
 			playSound("sheep-chat-2", 15, 50);
-		} else if (action.equals("Add to Buddies")) {
-			RPAction rpaction = new RPAction();
+			break;
+		case ADD_BUDDY:
+			rpaction = new RPAction();
 			rpaction.put("type", "addbuddy");
 			rpaction.put("target", getName());
-			client.send(rpaction);
-		} else {
-			super.onAction(client, action, params);
+			at.send(rpaction);
+		default:
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	@Override
 	public void onEnter(int x, int y) {
-		if ((client.getPlayer() != null)&& client.getPlayer().getID().equals(getID())) {
-			WorldObjects.firePlayerMoved( this);
+		if ((client.getPlayer() != null)
+				&& client.getPlayer().getID().equals(getID())) {
+			WorldObjects.firePlayerMoved(this);
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
 	 */
 	@Override
@@ -195,7 +202,8 @@ public class Player extends RPEntity {
 
 		if (getID().equals(client.getPlayer().getID())) {
 			list.add("Set outfit");
-			if (list.contains("Attack")) list.remove("Attack");
+			if (list.contains("Attack"))
+				list.remove("Attack");
 			if (client.getPlayer().has("sheep")) {
 				list.add("Leave sheep");
 			}
@@ -203,7 +211,6 @@ public class Player extends RPEntity {
 			list.add("Add to Buddies");
 		}
 
-		
 	}
-	
+
 }

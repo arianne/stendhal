@@ -36,7 +36,7 @@ public class Text extends Entity {
 
 	public Text(GameObjects gameObjects, Sprite text, double x, double y,
 			long persistTime) throws AttributeNotFoundException {
-		
+
 		this.client = StendhalClient.get();
 
 		textImage = text;
@@ -63,7 +63,7 @@ public class Text extends Entity {
 
 	public Text(GameObjects gameObjects, String text, double x, double y,
 			Color color, boolean isTalking) throws AttributeNotFoundException {
-		
+
 		this.client = StendhalClient.get();
 
 		// Speech bubbles will only be drawn if there's a background color
@@ -102,14 +102,8 @@ public class Text extends Entity {
 	}
 
 	@Override
-	public String defaultAction() {
+	public ActionType defaultAction() {
 		return null;
-	}
-
-	
-
-	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
 	}
 
 	@Override
@@ -119,9 +113,9 @@ public class Text extends Entity {
 
 	@Override
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(tx, ty, 
-			(double)textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS,
-			(double)textImage.getHeight() / GameScreen.SIZE_UNIT_PIXELS);
+		return new Rectangle.Double(tx, ty, (double) textImage.getWidth()
+				/ GameScreen.SIZE_UNIT_PIXELS, (double) textImage.getHeight()
+				/ GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	@Override
@@ -133,13 +127,14 @@ public class Text extends Entity {
 		}
 	}
 
-
 	@Override
 	public int getZIndex() {
 		return 9000;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
 	 */
 	@Override

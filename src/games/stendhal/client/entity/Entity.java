@@ -22,6 +22,7 @@ import games.stendhal.client.events.CollisionEvent;
 import games.stendhal.client.events.MovementEvent;
 import games.stendhal.client.events.ZoneChangeEvent;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.entity.ActionType;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sound.sampled.DataLine;
 
+import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -67,7 +69,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	/** The object sprite. Animationless, just one frame */
 	protected Sprite sprite;
 
-	
 	/**
 	 * defines the distance in which the entity is heard by Player
 	 */
@@ -81,8 +82,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		modificationCount = 0;
 	}
 
-	protected Entity( RPObject object)
-			throws AttributeNotFoundException {
+	protected Entity(RPObject object) throws AttributeNotFoundException {
 		this.client = StendhalClient.get();
 
 		type = object.get("type");
@@ -180,27 +180,34 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	/**
 	 * compares to floating point values
-	 *
-	 * @param d1 first value
-	 * @param d2 second value
-	 * @param diff acceptable diff
+	 * 
+	 * @param d1
+	 *            first value
+	 * @param d2
+	 *            second value
+	 * @param diff
+	 *            acceptable diff
 	 * @return true if they are within diff
 	 */
 	private static boolean compareDouble(double d1, double d2, double diff) {
 		return Math.abs(d1 - d2) < diff;
 	}
-	
+
 	/**
-	 * calculates the movement if the server an client are out of sync.
-	 * for some miliseconds. (server turns are not exactly 300 ms)
-	 * Most times this will slow down the client movement
-	 *
-	 * @param clientPos the postion the client has calculated
-	 * @param serverPos the postion the server has reported
-	 * @param delta the movement based on direction
+	 * calculates the movement if the server an client are out of sync. for some
+	 * miliseconds. (server turns are not exactly 300 ms) Most times this will
+	 * slow down the client movement
+	 * 
+	 * @param clientPos
+	 *            the postion the client has calculated
+	 * @param serverPos
+	 *            the postion the server has reported
+	 * @param delta
+	 *            the movement based on direction
 	 * @return the new delta to correct the movement error
 	 */
-	public static double calcDeltaMovement(double clientPos, double serverPos, double delta) {
+	public static double calcDeltaMovement(double clientPos, double serverPos,
+			double delta) {
 		double moveErr = clientPos - serverPos;
 		double moveCorrection = (delta - moveErr) / delta;
 		return (delta + delta * moveCorrection) / 2;
@@ -208,7 +215,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	// When rpentity moves, it will be called with the data.
 	public void onMove(int x, int y, Direction direction, double speed) {
-		
+
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
 		this.speed = speed;
@@ -217,7 +224,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			this.y = y;
 			if (compareDouble(this.x, x, 1.0)) {
 				// make the movement look more nicely: + this.dx * 0.1
-				this.dx = calcDeltaMovement(this.x+ this.dx * 0.1, x, direction.getdx()) * speed;
+				this.dx = calcDeltaMovement(this.x + this.dx * 0.1, x,
+						direction.getdx())
+						* speed;
 			} else {
 				this.x = x;
 			}
@@ -226,8 +235,10 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			this.x = x;
 			this.dx = 0;
 			if (compareDouble(this.y, y, 1.0)) {
-				// make the movement look more nicely: + this.dy * 0.1 
-				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y, direction.getdy()) * speed;
+				// make the movement look more nicely: + this.dy * 0.1
+				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y,
+						direction.getdy())
+						* speed;
 			} else {
 				this.y = y;
 			}
@@ -252,7 +263,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	// When rpentity reachs the [x,y,1,1] area.
 	public void onEnter(int x, int y) {
-	
+
 	}
 
 	// When rpentity leaves the [x,y,1,1] area.
@@ -301,24 +312,18 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			g2d.setColor(Color.green);
 			Point2D p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
-			g2d
-					.drawRect(
-							(int) p.getX(),
-							(int) p.getY(),
-							(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-							(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect((int) p.getX(), (int) p.getY(),
+					(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+					(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 
 			g2d = screen.expose();
 			rect = getDrawedArea();
 			g2d.setColor(Color.blue);
 			p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
-			g2d
-					.drawRect(
-							(int) p.getX(),
-							(int) p.getY(),
-							(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-							(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect((int) p.getX(), (int) p.getY(),
+					(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+					(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 
@@ -422,15 +427,15 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	abstract public Rectangle2D getDrawedArea();
 
-	public String defaultAction() {
-		return "Look";
+	public ActionType defaultAction() {
+		return ActionType.LOOK;
 	}
 
 	final public String[] offeredActions() {
 		List<String> list = new ArrayList<String>();
-       	buildOfferedActions(list);
-        list.remove(defaultAction());
-        list.add(0, defaultAction());
+		buildOfferedActions(list);
+		list.remove(defaultAction().getRepresentation());
+		list.add(0, defaultAction().getRepresentation());
 		/*
 		 * Special admin options
 		 */
@@ -443,18 +448,33 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		return list.toArray(new String[list.size()]);
 	}
 
-
 	protected void buildOfferedActions(List<String> list) {
-		list.add("Look");
-		
+		list.add(ActionType.LOOK.getRepresentation());
+
 	}
 
+	protected final ActionType handleAction(String action) {
+		System.out.print(action);
+		ActionType at;
+		try {
+			at = ActionType.getbyRep(action);
+			System.out.println("=code: " + at);
+			return at;
+		} catch (Exception e) {
+			System.out.println("=code: not found");
+			return null;
+		}
+	}
 
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Look")) {
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", "look");
-			int id = getID().getObjectID();
+	public void onAction(ActionType at, String... params) {
+		// ActionType at =handleAction(action);
+		int id;
+		RPAction rpaction;
+		switch (at) {
+		case LOOK:
+			rpaction = new RPAction();
+			rpaction.put("type", at.toString());
+			id = getID().getObjectID();
 
 			if (params.length > 0) {
 				rpaction.put("baseobject", params[0]);
@@ -463,64 +483,75 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			} else {
 				rpaction.put("target", id);
 			}
-			client.send(rpaction);
-		} else if (action.equals("(*)Inspect")) {
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", "inspect");
-			int id = getID().getObjectID();
+			at.send(rpaction);
+			break;
+		case ADMIN_INSPECT:
+			rpaction = new RPAction();
+			rpaction.put("type", at.toString());
+			id = getID().getObjectID();
 			rpaction.put("targetid", id);
-			client.send(rpaction);
-		} else if (action.equals("(*)Destroy")) {
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", "destroy");
-			int id = getID().getObjectID();
+			at.send(rpaction);
+			break;
+		case ADMIN_DESTROY:
+			rpaction = new RPAction();
+			rpaction.put("type", at.toString());
+			id = getID().getObjectID();
 			rpaction.put("targetid", id);
-			client.send(rpaction);
-		} else if (action.equals("(*)Alter")) {
-			int id = getID().getObjectID();
+			at.send(rpaction);
+			break;
+		case ADMIN_ALTER:
+			id = getID().getObjectID();
 			client.getTextLineGUI().setText("/alter #" + id + " ");
+			break;
+		default:
+
+			Log4J.getLogger(Entity.class).error(
+					at.toString() + ": Action not processed");
+			break;
 		}
+
 	}
 
 	/**
-	 * Checks if this entity should be drawn on top of the given entity,
-	 * if the given entity should be drawn on top, or if it doesn't matter.
+	 * Checks if this entity should be drawn on top of the given entity, if the
+	 * given entity should be drawn on top, or if it doesn't matter.
 	 * 
-	 * In the first case, this method returns a positive integer. In the
-	 * second case, it returns a negative integer. In the third case, it
-	 * returns 0. 
+	 * In the first case, this method returns a positive integer. In the second
+	 * case, it returns a negative integer. In the third case, it returns 0.
 	 * 
 	 * Also, players can only interact with the topmost entity.
 	 * 
 	 * Note: this comparator imposes orderings that are inconsistent with
 	 * equals().
-	 *
-	 * @param other another entity to compare this one to
-	 * @return a negative integer, zero, or a positive integer as this object
-	 *         is less than, equal to, or greater than the specified object.
+	 * 
+	 * @param other
+	 *            another entity to compare this one to
+	 * @return a negative integer, zero, or a positive integer as this object is
+	 *         less than, equal to, or greater than the specified object.
 	 */
 	public int compareTo(Entity other) {
-		// commented out until someone fixes bug [ 1401435 ] Stendhal: Fix positions system
-//		if (this.getY() < other.getY()) {
-//			// this entity is standing behind the other entity
-//			return -1;
-//		} else if (this.getY() > other.getY()) {
-//			// this entity is standing in front of the other entity
-//			return 1;
-//		} else {
-			// one of the two entities is standing on top of the other.
-			// find out which one.
-			return this.getZIndex() - other.getZIndex();
-//		}
+		// commented out until someone fixes bug [ 1401435 ] Stendhal: Fix
+		// positions system
+		// if (this.getY() < other.getY()) {
+		// // this entity is standing behind the other entity
+		// return -1;
+		// } else if (this.getY() > other.getY()) {
+		// // this entity is standing in front of the other entity
+		// return 1;
+		// } else {
+		// one of the two entities is standing on top of the other.
+		// find out which one.
+		return this.getZIndex() - other.getZIndex();
+		// }
 	}
 
 	/**
 	 * Determines on top of which other entities this entity should be drawn.
-	 * Entities with a high Z index will be drawn on top of ones with a lower
-	 * Z index.
+	 * Entities with a high Z index will be drawn on top of ones with a lower Z
+	 * index.
 	 * 
 	 * Also, players can only interact with the topmost entity.
-	 *
+	 * 
 	 * @return drawing index
 	 */
 	abstract public int getZIndex();

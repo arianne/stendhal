@@ -34,7 +34,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class InGameGUI implements KeyListener {
+public class InGameGUI implements KeyListener, Inspector {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(InGameGUI.class);
 
@@ -75,10 +75,11 @@ public class InGameGUI implements KeyListener {
 
 	private long lastKeyRelease;
 
-	private int[] veryFastKeyEvents = new int[4]; // at leat one more than checked
+	private int[] veryFastKeyEvents = new int[4]; // at leat one more than
+													// checked
 
 	private long lastKeyEventsCleanUpStart;
-	
+
 	public InGameGUI(StendhalClient client) {
 
 		client.setGameGUI(this);
@@ -123,29 +124,24 @@ public class InGameGUI implements KeyListener {
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 	}
 
+	protected Direction keyCodeToDirection(int keyCode) {
+		switch (keyCode) {
+		case KeyEvent.VK_LEFT:
+			return Direction.LEFT;
 
-	protected Direction
-	keyCodeToDirection(int keyCode)
-	{
-		switch(keyCode)
-		{
-			case KeyEvent.VK_LEFT:
-				return Direction.LEFT;
+		case KeyEvent.VK_RIGHT:
+			return Direction.RIGHT;
 
-			case KeyEvent.VK_RIGHT:
-				return Direction.RIGHT;
+		case KeyEvent.VK_UP:
+			return Direction.UP;
 
-			case KeyEvent.VK_UP:
-				return Direction.UP;
+		case KeyEvent.VK_DOWN:
+			return Direction.DOWN;
 
-			case KeyEvent.VK_DOWN:
-				return Direction.DOWN;
-
-			default:
-				return null;
+		default:
+			return null;
 		}
 	}
-
 
 	public void onKeyPressed(KeyEvent e) {
 		RPAction action;
@@ -162,8 +158,7 @@ public class InGameGUI implements KeyListener {
 			/* If Ctrl+L we set the Game log dialog visible */
 			client.getGameLogDialog().setVisible(true);
 
-		
-		} else if(( e.getKeyCode()==KeyEvent.VK_R) && e.isControlDown()) {
+		} else if ((e.getKeyCode() == KeyEvent.VK_R) && e.isControlDown()) {
 			/* If Ctrl+R we remove Chat bubbles */
 			gameObjects.clearTexts();
 
@@ -197,7 +192,6 @@ public class InGameGUI implements KeyListener {
 		RPAction action;
 		int size;
 
-
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_RIGHT:
@@ -213,7 +207,6 @@ public class InGameGUI implements KeyListener {
 			action.put("dir", -dir.get());
 			client.send(action);
 
-
 			/*
 			 * Client side direction tracking (for now)
 			 */
@@ -222,7 +215,7 @@ public class InGameGUI implements KeyListener {
 			// Existing one reusable???
 			action = new RPAction();
 
-			if((size = directions.size()) == 0) {
+			if ((size = directions.size()) == 0) {
 				action.put("type", "stop");
 			} else {
 				if (e.isControlDown()) {
@@ -233,8 +226,7 @@ public class InGameGUI implements KeyListener {
 					action.put("type", "move");
 				}
 
-				action.put("dir",
-					directions.get(size - 1).get());
+				action.put("dir", directions.get(size - 1).get());
 			}
 
 			client.send(action);
@@ -244,10 +236,17 @@ public class InGameGUI implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// detect X11 auto repeat still beeing active
 		if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
-			veryFastKeyEvents[veryFastKeyEvents.length-1]++;
-			if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2) && (veryFastKeyEvents[2] > 2)) {
-				StendhalClient.get().addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
-				StendhalClient.get().addEventLine("Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution", Color.BLACK);
+			veryFastKeyEvents[veryFastKeyEvents.length - 1]++;
+			if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2)
+					&& (veryFastKeyEvents[2] > 2)) {
+				StendhalClient.get().addEventLine(
+						"Detecting serious bug in keyboard handling.",
+						Color.RED);
+				StendhalClient
+						.get()
+						.addEventLine(
+								"Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution",
+								Color.BLACK);
 			}
 		}
 		altDown = e.isAltDown();
@@ -278,12 +277,11 @@ public class InGameGUI implements KeyListener {
 			lastKeyEventsCleanUpStart = System.currentTimeMillis();
 
 			for (int i = veryFastKeyEvents.length - 1; i > 0; i--) {
-				veryFastKeyEvents[i-1] = veryFastKeyEvents[i];
+				veryFastKeyEvents[i - 1] = veryFastKeyEvents[i];
 			}
 			veryFastKeyEvents[veryFastKeyEvents.length - 1] = 0;
 		}
 	}
-
 
 	/**
 	 * Stops all player actions and shows a dialog in which the player can
@@ -305,7 +303,7 @@ public class InGameGUI implements KeyListener {
 			quitDialog.registerClickListener(new WtClickListener() {
 				public void onClick(String name, Point point) {
 					quitDialog = null; // remove field as the messagebox is
-										// closed now
+					// closed now
 					if (name.equals(WtMessageBox.ButtonEnum.YES.getName())) {
 						// Yes-Button clicked...logut and quit.
 						client.requestLogout();
@@ -315,7 +313,7 @@ public class InGameGUI implements KeyListener {
 			frame.addChild(quitDialog);
 		}
 	}
-	
+
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyChar() == 27) {
 			// escape typed
@@ -340,7 +338,9 @@ public class InGameGUI implements KeyListener {
 		EntityContainer container = new EntityContainer(gameObjects, entity
 				.getType(), width, height);
 		container.setSlot(entity, slot.getName());
-		ground.addChild(container);
+		if (!container.hasParent()) {
+			ground.addChild(container);
+		}
 		container.setVisible(true);
 
 		return container;
@@ -402,5 +402,26 @@ public class InGameGUI implements KeyListener {
 	 */
 	public WtBaseframe getFrame() {
 		return frame;
+	}
+
+	public EntityContainer inspectMe(Entity suspect, RPSlot content,
+			EntityContainer container) {
+		if (container == null || !container.isVisible()) {
+			{
+				if (suspect instanceof Chest) {
+					container = new EntityContainer(gameObjects, suspect
+							.getType(), 4, 5);
+				} else {
+					container = new EntityContainer(gameObjects, suspect
+							.getType(), 2, 2);
+				}
+				ground.addChild(container);
+			}
+
+			container.setSlot(suspect, content.getName());
+			container.setVisible(true);
+		}
+		return container;
+
 	}
 }

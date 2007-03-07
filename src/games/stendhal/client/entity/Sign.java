@@ -29,9 +29,8 @@ public class Sign extends Entity {
 	// Give Signs same color on Screen and Log window. intensifly@gmx.com
 	static final private Color signColor = new Color(0x006400); // dark green
 
-	public Sign( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public Sign(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
@@ -96,15 +95,21 @@ public class Sign extends Entity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-
 	@Override
-	public void onAction(StendhalClient client, String action, String... params) {
-		if (action.equals("Look")) {
+	public void onAction(ActionType at, String... params) {
+		// =handleAction(action);
+		switch (at) {
+		case LOOK:
 			GameObjects.getInstance().addText(this, textImage, textPersistTime);
-			StendhalClient.get().addEventLine("You read: \"" + text + "\"", signColor);
-		} else {
-			super.onAction(client, action, params);
+			StendhalClient.get().addEventLine("You read: \"" + text + "\"",
+					signColor);
+			break;
+
+		default:
+			super.onAction(at, params);
+			break;
 		}
+
 	}
 
 	@Override
