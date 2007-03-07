@@ -1,11 +1,10 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.util.TimeUtil;
 
 /**
@@ -51,16 +50,11 @@ public class VampireSword extends AbstractQuest {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 			if (!player.hasQuest(QUEST_SLOT)) {
-			    engine.say("I can forge a powerful life stealing sword for you. "+
-				       "You will need to go to the Catacombs below Semos "+
-				       "Graveyard and fight the Vampire Lord. "+
-				       "Are you interested?");
+			    engine.say("I can forge a powerful life stealing sword for you. You will need to go to the Catacombs below Semos Graveyard and fight the Vampire Lord. Are you interested?");
 			} else if (player.isQuestCompleted(QUEST_SLOT)) {
-			    engine.say("What are you bothering me for now? "+
-				       "You've got your sword, go and use it!");	  
+			    engine.say("What are you bothering me for now? You've got your sword, go and use it!");	  
 			}
-			else { engine.say("Why are you bothering me when you haven't "+
-			              "completed your quest yet?");
+			else { engine.say("Why are you bothering me when you haven't completed your quest yet?");
 			     }
 		    }
 		});
@@ -74,8 +68,7 @@ public class VampireSword extends AbstractQuest {
 		    @Override
 			public void fire(Player player, String text,
 					 SpeakerNPC engine) {
-			engine.say("Then you need this #goblet. "+
-				   "Take it to Semos #Catacombs.");
+			engine.say("Then you need this #goblet. Take it to Semos #Catacombs.");
 			Item emptygoblet =
 			    StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("empty_goblet");
 			player.equip(emptygoblet, true);
@@ -134,14 +127,12 @@ public class VampireSword extends AbstractQuest {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 			
 			if (!player.isEquipped("iron",REQUIRED_IRON)) { 
-			    engine.say("You have battled hard to bring that goblet. "+
-					   "I will use it to #forge the vampire sword");
+			    engine.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
 			}
 			else {
 			    player.drop("goblet");
 			    player.drop("iron",REQUIRED_IRON);
-				engine.say("You've brought everything I need to make "+
-					   "the vampire sword. Come back in "+
+				engine.say("You've brought everything I need to make the vampire sword. Come back in "+
 					   REQUIRED_TIME + " minutes and it will be ready");
 				/* and set a state correctly
 				   -ConversationStates.STARTED_FORGE?
@@ -167,9 +158,7 @@ public class VampireSword extends AbstractQuest {
 		new SpeakerNPC.ChatAction() {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
-                engine.say("Did you lose your way? "+
-				    "The Catacombs are in North Semos. "+
-				    "Don't come back without a full goblet!");
+                engine.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet!");
 			}
 		});
 		
@@ -189,15 +178,14 @@ public class VampireSword extends AbstractQuest {
 		new SpeakerNPC.ChatAction() {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
-               engine.say("I hope you didn't lose your goblet! "+
-				   "Do you need another?");
+               engine.say("I hope you didn't lose your goblet! Do you need another?");
 			}
 		});
 		
 	npc.add(ConversationStates.QUESTION_1,
 	    SpeakerNPC.YES_MESSAGES,
 	    null,
-	    ConvaersationStates.IDLE,
+	    ConversationStates.IDLE,
 	    null,
 	    new SpeakerNPC.ChatAction() {
 		    @Override
@@ -238,15 +226,13 @@ public class VampireSword extends AbstractQuest {
 			    System.currentTimeMillis();
 
 			if ( timeRemaining > 0L ){
-			    engine.say("I haven't finished forging the sword. "+
-				       "Please check back in " +
+			    engine.say("I haven't finished forging the sword. Please check back in " +
 				       TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))+
 				       ".");
 			    return;
 			}
 
-			engine.say("I have finished forging the mighty Vampire Sword. "+
-			           "You deserve this. Now i'm going back to work.");
+			engine.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work.");
 			player.addXP(5000);
 			Item vampireSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("vampire_sword");
 			vampireSword.put("bound", player.getName());
@@ -260,8 +246,7 @@ public class VampireSword extends AbstractQuest {
 		"forge",			
 		null, 
 		ConversationStates.QUEST_ITEM_BROUGHT,
-		"Bring me 10 #iron bars to forge the sword with. "+
-		"Don't forget to bring the goblet too.",
+		"Bring me 10 #iron bars to forge the sword with. Don't forget to bring the goblet too.",
 		null);
 	
 	npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
