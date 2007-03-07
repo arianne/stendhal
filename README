@@ -73,10 +73,12 @@ Changelog
 - trading table added in semos townhall
 - improve Minimap: moveto by Double-Clicking
 - closed panel windows keep state on restart
-- rat city is open
+- rat city is open 
 - new zone configuration using xml
 - ctrl+r in gui clears all active text bubbles
 - mayor now tells how long till next quest
+- bandits (risecia humans) between ados and semos
+- new nalwor interiors including a weapons buyer
 
 0.57  Jan 27, 2007
 - sheep food now shows up in the minimap as an obstical
