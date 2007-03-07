@@ -80,17 +80,17 @@ public class VampireSword extends AbstractQuest {
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.ATTENDING,
 				"Catacombs",
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"The Catacombs of North Semos of the ancient #stories.",
 				null);
 
-		npc.add(ConversationStates.QUEST_OFFERED,
+		npc.add(ConversationStates.ATTENDING,
 				"talisman",
 				null,
-				ConversationStates.QUEST_OFFERED,
+				ConversationStates.ATTENDING,
 				"You'll need an empty goblet to get into the #Catacombs. It's a powerful talisman. Go fill it with blood.",
 				null);
 
