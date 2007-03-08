@@ -614,11 +614,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
-		list.add("Attack");
+		list.add(ActionType.ATTACK.getRepresentation());
 
 		if (client.getPlayer() != null)
 			if (client.getPlayer().has("target")) {
-				list.add("Stop attack");
+				list.add(ActionType.STOP_ATTACK.getRepresentation());
 			}
 	}
 
