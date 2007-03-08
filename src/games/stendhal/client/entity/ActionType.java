@@ -8,7 +8,7 @@ public enum ActionType {
 	LOOK("look","Look"),
 	INSPECT("inspect","Inspect"),
 	ATTACK("attack","Attack"),
-	STOP_ATTACK("stop","Stop Attack"),
+	STOP_ATTACK("stop","Stop attack"),
 	CLOSE("use","Close"),
 	OPEN("use","Open"),
 	OWN("own","Own"),
