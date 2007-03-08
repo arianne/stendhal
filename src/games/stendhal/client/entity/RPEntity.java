@@ -104,8 +104,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	};
 
-	private String name;
-
 	private int atk;
 
 	private int def;
@@ -156,10 +154,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	public boolean isAttacking() {
 		return (attacking != null);
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	protected void setName(String name) {
@@ -741,7 +735,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	// When attacker attacks this entity.
-	public void onAttacked(RPEntity attacker) {
+	public void onAttacked(Entity attacker) {
 		attacked = true;
 	}
 
@@ -751,27 +745,27 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	// When attacket stop attacking us
-	public void onStopAttacked(RPEntity attacker) {
+	public void onStopAttacked(Entity attacker) {
 		attacked = false;
 	}
 
 	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(RPEntity target, int damage) {
+	public void onAttackDamage(Entity target, int damage) {
 		showBladeStrike = true;
 	}
 
 	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(RPEntity target) {
+	public void onAttackBlocked(Entity target) {
 		showBladeStrike = true;
 	}
 
 	// When this entity's attack is missing the adversary
-	public void onAttackMissed(RPEntity target) {
+	public void onAttackMissed(Entity target) {
 		showBladeStrike = true;
 	}
 
 	// When this entity is damaged by attacker with damage amount
-	public void onDamaged(RPEntity attacker, int damage) {
+	public void onDamaged(Entity attacker, int damage) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HITTED;
 
@@ -795,13 +789,13 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	// When this entity blocks the attack by attacker
-	public void onBlocked(RPEntity attacker) {
+	public void onBlocked(Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.BLOCKED;
 	}
 
 	// When this entity skip attacker's attack.
-	public void onMissed(RPEntity attacker) {
+	public void onMissed(Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
 	}

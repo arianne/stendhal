@@ -66,6 +66,11 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	private String type;
 
+	/**
+	 * The entity name.
+	 */
+	protected String name;
+
 	/** The object sprite. Animationless, just one frame */
 	protected Sprite sprite;
 
@@ -87,6 +92,12 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 		type = object.get("type");
 
+		if(object.has("name")) {
+			name = object.get("name");
+		} else {
+			name = type.replace("_", " ");
+		}
+
 		rpObject = object;
 		x = 0.0;
 		y = 0.0;
@@ -104,6 +115,10 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	/** Returns the represented arianne object id */
 	public RPObject.ID getID() {
 		return rpObject != null ? rpObject.getID() : null;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public String getType() {
