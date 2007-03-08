@@ -24,6 +24,7 @@ public class PairTest {
 	@Test
 	public final void testEquals() {
 		Pair<String,Integer>p1,p2,p3;
+		Integer intOne= new Integer(1);
 		p1 = new Pair<String,Integer>(new String("hugo"),new Integer(1));
 		p2 = new Pair<String,Integer>(new String("hugo"),new Integer(1));
 		p3 = new Pair<String,Integer>(new String("hugo"),new Integer(1));
@@ -35,9 +36,17 @@ public class PairTest {
 		assertTrue(p1.second().equals(p3.second()));
 		assertTrue(p1.equals(p1));
 		assertTrue(p1.equals(p2));
+		
 		assertTrue(p2.equals(p3));
 		assertTrue(p1.equals(p3));
 		assertTrue(p2.equals(p1));
+		Pair<String,Integer> pfirstnull1= new Pair<String,Integer>(null,intOne);
+		Pair<String,Integer> pfirstnull2= new Pair<String,Integer>(null,intOne);
+		Pair<String,Integer> pbothnull1= new Pair<String,Integer>(null,null);
+		Pair<String,Integer> pbothnull2= new Pair<String,Integer>(null,null);
+		assertTrue(pfirstnull1.equals(pfirstnull2));
+		assertTrue(pbothnull1.equals(pbothnull2));
+		
 		
 	}
 
