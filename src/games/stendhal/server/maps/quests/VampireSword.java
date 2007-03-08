@@ -79,7 +79,7 @@ public class VampireSword extends AbstractQuest {
 		"no",
 		null,
 		ConversationStates.IDLE,
-		"Oh, well forget it then. You must have a better sword than I can forge, huh?",
+		"Oh, well forget it then. You must have a better sword than I can forge, huh? Bye.",
 		null
 		);
 	
@@ -158,7 +158,7 @@ public class VampireSword extends AbstractQuest {
 		new SpeakerNPC.ChatAction() {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
-                engine.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet!");
+                engine.say("Did you lose your way? The Catacombs are in North Semos. Don't come back without a full goblet! Bye!");
 			}
 		});
 		
@@ -191,7 +191,7 @@ public class VampireSword extends AbstractQuest {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 
-			    engine.say("You stupid ..... Be more careful next time!");
+			    engine.say("You stupid ..... Be more careful next time. Bye!");
 			    Item emptygoblet =
 			    StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("empty_goblet");
 			    player.equip(emptygoblet, true);
@@ -202,7 +202,7 @@ public class VampireSword extends AbstractQuest {
 	    "no",
 	    null,
 	    ConversationStates.IDLE,
-	    "Then why are you back here? Go slay some vampires!",
+	    "Then why are you back here? Go slay some vampires! Bye!",
 	    null);
 	    
 	npc.add(ConversationStates.IDLE,
@@ -232,7 +232,7 @@ public class VampireSword extends AbstractQuest {
 			    return;
 			}
 
-			engine.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work.");
+			engine.say("I have finished forging the mighty Vampire Sword. You deserve this. Now i'm going back to work, goodbye!");
 			player.addXP(5000);
 			Item vampireSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("vampire_sword");
 			vampireSword.put("bound", player.getName());
@@ -253,7 +253,7 @@ public class VampireSword extends AbstractQuest {
 		"iron",			
 		null, 
 		ConversationStates.IDLE,
-		"You know, collect the iron ore lying around and get it cast!",
+		"You know, collect the iron ore lying around and get it cast! Bye!",
 		null);
 
 
