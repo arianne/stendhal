@@ -385,7 +385,7 @@ public abstract class SpeakerNPC extends NPC {
 	 * A transition brings a conversation from one state to another one (or to
 	 * the same one); while doing so, other actions can take place.
 	 */
-	private class Transition {
+	public class Transition {
 		// The state where this transition starts at
 		private int state;
 
@@ -458,7 +458,33 @@ public abstract class SpeakerNPC extends NPC {
 			}
 		}
 
-        @Override
+		
+
+        public ChatAction getAction() {
+			return action;
+		}
+
+		public ChatCondition getCondition() {
+			return condition;
+		}
+
+		public int getNextState() {
+			return nextState;
+		}
+
+		public String getReply() {
+			return reply;
+		}
+
+		public int getState() {
+			return state;
+		}
+
+		public String getTrigger() {
+			return trigger;
+		}
+
+		@Override
 		public String toString() {
 			return "[" + state + "," + trigger + "," + nextState + ","
 					+ condition + "]";
@@ -1097,5 +1123,12 @@ public abstract class SpeakerNPC extends NPC {
 					behaviour.giveProduct(npc, player);
 				}
 			});
+	}
+
+	/**
+	 * Returns a copy of the transition table
+	 */
+	public List<Transition> getTransitions() {
+		return new LinkedList<Transition>(stateTransitionTable);
 	}
 }
