@@ -24,13 +24,16 @@ public class DumpTransitions extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-		if (args.size() != 1) {
+		if (args.size() < 1) {
 			admin.sendPrivateText("/script DumpTransitions.class <npcname>");
 			return;
 		}
 
-		String npcName = args.get(0);
-		SpeakerNPC npc = NPCList.get().get(npcName);
+		StringBuilder npcName = new StringBuilder();
+		for (String arg : args) {
+			npcName.append(arg + " ");
+		}
+		SpeakerNPC npc = NPCList.get().get(npcName.toString().trim());
 		if (npc == null) {
 			admin.sendPrivateText("There is no NPC called " + npcName);
 			return;
