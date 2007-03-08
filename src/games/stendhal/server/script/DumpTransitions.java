@@ -55,8 +55,15 @@ public class DumpTransitions extends ScriptImpl {
 	private void dumpNPC(SpeakerNPC npc) {
 		List<SpeakerNPC.Transition> transitions = npc.getTransitions();
 		for (SpeakerNPC.Transition transition : transitions) {
-			dumpedTable.append(getStateName(transition.getState()) + " -> " + getStateName(transition.getNextState())
-					+ " [ label = \"" + transition.getTrigger() + "\" ];\r\n");
+			dumpedTable.append(getStateName(transition.getState()) + " -> " + getStateName(transition.getNextState()));
+			String transitionName = transition.getTrigger();
+			if (transition.getCondition() != null) {
+				transitionName = "~ " + transitionName;
+			}
+			if (transition.getAction() != null) {
+				transitionName = transitionName + " *";
+			}
+			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
 		}
 	}
 	
