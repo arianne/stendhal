@@ -607,7 +607,7 @@
 	</creature>
 	<!-- Level 7 -->
 	 <creature name="zombie_rat">
-		<type class="undead" subclass="zombierat" tileid="95"/>
+		<type class="small_animal" subclass="zombierat" tileid="95"/>
 		<attributes>
 			<atk value="50"/>
 			<def value="12"/>
@@ -619,7 +619,8 @@
 		<experience value="100"/>
 		<respawn value="800"/>
 		<drops>
-
+			<item value="money" quantity="[3,20]" probability="100"/>
+			<item value="cheese" quantity="[2,5]" probability="50"/>		
 		</drops>
 		<equips>
 		</equips>
