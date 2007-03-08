@@ -42,7 +42,7 @@
  </tileset>
  <layer name="0_floor" width="30" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvHysCwDgfuZacdxmXnqL2j9o7aO2rvqL2D195RPIpHMXEYAB7VIZ1gCQAA
+   H4sIAAAAAAAAAFvHysCwDgfuY6cdxmXnqL2j9o7aO2rvqL2D195RPIpHMXEYAK7yRThgCQAA
   </data>
  </layer>
  <layer name="1_terrain" width="30" height="20">
@@ -70,7 +70,7 @@
    H4sIAAAAAAAAAGNgGAVpnPS3s3oA7BwFo4BWYDQ9j4JRQBgMZD4ZzaP0BwDB1uR9YAkAAA==
   </data>
  </layer>
- <layer name="collision" width="30" height="20" visible="0" opacity="0.37">
+ <layer name="collision" width="30" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAANPiYmDQGoEYHQyU3cPdv6P2jto7au/QtRfZbnraSa691HAnPQAhe2nhZ3z20trf9E47gwUDAOv9o+BgCQAA
   </data>
