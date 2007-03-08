@@ -174,6 +174,7 @@ public class Bootstrap {
 				boolean initialDownload = false;
 				try {
 					classLoader.loadClass(className);
+					classLoader.loadClass("org.apache.log4j.Logger");
 				} catch (ClassNotFoundException e) {
 					initialDownload = true;
 				}
