@@ -334,11 +334,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	// Called when entity kills another entity
-	public void onKill(RPEntity killed) {
+	public void onKill(Entity killed) {
 	}
 
 	// Called when entity is killed by killer
-	public void onDeath(RPEntity killer) {
+	public void onDeath(Entity killer) {
 		if (killer != null) {
 			client.addEventLine(getName() + " has been killed by "
 					+ killer.getName());
@@ -730,7 +730,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	}
 
 	// When this entity attacks target.
-	public void onAttack(RPEntity target) {
+	public void onAttack(Entity target) {
 		attacking = target.getID();
 	}
 
