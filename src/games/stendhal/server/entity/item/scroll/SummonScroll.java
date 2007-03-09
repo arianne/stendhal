@@ -32,7 +32,7 @@ import org.apache.log4j.Logger;
  * Represents a creature summon scroll.
  */
 public class SummonScroll extends InfoStringScroll {
-	protected static final int	MAX_NPCS	= 100;
+	protected static final int	MAX_ZONE_NPCS	= 10;
 
 	private static final Logger logger =
 				Logger.getLogger(SummonScroll.class);
@@ -64,7 +64,7 @@ public class SummonScroll extends InfoStringScroll {
 			return false;
 		}
 		
-		if (StendhalRPRuleProcessor.get().getNPCs().size() > MAX_NPCS) {
+		if(zone.getNPCList().size() >= MAX_ZONE_NPCS) {
 			player.sendPrivateText("Mysteriously, the scroll does not function! Perhaps this area is too crowded...");
 			logger.error("too many npcs");
 			return false;
@@ -114,6 +114,9 @@ public class SummonScroll extends InfoStringScroll {
 		creature.clearDropItemList();
 		creature.put("title_type", "friend");
 
+		// XXX - Possible memory leak!
+		// When are these removed from the npc lists??
+		zone.addNPC(creature);
 		StendhalRPRuleProcessor.get().addNPC(creature);
 		return true;
 	}
