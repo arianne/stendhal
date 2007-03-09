@@ -41,14 +41,15 @@ public class AttackableCreature extends Creature {
 
 	@Override
 	protected List<RPEntity> getEnemyList() {
-		List<RPEntity> res = this.getAttackSources();
+		List<RPEntity> res = this.getAttackingRPEntities();
+
 		if (master != null) {
 			if (res.isEmpty()) {
-				res = master.getAttackSources();
+				res = master.getAttackingRPEntities();
 			} else {
 				res = new ArrayList<RPEntity>();
-				res.addAll(this.getAttackSources());
-				res.addAll(master.getAttackSources());
+				res.addAll(this.getAttackingRPEntities());
+				res.addAll(master.getAttackingRPEntities());
 			}
 		}
 		return res;

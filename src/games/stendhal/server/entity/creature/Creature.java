@@ -446,11 +446,11 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	protected List<RPEntity> getEnemyList() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(get("zoneid"));
+		StendhalRPZone zone = getZone();
 		if (aiProfiles.keySet().contains("offensive")) {
 			return zone.getPlayerAndFirends();
 		} else {
-			return getAttackSources();
+			return getAttackingRPEntities();
 		}
 	}
 
@@ -539,7 +539,7 @@ public class Creature extends NPC {
 
 		List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.size() == 0) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(get("zoneid"));
+			StendhalRPZone zone = getZone();
 			enemyList = zone.getPlayerAndFirends();
 		}
 
@@ -630,7 +630,15 @@ public class Creature extends NPC {
 		// hit the attacker, but prefer players
 		target = getNearestEnemy(8);
 		if (target == null) {
-			target = this.getAttackSource(0);
+			/*
+			 * Use the first attacking RPEntity found (if any)
+			 */
+			for(Entity entity : getAttackSources()) {
+				if(entity instanceof RPEntity) {
+					target = (RPEntity) entity;
+					break;
+				}
+			}
 		}
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
@@ -806,8 +814,8 @@ public class Creature extends NPC {
 	 * @return true if this is a good position for range combat
 	 */
 	private boolean isGoodRangeCombatPosition(int x, int y) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
-				get("zoneid"));
+		StendhalRPZone zone = getZone();
+
 		double distance = target.squaredDistance(x, y);
 		if (distance > 7 * 7) {
 			return false;

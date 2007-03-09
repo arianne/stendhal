@@ -70,7 +70,7 @@ public abstract class RPEntity extends Entity {
 	private HashMap <RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
 
 	/** List of all attackers of this entity */
-	private List<RPEntity> attackSource;
+	private List<Entity> attackSource;
 
 	/** current target */
 	private RPEntity attackTarget;
@@ -151,7 +151,7 @@ public abstract class RPEntity extends Entity {
 
 	public RPEntity(RPObject object) throws AttributeNotFoundException {
 		super(object);
-		attackSource = new LinkedList<RPEntity>();
+		attackSource = new LinkedList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
 		totalDamageReceived = 0;
@@ -159,7 +159,7 @@ public abstract class RPEntity extends Entity {
 
 	public RPEntity() throws AttributeNotFoundException {
 		super();
-		attackSource = new LinkedList<RPEntity>();
+		attackSource = new LinkedList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
 		totalDamageReceived = 0;
@@ -503,7 +503,7 @@ public abstract class RPEntity extends Entity {
 	 * RPEntity who and status is true to means keep attacking and false mean
 	 * stop attacking.
 	 */
-	public void onAttack(RPEntity who, boolean status) {
+	public void onAttack(Entity who, boolean status) {
 		if (status) {
 // Attacker should manage their own target
 //			who.attackTarget = this;
@@ -707,19 +707,25 @@ public abstract class RPEntity extends Entity {
 		return !attackSource.isEmpty();
 	}
 
-	/** Return the RPEntities that are attacking this character */
-	public List<RPEntity> getAttackSources() {
+	/** Return the Entities that are attacking this character */
+	public List<Entity> getAttackSources() {
 		return attackSource;
 	}
 
-	/** Return the RPEntity that is attacking this character */
-	public RPEntity getAttackSource(int pos) {
-		try {
-			return attackSource.get(pos);
-		} catch (IndexOutOfBoundsException e) {
-			return null;
+
+	/** Return the RPEntities that are attacking this character */
+	public List<RPEntity> getAttackingRPEntities() {
+		List<RPEntity> list = new ArrayList<RPEntity>();
+
+		for(Entity entity : getAttackSources()) {
+			if(entity instanceof RPEntity) {
+				list.add((RPEntity) entity);
+			}
 		}
+
+		return list;
 	}
+
 
 	/** Return true if this entity is attacking */
 	public boolean isAttacking() {
