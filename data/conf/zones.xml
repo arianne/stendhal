@@ -1383,7 +1383,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
    <destination zone="int_fado_hotel_0" ref="entrance"/>
   </portal>
 
-  <portal x="55" y="55" ref="church_entrance">
+  <portal x="55" y="49" ref="church_entrance">
    <destination zone="int_fado_church" ref="entrance_right"/>
   </portal>
 
@@ -1737,7 +1737,60 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
  <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL2_Catacombs"/>
-
+     <portal x="9" y="5" ref="dragon_portal_1">
+       <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
+      </portal>
+      <portal x="86" y="11" ref="dragon_portal_2">
+       <destination zone="-2_semos_catacombs" ref="dragon_portal_1"/>
+      </portal>
+      <portal x="84" y="8" ref="one_way_1a">
+       <destination zone="-2_semos_catacombs" ref="one_way_1b"/>
+      </portal>
+      <portal x="84" y="9" ref="one_way_2a">
+       <destination zone="-2_semos_catacombs" ref="one_way_2b"/>
+      </portal>
+      <portal x="84" y="10" ref="one_way_3a">
+       <destination zone="-2_semos_catacombs" ref="one_way_3b"/>
+      </portal>
+      <portal x="84" y="11" ref="one_way_4a">
+       <destination zone="-2_semos_catacombs" ref="one_way_4b"/>
+      </portal>
+      <portal x="84" y="12" ref="one_way_5a">
+       <destination zone="-2_semos_catacombs" ref="one_way_5b"/>
+      </portal>
+      <portal x="84" y="13" ref="one_way_6a">
+       <destination zone="-2_semos_catacombs" ref="one_way_6b"/>
+      </portal>
+      <portal x="84" y="14" ref="one_way_7a">
+       <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+      </portal>
+      <portal x="84" y="15" ref="one_way_8a">
+       <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+      </portal>
+    <portal x="83" y="8" ref="one_way_1b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+    <portal x="83" y="9" ref="one_way_2b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+      <portal x="83" y="10" ref="one_way_3b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+      <portal x="83" y="11" ref="one_way_4b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+      <portal x="83" y="12" ref="one_way_5b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+      <portal x="83" y="13" ref="one_way_6b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+      <portal x="83" y="14" ref="one_way_7b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
+        <portal x="83" y="15" ref="one_way_8b">
+       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+      </portal>
   <portal x="94" y="57" ref="downstairs" replacing="true">
    <destination zone="-3_semos_catacombs" ref="upstairs"/>
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
