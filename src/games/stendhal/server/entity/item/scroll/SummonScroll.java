@@ -114,8 +114,6 @@ public class SummonScroll extends InfoStringScroll {
 		creature.clearDropItemList();
 		creature.put("title_type", "friend");
 
-		// XXX - Possible memory leak!
-		// When are these removed from the npc lists??
 		zone.addNPC(creature);
 		StendhalRPRuleProcessor.get().addNPC(creature);
 		return true;

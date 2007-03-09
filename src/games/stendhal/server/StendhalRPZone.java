@@ -139,12 +139,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return portals;
 	}
 
-//	/**
-//	 * deprecated	Use getPortal(Object)
-//	 */
-//	public Portal getPortal(int number) {
-//		return getPortal(new Integer(number));
-//	}
 
 	public Portal getPortal(Object reference) {
 		for (Portal portal : portals) {
@@ -642,6 +636,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if(object instanceof Entity) {
 			((Entity) object).onRemoved(this);
+		}
+
+		/*
+		 * Remove from secondary lists
+		 */
+		playersAndFriends.remove(object);
+
+		if(object instanceof NPC) {
+			npcs.remove(object);
+			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
 		}
 
 		super.remove(id);
