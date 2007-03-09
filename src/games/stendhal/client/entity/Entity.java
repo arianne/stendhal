@@ -189,8 +189,8 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	/** Loads the sprite that represent this entity */
 	protected void loadSprite(RPObject object) {
-		SpriteStore store = SpriteStore.get();
-		sprite = store.getSprite(translate(object.get("type")));
+		
+		sprite = SpriteStore.get().getSprite(translate(object.get("type")));
 	}
 
 	/**
