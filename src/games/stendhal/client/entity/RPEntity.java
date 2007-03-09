@@ -16,6 +16,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.events.AttackEvent;
 import games.stendhal.client.events.HPEvent;
@@ -257,8 +258,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// Called when entity says text
 	public void onTalk(String text) {
-		if ((client.getPlayer() != null)
-				&& (distance(client.getPlayer()) < 15 * 15)) {
+		if ((StendhalClient.get().getPlayer() != null)
+				&& (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -297,14 +298,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		// if (!(this instanceof Creature)) // We avoid logging creature
 		// // noises.
 		// {
-		client.addEventLine(getName(), text);
+		StendhalClient.get().addEventLine(getName(), text);
 		// }
 	}
 
 	// Called when entity listen to text from talker
 	public void onPrivateListen(String text) {
 		// Change text color for private messages. intensifly@gmx.com
-		client.addEventLine(text, Color.darkGray);
+		StendhalClient.get().addEventLine(text, Color.darkGray);
 
 		GameObjects.getInstance().addText(this, text.replace("|", ""),
 				Color.darkGray, false);
@@ -312,12 +313,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When entity gets healed
 	public void onHealed(int amount) {
-		if (distance(client.getPlayer()) < 15 * 15) {
+		if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
 			damageSprites.add(GameScreen.get().createString(
 					"+" + Integer.toString(amount), Color.green));
 			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
-			if (getID().equals(client.getPlayer().getID())) {
-				client.addEventLine(getName() + " heals "
+			if (getID().equals(StendhalClient.get().getPlayer().getID())) {
+				StendhalClient.get().addEventLine(getName() + " heals "
 						+ Grammar.quantityplnoun(amount, "health point") + ".",
 						Color.green);
 			}
@@ -335,14 +336,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When entity is poisoned
 	public void onPoisoned(int amount) {
-		if (getID().equals(client.getPlayer().getID())
-				|| (distance(client.getPlayer()) < 15 * 15)) {
+		if (getID().equals(StendhalClient.get().getPlayer().getID())
+				|| (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 			isPoisoned = true;
 			damageSprites.add(GameScreen.get().createString(
 					Integer.toString(amount), Color.red));
 			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
-			client.addEventLine(getName() + " is poisoned, losing "
+			StendhalClient.get().addEventLine(getName() + " is poisoned, losing "
 					+ Grammar.quantityplnoun(amount, "health point") + ".",
 					Color.red);
 		}
@@ -359,7 +360,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	// Called when entity is killed by killer
 	public void onDeath(Entity killer) {
 		if (killer != null) {
-			client.addEventLine(getName() + " has been killed by "
+			StendhalClient.get().addEventLine(getName() + " has been killed by "
 					+ killer.getName());
 		}
 
@@ -486,7 +487,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 
 		if (diff.has("xp") && base.has("xp")) {
-			if (distance(client.getPlayer()) < 15 * 15) {
+			if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
 				damageSprites.add(GameScreen.get().createString(
 						"+"
 								+ Integer.toString(diff.getInt("xp")
@@ -494,7 +495,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				damageSpritesTimes
 						.add(Long.valueOf(System.currentTimeMillis()));
 
-				client.addEventLine(getName()
+				StendhalClient.get().addEventLine(getName()
 						+ " earns "
 						+ Grammar.quantityplnoun(diff.getInt("xp")
 								- base.getInt("xp"), "experience point") + ".",
@@ -503,13 +504,13 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 
 		if (diff.has("level") && base.has("level")) {
-			if (getID().equals(client.getPlayer().getID())
-					|| (distance(client.getPlayer()) < 15 * 15)) {
+			if (getID().equals(StendhalClient.get().getPlayer().getID())
+					|| (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 				String text = getName() + " reaches Level " + getLevel();
 
 				GameObjects.getInstance().addText(this,
 						GameScreen.get().createString(text, Color.green), 0);
-				client.addEventLine(text, Color.green);
+				StendhalClient.get().addEventLine(text, Color.green);
 			}
 		}
 	}
@@ -733,7 +734,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
 		}
 
-		if ((attacking != null) && attacking.equals(client.getPlayer().getID())) {
+		if ((attacking != null) && attacking.equals(StendhalClient.get().getPlayer().getID())) {
 			// Draw orange box around
 			Graphics g2d = screen.expose();
 			Rectangle2D rect = getArea();
@@ -832,8 +833,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		super.buildOfferedActions(list);
 		list.add(ActionType.ATTACK.getRepresentation());
 
-		if (client.getPlayer() != null)
-			if (client.getPlayer().has("target")) {
+		if (StendhalClient.get().getPlayer() != null)
+			if (StendhalClient.get().getPlayer().has("target")) {
 				list.add(ActionType.STOP_ATTACK.getRepresentation());
 			}
 	}
@@ -997,14 +998,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				Integer.toString(damage), Color.red));
 		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
-		boolean showAttackInfoForPlayer = (client.getPlayer() != null)
-				&& (getID().equals(client.getPlayer().getID()) || attacker
-						.getID().equals(client.getPlayer().getID()));
+		boolean showAttackInfoForPlayer = (StendhalClient.get().getPlayer() != null)
+				&& (getID().equals(StendhalClient.get().getPlayer().getID()) || attacker
+						.getID().equals(StendhalClient.get().getPlayer().getID()));
 		showAttackInfoForPlayer = showAttackInfoForPlayer
 				& (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
-			client.addEventLine(getName() + " suffers "
+			StendhalClient.get().addEventLine(getName() + " suffers "
 					+ Grammar.quantityplnoun(damage, "point")
 					+ " of damage from " + attacker.getName(), Color.RED);
 		}

@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -145,7 +146,7 @@ public class Sheep extends NPC {
 	protected void buildOfferedActions(List<String> list) {
 
 		super.buildOfferedActions(list);
-		if (!client.getPlayer().has("sheep")) {
+		if (!StendhalClient.get().getPlayer().has("sheep")) {
 			list.add(ActionType.OWN.getRepresentation());
 		}
 

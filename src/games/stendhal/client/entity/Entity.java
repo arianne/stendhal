@@ -79,7 +79,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-	protected StendhalClient client;
+
 
 	private int modificationCount;
 
@@ -88,7 +88,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	protected Entity(RPObject object) throws AttributeNotFoundException {
-		this.client = StendhalClient.get();
+	
 
 		type = object.get("type");
 
@@ -502,7 +502,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			break;
 		case ADMIN_ALTER:
 			id = getID().getObjectID();
-			client.getTextLineGUI().setText("/alter #" + id + " ");
+			StendhalClient.get().getTextLineGUI().setText("/alter #" + id + " ");
 			break;
 		default:
 

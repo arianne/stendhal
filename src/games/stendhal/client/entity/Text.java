@@ -37,7 +37,7 @@ public class Text extends Entity {
 	public Text(GameObjects gameObjects, Sprite text, double x, double y,
 			long persistTime) throws AttributeNotFoundException {
 
-		this.client = StendhalClient.get();
+		
 
 		textImage = text;
 		textImageTime = System.currentTimeMillis();
@@ -64,7 +64,7 @@ public class Text extends Entity {
 	public Text(GameObjects gameObjects, String text, double x, double y,
 			Color color, boolean isTalking) throws AttributeNotFoundException {
 
-		this.client = StendhalClient.get();
+	
 
 		// Speech bubbles will only be drawn if there's a background color
 		// intensifly@gmx.com

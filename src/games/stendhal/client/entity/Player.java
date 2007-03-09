@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
 
 import java.awt.Color;
@@ -105,7 +106,7 @@ public class Player extends RPEntity {
 			if (diff.has("online")) {
 				String[] players = diff.get("online").split(",");
 				for (String name : players) {
-					client.addEventLine(name + " has joined Stendhal.",
+					StendhalClient.get().addEventLine(name + " has joined Stendhal.",
 							Color.orange);
 				}
 			}
@@ -113,7 +114,7 @@ public class Player extends RPEntity {
 			if (diff.has("offline")) {
 				String[] players = diff.get("offline").split(",");
 				for (String name : players) {
-					client.addEventLine(name + " has left Stendhal.",
+					StendhalClient.get().addEventLine(name + " has left Stendhal.",
 							Color.orange);
 				}
 			}
@@ -162,7 +163,7 @@ public class Player extends RPEntity {
 			if (outfitOrg > 0) {
 				outfitTemp = outfitOrg;
 			}
-			client.getOutfitDialog(outfitTemp).setVisible(true);
+			StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
 		case LEAVE_SHEEP:
 			rpaction = new RPAction();
 			rpaction.put("type", at.toString());
@@ -184,8 +185,8 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onEnter(int x, int y) {
-		if ((client.getPlayer() != null)
-				&& client.getPlayer().getID().equals(getID())) {
+		if ((StendhalClient.get().getPlayer() != null)
+				&& StendhalClient.get().getPlayer().getID().equals(getID())) {
 			WorldObjects.firePlayerMoved(this);
 		}
 	}
@@ -200,11 +201,11 @@ public class Player extends RPEntity {
 		// TODO Auto-generated method stub
 		super.buildOfferedActions(list);
 
-		if (getID().equals(client.getPlayer().getID())) {
+		if (getID().equals(StendhalClient.get().getPlayer().getID())) {
 			list.add(ActionType.SET_OUTFIT.getRepresentation());
 			if (list.contains(ActionType.ATTACK.getRepresentation()));
 				list.remove(ActionType.ATTACK.getRepresentation());
-			if (client.getPlayer().has("sheep")) {
+			if (StendhalClient.get().getPlayer().has("sheep")) {
 				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 			}
 		} else {

@@ -24,7 +24,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class GrainField extends AnimatedEntity {
-	private String actionName;
+	
 
 	private int width;
 
@@ -41,7 +41,7 @@ public class GrainField extends AnimatedEntity {
 
 	private void init(RPObject object) {
 		// default values are for compatibility to server <= 0.56
-		actionName = "Harvest";
+		
 		width = 1;
 		height = 2;
 		clazz = "grain_field";
@@ -55,10 +55,7 @@ public class GrainField extends AnimatedEntity {
 		if (object.has("height")) {
 			height = object.getInt("height");
 		}
-		if (object.has("action_name")) {
-			actionName = object.get("action_name");
-		}
-
+	
 		// load sprites
 		if (object.has("class")) {
 			clazz = object.get("class");
