@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -128,7 +131,7 @@ public class VampireSword extends AbstractQuest {
 			
 			if (!player.isEquipped("iron",REQUIRED_IRON)) { 
 			    engine.say("You have battled hard to bring that goblet. I will use it to #forge the vampire sword");
-			}
+					}
 			else {
 			    player.drop("goblet");
 			    player.drop("iron",REQUIRED_IRON);
@@ -267,4 +270,30 @@ public class VampireSword extends AbstractQuest {
 	step_2();
 	step_3();
     }
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		String questState = player.getQuest(QUEST_SLOT);
+		if (questState.equals("rejected")) {
+			res.add("QUEST_REJECTED");
+		}
+		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
+			res.add("QUEST_ACCEPTED");
+		}
+		if ((questState.equals("start") && player.isEquipped("goblet")) || questState.equals("done")) {
+			res.add("FOUND_ITEM");
+		}
+		if (player.getQuest(QUEST_SLOT).startsWith("forging;")){
+		    res.add("FORGING");
+		}
+		if (questState.equals("done")) {
+			res.add("DONE");
+		}
+		return res;
+	}
 }

@@ -59,7 +59,7 @@ in the file.
 			<atk value="8"/>
 		</attributes>
 		<weight value="0.2"/>
-		<equipable><attribute name="key">empty_goblet</attribute>
+		<equipable>
 			<slot name="lhand"/>
 			<slot name="rhand"/>
 			<slot name="bag"/>
@@ -1957,6 +1957,9 @@ Makes players more offensive
 		<type class="container" subclass="full_goblet"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<weight value="1"/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
 		<equipable>
 			<slot name="bag"/>
 		</equipable>
