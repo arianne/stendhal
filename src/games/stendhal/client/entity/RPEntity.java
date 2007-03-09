@@ -30,6 +30,8 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +58,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private int frameBladeStrike;
 
 	private boolean showBladeStrike;
+
 
 	static {
 		SpriteStore st = SpriteStore.get();
@@ -130,11 +133,25 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	private java.util.List<Long> damageSpritesTimes;
 
-	private boolean attacked;
-
 	private RPObject.ID attacking;
 
-	/** What does this do? */
+	/**
+	 * Entity we are attacking.
+	 * (need to reconsile this with 'attacking')
+	 */
+	protected RPEntity	attackTarget;
+
+	/**
+	 * The last entity to attack this entity.
+	 */
+	protected Entity	lastAttacker;
+
+	/**
+	 * The type of effect to show.
+	 *
+	 * These are NOT mutually exclusive
+	 * - Maybe use bitmask and apply in priority order.
+	 */
 	private Resolution resolution;
 
 	private int atkXp;
@@ -150,6 +167,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		super(object);
 		damageSprites = new LinkedList<Sprite>();
 		damageSpritesTimes = new LinkedList<Long>();
+		attackTarget = null;
+		lastAttacker = null;
 	}
 
 	public boolean isAttacking() {
@@ -353,10 +372,40 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		 */
 	}
 
+
+	/**
+	 * Called when object is added.
+	 *
+	 *
+	 */
+	@Override
+	public void onAdded(RPObject base) {
+		super.onAdded(base);
+
+		fireAttackEvent(base, null);
+		fireKillEvent(base, null);
+	}
+
+
+	/**
+	 * Called when object is removed.
+	 */
+	@Override
+	public void onRemoved() {
+		super.onRemoved();
+
+		fireAttackEvent(null, null);
+		fireKillEvent(null, null);
+	}
+
+
 	@Override
 	public void onChangedAdded(RPObject base, RPObject diff)
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
+
+		fireAttackEvent(base, diff);
+		fireKillEvent(base, diff);
 
 		if (diff.has("base_hp")) {
 			base_hp = diff.getInt("base_hp");
@@ -465,6 +514,173 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	}
 
+
+	public void onChangedRemoved(RPObject base, RPObject diff) {
+		super.onChangedRemoved(base, diff);
+
+		fireAttackEventChangedRemoved(base, diff);
+	}
+
+
+	protected void fireAttackEvent(RPObject base, RPObject diff) {
+		if ((diff == null) && (base == null)) {
+			// Remove case
+
+			onStopAttack();
+
+			if(attackTarget != null) {
+				attackTarget.onStopAttacked(this);
+				attackTarget = null;
+			}
+		} else if (diff == null) {
+			// Modified case
+			if (base.has("target")) {
+				int risk = (base.has("risk") ? base.getInt("risk") : 0);
+				int damage = (base.has("damage") ? base.getInt("damage") : 0);
+				int target = base.getInt("target");
+
+				RPObject.ID targetEntityID = new RPObject.ID(
+					target, base.get("zoneid"));
+
+				RPEntity targetEntity = (RPEntity)
+					GameObjects.getInstance().get(
+						targetEntityID);
+
+				if (targetEntity != null) {
+					if(targetEntity != attackTarget) {
+						onAttack(targetEntity);
+						targetEntity.onAttacked(this);
+					}
+
+					if (risk == 0) {
+						onAttackMissed(targetEntity);
+						targetEntity.onMissed(this);
+					}
+
+					if ((risk > 0) && (damage == 0)) {
+						onAttackBlocked(targetEntity);
+						targetEntity.onBlocked(this);
+					}
+
+					if ((risk > 0) && (damage > 0)) {
+						onAttackDamage(targetEntity, damage);
+						targetEntity.onDamaged(this, damage);
+					}
+
+					// targetEntity.onAttack(this,risk,damage);
+					attackTarget = targetEntity;
+				}
+				if (base.has("heal")) {
+					onHealed(base.getInt("heal"));
+				}
+			}
+		} else {
+			// Modified case
+			if (diff.has("target") && base.has("target")
+					&& !base.get("target").equals(diff.get("target"))) {
+				System.out.println("Removing target: new target");
+				onStopAttack();
+
+				if(attackTarget != null) {
+					attackTarget.onStopAttacked(this);
+					attackTarget = null;
+				}
+
+			}
+
+			if (diff.has("target") || base.has("target")) {
+				boolean thereIsEvent = false;
+
+				int risk = 0;
+				if (diff.has("risk")) {
+					thereIsEvent = true;
+					risk = diff.getInt("risk");
+				} else if (base.has("risk")) {
+					risk = base.getInt("risk");
+				} else {
+					risk = 0;
+				}
+
+				int damage = 0;
+				if (diff.has("damage")) {
+					thereIsEvent = true;
+					damage = diff.getInt("damage");
+				} else if (base.has("damage")) {
+					damage = base.getInt("damage");
+				} else {
+					damage = 0;
+				}
+
+				int target = -1;
+				if (diff.has("target")) {
+					target = diff.getInt("target");
+				} else if (base.has("target")) {
+					target = base.getInt("target");
+				}
+
+				RPObject.ID targetEntityID = new RPObject.ID(
+					target, diff.get("zoneid"));
+
+				RPEntity targetEntity = (RPEntity)
+					GameObjects.getInstance().get(
+						targetEntityID);
+
+				if (targetEntity != null) {
+					onAttack(targetEntity);
+					targetEntity.onAttacked(this);
+
+					if (thereIsEvent) {
+						if (risk == 0) {
+							onAttackMissed(targetEntity);
+							targetEntity.onMissed(this);
+						}
+
+						if ((risk > 0) && (damage == 0)) {
+							onAttackBlocked(targetEntity);
+							targetEntity.onBlocked(this);
+						}
+
+						if ((risk > 0) && (damage > 0)) {
+							onAttackDamage(targetEntity, damage);
+							targetEntity.onDamaged(this, damage);
+						}
+					}
+
+					attackTarget = targetEntity;
+				}
+			}
+			if (diff.has("heal")) {
+				onHealed(diff.getInt("heal"));
+			}
+		}
+	}
+
+	protected void fireAttackEventChangedRemoved(RPObject base,
+	 RPObject diff) {
+		if (diff.has("target")) {
+			onStopAttack();
+
+			if(attackTarget != null) {
+				attackTarget.onStopAttacked(this);
+				attackTarget = null;
+			}
+		}
+	}
+
+
+	protected void fireKillEvent(RPObject base, RPObject diff) {
+		if ((diff == null) && (base == null)) {
+			// Remove case
+		} else if (diff == null) {
+			// First time case.
+		} else {
+			if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
+				onDeath(lastAttacker);
+			}
+		}
+	}
+
+
 	/** Draws only the Name and hp bar **/
 	public void drawHPbar(GameScreen screen) {
 		if (nameImage != null) {
@@ -500,7 +716,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	/** Draws this entity in the screen */
 	@Override
 	public void draw(GameScreen screen) {
-		if (attacked) {
+		if (lastAttacker != null) {
 			// Draw red box around
 			Graphics g2d = screen.expose();
 			Rectangle2D rect = getArea();
@@ -564,7 +780,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			screen.draw(poisoned, sx - 1.25, sy - 0.25);
 		}
 
-		if (attacked && (System.currentTimeMillis() - combatIconTime < 4 * 300)) {
+		if ((lastAttacker != null) && (System.currentTimeMillis() - combatIconTime < 4 * 300)) {
 			// Draw bottom right combat icon
 			Rectangle2D rect = getArea();
 			double sx = rect.getMaxX();
@@ -736,7 +952,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When attacker attacks this entity.
 	public void onAttacked(Entity attacker) {
-		attacked = true;
+		/*
+		 * Could keep track of all attackers, but right now we only
+		 * need one of them for onDeath() sake
+		 */
+		lastAttacker = attacker;
 	}
 
 	// When this entity stops attacking
@@ -746,7 +966,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When attacket stop attacking us
 	public void onStopAttacked(Entity attacker) {
-		attacked = false;
+		if(attacker == lastAttacker) {
+			lastAttacker = null;
+		}
 	}
 
 	// When this entity causes damaged to adversary, with damage amount

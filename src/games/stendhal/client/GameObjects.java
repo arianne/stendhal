@@ -50,7 +50,7 @@ public class GameObjects implements Iterable<Entity> {
  
 	private Map<RPObject.ID, Entity> objects;
 
-	private Map<RPEntity, RPEntity> attacks;
+//	private Map<RPEntity, RPEntity> attacks;
 
 	private List<Text> texts;
 
@@ -101,7 +101,7 @@ public class GameObjects implements Iterable<Entity> {
 	 */
 	private GameObjects(StaticGameLayers collisionMap) {
 		objects = new HashMap<RPObject.ID, Entity>();
-		attacks = new HashMap<RPEntity, RPEntity>();
+//		attacks = new HashMap<RPEntity, RPEntity>();
 
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
@@ -149,13 +149,13 @@ public class GameObjects implements Iterable<Entity> {
 				fireHPEvent((HPEvent) entity, object, null);
 			}
 
-			if (entity instanceof KillEvent) {
-				fireKillEvent(((KillEvent) entity), object, null);
-			}
+//			if (entity instanceof KillEvent) {
+//				fireKillEvent(((KillEvent) entity), object, null);
+//			}
 
-			if (entity instanceof AttackEvent) {
-				fireAttackEvent(((RPEntity) entity), object, null);
-			}
+//			if (entity instanceof AttackEvent) {
+//				fireAttackEvent(((RPEntity) entity), object, null);
+//			}
 
 			objects.put(entity.getID(), entity);
 			sortedObjects.add(entity);
@@ -185,13 +185,13 @@ public class GameObjects implements Iterable<Entity> {
 				fireHPEvent((HPEvent) entity, object, changes);
 			}
 
-			if (entity instanceof KillEvent) {
-				fireKillEvent(((KillEvent) entity), object, changes);
-			}
+//			if (entity instanceof KillEvent) {
+//				fireKillEvent(((KillEvent) entity), object, changes);
+//			}
 
-			if (entity instanceof AttackEvent) {
-				fireAttackEvent(((RPEntity) entity), object, changes);
-			}
+//			if (entity instanceof AttackEvent) {
+//				fireAttackEvent(((RPEntity) entity), object, changes);
+//			}
 		}
 
 		Log4J.finishMethod(logger, "modifyAdded");
@@ -208,10 +208,10 @@ public class GameObjects implements Iterable<Entity> {
 				fireHPEventChangedRemoved((HPEvent) entity, object, changes);
 			}
 
-			if (entity instanceof AttackEvent) {
-				fireAttackEventChangedRemoved(((RPEntity) entity), object,
-						changes);
-			}
+//			if (entity instanceof AttackEvent) {
+//				fireAttackEventChangedRemoved(((RPEntity) entity), object,
+//						changes);
+//			}
 		}
 
 		Log4J.finishMethod(logger, "modifyRemoved");
@@ -244,13 +244,13 @@ public class GameObjects implements Iterable<Entity> {
 				fireHPEvent((HPEvent) entity, null, null);
 			}
 
-			if (entity instanceof KillEvent) {
-				fireKillEvent(((KillEvent) entity), null, null);
-			}
+//			if (entity instanceof KillEvent) {
+//				fireKillEvent(((KillEvent) entity), null, null);
+//			}
 
-			if (entity instanceof AttackEvent) {
-				fireAttackEvent(((RPEntity) entity), null, null);
-			}
+//			if (entity instanceof AttackEvent) {
+//				fireAttackEvent(((RPEntity) entity), null, null);
+//			}
 		}
 
 		Entity object = objects.remove(id);
@@ -268,7 +268,7 @@ public class GameObjects implements Iterable<Entity> {
 		}
 
 		objects.clear();
-		attacks.clear();
+//		attacks.clear();
 		sortedObjects.clear();
 		texts.clear();
 		Log4J.finishMethod(logger, "clear");
@@ -421,167 +421,167 @@ public class GameObjects implements Iterable<Entity> {
 		}
 	}
 
-	private void fireKillEvent(KillEvent entity, RPObject base, RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-		} else {
-			if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
-				RPEntity killer = null;
-				for (Map.Entry<RPEntity, RPEntity> entry : attacks.entrySet()) {
-					if (entry.getValue() == entity) {
-						killer = entry.getKey();
-					}
-				}
+//	private void fireKillEvent(KillEvent entity, RPObject base, RPObject diff) {
+//		if ((diff == null) && (base == null)) {
+//			// Remove case
+//		} else if (diff == null) {
+//			// First time case.
+//		} else {
+//			if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
+//				RPEntity killer = null;
+//				for (Map.Entry<RPEntity, RPEntity> entry : attacks.entrySet()) {
+//					if (entry.getValue() == entity) {
+//						killer = entry.getKey();
+//					}
+//				}
+//
+//				entity.onDeath(killer);
+//			}
+//		}
+//	}
 
-				entity.onDeath(killer);
-			}
-		}
-	}
-
-	private void fireAttackEvent(RPEntity entity, RPObject base, RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-			if (attacks.containsKey(entity)) {
-				entity.onStopAttack();
-
-				RPEntity target = attacks.get(entity);
-				if (target != null) {
-					target.onStopAttacked(entity);
-				}
-
-				attacks.remove(entity);
-			}
-		} else if (diff == null) {
-			// Modified case
-			if (base.has("target")) {
-				int risk = (base.has("risk") ? base.getInt("risk") : 0);
-				int damage = (base.has("damage") ? base.getInt("damage") : 0);
-				int target = base.getInt("target");
-
-				RPObject.ID targetEntityID = new RPObject.ID(target, base
-						.get("zoneid"));
-				RPEntity targetEntity = (RPEntity) objects.get(targetEntityID);
-				if (targetEntity != null) {
-					if (!attacks.containsKey(entity)) {
-						entity.onAttack(targetEntity);
-						targetEntity.onAttacked(entity);
-					}
-
-					if (risk == 0) {
-						entity.onAttackMissed(targetEntity);
-						targetEntity.onMissed(entity);
-					}
-
-					if ((risk > 0) && (damage == 0)) {
-						entity.onAttackBlocked(targetEntity);
-						targetEntity.onBlocked(entity);
-					}
-
-					if ((risk > 0) && (damage > 0)) {
-						entity.onAttackDamage(targetEntity, damage);
-						targetEntity.onDamaged(entity, damage);
-					}
-
-					// targetEntity.onAttack(entity,risk,damage);
-					attacks.put(entity, targetEntity);
-				}
-				if (base.has("heal")) {
-					entity.onHealed(base.getInt("heal"));
-				}
-			}
-		} else {
-			// Modified case
-			if (diff.has("target") && base.has("target")
-					&& !base.get("target").equals(diff.get("target"))) {
-				System.out.println("Removing target: new target");
-				entity.onStopAttack();
-
-				RPEntity target = attacks.get(entity);
-				if (target != null) {
-					target.onStopAttacked(entity);
-				}
-
-				attacks.remove(entity);
-			}
-
-			if (diff.has("target") || base.has("target")) {
-				boolean thereIsEvent = false;
-
-				int risk = 0;
-				if (diff.has("risk")) {
-					thereIsEvent = true;
-					risk = diff.getInt("risk");
-				} else if (base.has("risk")) {
-					risk = base.getInt("risk");
-				} else {
-					risk = 0;
-				}
-
-				int damage = 0;
-				if (diff.has("damage")) {
-					thereIsEvent = true;
-					damage = diff.getInt("damage");
-				} else if (base.has("damage")) {
-					damage = base.getInt("damage");
-				} else {
-					damage = 0;
-				}
-
-				int target = -1;
-				if (diff.has("target")) {
-					target = diff.getInt("target");
-				} else if (base.has("target")) {
-					target = base.getInt("target");
-				}
-
-				RPObject.ID targetEntityID = new RPObject.ID(target, diff
-						.get("zoneid"));
-				RPEntity targetEntity = (RPEntity) objects.get(targetEntityID);
-				if (targetEntity != null) {
-					entity.onAttack(targetEntity);
-					targetEntity.onAttacked(entity);
-
-					if (thereIsEvent) {
-						if (risk == 0) {
-							entity.onAttackMissed(targetEntity);
-							targetEntity.onMissed(entity);
-						}
-
-						if ((risk > 0) && (damage == 0)) {
-							entity.onAttackBlocked(targetEntity);
-							targetEntity.onBlocked(entity);
-						}
-
-						if ((risk > 0) && (damage > 0)) {
-							entity.onAttackDamage(targetEntity, damage);
-							targetEntity.onDamaged(entity, damage);
-						}
-					}
-
-					attacks.put(entity, targetEntity);
-				}
-			}
-			if (diff.has("heal")) {
-				entity.onHealed(diff.getInt("heal"));
-			}
-		}
-	}
-
-	private void fireAttackEventChangedRemoved(RPEntity entity, RPObject base,
-			RPObject diff) {
-		if (diff.has("target")) {
-			entity.onStopAttack();
-
-			RPEntity target = attacks.get(entity);
-			if (target != null) {
-				target.onStopAttacked(entity);
-			}
-
-			attacks.remove(entity);
-		}
-	}
+//	private void fireAttackEvent(RPEntity entity, RPObject base, RPObject diff) {
+//		if ((diff == null) && (base == null)) {
+//			// Remove case
+//			if (attacks.containsKey(entity)) {
+//				entity.onStopAttack();
+//
+//				RPEntity target = attacks.get(entity);
+//				if (target != null) {
+//					target.onStopAttacked(entity);
+//				}
+//
+//				attacks.remove(entity);
+//			}
+//		} else if (diff == null) {
+//			// Modified case
+//			if (base.has("target")) {
+//				int risk = (base.has("risk") ? base.getInt("risk") : 0);
+//				int damage = (base.has("damage") ? base.getInt("damage") : 0);
+//				int target = base.getInt("target");
+//
+//				RPObject.ID targetEntityID = new RPObject.ID(target, base
+//						.get("zoneid"));
+//				RPEntity targetEntity = (RPEntity) objects.get(targetEntityID);
+//				if (targetEntity != null) {
+//					if (!attacks.containsKey(entity)) {
+//						entity.onAttack(targetEntity);
+//						targetEntity.onAttacked(entity);
+//					}
+//
+//					if (risk == 0) {
+//						entity.onAttackMissed(targetEntity);
+//						targetEntity.onMissed(entity);
+//					}
+//
+//					if ((risk > 0) && (damage == 0)) {
+//						entity.onAttackBlocked(targetEntity);
+//						targetEntity.onBlocked(entity);
+//					}
+//
+//					if ((risk > 0) && (damage > 0)) {
+//						entity.onAttackDamage(targetEntity, damage);
+//						targetEntity.onDamaged(entity, damage);
+//					}
+//
+//					// targetEntity.onAttack(entity,risk,damage);
+//					attacks.put(entity, targetEntity);
+//				}
+//				if (base.has("heal")) {
+//					entity.onHealed(base.getInt("heal"));
+//				}
+//			}
+//		} else {
+//			// Modified case
+//			if (diff.has("target") && base.has("target")
+//					&& !base.get("target").equals(diff.get("target"))) {
+//				System.out.println("Removing target: new target");
+//				entity.onStopAttack();
+//
+//				RPEntity target = attacks.get(entity);
+//				if (target != null) {
+//					target.onStopAttacked(entity);
+//				}
+//
+//				attacks.remove(entity);
+//			}
+//
+//			if (diff.has("target") || base.has("target")) {
+//				boolean thereIsEvent = false;
+//
+//				int risk = 0;
+//				if (diff.has("risk")) {
+//					thereIsEvent = true;
+//					risk = diff.getInt("risk");
+//				} else if (base.has("risk")) {
+//					risk = base.getInt("risk");
+//				} else {
+//					risk = 0;
+//				}
+//
+//				int damage = 0;
+//				if (diff.has("damage")) {
+//					thereIsEvent = true;
+//					damage = diff.getInt("damage");
+//				} else if (base.has("damage")) {
+//					damage = base.getInt("damage");
+//				} else {
+//					damage = 0;
+//				}
+//
+//				int target = -1;
+//				if (diff.has("target")) {
+//					target = diff.getInt("target");
+//				} else if (base.has("target")) {
+//					target = base.getInt("target");
+//				}
+//
+//				RPObject.ID targetEntityID = new RPObject.ID(target, diff
+//						.get("zoneid"));
+//				RPEntity targetEntity = (RPEntity) objects.get(targetEntityID);
+//				if (targetEntity != null) {
+//					entity.onAttack(targetEntity);
+//					targetEntity.onAttacked(entity);
+//
+//					if (thereIsEvent) {
+//						if (risk == 0) {
+//							entity.onAttackMissed(targetEntity);
+//							targetEntity.onMissed(entity);
+//						}
+//
+//						if ((risk > 0) && (damage == 0)) {
+//							entity.onAttackBlocked(targetEntity);
+//							targetEntity.onBlocked(entity);
+//						}
+//
+//						if ((risk > 0) && (damage > 0)) {
+//							entity.onAttackDamage(targetEntity, damage);
+//							targetEntity.onDamaged(entity, damage);
+//						}
+//					}
+//
+//					attacks.put(entity, targetEntity);
+//				}
+//			}
+//			if (diff.has("heal")) {
+//				entity.onHealed(diff.getInt("heal"));
+//			}
+//		}
+//	}
+//
+//	private void fireAttackEventChangedRemoved(RPEntity entity, RPObject base,
+//			RPObject diff) {
+//		if (diff.has("target")) {
+//			entity.onStopAttack();
+//
+//			RPEntity target = attacks.get(entity);
+//			if (target != null) {
+//				target.onStopAttacked(entity);
+//			}
+//
+//			attacks.remove(entity);
+//		}
+//	}
 
 	private boolean collides(Entity entity) {
 		// TODO: Ugly, use similar method that server uses
