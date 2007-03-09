@@ -386,8 +386,17 @@ public abstract class Creature extends NPC {
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 		if (Debug.CREATURES_DEBUG_CLIENT) {
-			list.add("[" + (hidePath ? "show" : "hide") + " path]");
-			list.add("[" + (watch ? "disable" : "enable") + " watch]");
+			if (hidePath)
+				list.add(ActionType.DEBUG_SHOW_PATH.getRepresentation());
+			else
+				list.add(ActionType.DEBUG_HIDE_PATH.getRepresentation());
+			if (watch){
+				list.add(ActionType.DEBUG_DISABLE_WATCH.getRepresentation());
+			}
+			else{
+				list.add(ActionType.DEBUG_ENABLE_WATCH.getRepresentation());
+			}
+			
 		}
 
 	}

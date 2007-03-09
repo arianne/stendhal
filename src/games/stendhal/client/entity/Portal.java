@@ -99,9 +99,9 @@ public class Portal extends Entity {
 		super.buildOfferedActions(list);
 
 		if (!hidden) {
-			list.add("Use");
+			list.add(ActionType.USE.getRepresentation());
 			if (client.isAdmin()) {
-				list.remove(ActionType.ADMIN_ALTER);
+				list.remove(ActionType.ADMIN_ALTER.getRepresentation());
 			}
 		}
 

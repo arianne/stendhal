@@ -201,14 +201,14 @@ public class Player extends RPEntity {
 		super.buildOfferedActions(list);
 
 		if (getID().equals(client.getPlayer().getID())) {
-			list.add("Set outfit");
-			if (list.contains("Attack"))
-				list.remove("Attack");
+			list.add(ActionType.SET_OUTFIT.getRepresentation());
+			if (list.contains(ActionType.ATTACK.getRepresentation()));
+				list.remove(ActionType.ATTACK.getRepresentation());
 			if (client.getPlayer().has("sheep")) {
-				list.add("Leave sheep");
+				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 			}
 		} else {
-			list.add("Add to Buddies");
+			list.add(ActionType.ADD_BUDDY.getRepresentation());
 		}
 
 	}

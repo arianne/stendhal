@@ -121,7 +121,7 @@ public class GrainField extends AnimatedEntity {
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 		;
-		list.add(actionName);
+		list.add(ActionType.HARVEST.getRepresentation());
 	}
 
 	@Override

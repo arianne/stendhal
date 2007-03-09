@@ -455,9 +455,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		 * Special admin options
 		 */
 		if (StendhalClient.get().isAdmin()) {
-			list.add("(*)Inspect");
-			list.add("(*)Destroy");
-			list.add("(*)Alter");
+			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
+			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
+			list.add(ActionType.ADMIN_ALTER.getRepresentation());
 		}
 
 		return list.toArray(new String[list.size()]);

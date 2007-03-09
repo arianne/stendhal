@@ -146,7 +146,7 @@ public class Sheep extends NPC {
 
 		super.buildOfferedActions(list);
 		if (!client.getPlayer().has("sheep")) {
-			list.add("Own");
+			list.add(ActionType.OWN.getRepresentation());
 		}
 
 	}

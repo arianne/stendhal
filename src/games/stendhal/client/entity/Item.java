@@ -59,7 +59,7 @@ public class Item extends PassiveEntity {
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-		list.add("Use");
+		list.add(ActionType.USE.getRepresentation());
 		super.buildOfferedActions(list);
 	}
 

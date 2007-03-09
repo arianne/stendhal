@@ -76,13 +76,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 		return ActionType.INSPECT;
 	}
 
-	@Override
-	protected void buildOfferedActions(List<String> list) {
 
-		super.buildOfferedActions(list);
-		;
-
-	}
 
 	@Override
 	public void onAction(ActionType at, String... params) {
