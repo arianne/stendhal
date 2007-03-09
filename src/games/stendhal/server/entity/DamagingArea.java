@@ -83,7 +83,6 @@ public class DamagingArea extends PassiveEntity
 	 double probability) throws AttributeNotFoundException {
 		put("name", name);
 		put("type", "damaging_area");
-		put("server-only", "");
 
 		this.damage = damage;
 		this.interval = interval;
@@ -106,6 +105,7 @@ public class DamagingArea extends PassiveEntity
 	 */
 	protected void addTarget(RPEntity entity) {
 		targets.add(entity.getID());
+		entity.onAttack(this, true);
 
 		if(targets.size() == 1) {
 			TurnNotifier.get().notifyInTurns(interval, this, null);
@@ -202,6 +202,7 @@ public class DamagingArea extends PassiveEntity
 	 * @param	entity		The RPEntity to remove.
 	 */
 	protected void removeTarget(RPEntity entity) {
+		entity.onAttack(this, false);
 		targets.remove(entity.getID());
 
 		if(targets.isEmpty()) {
@@ -376,9 +377,11 @@ public class DamagingArea extends PassiveEntity
 
 				if(area.intersects(entity.getArea())) {
 					if(!doDamage(entity)) {
+						entity.onAttack(this, false);
 						iter.remove();
 					}
 				} else {
+					entity.onAttack(this, false);
 					iter.remove();
 				}
 			}

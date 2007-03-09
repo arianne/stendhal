@@ -1,44 +1,62 @@
+/**
+ * @(#) src/games/stendhal/client/entity/InvisibleEntity.java
+ *
+ * $Id$
+ */
+
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
+//
+//
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
+import games.stendhal.client.GameScreen;
 
 /**
- * An entity which one cannot walk over.
+ * An generic entity that is not drawn.
  */
-public class WalkBlocker extends Entity {
-
+public class InvisibleEntity extends Entity {
 	/**
-	 * creates a new WalkBlocker
+	 * Create an invisible 1x1 entity.
 	 *
-	 * @param object rpobject
+	 * @param	object		Raw object to build from.
 	 */
-	public WalkBlocker( RPObject object) {
-		super( object);
+	public InvisibleEntity(RPObject object) {
+		super(object);
 	}
-	
+
+
+	//
+	//
+	//
+
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
+
 
 	@Override
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+
 	@Override
 	public void draw(GameScreen screen) {
-		// walkblockers are invisible;
 	}
+
 
 	@Override
 	public int getZIndex() {
 		return 3000;
 	}
 
+
+	@Override
+	protected void loadSprite(RPObject object) {
+	}
 }
