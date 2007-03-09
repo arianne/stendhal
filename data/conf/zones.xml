@@ -138,9 +138,10 @@
   <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-    <attribute name="key">empty_goblet</attribute>
-    <attribute name="rejected">You find it hard to enter. Perhaps something is missing.</attribute>
+   <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+    <attribute name="quest">vs_quest</attribute>
+    <attribute name="rejected">You find it hard to enter. Perhaps you're not
+  prepared for what is below.</attribute>
    </implementation>
   </portal>
  </zone>
