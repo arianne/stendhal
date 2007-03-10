@@ -52,8 +52,7 @@ public class Minimap extends WtPanel {
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
-	private static final boolean mininps =
-		(System.getProperty("stendhal.superman") != null);
+	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
 
 	/** scale of map */
 	private int scale;
@@ -83,8 +82,7 @@ public class Minimap extends WtPanel {
 	 * @param	gc		A graphics configuration.
 	 * @param	zone		The zone name.
 	 */
-	public void update(CollisionDetection cd, GraphicsConfiguration gc,
-	 String zone) {
+	public void update(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
 		setTitletext(zone);
 
 		// calculate size and scale
@@ -93,8 +91,7 @@ public class Minimap extends WtPanel {
 
 		// calculate scale
 		scale = MINIMAP_MINIMUM_SCALE;
-		while ((w * (scale + 1) < MINIMAP_WIDTH)
-				&& (h * (scale + 1) < MINIMAP_HEIGHT)) {
+		while ((w * (scale + 1) < MINIMAP_WIDTH) && (h * (scale + 1) < MINIMAP_HEIGHT)) {
 			scale++;
 		}
 
@@ -124,11 +121,7 @@ public class Minimap extends WtPanel {
 
 		for (Entity entity : StendhalClient.get().getGameObjects()) {
 			if (entity instanceof SheepFood) {
-				mapgrapics.fillRect(
-					((int) entity.getX()) * scale,
-					((int) entity.getY()) * scale,
-					scale,
-					scale);
+				mapgrapics.fillRect(((int) entity.getX()) * scale, ((int) entity.getY()) * scale, scale, scale);
 			}
 		}
 
@@ -158,14 +151,14 @@ public class Minimap extends WtPanel {
 	 */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 
 		// draw frame and title
 		Graphics clientg = super.draw(g);
 
-		if((player == null) || (image == null)) {
+		if ((player == null) || (image == null)) {
 			return g;
 		}
 
@@ -182,7 +175,7 @@ public class Minimap extends WtPanel {
 		int h = image.getHeight();
 
 		int xpos = (int) (player.getX() * scale) - width / 2;
-		int ypos = (int) ((player.getY()+1) * scale) - width / 2;
+		int ypos = (int) ((player.getY() + 1) * scale) - width / 2;
 
 		if (w > width) {
 			// need to pan width
@@ -207,39 +200,35 @@ public class Minimap extends WtPanel {
 		// draw minimap
 		clientg.drawImage(image, -panx, -pany, null);
 
-	// Enabled with -Dstendhal.superman=x.
-	if(mininps && StendhalClient.get().isAdmin()) {
-		// draw npcs (and creatures/sheeps)
-		clientg.translate(-panx, -pany);
+		// Enabled with -Dstendhal.superman=x.
+		if (mininps && StendhalClient.get().isAdmin()) {
+			// draw npcs (and creatures/sheeps)
+			clientg.translate(-panx, -pany);
 
-		for (Entity entity : StendhalClient.get().getGameObjects()) {
-			drawNPC(clientg, entity);
+			for (Entity entity : StendhalClient.get().getGameObjects()) {
+				drawNPC(clientg, entity);
+			}
+
+			clientg.translate(panx, pany);
 		}
-
-		clientg.translate(panx, pany);
-	}
 
 		// draw players
 		Color playerColor = Color.WHITE;
 		for (Entity entity : StendhalClient.get().getGameObjects()) {
 			if (entity instanceof Player) {
 				Player aPlayer = (Player) entity;
-				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1,
-								(int) ((aPlayer.getY()+1) * scale) - pany + 2, playerColor);
+				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale) - pany + 2, playerColor);
 			}
 		}
 
 		// draw myself
 		playerColor = Color.BLUE;
-		drawCross(clientg, (int) (player.getX() * scale) - panx + 1,
-				(int) ((player.getY()+1) * scale) - pany + 2, playerColor);
+		drawCross(clientg, (int) (player.getX() * scale) - panx + 1, (int) ((player.getY() + 1) * scale) - pany + 2, playerColor);
 
 		return g;
 	}
 
-
-	protected void drawNPC(Graphics g, Entity entity)
-	{
+	protected void drawNPC(Graphics g, Entity entity) {
 		if (entity instanceof Sheep) {
 			drawNPC(g, entity, Color.ORANGE);
 		} else if (entity instanceof Creature) {
@@ -251,24 +240,12 @@ public class Minimap extends WtPanel {
 		}
 	}
 
-
-	protected void
-	drawNPC(Graphics g, Entity entity, Color color)
-	{
-		Rectangle2D	area;
-
-
+	protected void drawNPC(Graphics g, Entity entity, Color color) {
+		Rectangle2D area;
 		area = entity.getArea();
-
 		g.setColor(color);
-
-		g.drawRect(
-			((int) (area.getX() + 0.5)) * scale,
-			((int) (area.getY() + 0.5)) * scale,
-			(((int) area.getWidth()) * scale) - 1,
-			(((int) area.getHeight()) * scale) - 1);
+		g.drawRect(((int) (area.getX() + 0.5)) * scale, ((int) (area.getY() + 0.5)) * scale, (((int) area.getWidth()) * scale) - 1, (((int) area.getHeight()) * scale) - 1);
 	}
-
 
 	/** draws a cross at the given position */
 	private void drawCross(Graphics g, int x, int y, Color color) {
@@ -282,13 +259,13 @@ public class Minimap extends WtPanel {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
+
 	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
 		/*
 		 * Missing required data?
 		 */
-		if((player == null) || (image == null)) {
+		if ((player == null) || (image == null)) {
 			return false;
 		}
 
@@ -302,7 +279,7 @@ public class Minimap extends WtPanel {
 		int h = image.getHeight();
 
 		int xpos = (int) (player.getX() * scale) - width / 2;
-		int ypos = (int) ((player.getY()+1) * scale) - width / 2;
+		int ypos = (int) ((player.getY() + 1) * scale) - width / 2;
 
 		if (w > width) {
 			// need to pan width
@@ -323,11 +300,11 @@ public class Minimap extends WtPanel {
 				pany = ypos;
 			}
 		}
-		
+
 		// Now we have the world destination coords
 		int go_toX = (p.x + panx - 4) / scale;
 		int go_toY = (p.y + pany - scale - 18) / scale;
-	
+
 		RPAction action = new RPAction();
 		action.put("type", "moveto");
 		action.put("x", go_toX);
