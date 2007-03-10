@@ -45,7 +45,7 @@ public class DamagingArea extends PassiveEntity
 	protected int			damage;
 
 	/**
-	 * How often damage is given while stationary.
+	 * How often damage is given while stationary (in turns).
 	 */
 	protected int			interval;
 
@@ -197,6 +197,19 @@ public class DamagingArea extends PassiveEntity
 
 
 	/**
+	 * Apply any damage done while moving.
+	 *
+	 * @param	entity		The RPEntity to [possibly] damage.
+	 */
+	protected void handleMovement(RPEntity entity) {
+		if(rand.nextDouble() < probability) {
+			doDamage(entity);
+		}
+	}
+
+
+
+	/**
 	 * Remove an entity from the target list.
 	 *
 	 * @param	entity		The RPEntity to remove.
@@ -219,7 +232,6 @@ public class DamagingArea extends PassiveEntity
 	public void setPlayersOnly(boolean playersOnly) {
 		this.playersOnly = playersOnly;
 	}
-
 
 	//
 	// Entity
@@ -300,6 +312,7 @@ public class DamagingArea extends PassiveEntity
 			return;
 		}
 
+		handleMovement(entity);
 		addTarget(entity);
 	}
 
@@ -315,6 +328,7 @@ public class DamagingArea extends PassiveEntity
 	 */
 	public void onExited(RPEntity entity, StendhalRPZone zone,
 	 int oldX, int oldY) {
+		handleMovement(entity);
 		removeTarget(entity);
 	}
 
@@ -338,9 +352,7 @@ public class DamagingArea extends PassiveEntity
 			return;
 		}
 
-		if(rand.nextDouble() < probability) {
-			doDamage(entity);
-		}
+		handleMovement(entity);
 	}
 
 

@@ -85,15 +85,17 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected long getInterval(ConfigurableFactoryContext ctx)
+	protected int getInterval(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
 		String s = ctx.getAttribute("interval");
+
 		if (s == null) {
-			throw new IllegalArgumentException("Required attribute 'interval' missing");
+			throw new IllegalArgumentException(
+				"Required attribute 'interval' missing");
 		}
 
 		try {
-			return StendhalRPWorld.get().getTurnsInSeconds(
+			return (int) StendhalRPWorld.get().getTurnsInSeconds(
 				Integer.parseInt(s));
 		} catch(NumberFormatException ex) {
 			throw new IllegalArgumentException(
@@ -189,7 +191,7 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 		area =  new DamagingArea(
 			getName(ctx),
 			getDamage(ctx),
-			(int) getInterval(ctx),
+			getInterval(ctx),
 			getProbability(ctx));
 
 		area.setPlayersOnly(getPlayersOnly(ctx));
