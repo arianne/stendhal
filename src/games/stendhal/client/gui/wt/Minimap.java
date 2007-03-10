@@ -207,18 +207,13 @@ public class Minimap extends WtPanel {
 		// draw minimap
 		clientg.drawImage(image, -panx, -pany, null);
 
-	/*
-	 * XXX - Temp check for waiting quest signal from server.
-	 * Enabled with -Dstendhal.superman=x.
-	 */
-	if(mininps) {
+	// Enabled with -Dstendhal.superman=x.
+	if(mininps && StendhalClient.get().isAdmin()) {
 		// draw npcs (and creatures/sheeps)
 		clientg.translate(-panx, -pany);
 
 		for (Entity entity : StendhalClient.get().getGameObjects()) {
-			if (entity instanceof NPC) {
-				drawNPC(clientg, entity);
-			}
+			drawNPC(clientg, entity);
 		}
 
 		clientg.translate(panx, pany);
@@ -243,15 +238,16 @@ public class Minimap extends WtPanel {
 	}
 
 
-	protected void
-	drawNPC(Graphics g, Entity entity)
+	protected void drawNPC(Graphics g, Entity entity)
 	{
 		if (entity instanceof Sheep) {
 			drawNPC(g, entity, Color.ORANGE);
 		} else if (entity instanceof Creature) {
-			drawNPC(g, entity, Color.BLACK);
-		} else {
 			drawNPC(g, entity, Color.YELLOW);
+		} else if (entity instanceof NPC) {
+			drawNPC(g, entity, Color.BLUE);
+		} else {
+			drawNPC(g, entity, new Color(200, 255, 200));
 		}
 	}
 
