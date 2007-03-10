@@ -1378,10 +1378,10 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <portal x="56" y="38" ref="bakery_entrance">
    <destination zone="int_fado_bakery" ref="entrance"/>
   </portal>
-
+<!--
   <portal x="14" y="59" ref="hotel_entrance">
    <destination zone="int_fado_hotel_0" ref="entrance"/>
-  </portal>
+  </portal>-->
 
   <portal x="55" y="49" ref="church_entrance">
    <destination zone="int_fado_church" ref="entrance_right"/>
@@ -1483,7 +1483,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
     </portal>
    </zone>
 
-   <zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
+ <!--  <zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
     <configurator class-name="games.stendhal.server.maps.fado.hotel.IL0_GreeterNPC"/>
 
     <portal x="8" y="63" ref="entrance">
@@ -1602,7 +1602,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
        <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
       </portal>
      </zone>
-
+-->
  <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.Athos"/>
