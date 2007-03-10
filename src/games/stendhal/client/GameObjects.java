@@ -20,10 +20,10 @@ import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.entity.PlantGrower;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.Text;
-import games.stendhal.client.events.AttackEvent;
-import games.stendhal.client.events.HPEvent;
-import games.stendhal.client.events.KillEvent;
-import games.stendhal.client.events.TalkEvent;
+//import games.stendhal.client.events.AttackEvent;
+//import games.stendhal.client.events.HPEvent;
+//import games.stendhal.client.events.KillEvent;
+//import games.stendhal.client.events.TalkEvent;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -145,9 +145,9 @@ public class GameObjects implements Iterable<Entity> {
 //				fireTalkEvent((TalkEvent) entity, object, null);
 //			}
 
-			if (entity instanceof HPEvent) {
-				fireHPEvent((HPEvent) entity, object, null);
-			}
+//			if (entity instanceof HPEvent) {
+//				fireHPEvent((HPEvent) entity, object, null);
+//			}
 
 //			if (entity instanceof KillEvent) {
 //				fireKillEvent(((KillEvent) entity), object, null);
@@ -181,9 +181,9 @@ public class GameObjects implements Iterable<Entity> {
 //				fireTalkEvent((TalkEvent) entity, object, changes);
 //			}
 
-			if (entity instanceof HPEvent) {
-				fireHPEvent((HPEvent) entity, object, changes);
-			}
+//			if (entity instanceof HPEvent) {
+//				fireHPEvent((HPEvent) entity, object, changes);
+//			}
 
 //			if (entity instanceof KillEvent) {
 //				fireKillEvent(((KillEvent) entity), object, changes);
@@ -204,9 +204,9 @@ public class GameObjects implements Iterable<Entity> {
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
 
-			if (entity instanceof HPEvent) {
-				fireHPEventChangedRemoved((HPEvent) entity, object, changes);
-			}
+//			if (entity instanceof HPEvent) {
+//				fireHPEventChangedRemoved((HPEvent) entity, object, changes);
+//			}
 
 //			if (entity instanceof AttackEvent) {
 //				fireAttackEventChangedRemoved(((RPEntity) entity), object,
@@ -240,9 +240,9 @@ public class GameObjects implements Iterable<Entity> {
 //				fireTalkEvent((TalkEvent) entity, null, null);
 //			}
 
-			if (entity instanceof HPEvent) {
-				fireHPEvent((HPEvent) entity, null, null);
-			}
+//			if (entity instanceof HPEvent) {
+//				fireHPEvent((HPEvent) entity, null, null);
+//			}
 
 //			if (entity instanceof KillEvent) {
 //				fireKillEvent(((KillEvent) entity), null, null);
@@ -385,41 +385,41 @@ public class GameObjects implements Iterable<Entity> {
 //		}
 //	}
 
-	private void fireHPEvent(HPEvent entity, RPObject base, RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-		} else {
-			if (diff.has("hp") && base.has("hp")) {
-				int healing = diff.getInt("hp") - base.getInt("hp");
-				if (healing > 0) {
-					entity.onHealed(healing);
-				}
-			}
+//	private void fireHPEvent(HPEvent entity, RPObject base, RPObject diff) {
+//		if ((diff == null) && (base == null)) {
+//			// Remove case
+//		} else if (diff == null) {
+//			// First time case.
+//		} else {
+//			if (diff.has("hp") && base.has("hp")) {
+//				int healing = diff.getInt("hp") - base.getInt("hp");
+//				if (healing > 0) {
+//					entity.onHealed(healing);
+//				}
+//			}
+//
+//			if (diff.has("poisoned")) {
+//				int poisoned = diff.getInt("poisoned");
+//				// To remove the - sign on poison.
+//				entity.onPoisoned(Math.abs(poisoned));
+//			}
+//
+//			if (diff.has("eating")) {
+//				entity.onEat(0);
+//			}
+//		}
+//	}
 
-			if (diff.has("poisoned")) {
-				int poisoned = diff.getInt("poisoned");
-				// To remove the - sign on poison.
-				entity.onPoisoned(Math.abs(poisoned));
-			}
-
-			if (diff.has("eating")) {
-				entity.onEat(0);
-			}
-		}
-	}
-
-	private void fireHPEventChangedRemoved(HPEvent entity, RPObject base,
-			RPObject diff) {
-		if (diff.has("poisoned")) {
-			entity.onPoisonEnd();
-		}
-
-		if (diff.has("eating")) {
-			entity.onEatEnd();
-		}
-	}
+//	private void fireHPEventChangedRemoved(HPEvent entity, RPObject base,
+//			RPObject diff) {
+//		if (diff.has("poisoned")) {
+//			entity.onPoisonEnd();
+//		}
+//
+//		if (diff.has("eating")) {
+//			entity.onEatEnd();
+//		}
+//	}
 
 //	private void fireKillEvent(KillEvent entity, RPObject base, RPObject diff) {
 //		if ((diff == null) && (base == null)) {

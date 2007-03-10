@@ -382,7 +382,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		super.onAdded(base);
 
 		fireTalkEvent(base, null);
-
+		fireHPEvent(base, null);
 		fireKillEvent(base, null);
 		fireAttackEvent(base, null);
 	}
@@ -396,7 +396,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		super.onRemoved();
 
 		fireTalkEvent(null, null);
-
+		fireHPEvent(null, null);
 		fireKillEvent(null, null);
 		fireAttackEvent(null, null);
 	}
@@ -409,7 +409,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		if(!inAdd) {
 			fireTalkEvent(base, diff);
-
+			fireHPEvent(base, diff);
 			fireKillEvent(base, diff);
 			fireAttackEvent(base, diff);
 		}
@@ -525,6 +525,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	public void onChangedRemoved(RPObject base, RPObject diff) {
 		super.onChangedRemoved(base, diff);
 
+		fireHPEventChangedRemoved(base, diff);
 		fireAttackEventChangedRemoved(base, diff);
 	}
 
@@ -712,6 +713,42 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				String text = diff.get("private_text");
 				onPrivateListen(text);
 			}
+		}
+	}
+
+
+	protected void fireHPEvent(RPObject base, RPObject diff) {
+		if ((diff == null) && (base == null)) {
+			// Remove case
+		} else if (diff == null) {
+			// First time case.
+		} else {
+			if (diff.has("hp") && base.has("hp")) {
+				int healing = diff.getInt("hp") - base.getInt("hp");
+				if (healing > 0) {
+					onHealed(healing);
+				}
+			}
+
+			if (diff.has("poisoned")) {
+				int poisoned = diff.getInt("poisoned");
+				// To remove the - sign on poison.
+				onPoisoned(Math.abs(poisoned));
+			}
+
+			if (diff.has("eating")) {
+				onEat(0);
+			}
+		}
+	}
+
+	private void fireHPEventChangedRemoved(RPObject base, RPObject diff) {
+		if (diff.has("poisoned")) {
+			onPoisonEnd();
+		}
+
+		if (diff.has("eating")) {
+			onEatEnd();
 		}
 	}
 
