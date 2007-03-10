@@ -89,15 +89,12 @@ public class Portal extends Entity {
 		return 5000;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
-	 */
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-		// TODO Auto-generated method stub
-		super.buildOfferedActions(list);
+		// do not call super method because we do not want the
+		// Look menu until some nice text are there to be looked
+		// at.
+		// super.buildOfferedActions(list);
 
 		if (!hidden) {
 			list.add(ActionType.USE.getRepresentation());
