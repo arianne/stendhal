@@ -24,6 +24,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
@@ -256,13 +257,17 @@ public class AdministrationAction extends ActionListener {
 
 		if (action.has("target")) {
 			String name = action.get("target");
-			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
+			RPEntity teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 			
 			if (teleported == null) {
-				String text = "Player \"" + name + "\" not found";
-				player.sendPrivateText(text);
-				logger.debug(text);
-				return;
+				teleported = NPCList.get().get(name);
+				if (teleported == null) {
+					
+					String text = "Player \"" + name + "\" not found";
+					player.sendPrivateText(text);
+					logger.debug(text);
+					return;
+				}
 			}
 
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported
