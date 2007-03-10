@@ -29,6 +29,7 @@ public class EntityFabricTest {
 
 		public MockRPObject(String type, String eclass, String subclass) {
 			_type = type;
+			
 			_eclass = eclass;
 			_subclass= subclass;
 		}
@@ -64,7 +65,30 @@ public class EntityFabricTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
+	@Test
+	public final void testCreateCarrot() {
+		RPObject rp = new MockRPObject("growing_entity_spawner", "items/grower/carrot_grower","carrot");
+		rp.add(	"max_ripeness",1);	
+		rp.add(	"width",1);	
+		rp.add(	"height",1);	
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Carrotgrower now", CarrotGrower.class, en.getClass());		
 
+	}
+	@Test
+	public final void testCreateGrainfield() {
+		RPObject rp = new MockRPObject("grain_field", null,null);
+		rp.add(	"max_ripeness",1);	
+		rp.add(	"width",1);	
+		rp.add(	"height",1);	
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Grainfield now", GrainField.class, en.getClass());		
+		
+	}
+	
+	
 	@Test
 	public final void testCreateApple() {
 		RPObject rp = new MockRPObject("item", "food","apple");
@@ -80,6 +104,14 @@ public class EntityFabricTest {
 		Entity en = EntityFabric.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a sign by now", Sign.class, en.getClass());
+
+	}
+	@Test
+	public final void testCreateSheep() {
+		RPObject rp =  new MockRPObject("sheep", null);
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a sheep by now", Sheep.class, en.getClass());
 
 	}
 	

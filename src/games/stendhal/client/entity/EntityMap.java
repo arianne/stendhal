@@ -17,6 +17,8 @@ import games.stendhal.common.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
+import marauroa.common.Log4J;
+
 /**
  * EntityMap registers the relationship between Type,eclass and java class of
  * entity Objects eclass represents a subtype of type EntityMap encapsulates the
@@ -32,7 +34,7 @@ public final class EntityMap {
 		try {
 			register();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -54,6 +56,7 @@ public final class EntityMap {
 		register("npc", null, "NPC");
 
 		register("plant_grower", null, "PlantGrower");
+		register("growing_entity_spawner", "items/grower/carrot_grower", "CarrotGrower");
 		register("growing_entity_spawner", null, "GrainField");
 		register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
 
@@ -97,6 +100,7 @@ public final class EntityMap {
 		entityClass="games.stendhal.client.entity."+ entityClass;
 		entityMap.put(new Pair<String, String>(type, eclass), Class.forName(entityClass));
 	}
+			
 
 	/**
 	 * @param type

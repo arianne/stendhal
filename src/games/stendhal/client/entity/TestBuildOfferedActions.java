@@ -2,6 +2,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
 
+
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +40,15 @@ public class TestBuildOfferedActions {
 
 	@Test
 	public void testSheep() throws Exception {
-		StendhalClient.get();
-		Sheep sh = new Sheep(new MockRPObject("sheep", null));
+		
+		RPObject rp =  new MockRPObject("sheep", null);
+		Entity en = EntityFabric.createEntity(rp);
+		
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Attack");
 		expected.add("Own");
-		sh.buildOfferedActions(list);
+		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
 
@@ -70,7 +73,22 @@ public class TestBuildOfferedActions {
 		sh.buildOfferedActions(list);
 		Assert.assertEquals(expected, list);
 	}
-
+@Test
+public void testCarrot() throws Exception{
+	StendhalClient.get();
+	RPObject rp = new MockRPObject("growing_entity_spawner", "items/grower/carrot_grower");
+	rp.add(	"max_ripeness",1);	
+	rp.add(	"width",1);	
+	rp.add(	"height",1);	
+	Entity en = EntityFabric.createEntity(rp);
+	List<String> expected = new ArrayList<String>();
+	expected.add("Look");
+	expected.add("Pick");
+    en.buildOfferedActions(list);
+	Assert.assertNotNull(list);
+	Assert.assertEquals(expected, list);
+	Assert.assertEquals(new String[]{"Pick","Look"}, en.offeredActions());
+}
 	@Test
 	public void testDoor() throws Exception {
 		StendhalClient.get();
@@ -95,19 +113,16 @@ public class TestBuildOfferedActions {
 
 		@Override
 		public Rectangle2D getArea() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public Rectangle2D getDrawedArea() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public int getZIndex() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
@@ -118,7 +133,6 @@ public class TestBuildOfferedActions {
 		 */
 		@Override
 		protected void buildOfferedActions(List<String> list) {
-			// TODO Auto-generated method stub
 			super.buildOfferedActions(list);
 		}
 

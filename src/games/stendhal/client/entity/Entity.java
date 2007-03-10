@@ -88,7 +88,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 * in onChangedAdded() from other onAdded() hack.
 	 * Need to fix it all to work right, but not now.
 	 */
-	protected boolean inAdd;
+	protected boolean inAdd=false;
 
 	public Entity() {
 		modificationCount = 0;

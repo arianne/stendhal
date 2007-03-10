@@ -37,7 +37,7 @@ public class EntityFabric {
 			if (object.has("class")) {
 				eclass = object.get("class");
 			}
-
+		
 			Class entityClass = EntityMap.getClass(type, eclass);
 
 			if (entityClass == null) {
