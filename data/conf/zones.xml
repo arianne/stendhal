@@ -1304,6 +1304,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
   <title/>
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_BridgeGuardNPC"/>
  </zone>
 
  <zone name="0_orril_river_sw" file="0_orril_river_sw.xstend">
@@ -1359,7 +1360,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <title/>
  </zone>
 -->
-
+<!--
  <zone name="0_fado_city" file="0_fado_city.xstend">
   <configurator class-name="games.stendhal.server.maps.fado.city.OL0_GreeterNPC"/>
 
@@ -1378,10 +1379,10 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <portal x="56" y="38" ref="bakery_entrance">
    <destination zone="int_fado_bakery" ref="entrance"/>
   </portal>
-<!--
+
   <portal x="14" y="59" ref="hotel_entrance">
    <destination zone="int_fado_hotel_0" ref="entrance"/>
-  </portal>-->
+  </portal>
 
   <portal x="55" y="49" ref="church_entrance">
    <destination zone="int_fado_church" ref="entrance_right"/>
@@ -1483,7 +1484,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
     </portal>
    </zone>
 
- <!--  <zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
+ <zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
     <configurator class-name="games.stendhal.server.maps.fado.hotel.IL0_GreeterNPC"/>
 
     <portal x="8" y="63" ref="entrance">
@@ -1737,10 +1738,10 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
  <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
   <title/>
   <configurator class-name="games.stendhal.server.maps.semos.USL2_Catacombs"/>
-     <portal x="9" y="5" ref="dragon_portal_1">
+     <portal x="9" y="6" ref="dragon_portal_1">
        <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
       </portal>
-      <portal x="86" y="11" ref="dragon_portal_2">
+      <portal x="86" y="12" ref="dragon_portal_2">
        <destination zone="-2_semos_catacombs" ref="dragon_portal_1"/>
       </portal>
       <portal x="84" y="8" ref="one_way_1a">
@@ -1933,7 +1934,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
    </implementation>
   </entity>
 
-  <entity x="65" y="17">
+  <entity x="65" y="18">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
     <attribute name="name">razor sharp spikes</attribute>
     <attribute name="interval">3</attribute>
@@ -1942,115 +1943,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
     <attribute name="players-only">true</attribute>
    </implementation>
   </entity>
- <entity x="66" y="17">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="61" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="62" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="63" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="64" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="65" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="66" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="55" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="56" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="57" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="58" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="59" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="60" y="19">
+ <entity x="66" y="18">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
     <attribute name="name">razor sharp spikes</attribute>
     <attribute name="interval">3</attribute>
@@ -2078,6 +1971,33 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
    </implementation>
   </entity>
 <entity x="63" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="64" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="65" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="66" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
     <attribute name="name">razor sharp spikes</attribute>
     <attribute name="interval">3</attribute>
@@ -2141,6 +2061,87 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
    </implementation>
   </entity>
 <entity x="61" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="62" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="63" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="55" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="56" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="57" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="58" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="59" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="60" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+<entity x="61" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
     <attribute name="name">razor sharp spikes</attribute>
     <attribute name="interval">3</attribute>

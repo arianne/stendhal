@@ -2657,7 +2657,7 @@
 		<attributes>
 			<atk value="145"/>
 			<def value="27"/>
-			<hp value="450"/>
+			<hp value="400"/>
 			<speed value="1"/>
 			<size value="3,4"/>
 		</attributes>
@@ -2677,8 +2677,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="heal" params="5,50"/>
-			<profile name="lifesteal" params="0.75"/>
+			<profile name="lifesteal" params="0.5"/>
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
