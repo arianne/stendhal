@@ -137,13 +137,13 @@ public class GameObjects implements Iterable<Entity> {
 			Entity entity = EntityFabric.createEntity(object);
 
 			entity.onAdded(object);
-			fireMovementEvent(entity, object, null);
-			fireZoneChangeEvent(entity, object, null);
+//			fireMovementEvent(entity, object, null);
+//			fireZoneChangeEvent(entity, object, null);
 // TODO: try polymorphism durkham 17.02.2007
 			
-			if (entity instanceof TalkEvent) {
-				fireTalkEvent((TalkEvent) entity, object, null);
-			}
+//			if (entity instanceof TalkEvent) {
+//				fireTalkEvent((TalkEvent) entity, object, null);
+//			}
 
 			if (entity instanceof HPEvent) {
 				fireHPEvent((HPEvent) entity, object, null);
@@ -175,11 +175,11 @@ public class GameObjects implements Iterable<Entity> {
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
-			fireMovementEvent(entity, object, changes);
+//			fireMovementEvent(entity, object, changes);
 
-			if (entity instanceof TalkEvent) {
-				fireTalkEvent((TalkEvent) entity, object, changes);
-			}
+//			if (entity instanceof TalkEvent) {
+//				fireTalkEvent((TalkEvent) entity, object, changes);
+//			}
 
 			if (entity instanceof HPEvent) {
 				fireHPEvent((HPEvent) entity, object, changes);
@@ -233,12 +233,12 @@ public class GameObjects implements Iterable<Entity> {
 		Entity entity = objects.get(id);
 		if (entity != null) {
 			entity.onRemoved();
-			fireMovementEvent(entity, null, null);
-			fireZoneChangeEvent(entity, null, null);
+//			fireMovementEvent(entity, null, null);
+//			fireZoneChangeEvent(entity, null, null);
 
-			if (entity instanceof TalkEvent) {
-				fireTalkEvent((TalkEvent) entity, null, null);
-			}
+//			if (entity instanceof TalkEvent) {
+//				fireTalkEvent((TalkEvent) entity, null, null);
+//			}
 
 			if (entity instanceof HPEvent) {
 				fireHPEvent((HPEvent) entity, null, null);
@@ -285,105 +285,105 @@ public class GameObjects implements Iterable<Entity> {
 
 	}
 
-	private void fireTalkEvent(TalkEvent entity, RPObject base, RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-			if (base.has("text")) {
-				String text = base.get("text");
-				entity.onTalk(text);
-			}
+//	private void fireTalkEvent(TalkEvent entity, RPObject base, RPObject diff) {
+//		if ((diff == null) && (base == null)) {
+//			// Remove case
+//		} else if (diff == null) {
+//			// First time case.
+//			if (base.has("text")) {
+//				String text = base.get("text");
+//				entity.onTalk(text);
+//			}
+//
+//			if (base.has("private_text")) {
+//				String text = base.get("private_text");
+//				entity.onPrivateListen(text);
+//			}
+//		} else {
+//			if (diff.has("text")) {
+//				String text = diff.get("text");
+//				entity.onTalk(text);
+//			}
+//
+//			if (diff.has("private_text")) {
+//				String text = diff.get("private_text");
+//				entity.onPrivateListen(text);
+//			}
+//		}
+//	}
 
-			if (base.has("private_text")) {
-				String text = base.get("private_text");
-				entity.onPrivateListen(text);
-			}
-		} else {
-			if (diff.has("text")) {
-				String text = diff.get("text");
-				entity.onTalk(text);
-			}
+//	private void fireZoneChangeEvent(Entity entity, RPObject base, RPObject diff) {
+//		RPObject.ID id = entity.getID();
+//		if ((diff == null) && (base == null)) {
+//			// Remove case
+//			entity.onLeaveZone(id.getZoneID());
+//		} else if (diff == null) {
+//			// First time case.
+//			entity.onEnterZone(id.getZoneID());
+//		}
+//	}
 
-			if (diff.has("private_text")) {
-				String text = diff.get("private_text");
-				entity.onPrivateListen(text);
-			}
-		}
-	}
-
-	private void fireZoneChangeEvent(Entity entity, RPObject base, RPObject diff) {
-		RPObject.ID id = entity.getID();
-		if ((diff == null) && (base == null)) {
-			// Remove case
-			entity.onLeaveZone(id.getZoneID());
-		} else if (diff == null) {
-			// First time case.
-			entity.onEnterZone(id.getZoneID());
-		}
-	}
-
-	private void fireMovementEvent(Entity entity, RPObject base, RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-			int x = base.getInt("x");
-			int y = base.getInt("y");
-
-			Direction direction = Direction.STOP;
-			if (base.has("dir")) {
-				direction = Direction.build(base.getInt("dir"));
-			}
-
-			double speed = 0;
-			if (base.has("speed")) {
-				speed = base.getDouble("speed");
-			}
-
-			entity.onMove(x, y, direction, speed);
-		} else {
-			// Real movement case
-			int x = base.getInt("x");
-			int y = base.getInt("y");
-
-			int oldx = x, oldy = y;
-
-			if (diff.has("x")) {
-				x = diff.getInt("x");
-			}
-			if (diff.has("y")) {
-				y = diff.getInt("y");
-			}
-
-			Direction direction = Direction.STOP;
-			if (base.has("dir")) {
-				direction = Direction.build(base.getInt("dir"));
-			}
-			if (diff.has("dir")) {
-				direction = Direction.build(diff.getInt("dir"));
-			}
-
-			double speed = 0;
-			if (base.has("speed")) {
-				speed = base.getDouble("speed");
-			}
-			if (diff.has("speed")) {
-				speed = diff.getDouble("speed");
-			}
-
-			entity.onMove(x, y, direction, speed);
-
-			if ((direction == Direction.STOP) || (speed == 0)) {
-				entity.onStop(x, y);
-			}
-
-			if ((oldx != x) && (oldy != y)) {
-				entity.onLeave(oldx, oldy);
-				entity.onEnter(x, y);
-			}
-		}
-	}
+//	private void fireMovementEvent(Entity entity, RPObject base, RPObject diff) {
+//		if ((diff == null) && (base == null)) {
+//			// Remove case
+//		} else if (diff == null) {
+//			// First time case.
+//			int x = base.getInt("x");
+//			int y = base.getInt("y");
+//
+//			Direction direction = Direction.STOP;
+//			if (base.has("dir")) {
+//				direction = Direction.build(base.getInt("dir"));
+//			}
+//
+//			double speed = 0;
+//			if (base.has("speed")) {
+//				speed = base.getDouble("speed");
+//			}
+//
+//			entity.onMove(x, y, direction, speed);
+//		} else {
+//			// Real movement case
+//			int x = base.getInt("x");
+//			int y = base.getInt("y");
+//
+//			int oldx = x, oldy = y;
+//
+//			if (diff.has("x")) {
+//				x = diff.getInt("x");
+//			}
+//			if (diff.has("y")) {
+//				y = diff.getInt("y");
+//			}
+//
+//			Direction direction = Direction.STOP;
+//			if (base.has("dir")) {
+//				direction = Direction.build(base.getInt("dir"));
+//			}
+//			if (diff.has("dir")) {
+//				direction = Direction.build(diff.getInt("dir"));
+//			}
+//
+//			double speed = 0;
+//			if (base.has("speed")) {
+//				speed = base.getDouble("speed");
+//			}
+//			if (diff.has("speed")) {
+//				speed = diff.getDouble("speed");
+//			}
+//
+//			entity.onMove(x, y, direction, speed);
+//
+//			if ((direction == Direction.STOP) || (speed == 0)) {
+//				entity.onStop(x, y);
+//			}
+//
+//			if ((oldx != x) && (oldy != y)) {
+//				entity.onLeave(oldx, oldy);
+//				entity.onEnter(x, y);
+//			}
+//		}
+//	}
 
 	private void fireHPEvent(HPEvent entity, RPObject base, RPObject diff) {
 		if ((diff == null) && (base == null)) {

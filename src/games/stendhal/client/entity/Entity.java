@@ -83,6 +83,13 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	private int modificationCount;
 
+	/*
+	 * Quick work-around to prevent fireMovementEvent() from calling
+	 * in onChangedAdded() from other onAdded() hack.
+	 * Need to fix it all to work right, but not now.
+	 */
+	protected boolean inAdd;
+
 	public Entity() {
 		modificationCount = 0;
 	}
@@ -295,11 +302,20 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	public void onAdded(RPObject base) {
 		// BUG: Work around for Bugs at 0.45
+		inAdd = true;
 		onChangedAdded(new RPObject(), base);
+		inAdd = false;
+
+		fireMovementEvent(base, null);
+		fireZoneChangeEvent(base, null);
 	}
 
 	public void onChangedAdded(RPObject base, RPObject diff) {
 		modificationCount++;
+
+		if(!inAdd) {
+			fireMovementEvent(base, diff);
+		}
 	}
 
 	public void onChangedRemoved(RPObject base, RPObject diff) {
@@ -308,6 +324,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	public void onRemoved() {
 		SoundSystem.stopSoundCycle(ID_Token);
+
+		fireMovementEvent(null, null);
+		fireZoneChangeEvent(null, null);
 	}
 
 	// Called when entity collides with another entity
@@ -317,6 +336,82 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	// Called when entity collides with collision layer object.
 	public void onCollide(int x, int y) {
 	}
+
+
+	protected void fireZoneChangeEvent(RPObject base, RPObject diff) {
+		RPObject.ID id = getID();
+		if ((diff == null) && (base == null)) {
+			// Remove case
+			onLeaveZone(id.getZoneID());
+		} else if (diff == null) {
+			// First time case.
+			onEnterZone(id.getZoneID());
+		}
+	}
+
+
+	protected void fireMovementEvent(RPObject base, RPObject diff) {
+		if ((diff == null) && (base == null)) {
+			// Remove case
+		} else if (diff == null) {
+			// First time case.
+			int x = base.getInt("x");
+			int y = base.getInt("y");
+
+			Direction direction = Direction.STOP;
+			if (base.has("dir")) {
+				direction = Direction.build(base.getInt("dir"));
+			}
+
+			double speed = 0;
+			if (base.has("speed")) {
+				speed = base.getDouble("speed");
+			}
+
+			onMove(x, y, direction, speed);
+		} else {
+			// Real movement case
+			int x = base.getInt("x");
+			int y = base.getInt("y");
+
+			int oldx = x, oldy = y;
+
+			if (diff.has("x")) {
+				x = diff.getInt("x");
+			}
+			if (diff.has("y")) {
+				y = diff.getInt("y");
+			}
+
+			Direction direction = Direction.STOP;
+			if (base.has("dir")) {
+				direction = Direction.build(base.getInt("dir"));
+			}
+			if (diff.has("dir")) {
+				direction = Direction.build(diff.getInt("dir"));
+			}
+
+			double speed = 0;
+			if (base.has("speed")) {
+				speed = base.getDouble("speed");
+			}
+			if (diff.has("speed")) {
+				speed = diff.getDouble("speed");
+			}
+
+			onMove(x, y, direction, speed);
+
+			if ((direction == Direction.STOP) || (speed == 0)) {
+				onStop(x, y);
+			}
+
+			if ((oldx != x) && (oldy != y)) {
+				onLeave(oldx, oldy);
+				onEnter(x, y);
+			}
+		}
+	}
+
 
 	public void draw(GameScreen screen) {
 		screen.draw(sprite, x, y);

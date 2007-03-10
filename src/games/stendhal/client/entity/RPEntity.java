@@ -381,8 +381,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	public void onAdded(RPObject base) {
 		super.onAdded(base);
 
-		fireAttackEvent(base, null);
+		fireTalkEvent(base, null);
+
 		fireKillEvent(base, null);
+		fireAttackEvent(base, null);
 	}
 
 
@@ -393,8 +395,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	public void onRemoved() {
 		super.onRemoved();
 
-		fireAttackEvent(null, null);
+		fireTalkEvent(null, null);
+
 		fireKillEvent(null, null);
+		fireAttackEvent(null, null);
 	}
 
 
@@ -403,8 +407,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
-		fireAttackEvent(base, diff);
-		fireKillEvent(base, diff);
+		if(!inAdd) {
+			fireTalkEvent(base, diff);
+
+			fireKillEvent(base, diff);
+			fireAttackEvent(base, diff);
+		}
 
 		if (diff.has("base_hp")) {
 			base_hp = diff.getInt("base_hp");
@@ -675,6 +683,34 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		} else {
 			if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
 				onDeath(lastAttacker);
+			}
+		}
+	}
+
+
+	protected void fireTalkEvent(RPObject base, RPObject diff) {
+		if ((diff == null) && (base == null)) {
+			// Remove case
+		} else if (diff == null) {
+			// First time case.
+			if (base.has("text")) {
+				String text = base.get("text");
+				onTalk(text);
+			}
+
+			if (base.has("private_text")) {
+				String text = base.get("private_text");
+				onPrivateListen(text);
+			}
+		} else {
+			if (diff.has("text")) {
+				String text = diff.get("text");
+				onTalk(text);
+			}
+
+			if (diff.has("private_text")) {
+				String text = diff.get("private_text");
+				onPrivateListen(text);
 			}
 		}
 	}
