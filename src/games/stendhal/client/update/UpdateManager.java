@@ -255,6 +255,6 @@ public class UpdateManager {
 
 		sb.append(bootProp.getProperty("load", ""));
 
-		bootProp.put("load" + Version.VERSION, sb.toString());
+		bootProp.put("load", sb.toString());
 	}
 }
