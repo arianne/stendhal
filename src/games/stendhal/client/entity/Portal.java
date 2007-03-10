@@ -55,9 +55,8 @@ public class Portal extends Entity {
 	public ActionType defaultAction() {
 		if (!hidden) {
 			return ActionType.USE;
-		} else {
-			return ActionType.LOOK;
 		}
+		else return null;
 	}
 
 	@Override

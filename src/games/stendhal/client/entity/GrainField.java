@@ -112,9 +112,6 @@ public class GrainField extends AnimatedEntity {
 
 	@Override
 	public ActionType defaultAction() {
-		if (rpObject.has("action_name")){
-			System.out.println(rpObject.get("name"));
-		}
 		return ActionType.HARVEST;
 	}
 
