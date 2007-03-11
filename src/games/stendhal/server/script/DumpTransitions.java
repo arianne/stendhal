@@ -4,6 +4,7 @@ package games.stendhal.server.script;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
@@ -56,8 +57,8 @@ public class DumpTransitions extends ScriptImpl {
 	}
 
 	private void dumpNPC(SpeakerNPC npc) {
-		List<SpeakerNPC.Transition> transitions = npc.getTransitions();
-		for (SpeakerNPC.Transition transition : transitions) {
+		List<Transition> transitions = npc.getTransitions();
+		for (Transition transition : transitions) {
 			dumpedTable.append(getStateName(transition.getState()) + " -> " + getStateName(transition.getNextState()));
 			String transitionName = transition.getTrigger();
 			if (transition.getCondition() != null) {

@@ -6,6 +6,9 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
+import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
+import games.stendhal.server.entity.npc.fsm.Transition;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 
@@ -373,122 +376,12 @@ public abstract class SpeakerNPC extends NPC {
 		return currentState != ConversationStates.IDLE;
 	}
 
-	abstract public static class ChatAction {
+	abstract public static class ChatAction implements PostTransitionAction {
 		abstract public void fire(Player player, String text, SpeakerNPC engine);
 	}
 
-	abstract public static class ChatCondition {
+	abstract public static class ChatCondition implements PreTransitionCondition {
 		abstract public boolean fire(Player player, String text, SpeakerNPC engine);
-	}
-
-	/**
-	 * A transition brings a conversation from one state to another one (or to
-	 * the same one); while doing so, other actions can take place.
-	 */
-	public class Transition {
-		// The state where this transition starts at
-		private int state;
-
-		// The state where this transition leads to
-		private int nextState;
-
-		// The string a player's text must either start with or equal to
-		// in order to trigger this transition
-		private String trigger;
-
-		// The condition that has to be fulfilled so that the transition can
-		// be triggered
-		private ChatCondition condition;
-
-		// The text that the NPC will say when the transition is triggered
-		private String reply;
-
-		// The action that will take place when the transition is triggered
-		private ChatAction action;
-
-		Transition(int currentState, String trigger, ChatCondition condition,
-				int nextState, String reply, ChatAction action) {
-			this.state = currentState;
-			this.condition = condition;
-			this.nextState = nextState;
-			this.trigger = trigger.toLowerCase();
-			this.reply = reply;
-			this.action = action;
-		}
-
-		/**
-		 * Checks whether this is a "wildcard" transition (see class comment
-		 * of SpeakerNPC) which can be fired by the given text.
-		 * @param text The text that the player has said
-		 * @return true iff this is a wildcard transition and the triggering
-		 *         text has been said
-		 */
-		public boolean absoluteJump(String text) {
-			return (state == ConversationStates.ANY) && trigger.equalsIgnoreCase(text);
-		}
-
-		/**
-		 * @param state
-		 * @param text
-		 * @return
-		 */
-		public boolean matches(int state, String text) {
-			return (state == this.state) && trigger.equalsIgnoreCase(text);
-		}
-
-		public boolean matchesBeginning(int state, String text) {
-			text = text.toLowerCase();
-			return (state == this.state) && text.startsWith(trigger);
-		}
-
-		/**
-		 * Checks whether this transition's condition is fulfilled.
-		 * 
-		 * @param player
-		 * @param text the text the player said
-		 * @param npc
-		 * @return true iff there is no condition or if there is one
-		 *         which is fulfilled
-		 */
-		public boolean isConditionFulfilled(Player player, String text, SpeakerNPC npc) {
-			if (condition != null) {
-				return condition.fire(player, text, npc);
-			} else {
-				return true;
-			}
-		}
-
-		
-
-        public ChatAction getAction() {
-			return action;
-		}
-
-		public ChatCondition getCondition() {
-			return condition;
-		}
-
-		public int getNextState() {
-			return nextState;
-		}
-
-		public String getReply() {
-			return reply;
-		}
-
-		public int getState() {
-			return state;
-		}
-
-		public String getTrigger() {
-			return trigger;
-		}
-
-		@Override
-		public String toString() {
-			return "[" + state + "," + trigger + "," + nextState + ","
-					+ condition + "]";
-		}
 	}
 
 	@Override
@@ -521,7 +414,7 @@ public abstract class SpeakerNPC extends NPC {
 	private Transition get(int state, String trigger, ChatCondition condition) {
 		for (Transition transition : stateTransitionTable) {
 			if (transition.matches(state, trigger)) {
-				if (transition.condition == condition) {
+				if (transition.getCondition() == condition) {
 					return transition;
 				}
 			}
@@ -546,7 +439,7 @@ public abstract class SpeakerNPC extends NPC {
 			// A previous state, trigger combination exist.
 			logger.warn("Adding to " + existing + " the state [" + state + ","
 					+ trigger + "," + next_state + "]");
-			existing.reply = existing.reply + " " + reply;
+			existing.setReply(existing.getReply() + " " + reply);
 		}
 
 		Transition item = new Transition(state, trigger, condition, next_state,
@@ -601,7 +494,7 @@ public abstract class SpeakerNPC extends NPC {
 					|| ((type == 1) && transition.matches(currentState, text))
 					|| ((type == 2) && transition.matchesBeginning(currentState, text))) {
 				if (transition.isConditionFulfilled(player, text, this)) {
-					if (transition.condition == null) {
+					if (transition.getCondition() == null) {
 						listConditionLess.add(transition);
 					} else {
 						listCondition.add(transition);
@@ -690,15 +583,15 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	private void executeState(Player player, String text, Transition state) {
-		int nextState = state.nextState;
-		if (state.reply != null) {
-			say(state.reply);
+		int nextState = state.getNextState();
+		if (state.getReply() != null) {
+			say(state.getReply());
 		}
 
 		currentState = nextState;
 
-		if (state.action != null) {
-			state.action.fire(player, text, this);
+		if (state.getAction() != null) {
+			state.getAction().fire(player, text, this);
 		}
 	}
 	
