@@ -85,6 +85,6 @@ public class NPCList {
 	 */
 	public Set<String> getNPCs() {
 		// do not expose the internal structure but return a copy instead
-		return new TreeSet(contents.keySet());
+		return new TreeSet<String>(contents.keySet());
 	}
 }
