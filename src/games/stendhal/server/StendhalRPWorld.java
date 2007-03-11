@@ -94,8 +94,11 @@ public class StendhalRPWorld extends RPWorld {
 	 * 
 	 * Don't use it in Java code, only in Groovy.
 	 * Remove this method once the Groovy bug has been resolved.
-	 * @return
+	 *
+	 * @return StendhalRPWorld
+	 * @deprecated use StendhalRPWorld.get()
 	 */
+	@Deprecated
 	public static StendhalRPWorld getInstance() {
 		return get();
 	}

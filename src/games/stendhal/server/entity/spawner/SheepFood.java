@@ -70,8 +70,9 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	}
 
 	/**
-	 * Gets the number of ripe fruits that are on 
-	 * @return
+	 * Gets the number of ripe fruits that are on
+	 * 
+	 * @return number of ripe fruits
 	 */
 	public int getAmount() {
 		return amount;

@@ -145,7 +145,8 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/**
 	 * Checks how many creatures which were spawned here are currently alive.
-	 * @return
+	 *
+	 * @return amount of living creatures
 	 */
 	public int size() {
 		return creatures.size();

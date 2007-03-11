@@ -239,9 +239,8 @@ public class ProducerBehaviour extends Behaviour {
 	 * of the product from the player. If this is possible, initiates
 	 * an order.
 	 * 
-	 * @param npc
-	 * @param player
-	 * @param amount
+	 * @param npc     the involved NPC
+	 * @param player  the involved player
 	 */
 	@Override
 	public boolean transactAgreedDeal(SpeakerNPC npc, Player player) {

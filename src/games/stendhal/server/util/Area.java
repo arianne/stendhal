@@ -21,7 +21,7 @@ public class Area {
 	/**
 	 * Create a new Area
 	 *
-	 * @param mapName name of the map
+	 * @param zone name of the map
 	 * @param shape   shape on that map
 	 */
 	public Area(IRPZone zone, Rectangle2D shape) {

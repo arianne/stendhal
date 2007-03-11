@@ -107,7 +107,6 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	/**
 	 * starts the parsing of the specified article
 	 *
-	 * @param title
 	 * @throws Exception in case of an unexpected error
 	 */
 	public void parse() throws Exception {

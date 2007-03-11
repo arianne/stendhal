@@ -69,7 +69,7 @@ public abstract class ScriptingSandbox {
 	 * @param zoneName
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return true in case of success, false otherwise
 	 * @deprecated use Player.teleport() directly instead
 	 */
 	@Deprecated

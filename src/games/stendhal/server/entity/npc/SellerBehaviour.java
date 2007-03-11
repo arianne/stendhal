@@ -37,7 +37,6 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	/**
 	 * Creates a new SellerBehaviour with an empty pricelist.
-	 * @param world the world
 	 */
 	public SellerBehaviour() {
 		super(new HashMap<String, Integer>());
@@ -45,7 +44,8 @@ public class SellerBehaviour extends MerchantBehaviour {
 
 	/**
 	 * Creates a new SellerBehaviour with a pricelist.
-	 * @param world the world
+	 *
+	 * @param priceList list of item names and their prices
 	 */
 	public SellerBehaviour(Map<String, Integer> priceList) {
 		super(priceList);

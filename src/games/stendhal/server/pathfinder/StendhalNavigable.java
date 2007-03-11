@@ -99,7 +99,7 @@ public class StendhalNavigable implements Navigable {
 	 * calculates the cost for the move from the parent to the child
 	 * costs are allway 1 in stendhal
 	 * @param parent the parent node 
-	 * @param cild the cild node
+	 * @param child the cild node
 	 * @retrun 1 
 	 */
 	public double getCost(Pathfinder.Node parent, Pathfinder.Node child) {

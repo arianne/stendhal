@@ -25,7 +25,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	
 	/**
 	 * Creates a new HealerBehaviour.
-	 * @param world The StendhalRPWorld
+	 *
 	 * @param cost The lump sum that is required to heal
 	 */
 	public HealerBehaviour(int cost) {
@@ -36,6 +36,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	/**
 	 * Restores the given player's health to the maximum possible at the
 	 * player's current level.
+	 *
 	 * @param player The player who should be healed.
 	 */
 	public void heal(Player player) {

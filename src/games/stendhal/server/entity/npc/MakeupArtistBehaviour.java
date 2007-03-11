@@ -49,7 +49,7 @@ public class MakeupArtistBehaviour extends MerchantBehaviour {
 	 * Creates a new MakeupArtistBehaviour with a pricelist.
 	 *
 	 * @param questSlot quest-slot to store time the mask will stay
-	 * @param world the world
+	 * @param priceList list of item names and their prices
 	 */
 	public MakeupArtistBehaviour(String questSlot, Map<String, Integer> priceList) {
 		super(priceList);

@@ -25,10 +25,10 @@ import java.util.*;
 
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
- * the <code>Navigable</code> interface.
+ * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
  * 
  * @author James Matthews
- * @see org.generation5.ai.Navigable
+ * 
  */
 public class Pathfinder {
 	/**
