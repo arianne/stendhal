@@ -52,7 +52,7 @@ public class Minimap extends WtPanel {
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
-	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
+	private static final boolean mininps = (System.getProperty("stendhal.superman") != null); 
 
 	/** scale of map */
 	private int scale;
@@ -224,7 +224,12 @@ public class Minimap extends WtPanel {
 		return g;
 	}
 
-	protected void drawNPC(Graphics g, Entity entity) {
+	/**
+	 * draws NPC as rectangle to Minimap selecting color by class of Entity
+	 * @param g Graphics
+	 * @param entity the entity dto be drawn
+	 */
+	protected void drawNPC(final  Graphics g,  final Entity entity) {
 		if (entity instanceof Sheep) {
 			drawNPC(g, entity, Color.ORANGE);
 		} else if (entity instanceof Creature) {
@@ -236,7 +241,13 @@ public class Minimap extends WtPanel {
 		}
 	}
 
-	protected void drawNPC(Graphics g, Entity entity, Color color) {
+	/**
+	 * calculates position of NPC rectangle and draws it to Minimap in the sepecified color
+	 * @param g graphics
+	 * @param entity the Entity to be drawn
+	 * @param color the Color to be used
+	 */
+	protected void drawNPC(final  Graphics g, final  Entity entity,  final Color color) {
 		Rectangle2D area;
 		area = entity.getArea();
 		g.setColor(color);
@@ -252,7 +263,11 @@ public class Minimap extends WtPanel {
 		g.drawLine(x, y + size, x, y - size);
 	}
 
-	public void setPlayer(Player player) {
+	/**
+	 * sets the current Player
+	 * @param player 
+	 */
+	public void setPlayer(final  Player player) {
 		this.player = player;
 	}
 
