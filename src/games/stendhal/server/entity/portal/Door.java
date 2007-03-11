@@ -53,7 +53,6 @@ public abstract class Door extends Portal implements TurnListener {
 	 * @param clazz The class. Responsible for how this door looks like.
 	 * @param dir The direction in which one has to walk in order to pass
 	 *            through this door
-	 * @throws AttributeNotFoundException
 	 */
 	public Door(String clazz, Direction dir) {
 		super();
