@@ -164,6 +164,7 @@ public class Player extends RPEntity {
 				outfitTemp = outfitOrg;
 			}
 			StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
+			break;
 		case LEAVE_SHEEP:
 			rpaction = new RPAction();
 			rpaction.put("type", at.toString());
@@ -176,6 +177,7 @@ public class Player extends RPEntity {
 			rpaction.put("type", at.toString());
 			rpaction.put("target", getName());
 			at.send(rpaction);
+			break;
 		default:
 			super.onAction(at, params);
 			break;
