@@ -141,18 +141,6 @@ public class Player extends RPEntity {
 				- hearingRange, width, width);
 	}
 
-	/**
-	 * Sets the hearing range as radius distance from a player's position,
-	 * expressed in coordinate units. This reflects an abstract hearing capacity
-	 * of this unit and influences the result of <code>getHearingArea()</code>.
-	 * 
-	 * @param range
-	 *            double approx. hearing area radius in coordinate units
-	 */
-	// public void setHearingRange(double range) {
-	// hearingRange = range;
-	// }
-
 	@Override
 	public void onAction(ActionType at, String... params) {
 	   
