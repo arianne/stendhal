@@ -51,14 +51,23 @@ public class Transition {
 	}
 
 	/**
-	 * @param state
-	 * @param text
-	 * @return
+	 * checks whether this transition is possible now.
+	 *
+	 * @param state old state
+	 * @param text trigger
+	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matches(int state, String text) {
 		return (state == this.state) && trigger.equalsIgnoreCase(text);
 	}
 
+	/**
+	 * checks whether this transition is possible now
+	 *
+	 * @param state old state
+	 * @param text trigger (possibly with additional text)
+	 * @return true if the transition matches, false otherwise
+	 */
 	public boolean matchesBeginning(int state, String text) {
 		text = text.toLowerCase();
 		return (state == this.state) && text.startsWith(trigger);
