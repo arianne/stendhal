@@ -30,7 +30,7 @@ public class StendhalMapReader implements MapReader
    * 
    * @param filename
    * @throws Exception
-   * @return
+   * @return null
    */
   public Map readMap(String filename) throws Exception
   {
@@ -42,7 +42,7 @@ public class StendhalMapReader implements MapReader
    * 
    * @param filename
    * @throws Exception
-   * @return
+   * @return null
    */
   public TileSet readTileset(String filename) throws Exception
   {
@@ -54,7 +54,7 @@ public class StendhalMapReader implements MapReader
    * 
    * @param in
    * @throws Exception
-   * @return
+   * @return null
    */
   public Map readMap(InputStream in) throws Exception
   {
@@ -66,7 +66,7 @@ public class StendhalMapReader implements MapReader
    * 
    * @param in
    * @throws Exception
-   * @return
+   * @return null
    */
   public TileSet readTileset(InputStream in) throws Exception
   {
