@@ -76,7 +76,6 @@ public class ConfigurableFactoryHelper {
 	 * </ul>
 	 *
 	 * @param	className	A base class name to load.
-	 * @param	attributes	Configuration attributes.
 	 *
 	 * @return	A factory, or <code>null</code> if no valid class
 	 *		was found.

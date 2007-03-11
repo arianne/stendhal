@@ -132,7 +132,7 @@ public class Level {
 	 * Get an entity's wisdom factor based on their level. As no one
 	 * really has 100% (i.e. 1.0) wisdom, it should be scaled as needed.
 	 *
-	 * @param	A player level.
+	 * @param level A player level.
 	 *
 	 * @return	A value between <code>0.0</code> (inclusive) and
 	 *		<code>1.0</code> (exclusive).
