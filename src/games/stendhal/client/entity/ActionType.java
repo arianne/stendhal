@@ -24,7 +24,7 @@ public enum ActionType {
 	DEBUG_HIDE_PATH("[hide path]","HidePath"),
 	DEBUG_ENABLE_WATCH("[enable watch]","Enable Watch"),
 	DEBUG_DISABLE_WATCH("[disable watch]","Disable Watch"),
-	SET_OUTFIT("set outfit","Set outfit");
+	SET_OUTFIT("outfit","Set outfit");
 	/**
 	 *  the String send to the server, if so
 	 */
