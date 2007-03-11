@@ -24,6 +24,8 @@ public class OutfitAction extends ActionListener {
 
 	public static void register() {
 		StendhalRPRuleProcessor.register("outfit", new OutfitAction());
+		// workaround for bug in client 0.58
+		StendhalRPRuleProcessor.register("set outfit", new OutfitAction());
 	}
 
 	@Override
