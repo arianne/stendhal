@@ -114,28 +114,6 @@ public abstract class DomesticAnimal extends Creature {
 		}
 	}
 
-	/**
-	 * Is called when the sheep dies. Removes the dead sheep from the owner.
-     * @param who The entity who caused the death
-	 */
-	
-	// TODO: this method can't yet be abstracted because the method
-	// owner.removeSheep() would first have to be generalized.
-//	public void onDead(RPEntity who) {
-//		if (owner != null) {
-//			if (owner.hasSheep()) {
-//				owner.removeSheep(this);
-//			} else {
-//				logger.warn("INCOHERENCE: Domestic animal " + this + " isn't owned by "
-//						+ owner);
-//			}
-//		} else {
-//			rp.removeNPC(this);
-//		}
-//
-//		super.onDead(who);
-//	}
-
 	@Override
 	public abstract double getSpeed();
 
