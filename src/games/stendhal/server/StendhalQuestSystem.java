@@ -13,6 +13,9 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Loads and manages all quests 
+ */
 public class StendhalQuestSystem {
 	/** the logger instance. */
 	private static final Logger logger = Log4J
@@ -24,16 +27,21 @@ public class StendhalQuestSystem {
 	private static StendhalQuestSystem stendhalQuestSystem;
 	
 	public static StendhalQuestSystem get() {
+		if (stendhalQuestSystem == null) {
+			stendhalQuestSystem = new StendhalQuestSystem();
+		}
 		return stendhalQuestSystem;
+	}
+
+	private StendhalQuestSystem() {
+		// hide constructor, this is a Singleton
 	}
 
 	/**
 	 * initiales the QuestSystem
 	 */
-	public StendhalQuestSystem() {
-		stendhalQuestSystem = this;
+	public void init() {
 		questInfos = QuestXMLLoader.get();
-
 		loadQuest("ArmorForDagobert");
 		loadQuest("BeerForHayunn");
 		loadQuest("Campfire");
