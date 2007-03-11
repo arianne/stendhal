@@ -21,9 +21,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.IRPZone;
 
-public class FeaturesTestArea implements ZoneConfigurator, IContent {
+public class FeaturesTestArea implements ZoneConfigurator {
 	private static final Logger logger = Log4J.getLogger(FeaturesTestArea.class);
 
 	private DefaultEntityManager manager;
@@ -44,7 +43,6 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 					killerRPEntity.equip(item, true);
 				}
 			}
-			super.onDead(killer);
 		}
 
 		@Override
@@ -57,14 +55,6 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 	public FeaturesTestArea() {
 		manager = (DefaultEntityManager) StendhalRPWorld.get()
 				.getRuleManager().getEntityManager();
-	}
-
-
-	public void build() {
-		configureZone(
-			(StendhalRPZone) StendhalRPWorld.get().getRPZone(
-				new IRPZone.ID("int_pathfinding")),
-			java.util.Collections.EMPTY_MAP);
 	}
 
 
@@ -83,28 +73,6 @@ public class FeaturesTestArea implements ZoneConfigurator, IContent {
 	
 	private void createDoorAndKey(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new LockedDoor(
-				"key_golden", "skulldoor", Direction.DOWN);
-			zone.assignRPObjectID(portal);
-			portal.setX(50);
-			portal.setY(10);
-			portal.setReference(new Integer(0));
-			portal.setDestination("int_pathfinding",new Integer( 1));
-			zone.addPortal(portal);
-
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(50);
-			portal.setY(12);
-			portal.setReference(new Integer(1));
-			portal.setDestination("int_pathfinding", new Integer(0));
-			zone.addPortal(portal);
-		}
-
 		List<String> slots = new LinkedList<String>();
 		slots.add("bag");
 

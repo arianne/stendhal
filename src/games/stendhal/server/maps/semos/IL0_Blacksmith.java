@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -15,22 +14,11 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
 
 public class IL0_Blacksmith implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("int_semos_blacksmith")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -47,19 +35,6 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 
 	private void buildSemosBlacksmithArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(15);
-			portal.setY(14);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city",new Integer( 2));
-			zone.addPortal(portal);
-		}
-		
 		SpeakerNPC hackim = new SpeakerNPC("Hackim Easso") {
 			@Override
 			protected void createPath() {

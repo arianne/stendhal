@@ -4,25 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
 
 public class OL0_PlainsNorth implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_semos_plains_n")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**

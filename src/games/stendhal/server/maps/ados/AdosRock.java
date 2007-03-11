@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.ados;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -12,21 +11,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 public class AdosRock implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();;
-
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_ados_rock")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**

@@ -4,27 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
 
 public class IL0_Storage implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("int_semos_storage_0")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -41,27 +29,6 @@ public class IL0_Storage implements ZoneConfigurator {
 
 	private void buildSemosStorageArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(9);
-			portal.setY(14);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", new Integer(5));
-			zone.addPortal(portal);
-
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(16);
-			portal.setY(2);
-			portal.setReference(new Integer(1));
-			portal.setDestination("int_semos_storage_-1",new Integer( 0));
-			zone.addPortal(portal);
-		}
-
 		SpeakerNPC npc = new SpeakerNPC("Eonna") {
 			@Override
 			protected void createPath() {

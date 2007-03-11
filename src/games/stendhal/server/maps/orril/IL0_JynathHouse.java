@@ -3,7 +3,6 @@ package games.stendhal.server.maps.orril;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
@@ -37,19 +36,6 @@ public class IL0_JynathHouse implements ZoneConfigurator {
 
 	private void buildJynathHouse(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(16);
-			portal.setY(30);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_orril_river_s",new Integer( 0));
-			zone.addPortal(portal);
-		}
-
 		SpeakerNPC npc = new SpeakerNPC("Jynath") {
 			@Override
 			protected void createPath() {

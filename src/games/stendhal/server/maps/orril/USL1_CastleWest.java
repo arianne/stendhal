@@ -6,7 +6,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
 import games.stendhal.server.entity.portal.LockedDoor;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
@@ -39,18 +38,5 @@ public class USL1_CastleWest implements ZoneConfigurator {
 				.getCreature("green_dragon"), "dungeon_silver_key");
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 69, 43, creature, 1);
 		zone.addRespawnPoint(point);
-
-
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal door = new LockedDoor("dungeon_silver_key", "skulldoor", Direction.DOWN);
-			zone.assignRPObjectID(door);
-			door.set(69, 37);
-			door.setReference(new Integer(0));
-			door.setDestination("-2_orril_lich_palace",new Integer( 0));
-			zone.addPortal(door);
-		}
 	}
 }

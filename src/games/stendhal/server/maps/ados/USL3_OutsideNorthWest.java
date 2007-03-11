@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.ados;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.NPCOwnedChest;
@@ -13,20 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 public class USL3_OutsideNorthWest implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("-3_ados_outside_nw")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**

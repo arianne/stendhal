@@ -5,27 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
 
 public class IL0_Townhall implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("int_semos_townhall")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -43,21 +31,6 @@ public class IL0_Townhall implements ZoneConfigurator {
 
 	private void buildSemosTownhallArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			for (int i = 0; i < 3; i++) {
-				Portal portal = new Portal();
-				zone.assignRPObjectID(portal);
-				portal.setX(14 + i);
-				portal.setY(46);
-				portal.setReference(new Integer(i));
-				portal.setDestination("0_semos_city",new Integer( 7 + i));
-				zone.addPortal(portal);
-			}
-		}
-
 		SpeakerNPC npc = new SpeakerNPC("Tad") {
 			@Override
 			protected void createPath() {

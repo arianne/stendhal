@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.LinkedList;
 import java.util.List;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -14,20 +13,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
 
 public class USL3_Catacombs implements ZoneConfigurator {
     private NPCList npcs = NPCList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("-3_semos_catacombs")),
-			java.util.Collections.EMPTY_MAP);
-	}
-
 
 	/**
 	 * Configure a zone.

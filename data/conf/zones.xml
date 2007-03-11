@@ -165,23 +165,21 @@
 
  <zone name="0_ados_mountain_nw" file="0_ados_mountain_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosMountainsNorthWest">
-   <attribute name="xml-portals">using</attribute>
-     <entity x="126" y="107">
-       <implementation class-name="games.stendhal.server.entity.Sign">
-        <attribute name="text">
-		Beware of bandits beyond!
-	</attribute>
-       </implementation>
-      </entity>
-      <entity x="126" y="115">
-       <implementation class-name="games.stendhal.server.entity.Sign">
-        <attribute name="text">
-	 Beware of bandits beyond!
-	</attribute>
-       </implementation>
-      </entity>
-  </configurator>
+  <entity x="126" y="107">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Beware of bandits beyond!
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="126" y="115">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Beware of bandits beyond!
+    </attribute>
+   </implementation>
+  </entity>
 
   <portal x="75" y="50" ref="magician_house_entrance">
    <destination zone="int_ados_magician_house" ref="entrance"/>
@@ -250,10 +248,6 @@ Home for endangered animals
 
  <zone name="0_semos_village_w" file="0_semos_village_w.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosVillageWest">
-   <attribute name="xml-entities">using</attribute>
-  </configurator>
-
   <entity x="23" y="61">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -693,10 +687,6 @@ the wolves while searching for berries here
 
  <zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsSouth">
-    <attribute name="xml-entities">using</attribute>
-   </configurator>
-
   <entity x="118" y="43">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -760,11 +750,6 @@ Mature sheep wanted: please speak to Sato
 
    <zone name="int_ados_bank" file="int_ados_bank.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bank">
-     <attribute name="xml-portals">using</attribute>
-     <attribute name="xml-entities">using</attribute>
-    </configurator>
-
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city" ref="6"/>
     </portal>
@@ -821,10 +806,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_HauntedHouse">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
-
     <portal x="7" y="1" ref="0">
      <destination zone="0_ados_city" ref="11"/>
     </portal>
@@ -873,10 +854,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
    <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Temple">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
-
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_ados_city" ref="temple_entrance"/>
     </portal>
@@ -1606,7 +1583,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 -->
  <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.Athos"/>
  </zone>
 
 
@@ -1614,10 +1590,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.USL1_OutsideNorthWest">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
-
   <portal x="4" y="23" ref="0">
    <destination zone="0_ados_outside_nw" ref="0"/>
   </portal>
@@ -1753,17 +1725,14 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-1_semos_catacombs_ne" file="sub_1_semos_catacombs_ne.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsNE"/>
  </zone>
 
  <zone name="-1_semos_catacombs_nw" file="sub_1_semos_catacombs_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsNW"/>
  </zone>
 
  <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsSE"/> 
   <portal x="28" y="37" ref="entrance" replacing="true">
    <destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
   </portal>
@@ -1771,7 +1740,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL1_CatacombsSW"/>
  </zone>
 
  <zone name="-1_orril_mountain_w" file="sub_1_orril_mountain_w.xstend">
@@ -1837,7 +1805,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL2_Catacombs"/>
      <portal x="9" y="6" ref="dragon_portal_1">
        <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
       </portal>
@@ -2403,11 +2370,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="int_afterlife" file="int_afterlife.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.Afterlife">
-    <attribute name="xml-portals">using</attribute>
-    <attribute name="xml-entities">using</attribute>
-  </configurator>
-
   <portal x="30" y="6" ref="exit_left">
    <destination zone="0_semos_city" ref="restart_life"/>
   </portal>

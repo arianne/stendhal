@@ -11,7 +11,6 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
@@ -20,23 +19,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 /*
  * Inside Semos Tavern - Level 0 (ground floor)
  */
 public class SemosCityTavern0 implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
-
-	public void build() {
-		StendhalRPWorld	world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("int_semos_tavern_0")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -47,35 +35,11 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildPortals(zone, attributes);
 		buildMargaret(zone);
 		buildXinBlanca(zone);
 		buildRicardo(zone);
 	}
 
-
-	private void buildPortals(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(22);
-			portal.setY(17);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", new Integer(0));
-			zone.addPortal(portal);
-
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.set(4, 4);
-			portal.setReference(new Integer(1));
-			portal.setDestination("int_semos_tavern_1",new Integer( 0));
-			zone.addPortal(portal);
-		}
-	}
 
 	private void buildMargaret(StendhalRPZone zone) {
 		SpeakerNPC margaret = new SpeakerNPC("Margaret") {

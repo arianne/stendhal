@@ -14,22 +14,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 /**
  * Entrance to Deathmatch
  */
 public class AdosSwamp implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();;
-	
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_ados_swamp")),
-			java.util.Collections.EMPTY_MAP);
-	}
+	private NPCList npcs = NPCList.get();
 
 
 	/**

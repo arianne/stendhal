@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.semos;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
@@ -14,18 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 public class SemosPlainsNorthEast implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_semos_plains_ne")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**

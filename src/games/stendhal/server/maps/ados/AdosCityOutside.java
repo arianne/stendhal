@@ -1,20 +1,16 @@
 package games.stendhal.server.maps.ados;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import marauroa.common.game.IRPZone;
 
 /**
  * Creates the NPCs and portals in Ados City.
@@ -26,19 +22,6 @@ public class AdosCityOutside implements ZoneConfigurator {
 
 
 	/**
-	 * builds the Ados City.
-	 */
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_ados_city")),
-			java.util.Collections.EMPTY_MAP);
-	}
-
-
-	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
@@ -46,59 +29,10 @@ public class AdosCityOutside implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildAdosCityAreaPortals(zone, attributes);
 		buildFidorea(zone);
 		buildKids(zone);
 	}
 
-
-	private void buildAdosCityAreaPortals(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(60);
-			portal.setY(16);
-			portal.setReference(new Integer(0));
-			portal.setDestination("int_ados_tavern_0", new Integer(0));
-			zone.addPortal(portal);
-
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(65);
-			portal.setY(16);
-			portal.setReference(new Integer(1));
-			portal.setDestination("int_ados_tavern_0", new Integer(1));
-			zone.addPortal(portal);
-
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(54);
-			portal.setY(19);
-			portal.setReference(new Integer(6));
-			portal.setDestination("int_ados_bank",new Integer( 0));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(27);
-			portal.setY(39);
-			portal.setReference(new Integer(10));
-			portal.setDestination("int_ados_bakery",new Integer( 0));
-			zone.addPortal(portal);
-
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(12);
-			portal.setY(38);
-			portal.setReference(new Integer(11));
-			portal.setDestination("int_ados_haunted_house",new Integer( 0));
-			zone.addPortal(portal);
-		}
-	}
 
 	private void buildFidorea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Fidorea") {

@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPCList;
@@ -13,7 +12,6 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -24,8 +22,6 @@ import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import marauroa.common.game.IRPZone;
 
 public class OL0_OutsideNorthWest implements ZoneConfigurator {
 	
@@ -74,16 +70,6 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 	}
 
 
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_ados_outside_nw")),
-			java.util.Collections.EMPTY_MAP);
-	}
-
-
 	/**
 	 * Configure a zone.
 	 *
@@ -98,31 +84,6 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 
 	private void buildZooArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Entities configured in xml?
-		 */
-		if(attributes.get("xml-entities") == null) {
-			Sign sign = new Sign();
-			zone.assignRPObjectID(sign);
-			sign.setX(53);
-			sign.setY(48);
-			sign.setText("Ados Wildlife Refuge\nHome for endangered animals");
-			zone.add(sign);
-		}
-		
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(67);
-			portal.setY(24);
-			portal.setReference(new Integer(0));
-			portal.setDestination("-1_ados_outside_nw",new Integer( 0));
-			zone.addPortal(portal);
-		}
-		
 		SpeakerNPC npc = new SpeakerNPC("Katinka") {
 			@Override
 			protected void createPath() {

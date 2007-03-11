@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.orril;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -12,9 +11,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import marauroa.common.game.IRPZone;
-
 
 public class OL0_BridgeGuardNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
@@ -61,7 +57,5 @@ public class OL0_BridgeGuardNPC implements ZoneConfigurator {
 		npc.set(62, 104);
 		npc.initHP(100);
 		zone.addNPC(npc);
-
-	
 	}
 }

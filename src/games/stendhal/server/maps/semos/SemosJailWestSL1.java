@@ -2,21 +2,17 @@ package games.stendhal.server.maps.semos;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.Jail;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import marauroa.common.game.IRPZone;
 
 /**
  * Semos Jail - Level -1
@@ -25,18 +21,6 @@ import marauroa.common.game.IRPZone;
  */
 public class SemosJailWestSL1 implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	/**
-	 * Build the Semos jail areas
-	 */
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("-1_semos_jail")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -47,28 +31,11 @@ public class SemosJailWestSL1 implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildPortals(zone, attributes);
 		buildElf(zone);
 		buildSoldier(zone);
 		disabledMagicScrolls(zone);
 	}
 
-
-	private void buildPortals(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(28);
-			portal.setY(17);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_plains_w", new Integer(0));
-			zone.addPortal(portal);
-		}
-	}
 
 	private void buildSoldier(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Marcus") {

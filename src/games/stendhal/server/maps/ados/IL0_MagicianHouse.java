@@ -26,16 +26,6 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 	private ShopList shops = ShopList.get();
 
 
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("int_ados_magician_house")),
-			java.util.Collections.EMPTY_MAP);
-	}
-
-
 	/**
 	 * Configure a zone.
 	 *
@@ -50,19 +40,6 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 
 	private void buildMagicianHouseArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(12);
-			portal.setY(13);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_ados_mountain_nw", new Integer(0));
-			zone.addPortal(portal);
-		}
-
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
 			@Override
 			protected void createPath() {

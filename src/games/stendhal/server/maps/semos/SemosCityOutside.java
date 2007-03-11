@@ -6,15 +6,12 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Chest;
-import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.portal.OneWayPortalDestination;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
@@ -22,20 +19,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 public class SemosCityOutside implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("0_semos_city")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -46,8 +32,6 @@ public class SemosCityOutside implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildSemosCityAreaPortals(zone, attributes);
-		buildSemosCityAreaSigns(zone, attributes);
 		buildSemosCityAreaChest(zone);
 
 		buildSemosCityAreaNomyrAhba(zone);
@@ -58,123 +42,6 @@ public class SemosCityOutside implements ZoneConfigurator {
 	}
 
 
-	private void buildSemosCityAreaPortals(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(42);
-			portal.setY(37);
-			portal.setReference(new Integer(0));
-			portal.setDestination("int_semos_tavern_0",new Integer( 0));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(53);
-			portal.setY(37);
-			portal.setReference(new Integer(1));
-			portal.setDestination("int_semos_temple",new Integer( 2));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(15);
-			portal.setY(41);
-			portal.setReference(new Integer(2));
-			portal.setDestination("int_semos_blacksmith",new Integer( 0));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(6);
-			portal.setY(22);
-			portal.setReference(new Integer(3));
-			portal.setDestination("int_semos_library",new Integer( 0));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(11);
-			portal.setY(22);
-			portal.setReference(new Integer(4));
-			portal.setDestination("int_semos_library",new Integer( 1));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(52);
-			portal.setY(19);
-			portal.setReference(new Integer(5));
-			portal.setDestination("int_semos_storage_0",new Integer( 0));
-			zone.addPortal(portal);
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(18);
-			portal.setY(22);
-			portal.setReference(new Integer(6));
-			portal.setDestination("int_semos_bank", new Integer(0));
-			zone.addPortal(portal);
-		
-			for (int i = 0; i < 3; i++) {
-				portal = new Portal();
-				zone.assignRPObjectID(portal);
-				portal.setX(29 + i);
-				portal.setY(13);
-				portal.setReference(new Integer(7 + i));
-				portal.setDestination("int_semos_townhall", new Integer(i));
-				zone.addPortal(portal);
-			}
-		
-			portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(44);
-			portal.setY(19);
-			portal.setReference(new Integer(10));
-			portal.setDestination("int_semos_bakery",new Integer( 0));
-			zone.addPortal(portal);
-
-			portal = new OneWayPortalDestination();
-			zone.assignRPObjectID(portal);
-			portal.setX(12);
-			portal.setY(49);
-			portal.setReference(new Integer(60));
-			zone.addPortal(portal);
-		}
-	}
-
-	private void buildSemosCityAreaSigns(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		/*
-		 * Entities configured in xml?
-		 */
-		if(attributes.get("xml-entities") == null) {
-			Sign sign = new Sign();
-			zone.assignRPObjectID(sign);
-			sign.setX(4);
-			sign.setY(41);
-			sign.setText("TO OLD SEMOS VILLAGE\n\nShepherds wanted: please ask Nishiya");
-			zone.add(sign);
-		
-			sign = new Sign();
-			zone.assignRPObjectID(sign);
-			sign.setX(26);
-			sign.setY(40);
-			sign.setText("DUNGEONS\n\nCaution: These dungeons contain many rats,\nand more dangerous creatures. Enter at own risk.");
-			zone.add(sign);
-		
-			sign = new Sign();
-			zone.assignRPObjectID(sign);
-			sign.setX(44);
-			sign.setY(62);
-			sign.setText("TO THE PLAINS\n\nShepherds please note: keep watch for\nthe wolves while searching for berries here");
-			zone.add(sign);
-		}
-	}
 	private void buildSemosCityAreaChest(StendhalRPZone zone) {
 
 		Chest chest = new Chest();

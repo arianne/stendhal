@@ -6,31 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Chest;
-import games.stendhal.server.entity.NPCOwnedChest;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
-import marauroa.common.game.IRPZone;
 
 public class IL0_Bakery implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
-
-	public void build() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
-		configureZone(
-			(StendhalRPZone) world.getRPZone(
-				new IRPZone.ID("int_semos_bakery")),
-			java.util.Collections.EMPTY_MAP);
-	}
 
 
 	/**
@@ -47,19 +33,6 @@ public class IL0_Bakery implements ZoneConfigurator {
 
 	private void buildSemosBakeryArea(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		/*
-		 * Portals configured in xml?
-		 */
-		if(attributes.get("xml-portals") == null) {
-			Portal portal = new Portal();
-			zone.assignRPObjectID(portal);
-			portal.setX(26);
-			portal.setY(14);
-			portal.setReference(new Integer(0));
-			portal.setDestination("0_semos_city", new Integer(10));
-			zone.addPortal(portal);
-		}
-
 		SpeakerNPC erna = new SpeakerNPC("Erna") {
 			@Override
 			protected void createPath() {
@@ -161,15 +134,5 @@ public class IL0_Bakery implements ZoneConfigurator {
 		leander.set(15, 2);
 		leander.initHP(100);
 		zone.addNPC(leander);
-		
-		/*
-		 * Entities configured in xml?
-		 */
-		if(attributes.get("xml-entities") == null) {
-			Chest chest = new NPCOwnedChest(erna);
-			zone.assignRPObjectID(chest);
-			chest.set(29, 6);
-			zone.add(chest);
-		}
 	}
 }
