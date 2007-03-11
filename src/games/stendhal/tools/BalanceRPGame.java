@@ -240,7 +240,7 @@ public class BalanceRPGame {
 
 							double childScore = score(turns, leftHP
 									/ (1.0 * player.getBaseHP()), level, child);
-							OUTPUT: System.out.println("Child ATK: "
+							System.out.println("Child ATK: "
 									+ child.getATK()
 									+ "/DEF: "
 									+ child.getDEF()
@@ -263,7 +263,7 @@ public class BalanceRPGame {
 						target = bestCreature;
 						level = minlevel;
 
-						OUTPUT: System.out.println("New ATK: "
+						System.out.println("New ATK: "
 								+ target.getATK() + "/DEF: " + target.getDEF()
 								+ "/HP: " + target.getBaseHP());
 					}
