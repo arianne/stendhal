@@ -16,7 +16,6 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
-import games.stendhal.server.StendhalQuestSystem;
 
 import java.awt.Color;
 import java.awt.Rectangle;
