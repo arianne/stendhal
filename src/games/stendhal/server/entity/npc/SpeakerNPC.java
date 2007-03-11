@@ -1,11 +1,11 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
@@ -137,20 +137,15 @@ public abstract class SpeakerNPC extends NPC {
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList(
 			"bye", "farewell", "cya", "adios");
 	
+	private Engine engine = new Engine(this);
 	
 	/**
 	 * Determines how long a conversation can be paused before it will
 	 * terminated by the NPC.
 	 */
 	private static long TIMEOUT_PLAYER_CHAT = 90; // 30 seconds at 300ms.
-	
-	// FSM state transition table
-	private List<Transition> stateTransitionTable;
 
-	// current FSM state
-	private int currentState;
 
-	private int maxState;
 
 	// Default wait message when NPC is busy
 	private String waitMessage;
@@ -215,9 +210,6 @@ public abstract class SpeakerNPC extends NPC {
 		super();
 		createPath();
 
-		stateTransitionTable = new LinkedList<Transition>();
-		currentState = ConversationStates.IDLE;
-		maxState = 0;
 		lastMessageTurn = 0;
 
 		setName(name);
@@ -344,7 +336,7 @@ public abstract class SpeakerNPC extends NPC {
 				if (byeAction != null) {
 					byeAction.fire(attending, null, this);
 				}
-				currentState = ConversationStates.IDLE;
+				engine.setCurrentState(ConversationStates.IDLE);
 				attending = null;
 			}
 			if (!stopped()) {
@@ -373,7 +365,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public boolean talking() {
-		return currentState != ConversationStates.IDLE;
+		return engine.getCurrentState() != ConversationStates.IDLE;
 	}
 
 	abstract public static class ChatAction implements PostTransitionAction {
@@ -411,40 +403,10 @@ public abstract class SpeakerNPC extends NPC {
 		initChatAction = action;
 	}
 
-	private Transition get(int state, String trigger, ChatCondition condition) {
-		for (Transition transition : stateTransitionTable) {
-			if (transition.matches(state, trigger)) {
-				if (transition.getCondition() == condition) {
-					return transition;
-				}
-			}
-		}
-		return null;
-	}
-
-	public int getFreeState() {
-		maxState++;
-		return maxState;
-	}
-
 	/** Add a new transition to FSM */
 	public void add(int state, String trigger, ChatCondition condition,
 			int next_state, String reply, ChatAction action) {
-		if (state > maxState) {
-			maxState = state;
-		}
-
-		Transition existing = get(state, trigger, condition);
-		if (existing != null) {
-			// A previous state, trigger combination exist.
-			logger.warn("Adding to " + existing + " the state [" + state + ","
-					+ trigger + "," + next_state + "]");
-			existing.setReply(existing.getReply() + " " + reply);
-		}
-
-		Transition item = new Transition(state, trigger, condition, next_state,
-				reply, action);
-		stateTransitionTable.add(item);
+		engine.add(state, trigger, condition, next_state, reply, action);
 	}
 
 	/**
@@ -479,43 +441,6 @@ public abstract class SpeakerNPC extends NPC {
 		for (String trigger : triggers) {
 			add(state, trigger, null, nextState, reply, action);
 		}
-	}
-
-	// TODO: docu please. What is type?
-	private boolean matchState(int type, Player player, String text) {
-		// what the fuck is this? -- mort (DHerding@gmx.de)
-		List<Transition> listCondition = new LinkedList<Transition>();
-		List<Transition> listConditionLess = new LinkedList<Transition>();
-
-		// First we try to match with stateless transitions.
-		for (Transition transition : stateTransitionTable) {
-			if (((type == 0) && (currentState != ConversationStates.IDLE)
-					&& transition.absoluteJump(text))
-					|| ((type == 1) && transition.matches(currentState, text))
-					|| ((type == 2) && transition.matchesBeginning(currentState, text))) {
-				if (transition.isConditionFulfilled(player, text, this)) {
-					if (transition.getCondition() == null) {
-						listConditionLess.add(transition);
-					} else {
-						listCondition.add(transition);
-					}
-				}
-			}
-		}
-
-		if (listCondition.size() > 0) {
-			int i = Rand.rand(listCondition.size());
-			executeState(player, text, listCondition.get(i));
-			return true;
-		}
-
-		if (listConditionLess.size() > 0) {
-			int i = Rand.rand(listConditionLess.size());
-			executeState(player, text, listConditionLess.get(i));
-			return true;
-		}
-
-		return false;
 	}
 
 	public void listenTo(Player player, String text) {
@@ -553,7 +478,7 @@ public abstract class SpeakerNPC extends NPC {
 	/** This function evolves the FSM */
 	private boolean tell(Player player, String text) {
 		// If we are no attending a player attend, this one.
-		if (currentState == ConversationStates.IDLE) {
+		if (engine.getCurrentState() == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
 			attending = player;
 		}
@@ -564,37 +489,24 @@ public abstract class SpeakerNPC extends NPC {
 
 		lastMessageTurn = StendhalRPRuleProcessor.get().getTurn();
 
-		if (matchState(0, player, text)) {
+		if (engine.matchState(0, player, text)) {
 			return true;
-		} else if (matchState(1, player, text)) {
+		} else if (engine.matchState(1, player, text)) {
 			return true;
-		} else if (matchState(2, player, text)) {
+		} else if (engine.matchState(2, player, text)) {
 			return true;
 		} else {
 			// Couldn't match the text with the current FSM state
-			logger.debug("Couldn't match any state: " + currentState + ":"
+			logger.debug("Couldn't match any state: " + engine.getCurrentState() + ":"
 					+ text);
 			return false;
 		}
 	}
 
 	public void setCurrentState(int state) {
-		currentState = state;
+		engine.setCurrentState(state);
 	}
 
-	private void executeState(Player player, String text, Transition state) {
-		int nextState = state.getNextState();
-		if (state.getReply() != null) {
-			say(state.getReply());
-		}
-
-		currentState = nextState;
-
-		if (state.getAction() != null) {
-			state.getAction().fire(player, text, this);
-		}
-	}
-	
 	public void addGreeting() {
 		addGreeting("Greetings! How may I help you?", null);
 	}
@@ -1022,6 +934,6 @@ public abstract class SpeakerNPC extends NPC {
 	 * Returns a copy of the transition table
 	 */
 	public List<Transition> getTransitions() {
-		return new LinkedList<Transition>(stateTransitionTable);
+		return engine.getTransitions();
 	}
 }
