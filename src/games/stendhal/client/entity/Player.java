@@ -16,6 +16,7 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
+import games.stendhal.server.StendhalQuestSystem;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -155,6 +156,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onAction(ActionType at, String... params) {
+	   
 		// ActionType at =handleAction(action);
 		RPAction rpaction;
 		switch (at) {
@@ -164,6 +166,7 @@ public class Player extends RPEntity {
 				outfitTemp = outfitOrg;
 			}
 			StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
+			break;
 		case LEAVE_SHEEP:
 			rpaction = new RPAction();
 			rpaction.put("type", at.toString());
@@ -176,6 +179,7 @@ public class Player extends RPEntity {
 			rpaction.put("type", at.toString());
 			rpaction.put("target", getName());
 			at.send(rpaction);
+			break;
 		default:
 			super.onAction(at, params);
 			break;
