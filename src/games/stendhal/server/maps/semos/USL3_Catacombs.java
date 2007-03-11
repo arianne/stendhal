@@ -50,7 +50,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 				                Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
 						null,
 						ConversationStates.ATTENDING,
-				    "I need blood. I can take it from the entrails of the alive and undead. I wwill mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.",
+				    "I need blood. I can take it from the entrails of the alive and undead. I will mix the bloods together for you and #fill your #goblet, if you let me drink some too. But I'm afraid of the powerful #lord.",
 				    null);
 				add(ConversationStates.ATTENDING,
 						Arrays.asList("lord", "vampire", "skull_ring"),
