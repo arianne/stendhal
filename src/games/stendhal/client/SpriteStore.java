@@ -88,7 +88,7 @@ public class SpriteStore {
 	 * @param frameCount The number of frames in this animation
 	 * @param width The width of one animation frame, in tiles
 	 * @param height The height of one animation frame, in tiles
-	 * @return
+	 * @return array of sprites
 	 */
 	public Sprite[] getAnimatedSprite(Sprite animImage, int animation,
 			int frameCount, double width, double height) {

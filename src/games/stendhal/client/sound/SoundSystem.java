@@ -645,7 +645,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
      * </ul>
 	 * @param key
 	 * @param value
-	 * @return
+	 * @return true, if it is valid, false otherwise
 	 */
 	boolean isValidEntry(String key, String value) {
 		boolean load;

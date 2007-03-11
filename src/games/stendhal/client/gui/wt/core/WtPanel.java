@@ -48,7 +48,7 @@ import org.apache.log4j.Logger;
  * <b>Note:</b> This class is not thread safe.
  * 
  * 
- * @see http://www.grsites.com/ for the textures
+ * See http://www.grsites.com/ for the textures
  * @author mtotz
  */
 public class WtPanel implements ManagedWindow, WtDraggable {

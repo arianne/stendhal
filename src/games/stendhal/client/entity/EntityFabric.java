@@ -24,11 +24,11 @@ import org.apache.log4j.Logger;
  */
 public class EntityFabric {
 
-	/** Create a Entity of the correct type depending of the arianne object */
 	/**
-	 * @param object
-	 *            the underlying server RPObject
-	 * @return
+	 *  Create a Entity of the correct type depending of the arianne object
+	 *
+	 * @param object the underlying server RPObject
+	 * @return the created Entity
 	 */
 	public static Entity createEntity(RPObject object) {
 		try {

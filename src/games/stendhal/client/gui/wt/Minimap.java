@@ -143,11 +143,7 @@ public class Minimap extends WtPanel {
 	/**
 	 * Draws the minimap.
 	 * 
-	 * @param g
-	 *            graphics object for the game main window
-	 * @param x
-	 *            x-position of the player (used to pan big maps)
-	 * @patam y y-position of the player (used to pan big maps)
+	 * @param g graphics object for the game main window
 	 */
 	@Override
 	public Graphics draw(Graphics g) {

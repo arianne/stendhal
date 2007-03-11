@@ -42,7 +42,7 @@ public class HttpClient {
 		 *
 		 * @param downloadedBytes completed download
 		 */
-		public void onDownloadCompleted(int byteCounter);
+		public void onDownloadCompleted(int downloadedBytes);
 	}
 
 	/**

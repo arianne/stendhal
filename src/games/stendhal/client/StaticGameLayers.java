@@ -226,15 +226,14 @@ public class StaticGameLayers {
     }
 
     /**
-     * @return true when the area has changed since the last
-     *         {@see resetChangedArea()}
+     * @return true if the area has changed since the last
      */
     public boolean changedArea() {
         return areaChanged;
     }
 
     /**
-     * resets the {@see changedArea()} flag
+     * resets the areaChanged flag
      */
     public void resetChangedArea() {
         areaChanged = false;
