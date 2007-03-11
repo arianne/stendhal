@@ -17,11 +17,8 @@ import games.stendhal.server.pathfinder.Path;
 import marauroa.common.game.IRPZone;
 
 public class USL3_Catacombs implements ZoneConfigurator {
-        private NPCList npcs;	
+    private NPCList npcs = NPCList.get();
 
-	public USL3_Catacombs() {
-		this.npcs = NPCList.get();
-	}
 	public void build() {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
@@ -98,6 +95,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 		sicky.put("class","sickvampirenpc");
 		sicky.set(61,60); 
 		sicky.initHP(10);
-		zone.addNPC(sicky); 
+		zone.addNPC(sicky);
+		npcs.add(sicky);
 	}
 }
