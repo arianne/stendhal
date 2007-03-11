@@ -28,7 +28,7 @@ import marauroa.common.game.RPSlot;
 public class Chest extends AnimatedEntity implements Inspectable {
 	private boolean open;
 
-	Inspector _inspector;
+	private Inspector _inspector=null;
 
 	private RPSlot content;
 
