@@ -1595,10 +1595,13 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
       </portal>
      </zone>
 -->
- <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
-  <title/>
- </zone>
+     <zone name="0_athos_ship_w2" file="0_athos_ship_w2.xstend">
+       <title/>
+     </zone>
 
+     <zone name="-1_athos_ship_w2" file="sub_1_athos_ship_w2.xstend">
+       <title/>
+     </zone>
 
  <!--  Level -1 -->
 
