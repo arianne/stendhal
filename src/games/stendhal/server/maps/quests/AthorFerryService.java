@@ -3,9 +3,9 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
@@ -18,6 +18,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This is not a real quest, but rather a ferry service that brings players
+ * from the mainland to Athor island and back.
+ * 
+ * NPCs that have to do with the ferry:
+ * * Eliza   - brings players from the mainland docks to the ferry.
+ * * Jessica - brings players from the island docks to the ferry.
+ * * Jackie  - brings players from the ferry to the docks.
+ * * Captain - the ship captain.
+ * * Laura   - the ship galley maid.
+ * 
+ * @author daniel
+ *
+ */
 public class AthorFerryService extends AbstractQuest {
 
 	private static final int PRICE = 1; // TODO: raise to 25
@@ -122,7 +136,7 @@ public class AthorFerryService extends AbstractQuest {
 		}
 	}
 
-	private static abstract class FerryAnnouncerNPC extends SpeakerNPC {
+	protected static abstract class FerryAnnouncerNPC extends SpeakerNPC {
 
 		public FerryAnnouncerNPC(String name) {
 			super(name);
@@ -293,6 +307,55 @@ public class AthorFerryService extends AbstractQuest {
 		jackie.initHP(100);
 		AthorFerry.get().addListener(jackie);
 		shipZone.addNPC(jackie);
+	}
+
+	private void buildShipUnderDeck1Area(final StendhalRPZone shipUnderDeck1Zone) {
+		FerryAnnouncerNPC laura = new FerryAnnouncerNPC("Laura") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				// to the oven
+				nodes.add(new Path.Node(27, 27));
+				// to the table
+				nodes.add(new Path.Node(27, 30));
+				// to the dining room
+				nodes.add(new Path.Node(18, 30));
+				// to the barrel
+				nodes.add(new Path.Node(28, 30));
+				setPath(nodes, true);
+			}
+	
+			@Override
+			protected void createDialog() {
+				addGreeting("Ahoy! Welcome to the galley!");
+				addJob("I'm running the galley on this ship. I #offer fine foods for the passengers and alcohol for the crew.");
+				addHelp("The crew mates drink beer and grog all day. But if you want some more exclusive drinks, go to the cocktail bar at Athor beach.");
+				Map<String, Integer> offerings = new HashMap<String, Integer>();
+				offerings.put("beer", 10);
+				offerings.put("wine", 15);
+				// more expensive than in normal taverns 
+				offerings.put("ham", 100);
+				offerings.put("pie", 150);
+				addSeller(new SellerBehaviour(offerings));
+				addGoodbye();
+			}
+			
+			public void onNewFerryState(int status) {
+				if (status == AthorFerry.ANCHORED_AT_MAINLAND || status == AthorFerry.ANCHORED_AT_ISLAND) {
+					say("Attention: We have arrived!");
+				} else  {
+					say("Attention: We have set sails!.");
+				}
+			}
+
+		};
+		NPCList.get().add(laura);
+		shipUnderDeck1Zone.assignRPObjectID(laura);
+		laura.put("class", "tavernbarmaidnpc");
+		laura.set(27, 27);
+		laura.initHP(100);
+		AthorFerry.get().addListener(laura);
+		shipUnderDeck1Zone.addNPC(laura);
 	}
 
 	private void buildMainlandDocksArea(final StendhalRPZone mainlandDocksZone, final StendhalRPZone shipZone) {
@@ -493,11 +556,14 @@ public class AthorFerryService extends AbstractQuest {
 		StendhalRPZone mainlandDocksZone = (StendhalRPZone) StendhalRPWorld
 				.get().getRPZone("0_ados_coast_s_w2");
 		StendhalRPZone shipZone = (StendhalRPZone) StendhalRPWorld.get()
-				.getRPZone("0_athor_ship_w2");
+		.getRPZone("0_athor_ship_w2");
+		StendhalRPZone shipUnderDeck1Zone = (StendhalRPZone) StendhalRPWorld.get()
+		.getRPZone("-1_athor_ship_w2");
 		StendhalRPZone islandDocksZone = (StendhalRPZone) StendhalRPWorld
 				.get().getRPZone("0_athor_island_w");
 		buildMainlandDocksArea(mainlandDocksZone, shipZone);
 		buildShipArea(shipZone, mainlandDocksZone, islandDocksZone);
+		buildShipUnderDeck1Area(shipUnderDeck1Zone);
 		buildIslandDocksArea(islandDocksZone, shipZone);
 
 	}
