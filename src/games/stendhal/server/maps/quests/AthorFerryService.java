@@ -141,7 +141,7 @@ public class AthorFerryService extends AbstractQuest {
 			@Override
 			protected void createDialog() {
 				
-				addGreeting("Ahoy!");
+				addGreeting("Yo-ho-ho, me bucko!");
 				
 				// Always turn back to the wheel after a conversation								
 				add(ConversationStates.ANY,
@@ -159,7 +159,7 @@ public class AthorFerryService extends AbstractQuest {
 				
 				// TODO
 				addHelp("...");
-				addJob("I'm the captain of this ferry.");
+				addJob("I'm th' captain of me boat.");
 
 				add(ConversationStates.ATTENDING,
 						"status",
@@ -209,8 +209,8 @@ public class AthorFerryService extends AbstractQuest {
 			protected void createDialog() {
 				addGoodbye("Goodbye!"); //TODO: sailor-style language
 				addGreeting("Ahoy, Matey! How can I #help you?");
-				addHelp("You can #deboard this ferry, but only when it's anchoring a harbor. Just ask me for the #status if you don't know where we are.");
-				addJob("I'm taking passengers who want to #deboard to the coast with this rowing boat.");
+				addHelp("Ye can #deboard this ferry, but only when it's anchoring a harbor. Just ask me for the #status if ye have no idea where we are.");
+				addJob("I'm taking passengers who want to #deboard to the coast with me rowing boat.");
 
 				add(ConversationStates.ATTENDING, "status",
 						null,
@@ -236,15 +236,15 @@ public class AthorFerryService extends AbstractQuest {
 									SpeakerNPC npc) {
 								AthorFerry ferry = AthorFerry.get();
 								if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
-									npc.say("Do you really want me to take you to the mainland?");
+									npc.say("Do ye really want me to take ye to the mainland with me skiff?");
 									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 								} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
-									npc.say("Do you really want me to take you to the island?");
+									npc.say("Do ye really want me to take ye to the island with me skiff?");
 									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 								} else{
 									npc.say(AthorFerry.get()
 										.getCurrentDescription()
-										+ " You can only deboard the ferry when it's anchoring near a harbor.");
+										+ " Ye can only deboard the boat when it's anchoring near a harbor.");
 								}
 							}
 						});
