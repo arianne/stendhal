@@ -64,6 +64,7 @@ public enum ActionType {
 	/** 
 	 * @return the command code for usage on server side 
 	 **/
+	@Override
 	public String toString(){
 		return actionCode;
 	}
