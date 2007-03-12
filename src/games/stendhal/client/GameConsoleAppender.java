@@ -36,6 +36,8 @@ public class GameConsoleAppender extends AppenderSkeleton {
 	}
 
 	public void close() {
+		//implementation of abstract method
+		// yet nothing do to
 	}
 
 	public boolean requiresLayout() {
