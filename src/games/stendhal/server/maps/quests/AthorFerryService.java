@@ -143,10 +143,11 @@ public class AthorFerryService extends AbstractQuest {
 				
 				addGreeting("Ahoy!");
 				
+				// Always turn back to the wheel after a conversation								
 				add(ConversationStates.ANY,
 						SpeakerNPC.GOODBYE_MESSAGES,
 						ConversationStates.IDLE,
-						"Goodbye!", // TODO: sailor-style language
+						"So long...",
 						new ChatAction() {
 							@Override
 							public void fire(Player player, String text,
@@ -154,6 +155,8 @@ public class AthorFerryService extends AbstractQuest {
 								npc.setDirection(Direction.DOWN);
 					}
 				});
+				addByeMessage("So long...", null);
+				
 				// TODO
 				addHelp("...");
 				addJob("I'm the captain of this ferry.");
@@ -176,10 +179,13 @@ public class AthorFerryService extends AbstractQuest {
 
 			public void onNewFerryState(int status) {
 				if (status == AthorFerry.ANCHORED_AT_MAINLAND || status == AthorFerry.ANCHORED_AT_ISLAND) {
-					say("Let go anchor! We have arrived.");
+					// capital letters symbolize screaming
+					say("LET GO ANCHOR!");
 				} else  {
-					say("Anchors aweigh! We're departing.");
+					say("ANCHORS AWEIGH! SET SAIL!");
 				}
+				// Turn back to the wheel
+				setDirection(Direction.DOWN);
 			}
 		};
 		NPCList.get().add(captain);
@@ -257,8 +263,7 @@ public class AthorFerryService extends AbstractQuest {
 									player.teleport(mainlandDocksZone, 100, 100, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
 								} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
-									// TODO
-									player.teleport(islandDocksZone, 100, 100, Direction.LEFT, null);
+									player.teleport(islandDocksZone, 143, 83, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
 								} else {
 									npc.say("Too bad! The ship has already taken off.");
@@ -389,6 +394,102 @@ public class AthorFerryService extends AbstractQuest {
 		mainlandDocksZone.addNPC(eliza);
 	}
 
+	private void buildIslandDocksArea(final StendhalRPZone islandDocksZone, final StendhalRPZone shipZone) {
+		FerryAnnouncerNPC jessica = new FerryAnnouncerNPC ("Jessica") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGoodbye("Goodbye!");
+				addGreeting("Welcome to the Athor #ferry service! How can I #help you?");
+				addHelp("You can #board the #ferry for only "
+						+ PRICE
+						+ " gold, but only when it's anchoring near this harbor. Just ask me for the #status if you want to know where the ferry is.");
+				addJob("If passengers want to #board the #ferry to the mainland, I take them to the ship with this rowing boat.");
+				add(ConversationStates.ATTENDING, "status",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								npc.say(AthorFerry.get()
+										.getCurrentDescription());
+							}
+						});
+
+				add(ConversationStates.ATTENDING,
+						"board",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								AthorFerry ferry = AthorFerry.get();
+								if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
+									npc.say("In order to board the ferry, you have to pay " + PRICE
+								+ " gold. Do you want to pay?");
+									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
+								} else {
+									npc.say(AthorFerry.get()
+										.getCurrentDescription()
+										+ " You can only board the ferry when it's anchoring at the island.");
+								}
+							}
+						});
+						
+						
+				add(ConversationStates.SERVICE_OFFERED,
+						SpeakerNPC.YES_MESSAGES,
+						null,
+						ConversationStates.ATTENDING, null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								if (player.drop("money", PRICE)) {
+									player.teleport(shipZone, 27, 33,
+											Direction.LEFT, null);
+								} else {
+									npc.say("Hey! You don't have enough money!");
+								}
+							}
+						});
+
+				add(ConversationStates.SERVICE_OFFERED,
+						"no",
+						null,
+						ConversationStates.ATTENDING,
+						"You don't know what you're missing, landlubber!",
+						null);
+
+			}
+
+			public void onNewFerryState(int status) {
+				if (status == AthorFerry.ANCHORED_AT_ISLAND) {
+					say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
+				} else if (status == AthorFerry.DRIVING_TO_MAINLAND) {
+					say("Attention: The ferry has taken off. You can no longer board it.");
+				}
+			}
+		};
+		NPCList.get().add(jessica);
+		islandDocksZone.assignRPObjectID(jessica);
+		jessica.put("class", "woman_008_npc");
+		jessica.set(143, 83);
+		jessica.setDirection(Direction.LEFT);
+		jessica.initHP(100);
+		AthorFerry.get().addListener(jessica);
+		islandDocksZone.addNPC(jessica);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addToWorld() {
@@ -396,11 +497,11 @@ public class AthorFerryService extends AbstractQuest {
 				.get().getRPZone("0_ados_coast_s_w2");
 		StendhalRPZone shipZone = (StendhalRPZone) StendhalRPWorld.get()
 				.getRPZone("0_athor_ship_w2");
-		// TODO
 		StendhalRPZone islandDocksZone = (StendhalRPZone) StendhalRPWorld
-				.get().getRPZone("0_ados_coast_s_w2");
+				.get().getRPZone("0_athor_island_w");
 		buildMainlandDocksArea(mainlandDocksZone, shipZone);
 		buildShipArea(shipZone, mainlandDocksZone, islandDocksZone);
+		buildIslandDocksArea(islandDocksZone, shipZone);
 
 	}
 
