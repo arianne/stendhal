@@ -21,16 +21,29 @@ public class RenderingPipeline {
 
 	/** singlenton class. */
 	private RenderingPipeline() {
+		//declared  for being singleton
+		//yet nothing to do
 	}
 
-	public void addGameLayer(StaticGameLayers layer) {
+	/**
+	 * 
+	 * @param layer
+	 */
+	public void setGameLayer(StaticGameLayers layer) {
 		gameLayers = layer;
 	}
 
-	public void addGameObjects(GameObjects objects) {
+	/**
+	 * @param objects
+	 */
+	public void setGameObjects(GameObjects objects) {
 		gameObjects = objects;
 	}
 
+	/**
+	 * singleton creation
+	 * @return THE instance
+	 */
 	public static RenderingPipeline get() {
 		if (renderPipeline == null) {
 			renderPipeline = new RenderingPipeline();
@@ -39,8 +52,12 @@ public class RenderingPipeline {
 		return renderPipeline;
 	}
 
-	public void draw(GameScreen screen) {
-		String set = gameLayers.getRPZoneLayerSet();
+	/**
+	 * draw the GameLayers from bootom to top, relies on exact naming of the layers
+	 * @param screen
+	 */
+	public void draw(final GameScreen screen) {
+		final String set = gameLayers.getRPZoneLayerSet();
 		gameLayers.draw(screen, set + "_0_floor");
 		gameLayers.draw(screen, set + "_1_terrain");
 		gameLayers.draw(screen, set + "_2_object");
