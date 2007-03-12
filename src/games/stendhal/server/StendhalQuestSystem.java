@@ -43,7 +43,7 @@ public class StendhalQuestSystem {
 	public void init() {
 		questInfos = QuestXMLLoader.get();
 		loadQuest("ArmorForDagobert");
-		loadQuest("AthosFerryService");
+		loadQuest("AthorFerryService");
 		loadQuest("BeerForHayunn");
 		loadQuest("Campfire");
 		loadQuest("CleanStorageSpace");

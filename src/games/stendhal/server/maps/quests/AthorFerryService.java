@@ -11,12 +11,13 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class AthosFerryService extends AbstractQuest {
+public class AthorFerryService extends AbstractQuest {
 
 	private static final int PRICE = 1; // TODO: raise to 25
 
@@ -24,7 +25,7 @@ public class AthosFerryService extends AbstractQuest {
 	 * This class simulates the ferry going back and forth between the mainland
 	 * and the island.
 	 */
-	private static class AthosFerry implements TurnListener {
+	private static class AthorFerry implements TurnListener {
 
 		public static final int ANCHORED_AT_MAINLAND = 0;
 
@@ -35,7 +36,7 @@ public class AthosFerryService extends AbstractQuest {
 		public static final int DRIVING_TO_MAINLAND = 3;
 
 		/** The Singleton instance. */
-		private static AthosFerry instance;
+		private static AthorFerry instance;
 
 		/**
 		 * A list of non-player characters that get notice when the ferry
@@ -50,7 +51,7 @@ public class AthosFerryService extends AbstractQuest {
 
 		private static Map<Integer, String> descriptions;
 
-		private AthosFerry() {
+		private AthorFerry() {
 			durations = new HashMap<Integer, Integer>();
 			// ca. 2 minutes
 			durations.put(ANCHORED_AT_MAINLAND, 120 * 3);
@@ -79,9 +80,9 @@ public class AthosFerryService extends AbstractQuest {
 		/**
 		 * @return The Singleton instance.
 		 */
-		public static AthosFerry get() {
+		public static AthorFerry get() {
 			if (instance == null) {
-				instance = new AthosFerry();
+				instance = new AthorFerry();
 			}
 			return instance;
 		}
@@ -166,7 +167,7 @@ public class AthosFerryService extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
-								npc.say(AthosFerry.get()
+								npc.say(AthorFerry.get()
 										.getCurrentDescription());
 							}
 						});
@@ -174,7 +175,7 @@ public class AthosFerryService extends AbstractQuest {
 
 
 			public void onNewFerryState(int status) {
-				if (status == AthosFerry.ANCHORED_AT_MAINLAND || status == AthosFerry.ANCHORED_AT_ISLAND) {
+				if (status == AthorFerry.ANCHORED_AT_MAINLAND || status == AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Let go anchor! We have arrived.");
 				} else  {
 					say("Anchors aweigh! We're departing.");
@@ -187,7 +188,7 @@ public class AthosFerryService extends AbstractQuest {
 		captain.set(22, 37);
 		captain.setDirection(Direction.DOWN);
 		captain.initHP(100);
-		AthosFerry.get().addListener(captain);
+		AthorFerry.get().addListener(captain);
 		shipZone.addNPC(captain);
 	
 
@@ -213,13 +214,13 @@ public class AthosFerryService extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
-								npc.say(AthosFerry.get()
+								npc.say(AthorFerry.get()
 										.getCurrentDescription());
 							}
 						});
 
 				add(ConversationStates.ATTENDING,
-						"deboard",
+						Arrays.asList("deboard", "leave"),
 						null,
 						ConversationStates.ATTENDING,
 						null,
@@ -227,15 +228,15 @@ public class AthosFerryService extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
-								AthosFerry ferry = AthosFerry.get();
-								if (ferry.getState() == AthosFerry.ANCHORED_AT_MAINLAND) {
+								AthorFerry ferry = AthorFerry.get();
+								if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
 									npc.say("Do you really want me to take you to the mainland?");
 									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
-								} else if (ferry.getState() == AthosFerry.ANCHORED_AT_ISLAND) {
+								} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
 									npc.say("Do you really want me to take you to the island?");
 									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 								} else{
-									npc.say(AthosFerry.get()
+									npc.say(AthorFerry.get()
 										.getCurrentDescription()
 										+ " You can only deboard the ferry when it's anchoring near a harbor.");
 								}
@@ -251,11 +252,11 @@ public class AthosFerryService extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
-								AthosFerry ferry = AthosFerry.get();
-								if (ferry.getState() == AthosFerry.ANCHORED_AT_MAINLAND) {
+								AthorFerry ferry = AthorFerry.get();
+								if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
 									player.teleport(mainlandDocksZone, 100, 100, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
-								} else if (ferry.getState() == AthosFerry.ANCHORED_AT_ISLAND) {
+								} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
 									// TODO
 									player.teleport(islandDocksZone, 100, 100, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
@@ -273,9 +274,9 @@ public class AthosFerryService extends AbstractQuest {
 			}
 
 			public void onNewFerryState(int status) {
-				if (status == AthosFerry.ANCHORED_AT_MAINLAND) {
+				if (status == AthorFerry.ANCHORED_AT_MAINLAND) {
 					say("Attention: The ferry has arrived at the mainland! You can now #deboard the ship.");
-				} else if (status == AthosFerry.ANCHORED_AT_ISLAND) {
+				} else if (status == AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: The ferry has arrived at the island! You can now #deboard the ship.");
 				} else  {
 					say("Attention: The ferry has taken off.");
@@ -288,7 +289,7 @@ public class AthosFerryService extends AbstractQuest {
 		jackie.set(29, 33);
 		jackie.setDirection(Direction.LEFT);
 		jackie.initHP(100);
-		AthosFerry.get().addListener(jackie);
+		AthorFerry.get().addListener(jackie);
 		shipZone.addNPC(jackie);
 	}
 
@@ -303,11 +304,11 @@ public class AthosFerryService extends AbstractQuest {
 			@Override
 			protected void createDialog() {
 				addGoodbye("Goodbye!");
-				addGreeting("Welcome to the Athos #ferry service! How can I #help you?");
+				addGreeting("Welcome to the Athor #ferry service! How can I #help you?");
 				addHelp("You can #board the #ferry for only "
 						+ PRICE
 						+ " gold, but only when it's anchoring near this harbor. Just ask me for the #status if you want to know where the ferry is.");
-				addJob("If passengers want to #board the #ferry to Athos island, I take them to the ship with this rowing boat.");
+				addJob("If passengers want to #board the #ferry to Athor island, I take them to the ship with this rowing boat.");
 				add(ConversationStates.ATTENDING, "status",
 						null,
 						ConversationStates.ATTENDING,
@@ -316,7 +317,7 @@ public class AthosFerryService extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
-								npc.say(AthosFerry.get()
+								npc.say(AthorFerry.get()
 										.getCurrentDescription());
 							}
 						});
@@ -330,13 +331,13 @@ public class AthosFerryService extends AbstractQuest {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
-								AthosFerry ferry = AthosFerry.get();
-								if (ferry.getState() == AthosFerry.ANCHORED_AT_MAINLAND) {
+								AthorFerry ferry = AthorFerry.get();
+								if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
 									npc.say("In order to board the ferry, you have to pay " + PRICE
 								+ " gold. Do you want to pay?");
 									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 								} else {
-									npc.say(AthosFerry.get()
+									npc.say(AthorFerry.get()
 										.getCurrentDescription()
 										+ " You can only board the ferry when it's anchoring at the mainland.");
 								}
@@ -371,9 +372,9 @@ public class AthosFerryService extends AbstractQuest {
 			}
 
 			public void onNewFerryState(int status) {
-				if (status == AthosFerry.ANCHORED_AT_MAINLAND) {
+				if (status == AthorFerry.ANCHORED_AT_MAINLAND) {
 					say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
-				} else if (status == AthosFerry.DRIVING_TO_ISLAND) {
+				} else if (status == AthorFerry.DRIVING_TO_ISLAND) {
 					say("Attention: The ferry has taken off. You can no longer board it.");
 				}
 			}
@@ -384,7 +385,7 @@ public class AthosFerryService extends AbstractQuest {
 		eliza.set(101, 102);
 		eliza.setDirection(Direction.LEFT);
 		eliza.initHP(100);
-		AthosFerry.get().addListener(eliza);
+		AthorFerry.get().addListener(eliza);
 		mainlandDocksZone.addNPC(eliza);
 	}
 
@@ -394,7 +395,7 @@ public class AthosFerryService extends AbstractQuest {
 		StendhalRPZone mainlandDocksZone = (StendhalRPZone) StendhalRPWorld
 				.get().getRPZone("0_ados_coast_s_w2");
 		StendhalRPZone shipZone = (StendhalRPZone) StendhalRPWorld.get()
-				.getRPZone("0_athos_ship_w2");
+				.getRPZone("0_athor_ship_w2");
 		// TODO
 		StendhalRPZone islandDocksZone = (StendhalRPZone) StendhalRPWorld
 				.get().getRPZone("0_ados_coast_s_w2");
