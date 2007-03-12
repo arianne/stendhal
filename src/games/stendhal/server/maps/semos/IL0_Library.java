@@ -78,7 +78,7 @@ public class IL0_Library implements ZoneConfigurator {
 						}
 					});
 				addHelp("I can best help you by sharing my knowledge of Faiumoni's #geography and #history, as well as the latest #news.");
-				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");				addSeller(new SellerBehaviour(shops.get("scrolls")));
+				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");
 				
 				add(ConversationStates.ATTENDING,
 					QUEST_MESSAGES,
