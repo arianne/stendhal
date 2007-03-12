@@ -274,7 +274,7 @@ public class AthorFerryService extends AbstractQuest {
 									player.teleport(mainlandDocksZone, 100, 100, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
 								} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
-									player.teleport(islandDocksZone, 143, 83, Direction.LEFT, null);
+									player.teleport(islandDocksZone, 144, 89, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
 								} else {
 									npc.say("Too bad! The ship has already taken off.");
@@ -543,7 +543,7 @@ public class AthorFerryService extends AbstractQuest {
 		NPCList.get().add(jessica);
 		islandDocksZone.assignRPObjectID(jessica);
 		jessica.put("class", "woman_008_npc");
-		jessica.set(143, 83);
+		jessica.set(144, 89);
 		jessica.setDirection(Direction.LEFT);
 		jessica.initHP(100);
 		AthorFerry.get().addListener(jessica);
