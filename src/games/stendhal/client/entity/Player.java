@@ -31,7 +31,10 @@ import org.apache.log4j.Logger;
 
 /** A Player entity */
 public class Player extends RPEntity {
-	public static final double DEFAULT_HEARINGRANGE = 20;
+	public Player(RPObject object) throws AttributeNotFoundException {
+		super(object);
+		
+	}
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
@@ -40,19 +43,15 @@ public class Player extends RPEntity {
 
 	private int outfitOrg;
 
-	private double hearingRange;
+	
 
-	public Player(RPObject base) throws AttributeNotFoundException {
-		super(base);
-		hearingRange = DEFAULT_HEARINGRANGE;
-		// setHearingRange(DEFAULT_HEARINGRANGE);
-	}
+	
 
 	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
-		Sprite sprite;
+		Sprite tempSprite;
 
 		try {
 			if (base.has("outfit_org")) {
@@ -66,20 +65,20 @@ public class Player extends RPEntity {
 				return;
 			}
 			outfit = base.getInt("outfit");
-			sprite = getOutfitSprite(store, base);
+			tempSprite = getOutfitSprite(store, base);
 		} catch (Exception e) {
 			logger.error("cannot build Animations", e);
 			// use default outfit
 			base.put("outfit", 0);
-			sprite = getOutfitSprite(store, base);
+			tempSprite = getOutfitSprite(store, base);
 		}
 
-		sprites.put("move_up", store.getAnimatedSprite(sprite, 0, 4, 1.5, 2));
+		sprites.put("move_up", store.getAnimatedSprite(tempSprite, 0, 4, 1.5, 2));
 		sprites
 				.put("move_right", store
-						.getAnimatedSprite(sprite, 1, 4, 1.5, 2));
-		sprites.put("move_down", store.getAnimatedSprite(sprite, 2, 4, 1.5, 2));
-		sprites.put("move_left", store.getAnimatedSprite(sprite, 3, 4, 1.5, 2));
+						.getAnimatedSprite(tempSprite, 1, 4, 1.5, 2));
+		sprites.put("move_down", store.getAnimatedSprite(tempSprite, 2, 4, 1.5, 2));
+		sprites.put("move_left", store.getAnimatedSprite(tempSprite, 3, 4, 1.5, 2));
 
 		sprites.get("move_up")[3] = sprites.get("move_up")[1];
 		sprites.get("move_right")[3] = sprites.get("move_right")[1];
@@ -105,16 +104,16 @@ public class Player extends RPEntity {
 		if (base != null) {
 			if (diff.has("online")) {
 				String[] players = diff.get("online").split(",");
-				for (String name : players) {
-					StendhalClient.get().addEventLine(name + " has joined Stendhal.",
+				for (String playerName : players) {
+					StendhalClient.get().addEventLine(playerName + " has joined Stendhal.",
 							Color.orange);
 				}
 			}
 
 			if (diff.has("offline")) {
 				String[] players = diff.get("offline").split(",");
-				for (String name : players) {
-					StendhalClient.get().addEventLine(name + " has left Stendhal.",
+				for (String playername : players) {
+					StendhalClient.get().addEventLine(playername + " has left Stendhal.",
 							Color.orange);
 				}
 			}
@@ -134,11 +133,13 @@ public class Player extends RPEntity {
 	/**
 	 * the absolute world area (coordinates) where the player can possibly hear
 	 * sounds
+	 * @return Rectangle2D area
 	 */
 	public Rectangle2D getHearingArea() {
-		double width = hearingRange * 2;
-		return new Rectangle2D.Double(getX() - hearingRange, getY()
-				- hearingRange, width, width);
+		final double HEARING_RANGE= 20;
+		double width = HEARING_RANGE * 2;
+		return new Rectangle2D.Double(getX() - HEARING_RANGE, getY()
+				- HEARING_RANGE, width, width);
 	}
 
 	@Override
@@ -175,7 +176,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onEnter(int x, int y) {
+	public void onEnter(int _x, int _y) {
 		if ((StendhalClient.get().getPlayer() != null)
 				&& StendhalClient.get().getPlayer().getID().equals(getID())) {
 			WorldObjects.firePlayerMoved(this);
@@ -189,13 +190,13 @@ public class Player extends RPEntity {
 	 */
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-		// TODO Auto-generated method stub
 		super.buildOfferedActions(list);
 
 		if (getID().equals(StendhalClient.get().getPlayer().getID())) {
 			list.add(ActionType.SET_OUTFIT.getRepresentation());
-			if (list.contains(ActionType.ATTACK.getRepresentation()));
+			if (list.contains(ActionType.ATTACK.getRepresentation())) {
 				list.remove(ActionType.ATTACK.getRepresentation());
+			}
 			if (StendhalClient.get().getPlayer().has("sheep")) {
 				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 			}
