@@ -81,8 +81,6 @@ public class ProducerBehaviour extends Behaviour {
 	 * @param questSlot the slot that is used to store the status 
 	 * @param productionActivity the name of the activity, e.g. "build",
 	 *        "forge", "bake"
-	 * @param productUnit the unit in which the product is counted, e.g.
-	 *                    "bags", "pieces", "pounds"
 	 * @param productName the name of the product, e.g. "plate_armor". It
 	 *                    must be a valid item name.
 	 * @param requiredResourcesPerItem a mapping which maps the name of each
@@ -106,8 +104,6 @@ public class ProducerBehaviour extends Behaviour {
 	 * @param questSlot the slot that is used to store the status 
 	 * @param productionActivity the name of the activity, e.g. "build",
 	 *        "forge", "bake"
-	 * @param productUnit the unit in which the product is counted, e.g.
-	 *                    "bags", "pieces", "pounds"
 	 * @param productName the name of the product, e.g. "plate_armor". It
 	 *                    must be a valid item name.
 	 * @param requiredResourcesPerItem a mapping which maps the name of each
