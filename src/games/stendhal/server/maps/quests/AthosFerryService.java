@@ -107,11 +107,11 @@ public class AthosFerryService extends AbstractQuest {
 		 * a harbor.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
+			// cycle to the next state
+			state = (state + 1) % 4;
 			for (FerryAnnouncerNPC npc: listeners) {
 				npc.onNewFerryState(state);
 			}
-			// cycle to the next state
-			state = (state + 1) % 4;
 			TurnNotifier.get().notifyInTurns(durations.get(state), this, null);
 		}
 		
@@ -129,7 +129,170 @@ public class AthosFerryService extends AbstractQuest {
 		public abstract void onNewFerryState(int status);
 	}
 
-	private void buildDocksArea(StendhalRPZone zone) {
+	private void buildShipArea(final StendhalRPZone shipZone, final StendhalRPZone mainlandDocksZone, final StendhalRPZone islandDocksZone) {
+		FerryAnnouncerNPC captain = new FerryAnnouncerNPC ("Captain") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				
+				addGreeting("Ahoy!");
+				
+				add(ConversationStates.ANY,
+						SpeakerNPC.GOODBYE_MESSAGES,
+						ConversationStates.IDLE,
+						"Goodbye",
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								npc.setDirection(Direction.DOWN);
+					}
+				});
+				// TODO
+				addHelp("...");
+				addJob("I'm the captain of this ferry.");
+
+				add(ConversationStates.ATTENDING,
+						"status",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								npc.say(AthosFerry.get()
+										.getCurrentDescription());
+							}
+						});
+			}
+
+
+			public void onNewFerryState(int status) {
+				if (status == AthosFerry.ANCHORED_AT_MAINLAND || status == AthosFerry.ANCHORED_AT_ISLAND) {
+					say("Let go anchor! We have arrived.");
+				} else  {
+					say("Anchors aweigh! We're departing.");
+				}
+			}
+		};
+		NPCList.get().add(captain);
+		shipZone.assignRPObjectID(captain);
+		captain.put("class", "piratenpc");
+		captain.set(22, 37);
+		captain.setDirection(Direction.DOWN);
+		captain.initHP(100);
+		AthosFerry.get().addListener(captain);
+		shipZone.addNPC(captain);
+	
+
+		FerryAnnouncerNPC jackie = new FerryAnnouncerNPC ("Jackie") {
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				setPath(nodes, false);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGoodbye("Goodbye!"); //TODO: sailor-style language
+				addGreeting("Ahoy, Matey! How can I #help you?");
+				addHelp("You can #deboard this ferry, but only when it's anchoring a harbor. Just ask me for the #status if you don't know where we are.");
+				addJob("I'm taking passengers who want to #deboard to the coast with this rowing boat.");
+
+				add(ConversationStates.ATTENDING, "status",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								npc.say(AthosFerry.get()
+										.getCurrentDescription());
+							}
+						});
+
+				add(ConversationStates.ATTENDING,
+						"deboard",
+						null,
+						ConversationStates.ATTENDING,
+						null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								AthosFerry ferry = AthosFerry.get();
+								if (ferry.getState() == AthosFerry.ANCHORED_AT_MAINLAND) {
+									npc.say("Do you really want me to take you to the mainland?");
+									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
+								} else if (ferry.getState() == AthosFerry.ANCHORED_AT_ISLAND) {
+									npc.say("Do you really want me to take you to the island?");
+									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
+								} else{
+									npc.say(AthosFerry.get()
+										.getCurrentDescription()
+										+ " You can only deboard the ferry when it's anchoring near a harbor.");
+								}
+							}
+						});
+						
+						
+				add(ConversationStates.SERVICE_OFFERED,
+						SpeakerNPC.YES_MESSAGES,
+						null,
+						ConversationStates.ATTENDING, null,
+						new ChatAction() {
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC npc) {
+								AthosFerry ferry = AthosFerry.get();
+								if (ferry.getState() == AthosFerry.ANCHORED_AT_MAINLAND) {
+									player.teleport(mainlandDocksZone, 100, 100, Direction.LEFT, null);
+									npc.setCurrentState(ConversationStates.IDLE);
+								} else if (ferry.getState() == AthosFerry.ANCHORED_AT_ISLAND) {
+									// TODO
+									player.teleport(islandDocksZone, 100, 100, Direction.LEFT, null);
+									npc.setCurrentState(ConversationStates.IDLE);
+								} else {
+									npc.say("Too bad! The ship has already taken off.");
+								}
+							}
+						});
+
+				add(ConversationStates.SERVICE_OFFERED,
+						"no",
+						null,
+						ConversationStates.ATTENDING,
+						"Aye, matey!", null);
+			}
+
+			public void onNewFerryState(int status) {
+				if (status == AthosFerry.ANCHORED_AT_MAINLAND) {
+					say("Attention: The ferry has arrived at the mainland! You can now #deboard the ship.");
+				} else if (status == AthosFerry.ANCHORED_AT_ISLAND) {
+					say("Attention: The ferry has arrived at the island! You can now #deboard the ship.");
+				} else  {
+					say("Attention: The ferry has taken off.");
+				}
+			}
+		};
+		NPCList.get().add(jackie);
+		shipZone.assignRPObjectID(jackie);
+		jackie.put("class", "pirate_sailornpc");
+		jackie.set(29, 33);
+		jackie.setDirection(Direction.LEFT);
+		jackie.initHP(100);
+		AthosFerry.get().addListener(jackie);
+		shipZone.addNPC(jackie);
+	}
+
+	private void buildMainlandDocksArea(final StendhalRPZone mainlandDocksZone, final StendhalRPZone shipZone) {
 		FerryAnnouncerNPC eliza = new FerryAnnouncerNPC ("Eliza") {
 			@Override
 			protected void createPath() {
@@ -171,7 +334,7 @@ public class AthosFerryService extends AbstractQuest {
 								if (ferry.getState() == AthosFerry.ANCHORED_AT_MAINLAND) {
 									npc.say("In order to board the ferry, you have to pay " + PRICE
 								+ " gold. Do you want to pay?");
-									npc.setCurrentState(ConversationStates.QUESTION_1);
+									npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 								} else {
 									npc.say(AthosFerry.get()
 										.getCurrentDescription()
@@ -181,15 +344,15 @@ public class AthosFerryService extends AbstractQuest {
 						});
 						
 						
-				add(ConversationStates.QUESTION_1, SpeakerNPC.YES_MESSAGES,
-						null, ConversationStates.ATTENDING, null,
+				add(ConversationStates.SERVICE_OFFERED,
+						SpeakerNPC.YES_MESSAGES,
+						null,
+						ConversationStates.ATTENDING, null,
 						new ChatAction() {
 							@Override
 							public void fire(Player player, String text,
 									SpeakerNPC npc) {
 								if (player.drop("money", PRICE)) {
-									StendhalRPZone shipZone = (StendhalRPZone) StendhalRPWorld
-											.get().getRPZone("0_athos_ship_w2");
 									player.teleport(shipZone, 27, 33,
 											Direction.LEFT, null);
 								} else {
@@ -198,9 +361,12 @@ public class AthosFerryService extends AbstractQuest {
 							}
 						});
 
-				add(ConversationStates.QUESTION_1, "no", null,
+				add(ConversationStates.SERVICE_OFFERED,
+						"no",
+						null,
 						ConversationStates.ATTENDING,
-						"You don't know what you're missing, landlubber!", null);
+						"You don't know what you're missing, landlubber!",
+						null);
 
 			}
 
@@ -213,21 +379,27 @@ public class AthosFerryService extends AbstractQuest {
 			}
 		};
 		NPCList.get().add(eliza);
-		zone.assignRPObjectID(eliza);
+		mainlandDocksZone.assignRPObjectID(eliza);
 		eliza.put("class", "woman_008_npc");
 		eliza.set(101, 102);
 		eliza.setDirection(Direction.LEFT);
 		eliza.initHP(100);
 		AthosFerry.get().addListener(eliza);
-		zone.addNPC(eliza);
+		mainlandDocksZone.addNPC(eliza);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void addToWorld() {
-		StendhalRPZone docksZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
-				"0_ados_coast_s_w2");
-		buildDocksArea(docksZone);
+		StendhalRPZone mainlandDocksZone = (StendhalRPZone) StendhalRPWorld
+				.get().getRPZone("0_ados_coast_s_w2");
+		StendhalRPZone shipZone = (StendhalRPZone) StendhalRPWorld.get()
+				.getRPZone("0_athos_ship_w2");
+		// TODO
+		StendhalRPZone islandDocksZone = (StendhalRPZone) StendhalRPWorld
+				.get().getRPZone("0_ados_coast_s_w2");
+		buildMainlandDocksArea(mainlandDocksZone, shipZone);
+		buildShipArea(shipZone, mainlandDocksZone, islandDocksZone);
 
 	}
 
