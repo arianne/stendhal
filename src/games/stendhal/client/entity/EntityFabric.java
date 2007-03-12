@@ -51,8 +51,6 @@ public class EntityFabric {
 			if (en instanceof Inspectable) {
 				((Inspectable) en).setInspector(StendhalClient.get()
 						.getGameGUI());
-				;
-
 			}
 			return en;
 		} catch (Exception e) {
