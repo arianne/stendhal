@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -138,25 +139,21 @@ public class AthorFerryService extends AbstractQuest {
 				setPath(nodes, false);
 			}
 
+			// Always turn back to the wheel after a conversation
+			@Override
+			public void say(String text) {
+				super.say(text);
+				if (text.equals("So long...")) {
+					setDirection(Direction.DOWN);
+				}
+			}
+
 			@Override
 			protected void createDialog() {
 				
 				addGreeting("Yo-ho-ho, me bucko!");
-				
-				// Always turn back to the wheel after a conversation								
-				add(ConversationStates.ANY,
-						SpeakerNPC.GOODBYE_MESSAGES,
-						ConversationStates.IDLE,
-						"So long...",
-						new ChatAction() {
-							@Override
-							public void fire(Player player, String text,
-									SpeakerNPC npc) {
-								npc.setDirection(Direction.DOWN);
-					}
-				});
-				addByeMessage("So long...", null);
-				
+				addGoodbye("So long...");
+			
 				// TODO
 				addHelp("...");
 				addJob("I'm th' captain of me boat.");
