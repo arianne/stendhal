@@ -1025,9 +1025,23 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
  </zone>
 
  <zone name="0_orril_forest_e" file="0_orril_forest_e.xstend">
-  <title/>
+   <title/>
  </zone>
 
+ <zone name="0_ados_coast_s_w2" file="0_ados_coast_s_w2.xstend">
+   <title/>
+   <configurator class-name="games.stendhal.server.maps.ados.OL0_CoastSouthWest2"/>
+ </zone>
+
+<!--
+ <zone name="0_ados_coast_sw" file="0_ados_coast_sw.xstend">
+   <title/>
+ </zone>
+ 
+ <zone name="0_ados_coast_s" file="0_ados_coast_s.xstend">
+   <title/>
+ </zone>
+ -->
  <zone name="0_nalwor_forest_w" file="0_nalwor_forest_w.xstend">
   <title/>
 <!-- use portal config
