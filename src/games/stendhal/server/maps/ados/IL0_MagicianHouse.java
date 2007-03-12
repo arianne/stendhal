@@ -113,7 +113,7 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 		zone.assignRPObjectID(plantGrower);
 		plantGrower.setX(3);
 		plantGrower.setY(6);
-		plantGrower.setDescription("Heizen tends to put his magic drinks here.");
+		plantGrower.setDescription("Haizen tends to put his magic drinks here.");
 		plantGrower.setToFullGrowth();
 		
 		zone.add(plantGrower);
