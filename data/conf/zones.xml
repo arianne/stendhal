@@ -1030,7 +1030,6 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="0_ados_coast_s_w2" file="0_ados_coast_s_w2.xstend">
    <title/>
-   <configurator class-name="games.stendhal.server.maps.ados.OL0_CoastSouthWest2"/>
  </zone>
 
 <!--
@@ -1601,6 +1600,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
      <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
        <title/>
+       <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/>
      </zone>
 
      <zone name="0_athor_island_w" file="0_athor_island_w.xstend">
