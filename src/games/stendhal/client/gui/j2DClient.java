@@ -311,8 +311,8 @@ public class j2DClient extends JFrame {
 
 		screen.place(-100, -100);
 		RenderingPipeline pipeline = RenderingPipeline.get();
-		pipeline.addGameLayer(staticLayers);
-		pipeline.addGameObjects(gameObjects);
+		pipeline.setGameLayer(staticLayers);
+		pipeline.setGameObjects(gameObjects);
 
 		SoundSystem.playSound("welcome", 100);
 
