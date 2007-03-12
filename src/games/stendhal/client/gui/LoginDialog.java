@@ -43,6 +43,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import marauroa.client.ariannexpTimeoutException;
+import marauroa.common.Log4J;
 import marauroa.common.io.Persistence;
 
 /**
@@ -396,7 +397,7 @@ public class LoginDialog extends JDialog {
 			JOptionPane.showMessageDialog(this,
 				"Unable to connect to server. Did you misspell the server name?");
 
-			ex.printStackTrace();
+			Log4J.getLogger(LoginDialog.class).error("unable to connect to server", ex);
 
 			return;
 		}
