@@ -13,8 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
 
 public class IL0_PostNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
