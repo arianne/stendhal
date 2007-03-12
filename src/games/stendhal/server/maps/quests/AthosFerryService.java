@@ -145,7 +145,7 @@ public class AthosFerryService extends AbstractQuest {
 				add(ConversationStates.ANY,
 						SpeakerNPC.GOODBYE_MESSAGES,
 						ConversationStates.IDLE,
-						"Goodbye",
+						"Goodbye!", // TODO: sailor-style language
 						new ChatAction() {
 							@Override
 							public void fire(Player player, String text,
@@ -284,7 +284,7 @@ public class AthosFerryService extends AbstractQuest {
 		};
 		NPCList.get().add(jackie);
 		shipZone.assignRPObjectID(jackie);
-		jackie.put("class", "pirate_sailornpc");
+		jackie.put("class", "pirate_sailor2npc");
 		jackie.set(29, 33);
 		jackie.setDirection(Direction.LEFT);
 		jackie.initHP(100);
