@@ -34,8 +34,14 @@ public class AthosFerryService extends AbstractQuest {
 
 		public static final int DRIVING_TO_MAINLAND = 3;
 
+		/** The Singleton instance. */
 		private static AthosFerry instance;
 
+		/**
+		 * A list of non-player characters that get notice when the ferry
+		 * arrives or departs, so that they can react accordingly, e.g.
+		 * inform nearby players.
+		 */
 		private List<FerryAnnouncerNPC> listeners;
 		
 		private int state;
@@ -70,6 +76,9 @@ public class AthosFerryService extends AbstractQuest {
 			TurnNotifier.get().notifyInTurns(1, this, null);
 		}
 
+		/**
+		 * @return The Singleton instance.
+		 */
 		public static AthosFerry get() {
 			if (instance == null) {
 				instance = new AthosFerry();
@@ -77,23 +86,32 @@ public class AthosFerryService extends AbstractQuest {
 			return instance;
 		}
 		
+		/**
+		 * @return one of ANCHORED_AT_MAINLAND, DRIVING_TO_ISLAND,
+		 *         ANCHORED_AT_ISLAND, and DRIVING_TO_MAINLAND.
+		 */
 		public int getState() {
 			return state;
 		}
 
+		/**
+		 * Gets a textual description of the ferry's status.
+		 * @return A String representation of the ferry's current state.
+		 */
 		public String getCurrentDescription() {
 			return descriptions.get(state);
 		}
 
+		/**
+		 * Is called when the ferry has either arrived at or departed from
+		 * a harbor.
+		 */
 		public void onTurnReached(int currentTurn, String message) {
 			for (FerryAnnouncerNPC npc: listeners) {
 				npc.onNewFerryState(state);
 			}
-			if (state == DRIVING_TO_MAINLAND) {
-				state = ANCHORED_AT_MAINLAND;
-			} else {
-				state++;
-			}
+			// cycle to the next state
+			state = (state + 1) % 4;
 			TurnNotifier.get().notifyInTurns(durations.get(state), this, null);
 		}
 		
@@ -112,7 +130,7 @@ public class AthosFerryService extends AbstractQuest {
 	}
 
 	private void buildDocksArea(StendhalRPZone zone) {
-		FerryAnnouncerNPC eliza = new FerryAnnouncerNPC("Eliza") {
+		FerryAnnouncerNPC eliza = new FerryAnnouncerNPC ("Eliza") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -188,9 +206,9 @@ public class AthosFerryService extends AbstractQuest {
 
 			public void onNewFerryState(int status) {
 				if (status == AthosFerry.ANCHORED_AT_MAINLAND) {
-					say("The ferry has arrived at this coast! You can now #board the ship.");
+					say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
 				} else if (status == AthosFerry.DRIVING_TO_ISLAND) {
-					say("The ferry has taken off. You can no longer board it.");
+					say("Attention: The ferry has taken off. You can no longer board it.");
 				}
 			}
 		};
