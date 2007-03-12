@@ -20,7 +20,7 @@ public abstract class AbstractQuest implements IQuest {
 	protected String slotName = "XXX"; // TODO init it in the quest-classes
 
 	/** NPCList * */
-	protected NPCList npcs = null;
+	protected NPCList npcs = NPCList.get();
 
 	private static final List<String> emptyList = new ArrayList<String>();
 
@@ -39,7 +39,6 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public void addToWorld() {
-		this.npcs = NPCList.get();
 	}
 
 	public void onPlayerLogin(Player player) {
