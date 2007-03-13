@@ -1364,7 +1364,7 @@ public class ChatLineParser {
 				"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
 				"Here are the most-used commands:",
 				"- /tell <player> <message> \tSends a private message to <player>",
-				"- /msg <player> <message> \tSends a private message to <player>",
+				"- /answer <message> \t\tSends a private message to the last player who sent a message to you",
 				"- // <message> \t\tSends a private message to the last player you sent a message to",
 				"- /support <message> \tAsk an administrator for help.",
 				"- /who \t\tList all players currently online",
