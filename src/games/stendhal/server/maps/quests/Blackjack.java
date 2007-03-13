@@ -119,8 +119,8 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	 */
 	private void dealCards(Player player, int number) {
 		String message = "\n";
-		int playerSum = 0;
-		int bankSum = 0;
+		int playerSum = sumValues(playerCards);
+		int bankSum = sumValues(bankCards);
 		for (int i = 0; i < number; i++) {
 			if (! playerStands) {
 				String playerCard = deck.pop();
@@ -128,6 +128,10 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 				message += "You got a " + playerCard + ".\n";
 			}
 	
+			if (playerStands && playerSum < bankSum) {
+				message += "The bank stands.\n";
+				bankStands = true;
+			}
 			if (! bankStands) {
 				String bankCard = deck.pop();
 				bankCards.add(bankCard);
