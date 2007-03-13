@@ -66,6 +66,27 @@ public class PostmanIRC extends PircBot {
 		}
 	}
 
+	
+
+	@Override
+	protected void onDisconnect() {
+		super.onDisconnect();
+		Thread t = new Thread("wait for reconnect") {
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(60*1000);
+					connect();
+				} catch (Exception e) {
+					logger.error(e, e);
+				}
+			}
+		};
+		t.setDaemon(true);
+		t.start();
+	}
+
 	/**
 	 * For testing only
 	 *
