@@ -5,6 +5,6 @@ import marauroa.common.game.RPSlot;
 
 public interface Inspector {
 
-	public EntityContainer inspectMe(Entity suspect, RPSlot content,
+	public EntityContainer inspectMe(Entity entity, RPSlot content,
 			EntityContainer container);
 }

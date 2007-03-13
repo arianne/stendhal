@@ -160,8 +160,8 @@ public class Chest extends AnimatedEntity implements Inspectable {
 		return 5000;
 	}
 
-	public void setInspector(Inspector gadget) {
-		_inspector = gadget;
+	public void setInspector(Inspector inspector) {
+		_inspector = inspector;
 
 	}
 }

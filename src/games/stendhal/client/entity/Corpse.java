@@ -102,8 +102,8 @@ public class Corpse extends PassiveEntity implements Inspectable {
 		return 5500;
 	}
 
-	public void setInspector(Inspector gadget) {
-		_inspector = gadget;
+	public void setInspector(Inspector inspector) {
+		_inspector = inspector;
 
 	}
 }
