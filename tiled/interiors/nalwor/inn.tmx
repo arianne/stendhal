@@ -47,17 +47,17 @@
  </layer>
  <layer name="1_terrain" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wI7Av4H8P2hi9MCpQDvfAekMIM0HxZKcDAxSnAg+PXA6EL9lh7iFB8geSDAd6IYZONzSxM/A0AzELfz0cctWoBu2DZJw4R5EcTTqllG3jLpl1C0jzS1eQDYrELMBMTsQ8wKxNbCutuGEsKmFkc1Ets8T6hYPIP0eSCsDaRUgVoXyI4F6ojghbGphZDPR7XMH0gC/iwhMTAkAAA==
+   H4sIAAAAAAAAAL2Vv07DMBDGPTSkERAvUKms/FMZKRusVVsmYANG1JYJWJGYgHcAHgSeBXgHKBNFAiE+Y0e9HHacoKgn/XR3TuL74rOTflWIt3DMJ/IvNjYJeqj5Cn8MHxvqkRAL0TifBAPwEmotM4gvpMi0O3J9lcQrMu1dto4aTXBIvGID3EDDLdFCbQ3zXoFrx/wtjLc9tX/rx6gV+++7h4YHhxaftXLoULYDHXs5tEyzHr3Dj8A54o9Q35OMfVc1KlbXjhxaOlJDteyCZgZq3biWOTBvqJl1SsZUP+i1nkPLJevrCeqcejizaClidK9QXV2pKWpci+td+R5VeYPsXfoc75Evd2lJanBrWM6M7Qz1ZbpHNB+YMd5DZepbYOtRnnPKLatHvjyxrP3C++Aa41rK6hG3omuUpye2Htm0PFaEeALPlfR9vvX5b49ovT/flwDfD1AL0lps6+M609T4/4nntB7Vso04AFMgBLNgE//qrUjHZUHnpPW6RksHfgi/CL8Elk2+j2cOIh2XBZ2T12vD/wDBxArfTAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1UO1ICQRDtAIqNdhLkCFIYCleghExNycRPJqRUEQDlJTwFHEc9iBpZdrtrVU/bvT2yhLyqV7v92e2382YWQMdNBnCL3OYAuzzOVYF6piW93lSs8D2bzM9pz61Ler0WlqG6/szqXXZ/GuKrhXPU1UdO2JU4cPSeOe8dYv3C6fmZj94Ocr+vDoYJOgiXqON6Dy3vLYAP5ALX7LMV576ygnRPtamhZRQKci1XyH4FtXVr46yTkp0szpEfvHZnaNlg/onVHnHOzOG8pod8r3Bd41CwLqxvlXuU4h7bu/w56ZEXW/idIdFTzox2hu5D7BGPH8qc9JBg/QtSzqlElUdenALpg5WTWg7lkabnP0jxRPNIw0sD4BX51ojz3vrs65E1j9Bu4v8D2WnGeW19rDPNIfekjK15R/zFN/IiApJMCQAA
+   H4sIAAAAAAAAAGNgwA6SOBgYUoB4PR8DwwY+VDF8AKQmGYoJqSUWNADNaeIgLIZNXyMUE1JLDSDATx1zdKlgDj+V3EJvQI7fffHo8aYgHHihenmAtA8Ua0MxiK1PozCmRvyPAtoDXjzxxDMah4MCjOalUUAvAAAa4/XwTAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoAy84kOlBxJw8KPS9AYCVLJXlwrm8A9QGFAKyPG7Lx493hSEAy9ULw+Q9oFibSgGsfVpFMbUiP+BBIOhLIABWpYFvHjM5hnicThcACwvoafJgUyj6GlyoOqrUUBdAAAjBI3wTAkAAA==
+   H4sIAAAAAAAAAGNgoAy84kOlBxJw8KPSo2AUjAL6g8FQFsDAaFkwCkAAPU0OZBpFT5OjaXR4AACJQvmaTAkAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="35" height="17">
