@@ -45,6 +45,7 @@ public class StendhalQuestSystem {
 		loadQuest("ArmorForDagobert");
 		loadQuest("AthorFerryService");
 		loadQuest("BeerForHayunn");
+		loadQuest("Blackjack");
 		loadQuest("Campfire");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloaksForBario");
