@@ -2488,6 +2488,40 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	
+	
+	<!-- Level 45 -->
+	
+	<creature name="minotaur">
+		<type class="minotaur" subclass="minotaur" tileid="97"/>
+		<attributes>
+			<atk value="160"/>
+			<def value="25"/>
+			<hp value="125"/>
+			<speed value="0.8"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="45"/>
+		<experience value="660"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,46]" probability="100"/>
+			<item value="twoside_axe_+3" quantity="1" probability="4"/>
+			<item value="empty_scroll" quantity="1" probability="1"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="You will never find the way out!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
+	
 	<!-- Level 50 -->
     
 	<creature name="earth_elemental">
