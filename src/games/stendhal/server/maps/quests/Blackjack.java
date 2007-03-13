@@ -87,7 +87,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	private int countAces(List<String> cards) {
 		int count = 0;
 		for (String card: cards) {
-			if (card.startsWith("Ace ")) {
+			if (card.startsWith("A")) {
 				count++;
 			}
 		}
@@ -264,17 +264,17 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		zone.addNPC(ramon);		
 
 		cardValues = new HashMap<String,Integer>();
-		String[] colors = {"Clubs", "Diamonds", "Hearts", "Spades"};
-		String[] pictures = {"Jack", "Queen", "King"};
+		String[] colors = {"♣", "♦", "♥", "♠"};
+		String[] pictures = {"J", "Q", "K"};
 		for (String color: colors) {
 			for (int i = 2; i <= 10; i++) {
-				cardValues.put(i + " of " + color, i);
+				cardValues.put(i + color, i);
 			}
 			for (String picture: pictures) {
-				cardValues.put(picture + " of " + color, 10);
+				cardValues.put(picture + color, 10);
 			}
-			// ace values are calculated during the game
-			cardValues.put("Ace of " + color, 11);
+			// ace values can change to 1 during the game
+			cardValues.put("A" + color, 11);
 		}
 		
 		// increase the timeout, as otherwise the player often
