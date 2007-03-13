@@ -36,9 +36,7 @@ import games.stendhal.common.Rand;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -46,7 +44,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -341,6 +338,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 *            top volume
 	 * @param chance
 	 *            percent chance of performance
+	 * @return SoundCycle
 	 */
 	public static SoundCycle startSoundCycle(Entity entity, String token, int period, int volBot, int volTop, int chance) {
 		SoundSystem sys;
@@ -415,8 +413,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Whether the parameter sound is available in this sound system.
 	 * 
-	 * @param name
-	 *            token of sound
+	 * @param name token of sound
+	 * @return true, iif it is available
 	 */
 	boolean contains(String name) {
 		return (name != null) && SoundEffectMap.getInstance().containsKey(name);
@@ -453,10 +451,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		int pos;
 
 		int loudness;
-		Iterator it;
-
-		Entry entry;
-
 
 		if (!initJavaSound()) {
 			logger.error("*** SOUNDSYSTEM JAVA INIT ERROR");
@@ -477,17 +471,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			failedCounted = 0;
 			loaded = 0;
 			count = 0;
-			for (it = prop.entrySet().iterator(); it.hasNext();) {
+			for (Entry<String, String> entry : ((Map<String, String>) (Map) prop).entrySet()) {
 				byte[] soundData;
-				entry = (Entry) it.next();
 
-				if (isValidEntry(((String) entry.getKey()), ((String) entry.getValue()))) {
-
-
-
-
-					name = ((String) entry.getKey()).substring(4);
-					value = (String) entry.getValue();
+				if (isValidEntry(entry.getKey(), entry.getValue())) {
+					name = entry.getKey().substring(4);
+					value = entry.getValue();
 
 					logger.debug("- sound definition: " + name + " = " + value);
 
@@ -590,15 +579,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	boolean isValidEntry(String key, String value) {
 		boolean load;
 		int pos1;
-		if (key.startsWith("sfx."))
-
-		{
-
+		if (key.startsWith("sfx.")) {
 			if ((pos1 = value.indexOf(',')) > -1) {
-
 				load = value.substring(pos1 + 1).charAt(0) != 'x';
 			} else {
-
 				load = true;
 			}
 			load |= value.indexOf('.') != -1;
@@ -606,8 +590,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		} else {
 			return false;
 		}
-
-
 	}
 
 
@@ -622,25 +604,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		in1 = getResourceStream(STORE_PROPERTYFILE);
 		prop.load(in1);
 		in1.close();
-	}
-
-	/**
-	 * @param sourcePath
-	 * @return the copied, closed file
-	 * @throws IOException
-	 * @throws FileNotFoundException
-	 */
-	private File makeTempCopy(String sourcePath) throws IOException, FileNotFoundException {
-		File file;
-		file = File.createTempFile("stendhal-", ".tmp");
-		OutputStream out;
-		InputStream in2;
-		in2 = getResourceStream(sourcePath);
-		out = new FileOutputStream(file);
-		transferData(in2, out, 4096);
-		in2.close();
-		out.close();
-		return file;
 	}
 
 	/**
@@ -746,7 +709,11 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		return volumeSetting;
 	}
 
-	/** Whether the sound system has been initialized and is ready to operate. */
+	/** 
+	 * Whether the sound system has been initialized and is ready to operate.
+	 *
+	 * @return true, iff the sound system was initialized
+     */
 	public boolean isOperative() {
 		return operative;
 	}
@@ -795,16 +762,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	private String actualZone = "";
 
-	/**
-	 * Overridden:
-	 * 
-	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneEntered(java.lang.String)
-	 */
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneEntered(java.lang.String)
-	 */
 	public void zoneEntered(String zone) {
 		AmbientSound baseAmb;
 		AmbientSound ambient;
