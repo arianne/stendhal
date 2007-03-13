@@ -51,8 +51,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Map.Entry;
-import java.util.jar.JarFile;
-import java.util.zip.ZipEntry;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -115,9 +113,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
-
-	/** stored reference to the jar file with the sounds */
-	private JarFile soundFile;
 
 	/** the used mixer */
 	private Mixer mixer;
@@ -338,24 +333,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		}
 	}
 
-	ClipRunner loadSoundDataFromFile(String name, String path) {
-		String hstr = name + "@" + path;
-		logger.warn("- loading from external SOUND ZIP: " + hstr);
-		ZipEntry zipEntry = soundFile.getEntry(path);
-		if (zipEntry != null) {
-			try {
-				ClipRunner clipRunner = new ClipRunner(hstr);
-				AudioClip clip = new AudioClip(mixer, name,
-						getZipData(zipEntry), 100);
-				clipRunner.addSample(clip);
-				return clipRunner;
-			} catch (Exception e) {
-
-			}
-		}
-		return null;
-	}
-
 	/**
 	 * Starts cyclic performance of a given library sound, attributed to a
 	 * specific entity on the map. There can only be one sound cycle for an
@@ -437,12 +414,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the data in the Zipentry
 	 * @throws IOException
 	 */
-	private byte[] getZipData(ZipEntry entry) throws IOException {
+	private byte[] getData(String name) throws IOException {
 		InputStream in;
 		ByteArrayOutputStream bout;
 
-		in = soundFile.getInputStream(entry);
-		bout = new ByteArrayOutputStream((int) entry.getSize());
+		in = getResourceStream(name);
+		bout = new ByteArrayOutputStream();
 		transferData(in, bout, 4096);
 		in.close();
 		return bout.toByteArray();
@@ -477,10 +454,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	
 	private void init() {
 
-		ZipEntry zipEntry;
-		File file;
-
-		String path;
 		String value;
 		String name;
 		String hstr;
@@ -493,7 +466,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		int pos;
 
 		int loudness;
-		byte[] soundData;
 		Iterator it;
 
 		Entry entry;
@@ -511,13 +483,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			loadSoundProperties(prop);
 
 			// get sound library filepath
-			path = prop.getProperty("soundbase", "sounds/stensounds0.jar");
-
-			file = makeTempCopy(path);
-
-			// open the sound file
-			soundFile = new JarFile(file);
-			file.deleteOnExit();
+			String soundBase = prop.getProperty("soundbase", "data/sounds");
 
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
@@ -525,6 +491,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			loaded = 0;
 			count = 0;
 			for (it = prop.entrySet().iterator(); it.hasNext();) {
+				byte[] soundData;
 				entry = (Entry) it.next();
 				
 				if (isValidEntry(((String)entry.getKey()),((String)entry.getValue()))) {
@@ -538,25 +505,13 @@ public class SoundSystem implements WorldObjects.WorldListener {
 				logger.debug("- sound definition: " + name + " = " + value);
 
 				
-				
-			
+				String filename = null;
 				if ((pos = value.indexOf(',')) > -1) {
-					path = value.substring(0, pos);
+					filename = value.substring(0, pos);
 				} else {
-					path = value;
+					filename = value;
 				}
-				// look if sound data is already stored internally
-	//			if ((soundData = dataList.get(path)) == null) {
-					// else load sounddata from jar file
-					zipEntry = soundFile.getEntry(path);
-					if (zipEntry == null) {
-						hstr = "*** MISSING SOUND: " + name + "=" + path;
-						logger.error(hstr);
-						failedCounted++;
-						continue;
-					}
-					soundData = getZipData(zipEntry);
-		//		}
+				soundData = getData(soundBase + "/" + filename);
 
 				// construct sound clip from sample data
 				// (we always do that to verify sound sample format)
@@ -577,12 +532,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 					// sound = new ClipRunner(this, name + "@" + path,
 					// soundData, loudness);
-					sound = new AudioClip(mixer, name + "@" + path, soundData,
+					sound = new AudioClip(mixer, name + "@" + filename, soundData,
 							loudness);
 					count++;
 				} catch (Exception e) {
 					// could not validate sound file content
-					hstr = "*** CORRUPTED SOUND: " + name + "=" + path;
+					hstr = "*** CORRUPTED SOUND: " + name + "=" + filename;
 					logger.error(hstr, e);
 					failedCounted++;
 					continue;
@@ -831,13 +786,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	public void exit() {
 		clearAmbientSounds();
-		if (soundFile != null) {
-			try {
-				soundFile.close();
-				operative = false;
-			} catch (Exception e) {
-			}
-		}
 		logger.info("sound system exit performed, inactive");
 	}
 
