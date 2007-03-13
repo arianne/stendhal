@@ -396,19 +396,16 @@ private class MockEntity extends Entity{
 	}
 	@Override
 	public Rectangle2D getArea() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Rectangle2D getDrawedArea() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int getZIndex() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
