@@ -40,11 +40,11 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	private StackableItem bankCardsItem;
 
 	private SpeakerNPC ramon;
-	
+
 	private StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
 	.getRPZone("-1_athor_ship_w2");
 	
-	private void startNewGame() {
+	private void startNewGame(Player player) {
 		cleanUpTable();
 		playerCards.clear();
 		bankCards.clear();
@@ -70,15 +70,17 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		}
 		Collections.shuffle(deck);
 		
-		dealCards(2);
+		dealCards(player, 2);
 	}
 	
 	private void cleanUpTable() {
 		if (playerCardsItem != null) {
 			zone.remove(playerCardsItem);
+			playerCardsItem = null;
 		}
 		if (bankCardsItem != null) {
 			zone.remove(bankCardsItem);
+			bankCardsItem = null;
 		}
 	}
 	
@@ -115,7 +117,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	 * @param number The number of cards that each player should
 	 *               draw.
 	 */
-	private void dealCards(int number) {
+	private void dealCards(Player player, int number) {
 		String message = "\n";
 		int playerSum = 0;
 		int bankSum = 0;
@@ -150,7 +152,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 				message += "The bank stands.\n";
 			}
 		}
-		message += analyze();
+		message += analyze(player);
 		if (message != null) {
 			ramon.say(message);
 		}
@@ -160,24 +162,28 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	 * @return The text that the dealer should say, or null if he shouldn't
 	 *         say anything.
 	 */
-	private String analyze() {
+	private String analyze(Player player) {
 		int playerSum = sumValues(playerCards);
 		int bankSum = sumValues(bankCards);
 		String message = null;
 		if (isBlackjack (bankCards) && isBlackjack (playerCards)) {
 			message = "You have a blackjack, but the bank has one too. It's a push.";
+			payOff(player, 1);
 		} else if (isBlackjack (bankCards)) {
 			message = "The bank has a blackjack. Better luck next time!";				
 		} else if (isBlackjack (playerCards)) {
 			message = "You have a blackjack! Congratulations!";
+			payOff(player, 3);
 		} else if (playerSum > 21) {
 			if (bankSum > 21 ) {
 				message = "Both have busted! This is a draw.";
+				payOff(player, 1);
 			} else {
 				message = "You have busted! Better luck next time!";
 			}
 		} else if (bankSum > 21 ) {
 			message = "The bank has busted! Congratulations!";
+			payOff(player, 2);
 		} else {
 			if (! playerStands && playerSum != 21) {
 				message = "Do you want another card?";
@@ -188,11 +194,19 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 				message = "The bank has won. Better luck next time!";
 			} else if (bankSum == playerSum) {
 				message = "This is a draw.";
+				payOff(player, 1);
 			} else {
 				message = "You have won. Congratulations!";
+				payOff(player, 2);
 			}
 		}
 		return message;
+	}
+	
+	private void payOff(Player player, int factor) {
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
+		money.setQuantity(factor * STAKE);
+		player.equip(money, true);
 	}
 
 	private void letBankDrawAfterPause(String playerName) {
@@ -203,7 +217,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		// Check whether the player is still there, or if he
 		// has left/said goodbye/logged out.
 		if (message.equals(ramon.getAttending().getName())) {
-			dealCards(1);
+			dealCards(ramon.getAttending(), 1);
 		}
 	}
 
@@ -284,7 +298,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (player.drop("money", STAKE)) {
-							startNewGame();
+							startNewGame(player);
 						} else {
 							npc.say("Hey! You don't have enough money!");
 						}
@@ -298,7 +312,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 			new ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
-					dealCards(1);
+					dealCards(player, 1);
 				}
 			});
 
@@ -315,7 +329,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 					playerStands = true;
 					if (bankStands) {
 						// Both stand. Let the dealer tell the final resul
-						String message = analyze();
+						String message = analyze(player);
 						if (message != null) {
 							ramon.say(message);
 						}
