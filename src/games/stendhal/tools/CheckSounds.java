@@ -1,8 +1,12 @@
 package games.stendhal.tools;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
+import java.util.Properties;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -17,7 +21,8 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Checks if all sound files can be played on the current system. 
+ * Checks if all sound files can be played on the current system. For example
+ * some sounds can only be played on MS Windows but not on Linux based systems.
  * 
  * @author mtotz
  */
@@ -42,61 +47,68 @@ public class CheckSounds {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ZipInputStream zipFile = new ZipInputStream(CheckSounds.class.getResourceAsStream("/data/sounds/stensounds0.jar"));
+		Properties prop = new Properties();
+		loadSoundProperties(prop);
 
 		Map<String, AudioFormat> formatMap = new TreeMap<String, AudioFormat>();
 		Map<String, String> fileFormatMap = new TreeMap<String, String>();
-		ZipEntry entry = zipFile.getNextEntry();
 		Mixer defaultMixer = AudioSystem.getMixer(null);
 
-		do {
-			byte[] temp = new byte[(int) entry.getSize()];
-			zipFile.read(temp);
+		// get sound library filepath
+		String soundBase = prop.getProperty("soundbase", "data/sounds");
 
-			try {
-				AudioInputStream ais = AudioSystem.getAudioInputStream(new ByteArrayInputStream(temp));
-				AudioFormat format = ais.getFormat();
-				String formatString = format.toString();
+		// read all load-permitted sounds listed in properties
+		// from soundfile into cache map
+		for (Entry<String, String> entry : ((Map<String, String>) (Map) prop).entrySet()) {
+			if (isValidEntry(entry.getKey(), entry.getValue())) {
+				String name = entry.getKey().substring(4);
+				String filename = entry.getValue();
+				int pos = filename.indexOf(',');
+				if (pos > -1) {
+					filename = filename.substring(0, pos);
+				}
 
-				if (TESTPLAY_SAMPLES) {
-					// testplay the sound
-					DataLine.Info info = new DataLine.Info(Clip.class, format);
-					if (defaultMixer.isLineSupported(info)) {
-						AudioInputStream playStream = ais;
-						AudioFormat defaultFormat = new AudioFormat(format.getSampleRate(), 16, 1, false, true);
-						if (AudioSystem.isConversionSupported(defaultFormat, format)) {
-							playStream = AudioSystem.getAudioInputStream(defaultFormat, ais);
-						} else {
-							System.out.println("conversion not supported (to " + defaultFormat + ")");
+				try {
+					InputStream is = CheckSounds.class.getClassLoader().getResourceAsStream(soundBase + "/" + filename);
+					AudioInputStream ais = AudioSystem.getAudioInputStream(is);
+					AudioFormat format = ais.getFormat();
+					String formatString = format.toString();
+	
+					if (TESTPLAY_SAMPLES) {
+						// testplay the sound
+						DataLine.Info info = new DataLine.Info(Clip.class, format);
+						if (defaultMixer.isLineSupported(info)) {
+							AudioInputStream playStream = ais;
+							AudioFormat defaultFormat = new AudioFormat(format.getSampleRate(), 16, 1, false, true);
+							if (AudioSystem.isConversionSupported(defaultFormat, format)) {
+								playStream = AudioSystem.getAudioInputStream(defaultFormat, ais);
+							} else {
+								System.out.println("conversion not supported (to " + defaultFormat + ")");
+							}
+	
+							System.out.println("testplaying " + name + " " + playStream.getFormat());
+	
+							Clip line = (Clip) defaultMixer.getLine(info);
+							line.open(playStream);
+							line.loop(2);
+							TestLineListener testListener = new TestLineListener();
+							line.addLineListener(testListener);
+							while (testListener.active) {
+								Thread.yield();
+							}
+							line.close();
 						}
-
-						System.out.println("testplaying " + entry.getName() + " " + playStream.getFormat());
-
-						Clip line = (Clip) defaultMixer.getLine(info);
-						line.open(playStream);
-						line.loop(2);
-						TestLineListener testListener = new TestLineListener();
-						line.addLineListener(testListener);
-						while (testListener.active) {
-							Thread.yield();
-						}
-						line.close();
 					}
+	
+					fileFormatMap.put(name, formatString);
+					if (!formatMap.containsKey(formatString)) {
+						formatMap.put(formatString, format);
+					}
+				} catch (UnsupportedAudioFileException e) {
+					System.out.println(name + " cannot be read, the file format is not supported");
 				}
-
-				fileFormatMap.put(entry.getName(), formatString);
-				if (!formatMap.containsKey(formatString)) {
-					formatMap.put(formatString, format);
-				}
-			} catch (UnsupportedAudioFileException e) {
-				System.out.println(entry.getName() + " cannot be read, the file format is not supported");
 			}
-
-			zipFile.closeEntry();
-			entry = zipFile.getNextEntry();
-		} while (entry != null);
-
-		zipFile.close();
+		}
 
 		Mixer.Info[] mixerList = AudioSystem.getMixerInfo();
 		int[] width = new int[mixerList.length];
@@ -148,4 +160,53 @@ public class CheckSounds {
 		System.out.println("done");
 	}
 
+	// ------------------------------------------------------------------------ 
+	//              TODO: clean up this copied code from SoundSystem
+	// ------------------------------------------------------------------------ 
+	
+	/** expected location of the sound definition file (classloader). */
+	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
+
+	/**
+	 * @param prop
+	 *            the Property Object to load to
+	 * @throws IOException
+	 */
+	private static void loadSoundProperties(Properties prop) throws IOException {
+		InputStream in1;
+
+		in1 = CheckSounds.class.getClassLoader().getResourceAsStream(STORE_PROPERTYFILE);
+		prop.load(in1);
+		in1.close();
+	}
+
+	/**
+	 * A key/value pair is assumed valid if 	
+	 * <ul>
+	 *    <li>key starts with "sfx." <b>and </b></li>
+	 *    <li>key does not end with ",x"</li>
+	 *    <li>or value contains a "."</li>
+	 * </ul>
+	 * @param key
+	 * @param value
+	 * @return true, if it is valid, false otherwise
+	 */
+	private static boolean isValidEntry(String key, String value) {
+		boolean load;
+		int pos1;
+		if (key.startsWith("sfx.")) {
+			if ((pos1 = value.indexOf(',')) > -1) {
+				load = value.substring(pos1 + 1).charAt(0) != 'x';
+			} else {
+				load = true;
+			}
+			load |= value.indexOf('.') != -1;
+			return load;
+		} else {
+			return false;
+		}
+	}
+	// ------------------------------------------------------------------------ 
+	//              copied code end
+	// ------------------------------------------------------------------------ 
 }
