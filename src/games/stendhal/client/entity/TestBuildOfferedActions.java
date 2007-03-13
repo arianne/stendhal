@@ -171,5 +171,10 @@ public void testCarrot() throws Exception{
 		public int getInt(String dir) {
 			return 1;
 		}
+
+		@Override
+		public double getDouble(String arg0) throws AttributeNotFoundException {
+			return 0.0;
+		}
 	}
 }
