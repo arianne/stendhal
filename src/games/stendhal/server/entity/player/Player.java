@@ -83,6 +83,13 @@ public class Player extends RPEntity implements TurnListener {
 	 * antidote, and thus immune from poison.
 	 */
 	private boolean isImmune;
+	
+	/**
+	 * The last player who privately talked to this player using
+	 * the /tell command. It needs to be stored non-persistently
+	 * so that /answer can be used.
+	 */
+	private String lastPrivateChatterName;
 
 	/**
 	 * Currently active client directions (in oldest-newest order)
@@ -480,6 +487,24 @@ public class Player extends RPEntity implements TurnListener {
         }
 		put("private_text", text);
 		StendhalRPRuleProcessor.get().removePlayerText(this);
+	}
+	
+	/**
+	 * Sets the name of the last player who privately talked to this player
+	 * using the /tell command. It needs to be stored non-persistently
+	 * so that /answer can be used.
+	 */
+	public void setLastPrivateChatter(String lastPrivateChatterName) {
+		this.lastPrivateChatterName = lastPrivateChatterName;
+	}
+	
+	/**
+	 * Gets the name of the last player who privately talked to this player
+	 * using the /tell command, or null if nobody has talked to this player
+	 * since he logged in. 
+	 */
+	public String getLastPrivateChatter() {
+		return lastPrivateChatterName;
 	}
 
 	/**

@@ -43,6 +43,7 @@ public class ChatAction extends ActionListener {
 	 */
 	public static void register() {
 		ChatAction chat = new ChatAction();
+		StendhalRPRuleProcessor.register("answer", chat);
 		StendhalRPRuleProcessor.register("chat", chat);
 		StendhalRPRuleProcessor.register("tell", chat);
 		StendhalRPRuleProcessor.register("support", chat);
@@ -58,6 +59,8 @@ public class ChatAction extends ActionListener {
 			onChat(player, action);
 		} else if (action.get("type").equals("tell")) {
 			onTell(player, action);
+		} else if (action.get("type").equals("answer")) {
+			onAnswer(player, action);
 		} else {
 			onSupport(player, action);
 		}
@@ -77,8 +80,21 @@ public class ChatAction extends ActionListener {
 		Log4J.finishMethod(logger, "chat");
 	}
 
-	private void onTell(Player player, RPAction action) {
+	private void onAnswer(Player player, RPAction action) {
+		if (action.has("text")) {
+			if (player.getLastPrivateChatter() != null) {
+				// convert the action to a /tell action
+				action.put("type", "tell");
+				action.put("target", player.getLastPrivateChatter());
+				onTell(player, action);
+			} else {
+				player.sendPrivateText("Nobody has talked privately to you.");				
+			}
+		}
+		
+	}
 
+	private void onTell(Player player, RPAction action) {
 		// TODO: find a cleaner way to implement it
 		if (Jail.isInJail(player)) {
 			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
@@ -132,6 +148,7 @@ public class ChatAction extends ActionListener {
 			// transmit the message
 			receiver.sendPrivateText(message);
 			player.sendPrivateText("You tell " + receiver.getName() + ": " + text);
+			receiver.setLastPrivateChatter(player.getName());
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName, 
 					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
 			receiver.notifyWorldAboutChanges();

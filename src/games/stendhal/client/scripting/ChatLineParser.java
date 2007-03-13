@@ -39,6 +39,7 @@ public class ChatLineParser {
 
 		commands.put("/", new RemessageCommand());
 		commands.put("tell", new MessageCommand());
+		commands.put("answer", new AnswerCommand());
 		commands.put("msg", new MessageCommand());
 		commands.put("support", new SupportCommand());
 		commands.put("supporta", new SupportAnswerCommand());
@@ -413,7 +414,6 @@ public class ChatLineParser {
 			return true;
 		}
 
-
 		/**
 		 * Get the maximum number of formal parameters.
 		 *
@@ -434,6 +434,49 @@ public class ChatLineParser {
 		}
 	}
 
+	/**
+	 * Send a message to the player who has last contacted us privately.
+	 */
+	protected class AnswerCommand implements ChatCommand {
+		/**
+		 * Execute a chat command.
+		 *
+		 * @param	params		The formal parameters.
+		 * @param	remainder	Line content after parameters.
+		 *
+		 * @return	<code>true</code> if command was handled.
+		 */
+		public boolean execute(String[] params, String remainder) {
+
+			RPAction answer = new RPAction();
+
+			answer.put("type", "answer");
+			answer.put("text", remainder);
+
+			client.send(answer);
+
+			return true;
+		}
+
+		/**
+		 * Get the maximum number of formal parameters.
+		 *
+		 * @return	The parameter count.
+		 */
+		public int getMaximumParameters() {
+			return 0;
+		}
+
+
+		/**
+		 * Get the minimum number of formal parameters.
+		 *
+		 * @return	The parameter count.
+		 */
+		public int getMinimumParameters() {
+			return 0;
+		}
+	}
 
 	/**
 	 * Send a support request message.
