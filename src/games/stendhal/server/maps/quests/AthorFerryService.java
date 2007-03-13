@@ -77,13 +77,13 @@ public class AthorFerryService extends AbstractQuest {
 
 			descriptions = new HashMap<Integer, String>();
 			descriptions.put(ANCHORED_AT_MAINLAND,
-					"The ferry is currently anchoring at the mainland.");
+					"The ferry is currently anchored at the mainland.");
 			descriptions.put(DRIVING_TO_ISLAND,
-					"The ferry is currently driving to the island.");
+					"The ferry is currently sailing to the island.");
 			descriptions.put(ANCHORED_AT_ISLAND,
-					"The ferry is currently anchoring at the island.");
+					"The ferry is currently anchored at the island.");
 			descriptions.put(DRIVING_TO_MAINLAND,
-					"The ferry is currently driving to the mainland.");
+					"The ferry is currently sailing to the mainland.");
 
 			state = DRIVING_TO_MAINLAND;
 			
@@ -220,8 +220,8 @@ public class AthorFerryService extends AbstractQuest {
 			protected void createDialog() {
 				addGoodbye("Goodbye!"); //TODO: sailor-style language
 				addGreeting("Ahoy, Matey! How can I #help you?");
-				addHelp("Ye can #deboard this ferry, but only when it's anchoring a harbor. Just ask me for the #status if ye have no idea where we are.");
-				addJob("I'm taking passengers who want to #deboard to the coast with me rowing boat.");
+				addHelp("Ye can #disembark, but only when we're anchored a harbor. Just ask me for the #status if ye have no idea where we are.");
+				addJob("I'm taking passengers who want to #disembark to the coast with me rowing boat.");
 
 				add(ConversationStates.ATTENDING, "status",
 						null,
@@ -237,7 +237,7 @@ public class AthorFerryService extends AbstractQuest {
 						});
 
 				add(ConversationStates.ATTENDING,
-						Arrays.asList("deboard", "leave"),
+						Arrays.asList("disembark", "leave"),
 						null,
 						ConversationStates.ATTENDING,
 						null,
@@ -255,7 +255,7 @@ public class AthorFerryService extends AbstractQuest {
 								} else{
 									npc.say(AthorFerry.get()
 										.getCurrentDescription()
-										+ " Ye can only deboard the boat when it's anchoring near a harbor.");
+										+ " Ye can only get off the boat when it's anchored near a harbor.");
 								}
 							}
 						});
@@ -277,7 +277,7 @@ public class AthorFerryService extends AbstractQuest {
 									player.teleport(islandDocksZone, 144, 89, Direction.LEFT, null);
 									npc.setCurrentState(ConversationStates.IDLE);
 								} else {
-									npc.say("Too bad! The ship has already taken off.");
+									npc.say("Too bad! The ship has already set sail.");
 								}
 							}
 						});
@@ -291,11 +291,11 @@ public class AthorFerryService extends AbstractQuest {
 
 			public void onNewFerryState(int status) {
 				if (status == AthorFerry.ANCHORED_AT_MAINLAND) {
-					say("Attention: The ferry has arrived at the mainland! You can now #deboard the ship.");
+					say("Attention: The ferry has arrived at the mainland! You can now #disembark.");
 				} else if (status == AthorFerry.ANCHORED_AT_ISLAND) {
-					say("Attention: The ferry has arrived at the island! You can now #deboard the ship.");
+					say("Attention: The ferry has arrived at the island! You can now #disembark.");
 				} else  {
-					say("Attention: The ferry has taken off.");
+					say("Attention: The ferry has set sail.");
 				}
 			}
 		};
@@ -344,7 +344,7 @@ public class AthorFerryService extends AbstractQuest {
 				if (status == AthorFerry.ANCHORED_AT_MAINLAND || status == AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: We have arrived!");
 				} else  {
-					say("Attention: We have set sails!.");
+					say("Attention: We have set sail!.");
 				}
 			}
 
@@ -372,7 +372,7 @@ public class AthorFerryService extends AbstractQuest {
 				addGreeting("Welcome to the Athor #ferry service! How can I #help you?");
 				addHelp("You can #board the #ferry for only "
 						+ PRICE
-						+ " gold, but only when it's anchoring near this harbor. Just ask me for the #status if you want to know where the ferry is.");
+						+ " gold, but only when it's anchored near this harbor. Just ask me for the #status if you want to know where the ferry is.");
 				addJob("If passengers want to #board the #ferry to Athor island, I take them to the ship with this rowing boat.");
 				add(ConversationStates.ATTENDING, "status",
 						null,
@@ -404,7 +404,7 @@ public class AthorFerryService extends AbstractQuest {
 								} else {
 									npc.say(AthorFerry.get()
 										.getCurrentDescription()
-										+ " You can only board the ferry when it's anchoring at the mainland.");
+										+ " You can only board the ferry when it's anchored at the mainland.");
 								}
 							}
 						});
@@ -440,7 +440,7 @@ public class AthorFerryService extends AbstractQuest {
 				if (status == AthorFerry.ANCHORED_AT_MAINLAND) {
 					say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
 				} else if (status == AthorFerry.DRIVING_TO_ISLAND) {
-					say("Attention: The ferry has taken off. You can no longer board it.");
+					say("Attention: The ferry has set sail. You can no longer board it.");
 				}
 			}
 		};
@@ -468,7 +468,7 @@ public class AthorFerryService extends AbstractQuest {
 				addGreeting("Welcome to the Athor #ferry service! How can I #help you?");
 				addHelp("You can #board the #ferry for only "
 						+ PRICE
-						+ " gold, but only when it's anchoring near this harbor. Just ask me for the #status if you want to know where the ferry is.");
+						+ " gold, but only when it's anchored near this harbor. Just ask me for the #status if you want to know where the ferry is.");
 				addJob("If passengers want to #board the #ferry to the mainland, I take them to the ship with this rowing boat.");
 				add(ConversationStates.ATTENDING, "status",
 						null,
@@ -500,7 +500,7 @@ public class AthorFerryService extends AbstractQuest {
 								} else {
 									npc.say(AthorFerry.get()
 										.getCurrentDescription()
-										+ " You can only board the ferry when it's anchoring at the island.");
+										+ " You can only board the ferry when it's anchored at the island.");
 								}
 							}
 						});
