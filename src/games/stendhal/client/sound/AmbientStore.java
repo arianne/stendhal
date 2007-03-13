@@ -17,7 +17,7 @@ package games.stendhal.client.sound;
  * 
  * @author Jane Hunt
  */
- class AmbientStore {
+class AmbientStore {
 
 	/**
 	 * create an Ambient sound by its name

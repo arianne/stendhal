@@ -33,7 +33,7 @@ import org.apache.log4j.Logger;
  * 
  * @author Jane Hunt
  */
- class ClipRunner implements LineListener {
+class ClipRunner implements LineListener {
 	/** the logger */
 	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
 
@@ -52,7 +52,7 @@ import org.apache.log4j.Logger;
 	 * @param name 
 	 * 
 	 */
-	 ClipRunner(String name) {
+	ClipRunner(String name) {
 		_name = name;
 		samples = new ArrayList<AudioClip>();
 	}
@@ -74,7 +74,7 @@ import org.apache.log4j.Logger;
 	 * 
 	 * @return long milliseconds, 0 if undefined
 	 */
-	 long maxPlayLength() {
+	long maxPlayLength() {
 		return maxLength;
 	}
 
@@ -89,7 +89,7 @@ import org.apache.log4j.Logger;
 	 * @return the AudioSystem <code>DataLine</code> object that is being
 	 *         played, or <b>null</b> on error
 	 */
-	 DataLine play(int volume, float correctionDB, float volumeDelta) {
+	DataLine play(int volume, float correctionDB, float volumeDelta) {
 		DataLine line = getAudioClip(volume, correctionDB, volumeDelta);
 
 		if (line != null) {
@@ -107,15 +107,14 @@ import org.apache.log4j.Logger;
 	 * @return the AudioSystem <code>Clip</code> object that is being played,
 	 *         or <b>null</b> on error
 	 */
-//	private Clip loop(int volume, float correctionDB, float volumeDelta) {
-//		Clip line = getAudioClip(volume, correctionDB, volumeDelta);
-//
-//		if (line != null) {
-//			line.loop(Clip.LOOP_CONTINUOUSLY);
-//		}
-//		return line;
-//	}
-
+	//	private Clip loop(int volume, float correctionDB, float volumeDelta) {
+	//		Clip line = getAudioClip(volume, correctionDB, volumeDelta);
+	//
+	//		if (line != null) {
+	//			line.loop(Clip.LOOP_CONTINUOUSLY);
+	//		}
+	//		return line;
+	//	}
 	/**
 	 * Returns a runnable AudioSystem sound clip with the given volume settings.
 	 * 
@@ -127,7 +126,7 @@ import org.apache.log4j.Logger;
 	 * @return an AudioSystem sound <code>Clip</code> that represents this
 	 *         sound, or <b>null</b> on error
 	 */
-	 Clip getAudioClip(int volume, float correctionDB, float volumeDelta) {
+	Clip getAudioClip(int volume, float correctionDB, float volumeDelta) {
 		if (samples.size() > 0) {
 			try {
 				int index = Rand.rand(samples.size());
@@ -141,25 +140,19 @@ import org.apache.log4j.Logger;
 				}
 
 				// set the volume
-				FloatControl volCtrl = (FloatControl) line
-						.getControl(FloatControl.Type.MASTER_GAIN);
+				FloatControl volCtrl = (FloatControl) line.getControl(FloatControl.Type.MASTER_GAIN);
 				if (volCtrl != null) {
-					float dB = DBValues.getDBValue(volume)
-							+ DBValues.getDBValue(audioClip.getVolume())
-							+ correctionDB;
+					float dB = DBValues.getDBValue(volume) + DBValues.getDBValue(audioClip.getVolume()) + correctionDB;
 					volCtrl.setValue(dB + volumeDelta);
 				} else {
-					logger
-							.info("no master gain for line "
-									+ line.getLineInfo());
+					logger.info("no master gain for line " + line.getLineInfo());
 				}
 
 				// run clip
 				line.addLineListener(this);
 				return line;
 			} catch (Exception ex) {
-				logger.error("** AudioSystem: clip line unavailable for: "
-						+ this._name, ex);
+				logger.error("** AudioSystem: clip line unavailable for: " + this._name, ex);
 				return null;
 			}
 		}

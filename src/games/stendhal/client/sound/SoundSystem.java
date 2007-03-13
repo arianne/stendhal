@@ -108,8 +108,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	private static final SoundSystem singleton = new SoundSystem();
 
 	/** */
-	private Map<byte[], SoundCycle> cycleMap = Collections
-			.synchronizedMap(new HashMap<byte[], SoundCycle>());
+	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
 
 	/** */
 	private ArrayList<AmbientSound> ambientList = new ArrayList<AmbientSound>();
@@ -145,27 +144,24 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	protected DataLine playSoundIntern(String name, int volBot, int volTop,
-			float correctionDB) {
+	protected DataLine playSoundIntern(String name, int volBot, int volTop, float correctionDB) {
 		// verify start conditions
 		if ((name == null) || (volBot == 0) || !operative || muteSetting) {
 			return null;
 		}
 
-		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100)
-				|| (volTop < volBot)) {
+		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) || (volTop < volBot)) {
 			throw new IllegalArgumentException("bad volume setting");
 		}
 
 		// check/fetch sound
-		ClipRunner clip = SoundEffectMap.getInstance().getSoundClip( name);
+		ClipRunner clip = SoundEffectMap.getInstance().getSoundClip(name);
 		if (clip == null) {
 			return null;
 		}
 
 		int volume = volBot + Rand.rand(volTop - volBot + 1);
-		return clip.play(volume, correctionDB, SoundSystem.get()
-				.getVolumeDelta());
+		return clip.play(volume, correctionDB, SoundSystem.get().getVolumeDelta());
 	} // playSound
 
 	/**
@@ -178,7 +174,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	 public static DataLine playSound(String name, int volume) {
+	public static DataLine playSound(String name, int volume) {
 		return get().playSoundIntern(name, volume, volume, (float) 0.0);
 	}
 
@@ -195,7 +191,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	 static DataLine playSound(String name, int volBot, int volTop) {
+	static DataLine playSound(String name, int volBot, int volTop) {
 		return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
 	}
 
@@ -213,8 +209,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error or if performance is bailed
 	 */
-	 static DataLine probablePlaySound(int chance, String name,
-			int volBot, int volTop) {
+	static DataLine probablePlaySound(int chance, String name, int volBot, int volTop) {
 		if (Rand.rand(100) < chance) {
 			return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
 		}
@@ -242,8 +237,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return <code>javax.sound.sampled.DataLine</code> the sound line that
 	 *         is being performed or <b>null</b> if no performance takes place
 	 */
-	 public static DataLine playMapSound(Point2D where, Rectangle2D audibility,
-			String name, int volBot, int volTop, int chance) {
+	public static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop, int chance) {
 		Point2D playerPosition;
 		Rectangle2D playerHearing;
 		double distance;
@@ -266,8 +260,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return null;
 		}
 
-		Player player = (Player) StendhalClient.get().getGameObjects().get(
-				playerObj.getID());
+		Player player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
 		if (player == null) {
 			return null;
 		}
@@ -276,44 +269,40 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		playerHearing = player.getHearingArea();
 
 		// exclusion cases
-		if (!playerHearing.contains(where)
-				|| ((audibility != null) && !audibility.contains(playerPosition))) {
+		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(playerPosition))) {
 			return null;
 		}
 
-		logger.debug("SoundSystem: playing map sound (" + name + ") at pos "
-				+ (int) where.getX() + ", " + (int) where.getY());
+		logger.debug("SoundSystem: playing map sound (" + name + ") at pos " + (int) where.getX() + ", " + (int) where.getY());
 
 		// determine sound volume cutoff due to distance (fog value)
 		distance = where.distance(playerPosition);
 		maxDist = playerHearing.getWidth() / 2;
-		fogVolume = Math
-				.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
+		fogVolume = Math.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
 
-		return get().playSoundIntern(name, volBot, volTop,
-				DBValues.getDBValue(fogVolume));
+		return get().playSoundIntern(name, volBot, volTop, DBValues.getDBValue(fogVolume));
 	} // playMapSound
 
 	/** plays (?) and registers an ambient sound 
 	 * @param ambient the sound to be registered 
 	 * */
-	 void playAmbientSound(AmbientSound ambient) {
+	void playAmbientSound(AmbientSound ambient) {
 
 		ambient.play();
- 
+
 		synchronized (ambientList) {
 			ambientList.add(ambient);
 		}
 	} // playAmbientSound
- 
+
 	/**
 	 * removes the ambient sound from the internal list. 
 	 * It should already be stopped.
-	
+	 
 	 * @param ambient the ambient sound to be removed
 	 */
-	 static void stopAmbientSound(AmbientSound ambient) {
-//		  TODO: assert the sound  is stopped
+	static void stopAmbientSound(AmbientSound ambient) {
+		//		  TODO: assert the sound  is stopped
 		SoundSystem sys;
 
 		sys = get();
@@ -353,8 +342,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param chance
 	 *            percent chance of performance
 	 */
-	 public static SoundCycle startSoundCycle(Entity entity, String token,
-			int period, int volBot, int volTop, int chance) {
+	public static SoundCycle startSoundCycle(Entity entity, String token, int period, int volBot, int volTop, int chance) {
 		SoundSystem sys;
 		SoundCycle cycle;
 		SoundCycle c1;
@@ -368,8 +356,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		cycle = null;
 		synchronized (sys.cycleMap) {
 			try {
-				cycle = new SoundCycle(entity, token, period, volBot, volTop,
-						chance);
+				cycle = new SoundCycle(entity, token, period, volBot, volTop, chance);
 				cycle.play();
 
 				c1 = sys.cycleMap.get(entity_token);
@@ -431,7 +418,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param name
 	 *            token of sound
 	 */
-	 boolean contains(String name) {
+	boolean contains(String name) {
 		return (name != null) && SoundEffectMap.getInstance().containsKey(name);
 	}
 
@@ -451,7 +438,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		return url.openStream();
 	}
 
-	
+
 	private void init() {
 
 		String value;
@@ -469,7 +456,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		Iterator it;
 
 		Entry entry;
-		
+
 
 		if (!initJavaSound()) {
 			logger.error("*** SOUNDSYSTEM JAVA INIT ERROR");
@@ -493,62 +480,60 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			for (it = prop.entrySet().iterator(); it.hasNext();) {
 				byte[] soundData;
 				entry = (Entry) it.next();
-				
-				if (isValidEntry(((String)entry.getKey()),((String)entry.getValue()))) {
-			
-				
 
-			
-				name = ((String) entry.getKey()).substring(4);
-				value = (String) entry.getValue();
+				if (isValidEntry(((String) entry.getKey()), ((String) entry.getValue()))) {
 
-				logger.debug("- sound definition: " + name + " = " + value);
 
-				
-				String filename = null;
-				if ((pos = value.indexOf(',')) > -1) {
-					filename = value.substring(0, pos);
-				} else {
-					filename = value;
-				}
-				soundData = getData(soundBase + "/" + filename);
 
-				// construct sound clip from sample data
-				// (we always do that to verify sound sample format)
-				AudioClip sound;
-				try {
-					// determine equalizing loudness setting
-					loudness = 100;
-					if ((pos = value.lastIndexOf(',')) != -1) {
-						loudness = MathHelper.parseInt_default(value
-								.substring(pos + 1), 100);
+
+					name = ((String) entry.getKey()).substring(4);
+					value = (String) entry.getValue();
+
+					logger.debug("- sound definition: " + name + " = " + value);
+
+
+					String filename = null;
+					if ((pos = value.indexOf(',')) > -1) {
+						filename = value.substring(0, pos);
+					} else {
+						filename = value;
+					}
+					soundData = getData(soundBase + "/" + filename);
+
+					// construct sound clip from sample data
+					// (we always do that to verify sound sample format)
+					AudioClip sound;
+					try {
+						// determine equalizing loudness setting
+						loudness = 100;
+						if ((pos = value.lastIndexOf(',')) != -1) {
+							loudness = MathHelper.parseInt_default(value.substring(pos + 1), 100);
+						}
+
+						// investigate sample status
+						int i;
+						if ((i = name.indexOf('.')) != -1) {
+							name = name.substring(0, i);
+						}
+
+						// sound = new ClipRunner(this, name + "@" + path,
+						// soundData, loudness);
+						sound = new AudioClip(mixer, name + "@" + filename, soundData, loudness);
+						count++;
+					} catch (Exception e) {
+						// could not validate sound file content
+						hstr = "*** CORRUPTED SOUND: " + name + "=" + filename;
+						logger.error(hstr, e);
+						failedCounted++;
+						continue;
 					}
 
-					// investigate sample status
-					int i;
-					if ((i = name.indexOf('.')) != -1) {
-						name = name.substring(0, i);
-					}
-
-					// sound = new ClipRunner(this, name + "@" + path,
-					// soundData, loudness);
-					sound = new AudioClip(mixer, name + "@" + filename, soundData,
-							loudness);
-					count++;
-				} catch (Exception e) {
-					// could not validate sound file content
-					hstr = "*** CORRUPTED SOUND: " + name + "=" + filename;
-					logger.error(hstr, e);
-					failedCounted++;
-					continue;
-				}
-
-				// store new sound object into soundsystem library map if opted
-				//if (load) {
+					// store new sound object into soundsystem library map if opted
+					//if (load) {
 					logger.debug("- storing mem-library soundclip: " + name);
 
 					// stores the clip sound in memory
-					ClipRunner clip = SoundEffectMap.getInstance().getSoundClip( name);
+					ClipRunner clip = SoundEffectMap.getInstance().getSoundClip(name);
 					if (clip == null) {
 						clip = new ClipRunner(name);
 						SoundEffectMap.getInstance().put(name, clip);
@@ -556,16 +541,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					clip.addSample(sound);
 
 					// memorizes the sound data (only for init purposes)
-		//			dataList.put(path, soundData);
+					//			dataList.put(path, soundData);
 					loaded++;
-					} 
+				}
 			} // for
 
 			// report to startup console
 
-			hstr = "Stendhal Soundsystem OK: " + count + " samples approved / "
-					+ loaded + " loaded / "
-					+ SoundEffectMap.getInstance().size() + " library sounds";
+			hstr = "Stendhal Soundsystem OK: " + count + " samples approved / " + loaded + " loaded / " + SoundEffectMap.getInstance().size() + " library sounds";
 			logger.info(hstr);
 			System.out.println(hstr);
 			if (failedCounted != 0) {
@@ -585,19 +568,21 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return;
 		}
 	} // init
-//	 
+
+	//	 
+
 	// (do not load when ",x" trailing path; 
 	// always load when "." in
 	// name)
-	
-	
+
+
 	/**
 	 * A key/value pair is assumed valid if 	
 	 * <ul>
-     *    <li>key starts with "sfx." <b>and </b></li>
-     *    <li>key does not end with ",x"</li>
-     *    <li>or value contains a "."</li>
-     * </ul>
+	 *    <li>key starts with "sfx." <b>and </b></li>
+	 *    <li>key does not end with ",x"</li>
+	 *    <li>or value contains a "."</li>
+	 * </ul>
 	 * @param key
 	 * @param value
 	 * @return true, if it is valid, false otherwise
@@ -606,23 +591,23 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		boolean load;
 		int pos1;
 		if (key.startsWith("sfx."))
-	
-	 {
-				
-		if ((pos1 = value.indexOf(',')) > -1) {
-		
-			load = value.substring(pos1 + 1).charAt(0) != 'x';
-		} else {
-			
-			load = true;
-		}
-		load |=  value.indexOf('.') != -1;
-		return load;
+
+		{
+
+			if ((pos1 = value.indexOf(',')) > -1) {
+
+				load = value.substring(pos1 + 1).charAt(0) != 'x';
+			} else {
+
+				load = true;
+			}
+			load |= value.indexOf('.') != -1;
+			return load;
 		} else {
 			return false;
 		}
-		
-		
+
+
 	}
 
 
@@ -645,8 +630,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 */
-	private File makeTempCopy(String sourcePath) throws IOException,
-			FileNotFoundException {
+	private File makeTempCopy(String sourcePath) throws IOException, FileNotFoundException {
 		File file;
 		file = File.createTempFile("stendhal-", ".tmp");
 		OutputStream out;
@@ -669,22 +653,19 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		Info[] mixInfos;
 		String hstr;
 
-		if (((mixInfos = AudioSystem.getMixerInfo()) == null)
-				|| (mixInfos.length == 0)) {
+		if (((mixInfos = AudioSystem.getMixerInfo()) == null) || (mixInfos.length == 0)) {
 			logger.error("*** SoundSystem: no sound driver available!");
 			return false;
 		}
 
 		mixer = AudioSystem.getMixer(null); // mixInfos[4] );
 		info = mixer.getMixerInfo();
-		hstr = "Sound driver: " + info.getName() + "(" + info.getDescription()
-				+ ")";
+		hstr = "Sound driver: " + info.getName() + "(" + info.getDescription() + ")";
 		logger.info(hstr);
 
 		// try a master volume control
 		try {
-			volumeCtrl = (FloatControl) mixer
-					.getControl(FloatControl.Type.MASTER_GAIN);
+			volumeCtrl = (FloatControl) mixer.getControl(FloatControl.Type.MASTER_GAIN);
 			volumeCtrl.setValue(0f);
 		} catch (Exception e) {
 			logger.debug("SoundSystem: no master volume controls");
@@ -739,8 +720,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		volume = (volume > 100) ? volume = 100 : volume;
 
 		dB = DBValues.getDBValue(volume);
-		logger.info("- sound system setting volume dB = " + dB + "  (gain "
-				+ volume + ")");
+		logger.info("- sound system setting volume dB = " + dB + "  (gain " + volume + ")");
 
 		volumeSetting = volume;
 		if (volumeCtrl != null) {
@@ -802,8 +782,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @param bufferSize
 	 * @throws java.io.IOException
 	 */
-	 static void transferData(InputStream input, OutputStream output,
-			int bufferSize) throws java.io.IOException {
+	static void transferData(InputStream input, OutputStream output, int bufferSize) throws java.io.IOException {
 		byte[] buffer = new byte[bufferSize];
 		int len;
 
@@ -848,32 +827,28 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			ambient = AmbientStore.getAmbient("wind-tree-1");
 
 			soundPos = new Point2D.Double(13, 42);
-			ambient = new AmbientSound(ambient, "semos-village-tree", soundPos,
-					30, 25);
+			ambient = new AmbientSound(ambient, "semos-village-tree", soundPos, 30, 25);
 			playAmbientSound(ambient);
 
 			// larks
 			baseAmb = AmbientStore.getAmbient("meadow-larks-1");
 
 			soundPos = new Point2D.Double(50, 16);
-			ambient = new AmbientSound(baseAmb, "semos-village-larks-1",
-					soundPos, 30, 50);
+			ambient = new AmbientSound(baseAmb, "semos-village-larks-1", soundPos, 30, 50);
 			playAmbientSound(ambient);
 
 			// blackbirds
 			baseAmb = AmbientStore.getAmbient("blackbirds-1");
 
 			soundPos = new Point2D.Double(16, 20);
-			ambient = new AmbientSound(baseAmb, "semos-village-blackbirds-1",
-					soundPos, 30, 50);
+			ambient = new AmbientSound(baseAmb, "semos-village-blackbirds-1", soundPos, 30, 50);
 			playAmbientSound(ambient);
 
 			// frog
 			baseAmb = AmbientStore.getAmbient("single-frog-1");
 
 			soundPos = new Point2D.Double(28, 15);
-			ambient = new AmbientSound(baseAmb, "semos-village-frog-1",
-					soundPos, 6, 30);
+			ambient = new AmbientSound(baseAmb, "semos-village-frog-1", soundPos, 6, 30);
 			playAmbientSound(ambient);
 
 		}
@@ -883,37 +858,32 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			baseAmb = AmbientStore.getAmbient("blackbirds-1");
 
 			soundPos = new Point2D.Double(29, 8);
-			ambient = new AmbientSound(baseAmb, "semos-city-blackbirds-1",
-					soundPos, 30, 80);
+			ambient = new AmbientSound(baseAmb, "semos-city-blackbirds-1", soundPos, 30, 80);
 			playAmbientSound(ambient);
 
 			// chicken
 			baseAmb = AmbientStore.getAmbient("chicken-1");
 
 			soundPos = new Point2D.Double(8, 30);
-			ambient = new AmbientSound(baseAmb, "semos-city-fowl-1", soundPos,
-					12, 50);
+			ambient = new AmbientSound(baseAmb, "semos-city-fowl-1", soundPos, 12, 50);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(47, 25);
-			ambient = new AmbientSound(baseAmb, "semos-city-fowl-2", soundPos,
-					15, 50);
+			ambient = new AmbientSound(baseAmb, "semos-city-fowl-2", soundPos, 15, 50);
 			playAmbientSound(ambient);
 
 			// worksounds
 			baseAmb = AmbientStore.getAmbient("build-works-1");
 
 			soundPos = new Point2D.Double(12, 38);
-			ambient = new AmbientSound(baseAmb, "semos-city-works-1", soundPos,
-					8, 25);
+			ambient = new AmbientSound(baseAmb, "semos-city-works-1", soundPos, 8, 25);
 			playAmbientSound(ambient);
 
 			// tavern noise
 			baseAmb = AmbientStore.getAmbient("tavern-noise-1");
 
 			soundPos = new Point2D.Double(45, 37);
-			ambient = new AmbientSound(baseAmb, "semos-city-tavern-1",
-					soundPos, 10, 40);
+			ambient = new AmbientSound(baseAmb, "semos-city-tavern-1", soundPos, 10, 40);
 			playAmbientSound(ambient);
 
 		} else if (zone.equals("int_semos_blacksmith")) {
@@ -923,15 +893,13 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(11, 3);
-			ambient = new AmbientSound("blacksmith-forgefire-main", soundPos,
-					30, 50);
+			ambient = new AmbientSound("blacksmith-forgefire-main", soundPos, 30, 50);
 			ambient.addLoop("forgefire-1", 50, 0);
 			ambient.addCycle("firesparks-1", 60000, 10, 50, 80);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(3, 3);
-			ambient = new AmbientSound("blacksmith-forgefire-side", soundPos,
-					6, 50);
+			ambient = new AmbientSound("blacksmith-forgefire-side", soundPos, 6, 50);
 			ambient.addLoop("forgefire-2", 50, 0);
 			ambient.addLoop("forgefire-3", 50, 0);
 			playAmbientSound(ambient);
@@ -943,70 +911,59 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			baseAmb = AmbientStore.getAmbient("wind-tree-1");
 
 			soundPos = new Point2D.Double(10, 45);
-			ambient = new AmbientSound(baseAmb, "road-ados-tree-1", soundPos,
-					30, 30);
+			ambient = new AmbientSound(baseAmb, "road-ados-tree-1", soundPos, 30, 30);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(54, 59);
-			ambient = new AmbientSound(baseAmb, "road-ados-tree-2", soundPos,
-					100, 50);
+			ambient = new AmbientSound(baseAmb, "road-ados-tree-2", soundPos, 100, 50);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(65, 31);
-			ambient = new AmbientSound(baseAmb, "road-ados-tree-3", soundPos,
-					100, 30);
+			ambient = new AmbientSound(baseAmb, "road-ados-tree-3", soundPos, 100, 30);
 			playAmbientSound(ambient);
 
 			// beach water
 			baseAmb = AmbientStore.getAmbient("water-beach-1");
 
 			soundPos = new Point2D.Double(32, 46);
-			ambient = new AmbientSound(baseAmb, "road-ados-beachwater-1",
-					soundPos, 7, 25);
+			ambient = new AmbientSound(baseAmb, "road-ados-beachwater-1", soundPos, 7, 25);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(43, 47);
-			ambient = new AmbientSound(baseAmb, "road-ados-beachwater-2",
-					soundPos, 7, 25);
+			ambient = new AmbientSound(baseAmb, "road-ados-beachwater-2", soundPos, 7, 25);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(32, 55);
-			ambient = new AmbientSound(baseAmb, "road-ados-beachwater-3",
-					soundPos, 12, 35);
+			ambient = new AmbientSound(baseAmb, "road-ados-beachwater-3", soundPos, 12, 35);
 			playAmbientSound(ambient);
 
 			// water at bridge
 			baseAmb = AmbientStore.getAmbient("water-flow-1");
 
 			soundPos = new Point2D.Double(47, 47);
-			ambient = new AmbientSound(baseAmb, "road-ados-bridge-1", soundPos,
-					3, 50);
+			ambient = new AmbientSound(baseAmb, "road-ados-bridge-1", soundPos, 3, 50);
 			playAmbientSound(ambient);
 
 			// larks
 			baseAmb = AmbientStore.getAmbient("meadow-larks-1");
 
 			soundPos = new Point2D.Double(15, 15);
-			ambient = new AmbientSound(baseAmb, "road-ados-larks-1", soundPos,
-					30, 50);
+			ambient = new AmbientSound(baseAmb, "road-ados-larks-1", soundPos, 30, 50);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(32, 33);
-			ambient = new AmbientSound(baseAmb, "road-ados-larks-2", soundPos,
-					30, 50);
+			ambient = new AmbientSound(baseAmb, "road-ados-larks-2", soundPos, 30, 50);
 			playAmbientSound(ambient);
 
 			// bushbirds
 			baseAmb = AmbientStore.getAmbient("bushbirds-1");
 
 			soundPos = new Point2D.Double(83, 56);
-			ambient = new AmbientSound(baseAmb, "road-ados-bushbirds-1",
-					soundPos, 20, 80);
+			ambient = new AmbientSound(baseAmb, "road-ados-bushbirds-1", soundPos, 20, 80);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(118, 57);
-			ambient = new AmbientSound(baseAmb, "road-ados-bushbirds-2",
-					soundPos, 20, 90);
+			ambient = new AmbientSound(baseAmb, "road-ados-bushbirds-2", soundPos, 20, 90);
 			playAmbientSound(ambient);
 
 		}

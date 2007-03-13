@@ -20,45 +20,49 @@ public class SoundEffectMap {
 	/**
 	 *  the singleton instance initated by default
 	 */
-	private static final SoundEffectMap _instance=new SoundEffectMap();
-	
+	private static final SoundEffectMap _instance = new SoundEffectMap();
+
 	/**
 	 * @return the singleton instance 
 	 */
-	static SoundEffectMap getInstance(){
+	static SoundEffectMap getInstance() {
 		return _instance;
 	}
 
 	/**
 	 * stores the named sound effects 
 	 */
-	 private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(256));
-	 private Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(256));
-	 private Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner >(256));
+	private Map<String, Object> sfxmap = Collections.synchronizedMap(new HashMap<String, Object>(256));
 
-	Object getByName(String name){
-		 return sfxmap.get(name);
-	 }
-	 
-	 boolean containsKey(String key){
-		 return sfxmap.containsKey(key);
-		 
-	 }
-	 
+	private Map<String, String> pathMap = Collections.synchronizedMap(new HashMap<String, String>(256));
 
-	 Object put(String key, String value){
-		 pathMap.put(key, value);
-		 return sfxmap.put(key, value);
-	 }
-	 Object put(String key, ClipRunner value){
-		 clipRunnerMap.put(key, value);
-			 
-		 return sfxmap.put(key, value);
-		
-	 }
-	 int size(){
-		 return sfxmap.size();
-	 }
+	private Map<String, ClipRunner> clipRunnerMap = Collections.synchronizedMap(new HashMap<String, ClipRunner>(256));
+
+	Object getByName(String name) {
+		return sfxmap.get(name);
+	}
+
+	boolean containsKey(String key) {
+		return sfxmap.containsKey(key);
+
+	}
+
+
+	Object put(String key, String value) {
+		pathMap.put(key, value);
+		return sfxmap.put(key, value);
+	}
+
+	Object put(String key, ClipRunner value) {
+		clipRunnerMap.put(key, value);
+
+		return sfxmap.put(key, value);
+
+	}
+
+	int size() {
+		return sfxmap.size();
+	}
 
 	/**
 	 * Returns a <code>ClipRunner</code> object ready to play a sound of the
@@ -69,20 +73,20 @@ public class SoundEffectMap {
 	 * @return <code>ClipRunner</code> or <b>null</b> if the sound is
 	 *         undefined
 	 */
-	ClipRunner getSoundClip( String name) {
-	
-//		Object o = getByName(name);
-//		if (o == null)
-//			return null;
-//	
-//		if (o instanceof ClipRunner) {
-//			return (ClipRunner) o;
-//		}
-//	
-//		// load sounddata from soundfile
-//		String path = (String) o;
-//		return system.loadSoundDataFromFile(name, path);
-	return (ClipRunner)getByName(name);
+	ClipRunner getSoundClip(String name) {
+
+		//		Object o = getByName(name);
+		//		if (o == null)
+		//			return null;
+		//	
+		//		if (o instanceof ClipRunner) {
+		//			return (ClipRunner) o;
+		//		}
+		//	
+		//		// load sounddata from soundfile
+		//		String path = (String) o;
+		//		return system.loadSoundDataFromFile(name, path);
+		return (ClipRunner) getByName(name);
 	}
 
 }

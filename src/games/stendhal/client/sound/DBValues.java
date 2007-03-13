@@ -23,7 +23,7 @@ package games.stendhal.client.sound;
  * 
  */
 public class DBValues {
-	
+
 	/**
 	 *  dbValue[0] is mute and dbValue[100] is loudest
 	 */
@@ -34,9 +34,10 @@ public class DBValues {
 		for (int i = 0; i < 101; i++) {
 			double level = ((double) i) / 100;
 			dBValues[i] = (float) (Math.log(level) / Math.log(10.0) * 20.0);
-			
+
 		}
 	}
+
 	/**
 	 * calculates a dbValue accoring to the volume
 	 * @param volume the volume to be calculated <p>
@@ -45,14 +46,14 @@ public class DBValues {
 	 *  
 	 * @return the calculated dbValue
 	 */
-	public static float getDBValue(int volume){
+	public static float getDBValue(int volume) {
 		if (volume < 0) {
 			volume = 0;
 		}
 		if (volume > 100) {
 			volume = 100;
 		}
-		return dBValues[volume]; 
+		return dBValues[volume];
 	}
-	
+
 }

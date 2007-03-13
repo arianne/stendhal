@@ -86,17 +86,17 @@ public class SoundSystemTest {
 
 	@Test
 	public final void testContains() {
-		assertFalse(SoundSystem.get().contains("")); 
+		assertFalse(SoundSystem.get().contains(""));
 		//TODO: create test for finding one
-		
+
 	}
 
 	@Test
 	public final void testSetandGetMute() {
 		SoundSystem.get().setMute(true);
-		assertTrue("muted sound should be mute",SoundSystem.get().isMute());
+		assertTrue("muted sound should be mute", SoundSystem.get().isMute());
 		SoundSystem.get().setMute(false);
-		assertFalse("muted sound should be mute",SoundSystem.get().isMute());
+		assertFalse("muted sound should be mute", SoundSystem.get().isMute());
 	}
 
 	@Test
@@ -106,6 +106,7 @@ public class SoundSystemTest {
 		SoundSystem.get().setVolume(100);
 		assertEquals(100, SoundSystem.get().getVolume());
 	}
+
 	@Test
 	public final void testSetVolumeOutOfBounds() {
 		SoundSystem.get().setVolume(-1);
@@ -124,27 +125,27 @@ public class SoundSystemTest {
 	public final void testGet() {
 		SoundSystem ss1 = SoundSystem.get();
 		SoundSystem ss2 = SoundSystem.get();
-		assertTrue("must receive identical instance",(ss1==ss2));
-	
+		assertTrue("must receive identical instance", (ss1 == ss2));
+
 	}
 
 
 	@Ignore
 	public final void testExit() {
 		SoundSystem.get().exit();
-		assertFalse(SoundSystem.get().isOperative() );
+		assertFalse(SoundSystem.get().isOperative());
 	}
 
 	@Test
-	public final void testisValidEntry(){
-		
-		assertFalse("value has comma x",SoundSystem.get().isValidEntry(",x",""));
-		assertFalse("key does not start with sfx name has point",SoundSystem.get().isValidEntry("","."));
-		assertTrue("key does  start with sfx name has point",SoundSystem.get().isValidEntry("sfx.","."));
-		assertTrue("value has comma x and name has point",SoundSystem.get().isValidEntry("sfx.,x","."));
-		
+	public final void testisValidEntry() {
+
+		assertFalse("value has comma x", SoundSystem.get().isValidEntry(",x", ""));
+		assertFalse("key does not start with sfx name has point", SoundSystem.get().isValidEntry("", "."));
+		assertTrue("key does  start with sfx name has point", SoundSystem.get().isValidEntry("sfx.", "."));
+		assertTrue("value has comma x and name has point", SoundSystem.get().isValidEntry("sfx.,x", "."));
+
 	}
-	
+
 	@Ignore
 	public final void testTransferData() {
 		fail("Not yet implemented"); // TODO

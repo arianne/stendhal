@@ -39,7 +39,7 @@ import marauroa.common.game.RPObject;
  * 
  * @author Jane Hunt
  */
- class AmbientSound {
+class AmbientSound {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(AmbientSound.class);
 
@@ -63,11 +63,11 @@ import marauroa.common.game.RPObject;
 	 * true if AmbientSound is playing
 	 */
 	private boolean isPlaying;
-	
+
 	private float getVolumeDelta() {
 		return SoundSystem.get().getVolumeDelta();
 	}
-	
+
 	/**
 	 * The LoopSoundInfo stores information which is required to start the
 	 * continuously looping sound elements of this ambient sound.
@@ -93,7 +93,7 @@ import marauroa.common.game.RPObject;
 		 * @param volume the volume 0..100
 		 * @param delay  
 		 */
-		public LoopSoundInfo( final String sound,  final int volume,  final int delay) {
+		public LoopSoundInfo(final String sound, final int volume, final int delay) {
 			name = sound;
 			loudnessDB = DBValues.getDBValue(volume);
 			this.delay = delay;
@@ -141,7 +141,7 @@ import marauroa.common.game.RPObject;
 
 		float correctionDB;
 
-		
+
 		/**
 		 * Starts a looping sound.
 		 * @param loopInfo
@@ -162,8 +162,7 @@ import marauroa.common.game.RPObject;
 			// get the library sound clip
 			libClip = SoundEffectMap.getInstance().getSoundClip(soundInfo.name);
 			if (libClip == null) {
-				throw new IllegalArgumentException("sound unknown: "
-						+ soundInfo.name);
+				throw new IllegalArgumentException("sound unknown: " + soundInfo.name);
 			}
 
 			// handle delay phase request on sample start
@@ -179,9 +178,7 @@ import marauroa.common.game.RPObject;
 				soundInfo.stopClip();
 
 				// start playing
-				soundInfo.clip = libClip.getAudioClip(SoundSystem.get()
-						.getVolume(), loudnessDB + soundInfo.loudnessDB
-						+ correctionDB, getVolumeDelta());
+				soundInfo.clip = libClip.getAudioClip(SoundSystem.get().getVolume(), loudnessDB + soundInfo.loudnessDB + correctionDB, getVolumeDelta());
 				if (soundInfo.clip != null) {
 					soundInfo.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				}
@@ -189,7 +186,7 @@ import marauroa.common.game.RPObject;
 			}
 		}
 
-		
+
 	} // SoundStarter
 
 	/**
@@ -225,8 +222,8 @@ import marauroa.common.game.RPObject;
 			throw new NullPointerException();
 		}
 
-		if (radius < 0 ) {
-			throw new IllegalArgumentException("r=" + radius );
+		if (radius < 0) {
+			throw new IllegalArgumentException("r=" + radius);
 		}
 
 		this.name = name;
@@ -240,9 +237,7 @@ import marauroa.common.game.RPObject;
 		}
 
 		if (soundObject != null) {
-			hstr = "-- created LOC AMBIENT: " + name + " at ("
-					+ (int) soundObject.getX() + "," + (int) soundObject.getY()
-					+ "), rad=" + radius + " vol=" + volume;
+			hstr = "-- created LOC AMBIENT: " + name + " at (" + (int) soundObject.getX() + "," + (int) soundObject.getY() + "), rad=" + radius + " vol=" + volume;
 		} else {
 			hstr = "-- created GLOB AMBIENT: " + name + ", vol=" + volume;
 		}
@@ -268,8 +263,7 @@ import marauroa.common.game.RPObject;
 	 * @param volume
 	 *            int 0..100 loudness of ambient sound in total
 	 */
-	public AmbientSound(AmbientSound sound, String name, Point2D point,
-			int radius, int volume) {
+	public AmbientSound(AmbientSound sound, String name, Point2D point, int radius, int volume) {
 		this(name, point, radius, volume);
 
 		for (LoopSoundInfo c : sound.loopSounds) {
@@ -286,8 +280,7 @@ import marauroa.common.game.RPObject;
 			cycleList.add(cycle);
 		}
 
-		String hstr = "-- content supplied to " + name + ": "
-				+ loopSounds.size() + " loops, " + cycleList.size() + " cycles";
+		String hstr = "-- content supplied to " + name + ": " + loopSounds.size() + " loops, " + cycleList.size() + " cycles";
 		logger.debug(hstr);
 	} // constructor
 
@@ -307,8 +300,7 @@ import marauroa.common.game.RPObject;
 
 		sys = SoundSystem.get();
 		if (!sys.contains(sound)) {
-			logger.error("*** Ambient Sound: missing sound definition ("
-					+ sound + ")");
+			logger.error("*** Ambient Sound: missing sound definition (" + sound + ")");
 			return;
 		}
 
@@ -323,19 +315,15 @@ import marauroa.common.game.RPObject;
 	 * @param volTop
 	 * @param chance
 	 */
-	public void addCycle(final  String token,  final int period,  final int volBot,  final int volTop,
-			final  int chance) {
+	public void addCycle(final String token, final int period, final int volBot, final int volTop, final int chance) {
 		SoundCycle cycle;
 
-		cycle = new SoundCycle(soundObject, token, period, volBot, volTop,
-				chance);
+		cycle = new SoundCycle(soundObject, token, period, volBot, volTop, chance);
 		cycleList.add(cycle);
 	} // addCycle
 
 	private boolean canPlay() {
-		return (soundPos == null)
-				|| (playerHearing.contains(soundPos) && soundObject
-						.getAudibleArea().contains(playerPos));
+		return (soundPos == null) || (playerHearing.contains(soundPos) && soundObject.getAudibleArea().contains(playerPos));
 	}
 
 	/**
@@ -382,7 +370,7 @@ import marauroa.common.game.RPObject;
 				}
 			}
 			// return undone if no player
- else {
+			else {
 				return;
 			}
 		}
@@ -459,7 +447,7 @@ import marauroa.common.game.RPObject;
 	 * @return float dB correction of loudness
 	 */
 	private float getPlayerVolume() {
-		double distance; 
+		double distance;
 		double maxDist;
 		int fogVolume;
 
@@ -479,8 +467,7 @@ import marauroa.common.game.RPObject;
 			maxDist = playerHearing.getWidth() / 2;
 			// System.out.println("ambient player hearing radius: " +
 			// maxDist );
-			fogVolume = (int) Math.max(0,
-					 (95 * (maxDist - distance) / maxDist + 5));
+			fogVolume = (int) Math.max(0, (95 * (maxDist - distance) / maxDist + 5));
 			// System.out.println( "ambient (" + name + ") fog volume:
 			// dist=" + (int)distance + ", fog=" + fogVolume );
 			return DBValues.getDBValue(fogVolume);
@@ -539,10 +526,8 @@ import marauroa.common.game.RPObject;
 		synchronized (loopSounds) {
 			for (LoopSoundInfo info : loopSounds) {
 				if (info.clip != null) {
-					volCtrl = (FloatControl) info.clip
-							.getControl(FloatControl.Type.MASTER_GAIN);
-					volCtrl.setValue(SoundSystem.get().getVolumeDelta()
-							+ loudnessDB + info.loudnessDB + fogDB);
+					volCtrl = (FloatControl) info.clip.getControl(FloatControl.Type.MASTER_GAIN);
+					volCtrl.setValue(SoundSystem.get().getVolumeDelta() + loudnessDB + info.loudnessDB + fogDB);
 				}
 			}
 		}
@@ -561,8 +546,7 @@ import marauroa.common.game.RPObject;
 		// try to obtain player parameters if relative playing is ordered
 		if (soundPos != null) {
 			if ((playerObj = StendhalClient.get().getPlayer()) != null) {
-				player = (Player) StendhalClient.get().getGameObjects().get(
-						playerObj.getID());
+				player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
 			}
 		}
 		return player;

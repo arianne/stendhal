@@ -78,8 +78,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 * @param chance
 	 *            percent chance of performance for singular performances
 	 */
-	public SoundCycle(Entity entity, String token, int period, int volBot,
-			int volTop, int chance) {
+	public SoundCycle(Entity entity, String token, int period, int volBot, int volTop, int chance) {
 		super("Stendhal.CycleSound." + token);
 
 		ClipRunner clip;
@@ -198,8 +197,7 @@ class SoundCycle extends Thread implements Cloneable {
 			// if object bound sound cycle
 			if (entityRef != null) {
 				if ((o = entityRef.get()) != null) {
-					logger.debug("- start cyclic sound for entity: "
-							+ o.getType());
+					logger.debug("- start cyclic sound for entity: " + o.getType());
 					dataline = o.playSound(token, volBot, volTop, chance);
 				} else {
 					SoundSystem.stopSoundCycle(ID_Token);
