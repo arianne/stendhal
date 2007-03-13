@@ -190,10 +190,10 @@ public class Grammar {
 	public static String plural(String noun) {
 		String enoun = fullform(noun);
 		String postfix = "";
-		int pos = enoun.length() - 2;
-		if ((enoun.length() > 2) && (enoun.charAt(pos) == '+')) {
-			postfix = enoun.substring(pos - 1);
-			enoun = enoun.substring(0, pos - 1);
+		int pos = enoun.length() - 3;
+		if ((enoun.length() > 2) && (enoun.substring(pos, pos + 2).equals("_+"))) {
+			postfix = enoun.substring(pos);
+			enoun = enoun.substring(0, pos);
 		}
 		try {
 			// in "of"-phrases pluralize only the first part
