@@ -228,6 +228,12 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 				addHelp("If you are looking for Ouchit: he's upstairs.");
 				addGoodbye();
 			}
+			
+			@Override
+			protected void onGoodbye(Player player) {
+				// remove the cards when the player stops playing.
+				cleanUpTable();
+			}
 		};
 		
 		npcs.add(ramon);

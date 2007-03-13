@@ -156,11 +156,8 @@ public abstract class SpeakerNPC extends NPC {
 	// Default wait action when NPC is busy
 	private ChatAction waitAction;
 
-	// Default bye message when NPC stop chatting with the player
-	private String byeMessage;
-
-	// Default bye action when NPC stop chatting with the player
-	private ChatAction byeAction;
+	// Default bye message when NPC stops chatting with the player
+	private String goodbyeMessage;
 
 	private ChatCondition initChatCondition;
 
@@ -224,6 +221,14 @@ public abstract class SpeakerNPC extends NPC {
 
 	abstract protected void createDialog();
 
+	/**
+	 * Is called when the NPC stops chatting with a player.
+	 * Override it if needed.
+	 */
+	protected void onGoodbye(Player player) {
+		// do nothing
+	}
+	
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y + 1, 1, 1);
@@ -333,12 +338,10 @@ public abstract class SpeakerNPC extends NPC {
              // or if the player fell asleep ;) 
                  || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT)) {
              // we force him to say bye to NPC :)  
-				if (byeMessage != null) {
-					say(byeMessage);
+				if (goodbyeMessage != null) {
+					say(goodbyeMessage);
 				}
-				if (byeAction != null) {
-					byeAction.fire(attending, null, this);
-				}
+				onGoodbye(attending);
 				engine.setCurrentState(ConversationStates.IDLE);
 				attending = null;
 			}
@@ -392,12 +395,6 @@ public abstract class SpeakerNPC extends NPC {
 	public void addWaitMessage(String text, ChatAction action) {
 		waitMessage = text;
 		waitAction = action;
-	}
-
-	/** Message when NPC is attending another player. */
-	public void addByeMessage(String text, ChatAction action) {
-		byeMessage = text;
-		byeAction = action;
 	}
 
 	/** Message when NPC is attending another player. */
@@ -587,12 +584,17 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public void addGoodbye(String text) {
-		addByeMessage(text, null);
+		goodbyeMessage = text;
 		add(ConversationStates.ANY,
 				GOODBYE_MESSAGES,
 				ConversationStates.IDLE,
 				text,
-				null);
+				new ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						npc.onGoodbye(player);
+					}
+				});
 	}
 
 	public void addSeller(SellerBehaviour behaviour) {

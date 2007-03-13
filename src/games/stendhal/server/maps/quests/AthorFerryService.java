@@ -153,15 +153,6 @@ public class AthorFerryService extends AbstractQuest {
 				setPath(nodes, false);
 			}
 
-			// Always turn back to the wheel after a conversation
-			@Override
-			public void say(String text) {
-				super.say(text);
-				if (text.equals("So long...")) {
-					setDirection(Direction.DOWN);
-				}
-			}
-
 			@Override
 			protected void createDialog() {
 				
@@ -186,6 +177,12 @@ public class AthorFerryService extends AbstractQuest {
 							}
 						});
 			}
+			
+			@Override
+			protected void onGoodbye(Player player) {
+				System.out.println("GOODBYE");
+				setDirection(Direction.DOWN);
+			}
 
 
 			public void onNewFerryState(int status) {
@@ -199,6 +196,7 @@ public class AthorFerryService extends AbstractQuest {
 				setDirection(Direction.DOWN);
 			}
 		};
+		
 		NPCList.get().add(captain);
 		shipZone.assignRPObjectID(captain);
 		captain.put("class", "piratenpc");
@@ -283,7 +281,7 @@ public class AthorFerryService extends AbstractQuest {
 						});
 
 				add(ConversationStates.SERVICE_OFFERED,
-						"no",
+						SpeakerNPC.NO_MESSAGES,
 						null,
 						ConversationStates.ATTENDING,
 						"Aye, matey!", null);
