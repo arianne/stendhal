@@ -1,6 +1,3 @@
-/**
- * 
- */
 package games.stendhal.tools;
 
 import java.io.ByteArrayInputStream;
@@ -20,7 +17,7 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Checks if all sound files can be played on the current system.
+ * Checks if all sound files can be played on the current system. 
  * 
  * @author mtotz
  */
@@ -45,8 +42,7 @@ public class CheckSounds {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ZipInputStream zipFile = new ZipInputStream(CheckSounds.class
-				.getResourceAsStream("/data/sounds/stensounds0.jar"));
+		ZipInputStream zipFile = new ZipInputStream(CheckSounds.class.getResourceAsStream("/data/sounds/stensounds0.jar"));
 
 		Map<String, AudioFormat> formatMap = new TreeMap<String, AudioFormat>();
 		Map<String, String> fileFormatMap = new TreeMap<String, String>();
@@ -58,8 +54,7 @@ public class CheckSounds {
 			zipFile.read(temp);
 
 			try {
-				AudioInputStream ais = AudioSystem
-						.getAudioInputStream(new ByteArrayInputStream(temp));
+				AudioInputStream ais = AudioSystem.getAudioInputStream(new ByteArrayInputStream(temp));
 				AudioFormat format = ais.getFormat();
 				String formatString = format.toString();
 
@@ -68,19 +63,14 @@ public class CheckSounds {
 					DataLine.Info info = new DataLine.Info(Clip.class, format);
 					if (defaultMixer.isLineSupported(info)) {
 						AudioInputStream playStream = ais;
-						AudioFormat defaultFormat = new AudioFormat(format
-								.getSampleRate(), 16, 1, false, true);
-						if (AudioSystem.isConversionSupported(defaultFormat,
-								format)) {
-							playStream = AudioSystem.getAudioInputStream(
-									defaultFormat, ais);
+						AudioFormat defaultFormat = new AudioFormat(format.getSampleRate(), 16, 1, false, true);
+						if (AudioSystem.isConversionSupported(defaultFormat, format)) {
+							playStream = AudioSystem.getAudioInputStream(defaultFormat, ais);
 						} else {
-							System.out.println("conversion not supported (to "
-									+ defaultFormat + ")");
+							System.out.println("conversion not supported (to " + defaultFormat + ")");
 						}
 
-						System.out.println("testplaying " + entry.getName()
-								+ " " + playStream.getFormat());
+						System.out.println("testplaying " + entry.getName() + " " + playStream.getFormat());
 
 						Clip line = (Clip) defaultMixer.getLine(info);
 						line.open(playStream);
@@ -99,8 +89,7 @@ public class CheckSounds {
 					formatMap.put(formatString, format);
 				}
 			} catch (UnsupportedAudioFileException e) {
-				System.out.println(entry.getName()
-						+ " cannot be read, the file format is not supported");
+				System.out.println(entry.getName() + " cannot be read, the file format is not supported");
 			}
 
 			zipFile.closeEntry();
@@ -116,21 +105,15 @@ public class CheckSounds {
 		System.out.println("installed mixer: ");
 		for (int i = 0; i < mixerList.length; i++) {
 			Mixer.Info mixer = mixerList[i];
-			width[i] = Math.max(mixer.getName().length(), "unsupported"
-					.length());
-			System.out
-					.println(mixer.getName() + " - " + mixer.getDescription());
+			width[i] = Math.max(mixer.getName().length(), "unsupported".length());
+			System.out.println(mixer.getName() + " - " + mixer.getDescription());
 		}
-		System.out.println("Default: "
-				+ AudioSystem.getMixer(null).getMixerInfo().getName());
+		System.out.println("Default: " + AudioSystem.getMixer(null).getMixerInfo().getName());
 		System.out.println("\n");
 
-		System.out
-				.println(formatMap.size()
-						+ " audio formats\nThe maximum available lines for the format is in brackets.");
+		System.out.println(formatMap.size()+ " audio formats\nThe maximum available lines for the format is in brackets.");
 		for (int i = 0; i < mixerList.length; i++) {
-			System.out.print(getString(mixerList[i].getName(), width[i], ' ')
-					+ " | ");
+			System.out.print(getString(mixerList[i].getName(), width[i], ' ') + " | ");
 		}
 		System.out.println("Format");
 		for (int i = 0; i < mixerList.length; i++) {
