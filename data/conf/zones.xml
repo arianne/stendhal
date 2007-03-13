@@ -1603,8 +1603,88 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
        <!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
      </zone>
 
+     <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_1_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_2" file="int_athor_holiday_apartment_2.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_2_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_3" file="int_athor_holiday_apartment_3.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_3_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_4" file="int_athor_holiday_apartment_4.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_4_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_5" file="int_athor_holiday_apartment_5.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_5_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_6" file="int_athor_holiday_apartment_6.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_6_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_7" file="int_athor_holiday_apartment_7.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_7_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_8" file="int_athor_holiday_apartment_8.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_8_entrance"/>
+       </portal>
+     </zone>
+
      <zone name="0_athor_island_w" file="0_athor_island_w.xstend">
        <title/>
+       <portal x="185" y="57" ref="apartment_1_entrance">
+         <destination zone="int_athor_holiday_apartment_1" ref="out"/>
+       </portal>
+       <portal x="194" y="57" ref="apartment_2_entrance">
+         <destination zone="int_athor_holiday_apartment_2" ref="out"/>
+       </portal>
+       <portal x="206" y="63" ref="apartment_3_entrance">
+         <destination zone="int_athor_holiday_apartment_3" ref="out"/>
+       </portal>
+       <portal x="206" y="69" ref="apartment_4_entrance">
+         <destination zone="int_athor_holiday_apartment_4" ref="out"/>
+       </portal>
+       <portal x="194" y="75" ref="apartment_5_entrance">
+         <destination zone="int_athor_holiday_apartment_5" ref="out"/>
+       </portal>
+       <portal x="185" y="75" ref="apartment_6_entrance">
+         <destination zone="int_athor_holiday_apartment_6" ref="out"/>
+       </portal>
+       <portal x="175" y="69" ref="apartment_7_entrance">
+         <destination zone="int_athor_holiday_apartment_7" ref="out"/>
+       </portal>
+       <portal x="175" y="63" ref="apartment_8_entrance">
+         <destination zone="int_athor_holiday_apartment_8" ref="out"/>
+       </portal>
+       <!--
+       <portal x="191" y="65" ref="diving_board_destination">
+         <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+       </portal>
+       <portal x="191" y="67" ref="diving_board">
+         <destination zone="0_athor_island_w" ref="diving_board_destination"/>
+       </portal>
+       -->
      </zone>
 
  <!--  Level -1 -->
