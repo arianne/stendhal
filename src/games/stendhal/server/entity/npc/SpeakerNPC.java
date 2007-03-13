@@ -134,6 +134,9 @@ public abstract class SpeakerNPC extends NPC {
 	public static final List<String> YES_MESSAGES = Arrays.asList(
 			"yes", "ok");
 
+	public static final List<String> NO_MESSAGES = Arrays.asList(
+			"no");
+
 	public static final List<String> GOODBYE_MESSAGES = Arrays.asList(
 			"bye", "farewell", "cya", "adios");
 	
