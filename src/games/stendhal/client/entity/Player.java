@@ -16,6 +16,7 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
+import games.stendhal.common.Direction;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -175,6 +176,9 @@ public class Player extends RPEntity {
 
 	}
 
+	
+
+	
 	@Override
 	public void onEnter(int _x, int _y) {
 		if ((StendhalClient.get().getPlayer() != null)
@@ -204,6 +208,13 @@ public class Player extends RPEntity {
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
 		}
 
+	}
+
+	@Override
+	public void onMove(int x, int y, Direction direction, double speed) {
+			super.onMove(x, y, direction, speed);
+			if (this.rpObject == StendhalClient.get().getPlayer())
+			WorldObjects.firePlayerMoved(this);
 	}
 
 }
