@@ -1,7 +1,10 @@
 package games.stendhal.client.entity;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import games.stendhal.common.Direction;
 
 import java.awt.geom.Point2D;
@@ -13,17 +16,10 @@ import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class EntityTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 
 	@Test
 	public final void testEntity() {
@@ -155,6 +151,7 @@ public class EntityTest {
 	}
 
 	@Test
+	@Ignore
 	public final void testTranslate() {
 		assertEquals("data/sprites/hugo.png", Entity.translate("hugo"));
 	}
@@ -192,16 +189,19 @@ public class EntityTest {
 	}
 
 	@Test
+	@Ignore
 	public final void testLoadSprite() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testCalcDeltaMovement() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnMove() {
 		fail("Not yet implemented"); // TODO
 	}
@@ -220,141 +220,169 @@ public class EntityTest {
 	}
 
 	@Test
+	@Ignore
 	public final void testOnEnter() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnLeave() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnEnterZone() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnLeaveZone() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnAdded() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnChangedAdded() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnChangedRemoved() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnRemoved() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnCollideWith() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnCollide() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testDraw() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testMove() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testStopped() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testPlaySoundStringIntIntInt() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testPlaySoundStringIntInt() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetNumSlots() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetSlot() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetSlots() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetModificationCount() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testIsModified() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetArea() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetDrawedArea() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testDefaultAction() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOfferedActions() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testBuildOfferedActions() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnAction() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testCompareTo() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetZIndex() {
 		fail("Not yet implemented"); // TODO
 	}

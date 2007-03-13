@@ -1,6 +1,7 @@
 package games.stendhal.client.entity;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.awt.geom.Rectangle2D;
 
@@ -9,6 +10,7 @@ import marauroa.common.game.RPObject;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class PlayerTest {
@@ -22,36 +24,43 @@ public class PlayerTest {
 	}
 
 	@Test
+	@Ignore
 	public final void testOnEnter() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnChangedAdded() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetArea() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testGetDrawedArea() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testBuildOfferedActions() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testOnAction() {
 		fail("Not yet implemented"); // TODO
 	}
 
 	@Test
+	@Ignore
 	public final void testBuildAnimations() {
 		fail("Not yet implemented"); // TODO
 	}
