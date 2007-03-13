@@ -1218,10 +1218,7 @@
 				<path>data\sounds\stensounds.properties</path>
 				<source>true</source>
 			</fileitem>
-			<fileitem>
-				<path>data\sounds\stensounds0.jar</path>
-				<source>true</source>
-			</fileitem>
+		
 			<fileitem>
 				<path>data\script\stendhal.py</path>
 				<source>true</source>
@@ -1854,10 +1851,6 @@
 			</fileitem>
 			<fileitem>
 				<path>build_client_sound_data\data\sounds\stensounds.properties</path>
-				<source>true</source>
-			</fileitem>
-			<fileitem>
-				<path>build_client_sound_data\data\sounds\stensounds0.jar</path>
 				<source>true</source>
 			</fileitem>
 			<fileitem>
