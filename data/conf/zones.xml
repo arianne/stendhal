@@ -1685,6 +1685,20 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
          <destination zone="0_athor_island_w" ref="diving_board_destination"/>
        </portal>
        -->
+       <entity x="211" y="42">
+         <implementation class-name="games.stendhal.server.entity.Sign">
+           <attribute name="text">
+             Changing Room for Women
+           </attribute>
+         </implementation>
+       </entity>
+       <entity x="216" y="42">
+         <implementation class-name="games.stendhal.server.entity.Sign">
+           <attribute name="text">
+             Changing Room for Men
+           </attribute>
+         </implementation>
+       </entity>
      </zone>
 
  <!--  Level -1 -->
