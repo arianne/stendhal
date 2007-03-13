@@ -3,7 +3,6 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -75,7 +74,12 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	}
 	
 	private void cleanUpTable() {
-		// TODO
+		if (playerCardsItem != null) {
+			zone.remove(playerCardsItem);
+		}
+		if (bankCardsItem != null) {
+			zone.remove(bankCardsItem);
+		}
 	}
 	
 	private int countAces(List<String> cards) {
@@ -132,8 +136,10 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		}
 		playerCardsItem.setQuantity(playerSum);
 		playerCardsItem.setDescription("You see the player's cards: " + SpeakerNPC.enumerateCollection(playerCards));
+		playerCardsItem.notifyWorldAboutChanges();
 		bankCardsItem.setQuantity(bankSum);
 		bankCardsItem.setDescription("You see the bank's cards: " + SpeakerNPC.enumerateCollection(bankCards));
+		bankCardsItem.notifyWorldAboutChanges();
 		if (! playerStands) {
 			message += "You have " + playerSum + ".\n";
 		}
@@ -160,9 +166,9 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		String message = null;
 		if (isBlackjack (bankCards) && isBlackjack (playerCards)) {
 			message = "You have a blackjack, but the bank has one too. It's a push.";
-		} else if (isBlackjack (bankCards) && playerStands) {
+		} else if (isBlackjack (bankCards)) {
 			message = "The bank has a blackjack. Better luck next time!";				
-		} else if (isBlackjack (playerCards) && bankStands) {
+		} else if (isBlackjack (playerCards)) {
 			message = "You have a blackjack! Congratulations!";
 		} else if (playerSum > 21) {
 			if (bankSum > 21 ) {
