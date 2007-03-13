@@ -67,21 +67,20 @@ public class PlayerTest {
 
 	@Test (expected=NullPointerException.class)
 	public final void testPlayerNull() {
-		Player pl = new Player(null);
+		new Player(null);
 		
 	}
 
 	@Test (expected=AttributeNotFoundException.class)
 	public final void testPlayerNewRPObject() {
-		Player pl = new Player(new RPObject());
+		new Player(new RPObject());
 		
 	}
 	@Test 
 	public final void testPlayer() {
 		RPObject rpo = new RPObject();
 		rpo.put("type","player");
-		Player pl = (Player) EntityFabric.createEntity(rpo);
-		
+		EntityFabric.createEntity(rpo);
 	}
 	
 	@Test
