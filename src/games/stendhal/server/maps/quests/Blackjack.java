@@ -152,10 +152,11 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 				message += "The bank stands.\n";
 			}
 		}
-		message += analyze(player);
-		if (message != null) {
-			ramon.say(message);
+		String message2 = analyze(player); 
+		if (message2 != null) {
+		    message += message2;
 		}
+		ramon.say(message);
 	}
 
 	/**
@@ -203,12 +204,6 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		return message;
 	}
 	
-	private void payOff(Player player, int factor) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
-		money.setQuantity(factor * STAKE);
-		player.equip(money, true);
-	}
-
 	private void letBankDrawAfterPause(String playerName) {
 		TurnNotifier.get().notifyInTurns(3, this, playerName);
 	}
@@ -219,6 +214,12 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		if (message.equals(ramon.getAttending().getName())) {
 			dealCards(ramon.getAttending(), 1);
 		}
+	}
+
+	private void payOff(Player player, int factor) {
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
+		money.setQuantity(factor * STAKE);
+		player.equip(money, true);
 	}
 
 	@Override
