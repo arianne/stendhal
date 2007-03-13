@@ -277,6 +277,10 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 			cardValues.put("Ace of " + color, 11);
 		}
 		
+		// increase the timeout, as otherwise the player often
+		// would use their stake because of reacting too slow.
+		ramon.setPlayerChatTimeout(180); // 1 min at 300 ms/turn
+		
 		ramon.add(ConversationStates.ATTENDING,
 					"play",
 					null,

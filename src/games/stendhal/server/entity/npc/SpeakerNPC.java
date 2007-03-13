@@ -145,10 +145,9 @@ public abstract class SpeakerNPC extends NPC {
 	/**
 	 * Determines how long a conversation can be paused before it will
 	 * terminated by the NPC.
+	 * Defaults to 30 seconds at 300 ms / turn.
 	 */
-	private static long TIMEOUT_PLAYER_CHAT = 90; // 30 seconds at 300ms.
-
-
+	private long playerChatTimeout = 90;
 
 	// Default wait message when NPC is busy
 	private String waitMessage;
@@ -320,6 +319,15 @@ public abstract class SpeakerNPC extends NPC {
 		// They can't die
 	}
 
+	/**
+	 * Sets the time a conversation can be paused before it will be
+	 * terminated by the NPC.
+	 * @param playerChatTimeout the time, in turns
+	 */
+	public void setPlayerChatTimeout(long playerChatTimeout) {
+		this.playerChatTimeout = playerChatTimeout;
+	}
+	
 	@Override
 	public void logic() {
 		if (has("text")) {
@@ -336,7 +344,7 @@ public abstract class SpeakerNPC extends NPC {
 		     // If the player is too far away
 		    if ((attending.squaredDistance(this) > 8 * 8)                
              // or if the player fell asleep ;) 
-                 || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > TIMEOUT_PLAYER_CHAT)) {
+                 || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > playerChatTimeout)) {
              // we force him to say bye to NPC :)  
 				if (goodbyeMessage != null) {
 					say(goodbyeMessage);
