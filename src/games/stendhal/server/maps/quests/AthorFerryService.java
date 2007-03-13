@@ -342,7 +342,7 @@ public class AthorFerryService extends AbstractQuest {
 				if (status == AthorFerry.ANCHORED_AT_MAINLAND || status == AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: We have arrived!");
 				} else  {
-					say("Attention: We have set sail!.");
+					say("Attention: We have set sail!");
 				}
 			}
 
