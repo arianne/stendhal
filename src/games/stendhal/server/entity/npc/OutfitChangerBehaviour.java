@@ -29,9 +29,12 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	private static final int NO_CHANGE = -1;
 	//private int endurance;
 	
+	// all available outfit types are predefined here.
 	private static Map<String, int[][]> outfitTypes = new HashMap<String, int[][]>();
 	static {
-		// hair, head, dress, base
+		// In each line, there is one possible outfit of this
+		// outfit type, in the format: hair, head, dress, base.
+		// One of these outfit will be chosen randomly.
 		int[][] maleSwimsuits = {
 				{NO_CHANGE, NO_CHANGE, 95, NO_CHANGE},
 				{NO_CHANGE, NO_CHANGE, 96, NO_CHANGE},
@@ -47,6 +50,16 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 				{NO_CHANGE, NO_CHANGE, 94, NO_CHANGE}
 		};
 		outfitTypes.put("female_swimsuit", femaleSwimsuits);
+		
+		int[][] masks = {
+				{NO_CHANGE, 80, NO_CHANGE, NO_CHANGE},
+				{NO_CHANGE, 81, NO_CHANGE, NO_CHANGE},
+				{NO_CHANGE, 82, NO_CHANGE, NO_CHANGE},
+				{NO_CHANGE, 83, NO_CHANGE, NO_CHANGE},
+				{NO_CHANGE, 84, NO_CHANGE, NO_CHANGE},
+		};
+		outfitTypes.put("mask", masks);
+
 	}
 	
 	/**
