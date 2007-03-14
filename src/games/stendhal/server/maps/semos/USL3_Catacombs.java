@@ -32,20 +32,15 @@ public class USL3_Catacombs implements ZoneConfigurator {
 	private void buildSemosCatacombs3Area(StendhalRPZone zone) {
 	SpeakerNPC sicky = new SpeakerNPC("Markovich") {
 			@Override
+			    // he doesn't move.
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(61,60));
-				nodes.add(new Path.Node(59,60));
-				nodes.add(new Path.Node(59,58));
-				nodes.add(new Path.Node(61,58));
-				nodes.add(new Path.Node(59,58));
-				nodes.add(new Path.Node(59,60));
-			     	setPath(nodes,true);
+						     	setPath(nodes,false);
 			}
 
 			@Override
 			protected void createDialog() {
-			        addGoodbye();
+			        addGoodbye("*cough* ... farewell ... *cough*");
 			    	add(ConversationStates.ATTENDING,
 				                Arrays.asList("blood", "vampirette_entrails", "bat_entrails"),
 						null,
