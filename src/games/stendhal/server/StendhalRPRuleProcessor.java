@@ -35,6 +35,7 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptRunner;
@@ -516,6 +517,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				p.notifyOnline(player.getName());
 			}
 			addGameEvent(player.getName(), "login");
+			LoginNotifier.get().onPlayerLoggedIn(player.getName());
+
 			return true;
 		} catch (Exception e) {
 			logger.error("There has been a severe problem loading player "

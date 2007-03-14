@@ -121,8 +121,6 @@ public class Player extends RPEntity implements TurnListener {
 		player.stop();
 		player.stopAttack();
 
-		LoginNotifier.get().onPlayerLoggedIn(player.getName());
-		
 		// TODO: get rid of this, only use LoginListeners and LoginNotifier instead.
 		StendhalQuestSystem.get().onPlayerLogin(player);
 
