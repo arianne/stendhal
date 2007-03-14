@@ -81,21 +81,17 @@ public class Engine {
 	public void setCurrentState(int currentState) {
 		this.currentState = currentState;
 	}
-
-
-	// TODO: docu please. What is type?
-	public boolean matchState(int type, Player player, String text) {
-		// what the fuck is this? -- mort (DHerding@gmx.de)
-		// TODO: restore the type definition from CVS that mort removed (in SpeakerNPC)
+	
+	public boolean matchState(MatchType type, Player player, String text) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
 
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
-			if (((type == 0) && (currentState != ConversationStates.IDLE)
+			if (((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE)
 					&& transition.absoluteJump(text))
-					|| ((type == 1) && transition.matches(currentState, text))
-					|| ((type == 2) && transition.matchesBeginning(currentState, text))) {
+					|| ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text))
+					|| ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text))) {
 				if (transition.isConditionFulfilled(player, text, speakerNPC)) {
 					if (transition.getCondition() == null) {
 						listConditionLess.add(transition);

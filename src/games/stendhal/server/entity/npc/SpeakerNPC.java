@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.npc.fsm.MatchType;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
@@ -497,11 +498,11 @@ public abstract class SpeakerNPC extends NPC {
 
 		lastMessageTurn = StendhalRPRuleProcessor.get().getTurn();
 
-		if (engine.matchState(0, player, text)) {
+		if (engine.matchState(MatchType.ABSOLUTE_JUMP, player, text)) {
 			return true;
-		} else if (engine.matchState(1, player, text)) {
+		} else if (engine.matchState(MatchType.EXACT_MATCH, player, text)) {
 			return true;
-		} else if (engine.matchState(2, player, text)) {
+		} else if (engine.matchState(MatchType.SIMILAR_MATCH, player, text)) {
 			return true;
 		} else {
 			// Couldn't match the text with the current FSM state
