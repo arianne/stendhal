@@ -13,7 +13,9 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,12 +24,15 @@ import java.util.Map;
  * Represents the behaviour of a NPC who is able to sell masks
  * to a player.
  */
-public class OutfitChangerBehaviour extends MerchantBehaviour {
+public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnListener, LoginListener {
 
-	// TODO: integrate server.maps.quests.CostumeParty
-	
 	private static final int NO_CHANGE = -1;
-	//private int endurance;
+
+	public static final int NEVER_WEARS_OFF = -1;
+
+	private int endurance;
+	
+	private String wearOffMessage;
 	
 	// all available outfit types are predefined here.
 	private static Map<String, int[][]> outfitTypes = new HashMap<String, int[][]>();
@@ -63,28 +68,31 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	}
 	
 	/**
-	 * Creates a new OutfitChangerBehaviour with an empty pricelist.
+	 * Creates a new OutfitChangerBehaviour for outfits never wear off
+	 * automatically.
 	 *
-	 * @param endurance the time (in turns) the outfit will stay,
-	 * 		  			or -1 if the outfit should never disappear
-	 * 				    automatically.
+	 * @param priceList list of outfit types and their prices
 	 */
-	public OutfitChangerBehaviour(/*int endurance*/) {
-		super(new HashMap<String, Integer>());
-		//this.endurance = endurance;
+	public OutfitChangerBehaviour(Map<String, Integer> priceList) {
+		this(priceList, NEVER_WEARS_OFF, null);
 	}
 
 	/**
-	 * Creates a new OutfitChangerBehaviour with a pricelist.
+	 * Creates a new OutfitChangerBehaviour for outfits that wear off
+	 * automatically after some time.
 	 *
-	 * @param endurance the time (in turns) the outfit will stay,
-	 * 		  			or -1 if the outfit should never disappear
+	 * @param priceList list of outfit types and their prices
+	 * @param endurance the time (in turns) the outfit will stay, or
+	 * 					DONT_WEAR_OFF if the outfit should never disappear
 	 * 				    automatically.
-	 * @param priceList list of item names and their prices
+	 * @param wearOffMessage the message that the player should receive after
+	 * 					the outfit has worn off, or null if no message should
+	 * 					be sent.
 	 */
-	public OutfitChangerBehaviour(/*int endurance,*/ Map<String, Integer> priceList) {
+	public OutfitChangerBehaviour(Map<String, Integer> priceList, int endurance, String wearOffMessage) {
 		super(priceList);
-		//this.endurance = endurance;
+		this.endurance = endurance;
+		this.wearOffMessage = wearOffMessage;
 	}
 
 	/**
@@ -144,6 +152,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			player.put("outfit", newOutfitIndex);
 			player.notifyWorldAboutChanges();
 			//player.setQuest(questSlot, Long.toString(System.currentTimeMillis() + 30 * 60 * 1000));
+			
+			if (endurance != NEVER_WEARS_OFF) {
+				// make the costume disappear after some time
+				TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
+			}
 
 			return true;
 		} else {
@@ -205,6 +218,27 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			return true;
 		}
 		return false;
+	}
+	
+	protected void onWornOff(Player player) {
+		player.sendPrivateText(wearOffMessage);
+		returnToOriginalOutfit(player);
+	}
 
+	public void onTurnReached(int currentTurn, String message) {
+		String playerName = message;
+		Player player = StendhalRPRuleProcessor.get().getPlayer(playerName);
+		if (player != null) {
+			onWornOff(player);
+		} else {
+			// The player has logged out before the outfit wore off.
+			// Remove it when the player logs in again.
+			LoginNotifier.get().notifyOnLogin(playerName, this, null);
+		}
+	}
+
+	public void onLoggedIn(String playerName, String message) {
+		Player player = StendhalRPRuleProcessor.get().getPlayer(playerName);
+		onWornOff(player);
 	}
 }

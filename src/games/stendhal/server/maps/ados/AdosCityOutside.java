@@ -4,10 +4,12 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -46,12 +48,17 @@ public class AdosCityOutside implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi, there. Do you need #help with anything?");
-				// should be disabled as she doesn't give masks now.
-				//	addHelp("If you don't like your mask, you can remove it by clicking on yourself and choosing Set Outfit."); 
+				addHelp("If you don't like your mask, you can #return and I will remove it, or you can just wait until it wears off."); 
 				addHelp("Perhaps Anna still want some toys. She loves my costumes and dressing up, perhaps she'd like a dress to try on. If you already got her one, I guess she'll have to wait till I make more costumes!");// this is a hint that one of the items Anna wants is a dress (goblin dress)
 				addJob("I am a makeup artist.");
-				addReply("offer", "Normally I sell masks. But I ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
+				//addReply("offer", "Normally I sell masks. But I ran out of clothes and cannot by new ones until the cloth seller gets back from his search.");
 				addGoodbye("Bye, come back soon.");
+				
+				Map<String, Integer> priceList = new HashMap<String, Integer>();
+				priceList.put("mask", 2);
+				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
+						priceList, 100, "Your mask has worn off.");
+				addOutfitChanger(behaviour, "buy");
 			}
 		};
 		npcs.add(npc);
