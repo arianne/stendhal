@@ -1654,7 +1654,19 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
      <zone name="int_athor_dressing_room_m" file="int_athor_dressing_room_m.xstend">
        <portal x="6" y="14" ref="out">
          <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
-         <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male"/>
+         <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male">
+           <attribute name="xml-portals">using</attribute>
+           <attribute name="xml-entities">using</attribute>
+         </configurator>
+         <!-- This must be after the NPC configurator -->
+         <!-- Doesn't work for me for some reason --mort -->
+         <!--
+         <entity x="3" y="9">
+           <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+             <attribute name="npc">David</attribute>
+           </implementation>
+         </entity>
+         -->
        </portal>
      </zone>
 
