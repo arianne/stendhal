@@ -28,6 +28,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.events.LoginNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -120,6 +121,9 @@ public class Player extends RPEntity implements TurnListener {
 		player.stop();
 		player.stopAttack();
 
+		LoginNotifier.get().onPlayerLoggedIn(player.getName());
+		
+		// TODO: get rid of this, only use LoginListeners and LoginNotifier instead.
 		StendhalQuestSystem.get().onPlayerLogin(player);
 
 		PlayerRPClass.readAdminsFromFile(player);
