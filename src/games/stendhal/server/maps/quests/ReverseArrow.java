@@ -30,15 +30,19 @@ import marauroa.common.game.IRPZone;
  *
  * @author hendrik
  */
-// TODO: split this class, it does to many different things
+// TODO: split this class, it does too many different things
 public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListener {
 
 	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
 	private static final String ZONE_NAME = "int_ados_reverse_arrow";
+	/** Time (in Seconds) to solve the puzzle */
 	private static final int TIME = 60;
+	/** Possible number of moves to solve the puzzle */
 	private static final int MAX_MOVES = 3;
+	/** Horizontal position of the upper left token at the beginning */
 	private static final int OFFSET_X = 15;
+	/** Vertical position of the upper left token at the beginning */
 	private static final int OFFSET_Y = 10;
 
 	// "static" data
@@ -116,15 +120,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		public void onTurnReached(int currentTurn, String message) {
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
-					npc.say("Congratulations you solved the quiz.");
+					npc.say("Congratulations, you solved the quiz.");
 					StackableItem money = (StackableItem) StendhalRPWorld.get()
-					.getRuleManager().getEntityManager()
-					.getItem("money");
+							.getRuleManager().getEntityManager()
+							.getItem("money");
 					money.setQuantity(50);
 					player.equip(money);
 					player.addXP(100);
 				} else {
-					npc.say("Congratulations you solved the quiz again. I'm afraid there is only a reward on the first time.");
+					npc.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
@@ -176,7 +180,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
 			// Note that "player" always refers to the current player
-			// in order not to teleport the next player out to early,
+			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
 			if ((player == timerPlayer) && (player != null)) {
 				IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
@@ -196,10 +200,11 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	}
 
 	/**
-	 * Notifies this script on sucessful usage
+	 * A special door that only lets one player in at a time, and
+	 * that notifies this script on sucessful usage.
 	 */
-	class NotifingDoor extends OnePlayerRoomDoor {
-		NotifingDoor(String clazz, Direction dir) {
+	class NotifyingDoor extends OnePlayerRoomDoor {
+		NotifyingDoor(String clazz, Direction dir) {
 			super(clazz, dir);
 		}
 
@@ -316,7 +321,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		// 0_semos_mountain_n2 at (95,101)
 		String entranceZoneName = "0_semos_mountain_n2"; 
 		entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
-		door = new NotifingDoor("housedoor", Direction.DOWN);
+		door = new NotifyingDoor("housedoor", Direction.DOWN);
 		entranceZone.assignRPObjectID(door);
 		door.setX(95);
 		door.setY(101);
