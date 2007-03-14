@@ -1659,7 +1659,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
            <attribute name="xml-entities">using</attribute>
          </configurator>
          <!-- This must be after the NPC configurator -->
-         <!-- Doesn't work for me for some reason --mort -->
+         <!-- Doesn't work for me for some reason -mort -->
          <!--
          <entity x="3" y="9">
            <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
