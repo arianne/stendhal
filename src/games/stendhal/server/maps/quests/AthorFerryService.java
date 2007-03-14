@@ -180,7 +180,6 @@ public class AthorFerryService extends AbstractQuest {
 			
 			@Override
 			protected void onGoodbye(Player player) {
-				System.out.println("GOODBYE");
 				setDirection(Direction.DOWN);
 			}
 
