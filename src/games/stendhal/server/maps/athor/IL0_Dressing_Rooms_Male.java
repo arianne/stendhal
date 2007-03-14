@@ -59,8 +59,7 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 		};
 		NPCList.get().add(david);
 		zone.assignRPObjectID(david);
-		// TODO
-		david.put("class", "naughtyteennpc");
+		david.put("class", "lifeguardmalenpc");
 		david.setDirection(Direction.RIGHT);
 		david.set(3, 10);
 		david.initHP(100);

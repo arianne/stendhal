@@ -59,8 +59,7 @@ public class IL0_Dressing_Rooms_Female implements ZoneConfigurator {
 		};
 		NPCList.get().add(pam);
 		zone.assignRPObjectID(pam);
-		// TODO
-		pam.put("class", "woman_002_npc");
+		pam.put("class", "lifeguardfemalenpc");
 		pam.setDirection(Direction.LEFT);
 		pam.set(12, 10);
 		pam.initHP(100);
