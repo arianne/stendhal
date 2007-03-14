@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class CostumeParty extends AbstractQuest {
 
+	// TODO: use server.entity.npc.OutfitChangeBehaviour
+
 	private static final String QUEST_SLOT = "costume_party";
 	
 	private class CostumeStripTimer implements TurnListener {
