@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * This is not a real quest, but rather a ferry service that brings players
- * from the mainland to Athor island and back.
+ * from the mainland to Athor Island and back.
  * 
  * NPCs that have to do with the ferry:
  * * Eliza   - brings players from the mainland docks to the ferry.
@@ -28,6 +28,7 @@ import java.util.Map;
  * * Jackie  - brings players from the ferry to the docks.
  * * Captain - the ship captain.
  * * Laura   - the ship galley maid.
+ * * Ramon   - offers blackjack on the ship. 
  * 
  * @author daniel
  *
@@ -160,7 +161,7 @@ public class AthorFerryService extends AbstractQuest {
 				addGoodbye("So long...");
 			
 				// TODO
-				addHelp("...");
+				addHelp("Never look up when a sea gull is flying over ye head!");
 				addJob("I'm th' captain of me boat.");
 
 				add(ConversationStates.ATTENDING,
@@ -307,6 +308,8 @@ public class AthorFerryService extends AbstractQuest {
 	}
 
 	private void buildShipUnderDeck1Area(final StendhalRPZone shipUnderDeck1Zone) {
+		// Laura is defined here because she'll announce when the ferry
+		// arrives or departs
 		FerryAnnouncerNPC laura = new FerryAnnouncerNPC("Laura") {
 			@Override
 			protected void createPath() {
@@ -366,11 +369,13 @@ public class AthorFerryService extends AbstractQuest {
 			@Override
 			protected void createDialog() {
 				addGoodbye("Goodbye!");
-				addGreeting("Welcome to the Athor #ferry service! How can I #help you?");
+				addGreeting("Welcome to the #ferry service to #Athor #island! How can I #help you?");
 				addHelp("You can #board the #ferry for only "
 						+ PRICE
 						+ " gold, but only when it's anchored near this harbor. Just ask me for the #status if you want to know where the ferry is.");
-				addJob("If passengers want to #board the #ferry to Athor island, I take them to the ship with this rowing boat.");
+				addJob("If passengers want to #board the #ferry to #Athor #island, I take them to the ship with this rowing boat.");
+				addReply("ferry", "The ferry sails regularly between this coast and #Athor #island. You can #board it when it's here. Ask me for the #status to find out where it is currently.");
+				addReply(Arrays.asList("Athor", "island"), "Athor Island is a fun place where many people spend their holidays.");
 				add(ConversationStates.ATTENDING, "status",
 						null,
 						ConversationStates.ATTENDING,
@@ -467,6 +472,7 @@ public class AthorFerryService extends AbstractQuest {
 						+ PRICE
 						+ " gold, but only when it's anchored near this harbor. Just ask me for the #status if you want to know where the ferry is.");
 				addJob("If passengers want to #board the #ferry to the mainland, I take them to the ship with this rowing boat.");
+				addReply("ferry", "The ferry sails regularly between this island and the mainland, Faiumoni. You can #board it when it's here. Ask me for the #status to find out where it is currently.");
 				add(ConversationStates.ATTENDING, "status",
 						null,
 						ConversationStates.ATTENDING,
