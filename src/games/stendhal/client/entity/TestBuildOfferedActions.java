@@ -9,21 +9,20 @@ import java.util.List;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests if the offeredActions contextMenu is provided with the right keywords
+ * uses a MOCKEntitty and a MOCKRPObject for initialisation
+ */
 public class TestBuildOfferedActions {
 	static List<String> list = null;
 
 	@Before
 	public void setUpBefore() throws Exception {
 		list = new ArrayList<String>();
-	}
-
-	@After
-	public void tearDownAfter() throws Exception {
 	}
 
 	@Test
@@ -144,7 +143,7 @@ public void testCarrot() throws Exception{
 		private String _eclass;
 
 		MockRPObject() {
-
+				// no super(), so implementation needed for use
 		}
 
 		MockRPObject(String type, String eclass) {
@@ -162,12 +161,12 @@ public void testCarrot() throws Exception{
 		public String get(String attribute) throws AttributeNotFoundException {
 			if (attribute.equals("type")) {
 				return _type;
-			} else {
-				return _eclass;
 			}
+			return _eclass;
 
 		}
 
+		@Override
 		public int getInt(String dir) {
 			return 1;
 		}
