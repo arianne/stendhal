@@ -1,0 +1,141 @@
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
+package games.stendhal.server.entity.npc;
+
+import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.player.Player;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
+
+/**
+ * Represents the behaviour of a NPC who is able to sell masks
+ * to a player.
+ */
+public class OutfitChangerBehaviour extends MerchantBehaviour {
+	
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(OutfitChangerBehaviour.class);
+
+	private static final int NO_CHANGE = -1;
+	//private int endurance;
+	
+	private static Map<String, int[][]> outfitTypes = new HashMap<String, int[][]>();
+	static {
+		// hair, head, dress, base
+		int[][] maleSwimsuits = {
+				{NO_CHANGE, NO_CHANGE, 95, NO_CHANGE},
+				{NO_CHANGE, NO_CHANGE, 96, NO_CHANGE},
+				{NO_CHANGE, NO_CHANGE, 97, NO_CHANGE},
+				{NO_CHANGE, NO_CHANGE, 98, NO_CHANGE}
+		};
+		outfitTypes.put("male_swimsuit", maleSwimsuits);
+		
+		int[][] femaleSwimsuits = {
+				{NO_CHANGE, NO_CHANGE, 91, NO_CHANGE},
+				{NO_CHANGE, NO_CHANGE, 92, NO_CHANGE},
+				{NO_CHANGE, NO_CHANGE, 93, NO_CHANGE},
+				{NO_CHANGE, NO_CHANGE, 94, NO_CHANGE}
+		};
+		outfitTypes.put("female_swimsuit", femaleSwimsuits);
+	}
+	
+	/**
+	 * Creates a new OutfitChangerBehaviour with an empty pricelist.
+	 *
+	 * @param endurance the time (in turns) the outfit will stay,
+	 * 		  			or -1 if the outfit should never disappear
+	 * 				    automatically.
+	 */
+	public OutfitChangerBehaviour(/*int endurance*/) {
+		super(new HashMap<String, Integer>());
+		//this.endurance = endurance;
+	}
+
+	/**
+	 * Creates a new OutfitChangerBehaviour with a pricelist.
+	 *
+	 * @param endurance the time (in turns) the outfit will stay,
+	 * 		  			or -1 if the outfit should never disappear
+	 * 				    automatically.
+	 * @param priceList list of item names and their prices
+	 */
+	public OutfitChangerBehaviour(/*int endurance,*/ Map<String, Integer> priceList) {
+		super(priceList);
+		//this.endurance = endurance;
+	}
+
+	/**
+	 * Transacts the sale that has been agreed on earlier via
+	 * setChosenItem() and setAmount().
+	 *
+	 * @param seller The NPC who sells
+	 * @param player The player who buys
+	 * @return true iff the transaction was successful, that is when the
+	 *              player was able to equip the item(s).
+	 */
+	@Override
+	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+
+		String outfitType = chosenItem;
+
+		if (player.isEquipped("money", getCharge(player))) {
+			player.drop("money", getCharge(player));
+
+			// apply the mask to the outfit
+			int oldOutfitIndex = player.getInt("outfit");
+			int[][] newOutfitPossibilities = outfitTypes.get(outfitType);
+			int[] newOutfitParts = newOutfitPossibilities[Rand.rand(newOutfitPossibilities.length)];
+			int newHairIndex = newOutfitParts[0];
+			int newHeadIndex = newOutfitParts[1];
+			int newDressIndex = newOutfitParts[2];
+			int newBaseIndex = newOutfitParts[3];
+			// no idea what this is
+			// if (!player.has("outfit_org")) {
+			// 	player.put("outfit_org", outfitIndex);
+			//}
+			if (newBaseIndex == NO_CHANGE) {
+				newBaseIndex = oldOutfitIndex % 100;
+			}
+			oldOutfitIndex /= 100;
+			if (newDressIndex == NO_CHANGE) {
+				newDressIndex = oldOutfitIndex % 100;
+			}
+			oldOutfitIndex /= 100;
+			if (newHeadIndex == NO_CHANGE) {
+				newHeadIndex = oldOutfitIndex % 100;
+			}
+			oldOutfitIndex /= 100;
+			if (newHairIndex == NO_CHANGE) {
+				newHairIndex = oldOutfitIndex;
+			}
+			
+			// hair, head, outfit, body
+			int newOutfitIndex = newHairIndex * 1000000 + newHeadIndex * 10000 + newDressIndex * 100 + newBaseIndex;
+			player.put("outfit", newOutfitIndex);
+			player.notifyWorldAboutChanges();
+			//player.setQuest(questSlot, Long.toString(System.currentTimeMillis() + 30 * 60 * 1000));
+
+			return true;
+		} else {
+			seller.say("Sorry, you don't have enough money!");
+			return false;
+		}
+	}
+}

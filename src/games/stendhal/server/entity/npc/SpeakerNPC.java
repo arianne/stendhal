@@ -831,6 +831,86 @@ public abstract class SpeakerNPC extends NPC {
 				null);
 	}
 	
+	public void addOutfitChanger(OutfitChangerBehaviour behaviour) {
+		addOutfitChanger(behaviour, true);
+	}
+
+	public void addOutfitChanger(final OutfitChangerBehaviour behaviour,
+			boolean offer) {
+		
+		if (offer) {
+			add(ConversationStates.ATTENDING,
+					"offer",
+					null,
+					ConversationStates.ATTENDING,
+					"I sell " + enumerateCollection(behaviour.dealtItems()) + ".",
+					null);
+		}
+
+		add(ConversationStates.ATTENDING,
+				"buy",
+				null,
+				ConversationStates.BUY_PRICE_OFFERED,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						// find out what the player wants to buy, and how
+						// much of it
+						String[] words = text.split(" ");
+		
+						String item = null;
+						// we ignore any amounts
+						if (words.length > 2) {
+							item = words[2].trim();
+						} else if (words.length > 1) {
+							item = words[1].trim();
+						}
+		
+						// find out if the NPC sells this item, and if so,
+						// how much it costs.
+						if (behaviour.hasItem(item)) {
+							behaviour.chosenItem = item;
+							behaviour.setAmount(1);
+		
+							int price = behaviour.getUnitPrice(item)
+									* behaviour.amount;
+		
+							engine.say("A " + item + " will cost " + price + ". Do you want to buy it?");
+						} else {
+							if (item == null) {
+								engine.say("Please tell me what you want to buy.");
+							} else {
+								engine.say("Sorry, I don't sell " + Grammar.plural(item));
+							}
+							engine.setCurrentState(ConversationStates.ATTENDING);
+						}
+					}
+				});
+
+		add(ConversationStates.BUY_PRICE_OFFERED,
+				SpeakerNPC.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				"Thanks.",
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						String itemName = behaviour.chosenItem;
+						logger.debug("Selling a " + itemName + " to player "
+								+ player.getName());
+		
+						behaviour.transactAgreedDeal(engine, player);
+					}
+				});
+
+		add(ConversationStates.BUY_PRICE_OFFERED,
+				"no",
+				null,
+				ConversationStates.ATTENDING, "Ok, how may I help you?",
+				null);
+	}
+
 	public void addProducer(final ProducerBehaviour behaviour, String welcomeMessage) {
 		
 		final String thisWelcomeMessage = welcomeMessage;
@@ -898,7 +978,7 @@ public abstract class SpeakerNPC extends NPC {
 			});
 
 		add(ConversationStates.PRODUCTION_OFFERED,
-			"no",
+			NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"OK, no problem.",

@@ -1651,6 +1651,20 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
        </portal>
      </zone>
 
+     <zone name="int_athor_dressing_room_m" file="int_athor_dressing_room_m.xstend">
+       <portal x="6" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
+         <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_dressing_room_f" file="int_athor_dressing_room_f.xstend">
+       <portal x="9" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="dressing_room_f_entrance"/>
+         <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Female"/>
+       </portal>
+     </zone>
+     
      <zone name="0_athor_island_w" file="0_athor_island_w.xstend">
        <title/>
        <portal x="185" y="57" ref="apartment_1_entrance">
@@ -1676,6 +1690,12 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
        </portal>
        <portal x="175" y="63" ref="apartment_8_entrance">
          <destination zone="int_athor_holiday_apartment_8" ref="out"/>
+       </portal>
+       <portal x="215" y="40" ref="dressing_room_m_entrance">
+         <destination zone="int_athor_dressing_room_m" ref="out"/>
+       </portal>
+       <portal x="210" y="40" ref="dressing_room_f_entrance">
+         <destination zone="int_athor_dressing_room_f" ref="out"/>
        </portal>
        <portal x="245" y="95" ref="quicksand_1">
 	 <destination zone="-1_athor_island_w" ref="quicksand_out"/>
