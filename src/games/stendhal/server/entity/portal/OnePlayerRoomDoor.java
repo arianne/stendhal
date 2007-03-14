@@ -22,7 +22,7 @@ public class OnePlayerRoomDoor extends Door {
 
 		public void onTurnReached(int currentTurn, String message) {
 			if (!isOpen()) {
-				if (mayBeOpend(null)) {
+				if (mayBeOpened(null)) {
 					open();
 				}
 			}
@@ -43,7 +43,7 @@ public class OnePlayerRoomDoor extends Door {
 	}
 
 	@Override
-	protected boolean mayBeOpend(Player player) {
+	protected boolean mayBeOpened(Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(super.getDestinationZone());
 		return (zone.getPlayerAndFirends().size() == 0);

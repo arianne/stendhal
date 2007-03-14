@@ -110,14 +110,14 @@ public abstract class Door extends Portal implements TurnListener {
 	 * @param user user of the door
 	 * @return true, if it can be used; and false otherwise
 	 */
-	protected abstract boolean mayBeOpend(Player user);
+	protected abstract boolean mayBeOpened(Player user);
 
 	/**
 	 * teleport (if the door is now open)
 	 */
 	@Override
 	public void onUsed(RPEntity user) {
-		if (mayBeOpend((Player) user)) {
+		if (mayBeOpened((Player) user)) {
 			TurnNotifier turnNotifier = TurnNotifier.get();
 			if (isOpen()) {
 				// The door is still open because another player just used it.

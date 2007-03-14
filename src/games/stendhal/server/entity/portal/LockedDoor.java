@@ -39,7 +39,7 @@ public class LockedDoor extends Door {
 	}
 
 	@Override
-	protected boolean mayBeOpend(Player user) {
+	protected boolean mayBeOpened(Player user) {
 		return (has("locked") && user.isEquipped(get("locked")));
 	}
 
