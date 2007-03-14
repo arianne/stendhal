@@ -152,12 +152,56 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 		}
 	}
 	
+	/**
+	 * Checks whether or not the given player is currently
+	 * wearing an outfit that may have been bought/lent from an
+	 * NPC with this behaviour.
+	 * @param player The player.
+	 * @return true iff the player wears an outfit from here.
+	 */
+	protected boolean wearsOutfitFromHere(Player player) {
+		int currentOutfitIndex = player.getInt("outfit");
+		int[] currentOutfitParts = new int[4];
+		
+		currentOutfitParts[3] = currentOutfitIndex % 100;
+		currentOutfitIndex /= 100;
+		currentOutfitParts[2] = currentOutfitIndex % 100;
+		currentOutfitIndex /= 100;
+		currentOutfitParts[1] = currentOutfitIndex % 100;
+		currentOutfitIndex /= 100;
+		currentOutfitParts[0] = currentOutfitIndex;
+		
+		for (String outfitType: priceList.keySet()) { 
+			int[][] outfitPossibilities = outfitTypes.get(outfitType);
+			for (int[] outfitPossibility: outfitPossibilities) {
+				if ((outfitPossibility[0] == NO_CHANGE
+								|| outfitPossibility[0] == currentOutfitParts[0])
+						&& (outfitPossibility[1] == NO_CHANGE
+								|| outfitPossibility[1] == currentOutfitParts[1])
+						&& (outfitPossibility[2] == NO_CHANGE
+								|| outfitPossibility[2] == currentOutfitParts[2])
+						&& (outfitPossibility[3] == NO_CHANGE
+								|| outfitPossibility[3] == currentOutfitParts[3])) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Tries to get back the bought/lent outfit and give the player
+	 * his original outfit back.
+	 * This will only be successful if the player is wearing an outfit
+	 * he got here, and if the original outfit has been stored.
+	 * @param player The player.
+	 * @return true iff returning was successful.
+	 */
 	protected boolean returnToOriginalOutfit(Player player) {
-		if (player.has("outfit_org")) {
+		if (wearsOutfitFromHere(player) && player.has("outfit_org")) {
 			player.put("outfit", player.get("outfit_org"));
 			player.remove("outfit_org");
 			player.notifyWorldAboutChanges();
-			//player.sendPrivateText("My costume is wearing away.");
 			return true;
 		}
 		return false;
