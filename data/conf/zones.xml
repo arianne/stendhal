@@ -1677,6 +1677,33 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
        <portal x="175" y="63" ref="apartment_8_entrance">
          <destination zone="int_athor_holiday_apartment_8" ref="out"/>
        </portal>
+       <portal x="245" y="95" ref="quicksand_1">
+	 <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="245" y="96" ref="quicksand_2">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="245" y="97" ref="quicksand_3">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="246" y="95" ref="quicksand_4">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="246" y="97" ref="quicksand_5">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="247" y="95" ref="quicksand_6">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="247" y="96" ref="quicksand_7">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="247" y="97" ref="quicksand_8">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+	   <portal x="188" y="66" ref="pool">
+		   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+       </portal>
        <!--
        <portal x="191" y="65" ref="diving_board_destination">
          <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
@@ -1699,8 +1726,39 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
            </attribute>
          </implementation>
        </entity>
+	   <entity x="240" y="96">
+		 <implementation class-name="games.stendhal.server.entity.Sign">
+			 <attribute name="text">
+				 DANGER! Quicksand!
+			 </attribute>
+		 </implementation>
+	 </entity>
+	 <entity x="247" y="89">
+		 <implementation class-name="games.stendhal.server.entity.Sign">
+			 <attribute name="text">
+				 DANGER! Quicksand!
+			 </attribute>
+		 </implementation>
+	 </entity>
+	 <entity x="248" y="104">
+		 <implementation class-name="games.stendhal.server.entity.Sign">
+			 <attribute name="text">
+				 DANGER! Quicksand!
+			 </attribute>
+		 </implementation>
+	 </entity>
      </zone>
-
+     	 
+	 
+	<zone name="-1_athor_island_w" file="sub_1_athor_island_w.xstend">
+       <title/>
+       <portal x="118" y="96" ref="quicksand_out">
+	       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+       </portal>
+	   <portal x="60" y="66" ref="under_pool">
+		   <destination zone="0_athor_island_w" ref="pool"/>
+       </portal>
+	</zone>
  <!--  Level -1 -->
 
  <zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
