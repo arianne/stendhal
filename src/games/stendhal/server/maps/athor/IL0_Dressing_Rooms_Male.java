@@ -54,7 +54,7 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 				priceList.put("male_swimsuit", 5);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
 						priceList);
-				addOutfitChanger(behaviour, true);
+				addOutfitChanger(behaviour, "lend");
 			}
 		};
 		NPCList.get().add(david);

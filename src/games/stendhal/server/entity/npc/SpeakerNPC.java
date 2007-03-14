@@ -687,9 +687,9 @@ public abstract class SpeakerNPC extends NPC {
 				});
 
 		add(ConversationStates.BUY_PRICE_OFFERED,
-				"no",
+				NO_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, "Ok, how may I help you?",
+				ConversationStates.ATTENDING, "Ok, how else may I help you?",
 				null);
 	}
 
@@ -767,10 +767,10 @@ public abstract class SpeakerNPC extends NPC {
 				});
 
 		add(ConversationStates.SELL_PRICE_OFFERED,
-				"no",
+				NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Ok, then how may I help you?",
+				"Ok, then how else may I help you?",
 				null);
 	}
 
@@ -825,31 +825,46 @@ public abstract class SpeakerNPC extends NPC {
 				});
 
 		add(ConversationStates.HEAL_OFFERED,
-				"no",
+				NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"OK, how else may I help you?",
 				null);
 	}
 	
-	public void addOutfitChanger(OutfitChangerBehaviour behaviour) {
-		addOutfitChanger(behaviour, true);
+	/**
+	 * Makes this NPC an outfit changer, i.e. someone who can give players
+	 * special outfits.
+	 * @param behaviour The behaviour (which includes a pricelist).
+	 * @param command The action needed to get the outfit, e.g. "buy", "lend".
+	 */
+	public void addOutfitChanger(OutfitChangerBehaviour behaviour, String command) {
+		addOutfitChanger(behaviour, command, true, true);
 	}
 
+	/**
+	 * Makes this NPC an outfit changer, i.e. someone who can give players
+	 * special outfits. 
+	 * @param behaviour The behaviour (which includes a pricelist).
+	 * @param command The action needed to get the outfit, e.g. "buy", "lend".
+	 * @param offer Defines if the NPC should react to the word "offer".
+	 * @param canReturn If true, a player can say "return" to get his original
+	 *                  outfit back.
+	 */
 	public void addOutfitChanger(final OutfitChangerBehaviour behaviour,
-			boolean offer) {
+			final String command, boolean offer, final boolean canReturn) {
 		
 		if (offer) {
 			add(ConversationStates.ATTENDING,
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + enumerateCollection(behaviour.dealtItems()) + ".",
+					"You can #" + command + " " + enumerateCollection(behaviour.dealtItems()) + ".",
 					null);
 		}
 
 		add(ConversationStates.ATTENDING,
-				"buy",
+				command,
 				null,
 				ConversationStates.BUY_PRICE_OFFERED,
 				null,
@@ -862,10 +877,8 @@ public abstract class SpeakerNPC extends NPC {
 		
 						String item = null;
 						// we ignore any amounts
-						if (words.length > 2) {
-							item = words[2].trim();
-						} else if (words.length > 1) {
-							item = words[1].trim();
+						if (words.length > 1) {
+							item = words[words.length - 1].trim();
 						}
 		
 						// find out if the NPC sells this item, and if so,
@@ -877,10 +890,10 @@ public abstract class SpeakerNPC extends NPC {
 							int price = behaviour.getUnitPrice(item)
 									* behaviour.amount;
 		
-							engine.say("A " + item + " will cost " + price + ". Do you want to buy it?");
+							engine.say("A " + item + " will cost " + price + ". Do you want to " + command + " it?");
 						} else {
 							if (item == null) {
-								engine.say("Please tell me what you want to buy.");
+								engine.say("Please tell me what you want to " + command + ".");
 							} else {
 								engine.say("Sorry, I don't sell " + Grammar.plural(item));
 							}
@@ -893,23 +906,50 @@ public abstract class SpeakerNPC extends NPC {
 				SpeakerNPC.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thanks.",
+				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						String itemName = behaviour.chosenItem;
 						logger.debug("Selling a " + itemName + " to player "
 								+ player.getName());
 		
-						behaviour.transactAgreedDeal(engine, player);
+						if (behaviour.transactAgreedDeal(npc, player)) {
+							if (canReturn) {
+								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
+							} else {
+								npc.say("Thanks!");
+							}
+						}
 					}
 				});
 
 		add(ConversationStates.BUY_PRICE_OFFERED,
-				"no",
+				NO_MESSAGES,
 				null,
-				ConversationStates.ATTENDING, "Ok, how may I help you?",
+				ConversationStates.ATTENDING, "Ok, how else may I help you?",
 				null);
+		
+		if (canReturn) {
+			add(ConversationStates.ATTENDING,
+					"return",
+					null,
+					ConversationStates.ATTENDING,
+					null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, String text, SpeakerNPC npc) {
+							if (behaviour.returnToOriginalOutfit(player)) {
+								// TODO: it would be cool if you could get a refund
+								// for returning the outfit, i. e. the money is
+								// only paid as a deposit.
+								npc.say("Thank you!");
+							} else {
+								npc.say("I can't remember that I gave you anything.");							
+							}
+						}
+					});
+		}
 	}
 
 	public void addProducer(final ProducerBehaviour behaviour, String welcomeMessage) {

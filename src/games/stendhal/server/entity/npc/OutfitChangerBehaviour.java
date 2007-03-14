@@ -151,4 +151,16 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			return false;
 		}
 	}
+	
+	protected boolean returnToOriginalOutfit(Player player) {
+		if (player.has("outfit_org")) {
+			player.put("outfit", player.get("outfit_org"));
+			player.remove("outfit_org");
+			player.notifyWorldAboutChanges();
+			//player.sendPrivateText("My costume is wearing away.");
+			return true;
+		}
+		return false;
+
+	}
 }
