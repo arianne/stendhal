@@ -65,7 +65,7 @@ public class USL3_OutsideNorthWest implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addJob("There is a quite high unemployment rate down here.");
-				addHelp("Those lazy developers have not yet finished me ;)");
+				addHelp("I have heard rumors that mysterious creatures with blue cloaks are haunting the swamp south of here.");
 				addGoodbye();
 				// remaining behaviour is defined in maps.quests.CloaksForBario.
 			}
