@@ -13,25 +13,19 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
 
 /**
  * Represents the behaviour of a NPC who is able to sell masks
  * to a player.
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour {
-	
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(OutfitChangerBehaviour.class);
 
+	// TODO: integrate server.maps.quests.CostumeParty
+	
 	private static final int NO_CHANGE = -1;
 	//private int endurance;
 	
@@ -91,8 +85,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 	 */
 	@Override
 	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
 		String outfitType = chosenItem;
 
 		if (player.isEquipped("money", getCharge(player))) {
@@ -106,10 +98,18 @@ public class OutfitChangerBehaviour extends MerchantBehaviour {
 			int newHeadIndex = newOutfitParts[1];
 			int newDressIndex = newOutfitParts[2];
 			int newBaseIndex = newOutfitParts[3];
-			// no idea what this is
-			// if (!player.has("outfit_org")) {
-			// 	player.put("outfit_org", outfitIndex);
-			//}
+
+			// Store old outfit so that it is preselected in "Set Outfit"
+			// dialog. Some players cannot remeber the details of their
+			// original outfit. Important: If the variable is already set,
+			// it must not be changed. This means that the player has choosen
+			// another special outfit before. It is removed when the original
+			// outfit is restored by the quest-timer or the outfit is changed
+			// by the "Set Outfit" dialog. 
+			if (!player.has("outfit_org")) {
+			 	player.put("outfit_org", player.get("outfit"));
+			}
+
 			if (newBaseIndex == NO_CHANGE) {
 				newBaseIndex = oldOutfitIndex % 100;
 			}
