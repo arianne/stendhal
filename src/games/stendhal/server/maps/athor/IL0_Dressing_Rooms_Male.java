@@ -47,7 +47,7 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hallo!");
 				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the men's dressing room.");
-				addHelp("Just tell me if you want to #buy #1 #male_swimsuit!");
+				addHelp("Just tell me if you want to #lend #a #male_swimsuit!");
 				addGoodbye("Have fun!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
