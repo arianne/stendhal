@@ -18,14 +18,10 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 /**
  * Represents a general teleport scroll.
  */
 public abstract class TeleportScroll extends InfoStringScroll {
-	private static final Logger logger =
-				Logger.getLogger(TeleportScroll.class);
 
 	/**
 	 * Creates a new teleport scroll

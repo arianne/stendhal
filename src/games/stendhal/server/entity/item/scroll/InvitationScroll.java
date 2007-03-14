@@ -108,6 +108,8 @@ public class InvitationScroll extends TeleportScroll {
 //			get("infostring"));
 String dest = null;
 
+		// TODO: implement me
+
 		if(dest == null) {
 			player.sendPrivateText(
 				"You do not recognize the event.");
