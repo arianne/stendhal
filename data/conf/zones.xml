@@ -1318,6 +1318,12 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire">
    <attribute name="xml-portals">using</attribute>
   </configurator>
+  <!-- This must be after the NPC configurator -->
+  <entity x="37" y="60">
+    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Sally</attribute>
+    </implementation>
+  </entity>  
 
   <portal x="39" y="5" ref="jynath_house_entrance">
    <destination zone="int_orril_jynath_house" ref="entrance"/>

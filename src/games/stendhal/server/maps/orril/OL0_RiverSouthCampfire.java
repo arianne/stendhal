@@ -63,10 +63,5 @@ public class OL0_RiverSouthCampfire implements ZoneConfigurator {
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
 		zone.addNPC(npc);
-
-		Chest chest = new NPCOwnedChest(npc);
-		zone.assignRPObjectID(chest);
-		chest.set(37, 60);
-		zone.add(chest);
 	}
 }
