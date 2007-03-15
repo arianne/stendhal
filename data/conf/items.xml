@@ -1987,7 +1987,7 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+    
 	<item name="arandula">
 		<type class="herb" subclass="arandula"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
@@ -2108,6 +2108,17 @@ Makes players more offensive
       </equipable>
     </item>
 
+    <!-- a special item for the pizza delivery quest, thus not edible and not
+         stackable, unlike other food items.. -->
+    <item name="pizza">
+      <type class="misc" subclass="pizza"/>
+      <implementation class-name="games.stendhal.server.entity.item.Item"/>
+      <weight value="1"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+    
     <item name="token">
 		<type class="misc" subclass="token"/>
 		<implementation class-name="games.stendhal.server.entity.item.Token"/>
