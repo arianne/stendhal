@@ -140,7 +140,7 @@ public class EquipmentAction extends ActionListener {
 			} else if (entity instanceof Item) {
 				temp = "item";
 			}
-			player.sendPrivateText("This " + temp + " is a special reward for " + entity.get("bound") + ". I do not deserve to use it.");
+			player.sendPrivateText("This " + temp + " is a special reward for " + entity.get("bound") + ". You do not deserve to use it.");
 			return;
 		}
 		
