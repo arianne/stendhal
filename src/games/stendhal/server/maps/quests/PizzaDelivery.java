@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
@@ -58,12 +59,27 @@ public class PizzaDelivery extends AbstractQuest {
 		 */
 		private int xp;
 		
-		private CustomerData(String npcDescription, String flavor, int expectedTime, int tip, int xp) {
+		/**
+		 * The text that the customer should say upon quick delivery.
+		 * It should contain %d as a placeholder for the tip, and
+		 * can optionally contain %s as a placeholder for the pizza flavor.  
+		 */
+		private String messageOnHotPizza;
+
+		/**
+		 * The text that the customer should say upon quick delivery (without
+		 * any placeholders).
+		 */
+		private String messageOnColdPizza;
+		
+		private CustomerData(String npcDescription, String flavor, int expectedTime, int tip, int xp, String messageHot, String messageCold) {
 			this.npcDescription = npcDescription;
 			this.flavor = flavor;
 			this.expectedMinutes = expectedTime;
 			this.tip = tip;
 			this.xp = xp;
+			this.messageOnHotPizza = messageHot;
+			this.messageOnColdPizza = messageCold; 
 		}
 	}
 	private static final String QUEST_SLOT = "pizza_delivery";
@@ -92,7 +108,6 @@ public class PizzaDelivery extends AbstractQuest {
 		return res;
 	}
 	
-	// TODO: balance time, tips, xp
 	// You can't enter NPC's with spaces in their names, see TODOs below.
 	// Don't add Sally here, as it would conflict with Leander telling
 	// about his daughter.
@@ -103,81 +118,101 @@ public class PizzaDelivery extends AbstractQuest {
 		customerDB.put("Balduin", new CustomerData(
 				"Balduin is a hermit who's living on a mountain between Semos and Ados.",
 				"Pizza Prosciutto",
-				15,   // minutes to deliver
-				200,   // tip when delivered on time
-				30)); // experience gain for delivery
+				7,   // minutes to deliver. Tested by mort: 6:30 min, with killing some orcs.
+				200,   // tip when delivered on time. Quite high because you can't do much senseful on top of the hill and must walk down again.
+				30, // experience gain for delivery
+				"Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!",
+				"Brrr. This %s is no longer hot. Well, thanks for the effort anyway."));
 		
 		customerDB.put("Eliza", new CustomerData(
 				"Eliza works for the Athor Island ferry service. You'll find her at the docks south of the Ados swamps.",
 				"Pizza del Mare",
-				15,   // minutes to deliver
-				200,  // tip when delivered on time
-				30)); // experience gain for delivery
-		
+				7,   // minutes to deliver. Tested by mort: 6 min, ignoring slow animals and not walking through the swamps.
+				170,  // tip when delivered on time.
+				30, // experience gain for delivery
+				"Incredible! It's still hot! Here, buy something nice from these %d pieces of gold!",
+				"What a pity. It has become cold. Nevertheless, thank you!"));
+
 		customerDB.put("Fidorea", new CustomerData(
 				"Fidorea lives in Ados city. She is a makeup artist.",
 				"Pizza Napoli",
-				10,   // minutes to deliver
+				7,   // minutes to deliver. Tested by mort: about 6 min, outrunning all enemies.
 				150,  // tip when delivered on time
-				20)); // experience gain for delivery
-		
+				20, // experience gain for delivery
+				"Thanks a lot! You're a born pizza deliverer. You can have these %d pieces of gold as a tip!",
+				"Bummer. Cold pizza."));
+
 		customerDB.put("Haizen", new CustomerData(
 				"Haizen is a magician who lives in a hut near the road to Ados.",
 				"Pizza Diavolo",
-				7,   // minutes to deliver
+				4,   // minutes to deliver. Tested by kymara: exactly 3 min.
 				80,  // tip when delivered on time
-				15)); // experience gain for delivery
-		
+				15, // experience gain for delivery
+				"Ah, my %s! And it's fresh out of the oven! Take these %d coins as a tip!",
+				"I hope next time I order a pizza it's still hot."));
+
 		customerDB.put("Jenny", new CustomerData(
 				"Jenny owns a mill near Semos.",
 				"Pizza Margherita",
-				2,    // minutes to deliver
+				2,    // minutes to deliver. Tested by mort: can be done in 1:15 min, with no real danger.
 				20,   // tip when delivered on time
-				10)); // experience gain for delivery
+				10, // experience gain for delivery
+				"Ah, you brought my %s! Very nice of you! Here, take %d coins as a tip!",
+				"It's a shame. Your pizza service can't deliver a hot pizza although the bakery is just around the corner."));
 		
 		customerDB.put("Jynath", new CustomerData(
 				"Jynath is a witch who lives in a small house south of Or'ril castle.",
 				"Pizza Funghi",
-				7,   // minutes to deliver. You can run through in ca. 5 min,
-					 // but you might have to kill some creatures that get in
-					 // your way.
-				120,  // tip when delivered on time
-				20)); // experience gain for delivery
+				6,   // minutes to deliver. Tested by mort: 5:30 min, leaving the slow monsters on the way behind.
+				140,  // tip when delivered on time
+				20, // experience gain for delivery
+				"Oh, I didn't expect you so early. Great! Usually I don't give tips, but for you I'll make an exception. Here are %d pieces of gold.",
+				"Too bad... I will have to use an extra strong spell to get this pizza hot again."));
 		
 		customerDB.put("Katinka", new CustomerData(
 				"Katinka takes care of the animals at the Ados Wildlife Refuge.",
 				"Pizza Vegetale",
-				8,   // minutes to deliver
+				4,   // minutes to deliver. Tested by kymara in 3:25 min, leaving behind the orcs.
 				100,  // tip when delivered on time
-				20)); // experience gain for delivery
+				20, // experience gain for delivery
+				"Yay! My %s! Here, you can have %d pieces of gold as a tip!",
+				"Eek. I hate cold pizza. I think I'll feed it to the animals."));
 		
 		customerDB.put("Marcus", new CustomerData(
 				"Marcus is a guard in the Semos jail.",
 				"Pizza Tonno",
-				5,    // minutes to deliver
-				20,   // tip when delivered on time
-				10)); // experience gain for delivery
+				2,    // minutes to deliver. Tested by mort: can be done in 90 sec with no danger.
+				25,   // tip when delivered on time. A bit higher than Jenny because you can't do anything else in the jail and need to walk out again.
+				10, // experience gain for delivery
+				"Ah, my %s! Here's your tip: %d pieces of gold.",
+				"Finally! Why did that take so long?"));
 		
 		customerDB.put("Ouchit", new CustomerData(
 				"Ouchit is a weapons trader. He has currently rented a room in the tavern, just around the corner.",
 				"Pizza Quattro Stagioni",
-				1,    // minutes to deliver
+				1,    // minutes to deliver. Tested by mort: can be done in 45 sec with no danger.
 				10,   // tip when delivered on time
-				5));  // experience gain for delivery
+				5, // experience gain for delivery
+				"Thank you! It's nice to have a pizza service right around the corner. Here, you can have %d coins!",
+				"I should have rather picked it up myself at the bakery, that would have been faster."));
 		
 		customerDB.put("Ramon", new CustomerData(
 				"Ramon works as a blackjack dealer on the ferry to Athor Island.",
 				"Pizza Bolognese",
-				20,   // minutes to deliver
+				14,   // minutes to deliver. You need about 6 mins to Eliza, and once you board the ferry, about 15 sec to deliver. If you have bad luck, you need to wait up to 12 mins for the ferry to arrive at the mainland, so you need a bit of luck for this one.  
 				250,  // tip when delivered on time
-				40)); // experience gain for delivery
+				40, // experience gain for delivery
+				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
+				"Too bad. It has become cold. Thank you anyway."));
 		
 		customerDB.put("Tor'Koom", new CustomerData(
 				"Tor'Koom is an orc who lives in the dungeon below this town. Sheep are his favourite food.",
 				"Pizza Pecora", // "Pizza sheep" in Italian ;)
-				15,   // minutes to deliver
-				100,  // tip when delivered on time
-				30)); // experience gain for delivery 
+				9,    // minutes to deliver. Tested by kymara: done in about 8 min, with lots of monsters getting in your way.
+				170,  // tip when delivered on time
+				30, // experience gain for delivery
+				"Yummy %s! Here, take %d moneys!",
+				"Grrr. Pizza cold. You walking slow like sheep.")); 
 	}
 	
 	private void startDelivery(Player player, SpeakerNPC npc) {
@@ -190,8 +225,7 @@ public class PizzaDelivery extends AbstractQuest {
 		player.equip(pizza, true);
 
 		// TODO: If there's a space in the NPC name, colorization won't work.
-		// TODO: correct singular/plural for minutes
-		npc.say("You must bring this " + data.flavor + " to #" + name + " within " + data.expectedMinutes + " minutes. Say \"pizza\" so that " + name + " knows that I sent you. Oh, and please wear this uniform on your way.");
+		npc.say("You must bring this " + data.flavor + " to #" + name + " within " + Grammar.quantityplnoun(data.expectedMinutes, "minute") + ". Say \"pizza\" so that " + name + " knows that I sent you. Oh, and please wear this uniform on your way.");
 		outfitChangerBehaviour.putOnOutfit(player, "pizza_delivery_uniform");
 		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
 	}
@@ -227,13 +261,16 @@ public class PizzaDelivery extends AbstractQuest {
 				if (data.flavor.equals(flavor)) {
 					player.drop(pizza);
 					if (isDeliveryTooLate(player)) {
-						npc.say("Too bad. It has become cold. Thank you anyway.");
+						npc.say(data.messageOnColdPizza);
 						player.addXP(data.xp / 2);
 					} else {
-						int tip = data.tip;
-						npc.say("Thank you! That was fast. Here, take " + tip + " pieces of gold as a tip!");
+						if (data.messageOnHotPizza.contains("%s")) {
+							npc.say(String.format(data.messageOnHotPizza, data.flavor, data.tip));
+						} else {
+							npc.say(String.format(data.messageOnHotPizza, data.tip));
+						}
 						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
-						money.setQuantity(tip);
+						money.setQuantity(data.tip);
 						player.equip(money, true);
 						player.addXP(data.xp);
 					}
