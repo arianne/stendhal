@@ -77,10 +77,5 @@ public class USL3_OutsideNorthWest implements ZoneConfigurator {
 		npc.set(4, 46);
 		npc.initHP(100);
 		zone.addNPC(npc);
-
-		Chest chest = new NPCOwnedChest(npc);
-		zone.assignRPObjectID(chest);
-		chest.set(17, 23);
-		zone.add(chest);
 	}
 }

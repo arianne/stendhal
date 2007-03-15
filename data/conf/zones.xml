@@ -1663,10 +1663,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
        <portal x="6" y="14" ref="out">
          <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
        </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male">
-         <attribute name="xml-portals">using</attribute>
-         <attribute name="xml-entities">using</attribute>
-       </configurator>
+       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male" />
         <!-- This must be after the NPC configurator -->
         <entity x="3" y="10">
           <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -1720,19 +1717,19 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
          <destination zone="int_athor_dressing_room_f" ref="out"/>
        </portal>
        <portal x="245" y="95" ref="quicksand_1">
-	 <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
        </portal>
        <portal x="245" y="96" ref="quicksand_2">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
        </portal>
        <portal x="245" y="97" ref="quicksand_3">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
        </portal>
        <portal x="246" y="95" ref="quicksand_4">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
        </portal>
        <portal x="246" y="97" ref="quicksand_5">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
        </portal>
        <portal x="247" y="95" ref="quicksand_6">
 		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
@@ -1754,6 +1751,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
          <destination zone="0_athor_island_w" ref="diving_board_destination"/>
        </portal>
        -->
+       <configurator class-name="games.stendhal.server.maps.athor.OL0_IslandWest" />
        <entity x="211" y="42">
          <implementation class-name="games.stendhal.server.entity.Sign">
            <attribute name="text">
@@ -2483,6 +2481,12 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest">
    <attribute name="xml-portals">using</attribute>
   </configurator>
+  <!-- This must be after the NPC configurator -->
+  <entity x="17" y="23">
+    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Bario</attribute>
+    </implementation>
+  </entity>
  </zone>
 
  <zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
