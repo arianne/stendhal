@@ -12,7 +12,9 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Helper functions to generate random numbers.
@@ -64,6 +66,58 @@ public class Rand {
 	 */
 	public static int rand(int n) {
 		return rand.nextInt(n);
+	}
+	
+	/**
+	 * Given a list of any type, returns an arbitrary element, using
+	 * an equal distribution.
+	 * Generics are used so that the returned element will have the
+	 * same type as the list's elements have. 
+	 * @param <T> Any type.
+	 * @param list The list from which an element should be chosen.
+	 * @return A random list element.
+	 */
+	public static <T> T rand(List<T> list) {
+		return list.get(rand(list.size()));
+	}
+
+	/**
+	 * Given a set of any type, returns an arbitrary element, using
+	 * an equal distribution.
+	 * Generics are used so that the returned element will have the
+	 * same type as the set's elements have.
+	 * 
+	 * NOTE: This is not very efficient. If you need to do this on large 
+	 * sets several times per second, consider copying the set contents
+	 * to an array, then call rand() on this array.
+	 * @param <T> Any type.
+	 * @param set The set from which an element should be chosen.
+	 * @return A random set element.
+	 */
+	public static <T> T rand(Set<T> set) {
+		int n = rand(set.size());
+		int i = 0;
+		for (T element: set) {
+			if (i == n) {
+				return element;
+			}
+			i++;
+		}
+		// can't happen
+		return null;
+	}
+
+	/**
+	 * Given a array of any type, returns an arbitrary element, using
+	 * an equal distribution.
+	 * Generics are used so that the returned element will have the
+	 * same type as the array's elements have. 
+	 * @param <T> Any type.
+	 * @param array The array from which an element should be chosen.
+	 * @return A random array element.
+	 */
+	public static <T> T rand(T[] array) {
+		return array[rand(array.length)];
 	}
 
 	/**
