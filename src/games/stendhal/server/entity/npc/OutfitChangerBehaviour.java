@@ -125,6 +125,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		player.setOutfit(newOutfit.putOver(player.getOutfit()), true);
 
 		if (endurance != NEVER_WEARS_OFF) {
+			// restart the wear-off timer if the player was still wearing
+			// another temporary outfit.
+			TurnNotifier.get().dontNotify(this, player.getName());
 			// make the costume disappear after some time
 			TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
 		}
