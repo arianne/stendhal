@@ -65,6 +65,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		};
 		outfitTypes.put("mask", masks);
 
+		int[][] pizzaDeliveryUniform = {
+				{NO_CHANGE, NO_CHANGE, 90, NO_CHANGE},
+		};
+		outfitTypes.put("pizza_delivery_uniform", pizzaDeliveryUniform);
 	}
 	
 	/**
@@ -125,7 +129,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * @param player The player.
 	 * @return true iff returning was successful.
 	 */
-	protected void putOnOutfit(Player player, String outfitType) {
+	public void putOnOutfit(Player player, String outfitType) {
 		// apply the outfit to the player
 		int oldOutfitIndex = player.getInt("outfit");
 		int[][] newOutfitPossibilities = outfitTypes.get(outfitType);
@@ -181,7 +185,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * @param player The player.
 	 * @return true iff the player wears an outfit from here.
 	 */
-	protected boolean wearsOutfitFromHere(Player player) {
+	public boolean wearsOutfitFromHere(Player player) {
 		int currentOutfitIndex = player.getInt("outfit");
 		int[] currentOutfitParts = new int[4];
 		
@@ -219,7 +223,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * @param player The player.
 	 * @return true iff returning was successful.
 	 */
-	protected boolean returnToOriginalOutfit(Player player) {
+	public boolean returnToOriginalOutfit(Player player) {
 		if (wearsOutfitFromHere(player) && player.has("outfit_org")) {
 			player.put("outfit", player.get("outfit_org"));
 			player.remove("outfit_org");
