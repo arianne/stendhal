@@ -1,0 +1,131 @@
+
+
+/** Stendhal Mana/Magic Extenstion
+ *  @author timothyb89
+ *  Adds a magic skills system to a Stendhal server.
+*/
+
+package games.stendhal.server.extension;
+
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalServerExtension;
+import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.entity.player.Player;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringTokenizer;
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+
+import org.apache.log4j.Logger;
+
+/**
+
+  # load StendhalServerExtension(s)
+  groovy=games.stendhal.server.scripting.StendhalGroovyRunner
+  http=games.stendhal.server.StendhalHttpServer
+  magic=games.stendhal.server.extension.MagicExtn
+  server_extension=groovy,http,magic
+
+ */
+public class MagicExtn extends StendhalServerExtension {
+
+	private static final Logger logger = Log4J.getLogger(MagicExtn.class);
+    
+    /**
+     * 
+     */
+    public MagicExtn() {
+        super();
+        logger.info("MagicExtn starting...");
+        StendhalRPRuleProcessor.register("spell", this);
+        
+        //StendhalRPRuleProcessor.register("listspells", this); //not ready yet
+        
+    }
+
+    /* 
+     * @see games.stendhal.server.StendhalServerExtension#init()
+     */
+    @Override
+    public void init() {
+        // this extension has no spespecific init code, everything is
+        // implemented as /commands that are handled onAction
+    }
+    
+    @Override
+    public void onAction(Player player, RPAction action) {
+       String type = action.get("type");
+        
+        if (type.equals("spell")) {
+            onSpell(player, action);
+        } 
+     
+    }
+    
+    private void onSpell(Player player, RPAction action) {
+        Log4J.startMethod(logger, "onSpell");
+
+	String usage = "Usage: #/spell <spellname>";
+        String text = "";
+
+
+
+        boolean canCastSpell = false;
+
+        String castSpell = null;
+        
+        if(action.has("target")) {
+            castSpell = action.get("target");
+            if (castSpell == null) {
+                player.sendPrivateText("You did not enter a spell to cast.");
+                logger.error("User did not enter a spell.");
+            }
+            //if(player1 == null) { 
+		//text += "Player \"" + name1 + "\" not found. ";
+            //}
+            player.sendPrivateText("Trying to cast a a spell...");
+        } else {
+            text = usage;
+        }
+        
+        String AvailableSpells = player.getQuest("spells"); //the list of spells
+
+        // Checks to see if the list of spells available to the player contains the spell they tried to cast
+        if (AvailableSpells.contains(castSpell)) {
+            canCastSpell = true; //lets player cast spell 
+        } else {
+            player.sendPrivateText("You can not cast this spell.");
+        }
+        if (canCastSpell) {
+            // put spells and actions here
+            if (castSpell.contains("heal")) {
+                if (player.getBaseMana() >= 15 && player.getMana() >= 15) {
+                    String basehp = player.get("base_hp");
+                    int bhp = Integer.parseInt(basehp);
+                    player.setHP(bhp);
+                    String mana = player.get("mana");
+                    int mana_a = Integer.parseInt(mana);
+                    int newmana = mana_a - 15;
+                    player.put("mana", newmana);
+                    player.sendPrivateText("You have been healed.");
+                    player.update();
+                    player.notifyWorldAboutChanges();
+                } else {
+                    player.sendPrivateText("You do not have enough available mana to use this spell.");
+                }
+                
+            }
+        }
+        
+
+        
+        player.sendPrivateText(text);
+       
+        Log4J.finishMethod(logger, "onSpell");
+    }
+    
+}
