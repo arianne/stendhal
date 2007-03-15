@@ -22,6 +22,7 @@ public class Engine {
 	private static final Logger logger = Log4J.getLogger(Engine.class);
 
 	// TODO: remove this dependency cicle, this is just here to simplify refactoring
+	// TODO: later: remove dependency on games.stendhal.server.entity.npc.* and Player
 	private SpeakerNPC speakerNPC = null;
 	private int maxState = 0;
 	
@@ -81,8 +82,29 @@ public class Engine {
 	public void setCurrentState(int currentState) {
 		this.currentState = currentState;
 	}
+
+	/**
+	 * Do one transition of the finite state machine.
+	 *
+	 * @param player Player
+	 * @param text   input
+	 * @return true if a transition was made, false otherwise
+	 */
+	public boolean step(Player player, String text) {
+		if (matchTransition(MatchType.ABSOLUTE_JUMP, player, text)) {
+			return true;
+		} else if (matchTransition(MatchType.EXACT_MATCH, player, text)) {
+			return true;
+		} else if (matchTransition(MatchType.SIMILAR_MATCH, player, text)) {
+			return true;
+		} else {
+			// Couldn't match the text with the current FSM state
+			logger.debug("Couldn't match any state: " + getCurrentState() + ":"	+ text);
+			return false;
+		}
+	}
 	
-	public boolean matchTransition(MatchType type, Player player, String text) {
+	private boolean matchTransition(MatchType type, Player player, String text) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
 
