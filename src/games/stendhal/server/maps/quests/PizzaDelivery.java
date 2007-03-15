@@ -94,6 +94,9 @@ public class PizzaDelivery extends AbstractQuest {
 	
 	// TODO: balance time, tips, xp
 	// You can't enter NPC's with spaces in their names, see TODOs below.
+	// Don't add Sally here, as it would conflict with Leander telling
+	// about his daughter.
+	// Don't add NPC's that are only reachable for high-level players.
 	private void buildCustomerDatabase() {
 		customerDB = new HashMap<String, CustomerData>();
 		
@@ -113,14 +116,21 @@ public class PizzaDelivery extends AbstractQuest {
 		
 		customerDB.put("Fidorea", new CustomerData(
 				"Fidorea lives in Ados city. She is a makeup artist.",
-				"Pizza Margherita",
+				"Pizza Napoli",
 				10,   // minutes to deliver
 				150,  // tip when delivered on time
 				20)); // experience gain for delivery
 		
+		customerDB.put("Haizen", new CustomerData(
+				"Haizen is a magician who lives in a hut near the road to Ados.",
+				"Pizza Diavolo",
+				7,   // minutes to deliver
+				80,  // tip when delivered on time
+				15)); // experience gain for delivery
+		
 		customerDB.put("Jenny", new CustomerData(
 				"Jenny owns a mill near Semos.",
-				"Pizza Bolognese",
+				"Pizza Margherita",
 				2,    // minutes to deliver
 				20,   // tip when delivered on time
 				10)); // experience gain for delivery
@@ -132,6 +142,13 @@ public class PizzaDelivery extends AbstractQuest {
 					 // but you might have to kill some creatures that get in
 					 // your way.
 				120,  // tip when delivered on time
+				20)); // experience gain for delivery
+		
+		customerDB.put("Katinka", new CustomerData(
+				"Katinka takes care of the animals at the Ados Wildlife Refuge.",
+				"Pizza Vegetale",
+				8,   // minutes to deliver
+				100,  // tip when delivered on time
 				20)); // experience gain for delivery
 		
 		customerDB.put("Marcus", new CustomerData(
@@ -147,6 +164,13 @@ public class PizzaDelivery extends AbstractQuest {
 				1,    // minutes to deliver
 				10,   // tip when delivered on time
 				5));  // experience gain for delivery
+		
+		customerDB.put("Ramon", new CustomerData(
+				"Ramon works as a blackjack dealer on the ferry to Athor Island.",
+				"Pizza Bolognese",
+				20,   // minutes to deliver
+				250,  // tip when delivered on time
+				40)); // experience gain for delivery
 		
 		customerDB.put("Tor'Koom", new CustomerData(
 				"Tor'Koom is an orc who lives in the dungeon below this town. Sheep are his favourite food.",
