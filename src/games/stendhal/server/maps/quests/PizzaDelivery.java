@@ -8,12 +8,12 @@ import java.util.Map;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.player.Outfit;
 
 /**
  * QUEST: Pizza Delivery

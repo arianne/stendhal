@@ -1392,4 +1392,33 @@ public abstract class RPEntity extends Entity {
 		return (projectiles != null) && (projectiles.getQuantity() > 0);
 	}
 
+	/**
+	 * Gets this RPEntity's outfit.
+	 * 
+	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't
+	 * use the outfit system.
+	 * 
+	 * @return The outfit, or null if this RPEntity is represented as a single
+	 *         sprite rather than an outfit combination.
+	 */
+	public Outfit getOutfit() {
+		if (has("outfit")) {
+			return new Outfit(getInt("outfit"));
+		}
+		return null;
+	}
+	
+	/**
+	 * Sets this RPEntity's outfit.
+	 * 
+	 * Note: some RPEntities (e.g. sheep, many NPC's, all monsters) don't
+	 * use the outfit system.
+	 * 
+	 * @param outfit The new outfit.
+	 */
+	public void setOutfit(Outfit outfit) {
+		put("outfit", outfit.getCode());
+	}
+	
+
 }

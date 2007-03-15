@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
@@ -63,7 +64,7 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 
 		npcs.add(greeterNPC);
 		zone.assignRPObjectID(greeterNPC);
-		greeterNPC.put("outfit", "05010601");
+		greeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
 		greeterNPC.set(16, 48);
 		greeterNPC.initHP(1000);
 		zone.addNPC(greeterNPC);

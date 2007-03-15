@@ -1,4 +1,4 @@
-package games.stendhal.server.entity.player;
+package games.stendhal.server.entity;
 
 /**
  * A datastructure that represents the outfit of a player.

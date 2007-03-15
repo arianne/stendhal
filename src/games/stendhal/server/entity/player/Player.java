@@ -20,6 +20,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
@@ -1234,6 +1235,11 @@ public class Player extends RPEntity implements TurnListener {
 		return drop(name, getNumberOfEquipped(name));
 	}
 	
+	@Override
+	public void setOutfit(Outfit outfit) {
+		setOutfit(outfit, false);
+	}
+	
 	public void setOutfit(Outfit outfit, boolean temporary) {
 		// if the new outfit is temporary and the player is not wearing
 		// a temporary outfit already, store the current outfit in a 
@@ -1246,14 +1252,6 @@ public class Player extends RPEntity implements TurnListener {
 		Outfit newOutfit = outfit.putOver(getOutfit()); 
 		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
-	}
-	
-	public Outfit getOutfit() {
-		if (has("outfit")) {
-			return new Outfit(getInt("outfit"));
-		}
-		// should never happen
-		return null;
 	}
 	
 	public Outfit getOriginalOutfit() {

@@ -14,7 +14,7 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.player.Outfit;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.*;
 
