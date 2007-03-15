@@ -677,7 +677,6 @@ Makes players more offensive
                 <description>You see a wooden arrow. With a supply of arrows
                 in one hand and a bow in the other you can fight from a distance.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<atk value="1"/>
@@ -695,7 +694,6 @@ Makes players more offensive
 		<description>You see a shining steel arrow. With plenty of
 		these, and a good bow, you'll be a formidable archer.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<atk value="3"/>
@@ -711,7 +709,6 @@ Makes players more offensive
 	<item name="golden_arrow">
 		<type class="projectiles" subclass="golden_arrow"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<atk value="4"/>
@@ -1532,7 +1529,6 @@ Makes players more offensive
 	<item name="cherry">
 		<type class="food" subclass="cherry"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="10"/>
@@ -1548,7 +1544,6 @@ Makes players more offensive
 	<item name="cheese">
 		<type class="food" subclass="cheese"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="20"/>
@@ -1564,7 +1559,6 @@ Makes players more offensive
 	<item name="carrot">
 		<type class="food" subclass="carrot"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="30"/>
@@ -1580,7 +1574,6 @@ Makes players more offensive
 	<item name="salad">
 		<type class="food" subclass="salad"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="30"/>
@@ -1596,7 +1589,6 @@ Makes players more offensive
 	<item name="apple">
 		<type class="food" subclass="apple"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="20"/>
@@ -1612,7 +1604,6 @@ Makes players more offensive
 	<item name="bread">
 		<type class="food" subclass="baguette"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="40"/>
@@ -1628,7 +1619,6 @@ Makes players more offensive
 	<item name="meat">
 		<type class="food" subclass="meat"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="60"/>
@@ -1645,7 +1635,6 @@ Makes players more offensive
 		<type class="food" subclass="ham"/>
 		<description>You see a juicy ham.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="80"/>
@@ -1661,7 +1650,6 @@ Makes players more offensive
 	<item name="sandwich">
 		<type class="food" subclass="sandwich"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
                 <description>You see a ham and cheese sandwich.</description>
 		<attributes>
 			<quantity value="1"/>
@@ -1678,7 +1666,6 @@ Makes players more offensive
 	<item name="pie">
 		<type class="food" subclass="piesmall"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<description>You see a meat and vegetable pie.</description>
 		<attributes>
 			<quantity value="1"/>
@@ -1695,7 +1682,6 @@ Makes players more offensive
 	<item name="button_mushroom">
 		<type class="food" subclass="button_mushroom"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="20"/>
@@ -1711,7 +1697,6 @@ Makes players more offensive
 	<item name="porcini">
 		<type class="food" subclass="porcini"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="30"/>
@@ -1727,7 +1712,6 @@ Makes players more offensive
 	<item name="toadstool">
 		<type class="food" subclass="toadstool"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="-60"/>
@@ -1758,7 +1742,6 @@ Makes players more offensive
 	<item name="beer">
 		<type class="drink" subclass="beer"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="6"/>
@@ -1775,7 +1758,6 @@ Makes players more offensive
 	<item name="wine">
 		<type class="drink" subclass="wine"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="10"/>
@@ -1792,7 +1774,6 @@ Makes players more offensive
 	<item name="minor_potion">
 		<type class="drink" subclass="minor_potion"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="50"/>
@@ -1808,7 +1789,6 @@ Makes players more offensive
 	<item name="antidote">
 		<type class="drink" subclass="antidote"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<description>You see an antidote, to cure you of poison and
 		protect you for a while.</description>
 		<attributes>
@@ -1826,7 +1806,6 @@ Makes players more offensive
 	<item name="potion">
 		<type class="drink" subclass="potion"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="100"/>
@@ -1842,7 +1821,6 @@ Makes players more offensive
 	<item name="greater_potion">
 		<type class="drink" subclass="greater_potion"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="300"/>
@@ -1858,7 +1836,6 @@ Makes players more offensive
 	<item name="poison">
 		<type class="drink" subclass="poison"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="-40"/>
@@ -1874,7 +1851,6 @@ Makes players more offensive
 	<item name="greater_poison">
 		<type class="drink" subclass="greater_poison"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="-60"/>
@@ -1890,7 +1866,6 @@ Makes players more offensive
 	<item name="deadly_poison">
 		<type class="drink" subclass="greater_poison"/>
 		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="-100"/>
@@ -1908,7 +1883,6 @@ Makes players more offensive
 	<item name="flask">
 		<type class="container" subclass="bottle"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -1921,7 +1895,6 @@ Makes players more offensive
 	<item name="bottle">
 		<type class="container" subclass="bottle"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -1934,7 +1907,6 @@ Makes players more offensive
 	<item name="big_bottle">
 		<type class="container" subclass="big_bottle"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -1969,7 +1941,6 @@ Makes players more offensive
 	<item name="money">
 		<type class="money" subclass="gold"/>
 		<implementation class-name="games.stendhal.server.entity.item.Money"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -1991,7 +1962,6 @@ Makes players more offensive
 	<item name="arandula">
 		<type class="herb" subclass="arandula"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -2005,7 +1975,6 @@ Makes players more offensive
         <type class="resource" subclass="wood"/>
         <description>You see some wood, fallen from a nearby tree.</description>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-	<stackable/>
         <attributes>
             <quantity value="1"/>
         </attributes>
@@ -2020,7 +1989,6 @@ Makes players more offensive
        <description>You see a sheaf of grain.</description><!--I think this is
        a good choice beacuse it could mean one or many-->
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-       <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2033,7 +2001,6 @@ Makes players more offensive
     <item name="flour">
       <type class="resource" subclass="flour"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-      <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2046,7 +2013,6 @@ Makes players more offensive
     <item name="iron_ore">
       <type class="resource" subclass="iron_ore"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-      <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2059,7 +2025,6 @@ Makes players more offensive
     <item name="iron">
       <type class="resource" subclass="iron"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-      <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2072,7 +2037,6 @@ Makes players more offensive
     <item name="golden_gm_token">
       <type class="special" subclass="GM_tokend_gold2"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-      <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2085,7 +2049,6 @@ Makes players more offensive
     <item name="silvery_gm_token">
       <type class="special" subclass="GM_tokend_silver"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-      <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2098,7 +2061,6 @@ Makes players more offensive
     <item name="bronze_gm_token">
       <type class="special" subclass="GM_tokend_bronze"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
-      <stackable/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2173,7 +2135,6 @@ Makes players more offensive
 	<item name="map">
 		<type class="scroll" subclass="mapwithgrid"/>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MapScroll"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -2194,7 +2155,6 @@ Makes players more offensive
 		<type class="misc" subclass="vampirette_entrails"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<weight value="0.01"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -2206,7 +2166,6 @@ Makes players more offensive
 		<type class="misc" subclass="bat_entrails"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<weight value="0.01"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -2217,7 +2176,6 @@ Makes players more offensive
 	<item name="summon_scroll">
 		<type class="scroll" subclass="summon"/>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.SummonScroll"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -2230,7 +2188,6 @@ Makes players more offensive
 	<item name="empty_scroll">
 		<type class="scroll" subclass="empty"/>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.EmptyScroll"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 		</attributes>
@@ -2243,7 +2200,6 @@ Makes players more offensive
 	<item name="home_scroll">
 		<type class="scroll" subclass="home"/>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
-		<stackable/>
 		<attributes>
 			<quantity value="1"/>
 			<infostring value="0_semos_city 30 40"/>
