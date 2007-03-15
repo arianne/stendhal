@@ -103,7 +103,7 @@ public class MagicExtn extends StendhalServerExtension {
         if (canCastSpell) {
             // put spells and actions here
             if (castSpell.contains("heal")) {
-                if (player.getBaseMana() >= 15 && player.getMana() >= 15) {
+                if (player.getMana() > 15) {
                     String basehp = player.get("base_hp");
                     int bhp = Integer.parseInt(basehp);
                     player.setHP(bhp);
@@ -118,6 +118,45 @@ public class MagicExtn extends StendhalServerExtension {
                     player.sendPrivateText("You do not have enough available mana to use this spell.");
                 }
                 
+            } else if (castSpell.contains("raise_stats")) {
+                if (player.getMana() > 110) {
+                    /**
+                     * Raises the level of a player along with the atk/def
+                     */
+                    
+                    // gets old stats
+                    int oldLevel = player.getLevel();
+                    int oldXP = player.getXP();
+                    int oldDefXP = player.getDEFXP();
+                    int oldDef = player.getDEF();
+                    int oldAtk = player.getATK();
+                    int oldAtkXP = player.getATKXP();
+                    
+                    //gets new stats
+                    int newLevel = oldLevel++;
+                    int newXP = oldXP + 44900;
+                    int newDefXP = oldDefXP + 24700;
+                    int newDef = oldDef++;
+                    int newAtkXP = oldAtkXP + 24700;
+                    int newAtk = oldAtk++;
+                    
+                    // sets new stats
+                    player.setXP(newXP);
+                    player.setLevel(newLevel);
+                    player.setDEFXP(newDefXP);
+                    player.setDEF(newDef);
+                    player.setATK(newAtk);
+                    player.setATKXP(newAtkXP);
+                    
+                    //saves changes
+                    player.update();
+                    player.notifyWorldAboutChanges();
+                    
+                    // takes away mana
+                    player.put("mana", player.getMana() - 110);
+                }
+            } else {
+                player.sendPrivateText("The spell you tried to cast doesn't exist!");
             }
         }
         
