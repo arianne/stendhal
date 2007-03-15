@@ -124,6 +124,15 @@ public class PizzaDelivery extends AbstractQuest {
 				"Thanks! I wonder how you managed to bring it up here so fast. Take these %d pieces of gold as a tip, I can't spend it up here anyway!",
 				"Brrr. This %s is no longer hot. Well, thanks for the effort anyway."));
 		
+		customerDB.put("Cyk", new CustomerData(
+				"Cyk is currently on holiday on Athor Island. You'll easily recognize him by his blue hair.",
+				"Pizza Hawaii",
+				20,  // minutes to deliver. You need about 6 min to Eliza, up to 12 min to wait for the ferry, 5 min for the crossing, and 0.5 min from the docks to the beach, so you need a bit of luck for this one.  
+				300, // tip when delivered on time
+				50,  // experience gain for delivery
+				"Wow, I never believed you would really deliver this half over the world! Here, take these %s bucks!",
+				"It has become cold, but what do I expect when I order a pizza from a bakery so far away... So thanks anyway."));
+		
 		customerDB.put("Eliza", new CustomerData(
 				"Eliza works for the Athor Island ferry service. You'll find her at the docks south of the Ados swamps.",
 				"Pizza del Mare",

@@ -6,7 +6,6 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.npc.fsm.Engine;
-import games.stendhal.server.entity.npc.fsm.MatchType;
 import games.stendhal.server.entity.npc.fsm.PostTransitionAction;
 import games.stendhal.server.entity.npc.fsm.PreTransitionCondition;
 import games.stendhal.server.entity.npc.fsm.Transition;
@@ -392,12 +391,20 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	@Override
+	// you can override this if you don't want your NPC to turn around
+	// in certain situations.
 	public void say(String text) {
+		// turn towards player if necessary, then say it.
+		say(text, true);
+	}
+	
+	protected void say(String text, boolean turnToPlayer) {
 		// be polite and face the player we are talking to
-		if ((attending != null) && (!facingTo(attending))) {
+		if (turnToPlayer && (attending != null) && (!facingTo(attending))) {
 			faceTo(attending);
 		}
 		super.say(text);
+		
 	}
 
 	/** Message when NPC is attending another player. */
