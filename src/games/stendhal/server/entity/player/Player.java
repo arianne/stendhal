@@ -1249,7 +1249,11 @@ public class Player extends RPEntity implements TurnListener {
 	}
 	
 	public Outfit getOutfit() {
-		return new Outfit(getInt("outfit")); 
+		if (has("outfit")) {
+			return new Outfit(getInt("outfit"));
+		}
+		// should never happen
+		return null;
 	}
 	
 	public Outfit getOriginalOutfit() {
