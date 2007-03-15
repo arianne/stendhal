@@ -39,6 +39,8 @@ import marauroa.common.game.IRPZone;
  * - As much as wanted.
  */
 public class SheepGrowing extends AbstractQuest {
+	
+	private static final int BUYING_PRICE = 30;
 
 	@Override
 	public void addToWorld() {
@@ -106,7 +108,7 @@ public class SheepGrowing extends AbstractQuest {
 				}
 
 				Map<String, Integer> items = new HashMap<String, Integer>();
-				items.put(Translate._("sheep"), 30);
+				items.put(Translate._("sheep"), BUYING_PRICE);
 
 				addGreeting();
 				addJob(Translate._("I work as a sheep seller."));
@@ -162,11 +164,15 @@ public class SheepGrowing extends AbstractQuest {
 						super(items);
 					}
 
+					private int getValue(Sheep sheep) {
+						return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+					}
+					
 					@Override
 					public int getCharge(Player player) {
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+							return getValue(sheep);
 						} else {
 							return 0;
 						}
@@ -179,6 +185,9 @@ public class SheepGrowing extends AbstractQuest {
 							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							if (seller.squaredDistance(sheep) > 5 * 5) {
 								seller.say(Translate._("I can't see that sheep from here! Bring it over so I can assess it properly."));
+							} else if (getValue(sheep) < BUYING_PRICE) {
+								// prevent newbies from selling their sheep too early
+								say(Translate._("Nah, that sheep looks too skinny. Feed it with red berries, and come back when it has become fatter."));
 							} else {
 								say(Translate._("Thanks! Here is your money."));
 								payPlayer(player);
