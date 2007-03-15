@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents the behaviour of a NPC who is able to sell masks
+ * Represents the behaviour of a NPC who is able to sell outfits
  * to a player.
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnListener, LoginListener {
@@ -107,61 +107,70 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	@Override
 	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 		String outfitType = chosenItem;
-
 		if (player.isEquipped("money", getCharge(player))) {
 			player.drop("money", getCharge(player));
-
-			// apply the mask to the outfit
-			int oldOutfitIndex = player.getInt("outfit");
-			int[][] newOutfitPossibilities = outfitTypes.get(outfitType);
-			int[] newOutfitParts = newOutfitPossibilities[Rand.rand(newOutfitPossibilities.length)];
-			int newHairIndex = newOutfitParts[0];
-			int newHeadIndex = newOutfitParts[1];
-			int newDressIndex = newOutfitParts[2];
-			int newBaseIndex = newOutfitParts[3];
-
-			// Store old outfit so that it is preselected in "Set Outfit"
-			// dialog. Some players cannot remeber the details of their
-			// original outfit. Important: If the variable is already set,
-			// it must not be changed. This means that the player has choosen
-			// another special outfit before. It is removed when the original
-			// outfit is restored by the quest-timer or the outfit is changed
-			// by the "Set Outfit" dialog. 
-			if (!player.has("outfit_org")) {
-			 	player.put("outfit_org", player.get("outfit"));
-			}
-
-			if (newBaseIndex == NO_CHANGE) {
-				newBaseIndex = oldOutfitIndex % 100;
-			}
-			oldOutfitIndex /= 100;
-			if (newDressIndex == NO_CHANGE) {
-				newDressIndex = oldOutfitIndex % 100;
-			}
-			oldOutfitIndex /= 100;
-			if (newHeadIndex == NO_CHANGE) {
-				newHeadIndex = oldOutfitIndex % 100;
-			}
-			oldOutfitIndex /= 100;
-			if (newHairIndex == NO_CHANGE) {
-				newHairIndex = oldOutfitIndex;
-			}
-			
-			// hair, head, outfit, body
-			int newOutfitIndex = newHairIndex * 1000000 + newHeadIndex * 10000 + newDressIndex * 100 + newBaseIndex;
-			player.put("outfit", newOutfitIndex);
-			player.notifyWorldAboutChanges();
-			//player.setQuest(questSlot, Long.toString(System.currentTimeMillis() + 30 * 60 * 1000));
-			
-			if (endurance != NEVER_WEARS_OFF) {
-				// make the costume disappear after some time
-				TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
-			}
-
+			putOnOutfit(player, outfitType);
 			return true;
 		} else {
 			seller.say("Sorry, you don't have enough money!");
 			return false;
+		}
+	}
+
+	/**
+	 * Tries to get back the bought/lent outfit and give the player
+	 * his original outfit back.
+	 * This will only be successful if the player is wearing an outfit
+	 * he got here, and if the original outfit has been stored.
+	 * @param player The player.
+	 * @return true iff returning was successful.
+	 */
+	protected void putOnOutfit(Player player, String outfitType) {
+		// apply the outfit to the player
+		int oldOutfitIndex = player.getInt("outfit");
+		int[][] newOutfitPossibilities = outfitTypes.get(outfitType);
+		int[] newOutfitParts = newOutfitPossibilities[Rand.rand(newOutfitPossibilities.length)];
+		int newHairIndex = newOutfitParts[0];
+		int newHeadIndex = newOutfitParts[1];
+		int newDressIndex = newOutfitParts[2];
+		int newBaseIndex = newOutfitParts[3];
+
+		// Store old outfit so that it is preselected in "Set Outfit"
+		// dialog. Some players cannot remeber the details of their
+		// original outfit. Important: If the variable is already set,
+		// it must not be changed. This means that the player has choosen
+		// another special outfit before. It is removed when the original
+		// outfit is restored by the quest-timer or the outfit is changed
+		// by the "Set Outfit" dialog. 
+		if (!player.has("outfit_org")) {
+		 	player.put("outfit_org", player.get("outfit"));
+		}
+
+		if (newBaseIndex == NO_CHANGE) {
+			newBaseIndex = oldOutfitIndex % 100;
+		}
+		oldOutfitIndex /= 100;
+		if (newDressIndex == NO_CHANGE) {
+			newDressIndex = oldOutfitIndex % 100;
+		}
+		oldOutfitIndex /= 100;
+		if (newHeadIndex == NO_CHANGE) {
+			newHeadIndex = oldOutfitIndex % 100;
+		}
+		oldOutfitIndex /= 100;
+		if (newHairIndex == NO_CHANGE) {
+			newHairIndex = oldOutfitIndex;
+		}
+		
+		// hair, head, outfit, body
+		int newOutfitIndex = newHairIndex * 1000000 + newHeadIndex * 10000 + newDressIndex * 100 + newBaseIndex;
+		player.put("outfit", newOutfitIndex);
+		player.notifyWorldAboutChanges();
+		//player.setQuest(questSlot, Long.toString(System.currentTimeMillis() + 30 * 60 * 1000));
+		
+		if (endurance != NEVER_WEARS_OFF) {
+			// make the costume disappear after some time
+			TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
 		}
 	}
 	
