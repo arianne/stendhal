@@ -14,19 +14,20 @@ package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.entity.player.Outfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 /**
  * Represents the behaviour of a NPC who is able to sell outfits
  * to a player.
  */
 public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnListener, LoginListener {
-
-	private static final int NO_CHANGE = -1;
 
 	public static final int NEVER_WEARS_OFF = -1;
 
@@ -35,40 +36,32 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	private String wearOffMessage;
 	
 	// all available outfit types are predefined here.
-	private static Map<String, int[][]> outfitTypes = new HashMap<String, int[][]>();
+	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
 	static {
 		// In each line, there is one possible outfit of this
 		// outfit type, in the format: hair, head, dress, base.
 		// One of these outfit will be chosen randomly.
-		int[][] maleSwimsuits = {
-				{NO_CHANGE, NO_CHANGE, 95, NO_CHANGE},
-				{NO_CHANGE, NO_CHANGE, 96, NO_CHANGE},
-				{NO_CHANGE, NO_CHANGE, 97, NO_CHANGE},
-				{NO_CHANGE, NO_CHANGE, 98, NO_CHANGE}
-		};
-		outfitTypes.put("male_swimsuit", maleSwimsuits);
+		outfitTypes.put("male_swimsuit", Arrays.asList(
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 95, Outfit.NO_CHANGE),
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 96, Outfit.NO_CHANGE),
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 97, Outfit.NO_CHANGE),
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 98, Outfit.NO_CHANGE)));
 		
-		int[][] femaleSwimsuits = {
-				{NO_CHANGE, NO_CHANGE, 91, NO_CHANGE},
-				{NO_CHANGE, NO_CHANGE, 92, NO_CHANGE},
-				{NO_CHANGE, NO_CHANGE, 93, NO_CHANGE},
-				{NO_CHANGE, NO_CHANGE, 94, NO_CHANGE}
-		};
-		outfitTypes.put("female_swimsuit", femaleSwimsuits);
+		outfitTypes.put("female_swimsuit", Arrays.asList(
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 91, Outfit.NO_CHANGE),
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 92, Outfit.NO_CHANGE),
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 93, Outfit.NO_CHANGE),
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 94, Outfit.NO_CHANGE)));
 		
-		int[][] masks = {
-				{NO_CHANGE, 80, NO_CHANGE, NO_CHANGE},
-				{NO_CHANGE, 81, NO_CHANGE, NO_CHANGE},
-				{NO_CHANGE, 82, NO_CHANGE, NO_CHANGE},
-				{NO_CHANGE, 83, NO_CHANGE, NO_CHANGE},
-				{NO_CHANGE, 84, NO_CHANGE, NO_CHANGE},
-		};
-		outfitTypes.put("mask", masks);
+		outfitTypes.put("mask", Arrays.asList(
+				new Outfit(0, 80, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
+				new Outfit(0, 81, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
+				new Outfit(0, 82, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
+				new Outfit(0, 83, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
+				new Outfit(0, 84, Outfit.NO_CHANGE, Outfit.NO_CHANGE)));
 
-		int[][] pizzaDeliveryUniform = {
-				{NO_CHANGE, NO_CHANGE, 90, NO_CHANGE},
-		};
-		outfitTypes.put("pizza_delivery_uniform", pizzaDeliveryUniform);
+		outfitTypes.put("pizza_delivery_uniform", Arrays.asList(
+				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 90, Outfit.NO_CHANGE)));
 	}
 	
 	/**
@@ -130,48 +123,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * @return true iff returning was successful.
 	 */
 	public void putOnOutfit(Player player, String outfitType) {
-		// apply the outfit to the player
-		int oldOutfitIndex = player.getInt("outfit");
-		int[][] newOutfitPossibilities = outfitTypes.get(outfitType);
-		int[] newOutfitParts = newOutfitPossibilities[Rand.rand(newOutfitPossibilities.length)];
-		int newHairIndex = newOutfitParts[0];
-		int newHeadIndex = newOutfitParts[1];
-		int newDressIndex = newOutfitParts[2];
-		int newBaseIndex = newOutfitParts[3];
+		List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
+		Outfit newOutfit = Rand.rand(possibleNewOutfits);
+		player.setOutfit(player.getOutfit().combineWith(newOutfit), true);
 
-		// Store old outfit so that it is preselected in "Set Outfit"
-		// dialog. Some players cannot remeber the details of their
-		// original outfit. Important: If the variable is already set,
-		// it must not be changed. This means that the player has choosen
-		// another special outfit before. It is removed when the original
-		// outfit is restored by the quest-timer or the outfit is changed
-		// by the "Set Outfit" dialog. 
-		if (!player.has("outfit_org")) {
-		 	player.put("outfit_org", player.get("outfit"));
-		}
-
-		if (newBaseIndex == NO_CHANGE) {
-			newBaseIndex = oldOutfitIndex % 100;
-		}
-		oldOutfitIndex /= 100;
-		if (newDressIndex == NO_CHANGE) {
-			newDressIndex = oldOutfitIndex % 100;
-		}
-		oldOutfitIndex /= 100;
-		if (newHeadIndex == NO_CHANGE) {
-			newHeadIndex = oldOutfitIndex % 100;
-		}
-		oldOutfitIndex /= 100;
-		if (newHairIndex == NO_CHANGE) {
-			newHairIndex = oldOutfitIndex;
-		}
-		
-		// hair, head, outfit, body
-		int newOutfitIndex = newHairIndex * 1000000 + newHeadIndex * 10000 + newDressIndex * 100 + newBaseIndex;
-		player.put("outfit", newOutfitIndex);
-		player.notifyWorldAboutChanges();
-		//player.setQuest(questSlot, Long.toString(System.currentTimeMillis() + 30 * 60 * 1000));
-		
 		if (endurance != NEVER_WEARS_OFF) {
 			// make the costume disappear after some time
 			TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
@@ -186,28 +141,19 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * @return true iff the player wears an outfit from here.
 	 */
 	public boolean wearsOutfitFromHere(Player player) {
-		int currentOutfitIndex = player.getInt("outfit");
-		int[] currentOutfitParts = new int[4];
-		
-		currentOutfitParts[3] = currentOutfitIndex % 100;
-		currentOutfitIndex /= 100;
-		currentOutfitParts[2] = currentOutfitIndex % 100;
-		currentOutfitIndex /= 100;
-		currentOutfitParts[1] = currentOutfitIndex % 100;
-		currentOutfitIndex /= 100;
-		currentOutfitParts[0] = currentOutfitIndex;
+		Outfit currentOutfit = player.getOutfit();
 		
 		for (String outfitType: priceList.keySet()) { 
-			int[][] outfitPossibilities = outfitTypes.get(outfitType);
-			for (int[] outfitPossibility: outfitPossibilities) {
-				if ((outfitPossibility[0] == NO_CHANGE
-								|| outfitPossibility[0] == currentOutfitParts[0])
-						&& (outfitPossibility[1] == NO_CHANGE
-								|| outfitPossibility[1] == currentOutfitParts[1])
-						&& (outfitPossibility[2] == NO_CHANGE
-								|| outfitPossibility[2] == currentOutfitParts[2])
-						&& (outfitPossibility[3] == NO_CHANGE
-								|| outfitPossibility[3] == currentOutfitParts[3])) {
+			List<Outfit> possibleOutfits = outfitTypes.get(outfitType);
+			for (Outfit possibleOutfit: possibleOutfits) {
+				if ((possibleOutfit.getHair() == Outfit.NO_CHANGE
+								|| possibleOutfit.getHair() == currentOutfit.getHair())
+						&& (possibleOutfit.getHead() == Outfit.NO_CHANGE
+								|| possibleOutfit.getHead() == currentOutfit.getHead())
+						&& (possibleOutfit.getDress() == Outfit.NO_CHANGE
+								|| possibleOutfit.getDress() == currentOutfit.getDress())
+						&& (possibleOutfit.getBase() == Outfit.NO_CHANGE
+								|| possibleOutfit.getBase() == currentOutfit.getBase())) {
 					return true;
 				}
 			}
@@ -224,11 +170,8 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * @return true iff returning was successful.
 	 */
 	public boolean returnToOriginalOutfit(Player player) {
-		if (wearsOutfitFromHere(player) && player.has("outfit_org")) {
-			player.put("outfit", player.get("outfit_org"));
-			player.remove("outfit_org");
-			player.notifyWorldAboutChanges();
-			return true;
+		if (wearsOutfitFromHere(player)) {
+			return player.returnToOriginalOutfit();
 		}
 		return false;
 	}

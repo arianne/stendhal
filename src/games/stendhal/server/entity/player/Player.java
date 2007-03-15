@@ -1233,4 +1233,44 @@ public class Player extends RPEntity implements TurnListener {
 	public boolean dropAll(String name) {
 		return drop(name, getNumberOfEquipped(name));
 	}
+	
+	public void setOutfit(Outfit outfit, boolean temporary) {
+		// if the new outfit is temporary and the player is not wearing
+		// a temporary outfit already, store the current outfit in a 
+		// second slot so that we can return to it later.
+		if (temporary && !has("outfit_org")) {
+			put("outfit_org", get("outfit"));
+		}
+		put("outfit", outfit.getCode());
+		notifyWorldAboutChanges();
+	}
+	
+	public Outfit getOutfit() {
+		return new Outfit(getInt("outfit")); 
+	}
+	
+	public Outfit getOriginalOutfit() {
+		if (has("outfit_org")) {
+			return new Outfit(getInt("outfit_org"));
+		}
+		return null;
+	}
+	
+	/**
+	 * Tries to give the player his original outfit back after he has put on
+	 * a temporary outfit.
+	 * This will only be successful if the player is wearing an outfit
+	 * he got here, and if the original outfit has been stored.
+	 * @param player The player.
+	 * @return true iff returning was successful.
+	 */
+	public boolean returnToOriginalOutfit() {
+		Outfit originalOutfit = getOriginalOutfit();
+		if (originalOutfit != null) {
+			setOutfit(originalOutfit, false);
+			return true;
+		}
+		return false;
+	}
+
 }
