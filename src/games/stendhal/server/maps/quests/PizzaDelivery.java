@@ -11,9 +11,9 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.player.Outfit;
 
 /**
  * QUEST: Pizza Delivery
@@ -42,6 +42,8 @@ import games.stendhal.server.entity.player.Player;
  *   chance to do the current delivery on time.
  */
 public class PizzaDelivery extends AbstractQuest {
+	
+	private static final Outfit UNIFORM = new Outfit(Outfit.NONE, Outfit.NONE, 90, Outfit.NONE);
 	
 	private static class CustomerData {
 		/** A hint where to find the customer */
@@ -86,12 +88,6 @@ public class PizzaDelivery extends AbstractQuest {
 	
 	private static Map<String, CustomerData> customerDB;
 	
-	/**
-	 * Responsible for putting on the pizza delivery uniform, and for taking it off
-	 * again after delivery.
-	 */
-	private OutfitChangerBehaviour outfitChangerBehaviour; 
-
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -244,7 +240,7 @@ public class PizzaDelivery extends AbstractQuest {
 
 		// TODO: If there's a space in the NPC name, colorization won't work.
 		npc.say("You must bring this " + data.flavor + " to #" + name + " within " + Grammar.quantityplnoun(data.expectedMinutes, "minute") + ". Say \"pizza\" so that " + name + " knows that I sent you. Oh, and please wear this uniform on your way.");
-		outfitChangerBehaviour.putOnOutfit(player, "pizza_delivery_uniform");
+		player.setOutfit(UNIFORM, true);
 		player.setQuest(QUEST_SLOT, name + ";" + System.currentTimeMillis());
 	}
 	
@@ -297,10 +293,7 @@ public class PizzaDelivery extends AbstractQuest {
 						player.addXP(data.xp);
 					}
 					player.removeQuest(QUEST_SLOT);
-					if (outfitChangerBehaviour.wearsOutfitFromHere(player)) {
-						outfitChangerBehaviour.returnToOriginalOutfit(player);
-					}
-					
+					putOffUniform(player);
 					return;
 				}
 			}
@@ -311,6 +304,13 @@ public class PizzaDelivery extends AbstractQuest {
 		}
 	}
 	
+	/** Takes away the player's uniform, if the he is wearing it. */
+	private void putOffUniform(Player player) {
+		if (UNIFORM.isPartOf(player.getOutfit())) {
+			player.returnToOriginalOutfit();
+		}
+	}
+
 	private void prepareBaker() {
 		
 		SpeakerNPC leander = npcs.get("Leander");
@@ -363,10 +363,7 @@ public class PizzaDelivery extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						// Take away the uniform, if the player is wearing one.
-						if (outfitChangerBehaviour.wearsOutfitFromHere(player)) {
-							outfitChangerBehaviour.returnToOriginalOutfit(player);
-						}
+						putOffUniform(player);
 					}
 				});
 
@@ -375,16 +372,6 @@ public class PizzaDelivery extends AbstractQuest {
 			// TODO: If there's a space in the NPC name, this won't work. 
 			leander.addReply(name, data.npcDescription);
 		}
-		
-		Map<String, Integer> priceList = new HashMap<String, Integer>();
-		priceList.put("pizza_delivery_uniform", 10);
-		outfitChangerBehaviour = new OutfitChangerBehaviour(
-				priceList);
-		// You can get the pizza delivery uniform for 10 gold by saying
-		// "lend pizza_delivery_uniform", but Leander doesn't advertise this.
-		// The usual way to get the pizzaboy suit is to do a
-		// delivery.
-		leander.addOutfitChanger(outfitChangerBehaviour, "lend", false, true);
 	}
 
 	private void prepareCustomers() {

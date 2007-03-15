@@ -1241,7 +1241,10 @@ public class Player extends RPEntity implements TurnListener {
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
 		}
-		put("outfit", outfit.getCode());
+		// combine the old outfit with the new one, as the new one might
+		// contain Outfit.NONE parts.
+		Outfit newOutfit = outfit.putOver(getOutfit()); 
+		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
 	

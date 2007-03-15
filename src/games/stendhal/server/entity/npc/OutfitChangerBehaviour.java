@@ -59,9 +59,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 				new Outfit(0, 82, Outfit.NONE, Outfit.NONE),
 				new Outfit(0, 83, Outfit.NONE, Outfit.NONE),
 				new Outfit(0, 84, Outfit.NONE, Outfit.NONE)));
-
-		outfitTypes.put("pizza_delivery_uniform", Arrays.asList(
-				new Outfit(Outfit.NONE, Outfit.NONE, 90, Outfit.NONE)));
 	}
 	
 	/**
@@ -125,7 +122,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	public void putOnOutfit(Player player, String outfitType) {
 		List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);
 		Outfit newOutfit = Rand.rand(possibleNewOutfits);
-		player.setOutfit(player.getOutfit().combineWith(newOutfit), true);
+		player.setOutfit(newOutfit.putOver(player.getOutfit()), true);
 
 		if (endurance != NEVER_WEARS_OFF) {
 			// make the costume disappear after some time

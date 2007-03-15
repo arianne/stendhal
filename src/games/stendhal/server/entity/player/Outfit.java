@@ -92,37 +92,36 @@ public class Outfit {
 	}
 	
 	/**
-	 * Gets the result that you get when, based on <code>this</code> outfit,
-	 * you put on a new outfit. Note that the new outfit can contain parts
-	 * that are marked as NO_CHANGE; in this case, the parts from
-	 * <code>this</code> outfit will be used.
-	 * @param newOutfit the outfit that should be worn 'over' the current one
+	 * Gets the result that you get when you wear this outfit over another
+	 * outfit. Note that this new outfit can contain parts that are marked
+	 * as NONE; in this case, the parts from the other outfit will be used.
+	 * @param other the outfit that should be worn 'under' the current one
 	 * @return the combined outfit
 	 */
-	public Outfit combineWith(Outfit newOutfit) {
-		// start with this outfit
+	public Outfit putOver(Outfit other) {
 		int newHair;
 		int newHead;
 		int newDress;
 		int newBase;
-		// wear the new outfit 'over' this outfit
-		if (newOutfit.hair != NONE) {
-			newHair = newOutfit.hair;
+		// wear the this outfit 'over' the other outfit;
+		// use the other outfit for parts that are not defined for this outfit.
+		if (this.hair == NONE) {
+			newHair = other.hair;
 		} else {
 			newHair = this.hair;
 		}
-		if (newOutfit.head != NONE) {
-			newHead = newOutfit.head;
+		if (this.head == NONE) {
+			newHead = other.head;
 		} else {
 			newHead = this.head;
 		}
-		if (newOutfit.dress != NONE) {
-			newDress = newOutfit.dress;
+		if (this.dress == NONE) {
+			newDress = other.dress;
 		} else {
 			newDress = this.dress;
 		}
-		if (newOutfit.base != NONE) {
-			newBase = newOutfit.base;
+		if (this.base == NONE) {
+			newBase = other.base;
 		} else {
 			newBase = this.base;
 		}
