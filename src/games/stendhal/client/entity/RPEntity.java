@@ -133,6 +133,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private java.util.List<Long> damageSpritesTimes;
 
 	private RPObject.ID attacking;
+        
+        private int mana;
+        
+        private int base_mana;
 
 	/**
 	 * Entity we are attacking.
@@ -447,6 +451,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		if (diff.has("def_item")) {
 			defItem = diff.getInt("def_item");
 		}
+                if (diff.has("mana")) {
+                        mana = diff.getInt("mana");
+                }
 
 		Color nameColor = Color.white;
 
@@ -1016,6 +1023,20 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	public int getDefItem() {
 		return defItem;
 	}
+        
+        /**
+         *@return Returns the total mana of a player
+         */
+        public int getMana() {
+            return mana;
+        }
+        
+        /**
+         *@return Returns the base mana value
+         */
+        public int getBaseMana() {
+            return base_mana;
+        }
 
 	// When this entity attacks target.
 	public void onAttack(Entity target) {

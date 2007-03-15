@@ -114,6 +114,10 @@ class PlayerRPClass {
 
 		// Non-removable while stored ones have values
 		player.addRPSlot("!skills", 1, RPClass.HIDDEN);
+                
+                // Mana/Magic System
+                player.add("mana", RPClass.INT);
+                player.add("base_mana", RPClass.INT);
 	}
 
 	/**
@@ -192,6 +196,14 @@ class PlayerRPClass {
 			// A little beginner's luck
 			object.put("karma", 10);
 		}
+                if(!object.has("mana")) {
+                    // Give the new users some mana to use... Can be set later..
+                    object.put("mana", 100);
+                }
+                if (!object.has("base_mana")) {
+                    // the first base mana stat
+                    object.put("base_mana", 100);
+                }
 
 		// Renamed to skills
 		if(object.has("!skills")) {

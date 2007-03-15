@@ -28,7 +28,6 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.events.LoginNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -54,7 +53,9 @@ public class Player extends RPEntity implements TurnListener {
 	 * The base log for karma use.
 	 */
 	private static final double	KARMA_BASELOG	= Math.log(10.0);
-
+        
+        
+        
 	/**
 	 * A random generator (for karma payout).
 	 */
@@ -101,7 +102,12 @@ public class Player extends RPEntity implements TurnListener {
 	 * Karma (luck).
 	 */
 	protected double		karma;
-
+        
+        /**
+         *Mana [magic system]
+         */
+         protected int mana;
+         protected int base_mana;
 
 	public static void generateRPClass() {
 		try {
@@ -121,7 +127,6 @@ public class Player extends RPEntity implements TurnListener {
 		player.stop();
 		player.stopAttack();
 
-		// TODO: get rid of this, only use LoginListeners and LoginNotifier instead.
 		StendhalQuestSystem.get().onPlayerLogin(player);
 
 		PlayerRPClass.readAdminsFromFile(player);
@@ -211,6 +216,12 @@ public class Player extends RPEntity implements TurnListener {
 		 */
 		karma = 10.0;
 
+                /**
+                 * Start off mana (will be able to be set... but not now)
+                 */
+                mana = 100;
+                base_mana = 100;
+                
 		update();
 	}
 
@@ -307,7 +318,7 @@ public class Player extends RPEntity implements TurnListener {
 	public double getKarma(double scale) {
 		return getKarma(-scale, scale);
 	}
-
+        
 
 	/**
 	 * Get some of the player's karma. A positive value indicates
@@ -500,6 +511,34 @@ public class Player extends RPEntity implements TurnListener {
 		this.lastPrivateChatterName = lastPrivateChatterName;
 	}
 	
+        /**
+         * Gets the mana (magic) of a player...
+         */
+        public int getMana() {
+            return mana;
+        }
+        
+        /** 
+         * Gets the base mana (like base_hp) 
+         */
+        public int getBaseMana() {
+            return base_mana;
+        }
+        
+        // sets the available mana
+        public void setMana(int ManaToSet) {
+            mana = ManaToSet;
+            update();
+        }
+        /**
+         *Sets the base mana (like base_hp)
+         */
+        public void setBaseMana(int value) {
+            base_mana = value;
+            update();
+            
+        }
+        
 	/**
 	 * Gets the name of the last player who privately talked to this player
 	 * using the /tell command, or null if nobody has talked to this player

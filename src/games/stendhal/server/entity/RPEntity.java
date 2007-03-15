@@ -66,6 +66,10 @@ public abstract class RPEntity extends Entity {
 	private int xp;
 
 	private int level;
+        
+        private int mana;
+        
+        private int base_mana;
 
 	private HashMap <RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
 
@@ -118,6 +122,8 @@ public abstract class RPEntity extends Entity {
 			entity.add("name", RPClass.STRING);
 			entity.add("level", RPClass.SHORT);
 			entity.add("xp", RPClass.INT);
+                        entity.add("mana", RPClass.INT);
+                        entity.add("base_mana", RPClass.INT);
 
 			entity.add("hp/base_hp", RPClass.FLOAT, RPClass.VOLATILE);
 			entity.add("base_hp", RPClass.SHORT, RPClass.PRIVATE);
@@ -258,6 +264,12 @@ public abstract class RPEntity extends Entity {
 		if (has("level")) {
 			level = getInt("level");
 		}
+                if (has("mana")) {
+                        mana = getInt("mana");
+                }
+                if (has("base_mana")) {
+                        mana = getInt("base_mana");
+                }
 
 		if (base_hp != 0) {
 			put("hp/base_hp", (double) hp / (double) base_hp);
@@ -944,17 +956,6 @@ public abstract class RPEntity extends Entity {
 	 */
 	public boolean drop(String name) {
 		return drop(name, 1);
-	}
-
-	/**
-	 * Removes all units of an item from the RPEntity. The item can
-	 * either be stackable or non-stackable. If the RPEntity doesn't
-	 * have any of the item, doesn't remove anything.
-	 * @param name The name of the item
-	 * @return true iff dropping the item was successful.
-	 */
-	public boolean dropAll(String name) {
-		return drop(name, getNumberOfEquipped(name));
 	}
 
 	/**
