@@ -25,6 +25,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.player.Outfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
@@ -544,18 +545,13 @@ public class AdministrationAction extends ActionListener {
 
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
-			if (player.has("outfit_org")) {
-				player.put("outfit", player.get("outfit_org"));
-				player.remove("outfit_org");
-			}
+			player.returnToOriginalOutfit();
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
 		} else {
 			player.put("ghostmode", "");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "on");
-			if (!player.has("outfit_org")) {
-				player.put("outfit_org", player.get("outfit"));
-			}
-			player.put("outfit", 980098);
+			Outfit invisible = new Outfit(0, 98, 0, 98);
+			player.setOutfit(invisible, true);
 		}
 		player.notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "onGhostMode");
