@@ -68,7 +68,6 @@ public class StendhalQuestSystem {
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		loadQuest("OrcishHappyMeal");
-		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		// loadQuest("ReverseArrow");
 		// loadQuest("SemosMineTownRevivalWeeks");
@@ -79,6 +78,10 @@ public class StendhalQuestSystem {
 		loadQuest("WeaponsCollector");
 		loadQuest("WeaponsCollector2");
 		loadQuest("ZooFood");
+
+		// This quest uses NPCs defined in other quests as customers.
+		// Therefore it should be initialized last.
+		loadQuest("PizzaDelivery");
 	}
 
 	private boolean loadQuest(String name) {

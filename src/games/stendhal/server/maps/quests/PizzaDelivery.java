@@ -67,8 +67,8 @@ public class PizzaDelivery extends AbstractQuest {
 		private String messageOnHotPizza;
 
 		/**
-		 * The text that the customer should say upon quick delivery (without
-		 * any placeholders).
+		 * The text that the customer should say upon quick delivery. It can
+		 * optionally contain %s as a placeholder for the pizza flavor.
 		 */
 		private String messageOnColdPizza;
 		
@@ -187,6 +187,15 @@ public class PizzaDelivery extends AbstractQuest {
 				"Ah, my %s! Here's your tip: %d pieces of gold.",
 				"Finally! Why did that take so long?"));
 		
+		customerDB.put("Nishiya", new CustomerData(
+				"Nishiya sells sheep. You'll find him west of here.",
+				"Pizza Pasta",
+				1,   // minutes to deliver. Tested by mort: easy to do in less than 1 min.
+				10,  // tip when delivered on time
+				5, // experience gain for delivery
+				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
+				"Too bad. It has become cold. Thank you anyway."));
+
 		customerDB.put("Ouchit", new CustomerData(
 				"Ouchit is a weapons trader. He has currently rented a room in the tavern, just around the corner.",
 				"Pizza Quattro Stagioni",
@@ -202,8 +211,8 @@ public class PizzaDelivery extends AbstractQuest {
 				14,   // minutes to deliver. You need about 6 mins to Eliza, and once you board the ferry, about 15 sec to deliver. If you have bad luck, you need to wait up to 12 mins for the ferry to arrive at the mainland, so you need a bit of luck for this one.  
 				250,  // tip when delivered on time
 				40, // experience gain for delivery
-				"Thank you! That was fast. Here, take %d pieces of gold as a tip!",
-				"Too bad. It has become cold. Thank you anyway."));
+				"Thank you so much! Finally I get something better than the terrible food that Laura cooks. Take these %d pieces of gold as a tip!",
+				"Too bad. It is cold. And I had hoped to get something better than that galley food."));
 		
 		customerDB.put("Tor'Koom", new CustomerData(
 				"Tor'Koom is an orc who lives in the dungeon below this town. Sheep are his favourite food.",
@@ -261,7 +270,11 @@ public class PizzaDelivery extends AbstractQuest {
 				if (data.flavor.equals(flavor)) {
 					player.drop(pizza);
 					if (isDeliveryTooLate(player)) {
-						npc.say(data.messageOnColdPizza);
+						if (data.messageOnColdPizza.contains("%s")) {
+							npc.say(String.format(data.messageOnColdPizza, data.flavor));
+						} else {
+							npc.say(data.messageOnColdPizza);							
+						}
 						player.addXP(data.xp / 2);
 					} else {
 						if (data.messageOnHotPizza.contains("%s")) {
