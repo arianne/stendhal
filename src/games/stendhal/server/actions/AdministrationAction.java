@@ -553,7 +553,6 @@ public class AdministrationAction extends ActionListener {
 			Outfit invisible = new Outfit(0, 98, 0, 98);
 			player.setOutfit(invisible, true);
 		}
-		player.notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "onGhostMode");
 	}
 
