@@ -498,11 +498,11 @@ public abstract class SpeakerNPC extends NPC {
 
 		lastMessageTurn = StendhalRPRuleProcessor.get().getTurn();
 
-		if (engine.matchState(MatchType.ABSOLUTE_JUMP, player, text)) {
+		if (engine.matchTransition(MatchType.ABSOLUTE_JUMP, player, text)) {
 			return true;
-		} else if (engine.matchState(MatchType.EXACT_MATCH, player, text)) {
+		} else if (engine.matchTransition(MatchType.EXACT_MATCH, player, text)) {
 			return true;
-		} else if (engine.matchState(MatchType.SIMILAR_MATCH, player, text)) {
+		} else if (engine.matchTransition(MatchType.SIMILAR_MATCH, player, text)) {
 			return true;
 		} else {
 			// Couldn't match the text with the current FSM state

@@ -82,7 +82,7 @@ public class Engine {
 		this.currentState = currentState;
 	}
 	
-	public boolean matchState(MatchType type, Player player, String text) {
+	public boolean matchTransition(MatchType type, Player player, String text) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
 
@@ -104,20 +104,20 @@ public class Engine {
 
 		if (listCondition.size() > 0) {
 			int i = Rand.rand(listCondition.size());
-			executeState(player, text, listCondition.get(i));
+			executeTransition(player, text, listCondition.get(i));
 			return true;
 		}
 
 		if (listConditionLess.size() > 0) {
 			int i = Rand.rand(listConditionLess.size());
-			executeState(player, text, listConditionLess.get(i));
+			executeTransition(player, text, listConditionLess.get(i));
 			return true;
 		}
 
 		return false;
 	}
 	
-	private void executeState(Player player, String text, Transition state) {
+	private void executeTransition(Player player, String text, Transition state) {
 		int nextState = state.getNextState();
 		if (state.getReply() != null) {
 			speakerNPC.say(state.getReply());
