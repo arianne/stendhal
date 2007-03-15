@@ -947,6 +947,17 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
+	 * Removes all units of an item from the RPEntity. The item can
+	 * either be stackable or non-stackable. If the RPEntity doesn't
+	 * have any of the item, doesn't remove anything.
+	 * @param name The name of the item
+	 * @return true iff dropping the item was successful.
+	 */
+	public boolean dropAll(String name) {
+		return drop(name, getNumberOfEquipped(name));
+	}
+
+	/**
 	 * Removes the given item from the RPEntity. The item can
 	 * either be stackable or non-stackable. If the RPEntity doesn't
 	 * have the item, doesn't remove anything.
