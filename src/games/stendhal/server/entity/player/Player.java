@@ -1271,6 +1271,7 @@ public class Player extends RPEntity implements TurnListener {
 		Outfit originalOutfit = getOriginalOutfit();
 		if (originalOutfit != null) {
 			setOutfit(originalOutfit, false);
+			remove("outfit_org");
 			return true;
 		}
 		return false;
