@@ -49,7 +49,7 @@ public class StendhalQuestSystem {
 		loadQuest("Campfire");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloaksForBario");
-		loadQuest("CostumeParty");
+		//loadQuest("CostumeParty");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("Deathmatch");
 		loadQuest("DiceGambling");
@@ -68,6 +68,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		loadQuest("OrcishHappyMeal");
+		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		// loadQuest("ReverseArrow");
 		// loadQuest("SemosMineTownRevivalWeeks");

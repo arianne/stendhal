@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.semos;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -108,11 +109,15 @@ public class IL0_Bakery implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addJob("I'm the local baker. We used to get a lot of orders from Ados before the war broke out and they blocked the road. At least it gives me more time to #make sandwiches for out valuable customers; everybody says they're great!");
+				addJob("I'm the local baker. I also run a #pizza delivery service. We used to get a lot of orders from Ados before the war broke out and they blocked the road. At least it gives me more time to #make sandwiches for out valuable customers; everybody says they're great!");
+				addHelp("If you want to earn some money, you could do me a #favor and help me with the #pizza deliveries. My daughter #Sally used to do it, but she's camping at the moment.");
 				addReply("bread", "Oh, Erna handles that side of the business; just go over and talk to her.");
 				addReply("cheese", "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to?");
 				addReply("ham", "Well, you look like a skilled hunter; why not go to the forest and hunt some up fresh? Don't bring me those little pieces of meat, though... I only make sandwiches from high quality ham!");
-				addHelp("My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");				addGoodbye();
+				addReply("Sally", "My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");
+				addReply("pizza", "I need someone who helps me delivering pizza. Maybe you could do that #task.");
+				addReply(Arrays.asList("sandwich", "sandwiches"), "My sandwiches are tasty and nutritious. If you want one, just tell me to #make #1 #sandwich.");
+				addGoodbye();
 
 				// Leander makes sandwiches if you bring him bread, cheese, and ham.
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
@@ -124,7 +129,7 @@ public class IL0_Bakery implements ZoneConfigurator {
 						"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60);
 
 				addProducer(behaviour,
-						"Hi! I bet you've heard about my famous sandwiches and want me to #make you one, am I right?");
+						"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
 			}
 		};
 		npcs.add(leander);
