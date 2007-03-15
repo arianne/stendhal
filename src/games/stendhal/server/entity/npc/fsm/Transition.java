@@ -61,7 +61,7 @@ public class Transition {
 	 * @return true iff this is a wildcard transition and the triggering
 	 *         text has been said
 	 */
-	public boolean absoluteJump(String text) {
+	public boolean isAbsoluteJump(String text) {
 		return (state == ConversationStates.ANY) && trigger.equalsIgnoreCase(text);
 	}
 

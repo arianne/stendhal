@@ -89,7 +89,7 @@ public class Engine {
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
 			if (((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE)
-					&& transition.absoluteJump(text))
+					&& transition.isAbsoluteJump(text))
 					|| ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text))
 					|| ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text))) {
 				if (transition.isConditionFulfilled(player, text, speakerNPC)) {
