@@ -5,6 +5,14 @@ package games.stendhal.server.entity.player;
  * You can use it so that you don't have to deal with the
  * way outfits are stored internally.
  * 
+ * An outfit can contain of up to four parts: hair, head,
+ * dress, and base.
+ * 
+ * Note, however, that you can create outfit objects that consist of less than
+ * four parts by setting the other parts to NONE. For example, you can create
+ * a dress outfit that you can combine with the player's current so that the
+ * player gets the dress, but keeps his hair, head, and base.  
+ * 
  * @author daniel
  *
  */
@@ -14,7 +22,7 @@ public class Outfit {
 	 * State that a part of an outfit should not be used
 	 * when combining with another outfit. 
 	 */
-	public static final int NO_CHANGE = -1;
+	public static final int NONE = -1;
 
 	/** The hair index, as a value between 0 and 99. */
 	private int hair;
@@ -98,26 +106,38 @@ public class Outfit {
 		int newDress;
 		int newBase;
 		// wear the new outfit 'over' this outfit
-		if (newOutfit.hair != NO_CHANGE) {
+		if (newOutfit.hair != NONE) {
 			newHair = newOutfit.hair;
 		} else {
 			newHair = this.hair;
 		}
-		if (newOutfit.head != NO_CHANGE) {
+		if (newOutfit.head != NONE) {
 			newHead = newOutfit.head;
 		} else {
 			newHead = this.head;
 		}
-		if (newOutfit.dress != NO_CHANGE) {
+		if (newOutfit.dress != NONE) {
 			newDress = newOutfit.dress;
 		} else {
 			newDress = this.dress;
 		}
-		if (newOutfit.base != NO_CHANGE) {
+		if (newOutfit.base != NONE) {
 			newBase = newOutfit.base;
 		} else {
 			newBase = this.base;
 		}
 		return new Outfit(newHair, newHead, newDress, newBase);
+	}
+	
+	/**
+	 * Checks whether this outfit is equal to or part of another outfit.
+	 * @param other Another outfit.
+	 * @return
+	 */
+	public boolean isPartOf(Outfit other) {
+		return (hair == Outfit.NONE || hair == other.hair)
+				&& (head == Outfit.NONE || head == other.head)
+				&& (dress == Outfit.NONE || dress == other.dress)
+				&& (base == Outfit.NONE || base == other.base);
 	}
 }

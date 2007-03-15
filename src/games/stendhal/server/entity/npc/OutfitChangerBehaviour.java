@@ -42,26 +42,26 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		// outfit type, in the format: hair, head, dress, base.
 		// One of these outfit will be chosen randomly.
 		outfitTypes.put("male_swimsuit", Arrays.asList(
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 95, Outfit.NO_CHANGE),
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 96, Outfit.NO_CHANGE),
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 97, Outfit.NO_CHANGE),
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 98, Outfit.NO_CHANGE)));
+				new Outfit(Outfit.NONE, Outfit.NONE, 95, Outfit.NONE),
+				new Outfit(Outfit.NONE, Outfit.NONE, 96, Outfit.NONE),
+				new Outfit(Outfit.NONE, Outfit.NONE, 97, Outfit.NONE),
+				new Outfit(Outfit.NONE, Outfit.NONE, 98, Outfit.NONE)));
 		
 		outfitTypes.put("female_swimsuit", Arrays.asList(
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 91, Outfit.NO_CHANGE),
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 92, Outfit.NO_CHANGE),
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 93, Outfit.NO_CHANGE),
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 94, Outfit.NO_CHANGE)));
+				new Outfit(Outfit.NONE, Outfit.NONE, 91, Outfit.NONE),
+				new Outfit(Outfit.NONE, Outfit.NONE, 92, Outfit.NONE),
+				new Outfit(Outfit.NONE, Outfit.NONE, 93, Outfit.NONE),
+				new Outfit(Outfit.NONE, Outfit.NONE, 94, Outfit.NONE)));
 		
 		outfitTypes.put("mask", Arrays.asList(
-				new Outfit(0, 80, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
-				new Outfit(0, 81, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
-				new Outfit(0, 82, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
-				new Outfit(0, 83, Outfit.NO_CHANGE, Outfit.NO_CHANGE),
-				new Outfit(0, 84, Outfit.NO_CHANGE, Outfit.NO_CHANGE)));
+				new Outfit(0, 80, Outfit.NONE, Outfit.NONE),
+				new Outfit(0, 81, Outfit.NONE, Outfit.NONE),
+				new Outfit(0, 82, Outfit.NONE, Outfit.NONE),
+				new Outfit(0, 83, Outfit.NONE, Outfit.NONE),
+				new Outfit(0, 84, Outfit.NONE, Outfit.NONE)));
 
 		outfitTypes.put("pizza_delivery_uniform", Arrays.asList(
-				new Outfit(Outfit.NO_CHANGE, Outfit.NO_CHANGE, 90, Outfit.NO_CHANGE)));
+				new Outfit(Outfit.NONE, Outfit.NONE, 90, Outfit.NONE)));
 	}
 	
 	/**
@@ -146,14 +146,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		for (String outfitType: priceList.keySet()) { 
 			List<Outfit> possibleOutfits = outfitTypes.get(outfitType);
 			for (Outfit possibleOutfit: possibleOutfits) {
-				if ((possibleOutfit.getHair() == Outfit.NO_CHANGE
-								|| possibleOutfit.getHair() == currentOutfit.getHair())
-						&& (possibleOutfit.getHead() == Outfit.NO_CHANGE
-								|| possibleOutfit.getHead() == currentOutfit.getHead())
-						&& (possibleOutfit.getDress() == Outfit.NO_CHANGE
-								|| possibleOutfit.getDress() == currentOutfit.getDress())
-						&& (possibleOutfit.getBase() == Outfit.NO_CHANGE
-								|| possibleOutfit.getBase() == currentOutfit.getBase())) {
+				if (possibleOutfit.isPartOf(currentOutfit)) {
 					return true;
 				}
 			}
