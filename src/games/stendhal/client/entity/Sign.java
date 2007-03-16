@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import marauroa.common.game.*;
 import games.stendhal.client.*;
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -95,6 +96,20 @@ public class Sign extends Entity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
+	@Override
+	protected void loadSprite(RPObject object) {
+		SpriteStore store = SpriteStore.get();
+		String name = null;
+
+		if (object.has("class")) {
+			name = object.get("class");
+		} else {
+			name = "default";
+		}
+
+		sprite = store.getSprite("data/sprites/signs/" + name + ".png");
+	}
+	
 	@Override
 	public void onAction(ActionType at, String... params) {
 		// =handleAction(action);

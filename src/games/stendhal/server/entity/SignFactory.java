@@ -65,11 +65,13 @@ public class SignFactory implements ConfigurableFactory {
 	 */
 	public Object create(ConfigurableFactoryContext ctx)
 	 throws IllegalArgumentException {
-		Sign	sign;
-
-
-		sign = new Sign();
+		Sign sign = new Sign();
+		
 		sign.setText(getText(ctx));
+		String clazz = ctx.getAttribute("class");
+		if (clazz != null) {
+			sign.put("class", clazz);
+		}
 
 		return sign;
 	}

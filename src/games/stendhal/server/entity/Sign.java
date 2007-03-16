@@ -27,6 +27,7 @@ public class Sign extends Entity {
 			RPClass sign = new RPClass("sign");
 			sign.isA("entity");
 			sign.add("text", RPClass.LONG_STRING);
+			sign.add("class", RPClass.LONG_STRING);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -44,5 +45,14 @@ public class Sign extends Entity {
 
 	public void setText(String text) {
 		put("text", text);
+	}
+	
+	/**
+	 * States what type of sign this should be. This defines how
+	 * it will look like in the client.
+	 * @param clazz The sign class, e.g. "default" or "signpost".
+	 */
+	public void setClass(String clazz) {
+		put("class", clazz);
 	}
 }
