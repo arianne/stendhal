@@ -75,11 +75,16 @@ public class ConversationStates {
 	public static final int INFORMATION_6 = 55;
 
 	/**
-	 * The SpeakerNPC has offered a quest; the player has to accept or reject
-	 * it.
+	 * The SpeakerNPC has offered a quest;
+	 * the player has to accept or reject it.
 	 */
 	public static final int QUEST_OFFERED = 60;
-        public static final int QUEST_2_OFFERED = 65;
+
+	/**
+	 * The SpeakerNPC has offered a second quest;
+	 * the player has to accept or reject it.
+	 */
+	public static final int QUEST_2_OFFERED = 65;
 
 	/**
 	 * The player has just started the quest. 
@@ -97,9 +102,7 @@ public class ConversationStates {
 	 */
 	public static final int QUEST_ITEM_QUESTION = 63;
 
-	/**
-	 * Multi-purpose states
-	 */
+	/** Multi-purpose states for multiple questions*/
 	public static final int QUESTION_1 = 70;
 	public static final int QUESTION_2 = 71;
 	public static final int QUESTION_3 = 72;
