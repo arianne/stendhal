@@ -65,13 +65,9 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
-							// A little trick to make NPC remember if it has met
-							// player before and react accordingly
-							// NPC_name quest doesn't exist anywhere else neither is
-							// used for any other purpose
-							if (!player.isQuestCompleted("Hackim")) {
+							if (!player.hasQuest("meet_hackim")) {
 								engine.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-								player.setQuest("Hackim", "done");
+								player.setQuest("meet_hackim", "start");
 							} else {
 								engine.say("Hi again, " + player.getName()
 										+ ". How can I #help you this time?");

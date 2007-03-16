@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -9,22 +12,43 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Speak with Hackim
+ * 
  * PARTICIPANTS:
- * - Hackim
+ * - Hackim Easso, the blacksmith's assistant 
  *
  * STEPS:
  * - Talk to Hackim to activate the quest and keep speaking with Hackim.
  *
  * REWARD:
- * - 10 XP (check that user's level is lower than 15)
+ * - 10 XP
  * - 5 gold coins
  *
  * REPETITIONS:
- * - As much as wanted.
+ * - As much as wanted, but you only get the reward once.
  */
 public class MeetHackim extends AbstractQuest {
 
-	private void step_1() {
+	private static final String QUEST_SLOT = "meet_hackim";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		if (isCompleted(player)) {
+			res.add("DONE");
+		}
+		return res;
+	}
+
+	private void prepareHackim() {
 
 		SpeakerNPC npc = npcs.get("Hackim Easso");
 
@@ -56,10 +80,12 @@ public class MeetHackim extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						int level = player.getLevel();
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						String answer;
-						if (level < 15) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							// player has already completed the conversation before. 
+							answer = "Where did you get those weapons? A toy shop?";
+						} else {
 							StackableItem money = (StackableItem) StendhalRPWorld.get()
 									.getRuleManager().getEntityManager().getItem(
 											"money");
@@ -67,14 +93,12 @@ public class MeetHackim extends AbstractQuest {
 							player.equip(money);
 		
 							player.addXP(10);
-		
+							player.setQuest(QUEST_SLOT, "done");
 							player.notifyWorldAboutChanges();
 		
 							answer = "If anybody asks, you don't know me!";
-						} else {
-							answer = "Where did you get those weapons? A toy shop?";
 						}
-						engine.say("Guessed who supplies Xin Blanca with the weapons he sells? Well, it's me! I have to avoid raising suspicion, though, so I can only smuggle him small weapons. If you want something more powerful, you'll have to venture into the dungeons and kill some of the creatures there for items.\n" + answer);
+						npc.say("Guessed who supplies Xin Blanca with the weapons he sells? Well, it's me! I have to avoid raising suspicion, though, so I can only smuggle him small weapons. If you want something more powerful, you'll have to venture into the dungeons and kill some of the creatures there for items.\n" + answer);
 					}
 				});
 
@@ -82,6 +106,7 @@ public class MeetHackim extends AbstractQuest {
 				            ConversationStates.INFORMATION_1,
 				            ConversationStates.INFORMATION_2,
 				            ConversationStates.INFORMATION_3 },
+	            // TODO
 				"no",
 				null,
 				ConversationStates.ATTENDING,
@@ -94,6 +119,6 @@ public class MeetHackim extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
+		prepareHackim();
 	}
 }
