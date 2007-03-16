@@ -17,6 +17,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
@@ -143,7 +144,7 @@ class PlayerRPClass {
 
 		// Port from 0.13 to 0.20
 		if (!object.has("outfit")) {
-			object.put("outfit", 0);
+			object.put("outfit", new Outfit().getCode());
 		}
 
 		// create slots if they do not exist yet:

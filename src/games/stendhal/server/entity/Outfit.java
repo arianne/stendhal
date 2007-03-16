@@ -1,8 +1,10 @@
 package games.stendhal.server.entity;
 
 /**
- * A datastructure that represents the outfit of a player.
- * You can use it so that you don't have to deal with the
+ * A data structure that represents the outfit of an RPEntity. This RPEntity
+ * can either be an NPC which uses the outfit sprite system, or of a player.
+ * 
+ * You can use this data structure so that you don't have to deal with the
  * way outfits are stored internally.
  * 
  * An outfit can contain of up to four parts: hair, head,
@@ -33,6 +35,20 @@ public class Outfit {
 	/** The base index, as a value between 0 and 99. */
 	private int base;
 	
+	/**
+	 * Creates a new default outfit (naked person). 
+	 */
+	public Outfit() {
+		this(0, 0, 0, 0);
+	}
+	
+	/**
+	 * Creates a new outfit.
+	 * @param hair
+	 * @param head
+	 * @param dress
+	 * @param base
+	 */
 	public Outfit(int hair, int head, int dress, int base) {
 		this.hair = hair;
 		this.head = head;
