@@ -11,10 +11,6 @@
      <zone name="0_athor_ship_w2" file="0_athor_ship_w2.xstend">
      </zone>
 
-     <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
-       <!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
-     </zone>
-
      <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island_w" ref="apartment_1_entrance"/>
@@ -194,7 +190,13 @@
      	 
  <!--  Level -1 -->
 
+     <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
+       <!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
+     </zone>
+
+
  <zone name="-1_athor_island_w" file="sub_1_athor_island_w.xstend">
+   <configurator class-name="games.stendhal.server.maps.athor.USL1_IslandWest"/>
    <portal x="118" y="96" ref="quicksand_out">
      <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
    </portal>

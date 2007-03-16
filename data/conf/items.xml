@@ -2023,6 +2023,18 @@ Makes players more offensive
       </equipable>
     </item>
 	
+	<item name="gold_ore">
+      <type class="resource" subclass="gold_ore"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="2"/>
+      <equipable>
+        <slot name="bag"/>
+      </equipable>
+    </item>
+	
     <item name="iron">
       <type class="resource" subclass="iron"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
@@ -2287,6 +2299,16 @@ the right click menu we talked about before.
 
 	<item name="lich_gold_key">
 		<type class="key" subclass="gold"/>
+		<description>A fancy golden key</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="minotaur_key">
+		<type class="key" subclass="bronze"/>
 		<description>A fancy golden key</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
