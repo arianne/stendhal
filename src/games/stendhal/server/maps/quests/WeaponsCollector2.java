@@ -146,7 +146,7 @@ public class WeaponsCollector2 extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						List<String> needed = missingWeapons(player, true);
 						engine.say("There " + Grammar.isare(needed.size()) + " " + Grammar.quantityplnoun(needed.size(), "weapon") + " still missing from my newest collection: "
-								+ SpeakerNPC.enumerateCollection(needed) + ". Do you have anything like that with you?");
+								+ Grammar.enumerateCollection(needed) + ". Do you have anything like that with you?");
 					}
 				});
 

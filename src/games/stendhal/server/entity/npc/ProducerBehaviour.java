@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
@@ -174,7 +175,7 @@ public class ProducerBehaviour extends Behaviour {
 		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
 			requiredResourcesWithHashes.add(amount * entry.getValue() + " #" + entry.getKey());	
 		}
-		return SpeakerNPC.enumerateCollection(requiredResourcesWithHashes);
+		return Grammar.enumerateCollection(requiredResourcesWithHashes);
 	}
 	
 	public String getApproximateRemainingTime(Player player) {

@@ -14,7 +14,6 @@ import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -175,31 +174,6 @@ public abstract class SpeakerNPC extends NPC {
 	 */  
 	private Player attending;
 
-	/**
-	 * Helper function to nicely formulate an enumeration of a collection.
-	 * For example, for a collection containing the 3 elements x, y, z,
-	 * returns the string "x, y, and z".
-	 * @param collection The collection whose elements should be enumerated 
-	 * @return A nice String representation of the collection
-	 */
-	public static String enumerateCollection(Collection<String> collection) {
-		String[] elements = collection.toArray(new String[collection.size()]);
-		if (elements.length == 0) {
-			return "";
-		} else if (elements.length == 1) {
-			return elements[0];
-		} else if (elements.length == 2) {
-			return elements[0] + " and " + elements[1];
-		} else {
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < elements.length - 1; i++) {
-				sb.append(elements[i] + ", ");
-			}
-			sb.append("and " + elements[elements.length - 1]);
-			return sb.toString();
-		}
-	}
-	
 	/**
 	 * Creates a new SpeakerNPC.
 	 *
@@ -614,7 +588,7 @@ public abstract class SpeakerNPC extends NPC {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I sell " + enumerateCollection(behaviour.dealtItems()) + ".",
+					"I sell " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".",
 					null);
 		}
 
@@ -700,7 +674,7 @@ public abstract class SpeakerNPC extends NPC {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"I buy " + enumerateCollection(behaviour.dealtItems()) + ".",
+					"I buy " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".",
 					null);
 		}
 
@@ -855,7 +829,7 @@ public abstract class SpeakerNPC extends NPC {
 					"offer",
 					null,
 					ConversationStates.ATTENDING,
-					"You can #" + command + " " + enumerateCollection(behaviour.dealtItems()) + ".",
+					"You can #" + command + " " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".",
 					null);
 		}
 

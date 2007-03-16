@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
@@ -145,10 +146,10 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 			bankSum = sumValues(bankCards);
 		}
 		playerCardsItem.setQuantity(playerSum);
-		playerCardsItem.setDescription("You see the player's cards: " + SpeakerNPC.enumerateCollection(playerCards));
+		playerCardsItem.setDescription("You see the player's cards: " + Grammar.enumerateCollection(playerCards));
 		playerCardsItem.notifyWorldAboutChanges();
 		bankCardsItem.setQuantity(bankSum);
-		bankCardsItem.setDescription("You see the bank's cards: " + SpeakerNPC.enumerateCollection(bankCards));
+		bankCardsItem.setDescription("You see the bank's cards: " + Grammar.enumerateCollection(bankCards));
 		bankCardsItem.notifyWorldAboutChanges();
 		if (! playerStands) {
 			message += "You have " + playerSum + ".\n";

@@ -11,6 +11,8 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import java.util.Collection;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -330,6 +332,31 @@ public class Grammar {
 				logger.error("Gramar.ordered not implemented for: " + n, new Throwable() );
 				return Integer.toString(n);
 			}
+		}
+	}
+
+	/**
+	 * Helper function to nicely formulate an enumeration of a collection.
+	 * For example, for a collection containing the 3 elements x, y, z,
+	 * returns the string "x, y, and z".
+	 * @param collection The collection whose elements should be enumerated 
+	 * @return A nice String representation of the collection
+	 */
+	public static String enumerateCollection(Collection<String> collection) {
+		String[] elements = collection.toArray(new String[collection.size()]);
+		if (elements.length == 0) {
+			return "";
+		} else if (elements.length == 1) {
+			return elements[0];
+		} else if (elements.length == 2) {
+			return elements[0] + " and " + elements[1];
+		} else {
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < elements.length - 1; i++) {
+				sb.append(elements[i] + ", ");
+			}
+			sb.append("and " + elements[elements.length - 1]);
+			return sb.toString();
 		}
 	}
 }

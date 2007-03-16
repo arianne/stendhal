@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
@@ -71,7 +71,7 @@ public class Dice extends Item {
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
 			topFacesStrings.add(Integer.toString(topFaces[i]));
 		}
-		return SpeakerNPC.enumerateCollection(topFacesStrings);
+		return Grammar.enumerateCollection(topFacesStrings);
 	}
 	
 	public int getSum() {
