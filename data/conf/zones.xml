@@ -1,2613 +1,2669 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
-  ** Zone Configuration.
-  **
-  ** A zone descriptor has the following structure:
-  **
-  ** <zone name="xxxx" file="xxxxx_xxxxx_xxxxxx.xstend">
-  **  <title>Xxxxxx xxxx</title>
-  **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
-  **
-  **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
-  **
-  **  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **  </configurator>
-  **
-  **  <portal x="xxx" y="xxx" ref="xxx">
-  **   <destination zone="xxxxxxx" ref="xxx"/>
-  **  </portal>
-  **
-  **  <portal x="xxx" y="xxx" ref="xxx" [replacing="true|false"]>
-  **   <destination zone="xxxxxxx" ref="xxx"/>
-  **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
-  **  </portal>
-  **
-  **  <portal x="xxx" y="xxx" ref="xxx">
-  **   <destination zone="xxxxxxx" ref="xxx"/>
-  **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **   </implementation>
-  **  </portal>
-  ** </zone>
-  **
-  **  <entity x="xxx" y="xxx">
-  **   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **    <attribute name="xxxxx">xxxxxx</attribute>
-  **   </implementation>
-  **  </entity>
-  ** </zone>
-  **
-  ** zone
-  **  name: The unique programmatic key used to reference the zone.
-  **  file: The zone data file (relative to data/maps/).
-  **
-  **  title: A nicely presented label (single line, relatively short).
-  **
-  **  configurator: A code reference used to post-configure the zone.
-  **   class-name: The java package/class name.
-  **
-  **   attribute: An attribute passed to the configuration code.
-  **
-  **
-  **  portal: A portal definition.
-  **   x: The X coordinate of the portal.
-  **   y: The X coordinate of the portal.
-  **   ref: The portal identifier (number only - for now).
-  **   replacing: If set to 'true', replace existing portals at this location.
-  **
-  **  destination: A portal definition.
-  **   zone: The destination zone.
-  **   ref: The destination portal identifier (number only - for now).
-  **
-  **  implementation: A code reference used for implementation.
-  **   class-name: The java package/class name.
-  **
-  **   attribute: An attribute passed to the implementation [factory].
-  **
-  **
-  **  entity: A generic entity definition.
-  **   x: The X coordinate of the entity.
-  **   y: The X coordinate of the entity.
-  **
-  **  implementation: A code reference used for implementation.
-  **   class-name: The java package/class name.
-  **
-  **   attribute: An attribute passed to the implementation [factory].
-  **
-  **
-  ** <configurator>'s specify a class name that implements ZoneConfigurator,
-  ** and will be passed the zone and any attributes.
-  **
-  ** Each zone can have zero, one, or more of each <configurator>, <portal>,
-  ** and <entity> entries. These will be called in the order they appear
-  ** in each zone to allow for predictable interdependencies.
-  **
-  -->
-<zones>
- <!--
-   ** Load zones. Written from left to right and from top to bottom.
-   ** Please respect it!
-   -->
-
- <!--  Ground level -->
-
- <zone name="0_semos_mountain_n_w4" file="0_semos_mountain_n_w4.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n2_w2" file="0_semos_mountain_n2_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n2_w" file="0_semos_mountain_n2_w.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n2" file="0_semos_mountain_n2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n2_e" file="0_semos_mountain_n2_e.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n2_e2" file="0_semos_mountain_n2_e2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_ados_mountain_n2_w2" file="0_ados_mountain_n2_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n_w3" file="0_semos_mountain_n_w3.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n_w2" file="0_semos_mountain_n_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
-  <portal x="92" y="101" ref="catacombs_entrance">
-   <destination zone="-1_semos_catacombs_se" ref="entrance"/>
-   <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
-    <attribute name="quest">vs_quest</attribute>
-    <attribute name="rejected">You find it hard to enter. Perhaps you're not
-  prepared for what is below.</attribute>
-   </implementation>
-  </portal>
- </zone>
-
- <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
- </zone>
-
- <zone name="0_semos_plains_n_e2" file="0_semos_plains_n_e2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_n_e2" file="0_semos_mountain_n_e2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_ados_mountain_n_w2" file="0_ados_mountain_n_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_ados_mountain_nw" file="0_ados_mountain_nw.xstend">
-  <title/>
-  <entity x="126" y="107">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-     Beware of bandits beyond!
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="126" y="115">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-     Beware of bandits beyond!
-    </attribute>
-   </implementation>
-  </entity>
-
-  <portal x="75" y="50" ref="magician_house_entrance">
-   <destination zone="int_ados_magician_house" ref="entrance"/>
-  </portal>
- </zone>
-
- <zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.IL0_MagicianHouse" />
-
-  <portal x="12" y="13" ref="entrance">
-   <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
-  </portal>
- </zone>
-
- <zone name="0_ados_outside_nw" file="0_ados_outside_nw.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest" />
-
-  <portal x="67" y="24" ref="0">
-   <destination zone="-1_ados_outside_nw" ref="0"/>
-  </portal>
-
-  <entity x="53" y="48">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-Ados Wildlife Refuge
-Home for endangered animals
-    </attribute>
-   </implementation>
-  </entity>
- </zone>
-
- <zone name="0_ados_wall_n" file="0_ados_wall_n.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosWallNorth"/>
- </zone>
-
- <zone name="0_orril_mountain_n2_w2" file="0_orril_mountain_n2_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_mountain_w2" file="0_semos_mountain_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_plains_w" file="0_semos_plains_w.xstend">
-  <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestOutside"/>
--->
-  <!-- Not in java code -->
-  <portal x="85" y="26" ref="jail_entrance_left">
-   <destination zone="-1_semos_jail" ref="entrance"/>
-  </portal>
-
-  <portal x="86" y="26" ref="jail_entrance">
-   <destination zone="-1_semos_jail" ref="entrance"/>
-  </portal>
- </zone>
-
- <zone name="0_semos_village_w" file="0_semos_village_w.xstend">
-  <title/>
-  <entity x="23" y="61">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO THE PLAINS
-
-Shepherds please note: keep watch for
-the wolves while searching for berries here
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="60" y="47">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO SEMOS
-
-Mature sheep wanted: please speak to Sato
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="16" y="35">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-[CLOSED]
-
-The tavern has moved into a more central
-location in Semos. Please come join us at the
-social hub of the Semos area!
-    </attribute>
-   </implementation>
-  </entity>
- </zone>
-
- <zone name="0_semos_city" file="0_semos_city.xstend">
-  <title>The City of Semos</title>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside" />
-
-<!-- TEST
-  <entity x="35" y="35">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">purple kryptonite</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">1</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="35" y="36">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">purple kryptonite</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">1</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="35" y="37">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">purple kryptonite</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">1</attribute>
-   </implementation>
-  </entity>
--->
-
-  <portal x="42" y="37" ref="tavern_entrance">
-   <destination zone="int_semos_tavern_0" ref="entrance"/>
-  </portal>
-
-  <portal x="53" y="37" ref="temple_entrance">
-   <destination zone="int_semos_temple" ref="entrance_center_right"/>
-  </portal>
-
-  <portal x="15" y="41" ref="blacksmith_entrance">
-   <destination zone="int_semos_blacksmith" ref="entrance"/>
-  </portal>
-
-  <portal x="6" y="22" ref="library_entrance_left">
-   <destination zone="int_semos_library" ref="entrance_left"/>
-  </portal>
-
-  <portal x="11" y="22" ref="library_entrance_right">
-   <destination zone="int_semos_library" ref="entrance_right"/>
-  </portal>
-
-  <portal x="52" y="19" ref="storage_entrance">
-   <destination zone="int_semos_storage_0" ref="entrance"/>
-  </portal>
-
-  <portal x="18" y="22" ref="bank_entrance">
-   <destination zone="int_semos_bank" ref="entrance"/>
-  </portal>
-
-  <portal x="29" y="13" ref="townhall_entrance_left">
-   <destination zone="int_semos_townhall" ref="entrance_left"/>
-  </portal>
-
-  <portal x="30" y="13" ref="townhall_entrance">
-   <destination zone="int_semos_townhall" ref="entrance"/>
-  </portal>
-
-  <portal x="31" y="13" ref="townhall_entrance_right">
-   <destination zone="int_semos_townhall" ref="entrance_right"/>
-  </portal>
-
-  <portal x="44" y="19" ref="bakery_entrance">
-   <destination zone="int_semos_bakery" ref="entrance"/>
-  </portal>
-
-  <portal x="12" y="49" ref="restart_life">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-  </portal>
-
-  <entity x="4" y="41">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO OLD SEMOS VILLAGE
-
-Shepherds wanted: please ask Nishiya
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="26" y="40">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-DUNGEONS
-
-Caution: These dungeons contain many rats,
-and more dangerous creatures. Enter at own risk.
-    </attribute>
-   </implementation>
-  </entity>
-  <entity x="41" y="20">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-     Assistance needed, to help with pizza deliveries.
-    </attribute>
-   </implementation>
-  </entity>
-  
-
-<!-- TEST - Make the bird statue in semos a semi-safe zone -->
-<!--
-  <entity x="26" y="40">
-   <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
-    <attribute name="width">6</attribute>
-    <attribute name="height">6</attribute>
-    <attribute name="default">block</attribute>
-    <attribute name="rules">
-     -animal:wolf
-     +animal:*
-     -*:lich,*:ghost
-     +undead:*
-    </attribute>
-   </implementation>
-  </entity>
--->
-
-  <entity x="44" y="62">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO THE PLAINS
-
-Shepherds please note: keep watch for
-the wolves while searching for berries here
-    </attribute>
-   </implementation>
-  </entity>
- </zone>
-
-   <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0" />
-
-    <portal x="22" y="17" ref="entrance">
-     <destination zone="0_semos_city" ref="tavern_entrance"/>
-    </portal>
-
-    <portal x="4" y="4" ref="upstairs">
-     <destination zone="int_semos_tavern_1" ref="downstairs"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_tavern_1" file="int_semos_tavern_1.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1" />
-
-    <portal x="4" y="4" ref="downstairs">
-     <destination zone="int_semos_tavern_0" ref="upstairs"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_temple" file="int_semos_temple.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple" />
-
-    <portal x="10" y="23" ref="entrance_left">
-     <destination zone="0_semos_city" ref="temple_entrance"/>
-    </portal>
-
-    <portal x="11" y="23" ref="entrance_center_left">
-     <destination zone="0_semos_city" ref="temple_entrance"/>
-    </portal>
-
-    <portal x="12" y="23" ref="entrance_center_right">
-     <destination zone="0_semos_city" ref="temple_entrance"/>
-    </portal>
-
-    <portal x="13" y="23" ref="entrance_right">
-     <destination zone="0_semos_city" ref="temple_entrance"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith" />
-
-    <portal x="15" y="14" ref="entrance">
-     <destination zone="0_semos_city" ref="blacksmith_entrance"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_library" file="int_semos_library.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library" />
-
-    <portal x="8" y="30" ref="entrance_left">
-     <destination zone="0_semos_city" ref="library_entrance_left"/>
-    </portal>
-
-    <portal x="21" y="30" ref="entrance_right">
-     <destination zone="0_semos_city" ref="library_entrance_right"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_storage_0" file="int_semos_storage_0.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage" />
-
-    <portal x="9" y="14" ref="entrance">
-     <destination zone="0_semos_city" ref="storage_entrance"/>
-    </portal>
-
-    <portal x="16" y="2" ref="downstairs">
-     <destination zone="int_semos_storage_-1" ref="upstairs"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_storage_-1" file="int_semos_storage_sub_1.xstend">
-    <title/>
-<!-- use portal config
-    <configurator class-name="games.stendhal.server.maps.semos.ISL1_Storage"/>
--->
-
-    <portal x="26" y="10" ref="upstairs">
-     <destination zone="int_semos_storage_0" ref="downstairs"/>
-    </portal>
-   </zone>
-
-   <zone name="int_semos_bank" file="int_semos_bank.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank" />
-
-    <portal x="9" y="30" ref="entrance">
-     <destination zone="0_semos_city" ref="bank_entrance"/>
-    </portal>
-
-    <portal x="10" y="30" ref="entrance_right">
-     <destination zone="0_semos_city" ref="bank_entrance"/>
-    </portal>
-
-    <entity x="2" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="2" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="8" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="8" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="14" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="14" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="20" y="2">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="20" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="2" y="13">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="2" y="9">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="8" y="13">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="8" y="9">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="14" y="13">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="14" y="9">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="20" y="13">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
-    </entity>
-<!--
-    <entity x="20" y="9">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
-     </implementation>
-    </entity>
--->
-   </zone>
-
-   <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall" />
-
-    <portal x="14" y="46" ref="entrance_left">
-     <destination zone="0_semos_city" ref="townhall_entrance_left"/>
-    </portal>
-
-    <portal x="15" y="46" ref="entrance">
-     <destination zone="0_semos_city" ref="townhall_entrance"/>
-    </portal>
-
-    <portal x="16" y="46" ref="entrance_right">
-     <destination zone="0_semos_city" ref="townhall_entrance_right"/>
-    </portal>
-
-    <!-- Prevent table dancing (this is a family friendly townhall) -->
-    <entity x="4" y="32">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-    </entity>
-
-    <entity x="4" y="33">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-    </entity>
-
-    <entity x="6" y="32">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-    </entity>
-
-    <entity x="6" y="33">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-    </entity>
-   </zone>
-
-   <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
-
-    <!-- This must be after the NPC configurator -->
-    <entity x="29" y="6">
-     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Erna</attribute>
-     </implementation>
-    </entity>
-
-    <portal x="26" y="14" ref="entrance">
-     <destination zone="0_semos_city" ref="bakery_entrance"/>
-    </portal>
-   </zone>
-
- <zone name="0_semos_road_e" file="0_semos_road_e.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_road_se" file="0_semos_road_se.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
-  <title/>
-  <entity x="118" y="43">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO THE FOREST
-
-Shepherds please note: keep watch for
-the wolves while searching for berries here
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="38" y="3">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO OLD SEMOS VILLAGE
-
-Shepherds wanted: please ask Nishiya
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="113" y="3">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-TO SEMOS
-
-Mature sheep wanted: please speak to Sato
-    </attribute>
-   </implementation>
-  </entity>
- </zone>
-
- <zone name="0_ados_forest_w2" file="0_ados_forest_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_ados_rock_w" file="0_ados_rock_w.xstend">
-  <title/>
- </zone>
-
- <zone name="0_ados_rock" file="0_ados_rock.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosRock"/>
- </zone>
-
- <zone name="0_ados_outside_w" file="0_ados_outside_w.xstend">
-  <title/>
- </zone>
-
-<!--
- <zone name="0_ados_wall" file="0_ados_wall.xstend">
-  <title/>
- </zone>
--->
-
-<!--
- <zone name="0_ados_city_w" file="0_ados_city_w.xstend">
-  <title/>
- </zone>
--->
-
-   <zone name="int_ados_bank" file="int_ados_bank.xstend">
-    <title/>
-    <portal x="22" y="17" ref="0">
-     <destination zone="0_ados_city" ref="6"/>
-    </portal>
-
-    <entity x="3" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank_ados</attribute>
-     </implementation>
-    </entity>
-<!--
-    <entity x="3" y="13">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">3</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="5" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank_ados</attribute>
-     </implementation>
-    </entity>
-<!--
-    <entity x="5" y="13">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">3</attribute>
-     </implementation>
-    </entity>
--->
-    <entity x="10" y="12">
-     <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <!-- semos slot -->
-      <attribute name="slot">bank</attribute>
-     </implementation>
-    </entity>
-<!--
-    <entity x="10" y="13">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">3</attribute>
-     </implementation>
-    </entity>
--->
-
-    <entity x="8" y="1">
-     <implementation class-name="games.stendhal.server.entity.Blackboard">
-      <attribute name="text">
-Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
-      </attribute>
-     </implementation>
-    </entity>
-   </zone>
-
-   <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
-    <title/>
-    <portal x="7" y="1" ref="0">
-     <destination zone="0_ados_city" ref="11"/>
-    </portal>
-   </zone>
-
-   <zone name="int_ados_bakery" file="int_ados_bakery.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bakery" />
-
-    <portal x="26" y="14" ref="0">
-     <destination zone="0_ados_city" ref="10"/>
-    </portal>
-   </zone>
-
-   <zone name="int_ados_library" file="int_ados_library.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Library" />
-
-    <portal x="8" y="30" ref="entrance_left">
-     <destination zone="0_ados_city" ref="library_entrance_left"/>
-    </portal>
-
-    <portal x="21" y="30" ref="entrance_right">
-     <destination zone="0_ados_city" ref="library_entrance_right"/>
-    </portal>
-   </zone>
-
-   <zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
-    <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Tavern" />
-
-    <portal x="12" y="17" ref="entrance_left">
-     <destination zone="0_ados_city" ref="tavern_entrance_left"/>
-    </portal>
-
-    <portal x="27" y="17" ref="entrance_right">
-     <destination zone="0_ados_city" ref="tavern_entrance_right"/>
-    </portal>
-   </zone>
-
-   <zone name="int_ados_temple" file="int_ados_temple.xstend">
-    <title/>
-    <portal x="10" y="23" ref="entrance_left">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
-    </portal>
-
-    <portal x="11" y="23" ref="entrance_center_left">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
-    </portal>
-
-    <portal x="12" y="23" ref="entrance_center_right">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
-    </portal>
-
-    <portal x="13" y="23" ref="entrance_right">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
-    </portal>
-   </zone>
-
- <zone name="0_ados_city" file="0_ados_city.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside" />
-
-  <portal x="60" y="16" ref="tavern_entrance_left">
-   <destination zone="int_ados_tavern_0" ref="entrance_left"/>
-  </portal>
-
-  <portal x="65" y="16" ref="tavern_entrance_right">
-   <destination zone="int_ados_tavern_0" ref="entrance_right"/>
-  </portal>
-
-  <portal x="54" y="19" ref="6">
-   <destination zone="int_ados_bank" ref="0"/>
-  </portal>
-
-  <portal x="27" y="39" ref="10">
-   <destination zone="int_ados_bakery" ref="0"/>
-  </portal>
-
-  <portal x="12" y="38" ref="11">
-   <destination zone="int_ados_haunted_house" ref="0"/>
-  </portal>
-
- </zone>
-
- <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_mountain_nw" file="0_orril_mountain_nw.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_forest_n" file="0_orril_forest_n.xstend">
-  <title/>
- </zone>
-
- <zone name="0_semos_forest_s" file="0_semos_forest_s.xstend">
-  <title/>
- </zone>
-
- <zone name="0_nalwor_forest_nw" file="0_nalwor_forest_nw.xstend">
-  <title/>
- </zone>
-
- <zone name="0_nalwor_forest_n" file="0_nalwor_forest_n.xstend">
-  <title/>
- </zone>
-
- <zone name="0_nalwor_forest_ne" file="0_nalwor_forest_ne.xstend">
-  <title/>
- </zone>
-
- <zone name="0_ados_swamp" file="0_ados_swamp.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
- </zone>
-
- <zone name="0_orril_mountain_w2" file="0_orril_mountain_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_mountain_w" file="0_orril_mountain_w.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_castle" file="0_orril_castle.xstend">
-  <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.orril.OL0_Castle"/>
--->
-
-  <portal x="60" y="96" ref="outside_gate_left2">
-   <destination zone="0_orril_castle" ref="inside_gate_left2"/>
-  </portal>
-
-  <portal x="61" y="96" ref="outside_gate_left">
-   <destination zone="0_orril_castle" ref="inside_gate_left"/>
-  </portal>
-
-  <portal x="62" y="96" ref="outside_gate">
-   <destination zone="0_orril_castle" ref="inside_gate"/>
-  </portal>
-
-  <portal x="63" y="96" ref="outside_gate_right">
-   <destination zone="0_orril_castle" ref="inside_gate_right"/>
-  </portal>
-
-  <portal x="64" y="96" ref="outside_gate_right2">
-   <destination zone="0_orril_castle" ref="inside_gate_right2"/>
-  </portal>
-
-
-  <portal x="60" y="93" ref="inside_gate_left2">
-   <destination zone="0_orril_castle" ref="outside_gate_left2"/>
-  </portal>
-
-  <portal x="61" y="93" ref="inside_gate_left">
-   <destination zone="0_orril_castle" ref="outside_gate_left"/>
-  </portal>
-
-  <portal x="62" y="93" ref="inside_gate">
-   <destination zone="0_orril_castle" ref="outside_gate"/>
-  </portal>
-
-  <portal x="63" y="93" ref="inside_gate_right">
-   <destination zone="0_orril_castle" ref="outside_gate_right"/>
-  </portal>
-
-  <portal x="64" y="93" ref="inside_gate_right2">
-   <destination zone="0_orril_castle" ref="outside_gate_right2"/>
-  </portal>
-
-
-  <portal x="61" y="72" ref="castle_entrance_left">
-   <destination zone="int_orril_castle_0" ref="entrance_left"/>
-  </portal>
-
-  <portal x="62" y="72" ref="castle_entrance">
-   <destination zone="int_orril_castle_0" ref="entrance"/>
-  </portal>
-
-  <portal x="63" y="72" ref="castle_entrance_right">
-   <destination zone="int_orril_castle_0" ref="entrance_right"/>
-  </portal>
- </zone>
-
- <zone name="int_orril_castle_0" file="int_orril_castle_0.xstend">
-  <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.orril.IL0_Castle"/>
--->
-
-  <portal x="26" y="62" ref="entrance_left">
-   <destination zone="0_orril_castle" ref="castle_entrance_left"/>
-  </portal>
-
-  <portal x="27" y="62" ref="entrance">
-   <destination zone="0_orril_castle" ref="castle_entrance"/>
-  </portal>
-
-  <portal x="28" y="62" ref="entrance_right">
-   <destination zone="0_orril_castle" ref="castle_entrance_right"/>
-  </portal>
-
-  <portal x="8" y="1" ref="4">
-   <destination zone="-1_orril_castle" ref="1"/>
-  </portal>
- </zone>
-
- <zone name="0_orril_forest_e" file="0_orril_forest_e.xstend">
-   <title/>
- </zone>
-
- <zone name="0_nalwor_forest_w" file="0_nalwor_forest_w.xstend">
-  <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.Nalwor"/>
--->
-
-<!--
-** Alternative configuration **
-  <portal x="84" y="92" ref="entrance">
-   <destination zone="0_nalwor_forest_w" ref="exit"/>
-  </portal>
-
-  <portal x="114" y="91" ref="exit">
-   <destination zone="0_nalwor_forest_w" ref="entrance"/>
-  </portal>
+** Zone Configuration.
+**
+** A zone descriptor has the following structure:
+**
+** <zone name="xxxx" file="xxxxx_xxxxx_xxxxxx.xstend">
+** 	<title>Xxxxxx xxxx</title>
+** 	<configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+**
+** 	<configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+**
+** 	<configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+** 		<attribute name="xxxxx">xxxxxx</attribute>
+** 		<attribute name="xxxxx">xxxxxx</attribute>
+** 		<attribute name="xxxxx">xxxxxx</attribute>
+** 		<attribute name="xxxxx">xxxxxx</attribute>
+** 	</configurator>
+**
+** 	<portal x="xxx" y="xxx" ref="xxx">
+** 		<destination zone="xxxxxxx" ref="xxx"/>
+** 	</portal>
+**
+** 	<portal x="xxx" y="xxx" ref="xxx" [replacing="true|false"]>
+** 		<destination zone="xxxxxxx" ref="xxx"/>
+** 		<implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+** 	</portal>
+**
+** 	<portal x="xxx" y="xxx" ref="xxx">
+** 		<destination zone="xxxxxxx" ref="xxx"/>
+** 		<implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+** 			<attribute name="xxxxx">xxxxxx</attribute>
+** 			<attribute name="xxxxx">xxxxxx</attribute>
+** 		</implementation>
+**	</portal>
+**
+** 	<entity x="xxx" y="xxx">
+** 		<implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+** 			<attribute name="xxxxx">xxxxxx</attribute>
+** 			<attribute name="xxxxx">xxxxxx</attribute>
+** 		</implementation>
+** 	</entity>
+** </zone>
+**
+** zone
+**  name: The unique programmatic key used to reference the zone.
+**  file: The zone data file (relative to data/maps/).
+**
+**  title: A nicely presented label (single line, relatively short).
+**
+**  configurator: A code reference used to post-configure the zone.
+**   class-name: The java package/class name.
+**
+**   attribute: An attribute passed to the configuration code.
+**
+**
+**  portal: A portal definition.
+**   x: The X coordinate of the portal.
+**   y: The X coordinate of the portal.
+**   ref: The portal identifier (number only - for now).
+**   replacing: If set to 'true', replace existing portals at this location.
+**
+**  destination: A portal definition.
+**   zone: The destination zone.
+**   ref: The destination portal identifier (number only - for now).
+**
+**  implementation: A code reference used for implementation.
+**   class-name: The java package/class name.
+**
+**   attribute: An attribute passed to the implementation [factory].
+**
+**
+**  entity: A generic entity definition.
+**   x: The X coordinate of the entity.
+**   y: The X coordinate of the entity.
+**
+**  implementation: A code reference used for implementation.
+**   class-name: The java package/class name.
+**
+**   attribute: An attribute passed to the implementation [factory].
+**
+**
+** <configurator>'s specify a class name that implements ZoneConfigurator,
+** and will be passed the zone and any attributes.
+**
+** Each zone can have zero, one, or more of each <configurator>, <portal>,
+** and <entity> entries. These will be called in the order they appear
+** in each zone to allow for predictable interdependencies.
 **
 -->
-
-  <portal x="84" y="92" ref="outside_entrance">
-   <destination zone="0_nalwor_forest_w" ref="inside_exit"/>
-  </portal>
-
-  <portal x="87" y="92" ref="outside_exit">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-  </portal>
-
-  <portal x="114" y="91" ref="inside_entrance">
-   <destination zone="0_nalwor_forest_w" ref="outside_exit"/>
-  </portal>
-
-  <portal x="117" y="91" ref="inside_exit">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-  </portal>
- </zone>
- 
-<zone name="int_nalwor_pottery" file="int_nalwor_pottery.xstend">
-  <title/>
-  <portal x="10" y="18" ref="entrance_left">
-  <destination zone="0_nalwor_city" ref="pottery_entrance"/>
-  </portal>
-  <portal x="11" y="18" ref="entrance_right">
-   <destination zone="0_nalwor_city" ref="pottery_entrance"/>
-  </portal>
- </zone>
- 
- <zone name="int_nalwor_library" file="int_nalwor_library.xstend">
-  <title/>
-  <portal x="14" y="28" ref="entrance_left">
-   <destination zone="0_nalwor_city" ref="library_entrance"/>
-  </portal>
-  <portal x="15" y="28" ref="entrance_right">
-   <destination zone="0_nalwor_city" ref="library_entrance"/>
-  </portal>
-  <portal x="21" y="2" ref="upstairs">
-   <destination zone="int_nalwor_library_1" ref="downstairs"/>
-  </portal>
- </zone>
- 
- <zone name="int_nalwor_library_1" file="int_nalwor_library_1.xstend">
-   <title/>
-   <portal x="21" y="2" ref="downstairs">
-    <destination zone="int_nalwor_library" ref="upstairs"/>
-   </portal>
- </zone> 
-  
- <zone name="int_nalwor_weaponshop" file="int_nalwor_weaponshop.xstend">
-   <title/>
- <configurator class-name="games.stendhal.server.maps.nalwor.weaponshop.IL0_BuyerNPC"/>
-   <portal x="3" y="11" ref="entrance">
-    <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
-   </portal>
- </zone> 
- 
-  <zone name="int_nalwor_flowershop" file="int_nalwor_flowershop.xstend">
-   <title/>
-   <portal x="7" y="23" ref="entrance">
-    <destination zone="0_nalwor_city" ref="flowershop_entrance"/>
-   </portal>
- </zone> 
- 
- <zone name="int_nalwor_jail" file="int_nalwor_jail.xstend">
-   <title/>
-   <portal x="6" y="18" ref="entrance">
-    <destination zone="0_nalwor_city" ref="jail_entrance"/>
-   </portal>
- </zone> 
- 
- <zone name="int_nalwor_inn" file="int_nalwor_inn.xstend">
-   <title/>
-   <portal x="3" y="15" ref="entrance_left">
-    <destination zone="0_nalwor_city" ref="inn_entrance_left"/>
-   </portal>
-   <portal x="31" y="15" ref="entrance_right">
-    <destination zone="0_nalwor_city" ref="inn_entrance_right"/>
-   </portal>
-   <portal x="2" y="2" ref="upstairs">
-    <destination zone="int_nalwor_inn_1" ref="downstairs"/>
-   </portal>  
-   <portal x="10" y="2" ref="downstairs">
-    <destination zone="int_nalwor_inn_basement" ref="upstairs"/>
-   </portal> 
- </zone> 
- 
- <zone name="int_nalwor_inn_1" file="int_nalwor_inn_1.xstend">
-   <title/>
-   <portal x="2" y="2" ref="downstairs">
-    <destination zone="int_nalwor_inn" ref="upstairs"/>
-   </portal> 
-  </zone> 
-  
- <zone name="int_nalwor_inn_basement" file="int_nalwor_inn_basement.xstend">
-   <title/>
-   <portal x="5" y="2" ref="upstairs">
-    <destination zone="int_nalwor_inn" ref="downstairs"/>
-   </portal> 
- </zone> 
- 
- <zone name="int_nalwor_postoffice" file="int_nalwor_postoffice.xstend">
-   <title/>
-<configurator class-name="games.stendhal.server.maps.nalwor.postoffice.IL0_PostNPC"/>
-   <portal x="3" y="10" ref="entrance">
-    <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
-   </portal>
- </zone> 
-
- <zone name="int_nalwor_royal_hall" file="int_nalwor_royal.xstend">
-   <title/>
-   <portal x="7" y="29" ref="entrance">
-    <destination zone="0_nalwor_city" ref="royal_entrance"/>
-   </portal>
- <portal x="8" y="29" ref="entrance">
-    <destination zone="0_nalwor_city" ref="royal_entrance"/>
-   </portal>
- <portal x="9" y="29" ref="entrance">
-    <destination zone="0_nalwor_city" ref="royal_entrance"/>
-   </portal>
-  <portal x="43" y="2" ref="upstairs">
-    <destination zone="int_nalwor_royal_hall_1" ref="downstairs"/>
-   </portal> 
- </zone> 
-
- <zone name="int_nalwor_royal_hall_1" file="int_nalwor_royal_2ndfloor.xstend">
-   <title/>
-<configurator class-name="games.stendhal.server.maps.nalwor.royal.IL0_MayorNPC"/>
-   <portal x="43" y="2" ref="downstairs">
-    <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
-   </portal>
- </zone> 
-
-<zone name="int_nalwor_house1" file="int_nalwor_house1.xstend">
-   <title/>
-  <portal x="7" y="14" ref="entrance">
-    <destination zone="0_nalwor_city" ref="house1_entrance"/>
-   </portal>
-   <portal x="7" y="3" ref="downstairs">
-    <destination zone="int_nalwor_house1_basement" ref="upstairs"/>
-   </portal>
- </zone> 
-
-<zone name="int_nalwor_house1_basement" file="int_nalwor_house1_basement.xstend">
-   <title/>
-   <portal x="3" y="1" ref="upstairs">
-    <destination zone="int_nalwor_house1" ref="downstairs"/>
-   </portal>
- </zone>
-
-<zone name="int_nalwor_house2" file="int_nalwor_house2.xstend">
-   <title/>
-  <portal x="8" y="18" ref="entrance">
-    <destination zone="0_nalwor_city" ref="house2_entrance"/>
-   </portal>
- </zone>
-
- 
-<zone name="int_nalwor_house3" file="int_nalwor_house3.xstend">
-   <title/>
-  <portal x="14" y="18" ref="entrance">
-    <destination zone="0_nalwor_city" ref="house3_entrance"/>
-   </portal>
- </zone>
-
-<zone name="int_nalwor_house4" file="int_nalwor_house4.xstend">
-   <title/>
-  <portal x="12" y="18" ref="entrance">
-    <destination zone="0_nalwor_city" ref="house4_entrance"/>
-   </portal>
-   <portal x="2" y="2" ref="upstairs">
-    <destination zone="int_nalwor_house4_1" ref="downstairs"/>
-   </portal>
- </zone> 
-
-<zone name="int_nalwor_house4_1" file="int_nalwor_house4_1.xstend">
-   <title/>
-  <portal x="2" y="3" ref="downstairs">
-    <destination zone="int_nalwor_house4" ref="upstairs"/>
-   </portal>
-   <portal x="12" y="6" ref="upstairs">
-    <destination zone="int_nalwor_house4_2" ref="downstairs"/>
-   </portal>
- </zone> 
-
- <zone name="int_nalwor_house4_2" file="int_nalwor_house4_2.xstend">
-   <title/>
-   <portal x="2" y="2" ref="downstairs">
-    <destination zone="int_nalwor_house4_1" ref="upstairs"/>
-   </portal>
- </zone>
-
- <zone name="0_nalwor_city" file="0_nalwor_city.xstend">
-  <title/>
-  <portal x="73" y="93" ref="pottery_entrance">
-   <destination zone="int_nalwor_pottery" ref="entrance_left"/>
-  </portal>
-  <portal x="73" y="105" ref="library_entrance">
-   <destination zone="int_nalwor_library" ref="entrance_left"/>
-  </portal>
-  <portal x="88" y="105" ref="jail_entrance">
-   <destination zone="int_nalwor_jail" ref="entrance"/>
-  </portal>
-  <portal x="38" y="105" ref="inn_entrance_left">
-   <destination zone="int_nalwor_inn" ref="entrance_left"/>
-  </portal>
-  <portal x="46" y="105" ref="inn_entrance_right">
-   <destination zone="int_nalwor_inn" ref="entrance_right"/>
-  </portal>
-  <portal x="38" y="89" ref="postoffice_entrance">
-   <destination zone="int_nalwor_postoffice" ref="entrance"/>
-  </portal>
-  <portal x="48" y="82" ref="flowershop_entrance">
-   <destination zone="int_nalwor_flowershop" ref="entrance"/>
-  </portal>
-  <portal x="59" y="105" ref="weaponshop_entrance">
-   <destination zone="int_nalwor_weaponshop" ref="entrance"/>
-  </portal>
-  <portal x="38" y="58" ref="royal_entrance">
-   <destination zone="int_nalwor_royal_hall" ref="entrance"/>
-  </portal>
-  <portal x="36" y="81" ref="house1_entrance">
-   <destination zone="int_nalwor_house1" ref="entrance"/>
-  </portal>
-  <portal x="79" y="81" ref="house2_entrance">
-   <destination zone="int_nalwor_house2" ref="entrance"/>
-  </portal>
-  <portal x="59" y="95" ref="house3_entrance">
-   <destination zone="int_nalwor_house3" ref="entrance"/>
-  </portal>
-  <portal x="84" y="81" ref="house4_entrance">
-   <destination zone="int_nalwor_house4" ref="entrance"/>
-  </portal>
- </zone>
-
- <zone name="0_nalwor_forest_e" file="0_nalwor_forest_e.xstend">
-   <title/>
- </zone>
-
- <zone name="0_ados_coast_s_w2" file="0_ados_coast_s_w2.xstend">
-   <title/>
- </zone>
- 
- <!--
-     <zone name="0_ados_coast_sw" file="0_ados_coast_sw.xstend">
-       <title/>
-     </zone>
-
-     <zone name="0_ados_coast_s" file="0_ados_coast_s.xstend">
-       <title/>
-     </zone>
- -->
-
-  <zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.OL0_BridgeGuardNPC"/>
- </zone>
-
- <zone name="0_orril_river_sw" file="0_orril_river_sw.xstend">
-  <title/>
- </zone>
-
- <zone name="0_orril_river_s" file="0_orril_river_s.xstend">
-  <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.orril.OL0_JynathHouse"/>
--->
-
-  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire" />
-  <!-- This must be after the NPC configurator -->
-  <entity x="37" y="60">
-    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Sally</attribute>
-    </implementation>
-  </entity>  
-
-  <portal x="39" y="5" ref="jynath_house_entrance">
-   <destination zone="int_orril_jynath_house" ref="entrance"/>
-  </portal>
- </zone>
-
- <zone name="int_orril_jynath_house" file="int_orril_jynath_house.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse" />
-
-  <portal x="16" y="30" ref="entrance">
-   <destination zone="0_orril_river_s" ref="jynath_house_entrance"/>
-  </portal>
- </zone>
-
- <zone name="0_orril_river_se" file="0_orril_river_se.xstend">
-  <title/>
- </zone>
-
- <zone name="0_nalwor_river_sw" file="0_nalwor_river_sw.xstend">
-  <title/>
- </zone>
-
- <zone name="0_nalwor_river_s" file="0_nalwor_river_s.xstend">
-  <title/>
- </zone>
-
-<!--
- <zone name="0_nalwor_river_se" file="0_nalwor_river_se.xstend">
-  <title/>
- </zone>
--->
-
-<!--
- <zone name="0_ados_river_s2_w2" file="0_ados_river_s2_w2.xstend">
-  <title/>
- </zone>
--->
-     <zone name="0_athor_ship_w2" file="0_athor_ship_w2.xstend">
-       <title/>
-     </zone>
-
-     <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
-       <title/>
-       <!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_1_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_2" file="int_athor_holiday_apartment_2.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_2_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_3" file="int_athor_holiday_apartment_3.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_3_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_4" file="int_athor_holiday_apartment_4.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_4_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_5" file="int_athor_holiday_apartment_5.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_5_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_6" file="int_athor_holiday_apartment_6.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_6_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_7" file="int_athor_holiday_apartment_7.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_7_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_holiday_apartment_8" file="int_athor_holiday_apartment_8.xstend">
-       <portal x="4" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="apartment_8_entrance"/>
-       </portal>
-     </zone>
-
-     <zone name="int_athor_dressing_room_m" file="int_athor_dressing_room_m.xstend">
-       <portal x="6" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
-       </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male" />
-        <!-- This must be after the NPC configurator -->
-        <entity x="3" y="10">
-          <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-            <attribute name="npc">David</attribute>
-          </implementation>
-        </entity>
-     </zone>
-
-     <zone name="int_athor_dressing_room_f" file="int_athor_dressing_room_f.xstend">
-       <portal x="9" y="14" ref="out">
-         <destination zone="0_athor_island_w" ref="dressing_room_f_entrance"/>
-       </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Female"/>
-       <entity x="12" y="10">
-         <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-           <attribute name="npc">Pam</attribute>
-         </implementation>
-       </entity>
-     </zone>
-     
-     <zone name="0_athor_island_w" file="0_athor_island_w.xstend">
-       <title/>
-       <portal x="185" y="57" ref="apartment_1_entrance">
-         <destination zone="int_athor_holiday_apartment_1" ref="out"/>
-       </portal>
-       <portal x="194" y="57" ref="apartment_2_entrance">
-         <destination zone="int_athor_holiday_apartment_2" ref="out"/>
-       </portal>
-       <portal x="206" y="63" ref="apartment_3_entrance">
-         <destination zone="int_athor_holiday_apartment_3" ref="out"/>
-       </portal>
-       <portal x="206" y="69" ref="apartment_4_entrance">
-         <destination zone="int_athor_holiday_apartment_4" ref="out"/>
-       </portal>
-       <portal x="194" y="75" ref="apartment_5_entrance">
-         <destination zone="int_athor_holiday_apartment_5" ref="out"/>
-       </portal>
-       <portal x="185" y="75" ref="apartment_6_entrance">
-         <destination zone="int_athor_holiday_apartment_6" ref="out"/>
-       </portal>
-       <portal x="175" y="69" ref="apartment_7_entrance">
-         <destination zone="int_athor_holiday_apartment_7" ref="out"/>
-       </portal>
-       <portal x="175" y="63" ref="apartment_8_entrance">
-         <destination zone="int_athor_holiday_apartment_8" ref="out"/>
-       </portal>
-       <portal x="215" y="40" ref="dressing_room_m_entrance">
-         <destination zone="int_athor_dressing_room_m" ref="out"/>
-       </portal>
-       <portal x="210" y="40" ref="dressing_room_f_entrance">
-         <destination zone="int_athor_dressing_room_f" ref="out"/>
-       </portal>
-       <portal x="245" y="95" ref="quicksand_1">
-         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="245" y="96" ref="quicksand_2">
-         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="245" y="97" ref="quicksand_3">
-         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="246" y="95" ref="quicksand_4">
-         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="246" y="97" ref="quicksand_5">
-         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="247" y="95" ref="quicksand_6">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="247" y="96" ref="quicksand_7">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-       <portal x="247" y="97" ref="quicksand_8">
-		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
-       </portal>
-	   <portal x="188" y="66" ref="pool">
-		   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-       </portal>
-       <!--
-       <portal x="191" y="65" ref="diving_board_destination">
-         <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-       </portal>
-       <portal x="191" y="67" ref="diving_board">
-         <destination zone="0_athor_island_w" ref="diving_board_destination"/>
-       </portal>
-       -->
-       <configurator class-name="games.stendhal.server.maps.athor.OL0_IslandWest" />
-       <entity x="211" y="42">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <attribute name="text">
-             Changing Room for Women
-           </attribute>
-         </implementation>
-       </entity>
-       <entity x="216" y="42">
-         <implementation class-name="games.stendhal.server.entity.Sign">
-           <attribute name="text">
-             Changing Room for Men
-           </attribute>
-         </implementation>
-       </entity>
-	   <entity x="240" y="96">
-		 <implementation class-name="games.stendhal.server.entity.Sign">
-			 <attribute name="text">
-				 DANGER! Quicksand!
-			 </attribute>
-		 </implementation>
-	 </entity>
-	 <entity x="247" y="89">
-		 <implementation class-name="games.stendhal.server.entity.Sign">
-			 <attribute name="text">
-				 DANGER! Quicksand!
-			 </attribute>
-		 </implementation>
-	 </entity>
-	 <entity x="248" y="104">
-		 <implementation class-name="games.stendhal.server.entity.Sign">
-			 <attribute name="text">
-				 DANGER! Quicksand!
-			 </attribute>
-		 </implementation>
-	 </entity>
-     </zone>
-     	 
-     <!--
-         <zone name="0_fado_city" file="0_fado_city.xstend">
-           <configurator class-name="games.stendhal.server.maps.fado.city.OL0_GreeterNPC"/>
-           
-           <portal x="36" y="16" ref="tavern_entrance_left">
-             <destination zone="int_fado_tavern" ref="entrance_left"/>
-           </portal>
-           
-           <portal x="48" y="16" ref="tavern_entrance_right">
-             <destination zone="int_fado_tavern" ref="entrance_right"/>
-           </portal>
-           
-           <portal x="46" y="38" ref="bank_entrance">
-             <destination zone="int_fado_bank" ref="entrance"/>
-           </portal>
-           
-           <portal x="56" y="38" ref="bakery_entrance">
-             <destination zone="int_fado_bakery" ref="entrance"/>
-           </portal>
-           
-           <portal x="14" y="59" ref="hotel_entrance">
-             <destination zone="int_fado_hotel_0" ref="entrance"/>
-           </portal>
-           
-           <portal x="55" y="49" ref="church_entrance">
-             <destination zone="int_fado_church" ref="entrance_right"/>
-           </portal>
-           
-           <portal x="71" y="98" ref="shepherd_house_entrance">
-             <destination zone="int_fado_shepherd_house" ref="entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_bank" file="int_fado_bank.xstend">
-           <configurator class-name="games.stendhal.server.maps.fado.bank.IL0_TellerNPC"/>
-           
-           <portal x="12" y="19" ref="entrance">
-             <destination zone="0_fado_city" ref="bank_entrance"/>
-           </portal>
-           
-           <entity x="2" y="8">
-             <implementation class-name="games.stendhal.server.entity.PersonalChest">
-               <attribute name="slot">bank_fado</attribute>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="8">
-             <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-               <attribute name="width">2</attribute>
-               <attribute name="height">2</attribute>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="12">
-             <implementation class-name="games.stendhal.server.entity.PersonalChest">
-               <attribute name="slot">bank_fado</attribute>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="12">
-             <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-               <attribute name="width">2</attribute>
-               <attribute name="height">2</attribute>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="16">
-             <implementation class-name="games.stendhal.server.entity.PersonalChest">
-               <attribute name="slot">bank_fado</attribute>
-             </implementation>
-           </entity>
-           
-           <entity x="2" y="16">
-             <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-               <attribute name="width">2</attribute>
-               <attribute name="height">2</attribute>
-             </implementation>
-           </entity>
-         </zone>
-         
-         <zone name="int_fado_bakery" file="int_fado_bakery.xstend">
-           <configurator class-name="games.stendhal.server.maps.fado.bakery.IL0_BakerNPC"/>
-           
-           <portal x="26" y="14" ref="entrance">
-             <destination zone="0_fado_city" ref="bakery_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_tavern" file="int_fado_tavern.xstend">
-           <configurator class-name="games.stendhal.server.maps.fado.tavern.IL0_MaidNPC"/>
-           
-           <portal x="16" y="30" ref="entrance_left">
-             <destination zone="0_fado_city" ref="tavern_entrance_left"/>
-           </portal>
-           
-           <portal x="41" y="30" ref="entrance_right">
-             <destination zone="0_fado_city" ref="tavern_entrance_right"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_church" file="int_fado_church.xstend">
-           <portal x="10" y="23" ref="entrance_left2">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-           
-           <portal x="11" y="23" ref="entrance_left">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-           
-           <portal x="12" y="23" ref="entrance_right">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-           
-           <portal x="13" y="23" ref="entrance_right2">
-             <destination zone="0_fado_city" ref="church_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_shepherd_house" file="int_fado_shepherd_house.xstend">
-           <portal x="10" y="31" ref="entrance">
-             <destination zone="0_fado_city" ref="shepherd_house_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
-           <configurator class-name="games.stendhal.server.maps.fado.hotel.IL0_GreeterNPC"/>
-           
-           <portal x="8" y="63" ref="entrance">
-             <destination zone="0_fado_city" ref="hotel_entrance"/>
-           </portal>
-           
-           <portal x="0" y="40" ref="room_001_entrance">
-             <destination zone="int_fado_hotel_room_001" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_001</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="40" ref="room_002_entrance">
-             <destination zone="int_fado_hotel_room_002" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_002</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="0" y="33" ref="room_003_entrance">
-             <destination zone="int_fado_hotel_room_003" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_003</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="33" ref="room_004_entrance">
-             <destination zone="int_fado_hotel_room_004" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_004</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="0" y="26" ref="room_005_entrance">
-             <destination zone="int_fado_hotel_room_005" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_005</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="26" ref="room_006_entrance">
-             <destination zone="int_fado_hotel_room_006" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_006</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="0" y="19" ref="room_007_entrance">
-             <destination zone="int_fado_hotel_room_007" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_007</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-           
-           <portal x="10" y="19" ref="room_008_entrance">
-             <destination zone="int_fado_hotel_room_008" ref="entrance"/>
-             <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_008</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
-             </implementation>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_001" file="int_fado_room_001.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_001_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_002" file="int_fado_room_002.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_002_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_003" file="int_fado_room_003.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_003_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_004" file="int_fado_room_004.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_004_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_005" file="int_fado_room_005.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_005_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_006" file="int_fado_room_006.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_006_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_007" file="int_fado_room_007.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_007_entrance"/>
-           </portal>
-         </zone>
-         
-         <zone name="int_fado_hotel_room_008" file="int_fado_room_008.xstend">
-           <portal x="8" y="14" ref="entrance">
-             <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
-           </portal>
-         </zone>
-         -->
-	 
- <!--  Level -1 -->
-
- <zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
-  <title/>
-  <portal x="4" y="23" ref="0">
-   <destination zone="0_ados_outside_nw" ref="0"/>
-  </portal>
-
- </zone>
-
- <zone name="-1_semos_mine_n2_w2" file="sub_1_semos_mine_n2_w2.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_mine_n2" file="sub_1_semos_mine_n2.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_mine_nw" file="sub_1_semos_mine_nw.xstend">
-  <title/>
-   <!-- Spikes -->
-  <entity x="205" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-    <entity x="206" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-  <entity x="205" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
- <entity x="206" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity> 
-  <entity x="205" y="22">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-    <entity x="206" y="22">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-   <entity x="205" y="26">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-  <entity x="206" y="26">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-   <entity x="205" y="27">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-  <entity x="206" y="27">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-   <entity x="206" y="28">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
- </zone>
-
- <zone name="-1_semos_dungeon" file="sub_1_semos_dungeon.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_jail" file="sub_1_semos_jail.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1" />
-
-  <portal x="28" y="17" ref="entrance">
-   <destination zone="0_semos_plains_w" ref="jail_entrance"/>
-  </portal>
- </zone>
-
- <zone name="-1_semos_catacombs_ne" file="sub_1_semos_catacombs_ne.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_catacombs_nw" file="sub_1_semos_catacombs_nw.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
-  <title/>
-  <portal x="28" y="37" ref="entrance" replacing="true">
-   <destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
-  </portal>
- </zone>
-
- <zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_orril_mountain_w" file="sub_1_orril_mountain_w.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_orril_dungeon" file="sub_1_orril_dungeon.xstend">
-  <title/>
- </zone>
-
- <zone name="-1_orril_castle_w" file="sub_1_orril_castle_w.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest" />
-
-  <portal x="69" y="37" ref="0">
-   <destination zone="-2_orril_lich_palace" ref="0"/>
-   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <attribute name="class">skulldoor</attribute>
-    <attribute name="direction">down</attribute>
-    <attribute name="key">dungeon_silver_key</attribute>
-   </implementation>
-  </portal>
-
- </zone>
-
- <zone name="-1_orril_castle" file="sub_1_orril_castle.xstend">
-  <title/>
-<!-- use portal config
-  <configurator class-name="games.stendhal.server.maps.orril.USL1_Castle"/>
--->
-
-  <portal x="19" y="22" ref="0">
-   <destination zone="int_orril_castle_0" ref="4"/>
-  </portal>
-
-  <portal x="20" y="22" ref="1">
-   <destination zone="int_orril_castle_0" ref="4"/>
-  </portal>
- </zone>
-
- <zone name="-1_athor_island_w" file="sub_1_athor_island_w.xstend">
-   <title/>
-   <portal x="118" y="96" ref="quicksand_out">
-     <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-   </portal>
-   <portal x="60" y="66" ref="under_pool">
-     <destination zone="0_athor_island_w" ref="pool"/>
-   </portal>
- </zone>
-
-
- <!--  Level -2 -->
-
- <zone name="-2_ados_outside_nw" file="sub_2_ados_outside_nw.xstend">
-  <title/>
-<!--
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest" />
--->
- </zone>
-
- <zone name="-2_semos_dungeon" file="sub_2_semos_dungeon.xstend">
-  <title/>
- </zone>
-
- <zone name="-2_semos_jail" file="sub_2_semos_jail.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
- </zone>
-
- <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
-  <title/>
-     <portal x="9" y="6" ref="dragon_portal_1">
-       <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
-      </portal>
-      <portal x="86" y="12" ref="dragon_portal_2">
-       <destination zone="-2_semos_catacombs" ref="dragon_portal_1"/>
-      </portal>
-      <portal x="84" y="8" ref="one_way_1a">
-       <destination zone="-2_semos_catacombs" ref="one_way_1b"/>
-      </portal>
-      <portal x="84" y="9" ref="one_way_2a">
-       <destination zone="-2_semos_catacombs" ref="one_way_2b"/>
-      </portal>
-      <portal x="84" y="10" ref="one_way_3a">
-       <destination zone="-2_semos_catacombs" ref="one_way_3b"/>
-      </portal>
-      <portal x="84" y="11" ref="one_way_4a">
-       <destination zone="-2_semos_catacombs" ref="one_way_4b"/>
-      </portal>
-      <portal x="84" y="12" ref="one_way_5a">
-       <destination zone="-2_semos_catacombs" ref="one_way_5b"/>
-      </portal>
-      <portal x="84" y="13" ref="one_way_6a">
-       <destination zone="-2_semos_catacombs" ref="one_way_6b"/>
-      </portal>
-      <portal x="84" y="14" ref="one_way_7a">
-       <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
-      </portal>
-      <portal x="84" y="15" ref="one_way_8a">
-       <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
-      </portal>
-    <portal x="83" y="8" ref="one_way_1b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-    <portal x="83" y="9" ref="one_way_2b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-      <portal x="83" y="10" ref="one_way_3b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-      <portal x="83" y="11" ref="one_way_4b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-      <portal x="83" y="12" ref="one_way_5b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-      <portal x="83" y="13" ref="one_way_6b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-      <portal x="83" y="14" ref="one_way_7b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-        <portal x="83" y="15" ref="one_way_8b">
-       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-      </portal>
-  <portal x="94" y="57" ref="downstairs" replacing="true">
-   <destination zone="-3_semos_catacombs" ref="upstairs"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-    <attribute name="key">vampirette_entrails</attribute>
-    <attribute name="quantity">7</attribute>
-    <attribute name="rejected">
-     Prove that you killed all vampirettes before you face their lord.
-    </attribute>
-   </implementation>
-  </portal>
-
-  <!-- Spikes -->
-  <entity x="4" y="57">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="5" y="57">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="6" y="57">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="4" y="58">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="5" y="58">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="6" y="58">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="4" y="59">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="5" y="59">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="6" y="59">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="4" y="60">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="5" y="60">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="6" y="60">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="4" y="61">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-
-  <entity x="65" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
- <entity x="66" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="61" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="62" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="63" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="64" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="65" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="66" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="55" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="56" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="57" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="58" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="59" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="60" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="61" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="62" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="63" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="55" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="56" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="57" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="58" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="59" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="60" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
-<entity x="61" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
-   </implementation>
-  </entity>
- </zone>
-
- <zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
-  <title/>
- </zone>
-
- <zone name="-2_orril_dwarf_mine" file="sub_2_orril_dwarf_mine.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL2_DwarfMine"/>
- </zone>
-
- <zone name="-2_orril_lich_palace" file="sub_2_orril_lich_palace.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace" />
-
-  <portal x="70" y="38" ref="0">
-   <destination zone="-1_orril_castle_w" ref="0"/>
-  </portal>
-
-  <portal x="54" y="52" ref="locked_outside">
-   <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
-   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <attribute name="class">skulldoor</attribute>
-    <attribute name="direction">up</attribute>
-    <attribute name="key">lich_gold_key</attribute>
-   </implementation>
-  </portal>
-
-  <portal x="54" y="57" ref="locked_inside_left">
-   <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
-  </portal>
-
-  <portal x="55" y="57" ref="locked_inside_right">
-   <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
-  </portal>
- </zone>
-
- <zone name="-2_orril_dungeon" file="sub_2_orril_dungeon.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level -3 -->
-
- <zone name="-3_ados_outside_nw" file="sub_3_ados_outside_nw.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest" />
-  <!-- This must be after the NPC configurator -->
-  <entity x="17" y="23">
-    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Bario</attribute>
-    </implementation>
-  </entity>
- </zone>
-
- <zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
-  <title/>
- </zone>
-
- <zone name="-3_semos_catacombs" file="sub_3_semos_catacombs.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
-
-  <portal x="30" y="57" ref="upstairs" replacing="true">
-   <destination zone="-2_semos_catacombs" ref="downstairs"/>
-  </portal>
- </zone>
-
- <zone name="-3_orril_dwarf_blacksmith" file="sub_3_orril_dwarf_blacksmith.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL3_DwarfBlacksmith"/>
- </zone>
-
- <zone name="-3_orril_dungeon" file="sub_3_orril_dungeon.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level -4 -->
-
- <zone name="-4_semos_dungeon" file="sub_4_semos_dungeon.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level -5 -->
-
- <zone name="-5_kanmararn_entrance" file="sub_5_kanmararn_entrance.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level -6 -->
-
- <zone name="-6_kanmararn_city" file="sub_6_kanmararn_city.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.Kanmararn"/>
- </zone>
-
-
- <!--  Level -7 -->
-
-<!--
- <zone name="-7_kanmararn_jail" file="sub_7_kanmararn_jail.xstend">
-  <title/>
- </zone>
--->
-
-
- <!--  Level 1 -->
-
- <zone name="1_kikareukin_cave" file="1_kikareukin_cave.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level 2 -->
-
- <zone name="2_kikareukin_cave" file="2_kikareukin_cave.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level 3 -->
-
- <zone name="3_kikareukin_cave" file="3_kikareukin_cave.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level 4 -->
-
- <zone name="4_kikareukin_cave" file="4_kikareukin_cave.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level 5 -->
-
- <zone name="5_kikareukin_cave" file="5_kikareukin_cave.xstend">
-  <title/>
- </zone>
-
-
- <!--  Level 6 -->
-
- <zone name="6_kikareukin_islands" file="6_kikareukin_islands.xstend">
-  <title/>
- </zone>
-
-
- <!--  Interiors -->
-
- <zone name="int_afterlife" file="int_afterlife.xstend">
-  <title/>
-  <portal x="30" y="6" ref="exit_left">
-   <destination zone="0_semos_city" ref="restart_life"/>
-  </portal>
-
-  <portal x="31" y="6" ref="exit_center">
-   <destination zone="0_semos_city" ref="restart_life"/>
-  </portal>
-
-  <portal x="32" y="6" ref="exit_right">
-   <destination zone="0_semos_city" ref="restart_life"/>
-  </portal>
-            
-  <entity x="29" y="22">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-Sorry, you have died.
-You lost some of your items and 10% of your experience points.
-Be more careful in future!
-
-Walk on, and you will be returned to the land of the living...
-    </attribute>
-   </implementation>
-  </entity>
-
-  <entity x="33" y="22">
-   <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
-Sorry, you have died.
-You lost some of your items and 10% of your experience points.
-Be more careful in future!
-
-Walk on, and you will be returned to the land of the living...
-    </attribute>
-   </implementation>
-  </entity>
- </zone>
-
- <zone name="int_admin_playground" file="int_admin_playground.xstend">
-  <title/>
- </zone>
-
- <zone name="int_pathfinding" file="int_pathfinding.xstend">
-  <title/>
-  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
-
-  <portal x="50" y="10" ref="locked_outside">
-   <destination zone="int_pathfinding" ref="locked_inside"/>
-   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <attribute name="class">skulldoor</attribute>
-    <attribute name="direction">down</attribute>
-    <attribute name="key">key_golden</attribute>
-   </implementation>
-  </portal>
-
-  <portal x="50" y="12" ref="locked_inside">
-   <destination zone="int_pathfinding" ref="locked_outside"/>
-  </portal>
- </zone>
-
+<zones>
+	<!--
+	** Load zones. Written from left to right and from top to bottom.
+	** Please respect it!
+	-->
+	
+	<!--  Ground level -->
+	
+	<zone name="0_semos_mountain_n_w4" file="0_semos_mountain_n_w4.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n2_w2" file="0_semos_mountain_n2_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n2_w" file="0_semos_mountain_n2_w.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n2" file="0_semos_mountain_n2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n2_e" file="0_semos_mountain_n2_e.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n2_e2" file="0_semos_mountain_n2_e2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_mountain_n2_w2" file="0_ados_mountain_n2_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n_w3" file="0_semos_mountain_n_w3.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n_w2" file="0_semos_mountain_n_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
+		<portal x="92" y="101" ref="catacombs_entrance">
+			<destination zone="-1_semos_catacombs_se" ref="entrance"/>
+			<implementation
+				class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+				<attribute name="quest">vs_quest</attribute>
+				<attribute name="rejected">You find it hard to enter. Perhaps you're not
+					prepared for what is below.</attribute>
+			</implementation>
+		</portal>
+	</zone>
+	
+	<zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
+	</zone>
+	
+	<zone name="0_semos_plains_n_e2" file="0_semos_plains_n_e2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_n_e2" file="0_semos_mountain_n_e2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_mountain_n_w2" file="0_ados_mountain_n_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_mountain_nw" file="0_ados_mountain_nw.xstend">
+		<title/>
+		<entity x="126" y="107">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Beware of bandits beyond! </attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="126" y="115">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Beware of bandits beyond! </attribute>
+			</implementation>
+		</entity>
+		
+		<portal x="75" y="50" ref="magician_house_entrance">
+			<destination zone="int_ados_magician_house" ref="entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.ados.IL0_MagicianHouse"/>
+		
+		<portal x="12" y="13" ref="entrance">
+			<destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_ados_outside_nw" file="0_ados_outside_nw.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest"/>
+		
+		<portal x="67" y="24" ref="0">
+			<destination zone="-1_ados_outside_nw" ref="0"/>
+		</portal>
+		
+		<entity x="53" y="48">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Ados Wildlife Refuge Home for endangered animals
+					</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="0_ados_wall_n" file="0_ados_wall_n.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.ados.AdosWallNorth"/>
+	</zone>
+	
+	<zone name="0_orril_mountain_n2_w2" file="0_orril_mountain_n2_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_mountain_w2" file="0_semos_mountain_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_plains_w" file="0_semos_plains_w.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.semos.SemosJailWestOutside"/>
+		-->
+		<!-- Not in java code -->
+		<portal x="85" y="26" ref="jail_entrance_left">
+			<destination zone="-1_semos_jail" ref="entrance"/>
+		</portal>
+		
+		<portal x="86" y="26" ref="jail_entrance">
+			<destination zone="-1_semos_jail" ref="entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_semos_village_w" file="0_semos_village_w.xstend">
+		<title/>
+		<entity x="23" y="61">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO THE PLAINS
+					Shepherds please note: keep watch for the wolves while searching for
+					berries here </attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="60" y="47">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO SEMOS
+					Mature sheep wanted: please speak to Sato </attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="16" y="35">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> [CLOSED]
+					The tavern has moved into a more central location in Semos. Please come
+					join us at the social hub of the Semos area! </attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="0_semos_city" file="0_semos_city.xstend">
+		<title>The City of Semos</title>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.SemosCityOutside"/>
+		
+		<!-- TEST
+		<entity x="35" y="35">
+		<implementation class-name="games.stendhal.server.entity.DamagingArea">
+		<attribute name="name">purple kryptonite</attribute>
+		<attribute name="interval">3</attribute>
+		<attribute name="damage">50</attribute>
+		<attribute name="probability">1</attribute>
+		</implementation>
+		</entity>
+		
+		<entity x="35" y="36">
+		<implementation class-name="games.stendhal.server.entity.DamagingArea">
+		<attribute name="name">purple kryptonite</attribute>
+		<attribute name="interval">3</attribute>
+		<attribute name="damage">50</attribute>
+		<attribute name="probability">1</attribute>
+		</implementation>
+		</entity>
+		
+		<entity x="35" y="37">
+		<implementation class-name="games.stendhal.server.entity.DamagingArea">
+		<attribute name="name">purple kryptonite</attribute>
+		<attribute name="interval">3</attribute>
+		<attribute name="damage">50</attribute>
+		<attribute name="probability">1</attribute>
+		</implementation>
+		</entity>
+		-->
+		
+		<portal x="42" y="37" ref="tavern_entrance">
+			<destination zone="int_semos_tavern_0" ref="entrance"/>
+		</portal>
+		
+		<portal x="53" y="37" ref="temple_entrance">
+			<destination zone="int_semos_temple" ref="entrance_center_right"/>
+		</portal>
+		
+		<portal x="15" y="41" ref="blacksmith_entrance">
+			<destination zone="int_semos_blacksmith" ref="entrance"/>
+		</portal>
+		
+		<portal x="6" y="22" ref="library_entrance_left">
+			<destination zone="int_semos_library" ref="entrance_left"/>
+		</portal>
+		
+		<portal x="11" y="22" ref="library_entrance_right">
+			<destination zone="int_semos_library" ref="entrance_right"/>
+		</portal>
+		
+		<portal x="52" y="19" ref="storage_entrance">
+			<destination zone="int_semos_storage_0" ref="entrance"/>
+		</portal>
+		
+		<portal x="18" y="22" ref="bank_entrance">
+			<destination zone="int_semos_bank" ref="entrance"/>
+		</portal>
+		
+		<portal x="29" y="13" ref="townhall_entrance_left">
+			<destination zone="int_semos_townhall" ref="entrance_left"/>
+		</portal>
+		
+		<portal x="30" y="13" ref="townhall_entrance">
+			<destination zone="int_semos_townhall" ref="entrance"/>
+		</portal>
+		
+		<portal x="31" y="13" ref="townhall_entrance_right">
+			<destination zone="int_semos_townhall" ref="entrance_right"/>
+		</portal>
+		
+		<portal x="44" y="19" ref="bakery_entrance">
+			<destination zone="int_semos_bakery" ref="entrance"/>
+		</portal>
+		
+		<portal x="12" y="49" ref="restart_life">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		
+		<entity x="4" y="41">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO OLD SEMOS VILLAGE
+					Shepherds wanted: please ask Nishiya </attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="26" y="40">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> DUNGEONS
+					Caution: These dungeons contain many rats, and more dangerous
+					creatures. Enter at own risk. </attribute>
+			</implementation>
+		</entity>
+		<entity x="41" y="20">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Assistance needed, to help with pizza
+					deliveries. </attribute>
+			</implementation>
+		</entity>
+		
+		<!-- TEST - Make the bird statue in semos a semi-safe zone -->
+		<!--
+		<entity x="26" y="40">
+		<implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
+		<attribute name="width">6</attribute>
+		<attribute name="height">6</attribute>
+		<attribute name="default">block</attribute>
+		<attribute name="rules">
+		-animal:wolf
+		+animal:*
+		-*:lich,*:ghost
+		+undead:*
+		</attribute>
+		</implementation>
+		</entity>
+		-->
+		
+		<entity x="44" y="62">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO THE PLAINS
+					Shepherds please note: keep watch for the wolves while searching for
+					berries here </attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.SemosCityTavern0"/>
+		
+		<portal x="22" y="17" ref="entrance">
+			<destination zone="0_semos_city" ref="tavern_entrance"/>
+		</portal>
+		
+		<portal x="4" y="4" ref="upstairs">
+			<destination zone="int_semos_tavern_1" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_tavern_1" file="int_semos_tavern_1.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.SemosCityTavern1"/>
+		
+		<portal x="4" y="4" ref="downstairs">
+			<destination zone="int_semos_tavern_0" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_temple" file="int_semos_temple.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.semos.IL0_Temple"/>
+		
+		<portal x="10" y="23" ref="entrance_left">
+			<destination zone="0_semos_city" ref="temple_entrance"/>
+		</portal>
+		
+		<portal x="11" y="23" ref="entrance_center_left">
+			<destination zone="0_semos_city" ref="temple_entrance"/>
+		</portal>
+		
+		<portal x="12" y="23" ref="entrance_center_right">
+			<destination zone="0_semos_city" ref="temple_entrance"/>
+		</portal>
+		
+		<portal x="13" y="23" ref="entrance_right">
+			<destination zone="0_semos_city" ref="temple_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.IL0_Blacksmith"/>
+		
+		<portal x="15" y="14" ref="entrance">
+			<destination zone="0_semos_city" ref="blacksmith_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_library" file="int_semos_library.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.semos.IL0_Library"/>
+		
+		<portal x="8" y="30" ref="entrance_left">
+			<destination zone="0_semos_city" ref="library_entrance_left"/>
+		</portal>
+		
+		<portal x="21" y="30" ref="entrance_right">
+			<destination zone="0_semos_city" ref="library_entrance_right"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_storage_0" file="int_semos_storage_0.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.semos.IL0_Storage"/>
+		
+		<portal x="9" y="14" ref="entrance">
+			<destination zone="0_semos_city" ref="storage_entrance"/>
+		</portal>
+		
+		<portal x="16" y="2" ref="downstairs">
+			<destination zone="int_semos_storage_-1" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_storage_-1" file="int_semos_storage_sub_1.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.semos.ISL1_Storage"/>
+		-->
+		
+		<portal x="26" y="10" ref="upstairs">
+			<destination zone="int_semos_storage_0" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_semos_bank" file="int_semos_bank.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.semos.IL0_Bank"/>
+		
+		<portal x="9" y="30" ref="entrance">
+			<destination zone="0_semos_city" ref="bank_entrance"/>
+		</portal>
+		
+		<portal x="10" y="30" ref="entrance_right">
+			<destination zone="0_semos_city" ref="bank_entrance"/>
+		</portal>
+		
+		<entity x="2" y="2">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="2" y="3">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="8" y="2">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="8" y="3">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="14" y="2">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="14" y="3">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="20" y="2">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="20" y="3">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="2" y="13">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="2" y="9">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="8" y="13">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="8" y="9">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="14" y="13">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="14" y="9">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="20" y="13">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest"/>
+		</entity>
+		<!--
+		<entity x="20" y="9">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">4</attribute>
+		</implementation>
+		</entity>
+		-->
+	</zone>
+	
+	<zone name="int_semos_townhall" file="int_semos_townhall.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.IL0_Townhall"/>
+		
+		<portal x="14" y="46" ref="entrance_left">
+			<destination zone="0_semos_city" ref="townhall_entrance_left"/>
+		</portal>
+		
+		<portal x="15" y="46" ref="entrance">
+			<destination zone="0_semos_city" ref="townhall_entrance"/>
+		</portal>
+		
+		<portal x="16" y="46" ref="entrance_right">
+			<destination zone="0_semos_city" ref="townhall_entrance_right"/>
+		</portal>
+		
+		<!-- Prevent table dancing (this is a family friendly townhall) -->
+		<entity x="4" y="32">
+			<implementation
+				class-name="games.stendhal.server.entity.WalkBlocker"/>
+		</entity>
+		
+		<entity x="4" y="33">
+			<implementation
+				class-name="games.stendhal.server.entity.WalkBlocker"/>
+		</entity>
+		
+		<entity x="6" y="32">
+			<implementation
+				class-name="games.stendhal.server.entity.WalkBlocker"/>
+		</entity>
+		
+		<entity x="6" y="33">
+			<implementation
+				class-name="games.stendhal.server.entity.WalkBlocker"/>
+		</entity>
+	</zone>
+	
+	<zone name="int_semos_bakery" file="int_semos_bakery.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
+		
+		<!-- This must be after the NPC configurator -->
+		<entity x="29" y="6">
+			<implementation
+				class-name="games.stendhal.server.entity.NPCOwnedChest">
+				<attribute name="npc">Erna</attribute>
+			</implementation>
+		</entity>
+		
+		<portal x="26" y="14" ref="entrance">
+			<destination zone="0_semos_city" ref="bakery_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_semos_road_e" file="0_semos_road_e.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_road_se" file="0_semos_road_se.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
+		<title/>
+		<entity x="118" y="43">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO THE FOREST
+					Shepherds please note: keep watch for the wolves while searching for
+					berries here </attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="38" y="3">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO OLD SEMOS VILLAGE
+					Shepherds wanted: please ask Nishiya </attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="113" y="3">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> TO SEMOS
+					Mature sheep wanted: please speak to Sato </attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="0_ados_forest_w2" file="0_ados_forest_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_rock_w" file="0_ados_rock_w.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_rock" file="0_ados_rock.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.ados.AdosRock"/>
+	</zone>
+	
+	<zone name="0_ados_outside_w" file="0_ados_outside_w.xstend">
+		<title/>
+	</zone>
+	
+	<!--
+	<zone name="0_ados_wall" file="0_ados_wall.xstend">
+	<title/>
+	</zone>
+	-->
+	
+	<!--
+	<zone name="0_ados_city_w" file="0_ados_city_w.xstend">
+	<title/>
+	</zone>
+	-->
+	
+	<zone name="int_ados_bank" file="int_ados_bank.xstend">
+		<title/>
+		<portal x="22" y="17" ref="0">
+			<destination zone="0_ados_city" ref="6"/>
+		</portal>
+		
+		<entity x="3" y="12">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest">
+				<attribute name="slot">bank_ados</attribute>
+			</implementation>
+		</entity>
+		<!--
+		<entity x="3" y="13">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">3</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="5" y="12">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest">
+				<attribute name="slot">bank_ados</attribute>
+			</implementation>
+		</entity>
+		<!--
+		<entity x="5" y="13">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">3</attribute>
+		</implementation>
+		</entity>
+		-->
+		<entity x="10" y="12">
+			<implementation
+				class-name="games.stendhal.server.entity.PersonalChest">
+				<!-- semos slot -->
+				<attribute name="slot">bank</attribute>
+			</implementation>
+		</entity>
+		<!--
+		<entity x="10" y="13">
+		<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+		<attribute name="width">1</attribute>
+		<attribute name="height">3</attribute>
+		</implementation>
+		</entity>
+		-->
+		
+		<entity x="8" y="1">
+			<implementation class-name="games.stendhal.server.entity.Blackboard">
+				<attribute name="text"> Under new management. Chest to right is still held
+					by Semos Bank Merchants Ltd. </attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
+		<title/>
+		<portal x="7" y="1" ref="0">
+			<destination zone="0_ados_city" ref="11"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_ados_bakery" file="int_ados_bakery.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.ados.IL0_Bakery"/>
+		
+		<portal x="26" y="14" ref="0">
+			<destination zone="0_ados_city" ref="10"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_ados_library" file="int_ados_library.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.ados.IL0_Library"/>
+		
+		<portal x="8" y="30" ref="entrance_left">
+			<destination zone="0_ados_city" ref="library_entrance_left"/>
+		</portal>
+		
+		<portal x="21" y="30" ref="entrance_right">
+			<destination zone="0_ados_city" ref="library_entrance_right"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.ados.IL0_Tavern"/>
+		
+		<portal x="12" y="17" ref="entrance_left">
+			<destination zone="0_ados_city" ref="tavern_entrance_left"/>
+		</portal>
+		
+		<portal x="27" y="17" ref="entrance_right">
+			<destination zone="0_ados_city" ref="tavern_entrance_right"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_ados_temple" file="int_ados_temple.xstend">
+		<title/>
+		<portal x="10" y="23" ref="entrance_left">
+			<destination zone="0_ados_city" ref="temple_entrance"/>
+		</portal>
+		
+		<portal x="11" y="23" ref="entrance_center_left">
+			<destination zone="0_ados_city" ref="temple_entrance"/>
+		</portal>
+		
+		<portal x="12" y="23" ref="entrance_center_right">
+			<destination zone="0_ados_city" ref="temple_entrance"/>
+		</portal>
+		
+		<portal x="13" y="23" ref="entrance_right">
+			<destination zone="0_ados_city" ref="temple_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_ados_city" file="0_ados_city.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.ados.AdosCityOutside"/>
+		
+		<portal x="60" y="16" ref="tavern_entrance_left">
+			<destination zone="int_ados_tavern_0" ref="entrance_left"/>
+		</portal>
+		
+		<portal x="65" y="16" ref="tavern_entrance_right">
+			<destination zone="int_ados_tavern_0" ref="entrance_right"/>
+		</portal>
+		
+		<portal x="54" y="19" ref="6">
+			<destination zone="int_ados_bank" ref="0"/>
+		</portal>
+		
+		<portal x="27" y="39" ref="10">
+			<destination zone="int_ados_bakery" ref="0"/>
+		</portal>
+		
+		<portal x="12" y="38" ref="11">
+			<destination zone="int_ados_haunted_house" ref="0"/>
+		</portal>
+		
+	</zone>
+	
+	<zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_orril_mountain_nw" file="0_orril_mountain_nw.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_orril_forest_n" file="0_orril_forest_n.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_semos_forest_s" file="0_semos_forest_s.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_nalwor_forest_nw" file="0_nalwor_forest_nw.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_nalwor_forest_n" file="0_nalwor_forest_n.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_nalwor_forest_ne" file="0_nalwor_forest_ne.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_swamp" file="0_ados_swamp.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
+	</zone>
+	
+	<zone name="0_orril_mountain_w2" file="0_orril_mountain_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_orril_mountain_w" file="0_orril_mountain_w.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_orril_castle" file="0_orril_castle.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.orril.OL0_Castle"/>
+		-->
+		
+		<portal x="60" y="96" ref="outside_gate_left2">
+			<destination zone="0_orril_castle" ref="inside_gate_left2"/>
+		</portal>
+		
+		<portal x="61" y="96" ref="outside_gate_left">
+			<destination zone="0_orril_castle" ref="inside_gate_left"/>
+		</portal>
+		
+		<portal x="62" y="96" ref="outside_gate">
+			<destination zone="0_orril_castle" ref="inside_gate"/>
+		</portal>
+		
+		<portal x="63" y="96" ref="outside_gate_right">
+			<destination zone="0_orril_castle" ref="inside_gate_right"/>
+		</portal>
+		
+		<portal x="64" y="96" ref="outside_gate_right2">
+			<destination zone="0_orril_castle" ref="inside_gate_right2"/>
+		</portal>
+		
+		<portal x="60" y="93" ref="inside_gate_left2">
+			<destination zone="0_orril_castle" ref="outside_gate_left2"/>
+		</portal>
+		
+		<portal x="61" y="93" ref="inside_gate_left">
+			<destination zone="0_orril_castle" ref="outside_gate_left"/>
+		</portal>
+		
+		<portal x="62" y="93" ref="inside_gate">
+			<destination zone="0_orril_castle" ref="outside_gate"/>
+		</portal>
+		
+		<portal x="63" y="93" ref="inside_gate_right">
+			<destination zone="0_orril_castle" ref="outside_gate_right"/>
+		</portal>
+		
+		<portal x="64" y="93" ref="inside_gate_right2">
+			<destination zone="0_orril_castle" ref="outside_gate_right2"/>
+		</portal>
+		
+		<portal x="61" y="72" ref="castle_entrance_left">
+			<destination zone="int_orril_castle_0" ref="entrance_left"/>
+		</portal>
+		
+		<portal x="62" y="72" ref="castle_entrance">
+			<destination zone="int_orril_castle_0" ref="entrance"/>
+		</portal>
+		
+		<portal x="63" y="72" ref="castle_entrance_right">
+			<destination zone="int_orril_castle_0" ref="entrance_right"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_orril_castle_0" file="int_orril_castle_0.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.orril.IL0_Castle"/>
+		-->
+		
+		<portal x="26" y="62" ref="entrance_left">
+			<destination zone="0_orril_castle" ref="castle_entrance_left"/>
+		</portal>
+		
+		<portal x="27" y="62" ref="entrance">
+			<destination zone="0_orril_castle" ref="castle_entrance"/>
+		</portal>
+		
+		<portal x="28" y="62" ref="entrance_right">
+			<destination zone="0_orril_castle" ref="castle_entrance_right"/>
+		</portal>
+		
+		<portal x="8" y="1" ref="4">
+			<destination zone="-1_orril_castle" ref="1"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_orril_forest_e" file="0_orril_forest_e.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_nalwor_forest_w" file="0_nalwor_forest_w.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.Nalwor"/>
+		-->
+		
+		<!--
+		** Alternative configuration **
+		<portal x="84" y="92" ref="entrance">
+		<destination zone="0_nalwor_forest_w" ref="exit"/>
+		</portal>
+		
+		<portal x="114" y="91" ref="exit">
+		<destination zone="0_nalwor_forest_w" ref="entrance"/>
+		</portal>
+		**
+		-->
+		
+		<portal x="84" y="92" ref="outside_entrance">
+			<destination zone="0_nalwor_forest_w" ref="inside_exit"/>
+		</portal>
+		
+		<portal x="87" y="92" ref="outside_exit">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		
+		<portal x="114" y="91" ref="inside_entrance">
+			<destination zone="0_nalwor_forest_w" ref="outside_exit"/>
+		</portal>
+		
+		<portal x="117" y="91" ref="inside_exit">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_pottery" file="int_nalwor_pottery.xstend">
+		<title/>
+		<portal x="10" y="18" ref="entrance_left">
+			<destination zone="0_nalwor_city" ref="pottery_entrance"/>
+		</portal>
+		<portal x="11" y="18" ref="entrance_right">
+			<destination zone="0_nalwor_city" ref="pottery_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_library" file="int_nalwor_library.xstend">
+		<title/>
+		<portal x="14" y="28" ref="entrance_left">
+			<destination zone="0_nalwor_city" ref="library_entrance"/>
+		</portal>
+		<portal x="15" y="28" ref="entrance_right">
+			<destination zone="0_nalwor_city" ref="library_entrance"/>
+		</portal>
+		<portal x="21" y="2" ref="upstairs">
+			<destination zone="int_nalwor_library_1" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_library_1" file="int_nalwor_library_1.xstend">
+		<title/>
+		<portal x="21" y="2" ref="downstairs">
+			<destination zone="int_nalwor_library" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_weaponshop" file="int_nalwor_weaponshop.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.nalwor.weaponshop.IL0_BuyerNPC"/>
+		<portal x="3" y="11" ref="entrance">
+			<destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_flowershop" file="int_nalwor_flowershop.xstend">
+		<title/>
+		<portal x="7" y="23" ref="entrance">
+			<destination zone="0_nalwor_city" ref="flowershop_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_jail" file="int_nalwor_jail.xstend">
+		<title/>
+		<portal x="6" y="18" ref="entrance">
+			<destination zone="0_nalwor_city" ref="jail_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_inn" file="int_nalwor_inn.xstend">
+		<title/>
+		<portal x="3" y="15" ref="entrance_left">
+			<destination zone="0_nalwor_city" ref="inn_entrance_left"/>
+		</portal>
+		<portal x="31" y="15" ref="entrance_right">
+			<destination zone="0_nalwor_city" ref="inn_entrance_right"/>
+		</portal>
+		<portal x="2" y="2" ref="upstairs">
+			<destination zone="int_nalwor_inn_1" ref="downstairs"/>
+		</portal>
+		<portal x="10" y="2" ref="downstairs">
+			<destination zone="int_nalwor_inn_basement" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_inn_1" file="int_nalwor_inn_1.xstend">
+		<title/>
+		<portal x="2" y="2" ref="downstairs">
+			<destination zone="int_nalwor_inn" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_inn_basement" file="int_nalwor_inn_basement.xstend">
+		<title/>
+		<portal x="5" y="2" ref="upstairs">
+			<destination zone="int_nalwor_inn" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_postoffice" file="int_nalwor_postoffice.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.nalwor.postoffice.IL0_PostNPC"/>
+		<portal x="3" y="10" ref="entrance">
+			<destination zone="0_nalwor_city" ref="postoffice_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_royal_hall" file="int_nalwor_royal.xstend">
+		<title/>
+		<portal x="7" y="29" ref="entrance">
+			<destination zone="0_nalwor_city" ref="royal_entrance"/>
+		</portal>
+		<portal x="8" y="29" ref="entrance">
+			<destination zone="0_nalwor_city" ref="royal_entrance"/>
+		</portal>
+		<portal x="9" y="29" ref="entrance">
+			<destination zone="0_nalwor_city" ref="royal_entrance"/>
+		</portal>
+		<portal x="43" y="2" ref="upstairs">
+			<destination zone="int_nalwor_royal_hall_1" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_royal_hall_1" file="int_nalwor_royal_2ndfloor.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.nalwor.royal.IL0_MayorNPC"/>
+		<portal x="43" y="2" ref="downstairs">
+			<destination zone="int_nalwor_royal_hall" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house1" file="int_nalwor_house1.xstend">
+		<title/>
+		<portal x="7" y="14" ref="entrance">
+			<destination zone="0_nalwor_city" ref="house1_entrance"/>
+		</portal>
+		<portal x="7" y="3" ref="downstairs">
+			<destination zone="int_nalwor_house1_basement" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house1_basement"
+		file="int_nalwor_house1_basement.xstend">
+		<title/>
+		<portal x="3" y="1" ref="upstairs">
+			<destination zone="int_nalwor_house1" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house2" file="int_nalwor_house2.xstend">
+		<title/>
+		<portal x="8" y="18" ref="entrance">
+			<destination zone="0_nalwor_city" ref="house2_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house3" file="int_nalwor_house3.xstend">
+		<title/>
+		<portal x="14" y="18" ref="entrance">
+			<destination zone="0_nalwor_city" ref="house3_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house4" file="int_nalwor_house4.xstend">
+		<title/>
+		<portal x="12" y="18" ref="entrance">
+			<destination zone="0_nalwor_city" ref="house4_entrance"/>
+		</portal>
+		<portal x="2" y="2" ref="upstairs">
+			<destination zone="int_nalwor_house4_1" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house4_1" file="int_nalwor_house4_1.xstend">
+		<title/>
+		<portal x="2" y="3" ref="downstairs">
+			<destination zone="int_nalwor_house4" ref="upstairs"/>
+		</portal>
+		<portal x="12" y="6" ref="upstairs">
+			<destination zone="int_nalwor_house4_2" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_nalwor_house4_2" file="int_nalwor_house4_2.xstend">
+		<title/>
+		<portal x="2" y="2" ref="downstairs">
+			<destination zone="int_nalwor_house4_1" ref="upstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_nalwor_city" file="0_nalwor_city.xstend">
+		<title/>
+		<portal x="73" y="93" ref="pottery_entrance">
+			<destination zone="int_nalwor_pottery" ref="entrance_left"/>
+		</portal>
+		<portal x="73" y="105" ref="library_entrance">
+			<destination zone="int_nalwor_library" ref="entrance_left"/>
+		</portal>
+		<portal x="88" y="105" ref="jail_entrance">
+			<destination zone="int_nalwor_jail" ref="entrance"/>
+		</portal>
+		<portal x="38" y="105" ref="inn_entrance_left">
+			<destination zone="int_nalwor_inn" ref="entrance_left"/>
+		</portal>
+		<portal x="46" y="105" ref="inn_entrance_right">
+			<destination zone="int_nalwor_inn" ref="entrance_right"/>
+		</portal>
+		<portal x="38" y="89" ref="postoffice_entrance">
+			<destination zone="int_nalwor_postoffice" ref="entrance"/>
+		</portal>
+		<portal x="48" y="82" ref="flowershop_entrance">
+			<destination zone="int_nalwor_flowershop" ref="entrance"/>
+		</portal>
+		<portal x="59" y="105" ref="weaponshop_entrance">
+			<destination zone="int_nalwor_weaponshop" ref="entrance"/>
+		</portal>
+		<portal x="38" y="58" ref="royal_entrance">
+			<destination zone="int_nalwor_royal_hall" ref="entrance"/>
+		</portal>
+		<portal x="36" y="81" ref="house1_entrance">
+			<destination zone="int_nalwor_house1" ref="entrance"/>
+		</portal>
+		<portal x="79" y="81" ref="house2_entrance">
+			<destination zone="int_nalwor_house2" ref="entrance"/>
+		</portal>
+		<portal x="59" y="95" ref="house3_entrance">
+			<destination zone="int_nalwor_house3" ref="entrance"/>
+		</portal>
+		<portal x="84" y="81" ref="house4_entrance">
+			<destination zone="int_nalwor_house4" ref="entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_nalwor_forest_e" file="0_nalwor_forest_e.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_ados_coast_s_w2" file="0_ados_coast_s_w2.xstend">
+		<title/>
+	</zone>
+	
+	<!--
+	<zone name="0_ados_coast_sw" file="0_ados_coast_sw.xstend">
+	<title/>
+	</zone>
+	
+	<zone name="0_ados_coast_s" file="0_ados_coast_s.xstend">
+	<title/>
+	</zone>
+	-->
+	
+	<zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.orril.OL0_BridgeGuardNPC"/>
+	</zone>
+	
+	<zone name="0_orril_river_sw" file="0_orril_river_sw.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_orril_river_s" file="0_orril_river_s.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.orril.OL0_JynathHouse"/>
+		-->
+		
+		<configurator
+			class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire"/>
+		<!-- This must be after the NPC configurator -->
+		<entity x="37" y="60">
+			<implementation
+				class-name="games.stendhal.server.entity.NPCOwnedChest">
+				<attribute name="npc">Sally</attribute>
+			</implementation>
+		</entity>
+		
+		<portal x="39" y="5" ref="jynath_house_entrance">
+			<destination zone="int_orril_jynath_house" ref="entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_orril_jynath_house" file="int_orril_jynath_house.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.orril.IL0_JynathHouse"/>
+		
+		<portal x="16" y="30" ref="entrance">
+			<destination zone="0_orril_river_s" ref="jynath_house_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="0_orril_river_se" file="0_orril_river_se.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_nalwor_river_sw" file="0_nalwor_river_sw.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="0_nalwor_river_s" file="0_nalwor_river_s.xstend">
+		<title/>
+	</zone>
+	
+	<!--
+	<zone name="0_nalwor_river_se" file="0_nalwor_river_se.xstend">
+	<title/>
+	</zone>
+	-->
+	
+	<!--
+	<zone name="0_ados_river_s2_w2" file="0_ados_river_s2_w2.xstend">
+	<title/>
+	</zone>
+	-->
+	<zone name="0_athor_ship_w2" file="0_athor_ship_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
+		<title/>
+		
+		<!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_1"
+		file="int_athor_holiday_apartment_1.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_1_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_2"
+		file="int_athor_holiday_apartment_2.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_2_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_3"
+		file="int_athor_holiday_apartment_3.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_3_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_4"
+		file="int_athor_holiday_apartment_4.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_4_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_5"
+		file="int_athor_holiday_apartment_5.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_5_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_6"
+		file="int_athor_holiday_apartment_6.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_6_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_7"
+		file="int_athor_holiday_apartment_7.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_7_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_holiday_apartment_8"
+		file="int_athor_holiday_apartment_8.xstend">
+		<portal x="4" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="apartment_8_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="int_athor_dressing_room_m"
+		file="int_athor_dressing_room_m.xstend">
+		<portal x="6" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
+		</portal>
+		<configurator
+			class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male"/>
+		<!-- This must be after the NPC configurator -->
+		<entity x="3" y="10">
+			<implementation
+				class-name="games.stendhal.server.entity.NPCOwnedChest">
+				<attribute name="npc">David</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="int_athor_dressing_room_f"
+		file="int_athor_dressing_room_f.xstend">
+		<portal x="9" y="14" ref="out">
+			<destination zone="0_athor_island_w" ref="dressing_room_f_entrance"/>
+		</portal>
+		<configurator
+			class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Female"/>
+		<entity x="12" y="10">
+			<implementation
+				class-name="games.stendhal.server.entity.NPCOwnedChest">
+				<attribute name="npc">Pam</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="0_athor_island_w" file="0_athor_island_w.xstend">
+		<title/>
+		<portal x="185" y="57" ref="apartment_1_entrance">
+			<destination zone="int_athor_holiday_apartment_1" ref="out"/>
+		</portal>
+		<portal x="194" y="57" ref="apartment_2_entrance">
+			<destination zone="int_athor_holiday_apartment_2" ref="out"/>
+		</portal>
+		<portal x="206" y="63" ref="apartment_3_entrance">
+			<destination zone="int_athor_holiday_apartment_3" ref="out"/>
+		</portal>
+		<portal x="206" y="69" ref="apartment_4_entrance">
+			<destination zone="int_athor_holiday_apartment_4" ref="out"/>
+		</portal>
+		<portal x="194" y="75" ref="apartment_5_entrance">
+			<destination zone="int_athor_holiday_apartment_5" ref="out"/>
+		</portal>
+		<portal x="185" y="75" ref="apartment_6_entrance">
+			<destination zone="int_athor_holiday_apartment_6" ref="out"/>
+		</portal>
+		<portal x="175" y="69" ref="apartment_7_entrance">
+			<destination zone="int_athor_holiday_apartment_7" ref="out"/>
+		</portal>
+		<portal x="175" y="63" ref="apartment_8_entrance">
+			<destination zone="int_athor_holiday_apartment_8" ref="out"/>
+		</portal>
+		<portal x="215" y="40" ref="dressing_room_m_entrance">
+			<destination zone="int_athor_dressing_room_m" ref="out"/>
+		</portal>
+		<portal x="210" y="40" ref="dressing_room_f_entrance">
+			<destination zone="int_athor_dressing_room_f" ref="out"/>
+		</portal>
+		<portal x="245" y="95" ref="quicksand_1">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="245" y="96" ref="quicksand_2">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="245" y="97" ref="quicksand_3">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="246" y="95" ref="quicksand_4">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="246" y="97" ref="quicksand_5">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="247" y="95" ref="quicksand_6">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="247" y="96" ref="quicksand_7">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="247" y="97" ref="quicksand_8">
+			<destination zone="-1_athor_island_w" ref="quicksand_out"/>
+		</portal>
+		<portal x="188" y="66" ref="pool">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<!--
+		<portal x="191" y="65" ref="diving_board_destination">
+		<implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="191" y="67" ref="diving_board">
+		<destination zone="0_athor_island_w" ref="diving_board_destination"/>
+		</portal>
+		-->
+		<configurator
+			class-name="games.stendhal.server.maps.athor.OL0_IslandWest"/>
+		<entity x="211" y="42">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Changing Room for Women </attribute>
+			</implementation>
+		</entity>
+		<entity x="216" y="42">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Changing Room for Men </attribute>
+			</implementation>
+		</entity>
+		<entity x="240" y="96">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> DANGER! Quicksand! </attribute>
+			</implementation>
+		</entity>
+		<entity x="247" y="89">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> DANGER! Quicksand! </attribute>
+			</implementation>
+		</entity>
+		<entity x="248" y="104">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> DANGER! Quicksand! </attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<!--
+	<zone name="0_fado_city" file="0_fado_city.xstend">
+	<configurator class-name="games.stendhal.server.maps.fado.city.OL0_GreeterNPC"/>
+	
+	<portal x="36" y="16" ref="tavern_entrance_left">
+	<destination zone="int_fado_tavern" ref="entrance_left"/>
+	</portal>
+	
+	<portal x="48" y="16" ref="tavern_entrance_right">
+	<destination zone="int_fado_tavern" ref="entrance_right"/>
+	</portal>
+	
+	<portal x="46" y="38" ref="bank_entrance">
+	<destination zone="int_fado_bank" ref="entrance"/>
+	</portal>
+	
+	<portal x="56" y="38" ref="bakery_entrance">
+	<destination zone="int_fado_bakery" ref="entrance"/>
+	</portal>
+	
+	<portal x="14" y="59" ref="hotel_entrance">
+	<destination zone="int_fado_hotel_0" ref="entrance"/>
+	</portal>
+	
+	<portal x="55" y="49" ref="church_entrance">
+	<destination zone="int_fado_church" ref="entrance_right"/>
+	</portal>
+	
+	<portal x="71" y="98" ref="shepherd_house_entrance">
+	<destination zone="int_fado_shepherd_house" ref="entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_bank" file="int_fado_bank.xstend">
+	<configurator class-name="games.stendhal.server.maps.fado.bank.IL0_TellerNPC"/>
+	
+	<portal x="12" y="19" ref="entrance">
+	<destination zone="0_fado_city" ref="bank_entrance"/>
+	</portal>
+	
+	<entity x="2" y="8">
+	<implementation class-name="games.stendhal.server.entity.PersonalChest">
+	<attribute name="slot">bank_fado</attribute>
+	</implementation>
+	</entity>
+	
+	<entity x="2" y="8">
+	<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+	<attribute name="width">2</attribute>
+	<attribute name="height">2</attribute>
+	</implementation>
+	</entity>
+	
+	<entity x="2" y="12">
+	<implementation class-name="games.stendhal.server.entity.PersonalChest">
+	<attribute name="slot">bank_fado</attribute>
+	</implementation>
+	</entity>
+	
+	<entity x="2" y="12">
+	<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+	<attribute name="width">2</attribute>
+	<attribute name="height">2</attribute>
+	</implementation>
+	</entity>
+	
+	<entity x="2" y="16">
+	<implementation class-name="games.stendhal.server.entity.PersonalChest">
+	<attribute name="slot">bank_fado</attribute>
+	</implementation>
+	</entity>
+	
+	<entity x="2" y="16">
+	<implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+	<attribute name="width">2</attribute>
+	<attribute name="height">2</attribute>
+	</implementation>
+	</entity>
+	</zone>
+	
+	<zone name="int_fado_bakery" file="int_fado_bakery.xstend">
+	<configurator class-name="games.stendhal.server.maps.fado.bakery.IL0_BakerNPC"/>
+	
+	<portal x="26" y="14" ref="entrance">
+	<destination zone="0_fado_city" ref="bakery_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_tavern" file="int_fado_tavern.xstend">
+	<configurator class-name="games.stendhal.server.maps.fado.tavern.IL0_MaidNPC"/>
+	
+	<portal x="16" y="30" ref="entrance_left">
+	<destination zone="0_fado_city" ref="tavern_entrance_left"/>
+	</portal>
+	
+	<portal x="41" y="30" ref="entrance_right">
+	<destination zone="0_fado_city" ref="tavern_entrance_right"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_church" file="int_fado_church.xstend">
+	<portal x="10" y="23" ref="entrance_left2">
+	<destination zone="0_fado_city" ref="church_entrance"/>
+	</portal>
+	
+	<portal x="11" y="23" ref="entrance_left">
+	<destination zone="0_fado_city" ref="church_entrance"/>
+	</portal>
+	
+	<portal x="12" y="23" ref="entrance_right">
+	<destination zone="0_fado_city" ref="church_entrance"/>
+	</portal>
+	
+	<portal x="13" y="23" ref="entrance_right2">
+	<destination zone="0_fado_city" ref="church_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_shepherd_house" file="int_fado_shepherd_house.xstend">
+	<portal x="10" y="31" ref="entrance">
+	<destination zone="0_fado_city" ref="shepherd_house_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
+	<configurator class-name="games.stendhal.server.maps.fado.hotel.IL0_GreeterNPC"/>
+	
+	<portal x="8" y="63" ref="entrance">
+	<destination zone="0_fado_city" ref="hotel_entrance"/>
+	</portal>
+	
+	<portal x="0" y="40" ref="room_001_entrance">
+	<destination zone="int_fado_hotel_room_001" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_001</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="10" y="40" ref="room_002_entrance">
+	<destination zone="int_fado_hotel_room_002" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_002</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="0" y="33" ref="room_003_entrance">
+	<destination zone="int_fado_hotel_room_003" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_003</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="10" y="33" ref="room_004_entrance">
+	<destination zone="int_fado_hotel_room_004" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_004</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="0" y="26" ref="room_005_entrance">
+	<destination zone="int_fado_hotel_room_005" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_005</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="10" y="26" ref="room_006_entrance">
+	<destination zone="int_fado_hotel_room_006" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_006</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="0" y="19" ref="room_007_entrance">
+	<destination zone="int_fado_hotel_room_007" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_007</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	
+	<portal x="10" y="19" ref="room_008_entrance">
+	<destination zone="int_fado_hotel_room_008" ref="entrance"/>
+	<implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+	<attribute name="key">fado_hotel_key_008</attribute>
+	<attribute name="rejected">Keys are at the front desk</attribute>
+	</implementation>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_001" file="int_fado_room_001.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_001_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_002" file="int_fado_room_002.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_002_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_003" file="int_fado_room_003.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_003_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_004" file="int_fado_room_004.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_004_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_005" file="int_fado_room_005.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_005_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_006" file="int_fado_room_006.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_006_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_007" file="int_fado_room_007.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_007_entrance"/>
+	</portal>
+	</zone>
+	
+	<zone name="int_fado_hotel_room_008" file="int_fado_room_008.xstend">
+	<portal x="8" y="14" ref="entrance">
+	<destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
+	</portal>
+	</zone>
+	-->
+	
+	<!--  Level -1 -->
+	
+	<zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
+		<title/>
+		<portal x="4" y="23" ref="0">
+			<destination zone="0_ados_outside_nw" ref="0"/>
+		</portal>
+		
+	</zone>
+	
+	<zone name="-1_semos_mine_n2_w2" file="sub_1_semos_mine_n2_w2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_semos_mine_n2" file="sub_1_semos_mine_n2.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_semos_mine_nw" file="sub_1_semos_mine_nw.xstend">
+		<title/>
+		<!-- Spikes -->
+		<entity x="205" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="206" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="205" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="206" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="205" y="22">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="206" y="22">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="205" y="26">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="206" y="26">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="205" y="27">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="206" y="27">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="206" y="28">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="-1_semos_dungeon" file="sub_1_semos_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_semos_jail" file="sub_1_semos_jail.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.SemosJailWestSL1"/>
+		
+		<portal x="28" y="17" ref="entrance">
+			<destination zone="0_semos_plains_w" ref="jail_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="-1_semos_catacombs_ne" file="sub_1_semos_catacombs_ne.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_semos_catacombs_nw" file="sub_1_semos_catacombs_nw.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
+		<title/>
+		<portal x="28" y="37" ref="entrance" replacing="true">
+			<destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
+		</portal>
+	</zone>
+	
+	<zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_orril_mountain_w" file="sub_1_orril_mountain_w.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_orril_dungeon" file="sub_1_orril_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-1_orril_castle_w" file="sub_1_orril_castle_w.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.orril.USL1_CastleWest"/>
+		
+		<portal x="69" y="37" ref="0">
+			<destination zone="-2_orril_lich_palace" ref="0"/>
+			<implementation
+				class-name="games.stendhal.server.entity.portal.LockedDoor">
+				<attribute name="class">skulldoor</attribute>
+				<attribute name="direction">down</attribute>
+				<attribute name="key">dungeon_silver_key</attribute>
+			</implementation>
+		</portal>
+		
+	</zone>
+	
+	<zone name="-1_orril_castle" file="sub_1_orril_castle.xstend">
+		<title/>
+		<!-- use portal config
+		<configurator class-name="games.stendhal.server.maps.orril.USL1_Castle"/>
+		-->
+		
+		<portal x="19" y="22" ref="0">
+			<destination zone="int_orril_castle_0" ref="4"/>
+		</portal>
+		
+		<portal x="20" y="22" ref="1">
+			<destination zone="int_orril_castle_0" ref="4"/>
+		</portal>
+	</zone>
+	
+	<zone name="-1_athor_island_w" file="sub_1_athor_island_w.xstend">
+		<title/>
+		<portal x="118" y="96" ref="quicksand_out">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="60" y="66" ref="under_pool">
+			<destination zone="0_athor_island_w" ref="pool"/>
+		</portal>
+	</zone>
+	
+	<!--  Level -2 -->
+	
+	<zone name="-2_ados_outside_nw" file="sub_2_ados_outside_nw.xstend">
+		<title/>
+		<!--
+		<configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest" />
+		-->
+	</zone>
+	
+	<zone name="-2_semos_dungeon" file="sub_2_semos_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-2_semos_jail" file="sub_2_semos_jail.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
+	</zone>
+	
+	<zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
+		<title/>
+		<portal x="9" y="6" ref="dragon_portal_1">
+			<destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
+		</portal>
+		<portal x="86" y="12" ref="dragon_portal_2">
+			<destination zone="-2_semos_catacombs" ref="dragon_portal_1"/>
+		</portal>
+		<portal x="84" y="8" ref="one_way_1a">
+			<destination zone="-2_semos_catacombs" ref="one_way_1b"/>
+		</portal>
+		<portal x="84" y="9" ref="one_way_2a">
+			<destination zone="-2_semos_catacombs" ref="one_way_2b"/>
+		</portal>
+		<portal x="84" y="10" ref="one_way_3a">
+			<destination zone="-2_semos_catacombs" ref="one_way_3b"/>
+		</portal>
+		<portal x="84" y="11" ref="one_way_4a">
+			<destination zone="-2_semos_catacombs" ref="one_way_4b"/>
+		</portal>
+		<portal x="84" y="12" ref="one_way_5a">
+			<destination zone="-2_semos_catacombs" ref="one_way_5b"/>
+		</portal>
+		<portal x="84" y="13" ref="one_way_6a">
+			<destination zone="-2_semos_catacombs" ref="one_way_6b"/>
+		</portal>
+		<portal x="84" y="14" ref="one_way_7a">
+			<destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+		</portal>
+		<portal x="84" y="15" ref="one_way_8a">
+			<destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+		</portal>
+		<portal x="83" y="8" ref="one_way_1b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="9" ref="one_way_2b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="10" ref="one_way_3b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="11" ref="one_way_4b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="12" ref="one_way_5b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="13" ref="one_way_6b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="14" ref="one_way_7b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="83" y="15" ref="one_way_8b">
+			<implementation
+				class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+		</portal>
+		<portal x="94" y="57" ref="downstairs" replacing="true">
+			<destination zone="-3_semos_catacombs" ref="upstairs"/>
+			<implementation
+				class-name="games.stendhal.server.entity.portal.KeyedPortal">
+				<attribute name="key">vampirette_entrails</attribute>
+				<attribute name="quantity">7</attribute>
+				<attribute name="rejected"> Prove that you killed all vampirettes before
+					you face their lord. </attribute>
+			</implementation>
+		</portal>
+		
+		<!-- Spikes -->
+		<entity x="4" y="57">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="5" y="57">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="6" y="57">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="4" y="58">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="5" y="58">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="6" y="58">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="4" y="59">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="5" y="59">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="6" y="59">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="4" y="60">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="5" y="60">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="6" y="60">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="4" y="61">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">2</attribute>
+				<attribute name="damage">100</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="65" y="18">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="66" y="18">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="61" y="19">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="62" y="19">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="63" y="19">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="64" y="19">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="65" y="19">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="66" y="19">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="55" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="56" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="57" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="58" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="59" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="60" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="61" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="62" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="63" y="20">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="55" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="56" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="57" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="58" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="59" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="60" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+		<entity x="61" y="21">
+			<implementation
+				class-name="games.stendhal.server.entity.DamagingArea">
+				<attribute name="name">razor sharp spikes</attribute>
+				<attribute name="interval">3</attribute>
+				<attribute name="damage">50</attribute>
+				<attribute name="probability">30</attribute>
+				<attribute name="players-only">true</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-2_orril_dwarf_mine" file="sub_2_orril_dwarf_mine.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.orril.USL2_DwarfMine"/>
+	</zone>
+	
+	<zone name="-2_orril_lich_palace" file="sub_2_orril_lich_palace.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.orril.USL2_LichPalace"/>
+		
+		<portal x="70" y="38" ref="0">
+			<destination zone="-1_orril_castle_w" ref="0"/>
+		</portal>
+		
+		<portal x="54" y="52" ref="locked_outside">
+			<destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
+			<implementation
+				class-name="games.stendhal.server.entity.portal.LockedDoor">
+				<attribute name="class">skulldoor</attribute>
+				<attribute name="direction">up</attribute>
+				<attribute name="key">lich_gold_key</attribute>
+			</implementation>
+		</portal>
+		
+		<portal x="54" y="57" ref="locked_inside_left">
+			<destination zone="-2_orril_lich_palace" ref="locked_outside"/>
+		</portal>
+		
+		<portal x="55" y="57" ref="locked_inside_right">
+			<destination zone="-2_orril_lich_palace" ref="locked_outside"/>
+		</portal>
+	</zone>
+	
+	<zone name="-2_orril_dungeon" file="sub_2_orril_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level -3 -->
+	
+	<zone name="-3_ados_outside_nw" file="sub_3_ados_outside_nw.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest"/>
+		<!-- This must be after the NPC configurator -->
+		<entity x="17" y="23">
+			<implementation
+				class-name="games.stendhal.server.entity.NPCOwnedChest">
+				<attribute name="npc">Bario</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="-3_semos_catacombs" file="sub_3_semos_catacombs.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
+		
+		<portal x="30" y="57" ref="upstairs" replacing="true">
+			<destination zone="-2_semos_catacombs" ref="downstairs"/>
+		</portal>
+	</zone>
+	
+	<zone name="-3_orril_dwarf_blacksmith"
+		file="sub_3_orril_dwarf_blacksmith.xstend">
+		<title/>
+		<configurator
+			class-name="games.stendhal.server.maps.orril.USL3_DwarfBlacksmith"/>
+	</zone>
+	
+	<zone name="-3_orril_dungeon" file="sub_3_orril_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level -4 -->
+	
+	<zone name="-4_semos_dungeon" file="sub_4_semos_dungeon.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level -5 -->
+	
+	<zone name="-5_kanmararn_entrance" file="sub_5_kanmararn_entrance.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level -6 -->
+	
+	<zone name="-6_kanmararn_city" file="sub_6_kanmararn_city.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.Kanmararn"/>
+	</zone>
+	
+	<!--  Level -7 -->
+	
+	<!--
+	<zone name="-7_kanmararn_jail" file="sub_7_kanmararn_jail.xstend">
+	<title/>
+	</zone>
+	-->
+	
+	<!--  Level 1 -->
+	
+	<zone name="1_kikareukin_cave" file="1_kikareukin_cave.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level 2 -->
+	
+	<zone name="2_kikareukin_cave" file="2_kikareukin_cave.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level 3 -->
+	
+	<zone name="3_kikareukin_cave" file="3_kikareukin_cave.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level 4 -->
+	
+	<zone name="4_kikareukin_cave" file="4_kikareukin_cave.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level 5 -->
+	
+	<zone name="5_kikareukin_cave" file="5_kikareukin_cave.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Level 6 -->
+	
+	<zone name="6_kikareukin_islands" file="6_kikareukin_islands.xstend">
+		<title/>
+	</zone>
+	
+	<!--  Interiors -->
+	
+	<zone name="int_afterlife" file="int_afterlife.xstend">
+		<title/>
+		<portal x="30" y="6" ref="exit_left">
+			<destination zone="0_semos_city" ref="restart_life"/>
+		</portal>
+		
+		<portal x="31" y="6" ref="exit_center">
+			<destination zone="0_semos_city" ref="restart_life"/>
+		</portal>
+		
+		<portal x="32" y="6" ref="exit_right">
+			<destination zone="0_semos_city" ref="restart_life"/>
+		</portal>
+		
+		<entity x="29" y="22">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Sorry, you have died. You lost some of your items
+					and 10% of your experience points. Be more careful in future!
+					Walk on, and you will be returned to the land of the living...
+					</attribute>
+			</implementation>
+		</entity>
+		
+		<entity x="33" y="22">
+			<implementation class-name="games.stendhal.server.entity.Sign">
+				<attribute name="text"> Sorry, you have died. You lost some of your items
+					and 10% of your experience points. Be more careful in future!
+					Walk on, and you will be returned to the land of the living...
+					</attribute>
+			</implementation>
+		</entity>
+	</zone>
+	
+	<zone name="int_admin_playground" file="int_admin_playground.xstend">
+		<title/>
+	</zone>
+	
+	<zone name="int_pathfinding" file="int_pathfinding.xstend">
+		<title/>
+		<configurator class-name="games.stendhal.server.maps.FeaturesTestArea"/>
+		
+		<portal x="50" y="10" ref="locked_outside">
+			<destination zone="int_pathfinding" ref="locked_inside"/>
+			<implementation
+				class-name="games.stendhal.server.entity.portal.LockedDoor">
+				<attribute name="class">skulldoor</attribute>
+				<attribute name="direction">down</attribute>
+				<attribute name="key">key_golden</attribute>
+			</implementation>
+		</portal>
+		
+		<portal x="50" y="12" ref="locked_inside">
+			<destination zone="int_pathfinding" ref="locked_outside"/>
+		</portal>
+	</zone>
+	
 </zones>
