@@ -7,6 +7,7 @@ import java.util.List;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -71,7 +72,7 @@ public class PlinksToy extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Plink");
 
 		npc.add(ConversationStates.IDLE,
-			SpeakerNPC.GREETING_MESSAGES,
+			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -83,7 +84,7 @@ public class PlinksToy extends AbstractQuest {
 			null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,
@@ -142,7 +143,7 @@ public class PlinksToy extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Plink");
 
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -162,7 +163,7 @@ public class PlinksToy extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {

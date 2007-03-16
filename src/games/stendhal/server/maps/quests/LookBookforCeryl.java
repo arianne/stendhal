@@ -6,6 +6,7 @@ import java.util.List;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -67,7 +68,7 @@ public class LookBookforCeryl extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Ceryl");
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -110,7 +111,7 @@ public class LookBookforCeryl extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Great! Please get me it as quickly as possible... there's a huge waiting list!",
@@ -162,7 +163,7 @@ public class LookBookforCeryl extends AbstractQuest {
 
 		/** If player has quest and is in the correct state, just give him the book. */
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -186,7 +187,7 @@ public class LookBookforCeryl extends AbstractQuest {
 
 		/** If player keep asking for book, just tell him to hurry up */
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -225,7 +226,7 @@ public class LookBookforCeryl extends AbstractQuest {
 
 		/** Complete the quest */
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {

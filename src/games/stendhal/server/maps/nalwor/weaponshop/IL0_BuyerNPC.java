@@ -3,6 +3,7 @@ package games.stendhal.server.maps.nalwor.weaponshop;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
@@ -57,7 +58,7 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 					"Look at the blackboard on the wall to see what I will buy.",
 					null);
 				add(ConversationStates.ATTENDING,
-					SpeakerNPC.QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"You think I'd trust a human with anything important? You're wrong!",

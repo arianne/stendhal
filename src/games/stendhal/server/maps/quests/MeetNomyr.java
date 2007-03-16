@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 
@@ -25,7 +26,7 @@ public class MeetNomyr extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Nomyr Ahba");
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
 				"The young people have joined the Imperial Deniran Army to fight in the south, so the city has been left almost unprotected against the hordes of monsters coming from the dungeons. Can you help us?",
@@ -39,7 +40,7 @@ public class MeetNomyr extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				"First of all, you should go talk to Hayunn Naratha. He's an great old hero, and he's also pretty much our only defender here... I'm sure he will gladly give you some advice! Good luck.",

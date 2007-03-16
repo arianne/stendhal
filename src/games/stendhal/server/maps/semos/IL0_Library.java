@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -56,7 +57,7 @@ public class IL0_Library implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					GREETING_MESSAGES,
+					ConversationPhrases.GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -81,7 +82,7 @@ public class IL0_Library implements ZoneConfigurator {
 				addJob("I'm a historian and geographer, committed to writing down every objective fact about Faiumoni. Did you know I wrote most of the books in this library? Well, apart from \"Know How To Kill Creatures\", of course... Hayunn Naratha wrote that.");
 				
 				add(ConversationStates.ATTENDING,
-					QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"I don't think there's really anything you could do for me right now. But thanks for asking!",

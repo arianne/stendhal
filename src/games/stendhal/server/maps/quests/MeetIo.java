@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -28,14 +29,14 @@ public class MeetIo extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Io Flotto");
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
 				"Type #/who to ascertain the names of those adventurers who are currently present in the world of Stendhal. Do you want to learn the second basic element of telepathy?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
 				"Type #/where #username to discern where in Stendhal that person is currently roaming; you can use #/where #sheep to keep track of any sheep you might own. To understand the system used for defining positions in Stendhal, try asking #Zynn; he knows more about it that I do. Ready for the third lesson?",
@@ -49,28 +50,28 @@ public class MeetIo extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.INFORMATION_2,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_3,
 				"Type #/tell #username #message or #/msg #username #message to talk to anybody you wish, no matter where in Stendhal that person is.  You can type #// #response to continue talking to the last person you send a message to. Ready to learn my fourth tip?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_3,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_4,
 				"Press #Shift+Up at the same time to recall things you previously said, in case you need to repeat yourself. You can also use #Ctrl+L if you are having trouble. Okay, shall we move on to the fifth lesson?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_4,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_5,
 				"Type #/support #<message> to report a problem to any administrators who happen to be online at that moment. You can also try IRC, if you are still having problems; start up any IRC client and join channel ##arianne on the server #irc.freenode.net\nOkay, time for your last lesson in mental manipulation!",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_5,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_6,
 				"You can travel to the astral plane at any time, thereby saving and closing your game. Just type #/quit, or press the #Esc key, or even simply close the window. Okay! Hmm, I think you want to learn how to float in the air like I do.",
@@ -78,7 +79,7 @@ public class MeetIo extends AbstractQuest {
 
 		/** Give the reward to the patient newcomer user */
 		npc.add(ConversationStates.INFORMATION_6,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,

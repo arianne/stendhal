@@ -4,6 +4,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -101,7 +102,7 @@ public class SevenCherubs extends AbstractQuest {
 		@Override
 		protected void createDialog() {
 			add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				null,
 				ConversationStates.IDLE,
 				null,

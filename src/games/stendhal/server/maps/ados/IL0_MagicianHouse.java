@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -64,7 +65,7 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 				addSeller(new SellerBehaviour(shops.get("scrolls")));
 				
 				add(ConversationStates.ATTENDING,
-					QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"I don't have any tasks for you right now. If you need anything from me, just ask.",

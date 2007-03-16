@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -54,7 +55,7 @@ public class HatForMonogenes extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -72,7 +73,7 @@ public class HatForMonogenes extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks, my good friend. I'll be waiting here for your return!",
@@ -111,7 +112,7 @@ public class HatForMonogenes extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Monogenes");
 
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -134,7 +135,7 @@ public class HatForMonogenes extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				// make sure the player isn't cheating by putting the helmet
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {

@@ -93,7 +93,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks.",
@@ -109,7 +109,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
-				SpeakerNPC.NO_MESSAGES,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING, "Ok, how else may I help you?",
 				null);
@@ -174,7 +174,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.SELL_PRICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks.",
@@ -189,7 +189,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.SELL_PRICE_OFFERED,
-				SpeakerNPC.NO_MESSAGES,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Ok, then how else may I help you?",
@@ -230,7 +230,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.HEAL_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -247,7 +247,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.HEAL_OFFERED,
-				SpeakerNPC.NO_MESSAGES,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"OK, how else may I help you?",
@@ -325,7 +325,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -347,7 +347,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED,
-				SpeakerNPC.NO_MESSAGES,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING, "Ok, how else may I help you?",
 				null);
@@ -388,7 +388,7 @@ class BehaviourAdder {
 				});
 
 		engine.add(ConversationStates.IDLE,
-			SpeakerNPC.GREETING_MESSAGES,
+			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -428,7 +428,7 @@ class BehaviourAdder {
 			});
 		
 		engine.add(ConversationStates.PRODUCTION_OFFERED,
-			SpeakerNPC.YES_MESSAGES,
+			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,
@@ -441,7 +441,7 @@ class BehaviourAdder {
 			});
 
 		engine.add(ConversationStates.PRODUCTION_OFFERED,
-			SpeakerNPC.NO_MESSAGES,
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			"OK, no problem.",
@@ -467,7 +467,7 @@ class BehaviourAdder {
 			});
 
 		engine.add(ConversationStates.IDLE,
-			SpeakerNPC.GREETING_MESSAGES,
+			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {

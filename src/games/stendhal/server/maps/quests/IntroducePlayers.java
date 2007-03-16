@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
@@ -78,7 +79,7 @@ public class IntroducePlayers extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Tad");
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				null,
@@ -90,7 +91,7 @@ public class IntroducePlayers extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -127,7 +128,7 @@ public class IntroducePlayers extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -181,7 +182,7 @@ public class IntroducePlayers extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Tad");
     // staring the conversation the first time after getting a flask.
     npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -208,14 +209,14 @@ public class IntroducePlayers extends AbstractQuest {
 						player.setQuest("introduce_players", "ilisa");
 					}
 				});
-    // remind the player to take the flask to ilisa.    npc.add(ConversationStates.IDLE,        SpeakerNPC.GREETING_MESSAGES,        new SpeakerNPC.ChatCondition() {            @Override
+    // remind the player to take the flask to ilisa.    npc.add(ConversationStates.IDLE,        ConversationPhrases.GREETING_MESSAGES,        new SpeakerNPC.ChatCondition() {            @Override
 			public boolean fire(Player player, String text, SpeakerNPC npc) {                return player.hasQuest("introduce_players")                        && player.getQuest("introduce_players").equals(                                "ilisa") && player.isEquipped("flask");            }        },        ConversationStates.ATTENDING,        null,        new SpeakerNPC.ChatAction() {            @Override
 			public void fire(Player player, String text,                    SpeakerNPC engine) {				// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
                 engine.say("Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.");            }        });
 		npc.add(ConversationStates.ATTENDING,				"ilisa",				null,				ConversationStates.ATTENDING,				"Ilisa is the summon healer at Semos temple.",				null);	}
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Ilisa");
-		npc.add(ConversationStates.IDLE,				SpeakerNPC.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					@Override
+		npc.add(ConversationStates.IDLE,				ConversationPhrases.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					@Override
 					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a few #herbs. Can you help?");							player.addXP(10);
 							player.notifyWorldAboutChanges();
@@ -237,7 +238,7 @@ public class IntroducePlayers extends AbstractQuest {
 	}
 	private void step_5() {		SpeakerNPC npc = npcs.get("Ilisa");
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -275,7 +276,7 @@ public class IntroducePlayers extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Tad");
 
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {

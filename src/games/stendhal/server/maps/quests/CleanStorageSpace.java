@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -29,7 +30,7 @@ public class CleanStorageSpace extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Eonna");
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -47,7 +48,7 @@ public class CleanStorageSpace extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!",
@@ -94,7 +95,7 @@ public class CleanStorageSpace extends AbstractQuest {
 		// the player returns to Eonna after having started the quest.
 		// Eonna checks if the player has killed one of each animal race.
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {

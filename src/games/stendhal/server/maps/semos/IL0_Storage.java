@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -74,7 +75,7 @@ public class IL0_Storage implements ZoneConfigurator {
 				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance.");
 				addJob("My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway.");
 				add(ConversationStates.ATTENDING,
-					QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"The only task I have for you is to behave nicely towards others.",

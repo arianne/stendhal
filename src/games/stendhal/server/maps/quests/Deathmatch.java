@@ -9,6 +9,7 @@ import games.stendhal.server.entity.creature.ArenaCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -372,7 +373,7 @@ public class Deathmatch extends AbstractQuest {
 			protected void createDialog() {
 
 				// player is outside the fence
-				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES,
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 						new StandardInteraction.Not(new StandardInteraction.PlayerInAreaCondition(arena)),
 						ConversationStates.INFORMATION_1, "Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join", null);
 				add(ConversationStates.INFORMATION_1, "Thonatus", null, ConversationStates.INFORMATION_1,
@@ -380,7 +381,7 @@ public class Deathmatch extends AbstractQuest {
 
 
 				// player is inside
-				add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new StandardInteraction.PlayerInAreaCondition(arena),
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.PlayerInAreaCondition(arena),
 						ConversationStates.ATTENDING, "Welcome to Ados Deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");

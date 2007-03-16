@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos;
 import games.stendhal.common.Direction;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -52,13 +53,13 @@ public class SemosJailWestSL1 implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings! How may I #help you?");
-				add(ConversationStates.ATTENDING, SpeakerNPC.JOB_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
+				add(ConversationStates.ATTENDING, ConversationPhrases.JOB_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
 								"I am the jail keeper.", null);
-				add(ConversationStates.ATTENDING, SpeakerNPC.JOB_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
+				add(ConversationStates.ATTENDING, ConversationPhrases.JOB_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
 								"I am the jail keeper. You have been confined here because of your bad behaviour.", null);
-				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
+				add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, new InJailCondition(), ConversationStates.ATTENDING, 
 								"Please wait for an administrator to come here and decide what to do with you. In the meantime, there is no escape for you.", null);
-				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
+				add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, new NotInJailCondition(), ConversationStates.ATTENDING, 
 								"Be careful with the criminals in the cells.", null);
 				addGoodbye();
 			}

@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -31,7 +32,7 @@ public class MeetMonogenes extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Monogenes");
 		
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -55,14 +56,14 @@ public class MeetMonogenes extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.HELP_MESSAGES,
+				ConversationPhrases.HELP_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_1,
 				"I'm Diogenes' older brother and I don't actually remember what I used to do... I'm retired now. I can offer you a few tips on socializing with the residents of Semos, if you like?",
 				null);
 
 		npc.add(ConversationStates.INFORMATION_1,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.INFORMATION_2,
 				"First of all, you should introduce yourself by saying HI. After this, try to keep the conversation to the topics they bring up; suitable subjects will be highlighted #like #this. A few generally safe topics of conversation are the person's #job, asking for #help, asking if they have an #offer to make, and asking for a #quest to go on. Anyway, do you want a quick run-down of the buildings in Semos?",
@@ -76,7 +77,7 @@ public class MeetMonogenes extends AbstractQuest {
 				null);
 		
 		npc.add(ConversationStates.INFORMATION_2,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"It's a good idea to read the wooden signs to identify places; just right-click on them and choose LOOK. Now, I can direct you to the #bank, the #library, the #tavern, the #temple, the #blacksmith, the #bakery, or the old #village.",

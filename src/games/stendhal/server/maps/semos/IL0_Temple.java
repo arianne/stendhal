@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -81,7 +82,7 @@ public class IL0_Temple implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					GREETING_MESSAGES,
+					ConversationPhrases.GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -108,7 +109,7 @@ public class IL0_Temple implements ZoneConfigurator {
 				addHelp("I'm a telepath and a telekinetic; I can help you by sharing my mental skills with you. Do you want me to teach you the six basic elements of telepathy? I already know the answer but I'm being polite...");
 				addJob("I am committed to harnessing the total power of the human mind. I have already made great advances in telepathy and telekinesis; however, I can't yet foresee the future, so I don't know if we will truly be able to destroy Blordrough's dark legion...");
 				add(ConversationStates.ATTENDING,
-					QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"Well, there's not really much that I need anyone to do for me right now. And I... Hey! Were you just trying to read my private thoughts? You should always ask permission before doing that!",

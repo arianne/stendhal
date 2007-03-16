@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -66,7 +67,7 @@ public class ToysCollector extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Anna");
 
 		// player says hi before starting the quest
-		npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -98,7 +99,7 @@ public class ToysCollector extends AbstractQuest {
 			});
 
 		// player says yes
-		npc.add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES, null, ConversationStates.IDLE, null,
+		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, null, ConversationStates.IDLE, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
@@ -121,7 +122,7 @@ public class ToysCollector extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Anna");
 
 		// player returns while quest is still active
-		npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES,
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -131,7 +132,7 @@ public class ToysCollector extends AbstractQuest {
 			ConversationStates.ATTENDING, "Hello! I'm still bored. Did you bring me toys?", null);
 
 		// player says he has a required toy with him
-		npc.add(ConversationStates.ATTENDING, SpeakerNPC.YES_MESSAGES, null,
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.QUESTION_1, "What did you bring?!", null);
 
 		for (String toy : neededToys) {
@@ -198,7 +199,7 @@ public class ToysCollector extends AbstractQuest {
 
 
 		// player returns after finishing the quest
-		npc.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES,
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {

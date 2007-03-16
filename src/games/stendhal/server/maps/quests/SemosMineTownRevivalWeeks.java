@@ -4,6 +4,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
@@ -93,11 +94,11 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 			    add(ConversationStates.INFORMATION_4, Arrays.asList("I will be your friend.", "I will be your friend"), null, ConversationStates.ATTENDING, "Cool. We are friends now.", new StandardInteraction.SetQuestAction("susi", "friends"));
 
 			    // help
-				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, 
+				add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, 
 					new StandardInteraction.QuestInStateCondition("susi", "friends"), 
 					ConversationStates.ATTENDING, 
 					"I have made a lot of friends during the #Semos #Mine #Town #Revival #Weeks.", null);
-				add(ConversationStates.ATTENDING, SpeakerNPC.HELP_MESSAGES, 
+				add(ConversationStates.ATTENDING, ConversationPhrases.HELP_MESSAGES, 
 								new StandardInteraction.QuestNotInStateCondition("susi", "friends"), 
 								ConversationStates.ATTENDING, 
 								"I need a #friend.", null);

@@ -13,7 +13,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -118,27 +117,6 @@ public abstract class SpeakerNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
 
-	public static final List<String> GREETING_MESSAGES = Arrays.asList(
-			"hi", "hello", "greetings", "hola");
-	
-	public static final List<String>  JOB_MESSAGES = Arrays.asList(
-			"job", "work");
-
-	public static final List<String> HELP_MESSAGES = Arrays.asList(
-			"help", "ayuda");
-
-	public static final List<String> QUEST_MESSAGES = Arrays.asList( 
-			"task", "quest", "favor", "favour");
-
-	public static final List<String> YES_MESSAGES = Arrays.asList(
-			"yes", "ok");
-
-	public static final List<String> NO_MESSAGES = Arrays.asList(
-			"no");
-
-	public static final List<String> GOODBYE_MESSAGES = Arrays.asList(
-			"bye", "farewell", "cya", "adios");
-	
 	private Engine engine = new Engine(this);
 	private BehaviourAdder behaviourAdder = new BehaviourAdder(this, engine);
 	
@@ -460,7 +438,7 @@ public abstract class SpeakerNPC extends NPC {
 		// TODO: don't check if it equals the text, but if it starts
 		// with it (case-insensitive)
 		if (!player.equals(attending)) {
-			if (GREETING_MESSAGES.contains(text)) {
+			if (ConversationPhrases.GREETING_MESSAGES.contains(text)) {
 			
 				logger.debug("Already attending a player");
 				if (waitMessage != null) {
@@ -508,7 +486,7 @@ public abstract class SpeakerNPC extends NPC {
 	public void addGreeting(String text,
 			SpeakerNPC.ChatAction action) {
 		add(ConversationStates.IDLE,
-			GREETING_MESSAGES,
+			ConversationPhrases.GREETING_MESSAGES,
 			ConversationStates.ATTENDING,
 			text,
 			action);
@@ -553,19 +531,19 @@ public abstract class SpeakerNPC extends NPC {
 
 	public void addQuest(String text) {
 		add(ConversationStates.ATTENDING,
-				QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				ConversationStates.ATTENDING,
 				text,
 				null);
 	}
 
 	public void addJob(String jobDescription) {
-		addReply(JOB_MESSAGES,
+		addReply(ConversationPhrases.JOB_MESSAGES,
 				jobDescription);
 	}
 
 	public void addHelp(String helpDescription) {
-		addReply(HELP_MESSAGES,
+		addReply(ConversationPhrases.HELP_MESSAGES,
 				 helpDescription);
 	}
 
@@ -576,7 +554,7 @@ public abstract class SpeakerNPC extends NPC {
 	public void addGoodbye(String text) {
 		goodbyeMessage = text;
 		add(ConversationStates.ANY,
-				GOODBYE_MESSAGES,
+				ConversationPhrases.GOODBYE_MESSAGES,
 				ConversationStates.IDLE,
 				text,
 				new ChatAction() {

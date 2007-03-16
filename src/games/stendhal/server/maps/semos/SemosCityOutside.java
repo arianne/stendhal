@@ -6,6 +6,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Chest;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -76,7 +77,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					GREETING_MESSAGES,
+					ConversationPhrases.GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -100,7 +101,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 				addHelp("I'm a... let's call me an \"observer\". I can tell you about all the latest rumours. Do you want to hear?");
 				addJob("I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.");
 				add(ConversationStates.ATTENDING,
-					QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"Thanks for asking, but I don't need anything right now.",
@@ -157,7 +158,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					GREETING_MESSAGES,
+					ConversationPhrases.GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,
@@ -214,7 +215,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://arianne.sourceforge.net and see how you can help!");
 				addGoodbye();
 				add(ConversationStates.ATTENDING,
-					QUEST_MESSAGES,
+					ConversationPhrases.QUEST_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,

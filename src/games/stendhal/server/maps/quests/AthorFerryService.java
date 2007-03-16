@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -260,7 +261,7 @@ public class AthorFerryService extends AbstractQuest {
 						
 						
 				add(ConversationStates.SERVICE_OFFERED,
-						SpeakerNPC.YES_MESSAGES,
+						ConversationPhrases.YES_MESSAGES,
 						null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
@@ -281,7 +282,7 @@ public class AthorFerryService extends AbstractQuest {
 						});
 
 				add(ConversationStates.SERVICE_OFFERED,
-						SpeakerNPC.NO_MESSAGES,
+						ConversationPhrases.NO_MESSAGES,
 						null,
 						ConversationStates.ATTENDING,
 						"Aye, matey!", null);
@@ -413,7 +414,7 @@ public class AthorFerryService extends AbstractQuest {
 						
 						
 				add(ConversationStates.SERVICE_OFFERED,
-						SpeakerNPC.YES_MESSAGES,
+						ConversationPhrases.YES_MESSAGES,
 						null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {
@@ -510,7 +511,7 @@ public class AthorFerryService extends AbstractQuest {
 						
 						
 				add(ConversationStates.SERVICE_OFFERED,
-						SpeakerNPC.YES_MESSAGES,
+						ConversationPhrases.YES_MESSAGES,
 						null,
 						ConversationStates.ATTENDING, null,
 						new ChatAction() {

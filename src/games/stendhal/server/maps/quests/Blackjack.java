@@ -5,6 +5,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
@@ -346,7 +347,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 					}
 				});
 	ramon.add(ConversationStates.QUESTION_1,
-			SpeakerNPC.YES_MESSAGES,
+			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,
@@ -360,7 +361,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	// The player says he doesn't want to have another card.
 	// Let the dealer give cards to the bank.
 	ramon.add(ConversationStates.QUESTION_1,
-			SpeakerNPC.NO_MESSAGES,
+			ConversationPhrases.NO_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,

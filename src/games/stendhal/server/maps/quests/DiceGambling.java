@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.item.Dice;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
@@ -82,7 +83,7 @@ public class DiceGambling extends AbstractQuest {
 					null);
 		
 		ricardo.add(ConversationStates.QUESTION_1,
-					SpeakerNPC.YES_MESSAGES,
+					ConversationPhrases.YES_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,

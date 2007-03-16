@@ -7,6 +7,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -102,7 +103,7 @@ public class Campfire extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Sally");
 
 		npc.add(ConversationStates.IDLE,
-			SpeakerNPC.GREETING_MESSAGES,
+			ConversationPhrases.GREETING_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,
@@ -125,7 +126,7 @@ public class Campfire extends AbstractQuest {
 		});
 		
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -147,7 +148,7 @@ public class Campfire extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!",
@@ -175,7 +176,7 @@ public class Campfire extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Sally");
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,

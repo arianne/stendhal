@@ -2,6 +2,7 @@ package games.stendhal.server.maps.ados;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
@@ -102,7 +103,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 			protected void createDialog() {
 				// Anna is special because she has a quest
 				if (!this.getName().equals("Anna")) {
-					add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, ConversationStates.IDLE,
+					add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, ConversationStates.IDLE,
 						"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. Bye.",
 						null);
 				}

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
@@ -56,7 +57,7 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE,
-					GREETING_MESSAGES,
+					ConversationPhrases.GREETING_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					null,

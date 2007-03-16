@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalScriptSystem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -215,10 +216,10 @@ public class KanmararnSoldiers extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC henry = npcs.get("Henry");
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("quest", "task"), null, ConversationStates.QUEST_OFFERED, null, new HenryQuestAction());
-		henry.add(ConversationStates.QUEST_OFFERED, SpeakerNPC.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
+		henry.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES,null, ConversationStates.ATTENDING, "Thank you! I'll be waiting for your return.", new HenryQuestAcceptAction());
 		henry.add(ConversationStates.QUEST_OFFERED, "group", null, ConversationStates.QUEST_OFFERED, "The General sent five of us to explore this area in search for #treasure.", null);
 		henry.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING, "Ok. I understand. I'm scared of the #dwarves myself.", null);
-		henry.add(ConversationStates.IDLE, SpeakerNPC.GREETING_MESSAGES, new HenryQuestStartedCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
+		henry.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new HenryQuestStartedCondition(), ConversationStates.ATTENDING, null, new HenryQuestCompleteAction());
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map", "group", "help"), new HenryQuestCompletedCondition(), ConversationStates.ATTENDING, "I'm so sad that most of my friends are dead.", null);
 		henry.add(ConversationStates.ATTENDING, Arrays.asList("map"), new HenryQuestNotCompletedCondition(), ConversationStates.ATTENDING, "If you find my friends, i will give you the map", null);
 	}

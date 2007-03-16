@@ -5,6 +5,7 @@ import java.util.List;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -58,7 +59,7 @@ public class NewsFromHackim extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Hackim Easso");
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -76,7 +77,7 @@ public class NewsFromHackim extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks! I'm sure that #Xin will reward you generously. Let me know if you need anything else.",
@@ -114,7 +115,7 @@ public class NewsFromHackim extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Xin Blanca");
 
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {

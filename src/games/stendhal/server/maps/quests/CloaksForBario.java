@@ -4,6 +4,7 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -45,7 +46,7 @@ public class CloaksForBario extends AbstractQuest {
 		
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -57,7 +58,7 @@ public class CloaksForBario extends AbstractQuest {
 				null);
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -74,7 +75,7 @@ public class CloaksForBario extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -97,7 +98,7 @@ public class CloaksForBario extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.ATTENDING,
-				SpeakerNPC.QUEST_MESSAGES,
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -121,7 +122,7 @@ public class CloaksForBario extends AbstractQuest {
 
 		// player is willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				null,
@@ -153,7 +154,7 @@ public class CloaksForBario extends AbstractQuest {
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -174,7 +175,7 @@ public class CloaksForBario extends AbstractQuest {
 		
 		// player returns after finishing the quest
 		npc.add(ConversationStates.IDLE,
-				SpeakerNPC.GREETING_MESSAGES,
+				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -195,7 +196,7 @@ public class CloaksForBario extends AbstractQuest {
 
 	// player says he has a blue elf cloak with him
 	npc.add(ConversationStates.QUESTION_1,
-			SpeakerNPC.YES_MESSAGES,
+			ConversationPhrases.YES_MESSAGES,
 			null,
 			ConversationStates.ATTENDING,
 			null,
