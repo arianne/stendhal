@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server;
 
+import java.net.URI;
+
+import games.stendhal.server.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
@@ -186,9 +189,11 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread = new PathfinderThread(this);
 		pathfinderThread.start();
 
-		ZonesXMLLoader loader = new ZonesXMLLoader();
+		ZoneGroupsXMLLoader loader =
+			new ZoneGroupsXMLLoader(
+				new URI("/data/conf/zones.xml"));
 
-		loader.load(this, "data/conf/zones.xml");
+		loader.load(this);
 
 
 		/**
@@ -244,6 +249,12 @@ public class StendhalRPWorld extends RPWorld {
 		return getRPZone(new IRPZone.ID(zone));
 	}
 
+	/**
+	 * Add zone area.
+	 *
+	 * Pathfinding code still uses this, but should use it's own XML
+	 * file for testing.
+	 */
 	public StendhalRPZone addArea(String name) throws org.xml.sax.SAXException,
 			java.io.IOException {
 		return addArea(name, name.replace("-", "sub_"));

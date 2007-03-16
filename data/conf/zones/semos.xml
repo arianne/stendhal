@@ -1,0 +1,1174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<zones>
+ <!--
+   ** Load zones. Written from left to right and from top to bottom.
+   ** Please respect it!
+   -->
+
+ <!--  Ground level -->
+
+ <zone name="0_semos_mountain_n_w4" file="0_semos_mountain_n_w4.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n2_w2" file="0_semos_mountain_n2_w2.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n2_w" file="0_semos_mountain_n2_w.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n2" file="0_semos_mountain_n2.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n2_e" file="0_semos_mountain_n2_e.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n2_e2" file="0_semos_mountain_n2_e2.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n_w3" file="0_semos_mountain_n_w3.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n_w2" file="0_semos_mountain_n_w2.xstend">
+ </zone>
+
+ <zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
+  <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
+  <portal x="92" y="101" ref="catacombs_entrance">
+   <destination zone="-1_semos_catacombs_se" ref="entrance"/>
+   <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+    <attribute name="quest">vs_quest</attribute>
+    <attribute name="rejected">You find it hard to enter. Perhaps you're not
+  prepared for what is below.</attribute>
+   </implementation>
+  </portal>
+ </zone>
+
+ <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
+  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
+ </zone>
+
+ <zone name="0_semos_plains_n_e2" file="0_semos_plains_n_e2.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_n_e2" file="0_semos_mountain_n_e2.xstend">
+ </zone>
+
+ <zone name="0_semos_mountain_w2" file="0_semos_mountain_w2.xstend">
+ </zone>
+
+ <zone name="0_semos_plains_w" file="0_semos_plains_w.xstend">
+  <portal x="85" y="26" ref="jail_entrance_left">
+   <destination zone="-1_semos_jail" ref="entrance"/>
+  </portal>
+
+  <portal x="86" y="26" ref="jail_entrance">
+   <destination zone="-1_semos_jail" ref="entrance"/>
+  </portal>
+ </zone>
+
+ <zone name="0_semos_village_w" file="0_semos_village_w.xstend">
+  <entity x="23" y="61">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO THE PLAINS
+
+Shepherds please note: keep watch for
+the wolves while searching for berries here
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="60" y="47">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO SEMOS
+
+Mature sheep wanted: please speak to Sato
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="16" y="35">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+[CLOSED]
+
+The tavern has moved into a more central
+location in Semos. Please come join us at the
+social hub of the Semos area!
+    </attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+ <zone name="0_semos_city" file="0_semos_city.xstend">
+  <title>The City of Semos</title>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside" />
+
+<!-- TEST
+  <entity x="35" y="35">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">purple kryptonite</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">1</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="35" y="36">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">purple kryptonite</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">1</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="35" y="37">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">purple kryptonite</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">1</attribute>
+   </implementation>
+  </entity>
+-->
+
+  <portal x="42" y="37" ref="tavern_entrance">
+   <destination zone="int_semos_tavern_0" ref="entrance"/>
+  </portal>
+
+  <portal x="53" y="37" ref="temple_entrance">
+   <destination zone="int_semos_temple" ref="entrance_center_right"/>
+  </portal>
+
+  <portal x="15" y="41" ref="blacksmith_entrance">
+   <destination zone="int_semos_blacksmith" ref="entrance"/>
+  </portal>
+
+  <portal x="6" y="22" ref="library_entrance_left">
+   <destination zone="int_semos_library" ref="entrance_left"/>
+  </portal>
+
+  <portal x="11" y="22" ref="library_entrance_right">
+   <destination zone="int_semos_library" ref="entrance_right"/>
+  </portal>
+
+  <portal x="52" y="19" ref="storage_entrance">
+   <destination zone="int_semos_storage_0" ref="entrance"/>
+  </portal>
+
+  <portal x="18" y="22" ref="bank_entrance">
+   <destination zone="int_semos_bank" ref="entrance"/>
+  </portal>
+
+  <portal x="29" y="13" ref="townhall_entrance_left">
+   <destination zone="int_semos_townhall" ref="entrance_left"/>
+  </portal>
+
+  <portal x="30" y="13" ref="townhall_entrance">
+   <destination zone="int_semos_townhall" ref="entrance"/>
+  </portal>
+
+  <portal x="31" y="13" ref="townhall_entrance_right">
+   <destination zone="int_semos_townhall" ref="entrance_right"/>
+  </portal>
+
+  <portal x="44" y="19" ref="bakery_entrance">
+   <destination zone="int_semos_bakery" ref="entrance"/>
+  </portal>
+
+  <portal x="12" y="49" ref="restart_life">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <entity x="4" y="41">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO OLD SEMOS VILLAGE
+
+Shepherds wanted: please ask Nishiya
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="26" y="40">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+DUNGEONS
+
+Caution: These dungeons contain many rats,
+and more dangerous creatures. Enter at own risk.
+    </attribute>
+   </implementation>
+  </entity>
+  <entity x="41" y="20">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Assistance needed, to help with pizza deliveries.
+    </attribute>
+   </implementation>
+  </entity>
+  
+
+<!-- TEST - Make the bird statue in semos a semi-safe zone -->
+<!--
+  <entity x="26" y="40">
+   <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
+    <attribute name="width">6</attribute>
+    <attribute name="height">6</attribute>
+    <attribute name="default">block</attribute>
+    <attribute name="rules">
+     -animal:wolf
+     +animal:*
+     -*:lich,*:ghost
+     +undead:*
+    </attribute>
+   </implementation>
+  </entity>
+-->
+
+  <entity x="44" y="62">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO THE PLAINS
+
+Shepherds please note: keep watch for
+the wolves while searching for berries here
+    </attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+   <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0" />
+
+    <portal x="22" y="17" ref="entrance">
+     <destination zone="0_semos_city" ref="tavern_entrance"/>
+    </portal>
+
+    <portal x="4" y="4" ref="upstairs">
+     <destination zone="int_semos_tavern_1" ref="downstairs"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_tavern_1" file="int_semos_tavern_1.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1" />
+
+    <portal x="4" y="4" ref="downstairs">
+     <destination zone="int_semos_tavern_0" ref="upstairs"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_temple" file="int_semos_temple.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple" />
+
+    <portal x="10" y="23" ref="entrance_left">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="11" y="23" ref="entrance_center_left">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="12" y="23" ref="entrance_center_right">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+
+    <portal x="13" y="23" ref="entrance_right">
+     <destination zone="0_semos_city" ref="temple_entrance"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith" />
+
+    <portal x="15" y="14" ref="entrance">
+     <destination zone="0_semos_city" ref="blacksmith_entrance"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_library" file="int_semos_library.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library" />
+
+    <portal x="8" y="30" ref="entrance_left">
+     <destination zone="0_semos_city" ref="library_entrance_left"/>
+    </portal>
+
+    <portal x="21" y="30" ref="entrance_right">
+     <destination zone="0_semos_city" ref="library_entrance_right"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_storage_0" file="int_semos_storage_0.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage" />
+
+    <portal x="9" y="14" ref="entrance">
+     <destination zone="0_semos_city" ref="storage_entrance"/>
+    </portal>
+
+    <portal x="16" y="2" ref="downstairs">
+     <destination zone="int_semos_storage_-1" ref="upstairs"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_storage_-1" file="int_semos_storage_sub_1.xstend">
+    <portal x="26" y="10" ref="upstairs">
+     <destination zone="int_semos_storage_0" ref="downstairs"/>
+    </portal>
+   </zone>
+
+   <zone name="int_semos_bank" file="int_semos_bank.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank" />
+
+    <portal x="9" y="30" ref="entrance">
+     <destination zone="0_semos_city" ref="bank_entrance"/>
+    </portal>
+
+    <portal x="10" y="30" ref="entrance_right">
+     <destination zone="0_semos_city" ref="bank_entrance"/>
+    </portal>
+
+    <entity x="2" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="2" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="8" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="8" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="14" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="14" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="20" y="2">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="20" y="3">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="2" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="2" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="8" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="8" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="14" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="14" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+    <entity x="20" y="13">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
+    </entity>
+<!--
+    <entity x="20" y="9">
+     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+      <attribute name="width">1</attribute>
+      <attribute name="height">4</attribute>
+     </implementation>
+    </entity>
+-->
+   </zone>
+
+   <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall" />
+
+    <portal x="14" y="46" ref="entrance_left">
+     <destination zone="0_semos_city" ref="townhall_entrance_left"/>
+    </portal>
+
+    <portal x="15" y="46" ref="entrance">
+     <destination zone="0_semos_city" ref="townhall_entrance"/>
+    </portal>
+
+    <portal x="16" y="46" ref="entrance_right">
+     <destination zone="0_semos_city" ref="townhall_entrance_right"/>
+    </portal>
+
+    <!-- Prevent table dancing (this is a family friendly townhall) -->
+    <entity x="4" y="32">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+
+    <entity x="4" y="33">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+
+    <entity x="6" y="32">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+
+    <entity x="6" y="33">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+    </entity>
+   </zone>
+
+   <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
+
+    <!-- This must be after the NPC configurator -->
+    <entity x="29" y="6">
+     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Erna</attribute>
+     </implementation>
+    </entity>
+
+    <portal x="26" y="14" ref="entrance">
+     <destination zone="0_semos_city" ref="bakery_entrance"/>
+    </portal>
+   </zone>
+
+ <zone name="0_semos_road_e" file="0_semos_road_e.xstend">
+ </zone>
+
+ <zone name="0_semos_road_se" file="0_semos_road_se.xstend">
+ </zone>
+
+ <zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
+  <entity x="118" y="43">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO THE FOREST
+
+Shepherds please note: keep watch for
+the wolves while searching for berries here
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="38" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO OLD SEMOS VILLAGE
+
+Shepherds wanted: please ask Nishiya
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="113" y="3">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+TO SEMOS
+
+Mature sheep wanted: please speak to Sato
+    </attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+ <zone name="0_semos_forest_s" file="0_semos_forest_s.xstend">
+ </zone>
+
+ <!--  Level -1 -->
+
+ <zone name="-1_semos_mine_n2_w2" file="sub_1_semos_mine_n2_w2.xstend">
+ </zone>
+
+ <zone name="-1_semos_mine_n2" file="sub_1_semos_mine_n2.xstend">
+ </zone>
+
+ <zone name="-1_semos_mine_nw" file="sub_1_semos_mine_nw.xstend">
+  <!-- Spikes -->
+  <entity x="205" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+    <entity x="206" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+  <entity x="205" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+ <entity x="206" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity> 
+  <entity x="205" y="22">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+    <entity x="206" y="22">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+   <entity x="205" y="26">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+  <entity x="206" y="26">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+   <entity x="205" y="27">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+  <entity x="206" y="27">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+   <entity x="206" y="28">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+ <zone name="-1_semos_dungeon" file="sub_1_semos_dungeon.xstend">
+ </zone>
+
+ <zone name="-1_semos_jail" file="sub_1_semos_jail.xstend">
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1"/>
+
+  <portal x="28" y="17" ref="entrance">
+   <destination zone="0_semos_plains_w" ref="jail_entrance"/>
+  </portal>
+ </zone>
+
+ <zone name="-1_semos_catacombs_ne" file="sub_1_semos_catacombs_ne.xstend">
+ </zone>
+
+ <zone name="-1_semos_catacombs_nw" file="sub_1_semos_catacombs_nw.xstend">
+ </zone>
+
+ <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
+  <portal x="28" y="37" ref="entrance" replacing="true">
+   <destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
+  </portal>
+ </zone>
+
+ <zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
+ </zone>
+
+
+ <!--  Level -2 -->
+
+ <zone name="-2_semos_dungeon" file="sub_2_semos_dungeon.xstend">
+ </zone>
+
+ <zone name="-2_semos_jail" file="sub_2_semos_jail.xstend">
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
+ </zone>
+
+ <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
+  <portal x="9" y="6" ref="dragon_portal_1">
+   <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
+  </portal>
+
+  <portal x="86" y="12" ref="dragon_portal_2">
+   <destination zone="-2_semos_catacombs" ref="dragon_portal_1"/>
+  </portal>
+
+  <portal x="84" y="8" ref="one_way_1a">
+   <destination zone="-2_semos_catacombs" ref="one_way_1b"/>
+  </portal>
+
+  <portal x="84" y="9" ref="one_way_2a">
+   <destination zone="-2_semos_catacombs" ref="one_way_2b"/>
+  </portal>
+
+  <portal x="84" y="10" ref="one_way_3a">
+   <destination zone="-2_semos_catacombs" ref="one_way_3b"/>
+  </portal>
+
+  <portal x="84" y="11" ref="one_way_4a">
+   <destination zone="-2_semos_catacombs" ref="one_way_4b"/>
+  </portal>
+
+  <portal x="84" y="12" ref="one_way_5a">
+   <destination zone="-2_semos_catacombs" ref="one_way_5b"/>
+  </portal>
+
+  <portal x="84" y="13" ref="one_way_6a">
+   <destination zone="-2_semos_catacombs" ref="one_way_6b"/>
+  </portal>
+
+  <portal x="84" y="14" ref="one_way_7a">
+   <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+  </portal>
+
+  <portal x="84" y="15" ref="one_way_8a">
+   <destination zone="-2_semos_catacombs" ref="one_way_7b"/>
+  </portal>
+
+  <portal x="83" y="8" ref="one_way_1b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="9" ref="one_way_2b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="10" ref="one_way_3b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="11" ref="one_way_4b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="12" ref="one_way_5b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="13" ref="one_way_6b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="14" ref="one_way_7b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="83" y="15" ref="one_way_8b">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
+  <portal x="94" y="57" ref="downstairs" replacing="true">
+   <destination zone="-3_semos_catacombs" ref="upstairs"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <attribute name="key">vampirette_entrails</attribute>
+    <attribute name="quantity">7</attribute>
+    <attribute name="rejected">
+     Prove that you killed all vampirettes before you face their lord.
+    </attribute>
+   </implementation>
+  </portal>
+
+  <!-- Spikes -->
+  <entity x="4" y="57">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="57">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="6" y="57">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="58">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="58">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="6" y="58">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="59">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="59">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="6" y="59">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="60">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="5" y="60">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="6" y="60">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="4" y="61">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">2</attribute>
+    <attribute name="damage">100</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="65" y="18">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="66" y="18">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="61" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="62" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="63" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="64" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="65" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="66" y="19">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="55" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="56" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="57" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="58" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="59" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="60" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="61" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="62" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="63" y="20">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="55" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="56" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="57" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="58" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="59" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="60" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+
+  <entity x="61" y="21">
+   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+    <attribute name="name">razor sharp spikes</attribute>
+    <attribute name="interval">3</attribute>
+    <attribute name="damage">50</attribute>
+    <attribute name="probability">30</attribute>
+    <attribute name="players-only">true</attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+
+ <!--  Level -3 -->
+
+ <zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
+ </zone>
+
+ <zone name="-3_semos_catacombs" file="sub_3_semos_catacombs.xstend">
+  <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
+
+  <portal x="30" y="57" ref="upstairs" replacing="true">
+   <destination zone="-2_semos_catacombs" ref="downstairs"/>
+  </portal>
+ </zone>
+
+
+ <!--  Level -4 -->
+
+ <zone name="-4_semos_dungeon" file="sub_4_semos_dungeon.xstend">
+ </zone>
+
+
+ <!--  Level -5 -->
+
+ <zone name="-5_kanmararn_entrance" file="sub_5_kanmararn_entrance.xstend">
+ </zone>
+
+
+ <!--  Level -6 -->
+
+ <zone name="-6_kanmararn_city" file="sub_6_kanmararn_city.xstend">
+  <configurator class-name="games.stendhal.server.maps.Kanmararn"/>
+ </zone>
+
+
+ <!--  Level -7 -->
+
+<!--
+ <zone name="-7_kanmararn_jail" file="sub_7_kanmararn_jail.xstend">
+ </zone>
+-->
+
+
+ <!--  Level 1 -->
+
+
+ <!--  Level 2 -->
+
+
+ <!--  Level 3 -->
+
+
+ <!--  Level 4 -->
+
+
+ <!--  Level 5 -->
+
+
+ <!--  Level 6 -->
+
+</zones>

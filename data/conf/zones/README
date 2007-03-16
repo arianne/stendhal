@@ -1,0 +1,92 @@
+
+This directory contains zone configurations for world areas.
+
+
+FILE FORMAT
+===========
+
+ A zone descriptor has the following structure:
+
+ <zone name="xxxx" file="xxxxx_xxxxx_xxxxxx.xstend">
+  <title>Xxxxxx xxxx</title>
+  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+
+  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+
+  <configurator class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+    <attribute name="xxxxx">xxxxxx</attribute>
+    <attribute name="xxxxx">xxxxxx</attribute>
+    <attribute name="xxxxx">xxxxxx</attribute>
+    <attribute name="xxxxx">xxxxxx</attribute>
+  </configurator>
+
+  <portal x="xxx" y="xxx" ref="xxx">
+   <destination zone="xxxxxxx" ref="xxx"/>
+  </portal>
+
+  <portal x="xxx" y="xxx" ref="xxx" [replacing="true|false"]>
+   <destination zone="xxxxxxx" ref="xxx"/>
+   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx"/>
+  </portal>
+
+  <portal x="xxx" y="xxx" ref="xxx">
+   <destination zone="xxxxxxx" ref="xxx"/>
+   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+    <attribute name="xxxxx">xxxxxx</attribute>
+    <attribute name="xxxxx">xxxxxx</attribute>
+   </implementation>
+  </portal>
+
+  <entity x="xxx" y="xxx">
+   <implementation class-name="xxxx.xxxxx.xxxxx.xxxx.Xxxxxx">
+    <attribute name="xxxxx">xxxxxx</attribute>
+    <attribute name="xxxxx">xxxxxx</attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+ zone
+  name: The unique programmatic key used to reference the zone.
+  file: The zone data file (relative to data/maps/).
+
+  title: A nicely presented label (single line, relatively short).
+
+  configurator: A code reference used to post-configure the zone.
+   class-name: The java package/class name.
+
+   attribute: An attribute passed to the configuration code.
+
+
+  portal: A portal definition.
+   x: The X coordinate of the portal.
+   y: The X coordinate of the portal.
+   ref: The portal identifier (number only - for now).
+   replacing: If set to 'true', replace existing portals at this location.
+
+  destination: A portal definition.
+   zone: The destination zone.
+   ref: The destination portal identifier (number only - for now).
+
+  implementation: A code reference used for implementation.
+   class-name: The java package/class name.
+
+   attribute: An attribute passed to the implementation [factory].
+
+
+  entity: A generic entity definition.
+   x: The X coordinate of the entity.
+   y: The X coordinate of the entity.
+
+  implementation: A code reference used for implementation.
+   class-name: The java package/class name.
+
+   attribute: An attribute passed to the implementation [factory].
+
+
+ <configurator>'s specify a class name that implements ZoneConfigurator,
+ and will be passed the zone and any attributes.
+
+ Each zone can have zero, one, or more of each <configurator>, <portal>,
+ and <entity> entries. These will be called in the order they appear
+ in each zone to allow for predictable interdependencies.
+

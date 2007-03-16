@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<zones>
+ <!--
+   ** Load zones. Written from left to right and from top to bottom.
+   ** Please respect it!
+   -->
+
+ <!--  Ground level -->
+
+
+ <!--  Level -1 -->
+
+
+ <!--  Level -2 -->
+
+
+ <!--  Level -3 -->
+
+
+ <!--  Level -4 -->
+
+
+ <!--  Level -5 -->
+
+
+ <!--  Level -6 -->
+
+
+ <!--  Level -7 -->
+
+
+ <!--  Level 1 -->
+
+ <zone name="1_kikareukin_cave" file="1_kikareukin_cave.xstend">
+ </zone>
+
+
+ <!--  Level 2 -->
+
+ <zone name="2_kikareukin_cave" file="2_kikareukin_cave.xstend">
+ </zone>
+
+
+ <!--  Level 3 -->
+
+ <zone name="3_kikareukin_cave" file="3_kikareukin_cave.xstend">
+ </zone>
+
+
+ <!--  Level 4 -->
+
+ <zone name="4_kikareukin_cave" file="4_kikareukin_cave.xstend">
+ </zone>
+
+
+ <!--  Level 5 -->
+
+ <zone name="5_kikareukin_cave" file="5_kikareukin_cave.xstend">
+ </zone>
+
+
+ <!--  Level 6 -->
+
+ <zone name="6_kikareukin_islands" file="6_kikareukin_islands.xstend">
+ </zone>
+
+</zones>

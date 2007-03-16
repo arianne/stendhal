@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<zones>
+ <!--
+   ** Load zones. Written from left to right and from top to bottom.
+   ** Please respect it!
+   -->
+
+ <!--  Ground level -->
+
+     <zone name="0_athor_ship_w2" file="0_athor_ship_w2.xstend">
+     </zone>
+
+     <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
+       <!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_1_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_2" file="int_athor_holiday_apartment_2.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_2_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_3" file="int_athor_holiday_apartment_3.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_3_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_4" file="int_athor_holiday_apartment_4.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_4_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_5" file="int_athor_holiday_apartment_5.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_5_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_6" file="int_athor_holiday_apartment_6.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_6_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_7" file="int_athor_holiday_apartment_7.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_7_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_holiday_apartment_8" file="int_athor_holiday_apartment_8.xstend">
+       <portal x="4" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="apartment_8_entrance"/>
+       </portal>
+     </zone>
+
+     <zone name="int_athor_dressing_room_m" file="int_athor_dressing_room_m.xstend">
+       <portal x="6" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
+       </portal>
+       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male" />
+        <!-- This must be after the NPC configurator -->
+        <entity x="3" y="10">
+          <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+            <attribute name="npc">David</attribute>
+          </implementation>
+        </entity>
+     </zone>
+
+     <zone name="int_athor_dressing_room_f" file="int_athor_dressing_room_f.xstend">
+       <portal x="9" y="14" ref="out">
+         <destination zone="0_athor_island_w" ref="dressing_room_f_entrance"/>
+       </portal>
+       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Female"/>
+       <entity x="12" y="10">
+         <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+           <attribute name="npc">Pam</attribute>
+         </implementation>
+       </entity>
+     </zone>
+     
+     <zone name="0_athor_island_w" file="0_athor_island_w.xstend">
+       <portal x="185" y="57" ref="apartment_1_entrance">
+         <destination zone="int_athor_holiday_apartment_1" ref="out"/>
+       </portal>
+       <portal x="194" y="57" ref="apartment_2_entrance">
+         <destination zone="int_athor_holiday_apartment_2" ref="out"/>
+       </portal>
+       <portal x="206" y="63" ref="apartment_3_entrance">
+         <destination zone="int_athor_holiday_apartment_3" ref="out"/>
+       </portal>
+       <portal x="206" y="69" ref="apartment_4_entrance">
+         <destination zone="int_athor_holiday_apartment_4" ref="out"/>
+       </portal>
+       <portal x="194" y="75" ref="apartment_5_entrance">
+         <destination zone="int_athor_holiday_apartment_5" ref="out"/>
+       </portal>
+       <portal x="185" y="75" ref="apartment_6_entrance">
+         <destination zone="int_athor_holiday_apartment_6" ref="out"/>
+       </portal>
+       <portal x="175" y="69" ref="apartment_7_entrance">
+         <destination zone="int_athor_holiday_apartment_7" ref="out"/>
+       </portal>
+       <portal x="175" y="63" ref="apartment_8_entrance">
+         <destination zone="int_athor_holiday_apartment_8" ref="out"/>
+       </portal>
+       <portal x="215" y="40" ref="dressing_room_m_entrance">
+         <destination zone="int_athor_dressing_room_m" ref="out"/>
+       </portal>
+       <portal x="210" y="40" ref="dressing_room_f_entrance">
+         <destination zone="int_athor_dressing_room_f" ref="out"/>
+       </portal>
+       <portal x="245" y="95" ref="quicksand_1">
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="245" y="96" ref="quicksand_2">
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="245" y="97" ref="quicksand_3">
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="246" y="95" ref="quicksand_4">
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="246" y="97" ref="quicksand_5">
+         <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="247" y="95" ref="quicksand_6">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="247" y="96" ref="quicksand_7">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+       <portal x="247" y="97" ref="quicksand_8">
+		   <destination zone="-1_athor_island_w" ref="quicksand_out"/>
+       </portal>
+	   <portal x="188" y="66" ref="pool">
+		   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+       </portal>
+       <!--
+       <portal x="191" y="65" ref="diving_board_destination">
+         <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+       </portal>
+       <portal x="191" y="67" ref="diving_board">
+         <destination zone="0_athor_island_w" ref="diving_board_destination"/>
+       </portal>
+       -->
+       <configurator class-name="games.stendhal.server.maps.athor.OL0_IslandWest" />
+       <entity x="211" y="42">
+         <implementation class-name="games.stendhal.server.entity.Sign">
+           <attribute name="text">
+             Changing Room for Women
+           </attribute>
+         </implementation>
+       </entity>
+       <entity x="216" y="42">
+         <implementation class-name="games.stendhal.server.entity.Sign">
+           <attribute name="text">
+             Changing Room for Men
+           </attribute>
+         </implementation>
+       </entity>
+	   <entity x="240" y="96">
+		 <implementation class-name="games.stendhal.server.entity.Sign">
+			 <attribute name="text">
+				 DANGER! Quicksand!
+			 </attribute>
+		 </implementation>
+	 </entity>
+	 <entity x="247" y="89">
+		 <implementation class-name="games.stendhal.server.entity.Sign">
+			 <attribute name="text">
+				 DANGER! Quicksand!
+			 </attribute>
+		 </implementation>
+	 </entity>
+	 <entity x="248" y="104">
+		 <implementation class-name="games.stendhal.server.entity.Sign">
+			 <attribute name="text">
+				 DANGER! Quicksand!
+			 </attribute>
+		 </implementation>
+	 </entity>
+     </zone>
+     	 
+ <!--  Level -1 -->
+
+ <zone name="-1_athor_island_w" file="sub_1_athor_island_w.xstend">
+   <portal x="118" y="96" ref="quicksand_out">
+     <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   </portal>
+   <portal x="60" y="66" ref="under_pool">
+     <destination zone="0_athor_island_w" ref="pool"/>
+   </portal>
+ </zone>
+
+
+ <!--  Level -2 -->
+
+
+ <!--  Level -3 -->
+
+
+ <!--  Level -4 -->
+
+
+ <!--  Level -5 -->
+
+
+ <!--  Level -6 -->
+
+
+ <!--  Level -7 -->
+
+
+ <!--  Level 1 -->
+
+
+ <!--  Level 2 -->
+
+
+ <!--  Level 3 -->
+
+
+ <!--  Level 4 -->
+
+
+ <!--  Level 5 -->
+
+
+ <!--  Level 6 -->
+
+
+</zones>

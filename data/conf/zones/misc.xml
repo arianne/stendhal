@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<zones>
+
+ <!-- XXX - Does this belong with a major area??? -->
+ <zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
+ </zone>
+
+
+ <zone name="int_afterlife" file="int_afterlife.xstend">
+  <portal x="30" y="6" ref="exit_left">
+   <destination zone="0_semos_city" ref="restart_life"/>
+  </portal>
+
+  <portal x="31" y="6" ref="exit_center">
+   <destination zone="0_semos_city" ref="restart_life"/>
+  </portal>
+
+  <portal x="32" y="6" ref="exit_right">
+   <destination zone="0_semos_city" ref="restart_life"/>
+  </portal>
+            
+  <entity x="29" y="22">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+Sorry, you have died.
+You lost some of your items and 10% of your experience points.
+Be more careful in future!
+
+Walk on, and you will be returned to the land of the living...
+    </attribute>
+   </implementation>
+  </entity>
+
+  <entity x="33" y="22">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+Sorry, you have died.
+You lost some of your items and 10% of your experience points.
+Be more careful in future!
+
+Walk on, and you will be returned to the land of the living...
+    </attribute>
+   </implementation>
+  </entity>
+ </zone>
+
+ <zone name="int_admin_playground" file="int_admin_playground.xstend">
+ </zone>
+
+ <zone name="int_pathfinding" file="int_pathfinding.xstend">
+  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
+
+  <portal x="50" y="10" ref="locked_outside">
+   <destination zone="int_pathfinding" ref="locked_inside"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">down</attribute>
+    <attribute name="key">key_golden</attribute>
+   </implementation>
+  </portal>
+
+  <portal x="50" y="12" ref="locked_inside">
+   <destination zone="int_pathfinding" ref="locked_outside"/>
+  </portal>
+ </zone>
+
+</zones>

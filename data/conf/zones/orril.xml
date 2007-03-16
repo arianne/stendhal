@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<zones>
+ <!--
+   ** Load zones. Written from left to right and from top to bottom.
+   ** Please respect it!
+   -->
+
+ <!--  Ground level -->
+
+ <zone name="0_orril_mountain_n2_w2" file="0_orril_mountain_n2_w2.xstend">
+ </zone>
+
+ <zone name="0_orril_mountain_nw" file="0_orril_mountain_nw.xstend">
+ </zone>
+
+ <zone name="0_orril_forest_n" file="0_orril_forest_n.xstend">
+ </zone>
+
+ <zone name="0_orril_mountain_w2" file="0_orril_mountain_w2.xstend">
+ </zone>
+
+ <zone name="0_orril_mountain_w" file="0_orril_mountain_w.xstend">
+ </zone>
+
+ <zone name="0_orril_castle" file="0_orril_castle.xstend">
+  <portal x="60" y="96" ref="outside_gate_left2">
+   <destination zone="0_orril_castle" ref="inside_gate_left2"/>
+  </portal>
+
+  <portal x="61" y="96" ref="outside_gate_left">
+   <destination zone="0_orril_castle" ref="inside_gate_left"/>
+  </portal>
+
+  <portal x="62" y="96" ref="outside_gate">
+   <destination zone="0_orril_castle" ref="inside_gate"/>
+  </portal>
+
+  <portal x="63" y="96" ref="outside_gate_right">
+   <destination zone="0_orril_castle" ref="inside_gate_right"/>
+  </portal>
+
+  <portal x="64" y="96" ref="outside_gate_right2">
+   <destination zone="0_orril_castle" ref="inside_gate_right2"/>
+  </portal>
+
+
+  <portal x="60" y="93" ref="inside_gate_left2">
+   <destination zone="0_orril_castle" ref="outside_gate_left2"/>
+  </portal>
+
+  <portal x="61" y="93" ref="inside_gate_left">
+   <destination zone="0_orril_castle" ref="outside_gate_left"/>
+  </portal>
+
+  <portal x="62" y="93" ref="inside_gate">
+   <destination zone="0_orril_castle" ref="outside_gate"/>
+  </portal>
+
+  <portal x="63" y="93" ref="inside_gate_right">
+   <destination zone="0_orril_castle" ref="outside_gate_right"/>
+  </portal>
+
+  <portal x="64" y="93" ref="inside_gate_right2">
+   <destination zone="0_orril_castle" ref="outside_gate_right2"/>
+  </portal>
+
+
+  <portal x="61" y="72" ref="castle_entrance_left">
+   <destination zone="int_orril_castle_0" ref="entrance_left"/>
+  </portal>
+
+  <portal x="62" y="72" ref="castle_entrance">
+   <destination zone="int_orril_castle_0" ref="entrance"/>
+  </portal>
+
+  <portal x="63" y="72" ref="castle_entrance_right">
+   <destination zone="int_orril_castle_0" ref="entrance_right"/>
+  </portal>
+ </zone>
+
+ <zone name="int_orril_castle_0" file="int_orril_castle_0.xstend">
+  <portal x="26" y="62" ref="entrance_left">
+   <destination zone="0_orril_castle" ref="castle_entrance_left"/>
+  </portal>
+
+  <portal x="27" y="62" ref="entrance">
+   <destination zone="0_orril_castle" ref="castle_entrance"/>
+  </portal>
+
+  <portal x="28" y="62" ref="entrance_right">
+   <destination zone="0_orril_castle" ref="castle_entrance_right"/>
+  </portal>
+
+  <portal x="8" y="1" ref="4">
+   <destination zone="-1_orril_castle" ref="1"/>
+  </portal>
+ </zone>
+
+ <zone name="0_orril_forest_e" file="0_orril_forest_e.xstend">
+ </zone>
+
+  <zone name="0_orril_river_s_w2" file="0_orril_river_s_w2.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_BridgeGuardNPC"/>
+ </zone>
+
+ <zone name="0_orril_river_sw" file="0_orril_river_sw.xstend">
+ </zone>
+
+ <zone name="0_orril_river_s" file="0_orril_river_s.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire" />
+  <!-- This must be after the NPC configurator -->
+  <entity x="37" y="60">
+    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Sally</attribute>
+    </implementation>
+  </entity>  
+
+  <portal x="39" y="5" ref="jynath_house_entrance">
+   <destination zone="int_orril_jynath_house" ref="entrance"/>
+  </portal>
+ </zone>
+
+ <zone name="int_orril_jynath_house" file="int_orril_jynath_house.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse" />
+
+  <portal x="16" y="30" ref="entrance">
+   <destination zone="0_orril_river_s" ref="jynath_house_entrance"/>
+  </portal>
+ </zone>
+
+ <zone name="0_orril_river_se" file="0_orril_river_se.xstend">
+ </zone>
+
+
+ <!--  Level -1 -->
+
+ <zone name="-1_orril_mountain_w" file="sub_1_orril_mountain_w.xstend">
+ </zone>
+
+ <zone name="-1_orril_dungeon" file="sub_1_orril_dungeon.xstend">
+ </zone>
+
+ <zone name="-1_orril_castle_w" file="sub_1_orril_castle_w.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest" />
+
+  <portal x="69" y="37" ref="0">
+   <destination zone="-2_orril_lich_palace" ref="0"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">down</attribute>
+    <attribute name="key">dungeon_silver_key</attribute>
+   </implementation>
+  </portal>
+
+ </zone>
+
+ <zone name="-1_orril_castle" file="sub_1_orril_castle.xstend">
+  <portal x="19" y="22" ref="0">
+   <destination zone="int_orril_castle_0" ref="4"/>
+  </portal>
+
+  <portal x="20" y="22" ref="1">
+   <destination zone="int_orril_castle_0" ref="4"/>
+  </portal>
+ </zone>
+
+
+ <!--  Level -2 -->
+
+ <zone name="-2_orril_dwarf_mine" file="sub_2_orril_dwarf_mine.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.USL2_DwarfMine"/>
+ </zone>
+
+ <zone name="-2_orril_lich_palace" file="sub_2_orril_lich_palace.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace" />
+
+  <portal x="70" y="38" ref="0">
+   <destination zone="-1_orril_castle_w" ref="0"/>
+  </portal>
+
+  <portal x="54" y="52" ref="locked_outside">
+   <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">up</attribute>
+    <attribute name="key">lich_gold_key</attribute>
+   </implementation>
+  </portal>
+
+  <portal x="54" y="57" ref="locked_inside_left">
+   <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
+  </portal>
+
+  <portal x="55" y="57" ref="locked_inside_right">
+   <destination zone="-2_orril_lich_palace" ref="locked_outside"/>
+  </portal>
+ </zone>
+
+ <zone name="-2_orril_dungeon" file="sub_2_orril_dungeon.xstend">
+ </zone>
+
+
+ <!--  Level -3 -->
+
+ <zone name="-3_orril_dwarf_blacksmith" file="sub_3_orril_dwarf_blacksmith.xstend">
+  <configurator class-name="games.stendhal.server.maps.orril.USL3_DwarfBlacksmith"/>
+ </zone>
+
+ <zone name="-3_orril_dungeon" file="sub_3_orril_dungeon.xstend">
+ </zone>
+
+
+ <!--  Level -4 -->
+
+
+ <!--  Level -5 -->
+
+
+ <!--  Level -6 -->
+
+
+ <!--  Level -7 -->
+
+
+ <!--  Level 1 -->
+
+
+ <!--  Level 2 -->
+
+
+ <!--  Level 3 -->
+
+
+ <!--  Level 4 -->
+
+
+ <!--  Level 5 -->
+
+
+ <!--  Level 6 -->
+
+</zones>

@@ -90,10 +90,15 @@
 		<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
 		<mkdir dir="${build_server_xmlconf}/"/>
 
-		<copy todir="${build_server_xmlconf}/data/conf" file="data/conf/creatures.xml"/>
-		<copy todir="${build_server_xmlconf}/data/conf" file="data/conf/items.xml"/>
-		<copy todir="${build_server_xmlconf}/data/conf" file="data/conf/quests.xml"/>
-		<copy todir="${build_server_xmlconf}/data/conf" file="data/conf/zones.xml"/>
+		<copy todir="${build_server_xmlconf}/data/conf">
+			<fileset dir="data/conf">
+				<include name="creatures.xml"/>
+				<include name="items.xml"/>
+				<include name="quests.xml"/>
+				<include name="zones.xml"/>
+				<include name="zones/*.xml"/>
+			</fileset>
+		</copy>
 
 		<jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>
 
@@ -461,6 +466,10 @@
 			<fileset file="data/conf/npc.xml"/>
 			<fileset file="data/conf/quests.xml"/>
 			<fileset file="data/conf/zones.xml"/>
+
+			<fileset dir="data/conf/zones">
+				<include name="*.xml"/>
+			</fileset>
 		</xmlvalidate>
 	</target>
 </project>
