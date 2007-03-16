@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import marauroa.common.game.RPAction;
@@ -1227,13 +1228,28 @@ public class ChatLineParser {
 		 *
 		 * @return	<code>true</code> if  was handled.
 		 */
-		public boolean execute(String [] params, String remainder) {
+		public boolean execute(String[] params, String remainder) {
 			RPAction add = new RPAction();
 
 			add.put("type", "jail");
 			add.put("target", params[0]);
 			add.put("minutes", params[1]);
-			add.put("reason", params[2]);
+			
+			// re-join the remaining parameters, they make up the reason
+			// for imprisonment.
+			// P.S.: This code sucks, i know. I hate java. --Daniel
+			StringBuffer reasonBuffer = new StringBuffer();
+			for (int i = 2; i < params.length - 1; i++) {
+				if (params[i] != null) {
+					reasonBuffer.append(params[i] + " ");
+				}
+			}
+			String reason = reasonBuffer.toString();
+			// leave out the last space
+			if (reason.length() > 0) {
+				reason = reason.substring(0, reason.length() - 1);
+			}
+			add.put("reason", reason);
 
 			client.send(add);
 
@@ -1247,7 +1263,8 @@ public class ChatLineParser {
 		 * @return	The parameter count.
 		 */
 		public int getMaximumParameters() {
-			return 3;
+			// 97 words should be enough for the imprisonment reason.
+			return 100;
 		}
 
 
@@ -1257,7 +1274,7 @@ public class ChatLineParser {
 		 * @return	The parameter count.
 		 */
 		public int getMinimumParameters() {
-			return 3;
+			return 2;
 		}
 	}
 

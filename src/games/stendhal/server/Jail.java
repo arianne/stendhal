@@ -67,7 +67,7 @@ public class Jail implements TurnListener, LoginListener {
 	 * @param policeman The name of the admin who wants to jail the criminal
 	 * @param minutes The duration of the sentence
 	 */
-	public void imprison(String criminalName, Player policeman, int minutes) {
+	public void imprison(String criminalName, Player policeman, int minutes, String reason) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		Player criminal = StendhalRPRuleProcessor.get().getPlayer(criminalName);
 
@@ -91,10 +91,11 @@ public class Jail implements TurnListener, LoginListener {
 		boolean successful = false;
 		while (!successful) {
 			// repeat until we find a free cell
-			int cellNumber = Rand.rand(cellEntryPoints.size());
-			Point cell = cellEntryPoints.get(cellNumber);
+			Point cell = Rand.rand(cellEntryPoints);
 			successful = criminal.teleport(jail, cell.x, cell.y, Direction.DOWN, policeman);
 		}
+		policeman.sendPrivateText("You have jailed " + criminal.getName() + " for " + minutes + " minutes. Reason: " + reason + ".");
+		criminal.sendPrivateText("You have been jailed by " + policeman.getName() + ". Reason: " + reason + ".");
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
@@ -133,6 +134,7 @@ public class Jail implements TurnListener, LoginListener {
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
 			
 			inmate.teleport(semosCity, 30, 40, Direction.UP, null);
+			inmate.sendPrivateText("Your sentence is over.");
 			logger.debug("Player " + inmateName + "released from jail.");
 		}
 		return true;
