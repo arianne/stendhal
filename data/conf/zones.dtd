@@ -18,6 +18,5 @@
 <!ATTLIST destination zone CDATA #REQUIRED>
 <!ATTLIST destination ref CDATA #REQUIRED>
 <!ATTLIST implementation class-name CDATA #REQUIRED>
-<!ATTLIST attribute name CDATA #REQUIRED>
 <!ATTLIST entity x CDATA #REQUIRED>
 <!ATTLIST entity y CDATA #REQUIRED>
