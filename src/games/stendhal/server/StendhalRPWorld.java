@@ -107,11 +107,12 @@ public class StendhalRPWorld extends RPWorld {
 
 
 	/**
-	 * Given a number of turns in a given number of seconds.
+	 * Gives the number of turns that will take place during a given number
+	 * of seconds.
 	 *
-	 * @param	seconds		The number of seconds.
+	 * @param seconds The number of seconds.
 	 *
-	 * @return	The number of turns.
+	 * @return The number of turns.
 	 */
 	public int getTurnsInSeconds(int seconds) {
 		return seconds * 1000 / MILLISECONDS_PER_TURN;
