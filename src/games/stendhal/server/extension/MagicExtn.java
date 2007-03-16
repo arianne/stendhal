@@ -119,7 +119,7 @@ public class MagicExtn extends StendhalServerExtension {
                 }
                 
             } else if (castSpell.contains("raise_stats")) {
-                if (player.getMana() > 110) {
+                if (player.getMana() > 100) {
                     /**
                      * Raises the level of a player along with the atk/def
                      */
@@ -153,7 +153,15 @@ public class MagicExtn extends StendhalServerExtension {
                     player.notifyWorldAboutChanges();
                     
                     // takes away mana
-                    player.put("mana", player.getMana() - 110);
+                    //player.put("mana", player.getMana() - 110);
+                    String mana = player.get("mana");
+                    int mana_a = Integer.parseInt(mana);
+                    int newmana = mana_a - 110;
+                    player.put("mana", newmana);
+                    
+                    player.sendPrivateText("Your stats have been raised.");
+                } else {
+                    player.sendPrivateText("You do not have enough mana to cast this spell.");
                 }
             } else {
                 player.sendPrivateText("The spell you tried to cast doesn't exist!");
