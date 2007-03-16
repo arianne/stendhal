@@ -7,6 +7,7 @@ public class QuestKanmararn {
 	/**
 	 * a non equipable corpse used in quests
 	 */
+	// TODO: throw away: you can't equip corpses anyway.
 	public static class QuestCorpse extends Corpse {
 
 		/**
@@ -20,9 +21,9 @@ public class QuestKanmararn {
 			super(clazz, x, y);
 		}
 
-		@Override
-		public boolean canBeEquiped() {
-			return false;
-		}
+//		@Override
+//		public boolean canBeEquiped() {
+//			return false;
+//		}
 	}
 }

@@ -328,7 +328,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 	}
 
-	public boolean canBeEquiped() {
-		return true;
+	public boolean canBeEquippedIn(String slot) {
+		return possibleSlots.contains(slot);
 	}
+	
+
 }

@@ -364,9 +364,12 @@ public class EquipmentAction extends ActionListener {
 		/** moves this entity to the destination */
 		public boolean moveTo(DestinationObject dest, Player player) {
 			StendhalRPWorld world = StendhalRPWorld.get();
-            
-            if ( (!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquiped())) {
-                logger.warn("tried to equip a non equipable entity: " + base.getClass() + "; equip rejected");
+
+			logger.warn(dest.slot);
+			logger.warn((EquipListener) base);
+			System.out.println(((EquipListener) base).canBeEquippedIn(dest.slot));
+            if ( (!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
+                logger.warn("tried to equip an entity into disallowed slot: " + base.getClass() + "; equip rejected");
                 return false;
             }
             

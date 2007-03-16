@@ -239,7 +239,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		return (text);
 	}
 
-	public boolean canBeEquiped() {
+	public boolean canBeEquippedIn(String slot) {
 		return false;
 	}
 

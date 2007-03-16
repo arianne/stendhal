@@ -57,11 +57,6 @@ public class Token extends Item {
 		}
 	}
 
-	@Override
-	public boolean canBeEquiped() {
-		return false;
-	}
-
 	/**
 	 * Sets a TokenMoveListener
 	 *

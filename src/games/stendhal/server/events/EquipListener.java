@@ -8,9 +8,11 @@ package games.stendhal.server.events;
 public interface EquipListener {
 
 	/**
-	 * checks whether this object can be equiped
+	 * Checks whether this object can be equipped in the
+	 * given slot.
 	 *
-	 * @return true, if it can be equiped; false otherwise
+	 * @return true, if it can be equipped; false otherwise
 	 */
-	public boolean canBeEquiped();
+	public boolean canBeEquippedIn(String slot);
+
 }
