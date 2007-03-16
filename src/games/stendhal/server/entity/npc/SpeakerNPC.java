@@ -140,6 +140,7 @@ public abstract class SpeakerNPC extends NPC {
 			"bye", "farewell", "cya", "adios");
 	
 	private Engine engine = new Engine(this);
+	private BehaviourAdder behaviourAdder = new BehaviourAdder(this, engine);
 	
 	/**
 	 * Determines how long a conversation can be paused before it will
@@ -276,7 +277,9 @@ public abstract class SpeakerNPC extends NPC {
 
 	/**
 	 * The player who is currently talking to the NPC, or null if the NPC
-	 * is currently not taking part in a conversation. 
+	 * is currently not taking part in a conversation.
+	 *
+	 * @return Player
 	 */
 	public Player getAttending() {
 		return attending;
@@ -309,7 +312,7 @@ public abstract class SpeakerNPC extends NPC {
 		}
 
 		// if no player is talking to the NPC, the NPC can move around.
-		if (!talking()) {
+		if (!isTalking()) {
 			if (hasPath()) {
 				Path.followPath(this, 0.2);
 				StendhalRPAction.move(this);
@@ -333,11 +336,11 @@ public abstract class SpeakerNPC extends NPC {
 		}
 
          // now look for nearest player only if there's an initChatAction 
-		if (!talking() && (initChatAction != null)) {
+		if (!isTalking() && (initChatAction != null)) {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
-				if ((initChatCondition == null) || initChatCondition
-								.fire(nearest, null, this)) {
+				if ((initChatCondition == null) 
+					|| initChatCondition.fire(nearest, null, this)) {
 					initChatAction.fire(nearest, null, this);
 				}
 			}
@@ -352,7 +355,7 @@ public abstract class SpeakerNPC extends NPC {
 		notifyWorldAboutChanges();
 	}
 
-	public boolean talking() {
+	public boolean isTalking() {
 		return engine.getCurrentState() != ConversationStates.IDLE;
 	}
 
@@ -411,11 +414,19 @@ public abstract class SpeakerNPC extends NPC {
 	 */
 	public void add(int state, List<String> triggers, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
-		for (String trigger : triggers) {
-			add(state, trigger, condition, nextState, reply, action);
-		}
+		engine.add(state, triggers, condition, nextState, reply, action);
 	}
 
+	/**
+	 * Adds a new set of transitions to the FSM
+	 *
+	 * @param states the starting states of the FSM
+	 * @param trigger input for this transition
+	 * @param condition null or condition that has to return true for this transition to be considered
+	 * @param nextState the new state of the FSM
+	 * @param reply a simple text replay (may be null for no replay)
+	 * @param action a special action to be taken (may be null)
+	 */
 	public void add(int[] states, String trigger, ChatCondition condition,
 			int nextState, String reply, ChatAction action) {
 		for (int state : states) {
@@ -577,90 +588,12 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public void addSeller(SellerBehaviour behaviour) {
-		addSeller(behaviour, true);
+		behaviourAdder.addSeller(behaviour, true);
 	}
 
 	public void addSeller(final SellerBehaviour behaviour,
-			boolean offer) {
-		
-		if (offer) {
-			add(ConversationStates.ATTENDING,
-					"offer",
-					null,
-					ConversationStates.ATTENDING,
-					"I sell " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".",
-					null);
-		}
-
-		add(ConversationStates.ATTENDING,
-				"buy",
-				null,
-				ConversationStates.BUY_PRICE_OFFERED,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						// find out what the player wants to buy, and how
-						// much of it
-						String[] words = text.split(" ");
-		
-						int amount = 1;
-						String item = null;
-						if (words.length > 2) {
-							try {
-								amount = Integer.parseInt(words[1].trim());
-							} catch (NumberFormatException e) {
-								engine.say("Sorry, i did not understand you.");
-								engine.setCurrentState(ConversationStates.ATTENDING);
-								return;
-							}
-							item = words[2].trim();
-						} else if (words.length > 1) {
-							item = words[1].trim();
-						}
-		
-						// find out if the NPC sells this item, and if so,
-						// how much it costs.
-						if (behaviour.hasItem(item)) {
-							behaviour.chosenItem = item;
-							behaviour.setAmount(amount);
-		
-							int price = behaviour.getUnitPrice(item)
-									* behaviour.amount;
-		
-							engine.say(Grammar.quantityplnoun(amount, item) + " will cost " + price + ". Do you want to buy " + Grammar.itthem(amount) + "?");
-						} else {
-							if (item == null) {
-								engine.say("Please tell me what you want to buy.");
-							} else {
-								engine.say("Sorry, I don't sell " + Grammar.plural(item));
-							}
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
-
-		add(ConversationStates.BUY_PRICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Thanks.",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						String itemName = behaviour.chosenItem;
-						logger.debug("Selling a " + itemName + " to player "
-								+ player.getName());
-		
-						behaviour.transactAgreedDeal(engine, player);
-					}
-				});
-
-		add(ConversationStates.BUY_PRICE_OFFERED,
-				NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING, "Ok, how else may I help you?",
-				null);
+					boolean offer) {
+		behaviourAdder.addSeller(behaviour, offer);
 	}
 
 	public void addBuyer(BuyerBehaviour behaviour) {
@@ -668,140 +601,13 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	public void addBuyer(final BuyerBehaviour behaviour, boolean offer) {
-
-		if (offer) {
-			add(ConversationStates.ATTENDING,
-					"offer",
-					null,
-					ConversationStates.ATTENDING,
-					"I buy " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".",
-					null);
-		}
-
-		add(ConversationStates.ATTENDING,
-				"sell",
-				null,
-				ConversationStates.SELL_PRICE_OFFERED,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-		
-						String[] words = text.split(" ");
-		
-						int amount = 1;
-						String item = null;
-						if (words.length > 2) {
-							try {
-								amount = Integer.parseInt(words[1].trim());
-							} catch (NumberFormatException e) {
-								engine.say("Sorry, i did not understand you.");
-								engine.setCurrentState(ConversationStates.ATTENDING);
-								return;
-							}
-							item = words[2].trim();
-						} else if (words.length > 1) {
-							item = words[1].trim();
-						}
-		
-						if (behaviour.hasItem(item)) {
-							behaviour.chosenItem = item;
-							behaviour.setAmount(amount);
-							int price = behaviour.getCharge(player);
-		
-							engine.say(Grammar.quantityplnoun(amount, item) + " " + Grammar.isare(amount) + " worth " + price + ". Do you want to sell " + Grammar.itthem(amount) + "?");
-						} else {
-							if (item == null) {
-								engine.say("Please tell me what you want to sell.");
-							} else {
-								engine.say("Sorry, I don't buy any " + Grammar.plural(item));
-							}
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
-
-		add(ConversationStates.SELL_PRICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Thanks.",
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						logger.debug("Buying something from player "
-								+ player.getName());
-		
-						behaviour.transactAgreedDeal(engine, player);
-					}
-				});
-
-		add(ConversationStates.SELL_PRICE_OFFERED,
-				NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"Ok, then how else may I help you?",
-				null);
+		behaviourAdder.addBuyer(behaviour, offer);
 	}
 
 	public void addHealer(int cost) {
-		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
-
-		add(ConversationStates.ATTENDING,
-				"offer",
-				null,
-				ConversationStates.ATTENDING,
-				"I can #heal you.",
-				null);
-		
-		add(ConversationStates.ATTENDING,
-				"heal",
-				null,
-				ConversationStates.HEAL_OFFERED,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						healerBehaviour.chosenItem = "heal";
-						healerBehaviour.amount = 1;
-						int cost = healerBehaviour.getCharge(player);
-		
-						if (cost > 0) {
-							engine.say("Healing costs " + cost + ". Do you have that much?");
-						} else {
-							engine.say("There, you are healed. How else may I help you?");
-							healerBehaviour.heal(player);
-		
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
-
-		add(ConversationStates.HEAL_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (player.drop("money", healerBehaviour.getCharge(player))) {
-							healerBehaviour.heal(player);
-							engine.say("There, you are healed. How else may I help you?");
-						} else {
-							engine.say("I'm sorry, but it looks like you can't afford it.");
-						}
-					}
-				});
-
-		add(ConversationStates.HEAL_OFFERED,
-				NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				"OK, how else may I help you?",
-				null);
+		behaviourAdder.addHealer(cost);
 	}
-	
+
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
 	 * special outfits.
@@ -809,7 +615,7 @@ public abstract class SpeakerNPC extends NPC {
 	 * @param command The action needed to get the outfit, e.g. "buy", "lend".
 	 */
 	public void addOutfitChanger(OutfitChangerBehaviour behaviour, String command) {
-		addOutfitChanger(behaviour, command, true, true);
+		behaviourAdder.addOutfitChanger(behaviour, command, true, true);
 	}
 
 	/**
@@ -823,219 +629,18 @@ public abstract class SpeakerNPC extends NPC {
 	 */
 	public void addOutfitChanger(final OutfitChangerBehaviour behaviour,
 			final String command, boolean offer, final boolean canReturn) {
-		
-		if (offer) {
-			add(ConversationStates.ATTENDING,
-					"offer",
-					null,
-					ConversationStates.ATTENDING,
-					"You can #" + command + " " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".",
-					null);
-		}
-
-		add(ConversationStates.ATTENDING,
-				command,
-				null,
-				ConversationStates.BUY_PRICE_OFFERED,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						// find out what the player wants to buy, and how
-						// much of it
-						String[] words = text.split(" ");
-		
-						String item = null;
-						// we ignore any amounts
-						if (words.length > 1) {
-							item = words[words.length - 1].trim();
-						}
-		
-						// find out if the NPC sells this item, and if so,
-						// how much it costs.
-						if (behaviour.hasItem(item)) {
-							behaviour.chosenItem = item;
-							behaviour.setAmount(1);
-		
-							int price = behaviour.getUnitPrice(item)
-									* behaviour.amount;
-		
-							engine.say("A " + item + " will cost " + price + ". Do you want to " + command + " it?");
-						} else {
-							if (item == null) {
-								engine.say("Please tell me what you want to " + command + ".");
-							} else {
-								engine.say("Sorry, I don't sell " + Grammar.plural(item));
-							}
-							engine.setCurrentState(ConversationStates.ATTENDING);
-						}
-					}
-				});
-
-		add(ConversationStates.BUY_PRICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
-				null,
-				ConversationStates.ATTENDING,
-				null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						String itemName = behaviour.chosenItem;
-						logger.debug("Selling a " + itemName + " to player "
-								+ player.getName());
-		
-						if (behaviour.transactAgreedDeal(npc, player)) {
-							if (canReturn) {
-								npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
-							} else {
-								npc.say("Thanks!");
-							}
-						}
-					}
-				});
-
-		add(ConversationStates.BUY_PRICE_OFFERED,
-				NO_MESSAGES,
-				null,
-				ConversationStates.ATTENDING, "Ok, how else may I help you?",
-				null);
-		
-		if (canReturn) {
-			add(ConversationStates.ATTENDING,
-					"return",
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text, SpeakerNPC npc) {
-							if (behaviour.returnToOriginalOutfit(player)) {
-								// TODO: it would be cool if you could get a refund
-								// for returning the outfit, i. e. the money is
-								// only paid as a deposit.
-								npc.say("Thank you!");
-							} else {
-								npc.say("I can't remember that I gave you anything.");							
-							}
-						}
-					});
-		}
+		behaviourAdder.addOutfitChanger(behaviour, command, offer, canReturn);
 	}
-
+	
 	public void addProducer(final ProducerBehaviour behaviour, String welcomeMessage) {
-		
-		final String thisWelcomeMessage = welcomeMessage;
-		
-		addWaitMessage(null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("Please wait! I am attending "
-								+ engine.getAttending().getName() + ".");
-					}
-				});
-
-		add(ConversationStates.IDLE,
-			SpeakerNPC.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
-						return !player.hasQuest(behaviour.getQuestSlot())
-								|| player.isQuestCompleted(behaviour.getQuestSlot());
-					}
-				},
-				ConversationStates.ATTENDING,
-				thisWelcomeMessage,
-				null);
-
-		add(ConversationStates.ATTENDING,
-			behaviour.getProductionActivity(),
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return !player.hasQuest(behaviour.getQuestSlot())
-					|| player.isQuestCompleted(behaviour.getQuestSlot());
-				}
-			},
-			ConversationStates.ATTENDING,
-			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-
-					String[] words = text.split(" ");
-					int amount = 1;
-					if (words.length > 1) {
-						amount = Integer.parseInt(words[1].trim());
-					}
-					if (behaviour.askForResources(npc, player, amount)) {
-						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
-					}
-				}
-			});
-		
-		add(ConversationStates.PRODUCTION_OFFERED,
-			YES_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-					behaviour.transactAgreedDeal(npc, player);
-				}
-			});
-
-		add(ConversationStates.PRODUCTION_OFFERED,
-			NO_MESSAGES,
-			null,
-			ConversationStates.ATTENDING,
-			"OK, no problem.",
-			null);
-
-		add(ConversationStates.ATTENDING,
-			behaviour.getProductionActivity(),
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return player.hasQuest(behaviour.getQuestSlot())
-							&& !player.isQuestCompleted(behaviour.getQuestSlot());
-				}
-			},
-			ConversationStates.ATTENDING,
-			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-					npc.say("I still haven't finished your last order. Come back in " + behaviour.getApproximateRemainingTime(player) + "!");
-				}
-			});
-
-		add(ConversationStates.IDLE,
-			SpeakerNPC.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return player.hasQuest(behaviour.getQuestSlot())
-							&& !player.isQuestCompleted(behaviour.getQuestSlot());
-				}
-			},
-			ConversationStates.ATTENDING,
-			null,
-			new SpeakerNPC.ChatAction() {
-				@Override
-				public void fire(Player player, String text,
-						SpeakerNPC npc) {
-					behaviour.giveProduct(npc, player);
-				}
-			});
+		behaviourAdder.addProducer(behaviour, welcomeMessage);
 	}
+
 
 	/**
 	 * Returns a copy of the transition table
+	 *
+	 * @return list of transitions
 	 */
 	public List<Transition> getTransitions() {
 		return engine.getTransitions();
