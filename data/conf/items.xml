@@ -2232,6 +2232,15 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+		<item name="basket">
+		<type class="box" subclass="basket"/>
+		<implementation class-name="games.stendhal.server.entity.item.Box"/>
+		<description>You see an easter basket. Look inside.</description>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 	
 
 <!--

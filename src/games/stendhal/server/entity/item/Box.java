@@ -22,8 +22,10 @@ import org.apache.log4j.Logger;
  */
 public class Box extends Item implements UseListener {
 	private Logger logger = Logger.getLogger(Box.class);
+	// for christmas presents
 	private static final String[] ITEMS = {"greater_potion", "pie", "sandwich", "carrot", "cherry", "elf_cloak_+2", "summon_scroll"};
-
+	// for easter presents
+	private static final String[] ITEMS_2 = {"greater_potion", "pie", "sandwich", "dice", "cherry", "elf_cloak_+2", "home_scroll"};
 	/**
 	 * Creates a new box
 	 *
@@ -60,7 +62,7 @@ public class Box extends Item implements UseListener {
 		
 		Player player = (Player) user;
 		String name = getName();
-		if (name.equals("present")) {
+		if (name.equals("present")||name.equals("basket")) {
 			usePresent(player);
 		} else {
 			player.sendPrivateText("What a strange box! You don't know how to open it.");
@@ -69,7 +71,8 @@ public class Box extends Item implements UseListener {
 
 	private void usePresent(Player player) {
 		this.removeOne();
-		String itemName = ITEMS[Rand.rand(ITEMS.length)];
+		// change line below if you want ITEMS from christmas
+		String itemName = ITEMS_2[Rand.rand(ITEMS_2.length)];
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 		player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));
 		player.equip(item, true);
