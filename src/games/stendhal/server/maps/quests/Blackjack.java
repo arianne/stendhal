@@ -218,7 +218,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	}
 	
 	private void letBankDrawAfterPause(String playerName) {
-		TurnNotifier.get().notifyInTurns(3, this, playerName);
+		TurnNotifier.get().notifyInSeconds(1, this, playerName);
 	}
 
 	public void onTurnReached(int currentTurn, String message) {

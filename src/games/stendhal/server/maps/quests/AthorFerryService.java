@@ -36,7 +36,7 @@ import java.util.Map;
  */
 public class AthorFerryService extends AbstractQuest {
 
-	private static final int PRICE = 1; // TODO: raise to 25
+	private static final int PRICE = 25;
 
 	/**
 	 * This class simulates the ferry going back and forth between the mainland
@@ -64,18 +64,20 @@ public class AthorFerryService extends AbstractQuest {
 		
 		private int state;
 
+		/**
+		 * Maps each step (anchoring/driving) to the time (in seconds)
+		 * it takes.
+		 */
 		private static Map<Integer, Integer> durations;
 
 		private static Map<Integer, String> descriptions;
 
 		private AthorFerry() {
 			durations = new HashMap<Integer, Integer>();
-			// ca. 2 minutes
-			durations.put(ANCHORED_AT_MAINLAND, 120 * 3);
-			// ca. 5 minutes
-			durations.put(DRIVING_TO_ISLAND, 300 * 3);
-			durations.put(ANCHORED_AT_ISLAND, 120 * 3);
-			durations.put(DRIVING_TO_MAINLAND, 300 * 3);
+			durations.put(ANCHORED_AT_MAINLAND, 2 * 60);
+			durations.put(DRIVING_TO_ISLAND, 5 * 60);
+			durations.put(ANCHORED_AT_ISLAND, 2 * 60);
+			durations.put(DRIVING_TO_MAINLAND, 5 * 60);
 
 			descriptions = new HashMap<Integer, String>();
 			descriptions.put(ANCHORED_AT_MAINLAND,
@@ -91,7 +93,7 @@ public class AthorFerryService extends AbstractQuest {
 			
 			listeners = new LinkedList<FerryAnnouncerNPC>();
 			// initiate the turn notification cycle
-			TurnNotifier.get().notifyInTurns(1, this, null);
+			TurnNotifier.get().notifyInSeconds(1, this, null);
 		}
 
 		/**
@@ -130,7 +132,7 @@ public class AthorFerryService extends AbstractQuest {
 			for (FerryAnnouncerNPC npc: listeners) {
 				npc.onNewFerryState(state);
 			}
-			TurnNotifier.get().notifyInTurns(durations.get(state), this, null);
+			TurnNotifier.get().notifyInSeconds(durations.get(state), this, null);
 		}
 		
 		public void addListener(FerryAnnouncerNPC npc) {
