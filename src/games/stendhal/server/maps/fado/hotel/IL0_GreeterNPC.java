@@ -53,10 +53,12 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 
 					@Override
 							protected void createDialog() {
-						addGreeting("Hello! Welcome to the  Fado City Hotel! Would you like to #reserve a room?");
+						addGreeting("Hello! Welcome to the Fado City Hotel! Would you like to #reserve a room?");
 
 						addJob("I am the hotel clerk.");
-						addHelp("You can head into the tavern to buy food, drinks, and other items.You can also visit the people in the houses, or visit hte blacksmith or the city hotel.");
+						addHelp("You can #reserve a room if you'd like, or #explore the hotel.");
+                                                addReply("reserve","Sorry, but the hotel is still under construction and you can not reserve a room yet.");
+                                                addReply("explore", "You can take a stop at the hotel's mini restraunt.");
 						//addSeller(new SellerBehaviour(shops.get("food&drinks")));
 						addGoodbye("Bye.");
 							}
