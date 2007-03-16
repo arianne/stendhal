@@ -21,6 +21,16 @@
      Beware of bandits beyond!
     </attribute>
    </implementation>
+   <entity x="77" y="82">
+     <implementation class-name="games.stendhal.server.entity.Sign">
+       <attribute name="text">
+North: Haizen's house
+East: Ados
+West: Semos
+       </attribute>
+       <attribute name="class">signpost</attribute>
+     </implementation>
+   </entity>
   </entity>
 
   <entity x="126" y="115">
@@ -58,6 +68,16 @@ Ados Wildlife Refuge
 Home for endangered animals
     </attribute>
    </implementation>
+  </entity>
+  <entity x="52" y="107">
+    <implementation class-name="games.stendhal.server.entity.Sign">
+      <attribute name="text">
+North: Wildlife refuge
+East: Ados
+West: Semos
+      </attribute>
+      <attribute name="class">signpost</attribute>
+    </implementation>
   </entity>
  </zone>
 

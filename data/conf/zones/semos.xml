@@ -42,6 +42,16 @@
   prepared for what is below.</attribute>
    </implementation>
   </portal>
+  <entity x="82" y="63">
+    <implementation class-name="games.stendhal.server.entity.Sign">
+      <attribute name="text">
+North: Old mine
+East: Mill
+South: Semos city
+      </attribute>
+      <attribute name="class">signpost</attribute>
+    </implementation>
+  </entity>
  </zone>
 
  <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
@@ -50,7 +60,7 @@
     <implementation class-name="games.stendhal.server.entity.Sign">
       <attribute name="text">
 Southwest: Semos city
-East: Ados city
+East: Ados (road destroyed)
 Southeast: Farmhouse
       </attribute>
       <attribute name="class">signpost</attribute>
