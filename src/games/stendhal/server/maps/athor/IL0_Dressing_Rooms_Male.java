@@ -47,11 +47,11 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hallo!");
 				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the men's dressing room.");
-				addHelp("Just tell me if you want to #borrow #a #speedo!");
+				addHelp("Just tell me if you want to #borrow #trunks!");
 				addGoodbye("Have fun!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("speedo", 5);
+				priceList.put("trunks", 5);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
 						priceList);
 				addOutfitChanger(behaviour, "borrow");

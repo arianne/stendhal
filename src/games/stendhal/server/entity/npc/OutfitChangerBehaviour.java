@@ -43,7 +43,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		// One of these outfit will be chosen randomly.
 		
 		// swimsuits for men
-		outfitTypes.put("speedo", Arrays.asList(
+		outfitTypes.put("trunks", Arrays.asList(
 				new Outfit(Outfit.NONE, Outfit.NONE, 95, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 96, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 97, Outfit.NONE),
