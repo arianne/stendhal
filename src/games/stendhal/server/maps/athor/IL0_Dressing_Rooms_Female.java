@@ -47,14 +47,14 @@ public class IL0_Dressing_Rooms_Female implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hallo!");
 				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the women's dressing room.");
-				addHelp("Just tell me if you want to #lend #a #female_swimsuit!");
+				addHelp("Just tell me if you want to #borrow #a #female_swimsuit!");
 				addGoodbye("Have fun!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("female_swimsuit", 5);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
 						priceList);
-				addOutfitChanger(behaviour, "lend");
+				addOutfitChanger(behaviour, "borrow");
 			}
 		};
 		NPCList.get().add(pam);
