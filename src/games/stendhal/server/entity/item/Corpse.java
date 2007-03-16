@@ -35,9 +35,10 @@ import org.apache.log4j.Logger;
 
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
-	private static final int DEGRADATION_TIMEOUT = 3000; // 30 minutes at 300 ms
+	/** Time (in seconds) until a corpse disappears. */
+	private static final int DEGRADATION_TIMEOUT = 15 * 60; // 15 minutes
 	private static final int MAX_STAGE = 5; // number of degradation steps
-	private static final int DEGRADATION_SETP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
+	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
 	private int stage;
 	private boolean isDegrading = true;
 
@@ -59,7 +60,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 		setX(x);
 		setY(y);
-		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
+		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
 
@@ -104,7 +105,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		setX((int) Math.round(rect.getCenterX() - 1));
 		setY((int) Math.round(rect.getCenterY() - 1));
 		
-		TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
+		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
 
@@ -171,7 +172,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 			}
 
 		} else {
-			TurnNotifier.get().notifyInTurns(DEGRADATION_SETP_TIMEOUT, this, null);
+			TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this, null);
 		}
 	}
 

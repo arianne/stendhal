@@ -29,9 +29,9 @@ import marauroa.common.game.RPClass;
  */
 public class Blood extends PassiveEntity implements TurnListener {
 	/**
-	 * After this many turns, blood will disappear.
+	 * Blood will disappear after so many seconds.
 	 */
-	public static final int DEGRADATION_TIMEOUT = 300; // 30 minutes at 300 ms
+	public static final int DEGRADATION_TIMEOUT = 30 * 60; // 30 minutes
 
 	public static void generateRPClass() {
 		RPClass blood = new RPClass("blood");
@@ -44,7 +44,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 		put("type", "blood");
 		put("class", Rand.rand(4));
 
-		TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this, null);
+		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
 
 		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
 

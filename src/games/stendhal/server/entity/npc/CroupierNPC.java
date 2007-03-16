@@ -16,10 +16,10 @@ import marauroa.common.game.IRPZone;
 public abstract class CroupierNPC extends SpeakerNPC {
 	
 	/**
-	 * The time (in turns) it takes before the NPC removes
+	 * The time (in seconds) it takes before the NPC removes
 	 * thrown dice from the table.
 	 */
-	private static final int CLEAR_PLAYING_AREA_TIME = 3 * 10;
+	private static final int CLEAR_PLAYING_AREA_TIME = 10;
 	
 	/**
 	 * The area on which the dice have to be thrown.  
@@ -70,7 +70,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 			// The croupier takes the dice away from the table after some time.
 			// This is simulated by shortening the degradation time of the dice.
 			TurnNotifier.get().dontNotify(dice, null);
-			TurnNotifier.get().notifyInTurns(CLEAR_PLAYING_AREA_TIME, dice, null);
+			TurnNotifier.get().notifyInSeconds(CLEAR_PLAYING_AREA_TIME, dice, null);
 		}
 	}
 

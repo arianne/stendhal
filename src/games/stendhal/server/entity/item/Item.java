@@ -44,8 +44,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	private PassiveEntityRespawnPoint plantGrower;
 
-	final public static int DEGRADATION_TIMEOUT = 10800; // 30 minutes at 300
-	// ms
+	final public static int DEGRADATION_TIMEOUT = 54 * 60; // 54 minutes
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("item");
@@ -252,7 +251,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void onPutOnGround(Player player) {
 		// persistent items don't degrade
 		if (!isPersistent()) {
-			TurnNotifier.get().notifyInTurns(DEGRADATION_TIMEOUT, this, null);
+			TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
 		}
 	}
 	
