@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -16,18 +19,53 @@ import games.stendhal.server.entity.player.Player;
  * - Talk to Io to activate the quest and keep speaking with Io.
  *
  * REWARD:
- * - 10 XP (check that user's level is lesser than 15)
+ * - 10 XP
  * - 5 gold coins
  *
  * REPETITIONS:
- * - As much as wanted.
+ * - As much as wanted, but you only get the reward once.
  */
 public class MeetIo extends AbstractQuest {
 
-	private void step_1() {
+	private static final String QUEST_SLOT = "meet_io";
+
+	@Override
+	public void init(String name) {
+		super.init(name, QUEST_SLOT);
+	}
+
+	@Override
+	public List<String> getHistory(Player player) {
+		List<String> res = new ArrayList<String>();
+		if (!player.hasQuest(QUEST_SLOT)) {
+			return res;
+		}
+		res.add("FIRST_CHAT");
+		if (isCompleted(player)) {
+			res.add("DONE");
+		}
+		return res;
+	}
+
+	private void prepareIO() {
 
 		SpeakerNPC npc = npcs.get("Io Flotto");
 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.HELP_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							npc.say("Do you want to repeat the six basic elements of telepathy? I already know the answer but I'm being polite...");
+						} else {
+							npc.say("I'm a telepath and a telekinetic; I can help you by sharing my mental skills with you. Do you want me to teach you the six basic elements of telepathy? I already know the answer but I'm being polite...");
+						}
+					}
+				});
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.YES_MESSAGES,
 				null,
@@ -85,27 +123,28 @@ public class MeetIo extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						int level = player.getLevel();
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						String answer;
-						if (level < 15) {
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							answer = "Hey! I know what you're thinking, and I don't like it!";
+						} else {
+							// give the reward
 							StackableItem money = (StackableItem) StendhalRPWorld.get()
-									.getRuleManager().getEntityManager().getItem(
-											"money");
-		
+							.getRuleManager().getEntityManager().getItem(
+									"money");
+
 							money.setQuantity(10);
 							player.equip(money);
 		
 							player.addXP(10);
-		
+							player.setQuest(QUEST_SLOT, "done");
 							player.notifyWorldAboutChanges();
 		
 							answer = "Remember, don't let anything disturb your concentration.";
-						} else {
-							answer = "Hey! I know what you're thinking, and I don't like it!";
 						}
 		
-						engine.say("*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n " + answer);
+						npc.say("*yawns* Maybe I'll show you later... I don't want to overload you with too much information at once. You can get a summary of all those lessons at any time, incidentally, just by typing #/help.\n"
+								+ answer);
 					}
 				});
 
@@ -121,6 +160,6 @@ public class MeetIo extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
+		prepareIO();
 	}
 }

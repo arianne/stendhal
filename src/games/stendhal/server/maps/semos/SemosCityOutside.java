@@ -170,9 +170,9 @@ public class SemosCityOutside implements ZoneConfigurator {
 							// player before anc react accordingly
 							// NPC_name quest doesn't exist anywhere else neither is
 							// used for any other purpose
-							if (!player.isQuestCompleted("Hayunn")) {
+							if (!player.hasQuest("meet_hayunn")) {
 								engine.say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
-								player.setQuest("Hayunn", "done");
+								player.setQuest("meet_hayunn", "start");
 							} else {
 								engine.say("Hi again, " + player.getName()
 										+ ". How can I #help you this time?");

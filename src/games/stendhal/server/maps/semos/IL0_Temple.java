@@ -90,15 +90,11 @@ public class IL0_Temple implements ZoneConfigurator {
 						@Override
 						public void fire(Player player, String text,
 								SpeakerNPC engine) {
-							// A little trick to make NPC remember if it has met
-							// player before anc react accordingly
-							// NPC_name quest doesn't exist anywhere else neither is
-							// used for any other purpose
-							if (!player.isQuestCompleted("Io")) {
+							if (!player.hasQuest("meet_io")) {
 								engine.say("I awaited you, "
 										   + player.getName()
 										   + ". How do I know your name? Easy, I'm Io Flotto, the telepath. Do you want me to show you the six basic elements of telepathy?");
-								player.setQuest("Io", "done");
+								player.setQuest("meet_io", "start");
 							} else {
 								engine.say("Hi again, "
 										   + player.getName()
@@ -106,15 +102,11 @@ public class IL0_Temple implements ZoneConfigurator {
 							}
 						}
 				});
-				addHelp("I'm a telepath and a telekinetic; I can help you by sharing my mental skills with you. Do you want me to teach you the six basic elements of telepathy? I already know the answer but I'm being polite...");
 				addJob("I am committed to harnessing the total power of the human mind. I have already made great advances in telepathy and telekinesis; however, I can't yet foresee the future, so I don't know if we will truly be able to destroy Blordrough's dark legion...");
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"Well, there's not really much that I need anyone to do for me right now. And I... Hey! Were you just trying to read my private thoughts? You should always ask permission before doing that!",
-					null);
+				addReply(ConversationPhrases.QUEST_MESSAGES,
+						"Well, there's not really much that I need anyone to do for me right now. And I... Hey! Were you just trying to read my private thoughts? You should always ask permission before doing that!");
 				addGoodbye();
+				// further behaviour is defined in the MeetIo quest.
 			}
 		};
 		npcs.add(npc);
