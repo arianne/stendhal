@@ -39,15 +39,18 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
 	static {
 		// In each line, there is one possible outfit of this
-		// outfit type, in the format: hair, head, dress, base.
+		// outfit type, in the order: hair, head, dress, base.
 		// One of these outfit will be chosen randomly.
-		outfitTypes.put("male_swimsuit", Arrays.asList(
+		
+		// swimsuits for men
+		outfitTypes.put("speedo", Arrays.asList(
 				new Outfit(Outfit.NONE, Outfit.NONE, 95, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 96, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 97, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 98, Outfit.NONE)));
 		
-		outfitTypes.put("female_swimsuit", Arrays.asList(
+		// swimsuits for women
+		outfitTypes.put("swimsuit", Arrays.asList(
 				new Outfit(Outfit.NONE, Outfit.NONE, 91, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 92, Outfit.NONE),
 				new Outfit(Outfit.NONE, Outfit.NONE, 93, Outfit.NONE),

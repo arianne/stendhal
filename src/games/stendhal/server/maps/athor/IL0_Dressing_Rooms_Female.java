@@ -28,12 +28,11 @@ public class IL0_Dressing_Rooms_Female implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		buildMaleDressingRoom(zone, attributes);
-		//buildFemaleDressingRoom(femaleZone, attributes);
+		buildFemaleDressingRoom(zone, attributes);
 	}
 
 
-	private void buildMaleDressingRoom(StendhalRPZone zone,
+	private void buildFemaleDressingRoom(StendhalRPZone zone,
 	 Map<String, String> attributes) {
 		SpeakerNPC pam = new SpeakerNPC("Pam") {
 			@Override
@@ -47,11 +46,11 @@ public class IL0_Dressing_Rooms_Female implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hallo!");
 				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the women's dressing room.");
-				addHelp("Just tell me if you want to #borrow #a #female_swimsuit!");
+				addHelp("Just tell me if you want to #borrow #a #swimsuit!");
 				addGoodbye("Have fun!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("female_swimsuit", 5);
+				priceList.put("swimsuit", 5);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
 						priceList);
 				addOutfitChanger(behaviour, "borrow");
