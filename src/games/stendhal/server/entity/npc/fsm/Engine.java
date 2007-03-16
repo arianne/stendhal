@@ -92,6 +92,22 @@ public class Engine {
 		stateTransitionTable.add(item);
 	}
 
+	/**
+	 * Adds a new set of transitions to the FSM
+	 *
+	 * @param state the starting state of the FSM
+	 * @param triggers a list of inputs for this transition
+	 * @param condition null or condition that has to return true for this transition to be considered
+	 * @param nextState the new state of the FSM
+	 * @param reply a simple text replay (may be null for no replay)
+	 * @param action a special action to be taken (may be null)
+	 */
+	public void add(int state, List<String> triggers, ChatCondition condition,
+			int nextState, String reply, ChatAction action) {
+		for (String trigger : triggers) {
+			add(state, trigger, condition, nextState, reply, action);
+		}
+	}
 
 	/**
 	 * Gets the current state
@@ -191,4 +207,5 @@ public class Engine {
 		// return a copy so that the caller cannot mess up our internal structure
 		return new LinkedList<Transition>(stateTransitionTable);
 	}
+
 }
