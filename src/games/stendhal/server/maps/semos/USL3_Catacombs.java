@@ -49,13 +49,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes=new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(61,60));
-				nodes.add(new Path.Node(59,60));
-				nodes.add(new Path.Node(59,58));
-				nodes.add(new Path.Node(61,58));
-				nodes.add(new Path.Node(59,58));
-				nodes.add(new Path.Node(59,60));
-			     	setPath(nodes,true);
+		     	setPath(nodes,false);
 			}
 
 			@Override
