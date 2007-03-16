@@ -178,7 +178,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		String playerName = message;
 		Player player = StendhalRPRuleProcessor.get().getPlayer(playerName);
 		if (player != null) {
-			onWornOff(player);
+			// put the outfit off, but only if the player hasn't taken
+			// it off himself already.
+			if (wearsOutfitFromHere(player)) {
+				onWornOff(player);
+			}
 		} else {
 			// The player has logged out before the outfit wore off.
 			// Remove it when the player logs in again.
