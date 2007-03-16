@@ -1,9 +1,8 @@
 package games.stendhal.server.maps.semos;
 
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Blackboard;
+import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.CroupierNPC;
@@ -103,14 +102,17 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 					"Have a look at the blackboards on the wall to see my offers.",
 					null);
 				addGoodbye();
-				Blackboard board = new Blackboard(false);
+				Sign board = new Sign();
 				zone.assignRPObjectID(board);
 				board.set(2, 11);
+				board.setClass("blackboard");
 				board.setText(shops.toString("sellstuff", "-- I sell --"));
 				zone.add(board);
-				board = new Blackboard(false);
+
+				board = new Sign();
 				zone.assignRPObjectID(board);
 				board.set(3, 11);
+				board.setClass("blackboard");
 				board.setText(shops.toString("buystuff", "-- I buy --"));
 				zone.add(board);
 			}

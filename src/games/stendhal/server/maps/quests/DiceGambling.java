@@ -3,7 +3,7 @@ package games.stendhal.server.maps.quests;
 import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Blackboard;
+import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -54,25 +54,27 @@ public class DiceGambling extends AbstractQuest {
 		
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(ricardo.getID());
 		
-		Blackboard board = new Blackboard(false);
-		zone.assignRPObjectID(board);
-		board.set(25, 0);
+		Sign blackboard = new Sign();
+		zone.assignRPObjectID(blackboard);
+		blackboard.set(25, 0);
+		blackboard.setClass("blackboard");
 		StringBuffer prizelistBuffer = new StringBuffer("PRIZES:\n");
 		for (int i = 18; i >= 13; i--) {
 			prizelistBuffer.append("\n" + i + ": " + prizes.get(i).first());
 		}
-		board.setText(prizelistBuffer.toString());
-		zone.add(board);
+		blackboard.setText(prizelistBuffer.toString());
+		zone.add(blackboard);
 		
-		board = new Blackboard(false);
-		zone.assignRPObjectID(board);
-		board.set(26, 0);
+		blackboard = new Sign();
+		zone.assignRPObjectID(blackboard);
+		blackboard.set(26, 0);
+		blackboard.setClass("blackboard");
 		prizelistBuffer = new StringBuffer("PRIZES:\n");
 		for (int i = 12; i >= 7; i--) {
 			prizelistBuffer.append("\n" + i + ": " + prizes.get(i).first());
 		}
-		board.setText(prizelistBuffer.toString());
-		zone.add(board);
+		blackboard.setText(prizelistBuffer.toString());
+		zone.add(blackboard);
 
 		
 		ricardo.add(ConversationStates.ATTENDING,

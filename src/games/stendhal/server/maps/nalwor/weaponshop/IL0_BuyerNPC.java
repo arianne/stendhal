@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.nalwor.weaponshop;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Blackboard;
+import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -75,13 +75,12 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.addNPC(npc);
 
-	
-
 		// Add a blackboard with the shop offers
-		Blackboard board = new Blackboard(false);
-		zone.assignRPObjectID(board);
-		board.set(3, 1);
-		board.setText(shops.toString("elfbuyrare", "-- Buying --"));
-		zone.add(board);
+		Sign blackboard = new Sign();
+		zone.assignRPObjectID(blackboard);
+		blackboard.set(3, 1);
+		blackboard.setText(shops.toString("elfbuyrare", "-- Buying --"));
+		blackboard.setClass("blackboard");
+		zone.add(blackboard);
 	}
 }

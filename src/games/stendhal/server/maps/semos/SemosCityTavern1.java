@@ -1,7 +1,7 @@
 package games.stendhal.server.maps.semos;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Blackboard;
+import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
@@ -122,9 +122,10 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 		zone.addNPC(mcpegleg);
 
 		// Add a blackboard with the shop offers
-		Blackboard board = new Blackboard(false);
+		Sign board = new Sign();
 		zone.assignRPObjectID(board);
 		board.set(11, 4);
+		board.setClass("blackboard");
 		board.setText(shops.toString("buyrare", "-- Buying --"));
 		zone.add(board);
 	}

@@ -15,7 +15,6 @@ package games.stendhal.server;
 import java.net.URI;
 
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
-import games.stendhal.server.entity.Blackboard;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -152,7 +151,6 @@ public class StendhalRPWorld extends RPWorld {
 		Entity.generateRPClass();
 
 		Sign.generateRPClass();
-		Blackboard.generateRPClass();
 		Portal.generateRPClass();
 		Door.generateRPClass();
 		PassiveEntityRespawnPoint.generateRPClass();
