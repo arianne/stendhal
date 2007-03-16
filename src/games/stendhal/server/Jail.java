@@ -3,6 +3,8 @@ package games.stendhal.server;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -24,7 +26,7 @@ import org.apache.log4j.Logger;
  * 
  * @author daniel
  */
-public class Jail implements TurnListener {
+public class Jail implements TurnListener, LoginListener {
 
 	private static final Logger logger = Log4J.getLogger(Jail.class);
 	
@@ -98,12 +100,10 @@ public class Jail implements TurnListener {
 		// serving his sentence. We're using the TurnNotifier; we use
 		// the 'message' paramter to store the player's name, so that
 		// we know who is to be released when onTurnReached() is called.
+		//
 		// NOTE: The player won't be automatically released if the
-		// server is restarted while the player is in jail, or if the
-		// player is logged out at the time when the sentence is over. 
-		// convert from minutes to turns.
-		// TODO: don't hardcode 300 ms per turn
-		int jailTime = minutes * 60 * 1000 / 300;
+		// server is restarted before the player could be released.
+		int jailTime = minutes * 60 * 1000 / StendhalRPWorld.MILLISECONDS_PER_TURN;
 		TurnNotifier.get().notifyInTurns(jailTime, this, criminalName);
 	}
 	
@@ -112,13 +112,14 @@ public class Jail implements TurnListener {
 	 * he is still in jail.
 	 *
 	 * @param inmateName the name of the inmate who should be released
+	 * @return true if the player has not logged out before he was released
 	 */
-	public void release(String inmateName) {
+	public boolean release(String inmateName) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		Player inmate = StendhalRPRuleProcessor.get().getPlayer(inmateName);
 		if (inmate == null) {
-			logger.debug("Player " + inmateName + " not found");
-			return;
+			logger.debug("Jailed player " + inmateName + "has logged out.");
+			return false;
 		}
 
 		// Only teleport the player to Semos if he is still in jail.
@@ -132,7 +133,9 @@ public class Jail implements TurnListener {
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
 			
 			inmate.teleport(semosCity, 30, 40, Direction.UP, null);
+			logger.debug("Player " + inmateName + "released from jail.");
 		}
+		return true;
 	}
 
 	/**
@@ -160,6 +163,14 @@ public class Jail implements TurnListener {
 	 * @param message the inmate's name
 	 */
 	public void onTurnReached(int turn, String message) {
-		release(message);
+		String playerName = message;
+		if (! release(playerName)) {
+			// The player has logged out. Release him when he logs in again.
+			LoginNotifier.get().notifyOnLogin(playerName, this, null);
+		}
+	}
+
+	public void onLoggedIn(String playerName, String message) {
+		release(playerName);
 	}
 }
