@@ -73,6 +73,10 @@ public class ConversationStates {
 	public static final int INFORMATION_4 = 53;
 	public static final int INFORMATION_5 = 54;
 	public static final int INFORMATION_6 = 55;
+	public static final int INFORMATION_7 = 56;
+	public static final int INFORMATION_8 = 57;
+	public static final int INFORMATION_9 = 58;
+	public static final int INFORMATION_10 = 59;
 
 	/**
 	 * The SpeakerNPC has offered a quest;
