@@ -328,6 +328,12 @@ public class DamagingArea extends PassiveEntity
 	 */
 	public void onExited(RPEntity entity, StendhalRPZone zone,
 	 int oldX, int oldY) {
+		/*
+		 * Only effect players?
+		 */
+		if(playersOnly && !(entity instanceof Player)) {
+			return;
+		}		
 		handleMovement(entity);
 		removeTarget(entity);
 	}
