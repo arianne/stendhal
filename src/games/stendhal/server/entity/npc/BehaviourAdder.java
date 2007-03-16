@@ -11,8 +11,6 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * Internal helper class for SpeakerNPC
- *
- * @author hendrik
  */
 // TODO: This is just a first step to split it out of SpealerNPC. More refactoring is needed.
 class BehaviourAdder {
