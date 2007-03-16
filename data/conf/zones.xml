@@ -188,9 +188,7 @@
 
  <zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.IL0_MagicianHouse">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.ados.IL0_MagicianHouse" />
 
   <portal x="12" y="13" ref="entrance">
    <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
@@ -199,10 +197,7 @@
 
  <zone name="0_ados_outside_nw" file="0_ados_outside_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest">
-   <attribute name="xml-portals">using</attribute>
-   <attribute name="xml-entities">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest" />
 
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
@@ -284,10 +279,7 @@ social hub of the Semos area!
 
  <zone name="0_semos_city" file="0_semos_city.xstend">
   <title>The City of Semos</title>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside">
-   <attribute name="xml-portals">using</attribute>
-   <attribute name="xml-entities">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside" />
 
 <!-- TEST
   <entity x="35" y="35">
@@ -426,9 +418,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0" />
 
     <portal x="22" y="17" ref="entrance">
      <destination zone="0_semos_city" ref="tavern_entrance"/>
@@ -441,9 +431,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_tavern_1" file="int_semos_tavern_1.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1" />
 
     <portal x="4" y="4" ref="downstairs">
      <destination zone="int_semos_tavern_0" ref="upstairs"/>
@@ -452,9 +440,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_temple" file="int_semos_temple.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple" />
 
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_semos_city" ref="temple_entrance"/>
@@ -475,9 +461,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith" />
 
     <portal x="15" y="14" ref="entrance">
      <destination zone="0_semos_city" ref="blacksmith_entrance"/>
@@ -486,9 +470,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_library" file="int_semos_library.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library" />
 
     <portal x="8" y="30" ref="entrance_left">
      <destination zone="0_semos_city" ref="library_entrance_left"/>
@@ -501,9 +483,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_storage_0" file="int_semos_storage_0.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage" />
 
     <portal x="9" y="14" ref="entrance">
      <destination zone="0_semos_city" ref="storage_entrance"/>
@@ -527,10 +507,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_bank" file="int_semos_bank.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank">
-     <attribute name="xml-portals">using</attribute>
-     <attribute name="xml-entities">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank" />
 
     <portal x="9" y="30" ref="entrance">
      <destination zone="0_semos_city" ref="bank_entrance"/>
@@ -632,9 +609,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall" />
 
     <portal x="14" y="46" ref="entrance_left">
      <destination zone="0_semos_city" ref="townhall_entrance_left"/>
@@ -668,10 +643,7 @@ the wolves while searching for berries here
 
    <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery">
-     <attribute name="xml-portals">using</attribute>
-     <attribute name="xml-entities">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
 
     <!-- This must be after the NPC configurator -->
     <entity x="29" y="6">
@@ -821,9 +793,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
    <zone name="int_ados_bakery" file="int_ados_bakery.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bakery">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bakery" />
 
     <portal x="26" y="14" ref="0">
      <destination zone="0_ados_city" ref="10"/>
@@ -832,9 +802,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
    <zone name="int_ados_library" file="int_ados_library.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Library">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Library" />
 
     <portal x="8" y="30" ref="entrance_left">
      <destination zone="0_ados_city" ref="library_entrance_left"/>
@@ -847,9 +815,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
    <zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
     <title/>
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Tavern">
-     <attribute name="xml-portals">using</attribute>
-    </configurator>
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Tavern" />
 
     <portal x="12" y="17" ref="entrance_left">
      <destination zone="0_ados_city" ref="tavern_entrance_left"/>
@@ -881,9 +847,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="0_ados_city" file="0_ados_city.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside" />
 
   <portal x="60" y="16" ref="tavern_entrance_left">
    <destination zone="int_ados_tavern_0" ref="entrance_left"/>
@@ -1315,9 +1279,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
   <configurator class-name="games.stendhal.server.maps.orril.OL0_JynathHouse"/>
 -->
 
-  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.orril.OL0_RiverSouthCampfire" />
   <!-- This must be after the NPC configurator -->
   <entity x="37" y="60">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -1332,9 +1294,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="int_orril_jynath_house" file="int_orril_jynath_house.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.orril.IL0_JynathHouse" />
 
   <portal x="16" y="30" ref="entrance">
    <destination zone="0_orril_river_s" ref="jynath_house_entrance"/>
@@ -1933,9 +1893,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-1_semos_jail" file="sub_1_semos_jail.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1" />
 
   <portal x="28" y="17" ref="entrance">
    <destination zone="0_semos_plains_w" ref="jail_entrance"/>
@@ -1971,9 +1929,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-1_orril_castle_w" file="sub_1_orril_castle_w.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.orril.USL1_CastleWest" />
 
   <portal x="69" y="37" ref="0">
    <destination zone="-2_orril_lich_palace" ref="0"/>
@@ -2007,9 +1963,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
  <zone name="-2_ados_outside_nw" file="sub_2_ados_outside_nw.xstend">
   <title/>
 <!--
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest" />
 -->
  </zone>
 
@@ -2449,9 +2403,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-2_orril_lich_palace" file="sub_2_orril_lich_palace.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.orril.USL2_LichPalace" />
 
   <portal x="70" y="38" ref="0">
    <destination zone="-1_orril_castle_w" ref="0"/>
@@ -2484,9 +2436,7 @@ Under new management. Chest to right is still held by Semos Bank Merchants Ltd.
 
  <zone name="-3_ados_outside_nw" file="sub_3_ados_outside_nw.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest">
-   <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest" />
   <!-- This must be after the NPC configurator -->
   <entity x="17" y="23">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -2638,9 +2588,7 @@ Walk on, and you will be returned to the land of the living...
 
  <zone name="int_pathfinding" file="int_pathfinding.xstend">
   <title/>
-  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea">
-    <attribute name="xml-portals">using</attribute>
-  </configurator>
+  <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
 
   <portal x="50" y="10" ref="locked_outside">
    <destination zone="int_pathfinding" ref="locked_inside"/>
