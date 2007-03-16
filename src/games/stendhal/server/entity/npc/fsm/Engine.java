@@ -32,6 +32,11 @@ public class Engine {
 	// current FSM state
 	private int currentState = ConversationStates.IDLE;;
 
+	/**
+	 * Creates a new FSM.
+	 *
+	 * @param speakerNPC the speaker npc for which this FSM is created
+	 */
 	public Engine(SpeakerNPC speakerNPC) {
 		this.speakerNPC = speakerNPC;
 	}
@@ -48,14 +53,28 @@ public class Engine {
 		return null;
 	}
 
+	/**
+	 * Calculates and returns an unused state
+	 *
+	 * @return unused state
+	 */
 	public int getFreeState() {
 		maxState++;
 		return maxState;
 	}
 
-	/** Add a new transition to FSM */
+	/**
+	 * Adds a new transition to FSM
+	 *
+	 * @param state old state
+	 * @param trigger      input trigger
+	 * @param condition    additional precondition
+	 * @param nextState    state after the transition
+	 * @param reply        output
+	 * @param action       additional action after the condition
+	 */
 	public void add(int state, String trigger, ChatCondition condition,
-			int next_state, String reply, ChatAction action) {
+			int nextState, String reply, ChatAction action) {
 		if (state > maxState) {
 			maxState = state;
 		}
@@ -64,21 +83,30 @@ public class Engine {
 		if (existing != null) {
 			// A previous state, trigger combination exist.
 			logger.warn("Adding to " + existing + " the state [" + state + ","
-					+ trigger + "," + next_state + "]");
+					+ trigger + "," + nextState + "]");
 			existing.setReply(existing.getReply() + " " + reply);
 		}
 
-		Transition item = new Transition(state, trigger, condition, next_state,
+		Transition item = new Transition(state, trigger, condition, nextState,
 				reply, action);
 		stateTransitionTable.add(item);
 	}
 
 
+	/**
+	 * Gets the current state
+	 *
+	 * @return current state
+	 */
 	public int getCurrentState() {
 		return currentState;
 	}
 
-
+	/**
+	 * Sets the current State without doing a normal transition.
+	 *
+	 * @param currentState new state
+	 */
 	public void setCurrentState(int currentState) {
 		this.currentState = currentState;
 	}
@@ -155,8 +183,12 @@ public class Engine {
 
 	/**
 	 * Returns a copy of the transition table
+	 *
+	 * @return list of transitions
 	 */
 	public List<Transition> getTransitions() {
+
+		// return a copy so that the caller cannot mess up our internal structure
 		return new LinkedList<Transition>(stateTransitionTable);
 	}
 }
