@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE zones SYSTEM "zones.dtd">
 <zones>
  <!--
    ** Load zones. Written from left to right and from top to bottom.
@@ -249,7 +250,6 @@
              <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
            </portal>
          </zone>
-         -->
 	 
  <!--  Level -1 -->
 
