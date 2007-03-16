@@ -1,5 +1,5 @@
 <!ELEMENT zones (zone*)>
-<!ELEMENT zone (configurator | portal | entity)*>
+<!ELEMENT zone (title?, (configurator | portal | entity)*)>
 <!ELEMENT configurator (attribute*)>
 <!ELEMENT attribute (#PCDATA)>
 <!ELEMENT portal (destination?, implementation?)>
