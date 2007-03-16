@@ -21,7 +21,11 @@ import java.util.Stack;
 
 public class Blackjack extends AbstractQuest implements TurnListener {
 
-	private static final int STAKE = 1; // TODO: increase after testing
+	private static final int MIN_STAKE = 10;
+	
+	private static final int MAX_STAKE = 200;
+	
+	private int stake;
 	
 	private boolean bankStands;
 
@@ -148,6 +152,9 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		bankCardsItem.notifyWorldAboutChanges();
 		if (! playerStands) {
 			message += "You have " + playerSum + ".\n";
+			if (playerSum == 21) {
+				playerStands = true;
+			}
 		}
 		if (! bankStands) {
 			message += "The bank has " + bankSum + ".\n";
@@ -172,25 +179,25 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		int bankSum = sumValues(bankCards);
 		String message = null;
 		if (isBlackjack (bankCards) && isBlackjack (playerCards)) {
-			message = "You have a blackjack, but the bank has one too. It's a push.";
-			payOff(player, 1);
+			message = "You have a blackjack, but the bank has one too. It's a push. ";
+			message += payOff(player, 1);
 		} else if (isBlackjack (bankCards)) {
 			message = "The bank has a blackjack. Better luck next time!";				
 		} else if (isBlackjack (playerCards)) {
-			message = "You have a blackjack! Congratulations!";
-			payOff(player, 3);
+			message = "You have a blackjack! Congratulations! ";
+			message += payOff(player, 3);
 		} else if (playerSum > 21) {
 			if (bankSum > 21 ) {
-				message = "Both have busted! This is a draw.";
-				payOff(player, 1);
+				message = "Both have busted! This is a draw. ";
+				message += payOff(player, 1);
 			} else {
 				message = "You have busted! Better luck next time!";
 			}
 		} else if (bankSum > 21 ) {
-			message = "The bank has busted! Congratulations!";
-			payOff(player, 2);
+			message = "The bank has busted! Congratulations! ";
+			message += payOff(player, 2);
 		} else {
-			if (! playerStands && playerSum != 21) {
+			if (! playerStands) {
 				message = "Do you want another card?";
 				ramon.setCurrentState(ConversationStates.QUESTION_1);
 			} else if (! bankStands) {
@@ -198,11 +205,11 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 			} else if (bankSum > playerSum) {
 				message = "The bank has won. Better luck next time!";
 			} else if (bankSum == playerSum) {
-				message = "This is a draw.";
-				payOff(player, 1);
+				message = "This is a draw. ";
+				message += payOff(player, 1);
 			} else {
-				message = "You have won. Congratulations!";
-				payOff(player, 2);
+				message = "You have won. Congratulations! ";
+				message += payOff(player, 2);
 			}
 		}
 		return message;
@@ -220,10 +227,22 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		}
 	}
 
-	private void payOff(Player player, int factor) {
+	/**
+	 * Gives the player <i>factor</i> times his stake.
+	 * @param player The player.
+	 * @param factor The multiplier. 1 for draw, 2 for win, 3 for win
+	 *               with blackjack.
+	 * @return A message that the NPC should say to inform the player.
+	 */
+	private String payOff(Player player, int factor) {
 		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
-		money.setQuantity(factor * STAKE);
+		money.setQuantity(factor * stake);
 		player.equip(money, true);
+		if (factor == 1) {
+			return "You get your stake back.";
+		} else {
+			return "Here's your stake, plus " + (factor - 1) * stake + " pieces of gold.";
+		}
 	}
 
 	@Override
@@ -288,29 +307,40 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		ramon.add(ConversationStates.ATTENDING,
 					"play",
 					null,
-					ConversationStates.SERVICE_OFFERED,
-					"In order to play, you have to stake " + STAKE + " gold. Do you want to pay?",
+					ConversationStates.ATTENDING,
+					"In order to play, you have to at least #stake #" + MIN_STAKE + " and at most #stake #" + MAX_STAKE + " pieces of gold. So, how much will you risk?",
 					null);
 		
-		ramon.add(ConversationStates.SERVICE_OFFERED,
-				"no",
-				null,
-				ConversationStates.ATTENDING,
-				"Coward! How will you ever become a hero when you risk nothing?",
-				null);
-
-		ramon.add(ConversationStates.SERVICE_OFFERED,
-				SpeakerNPC.YES_MESSAGES,
+		ramon.add(ConversationStates.ATTENDING,
+				"stake",
 				null,
 				ConversationStates.ATTENDING,
 				null,
 				new ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player.drop("money", STAKE)) {
-							startNewGame(player);
+						String[] words = text.split(" ");
+						
+						if (words.length >= 2) {
+							try {
+								stake = Integer.parseInt(words[1].trim());
+							} catch (NumberFormatException e) {
+								npc.say("Just tell me how much you want to risk, for example #stake #50.");
+								return;
+							}
+							if (stake < MIN_STAKE) {
+								npc.say("You must stake at least " + MIN_STAKE + " pieces of gold.");
+							} else if (stake > MAX_STAKE) { 
+								npc.say("You can't stake more than " + MIN_STAKE + " pieces of gold.");
+							} else {
+								if (player.drop("money", stake)) {
+									startNewGame(player);
+								} else {
+									npc.say("Hey! You don't have enough money!");
+								}
+							}
 						} else {
-							npc.say("Hey! You don't have enough money!");
+							npc.say("Just tell me how much you want to risk, for example #stake #50.");
 						}
 					}
 				});
