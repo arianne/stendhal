@@ -1,5 +1,7 @@
 package games.stendhal.server.events;
 
+import games.stendhal.server.StendhalRPWorld;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -114,12 +116,23 @@ public class TurnNotifier {
 	/**
 	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
 	 * 
-	 * @param diff the number of turns to wait
+	 * @param diff the number of turns to wait before notifying
 	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
 	 */
 	public void notifyInTurns(int diff, TurnListener turnListener, String message) {
 		notifyAtTurn(currentTurn + diff + 1, turnListener, message);
+	}
+
+	/**
+	 * Notifies the <i>turnListener</i> in <i>sec</i> seconds.
+	 * 
+	 * @param sec the number of seconds to wait before notifying
+	 * @param turnListener the object to notify
+	 * @param message an object to pass to the event handler
+	 */
+	public void notifyInSeconds(int sec, TurnListener turnListener, String message) {
+		notifyInTurns(StendhalRPWorld.get().getTurnsInSeconds(sec), turnListener, message);
 	}
 
 	/**

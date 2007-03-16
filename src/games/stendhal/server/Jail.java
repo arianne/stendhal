@@ -104,8 +104,7 @@ public class Jail implements TurnListener, LoginListener {
 		//
 		// NOTE: The player won't be automatically released if the
 		// server is restarted before the player could be released.
-		int jailTime = minutes * 60 * 1000 / StendhalRPWorld.MILLISECONDS_PER_TURN;
-		TurnNotifier.get().notifyInTurns(jailTime, this, criminalName);
+		TurnNotifier.get().notifyInSeconds(minutes * 60, this, criminalName);
 	}
 	
 	/**
