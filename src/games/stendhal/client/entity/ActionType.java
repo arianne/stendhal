@@ -6,6 +6,7 @@ import marauroa.common.game.RPAction;
 
 public enum ActionType {
 	LOOK("look","Look"),
+	READ("look","Read"),
 	INSPECT("inspect","Inspect"),
 	ATTACK("attack","Attack"),
 	STOP_ATTACK("stop","Stop attack"),

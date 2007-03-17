@@ -17,6 +17,7 @@ import games.stendhal.client.*;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.List;
 
 public class Sign extends Entity {
 	private final static long STANDARD_PERSISTENCE_TIME = 5000;
@@ -111,10 +112,22 @@ public class Sign extends Entity {
 	}
 	
 	@Override
+	public ActionType defaultAction() {
+		return ActionType.READ;
+	}
+
+	@Override
+	protected void buildOfferedActions(List<String> list) {
+		// we don't want "Look", we use "Read" instead.
+		// super.buildOfferedActions(list);
+		list.add(ActionType.READ.getRepresentation());
+	}
+
+	@Override
 	public void onAction(ActionType at, String... params) {
 		// =handleAction(action);
 		switch (at) {
-		case LOOK:
+		case READ:
 			GameObjects.getInstance().addText(this, textImage, textPersistTime);
 			if (text.contains("\n")) {
 				// The sign's text has multiple lines. Add a linebreak after
