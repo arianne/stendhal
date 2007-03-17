@@ -99,6 +99,16 @@ the wolves while searching for berries here
     </attribute>
    </implementation>
   </entity>
+  <entity x="23" y="48">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+West: Semos city
+East: Jail
+South: Or'ril castle
+    </attribute>
+    <attribute name="class">signpost</attribute>
+   </implementation>
+  </entity>
 
   <entity x="60" y="47">
    <implementation class-name="games.stendhal.server.entity.Sign">
