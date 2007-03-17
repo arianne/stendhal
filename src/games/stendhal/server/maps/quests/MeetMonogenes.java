@@ -87,7 +87,7 @@ public class MeetMonogenes extends AbstractQuest {
 				"no",
 				null,
 				ConversationStates.IDLE,
-				"Already finding your way about, huh? Glad to hear it!",
+				"Already finding your way about, huh? Glad to hear it! Goodbye!",
 				null);
 		
 		npc.addReply("bank", "See this big building in front of me, with the giant fake treasure chest? That's it right there. Kinda obvious once you think about it.");
