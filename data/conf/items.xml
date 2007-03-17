@@ -1679,6 +1679,23 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+	
+   <item name="easter_egg">
+		<type class="food" subclass="easter_egg"/>
+		<description>You see a lovely chocolate easter egg wrapped in coloured foil.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="250"/>
+			<regen value="15"/>
+			<frequency value="30"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
 
 	<item name="button_mushroom">
 		<type class="food" subclass="button_mushroom"/>

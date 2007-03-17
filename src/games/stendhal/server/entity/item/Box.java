@@ -25,7 +25,7 @@ public class Box extends Item implements UseListener {
 	// for christmas presents
 	private static final String[] ITEMS = {"greater_potion", "pie", "sandwich", "carrot", "cherry", "elf_cloak_+2", "summon_scroll"};
 	// for easter presents
-	private static final String[] ITEMS_2 = {"greater_potion", "pie", "sandwich", "dice", "cherry", "elf_cloak_+2", "home_scroll"};
+	private static final String[] ITEMS_2 = {"greater_potion", "pie", "sandwich", "cherry", "elf_cloak_+2", "home_scroll"};
 	/**
 	 * Creates a new box
 	 *
@@ -62,18 +62,39 @@ public class Box extends Item implements UseListener {
 		
 		Player player = (Player) user;
 		String name = getName();
-		if (name.equals("present")||name.equals("basket")) {
+		if (name.equals("present")) {
 			usePresent(player);
-		} else {
+		} 
+		else if (name.equals("basket")) {
+			useBasket(player);
+		} 
+		else {
 			player.sendPrivateText("What a strange box! You don't know how to open it.");
 		}
 	}
-
+	
 	private void usePresent(Player player) {
 		this.removeOne();
-		// change line below if you want ITEMS from christmas
-		String itemName = ITEMS_2[Rand.rand(ITEMS_2.length)];
+		String itemName = ITEMS[Rand.rand(ITEMS.length)];
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+		player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));
+		player.equip(item, true);
+		player.notifyWorldAboutChanges();
+	}
+	private void useBasket(Player player) {
+		this.removeOne();
+		String itemName;
+		if (Rand.roll1D20() == 1) {
+		  itemName = "easter_egg";
+		} else {
+	 	  itemName = ITEMS_2[Rand.rand(ITEMS_2.length)];
+		}
+		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+		if(itemName == "easter_egg"){
+			item.put("bound", player.getName());
+			// item.put("infostring", Bunny); 
+			// it'd be nice to store the fact that these came from Bunny?
+		}
 		player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));
 		player.equip(item, true);
 		player.notifyWorldAboutChanges();
