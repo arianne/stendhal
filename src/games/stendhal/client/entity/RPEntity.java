@@ -451,9 +451,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		if (diff.has("def_item")) {
 			defItem = diff.getInt("def_item");
 		}
-                if (diff.has("mana")) {
-                        mana = diff.getInt("mana");
-                }
+		if (diff.has("mana")) {
+			mana = diff.getInt("mana");
+		}
+		if (diff.has("base_mana")) {
+			base_mana = diff.getInt("base_mana");
+		}
 
 		Color nameColor = Color.white;
 
