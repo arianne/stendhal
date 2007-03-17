@@ -74,6 +74,7 @@ public class TeleporterBehaviour implements TurnListener {
 		speakerNPC.setCurrentState(ConversationStates.IDLE);
 
 		// remove bunny from old zone
+		zone = speakerNPC.getZone();
 		zone.remove(speakerNPC);
 
 		// Teleport to another random place
