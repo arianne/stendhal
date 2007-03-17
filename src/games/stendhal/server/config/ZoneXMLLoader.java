@@ -1,4 +1,4 @@
-package games.stendhal.server;
+package games.stendhal.server.config;
 
 import java.io.*;
 

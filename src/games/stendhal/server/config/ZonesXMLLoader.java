@@ -34,7 +34,6 @@ import games.stendhal.common.ConfigurableFactoryHelper;
 import games.stendhal.common.ConfigurableFactoryContextImpl;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.ZoneXMLLoader;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;

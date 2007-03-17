@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.rule.defaultruleset;
 
+import games.stendhal.server.config.CreaturesXMLLoader;
+import games.stendhal.server.config.ItemsXMLLoader;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -61,7 +63,7 @@ public class DefaultEntityManager implements EntityManager {
 		createdItem = new HashMap<String, Item>();
 
 		try {
-			ItemXMLLoader loader = ItemXMLLoader.get();
+			ItemsXMLLoader loader = ItemsXMLLoader.get();
 			List<DefaultItem> items = loader.load("data/conf/items.xml");
 
 			for (DefaultItem item : items) {
@@ -86,7 +88,7 @@ public class DefaultEntityManager implements EntityManager {
 		createdCreature = new HashMap<String, Creature>();
 
 		try {
-			CreatureXMLLoader loader = CreatureXMLLoader.get();
+			CreaturesXMLLoader loader = CreaturesXMLLoader.get();
 			List<DefaultCreature> creatures = loader
 					.load("data/conf/creatures.xml");
 

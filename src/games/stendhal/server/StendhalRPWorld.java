@@ -15,6 +15,7 @@ package games.stendhal.server;
 import java.net.URI;
 
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.config.ZoneXMLLoader;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;

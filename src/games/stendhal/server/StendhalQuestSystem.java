@@ -3,7 +3,7 @@ package games.stendhal.server;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
-import games.stendhal.server.rule.defaultruleset.QuestXMLLoader;
+import games.stendhal.server.config.QuestsXMLLoader;
 
 import java.lang.reflect.Constructor;
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ public class StendhalQuestSystem {
 
 	private List<IQuest> quests = new LinkedList<IQuest>();
 
-	private QuestXMLLoader questInfos;
+	private QuestsXMLLoader questInfos;
 	private static StendhalQuestSystem stendhalQuestSystem;
 	
 	public static StendhalQuestSystem get() {
@@ -41,7 +41,7 @@ public class StendhalQuestSystem {
 	 * initiales the QuestSystem
 	 */
 	public void init() {
-		questInfos = QuestXMLLoader.get();
+		questInfos = QuestsXMLLoader.get();
 		loadQuest("ArmorForDagobert");
 		loadQuest("AthorFerryService");
 		loadQuest("BeerForHayunn");

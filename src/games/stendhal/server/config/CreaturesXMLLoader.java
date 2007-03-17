@@ -1,4 +1,4 @@
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.config;
 
 import java.io.*;
 import java.util.*;
@@ -8,17 +8,17 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 
-public class CreatureXMLLoader extends DefaultHandler {
+public class CreaturesXMLLoader extends DefaultHandler {
 
 	/** The Singleton instance. */
-	private static CreatureXMLLoader instance;
+	private static CreaturesXMLLoader instance;
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J
-			.getLogger(CreatureXMLLoader.class);
+	private static final Logger logger = Log4J.getLogger(CreaturesXMLLoader.class);
 
 	private String name;
 
@@ -77,20 +77,20 @@ public class CreatureXMLLoader extends DefaultHandler {
 		}
 
 		try {
-			System.out.println(new CreatureXMLLoader().load(argv[0]).size());
+			System.out.println(new CreaturesXMLLoader().load(argv[0]).size());
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 		System.exit(0);
 	}
 
-	private CreatureXMLLoader() {
+	private CreaturesXMLLoader() {
 		// hide constructor, this is a Singleton
 	}
 
-	public static CreatureXMLLoader get() {
+	public static CreaturesXMLLoader get() {
 		if (instance == null) {
-			instance = new CreatureXMLLoader();
+			instance = new CreaturesXMLLoader();
 		}
 		return instance;
 	}

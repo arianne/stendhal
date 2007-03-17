@@ -1,4 +1,4 @@
-package games.stendhal.server.rule.defaultruleset;
+package games.stendhal.server.config;
 
 import java.io.*;
 import java.util.*;
@@ -10,10 +10,12 @@ import javax.xml.parsers.SAXParser;
 import games.stendhal.common.Pair;
 import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
+import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
-public class ItemXMLLoader extends DefaultHandler {
+
+public class ItemsXMLLoader extends DefaultHandler {
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(ItemXMLLoader.class);
+	private static final Logger logger = Log4J.getLogger(ItemsXMLLoader.class);
 
 	private String name;
 
@@ -45,7 +47,7 @@ public class ItemXMLLoader extends DefaultHandler {
 			System.exit(1);
 		}
 		try {
-			List<DefaultItem> items = new ItemXMLLoader().load(argv[0]);
+			List<DefaultItem> items = new ItemsXMLLoader().load(argv[0]);
 			for (DefaultItem item : items) {
 				System.out.println(item.getItemName());
 				//				System.out.println(" -- " + item.getItem());
@@ -58,15 +60,15 @@ public class ItemXMLLoader extends DefaultHandler {
 		System.exit(0);
 	}
 
-	private ItemXMLLoader() {
+	private ItemsXMLLoader() {
 		// hide constructor, this is a Singleton
 	}
 
-	private static ItemXMLLoader instance;
+	private static ItemsXMLLoader instance;
 
-	public static ItemXMLLoader get() {
+	public static ItemsXMLLoader get() {
 		if (instance == null) {
-			instance = new ItemXMLLoader();
+			instance = new ItemsXMLLoader();
 		}
 
 		return instance;
