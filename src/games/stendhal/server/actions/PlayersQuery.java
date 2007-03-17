@@ -16,6 +16,12 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
@@ -45,13 +51,30 @@ public class PlayersQuery extends ActionListener {
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		rules.addGameEvent(player.getName(), "who");
 
-		String online = "" + rules.getPlayers().size() + " Players online: ";
-		for (Player p : rules.getPlayers()) {
-			online += p.getName() + "(" + p.getLevel() + ") ";
+		StringBuilder online = new StringBuilder();
+		online.append(rules.getPlayers().size() + " Players online: ");
+		for (Player p : getSortedPlayers()) {
+			online.append(p.getName() + "(" + p.getLevel() + ") ");
 		}
-		player.sendPrivateText(online);
+		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "who");
+	}
+
+	/**
+	 * sorts the list of players
+	 *
+	 * @return sorted list of players
+	 */
+	private List<Player> getSortedPlayers() {
+		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		List<Player> players = new ArrayList<Player>(rules.getPlayers());
+		Collections.sort(players, new Comparator<Player>() {
+			public int compare(Player o1, Player o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		return players;
 	}
 
 	public void onWhere(Player player, RPAction action) {
