@@ -9,7 +9,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.rule.defaultruleset.CreatureXMLLoader;
+import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
@@ -89,7 +89,7 @@ public class BalanceRPGame {
 		StendhalRPZone area = new StendhalRPZone("test");
 		world.addRPZone(area);
 
-		List<DefaultCreature> creatures = CreatureXMLLoader.get().load(
+		List<DefaultCreature> creatures = CreaturesXMLLoader.get().load(
 				"data/conf/creatures.xml");
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
