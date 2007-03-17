@@ -281,6 +281,12 @@ the wolves while searching for berries here
 
    <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
     <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0" />
+    <!-- This must be after the NPC configurator -->
+    <entity x="2" y="16">
+     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Xin Blanca</attribute>
+     </implementation>
+    </entity>
 
     <portal x="22" y="17" ref="entrance">
      <destination zone="0_semos_city" ref="tavern_entrance"/>

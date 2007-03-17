@@ -81,10 +81,12 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(2, 13));
 				nodes.add(new Path.Node(2, 14));
-				nodes.add(new Path.Node(2, 15));
+				nodes.add(new Path.Node(3, 14));
+				nodes.add(new Path.Node(3, 15));
 				nodes.add(new Path.Node(5, 15));
-				nodes.add(new Path.Node(5, 14));
+				nodes.add(new Path.Node(5, 13));
 				setPath(nodes, true);
 			}
 
