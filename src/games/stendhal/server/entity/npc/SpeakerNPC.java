@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
@@ -30,32 +29,32 @@ import org.apache.log4j.Logger;
  * * Output is the text that the SpeakerNPC answers.
  * 
  * See examples to understand how it works. RULES:
- * * State 0 (IDLE_STATE) is both the start state and the state that
+ * * State 0 (IDLE) is both the start state and the state that
  *   will end the conversation between the player and the SpeakerNPC.
- * * State 1 (ATTENDING_STATE) is the state where only one player can talk to
+ * * State 1 (ATTENDING) is the state where only one player can talk to
  *   NPC and where the prior talk doesn't matter.
- * * State -1 (ANY_STATE) is a wildcard and is used to jump from any state
+ * * State -1 (ANY) is a wildcard and is used to jump from any state
  *   whenever the trigger is active.
  * * States from 2 to 100 are reserved for special behaviours and quests.
  * 
  * Example how it works: First we need to create a message to greet the player
  * and attend it. We add a hi event:
  * 
- * add(ConversationStates.IDLE_STATE,
- *     Behaviours.GREETING_MESSAGES,
- *     ConversationStates.ATTENDING_STATE,
- *     "Welcome player!",
+ * add(ConversationStates.IDLE,
+ *     ConversationPhrases.GREETING_MESSAGES,
+ *     ConversationStates.ATTENDING,
+ *     "Welcome, player!",
  *     null)
  * 
- * Once the NPC is in the IDLE_STATE and hears the word "hi", it will say
- * "Welcome player!" and move to ATTENDING_STATE.
+ * Once the NPC is in the IDLE state and hears the word "hi", it will say
+ * "Welcome player!" and move to ATTENDING.
  * 
  * Now let's add some options when player is in ATTENDING_STATE, like job,
  * offer, buy, sell, etc.
  * 
- * add(ConversationStates.ATTENDING_STATE,
- *     Behaviours.JOB_MESSAGES,
- *     ConversationStates.ATTENDING_STATE,
+ * add(ConversationStates.ATTENDING,
+ *     ConversationPhrases.JOB_MESSAGES,
+ *     ConversationStates.ATTENDING,
  *     "I work as a part time example showman",
  *     null)
  * 
@@ -65,25 +64,25 @@ import org.apache.log4j.Logger;
  *     "I sell best quality swords",
  *     null)
  * 
- * Ok, two new events: job and offer, they go from ATTENDING_STATE to
- * ATTENDING_STATE, because after reacting to "job" or "offer", the NPC can
+ * Ok, two new events: job and offer, they go from ATTENDING state to
+ * ATTENDING state, because after reacting to "job" or "offer", the NPC can
  * directly react to one of these again.
  * 
- * add(ConversationStates.ATTENDING_STATE,
+ * add(ConversationStates.ATTENDING,
  *     "buy",
  *     ConversationStates.BUY_PRICE_OFFERED,
  *     null,
  *     new ChatAction() {
- *         public void fire(Player player, String text, SpeakerNPC engine) {
+ *         public void fire(Player player, String text, SpeakerNPC npc) {
  *             int i=text.indexOf(" "); String item=text.substring(i+1);
  *             if(item.equals("sword")) {
- *             engine.say(item+" costs 10 coins. Do you want to buy?");
- *         } else {
- *             engine.say("Sorry, I don't sell " + item);
- *             engine.setActualState(ConversationStates.ATTENDING_STATE);
+ *             	   npc.say(item+" costs 10 coins. Do you want to buy?");
+ *         	   } else {
+ *                 npc.say("Sorry, I don't sell " + item);
+ *                 npc.setActualState(ConversationStates.ATTENDING);
+ *             }
  *         }
- *    }
- * });
+ *     });
  * 
  * Now the hard part. We listen to "buy", so we need to process the text, and
  * for that we use the ChatAction class, we create a new class that will handle
@@ -92,26 +91,27 @@ import org.apache.log4j.Logger;
  * replies: yes or no.
  * 
  * add(ConversationStates.BUY_PRICE_OFFERED,
- *     SpeakerNPC.YES_MESSAGES,
- *     ConversationStates.ATTENDING_STATE,
+ *     ConversationPhrases.YES_MESSAGES,
+ *     ConversationStates.ATTENDING,
  *     "Sorry, I changed my mind. I won't sell anything.",
  *     null);
- *      // See Behaviours.java for a working example.
+ *      // See SellerBehaviour.java for a working example.
  * 
- * Whatever the reply is, return to ATTENDING_STATE so we can listen to new
+ * Whatever the reply is, return to ATTENDING state so we can listen to new
  * things.
  * 
  * Finally we want to finish the conversation, so whatever state we are, we want
  * to finish a conversation with "Bye!".
  * 
- * add(ConversationStates.ANY_STATE,
- *     Behaviours.GOODBYE_MESSAGES,
- *     ConversationStates.IDLE_STATE,
+ * add(ConversationStates.ANY,
+ *     ConversationPhrases.GOODBYE_MESSAGES,
+ *     ConversationStates.IDLE,
  *     "Bye!",
  *     null);
  * 
- * We use ANY_STATE (-1) as a wildcard, so if the input text is "bye" the
- * transition happens, no matter in which state the FSM really is.
+ * We use the state ANY (-1) as a wildcard, so if the input text is "bye" the
+ * transition happens, no matter in which state the FSM really is, with the
+ * exception of the IDLE state.
  */
 public abstract class SpeakerNPC extends NPC {
 	/** the logger instance. */
@@ -338,11 +338,11 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	abstract public static class ChatAction implements PostTransitionAction {
-		abstract public void fire(Player player, String text, SpeakerNPC engine);
+		abstract public void fire(Player player, String text, SpeakerNPC npc);
 	}
 
 	abstract public static class ChatCondition implements PreTransitionCondition {
-		abstract public boolean fire(Player player, String text, SpeakerNPC engine);
+		abstract public boolean fire(Player player, String text, SpeakerNPC npc);
 	}
 
 	@Override
@@ -409,6 +409,23 @@ public abstract class SpeakerNPC extends NPC {
 			int nextState, String reply, ChatAction action) {
 		for (int state : states) {
 			add(state, trigger, condition, nextState, reply, action);
+		}
+	}
+
+	/**
+	 * Adds a new set of transitions to the FSM
+	 *
+	 * @param states the starting states of the FSM
+	 * @param triggers a list of inputs for this transition
+	 * @param condition null or condition that has to return true for this transition to be considered
+	 * @param nextState the new state of the FSM
+	 * @param reply a simple text replay (may be null for no replay)
+	 * @param action a special action to be taken (may be null)
+	 */
+	public void add(int[] states, List<String> triggers, ChatCondition condition,
+			int nextState, String reply, ChatAction action) {
+		for (int state : states) {
+			add(state, triggers, condition, nextState, reply, action);
 		}
 	}
 
@@ -494,9 +511,9 @@ public abstract class SpeakerNPC extends NPC {
 		addWaitMessage(null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("Please wait, " + player.getName() + "! I am still attending to "
-								+ engine.getAttending().getName() + ".");
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						npc.say("Please wait, " + player.getName() + "! I am still attending to "
+								+ npc.getAttending().getName() + ".");
 					}
 				});
 	}
