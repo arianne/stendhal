@@ -2,6 +2,7 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -140,7 +141,8 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 				santa.set(x, y);
 				santa.setDirection(Direction.RIGHT);
 
-				zone.add(santa);
+				zone.addNPC(santa);
+				StendhalRPRuleProcessor.get().addNPC(santa);
 				found = true;
 				logger.info("Placing Santa at " + zone.getID().getID() + " " + x + " " + y);
 			} else {
