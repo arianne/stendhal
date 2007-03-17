@@ -2749,6 +2749,41 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	
+	<!-- Level 60 -->
+	
+	<creature name="minotaur_king">
+		<type class="minotaur" subclass="mino_king" tileid="98"/>
+		<attributes>
+			<atk value="160"/>
+			<def value="32"/>
+			<hp value="675"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="62"/>
+		<experience value="9500"/>
+		<respawn value="40000"/>
+		<drops>
+			<item value="money" quantity="[15,89]" probability="100"/>
+			<item value="steel_boots" quantity="1" probability="18"/>
+			<item value="viking_helmet" quantity="1" probability="46"/>
+			<item value="greater_potion" quantity="[1,2]" probability="90"/>
+			<item value="empty_scroll" quantity="1" probability="10"/>
+			<item value="chain_legs" quantity="1" probability="6"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="You will never find the way out!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 	<!-- Level 65 -->
 
 	<creature name="vampire_lord">

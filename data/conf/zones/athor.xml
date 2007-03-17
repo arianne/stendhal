@@ -203,6 +203,30 @@
    <portal x="60" y="66" ref="under_pool">
      <destination zone="0_athor_island_w" ref="pool"/>
    </portal>
+   <portal x="121" y="118" ref="labyrinth_entrance">
+     <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+   </portal>
+   <portal x="123" y="118" ref="0">
+   <destination zone="-1_athor_island" ref="labyrinth_come_in"/>
+   <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
+    <attribute name="class">skulldoor</attribute>
+    <attribute name="direction">left</attribute>
+    <attribute name="key">minotaur_key</attribute>
+   </implementation>
+  </portal>
+ </zone>
+
+<zone name="-1_athor_island" file="sub_1_athor_island.xstend">
+   <configurator class-name="games.stendhal.server.maps.athor.USL1_Island"/>
+   <portal x="1" y="118" ref="labyrinth1">
+   	<destination zone="-1_athor_island_w" ref="labyrinth_entrance"/>
+   </portal>
+   <portal x="1" y="119" ref="labyrinth1">
+   	<destination zone="-1_athor_island_w" ref="labyrinth_entrance"/>
+   </portal>
+   <portal x="1" y="119" ref="labyrinth_come_in">
+   	<destination zone="-1_athor_island_w" ref="0"/>
+   </portal>
  </zone>
 
 
