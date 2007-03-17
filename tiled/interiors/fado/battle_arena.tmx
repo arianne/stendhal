@@ -5,49 +5,49 @@
   <property name="y" value="500000"/>
  </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="../../zelda_navigation_chipset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_navigation_chipset.png"/>
  </tileset>
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="../../zelda_objects_chipset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_objects_chipset.png"/>
  </tileset>
  <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
-  <image source="../../zelda_collision_chipset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_collision_chipset.png"/>
  </tileset>
  <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
-  <image source="../../zelda_building_0_tileset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_building_0_tileset.png"/>
  </tileset>
  <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
-  <image source="../../zelda_outside_2_chipset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_outside_2_chipset.png"/>
  </tileset>
  <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
-  <image source="../../zelda_interior_1_chipset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_interior_1_chipset.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
-  <image source="../../zelda_monsters_chipset.png"/>
+  <image source="../../../../../newstendhal/stendhal/tiled/zelda_monsters_chipset.png"/>
  </tileset>
- <layer name="0_floor" width="64" height="64">
+ <layer name="0_floor" width="64" height="64" opacity="0.5">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DMQ0AAAwDoH6TX8uVsQcSeklVVVVVVVVVVVVVVVVVVVXV1wNxLmyhAEAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2aQQrCQBAEFyTX7Bt8nt9Qf+H71G9IwJMQdnudzkisgtyama5LsomW8r/cpuwG23OupVze17VmtwH4Pe5zKY8dXc9Z8z/s7L5wEn3w9/TIAn8tj7+nRxb4a3n8PT2ywF/L4+/pkQX+Wh5/T48s8Nfy+Ht6ZIG/lsff0yML/LU8/p4eWeCv5fH39MgCfy2Pv6dHFvhr+Uj/6P8SqL/lL2T6q7sd8/DX8vjrO6J2O+bhr+WPNe5+PQX7j3SL7gAAsFdGzuxr5/Ktzv+tPcp7w8jzf+0ZG/0uObpHOQPg359tzcdfn+XYg3//Dvz7s635+OuzHHvw798R+Y4d+S3hmz18AwCAT147gJ8xAEAAAA==
+   H4sIAAAAAAAAAO2aQQ7BYBSE/0SKjfYMIg7nGriF82HpCgh2pJ16ryP1TfJ2kzfzddH+LaX8rw6Vu8Hw2jal7J6zb9xtEPo9HetSTiOac63xT0Z2X9iIPPDn9HAJfs0Pf04Pl+DX/PDn9HAJfs0Pf04Pl+DX/PDn9HAJfs0Pf04Pl+DX/PDn9HAJfs0Pf04Pl+DX/PDn9HAJfs0Pf04Pl+DX/JH80f8lUH/Lv8vJr2Zn7INf88OvZ0RlZ+yDX/Mvm7j7dRXM36dbdAeEEBqr+pzZP53Lhzr/t+Uo7w19nv+fnrHR75J9c5QzAPzdvW374dd3ZeTA3z0D/u7etv3w67sycuDvnhH5jh35LeGbHL4BoHdazD1T3WZ6m5kp/zWXmWdW88f1Xxs73OcKL4UjvQBAAAA=
   </data>
  </layer>
  <layer name="2_object" width="64" height="64">
@@ -62,7 +62,7 @@
  </layer>
  <layer name="4_roof_add" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+   H4sIAAAAAAAAAO3OMQEAMAzAoJy9519sZfQYKKAAAAAAAAAAAAAAAAAAAADgb2+uB7VYnspLAEAAAA==
   </data>
  </layer>
  <layer name="objects" width="64" height="64" opacity="0.58">
@@ -70,9 +70,9 @@
    H4sIAAAAAAAAAO3XuQ0AIAwDQFr2n4udECUSVRQ+6W4CV3FcCgDArNXbCWJ+zQ0AAL/wcwNALt0KwOtOdZVOBNgncmNfuP+6AQAAIG5sql17MHvL2X8AAGsdDMg2oQBAAAA=
   </data>
  </layer>
- <layer name="collision" width="64" height="64" opacity="0.14">
+ <layer name="collision" width="64" height="64" opacity="0.27">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZMRKFIBDFrP9RvP8Bf62Ns0DgKcmMXWBNoTjjcchOnL/rJSJX7s/IF65q/5ewn/XTsZ/107Gf9dOxn/XTsZ/107Gf9dOxn/XTsZ/107Gf9dOxn/XTsZ/107Gf9dOxn/XTsZ/107Gf9dNZ2b/6X35Lz+j+kdjPr7G/PmPGXq372V/3V76viXsTEZFnRr5jZ33/jzwDRp6xs87/pzn2989oWWN/fS9ijv39M1rW2F/fi5hjf/+MljVv7d/5+09E9uAP85J0SgBAAAA=
+   H4sIAAAAAAAAAO2ZSwrDMBDFsu5Rev8DdlVosgm2R/arI4F3zzMR+Ac5DnkS79d5iMiZ6x7ZYbT674T+bD4d/dl8Ovqz+XT0Z/Pp6M/m09GfzaejP5tPR382n47+bD4d/dl8Ovqz+XT0Z/Pp6M/m09GfzaejP5tPZ6X/6n/5PT7V/pXoz8/Rv73HjFq99fRvz688r4lvExGReyrP2Fnv/8o7oPKOnXX/3/XRf7xHzxz922sRffQf79EzR//2WkQf/cd79Mz5V/8nv/9EvhDr93c9kvUr9sTu/h8z3liGAEAAAA==
   </data>
  </layer>
  <layer name="navigation" width="64" height="64">
@@ -80,7 +80,7 @@
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
- <layer name="protection" width="64" height="64" opacity="0.62">
+ <layer name="protection" width="64" height="64" visible="0" opacity="0.62">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3UsQkAIAwAQWtXyf77CfYWilHQC3ydXJOopYQkqffi8PPz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz3740Z/j5+fn5+fn5+flP+Wd2Z93Gz8/Pzy9JGrXzx2bM6h5+fn5+fn5+fn5+Sf/WACsFlMQAQAAA
   </data>
