@@ -41,54 +41,45 @@
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAEvjYGD4wD4wOBVo9zsgnQGk+UjEN4H6brGTrg+G04H4LTvEfh4g25KTgcGKEzc9l504TMgcGM2NZn84UCyCEzcNMvspELtyYsfPoPYTMgdGo9tPjP+JsX/U/7TzPzGYlv4f6PQ/FPxPLKaV/8m1n9rmj9o/av+o/aP2j9o/av+o/UPf/n4SMK3sJ1eMkP1eQDYvnbEn1H4PIP2efWCwO9BuAASknH4AEAAA
   </data>
-  <tileproperties/>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3WsQ3AIAxEUZd0rAWLJPskGQQyYWwBBQPEUPwnneTuXJ4I/pZiy7g9Hdp3BZG759Gcjj+s7jdFO2vPG3y7hxxbAAAAMFu1kw07eY+dDD8feRSZsgAQAAA=
   </data>
-  <tileproperties/>
  </layer>
- <layer name="2_object" width="32" height="32" visible="0">
+ <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFpAjYOBQR0Na3DQ3t6HQPwIiF2AdrmiYTcgtmfF1HOWA5UGgWMsDAxJWNQeBuIjQFzOzMBQwYzdDUdYyHc/SC8+/TD/4QKHgXpXQfV/Y2dg+A7FP9iJdwOyGZQAEWB4ikKxGBlxj8sNz4Di/0FywPiJwxJH1AKHcdi/CBjvskB75VghbHRwA49fzxIZDkdZIBgbiIPaC8LY/A+yA1f6HwWUgVYO7JgScB+YN6M5INiEgFltHNgxRYATkj+JyafEpCtsavCmP04K3U8pGEL2j4Y/9cFfEvIfLcJfjIP4/DfSAU3S/xACsDbdPw4EJqVtRylAbtPhatsN9/BHDvvKQRj+Aw0eAsPjERA/BuIn7LjFqAVYgf5nA2J2EsKBHD24gDLQDBUgViXBLFL1AABGo9WFABAAAA==
+   H4sIAAAAAAAAAGNgGFpAjYOBQR0Na3DQ3t6HQPwIiF2AdrmiYTcgtmelzPzDQHwEiMuZGRgqmDHlj7BQZj4hAPMfLnAYaP8qqBu+sTMwfIfiH+y0dRc2IAIMb1EoFqNi3D8D+u8/yI/AuIyjMD7JAYuA8S4LtFeOFcJGB2fx+BWfHLEgDmovCOPyP670PwooA60c2DEl4D4wb0ZzQLAJAbPaOLBjigAnJH8Sk0+JSVfY1OBNf5wUup9SMITsHw1/6oO/JOQ/WoS/GAfx+W+kA5qk/1FAVTAa/iMbPASWp4+A+DEQP2HHLUYtwApMV2xAzE5C+iJHDy6gDDRDBYhVSTCLVD0AzfBUNgAQAAA=
   </data>
-  <tileproperties/>
  </layer>
- <layer name="3_roof" width="32" height="32" visible="0">
+ <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGFyghJmBoZR54OyfBLR78gDavwFo98YBtH8gwQmWgXbB4AdqHAwM6mhYg2OgXTUKhjogJl1hUzOa/qgDRsN/YMFo+A8sGA3/wQ9Gw38UjILhBQCwk1OkABAAAA==
   </data>
-  <tileproperties/>
  </layer>
- <layer name="4_roof_add" width="32" height="32" visible="0">
+ <layer name="4_roof_add" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
-  <tileproperties/>
  </layer>
- <layer name="objects" width="32" height="32" visible="0">
+ <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3LIQEAAAgDsFuK0j/CW4DZ/BIAAABg5+Z8KeRNxtUAEAAA
   </data>
-  <tileproperties/>
  </layer>
- <layer name="collision" width="32" height="32" visible="0" opacity="0.37">
+ <layer name="collision" width="32" height="32" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SwQ3AIAwDeXcU9h+wr0oIFZo4xhSBJT5AcsYkXynlsz6F9Hj26jOGn6i83PIM9croEa3t9VD9QSt36zy1ekY8WPmseVXP+478HkPFt3qzzJV3/jz8EVqJf/Ifw0eyZOWPelPob/zd82e9C+VHPSv4TK2Y/2z+Ww36Dk/+1ruRmlnrBo5mpjEAEAAA
+   H4sIAAAAAAAAAO2USw7AIAhEXXsU73/AbhtDKAwfMWUSV8I8MhLXHGP1+ZSHh8bPU5S3lvu+s2aHeFgk5Vecae/h/KL5VA2aVWbWf+VzjCy+dDbJXmn/Sw0/QjfxO/8YPpKlV/7obBmqxu/86/Oj88/MpPn290d9qD5ur6S1lp5T5wFOr4nAABAAAA==
   </data>
-  <tileproperties/>
  </layer>
  <layer name="navigation" width="32" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
-  <tileproperties/>
  </layer>
  <layer name="protection" width="32" height="32" visible="0" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DMQkAAAwDsN6zUv/+6mMkkF5SVVVV9fUBilLMZwAQAAA=
   </data>
-  <tileproperties/>
  </layer>
 </map>
