@@ -5,40 +5,40 @@
   <property name="y" value="500512"/>
  </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_outside_0_chipset.png" trans="ffffff"/>
+  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_outside_1_chipset.png" trans="ffffff"/>
+  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
  </tileset>
  <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_interior_0_chipset.png" trans="ff00ff"/>
+  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
  </tileset>
  <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_navigation_chipset.png"/>
+  <image source="../../zelda_navigation_chipset.png"/>
  </tileset>
  <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_objects_chipset.png"/>
+  <image source="../../zelda_objects_chipset.png"/>
  </tileset>
  <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_collision_chipset.png"/>
+  <image source="../../zelda_collision_chipset.png"/>
  </tileset>
  <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_building_0_tileset.png"/>
+  <image source="../../zelda_building_0_tileset.png"/>
  </tileset>
  <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_outside_2_chipset.png"/>
+  <image source="../../zelda_outside_2_chipset.png"/>
  </tileset>
  <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_interior_1_chipset.png"/>
+  <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
-  <image source="../../../../../2-28-07/stendhal/tiled/zelda_monsters_chipset.png"/>
+  <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
@@ -75,12 +75,12 @@
    H4sIAAAAAAAAAO3a7WrjMBBG4f7upfT+L7CYEDBCsqzvmXnPA6Hb3Xgj6Vh2Avn5AQBgvb/f598RG/0Bf659WnsgLvpro7+2Vf3f/L8tD6xBfz339cytM/0xiv6xtPahfyz010b/WFrXNdfDcn/OmWer91XtfHnTm/0PAABm4jPJO6fmuboH/e25r2lPz9bn09+u0vqW1p/+sTytb+7f6B8L139tp/u/fY5X1sdfG1/awPp80Gb1/t8lwrVip/u1t+c4a+jfJ0p/9OH9OBCLlT0647M/16N5aus3e83pbwv9tdFfW7pmb/o//X3L69FfD/210V8b/fewugYq/XfNc8bcv8fM/nlyXU7z1n/XOFqPp//auVsaSyRe+q8cqzIr/WsdZjfjHPiw0r91rDPHrsxL/9yxJ8/FKLz0T8c6c+zKvPQv7f9Zc1blpX861u/vM+as7GT/lnOD/b/G6c4t14ZS/zcN0+No/3G6M/v/rNOdR/f/0/Ejr6XidOdSr9o4Z89blZXuuZ+9Y209RpmF/rkxjYyz5zhVI3t2xTlQOy/Y/+fk+u9+/Tc/W4/Ds9J65c6F1j/DPlrVsUZ6VN5HRJ7bCIX2lxn3+Wj3f5W9v9rIZzgLrIxjhLV1LX3OwBr0h5X2F/pro7+23v6W7mHoN9K/5fmIhf0fA/d/bfTXRn9t9NdGf20n+vO5wY6T/TkHztvdn+62cP/fo/S9CgsPL+P0/FA3sgasn3/fhj37gv7+3Ru2XhPp71/av/dY+NTT8H7PgG/018b7f218ftZGf227+nO+2LSjP9cMu9j/2rj/a6O/tlpb+gMAAAAAAAAAAAAAAKBE+fsj6nNX/w4R82fuqvO/KM/9oj5/z2inLddf/XquhO/Cg/7a0uacAwDgyz+H6KgZAAABAA==
   </data>
  </layer>
- <layer name="navigation" width="64" height="64" visible="0">
+ <layer name="navigation" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
   </data>
  </layer>
- <layer name="protection" width="64" height="64" visible="0" opacity="0.12">
+ <layer name="protection" width="128" height="128" visible="0" opacity="0.12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OIQEAIBAAscNS5fv3+xgIJuY3twYAAAAAAPjW6f0BAAAAAAAAAAAAqAUJZNElAEAAAA==
   </data>
