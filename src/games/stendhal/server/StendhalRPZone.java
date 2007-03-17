@@ -196,11 +196,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return portal.getReference();
 	}
 
-	public void addNPC(NPC npc) {
-		add(npc);
-		npcs.add(npc);
-	}
-
 	public void setEntryPoint(int x, int y) {
 		entryPoint = new Point(x, y);
 	}
@@ -372,7 +367,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				sheep.setX(x);
 				sheep.setY(y);
 				add(sheep);
-				npcs.add(sheep);
 				break;
 			}
 			case 91: /* sign */
@@ -621,6 +615,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			Item item = (Item) object;
 			item.onPutOnGround(player);
 			itemsOnGround.add(item);
+		}
+
+		if(object instanceof NPC) {
+			npcs.add((NPC) object);
 		}
 
 		if(object instanceof Entity) {

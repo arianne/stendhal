@@ -78,7 +78,7 @@ public class USL3_Catacombs implements ZoneConfigurator {
 		sicky.put("class","sickvampirenpc");
 		sicky.set(61,60); 
 		sicky.initHP(10);
-		zone.addNPC(sicky);
+		zone.add(sicky);
 		npcs.add(sicky);
 	}
 }

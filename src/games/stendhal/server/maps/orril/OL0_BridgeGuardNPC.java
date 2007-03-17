@@ -56,6 +56,6 @@ public class OL0_BridgeGuardNPC implements ZoneConfigurator {
 		npc.put("class", "recruiter1npc");
 		npc.set(62, 104);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

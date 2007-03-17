@@ -64,7 +64,7 @@ public class IL0_PostNPC implements ZoneConfigurator {
 		npc.put("class", "postelfnpc");
 		npc.set(11, 2);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 	
 	}

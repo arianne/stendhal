@@ -76,6 +76,6 @@ public class USL3_OutsideNorthWest implements ZoneConfigurator {
 		npc.put("class", "beardmannpc");
 		npc.set(4, 46);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

@@ -74,7 +74,7 @@ public class IL0_MaidNPC implements ZoneConfigurator {
 		tavernMaid.put("class", "maidnpc");
 		tavernMaid.set(10, 16);
 		tavernMaid.initHP(100);
-		zone.addNPC(tavernMaid);
+		zone.add(tavernMaid);
 
 	}
 }

@@ -64,6 +64,6 @@ public class IL0_TellerNPC implements ZoneConfigurator {
 		BankNPC.put("class", "youngnpc");
 		BankNPC.set(15, 1);
 		BankNPC.initHP(1000);
-		zone.addNPC(BankNPC);
+		zone.add(BankNPC);
 	}
 }

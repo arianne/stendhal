@@ -58,7 +58,7 @@ public class IL0_Storage implements ZoneConfigurator {
 		npc.put("class", "welcomernpc");
 		npc.set(4, 12);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 		npc = new SpeakerNPC("Ketteh Wehoh") {
 			@Override
 			protected void createPath() {
@@ -89,6 +89,6 @@ public class IL0_Storage implements ZoneConfigurator {
 		npc.put("class", "elegantladynpc");
 		npc.set(21, 5);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

@@ -86,7 +86,7 @@ public class IL0_Library implements ZoneConfigurator {
 		npc.put("class", "investigatornpc");
 		npc.set(9, 8);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 

@@ -62,6 +62,6 @@ public class IL0_Dressing_Rooms_Female implements ZoneConfigurator {
 		pam.setDirection(Direction.LEFT);
 		pam.set(12, 10);
 		pam.initHP(100);
-		zone.addNPC(pam);
+		zone.add(pam);
 	}
 }

@@ -118,6 +118,6 @@ public class OrcishHappyMeal extends AbstractQuest {
 		npc.put("class", "orcbuyernpc");
 		npc.set(67, 12);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

@@ -68,6 +68,6 @@ public class USL3_DwarfBlacksmith implements ZoneConfigurator {
 		hogart.set(20,10); 
 		hogart.initHP(100);
 		npcs.add(hogart);
-		zone.addNPC(hogart);    
+		zone.add(hogart);    
 	} 
 }

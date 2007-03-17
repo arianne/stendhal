@@ -109,7 +109,7 @@ public class IL0_Library implements ZoneConfigurator {
 		npc.put("class", "wisemannpc");
 		npc.set(15, 2);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 		npc = new SpeakerNPC("Ceryl") {
 			@Override
 			protected void createPath() {
@@ -132,6 +132,6 @@ public class IL0_Library implements ZoneConfigurator {
 		npc.put("class", "investigatornpc");
 		npc.set(28, 11);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

@@ -88,7 +88,7 @@ public abstract class ScriptingSandbox {
 	public void add(NPC npc) {
 		if (zone != null) {
 			zone.assignRPObjectID(npc);
-			zone.addNPC(npc);
+			zone.add(npc);
 			StendhalRPRuleProcessor.get().addNPC(npc);
 			loadedNPCs.add(npc);
 			logger.info(filename + " added NPC: " + npc);

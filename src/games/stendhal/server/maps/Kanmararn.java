@@ -67,7 +67,7 @@ public class Kanmararn implements ZoneConfigurator {
 		henry.setDescription("You see a young soldier who appears to be afraid.");
 		npcs.add(henry);
 		zone.assignRPObjectID(henry);
-		zone.addNPC(henry);
+		zone.add(henry);
 		henry.set(57, 112);
 	}
 
@@ -100,7 +100,7 @@ public class Kanmararn implements ZoneConfigurator {
 		james.put("class", "royalguardnpc");
 		npcs.add(james);
 		zone.assignRPObjectID(james);
-		zone.addNPC(james);
+		zone.add(james);
 		james.set(66, 45);
 	}
 }

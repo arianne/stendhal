@@ -207,7 +207,7 @@ public class AthorFerryService extends AbstractQuest {
 		captain.setDirection(Direction.DOWN);
 		captain.initHP(100);
 		AthorFerry.get().addListener(captain);
-		shipZone.addNPC(captain);
+		shipZone.add(captain);
 	
 
 		FerryAnnouncerNPC jackie = new FerryAnnouncerNPC ("Jackie") {
@@ -307,7 +307,7 @@ public class AthorFerryService extends AbstractQuest {
 		jackie.setDirection(Direction.LEFT);
 		jackie.initHP(100);
 		AthorFerry.get().addListener(jackie);
-		shipZone.addNPC(jackie);
+		shipZone.add(jackie);
 	}
 
 	private void buildShipUnderDeck1Area(final StendhalRPZone shipUnderDeck1Zone) {
@@ -358,7 +358,7 @@ public class AthorFerryService extends AbstractQuest {
 		laura.set(27, 27);
 		laura.initHP(100);
 		AthorFerry.get().addListener(laura);
-		shipUnderDeck1Zone.addNPC(laura);
+		shipUnderDeck1Zone.add(laura);
 	}
 
 	private void buildMainlandDocksArea(final StendhalRPZone mainlandDocksZone, final StendhalRPZone shipZone) {
@@ -456,7 +456,7 @@ public class AthorFerryService extends AbstractQuest {
 		eliza.setDirection(Direction.LEFT);
 		eliza.initHP(100);
 		AthorFerry.get().addListener(eliza);
-		mainlandDocksZone.addNPC(eliza);
+		mainlandDocksZone.add(eliza);
 	}
 
 	private void buildIslandDocksArea(final StendhalRPZone islandDocksZone, final StendhalRPZone shipZone) {
@@ -553,7 +553,7 @@ public class AthorFerryService extends AbstractQuest {
 		jessica.setDirection(Direction.LEFT);
 		jessica.initHP(100);
 		AthorFerry.get().addListener(jessica);
-		islandDocksZone.addNPC(jessica);
+		islandDocksZone.add(jessica);
 	}
 
 	@Override

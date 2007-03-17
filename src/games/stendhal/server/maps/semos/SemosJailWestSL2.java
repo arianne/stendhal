@@ -58,7 +58,7 @@ public class SemosJailWestSL2 implements ZoneConfigurator {
 		npc.put("class", "youngsoldiernpc");
 		npc.set(4, 14);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void disabledMagicScrolls(StendhalRPZone zone) {

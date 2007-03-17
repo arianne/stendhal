@@ -63,6 +63,6 @@ public class OL0_PlainsNorth implements ZoneConfigurator {
 		npc.put("class", "plinknpc");
 		npc.set(36, 108);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

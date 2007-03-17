@@ -314,7 +314,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		npc.set(20, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc); 
+		zone.add(npc); 
 	}
 	
 	private void step1CreateDoors() {

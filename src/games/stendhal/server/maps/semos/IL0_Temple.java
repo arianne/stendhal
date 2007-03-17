@@ -58,7 +58,7 @@ public class IL0_Temple implements ZoneConfigurator {
 		npc.put("class", "welcomernpc");
 		npc.set(9, 5);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 		npc = new SpeakerNPC("Io Flotto") {
 			@Override
 			protected void createPath() {
@@ -115,6 +115,6 @@ public class IL0_Temple implements ZoneConfigurator {
 		npc.put("class", "floattingladynpc");
 		npc.set(8, 18);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

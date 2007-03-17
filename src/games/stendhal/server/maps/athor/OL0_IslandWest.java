@@ -61,6 +61,6 @@ public class OL0_IslandWest implements ZoneConfigurator {
 		cyk.set(172, 39);
 		cyk.setDirection(Direction.DOWN);
 		cyk.initHP(100);
-		zone.addNPC(cyk);
+		zone.add(cyk);
 	}
 }

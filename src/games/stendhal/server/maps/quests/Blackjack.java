@@ -286,7 +286,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		ramon.setDirection(Direction.DOWN);
 		ramon.setBaseHP(100);
 		ramon.setHP(ramon.getBaseHP());
-		zone.addNPC(ramon);		
+		zone.add(ramon);		
 
 		cardValues = new HashMap<String,Integer>();
 		String[] colors = {"♣", "♦", "♥", "♠"};

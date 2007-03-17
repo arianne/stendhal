@@ -68,7 +68,7 @@ public class IL0_MayorNPC implements ZoneConfigurator {
 		npc.put("class", "elfmayornpc");
 		npc.set(9, 22);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 	
 	}

@@ -112,7 +112,7 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		npc.set(41, 39);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 		npc = new SpeakerNPC("Dr. Feelgood") {
 			@Override
@@ -156,7 +156,7 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		npc.set(53, 27);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 		// put special RespawnPoints
 		// 65, 34 bear

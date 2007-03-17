@@ -107,6 +107,6 @@ public class IL0_BakerNPC implements ZoneConfigurator {
 		baker.setDirection(Direction.DOWN);
 		baker.set(15, 2);
 		baker.initHP(1000);
-		zone.addNPC(baker);
+		zone.add(baker);
 	}
 }

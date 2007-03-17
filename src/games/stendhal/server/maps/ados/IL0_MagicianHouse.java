@@ -103,7 +103,7 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 		npc.put("class", "wisemannpc");
 		npc.set(7, 1);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 		// Summon scroll
 		Item item = addPersistentItem("summon_scroll", zone, 7, 6);

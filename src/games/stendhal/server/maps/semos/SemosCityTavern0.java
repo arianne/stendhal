@@ -73,7 +73,7 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 		margaret.put("class", "tavernbarmaidnpc");
 		margaret.set(17, 12);
 		margaret.initHP(100);
-		zone.addNPC(margaret);
+		zone.add(margaret);
 	}		
 
 	private void buildXinBlanca(final StendhalRPZone zone) {
@@ -127,7 +127,7 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 		xinBlanca.setY(14);
 		xinBlanca.setBaseHP(100);
 		xinBlanca.setHP(xinBlanca.getBaseHP());
-		zone.addNPC(xinBlanca);
+		zone.add(xinBlanca);
 	}
 
 	private void buildRicardo(StendhalRPZone zone) {
@@ -161,6 +161,6 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 		ricardo.setHP(ricardo.getBaseHP());
 		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
 		ricardo.setTableArea(tableArea);
-		zone.addNPC(ricardo);		
+		zone.add(ricardo);		
 	}
 }

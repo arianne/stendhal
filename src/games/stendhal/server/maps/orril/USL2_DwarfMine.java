@@ -69,6 +69,6 @@ public class USL2_DwarfMine implements ZoneConfigurator {
 		loretta.put("class", "greendwarfnpc");
 		loretta.set(49, 67);
 		loretta.initHP(100);
-		zone.addNPC(loretta);
+		zone.add(loretta);
 	}
 }

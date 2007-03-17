@@ -84,7 +84,7 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 		hackim.put("class", "naughtyteennpc");
 		hackim.set(5, 1);
 		hackim.initHP(100);
-		zone.addNPC(hackim);
+		zone.add(hackim);
 		
 		SpeakerNPC xoderos = new SpeakerNPC("Xoderos") {
 			@Override
@@ -140,6 +140,6 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 		xoderos.put("class", "blacksmithnpc");
 		xoderos.set(23, 11);
 		xoderos.initHP(100);
-		zone.addNPC(xoderos);
+		zone.add(xoderos);
 	}
 }

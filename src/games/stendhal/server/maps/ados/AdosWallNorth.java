@@ -66,7 +66,7 @@ public class AdosWallNorth implements ZoneConfigurator {
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 	}
 

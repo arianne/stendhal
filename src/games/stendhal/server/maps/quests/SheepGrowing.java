@@ -131,7 +131,7 @@ public class SheepGrowing extends AbstractQuest {
 		npc.put("class", "sellernpc");
 		npc.set(33, 44);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_city"));
 
@@ -222,6 +222,6 @@ public class SheepGrowing extends AbstractQuest {
 		npc.put("class", "buyernpc");
 		npc.set(40, 44);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

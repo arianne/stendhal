@@ -416,7 +416,7 @@ public class Deathmatch extends AbstractQuest {
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private DeathMatchCreature add(StendhalRPZone zone, Creature template, int x, int y, Player player) {

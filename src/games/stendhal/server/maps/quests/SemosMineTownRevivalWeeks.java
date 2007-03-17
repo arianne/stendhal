@@ -111,7 +111,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		//npc.setSpeed(1.0);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void createSignToCloseTower() {

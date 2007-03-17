@@ -51,6 +51,6 @@ public class AdosRock implements ZoneConfigurator {
 		npc.set(16, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

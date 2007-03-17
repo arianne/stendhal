@@ -65,7 +65,7 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 		ouchit.put("class", "weaponsellernpc");
 		ouchit.set(21, 2);
 		ouchit.initHP(100);
-		zone.addNPC(ouchit);
+		zone.add(ouchit);
 	}
 
 	private void buildMcPegleg(StendhalRPZone zone) {
@@ -119,7 +119,7 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 		mcpegleg.put("class", "pirate_sailornpc");
 		mcpegleg.set(16, 2);
 		mcpegleg.initHP(100);
-		zone.addNPC(mcpegleg);
+		zone.add(mcpegleg);
 
 		// Add a blackboard with the shop offers
 		Sign board = new Sign();

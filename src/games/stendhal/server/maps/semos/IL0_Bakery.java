@@ -72,7 +72,7 @@ public class IL0_Bakery implements ZoneConfigurator {
 		erna.put("class", "housewifenpc");
 		erna.set(26, 8);
 		erna.initHP(100);
-		zone.addNPC(erna);
+		zone.add(erna);
 
 		SpeakerNPC leander = new SpeakerNPC("Leander") {
 			@Override
@@ -138,6 +138,6 @@ public class IL0_Bakery implements ZoneConfigurator {
 		leander.setDirection(Direction.DOWN);
 		leander.set(15, 2);
 		leander.initHP(100);
-		zone.addNPC(leander);
+		zone.add(leander);
 	}
 }

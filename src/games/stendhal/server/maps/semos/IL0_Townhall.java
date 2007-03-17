@@ -72,7 +72,7 @@ public class IL0_Townhall implements ZoneConfigurator {
 		npc.set(13, 37);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 	
 	/**
@@ -103,6 +103,6 @@ public class IL0_Townhall implements ZoneConfigurator {
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

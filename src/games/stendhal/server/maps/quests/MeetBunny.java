@@ -94,7 +94,7 @@ public class MeetBunny extends AbstractQuest implements TurnListener {
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
 		zone.assignRPObjectID(bunny);
 		bunny.set(17, 12);
-		zone.addNPC(bunny);
+		zone.add(bunny);
 
 		return bunny;
 	}
@@ -141,7 +141,7 @@ public class MeetBunny extends AbstractQuest implements TurnListener {
 				bunny.set(x, y);
 				bunny.setDirection(Direction.RIGHT);
 
-				zone.addNPC(bunny);
+				zone.add(bunny);
 				StendhalRPRuleProcessor.get().addNPC(bunny);
 				found = true;
 				logger.info("Placing bunny at " + zone.getID().getID() + " " + x + " " + y);

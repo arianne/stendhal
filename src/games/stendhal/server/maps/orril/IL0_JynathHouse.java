@@ -74,6 +74,6 @@ public class IL0_JynathHouse implements ZoneConfigurator {
 		npc.put("class", "witchnpc");
 		npc.set(24, 6);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

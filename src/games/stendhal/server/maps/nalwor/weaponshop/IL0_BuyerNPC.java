@@ -73,7 +73,7 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 		npc.put("class", "elfbuyernpc");
 		npc.set(4, 4);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 
 		// Add a blackboard with the shop offers
 		Sign blackboard = new Sign();

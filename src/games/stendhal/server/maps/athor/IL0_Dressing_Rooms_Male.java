@@ -63,6 +63,6 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 		david.setDirection(Direction.RIGHT);
 		david.set(3, 10);
 		david.initHP(100);
-		zone.addNPC(david);
+		zone.add(david);
 	}
 }

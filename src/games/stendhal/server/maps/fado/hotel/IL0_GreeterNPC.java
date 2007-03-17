@@ -69,6 +69,6 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 		greeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
 		greeterNPC.set(16, 48);
 		greeterNPC.initHP(1000);
-		zone.addNPC(greeterNPC);
+		zone.add(greeterNPC);
 	}
 }

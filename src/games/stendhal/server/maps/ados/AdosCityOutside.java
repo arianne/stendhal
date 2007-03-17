@@ -68,7 +68,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 		npc.set(20, 12);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void buildKids(StendhalRPZone zone) {
@@ -117,7 +117,7 @@ public class AdosCityOutside implements ZoneConfigurator {
 		npc.set(start[i].x, start[i].y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 		}
 	}
 }

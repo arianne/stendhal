@@ -62,6 +62,6 @@ public class OL0_RiverSouthCampfire implements ZoneConfigurator {
 		npc.set(40, 60);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

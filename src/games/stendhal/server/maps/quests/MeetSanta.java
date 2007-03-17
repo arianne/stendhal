@@ -94,7 +94,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
 		zone.assignRPObjectID(santa);
 		santa.set(17, 12);
-		zone.addNPC(santa);
+		zone.add(santa);
 
 		return santa;
 	}
@@ -141,7 +141,7 @@ public class MeetSanta extends AbstractQuest implements TurnListener {
 				santa.set(x, y);
 				santa.setDirection(Direction.RIGHT);
 
-				zone.addNPC(santa);
+				zone.add(santa);
 				StendhalRPRuleProcessor.get().addNPC(santa);
 				found = true;
 				logger.info("Placing Santa at " + zone.getID().getID() + " " + x + " " + y);

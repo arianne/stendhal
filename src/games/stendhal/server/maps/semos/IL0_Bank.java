@@ -51,6 +51,6 @@ public class IL0_Bank implements ZoneConfigurator {
 		npc.set(9, 22);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

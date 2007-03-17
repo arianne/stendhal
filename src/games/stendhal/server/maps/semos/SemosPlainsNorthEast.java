@@ -62,6 +62,6 @@ public class SemosPlainsNorthEast implements ZoneConfigurator {
 		npc.setDirection(Direction.DOWN);
 		npc.set(19, 38);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }

@@ -114,7 +114,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 		npc.put("class", "thiefnpc");
 		npc.set(46, 19);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void buildSemosCityAreaMonogenes(StendhalRPZone zone) {
@@ -138,7 +138,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 		npc.set(26, 21);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void buildSemosCityAreaHayunnNaratha(StendhalRPZone zone) {
@@ -189,7 +189,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 		npc.put("class", "oldheronpc");
 		npc.set(27, 37);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void buildSemosCityAreaDiogenes(StendhalRPZone zone) {
@@ -258,7 +258,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 		npc.put("class", "beggarnpc");
 		npc.set(24, 42);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 
 	private void buildSemosCityAreaCarmen(StendhalRPZone zone) {
@@ -286,6 +286,6 @@ public class SemosCityOutside implements ZoneConfigurator {
 		npc.put("class", "welcomernpc");
 		npc.set(5, 45);
 		npc.initHP(100);
-		zone.addNPC(npc);
+		zone.add(npc);
 	}
 }
