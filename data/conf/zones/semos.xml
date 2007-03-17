@@ -523,18 +523,22 @@ with you.
     <!-- Prevent table dancing (this is a family friendly townhall) -->
     <entity x="4" y="32">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="4" y="33">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="6" y="32">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
     <entity x="6" y="33">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
    </zone>
 
