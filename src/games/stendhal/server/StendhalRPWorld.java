@@ -320,7 +320,7 @@ public class StendhalRPWorld extends RPWorld {
 
 		door.setDestination(name, new Integer(0));
 		zone.assignRPObjectID(door);
-		zone.addPortal(door);
+		zone.add(door);
 
 		StendhalRPZone house = addArea(name, "int_house_000");
 		Portal portal = new Portal();
@@ -329,7 +329,7 @@ public class StendhalRPWorld extends RPWorld {
 		portal.setY(1);
 		portal.setReference(new Integer(0));
 		house.assignRPObjectID(portal);
-		house.addPortal(portal);
+		house.add(portal);
 	}
 
 	@Override

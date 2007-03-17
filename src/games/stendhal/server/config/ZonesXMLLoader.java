@@ -337,11 +337,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 						"Replacing portal: "
 						+ oportal);
 
-					zone.removePortal(oportal);
+					zone.remove(oportal);
 				}
 			}
 
-			zone.addPortal(portal);
+			zone.add(portal);
 		} catch(IllegalArgumentException ex) {
 			logger.error("Error with portal factory", ex);
 		}

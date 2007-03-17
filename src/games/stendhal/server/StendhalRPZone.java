@@ -177,16 +177,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return plantGrowers;
 	}
 
-	public void addPortal(Portal portal) {
-		add(portal);
-		portals.add(portal);
-	}
-
-	public void removePortal(Portal portal) {
-		remove(portal);
-		portals.remove(portal);
-	}
-
 	// We reserve the first 64 portals ids for hand made portals
 	private int maxPortalNumber = 64;
 
@@ -481,7 +471,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		portal.setX(x);
 		portal.setY(y);
 		assignPortalID(portal);
-		addPortal(portal);
+		add(portal);
 
 		boolean assigned = false;
 
@@ -621,6 +611,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			npcs.add((NPC) object);
 		}
 
+		if(object instanceof Portal) {
+			portals.add((Portal) object);
+		}
+
 		if(object instanceof Entity) {
 			((Entity) object).onAdded(this);
 		}
@@ -634,6 +628,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if(object instanceof Entity) {
 			((Entity) object).onRemoved(this);
+		}
+
+		if(object instanceof Portal) {
+			portals.remove((Portal) object);
 		}
 
 		/*
