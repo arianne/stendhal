@@ -84,8 +84,8 @@ public class Transition {
 	 * @return true if the transition matches, false otherwise
 	 */
 	public boolean matchesBeginning(int state, String text) {
-		text = text.toLowerCase();
-		return (state == this.state) && text.startsWith(trigger);
+		String temp = text.toLowerCase();
+		return (state == this.state) && temp.startsWith(trigger);
 	}
 
 	/**
