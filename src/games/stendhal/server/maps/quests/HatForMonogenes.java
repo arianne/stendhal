@@ -51,52 +51,51 @@ public class HatForMonogenes extends AbstractQuest {
 		return res;
 	}
 
-	private void step_1() {
-		SpeakerNPC npc = npcs.get("Monogenes");
+	private void createRequestingStep() {
+		SpeakerNPC monogenes = npcs.get("Monogenes");
 
-		npc.add(ConversationStates.ATTENDING,
+		monogenes.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (!player.isQuestCompleted("hat_monogenes")) {
-							engine.say("Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...");
+							npc.say("Could you bring me a #hat to cover my bald head? Brrrrr! The days here in Semos are really getting colder...");
 						} else {
-							engine.say("Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.");
-							engine.setCurrentState(1);
+							npc.say("Thanks for the offer, good friend, but this hat will last me five winters at least, and it's not like I need more than one.");
+							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_OFFERED,
+		monogenes.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Thanks, my good friend. I'll be waiting here for your return!",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.setQuest("hat_monogenes", "start");
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
+		monogenes.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"You surely have more importants things to do, and little time to do them in. I'll just stay here and freeze to death, I guess... *sniff*",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.setQuest("hat_monogenes", "rejected");
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_OFFERED,
+		monogenes.add(ConversationStates.QUEST_OFFERED,
 				"hat",
 				null,
 				ConversationStates.QUEST_OFFERED,
@@ -104,18 +103,14 @@ public class HatForMonogenes extends AbstractQuest {
 				null);
 	}
 
-	private void step_2() {
-		//Just buy the leather_helmet from Xin Blanca. It isn't a quest
-	}
+	private void createBringingStep() {
+		SpeakerNPC monogenes = npcs.get("Monogenes");
 
-	private void step_3() {
-		SpeakerNPC npc = npcs.get("Monogenes");
-
-		npc.add(ConversationStates.IDLE,
+		monogenes.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest("hat_monogenes")
 								&& player.getQuest("hat_monogenes").equals("start");
 					}
@@ -124,23 +119,23 @@ public class HatForMonogenes extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (player.isEquipped("leather_helmet")) {
-							engine.say("Hey! Is that leather hat for me?");
+							npc.say("Hey! Is that leather hat for me?");
 						} else {
-							engine.say("Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...");
-							engine.setCurrentState(1);
+							npc.say("Hey, my good friend, remember that leather hat I asked you about before? It's still pretty chilly here...");
+							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+		monogenes.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.YES_MESSAGES,
 				// make sure the player isn't cheating by putting the helmet
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.isEquipped("leather_helmet");
 					}
 				}, 
@@ -148,7 +143,7 @@ public class HatForMonogenes extends AbstractQuest {
 				"Bless you, my good friend! Now my head will stay nice and warm.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("leather_helmet");
 
 						player.addXP(10);
@@ -157,8 +152,8 @@ public class HatForMonogenes extends AbstractQuest {
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"no",
+		monogenes.add(ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"I guess someone more fortunate will get his hat today... *sneeze*",
@@ -169,8 +164,7 @@ public class HatForMonogenes extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
-		step_2();
-		step_3();
+		createRequestingStep();
+		createBringingStep();
 	}
 }
