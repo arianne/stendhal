@@ -52,10 +52,19 @@ public class Door extends AnimatedEntity {
 			break;
 		}
 
+		int width;
+		int height;
+		if (direction.equals("n") || direction.equals("s")) {
+			width = 3;
+			height = 2;
+		} else {
+			width = 2;
+			height = 3;
+		}
 		sprites.put("open", store.getAnimatedSprite("data/sprites/doors/"
-				+ clazz + "_" + direction + ".png", 0, 1, 3, 2));
+				+ clazz + "_" + direction + ".png", 0, 1, width, height));
 		sprites.put("close", store.getAnimatedSprite("data/sprites/doors/"
-				+ clazz + "_" + direction + ".png", 1, 1, 3, 2));
+				+ clazz + "_" + direction + ".png", 1, 1, width, height));
 	}
 
 	@Override
