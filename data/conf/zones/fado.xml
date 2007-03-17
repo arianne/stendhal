@@ -38,7 +38,10 @@
            <portal x="71" y="98" ref="shepherd_house_entrance">
              <destination zone="int_fado_shepherd_house" ref="entrance"/>
            </portal>
-         </zone>
+           <portal x="82" y="44" ref="battle_arena_entrance">
+             <destination zone="int_fado_battle_arena" ref="entrance"/>
+           </portal>
+   	</zone>
          
          <zone name="int_fado_bank" file="int_fado_bank.xstend">
            <configurator class-name="games.stendhal.server.maps.fado.bank.IL0_TellerNPC"/>
@@ -248,6 +251,12 @@
          <zone name="int_fado_hotel_room_008" file="int_fado_room_008.xstend">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
+           </portal>
+         </zone>
+	 
+	 <zone name="int_fado_battle_arena" file="int_fado_battle_arena.xstend">
+           <portal x="31" y="63" ref="entrance">
+             <destination zone="0_fado_city" ref="battle_arena_enterance"/>
            </portal>
          </zone>
 	 
