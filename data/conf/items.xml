@@ -1989,6 +1989,18 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="kokuda">
+		<type class="herb" subclass="kokuda"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
     <item name="wood">
         <type class="resource" subclass="wood"/>
         <description>You see some wood, fallen from a nearby tree.</description>
