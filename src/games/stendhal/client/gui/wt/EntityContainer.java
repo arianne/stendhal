@@ -163,7 +163,7 @@ public class EntityContainer extends WtPanel {
 		if ((parent != null) && (slotName != null) && !isClosed()) {
 			RPSlot rpslot = parent.getSlot(slotName);
 			// rescan the content if the size changes
-			if (!shownSlot.equals(rpslot)) {
+			if ((shownSlot == null) || !shownSlot.equals(rpslot)) {
 				logger.debug("DIFFERENT");
 				logger.debug("SHOWN: " + shownSlot);
 				logger.debug("ORIGINAL: " + rpslot);
