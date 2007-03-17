@@ -93,9 +93,9 @@ public class TeleporterBehaviour implements TurnListener {
 				zone.add(speakerNPC);
 				StendhalRPRuleProcessor.get().addNPC(speakerNPC);
 				found = true;
-				logger.info("Placing bunny at " + zone.getID().getID() + " " + x + " " + y);
+				logger.debug("Placing bunny at " + zone.getID().getID() + " " + x + " " + y);
 			} else {
-				logger.warn("Cannot place bunny at " + zone.getID().getID() + " " + x + " " + y);
+				logger.info("Cannot place bunny at " + zone.getID().getID() + " " + x + " " + y);
 			}
 		}
 
