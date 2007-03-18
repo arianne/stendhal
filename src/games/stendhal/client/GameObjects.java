@@ -18,9 +18,9 @@ import games.stendhal.client.entity.EntityFabric;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.entity.PlantGrower;
+import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.Text;
-import games.stendhal.common.Direction;
 
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
@@ -222,8 +222,9 @@ public class GameObjects implements Iterable<Entity> {
 		Rectangle2D area = entity.getArea();
 
 		for (Entity other : sortedObjects) {
-			if (!(other instanceof PassiveEntity) && !(other instanceof Blood)
-					&& !(other instanceof PlantGrower)&& !(other instanceof GrainField)) {
+			if (!(other instanceof PassiveEntity || other instanceof Blood
+					|| other instanceof PlantGrower || other instanceof GrainField
+					|| other instanceof Portal)) {
 				if (area.intersects(other.getArea())
 						&& !entity.getID().equals(other.getID())) {
 					entity.onCollideWith(other);
