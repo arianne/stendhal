@@ -1744,7 +1744,111 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+	
+	<item name="spinach">
+		<type class="food" subclass="spinach"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="30"/>
+			<regen value="2"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="courgette">
+		<type class="food" subclass="courgette"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="40"/>
+			<regen value="3"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="cabbage">
+		<type class="food" subclass="cabbage"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="30"/>
+			<regen value="2"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="onion">
+		<type class="food" subclass="onion"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="40"/>
+			<regen value="3"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="cauliflower">
+		<type class="food" subclass="cauliflower"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="30"/>
+			<regen value="2"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
+	<item name="broccoli">
+		<type class="food" subclass="broccoli"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="30"/>
+			<regen value="2"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>		
+	
+	<item name="leek">
+		<type class="food" subclass="leek"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="40"/>
+			<regen value="3"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>	
 <!-- Drinks_section -->
 <!-- Dunno if this is a good place or a good way to describe an alcoholic effect,
        maybe value can be how powerful the alcoholic drink is, and be the one

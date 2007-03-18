@@ -35,9 +35,8 @@ import java.util.List;
  */
 public class Soup extends AbstractQuest {
 
-    //private static final List<String> neededFood = Arrays.asList("carrot", "spinach", "courgette", "cabbage", "salad", "onions", "cauliflower","broccoli", "leek");
-	//the real ingredients are above, but not all are in game yet
-	private static final List<String> neededFood = Arrays.asList("carrot", "salad", "apple", "cherry");
+    private static final List<String> neededFood = Arrays.asList("carrot", "spinach", "courgette", "cabbage", "salad", "onion", "cauliflower", "broccoli", "leek");
+
 	/**
 	 * Returns a list of the names of all food that the given player
 	 * still has to bring to fulfil the quest.
@@ -199,6 +198,7 @@ public class Soup extends AbstractQuest {
 								engine.say("Ok so I lied, you can't have soup yet because the image isn't drawn. Have some pies and a full heal instead. Sorry about that.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
+								// please i'd like to change the conversation state right here for just this bit, can i do it?
 							}
 						} else {
 							engine.say("Don't take me for a fool, traveller. You don't have " + Grammar.a_noun(text) + " with you.");
