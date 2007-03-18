@@ -1234,6 +1234,9 @@ public class ChatLineParser {
 			add.put("type", "jail");
 			add.put("target", params[0]);
 			add.put("minutes", params[1]);
+
+
+			// TODO: fix bug 1683167 and removed this workaround.
 			
 			// re-join the remaining parameters, they make up the reason
 			// for imprisonment.
@@ -1274,7 +1277,7 @@ public class ChatLineParser {
 		 * @return	The parameter count.
 		 */
 		public int getMinimumParameters() {
-			return 2;
+			return 3;
 		}
 	}
 
