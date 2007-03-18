@@ -2234,6 +2234,18 @@ Makes players more offensive
 		</equipable>
 	</item>
 	
+	<item name="suntan_cream">
+		<type class="misc" subclass="suntan_cream"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	
 <!-- Scrolls_section -->
 	
 	<item name="summon_scroll">
@@ -2502,6 +2514,16 @@ probably just be named key.
 	<item name="fado_hotel_key_008">
 		<type class="key" subclass="hotel"/>
 		<description>You see a key to room #008 in the Fado Hotel</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="small_key">
+		<type class="key" subclass="common"/>
+		<description>You see the key for Zara's row house in Ados</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
