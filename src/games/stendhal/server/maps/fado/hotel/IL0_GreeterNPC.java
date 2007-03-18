@@ -42,7 +42,7 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 
 	private void buildNPC(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		SpeakerNPC greeterNPC = new SpeakerNPC("Glen Zottis") {
+		SpeakerNPC greeterNPC = new SpeakerNPC("Linda") {
 			@Override
 					protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -53,12 +53,12 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 
 					@Override
 							protected void createDialog() {
-						addGreeting("Hello! Welcome to the Fado City Hotel! Would you like to #reserve a room?");
+						addGreeting("Hello! Welcome to the Fado City Hotel! Can I #help you?");
 
-						addJob("I am the hotel clerk.");
+						addJob("I am the hotel receptionist.");
 						addHelp("You can #reserve a room if you'd like, or #explore the hotel.");
                                                 addReply("reserve","Sorry, but the hotel is still under construction and you can not reserve a room yet.");
-                                                addReply("explore", "You can take a stop at the hotel's mini restraunt.");
+                                                addReply("explore", "You can take a stop at the hotel's mini restaurant.");
 						//addSeller(new SellerBehaviour(shops.get("food&drinks")));
 						addGoodbye("Bye.");
 							}
@@ -66,7 +66,7 @@ public class IL0_GreeterNPC implements ZoneConfigurator {
 
 		npcs.add(greeterNPC);
 		zone.assignRPObjectID(greeterNPC);
-		greeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
+		greeterNPC.put("class", "hotelreceptionistnpc");
 		greeterNPC.set(16, 48);
 		greeterNPC.initHP(1000);
 		zone.add(greeterNPC);
