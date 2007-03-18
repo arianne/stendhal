@@ -157,7 +157,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 	protected void load(RPWorld world, InputStream in)
 	 throws SAXException, IOException {
 		SAXParser	saxParser;
-		HashMap<String, StendhalRPZone>	zones;
 
 
 		/*
