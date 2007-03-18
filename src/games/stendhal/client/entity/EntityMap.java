@@ -59,6 +59,7 @@ public final class EntityMap {
 		register("growing_entity_spawner", "items/grower/carrot_grower", "CarrotGrower");
 		register("growing_entity_spawner", null, "GrainField");
 		register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
+		register("gold_source", null, "GoldSource");
 
 		register("walk_blocker", null, "InvisibleEntity");
 		register("damaging_area", null, "InvisibleEntity");

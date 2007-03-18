@@ -114,7 +114,16 @@
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
       <attribute name="npc">Sally</attribute>
     </implementation>
-  </entity>  
+  </entity>
+  <entity x="101" y="67">
+    <implementation class-name="games.stendhal.server.entity.GoldSource" />
+  </entity>
+  <entity x="108" y="59">
+    <implementation class-name="games.stendhal.server.entity.GoldSource" />
+  </entity>
+  <entity x="120" y="67">
+    <implementation class-name="games.stendhal.server.entity.GoldSource" />
+  </entity>
 
   <portal x="39" y="5" ref="jynath_house_entrance">
    <destination zone="int_orril_jynath_house" ref="entrance"/>
