@@ -38,7 +38,7 @@
   <image source="../../zelda_interior_1_chipset.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="4044" tilewidth="32" tileheight="32">
-  <image source="../../newstendhal/stendhal/tiled/zelda_monsters_chipset.png"/>
+  <image source="../../zelda_monsters_chipset.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64" opacity="0.5">
   <data encoding="base64" compression="gzip">
