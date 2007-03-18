@@ -66,7 +66,6 @@ public class StendhalQuestSystem {
 		loadQuest("MeetMonogenes");
 		loadQuest("MeetNomyr");
 		// loadQuest("MeetSanta");
-		loadQuest("SuntanCreamForZara");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		loadQuest("OrcishHappyMeal");
@@ -76,6 +75,7 @@ public class StendhalQuestSystem {
 		loadQuest("SevenCherubs");
 		loadQuest("SheepGrowing");
 		loadQuest("Soup");
+		loadQuest("SuntanCreamForZara");
 		loadQuest("ToysCollector");
 		loadQuest("VampireSword");
 		loadQuest("WeaponsCollector");

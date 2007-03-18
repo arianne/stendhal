@@ -150,9 +150,9 @@ public class SuntanCreamForZara extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("suntan_cream");
-						Item iceSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("ice_sword");
-						iceSword.put("bound", player.getName());
-						player.equip(iceSword, true);
+						Item zaraKey = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("small_key");
+						zaraKey.put("bound", player.getName());
+						player.equip(zaraKey, true);
 						player.addXP(1000);
 						player.setQuest("suntan_cream_zara", "done");
 						player.notifyWorldAboutChanges();
