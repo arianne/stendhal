@@ -2,8 +2,11 @@ package games.stendhal.server.events;
 
 import games.stendhal.server.StendhalRPWorld;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -183,5 +186,47 @@ public class TurnNotifier {
 				set.remove(event);
 			}
 		}
+	}
+	
+	/**
+	 * Finds out how many turns will pass until the given TurnListener
+	 * will be notified with the given message.
+	 * @param turnListener
+	 * @param message
+	 * @return the number of remaining turns, or -1 if the given TurnListener
+	 *         will not be notified with the given message.
+	 */
+	public int getRemainingTurns(TurnListener turnListener, String message) {
+		// all events match that are equal to this.
+		TurnEvent turnEvent = new TurnEvent(turnListener, message);
+		// the HashMap is unsorted, so we need to run through
+		// all of it.
+		List<Integer> matchingTurns = new ArrayList<Integer>();
+		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry: register.entrySet()) {
+			Set<TurnEvent> set = mapEntry.getValue();
+			for (TurnEvent currentEvent : set) {
+				if (currentEvent.equals(turnEvent)) {
+					matchingTurns.add(mapEntry.getKey());
+				}
+			}
+		}
+		if (matchingTurns.size() > 0) {
+			Collections.sort(matchingTurns);
+			return matchingTurns.get(0);
+		} else {
+			return -1;
+		}
+	}
+
+	/**
+	 * Finds out how many seconds will pass until the given TurnListener
+	 * will be notified with the given message.
+	 * @param turnListener
+	 * @param message
+	 * @return the number of remaining seconds, or -1 if the given TurnListener
+	 *         will not be notified with the given message.
+	 */
+	public int getRemainingSeconds(TurnListener turnListener, String message) {
+		return getRemainingTurns(turnListener, message) / StendhalRPWorld.MILLISECONDS_PER_TURN;
 	}
 }
