@@ -117,10 +117,17 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 						null);
 				
 				add(ConversationStates.ATTENDING,
-						"gold_pot",
+						"gold_pan",
 						null,
 						ConversationStates.ATTENDING,
-						"Sorry, I can't give you a gold_pan yet.",
+						"In the south there is a waterfall where you can find #gold_ore.",
+						null);
+				
+				add(ConversationStates.ATTENDING,
+						"gold_ore",
+						null,
+						ConversationStates.ATTENDING,
+						"My brother Joshua lives in Ados. He can cast iron_ore to barrels of pure gold.",
 						null);
 				
 				addHelp("If you bring me #wood and #iron_ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");

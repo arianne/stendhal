@@ -61,6 +61,7 @@ public class ShopList {
 		shops.add("selltools", "hammer", 60);
 		// used for harvest grain.
 		shops.add("selltools", "old_scythe", 120);
+		shops.add("selltools", "gold_pan", 230);
 
 		shops.add("buyiron", "iron", 75);
 		
