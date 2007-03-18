@@ -115,6 +115,14 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 						ConversationStates.ATTENDING,
 						"You can find iron ore up in the mountains west of Or'ril, near the dwarf mines. Be careful up there!",
 						null);
+				
+				add(ConversationStates.ATTENDING,
+						"gold_pot",
+						null,
+						ConversationStates.ATTENDING,
+						"Sorry, I can't give you a gold_pot yet.",
+						null);
+				
 				addHelp("If you bring me #wood and #iron_ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
 				addJob("Greetings. Unfortunately, because of the war, I'm not currently allowed to sell weapons to anyone except the official armoury. However, I can still #cast iron for you, or I can make you an #offer on some good tools.");
 				addGoodbye();

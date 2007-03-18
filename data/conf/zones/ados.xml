@@ -217,6 +217,13 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone>
 
+   <zone name="int_ados_goldsmith" file="int_ados_goldsmith.xstend">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Goldsmith" />
+    <portal x="4" y="14" ref="entrance_goldsmith">
+     <destination zone="0_ados_city" ref="goldsmith_entrance"/>
+    </portal>
+   </zone>
+
    <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_ados_city" ref="temple_entrance"/>
@@ -244,6 +251,10 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
 
   <portal x="65" y="16" ref="tavern_entrance_right">
    <destination zone="int_ados_tavern_0" ref="entrance_right"/>
+  </portal>
+
+  <portal x="38" y="52" ref="goldsmith_entrance">
+   <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
   </portal>
 
   <portal x="54" y="19" ref="6">
