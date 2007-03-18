@@ -4,10 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Outfit;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SellerBehaviour;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
@@ -18,7 +20,7 @@ import games.stendhal.server.pathfinder.Path;
  */
 public class OL0_GreeterNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
+	private ShopList shops = ShopList.get();
 
 	//
 	// ZoneConfigurator
@@ -56,11 +58,11 @@ public class OL0_GreeterNPC implements ZoneConfigurator {
 					@Override
 							protected void createDialog() {
 						addGreeting("Hello! Welcome to Fado City! Would you like to #learn about Fado?");
-						addReply("learn", "Fado City is the jewl of the Faiumoni empire. It has a very important trade route with Orril and Semos to the North and #Sikhw to the South.");
-						addReply("sikhw", "Sikhw is an old city that was conqured a long time ago. It is now nearly unreachable.");
-						addJob("I greet all of the new-comers to Fado.");
-						addHelp("You can head into the tavern to buy food, drinks, and other items.You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
-						//addSeller(new SellerBehaviour(shops.get("food&drinks")));
+						addReply("learn", "Fado City is the jewel of the Faiumoni empire. It has a very important trade route with Orril and Semos to the North and #Sikhw to the South.");
+						addReply("sikhw", "Sikhw is an old city that was conquered a long time ago. It is now nearly unreachable.");
+						addJob("I greet all of the new-comers to Fado. I can #offer you a scroll if you'd like to come back here again.");
+						addHelp("You can head into the tavern to buy food, drinks, and other items. You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
+						addSeller(new SellerBehaviour(shops.get("fadoscrolls")));
 						addGoodbye("Bye.");
 							}
 		};

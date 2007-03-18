@@ -1,14 +1,13 @@
 package games.stendhal.server.maps.nalwor.postoffice;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.SellerBehaviour;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ import java.util.Map;
 
 public class IL0_PostNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
+	private ShopList shops = ShopList.get();
 	/**
 	 * Configure a zone.
 	 *
@@ -55,6 +54,7 @@ public class IL0_PostNPC implements ZoneConfigurator {
 				addGreeting("Hi, can I #help you?");
 				addJob("I work in this post office. But I'm new and I haven't been trusted with much yet.");
 				addHelp("I've not had this #job long ... come back soon and I might have been given something interesting to do.");
+				addSeller(new SellerBehaviour(shops.get("nalworscrolls")));
 				addGoodbye("Bye - nice to meet you!");
 			}
 		};

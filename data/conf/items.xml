@@ -2289,7 +2289,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<attributes>
 			<quantity value="1"/>
-			<infostring value="0_nalwor_city 50 50"/>
+			<infostring value="0_nalwor_city 40 60"/>
 		</attributes>
 		<weight value="0.01"/>
 		<equipable>
@@ -2313,7 +2313,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<attributes>
 			<quantity value="1"/>
-			<infostring value="0_fado_city 50 50"/>
+			<infostring value="0_fado_city 40 30"/>
 		</attributes>
 		<weight value="0.01"/>
 		<equipable>
