@@ -2255,7 +2255,42 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-
+	<item name="nalwor_scroll">
+		<type class="scroll" subclass="nalwor"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+		<attributes>
+			<quantity value="1"/>
+			<infostring value="0_nalwor_city 50 50"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	<item name="ados_scroll">
+		<type class="scroll" subclass="ados"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+		<attributes>
+			<quantity value="1"/>
+			<infostring value="0_ados_city 50 50"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	<item name="fado_scroll">
+		<type class="scroll" subclass="fado"/>
+		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
+		<attributes>
+			<quantity value="1"/>
+			<infostring value="0_fado_city 50 50"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 	<item name="marked_scroll">
 		<type class="scroll" subclass="marked"/>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
