@@ -66,6 +66,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetMonogenes");
 		loadQuest("MeetNomyr");
 		// loadQuest("MeetSanta");
+		loadQuest("SuntanCreamForZara");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		loadQuest("OrcishHappyMeal");
