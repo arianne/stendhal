@@ -120,7 +120,7 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 						"gold_pot",
 						null,
 						ConversationStates.ATTENDING,
-						"Sorry, I can't give you a gold_pot yet.",
+						"Sorry, I can't give you a gold_pan yet.",
 						null);
 				
 				addHelp("If you bring me #wood and #iron_ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");

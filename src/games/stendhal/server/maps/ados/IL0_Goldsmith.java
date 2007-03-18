@@ -81,7 +81,7 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 						"I think there are places in the flat water where you can find gold ore. But you need a special tool to prospect for gold.",
 						null);
 				addJob("I'm the goldsmith of this city.");
-				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a gold_pot for you.");
+				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a gold_pan for you.");
 				addGoodbye("Bye");
 
 				// Joshua makes gold if you bring him gold_ore and wood
