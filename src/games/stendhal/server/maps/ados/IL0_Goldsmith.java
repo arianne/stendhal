@@ -98,7 +98,7 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 		};
 		npcs.add(goldsmith);
 		zone.assignRPObjectID(goldsmith);
-		goldsmith.put("class", "blacksmithnpc");
+		goldsmith.put("class", "goldsmithnpc");
 		goldsmith.setDirection(Direction.DOWN);
 		goldsmith.set(18, 2);
 		goldsmith.initHP(100);
