@@ -191,7 +191,17 @@
  <!--  Level -1 -->
 
      <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
-       <!-- <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/> -->
+       <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/>
+       <entity x="24" y="35">
+         <implementation class-name="games.stendhal.server.entity.Sign">
+           <attribute name="text">
+BLACKJACK RULES
+
+(TODO)
+           </attribute>
+		   <attribute name="class">blackboard</attribute>
+         </implementation>
+       </entity>
      </zone>
 
 
@@ -227,7 +237,13 @@
  <!--  Level -2 -->
 
  <zone name="-2_athor_ship_w2" file="sub_2_athor_ship_w2.xstend">
-  <!-- <configurator class-name="games.stendhal.server.maps.athor.USL2_ShipWest2"/> -->
+  <configurator class-name="games.stendhal.server.maps.athor.USL2_ShipWest2"/>
+    <!-- This must be after the NPC configurator -->
+    <entity x="22" y="30">
+     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Klaas</attribute>
+     </implementation>
+    </entity>
  </zone>
 
 
