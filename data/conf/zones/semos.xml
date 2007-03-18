@@ -501,44 +501,44 @@ with you.
      </implementation>
     </entity>
 -->
-    <entity x="2" y="13">
+    <entity x="2" y="14">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
 <!--
-    <entity x="2" y="9">
+    <entity x="2" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
       <attribute name="width">1</attribute>
       <attribute name="height">4</attribute>
      </implementation>
     </entity>
 -->
-    <entity x="8" y="13">
+    <entity x="8" y="14">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
 <!--
-    <entity x="8" y="9">
+    <entity x="8" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
       <attribute name="width">1</attribute>
       <attribute name="height">4</attribute>
      </implementation>
     </entity>
 -->
-    <entity x="14" y="13">
+    <entity x="14" y="14">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
 <!--
-    <entity x="14" y="9">
+    <entity x="14" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
       <attribute name="width">1</attribute>
       <attribute name="height">4</attribute>
      </implementation>
     </entity>
 -->
-    <entity x="20" y="13">
+    <entity x="20" y="14">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
     </entity>
 <!--
-    <entity x="20" y="9">
+    <entity x="20" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
       <attribute name="width">1</attribute>
       <attribute name="height">4</attribute>
