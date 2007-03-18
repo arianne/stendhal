@@ -74,6 +74,7 @@ public class StendhalQuestSystem {
 		// loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");
 		loadQuest("SheepGrowing");
+		loadQuest("Soup");
 		loadQuest("ToysCollector");
 		loadQuest("VampireSword");
 		loadQuest("WeaponsCollector");

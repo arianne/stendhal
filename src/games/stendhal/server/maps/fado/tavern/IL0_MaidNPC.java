@@ -44,7 +44,7 @@ public class IL0_MaidNPC implements ZoneConfigurator {
 
 	private void buildNPC(StendhalRPZone zone,
 	 Map<String, String> attributes) {
-		SpeakerNPC tavernMaid = new SpeakerNPC("Helena") {
+		SpeakerNPC tavernMaid = new SpeakerNPC("Mother Helena") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -62,16 +62,16 @@ public class IL0_MaidNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting();
+				//addGreeting();
 				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
-				addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
+				//addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
 				addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye();
 			}
 		};
 		npcs.add(tavernMaid);
 		zone.assignRPObjectID(tavernMaid);
-		tavernMaid.put("class", "maidnpc");
+		tavernMaid.put("class", "oldmaidnpc");
 		tavernMaid.set(10, 16);
 		tavernMaid.initHP(100);
 		zone.add(tavernMaid);
