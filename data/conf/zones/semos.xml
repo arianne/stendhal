@@ -106,6 +106,7 @@ the wolves while searching for berries here
     </attribute>
    </implementation>
   </entity>
+  
   <entity x="23" y="48">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -114,6 +115,47 @@ East: Jail
 South: Or'ril castle
     </attribute>
     <attribute name="class">signpost</attribute>
+   </implementation>
+  </entity>
+  <entity x="24" y="49">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Welcome to Semos
+    </attribute>
+    <attribute name="class">transparent</attribute>
+   </implementation>
+  </entity>
+  <!-- writing on the wooden arch -->
+  <entity x="24" y="49">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Welcome to Semos
+    </attribute>
+    <attribute name="class">transparent</attribute>
+   </implementation>
+  </entity>
+  <entity x="25" y="49">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Welcome to Semos
+    </attribute>
+    <attribute name="class">transparent</attribute>
+   </implementation>
+  </entity>
+  <entity x="26" y="49">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Welcome to Semos
+    </attribute>
+    <attribute name="class">transparent</attribute>
+   </implementation>
+  </entity>
+  <entity x="27" y="49">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <attribute name="text">
+     Welcome to Semos
+    </attribute>
+    <attribute name="class">transparent</attribute>
    </implementation>
   </entity>
 
