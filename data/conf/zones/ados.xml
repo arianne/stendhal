@@ -235,7 +235,6 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
       <attribute name="slot">zaras_chest_ados</attribute>
      </implementation>
     </entity>
-    
    </zone>   
    
    
@@ -282,16 +281,17 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    <attribute name="rejected">The door is locked.</attribute>
    </implementation>
   </portal>
+  
   <entity x="18" y="85">
     <implementation class-name="games.stendhal.server.entity.Sign">
       <attribute name="text">
 Home of Zara 
-Dear postman, I'm on holiday, please leave mail at my neighbour.
+Dear postman, I'm on holiday! Please leave my mail at my neighbour's house.
       </attribute>
       <attribute name="class">transparent</attribute>
     </implementation>
   </entity>
-
+  
   <portal x="38" y="52" ref="goldsmith_entrance">
    <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
   </portal>
