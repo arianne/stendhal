@@ -217,20 +217,20 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone>
    
-   <zone name="int_ados_zaras_house" file="int_ados_zaras_house.xstend">
+   <zone name="int_ados_zaras_house_0" file="int_ados_zaras_house_0.xstend">
     <portal x="8" y="14" ref="entrance_zaras_house">
      <destination zone="0_ados_city" ref="zaras_house_entrance"/>
     </portal>
     <portal x="11" y="2" ref="up_zaras_house">
-     <destination zone="int_ados_zaras_house_0" ref="down_zaras_house"/>
+     <destination zone="int_ados_zaras_house_1" ref="down_zaras_house"/>
     </portal>
    </zone>   
    
-   <zone name="int_ados_zaras_house_0" file="int_ados_zaras_house_0.xstend">
+   <zone name="int_ados_zaras_house_1" file="int_ados_zaras_house_1.xstend">
     <portal x="11" y="2" ref="down_zaras_house">
-     <destination zone="int_ados_zaras_house" ref="up_zaras_house"/>
+     <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
     </portal>
-    <entity x="5" y="3">
+    <entity x="3" y="3">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <attribute name="slot">zaras_chest_ados</attribute>
      </implementation>
@@ -288,7 +288,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
   </portal>
 
   <portal x="19" y="85" ref="zaras_house_entrance">
-   <destination zone="int_ados_zaras_house" ref="entrance_zaras_house"/>
+   <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
    <attribute name="key">small_key</attribute>
    <attribute name="rejected">The door is locked.</attribute>
@@ -299,7 +299,8 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <implementation class-name="games.stendhal.server.entity.Sign">
       <attribute name="text">
 Home of Zara 
-Dear postman, I'm on holiday! Please leave my mail at my neighbour's house.
+Dear postman, I'm on holiday!
+Please leave my mail at my neighbour's house.
       </attribute>
       <attribute name="class">transparent</attribute>
     </implementation>
