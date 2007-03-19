@@ -42,13 +42,13 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	
 	public GoldSource() {
 		super();
+		setDescription("You see something golden glittering.");
 		put("type", "gold_source");
 	}
 	
 	public GoldSource(RPObject object) {
 		super(object);
 		setDescription("You see something golden glittering.");
-		
 		put("type", "gold_source");
 	}
 
