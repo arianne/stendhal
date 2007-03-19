@@ -74,7 +74,7 @@ public class MarkedScroll extends TeleportScroll {
 					player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
 					logger.warn("marked_scroll to unknown zone " + infostring + " teleported " + player.getName() + " to Semos instead");
 				} else {
-					if (!player.getSlot("!visited").iterator().next().has(zoneName)) {
+					if (player.getKeyedSlot("!visited", zoneName) != null) {
 						player.sendPrivateText("Although you have heard a lot of rumors about the destination, "
 								+ "you cannot concentrate on it because you have never been there.");
 						return false;

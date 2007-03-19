@@ -638,7 +638,7 @@ public class StendhalRPAction {
 
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "change zone", destination);
 		
-		player.getSlot("!visited").iterator().next().put(destination, System.currentTimeMillis());
+		player.setKeyedSlot("!visited", destination, Long.toString(System.currentTimeMillis()));
 
 		player.clearPath();
 
