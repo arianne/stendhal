@@ -116,6 +116,8 @@ class PlayerRPClass {
 
 		// Non-removable while stored ones have values
 		player.addRPSlot("!skills", 1, RPClass.HIDDEN);
+
+		player.addRPSlot("!visited", 1, RPClass.HIDDEN);
 	}
 
 	/**
@@ -130,7 +132,7 @@ class PlayerRPClass {
 		};
 
 		String[] slotsSpecial = {
-			"!quests", "!kills", "!buddy", "!ignore", "skills"
+			"!quests", "!kills", "!buddy", "!ignore", "!visited", "skills"
 		};
 
 		// Port from 0.03 to 0.10
