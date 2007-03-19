@@ -1229,30 +1229,20 @@ public class ChatLineParser {
 		 * @return	<code>true</code> if  was handled.
 		 */
 		public boolean execute(String[] params, String remainder) {
+			/*
+			 * Reason required
+			 */
+			if(remainder.length() == 0) {
+				return false;
+			}
+
+
 			RPAction add = new RPAction();
 
 			add.put("type", "jail");
 			add.put("target", params[0]);
 			add.put("minutes", params[1]);
-
-
-			// TODO: fix bug 1683167 and removed this workaround.
-			
-			// re-join the remaining parameters, they make up the reason
-			// for imprisonment.
-			// P.S.: This code sucks, i know. I hate java. --Daniel
-			StringBuffer reasonBuffer = new StringBuffer();
-			for (int i = 2; i < params.length - 1; i++) {
-				if (params[i] != null) {
-					reasonBuffer.append(params[i] + " ");
-				}
-			}
-			String reason = reasonBuffer.toString();
-			// leave out the last space
-			if (reason.length() > 0) {
-				reason = reason.substring(0, reason.length() - 1);
-			}
-			add.put("reason", reason);
+			add.put("reason", remainder);
 
 			client.send(add);
 
@@ -1266,8 +1256,7 @@ public class ChatLineParser {
 		 * @return	The parameter count.
 		 */
 		public int getMaximumParameters() {
-			// 97 words should be enough for the imprisonment reason.
-			return 100;
+			return 2;
 		}
 
 
@@ -1277,7 +1266,7 @@ public class ChatLineParser {
 		 * @return	The parameter count.
 		 */
 		public int getMinimumParameters() {
-			return 3;
+			return 2;
 		}
 	}
 
