@@ -365,9 +365,6 @@ public class EquipmentAction extends ActionListener {
 		public boolean moveTo(DestinationObject dest, Player player) {
 			StendhalRPWorld world = StendhalRPWorld.get();
 
-			logger.warn(dest.slot);
-			logger.warn((EquipListener) base);
-			System.out.println(((EquipListener) base).canBeEquippedIn(dest.slot));
             if ( (!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
                 logger.warn("tried to equip an entity into disallowed slot: " + base.getClass() + "; equip rejected");
                 return false;
