@@ -116,10 +116,6 @@ class PlayerRPClass {
 
 		// Non-removable while stored ones have values
 		player.addRPSlot("!skills", 1, RPClass.HIDDEN);
-                
-                // Mana/Magic System
-                player.add("mana", RPClass.INT);
-                player.add("base_mana", RPClass.INT);
 	}
 
 	/**
