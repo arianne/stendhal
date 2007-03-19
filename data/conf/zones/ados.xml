@@ -216,7 +216,29 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
      <destination zone="0_ados_city" ref="tavern_entrance_right"/>
     </portal>
    </zone>
-
+   
+   <zone name="int_ados_zaras_house" file="int_ados_zaras_house.xstend">
+    <portal x="8" y="14" ref="entrance_zaras_house">
+     <destination zone="0_ados_city" ref="zaras_house_entrance"/>
+    </portal>
+    <portal x="11" y="2" ref="up_zaras_house">
+     <destination zone="int_ados_zaras_house_0" ref="down_zaras_house"/>
+    </portal>
+   </zone>   
+   
+   <zone name="int_ados_zaras_house_0" file="int_ados_zaras_house_0.xstend">
+    <portal x="11" y="2" ref="down_zaras_house">
+     <destination zone="int_ados_zaras_house" ref="up_zaras_house"/>
+    </portal>
+    <entity x="5" y="3">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">zaras_chest_ados</attribute>
+     </implementation>
+    </entity>
+    
+   </zone>   
+   
+   
    <zone name="int_ados_goldsmith" file="int_ados_goldsmith.xstend">
     <configurator class-name="games.stendhal.server.maps.ados.IL0_Goldsmith" />
     <portal x="4" y="14" ref="entrance_goldsmith">
@@ -252,6 +274,23 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
   <portal x="65" y="16" ref="tavern_entrance_right">
    <destination zone="int_ados_tavern_0" ref="entrance_right"/>
   </portal>
+
+  <portal x="19" y="85" ref="zaras_house_entrance">
+   <destination zone="int_ados_zaras_house" ref="entrance_zaras_house"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+   <attribute name="key">small_key</attribute>
+   <attribute name="rejected">The door is locked.</attribute>
+   </implementation>
+  </portal>
+  <entity x="18" y="85">
+    <implementation class-name="games.stendhal.server.entity.Sign">
+      <attribute name="text">
+Home of Zara 
+Dear postman, I'm on holiday, please leave mail at my neighbour.
+      </attribute>
+      <attribute name="class">transparent</attribute>
+    </implementation>
+  </entity>
 
   <portal x="38" y="52" ref="goldsmith_entrance">
    <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
