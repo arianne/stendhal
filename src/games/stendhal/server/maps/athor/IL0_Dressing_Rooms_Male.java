@@ -5,7 +5,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
@@ -48,40 +47,17 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hallo!");
-				
-				add(ConversationStates.ATTENDING,
-						Arrays.asList("suntan", "cream", "suntan_cream"),
-						null,
-						ConversationStates.ATTENDING,
-						"Pam's and mine suntan cream is famous all over the island. But we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						"arandula",
-						null,
-						ConversationStates.ATTENDING,
-						"Arandula is a herb which is growing around Semos",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						"kokuda",
-						null,
-						ConversationStates.ATTENDING,
-						"We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						"minor_potion",
-						null,
-						ConversationStates.ATTENDING,
-						"It's a small bottle full of potion. You can buy it at several places.",
-						null);
-				
 				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the men's dressing room.");
 				addHelp("Just tell me if you want to #borrow #trunks!");
 				addGoodbye("Have fun!");
 				
+				Map<String, Integer> priceList = new HashMap<String, Integer>();
+				priceList.put("trunks", 5);
+				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
+						priceList);
+				addOutfitChanger(behaviour, "borrow");
+
+				// stuff needed for the SuntanCreamForZara quest
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
 				requiredResources.put("arandula", new Integer(1));
 				requiredResources.put("kokuda", new Integer(1));
@@ -93,11 +69,18 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 				addProducer(behaviour_mix,
 						"Hallo!");
 				
-				Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("trunks", 5);
-				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(
-						priceList);
-				addOutfitChanger(behaviour, "borrow");
+				addReply(Arrays.asList("suntan", "cream", "suntan_cream"),
+				"Pam's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
+		
+				addReply("arandula",
+						"Arandula is a herb which is growing around Semos.");
+				
+				addReply("kokuda",
+						"We can't find the Kokuda herb which is growing on this island, because the entrance of the labyrinth, where you can find this herb, is blocked.");
+				
+				addReply("minor_potion",
+						"It's a small bottle full of potion. You can buy it at several places.");
+				
 			}
 		};
 		NPCList.get().add(david);
