@@ -75,7 +75,7 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 						null);
 				
 				add(ConversationStates.ATTENDING,
-						Arrays.asList("ore", "gold", "gold_ore"),
+						Arrays.asList("ore", "gold", "gold_nugget"),
 						null,
 						ConversationStates.ATTENDING,
 						"I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.",
@@ -92,10 +92,10 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a #gold_pan for you.");
 				addGoodbye("Bye");
 
-				// Joshua makes gold if you bring him gold_ore and wood
+				// Joshua makes gold if you bring him gold_nugget and wood
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
 				requiredResources.put("wood", new Integer(2));
-				requiredResources.put("gold_ore", new Integer(1));
+				requiredResources.put("gold_nugget", new Integer(1));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour(
 						"joshua_cast_gold", "cast", "gold", requiredResources, 15 * 60);

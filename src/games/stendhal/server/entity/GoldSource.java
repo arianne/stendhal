@@ -124,7 +124,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 			if (player.nextTo(this, 0.25)) {
 				// roll the dice
 				if (prospectSuccessful()) {
-					Item nugget = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_ore");
+					Item nugget = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_nugget");
 					player.equip(nugget, true);
 					player.sendPrivateText("You found a gold nugget.");
 				} else {

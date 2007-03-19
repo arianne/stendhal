@@ -120,11 +120,11 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 						"gold_pan",
 						null,
 						ConversationStates.ATTENDING,
-						"With this tool you are able to prospect for gold. In the south there is a waterfall where you can find #gold_ore.",
+						"With this tool you are able to prospect for gold. In the south there is a lake near a waterfall where I once found a #gold_nugget. Maybe you are lucky as well.",
 						null);
 				
 				add(ConversationStates.ATTENDING,
-						"gold_ore",
+						"gold_nugget",
 						null,
 						ConversationStates.ATTENDING,
 						"My brother Joshua lives in Ados. He can cast iron_ore to barrels of pure gold.",
