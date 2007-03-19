@@ -678,13 +678,6 @@ public class StendhalRPAction {
 
 		if(!source.equals(destination)) {
 			transferContent(player);
-		} else {
-			/*
-			 * Log it for now, until sure of no side effects
-			 */
-			logger.warn(
-				"No zone change, not transfering content to "
-				+ player.getName());
 		}
 
 		/*
