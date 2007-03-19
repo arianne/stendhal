@@ -200,7 +200,25 @@
     <destination zone="int_nalwor_house4_1" ref="upstairs"/>
    </portal>
  </zone>
+ 
+ <zone name="int_nalwor_bank" file="int_nalwor_bank.xstend">
+   <portal x="2" y="38" ref="entrance_left">
+    <destination zone="0_nalwor_city" ref="bank_entrance_left"/>
+   </portal>
+ <portal x="26" y="38" ref="entrance_right">
+    <destination zone="0_nalwor_city" ref="bank_entrance_right"/>
+   </portal>
+  <portal x="11" y="11" ref="upstairs">
+    <destination zone="int_nalwor_bank_1" ref="downstairs"/>
+   </portal> 
+ </zone> 
 
+ <zone name="int_nalwor_bank_1" file="int_nalwor_bank_1.xstend">
+   <portal x="11" y="11" ref="downstairs">
+    <destination zone="int_nalwor_bank" ref="upstairs"/>
+   </portal>
+ </zone> 
+ 
  <zone name="0_nalwor_city" file="0_nalwor_city.xstend">
   <portal x="73" y="93" ref="pottery_entrance">
    <destination zone="int_nalwor_pottery" ref="entrance_left"/>
@@ -240,6 +258,12 @@
   </portal>
   <portal x="84" y="81" ref="house4_entrance">
    <destination zone="int_nalwor_house4" ref="entrance"/>
+  </portal>
+  <portal x="79" y="70" ref="bank_entrance_left">
+   <destination zone="int_nalwor_bank" ref="entrance_left"/>
+  </portal>
+  <portal x="84" y="70" ref="bank_entrance_right">
+   <destination zone="int_nalwor_bank" ref="entrance_right"/>
   </portal>
  </zone>
 
