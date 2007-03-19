@@ -641,12 +641,19 @@ public abstract class RPEntity extends Entity {
 				int xpEarn = (xpReward * damageDone)
 						/ totalDamageReceived;
 
-				/** We limit xp gain for up to eight levels difference */
-				double gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
-				if (gainXpLimitation < 0.0) {
-					gainXpLimitation = 0.0;
-				} else if (gainXpLimitation > 1.0) {
-					gainXpLimitation = 1.0;
+				double gainXpLimitation = 1.0;
+
+				// do not limit xp for player above level 75 because there
+				// are no more creatures for this level. (Except for the level 100
+				// black dragon, which is to low for the top players high above level 100)
+				if (player.getLevel() < 75) {
+					/** We limit xp gain for up to eight levels difference */
+					gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
+					if (gainXpLimitation < 0.0) {
+						gainXpLimitation = 0.0;
+					} else if (gainXpLimitation > 1.0) {
+						gainXpLimitation = 1.0;
+					}
 				}
 
 				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
