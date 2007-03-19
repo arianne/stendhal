@@ -328,7 +328,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	public boolean canBeEquippedIn(String slot) {
-		return possibleSlots.contains(slot);
+		System.out.println("'" + slot + "'");
+		return possibleSlots.contains(slot)
+				// when the slot is called "content", it's a personal chest.
+				|| slot.equals("content");
 	}
 	
 
