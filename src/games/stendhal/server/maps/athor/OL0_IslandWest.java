@@ -2,11 +2,13 @@ package games.stendhal.server.maps.athor;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -46,10 +48,15 @@ public class OL0_IslandWest implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Hey there!");
+				add(ConversationStates.ATTENDING,
+						Arrays.asList("task", "quest"),
+						null,
+						ConversationStates.ATTENDING,
+						"I don't have a task for you, I'm perfectly happy!",
+						null);
 				addJob("Don't remind me of my job, I'm on holiday!");
-				// TODO
-				addHelp("...");
-				addGoodbye();
+				addHelp("In the desert there is dangerous quicksand.");
+				addGoodbye("Bye! I'll stock up on some more sunshine.");
 			}
 		};
 		npcs.add(cyk);
