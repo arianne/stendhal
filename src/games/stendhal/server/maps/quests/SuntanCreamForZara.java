@@ -145,7 +145,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 					}
 				}, 
 				ConversationStates.ATTENDING,
-				"Thank you! I feel much better immediatelly! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
+				"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
