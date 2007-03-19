@@ -9,6 +9,7 @@ import games.stendhal.server.StendhalRPWorld;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -67,11 +68,16 @@ public class SuntanCreamForZara extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (!player.isQuestCompleted("suntan_cream_zara")) {
-							npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan_cream that the lifeguards produce?");
+						if (player.hasQuest(QUEST_SLOT)) {
+							if (player.isQuestCompleted(QUEST_SLOT)) {
+								npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
+								npc.setCurrentState(ConversationStates.ATTENDING);
+							} else {
+								npc.say("Did you forget that you promised me to ask the #lifeguards for #suntan_cream?");
+								npc.setCurrentState(ConversationStates.ATTENDING);
+							}
 						} else {
-							npc.say("I don't have a new task for you. But thank you for the suntan cream. I feel my skin is getting better already!");
-							npc.setCurrentState(ConversationStates.ATTENDING);
+							npc.say("I fell asleep in the sun and now my skin is burnt. Can you bring me the magic #suntan_cream that the #lifeguards produce?");
 						}
 					}
 				});
@@ -101,11 +107,25 @@ public class SuntanCreamForZara extends AbstractQuest {
 				});
 
 		zara.add(ConversationStates.QUEST_OFFERED,
-				"suntan_cream",
+				Arrays.asList("suntan_cream", "suntan", "cream"),
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"The lifeguards make a great cream to protect from the sun and to heal sunburns at the same time. Now, will you get it for me?",
+				"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time. Now, will you get it for me?",
 				null);
+		
+		zara.add(ConversationStates.QUEST_OFFERED,
+				"lifeguard",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"The lifeguards are called Pam and David. I think they are in the dressing rooms. So, will you ask them for me?",
+				null);
+		
+		zara.addReply(Arrays.asList("suntan_cream", "suntan", "cream"),
+				"The #lifeguards make a great cream to protect from the sun and to heal sunburns at the same time.");
+		
+		zara.addReply("lifeguard",
+				"The lifeguards are called Pam and David. I think they are in the dressing rooms.");
+		
 	}
 
 	private void createBringingStep() {
