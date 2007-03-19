@@ -17,10 +17,12 @@ import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Line;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
@@ -607,7 +609,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			itemsOnGround.add(item);
 		}
 
-		if(object instanceof NPC) {
+		if(object instanceof SpeakerNPC) {
+			npcs.add((NPC) object);
+		} else if(object instanceof AttackableCreature) {
 			npcs.add((NPC) object);
 		}
 
