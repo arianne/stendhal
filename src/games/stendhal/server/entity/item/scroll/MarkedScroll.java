@@ -65,22 +65,29 @@ public class MarkedScroll extends TeleportScroll {
 			String infostring = get("infostring");
 			StringTokenizer st = new StringTokenizer(infostring);
 			if (st.countTokens() == 3) {
-				StendhalRPZone temp = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
-				if (temp != null) {
-					x = Integer.parseInt(st.nextToken());
-					y = Integer.parseInt(st.nextToken());
-					if (!zone.isTeleportable()) {
-						player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
-						logger.warn("marked_scroll to zone " + infostring + " teleported " + player.getName() + " to Semos instead");
-						return false;
-					} else {
-						zone = temp;
-					}
-				} else {
+				// check destination
+				String zoneName = st.nextToken();
+				StendhalRPZone temp = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+				if (temp == null) {
 					// invalid zone (the scroll may have been marked in an
 					// old version and the zone was removed)
 					player.sendPrivateText("Oh oh. For some strange reason the scroll did not teleport me to the right place.");
 					logger.warn("marked_scroll to unknown zone " + infostring + " teleported " + player.getName() + " to Semos instead");
+				} else {
+					if (!player.getSlot("!visited").iterator().next().has(zoneName)) {
+						player.sendPrivateText("Although you have heard a lot of rumors about the destination, "
+								+ "you cannot concentrate on it because you have never been there.");
+						return false;
+					} else {
+						if (!zone.isTeleportable()) {
+							player.sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
+							logger.warn("marked_scroll to zone " + infostring + " teleported " + player.getName() + " to Semos instead");
+						} else {
+							zone = temp;
+							x = Integer.parseInt(st.nextToken());
+							y = Integer.parseInt(st.nextToken());
+						}
+					}
 				}
 			}
 		}
