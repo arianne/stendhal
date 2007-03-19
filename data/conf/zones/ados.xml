@@ -262,6 +262,19 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
      <destination zone="0_ados_city" ref="temple_entrance"/>
     </portal>
    </zone>
+   
+   <zone name="int_ados_storage" file="int_ados_storage.xstend">
+    
+    <portal x="14" y="30" ref="storage_inside_left">
+     <destination zone="0_ados_city" ref="storage_outside_1"/>
+    </portal>
+    
+    <portal x="15" y="30" ref="storage_inside_right">
+     <destination zone="0_ados_city" ref="storage_outside_5"/>
+    </portal>
+    
+    
+   </zone> 
 
  <zone name="0_ados_city" file="0_ados_city.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside" />
@@ -306,6 +319,26 @@ Dear postman, I'm on holiday! Please leave my mail at my neighbour's house.
 
   <portal x="12" y="38" ref="11">
    <destination zone="int_ados_haunted_house" ref="0"/>
+  </portal>
+
+  <portal x="62" y="86" ref="storage_outside_1">
+   <destination zone="int_ados_storage" ref="storage_inside_left"/>
+  </portal>
+
+  <portal x="63" y="86" ref="storage_outside_2">
+   <destination zone="int_ados_storage" ref="storage_inside_left"/>
+  </portal>
+
+  <portal x="64" y="86" ref="storage_outside_3">
+   <destination zone="int_ados_storage" ref="storage_inside_left"/>
+  </portal>
+
+  <portal x="65" y="86" ref="storage_outside_4">
+   <destination zone="int_ados_storage" ref="storage_inside_right"/>
+  </portal>
+
+  <portal x="66" y="86" ref="storage_outside_5">
+   <destination zone="int_ados_storage" ref="storage_inside_right"/>
   </portal>
 
  </zone>
