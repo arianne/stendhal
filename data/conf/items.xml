@@ -2378,6 +2378,7 @@ Makes players more offensive
 
 	<item name="home_scroll">
 		<type class="scroll" subclass="home"/>
+		<description>You see a home scroll, it will take you back to semos city.</description>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<attributes>
 			<quantity value="1"/>
@@ -2388,8 +2389,9 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="nalwor_scroll">
+	<item name="nalwor_city_scroll">
 		<type class="scroll" subclass="nalwor"/>
+		<description>You see a nalwor city scroll, it will take you back to nalwor city.</description>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<attributes>
 			<quantity value="1"/>
@@ -2400,8 +2402,9 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="ados_scroll">
+	<item name="ados_city_scroll">
 		<type class="scroll" subclass="ados"/>
+		<description>You see a ados city scroll, it will take you back to ados city.</description>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<attributes>
 			<quantity value="1"/>
@@ -2412,8 +2415,9 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="fado_scroll">
+	<item name="fado_city_scroll">
 		<type class="scroll" subclass="fado"/>
+		<description>You see a fado city scroll, it will take you back to fado city.</description>
 		<implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>
 		<attributes>
 			<quantity value="1"/>
