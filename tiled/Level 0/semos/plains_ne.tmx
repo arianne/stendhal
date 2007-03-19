@@ -54,15 +54,15 @@
  </layer>
  <layer name="3_roof" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aOUpDURiG4ZNglYBTI+gWnDbhtA6ndTitQ8HeVgvHPdg5bcEhhSP4CylCSEgEvTfJfR54uxTng9xDAjclAACgk8dSSk/Rc/QS1Up5nyhbw+WURqLRaCwaL+d9omxNx96ZaDaai+YLtp/e405yJ7mTAMjSQiWlxWip3nK0Usn7VNlZja1r0Xq9jWizQPu3Yut2tFNvN9or0P792HrQ1GGB9tdi63FTrwXafxJbr5s6tb8w7Lff/uLuByiqo6G8TwAMmrP4DXkeXbTpMroa4N+Zb7HtPfpo02f0NcD7J6opTXZoqpr3Kf9W43e+1f+qVv+zBulZuIkNt9HdL/b/fPY+euij/e3e12h85rvd3493Qbv3NRqf+W739+Nd4H0N+H/ei/NenHsWAAAAAAAAAAAAAAAAAAAAAIBe8g0/YCSJAIAAAA==
+   H4sIAAAAAAAAAO3aOUoEQRiG4ZrBaAbcEkGv4HYJt3O4ncPtHArmphq43sHM7QouE7iCfzBRwyAt2D1jPQ+8eX1JQUGlBAAA/OSxkdJT9By9RJ1G3Seq1nAzpZFoNBqLxpt1n6ha07F3JpqN5qL5zPbTf9xJ7iR3EgBVWmiltBgtdVuOVlp1n6o6q7F1LVrvthFtZrR/K7ZuRzvddqO9jPbvx9aDQocZ7e/E1uNCrxntP4mt14VO7c+G/fbbn+9+gFwdDdV9AgAYbGfxbjqPLkp2GV39gzfXTWy4je5Kdh89DND+Xv813mLDe/RRss/oa4D29/qvMdFOafKXTbXr3VSG/xrw9/yL8y/OPQsAAAAAAAAAAAAAAAAAAAAAQD/5Bm0MSagAgAAA
   </data>
  </layer>
- <layer name="4_roof_add" width="64" height="128" visible="0">
+ <layer name="4_roof_add" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3RwQkCMRAF0DlJcG+WYglWYjNqIXqwjbUVLcR4COoKK55Wdt6DT4ZAID+JAAAAAAAAYMyhRFxrbmXqm0xD/1z9W9e2Zu9/rDnV7AaZq315T19zKZ/vkkHrel7on5H+ufsDAADwu+3yOa+6iHU3Pj9sXs4wH8N//rYPAAAAAAAAAAAAAAAAAAAAAAAA8I/usTYCkgCAAAA=
+   H4sIAAAAAAAAAO3QsQmEMBiG4VQSHMvd7hxEC9fwVrkbxDQpVLAQIXD/88BHmhR5kxIAAAAAAABXxpzSt+yXW7+kDf2x+mtrPaP3T2Vz2euwf/XO+61ln3z+lwhq69Lpj0h/7H4AAADuG/pn7gAAAAAAAAAAAAAAAAAAAAAAAABASxvENyaJAIAAAA==
   </data>
  </layer>
- <layer name="objects" width="64" height="128" visible="0">
+ <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3bwQ3CMAwAwH47LNMwD4wAK6E+eCCgIlUSnPhO6qO8kth1nVQsCwDUd1n/PQKAMamfAMDssvc7z/lnX4dN5jXImgeR5ruNJdJ4OOYkhjCsGWtwaU3K2g8cpebDGNQ0iMu7FCAPNR/mZc8FdXiW8tEfAUBc1/X9quW2lt1Dby3zP4O9Pr/m828/0Yb8p5UR3v/yn8z0/wCMaLZ94f3DfGr/BtBDaX1W/4Cs1D8Avql55uH7F5nNlv89zkN7n7nOdsYbyWz5DyXkP0BberjYMv9HO/PcR3SuGC+xj018XlmPfMR8X2lvqRcFfvEArDejawCAAAA=
   </data>
