@@ -68,7 +68,7 @@ public class WtList extends WtPanel implements WtClickListener {
 
 	/** an action has been chosen */
 	public void onClick(String name, Point point) {
-		// tell all listeners what happend
+		// tell all listeners what happened
 		notifyClickListeners(name, point);
 		// close ourself
 		destroy();

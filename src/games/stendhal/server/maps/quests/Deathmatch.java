@@ -458,7 +458,7 @@ public class Deathmatch extends AbstractQuest {
 				if (deathmatch.arena.contains(player)) {
 					StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_mountain_n2_w");
 					player.teleport(zone, 104, 123, Direction.DOWN, player);
-					player.sendPrivateText("You wake up far away from the city in the mountains. But you don't know what happend.");
+					player.sendPrivateText("You wake up far away from the city in the mountains. But you don't know what happened.");
 					break;
 				}
 			}

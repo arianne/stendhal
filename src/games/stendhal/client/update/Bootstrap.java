@@ -190,7 +190,7 @@ public class Bootstrap {
 				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+				JOptionPane.showMessageDialog(null, "Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 			}
 		}
 
@@ -221,7 +221,7 @@ public class Bootstrap {
 				if (e instanceof InvocationTargetException) {
 					unexspectedErrorHandling(e);
 				} else {
-					JOptionPane.showMessageDialog(null, "Something nasty happend while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+					JOptionPane.showMessageDialog(null, "Something nasty happened while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
 					e.printStackTrace(System.err);
 					try {
 						Class clazz = Class.forName(className);
@@ -282,7 +282,7 @@ public class Bootstrap {
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
 				err.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(null, "Something nasty happend while trying to start your self build client: " + err);
+				JOptionPane.showMessageDialog(null, "Something nasty happened while trying to start your self build client: " + err);
 			}
 		}
 	}

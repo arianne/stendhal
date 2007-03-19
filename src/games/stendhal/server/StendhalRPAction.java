@@ -532,7 +532,7 @@ public class StendhalRPAction {
 		if (zone.collides(entity, x, y)) {
 
 			if (zone.collides(entity, x, y, false) && (entity instanceof Player)) {
-				// something nasty happend. The player should be put on a spot
+				// something nasty happened. The player should be put on a spot
 				// with a real collision (not caused by objects).
 				// Try to put him anywhere possible without checking the path.
 				checkPath = false;
