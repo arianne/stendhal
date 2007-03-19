@@ -198,7 +198,7 @@ public class Soup extends AbstractQuest {
 								engine.say("Ok so I lied, you can't have soup yet because the image isn't drawn. Have some pies and a full heal instead. Sorry about that.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
-								// please i'd like to change the conversation state right here for just this bit, can i do it?
+								engine.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
 							engine.say("Don't take me for a fool, traveller. You don't have " + Grammar.a_noun(text) + " with you.");
