@@ -16,6 +16,7 @@ import games.stendhal.common.Pair;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.actions.AttackAction;
+import games.stendhal.server.actions.AwayAction;
 import games.stendhal.server.actions.BuddyAction;
 import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.actions.DisplaceAction;
@@ -101,6 +102,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private void registerActions() {
 		AdministrationAction.register();
 		AttackAction.register();
+		AwayAction.register();
 		BuddyAction.register();
 		ChatAction.register();
 		DisplaceAction.register();
