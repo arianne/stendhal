@@ -50,7 +50,7 @@ public class AwayAction extends ActionListener {
 
 		if (action.has("message")) {
 			player.put("away", action.get("message"));
-		} else {
+		} else if(player.has("away")) {
 			player.remove("away");
 		}
 
