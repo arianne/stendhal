@@ -53,6 +53,24 @@ public class Player extends RPEntity {
 	 */
 	protected void onAway(String message) {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
+
+		if(isClientPlayer()) {
+			StendhalClient.get().addEventLine(
+				(message != null)
+				 ? "You have been marked as being away."
+				 : "You are no longer marked as being away.",
+				Color.orange);
+		}
+	}
+
+
+	/**
+	 * Determine if this is the player using this client.
+	 *
+	 * @return	<code>true</code> if this is the client's player.
+	 */
+	public boolean isClientPlayer() {
+		return (StendhalClient.get().getPlayer() == rpObject);
 	}
 
 
