@@ -24,7 +24,7 @@ import java.util.List;
  * - Zara sees your suntan cream and asks for it and then thanks you.
  *
  * REWARD:
- * - 5000 XP
+ * - 1000 XP
  * - The key for a house in Ados where a personal chest with new slots is inside  
  *
  * REPETITIONS:
@@ -165,7 +165,7 @@ public class SuntanCreamForZara extends AbstractQuest {
 					}
 				}, 
 				ConversationStates.ATTENDING,
-				"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here!",
+				"Thank you! I feel much better immediately! Here, take this key to my row house in Ados. Feel at home as long as I'm still here! But don't lock yourself out, I won't give you another one!",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
