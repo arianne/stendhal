@@ -1,17 +1,20 @@
 package games.stendhal.server.maps.orril;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Builds the bridge guard (to fado) NPC.
+ *
+ * @author kymara
+ */
 public class OL0_BridgeGuardNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
@@ -20,6 +23,7 @@ public class OL0_BridgeGuardNPC implements ZoneConfigurator {
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
+	 * 
 	 */
 	public void configureZone(StendhalRPZone zone,
 	 Map<String, String> attributes) {

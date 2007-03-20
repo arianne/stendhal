@@ -31,6 +31,8 @@ import games.stendhal.server.util.TimeUtil;
  *
  * REPETITIONS:
  * - None.
+ * 
+ * @author kymara
  */
 public class VampireSword extends AbstractQuest {
     private static final int REQUIRED_IRON = 10;

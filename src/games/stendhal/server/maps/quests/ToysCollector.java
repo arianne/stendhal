@@ -19,19 +19,21 @@ import java.util.List;
  * - Anna, a girl who live in Ados
  * 
  * STEPS:
- * - Anna asks for some toys
- * - You guess she might like a teddy, dice or dress
+ * - Anna asks for some toys for the children
+ * - You guess they might like a teddy, dice or dress
  * - You bring the toy to Anna
  * - Repeat until Anna received all toys. (Of course you can
  *   bring several toys at the same time.)
  * - Anna gives you a reward
  * 
  * REWARD:
- * - ? some pies? 
+ * - 3 pies
  * - 100 XP
  * 
  * REPETITIONS:
  * - None.
+ * 
+ * @author kymara
  */
 public class ToysCollector extends AbstractQuest {
 
@@ -75,7 +77,7 @@ public class ToysCollector extends AbstractQuest {
 				}
 			},
 			ConversationStates.ATTENDING,
-			"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. But I'm bored. I want some #toys!",
+			"Mummy said, we are not allowed to talk to strangers. She is worried about that lost girl. But we're bored. We want some #toys!",
 			null);
 
 		npc.add(ConversationStates.ATTENDING, "toys",
@@ -90,7 +92,7 @@ public class ToysCollector extends AbstractQuest {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					if (!player.isQuestCompleted("toys_collector")) {
-						engine.say("I'm not sure what toys, but whatever would be fun for me to play with! Will you bring me some please?");
+						engine.say("Well, Jens needs something to cuddle. George likes most games. And I love to dress up! Will you bring a toy for each of us?");
 					} else { // to be honest i don't understand when this would be implemented. i put the text i want down in stage 3 and it works fine.
 						engine.say("The toys are great! Thanks!");
 						engine.setCurrentState(ConversationStates.ATTENDING);

@@ -16,7 +16,7 @@ import java.util.List;
  * QUEST: Special Soup
  * 
  * PARTICIPANTS:
- * - OldLady in Fado tavern
+ * - Old Mother Helena in Fado tavern
  * 
  * STEPS:
  * - OldLady tells you the ingredients of a special soup
@@ -32,6 +32,8 @@ import java.util.List;
  * 
  * REPETITIONS:
  * - None.
+ * 
+ * @author kymara
  */
 public class Soup extends AbstractQuest {
 
@@ -64,7 +66,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Mother Helena");
+		SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
@@ -99,7 +101,7 @@ public class Soup extends AbstractQuest {
 			});
 
 		//		 player asks what exactly is missing
-		npc.add(ConversationStates.QUEST_OFFERED,
+			npc.add(ConversationStates.QUEST_OFFERED,
 				"ingredients",
 				null,
 				ConversationStates.QUEST_OFFERED,
@@ -110,35 +112,50 @@ public class Soup extends AbstractQuest {
 						List<String> needed = missingFood(player, true);
 						engine.say("I need " + Grammar.quantityplnoun(needed.size(), "ingredient") + " before I make the soup: " + Grammar.enumerateCollection(needed) + ". Will you collect them?");
 					}
-				});
+			});
 				// player is willing to collect
-				npc.add(ConversationStates.QUEST_OFFERED,
-						ConversationPhrases.YES_MESSAGES,
-						null,
-						ConversationStates.IDLE,
-						null,
-						new SpeakerNPC.ChatAction() {
-							@Override
-							public void fire(Player player, String text, SpeakerNPC engine) {
-								engine.say("You made a wise choice. Farewell, traveller.");
-								player.setQuest("soup_maker", "");
-						}
-				});
-			    // player is not willing to help
-				npc.add(ConversationStates.QUEST_OFFERED,
-						"no",
-						null,
-						ConversationStates.ATTENDING,
-						"Well, maybe someone else will happen by and help me.",
-						null
-				);
+			npc.add(ConversationStates.QUEST_OFFERED,
+					ConversationPhrases.YES_MESSAGES,
+					null,
+					ConversationStates.IDLE,
+					null,
+					new SpeakerNPC.ChatAction() {
+						@Override
+						public void fire(Player player, String text, SpeakerNPC engine) {
+							engine.say("You made a wise choice. Farewell, traveller.");
+							player.setQuest("soup_maker", "");
+					}
+			});
+			   // player is not willing to help
+			npc.add(ConversationStates.QUEST_OFFERED,
+					"no",
+					null,
+					ConversationStates.ATTENDING,
+					"Well, maybe someone else will happen by and help me.",
+					null
+			);
+			// players asks about the vegetables individually
+			npc.add(ConversationStates.QUEST_OFFERED,
+					Arrays.asList("spinach", "courgette", "cabbage", "onion", "cauliflower", "broccoli", "leek"),
+					null,
+					ConversationStates.QUEST_OFFERED,
+					"You will find that in allotments close to fado.",
+					null
+			);
+			npc.add(ConversationStates.QUEST_OFFERED,
+					Arrays.asList("salad", "carrot"),
+					null,
+					ConversationStates.QUEST_OFFERED,
+					"I usually have to get them imported from Semos.",
+					null
+			);
 	}
 	private void step_2() {
 		// Fetch the ingredients and bring them back to Helena.
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Mother Helena");
+		SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,

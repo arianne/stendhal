@@ -14,6 +14,8 @@ import java.util.Map;
 
 /**
  * Configure Orril Dwarf Blacksmith (Underground/Level -3).
+ * 
+ * @author kymara
  */
 public class USL3_DwarfBlacksmith implements ZoneConfigurator {
 	private NPCList npcs;

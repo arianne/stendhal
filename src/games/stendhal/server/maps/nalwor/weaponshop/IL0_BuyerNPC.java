@@ -15,7 +15,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Builds an NPC to buy previously un bought weapons.
+ *
+ * @author kymara
+ */
 public class IL0_BuyerNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
