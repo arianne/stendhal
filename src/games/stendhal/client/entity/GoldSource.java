@@ -36,9 +36,8 @@ public class GoldSource extends AnimatedEntity {
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
-		// TODO: create animation that is transparent with some yellow
-		// spots glittering now and then 
-		sprites.put("0", store.getAnimatedSprite(translate("gold_source"), 1, 6, 1, 1));
+		// TODO: make the animation work 
+		sprites.put("0", store.getAnimatedSprite(translate("gold_source"), 0, 8, 1, 1));
 	}
 
 	@Override
