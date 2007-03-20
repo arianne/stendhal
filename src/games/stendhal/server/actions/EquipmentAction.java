@@ -366,6 +366,8 @@ public class EquipmentAction extends ActionListener {
 			StendhalRPWorld world = StendhalRPWorld.get();
 
             if ( (!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
+            	// give some feedback
+    			player.sendPrivateText("You can't carry this " + base.getName() + " on your " + dest.slot);
                 logger.warn("tried to equip an entity into disallowed slot: " + base.getClass() + "; equip rejected");
                 return false;
             }
