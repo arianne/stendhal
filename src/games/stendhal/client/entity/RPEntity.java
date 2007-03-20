@@ -174,6 +174,21 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		lastAttacker = null;
 	}
 
+
+	/**
+	 * Create/add a "floater" message.
+	 *
+	 * @param	text		The text message.
+	 * @param	color		The color of the text.
+	 */
+	protected void addFloater(String text, Color color) {
+		damageSprites.add(GameScreen.get().createString(text, color));
+
+		damageSpritesTimes.add(
+			Long.valueOf(System.currentTimeMillis()));
+	}
+
+
 	public boolean isAttacking() {
 		return (attacking != null);
 	}

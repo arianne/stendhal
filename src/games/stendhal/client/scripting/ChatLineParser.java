@@ -39,6 +39,7 @@ public class ChatLineParser {
 		commands = new HashMap<String, ChatCommand>();
 
 		commands.put("/", new RemessageCommand());
+		commands.put("away", new AwayCommand());
 		commands.put("tell", new MessageCommand());
 		commands.put("answer", new AnswerCommand());
 		commands.put("msg", new MessageCommand());
@@ -337,6 +338,54 @@ public class ChatLineParser {
 //		 */
 //		public void usage(String command, boolean detailed);
 	}
+
+
+	/**
+	 * Set/clear the player's away status.
+	 */
+	protected class AwayCommand implements ChatCommand {
+		/**
+		 * Execute an away command.
+		 *
+		 * @param	params		The formal parameters.
+		 * @param	remainder	Line content after parameters.
+		 *
+		 * @return	<code>true</code> if command was handled.
+		 */
+		public boolean execute(String [] params, String remainder) {
+			RPAction action = new RPAction();
+
+			action.put("type", "away");
+
+			if(remainder.length() != 0) {
+				action.put("message", remainder);
+			}
+
+			client.send(action);
+
+			return true;
+		}
+
+		/**
+		 * Get the maximum number of formal parameters.
+		 *
+		 * @return	The parameter count.
+		 */
+		public int getMaximumParameters() {
+			return 0;
+		}
+
+
+		/**
+		 * Get the minimum number of formal parameters.
+		 *
+		 * @return	The parameter count.
+		 */
+		public int getMinimumParameters() {
+			return 0;
+		}
+	}
+
 
 
 	/**
@@ -1372,6 +1421,7 @@ public class ChatLineParser {
 			String[] lines = {
 				"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
 				"Here are the most-used commands:",
+				"- /away [<message>] \tSet an away message",
 				"- /tell <player> <message> \tSends a private message to <player>",
 				"- /answer <message> \t\tSends a private message to the last player who sent a message to you",
 				"- // <message> \t\tSends a private message to the last player you sent a message to",

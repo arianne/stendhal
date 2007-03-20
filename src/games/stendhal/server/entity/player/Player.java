@@ -127,6 +127,7 @@ public class Player extends RPEntity implements TurnListener {
 
 		player.stop();
 		player.stopAttack();
+		player.remove("away");
 
 		StendhalQuestSystem.get().onPlayerLogin(player);
 

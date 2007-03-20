@@ -1,14 +1,14 @@
 /* $Id$ */
 /***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
+ *		      (C) Copyright 2003 - Marauroa		      *
  ***************************************************************************
  ***************************************************************************
- *                                                                         *
+ *									 *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
+ *   (at your option) any later version.				   *
+ *									 *
  ***************************************************************************/
 package games.stendhal.client.entity;
 
@@ -44,9 +44,17 @@ public class Player extends RPEntity {
 
 	private int outfitOrg;
 
-	
 
-	
+	/**
+	 * An away message was set/cleared.
+	 *
+	 * @param	message		The away message, or <code>null</code>
+	 *				if no-longer away.
+	 */
+	protected void onAway(String message) {
+		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
+	}
+
 
 	@Override
 	protected void buildAnimations(RPObject base) {
@@ -101,6 +109,16 @@ public class Player extends RPEntity {
 			setName(diff.get("name"));
 		}
 
+		if(diff.has("away")) {
+			/*
+			 * Filter out a player "changing" to the same message
+			 */
+			if(!base.has("away")
+			 || !base.get("away").equals(diff.get("away"))) {
+				onAway(diff.get("away"));
+			}
+		}
+
 		// The first time we ignore it.
 		if (base != null) {
 			if (diff.has("online")) {
@@ -120,6 +138,16 @@ public class Player extends RPEntity {
 			}
 		}
 	}
+
+
+	public void onChangedRemoved(RPObject base, RPObject diff) {
+		super.onChangedRemoved(base, diff);
+
+		if(diff.has("away")) {
+			onAway(null);
+		}
+	}
+
 
 	@Override
 	public Rectangle2D getArea() {
