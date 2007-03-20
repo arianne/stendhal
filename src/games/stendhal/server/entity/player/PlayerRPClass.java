@@ -100,6 +100,7 @@ class PlayerRPClass {
 		player.addRPSlot("bank_ados", 20, RPClass.HIDDEN);
 		player.addRPSlot("zaras_chest_ados", 20, RPClass.HIDDEN);
 		player.addRPSlot("bank_fado", 20, RPClass.HIDDEN);
+		player.addRPSlot("bank_nalwor", 20, RPClass.HIDDEN);
 		
 		// Kills recorder - needed for quest
 		player.addRPSlot("!kills", 1, RPClass.HIDDEN);
@@ -130,7 +131,7 @@ class PlayerRPClass {
 	static void updatePlayerRPObject(RPObject object) {
 		String[] slotsNormal = {
 			"bag", "rhand", "lhand", "head", "armor", "legs",
-			"feet", "cloak", "bank", "bank_ados", "zaras_chest_ados", "bank_fado"
+			"feet", "cloak", "bank", "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor" 
 		};
 
 		String[] slotsSpecial = {
@@ -153,6 +154,7 @@ class PlayerRPClass {
 		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
 		//     Port from 0.44 to 0.50: cloak, bank
 		//     Port from 0.57 to 0.58: bank_ados, bank_fado
+        //	   Port from 0.58 to ?: bank_nalwor,
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));

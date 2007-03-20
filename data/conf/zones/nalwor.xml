@@ -202,7 +202,8 @@
  </zone>
  
  <zone name="int_nalwor_bank" file="int_nalwor_bank.xstend">
-   <portal x="2" y="38" ref="entrance_left">
+ <configurator class-name="games.stendhal.server.maps.nalwor.bank.IL0_BankNPC"/>
+   <portal x="6" y="38" ref="entrance_left">
     <destination zone="0_nalwor_city" ref="bank_entrance_left"/>
    </portal>
  <portal x="26" y="38" ref="entrance_right">
@@ -211,6 +212,31 @@
   <portal x="11" y="11" ref="upstairs">
     <destination zone="int_nalwor_bank_1" ref="downstairs"/>
    </portal> 
+  <entity x="18" y="17">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">bank_nalwor</attribute>
+     </implementation>
+  </entity>
+  <entity x="20" y="17">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">bank_nalwor</attribute>
+     </implementation>
+  </entity>
+  <entity x="25" y="17">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">bank</attribute>
+     </implementation>
+  </entity> 
+  <entity x="27" y="17">
+     <implementation class-name="games.stendhal.server.entity.PersonalChest">
+      <attribute name="slot">bank</attribute>
+     </implementation>
+  </entity> 
+  <entity x="12" y="17">
+    <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
+      <attribute name="npc">Grafindle</attribute>
+    </implementation>
+  </entity>
  </zone> 
 
  <zone name="int_nalwor_bank_1" file="int_nalwor_bank_1.xstend">

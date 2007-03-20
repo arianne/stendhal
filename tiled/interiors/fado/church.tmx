@@ -45,12 +45,12 @@
  </layer>
  <layer name="2_object" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGD5Ai5+BIZWffP3n+CjTPwrwgxJg+JbyDbQrBi8wheJR80fNH4nmB0PxqPmj5sNACjcDQzIBDAPo6ZOQviQgBgBPAZeBAAkAAA==
+   H4sIAAAAAAAAAGNgGD5Ai5+BIZWffP3n+CjTTwmopaK91DSLmqAEGL6lfAPtisELTKF41PxR80ei+cFQPGr+qPkwkMLNwJBMAMMAevokpC8JiAFINrbZAAkAAA==
   </data>
  </layer>
  <layer name="3_roof" width="24" height="24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgYGAIYYHgs3zUwTDzYGAaHwQjg2AkeWS1U/kwxZHV4jJvqINafgg9gQW/OnwAphdmFjagyw6hQ0iwB6YWpnc4A2qEPz5ASRiOhPAfBaNgpAH0+pLa5lG7vhxO9S8A0X/wzgAJAAA=
+   H4sIAAAAAAAAAGNgYGAIYYHgs3zUwTDzYGAaHwQjg2AkeWS1U/kwxZHV4jJvuIAJLITVUKJXlx1Ch5BgD0wtTO9wBvQKf3LASAj/UTAKRhpAry+pbR6168vhVP8CANZI0ZYACQAA
   </data>
  </layer>
  <layer name="objects" width="24" height="24">
