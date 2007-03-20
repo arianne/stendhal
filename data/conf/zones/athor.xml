@@ -195,8 +195,11 @@
 			 </attribute>
 		 </implementation>
 	 </entity>
-     </zone>
-     	 
+    </zone>
+
+    <zone name="0_athor_island" file="0_athor_island.xstend">
+	</zone>
+
  <!--  Level -1 -->
 
      <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
