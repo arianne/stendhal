@@ -7,7 +7,7 @@ public class QuestKanmararn {
 	/**
 	 * a non equipable corpse used in quests
 	 */
-	// TODO: throw away: you can't equip corpses anyway.
+	// TODO: fix equiping of normal corpse by implementing weight and degenrating in bag 
 	public static class QuestCorpse extends Corpse {
 
 		/**
@@ -21,9 +21,9 @@ public class QuestKanmararn {
 			super(clazz, x, y);
 		}
 
-//		@Override
-//		public boolean canBeEquiped() {
-//			return false;
-//		}
+		@Override
+		public boolean canBeEquippedIn(String slot) {
+			return false;
+		}
 	}
 }
