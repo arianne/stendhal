@@ -2,6 +2,7 @@ package games.stendhal.server.maps.athor;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -49,7 +50,7 @@ public class OL0_IslandWest implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hey there!");
 				add(ConversationStates.ATTENDING,
-						Arrays.asList("task", "quest"),
+						ConversationPhrases.QUEST_MESSAGES,
 						null,
 						ConversationStates.ATTENDING,
 						"I don't have a task for you, I'm perfectly happy!",
