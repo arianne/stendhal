@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -62,8 +63,17 @@ public class Deathmatch extends AbstractQuest {
 		private List<Creature> sortedCreatures = new LinkedList<Creature>();
 		private List<Creature> spawnedCreatures = new ArrayList<Creature>();
 		private boolean keepRunning = true;
-		public ScriptAction(Player player) {
+		private boolean isRewardable = false;
+
+		/**
+		 * Creates a new ScriptAction to handle the deathmatch logic.
+		 *
+		 * @param player Player for whom this match is created
+		 * @param isRewardable should the player be rewarded?
+		 */
+		public ScriptAction(Player player, boolean isRewardable) {
 			this.player = player;
+			this.isRewardable = isRewardable;
 			Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 			sortedCreatures.addAll(creatures);
 			Collections.sort(sortedCreatures, new Comparator<Creature>() {
@@ -171,7 +181,7 @@ public class Deathmatch extends AbstractQuest {
 									if (creature.getName().equals(daily)) {
 										int x = player.getX() + 1; 
 										int y = player.getY() + 1;
-										add(zone, creature, x, y, player);
+										add(zone, creature, x, y, player, isRewardable);
 										break;
 									}
 								}
@@ -207,7 +217,7 @@ public class Deathmatch extends AbstractQuest {
 					}
 					int x = player.getX(); 
 					int y = player.getY();
-					DeathMatchCreature mycreature = add(zone, creatureToSpawn, x, y, player);
+					DeathMatchCreature mycreature = add(zone, creatureToSpawn, x, y, player, isRewardable);
 					if (mycreature != null) {
 						spawnedCreatures.add(mycreature);
 						questLevel = Integer.toString(currentLevel + 1);
@@ -228,9 +238,38 @@ public class Deathmatch extends AbstractQuest {
 				level = 1;
 			}
 			player.setQuest("deathmatch", "start;"+ level + ";" + (new Date()).getTime());
-			ScriptAction scriptingAction = new ScriptAction(player);
+			boolean isRewardable = calculateAndUpdateRewardLevel(player);
+			if (!isRewardable) {
+				engine.say("Your training fight is about to begin.");
+			}
+			ScriptAction scriptingAction = new ScriptAction(player, isRewardable);
 			TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
 		}
+
+		/**
+		 * Does the player get an XP reward for this deathmatch or has (s)he done too may for its level?
+		 *
+		 * @param player player to check
+		 * @return true, iff reward should be granded.
+		 */
+		private boolean calculateAndUpdateRewardLevel(Player player) {
+			boolean isRewardable = false;
+			int level = 0;
+			if (player.hasQuest("deathmatch_level")) {
+				level = Integer.parseInt(player.getQuest("deathmatch_level"));
+			}
+			if (player.getLevel() > level) { 
+				isRewardable = true;
+			}
+			// TODO: remove this condition after DB-reset
+			if (player.getLevel() > 75 && Debug.VERSION.startsWith("0.5")) {
+				isRewardable = true;
+			} else {
+				player.setQuest("deathmatch_level", Integer.toString(level++));
+			}
+			return isRewardable;
+		}
+
 	}
 
 	class DoneAction extends SpeakerNPC.ChatAction {
@@ -419,7 +458,7 @@ public class Deathmatch extends AbstractQuest {
 		zone.add(npc);
 	}
 
-	private DeathMatchCreature add(StendhalRPZone zone, Creature template, int x, int y, Player player) {
+	private DeathMatchCreature add(StendhalRPZone zone, Creature template, int x, int y, Player player, boolean isRewardable) {
 		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(template.getInstance(), arena.getShape()));
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y, arena.getShape())) {
@@ -428,7 +467,9 @@ public class Deathmatch extends AbstractQuest {
 
 			creature.clearDropItemList();
 			creature.attack(player);
-			creature.setPlayerToReward(player);
+			if (isRewardable) {
+				creature.setPlayerToReward(player);
+			}
 
 		} else {
 			logger.info(" could not add a creature: " + creature);
