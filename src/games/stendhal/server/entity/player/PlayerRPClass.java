@@ -79,6 +79,8 @@ class PlayerRPClass {
 		player.add("outfit", RPClass.INT);
 		player.add("outfit_org", RPClass.INT);
 
+		player.add("away", RPClass.LONG_STRING, RPClass.VOLATILE);
+
 		// Use this for admin menus and usage.
 		player.add("admin", RPClass.FLAG);
 		player.add("adminlevel", RPClass.INT);
