@@ -59,25 +59,6 @@ public class Deathmatch extends AbstractQuest {
 		deathmatches.add(this);
 	}
 
-
-
-
-	class StartAction extends SpeakerNPC.ChatAction {
-		public void fire(Player player, String text, SpeakerNPC engine) {
-			engine.say("Have fun!");
-			int level = player.getLevel() - 2;
-			if(level < 1) {
-				level = 1;
-			}
-			player.setQuest("deathmatch", "start;"+ level + ";" + (new Date()).getTime());
-			ScriptAction scriptingAction = new ScriptAction(player, arena, zoneName, zone);
-			TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
-		}
-	}
-
-
-
-
 	/**
 	 * show the player the potential trophy
 	 *
@@ -131,7 +112,7 @@ public class Deathmatch extends AbstractQuest {
 
 				// 'start' command will start spawning creatures
 				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null, 
-						ConversationStates.ATTENDING, null, new StartAction());
+						ConversationStates.ATTENDING, null, new StartAction(arena, zoneName, zone));
 				
 				// 'victory' command will scan, if all creatures are killed and reward the player
 				add(ConversationStates.ATTENDING, Arrays.asList("victory", "done", "yay"), null,
