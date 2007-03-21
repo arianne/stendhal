@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.deathmatch;
+package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
@@ -11,30 +11,33 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.maps.quests.AbstractQuest;
+import games.stendhal.server.maps.deathmatch.BailAction;
+import games.stendhal.server.maps.deathmatch.DealWithLogoutCoward;
+import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
+import games.stendhal.server.maps.deathmatch.DoneAction;
+import games.stendhal.server.maps.deathmatch.LeaveAction;
+import games.stendhal.server.maps.deathmatch.StartAction;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.Area;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 
 /**
  * Creating the Stendhal Deathmatch Game
  */
-public class Deathmatch extends AbstractQuest {
+public class AdosDeathmatch extends AbstractQuest {
 	private NPCList npcs = NPCList.get();
 	private StendhalRPZone zone = null;
 	private Area arena = null;
 	private DeathmatchInfo deathmatchInfo = null;
 	
-	public Deathmatch() {
+	public AdosDeathmatch() {
 		// constructor for quest system
 	}
 	
-	public Deathmatch(String zoneName, StendhalRPZone zone, Area arena) {
+	public AdosDeathmatch(String zoneName, StendhalRPZone zone, Area arena) {
 		this.zone = zone;
 		this.arena = arena;
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);

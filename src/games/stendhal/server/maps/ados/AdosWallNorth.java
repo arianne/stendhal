@@ -4,7 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.maps.deathmatch.Deathmatch;
+import games.stendhal.server.maps.quests.AdosDeathmatch;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.Area;
 
@@ -80,7 +80,7 @@ public class AdosWallNorth implements ZoneConfigurator {
 		Rectangle2D shape = new Rectangle2D.Double();
 		shape.setRect(88, 77, 112-88+1, 93-77+1);
 		Area arena = new Area(zone, shape);
-		Deathmatch deathmatch = new Deathmatch(zoneName, zone, arena);
+		AdosDeathmatch deathmatch = new AdosDeathmatch(zoneName, zone, arena);
 		deathmatch.createHelmet(102, 75);
 		deathmatch.createNPC("Thanatos", 98, 75);
 	}
