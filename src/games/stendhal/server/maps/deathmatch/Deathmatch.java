@@ -242,17 +242,7 @@ public class Deathmatch extends AbstractQuest {
 	}
 
 
-	class LeaveAction extends SpeakerNPC.ChatAction {
-		public void fire(Player player, String text, SpeakerNPC engine) {	 
-			if("done".equals(player.getQuest("deathmatch"))) {
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_plains_n");
-				player.teleport(zone, 100, 115, null, player);				
-			} else {
-				engine.say("I don't think you claimed your #victory yet.");
-			}
-			return;
-		}
-	}
+
 
 	/**
 	 * show the player the potential trophy
