@@ -10,3 +10,14 @@ create table if not exists avatars
   primary key(object_id)
   )
   TYPE=INNODB;
+  
+  
+create table if not exists halloffame
+  (
+  id integer auto_increment not null,
+  player_id integer,
+  fametype CHAR(1),
+  points integer,
+
+  primary key(id)
+  ) TYPE=INNODB;
