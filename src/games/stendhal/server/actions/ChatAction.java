@@ -95,6 +95,9 @@ public class ChatAction extends ActionListener {
 	}
 
 	private void onTell(Player player, RPAction action) {
+		String	away;
+
+
 		// TODO: find a cleaner way to implement it
 		if (Jail.isInJail(player)) {
 			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
@@ -148,6 +151,24 @@ public class ChatAction extends ActionListener {
 			// transmit the message
 			receiver.sendPrivateText(message);
 			player.sendPrivateText("You tell " + receiver.getName() + ": " + text);
+
+			/*
+			 * Handle /away messages
+			 */
+			if((away = receiver.getAwayMessage()) != null) {
+				if(receiver.isAwayNotifyNeeded(senderName)) {
+					/*
+					 * Send away response
+					 */
+					player.sendPrivateText(
+						receiverName + " is away: "
+						+ away);
+
+					player.notifyWorldAboutChanges();
+				}
+			}
+
+
 			receiver.setLastPrivateChatter(player.getName());
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName, 
 					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));

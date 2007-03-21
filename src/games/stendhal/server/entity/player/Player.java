@@ -34,6 +34,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -109,6 +110,13 @@ public class Player extends RPEntity implements TurnListener {
          */
          protected int mana;
          protected int base_mana;
+
+
+	/**
+	 * A list of away replys sent to players.
+	 */
+	protected HashMap<String,Long>	awayReplies;
+
 
 	public static void generateRPClass() {
 		try {
@@ -215,6 +223,7 @@ public class Player extends RPEntity implements TurnListener {
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
+		awayReplies = new HashMap<String,Long>();
 
 		/*
 		 * Beginner's luck (unless overriden by update)
@@ -297,6 +306,55 @@ public class Player extends RPEntity implements TurnListener {
 		directions.clear();
 		super.stop();
 	}
+
+
+	/**
+	 * Get the away message.
+	 *
+	 * @return	The away message, or <code>null</code> if unset.
+	 */
+	public String getAwayMessage() {
+		return has("away") ? get("away") : null;
+	}
+
+
+	/**
+	 * Check if another player should be notified that this player is
+	 * away. This assumes the player has already been checked for away.
+	 * Players will be reminded once an hour.
+	 *
+	 * @param	name		The name of the other player.
+	 *
+	 * @return	<code>true</code> if the player should be notified.
+	 */
+	public boolean isAwayNotifyNeeded(String name) {
+		long	now;
+		Long	lObj;
+
+
+		now = System.currentTimeMillis();
+
+		if((lObj = awayReplies.get(name)) != null) {
+			/*
+			 * Only notify once an hour
+			 */
+			if((now - lObj.longValue()) < (1000L * 60L * 60L)) {
+				return false;
+			}
+		}
+
+		awayReplies.put(name, new Long(now));
+		return true;
+	}
+
+
+	/**
+	 * Clear out all recorded away respones.
+	 */
+	public void resetAwayReplies() {
+		awayReplies.clear();
+	}
+
 
 
 	/**

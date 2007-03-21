@@ -71,6 +71,7 @@ Changelog
 - the Easter Bunny is hopping around
 - non semos city scrolls - nalwor, fado (when open), ados (needs NPC seller)
 - nalwor bank with nalwor and semos bank chests
+- added /away command (like in irc)
 
 0.58
 - name/HPbar is now visible, alltime

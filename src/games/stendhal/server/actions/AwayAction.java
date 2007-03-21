@@ -54,6 +54,7 @@ public class AwayAction extends ActionListener {
 			player.remove("away");
 		}
 
+		player.resetAwayReplies();
 		player.notifyWorldAboutChanges();
 
 		Log4J.finishMethod(logger, "away");
