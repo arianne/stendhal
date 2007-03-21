@@ -243,6 +243,20 @@ public class Deathmatch extends AbstractQuest {
 	class DoneAction extends SpeakerNPC.ChatAction {
 
 		/**
+		 * Did the player really win the deathmatch?
+		 *
+		 * @param player Player
+		 * @return true in case it did win, false otherwise
+		 */
+		private boolean isVictory(Player player) {
+			String questInfo = player.getQuest("deathmatch");
+			// questinfo may or may not contain up to 3 tokens
+			String[] tokens = (questInfo + ";0;0").split(";");
+			String questState = tokens[0];
+			return !"victory".equals(questState);
+		}
+
+		/**
 		 * Creates the player bound special trophy helmet and equips it.
 		 *
 		 * @param player Player object
@@ -261,36 +275,33 @@ public class Deathmatch extends AbstractQuest {
 
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
-			String questInfo = player.getQuest("deathmatch");
-			String[] tokens = (questInfo+";0;0").split(";");
-			String questState = tokens[0];
-			if ("victory".equals(questState)) {
-				// We assume that the player only carries one trophy helmet.
-				Item helmet	= player.getFirstEquipped("trophy_helmet");
-				if (helmet == null) {
-					helmet = createTrophyHelmet(player);
-					engine.say("Congratulations! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
-				} else {
-					int defense = 1;
-					if (helmet.has("def")) {
-						defense = helmet.getInt("def");
-					}
-					defense++;
-					int maxdefense = 5 + (player.getLevel() / 5);
-					if (defense > maxdefense) {
-						helmet.put("def", maxdefense);					
-						engine.say("Congratulations! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense);
-					} else {
-						helmet.put("def", defense);				
-						engine.say("Congratulations! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
-					}
-				}
-				player.updateItemAtkDef();
-				player.setQuest("deathmatch", "done");
-			} else {
+			if (!isVictory(player)) {
 				engine.say("C'm on, don't lie to me! All you can do now is #bail or win.");
+				return;
 			}
-			return;
+
+			// We assume that the player only carries one trophy helmet.
+			Item helmet	= player.getFirstEquipped("trophy_helmet");
+			if (helmet == null) {
+				helmet = createTrophyHelmet(player);
+				engine.say("Congratulations! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
+			} else {
+				int defense = 1;
+				if (helmet.has("def")) {
+					defense = helmet.getInt("def");
+				}
+				defense++;
+				int maxdefense = 5 + (player.getLevel() / 5);
+				if (defense > maxdefense) {
+					helmet.put("def", maxdefense);					
+					engine.say("Congratulations! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense);
+				} else {
+					helmet.put("def", defense);				
+					engine.say("Congratulations! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
+				}
+			}
+			player.updateItemAtkDef();
+			player.setQuest("deathmatch", "done");
 		}
 	}
 
