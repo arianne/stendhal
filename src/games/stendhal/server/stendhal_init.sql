@@ -15,9 +15,9 @@ create table if not exists avatars
 create table if not exists halloffame
   (
   id integer auto_increment not null,
-  player_id integer,
-  fametype CHAR(1),
-  points integer,
+  charname varchar(32) not null,
+  fametype CHAR(1) not null,
+  points integer not null,
 
   primary key(id)
   ) TYPE=INNODB;
