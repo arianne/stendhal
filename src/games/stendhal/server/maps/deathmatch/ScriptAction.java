@@ -40,12 +40,13 @@ class ScriptAction implements TurnListener {
 	 * Creates a new ScriptAction to handle the deathmatch logic.
 	 *
 	 * @param player Player for whom this match is created
+	 * @param deathmatchInfo Information about the place of the deathmatch
 	 */
-	public ScriptAction(Player player, Area arena, String zoneName, StendhalRPZone zone) {
+	public ScriptAction(Player player, DeathmatchInfo deathmatchInfo) {
 		this.player = player;
-		this.arena = arena;
-		this.zoneName = zoneName;
-		this.zone = zone;
+		this.arena = deathmatchInfo.getArena();
+		this.zoneName = deathmatchInfo.getZoneName();
+		this.zone = deathmatchInfo.getZone();
 		Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
 		Collections.sort(sortedCreatures, new Comparator<Creature>() {

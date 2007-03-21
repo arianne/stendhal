@@ -26,9 +26,8 @@ import java.util.List;
  */
 public class Deathmatch extends AbstractQuest {
 	private NPCList npcs = NPCList.get();
-	private String zoneName = null;
 	private StendhalRPZone zone = null;
-	protected Area arena = null;
+	private Area arena = null;
 	private DeathmatchInfo deathmatchInfo = null;
 	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
 	
@@ -37,7 +36,6 @@ public class Deathmatch extends AbstractQuest {
 	}
 	
 	public Deathmatch(String zoneName, StendhalRPZone zone, Area arena) {
-		this.zoneName = zoneName;
 		this.zone = zone;
 		this.arena = arena;
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
@@ -98,7 +96,7 @@ public class Deathmatch extends AbstractQuest {
 
 				// 'start' command will start spawning creatures
 				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null, 
-						ConversationStates.ATTENDING, null, new StartAction(arena, zoneName, zone));
+						ConversationStates.ATTENDING, null, new StartAction(deathmatchInfo));
 				
 				// 'victory' command will scan, if all creatures are killed and reward the player
 				add(ConversationStates.ATTENDING, Arrays.asList("victory", "done", "yay"), null,

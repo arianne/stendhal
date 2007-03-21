@@ -9,14 +9,10 @@ import games.stendhal.server.util.Area;
 import java.util.Date;
 
 class StartAction extends SpeakerNPC.ChatAction {
-	private final Area arena;
-	private final String zoneName;
-	private final StendhalRPZone zone;
+	private DeathmatchInfo deathmatchInfo;
 	
-	StartAction(Area arena, String zoneName, StendhalRPZone zone) {
-		this.arena = arena;
-		this.zoneName = zoneName;
-		this.zone = zone;
+	StartAction(DeathmatchInfo deathmatchInfo) {
+		this.deathmatchInfo = deathmatchInfo;
 	}
 
 	public void fire(Player player, String text, SpeakerNPC engine) {
@@ -26,7 +22,7 @@ class StartAction extends SpeakerNPC.ChatAction {
 			level = 1;
 		}
 		player.setQuest("deathmatch", "start;"+ level + ";" + (new Date()).getTime());
-		ScriptAction scriptingAction = new ScriptAction(player, arena, zoneName, zone);
+		ScriptAction scriptingAction = new ScriptAction(player, deathmatchInfo);
 		TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
 	}
 }
