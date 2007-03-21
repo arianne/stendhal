@@ -29,6 +29,11 @@ public class DeathMatchCreature extends Creature {
 		return new DeathMatchCreature(this);
 	}
 
+	/**
+	 * Only this player gets an XP reward.
+	 *
+	 * @param player Player to reward
+	 */
 	public void setPlayerToReward(Player player) {
 		playersToReward.clear();
 		playersToReward.add(player);
