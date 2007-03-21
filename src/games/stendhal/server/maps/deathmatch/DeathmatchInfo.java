@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.deathmatch;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.util.Area;
 
@@ -9,6 +12,8 @@ import games.stendhal.server.util.Area;
  * @author hendrik
  */
 public class DeathmatchInfo {
+	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
+
 	private final Area arena;
 	private final String zoneName;
 	private final StendhalRPZone zone;
@@ -53,5 +58,22 @@ public class DeathmatchInfo {
 	public String getZoneName() {
 		return zoneName;
 	}
-	
+
+	/**
+	 * Registers a new deathmatch
+	 *
+	 * @param deathmatchInfo deathmatchInfo
+	 */
+	public static void add(DeathmatchInfo deathmatchInfo) {
+		deathmatches.add(deathmatchInfo);
+	}
+
+	/**
+	 * returns a list of all Deathmachtes
+	 *
+	 * @return list of deathmatches
+	 */
+	static List<DeathmatchInfo> getDeathmatches() {
+		return deathmatches;
+	}
 }

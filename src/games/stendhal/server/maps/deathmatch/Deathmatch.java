@@ -29,7 +29,6 @@ public class Deathmatch extends AbstractQuest {
 	private StendhalRPZone zone = null;
 	private Area arena = null;
 	private DeathmatchInfo deathmatchInfo = null;
-	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
 	
 	public Deathmatch() {
 		// constructor for quest system
@@ -40,7 +39,7 @@ public class Deathmatch extends AbstractQuest {
 		this.arena = arena;
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
 		zone.setTeleportable(false);
-		deathmatches.add(deathmatchInfo);
+		DeathmatchInfo.add(deathmatchInfo);
 	}
 
 	/**
@@ -128,12 +127,4 @@ public class Deathmatch extends AbstractQuest {
 		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player), null);
 	}
 
-	/**
-	 * returns a list of all Deathmachtes
-	 *
-	 * @return list of deathmatches
-	 */
-	static List<DeathmatchInfo> getDeathmatches() {
-		return deathmatches;
-	}
 }

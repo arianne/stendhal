@@ -16,7 +16,7 @@ class DealWithLogoutCoward implements TurnListener {
 	}
 
 	public void onTurnReached(int currentTurn, String message) {
-		for (DeathmatchInfo deathmatchInfo : Deathmatch.getDeathmatches()) {
+		for (DeathmatchInfo deathmatchInfo : DeathmatchInfo.getDeathmatches()) {
 			if (deathmatchInfo.getArena().contains(player)) {
 				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_mountain_n2_w");
 				player.teleport(zone, 104, 123, Direction.DOWN, player);
