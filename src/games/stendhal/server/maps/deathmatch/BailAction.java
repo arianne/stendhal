@@ -6,7 +6,7 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Date;
 
-class BailAction extends SpeakerNPC.ChatAction {
+public class BailAction extends SpeakerNPC.ChatAction {
 	public void fire(Player player, String text, SpeakerNPC engine) {
 		String questInfo = player.getQuest("deathmatch");
 		if (questInfo == null) {

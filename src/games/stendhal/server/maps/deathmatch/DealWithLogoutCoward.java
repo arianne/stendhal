@@ -9,7 +9,7 @@ import games.stendhal.server.events.TurnListener;
 /**
  * Teleport the player far away if he/she had logged out in the deathmatch arena.
  */
-class DealWithLogoutCoward implements TurnListener {
+public class DealWithLogoutCoward implements TurnListener {
 	private Player player = null;
 	public DealWithLogoutCoward(Player player) {
 		this.player = player;

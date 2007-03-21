@@ -1,17 +1,15 @@
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.util.Area;
 
 import java.util.Date;
 
-class StartAction extends SpeakerNPC.ChatAction {
+public class StartAction extends SpeakerNPC.ChatAction {
 	private DeathmatchInfo deathmatchInfo;
 	
-	StartAction(DeathmatchInfo deathmatchInfo) {
+	public StartAction(DeathmatchInfo deathmatchInfo) {
 		this.deathmatchInfo = deathmatchInfo;
 	}
 

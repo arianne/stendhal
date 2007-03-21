@@ -6,7 +6,7 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
-class DoneAction extends SpeakerNPC.ChatAction {
+public class DoneAction extends SpeakerNPC.ChatAction {
 
 	/**
 	 * Did the player really win the deathmatch?
