@@ -2349,6 +2349,16 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+
+	<item name="wedding_ring">
+		<type class="ring" subclass="wedding"/>
+		<implementation class-name="games.stendhal.server.entity.item.WeddingRing"/>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="bag"/>
+			<!-- TODO: create ring slot -->
+		</equipable>
+	</item>
 	
 <!-- Scrolls_section -->
 	

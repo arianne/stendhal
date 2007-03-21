@@ -112,6 +112,7 @@
          
          <zone name="int_fado_church" file="int_fado_church.xstend">
           <configurator class-name="games.stendhal.server.maps.fado.church.IL0_VergerNPC"/>
+          <configurator class-name="games.stendhal.server.maps.fado.church.IL0_PriestNPC"/>
            <portal x="10" y="23" ref="entrance_left2">
              <destination zone="0_fado_city" ref="church_entrance"/>
            </portal>

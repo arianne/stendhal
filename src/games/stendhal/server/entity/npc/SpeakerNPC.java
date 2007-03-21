@@ -263,6 +263,16 @@ public abstract class SpeakerNPC extends NPC {
 		return attending;
 	}
 
+	/**
+	 * Sets the player to whom the NPC is currently listening.
+	 * Note: You don't need to use this for most NPCs.
+	 *
+	 * @param player the player with whom the NPC should be talking.
+	 */
+	public void setAttending(Player player) {
+		attending = player;
+	}
+
 	@Override
 	public void onDead(Entity who) {
 		setHP(getBaseHP());
