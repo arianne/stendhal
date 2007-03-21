@@ -1,14 +1,8 @@
 package games.stendhal.server.maps.deathmatch;
 
-import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.creature.ArenaCreature;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.DeathMatchCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -16,7 +10,6 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.pathfinder.Path;
@@ -24,23 +17,14 @@ import games.stendhal.server.util.Area;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
-import marauroa.common.game.RPObjectNotFoundException;
-
-import org.apache.log4j.Logger;
 
 
 /**
  * Creating the Stendhal Deathmatch Game
  */
 public class Deathmatch extends AbstractQuest {
-	protected static Logger logger = Logger.getLogger(Deathmatch.class);
 	private NPCList npcs = NPCList.get();
 	private String zoneName = null;
 	private StendhalRPZone zone = null;
@@ -136,8 +120,6 @@ public class Deathmatch extends AbstractQuest {
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 	}
-
-
 
 	@Override
 	public void onPlayerLogin(Player player) {
