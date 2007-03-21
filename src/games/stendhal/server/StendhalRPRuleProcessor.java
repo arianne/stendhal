@@ -119,7 +119,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private StendhalRPRuleProcessor() {
-		database = (StendhalPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
