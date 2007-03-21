@@ -11,6 +11,12 @@ import games.stendhal.server.events.TurnListener;
  */
 public class DealWithLogoutCoward implements TurnListener {
 	private Player player = null;
+
+	/**
+	 * creates a new DealWithLogoutCoward turn listener
+	 *
+	 * @param player player
+	 */
 	public DealWithLogoutCoward(Player player) {
 		this.player = player;
 	}
