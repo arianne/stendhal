@@ -1287,8 +1287,10 @@ public abstract class RPEntity extends Entity {
 	@Override
 	public String describe() {
 		String text = super.describe();
-		text += " It is level " + getLevel() + ".";
-		return (text);
+		if (getLevel() > 0) {
+			text += " It is level " + getLevel() + ".";
+		}
+		return text;
 	}
 
 	public float getItemAtk() {
