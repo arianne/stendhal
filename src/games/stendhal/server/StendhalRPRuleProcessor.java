@@ -34,8 +34,8 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
@@ -54,6 +54,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.server.createaccount.Result;
+import marauroa.server.game.GenericDatabaseException;
 import marauroa.server.game.IRPRuleProcessor;
 import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.RPServerManager;
@@ -70,7 +71,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** The Singleton instance */
 	private static StendhalRPRuleProcessor instance;
 	
-	private JDBCPlayerDatabase database;
+	private StendhalPlayerDatabase database;
 
 	private static Map<String, ActionListener> actionsMap;
 	static {
@@ -118,7 +119,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private StendhalRPRuleProcessor() {
-		database = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
+		database = (StendhalPlayerDatabase) JDBCPlayerDatabase.getDatabase();
 		playersObject = new LinkedList<Player>();
 		playersObjectRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
@@ -146,6 +147,44 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		try {
 			Transaction transaction = database.getTransaction();
 			database.addGameEvent(transaction, source, event, params);
+			transaction.commit();
+		} catch (Exception e) {
+			logger.warn("Can't store game event", e);
+		}
+	}
+
+	/**
+	 * Gets the points of named player in the specified hall of fame
+	 *
+	 * @param playername name of the player
+	 * @param fametype   type of the hall of fame
+	 * @return points     points to add
+	 */
+	public int getHallOfFamePoints(String playername, String fametype) {
+		int res = 0;
+		try {
+			Transaction transaction = database.getTransaction();
+			res = database.getHallOfFamePoints(transaction, playername, fametype);
+			transaction.commit();
+		} catch (Exception e) {
+			logger.warn("Can't store game event", e);
+		}
+		return res;
+	}
+
+	/**
+	 * Add points to the named player in the specified hall of fame
+	 *
+	 * @param playername name of the player
+	 * @param fametype   type of the hall of fame
+	 * @param points     points to add
+	 */
+	public void addHallOfFamePoints(String playername, String fametype, int points) {
+		try {
+			Transaction transaction = database.getTransaction();
+			int oldPoints = database.getHallOfFamePoints(transaction, playername, fametype);
+			int totalPoints = oldPoints + points;
+			database.setHallOfFamePoints(transaction, playername, fametype, totalPoints);
 			transaction.commit();
 		} catch (Exception e) {
 			logger.warn("Can't store game event", e);
