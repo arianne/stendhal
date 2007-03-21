@@ -22,19 +22,27 @@ import games.stendhal.server.entity.item.scroll.Scroll;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 
 import marauroa.common.game.RPObject;
 
+/**
+ * A special ring that allows the owner to teleport to his or her spouse.
+ * The spouse's name is engraved into the ring. Technically, the name is
+ * stored in the item's infostring.
+ * 
+ * Wedding rings should always be bound to the owner.
+ * 
+ * @author daniel
+ */
 public class WeddingRing extends Item implements UseListener {
 	
 	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**
-	 * Creates a new map.
+	 * Creates a new wedding ring.
 	 *
 	 * @param name
 	 * @param clazz
@@ -58,6 +66,12 @@ public class WeddingRing extends Item implements UseListener {
 		}
 	}
 	
+	/**
+	 * Teleports the given player to his/her spouse, but only if the spouse
+	 * is also wearing the wedding ring.
+	 * 
+	 * @param player The ring's owner.
+	 */
 	private void teleportToSpouse(Player player) {
 		if (has("infostring")) {
 			String spouseName = get("infostring");
@@ -92,5 +106,4 @@ public class WeddingRing extends Item implements UseListener {
 			return "You see a wedding ring.";
 		}
 	}
-
 }
