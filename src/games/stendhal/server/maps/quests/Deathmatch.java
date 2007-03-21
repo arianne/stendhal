@@ -253,7 +253,7 @@ public class Deathmatch extends AbstractQuest {
 			// questinfo may or may not contain up to 3 tokens
 			String[] tokens = (questInfo + ";0;0").split(";");
 			String questState = tokens[0];
-			return !"victory".equals(questState);
+			return "victory".equals(questState);
 		}
 
 		/**
@@ -273,6 +273,18 @@ public class Deathmatch extends AbstractQuest {
 			return helmet;
 		}
 
+		/**
+		 * Updates the player's points in the hall of fame for deathmatch
+		 *
+		 * @param player Player
+		 * @return new amount of points
+		 */
+		private int updatePoints(Player player) {
+			StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+			rules.addHallOfFamePoints(player.getName(), "D", player.getLevel());
+			return rules.getHallOfFamePoints(player.getName(), "D");
+		}
+
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			if (!isVictory(player)) {
@@ -280,11 +292,13 @@ public class Deathmatch extends AbstractQuest {
 				return;
 			}
 
+			int points = updatePoints(player);
+
 			// We assume that the player only carries one trophy helmet.
 			Item helmet	= player.getFirstEquipped("trophy_helmet");
 			if (helmet == null) {
 				helmet = createTrophyHelmet(player);
-				engine.say("Congratulations! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
+				engine.say("Congratulations, your score is now " + points + "! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
 			} else {
 				int defense = 1;
 				if (helmet.has("def")) {
@@ -294,10 +308,10 @@ public class Deathmatch extends AbstractQuest {
 				int maxdefense = 5 + (player.getLevel() / 5);
 				if (defense > maxdefense) {
 					helmet.put("def", maxdefense);					
-					engine.say("Congratulations! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense);
+					engine.say("Congratulations, your score is now " + points + "! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense);
 				} else {
 					helmet.put("def", defense);				
-					engine.say("Congratulations! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
+					engine.say("Congratulations, your score is now " + points + "! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
 				}
 			}
 			player.updateItemAtkDef();
