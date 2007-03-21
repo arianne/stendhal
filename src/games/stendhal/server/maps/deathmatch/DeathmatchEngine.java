@@ -25,8 +25,8 @@ import marauroa.common.game.RPObjectNotFoundException;
 
 import org.apache.log4j.Logger;
 
-class ScriptAction implements TurnListener {
-	private static Logger logger = Logger.getLogger(ScriptAction.class);
+class DeathmatchEngine implements TurnListener {
+	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 	private final Player player;
 	private final Area arena;
 	private final String zoneName;
@@ -42,7 +42,7 @@ class ScriptAction implements TurnListener {
 	 * @param player Player for whom this match is created
 	 * @param deathmatchInfo Information about the place of the deathmatch
 	 */
-	public ScriptAction(Player player, DeathmatchInfo deathmatchInfo) {
+	public DeathmatchEngine(Player player, DeathmatchInfo deathmatchInfo) {
 		this.player = player;
 		this.arena = deathmatchInfo.getArena();
 		this.zoneName = deathmatchInfo.getZoneName();

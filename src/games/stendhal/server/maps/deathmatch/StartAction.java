@@ -20,7 +20,7 @@ public class StartAction extends SpeakerNPC.ChatAction {
 			level = 1;
 		}
 		player.setQuest("deathmatch", "start;"+ level + ";" + (new Date()).getTime());
-		ScriptAction scriptingAction = new ScriptAction(player, deathmatchInfo);
+		DeathmatchEngine scriptingAction = new DeathmatchEngine(player, deathmatchInfo);
 		TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
 	}
 }
