@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.quests;
+package games.stendhal.server.maps.deathmatch;
 
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.maps.quests.AbstractQuest;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.Area;
 
