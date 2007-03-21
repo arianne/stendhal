@@ -29,7 +29,8 @@ public class Deathmatch extends AbstractQuest {
 	private String zoneName = null;
 	private StendhalRPZone zone = null;
 	protected Area arena = null;
-	private static List<Deathmatch> deathmatches = new LinkedList<Deathmatch>();
+	private DeathmatchInfo deathmatchInfo = null;
+	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
 	
 	public Deathmatch() {
 		// constructor for quest system
@@ -39,8 +40,9 @@ public class Deathmatch extends AbstractQuest {
 		this.zoneName = zoneName;
 		this.zone = zone;
 		this.arena = arena;
+		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
 		zone.setTeleportable(false);
-		deathmatches.add(this);
+		deathmatches.add(deathmatchInfo);
 	}
 
 	/**
@@ -133,7 +135,7 @@ public class Deathmatch extends AbstractQuest {
 	 *
 	 * @return list of deathmatches
 	 */
-	static List<Deathmatch> getDeathmatches() {
+	static List<DeathmatchInfo> getDeathmatches() {
 		return deathmatches;
 	}
 }
