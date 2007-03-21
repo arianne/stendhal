@@ -3,9 +3,11 @@ package games.stendhal.server;
 import marauroa.common.net.*;
 import marauroa.common.game.*;
 import marauroa.server.game.*;
+
 import java.io.*;
 import java.util.*;
 import marauroa.common.*;
+
 import java.sql.*;
 import java.util.zip.*;
 
@@ -240,6 +242,86 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 			return null;
 		} finally {
 			Log4J.finishMethod(logger, "iterator");
+		}
+	}
+
+	/**
+	 * Returns the points in the specified hall of fame
+	 *
+	 * @param trans      Transaction
+	 * @param playername name of the player
+	 * @param fametype   type of the hall of fame
+	 * @return points or 0 in case there is no entry
+	 * @throws GenericDatabaseException in case of an database error
+	 */
+	public int getHallOfFamePoints(Transaction trans, String playername, String fametype) throws GenericDatabaseException {
+		Log4J.startMethod(logger, "addStatisticsEvent");
+		int res = 0;
+		try {
+			Connection connection = ((JDBCTransaction) trans).getConnection();
+			Statement stmt = connection.createStatement();
+
+			String query = "SELECT points FROM halloffame WHERE charname='"
+					+ escapeSQLString(playername)
+					+ "' AND fametype='"
+					+ escapeSQLString(fametype)
+					+ "'";
+			ResultSet result = stmt.executeQuery(query);
+			if (result.next()) {
+				res = result.getInt("points");
+			}
+			result.close();
+			stmt.close();
+		} catch (SQLException sqle) {
+			logger.warn("error reading hall of fame", sqle);
+			throw new GenericDatabaseException(sqle);
+		} finally {
+			Log4J.finishMethod(logger, "addStatisticsEvent");
+		}
+		return res;
+	}
+
+	/**
+	 * Stores an entry in the hall of fame
+	 *
+	 * @param trans      Transaction
+	 * @param playername name of the player
+	 * @param fametype   type of the hall of fame
+	 * @param points     points to store
+	 * @throws GenericDatabaseException in case of an database error
+	 */
+	public void setHallOfFamePoints(Transaction trans, String playername, String fametype, int points) throws GenericDatabaseException {
+		Log4J.startMethod(logger, "addStatisticsEvent");
+		try {
+			Connection connection = ((JDBCTransaction) trans).getConnection();
+			Statement stmt = connection.createStatement();
+
+			// first try an update
+			String query = "UPDATE halloffame SET points='"  
+					+ escapeSQLString(Integer.toString(points))
+					+ "' WHERE charname='"
+					+ escapeSQLString(playername)
+					+ "' AND fametype='"
+					+ escapeSQLString(fametype)
+					+ "';";
+			int count = stmt.executeUpdate(query);
+			if (count == 0) {
+				// no row was modified, so we need to do an insert
+				query = "INSERT INTO halloffame (charname, fametype, points) VALUES ('"  
+					+ escapeSQLString(playername)
+					+ "','"
+					+ escapeSQLString(fametype)
+					+ "','"
+					+ escapeSQLString(Integer.toString(points))
+					+ "');";
+				stmt.executeUpdate(query);
+			}
+			stmt.close();
+		} catch (SQLException sqle) {
+			logger.warn("error adding game event", sqle);
+			throw new GenericDatabaseException(sqle);
+		} finally {
+			Log4J.finishMethod(logger, "addStatisticsEvent");
 		}
 	}
 
