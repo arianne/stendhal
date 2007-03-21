@@ -64,7 +64,7 @@ public class WeddingRing extends Item implements UseListener {
 			Player spouse = StendhalRPRuleProcessor.get().getPlayer(spouseName);
 			if (spouse == null) {
 				player.sendPrivateText(spouseName + " is not online.");
-			} else {
+			} else if (spouse.isEquipped("wedding_ring")){
 				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
 						.getRPZone(spouse.getID());
 				int x = spouse.getX();
@@ -72,6 +72,9 @@ public class WeddingRing extends Item implements UseListener {
 				Direction dir = spouse.getDirection();
 
 				player.teleport(zone, x, y, dir, player);
+			} else {
+				// This means trouble ;)
+				player.sendPrivateText(spouseName + " is not wearing the wedding ring.");
 			}
 		} else {
 			player.sendPrivateText("This wedding ring hasn't been engraved yet.");
