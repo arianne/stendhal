@@ -91,14 +91,14 @@ class DeathmatchEngine implements TurnListener {
 
 	private void action() {
 		String questInfo = player.getQuest("deathmatch");
+		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch")); 
 		String[] tokens = (questInfo + ";0;0").split(";");
-		String questState = tokens[0];
-		int questLevel = Integer.parseInt(tokens[1]);
+		int questLevel = deathmatchState.getQuestLevel();
 		String questLast = tokens[2];
 
 		// the player wants to leave the game
 		// this is delayed so the player can see the taunting
-		if ("bail".equals(questState)) {
+		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.BAIL) {
 			if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > BAIL_DELAY)) {
 				handleBail();
 
@@ -108,7 +108,7 @@ class DeathmatchEngine implements TurnListener {
 			// still have to wait until bailing is possible. just check whether all monsters are killed
 			// inbetween (see code below)
 		}
-		if ("cancel".equals(questState)) {
+		if (deathmatchState.getLifecycleState() == DeathmatchLifecycle.CANCEL) {
 			removePlayersMonsters();
 
 			// and finally remove this ScriptAction 
@@ -124,7 +124,7 @@ class DeathmatchEngine implements TurnListener {
 				
 				if (done) {
 					spawnDailyMonster();
-					questState = "victory";
+					deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
 					// remove this ScriptAction since we're done
 					keepRunning = false;
 				}
@@ -138,9 +138,11 @@ class DeathmatchEngine implements TurnListener {
 				if (mycreature != null) {
 					spawnedCreatures.add(mycreature);
 					questLevel++;
+					deathmatchState.setQuestLevel(questLevel);
 				}
 			}
-			player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
+			deathmatchState.refreshTimestamp();
+			player.setQuest("deathmatch", deathmatchState.toQuestString());
 		}
 	}
 
