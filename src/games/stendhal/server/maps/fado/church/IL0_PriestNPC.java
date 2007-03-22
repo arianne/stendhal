@@ -22,6 +22,18 @@ import java.util.Map;
 import marauroa.common.game.IRPZone;
 
 // TODO: consider splitting parts of this out into a quest class
+/**
+ * Creates a priest NPC who can celebrate marriages between two
+ * players.
+ * 
+ * Note: in this class, the Player variables are called groom
+ * and bride. However, the game doesn't know the concept of
+ * genders. The player who initiates the wedding is just called
+ * groom, the other bride.
+ *   
+ * @author daniel
+ *
+ */
 public class IL0_PriestNPC implements ZoneConfigurator {
 
 	// The spouse's name is stored in one of the player's quest slots.
@@ -152,7 +164,7 @@ public class IL0_PriestNPC implements ZoneConfigurator {
 	
 	private void startMarriage(SpeakerNPC priest, Player player, String partnerName) {
 		IRPZone churchZone = StendhalRPWorld.get().getRPZone(priest.getID());
-		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 8, 4, 3));
+		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 8, 4, 1));
 
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
