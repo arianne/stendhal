@@ -66,6 +66,7 @@ public class USL2_ShipWest2 implements ZoneConfigurator {
 				offerings.put("poison", 40);
 				offerings.put("toadstool", 60);
 				offerings.put("greater_poison", 60);
+				offerings.put("deadly_poison", 100);
 				addBuyer(new BuyerBehaviour(offerings));
 				addGoodbye("Please kill some rats on your way up!");
 			}
