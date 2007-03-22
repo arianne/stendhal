@@ -2,8 +2,6 @@ package games.stendhal.server.maps.deathmatch;
 
 import java.util.Date;
 
-import games.stendhal.server.entity.player.Player;
-
 /**
  * manages the deathmatch state (which is store in a quest slot)
  *
@@ -32,6 +30,21 @@ public class DeathmatchState {
 		return deathmatchState;
 	}
 
+	/**
+	 * parses the questString
+	 *
+	 * @param questString quest string
+	 * @return start state
+	 */
+	public static DeathmatchState createFromQuestString(String questString) {
+		DeathmatchState deathmatchState = new DeathmatchState();
+		String[] tokens = (questString+";0;0").split(";");
+		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
+		deathmatchState.level = Integer.parseInt(tokens[1]);
+		deathmatchState.date = Long.parseLong(tokens[2]);
+		return deathmatchState;
+	}
+	
 	/**
 	 * return the state as string which can be stored in the quest slot
 	 *
