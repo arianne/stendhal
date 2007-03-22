@@ -48,7 +48,7 @@ public enum DeathmatchLifecycle {
 	 */
 	static DeathmatchLifecycle getFromQuestStateString(String questState) {
 		for (DeathmatchLifecycle deathmatchLifecycle : DeathmatchLifecycle.values()) {
-			if (deathmatchLifecycle.equals(questState)) {
+			if (deathmatchLifecycle.questString.equals(questState)) {
 				return deathmatchLifecycle;
 			}
 		}
