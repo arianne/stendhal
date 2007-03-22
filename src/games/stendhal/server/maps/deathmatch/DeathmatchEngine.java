@@ -7,6 +7,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.ArenaCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DeathMatchCreature;
+import games.stendhal.server.entity.creature.LevelBasedComparator;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
@@ -16,7 +17,6 @@ import games.stendhal.server.util.Area;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,11 +52,7 @@ class DeathmatchEngine implements TurnListener {
 		this.zone = deathmatchInfo.getZone();
 		Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
-		Collections.sort(sortedCreatures, new Comparator<Creature>() {
-			public int compare(Creature o1, Creature o2) {
-				return o1.getLevel() - o2.getLevel();
-			}
-		});
+		Collections.sort(sortedCreatures, new LevelBasedComparator());
 	}
 
 	private boolean condition() {
