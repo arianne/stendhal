@@ -14,20 +14,6 @@ import games.stendhal.server.entity.player.Player;
 public class DoneAction extends SpeakerNPC.ChatAction {
 
 	/**
-	 * Did the player really win the deathmatch?
-	 *
-	 * @param player Player
-	 * @return true in case it did win, false otherwise
-	 */
-	private boolean isVictory(Player player) {
-		String questInfo = player.getQuest("deathmatch");
-		// questinfo may or may not contain up to 3 tokens
-		String[] tokens = (questInfo + ";0;0").split(";");
-		String questState = tokens[0];
-		return "victory".equals(questState);
-	}
-
-	/**
 	 * Creates the player bound special trophy helmet and equips it.
 	 *
 	 * @param player Player object
@@ -58,7 +44,8 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 
 	@Override
 	public void fire(Player player, String text, SpeakerNPC engine) {
-		if (!isVictory(player)) {
+		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
+		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.VICTORY) {
 			engine.say("C'm on, don't lie to me! All you can do now is #bail or win.");
 			return;
 		}
@@ -86,6 +73,6 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 			}
 		}
 		player.updateItemAtkDef();
-		player.setQuest("deathmatch", "done");
+		player.setQuest("deathmatch", "done"); // without the additional information
 	}
 }
