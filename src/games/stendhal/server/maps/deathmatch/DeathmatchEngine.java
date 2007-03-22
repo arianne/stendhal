@@ -29,6 +29,9 @@ import org.apache.log4j.Logger;
  * this is the internal class which handles an active deathmatch session
  */
 class DeathmatchEngine implements TurnListener {
+	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
+	private static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
+
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
 	private final Player player;
@@ -92,38 +95,18 @@ class DeathmatchEngine implements TurnListener {
 		String questState = tokens[0];
 		String questLevel = tokens[1];
 		String questLast = tokens[2];
-		long bailDelay = 2000; // wait 2 seconds before bail takes effect
-		long spawnDelay = 15000; // spawn a new monster each 15 seconds
+
 		// the player wants to leave the game
 		// this is delayed so the player can see the taunting
 		if ("bail".equals(questState)) {
-			if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > bailDelay)) {
-				questState = "cancel";
-				player.setQuest("deathmatch", questState);
-				// We assume that the player only carries one trophy helmet.
-				Item helmet = player.getFirstEquipped("trophy_helmet");
-				if (helmet != null) {
-					int defense = 1;
-					if (helmet.has("def")) {
-						defense = helmet.getInt("def");
-					}
-					defense--;
-					helmet.put("def", "" + defense);
-					player.updateItemAtkDef();
-				} else {
-					int xp = player.getLevel() * 80;
-					if (xp > player.getXP()) {
-						xp = player.getXP();
-					}
-					player.addXP(-xp);
-				}
-				// send the player back to the entrance area
-				StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
-				player.teleport(entranceZone, 96, 75, null, player);
-				removePlayersMonsters();
+			if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > BAIL_DELAY)) {
+				handleBail();
+
 				keepRunning = false;
 				return;
 			}
+			// still have to wait until bailing is possible. just check whether all monsters are killed
+			// inbetween (see code below)
 		}
 		if ("cancel".equals(questState)) {
 			removePlayersMonsters();
@@ -135,7 +118,7 @@ class DeathmatchEngine implements TurnListener {
 
 
 		// save a little processing time and do things only every spawnDelay miliseconds 
-		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > spawnDelay)) {
+		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > SPAWN_DELAY)) {
 			int currentLevel = Integer.parseInt(questLevel);
 			if (currentLevel > player.getLevel() + 7) {
 				boolean done = areAllCreaturesDead();
@@ -160,6 +143,32 @@ class DeathmatchEngine implements TurnListener {
 			}
 			player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
 		}
+	}
+
+	private void handleBail() {
+		player.setQuest("deathmatch", "cancel");
+		Item helmet = player.getFirstEquipped("trophy_helmet");
+		if (helmet != null) {
+			int defense = 1;
+			if (helmet.has("def")) {
+				defense = helmet.getInt("def");
+			}
+			defense--;
+			helmet.put("def", "" + defense);
+			player.updateItemAtkDef();
+		} else {
+			int xp = player.getLevel() * 80;
+			if (xp > player.getXP()) {
+				xp = player.getXP();
+			}
+			player.addXP(-xp);
+		}
+
+		// send the player back to the entrance area
+		StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+		player.teleport(entranceZone, 96, 75, null, player);
+
+		removePlayersMonsters();
 	}
 
 	/**
