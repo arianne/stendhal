@@ -22,10 +22,10 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	private Item createTrophyHelmet(Player player) {
 		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
 		helmet.put("bound", player.getName());
-		helmet.put("def", 1);				
+		helmet.put("def", 1);
 		helmet.put("infostring", player.getName());
 		helmet.put("persistent", 1);
-		helmet.setDescription("This is " + player.getName() +	"'s grand prize for Deathmatch winners. Wear it with pride.");
+		helmet.setDescription("This is " + player.getName() + "'s grand prize for Deathmatch winners. Wear it with pride.");
 		player.equip(helmet, true);
 		return helmet;
 	}
@@ -53,7 +53,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		int points = updatePoints(player);
 
 		// We assume that the player only carries one trophy helmet.
-		Item helmet	= player.getFirstEquipped("trophy_helmet");
+		Item helmet = player.getFirstEquipped("trophy_helmet");
 		if (helmet == null) {
 			createTrophyHelmet(player);
 			engine.say("Congratulations, your score is now " + points + "! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
@@ -65,10 +65,10 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 			defense++;
 			int maxdefense = 5 + (player.getLevel() / 5);
 			if (defense > maxdefense) {
-				helmet.put("def", maxdefense);					
+				helmet.put("def", maxdefense);
 				engine.say("Congratulations, your score is now " + points + "! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense);
 			} else {
-				helmet.put("def", defense);				
+				helmet.put("def", defense);
 				engine.say("Congratulations, your score is now " + points + "! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
 			}
 		}

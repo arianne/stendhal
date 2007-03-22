@@ -15,7 +15,9 @@ public class DeathmatchInfo {
 	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
 
 	private final Area arena;
+
 	private final String zoneName;
+
 	private final StendhalRPZone zone;
 
 	/**

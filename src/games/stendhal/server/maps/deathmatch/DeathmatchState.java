@@ -10,7 +10,9 @@ import java.util.Date;
 public class DeathmatchState {
 
 	private DeathmatchLifecycle lifecycleState = null;
+
 	private int level = 0;
+
 	private long date = 0;
 
 	/**
@@ -24,7 +26,7 @@ public class DeathmatchState {
 		deathmatchState.lifecycleState = DeathmatchLifecycle.START;
 		deathmatchState.date = new Date().getTime();
 		deathmatchState.level = level - 2;
-		if(deathmatchState.level < 1) {
+		if (deathmatchState.level < 1) {
 			deathmatchState.level = 1;
 		}
 		return deathmatchState;
@@ -38,7 +40,7 @@ public class DeathmatchState {
 	 */
 	public static DeathmatchState createFromQuestString(String questString) {
 		DeathmatchState deathmatchState = new DeathmatchState();
-		String[] tokens = (questString+";0;0").split(";");
+		String[] tokens = (questString + ";0;0").split(";");
 		deathmatchState.lifecycleState = DeathmatchLifecycle.getFromQuestStateString(tokens[0]);
 		deathmatchState.level = Integer.parseInt(tokens[1]);
 		deathmatchState.date = Long.parseLong(tokens[2]);

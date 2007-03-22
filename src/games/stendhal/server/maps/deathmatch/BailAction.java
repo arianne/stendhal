@@ -20,7 +20,7 @@ public class BailAction extends SpeakerNPC.ChatAction {
 		}
 
 		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
-		
+
 		if (deathmatchState.getLifecycleState() != DeathmatchLifecycle.START) {
 			engine.say("Coward, we haven't even #started!");
 			return;
@@ -30,8 +30,8 @@ public class BailAction extends SpeakerNPC.ChatAction {
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 
 		// TODO: fix race condition until bail is processed in DeathmatchEngine
-		Item helmet	= player.getFirstEquipped("trophy_helmet");
-		if(helmet != null) {
+		Item helmet = player.getFirstEquipped("trophy_helmet");
+		if (helmet != null) {
 			engine.say("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.");
 		} else {
 			engine.say("Coward! You're not as experienced as you used to be.");

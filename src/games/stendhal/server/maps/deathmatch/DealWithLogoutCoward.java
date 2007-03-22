@@ -32,4 +32,3 @@ public class DealWithLogoutCoward implements TurnListener {
 		}
 	}
 }
-

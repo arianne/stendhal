@@ -30,13 +30,19 @@ import org.apache.log4j.Logger;
  */
 class DeathmatchEngine implements TurnListener {
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
+
 	private final Player player;
+
 	private final Area arena;
+
 	private final String zoneName;
+
 	private final StendhalRPZone zone;
-	
+
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();
+
 	private List<Creature> spawnedCreatures = new ArrayList<Creature>();
+
 	private boolean keepRunning = true;
 
 	/**
@@ -56,13 +62,13 @@ class DeathmatchEngine implements TurnListener {
 	}
 
 	private boolean condition() {
-		if("cancel".equals(player.getQuest("deathmatch"))) {
+		if ("cancel".equals(player.getQuest("deathmatch"))) {
 			return false;
 		}
-		if(player.getQuest("deathmatch").startsWith("done")) {
+		if (player.getQuest("deathmatch").startsWith("done")) {
 			return false;
 		}
-		
+
 		if (arena.contains(player)) {
 			return true;
 		} else {
@@ -85,33 +91,32 @@ class DeathmatchEngine implements TurnListener {
 		String[] tokens = (questInfo + ";0;0").split(";");
 		String questState = tokens[0];
 		String questLevel = tokens[1];
-		String questLast	= tokens[2];
-		long bailDelay = 2000;		// wait 2 seconds before bail takes effect
-		long spawnDelay = 15000;	// spawn a new monster each 15 seconds
+		String questLast = tokens[2];
+		long bailDelay = 2000; // wait 2 seconds before bail takes effect
+		long spawnDelay = 15000; // spawn a new monster each 15 seconds
 		// the player wants to leave the game
 		// this is delayed so the player can see the taunting
-		if("bail".equals(questState)) {
-			if((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > bailDelay) ) {
+		if ("bail".equals(questState)) {
+			if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > bailDelay)) {
 				questState = "cancel";
 				player.setQuest("deathmatch", questState);
 				// We assume that the player only carries one trophy helmet.
-				Item helmet	= player.getFirstEquipped("trophy_helmet");
-				if(helmet != null) {
+				Item helmet = player.getFirstEquipped("trophy_helmet");
+				if (helmet != null) {
 					int defense = 1;
-					if(helmet.has("def")) {
+					if (helmet.has("def")) {
 						defense = helmet.getInt("def");
 					}
 					defense--;
-					helmet.put("def",""+defense);
+					helmet.put("def", "" + defense);
 					player.updateItemAtkDef();
-				}
-				else {
+				} else {
 					int xp = player.getLevel() * 80;
-					if(xp > player.getXP()) {
+					if (xp > player.getXP()) {
 						xp = player.getXP();
 					}
 					player.addXP(-xp);
-				}	
+				}
 				// send the player back to the entrance area
 				StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
 				player.teleport(entranceZone, 96, 75, null, player);
@@ -120,38 +125,37 @@ class DeathmatchEngine implements TurnListener {
 				return;
 			}
 		}
-		if("cancel".equals(questState)) {
+		if ("cancel".equals(questState)) {
 			removePlayersMonsters();
-			
+
 			// and finally remove this ScriptAction 
 			keepRunning = false;
 			return;
 		}
 
-		
+
 		// save a little processing time and do things only every spawnDelay miliseconds 
-		if((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > spawnDelay) )
-			{
+		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > spawnDelay)) {
 			int currentLevel = Integer.parseInt(questLevel);
-			if(currentLevel > player.getLevel() + 7) {
+			if (currentLevel > player.getLevel() + 7) {
 				boolean done = true;
 				// check if all our enemies are dead
 				for (Creature creature : spawnedCreatures) {
-					if(creature.getHP()>0) {
+					if (creature.getHP() > 0) {
 						done = false;
 					}
 				}
-				if(done) {
+				if (done) {
 					// be nice to the player and give him his daily quest creature
 					// if he hasn't found it yet
 					String dailyInfo = player.getQuest("daily");
-					if(dailyInfo != null) {
+					if (dailyInfo != null) {
 						String[] dTokens = dailyInfo.split(";");
 						String daily = dTokens[0];
-						if(!player.hasKilled(daily)) {
+						if (!player.hasKilled(daily)) {
 							for (Creature creature : sortedCreatures) {
 								if (creature.getName().equals(daily)) {
-									int x = player.getX() + 1; 
+									int x = player.getX() + 1;
 									int y = player.getY() + 1;
 									add(creature, x, y);
 									break;
@@ -171,14 +175,14 @@ class DeathmatchEngine implements TurnListener {
 				for (Creature creature : sortedCreatures) {
 					if (creature.getLevel() > k) {
 						break;
-					}					
+					}
 					if (creature.getLevel() > lastLevel) {
 						possibleCreaturesToSpawn.clear();
 						lastLevel = creature.getLevel();
 					}
 					possibleCreaturesToSpawn.add(creature);
 				}
-				
+
 				Creature creatureToSpawn = null;
 				if (possibleCreaturesToSpawn.size() == 0) {
 					creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
@@ -187,14 +191,14 @@ class DeathmatchEngine implements TurnListener {
 				} else {
 					creatureToSpawn = possibleCreaturesToSpawn.get((int) (Math.random() * possibleCreaturesToSpawn.size()));
 				}
-				int x = player.getX(); 
+				int x = player.getX();
 				int y = player.getY();
 				DeathMatchCreature mycreature = add(creatureToSpawn, x, y);
 				if (mycreature != null) {
 					spawnedCreatures.add(mycreature);
 					questLevel = Integer.toString(currentLevel + 1);
 				}
-			}			
+			}
 			player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
 		}
 	}
