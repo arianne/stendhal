@@ -107,6 +107,18 @@ public void testCarrot() throws Exception{
 		door.buildOfferedActions(list);
 		Assert.assertEquals(expected, list);
 	}
+	@Test
+	public void testBox(){
+		StendhalClient.get();
+		Box box = new Box(new MockRPObject("item", "box"));
+		List<String> expected = new ArrayList<String>();
+		expected.add("Look");
+		expected.add("Open");
+		box.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+		
+	}
 
 	class MockEntity extends Entity {
 

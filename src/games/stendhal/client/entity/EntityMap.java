@@ -17,8 +17,6 @@ import games.stendhal.common.Pair;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-
 /**
  * EntityMap registers the relationship between Type,eclass and java class of
  * entity Objects eclass represents a subtype of type EntityMap encapsulates the
@@ -74,6 +72,7 @@ public final class EntityMap {
 		register("blackboard", null, "Sign");
 
 		register("item", null, "Item");
+		register("item","box","Box");
 		register("item", "drink", "StackableItem");
 		register("item", "food", "StackableItem");
 		register("item", "herb", "StackableItem");

@@ -114,5 +114,14 @@ public class EntityFabricTest {
 		assertEquals("we should have created a sheep by now", Sheep.class, en.getClass());
 
 	}
+	@Test
+	public final void testCreateBox() {
+		RPObject rp = new MockRPObject("item", "box");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a box by now", Box.class, en
+				.getClass());
+		
+	}
 	
 }
