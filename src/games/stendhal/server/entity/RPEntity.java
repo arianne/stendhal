@@ -646,7 +646,7 @@ public abstract class RPEntity extends Entity {
 				// do not limit xp for player above level 75 because there
 				// are no more creatures for this level. (Except for the level 100
 				// black dragon, which is to low for the top players high above level 100)
-				if (player.getLevel() < 75) {
+				if (player.getLevel() < 75 && this.getLevel() < 75) {
 					/** We limit xp gain for up to eight levels difference */
 					gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
 					if (gainXpLimitation < 0.0) {
