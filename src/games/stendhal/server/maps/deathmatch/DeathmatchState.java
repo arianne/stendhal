@@ -44,13 +44,32 @@ public class DeathmatchState {
 		deathmatchState.date = Long.parseLong(tokens[2]);
 		return deathmatchState;
 	}
-	
+
 	/**
-	 * return the state as string which can be stored in the quest slot
+	 * gets the current lifecycle state
+	 *
+	 * @return lifecycleState
+	 */
+	DeathmatchLifecycle getLifecycleState() {
+		return lifecycleState;
+	}
+
+	/**
+	 * sets the current lifecycle state
+	 *
+	 * @param lifecycleState DeathmatchLifecycle
+	 */
+	void setLifecycleState(DeathmatchLifecycle lifecycleState) {
+		this.lifecycleState = lifecycleState;
+		date = new Date().getTime();
+	}
+
+	/**
+	 * returns the state as string which can be stored in the quest slot
 	 *
 	 * @return quest string
 	 */
-	public String toQuestString() {
+	String toQuestString() {
 		return lifecycleState.toQuestString() + ";" + level + ";" + date;
 	}
 
