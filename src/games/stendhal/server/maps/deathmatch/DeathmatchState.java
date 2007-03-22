@@ -98,4 +98,11 @@ class DeathmatchState {
 		// use toQuestString() because it is better than Object.toString()
 		return toQuestString();
 	}
+
+	/**
+	 * updates the time stamp
+	 */
+	public void refreshTimestamp() {
+		date = new Date().getTime();
+	}
 }
