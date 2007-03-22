@@ -16,7 +16,7 @@ import java.util.List;
  * QUEST: Special Soup
  * 
  * PARTICIPANTS:
- * - Old Mother Helena in Fado tavern
+ * - Mother Helena in Fado tavern
  * 
  * STEPS:
  * - OldLady tells you the ingredients of a special soup
@@ -66,7 +66,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Old Mother Helena");
+		SpeakerNPC npc = npcs.get("Mother Helena");
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
@@ -155,7 +155,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Old Mother Helena");
+		SpeakerNPC npc = npcs.get("Mother Helena");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
