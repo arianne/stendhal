@@ -1,5 +1,7 @@
 package games.stendhal.server.maps.deathmatch;
 
+import org.apache.log4j.Logger;
+
 /**
  * life cycle of the deathmatch
  */
@@ -20,13 +22,37 @@ public enum DeathmatchLifecycle {
 	/** deathmatch was completed sucessfully but the player did not claim "victory" yet */
 	VICTORY("victory");
 
+
+
+	private static Logger logger = Logger.getLogger(DeathmatchLifecycle.class);
 	private String questString = null;
 
 	private DeathmatchLifecycle(String questString) {
 		this.questString = questString;
 	}
 
+	/**
+	 * convertes to a quest state string
+	 *
+	 * @return questState
+	 */
 	String toQuestString() {
 		return questString;
+	}
+
+	/**
+	 * parses quest state string
+	 *
+	 * @param questState quest state string
+	 * @return DeathmatchLifecycle
+	 */
+	static DeathmatchLifecycle getFromQuestStateString(String questState) {
+		for (DeathmatchLifecycle deathmatchLifecycle : DeathmatchLifecycle.values()) {
+			if (deathmatchLifecycle.equals(questState)) {
+				return deathmatchLifecycle;
+			}
+		}
+		logger.error("Unknown DeathmatchLifecycle " + questState);
+		return DeathmatchLifecycle.DONE;
 	}
 }
