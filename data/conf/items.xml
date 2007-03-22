@@ -1761,7 +1761,7 @@ Makes players more offensive
 	</item>
 	
 	<item name="courgette">
-		<type class="food" subclass="courgette"/>
+		<type class="food" subclass="zucchini"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<quantity value="1"/>
