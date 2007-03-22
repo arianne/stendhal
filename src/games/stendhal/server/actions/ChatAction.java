@@ -122,7 +122,7 @@ public class ChatAction extends ActionListener {
 			}
 			if (!ok) {
 				// sender is on ignore list
-				if (!player.equals("postman")) { // HACK: do not notify postman
+				if (!player.getName().equals("postman")) { // HACK: do not notify postman
 					player.sendPrivateText(Grammar.suffix_s(receiverName) + " mind is not attuned to yours, so you cannot reach them.");
 					player.notifyWorldAboutChanges();
 				}
