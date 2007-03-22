@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author hendrik
  */
-public class DeathmatchState {
+class DeathmatchState {
 
 	private DeathmatchLifecycle lifecycleState = null;
 
@@ -45,6 +45,24 @@ public class DeathmatchState {
 		deathmatchState.level = Integer.parseInt(tokens[1]);
 		deathmatchState.date = Long.parseLong(tokens[2]);
 		return deathmatchState;
+	}
+
+	/**
+	 * Gets the quest level
+	 *
+	 * @return quest level
+	 */
+	int getQuestLevel() {
+		return level;
+	}
+
+	/**
+	 * Sets the quest level
+	 *
+	 * @param level quest level
+	 */
+	void setQuestLevel(int level) {
+		this.level = level;
 	}
 
 	/**
