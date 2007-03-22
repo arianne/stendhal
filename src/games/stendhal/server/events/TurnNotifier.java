@@ -212,7 +212,7 @@ public class TurnNotifier {
 		}
 		if (matchingTurns.size() > 0) {
 			Collections.sort(matchingTurns);
-			return matchingTurns.get(0);
+			return matchingTurns.get(0) - currentTurn;
 		} else {
 			return -1;
 		}
@@ -227,6 +227,6 @@ public class TurnNotifier {
 	 *         will not be notified with the given message.
 	 */
 	public int getRemainingSeconds(TurnListener turnListener, String message) {
-		return getRemainingTurns(turnListener, message) / StendhalRPWorld.MILLISECONDS_PER_TURN;
+		return (getRemainingTurns(turnListener, message) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
 	}
 }
