@@ -70,12 +70,11 @@ public class IL0_PriestNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Welcome to my church!");
+				addGreeting("Welcome to the church!");
 				addJob("I am the priest.");
-				//addHelp("My only advice is to love and be kind to one another");
-				//addQuest("I have eveything I need. But it does bring me pleasure to see people #married.");
+				//addHelp("");
+				//addQuest("");
 				addGoodbye("May the force be with you.");
-				
 				add(ConversationStates.ATTENDING,
 						"marry",
 						null,
@@ -138,7 +137,7 @@ public class IL0_PriestNPC implements ZoneConfigurator {
 		npcs.add(priest);
 		zone.assignRPObjectID(priest);
 		// TODO: create nice priest graphics 
-		priest.put("class", "beggarnpc");
+		priest.put("class", "priestnpc");
 		priest.set(11, 4);
 		priest.setDirection(Direction.DOWN);
 		priest.initHP(100);
