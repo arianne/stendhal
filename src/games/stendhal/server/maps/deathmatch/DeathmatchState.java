@@ -18,18 +18,17 @@ public class DeathmatchState {
 	/**
 	 * creates a start state
 	 *
-	 * @param player Player
+	 * @param level
 	 * @return start state
 	 */
-	public static DeathmatchState createStartState(Player player) {
+	public static DeathmatchState createStartState(int level) {
 		DeathmatchState deathmatchState = new DeathmatchState();
 		deathmatchState.lifecycleState = DeathmatchLifecycle.START;
 		deathmatchState.date = new Date().getTime();
-		int level = player.getLevel() - 2;
-		if(level < 1) {
-			level = 1;
+		deathmatchState.level = level - 2;
+		if(deathmatchState.level < 1) {
+			deathmatchState.level = 1;
 		}
-		deathmatchState.level = level;
 		return deathmatchState;
 	}
 

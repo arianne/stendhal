@@ -24,7 +24,7 @@ public class StartAction extends SpeakerNPC.ChatAction {
 	@Override
 	public void fire(Player player, String text, SpeakerNPC engine) {
 		engine.say("Have fun!");
-		DeathmatchState deathmatchState = DeathmatchState.createStartState(player);
+		DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 		DeathmatchEngine scriptingAction = new DeathmatchEngine(player, deathmatchInfo);
 		TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
