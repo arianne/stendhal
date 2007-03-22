@@ -138,46 +138,63 @@ class DeathmatchEngine implements TurnListener {
 		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > spawnDelay)) {
 			int currentLevel = Integer.parseInt(questLevel);
 			if (currentLevel > player.getLevel() + 7) {
-				boolean done = true;
-				// check if all our enemies are dead
-				for (Creature creature : spawnedCreatures) {
-					if (creature.getHP() > 0) {
-						done = false;
-					}
-				}
+				boolean done = areAllCreaturesDead();
+				
 				if (done) {
-					// be nice to the player and give him his daily quest creature
-					// if he hasn't found it yet
-					String dailyInfo = player.getQuest("daily");
-					if (dailyInfo != null) {
-						String[] dTokens = dailyInfo.split(";");
-						String daily = dTokens[0];
-						if (!player.hasKilled(daily)) {
-							for (Creature creature : sortedCreatures) {
-								if (creature.getName().equals(daily)) {
-									int x = player.getX() + 1;
-									int y = player.getY() + 1;
-									spawnNewCreature(creature, x, y);
-									break;
-								}
-							}
-						}
-					}
+					spawnDailyMonster();
 					questState = "victory";
 					// remove this ScriptAction since we're done
 					keepRunning = false;
 				}
 			} else {
-				Creature creatureToSpawn = calculateNextCreature(questLevel);
 				int x = player.getX();
 				int y = player.getY();
+				Creature creatureToSpawn = calculateNextCreature(questLevel);
 				DeathMatchCreature mycreature = spawnNewCreature(creatureToSpawn, x, y);
+
+				// in case there is not enough space to place the creature, mycreature is null
 				if (mycreature != null) {
 					spawnedCreatures.add(mycreature);
 					questLevel = Integer.toString(currentLevel + 1);
 				}
 			}
 			player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
+		}
+	}
+
+	/**
+	 * check if all our enemies are dead
+	 *
+	 * @return true if all are dead, false otherwise
+	 */
+	private boolean areAllCreaturesDead() {
+		for (Creature creature : spawnedCreatures) {
+			if (creature.getHP() > 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * be nice to the player and give him his daily quest creature
+	 * if he hasn't found it yet
+	 */
+	private void spawnDailyMonster() {
+		String dailyInfo = player.getQuest("daily");
+		if (dailyInfo != null) {
+			String[] dTokens = dailyInfo.split(";");
+			String daily = dTokens[0];
+			if (!player.hasKilled(daily)) {
+				for (Creature creature : sortedCreatures) {
+					if (creature.getName().equals(daily)) {
+						int x = player.getX() + 1;
+						int y = player.getY() + 1;
+						spawnNewCreature(creature, x, y);
+						break;
+					}
+				}
+			}
 		}
 	}
 
