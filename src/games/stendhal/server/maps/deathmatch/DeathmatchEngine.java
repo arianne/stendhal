@@ -25,6 +25,9 @@ import marauroa.common.game.RPObjectNotFoundException;
 
 import org.apache.log4j.Logger;
 
+/**
+ * this is the internal class which handles an active deathmatch session
+ */
 class DeathmatchEngine implements TurnListener {
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 	private final Player player;
@@ -56,7 +59,7 @@ class DeathmatchEngine implements TurnListener {
 		});
 	}
 
-	public boolean condition() {
+	private boolean condition() {
 		if("cancel".equals(player.getQuest("deathmatch"))) {
 			return false;
 		}
@@ -81,7 +84,7 @@ class DeathmatchEngine implements TurnListener {
 		}
 	}
 
-	public void action() {
+	private void action() {
 		String questInfo = player.getQuest("deathmatch");
 		String[] tokens = (questInfo + ";0;0").split(";");
 		String questState = tokens[0];
@@ -114,15 +117,15 @@ class DeathmatchEngine implements TurnListener {
 					player.addXP(-xp);
 				}	
 				// send the player back to the entrance area
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
-				player.teleport(zone, 96, 75, null, player);
-				removePlayersMonsters(spawnedCreatures);
+				StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+				player.teleport(entranceZone, 96, 75, null, player);
+				removePlayersMonsters();
 				keepRunning = false;
 				return;
 			}
 		}
 		if("cancel".equals(questState)) {
-			removePlayersMonsters(spawnedCreatures);
+			removePlayersMonsters();
 			
 			// and finally remove this ScriptAction 
 			keepRunning = false;
@@ -154,7 +157,7 @@ class DeathmatchEngine implements TurnListener {
 								if (creature.getName().equals(daily)) {
 									int x = player.getX() + 1; 
 									int y = player.getY() + 1;
-									add(zone, creature, x, y, player);
+									add(creature, x, y);
 									break;
 								}
 							}
@@ -190,7 +193,7 @@ class DeathmatchEngine implements TurnListener {
 				}
 				int x = player.getX(); 
 				int y = player.getY();
-				DeathMatchCreature mycreature = add(zone, creatureToSpawn, x, y, player);
+				DeathMatchCreature mycreature = add(creatureToSpawn, x, y);
 				if (mycreature != null) {
 					spawnedCreatures.add(mycreature);
 					questLevel = Integer.toString(currentLevel + 1);
@@ -200,7 +203,7 @@ class DeathmatchEngine implements TurnListener {
 		}
 	}
 
-	private DeathMatchCreature add(StendhalRPZone zone, Creature template, int x, int y, Player player) {
+	private DeathMatchCreature add(Creature template, int x, int y) {
 		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(template.getInstance(), arena.getShape()));
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y, arena.getShape())) {
@@ -219,21 +222,20 @@ class DeathmatchEngine implements TurnListener {
 
 	/**
 	 * remove the critters that the player was supposed to kill
-	 *
-	 * @param spawnedCreatures list of creatures created for this deathmatch
 	 */
-	public void removePlayersMonsters(List<Creature> spawnedCreatures) {
+	public void removePlayersMonsters() {
 		for (Creature creature : spawnedCreatures) {
 			String id = creature.getID().getZoneID();
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
+			StendhalRPZone monsterZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
 			try {
 				StendhalRPRuleProcessor.get().removeNPC(creature);
-				zone.getNPCList().remove(creature);
-				if (zone.has(creature.getID())) {
-					zone.remove(creature);
+				monsterZone.getNPCList().remove(creature);
+				if (monsterZone.has(creature.getID())) {
+					monsterZone.remove(creature);
 				}
 			} catch (RPObjectNotFoundException e) {
-				logger.error(e, e);
+				// don't log errors here because the player may have killed a few of the monsters
+				logger.debug(e, e);
 			}
 		}
 	}
