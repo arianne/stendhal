@@ -93,7 +93,7 @@ class DeathmatchEngine implements TurnListener {
 		String questInfo = player.getQuest("deathmatch");
 		String[] tokens = (questInfo + ";0;0").split(";");
 		String questState = tokens[0];
-		String questLevel = tokens[1];
+		int questLevel = Integer.parseInt(tokens[1]);
 		String questLast = tokens[2];
 
 		// the player wants to leave the game
@@ -119,8 +119,7 @@ class DeathmatchEngine implements TurnListener {
 
 		// save a little processing time and do things only every spawnDelay miliseconds 
 		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > SPAWN_DELAY)) {
-			int currentLevel = Integer.parseInt(questLevel);
-			if (currentLevel > player.getLevel() + 7) {
+			if (questLevel > player.getLevel() + 7) {
 				boolean done = areAllCreaturesDead();
 				
 				if (done) {
@@ -138,7 +137,7 @@ class DeathmatchEngine implements TurnListener {
 				// in case there is not enough space to place the creature, mycreature is null
 				if (mycreature != null) {
 					spawnedCreatures.add(mycreature);
-					questLevel = Integer.toString(currentLevel + 1);
+					questLevel++;
 				}
 			}
 			player.setQuest("deathmatch", questState + ";" + questLevel + ";" + (new Date()).getTime());
@@ -213,12 +212,11 @@ class DeathmatchEngine implements TurnListener {
 	 * @param questLevel level of creature / deathmatch status
 	 * @return creature template
 	 */
-	private Creature calculateNextCreature(String questLevel) {
-		int k = Integer.parseInt(questLevel);
+	private Creature calculateNextCreature(int questLevel) {
 		List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
 		int lastLevel = 0;
 		for (Creature creature : sortedCreatures) {
-			if (creature.getLevel() > k) {
+			if (creature.getLevel() > questLevel) {
 				break;
 			}
 			if (creature.getLevel() > lastLevel) {
@@ -239,6 +237,14 @@ class DeathmatchEngine implements TurnListener {
 		return creatureToSpawn;
 	}
 
+	/**
+	 * creates a new creature of the named type and adds it to the world
+	 *
+	 * @param template Creature to create
+	 * @param x x-pos
+	 * @param y y-pos
+	 * @return Creature or <code>null</code> in case it cannot be created
+	 */
 	private DeathMatchCreature spawnNewCreature(Creature template, int x, int y) {
 		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(template.getInstance(), arena.getShape()));
 		zone.assignRPObjectID(creature);
