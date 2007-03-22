@@ -11,7 +11,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class DeathmatchState {
 
-	private String state = null;
+	private DeathmatchLifecycle lifecycleState = null;
 	private int level = 0;
 	private long date = 0;
 
@@ -23,7 +23,7 @@ public class DeathmatchState {
 	 */
 	public static DeathmatchState createStartState(Player player) {
 		DeathmatchState deathmatchState = new DeathmatchState();
-		deathmatchState.state = "start";
+		deathmatchState.lifecycleState = DeathmatchLifecycle.START;
 		deathmatchState.date = new Date().getTime();
 		int level = player.getLevel() - 2;
 		if(level < 1) {
@@ -39,7 +39,7 @@ public class DeathmatchState {
 	 * @return quest string
 	 */
 	public String toQuestString() {
-		return state + ";" + level + ";" + date;
+		return lifecycleState.toQuestString() + ";" + level + ";" + date;
 	}
 
 	@Override
