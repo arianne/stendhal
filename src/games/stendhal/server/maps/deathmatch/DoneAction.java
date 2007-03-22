@@ -6,6 +6,11 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
+/**
+ * handles player claim of victory by giving reward after verifing the winning
+ *
+ * @author hendrik
+ */
 public class DoneAction extends SpeakerNPC.ChatAction {
 
 	/**
