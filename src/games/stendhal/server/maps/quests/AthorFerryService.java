@@ -6,12 +6,12 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,13 +81,13 @@ public class AthorFerryService extends AbstractQuest {
 
 			descriptions = new HashMap<Integer, String>();
 			descriptions.put(ANCHORED_AT_MAINLAND,
-					"The ferry is currently anchored at the mainland.");
+					"The ferry is currently anchored at the mainland. It will take off in %s.");
 			descriptions.put(DRIVING_TO_ISLAND,
-					"The ferry is currently sailing to the island.");
+					"The ferry is currently sailing to the island. It will arrive in %s.");
 			descriptions.put(ANCHORED_AT_ISLAND,
-					"The ferry is currently anchored at the island.");
+					"The ferry is currently anchored at the island. It will take off in %s.");
 			descriptions.put(DRIVING_TO_MAINLAND,
-					"The ferry is currently sailing to the mainland.");
+					"The ferry is currently sailing to the mainland. It will arrive in %s.");
 
 			state = DRIVING_TO_MAINLAND;
 			
@@ -119,7 +119,8 @@ public class AthorFerryService extends AbstractQuest {
 		 * @return A String representation of the ferry's current state.
 		 */
 		public String getCurrentDescription() {
-			return descriptions.get(state);
+			int secondsUntilNextState = TurnNotifier.get().getRemainingSeconds(this, null);
+			return String.format(descriptions.get(state), TimeUtil.approxTimeUntil(secondsUntilNextState));
 		}
 
 		/**
