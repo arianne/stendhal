@@ -5,10 +5,20 @@ package games.stendhal.server.maps.deathmatch;
  */
 public enum DeathmatchLifecycle {
 
-	/** deathmatch has just been started */
-	START("start");
+	/** player asked to bail but the deathmatch was not canceled yet */
+	BAIL("bail"),
 
-	
+	/** all creatures were removed becaused the player has asked to bail before */
+	CANCEL("cancel"),
+
+	/** deathmatch was completed sucessfully and the player got his/her reward */
+	DONE("done"),
+
+	/** deathmatch has been started and is active now */
+	START("start"),
+
+	/** deathmatch was completed sucessfully but the player did not claim "victory" yet */
+	VICTORY("victory");
 
 	private String questString = null;
 
