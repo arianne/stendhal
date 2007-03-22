@@ -157,7 +157,7 @@ class DeathmatchEngine implements TurnListener {
 								if (creature.getName().equals(daily)) {
 									int x = player.getX() + 1;
 									int y = player.getY() + 1;
-									add(creature, x, y);
+									spawnNewCreature(creature, x, y);
 									break;
 								}
 							}
@@ -168,32 +168,10 @@ class DeathmatchEngine implements TurnListener {
 					keepRunning = false;
 				}
 			} else {
-				// spawn the next stronger creature
-				int k = Integer.parseInt(questLevel);
-				List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
-				int lastLevel = 0;
-				for (Creature creature : sortedCreatures) {
-					if (creature.getLevel() > k) {
-						break;
-					}
-					if (creature.getLevel() > lastLevel) {
-						possibleCreaturesToSpawn.clear();
-						lastLevel = creature.getLevel();
-					}
-					possibleCreaturesToSpawn.add(creature);
-				}
-
-				Creature creatureToSpawn = null;
-				if (possibleCreaturesToSpawn.size() == 0) {
-					creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
-				} else if (possibleCreaturesToSpawn.size() == 1) {
-					creatureToSpawn = possibleCreaturesToSpawn.get(0);
-				} else {
-					creatureToSpawn = possibleCreaturesToSpawn.get((int) (Math.random() * possibleCreaturesToSpawn.size()));
-				}
+				Creature creatureToSpawn = calculateNextCreature(questLevel);
 				int x = player.getX();
 				int y = player.getY();
-				DeathMatchCreature mycreature = add(creatureToSpawn, x, y);
+				DeathMatchCreature mycreature = spawnNewCreature(creatureToSpawn, x, y);
 				if (mycreature != null) {
 					spawnedCreatures.add(mycreature);
 					questLevel = Integer.toString(currentLevel + 1);
@@ -203,7 +181,39 @@ class DeathmatchEngine implements TurnListener {
 		}
 	}
 
-	private DeathMatchCreature add(Creature template, int x, int y) {
+	/**
+	 * Calculate which type of creature should be spawned next
+	 *
+	 * @param questLevel level of creature / deathmatch status
+	 * @return creature template
+	 */
+	private Creature calculateNextCreature(String questLevel) {
+		int k = Integer.parseInt(questLevel);
+		List<Creature> possibleCreaturesToSpawn = new ArrayList<Creature>();
+		int lastLevel = 0;
+		for (Creature creature : sortedCreatures) {
+			if (creature.getLevel() > k) {
+				break;
+			}
+			if (creature.getLevel() > lastLevel) {
+				possibleCreaturesToSpawn.clear();
+				lastLevel = creature.getLevel();
+			}
+			possibleCreaturesToSpawn.add(creature);
+		}
+
+		Creature creatureToSpawn = null;
+		if (possibleCreaturesToSpawn.size() == 0) {
+			creatureToSpawn = sortedCreatures.get(sortedCreatures.size() - 1);
+		} else if (possibleCreaturesToSpawn.size() == 1) {
+			creatureToSpawn = possibleCreaturesToSpawn.get(0);
+		} else {
+			creatureToSpawn = possibleCreaturesToSpawn.get((int) (Math.random() * possibleCreaturesToSpawn.size()));
+		}
+		return creatureToSpawn;
+	}
+
+	private DeathMatchCreature spawnNewCreature(Creature template, int x, int y) {
 		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(template.getInstance(), arena.getShape()));
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y, arena.getShape())) {
