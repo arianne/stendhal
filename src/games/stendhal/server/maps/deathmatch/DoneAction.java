@@ -55,7 +55,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		// We assume that the player only carries one trophy helmet.
 		Item helmet	= player.getFirstEquipped("trophy_helmet");
 		if (helmet == null) {
-			helmet = createTrophyHelmet(player);
+			createTrophyHelmet(player);
 			engine.say("Congratulations, your score is now " + points + "! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
 		} else {
 			int defense = 1;
