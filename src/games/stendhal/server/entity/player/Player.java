@@ -460,6 +460,45 @@ public class Player extends RPEntity implements TurnListener {
 
 
 	/**
+	 * Add a player ignore entry.
+	 *
+	 * @param	name		The player name.
+	 *
+	 * @return	<code>true</code> if value changed, <code>false</code>
+	 *		if there was a problem.
+	 */
+	public boolean addIgnore(String name) {
+		return setKeyedSlot("!ignore", "_" + name, "0");
+	}
+
+
+	/**
+	 * Determine if a player is on the ignore list.
+	 *
+	 * @param	name		The player name.
+	 *
+	 * @return	<code>true</code> if on the ignore list,
+	 *		<code>false</code> otherwise.
+	 */
+	public boolean isIgnoring(String name) {
+		return (getKeyedSlot("!ignore", "_" + name) != null);
+	}
+
+
+	/**
+	 * Remove a player ignore entry.
+	 *
+	 * @param	name		The player name.
+	 *
+	 * @return	<code>true</code> if value changed, <code>false</code>
+	 *		if there was a problem.
+	 */
+	public boolean removeIgnore(String name) {
+		return setKeyedSlot("!ignore", "_" + name, null);
+	}
+
+
+	/**
 	 * Get a named skills value.
 	 *
 	 * @param	key		The skill key.

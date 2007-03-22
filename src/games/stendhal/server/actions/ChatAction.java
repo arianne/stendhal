@@ -129,19 +129,10 @@ public class ChatAction extends ActionListener {
 			}
 
 			// check ignore list
-			boolean ok = true;
-			RPSlot slot = receiver.getSlot("!ignore");
-			RPObject listBuddies = null;
-			if (slot.size() > 0) {
-				listBuddies = slot.getFirst();
-				System.out.println(listBuddies);
-				if (listBuddies.has("_" + senderName)) {
-					ok = false;
-				}
-			}
-			if (!ok) {
+			if(receiver.isIgnoring(senderName)) {
 				// sender is on ignore list
-				if (!player.equals("postman")) { // HACK: do not notify postman
+				// HACK: do not notify postman
+				if (!senderName.equals("postman")) {
 					player.sendPrivateText(Grammar.suffix_s(receiverName) + " mind is not attuned to yours, so you cannot reach them.");
 					player.notifyWorldAboutChanges();
 				}

@@ -29,6 +29,7 @@ public class BuddyAction extends ActionListener {
 		StendhalRPRuleProcessor.register("addbuddy", buddy);
 		StendhalRPRuleProcessor.register("ignore", buddy);
 		StendhalRPRuleProcessor.register("removebuddy", buddy);
+		StendhalRPRuleProcessor.register("unignore", buddy);
 	}
 
 	@Override
@@ -38,44 +39,51 @@ public class BuddyAction extends ActionListener {
 		} else if (action.get("type").equals("removebuddy")){
 			onRemoveBuddy(player, action);
 		} else if (action.get("type").equals("ignore")) {
-			onAddIgnore(player, action);
+			onIgnore(player, action);
+		} else if (action.get("type").equals("unignore")) {
+			onUnignore(player, action);
 		}
 	}
 	
-	private void addToSpecialSlot(Player player, RPAction action, String slotName, int status) {
-		if (action.has("target")) {
-			String who = action.get("target");
-			RPSlot slot = player.getSlot(slotName);
-
-			RPObject listBuddies = null;
-
-			if (slot.size() > 0) {
-				listBuddies = slot.iterator().next();
-			} else {
-				listBuddies = new RPObject();
-				slot.assignValidID(listBuddies);
-				slot.add(listBuddies);
-			}
-
-			listBuddies.put("_" + who, status);
-			System.out.println(listBuddies);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "add", slotName, who);
-		}
-	}
 
 	private void onAddBuddy(Player player, RPAction action) {
 		String who = action.get("target");
-		int online = 0;
+		String online = "0";
 		if (StendhalRPRuleProcessor.get().getPlayer(who) != null) {
-			online = 1;
+			online = "1";
 		}
-		addToSpecialSlot(player, action, "!buddy", online);
+		player.setKeyedSlot("!buddy", "_" + who, online);
+
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "add", who);
 	}
 	
-	private void onAddIgnore(Player player, RPAction action) {
-		String who = action.get("target");
-		addToSpecialSlot(player, action, "!ignore", 0);
-		player.sendPrivateText(who + " was added to your ignore list.");
+	private void onIgnore(Player player, RPAction action) {
+		Log4J.startMethod(logger, "ignore");
+
+		if (action.has("target")) {
+			String who = action.get("target");
+
+			if(player.removeIgnore(who)) {
+				player.sendPrivateText(who + " was added to your ignore list.");
+			}
+		}
+
+		Log4J.finishMethod(logger, "ignore");
+	}
+
+
+	private void onUnignore(Player player, RPAction action) {
+		Log4J.startMethod(logger, "unignore");
+
+		if (action.has("target")) {
+			String who = action.get("target");
+
+			if(player.removeIgnore(who)) {
+				player.sendPrivateText(who + " was removed from your ignore list.");
+			}
+		}
+
+		Log4J.finishMethod(logger, "unignore");
 	}
 
 	private void onRemoveBuddy(Player player, RPAction action) {
@@ -84,20 +92,12 @@ public class BuddyAction extends ActionListener {
 		if (action.has("target")) {
 			String who = action.get("target");
 
-			for (String slotName : new String[] { "!buddy", "!ignore"}) {
-				RPSlot slot = player.getSlot(slotName);
+			player.setKeyedSlot("!buddy", "_" + who, null);
 
-				RPObject listBuddies = null;
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "remove", who);
 
-				if (slot.size() > 0) {
-					listBuddies = slot.getFirst();
-
-					if (listBuddies.has("_" + who)) {
-						listBuddies.remove("_" + who);
-						StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "remove", slotName, who);
-					}
-				}
-			}
+			// TEMP! Supreceeded by /unignore
+			player.removeIgnore(who);
 		}
 
 		Log4J.finishMethod(logger, "removeBuddy");
