@@ -15,14 +15,18 @@ import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.IRPZone;
 
+// TODO: consider splitting parts of this out into a quest class
 public class IL0_PriestNPC implements ZoneConfigurator {
+
+	// The spouse's name is stored in one of the player's quest slots.
+	// This is necessary to disallow polygamy.
+	private String SPOUSE_QUEST_SLOT = "spouse";
 	
 	private NPCList npcs = NPCList.get();
 	
@@ -121,7 +125,8 @@ public class IL0_PriestNPC implements ZoneConfigurator {
 		//npc.setDescription("You see Lukas, the humble church verger.");
 		npcs.add(priest);
 		zone.assignRPObjectID(priest);
-		priest.put("class", "orcbuyernpc");
+		// TODO: create nice priest graphics 
+		priest.put("class", "beggarnpc");
 		priest.set(11, 4);
 		priest.setDirection(Direction.DOWN);
 		priest.initHP(100);
@@ -129,8 +134,7 @@ public class IL0_PriestNPC implements ZoneConfigurator {
 	}
 	
 	private boolean isMarried(Player player) {
-		// TODO
-		return false;
+		return player.hasQuest(SPOUSE_QUEST_SLOT);
 	}
 	
 	private void giveRing(Player player, Player partner) {
@@ -182,6 +186,12 @@ public class IL0_PriestNPC implements ZoneConfigurator {
 	private void finishMarriage() {
 		exchangeRings();
 		priest.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now married!");
+		// Memorize that the two married so that they can't just marry other
+		// persons
+		groom.setQuest(SPOUSE_QUEST_SLOT, bride.getName());
+		bride.setQuest(SPOUSE_QUEST_SLOT, groom.getName());
+		// Clear the variables so that other players can become groom and bride
+		// later
 		groom = null;
 		bride = null;
 	}
