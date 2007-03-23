@@ -2,13 +2,13 @@ package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
+import games.stendhal.client.scripting.command.SlashCommand;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import marauroa.common.game.RPAction;
@@ -29,14 +29,14 @@ public class ChatLineParser {
 	/**
 	 * Set of client supported commands
 	 */
-	protected HashMap<String, ChatCommand>	commands;
+	protected HashMap<String, SlashCommand>	commands;
 
 	
 	private ChatLineParser() {
 		// hide constructor (Singleton)
 		client = StendhalClient.get();
 
-		commands = new HashMap<String, ChatCommand>();
+		commands = new HashMap<String, SlashCommand>();
 
 		commands.put("/", new RemessageCommand());
 		commands.put("away", new AwayCommand());
@@ -102,7 +102,7 @@ public class ChatLineParser {
 		StringBuffer	sbuf;
 		int		minimum;
 		int		maximum;
-		ChatCommand	command;
+		SlashCommand	command;
 		int		i;
 
 
@@ -290,61 +290,12 @@ public class ChatLineParser {
 		}
 	}
 
-	//
-	//
-
-	/*
-	 * Eventually move these out from inner classes, then make them
-	 * dynamically configurable/loadable.
-	 */
-
-	/**
-	 * A chat command.
-	 */
-	protected interface ChatCommand {
-		/**
-		 * Execute a chat command.
-		 *
-		 * @param	params		The formal parameters.
-		 * @param	remainder	Line content after parameters.
-		 *
-		 * @return	<code>true</code> if command was handled.
-		 */
-		public boolean execute(String [] params, String remainder);
-
-
-		/**
-		 * Get the maximum number of formal parameters.
-		 *
-		 * @return	The parameter count.
-		 */
-		public int getMaximumParameters();
-
-
-		/**
-		 * Get the minimum number of formal parameters.
-		 *
-		 * @return	The parameter count.
-		 */
-		public int getMinimumParameters();
-
-
-// Not yet
-//		/**
-//		 * Display usage for this command.
-//		 *
-//		 * @param	command		The command usage is for.
-//		 * @param	detailed	Show detailed help, otherwise
-//		 *				just 1-line synopsis.
-//		 */
-//		public void usage(String command, boolean detailed);
-	}
 
 
 	/**
 	 * Set/clear the player's away status.
 	 */
-	protected class AwayCommand implements ChatCommand {
+	protected class AwayCommand implements SlashCommand {
 		/**
 		 * Execute an away command.
 		 *
@@ -391,7 +342,7 @@ public class ChatLineParser {
 	/**
 	 * Add a player to the ignore list.
 	 */
-	protected class IgnoreCommand implements ChatCommand {
+	protected class IgnoreCommand implements SlashCommand {
 		/**
 		 * Execute an ignore command.
 		 *
@@ -461,7 +412,7 @@ public class ChatLineParser {
 	/**
 	 * Send a message to the last player messaged.
 	 */
-	protected class RemessageCommand implements ChatCommand {
+	protected class RemessageCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -511,7 +462,7 @@ public class ChatLineParser {
 	/**
 	 * Send a message to a player.
 	 */
-	protected class MessageCommand implements ChatCommand {
+	protected class MessageCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -557,7 +508,7 @@ public class ChatLineParser {
 	/**
 	 * Send a message to the player who has last contacted us privately.
 	 */
-	protected class AnswerCommand implements ChatCommand {
+	protected class AnswerCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -601,7 +552,7 @@ public class ChatLineParser {
 	/**
 	 * Send a support request message.
 	 */
-	protected class SupportCommand implements ChatCommand {
+	protected class SupportCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -646,7 +597,7 @@ public class ChatLineParser {
 	/**
 	 * Send a support response message.
 	 */
-	protected class SupportAnswerCommand implements ChatCommand {
+	protected class SupportAnswerCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -692,7 +643,7 @@ public class ChatLineParser {
 	/**
 	 * Query for player position.
 	 */
-	protected class WhereCommand implements ChatCommand {
+	protected class WhereCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -737,7 +688,7 @@ public class ChatLineParser {
 	/**
 	 * Query for online players.
 	 */
-	protected class WhoCommand implements ChatCommand {
+	protected class WhoCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -781,7 +732,7 @@ public class ChatLineParser {
 	/**
 	 * Drop a player item.
 	 */
-	protected class DropCommand implements ChatCommand {
+	protected class DropCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -861,7 +812,7 @@ public class ChatLineParser {
 	/**
 	 * Add a player to buddy list.
 	 */
-	protected class AddBuddyCommand implements ChatCommand {
+	protected class AddBuddyCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -906,7 +857,7 @@ public class ChatLineParser {
 	/**
 	 * Remove a player from buddy list.
 	 */
-	protected class RemoveBuddyCommand implements ChatCommand {
+	protected class RemoveBuddyCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -951,7 +902,7 @@ public class ChatLineParser {
 	/**
 	 * Send a message to all players.
 	 */
-	protected class TellAllCommand implements ChatCommand {
+	protected class TellAllCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -996,7 +947,7 @@ public class ChatLineParser {
 	/**
 	 * Teleport a player.
 	 */
-	protected class TeleportCommand implements ChatCommand {
+	protected class TeleportCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1044,7 +995,7 @@ public class ChatLineParser {
 	/**
 	 * Teleport player to another player's location.
 	 */
-	protected class TeleportToCommand implements ChatCommand {
+	protected class TeleportToCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1089,7 +1040,7 @@ public class ChatLineParser {
 	/**
 	 * Set the admin level of a player.
 	 */
-	protected class AdminLevelCommand implements ChatCommand {
+	protected class AdminLevelCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1138,7 +1089,7 @@ public class ChatLineParser {
 	/**
 	 * Alter an entity's attributes.
 	 */
-	protected class AlterCommand implements ChatCommand {
+	protected class AlterCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1185,7 +1136,7 @@ public class ChatLineParser {
 	/**
 	 * Summon an entity.
 	 */
-	protected class SummonCommand implements ChatCommand {
+	protected class SummonCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1242,7 +1193,7 @@ public class ChatLineParser {
 	/**
 	 * Summon an item (presumably) into an entity's slot.
 	 */
-	protected class SummonAtCommand implements ChatCommand {
+	protected class SummonAtCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1293,7 +1244,7 @@ public class ChatLineParser {
 	/**
 	 * Inspect an entity.
 	 */
-	protected class InspectCommand implements ChatCommand {
+	protected class InspectCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1338,7 +1289,7 @@ public class ChatLineParser {
 	/**
 	 * Send a player to jail.
 	 */
-	protected class JailCommand implements ChatCommand {
+	protected class JailCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1393,7 +1344,7 @@ public class ChatLineParser {
 	/**
 	 * Quit the client.
 	 */
-	protected class QuitCommand implements ChatCommand {
+	protected class QuitCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1433,7 +1384,7 @@ public class ChatLineParser {
 	/**
 	 * Toggle between invisibility.
 	 */
-	protected class InvisibleCommand implements ChatCommand {
+	protected class InvisibleCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1478,7 +1429,7 @@ public class ChatLineParser {
 	 * Display command usage.
 	 * Eventually replace this with ChatCommand.usage().
 	 */
-	protected class HelpCommand implements ChatCommand {
+	protected class HelpCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1542,7 +1493,7 @@ public class ChatLineParser {
 	 * Display command usage.
 	 * Eventually replace this with ChatCommand.usage().
 	 */
-	protected class GMHelpCommand implements ChatCommand {
+	protected class GMHelpCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1604,7 +1555,7 @@ public class ChatLineParser {
 	 * Display command usage.
 	 * Eventually replace this with ChatCommand.usage("alter", true).
 	 */
-	protected class GMHelpAlterCommand implements ChatCommand {
+	protected class GMHelpAlterCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1655,7 +1606,7 @@ public class ChatLineParser {
 	/**
 	 * Set sound characteristics.
 	 */
-	protected class SoundCommand implements ChatCommand {
+	protected class SoundCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
@@ -1720,7 +1671,7 @@ public class ChatLineParser {
 	/**
 	 * Enable/disable input recording.
 	 */
-	protected class RecordCommand implements ChatCommand {
+	protected class RecordCommand implements SlashCommand {
 		/**
 		 * Execute a chat command.
 		 *
