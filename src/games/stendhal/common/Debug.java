@@ -48,12 +48,6 @@ public class Debug {
 	public static final boolean EMULATE_PERCEPTION_LOSS = false;
 	
 	/**
-	 * This flag is used to deactivate feature with require the current
-	 * development version of the client.
-	 */
-	public static final boolean NEW_CLIENT = true;
-
-	/**
 	 * Just a try to get webstart work without additional rights
 	 */
 	public static boolean WEB_START_SANDBOX = false;
