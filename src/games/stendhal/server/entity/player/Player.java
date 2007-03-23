@@ -483,7 +483,12 @@ public class Player extends RPEntity implements TurnListener {
 		long expiration;
 
 		if ((info = getKeyedSlot("!ignore", "_" + name)) == null) {
-			return null;
+			/*
+			 * Special "catch all" fallback
+			 */
+			if ((info = getKeyedSlot("!ignore", "_*")) == null) {
+				return null;
+			}
 		}
 
 		if ((i = info.indexOf(';')) == -1) {
