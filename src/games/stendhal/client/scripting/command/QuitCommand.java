@@ -1,1 +1,42 @@
 package games.stendhal.client.scripting.command;
+
+import games.stendhal.client.StendhalClient;
+
+/**
+ * Quit the client.
+ */
+class QuitCommand implements SlashCommand {
+	/**
+	 * Execute a chat command.
+	 *
+	 * @param	params		The formal parameters.
+	 * @param	remainder	Line content after parameters.
+	 *
+	 * @return	<code>true</code> if  was handled.
+	 */
+	public boolean execute(String [] params, String remainder) {
+		StendhalClient.get().getGameGUI().showQuitDialog();
+
+		return true;
+	}
+
+
+	/**
+	 * Get the maximum number of formal parameters.
+	 *
+	 * @return	The parameter count.
+	 */
+	public int getMaximumParameters() {
+		return 0;
+	}
+
+
+	/**
+	 * Get the minimum number of formal parameters.
+	 *
+	 * @return	The parameter count.
+	 */
+	public int getMinimumParameters() {
+		return 0;
+	}
+}
