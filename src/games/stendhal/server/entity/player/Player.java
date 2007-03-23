@@ -55,9 +55,8 @@ public class Player extends RPEntity implements TurnListener {
 	 * The base log for karma use.
 	 */
 	private static final double	KARMA_BASELOG	= Math.log(10.0);
-        
-        
-        
+
+
 	/**
 	 * A random generator (for karma payout).
 	 */
@@ -463,25 +462,74 @@ public class Player extends RPEntity implements TurnListener {
 	 * Add a player ignore entry.
 	 *
 	 * @param	name		The player name.
+	 * @param	duration	The ignore duration (in minutes),
+	 *				or <code>0</code> for infinite.
+	 * @param	reason		The reason.
 	 *
 	 * @return	<code>true</code> if value changed, <code>false</code>
 	 *		if there was a problem.
 	 */
-	public boolean addIgnore(String name) {
-		return setKeyedSlot("!ignore", "_" + name, "0");
+	public boolean addIgnore(String name, int duration, String reply) {
+		StringBuffer	sbuf;
+
+
+		sbuf = new StringBuffer();
+
+		if(duration != 0) {
+			sbuf.append(
+				System.currentTimeMillis()
+					+ (duration *  60000L));
+		}
+
+		sbuf.append(';');
+
+		if(reply != null) {
+			sbuf.append(reply);
+		}
+
+		return setKeyedSlot("!ignore", "_" + name, sbuf.toString());
 	}
 
 
 	/**
-	 * Determine if a player is on the ignore list.
+	 * Determine if a player is on the ignore list and return their reply
+	 * message.
 	 *
 	 * @param	name		The player name.
 	 *
-	 * @return	<code>true</code> if on the ignore list,
-	 *		<code>false</code> otherwise.
+	 * @return	The custom reply message (including an empty string),
+	 *		or <code>null</code> if not ignoring.
 	 */
-	public boolean isIgnoring(String name) {
-		return (getKeyedSlot("!ignore", "_" + name) != null);
+	public String getIgnore(String name) {
+		String	info;
+		int	i;
+		long	expiration;
+
+
+		if((info = getKeyedSlot("!ignore", "_" + name)) == null) {
+			return null;
+		}
+
+		if((i = info.indexOf(';')) == -1) {
+			/*
+			 * Do default
+			 */
+			return "";
+		}
+
+		/*
+		 * Has expiration?
+		 */
+		if(i != 0) {
+			expiration = Long.parseLong(info.substring(0, i));
+
+			if(System.currentTimeMillis() >= expiration) {
+				setKeyedSlot("!ignore", "_" + name, null);
+				return null;
+			}
+		}
+
+		return info.substring(i + 1);
 	}
 
 

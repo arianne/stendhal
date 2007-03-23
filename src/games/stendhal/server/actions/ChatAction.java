@@ -96,6 +96,7 @@ public class ChatAction extends ActionListener {
 
 	private void onTell(Player player, RPAction action) {
 		String	away;
+		String	reply;
 
 
 		// TODO: find a cleaner way to implement it
@@ -129,11 +130,19 @@ public class ChatAction extends ActionListener {
 			}
 
 			// check ignore list
-			if(receiver.isIgnoring(senderName)) {
+			if((reply = receiver.getIgnore(senderName)) != null) {
 				// sender is on ignore list
 				// HACK: do not notify postman
 				if (!senderName.equals("postman")) {
-					player.sendPrivateText(Grammar.suffix_s(receiverName) + " mind is not attuned to yours, so you cannot reach them.");
+					if(reply.length() == 0) {
+						player.sendPrivateText(Grammar.suffix_s(receiverName) + " mind is not attuned to yours, so you cannot reach them.");
+					} else {
+						player.sendPrivateText(
+							receiverName
+							+ " is ignoring you: "
+							+ reply);
+					}
+
 					player.notifyWorldAboutChanges();
 				}
 				return;

@@ -58,12 +58,28 @@ public class BuddyAction extends ActionListener {
 	}
 	
 	private void onIgnore(Player player, RPAction action) {
+		int	duration;
+		String	reason;
+
+
 		Log4J.startMethod(logger, "ignore");
 
 		if (action.has("target")) {
 			String who = action.get("target");
 
-			if(player.removeIgnore(who)) {
+			if(action.has("duration")) {
+				duration = action.getInt("duration");
+			} else {
+				duration = 0;
+			}
+
+			if(action.has("reason")) {
+				reason = action.get("reason");
+			} else {
+				reason = null;
+			}
+
+			if(player.addIgnore(who, duration, reason)) {
 				player.sendPrivateText(who + " was added to your ignore list.");
 			}
 		}
