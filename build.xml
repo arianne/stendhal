@@ -144,9 +144,9 @@
 		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.2" target="1.2"
            includes="games/stendhal/client/update/Starter.java">
 		</javac>
-		<copyfile 
-			dest="${build_client}/games/stendhal/client/update"
-			src="${src}/games/stendhal/client/update/game-default.properties" />
+		<copy todir="${build_client}/games/stendhal/client/update">
+			<fileset file="${src}/games/stendhal/client/update/game*.properties"/>
+		</copy>
 
 		<jar jarfile="${lib}/${client_starter_jarname}">
 			<fileset dir="${build_client}">
