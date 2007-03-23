@@ -51,6 +51,7 @@ public class ChatLineParser {
 		commands.put("drop", new DropCommand());
 		commands.put("add", new AddBuddyCommand());
 		commands.put("remove", new RemoveBuddyCommand());
+		commands.put("ignore", new IgnoreCommand());
 		commands.put("quit", new QuitCommand());
 		commands.put("help", new HelpCommand());
 		commands.put("sound", new SoundCommand());
@@ -386,6 +387,75 @@ public class ChatLineParser {
 		}
 	}
 
+
+	/**
+	 * Add a player to the ignore list.
+	 */
+	protected class IgnoreCommand implements ChatCommand {
+		/**
+		 * Execute an ignore command.
+		 *
+		 * @param	params		The formal parameters.
+		 * @param	remainder	Line content after parameters.
+		 *
+		 * @return	<code>true</code> if command was handled.
+		 */
+		public boolean execute(String [] params, String remainder) {
+			String	duration;
+
+
+			RPAction action = new RPAction();
+
+			action.put("type", "ignore");
+			action.put("target", params[0]);
+
+			if((duration = params[1]) != null) {
+				/*
+				 * Ignore "forever" values
+				 */
+				if(!duration.equals("*")
+				 || !duration.equals("-")) {
+					/*
+					 * Validate it's a number
+					 */
+					try {
+						Integer.parseInt(duration);
+					} catch(NumberFormatException ex) {
+						return false;
+					}
+
+					action.put("duration", duration);
+				}
+			}
+
+			if(remainder.length() != 0) {
+				action.put("reason", remainder);
+			}
+
+			client.send(action);
+
+			return true;
+		}
+
+		/**
+		 * Get the maximum number of formal parameters.
+		 *
+		 * @return	The parameter count.
+		 */
+		public int getMaximumParameters() {
+			return 2;
+		}
+
+
+		/**
+		 * Get the minimum number of formal parameters.
+		 *
+		 * @return	The parameter count.
+		 */
+		public int getMinimumParameters() {
+			return 1;
+		}
+	}
 
 
 	/**
@@ -1430,6 +1500,8 @@ public class ChatLineParser {
 				"- /drop <quantity> <item>\tDrop a certain number of an item",
 				"- /add <player> \t\tAdd <player> to your buddy list",
 				"- /remove <player> \tRemove <player> from your buddy list",
+				"- /ignore <player> [<minutes>|*|- [<reason...>]] \tAdd <player> to your ignore list",
+				"- /unignore <player> \tRemove <player> from your ignore list",
 				"- /where <player> \t\tShow the current location of <player>",
 				"- /quit \t\tLeave the game. You will continue where you left off upon your return",
 				"- /sound volume <value> \tSet volume to a value from 0 to 100",

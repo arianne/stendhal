@@ -72,6 +72,7 @@ Changelog
 - non semos city scrolls - nalwor, fado (when open), ados (needs NPC seller)
 - nalwor bank with nalwor and semos bank chests
 - added /away command (like in irc)
+- /ignore command now supports duration and reason message
 
 0.58
 - name/HPbar is now visible, alltime
