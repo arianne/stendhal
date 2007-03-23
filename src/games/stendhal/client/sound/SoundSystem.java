@@ -489,7 +489,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					} else {
 						filename = value;
 					}
-					soundData = getData(soundBase + "/" + filename);
+					soundData = getData(soundBase + filename);
 
 					// construct sound clip from sample data
 					// (we always do that to verify sound sample format)
