@@ -29,6 +29,7 @@ import org.apache.log4j.Logger;
  * this is the internal class which handles an active deathmatch session
  */
 class DeathmatchEngine implements TurnListener {
+	// BAIL_DELAY needs to be smaller than SPAWN_DELAY
 	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
 	private static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
 
@@ -116,34 +117,35 @@ class DeathmatchEngine implements TurnListener {
 			return;
 		}
 
+		// check wheter the deathmatch was completed
+		if (questLevel > player.getLevel() + 7) {
+			if (areAllCreaturesDead()) {
+				spawnDailyMonster();
+				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
+				player.setQuest("deathmatch", deathmatchState.toQuestString());
+				// remove this ScriptAction since we're done
 
-		// save a little processing time and do things only every spawnDelay miliseconds 
-		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > SPAWN_DELAY)) {
-			if (questLevel > player.getLevel() + 7) {
-				boolean done = areAllCreaturesDead();
-				
-				if (done) {
-					spawnDailyMonster();
-					deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
-					// remove this ScriptAction since we're done
-					keepRunning = false;
-				}
-			} else {
-				int x = player.getX();
-				int y = player.getY();
-				Creature creatureToSpawn = calculateNextCreature(questLevel);
-				DeathMatchCreature mycreature = spawnNewCreature(creatureToSpawn, x, y);
-
-				// in case there is not enough space to place the creature, mycreature is null
-				if (mycreature != null) {
-					spawnedCreatures.add(mycreature);
-					questLevel++;
-					deathmatchState.setQuestLevel(questLevel);
-				}
+				keepRunning = false;
 			}
-			deathmatchState.refreshTimestamp();
-			player.setQuest("deathmatch", deathmatchState.toQuestString());
+			return; // all creature are there
+		} 
+
+		// spawn new monster
+		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > SPAWN_DELAY)) {
+			int x = player.getX();
+			int y = player.getY();
+			Creature creatureToSpawn = calculateNextCreature(questLevel);
+			DeathMatchCreature mycreature = spawnNewCreature(creatureToSpawn, x, y);
+
+			// in case there is not enough space to place the creature, mycreature is null
+			if (mycreature != null) {
+				spawnedCreatures.add(mycreature);
+				questLevel++;
+				deathmatchState.setQuestLevel(questLevel);
+			}
 		}
+		deathmatchState.refreshTimestamp();
+		player.setQuest("deathmatch", deathmatchState.toQuestString());
 	}
 
 	private void handleBail() {
