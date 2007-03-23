@@ -30,7 +30,7 @@ public class UpdateProgressBar extends JFrame implements HttpClient.ProgressList
 		super("Downloading...");
 		this.max = max;
 		try {
-			URL url = this.getClass().getClassLoader().getResource("data/gui/StendhalIcon.png");
+			URL url = this.getClass().getClassLoader().getResource(ClientGameConfiguration.get("GAME_ICON"));
 			setIconImage(new ImageIcon(url).getImage());
 		} catch (Exception e) {
 			// in case that resource is not avainable

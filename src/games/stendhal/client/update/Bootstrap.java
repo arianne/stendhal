@@ -176,8 +176,8 @@ public class Bootstrap {
 					classLoader.loadClass(className);
 					classLoader.loadClass("org.apache.log4j.Logger");
 					classLoader.loadClass("marauroa.client.ariannexp");
-					if (classLoader.getResource("data/gui/StendhalIcon.png") == null) {
-						throw new ClassNotFoundException("data/gui/StendhalIcon.png");
+					if (classLoader.getResource(ClientGameConfiguration.get("GAME_ICON")) == null) {
+						throw new ClassNotFoundException(ClientGameConfiguration.get("GAME_ICON"));
 					}
 				} catch (ClassNotFoundException e) {
 					initialDownload = true;

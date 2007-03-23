@@ -21,6 +21,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -124,10 +125,10 @@ public class j2DClient extends JFrame {
 
 
 		// create a frame to contain our game
-		setTitle("Stendhal " + stendhal.VERSION
+		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
 				+ " - a multiplayer online game using Arianne");
 
-		URL url = SpriteStore.get().getResourceURL("data/gui/StendhalIcon.png");
+		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 
 		// get hold the content of the frame and set up the resolution of the
