@@ -30,6 +30,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 
@@ -102,7 +103,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
 
-	private static final SoundSystem singleton = new SoundSystem();
+	private static SoundSystem singleton ;
 
 	/** */
 	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
@@ -428,7 +429,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return InputStream
 	 * @throws IOException
 	 */
-	private InputStream getResourceStream(String name) throws IOException {
+	public static InputStream getResourceStream(String name) throws IOException {
 		URL url = SpriteStore.get().getResourceURL(name);
 		if (url == null) {
 			throw new FileNotFoundException(name);
@@ -722,8 +723,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the singleton instance of the Stendhal sound system.
 	 */
 	public static SoundSystem get() {
-		// if (singleton == null)
-		// singleton = new SoundSystem();
+		 if (singleton == null)
+		 singleton = new SoundSystem();
 		return singleton;
 	}
 

@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.sound;
 
+import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.common.Rand;
 
 import java.util.ArrayList;
