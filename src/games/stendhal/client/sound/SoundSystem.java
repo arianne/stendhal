@@ -467,7 +467,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			loadSoundProperties(prop);
 
 			// get sound library filepath
-			String soundBase = prop.getProperty("soundbase", "data/sounds");
+			String soundBase = prop.getProperty("soundbase", "data/sounds/");
 
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
