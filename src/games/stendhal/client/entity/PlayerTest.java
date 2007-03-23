@@ -1,6 +1,7 @@
 package games.stendhal.client.entity;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.awt.geom.Rectangle2D;
@@ -76,18 +77,20 @@ public class PlayerTest {
 		new Player(new RPObject());
 		
 	}
-	@Test 
+	@Test // (expected=AttributeNotFoundException.class)
 	public final void testPlayer() {
 		RPObject rpo = new RPObject();
 		rpo.put("type","player");
-		EntityFabric.createEntity(rpo);
+		new Player(rpo);
+		fail("Attribute Outfit cannot be found and  throws an exception, which is not reflected here");
+		
 	}
 	
 	@Test
 	public final void testGetHearingArea() {
 		RPObject rpo = new RPObject();
 		rpo.put("type","player");
-		Player pl = (Player) EntityFabric.createEntity(rpo);
+		Player pl = new Player(rpo);
 		Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0,-20.0,40,40), rect);
 		pl.setAudibleRange(4);

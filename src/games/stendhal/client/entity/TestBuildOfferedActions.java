@@ -37,6 +37,11 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected.toArray(), me.offeredActions());
 	}
 
+	/**
+	 * this one fails as Stendhalclient has no player when test is running
+	 * would be nice to have 
+	 * @throws Exception
+	 */
 	@Test
 	public void testSheep() throws Exception {
 		

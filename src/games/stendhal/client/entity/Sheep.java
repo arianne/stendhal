@@ -146,6 +146,7 @@ public class Sheep extends NPC {
 	protected void buildOfferedActions(List<String> list) {
 
 		super.buildOfferedActions(list);
+		if (!(StendhalClient.get().getPlayer()==null))
 		if (!StendhalClient.get().getPlayer().has("sheep")) {
 			list.add(ActionType.OWN.getRepresentation());
 		}
