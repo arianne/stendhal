@@ -33,7 +33,7 @@ public class SlashCommandFactory {
 		commands.put("quit", new QuitCommand());
 		commands.put("help", new HelpCommand());
 		commands.put("sound", new SoundCommand());
-//TODO:		commands.put("record", new RecordCommand());
+		commands.put("record", new RecordCommand());
 
 		commands.put("tellall", new TellAllCommand());
 		commands.put("teleport", new TeleportCommand());
@@ -55,7 +55,7 @@ public class SlashCommandFactory {
 	 * @param name name of command
 	 * @return command object
 	 */
-	public SlashCommand get(String name) {
+	public static SlashCommand get(String name) {
 		return commands.get(name);
 	}
 }
