@@ -14,8 +14,6 @@ import java.awt.event.KeyListener;
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
 import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
-
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 

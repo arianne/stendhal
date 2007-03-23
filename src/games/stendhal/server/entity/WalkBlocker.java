@@ -9,9 +9,6 @@ package games.stendhal.server.entity;
 
 import java.awt.geom.Rectangle2D;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 
 /**

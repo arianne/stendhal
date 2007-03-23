@@ -24,8 +24,6 @@ import java.util.StringTokenizer;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.server.game.Transaction;
 
 import org.apache.log4j.Logger;

@@ -22,7 +22,6 @@ import games.stendhal.client.events.AttackEvent;
 import games.stendhal.client.events.HPEvent;
 import games.stendhal.client.events.KillEvent;
 import games.stendhal.client.events.TalkEvent;
-import games.stendhal.common.Debug;
 import games.stendhal.common.Grammar;
 
 import java.awt.Color;

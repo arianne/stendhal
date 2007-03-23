@@ -1,11 +1,9 @@
 package games.stendhal.server.maps.orril;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.ItemGuardCreature;
-import games.stendhal.server.entity.portal.LockedDoor;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;

@@ -14,8 +14,6 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 

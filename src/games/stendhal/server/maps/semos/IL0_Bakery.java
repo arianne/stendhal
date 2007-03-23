@@ -10,16 +10,12 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ProducerBehaviour;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class IL0_Bakery implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-	private ShopList shops = ShopList.get();
-
-
 	/**
 	 * Configure a zone.
 	 *

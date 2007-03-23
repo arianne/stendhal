@@ -1,6 +1,5 @@
 package games.stendhal.server.maps;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -8,8 +7,6 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.portal.LockedDoor;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
@@ -18,13 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
-
 public class FeaturesTestArea implements ZoneConfigurator {
-	private static final Logger logger = Log4J.getLogger(FeaturesTestArea.class);
-
 	private DefaultEntityManager manager;
 	
 
