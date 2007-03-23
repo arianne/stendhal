@@ -25,6 +25,7 @@ import java.util.List;
 import marauroa.common.Log4J;
 
 public class MoveAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(MoveAction.class);
 
 	public static void register() {
@@ -50,15 +51,12 @@ public class MoveAction extends ActionListener {
 		Log4J.startMethod(logger, "move");
 
 		if (action.has("dir")) {
-			int	dirval;
+			int dirval;
 
-
-			if((dirval = action.getInt("dir")) < 0) {
-				player.removeClientDirection(
-					Direction.build(-dirval));
+			if ((dirval = action.getInt("dir")) < 0) {
+				player.removeClientDirection(Direction.build(-dirval));
 			} else {
-				player.addClientDirection(
-					Direction.build(dirval));
+				player.addClientDirection(Direction.build(dirval));
 			}
 
 			player.applyClientDirection(true);
@@ -68,7 +66,6 @@ public class MoveAction extends ActionListener {
 
 		Log4J.finishMethod(logger, "move");
 	}
-
 
 	private void moveTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "moveto");

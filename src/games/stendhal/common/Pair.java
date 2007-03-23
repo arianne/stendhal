@@ -13,6 +13,7 @@
 package games.stendhal.common;
 
 public class Pair<T1, T2> {
+
 	private T1 first;
 
 	private T2 second;
@@ -42,23 +43,19 @@ public class Pair<T1, T2> {
 	public boolean equals(Object o) {
 		if (o instanceof Pair) {
 			Pair object = (Pair) o;
-			if ((first != null) && first.equals(object.first) && (second != null)
-					&& second.equals(object.second)) {
+			if ((first != null) && first.equals(object.first) && (second != null) && second.equals(object.second)) {
 				return true;
 			}
 
-			if ((first == null) && (first == object.first) && (second != null)
-					&& second.equals(object.second)) {
+			if ((first == null) && (first == object.first) && (second != null) && second.equals(object.second)) {
 				return true;
 			}
 
-			if ((second == null) && (second == object.second) && (first != null)
-					&& first.equals(object.first)) {
+			if ((second == null) && (second == object.second) && (first != null) && first.equals(object.first)) {
 				return true;
 			}
 
-			if ((first == null) && (first == object.first) && (second == null)
-					&& (second == object.second)) {
+			if ((first == null) && (first == object.first) && (second == null) && (second == object.second)) {
 				return true;
 			}
 		}

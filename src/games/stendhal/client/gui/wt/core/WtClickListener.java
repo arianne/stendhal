@@ -19,12 +19,14 @@
 package games.stendhal.client.gui.wt.core;
 
 import java.awt.Point;
+
 /**
  * Callback for clicking on a panel
  * 
  * @author mtotz
  */
 public interface WtClickListener {
+
 	/**
 	 * the panel has been clicked
 	 * 

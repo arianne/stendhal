@@ -17,10 +17,15 @@ import java.util.TreeSet;
  * @author hendrik
  */
 public class LanguageWriter {
+
 	private Properties dictionary = new Properties();
+
 	private PrintStream out;
+
 	private Set<String> known = new HashSet<String>();
+
 	private String lastBanner = null;
+
 	private String lastLargeBanner = null;
 
 	/**
@@ -33,7 +38,8 @@ public class LanguageWriter {
 	 */
 	public LanguageWriter(String language, String filename) throws FileNotFoundException {
 		try {
-			dictionary.load(Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".properties"));
+			dictionary.load(Translate.class.getClassLoader().getResourceAsStream(
+			        "data/languages/" + language + ".properties"));
 		} catch (Exception e) {
 			// ignore
 		}
@@ -56,7 +62,7 @@ public class LanguageWriter {
 			lastBanner = bannerText;
 		}
 	}
-	
+
 	/**
 	 * writes a large banner (for folders)
 	 *
@@ -80,7 +86,6 @@ public class LanguageWriter {
 			lastLargeBanner = bannerText;
 		}
 	}
-	
 
 	/**
 	 * Writes a key to the file. Known keys are not written again but

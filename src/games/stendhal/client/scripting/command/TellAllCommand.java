@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Send a message to all players.
  */
 class TellAllCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class TellAllCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction tellall = new RPAction();
 
 		tellall.put("type", "tellall");
@@ -26,7 +27,6 @@ class TellAllCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -35,7 +35,6 @@ class TellAllCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 0;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

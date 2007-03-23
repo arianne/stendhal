@@ -31,7 +31,9 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class X11KeyConfig extends Canvas {
+
 	private static X11KeyConfig instance = null;
+
 	private static Logger logger = Logger.getLogger(X11KeyConfig.class);
 
 	// ------------------------------------------------------------------------
@@ -74,7 +76,7 @@ public class X11KeyConfig extends Canvas {
 	// ------------------------------------------------------------------------
 	//                        loading of native library
 	// ------------------------------------------------------------------------
-	
+
 	// don't put this in a static init because it should only be invoked on linux
 	private static void load() {
 
@@ -93,7 +95,7 @@ public class X11KeyConfig extends Canvas {
 		} catch (Error e) {
 			error = e;
 		}
-		
+
 		if (error != null) {
 			error = null;
 			try {
@@ -182,7 +184,6 @@ public class X11KeyConfig extends Canvas {
 			logger.error(e, e);
 		}
 	}
-
 
 	// ------------------------------------------------------------------------
 	//                             native interface

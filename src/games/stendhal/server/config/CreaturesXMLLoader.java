@@ -103,11 +103,9 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(
-					ref);
+			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref
-						+ "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -130,8 +128,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		text = "";
 		if (qName.equals("creature")) {
 			name = attrs.getValue("name");
@@ -147,8 +144,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			subclass = attrs.getValue("subclass");
 
 			String tileid_value = attrs.getValue("tileid");
-			tileid = (tileid_value != null ? Integer.parseInt(tileid_value)
-					: -1);
+			tileid = (tileid_value != null ? Integer.parseInt(tileid_value) : -1);
 		} else if (qName.equals("level")) {
 			level = Integer.parseInt(attrs.getValue("value"));
 		} else if (qName.equals("experience")) {
@@ -199,12 +195,10 @@ public class CreaturesXMLLoader extends DefaultHandler {
 					range = range.replace("]", "");
 					String[] amount = range.split(",");
 
-					dropsItems.add(new Creature.DropItem(name, probability,
-							Integer.parseInt(amount[0]), Integer
-									.parseInt(amount[1])));
+					dropsItems.add(new Creature.DropItem(name, probability, Integer.parseInt(amount[0]), Integer
+					        .parseInt(amount[1])));
 				} else {
-					dropsItems.add(new Creature.DropItem(name, probability,
-							Integer.parseInt(range)));
+					dropsItems.add(new Creature.DropItem(name, probability, Integer.parseInt(range)));
 				}
 			}
 		} else if (qName.equals("attributes")) {
@@ -236,8 +230,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	@Override
 	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("creature")) {
-			DefaultCreature creature = new DefaultCreature(clazz, subclass,
-					name, tileid);
+			DefaultCreature creature = new DefaultCreature(clazz, subclass, name, tileid);
 			creature.setRPStats(hp, atk, def, speed);
 			creature.setLevel(level, xp);
 			creature.setSize(sizeWidth, sizeHeight);

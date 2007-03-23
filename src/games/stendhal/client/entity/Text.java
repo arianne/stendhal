@@ -20,6 +20,7 @@ import java.awt.geom.*;
 import java.util.List;
 
 public class Text extends Entity {
+
 	private final static long STANDARD_PERSISTENCE_TIME = 5000;
 
 	private double tx;
@@ -34,10 +35,8 @@ public class Text extends Entity {
 
 	private String text;
 
-	public Text(GameObjects gameObjects, Sprite text, double x, double y,
-			long persistTime) throws AttributeNotFoundException {
-
-		
+	public Text(GameObjects gameObjects, Sprite text, double x, double y, long persistTime)
+	        throws AttributeNotFoundException {
 
 		textImage = text;
 		textImageTime = System.currentTimeMillis();
@@ -61,18 +60,14 @@ public class Text extends Entity {
 		return text;
 	}
 
-	public Text(GameObjects gameObjects, String text, double x, double y,
-			Color color, boolean isTalking) throws AttributeNotFoundException {
-
-	
+	public Text(GameObjects gameObjects, String text, double x, double y, Color color, boolean isTalking)
+	        throws AttributeNotFoundException {
 
 		// Speech bubbles will only be drawn if there's a background color
 		// intensifly@gmx.com
-		textImage = GameScreen.get().createTextBox(text, 240, color,
-				Color.white, isTalking);
+		textImage = GameScreen.get().createTextBox(text, 240, color, Color.white, isTalking);
 		textImageTime = System.currentTimeMillis();
-		textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length()
-				* STANDARD_PERSISTENCE_TIME / 50);
+		textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50);
 
 		if (isTalking) {
 			// Speech bubbles should be top right of speaker intensifly@gmx.com
@@ -80,9 +75,7 @@ public class Text extends Entity {
 			this.ty = y;
 
 		} else {
-			this.tx = x
-					+ 0.7
-					- (textImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
+			this.tx = x + 0.7 - (textImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
 			this.ty = y + 1.5;
 		}
 
@@ -92,13 +85,11 @@ public class Text extends Entity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 	}
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException {
 	}
 
 	@Override
@@ -113,9 +104,8 @@ public class Text extends Entity {
 
 	@Override
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(tx, ty, (double) textImage.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, (double) textImage.getHeight()
-				/ GameScreen.SIZE_UNIT_PIXELS);
+		return new Rectangle.Double(tx, ty, (double) textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS,
+		        (double) textImage.getHeight() / GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	@Override

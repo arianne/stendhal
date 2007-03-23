@@ -44,5 +44,4 @@ public class WhereWho extends ScriptImpl {
 		admin.sendPrivateText(sb.toString());
 	}
 
-	
 }

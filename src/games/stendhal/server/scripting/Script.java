@@ -27,7 +27,7 @@ public interface Script {
 	 * @param args    the arguments the admin specified or <code>null</code> on server start.
 	 */
 	public void unload(Player admin, List<String> args);
-	
+
 	/**
 	 * Execution of this script
 	 *

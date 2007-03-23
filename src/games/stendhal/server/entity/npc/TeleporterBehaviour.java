@@ -23,9 +23,13 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class TeleporterBehaviour implements TurnListener {
+
 	private static Logger logger = Logger.getLogger(TeleporterBehaviour.class);
+
 	private StendhalRPZone zone = null;
+
 	private ArrayList<StendhalRPZone> zones = null;
+
 	private SpeakerNPC speakerNPC = null;
 
 	/**
@@ -35,11 +39,12 @@ public class TeleporterBehaviour implements TurnListener {
 	 * @param repeatedText text to repeat
 	 */
 	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText) {
-		this.speakerNPC  = speakerNPC;
+		this.speakerNPC = speakerNPC;
 		listZones();
 		TurnNotifier.get().notifyInTurns(60, this, null);
 		// say something every minute so that can be noticed more easily
 		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
+
 			public void onTurnReached(int currentTurn, String message) {
 				speakerNPC.say(repeatedText);
 				TurnNotifier.get().notifyInTurns(60 * 3, this, null);
@@ -53,17 +58,15 @@ public class TeleporterBehaviour implements TurnListener {
 	private void listZones() {
 		Iterator itr = StendhalRPWorld.get().iterator();
 		zones = new ArrayList<StendhalRPZone>();
-        while (itr.hasNext()) {
-        	StendhalRPZone aZone = (StendhalRPZone) itr.next();
-        	String zoneName = aZone.getID().getID();
-        	if (zoneName.startsWith("0") && !zoneName.equals("0_nalwor_city") 
-        		&& !zoneName.equals("0_orril_castle") 
-        		&& !zoneName.equals("0_ados_swamp")
-        		&& !zoneName.equals("0_ados_outside_w")
-        		&& !zoneName.equals("0_ados_wall_n")) {
-        		zones.add(aZone);
-        	}
-        }
+		while (itr.hasNext()) {
+			StendhalRPZone aZone = (StendhalRPZone) itr.next();
+			String zoneName = aZone.getID().getID();
+			if (zoneName.startsWith("0") && !zoneName.equals("0_nalwor_city") && !zoneName.equals("0_orril_castle")
+			        && !zoneName.equals("0_ados_swamp") && !zoneName.equals("0_ados_outside_w")
+			        && !zoneName.equals("0_ados_wall_n")) {
+				zones.add(aZone);
+			}
+		}
 	}
 
 	public void onTurnReached(int currentTurn, String message) {

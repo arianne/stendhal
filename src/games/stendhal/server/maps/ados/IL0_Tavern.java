@@ -18,25 +18,24 @@ import java.util.Map;
  * @author hendrik
  */
 public class IL0_Tavern implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
+
 	private ShopList shops = ShopList.get();
 
-	
 	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildTavern(zone, attributes);
 	}
 
-
-	private void buildTavern(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildTavern(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC tavernMaid = new SpeakerNPC("Coralia") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

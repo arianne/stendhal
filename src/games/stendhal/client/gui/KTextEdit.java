@@ -11,6 +11,7 @@ import java.awt.*;
  */
 
 public class KTextEdit extends JPanel {
+
 	private static final long serialVersionUID = -698232821850852452L;
 
 	private static final int TEXT_SIZE = 11;
@@ -49,8 +50,7 @@ public class KTextEdit extends JPanel {
 	 */
 	private void initStylesForTextPane(JTextPane textPane) {
 		// Initialize the basics styles.
-		Style def = StyleContext.getDefaultStyleContext().getStyle(
-				StyleContext.DEFAULT_STYLE);
+		Style def = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
 
 		Style regular = textPane.addStyle("regular", def);
 		StyleConstants.setFontFamily(def, "Dialog");
@@ -102,8 +102,7 @@ public class KTextEdit extends JPanel {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
-				doc.insertString(doc.getLength(), "<" + header + "> ", textPane
-						.getStyle("header"));
+				doc.insertString(doc.getLength(), "<" + header + "> ", textPane.getStyle("header"));
 			}
 		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
@@ -114,8 +113,7 @@ public class KTextEdit extends JPanel {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
-				doc.insertString(doc.getLength(), header, textPane
-						.getStyle("timestamp"));
+				doc.insertString(doc.getLength(), header, textPane.getStyle("timestamp"));
 			}
 		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
@@ -135,8 +133,7 @@ public class KTextEdit extends JPanel {
 						index = pieces.length();
 					}
 
-					doc.insertString(doc.getLength(), pieces
-							.substring(0, index), textPane.getStyle("bold"));
+					doc.insertString(doc.getLength(), pieces.substring(0, index), textPane.getStyle("bold"));
 					pieces = pieces.substring(index);
 				}
 
@@ -205,8 +202,7 @@ public class KTextEdit extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		KTextEdit edit = new KTextEdit();
 		frame.getContentPane().add(edit);
-		edit.addLine("Well, there is really not #much to tell #about. !",
-				Color.red);
+		edit.addLine("Well, there is really not #much to tell #about. !", Color.red);
 		// edit.addLine("Well, there is really not much to tell about. !",
 		// Color.blue);
 		// edit.addLine("Well, there is really not much to tell about. !",

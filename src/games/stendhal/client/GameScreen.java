@@ -45,6 +45,7 @@ import org.apache.log4j.Logger;
  * World coordinates. This class is based on the singleton pattern.
  */
 public class GameScreen {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameScreen.class);
 
@@ -134,15 +135,13 @@ public class GameScreen {
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 
-		if (((x + dx / 60.0 >= 0) && (dx < 0))
-				|| ((x + dx / 60.0 + getWidth() < ww) && (dx > 0))) {
+		if (((x + dx / 60.0 >= 0) && (dx < 0)) || ((x + dx / 60.0 + getWidth() < ww) && (dx > 0))) {
 			x += dx / 60.0;
 		} else {
 			dx = 0;
 		}
 
-		if (((y + dy / 60.0 >= 0) && (dy < 0))
-				|| ((y + dy / 60.0 + getHeight() < wh) && (dy > 0))) {
+		if (((y + dy / 60.0 >= 0) && (dy < 0)) || ((y + dy / 60.0 + getHeight() < wh) && (dy > 0))) {
 			y += dy / 60.0;
 		} else {
 			dy = 0;
@@ -229,11 +228,9 @@ public class GameScreen {
 	}
 
 	public Sprite createString(String text, Color textColor) {
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
-		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(
-				text) + 2, 16, Transparency.BITMASK);
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
+		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text) + 2, 16, Transparency.BITMASK);
 		Graphics g2d = image.getGraphics();
 
 		g2d.setColor(Color.black);
@@ -257,9 +254,7 @@ public class GameScreen {
 			textUnderWidth = words[0];
 		}
 
-		while ((i < words.length)
-				&& (g.getFontMetrics().stringWidth(
-						textUnderWidth + " " + words[i]) < width)) {
+		while ((i < words.length) && (g.getFontMetrics().stringWidth(textUnderWidth + " " + words[i]) < width)) {
 			textUnderWidth = textUnderWidth + " " + words[i];
 			i++;
 		}
@@ -269,9 +264,8 @@ public class GameScreen {
 		}
 
 		if (g.getFontMetrics().stringWidth(textUnderWidth) > width) {
-			return (int) ((float) width
-					/ (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth
-					.length());
+			return (int) ((float) width / (float) g.getFontMetrics().stringWidth(textUnderWidth) * textUnderWidth
+			        .length());
 		}
 
 		return textUnderWidth.length();
@@ -311,13 +305,13 @@ public class GameScreen {
 			Color color = colorNormal;
 			if (tok.startsWith("##")) {
 				tok = tok.substring(1);
-			} else if (tok.startsWith("#")) { 
+			} else if (tok.startsWith("#")) {
 				tok = tok.substring(1);
 				font = specialFont;
 				color = Color.blue;
 			}
 			if (tok.length() > 0) {
-				aStyledText.addAttribute(TextAttribute.FONT, font, s, s	+ tok.length() + 1);
+				aStyledText.addAttribute(TextAttribute.FONT, font, s, s + tok.length() + 1);
 				aStyledText.addAttribute(TextAttribute.FOREGROUND, color, s, s + tok.length() + 1);
 			}
 			s += tok.length() + 1;
@@ -327,8 +321,7 @@ public class GameScreen {
 
 	}
 
-	public Sprite createTextBox(String text, int width, Color textColor,
-			Color fillColor, boolean isTalking) {
+	public Sprite createTextBox(String text, int width, Color textColor, Color fillColor, boolean isTalking) {
 		java.util.List<String> lines = new java.util.LinkedList<String>();
 
 		int i = 0;
@@ -348,8 +341,7 @@ public class GameScreen {
 			/*
 			 * Hard line breaks
 			 */
-			if(((nlpos = text.indexOf('\n', 1)) != -1)
-			 && (nlpos < pos)) {
+			if (((nlpos = text.indexOf('\n', 1)) != -1) && (nlpos < pos)) {
 				pos = nlpos;
 			}
 
@@ -368,12 +360,10 @@ public class GameScreen {
 			}
 		}
 
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
-		
-		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels + delta
-						: width) + 4;
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
+
+		int imageWidth = ((lineLengthPixels + delta < width) ? lineLengthPixels + delta : width) + 4;
 		int imageHeight = 16 * numLines;
 
 		// Workaround for X-Windows not supporting images of height 0 pixel.
@@ -381,40 +371,29 @@ public class GameScreen {
 			imageHeight = 1;
 			logger.warn("Created textbox for empty text");
 		}
-		
+
 		Image image = gc.createCompatibleImage(imageWidth, imageHeight, Transparency.BITMASK);
 
 		Graphics2D g2d = (Graphics2D) image.getGraphics();
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		if (fillColor != null) {
 			Composite xac = g2d.getComposite();
-			AlphaComposite ac = AlphaComposite.getInstance(
-					AlphaComposite.SRC_OVER, 0.8f);
+			AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.8f);
 			g2d.setComposite(ac);
 			g2d.setColor(fillColor);
-			g2d
-					.fillRoundRect(10, 0,
-							((lineLengthPixels < width) ? lineLengthPixels
-									: width) + 3, 16 * numLines - 1, 4, 4);
+			g2d.fillRoundRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3, 16 * numLines - 1, 4,
+			        4);
 			g2d.setColor(textColor);
 			if (isTalking) {
-				g2d
-						.drawRoundRect(10, 0,
-								((lineLengthPixels < width) ? lineLengthPixels
-										: width) + 3, 16 * numLines - 1, 4, 4);
+				g2d.drawRoundRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
+				        16 * numLines - 1, 4, 4);
 			} else {
 				float dash[] = { 4, 2 };
-				BasicStroke newStroke = new BasicStroke(2,
-						BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash,
-						0);
+				BasicStroke newStroke = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash, 0);
 				Stroke oldStroke = g2d.getStroke();
 				g2d.setStroke(newStroke);
-				g2d
-						.drawRect(10, 0,
-								((lineLengthPixels < width) ? lineLengthPixels
-										: width) + 3, 16 * numLines - 1);
+				g2d.drawRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3, 16 * numLines - 1);
 				g2d.setStroke(oldStroke);
 			}
 			g2d.setComposite(xac);
@@ -433,8 +412,7 @@ public class GameScreen {
 
 		i = 0;
 		for (String line : lines) {
-			AttributedString aStyledText = formatLine(line, g2d.getFont(),
-					textColor);
+			AttributedString aStyledText = formatLine(line, g2d.getFont(), textColor);
 
 			if (fillColor == null) {
 				g2d.setColor(Color.black);
@@ -445,8 +423,7 @@ public class GameScreen {
 			}
 			g2d.setColor(textColor);
 
-			g2d.drawString(aStyledText.getIterator(), 2 + delta,
-					2 + i * 16 + 10);
+			g2d.drawString(aStyledText.getIterator(), 2 + delta, 2 + i * 16 + 10);
 			i++;
 		}
 

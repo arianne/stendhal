@@ -38,9 +38,11 @@ import java.util.List;
  * Currently works for zone events.
  */
 public class WorldObjects {
+
 	private static List<WorldListener> worldListeners = new ArrayList<WorldListener>();
 
 	public static interface WorldListener {
+
 		/** Called when a world zone has been loaded. */
 		public void zoneEntered(String zoneName);
 

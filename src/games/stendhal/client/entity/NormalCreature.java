@@ -19,9 +19,9 @@ import marauroa.common.game.RPObject;
 
 /** A Creature entity */
 public class NormalCreature extends Creature {
-	public NormalCreature( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+
+	public NormalCreature(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
@@ -30,12 +30,9 @@ public class NormalCreature extends Creature {
 		Sprite creature = loadAnimationSprite(object);
 
 		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, 1.5, 2));
-		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, 1.5,
-				2));
-		sprites.put("move_down", store
-				.getAnimatedSprite(creature, 2, 4, 1.5, 2));
-		sprites.put("move_left", store
-				.getAnimatedSprite(creature, 3, 4, 1.5, 2));
+		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, 1.5, 2));
+		sprites.put("move_down", store.getAnimatedSprite(creature, 2, 4, 1.5, 2));
+		sprites.put("move_left", store.getAnimatedSprite(creature, 3, 4, 1.5, 2));
 
 		sprites.get("move_up")[3] = sprites.get("move_up")[1];
 		sprites.get("move_right")[3] = sprites.get("move_right")[1];

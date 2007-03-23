@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
  * @author mtotz
  */
 public class CommandList extends WtPopupMenu {
+
 	/** the entity associated with the command list */
 	private Entity entity;
 
@@ -93,6 +94,7 @@ public class CommandList extends WtPopupMenu {
 	 * Handle action selection.
 	 */
 	protected class ActionSelectedCB implements ActionListener {
+
 		//
 		// ActionListener
 		//
@@ -120,6 +122,7 @@ public class CommandList extends WtPopupMenu {
 	 * </pre>
 	 */
 	protected static class AdminIcon implements Icon {
+
 		//
 		// Icon
 		//

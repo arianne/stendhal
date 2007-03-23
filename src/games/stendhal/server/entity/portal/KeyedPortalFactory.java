@@ -16,6 +16,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A factory for <code>KeyedPortal</code> objects.
  */
 public class KeyedPortalFactory implements ConfigurableFactory {
+
 	//
 	// KeyedPortalFactory
 	//
@@ -30,19 +31,15 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
-	protected String getKey(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected String getKey(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("key")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'key' missing");
+		if ((s = ctx.getAttribute("key")) == null) {
+			throw new IllegalArgumentException("Required attribute 'key' missing");
 		}
 
 		return s;
 	}
-
 
 	/**
 	 * Extract the portal key quantity from a context.
@@ -54,23 +51,19 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
-	protected int getQuantity(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected int getQuantity(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("quantity")) == null) {
+		if ((s = ctx.getAttribute("quantity")) == null) {
 			return 1;
 		}
 
-		try  {
+		try {
 			return Integer.parseInt(s);
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'quantity' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'quantity' attribute: " + s);
 		}
 	}
-
 
 	/**
 	 * Extract the rejected message from a context.
@@ -82,12 +75,9 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
-	protected String getRejectedMessage(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
+	protected String getRejectedMessage(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return ctx.getAttribute("rejected");
 	}
-
-
 
 	//
 	// ConfigurableFactory
@@ -108,11 +98,7 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 	 *
 	 * @see		KeyedPortal
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		return new KeyedPortal(
-			getKey(ctx),
-			getQuantity(ctx),
-			getRejectedMessage(ctx));
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return new KeyedPortal(getKey(ctx), getQuantity(ctx), getRejectedMessage(ctx));
 	}
 }

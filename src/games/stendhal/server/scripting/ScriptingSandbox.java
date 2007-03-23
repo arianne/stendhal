@@ -24,15 +24,20 @@ import org.apache.log4j.Logger;
 public abstract class ScriptingSandbox {
 
 	private ArrayList<NPC> loadedNPCs = new ArrayList<NPC>();
+
 	private ArrayList<RPObject> loadedRPObjects = new ArrayList<RPObject>();
+
 	private ArrayList<Pair<ScriptCondition, ScriptAction>> loadedScripts = new ArrayList<Pair<ScriptCondition, ScriptAction>>();
+
 	private StendhalScriptSystem scripts;
+
 	private String exceptionMessage;
+
 	private StendhalRPZone zone;
+
 	private String filename = null;
 
-	private static final Logger logger = Log4J
-			.getLogger(ScriptingSandbox.class);
+	private static final Logger logger = Log4J.getLogger(ScriptingSandbox.class);
 
 	public ScriptingSandbox(String filename) {
 		this.filename = filename;
@@ -42,12 +47,12 @@ public abstract class ScriptingSandbox {
 	public StendhalRPZone getZone(RPObject rpobject) {
 		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(rpobject.getID());
 	}
-	
+
 	public boolean setZone(String name) {
 		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(name);
 		return (zone != null);
 	}
-	
+
 	public boolean setZone(StendhalRPZone zone) {
 		this.zone = zone;
 		return (zone != null);
@@ -104,18 +109,15 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-	public Pair<ScriptCondition, ScriptAction> add(ScriptCondition condition,
-			ScriptAction action) {
-		Pair<ScriptCondition, ScriptAction> script = scripts.addScript(
-				condition, action);
+	public Pair<ScriptCondition, ScriptAction> add(ScriptCondition condition, ScriptAction action) {
+		Pair<ScriptCondition, ScriptAction> script = scripts.addScript(condition, action);
 		loadedScripts.add(script);
 		logger.info(filename + " added a script.");
 		return (script);
 	}
 
 	public Creature[] getCreatures() {
-		return (StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures()
-				.toArray(new Creature[1]));
+		return (StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures().toArray(new Creature[1]));
 	}
 
 	public Creature getCreature(String clazz) {
@@ -123,8 +125,7 @@ public abstract class ScriptingSandbox {
 	}
 
 	public Item[] getItems() {
-		return (StendhalRPWorld.get().getRuleManager().getEntityManager().getItems()
-				.toArray(new Item[1]));
+		return (StendhalRPWorld.get().getRuleManager().getEntityManager().getItems().toArray(new Item[1]));
 	}
 
 	public Item getItem(String name) {
@@ -134,7 +135,7 @@ public abstract class ScriptingSandbox {
 		}
 		return (item);
 	}
-	
+
 	public List<RPObject> getCreatedRPObjects() {
 		return loadedRPObjects;
 	}
@@ -159,23 +160,23 @@ public abstract class ScriptingSandbox {
 	public void addGameEvent(String source, String event, List<String> params) {
 		StendhalRPRuleProcessor.get().addGameEvent(source, event, params.toArray(new String[params.size()]));
 	}
-	
+
 	public void modify(RPEntity entity) {
 		entity.notifyWorldAboutChanges();
 	}
 
 	public void privateText(Player player, String text) {
-        player.sendPrivateText(text);
+		player.sendPrivateText(text);
 	}
-	
+
 	// ------------------------------------------------------------------------
-	
+
 	public abstract boolean load(Player player, String[] args);
 
 	public String getMessage() {
 		return exceptionMessage;
 	}
-	
+
 	protected void setMessage(String message) {
 		this.exceptionMessage = message;
 	}
@@ -232,11 +233,12 @@ public abstract class ScriptingSandbox {
 			}
 		}
 	}
-	
+
 	public void unload(Player player, String[] args) {
 		Log4J.startMethod(logger, "unload");
 
-		for (Pair<ScriptCondition, ScriptAction> script : (List<Pair<ScriptCondition, ScriptAction>>) loadedScripts.clone()) {
+		for (Pair<ScriptCondition, ScriptAction> script : (List<Pair<ScriptCondition, ScriptAction>>) loadedScripts
+		        .clone()) {
 			logger.info("Removing " + filename + " added script.");
 			remove(script);
 		}

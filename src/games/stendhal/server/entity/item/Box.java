@@ -14,18 +14,23 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * a box which can be unwrapped.
  *
  * @author hendrik
  */
 public class Box extends Item implements UseListener {
+
 	private Logger logger = Logger.getLogger(Box.class);
+
 	// for christmas presents
-	private static final String[] ITEMS = {"greater_potion", "pie", "sandwich", "carrot", "cherry", "elf_cloak_+2", "summon_scroll"};
+	private static final String[] ITEMS = { "greater_potion", "pie", "sandwich", "carrot", "cherry", "elf_cloak_+2",
+	        "summon_scroll" };
+
 	// for easter presents
-	private static final String[] ITEMS_2 = {"greater_potion", "pie", "sandwich", "cherry", "elf_cloak_+2", "home_scroll"};
+	private static final String[] ITEMS_2 = { "greater_potion", "pie", "sandwich", "cherry", "elf_cloak_+2",
+	        "home_scroll" };
+
 	/**
 	 * Creates a new box
 	 *
@@ -34,8 +39,7 @@ public class Box extends Item implements UseListener {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Box(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Box(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -59,20 +63,18 @@ public class Box extends Item implements UseListener {
 				return;
 			}
 		}
-		
+
 		Player player = (Player) user;
 		String name = getName();
 		if (name.equals("present")) {
 			usePresent(player);
-		} 
-		else if (name.equals("basket")) {
+		} else if (name.equals("basket")) {
 			useBasket(player);
-		} 
-		else {
+		} else {
 			player.sendPrivateText("What a strange box! You don't know how to open it.");
 		}
 	}
-	
+
 	private void usePresent(Player player) {
 		this.removeOne();
 		String itemName = ITEMS[Rand.rand(ITEMS.length)];
@@ -81,16 +83,17 @@ public class Box extends Item implements UseListener {
 		player.equip(item, true);
 		player.notifyWorldAboutChanges();
 	}
+
 	private void useBasket(Player player) {
 		this.removeOne();
 		String itemName;
 		if (Rand.roll1D20() == 1) {
-		  itemName = "easter_egg";
+			itemName = "easter_egg";
 		} else {
-	 	  itemName = ITEMS_2[Rand.rand(ITEMS_2.length)];
+			itemName = ITEMS_2[Rand.rand(ITEMS_2.length)];
 		}
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
-		if(itemName == "easter_egg"){
+		if (itemName == "easter_egg") {
 			item.put("bound", player.getName());
 			// item.put("infostring", Bunny); 
 			// it'd be nice to store the fact that these came from Bunny?

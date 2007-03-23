@@ -4,12 +4,15 @@ import java.util.Vector;
 import java.awt.Point;
 
 public class Line {
+
 	public static abstract class Action {
+
 		abstract public void fire(int x, int y);
 	}
 
 	public static void main(String[] args) {
 		renderLine(10, 10, 100, 50, new Action() {
+
 			@Override
 			public void fire(int x, int y) {
 				System.out.println(x + "," + y);
@@ -52,7 +55,7 @@ public class Line {
 		}
 
 		if (deltax >= deltay) // There is at least one x-value for every
-								// y-value
+		// y-value
 		{
 			xinc1 = 0; // Don't change the x when numerator >= denominator
 			yinc2 = 0; // Don't change the y for every iteration
@@ -124,7 +127,7 @@ public class Line {
 		}
 
 		if (deltax >= deltay) // There is at least one x-value for every
-								// y-value
+		// y-value
 		{
 			xinc1 = 0; // Don't change the x when numerator >= denominator
 			yinc2 = 0; // Don't change the y for every iteration

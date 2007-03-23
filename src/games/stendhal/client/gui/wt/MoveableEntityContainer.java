@@ -25,6 +25,7 @@ import marauroa.common.game.RPObject;
 
 /** this container is used to drag the entities around */
 public class MoveableEntityContainer implements WtDraggable {
+
 	/** current x-pos of the dragged item */
 	private int x;
 
@@ -54,8 +55,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	}
 
 	/** constuctor to use when the item is inside a container */
-	public MoveableEntityContainer(RPObject content, Entity parent,
-			String slot, GameObjects gameObjects) {
+	public MoveableEntityContainer(RPObject content, Entity parent, String slot, GameObjects gameObjects) {
 		this.content = content.getID().getObjectID();
 		this.parent = parent;
 		this.slot = slot;
@@ -63,8 +63,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	}
 
 	/** constuctor to use when the item is on the ground */
-	public MoveableEntityContainer(Entity content, int x, int y,
-			GameObjects gameObjects) {
+	public MoveableEntityContainer(Entity content, int x, int y, GameObjects gameObjects) {
 		this.content = content.getID().getObjectID();
 		this.objectx = x;
 		this.objecty = y;

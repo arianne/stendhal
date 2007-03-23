@@ -18,11 +18,17 @@ import java.util.Properties;
  * @author hendrik
  */
 public class HttpClient {
+
 	private String urlString = null;
+
 	private HttpURLConnection connection = null;
+
 	private InputStream is = null;
+
 	private ProgressListener progressListener = null;
+
 	private int timeout = 1500; // 1.5 seconds
+
 	private boolean tryVeryHard = false;
 
 	/**
@@ -30,6 +36,7 @@ public class HttpClient {
 	 * download process.
 	 */
 	public interface ProgressListener {
+
 		/**
 		 * update download status
 		 *
@@ -82,38 +89,39 @@ public class HttpClient {
 		// sometimes problems with the webservers beeing slow or not responding
 		// at all.
 		try {
-	        URL url = new URL(urlString);
-	        int retryCount = 0;
-	        int myTimeout = timeout;
-	        while (is == null) {
-	        	retryCount++;
-	        	try {
-			        HttpURLConnection.setFollowRedirects(true);
-			        connection = (HttpURLConnection) url.openConnection();
-			        connection.setConnectTimeout(timeout);
-			        if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-			        	System.err.println("HttpServer returned an error code (" + urlString + "): " + connection.getResponseCode());
-			        	connection = null;
-			        }
-			        if (connection != null) {
-			        	is = connection.getInputStream();
-				        if (retryCount > 1) {
-				        	System.err.println("Retry successful");
-				        }
-			        }
-	        	} catch (SocketTimeoutException e) {
-	        		System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
-	        	}
-	        	myTimeout = myTimeout * 2;
-	        	if (!tryVeryHard || (retryCount > 3)) {
-	        		break;
-	        	}
-	        }
-	    } catch (Exception e) {
-	    	System.err.println("Error connecting to http-Server (" + urlString + "): ");
-	    	e.printStackTrace(System.err);
-	    }
-	    return;
+			URL url = new URL(urlString);
+			int retryCount = 0;
+			int myTimeout = timeout;
+			while (is == null) {
+				retryCount++;
+				try {
+					HttpURLConnection.setFollowRedirects(true);
+					connection = (HttpURLConnection) url.openConnection();
+					connection.setConnectTimeout(timeout);
+					if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+						System.err.println("HttpServer returned an error code (" + urlString + "): "
+						        + connection.getResponseCode());
+						connection = null;
+					}
+					if (connection != null) {
+						is = connection.getInputStream();
+						if (retryCount > 1) {
+							System.err.println("Retry successful");
+						}
+					}
+				} catch (SocketTimeoutException e) {
+					System.err.println("Timeout (" + urlString + "): " + " " + e.toString());
+				}
+				myTimeout = myTimeout * 2;
+				if (!tryVeryHard || (retryCount > 3)) {
+					break;
+				}
+			}
+		} catch (Exception e) {
+			System.err.println("Error connecting to http-Server (" + urlString + "): ");
+			e.printStackTrace(System.err);
+		}
+		return;
 	}
 
 	/**
@@ -153,15 +161,15 @@ public class HttpClient {
 			if (is == null) {
 				return null;
 			}
-	        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            line = br.readLine();
-	        br.close();
-	        connection.disconnect();
-	    } catch (Exception e) {
-	    	System.err.println("Error connecting to http-Server: ");
-	    	e.printStackTrace(System.err);
-	    }
-	    return line;
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			line = br.readLine();
+			br.close();
+			connection.disconnect();
+		} catch (Exception e) {
+			System.err.println("Error connecting to http-Server: ");
+			e.printStackTrace(System.err);
+		}
+		return line;
 	}
 
 	/**
@@ -195,7 +203,7 @@ public class HttpClient {
 	 */
 	public boolean fetchFile(String filename) {
 		boolean res = false;
-		
+
 		openInputStream();
 		if (is == null) {
 			return res;

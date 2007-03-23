@@ -37,12 +37,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
-
 /**
  * Summary description for LoginGUI
  * 
  */
 public class StendhalFirstScreen extends JFrame {
+
 	private static final long serialVersionUID = -7825572598938892220L;
 
 	private StendhalClient client;
@@ -72,6 +72,7 @@ public class StendhalFirstScreen extends JFrame {
 	 */
 	private void initializeComponent() {
 		this.setContentPane(new JPanel() {
+
 			private static final long serialVersionUID = -4272347652159225492L;
 
 			{
@@ -94,6 +95,7 @@ public class StendhalFirstScreen extends JFrame {
 		loginButton.setMnemonic(KeyEvent.VK_L);
 		loginButton.setToolTipText("Press this button to login to a Stendhal server");
 		loginButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				login();
 			}
@@ -107,6 +109,7 @@ public class StendhalFirstScreen extends JFrame {
 		createAccountButton.setToolTipText("Press this button to create an account on a Stendhal server.");
 		createAccountButton.setEnabled(true);
 		createAccountButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				createAccount();
 			}
@@ -118,6 +121,7 @@ public class StendhalFirstScreen extends JFrame {
 		creditButton.setText("Credits");
 		creditButton.setMnemonic(KeyEvent.VK_C);
 		creditButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				showCredits();
 			}
@@ -129,12 +133,14 @@ public class StendhalFirstScreen extends JFrame {
 		exitButton.setText("Exit");
 		exitButton.setMnemonic(KeyEvent.VK_X);
 		exitButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 
 		addWindowListener(new WindowAdapter() {
+
 			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
@@ -154,17 +160,18 @@ public class StendhalFirstScreen extends JFrame {
 			contentPane.add(X11KeyConfig.get());
 		}
 
-		addComponent(contentPane, loginButton,         220, 300, 200, 32);
+		addComponent(contentPane, loginButton, 220, 300, 200, 32);
 		addComponent(contentPane, createAccountButton, 220, 340, 200, 32);
-		addComponent(contentPane, creditButton,        220, 380, 200, 32);
-		addComponent(contentPane, exitButton,          220, 420, 200, 32);
+		addComponent(contentPane, creditButton, 220, 380, 200, 32);
+		addComponent(contentPane, exitButton, 220, 420, 200, 32);
 
 		getRootPane().setDefaultButton(loginButton);
 
 		//
 		// LoginGUI
 		//
-		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION + " - a multiplayer online game using Arianne");
+		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
+		        + " - a multiplayer online game using Arianne");
 		this.setLocation(new Point(100, 100));
 
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
@@ -183,18 +190,15 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void checkVersion() {
-        HttpClient httpClient = new HttpClient(ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
-        String version = httpClient.fetchFirstLine();
-        if (version != null) {
+		HttpClient httpClient = new HttpClient(ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
+		String version = httpClient.fetchFirstLine();
+		if (version != null) {
 			if (Version.compare(version, stendhal.VERSION) > 0) {
 				// custom title, warning icon
-				JOptionPane.showMessageDialog(
-					null,
-					"Your client is out of date. Latest version is "
-					+ version + ". But you are using " + stendhal.VERSION
-					+ ".\nDownload from http://arianne.sourceforge.net",
-					"Client out of date",
-					JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+				        "Your client is out of date. Latest version is " + version + ". But you are using "
+				                + stendhal.VERSION + ".\nDownload from http://arianne.sourceforge.net",
+				        "Client out of date", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 
@@ -206,8 +210,7 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	/** Add Component Without a Layout Manager (Absolute Positioning) */
-	private void addComponent(Container container, Component c, int x, int y,
-			int width, int height) {
+	private void addComponent(Container container, Component c, int x, int y, int width, int height) {
 		c.setBounds(x, y, width, height);
 		container.add(c);
 	}

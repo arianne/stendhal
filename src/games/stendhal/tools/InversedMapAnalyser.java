@@ -13,8 +13,9 @@ import java.util.TreeMap;
  * @author hendrik
  */
 public class InversedMapAnalyser {
-	
+
 	private Map<Integer, TreeMap<String, Integer>> tiles = new TreeMap<Integer, TreeMap<String, Integer>>();
+
 	private static final String PATH = "/home/hendrik/stendhal/cache/";
 
 	private void readMap(String filename) throws IOException {
@@ -31,7 +32,7 @@ public class InversedMapAnalyser {
 			for (String itemStr : items) {
 				Integer item = new Integer(Integer.parseInt(itemStr));
 				TreeMap<String, Integer> temp = tiles.get(item);
-				if (temp == null)  {
+				if (temp == null) {
 					temp = new TreeMap<String, Integer>();
 					tiles.put(item, temp);
 				}
@@ -41,7 +42,7 @@ public class InversedMapAnalyser {
 				}
 				count = new Integer(count.intValue() + 1);
 				temp.put(filename, count);
-				
+
 			}
 		}
 	}
@@ -50,7 +51,7 @@ public class InversedMapAnalyser {
 		System.out.println(tiles);
 		System.out.println("-----------------------------");
 
-		Map<Integer, Integer> out = new TreeMap<Integer, Integer>(); 
+		Map<Integer, Integer> out = new TreeMap<Integer, Integer>();
 		for (Integer tile : tiles.keySet()) {
 			Map<String, Integer> temp = tiles.get(tile);
 			int counter = 0;
@@ -61,7 +62,7 @@ public class InversedMapAnalyser {
 		}
 		System.out.println(out);
 	}
-	
+
 	/**
 	 * @param args
 	 * @throws IOException 

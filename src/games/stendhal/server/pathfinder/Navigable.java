@@ -30,6 +30,7 @@ import games.stendhal.server.pathfinder.Pathfinder.Node;
  * @author James Matthews
  */
 public interface Navigable {
+
 	/**
 	 * Determines whether the given node is valid.
 	 * 

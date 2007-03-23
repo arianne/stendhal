@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Alter an entity's attributes.
  */
 class AlterCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class AlterCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction alter = new RPAction();
 
 		alter.put("type", "alter");
@@ -28,7 +29,6 @@ class AlterCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -37,7 +37,6 @@ class AlterCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 4;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

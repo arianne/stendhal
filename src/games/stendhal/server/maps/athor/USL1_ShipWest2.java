@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 public class USL1_ShipWest2 implements ZoneConfigurator {
-	DefaultEntityManager manager = (DefaultEntityManager)
-	StendhalRPWorld.get().getRuleManager().getEntityManager();
+
+	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 	/**
 	 * Configure a zone.
@@ -24,17 +24,16 @@ public class USL1_ShipWest2 implements ZoneConfigurator {
 	 * @param 	zone		The zone to be configured.
 	 * @param 	attributes	Configuration attributes.
 	 */
-	
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		createLaura(zone, attributes);
 	}
 
-	private void createLaura(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void createLaura(StendhalRPZone zone, Map<String, String> attributes) {
 		// Laura is defined as a ferry announcer because she notifies
 		// passengers when the ferry arrives or departs.
 		AthorFerryService.FerryAnnouncerNPC laura = new AthorFerryService.FerryAnnouncerNPC("Laura") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -48,7 +47,7 @@ public class USL1_ShipWest2 implements ZoneConfigurator {
 				nodes.add(new Path.Node(28, 30));
 				setPath(nodes, true);
 			}
-	
+
 			@Override
 			protected void createDialog() {
 				addGreeting("Ahoy! Welcome to the galley!");
@@ -63,12 +62,12 @@ public class USL1_ShipWest2 implements ZoneConfigurator {
 				addSeller(new SellerBehaviour(offerings));
 				addGoodbye();
 			}
-			
+
 			public void onNewFerryState(int status) {
 				if (status == AthorFerryService.AthorFerry.ANCHORED_AT_MAINLAND
-						|| status == AthorFerryService.AthorFerry.ANCHORED_AT_ISLAND) {
+				        || status == AthorFerryService.AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: We have arrived!");
-				} else  {
+				} else {
 					say("Attention: We have set sail!");
 				}
 			}

@@ -22,8 +22,6 @@ public enum DeathmatchLifecycle {
 	/** deathmatch was completed sucessfully but the player did not claim "victory" yet */
 	VICTORY("victory");
 
-
-
 	private static Logger logger = Logger.getLogger(DeathmatchLifecycle.class);
 
 	private String questString = null;

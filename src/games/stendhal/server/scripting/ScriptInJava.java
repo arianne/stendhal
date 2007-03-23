@@ -19,8 +19,11 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class ScriptInJava extends ScriptingSandbox {
+
 	private static Logger logger = Logger.getLogger(ScriptInJava.class);
+
 	private Script script = null;
+
 	private String classname = null;
 
 	/**
@@ -45,21 +48,22 @@ public class ScriptInJava extends ScriptingSandbox {
 	 * @throws InvocationTargetException
 	 * @throws InstantiationException
 	 */
-	private void newInstance() throws MalformedURLException, ClassNotFoundException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException {
-		   // Create new class loader 
-		   // with current dir as CLASSPATH
-		   File file = new File("./data/script");
-		   ClassLoader loader = new URLClassLoader(new URL[] {file.toURL()});
-		   // load class through new loader
-		   Class aClass = loader.loadClass(classname);
-		   script = (Script) aClass.newInstance();
+	private void newInstance() throws MalformedURLException, ClassNotFoundException, SecurityException,
+	        NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException,
+	        InstantiationException {
+		// Create new class loader 
+		// with current dir as CLASSPATH
+		File file = new File("./data/script");
+		ClassLoader loader = new URLClassLoader(new URL[] { file.toURL() });
+		// load class through new loader
+		Class aClass = loader.loadClass(classname);
+		script = (Script) aClass.newInstance();
 	}
-
 
 	@Override
 	public boolean load(Player admin, String[] args) {
-		Class[] signature = new Class[] {Player.class, List.class, ScriptingSandbox.class};
-		Object[] params = new Object[] {admin, Arrays.asList(args), this};
+		Class[] signature = new Class[] { Player.class, List.class, ScriptingSandbox.class };
+		Object[] params = new Object[] { admin, Arrays.asList(args), this };
 
 		try {
 			newInstance();
@@ -79,8 +83,8 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	@Override
 	public boolean execute(Player admin, String[] args) {
-		Class[] signature = new Class[] {Player.class, List.class};
-		Object[] params = new Object[] {admin, Arrays.asList(args)};
+		Class[] signature = new Class[] { Player.class, List.class };
+		Object[] params = new Object[] { admin, Arrays.asList(args) };
 
 		try {
 			Method theMethod = script.getClass().getMethod("execute", signature);
@@ -92,12 +96,11 @@ public class ScriptInJava extends ScriptingSandbox {
 		}
 		return true;
 	}
-	
-	
+
 	@Override
 	public void unload(Player admin, String[] args) {
-		Class[] signature = new Class[] {Player.class, List.class};
-		Object[] params = new Object[] {admin, Arrays.asList(args)};
+		Class[] signature = new Class[] { Player.class, List.class };
+		Object[] params = new Object[] { admin, Arrays.asList(args) };
 		try {
 			Method theMethod = script.getClass().getMethod("unload", signature);
 			theMethod.invoke(script, params);
@@ -109,5 +112,4 @@ public class ScriptInJava extends ScriptingSandbox {
 		super.unload(admin, args);
 	}
 
-	
 }

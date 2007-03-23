@@ -28,6 +28,7 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 public class Path {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Path.class);
 
@@ -36,6 +37,7 @@ public class Path {
 	public static int steps;
 
 	public static class Node {
+
 		public int x;
 
 		public int y;
@@ -94,14 +96,12 @@ public class Path {
 	 *            start y
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, int x, int y,
-			Rectangle2D destination) {
+	public static List<Node> searchPath(Entity entity, int x, int y, Rectangle2D destination) {
 		return searchPath(entity, x, y, destination, -1.0);
 	}
 
 	public static List<Node> searchPath(Entity entity, int ex, int ey) {
-		return searchPath(entity, entity.getX(), entity.getY(), entity.getArea(
-				ex, ey), -1.0);
+		return searchPath(entity, entity.getX(), entity.getY(), entity.getArea(ex, ey), -1.0);
 	}
 
 	/**
@@ -119,8 +119,7 @@ public class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, int x, int y,
-			Rectangle2D destination, double maxDistance) {
+	public static List<Node> searchPath(Entity entity, int x, int y, Rectangle2D destination, double maxDistance) {
 		return searchPath(entity, null, x, y, destination, maxDistance, true);
 	}
 
@@ -141,15 +140,15 @@ public class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y,
-			Rectangle2D destination, double maxDistance, boolean withEntities) {
-		
+	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y, Rectangle2D destination,
+	        double maxDistance, boolean withEntities) {
+
 		if (zone == null) {
 			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
 		}
-		
+
 		// Log4J.startMethod(logger, "searchPath");
-//		long startTimeNano = System.nanoTime(); 
+		//		long startTimeNano = System.nanoTime(); 
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
@@ -159,12 +158,12 @@ public class Path {
 		} else {
 			navMap = new StendhalNavigable(entity, zone, x, y, destination);
 		}
-		
+
 		// The most expensive path is the not existing path
 		if (navMap.unrechable()) {
 			return new LinkedList<Node>();
 		}
-		
+
 		path.setNavigable(navMap);
 		path.setStart(new Pathfinder.Node(x, y));
 
@@ -173,11 +172,9 @@ public class Path {
 		 * set the destination node for pathfinding to the center of the area
 		 */
 		if ((destination.getWidth() > 2) || (destination.getHeight() > 2)) {
-			path.setGoal(new Pathfinder.Node((int) (destination.getCenterX()),
-					(int) (destination.getCenterY())));
+			path.setGoal(new Pathfinder.Node((int) (destination.getCenterX()), (int) (destination.getCenterY())));
 		} else {
-			path.setGoal(new Pathfinder.Node((int) destination.getX(),
-					(int) destination.getY()));
+			path.setGoal(new Pathfinder.Node((int) destination.getX(), (int) destination.getY()));
 		}
 
 		steps = 0;
@@ -193,23 +190,20 @@ public class Path {
 
 		long endTime = System.currentTimeMillis();
 		if (false && logger.isDebugEnabled()) {
-			logger.debug("Route (" + x + "," + y + ")-(" + destination + ") S:"
-					+ steps + " OL:" + path.getOpen().size() + " CL:"
-					+ path.getClosed().size() + " in " + (endTime - startTime)
-					+ "ms");
+			logger.debug("Route (" + x + "," + y + ")-(" + destination + ") S:" + steps + " OL:"
+			        + path.getOpen().size() + " CL:" + path.getClosed().size() + " in " + (endTime - startTime) + "ms");
 		}
-// 		logger.info("status: " + path.getStatus());
+		// 		logger.info("status: " + path.getStatus());
 		if (path.getStatus() == Pathfinder.PATH_NOT_FOUND) {
 			if (logger.isDebugEnabled()) {
-			logger.debug("Pathfinding aborted: " +zone.getID() + " " + entity.get("name")
-						+ " (" + x + ", " + y + ") " + destination + " Pathfinding time: "
-						+ (System.currentTimeMillis() - startTime)
-						+ "  steps: " + steps);
+				logger.debug("Pathfinding aborted: " + zone.getID() + " " + entity.get("name") + " (" + x + ", " + y
+				        + ") " + destination + " Pathfinding time: " + (System.currentTimeMillis() - startTime)
+				        + "  steps: " + steps);
 			}
 			return new LinkedList<Node>();
 		}
-//		time = time + System.nanoTime() - startTimeNano;
-//		counter++;
+		//		time = time + System.nanoTime() - startTimeNano;
+		//		counter++;
 
 		List<Node> list = new LinkedList<Node>();
 		Pathfinder.Node node = path.getBestNode();
@@ -235,9 +229,8 @@ public class Path {
 		StendhalRPWorld.get().checkPathfinder();
 
 		boolean result = StendhalRPWorld.get().getPathfinder().queuePath(
-				new QueuedPath(new SimplePathListener(entity), entity, entity
-						.getX(), entity.getY(), dest.getArea(dest.getX(), dest
-						.getY())));
+		        new QueuedPath(new SimplePathListener(entity), entity, entity.getX(), entity.getY(), dest.getArea(dest
+		                .getX(), dest.getY())));
 
 		if (!result) {
 			logger.warn("Pathfinder queue is full...path not added");
@@ -270,50 +263,44 @@ public class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, Entity dest,
-			double maxDistance) {
-                Rectangle2D area = dest.getArea(dest.getX(), dest.getY());
+	public static List<Node> searchPath(Entity entity, Entity dest, double maxDistance) {
+		Rectangle2D area = dest.getArea(dest.getX(), dest.getY());
 
 		/*
 		 * Expand area by surounding tiles.
 		 */
-		return searchPath(entity, entity.getX(), entity.getY(),
-			new Rectangle(
-				((int) area.getX()) - 1,
-				((int) area.getY()) - 1,
-				((int) area.getWidth()) + 2,
-				((int) area.getHeight()) + 2),
-			maxDistance);
+		return searchPath(entity, entity.getX(), entity.getY(), new Rectangle(((int) area.getX()) - 1, ((int) area
+		        .getY()) - 1, ((int) area.getWidth()) + 2, ((int) area.getHeight()) + 2), maxDistance);
 
-//
-// OLD CODE:
-//
-//		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
-//
-//		
-//		List<Node> res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-//						dest.getX(), dest.getY(), 1, 1), maxDistance);
-//
-//		if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1)) {
-//			
-//			logger.debug("trying 2: " + (entity.getX() + (int) rect.getWidth() - 1));
-//			
-//				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-//					dest.getX() - (int) rect.getWidth() + 1, dest.getY(), 1, 1), maxDistance);
-//			if (((res == null) || res.isEmpty()) && (rect.getHeight() > 1)) {
-//				logger.debug("trying 3");
-//
-//				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-//					dest.getX(), dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
-//				if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1) && (rect.getHeight() > 1)) {
-//					logger.debug("trying 4");
-//					res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-//						dest.getX() - (int) rect.getWidth() + 1, dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
-//				}
-//			}
-//		}
-//		// logger.debug(!res.isEmpty());
-//		return res;
+		//
+		// OLD CODE:
+		//
+		//		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
+		//
+		//		
+		//		List<Node> res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+		//						dest.getX(), dest.getY(), 1, 1), maxDistance);
+		//
+		//		if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1)) {
+		//			
+		//			logger.debug("trying 2: " + (entity.getX() + (int) rect.getWidth() - 1));
+		//			
+		//				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+		//					dest.getX() - (int) rect.getWidth() + 1, dest.getY(), 1, 1), maxDistance);
+		//			if (((res == null) || res.isEmpty()) && (rect.getHeight() > 1)) {
+		//				logger.debug("trying 3");
+		//
+		//				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+		//					dest.getX(), dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
+		//				if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1) && (rect.getHeight() > 1)) {
+		//					logger.debug("trying 4");
+		//					res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
+		//						dest.getX() - (int) rect.getWidth() + 1, dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
+		//				}
+		//			}
+		//		}
+		//		// logger.debug(!res.isEmpty());
+		//		return res;
 	}
 
 	public static boolean followPath(RPEntity entity, double speed) {
@@ -328,15 +315,13 @@ public class Path {
 		Node actual = path.get(pos);
 
 		if (entity.squaredDistance(actual.x, actual.y) == 0) {
-			logger.debug("Completed waypoint(" + pos + ")(" + actual.x + ","
-					+ actual.y + ") on Path");
+			logger.debug("Completed waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path");
 			pos++;
 			if (pos < path.size()) {
 				entity.setPathPosition(pos);
 				actual = path.get(pos);
-				logger.debug("Moving to waypoint(" + pos + ")(" + actual.x
-						+ "," + actual.y + ") on Path from (" + entity.getX()
-						+ "," + entity.getY() + ")");
+				logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path from ("
+				        + entity.getX() + "," + entity.getY() + ")");
 				moveto(entity, actual.x, actual.y, speed);
 				return false;
 			} else {
@@ -349,9 +334,8 @@ public class Path {
 				return true;
 			}
 		} else {
-			logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + ","
-					+ actual.y + ") on Path from (" + entity.getX() + ","
-					+ entity.getY() + ")");
+			logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path from ("
+			        + entity.getX() + "," + entity.getY() + ")");
 			moveto(entity, actual.x, actual.y, speed);
 			return false;
 		}
@@ -359,11 +343,13 @@ public class Path {
 
 	/** this callback is called after every A* step. */
 	public interface StepCallback {
+
 		public void stepDone(Pathfinder.Node lastNode);
 	}
 
 	/** the threaded-pathfinder callback */
 	private static class SimplePathListener implements PathListener {
+
 		/** the entity the path belongs to */
 		private RPEntity entity;
 

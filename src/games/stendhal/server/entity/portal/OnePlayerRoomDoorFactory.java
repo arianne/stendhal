@@ -15,6 +15,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A factory for <code>OnePlayerRoomDoor</code> objects.
  */
 public class OnePlayerRoomDoorFactory extends DoorFactory {
+
 	//
 	// ConfigurableFactory
 	//
@@ -34,10 +35,7 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 	 *
 	 * @see		OnePlayerRoomDoor
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		return new OnePlayerRoomDoor(
-			getClass(ctx),
-			getDirection(ctx));
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return new OnePlayerRoomDoor(getClass(ctx), getDirection(ctx));
 	}
 }

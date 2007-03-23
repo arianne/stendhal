@@ -23,27 +23,26 @@ import games.stendhal.client.SpriteStore;
  * The wood style.
  */
 public class WoodStyle implements Style {
+
 	/**
 	 * A shared instance.
 	 */
-	private static Style	sharedInstance;
-
+	private static Style sharedInstance;
 
 	/**
 	 * The background texture
 	 */
-	protected Sprite	background;
+	protected Sprite background;
 
 	/**
 	 * The border.
 	 */
-	protected Border	border;
+	protected Border border;
 
 	/**
 	 * The default font.
 	 */
-	protected Font		font;
-
+	protected Font font;
 
 	public WoodStyle() {
 		/*
@@ -52,14 +51,10 @@ public class WoodStyle implements Style {
 		SpriteStore st = SpriteStore.get();
 		background = st.getSprite("data/gui/panelwood003.jpg");
 
-		border = new SoftBevelBorder(
-			BevelBorder.RAISED,
-			new Color(0.6f, 0.5f, 0.2f),
-			new Color(0.3f, 0.25f, 0.1f));
+		border = new SoftBevelBorder(BevelBorder.RAISED, new Color(0.6f, 0.5f, 0.2f), new Color(0.3f, 0.25f, 0.1f));
 
 		font = new Font("Dialog", Font.PLAIN, 12);
 	}
-
 
 	//
 	// WoodStyle
@@ -71,13 +66,12 @@ public class WoodStyle implements Style {
 	 * @return	A shared instance.
 	 */
 	public static synchronized Style getInstance() {
-		if(sharedInstance == null) {
+		if (sharedInstance == null) {
 			sharedInstance = new WoodStyle();
 		}
 
 		return sharedInstance;
 	}
-
 
 	//
 	// Style
@@ -92,7 +86,6 @@ public class WoodStyle implements Style {
 		return background;
 	}
 
-
 	/**
 	 * Get component border.
 	 *
@@ -102,17 +95,14 @@ public class WoodStyle implements Style {
 		return border;
 	}
 
-
 	/**
 	 * Get the normal font.
 	 *
 	 * @return	A font.
 	 */
-	public Font getFont()
-	{
+	public Font getFont() {
 		return font;
 	}
-
 
 	/**
 	 * Get the foreground color appropriete for the background texture.

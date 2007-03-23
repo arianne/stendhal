@@ -18,8 +18,8 @@ import java.util.Map;
  * Entrance to Deathmatch
  */
 public class AdosSwamp implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -27,15 +27,14 @@ public class AdosSwamp implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildDeathmatchRecruiter(zone);
 	}
 
-
 	private void buildDeathmatchRecruiter(StendhalRPZone zone) {
-		
+
 		SpeakerNPC npc = new SpeakerNPC("Thonatus") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> path = new LinkedList<Path.Node>();
@@ -59,24 +58,26 @@ public class AdosSwamp implements ZoneConfigurator {
 				addGreeting("Hey there. You look like a reasonable fighter.");
 				addJob("I'm recruiter for the Ados #deathmatch.");
 				addHelp("Have you ever heard of the Semos #deathmatch.");
-				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING, 
-					"The deathmatch is the ultimate challenge for true #heroes.", null);
+				add(ConversationStates.ATTENDING, "deathmatch", null, ConversationStates.ATTENDING,
+				        "The deathmatch is the ultimate challenge for true #heroes.", null);
 				add(ConversationStates.ATTENDING, "heroes", null, ConversationStates.ATTENDING,
-					"Are you such a hero? I can take you to the #challenge.", null);
+				        "Are you such a hero? I can take you to the #challenge.", null);
 				addGoodbye("I hope you will enjoy the Semos #Deathmatch!");
-				
-				add(ConversationStates.ATTENDING, "challenge", null, ConversationStates.ATTENDING,
-						null, new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (player.getLevel() >= 20) {
-							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_ados_wall_n");
-							player.teleport(zone, 100, 86, Direction.DOWN, null);
-						} else {
-							engine.say("Sorry, you are too weak!");
-						}
-					}
-				});
+
+				add(ConversationStates.ATTENDING, "challenge", null, ConversationStates.ATTENDING, null,
+				        new SpeakerNPC.ChatAction() {
+
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        if (player.getLevel() >= 20) {
+							        StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+							                "0_ados_wall_n");
+							        player.teleport(zone, 100, 86, Direction.DOWN, null);
+						        } else {
+							        engine.say("Sorry, you are too weak!");
+						        }
+					        }
+				        });
 			}
 		};
 

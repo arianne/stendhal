@@ -19,6 +19,7 @@ import games.stendhal.server.events.UseListener;
 import marauroa.common.game.AttributeNotFoundException;
 
 public class QuestCheckingPortal extends Portal implements UseListener {
+
 	private String questslot = null;
 
 	public QuestCheckingPortal(String questslot) throws AttributeNotFoundException {
@@ -35,6 +36,6 @@ public class QuestCheckingPortal extends Portal implements UseListener {
 		} else {
 			player.sendPrivateText("Why should i go down there. It looks very dangerous.");
 		}
-		
+
 	}
 }

@@ -65,18 +65,25 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private static final Logger logger = Log4J.getLogger(StendhalRPZone.class);
 
 	private List<TransferContent> contents;
-	private Point		entryPoint;
+
+	private Point entryPoint;
+
 	private List<Portal> portals;
+
 	private List<NPC> npcs;
+
 	private List<CreatureRespawnPoint> respawnPoints;
-    private List<PassiveEntityRespawnPoint> plantGrowers;
-    private List<RPEntity> playersAndFriends;
-    private boolean teleportable = true;
+
+	private List<PassiveEntityRespawnPoint> plantGrowers;
+
+	private List<RPEntity> playersAndFriends;
+
+	private boolean teleportable = true;
 
 	/**
 	 * Objects that implement MovementListener.
 	 */
-	private List<MovementListener>	movementListeners;
+	private List<MovementListener> movementListeners;
 
 	/**
 	 * A set of all items that are lying on the ground in this zone.
@@ -114,8 +121,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
-        plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
-        playersAndFriends = new LinkedList<RPEntity>();
+		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
+		playersAndFriends = new LinkedList<RPEntity>();
 
 		movementListeners = new LinkedList<MovementListener>();
 
@@ -141,7 +148,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return portals;
 	}
 
-
 	public Portal getPortal(Object reference) {
 		for (Portal portal : portals) {
 			if (portal.getReference().equals(reference)) {
@@ -158,8 +164,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 */
 	public Portal getPortal(int x, int y) {
-		for(Portal portal : portals) {
-			if((portal.getX() == x) && (portal.getY() == y)) {
+		for (Portal portal : portals) {
+			if ((portal.getX() == x) && (portal.getY() == y)) {
 				return portal;
 			}
 		}
@@ -220,8 +226,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		contents.add(content);
 	}
 
-	public void addCollisionLayer(String name, byte[] byteContents)
-			throws IOException {
+	public void addCollisionLayer(String name, byte[] byteContents) throws IOException {
 		Log4J.startMethod(logger, "addCollisionLayer");
 		addToContent(name, byteContents);
 		collisionMap.setCollisionData(new InputStreamReader(new ByteArrayInputStream(byteContents)));
@@ -229,8 +234,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		Log4J.finishMethod(logger, "addCollisionLayer");
 	}
 
-	public void addProtectionLayer(String name, byte[] byteContents)
-			throws IOException {
+	public void addProtectionLayer(String name, byte[] byteContents) throws IOException {
 		Log4J.startMethod(logger, "addProtectionLayer");
 		addToContent(name, byteContents);
 		protectionMap.setCollisionData(new InputStreamReader(new ByteArrayInputStream(byteContents)));
@@ -272,21 +276,18 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public boolean contains(Entity entity, StendhalRPZone zone) {
-		Rectangle2D area = entity.getArea(entity.getX() + zone.x, entity.getY()
-				+ zone.y);
+		Rectangle2D area = entity.getArea(entity.getX() + zone.x, entity.getY() + zone.y);
 		Rectangle2D zonearea = new Rectangle(x, y, getWidth(), getHeight());
 
 		return zonearea.intersects(area);
 	}
-
 
 	/**
 	 * Populate a zone based on it's map content.
 	 *
 	 * XXX - This should be moved to the zone loader or something.
 	 */
-	public void populate(byte[] byteContents) throws IOException,
-			RPObjectInvalidException {
+	public void populate(byte[] byteContents) throws IOException, RPObjectInvalidException {
 		Log4J.startMethod(logger, "populate");
 
 		BufferedReader file = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(byteContents)));
@@ -305,10 +306,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			String[] items = text.split(",");
 			for (String item : items) {
 				int value = Integer.parseInt(item) - (2401) /*
-															 * Number of tiles
-															 * at
-															 * zelda_outside_chipset
-															 */;
+				 * Number of tiles
+				 * at
+				 * zelda_outside_chipset
+				 */;
 				createEntityAt(value, j % width, j / width);
 				j++;
 			}
@@ -316,7 +317,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		Log4J.finishMethod(logger, "populate");
 	}
-
 
 	/**
 	 * Create a map entity as a given coordinate.
@@ -326,129 +326,124 @@ public class StendhalRPZone extends MarauroaRPZone {
 	protected void createEntityAt(int type, int x, int y) {
 		try {
 			switch (type) {
-			case 1: /* Entry point */
-			case 2: /* Zone change */
-				setEntryPoint(x, y);
-				break;
+				case 1: /* Entry point */
+				case 2: /* Zone change */
+					setEntryPoint(x, y);
+					break;
 
-			case 6: /* one way portal destination */
-			case 3: /* portal stairs up */
-			case 4: /* portal stairs down */
-				createLevelPortalAt(type, x, y);
-				break;
-			case 5: /* portal */
-				break;
-			case 7: /* door */
-				try {
-					StendhalRPWorld.get().createHouse(this, x, y);
-					numHouses++;
-				} catch (Exception e) {
-					logger.error("Error adding house to " + this, e);
-				}
-				break;
-			case 11: /* sheep */ {
-				/*RespawnPoint point = new RespawnPoint(x, y, 2);
-				Creature creature = new Sheep();
-				assignRPObjectID(creature);
-				point.set(this, creature, 1);
-				//point.setRespawnTime(creature.getRespawnTime());
-				respawnPoints.add(point);*/
-				
-				Sheep sheep = new Sheep();
-				assignRPObjectID(sheep);
-				sheep.setX(x);
-				sheep.setY(y);
-				add(sheep);
-				break;
-			}
-			case 91: /* sign */
-				break;
-			case 92: /* SheepFood */
-			case 93: /* corn field */
-			case 102: /* button mushroom */
-			case 103: /* porcini */
-			case 104: /* toadstool */
-			case 108: /* apple */
-			case 109: /* carrot */
-			case 110: /* salad */
-			case 131: /* arandula */
-			case 132: /* wood */				
-			case 133: /* iron ore */				
-				PassiveEntityRespawnPoint plantGrower = null;
-				if (type == 92) {
-					plantGrower = new SheepFood();
-				} else if (type == 93) {
-					plantGrower = new GrainField();
-				} else if (type == 102) {
-					plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
-				} else if (type == 103) {
-					plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
-				} else if (type == 104) {
-					plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
-				} else if (type == 108) {
-					plantGrower = new PassiveEntityRespawnPoint("apple", 750);
-				} else if (type == 109) {
-					plantGrower = new CarrotGrower();
-				} else if (type == 110) {
-					plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
-				} else if (type == 131) {
-					plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
-				} else if (type == 132) {
-					plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
-				} else if (type == 133) {
-					plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
-					// TODO: This is only a workaround. We should find a better name
-					// than "plant grower", as we're also using them for resources,
-					// teddies and whatever. We should also consider making them
-					// non-clickable.
-					plantGrower.setDescription("You see a small vein of iron ore.");
-				}
-				assignRPObjectID(plantGrower);
-				plantGrower.setX(x);
-				plantGrower.setY(y);
-				add(plantGrower);
-				// full fruits on server restart
-				plantGrower.setToFullGrowth();
-				
-				plantGrowers.add(plantGrower);
-
-				/*
-				 * XXX - TEMP!!
-				 * Until all maps are fixed, set all sheep food
-				 * as a collision.
-				 */
-				if (type == 92) {
-					collisionMap.setCollide(
-						plantGrower.getArea(x, y),
-						true);
-				}
-
-				break;
-			default: {
-				if (type >= 0) {
-					// get the default EntityManager
-					EntityManager manager = StendhalRPWorld.get().getRuleManager()
-							.getEntityManager();
-
-					// Is the entity a creature
-					if (manager.isCreature(type)) {
-						Creature creature = manager.getCreature(type);
-						CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
-						respawnPoints.add(point);
-					} else {
-						logger.warn("Unknown Entity (type: " + type + ") at ("
-								+ x + "," + y + ") of " + getID() + " found");
+				case 6: /* one way portal destination */
+				case 3: /* portal stairs up */
+				case 4: /* portal stairs down */
+					createLevelPortalAt(type, x, y);
+					break;
+				case 5: /* portal */
+					break;
+				case 7: /* door */
+					try {
+						StendhalRPWorld.get().createHouse(this, x, y);
+						numHouses++;
+					} catch (Exception e) {
+						logger.error("Error adding house to " + this, e);
 					}
+					break;
+				case 11: /* sheep */{
+					/*RespawnPoint point = new RespawnPoint(x, y, 2);
+					 Creature creature = new Sheep();
+					 assignRPObjectID(creature);
+					 point.set(this, creature, 1);
+					 //point.setRespawnTime(creature.getRespawnTime());
+					 respawnPoints.add(point);*/
+
+					Sheep sheep = new Sheep();
+					assignRPObjectID(sheep);
+					sheep.setX(x);
+					sheep.setY(y);
+					add(sheep);
+					break;
 				}
-				break;
-			}
+				case 91: /* sign */
+					break;
+				case 92: /* SheepFood */
+				case 93: /* corn field */
+				case 102: /* button mushroom */
+				case 103: /* porcini */
+				case 104: /* toadstool */
+				case 108: /* apple */
+				case 109: /* carrot */
+				case 110: /* salad */
+				case 131: /* arandula */
+				case 132: /* wood */
+				case 133: /* iron ore */
+					PassiveEntityRespawnPoint plantGrower = null;
+					if (type == 92) {
+						plantGrower = new SheepFood();
+					} else if (type == 93) {
+						plantGrower = new GrainField();
+					} else if (type == 102) {
+						plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
+					} else if (type == 103) {
+						plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
+					} else if (type == 104) {
+						plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
+					} else if (type == 108) {
+						plantGrower = new PassiveEntityRespawnPoint("apple", 750);
+					} else if (type == 109) {
+						plantGrower = new CarrotGrower();
+					} else if (type == 110) {
+						plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
+					} else if (type == 131) {
+						plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
+					} else if (type == 132) {
+						plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
+					} else if (type == 133) {
+						plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
+						// TODO: This is only a workaround. We should find a better name
+						// than "plant grower", as we're also using them for resources,
+						// teddies and whatever. We should also consider making them
+						// non-clickable.
+						plantGrower.setDescription("You see a small vein of iron ore.");
+					}
+					assignRPObjectID(plantGrower);
+					plantGrower.setX(x);
+					plantGrower.setY(y);
+					add(plantGrower);
+					// full fruits on server restart
+					plantGrower.setToFullGrowth();
+
+					plantGrowers.add(plantGrower);
+
+					/*
+					 * XXX - TEMP!!
+					 * Until all maps are fixed, set all sheep food
+					 * as a collision.
+					 */
+					if (type == 92) {
+						collisionMap.setCollide(plantGrower.getArea(x, y), true);
+					}
+
+					break;
+				default: {
+					if (type >= 0) {
+						// get the default EntityManager
+						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+
+						// Is the entity a creature
+						if (manager.isCreature(type)) {
+							Creature creature = manager.getCreature(type);
+							CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
+							respawnPoints.add(point);
+						} else {
+							logger.warn("Unknown Entity (type: " + type + ") at (" + x + "," + y + ") of " + getID()
+							        + " found");
+						}
+					}
+					break;
+				}
 			}
 		} catch (AttributeNotFoundException e) {
-			logger.error("error creating entity " + type + " at (" + x + ","
-					+ y + ")", e);
+			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
 		}
 	}
-
 
 	/*
 	 * Create a portal between levels.
@@ -456,9 +451,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 */
 	protected void createLevelPortalAt(int type, int x, int y) {
-		if(logger.isDebugEnabled()) {
-			logger.debug("Portal stairs at " + this
-				+ ": " + x + "," + y);
+		if (logger.isDebugEnabled()) {
+			logger.debug("Portal stairs at " + this + ": " + x + "," + y);
 		}
 
 		Portal portal;
@@ -492,21 +486,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 			/*
 			 * Portals in the correct direction?
 			 */
-			if(type == 3) {
+			if (type == 3) {
 				/* portal stairs up */
-				if((zone.getLevel() - getLevel()) != 1) {
+				if ((zone.getLevel() - getLevel()) != 1) {
 					continue;
 				}
-			}
-			else if(type == 4) {
+			} else if (type == 4) {
 				/* portal stairs down */
-				if((zone.getLevel() - getLevel()) != -1) {
+				if ((zone.getLevel() - getLevel()) != -1) {
 					continue;
 				}
 			} else {
 				/* one way portal - POTENTIALLY WRONG LEVEL */
 				/* Should they always go down (drop only)? */
-				if(Math.abs(zone.getLevel() - getLevel()) != 1) {
+				if (Math.abs(zone.getLevel() - getLevel()) != 1) {
 					continue;
 				}
 			}
@@ -517,11 +510,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 			logger.debug(zone + " contains " + portal);
 
-			Portal target = zone.getPortal(
-				portal.getX() + getX() - zone.getX(),
-				portal.getY() + getY() - zone.getY());
+			Portal target = zone.getPortal(portal.getX() + getX() - zone.getX(), portal.getY() + getY() - zone.getY());
 
-			if(target == null) {
+			if (target == null) {
 				continue;
 			}
 
@@ -531,13 +522,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 
 			if (type != 6) {
-				portal.setDestination(
-					zone.getID().getID(),
-					zone.assignPortalID(target));
+				portal.setDestination(zone.getID().getID(), zone.assignPortalID(target));
 			}
 
-			target.setDestination(
-				getID().getID(), portal.getReference());
+			target.setDestination(getID().getID(), portal.getReference());
 
 			logger.debug("Portals LINKED");
 			logger.debug(portal);
@@ -551,7 +539,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
-
 	public int getWidth() {
 		return collisionMap.getWidth();
 	}
@@ -564,27 +551,23 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return contents;
 	}
 
-	public boolean isInProtectionArea(Entity entity)
-			throws AttributeNotFoundException {
+	public boolean isInProtectionArea(Entity entity) throws AttributeNotFoundException {
 		Rectangle2D area = entity.getArea(entity.getX(), entity.getY());
 		return protectionMap.collides(area);
 	}
 
-	public boolean leavesZone(Entity entity, double x, double y)
-			throws AttributeNotFoundException {
+	public boolean leavesZone(Entity entity, double x, double y) throws AttributeNotFoundException {
 		Rectangle2D area = entity.getArea(x, y);
 		return collisionMap.leavesZone(area);
 	}
 
-	public boolean simpleCollides(Entity entity, double x, double y)
-			throws AttributeNotFoundException {
+	public boolean simpleCollides(Entity entity, double x, double y) throws AttributeNotFoundException {
 		Rectangle2D area = entity.getArea(x, y);
 		return collisionMap.collides(area);
 	}
 
 	@Override
-	public synchronized void add(RPObject object)
-			throws RPObjectInvalidException {
+	public synchronized void add(RPObject object) throws RPObjectInvalidException {
 		add(object, null);
 	}
 
@@ -599,42 +582,39 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *               if the object wasn't carried by a player before
 	 * @throws RPObjectInvalidException
 	 */
-	public synchronized void add(RPObject object, Player player)
-			throws RPObjectInvalidException {
+	public synchronized void add(RPObject object, Player player) throws RPObjectInvalidException {
 		super.add(object);
-		
+
 		if (object instanceof Item) {
 			Item item = (Item) object;
 			item.onPutOnGround(player);
 			itemsOnGround.add(item);
 		}
 
-		if(object instanceof SpeakerNPC) {
+		if (object instanceof SpeakerNPC) {
 			npcs.add((NPC) object);
-		} else if(object instanceof AttackableCreature) {
+		} else if (object instanceof AttackableCreature) {
 			npcs.add((NPC) object);
 		}
 
-		if(object instanceof Portal) {
+		if (object instanceof Portal) {
 			portals.add((Portal) object);
 		}
 
-		if(object instanceof Entity) {
+		if (object instanceof Entity) {
 			((Entity) object).onAdded(this);
 		}
 	}
 
-
 	@Override
-	public synchronized RPObject remove(RPObject.ID id)
-			throws RPObjectNotFoundException {
+	public synchronized RPObject remove(RPObject.ID id) throws RPObjectNotFoundException {
 		RPObject object = get(id);
 
-		if(object instanceof Entity) {
+		if (object instanceof Entity) {
 			((Entity) object).onRemoved(this);
 		}
 
-		if(object instanceof Portal) {
+		if (object instanceof Portal) {
 			portals.remove((Portal) object);
 		}
 
@@ -643,7 +623,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		 */
 		playersAndFriends.remove(object);
 
-		if(object instanceof NPC) {
+		if (object instanceof NPC) {
 			npcs.remove(object);
 			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
 		}
@@ -659,8 +639,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return object;
 	}
 
-	public synchronized RPObject remove(RPObject object)
-			throws RPObjectNotFoundException {
+	public synchronized RPObject remove(RPObject object) throws RPObjectNotFoundException {
 		if (object.isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = object.getContainer();
@@ -704,8 +683,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param y2 y value of position 2
 	 * @return true if there is a collision
 	 */
-	public boolean collidesOnLine(int x1, int y1, int x2, int y2)
-			throws AttributeNotFoundException {
+	public boolean collidesOnLine(int x1, int y1, int x2, int y2) throws AttributeNotFoundException {
 
 		Vector<Point> points = Line.renderLine(x1, y1, x2, y2);
 		for (Point point : points) {
@@ -720,43 +698,42 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return collisionMap.collides(x, y);
 	}
 
-    /**
-     * Checks whether the given entity would be able to stand at the given
-     * position, or if it would collide with the collision map or with another
-     * entity. 
-     * @param entity The entity that would stand on the given position
-     * @param x The x coordinate of the position where the entity would stand
-     * @param y The y coordinate of the position where the entity would stand
-     * @return true iff the entity could stand on the given position
-     * @throws AttributeNotFoundException
-     */
-    public synchronized boolean collides(Entity entity, double x, double y)
-    throws AttributeNotFoundException {
-        return collides(entity, x, y, true);
-    }
+	/**
+	 * Checks whether the given entity would be able to stand at the given
+	 * position, or if it would collide with the collision map or with another
+	 * entity. 
+	 * @param entity The entity that would stand on the given position
+	 * @param x The x coordinate of the position where the entity would stand
+	 * @param y The y coordinate of the position where the entity would stand
+	 * @return true iff the entity could stand on the given position
+	 * @throws AttributeNotFoundException
+	 */
+	public synchronized boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException {
+		return collides(entity, x, y, true);
+	}
 
-    /**
-     * Checks whether the given entity would be able to stand at the given
-     * position, or if it would collide with the collision map or
-     * (if <i>checkObjects</i> is enabled) with another entity. 
-     * @param entity The entity that would stand on the given position
-     * @param x The x coordinate of the position where the entity would stand
-     * @param y The y coordinate of the position where the entity would stand
-     * @param checkObjects If false, only the collision map will be used. 
-     * @return true iff the entity could stand on the given position
-     * @throws AttributeNotFoundException
-     */
-    public synchronized boolean collides(Entity entity, double x, double y, boolean checkObjects)
-			throws AttributeNotFoundException {
+	/**
+	 * Checks whether the given entity would be able to stand at the given
+	 * position, or if it would collide with the collision map or
+	 * (if <i>checkObjects</i> is enabled) with another entity. 
+	 * @param entity The entity that would stand on the given position
+	 * @param x The x coordinate of the position where the entity would stand
+	 * @param y The y coordinate of the position where the entity would stand
+	 * @param checkObjects If false, only the collision map will be used. 
+	 * @return true iff the entity could stand on the given position
+	 * @throws AttributeNotFoundException
+	 */
+	public synchronized boolean collides(Entity entity, double x, double y, boolean checkObjects)
+	        throws AttributeNotFoundException {
 		Rectangle2D area = entity.getArea(x, y);
 
 		if (collisionMap.collides(area)) {
 			return true;
 		} else if (!checkObjects) {
-            return false;
-        } else {
-        	// For every other object in this zone, check whether it's in the
-        	// way.
+			return false;
+		} else {
+			// For every other object in this zone, check whether it's in the
+			// way.
 			Rectangle2D otherArea = new Rectangle.Double();
 			for (RPObject other : objects.values()) {
 				Entity otherEntity = (Entity) other;
@@ -764,10 +741,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				if (otherEntity.isObstacle(entity)) {
 					// There is something the entity couldn't stand upon.
 					// Check if it's in the way. 
-					otherEntity.getArea(otherArea, otherEntity.getX(),
-							otherEntity.getY());
-					if (area.intersects(otherArea)
-							&& !entity.getID().equals(otherEntity.getID())) {
+					otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
+					if (area.intersects(otherArea) && !entity.getID().equals(otherEntity.getID())) {
 						return true;
 					}
 				}
@@ -780,20 +755,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * 
 	 * @return the entity at x,y or null if there is none
 	 */
-	public synchronized Entity getEntityAt(double x, double y)
-			throws AttributeNotFoundException {
+	public synchronized Entity getEntityAt(double x, double y) throws AttributeNotFoundException {
 		for (RPObject other : objects.values()) {
 			Entity otherEntity = (Entity) other;
 
-			Rectangle2D rect = otherEntity.getArea(otherEntity.getX(),
-					otherEntity.getY());
+			Rectangle2D rect = otherEntity.getArea(otherEntity.getX(), otherEntity.getY());
 			if (rect.contains(x, y)) {
 				return otherEntity;
 			}
 		}
 		return null;
 	}
-
 
 	/**
 	 * Notify anything interested in when an entity entered.
@@ -803,18 +775,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param	newY		The new Y coordinate.
 	 */
 	public void notifyEntered(RPEntity entity, int newX, int newY) {
-		Rectangle2D	eArea;
-
+		Rectangle2D eArea;
 
 		eArea = entity.getArea(newX, newY);
 
-		for(MovementListener l : movementListeners) {
-			if(l.getArea().intersects(eArea)) {
+		for (MovementListener l : movementListeners) {
+			if (l.getArea().intersects(eArea)) {
 				l.onEntered(entity, this, newX, newY);
 			}
 		}
 	}
-
 
 	/**
 	 * Notify anything interested in when an entity exited.
@@ -824,18 +794,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param	oldY		The old Y coordinate.
 	 */
 	public void notifyExited(RPEntity entity, int oldX, int oldY) {
-		Rectangle2D	eArea;
-
+		Rectangle2D eArea;
 
 		eArea = entity.getArea(oldX, oldY);
 
-		for(MovementListener l : movementListeners) {
-			if(l.getArea().intersects(eArea)) {
+		for (MovementListener l : movementListeners) {
+			if (l.getArea().intersects(eArea)) {
 				l.onExited(entity, this, oldX, oldY);
 			}
 		}
 	}
-
 
 	/**
 	 * Notify anything interested that an entity moved.
@@ -846,45 +814,42 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void notifyMovement(RPEntity entity, int oldX, int oldY,
-	 int newX, int newY) {
-		Rectangle2D	area;
-		Rectangle2D	oeArea;
-		Rectangle2D	neArea;
-		boolean		oldIn;
-		boolean		newIn;
-
+	public void notifyMovement(RPEntity entity, int oldX, int oldY, int newX, int newY) {
+		Rectangle2D area;
+		Rectangle2D oeArea;
+		Rectangle2D neArea;
+		boolean oldIn;
+		boolean newIn;
 
 		/*
 		 * Not in this zone?
 		 */
-		if(!has(entity.getID())) {
+		if (!has(entity.getID())) {
 			return;
 		}
 
 		oeArea = entity.getArea(oldX, oldY);
 		neArea = entity.getArea(newX, newY);
 
-		for(MovementListener l : movementListeners) {
+		for (MovementListener l : movementListeners) {
 			area = l.getArea();
 
 			oldIn = area.intersects(oeArea);
 			newIn = area.intersects(neArea);
 
-			if(!oldIn && newIn) {
+			if (!oldIn && newIn) {
 				l.onEntered(entity, this, newX, newY);
 			}
 
-			if(oldIn && newIn) {
+			if (oldIn && newIn) {
 				l.onMoved(entity, this, oldX, oldY, newX, newY);
 			}
 
-			if(oldIn && !newIn) {
+			if (oldIn && !newIn) {
 				l.onExited(entity, this, oldX, oldY);
 			}
 		}
 	}
-
 
 	/**
 	 * Register a movement listener for notification. Eventually create
@@ -896,7 +861,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		movementListeners.add(listener);
 	}
 
-
 	/**
 	 * Unregister a movement listener from notification.
 	 *
@@ -905,7 +869,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void removeMovementListener(MovementListener listener) {
 		movementListeners.remove(listener);
 	}
-
 
 	@Override
 	public String toString() {
@@ -921,7 +884,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public Set<Item> getItemsOnGround() {
 		return itemsOnGround;
 	}
-	
+
 	public void addPlayerAndFriends(RPEntity player) {
 		playersAndFriends.add(player);
 	}
@@ -935,7 +898,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public List<RPEntity> getPlayerAndFirends() {
 		return playersAndFriends;
 	}
-	
+
 	public void removePlayerAndFriends(RPEntity player) {
 		playersAndFriends.remove(player);
 	}

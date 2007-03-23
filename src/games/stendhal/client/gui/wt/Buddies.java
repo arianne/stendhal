@@ -16,6 +16,7 @@
  * Created on 19. Oktober 2005, 21:06
  */
 package games.stendhal.client.gui.wt;
+
 import games.stendhal.client.*;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -32,15 +33,20 @@ import javax.swing.JMenuItem;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
+
 /**
  * This is the panel where the character can be outfittet.
  * 
  * @author mtotz
  */
 public class Buddies extends WtPanel {
+
 	private Sprite online;
+
 	private Sprite offline;
+
 	private LinkedList<String> buddies;
+
 	/** Creates a new instance of Buddies */
 	public Buddies(GameObjects gameObjects) {
 		super("buddies", j2DClient.SCREEN_WIDTH - 132, 265, 132, 200);
@@ -74,25 +80,21 @@ public class Buddies extends WtPanel {
 			boolean isOnline = false;
 			RPObject object = StendhalClient.get().getPlayer();
 			if (object != null) {
-				RPSlot slot = object.getSlot("!buddy");	
+				RPSlot slot = object.getSlot("!buddy");
 				RPObject buddy = slot.getFirst();
 				String buddyName = buddies.get(i);
 				if (buddy.has("_" + buddyName) && (buddy.getInt("_" + buddyName) != 0)) {
-					isOnline = true; 
+					isOnline = true;
 				}
 			}
 
-			StyledJPopupMenu menu =
-				new StyledJPopupMenu(
-					WoodStyle.getInstance(),
-					buddies.get(i));
+			StyledJPopupMenu menu = new StyledJPopupMenu(WoodStyle.getInstance(), buddies.get(i));
 
-			ActionListener listener =
-				new ActionSelectedCB(buddies.get(i));
+			ActionListener listener = new ActionSelectedCB(buddies.get(i));
 
 			JMenuItem mi;
 
-			if(isOnline) {
+			if (isOnline) {
 				mi = new JMenuItem("Talk");
 				mi.setActionCommand("talk");
 				mi.addActionListener(listener);
@@ -119,7 +121,6 @@ public class Buddies extends WtPanel {
 		return true;
 	}
 
-
 	/**
 	 * Handle a choosen popup item.
 	 */
@@ -133,8 +134,7 @@ public class Buddies extends WtPanel {
 				buddieName = "'" + buddieName + "'";
 			}
 
-			client.getTextLineGUI().setText(
-				"/tell " + buddieName + " ");
+			client.getTextLineGUI().setText("/tell " + buddieName + " ");
 		} else if (command.equals("leave-message")) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
@@ -142,8 +142,7 @@ public class Buddies extends WtPanel {
 				buddieName = "'" + buddieName + "'";
 			}
 
-			client.getTextLineGUI().setText(
-				"/msg postman tell " + buddieName + " ");
+			client.getTextLineGUI().setText("/msg postman tell " + buddieName + " ");
 		} else if (command.equals("where")) {
 			RPAction where = new RPAction();
 			where.put("type", "where");
@@ -157,48 +156,47 @@ public class Buddies extends WtPanel {
 		}
 	}
 
-
 	/** refreshes the player stats and draws them */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 
 		Graphics clientg = super.draw(g);
-		
-		if(!isMinimized())  {
-			int i = 0;			
+
+		if (!isMinimized()) {
+			int i = 0;
 			RPObject object = StendhalClient.get().getPlayer();
-			
-			if (object != null) {				
-				RPSlot slot = object.getSlot("!buddy");				
-				RPObject buddy = slot.getFirst();				
-				buddies.clear();			
-				
-				for (String key : buddy) {					
-					if (key.startsWith("_")) {						
-						buddies.add(key.substring(1));						
-						
-						if (buddy.getInt(key) == 0) {							
-							clientg.setColor(Color.RED);							
-							offline.draw(clientg, 3, 2 + i * 20);							
-							clientg.drawString(key.substring(1), 24, 16 + i * 20);							
-						} else {							
-							clientg.setColor(Color.GREEN);							
-							online.draw(clientg, 3, 2 + i * 20);							
-							clientg.drawString(key.substring(1), 24, 16 + i * 20);							
-						}						
-						
-						i++;						
-					}					
-				}				
+
+			if (object != null) {
+				RPSlot slot = object.getSlot("!buddy");
+				RPObject buddy = slot.getFirst();
+				buddies.clear();
+
+				for (String key : buddy) {
+					if (key.startsWith("_")) {
+						buddies.add(key.substring(1));
+
+						if (buddy.getInt(key) == 0) {
+							clientg.setColor(Color.RED);
+							offline.draw(clientg, 3, 2 + i * 20);
+							clientg.drawString(key.substring(1), 24, 16 + i * 20);
+						} else {
+							clientg.setColor(Color.GREEN);
+							online.draw(clientg, 3, 2 + i * 20);
+							clientg.drawString(key.substring(1), 24, 16 + i * 20);
+						}
+
+						i++;
+					}
+				}
 			}
-			
-			resizeToFitClientArea(132, i * 20 + 3);			
+
+			resizeToFitClientArea(132, i * 20 + 3);
 		}
-		
-		return clientg;		
+
+		return clientg;
 	}
 
 	//
@@ -208,11 +206,11 @@ public class Buddies extends WtPanel {
 	 * Handle action selections.
 	 */
 	protected class ActionSelectedCB implements ActionListener {
+
 		/**
 		 * The buddy to act on.
 		 */
-		protected String	buddy;
-
+		protected String buddy;
 
 		/**
 		 * Create a listener for action items.
@@ -222,7 +220,6 @@ public class Buddies extends WtPanel {
 		public ActionSelectedCB(String buddy) {
 			this.buddy = buddy;
 		}
-
 
 		//
 		// ActionListener

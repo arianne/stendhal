@@ -42,6 +42,7 @@ import marauroa.common.game.RPAction;
  * @author mtotz
  */
 public class Minimap extends WtPanel {
+
 	/** width of the minimap */
 	private static final int MINIMAP_WIDTH = 129;
 
@@ -52,7 +53,7 @@ public class Minimap extends WtPanel {
 	private static final int MINIMAP_MINIMUM_SCALE = 2;
 
 	/** Enable X-ray vision (aka Superman) minimap? */
-	private static final boolean mininps = (System.getProperty("stendhal.superman") != null); 
+	private static final boolean mininps = (System.getProperty("stendhal.superman") != null);
 
 	/** scale of map */
 	private int scale;
@@ -73,7 +74,6 @@ public class Minimap extends WtPanel {
 	public Minimap() {
 		super("minimap", 0, 0, 100, 100);
 	}
-
 
 	/**
 	 * Update the map with new data.
@@ -124,7 +124,6 @@ public class Minimap extends WtPanel {
 				mapgrapics.fillRect(((int) entity.getX()) * scale, ((int) entity.getY()) * scale, scale, scale);
 			}
 		}
-
 
 		setTitleBar(true);
 		setFrame(true);
@@ -213,13 +212,15 @@ public class Minimap extends WtPanel {
 		for (Entity entity : StendhalClient.get().getGameObjects()) {
 			if (entity instanceof Player) {
 				Player aPlayer = (Player) entity;
-				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale) - pany + 2, playerColor);
+				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale)
+				        - pany + 2, playerColor);
 			}
 		}
 
 		// draw myself
 		playerColor = Color.BLUE;
-		drawCross(clientg, (int) (player.getX() * scale) - panx + 1, (int) ((player.getY() + 1) * scale) - pany + 2, playerColor);
+		drawCross(clientg, (int) (player.getX() * scale) - panx + 1, (int) ((player.getY() + 1) * scale) - pany + 2,
+		        playerColor);
 
 		return g;
 	}
@@ -229,7 +230,7 @@ public class Minimap extends WtPanel {
 	 * @param g Graphics
 	 * @param entity the entity dto be drawn
 	 */
-	protected void drawNPC(final  Graphics g,  final Entity entity) {
+	protected void drawNPC(final Graphics g, final Entity entity) {
 		if (entity instanceof Sheep) {
 			drawNPC(g, entity, Color.ORANGE);
 		} else if (entity instanceof Creature) {
@@ -247,11 +248,12 @@ public class Minimap extends WtPanel {
 	 * @param entity the Entity to be drawn
 	 * @param color the Color to be used
 	 */
-	protected void drawNPC(final  Graphics g, final  Entity entity,  final Color color) {
+	protected void drawNPC(final Graphics g, final Entity entity, final Color color) {
 		Rectangle2D area;
 		area = entity.getArea();
 		g.setColor(color);
-		g.drawRect(((int) (area.getX() + 0.5)) * scale, ((int) (area.getY() + 0.5)) * scale, (((int) area.getWidth()) * scale) - 1, (((int) area.getHeight()) * scale) - 1);
+		g.drawRect(((int) (area.getX() + 0.5)) * scale, ((int) (area.getY() + 0.5)) * scale,
+		        (((int) area.getWidth()) * scale) - 1, (((int) area.getHeight()) * scale) - 1);
 	}
 
 	/** draws a cross at the given position */
@@ -267,7 +269,7 @@ public class Minimap extends WtPanel {
 	 * sets the current Player
 	 * @param player 
 	 */
-	public void setPlayer(final  Player player) {
+	public void setPlayer(final Player player) {
 		this.player = player;
 	}
 

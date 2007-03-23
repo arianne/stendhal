@@ -43,8 +43,8 @@ import marauroa.common.game.RPObject;
  * objects.<br>
  * You need to extend this object in order to add new elements to the game.
  */
-public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
-		HPEvent, KillEvent, AttackEvent {
+public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEvent, KillEvent, AttackEvent {
+
 	private static Sprite hitted;
 
 	private static Sprite blocked;
@@ -57,7 +57,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	private boolean showBladeStrike;
 
-
 	static {
 		SpriteStore st = SpriteStore.get();
 
@@ -66,14 +65,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		missed = st.getSprite("data/sprites/combat/missed.png");
 
 		blade_strikes = new HashMap<String, Sprite[]>();
-		blade_strikes.put("move_up", st.getAnimatedSprite(
-				"data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
-		blade_strikes.put("move_right", st.getAnimatedSprite(
-				"data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
-		blade_strikes.put("move_down", st.getAnimatedSprite(
-				"data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
-		blade_strikes.put("move_left", st.getAnimatedSprite(
-				"data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
+		blade_strikes.put("move_up", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
+		blade_strikes.put("move_right", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
+		blade_strikes.put("move_down", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
+		blade_strikes.put("move_left", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
 	}
 
 	// sprite to mark player killers. Not used yet.
@@ -132,21 +127,21 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	private java.util.List<Long> damageSpritesTimes;
 
 	private RPObject.ID attacking;
-        
-        private int mana;
-        
-        private int base_mana;
+
+	private int mana;
+
+	private int base_mana;
 
 	/**
 	 * Entity we are attacking.
 	 * (need to reconsile this with 'attacking')
 	 */
-	protected RPEntity	attackTarget;
+	protected RPEntity attackTarget;
 
 	/**
 	 * The last entity to attack this entity.
 	 */
-	protected Entity	lastAttacker;
+	protected Entity lastAttacker;
 
 	/**
 	 * The type of effect to show.
@@ -173,7 +168,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		lastAttacker = null;
 	}
 
-
 	/**
 	 * Create/add a "floater" message.
 	 *
@@ -183,10 +177,8 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	protected void addFloater(String text, Color color) {
 		damageSprites.add(GameScreen.get().createString(text, color));
 
-		damageSpritesTimes.add(
-			Long.valueOf(System.currentTimeMillis()));
+		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 	}
-
 
 	public boolean isAttacking() {
 		return (attacking != null);
@@ -220,27 +212,23 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	protected Sprite getOutfitSprite(SpriteStore store, RPObject object) {
 		int outfit = object.getInt("outfit");
 
-		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_"
-				+ outfit % 100 + ".png");
+		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
 		sprite = sprite.copy();
 		outfit /= 100;
 
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
-			Sprite dress = store.getSprite("data/sprites/outfit/dress_"
-					+ dressIdx + ".png");
+			Sprite dress = store.getSprite("data/sprites/outfit/dress_" + dressIdx + ".png");
 			dress.draw(sprite.getGraphics(), 0, 0);
 		}
 		outfit /= 100;
 
-		Sprite head = store.getSprite("data/sprites/outfit/head_" + outfit
-				% 100 + ".png");
+		Sprite head = store.getSprite("data/sprites/outfit/head_" + outfit % 100 + ".png");
 		head.draw(sprite.getGraphics(), 0, 0);
 		outfit /= 100;
 
 		if (outfit % 100 != 0) {
-			Sprite hair = store.getSprite("data/sprites/outfit/hair_" + outfit
-					% 100 + ".png");
+			Sprite hair = store.getSprite("data/sprites/outfit/hair_" + outfit % 100 + ".png");
 			hair.draw(sprite.getGraphics(), 0, 0);
 		}
 
@@ -251,14 +239,10 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		sprites.put("move_up", store.getAnimatedSprite(translate(object
-				.get("type")), 0, 4, 1.5, 2));
-		sprites.put("move_right", store.getAnimatedSprite(translate(object
-				.get("type")), 1, 4, 1.5, 2));
-		sprites.put("move_down", store.getAnimatedSprite(translate(object
-				.get("type")), 2, 4, 1.5, 2));
-		sprites.put("move_left", store.getAnimatedSprite(translate(object
-				.get("type")), 3, 4, 1.5, 2));
+		sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 4, 1.5, 2));
+		sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")), 1, 4, 1.5, 2));
+		sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")), 2, 4, 1.5, 2));
+		sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")), 3, 4, 1.5, 2));
 
 		sprites.get("move_up")[3] = sprites.get("move_up")[1];
 		sprites.get("move_right")[3] = sprites.get("move_right")[1];
@@ -274,8 +258,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// Called when entity says text
 	public void onTalk(String text) {
-		if ((StendhalClient.get().getPlayer() != null)
-				&& (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
+		if ((StendhalClient.get().getPlayer() != null) && (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -304,7 +287,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				line = line + " ...";
 			}
 			GameObjects.getInstance().addText(this, /* getName()+" says: "+ */
-					line, Color.black, true);
+			line, Color.black, true);
 		}
 	}
 
@@ -323,20 +306,17 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		// Change text color for private messages. intensifly@gmx.com
 		StendhalClient.get().addEventLine(text, Color.darkGray);
 
-		GameObjects.getInstance().addText(this, text.replace("|", ""),
-				Color.darkGray, false);
+		GameObjects.getInstance().addText(this, text.replace("|", ""), Color.darkGray, false);
 	}
 
 	// When entity gets healed
 	public void onHealed(int amount) {
 		if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
-			damageSprites.add(GameScreen.get().createString(
-					"+" + Integer.toString(amount), Color.green));
+			damageSprites.add(GameScreen.get().createString("+" + Integer.toString(amount), Color.green));
 			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 			if (getID().equals(StendhalClient.get().getPlayer().getID())) {
-				StendhalClient.get().addEventLine(getName() + " heals "
-						+ Grammar.quantityplnoun(amount, "health point") + ".",
-						Color.green);
+				StendhalClient.get().addEventLine(
+				        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
 			}
 		}
 	}
@@ -353,15 +333,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	// When entity is poisoned
 	public void onPoisoned(int amount) {
 		if (getID().equals(StendhalClient.get().getPlayer().getID())
-				|| (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
+		        || (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 			isPoisoned = true;
-			damageSprites.add(GameScreen.get().createString(
-					Integer.toString(amount), Color.red));
+			damageSprites.add(GameScreen.get().createString(Integer.toString(amount), Color.red));
 			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
-			StendhalClient.get().addEventLine(getName() + " is poisoned, losing "
-					+ Grammar.quantityplnoun(amount, "health point") + ".",
-					Color.red);
+			StendhalClient.get().addEventLine(
+			        getName() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
+			        Color.red);
 		}
 	}
 
@@ -376,8 +355,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	// Called when entity is killed by killer
 	public void onDeath(Entity killer) {
 		if (killer != null) {
-			StendhalClient.get().addEventLine(getName() + " has been killed by "
-					+ killer.getName());
+			StendhalClient.get().addEventLine(getName() + " has been killed by " + killer.getName());
 		}
 
 		/*
@@ -388,7 +366,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		 * Grammar.suffix_s(getName()) + " new level is " + getLevel()); }
 		 */
 	}
-
 
 	/**
 	 * Called when object is added.
@@ -405,7 +382,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		fireAttackEvent(base, null);
 	}
 
-
 	/**
 	 * Called when object is removed.
 	 */
@@ -419,13 +395,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		fireAttackEvent(null, null);
 	}
 
-
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
-		if(!inAdd) {
+		if (!inAdd) {
 			fireTalkEvent(base, diff);
 			fireHPEvent(base, diff);
 			fireKillEvent(base, diff);
@@ -517,32 +491,26 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		if (diff.has("xp") && base.has("xp")) {
 			if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
 				damageSprites.add(GameScreen.get().createString(
-						"+"
-								+ Integer.toString(diff.getInt("xp")
-										- base.getInt("xp")), Color.cyan));
-				damageSpritesTimes
-						.add(Long.valueOf(System.currentTimeMillis()));
+				        "+" + Integer.toString(diff.getInt("xp") - base.getInt("xp")), Color.cyan));
+				damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
-				StendhalClient.get().addEventLine(getName()
-						+ " earns "
-						+ Grammar.quantityplnoun(diff.getInt("xp")
-								- base.getInt("xp"), "experience point") + ".",
-						Color.blue);
+				StendhalClient.get().addEventLine(
+				        getName() + " earns "
+				                + Grammar.quantityplnoun(diff.getInt("xp") - base.getInt("xp"), "experience point")
+				                + ".", Color.blue);
 			}
 		}
 
 		if (diff.has("level") && base.has("level")) {
 			if (getID().equals(StendhalClient.get().getPlayer().getID())
-					|| (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
+			        || (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 				String text = getName() + " reaches Level " + getLevel();
 
-				GameObjects.getInstance().addText(this,
-						GameScreen.get().createString(text, Color.green), 0);
+				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
 				StendhalClient.get().addEventLine(text, Color.green);
 			}
 		}
 	}
-
 
 	public void onChangedRemoved(RPObject base, RPObject diff) {
 		super.onChangedRemoved(base, diff);
@@ -551,14 +519,13 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		fireAttackEventChangedRemoved(base, diff);
 	}
 
-
 	protected void fireAttackEvent(RPObject base, RPObject diff) {
 		if ((diff == null) && (base == null)) {
 			// Remove case
 
 			onStopAttack();
 
-			if(attackTarget != null) {
+			if (attackTarget != null) {
 				attackTarget.onStopAttacked(this);
 				attackTarget = null;
 			}
@@ -569,15 +536,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 				int damage = (base.has("damage") ? base.getInt("damage") : 0);
 				int target = base.getInt("target");
 
-				RPObject.ID targetEntityID = new RPObject.ID(
-					target, base.get("zoneid"));
+				RPObject.ID targetEntityID = new RPObject.ID(target, base.get("zoneid"));
 
-				RPEntity targetEntity = (RPEntity)
-					GameObjects.getInstance().get(
-						targetEntityID);
+				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(targetEntityID);
 
 				if (targetEntity != null) {
-					if(targetEntity != attackTarget) {
+					if (targetEntity != attackTarget) {
 						onAttack(targetEntity);
 						targetEntity.onAttacked(this);
 					}
@@ -606,12 +570,11 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			}
 		} else {
 			// Modified case
-			if (diff.has("target") && base.has("target")
-					&& !base.get("target").equals(diff.get("target"))) {
+			if (diff.has("target") && base.has("target") && !base.get("target").equals(diff.get("target"))) {
 				System.out.println("Removing target: new target");
 				onStopAttack();
 
-				if(attackTarget != null) {
+				if (attackTarget != null) {
 					attackTarget.onStopAttacked(this);
 					attackTarget = null;
 				}
@@ -648,12 +611,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 					target = base.getInt("target");
 				}
 
-				RPObject.ID targetEntityID = new RPObject.ID(
-					target, diff.get("zoneid"));
+				RPObject.ID targetEntityID = new RPObject.ID(target, diff.get("zoneid"));
 
-				RPEntity targetEntity = (RPEntity)
-					GameObjects.getInstance().get(
-						targetEntityID);
+				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(targetEntityID);
 
 				if (targetEntity != null) {
 					onAttack(targetEntity);
@@ -685,18 +645,16 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	}
 
-	protected void fireAttackEventChangedRemoved(RPObject base,
-	 RPObject diff) {
+	protected void fireAttackEventChangedRemoved(RPObject base, RPObject diff) {
 		if (diff.has("target")) {
 			onStopAttack();
 
-			if(attackTarget != null) {
+			if (attackTarget != null) {
 				attackTarget.onStopAttacked(this);
 				attackTarget = null;
 			}
 		}
 	}
-
 
 	protected void fireKillEvent(RPObject base, RPObject diff) {
 		if ((diff == null) && (base == null)) {
@@ -709,7 +667,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			}
 		}
 	}
-
 
 	protected void fireTalkEvent(RPObject base, RPObject diff) {
 		if ((diff == null) && (base == null)) {
@@ -737,7 +694,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			}
 		}
 	}
-
 
 	protected void fireHPEvent(RPObject base, RPObject diff) {
 		if ((diff == null) && (base == null)) {
@@ -774,7 +730,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		}
 	}
 
-
 	/** Draws only the Name and hp bar **/
 	public void drawHPbar(GameScreen screen) {
 		if (nameImage != null) {
@@ -801,12 +756,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			g2d.setColor(Color.gray);
 			g2d.fillRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
 			g2d.setColor(new Color(r > 1 ? 1 : r, g > 1 ? 1 : g, 0));
-			g2d.fillRect((int) p.getX(), (int) p.getY() - 3,
-					(int) (hp_base_hp * 32.0), 3);
+			g2d.fillRect((int) p.getX(), (int) p.getY() - 3, (int) (hp_base_hp * 32.0), 3);
 			g2d.setColor(Color.black);
 			g2d.drawRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
 		}
 	}
+
 	/** Draws this entity in the screen */
 	@Override
 	public void draw(GameScreen screen) {
@@ -818,13 +773,12 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			g2d.setColor(Color.red);
 			Point2D p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(),
-					(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-					(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 			g2d.setColor(Color.black);
-			g2d.drawRect((int) p.getX() - 1, (int) p.getY() - 1, (int) (rect
-					.getWidth() * GameScreen.SIZE_UNIT_PIXELS) + 2, (int) (rect
-					.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
+			g2d.drawRect((int) p.getX() - 1, (int) p.getY() - 1,
+			        (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) + 2,
+			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
 		}
 
 		if ((attacking != null) && attacking.equals(StendhalClient.get().getPlayer().getID())) {
@@ -836,9 +790,9 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			p = screen.invtranslate(p);
 
 			g2d.setColor(Color.orange);
-			g2d.drawRect((int) p.getX() + 1, (int) p.getY() + 1, (int) (rect
-					.getWidth() * GameScreen.SIZE_UNIT_PIXELS) - 2, (int) (rect
-					.getHeight() * GameScreen.SIZE_UNIT_PIXELS) - 2);
+			g2d.drawRect((int) p.getX() + 1, (int) p.getY() + 1,
+			        (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) - 2,
+			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) - 2);
 		}
 
 		if (isAttacking() && showBladeStrike) {
@@ -847,9 +801,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			double sy = rect.getMaxY();
 
 			if (frameBladeStrike < 3) {
-				screen.draw(
-						blade_strikes.get(getAnimation())[frameBladeStrike],
-						sx - 1.5, sy - 3.3);
+				screen.draw(blade_strikes.get(getAnimation())[frameBladeStrike], sx - 1.5, sy - 3.3);
 			} else {
 				showBladeStrike = false;
 				frameBladeStrike = 0;
@@ -881,15 +833,15 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 			double sy = rect.getMaxY();
 
 			switch (resolution) {
-			case BLOCKED:
-				screen.draw(blocked, sx - 0.25, sy - 0.25);
-				break;
-			case MISSED:
-				screen.draw(missed, sx - 0.25, sy - 0.25);
-				break;
-			case HITTED:
-				screen.draw(hitted, sx - 0.25, sy - 0.25);
-				break;
+				case BLOCKED:
+					screen.draw(blocked, sx - 0.25, sy - 0.25);
+					break;
+				case MISSED:
+					screen.draw(missed, sx - 0.25, sy - 0.25);
+					break;
+				case HITTED:
+					screen.draw(hitted, sx - 0.25, sy - 0.25);
+					break;
 			}
 		}
 
@@ -900,17 +852,13 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 			int i = 0;
 			for (Sprite damageImage : damageSprites) {
-				double tx = x
-						+ 0.6
-						- (damageImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
-				double ty = y
-						- ((current - damageSpritesTimes.get(i)) / (6.0 * 300.0));
+				double tx = x + 0.6 - (damageImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
+				double ty = y - ((current - damageSpritesTimes.get(i)) / (6.0 * 300.0));
 				screen.draw(damageImage, tx, ty);
 				i++;
 			}
 
-			if ((damageSpritesTimes.size() > 0)
-					&& (current - damageSpritesTimes.get(0) > 6 * 300)) {
+			if ((damageSpritesTimes.size() > 0) && (current - damageSpritesTimes.get(0) > 6 * 300)) {
 				damageSprites.remove(0);
 				damageSpritesTimes.remove(0);
 			}
@@ -937,22 +885,22 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 		// ActionType at = handleAction(action);
 		RPAction rpaction;
 		switch (at) {
-		case ATTACK:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			break;
-		case STOP_ATTACK:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			rpaction.put("attack", "");
-			at.send(rpaction);
-			break;
-		default:
-			super.onAction(at, params);
-			break;
+			case ATTACK:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
+			case STOP_ATTACK:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				rpaction.put("attack", "");
+				at.send(rpaction);
+				break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}
@@ -1038,20 +986,20 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 	public int getDefItem() {
 		return defItem;
 	}
-        
-        /**
-         *@return Returns the total mana of a player
-         */
-        public int getMana() {
-            return mana;
-        }
-        
-        /**
-         *@return Returns the base mana value
-         */
-        public int getBaseMana() {
-            return base_mana;
-        }
+
+	/**
+	 *@return Returns the total mana of a player
+	 */
+	public int getMana() {
+		return mana;
+	}
+
+	/**
+	 *@return Returns the base mana value
+	 */
+	public int getBaseMana() {
+		return base_mana;
+	}
 
 	// When this entity attacks target.
 	public void onAttack(Entity target) {
@@ -1074,7 +1022,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 	// When attacket stop attacking us
 	public void onStopAttacked(Entity attacker) {
-		if(attacker == lastAttacker) {
+		if (attacker == lastAttacker) {
 			lastAttacker = null;
 		}
 	}
@@ -1101,20 +1049,18 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent,
 
 		playSound("punch-mix", 20, 60, 80);
 
-		damageSprites.add(GameScreen.get().createString(
-				Integer.toString(damage), Color.red));
+		damageSprites.add(GameScreen.get().createString(Integer.toString(damage), Color.red));
 		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
 		boolean showAttackInfoForPlayer = (StendhalClient.get().getPlayer() != null)
-				&& (getID().equals(StendhalClient.get().getPlayer().getID()) || attacker
-						.getID().equals(StendhalClient.get().getPlayer().getID()));
-		showAttackInfoForPlayer = showAttackInfoForPlayer
-				& (!stendhal.FILTER_ATTACK_MESSAGES);
+		        && (getID().equals(StendhalClient.get().getPlayer().getID()) || attacker.getID().equals(
+		                StendhalClient.get().getPlayer().getID()));
+		showAttackInfoForPlayer = showAttackInfoForPlayer & (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
-			StendhalClient.get().addEventLine(getName() + " suffers "
-					+ Grammar.quantityplnoun(damage, "point")
-					+ " of damage from " + attacker.getName(), Color.RED);
+			StendhalClient.get().addEventLine(
+			        getName() + " suffers " + Grammar.quantityplnoun(damage, "point") + " of damage from "
+			                + attacker.getName(), Color.RED);
 		}
 	}
 

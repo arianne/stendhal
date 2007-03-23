@@ -12,6 +12,7 @@ import games.stendhal.server.util.Area;
  * @author hendrik
  */
 public class DeathmatchInfo {
+
 	private static List<DeathmatchInfo> deathmatches = new LinkedList<DeathmatchInfo>();
 
 	private final Area arena;

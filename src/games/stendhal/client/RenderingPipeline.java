@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 public class RenderingPipeline {
+
 	private static RenderingPipeline renderPipeline;
 
 	private StaticGameLayers gameLayers;

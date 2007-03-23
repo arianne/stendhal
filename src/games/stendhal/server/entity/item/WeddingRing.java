@@ -38,7 +38,7 @@ import marauroa.common.game.RPObject;
  * @author daniel
  */
 public class WeddingRing extends Item implements UseListener {
-	
+
 	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**
@@ -49,11 +49,10 @@ public class WeddingRing extends Item implements UseListener {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public WeddingRing(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public WeddingRing(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-	
+
 	public void onUsed(RPEntity user) {
 		RPObject base = this;
 		// Find the top container
@@ -65,7 +64,7 @@ public class WeddingRing extends Item implements UseListener {
 			teleportToSpouse((Player) user);
 		}
 	}
-	
+
 	/**
 	 * Teleports the given player to his/her spouse, but only if the spouse
 	 * is also wearing the wedding ring.
@@ -78,9 +77,8 @@ public class WeddingRing extends Item implements UseListener {
 			Player spouse = StendhalRPRuleProcessor.get().getPlayer(spouseName);
 			if (spouse == null) {
 				player.sendPrivateText(spouseName + " is not online.");
-			} else if (spouse.isEquipped("wedding_ring")){
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-						.getRPZone(spouse.getID());
+			} else if (spouse.isEquipped("wedding_ring")) {
+				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(spouse.getID());
 				int x = spouse.getX();
 				int y = spouse.getY();
 				Direction dir = spouse.getDirection();
@@ -99,9 +97,7 @@ public class WeddingRing extends Item implements UseListener {
 	@Override
 	public String describe() {
 		if (has("infostring")) {
-			return "You see a wedding ring. Its engraving says: \"In eternal love to "
-					+ get("infostring")
-					+ "\".";
+			return "You see a wedding ring. Its engraving says: \"In eternal love to " + get("infostring") + "\".";
 		} else {
 			return "You see a wedding ring.";
 		}

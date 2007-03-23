@@ -6,12 +6,11 @@ import org.junit.Test;
 
 public class EntityMapTest {
 
-	
 	@Test
 	public final void testGetClassStringString() {
-		Class entClass= EntityMap.getClass("player", null); 
+		Class entClass = EntityMap.getClass("player", null);
 		assertEquals(Player.class, entClass);
-		entClass= EntityMap.getClass(null, null);
+		entClass = EntityMap.getClass(null, null);
 		assertEquals(null, entClass);
 	}
 

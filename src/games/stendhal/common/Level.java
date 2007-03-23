@@ -17,20 +17,21 @@ import org.apache.log4j.Logger;
 
 /** Utility class for getting the creature-level for some given exp. points. */
 public class Level {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Level.class);
 
 	private static int LEVELS = 1000;
 
-	private static int []		xp;
+	private static int[] xp;
 
-	private static double []	wisdom;
+	private static double[] wisdom;
 
 	static {
 		/*
 		 * Calculate eXPeriance
 		 */
-		xp = new int[LEVELS+1];
+		xp = new int[LEVELS + 1];
 
 		xp[0] = 0;
 		xp[1] = 50;
@@ -41,40 +42,34 @@ public class Level {
 
 		for (int i = 5; i < LEVELS; i++) {
 			int exp = ((i * 16 + i * i * 5 + i * i * i * 10 + 300) / 100) * 100;
-			xp[i+1] = exp;
+			xp[i + 1] = exp;
 		}
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			for (int i = 0; i < LEVELS; i++) {
-				logger.debug(
-					"Level " + i + ": " + xp[i] + " xp");
+				logger.debug("Level " + i + ": " + xp[i] + " xp");
 			}
 		}
-
 
 		/*
 		 * Calculate Wisdom
 		 */
 		wisdom = new double[LEVELS];
 
-		for(int i = 0; i < LEVELS; i++) {
+		for (int i = 0; i < LEVELS; i++) {
 			wisdom[i] = 1.0 - (1 / Math.pow(1.01, i));
 		}
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			for (int i = 0; i < LEVELS; i++) {
-				logger.debug(
-					"Level " + i + ": "
-					+ (int) ((wisdom[i] * 100.0) + 0.5)
-					+ " wisdom");
+				logger.debug("Level " + i + ": " + (int) ((wisdom[i] * 100.0) + 0.5) + " wisdom");
 			}
 		}
 	}
 
 	public static void main(String[] args) {
 		for (int i = 0; i < LEVELS; i++) {
-			System.out.println("<tr><td>" + i + "</td><td>" + xp[i]
-					+ "</td></tr>");
+			System.out.println("<tr><td>" + i + "</td><td>" + xp[i] + "</td></tr>");
 		}
 	}
 
@@ -127,7 +122,6 @@ public class Level {
 		return 0;
 	}
 
-
 	/**
 	 * Get an entity's wisdom factor based on their level. As no one
 	 * really has 100% (i.e. 1.0) wisdom, it should be scaled as needed.
@@ -138,7 +132,7 @@ public class Level {
 	 *		<code>1.0</code> (exclusive).
 	 */
 	public static double getWisdom(int level) {
-		if(level > LEVELS) {
+		if (level > LEVELS) {
 			level = LEVELS;
 		}
 

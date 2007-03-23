@@ -43,34 +43,34 @@ public class CreatureRespawnPoint implements TurnListener {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(CreatureRespawnPoint.class);
-	
+
 	private StendhalRPZone zone;
-	
+
 	private int x;
-	
+
 	private int y;
-	
+
 	/**
 	 * The number of creatures spawned here that can exist at
 	 *  the same time
 	 */
 	private int maximum;
-	
+
 	/** 
 	 * This is the prototype; it will be copied to create new creatures
 	 * that will be spawned here.
 	 */
 	private Creature prototypeCreature;
-	
+
 	/** All creatures that were spawned here and that are still alive*/
 	private List<Creature> creatures;
-	
+
 	/**
 	 * Stores if this respawn point is currently waiting for a creature
 	 * to respawn
 	 */
 	private boolean respawning;
-	
+
 	/**
 	 * How long it takes to respawn a creature. This defaults to the
 	 * creature's default respawn time.
@@ -107,7 +107,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	public void setRespawnTime(int respawnTime) {
 		this.respawnTime = respawnTime;
 	}
-	
+
 	/**
 	 * Notifies this respawn point about the death of a creature that
 	 * was spawned here.
@@ -126,7 +126,6 @@ public class CreatureRespawnPoint implements TurnListener {
 		Log4J.finishMethod(logger, "notifyDead");
 	}
 
-	
 	/**
 	 * Is called when a new creature is ready to pop up. 
 	 * @see games.stendhal.server.events.TurnListener#onTurnReached(int, java.lang.String)
@@ -163,10 +162,8 @@ public class CreatureRespawnPoint implements TurnListener {
 
 			// A bit of randomization to make Joan and Snaketails a bit happier.
 			// :)
-			newentity.setATK(Rand.rand(newentity.getATK(),
-					newentity.getATK() / 10));
-			newentity.setDEF(Rand.rand(newentity.getDEF(),
-					newentity.getDEF() / 10));
+			newentity.setATK(Rand.rand(newentity.getATK(), newentity.getATK() / 10));
+			newentity.setDEF(Rand.rand(newentity.getDEF(), newentity.getDEF() / 10));
 
 			zone.assignRPObjectID(newentity);
 			StendhalRPAction.placeat(zone, newentity, x, y);
@@ -183,7 +180,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		}
 	}
 
-    public void logic() {
+	public void logic() {
 		for (Creature creature : creatures) {
 			creature.logic();
 		}

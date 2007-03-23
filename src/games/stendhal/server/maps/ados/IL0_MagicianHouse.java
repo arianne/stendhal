@@ -20,9 +20,10 @@ import java.util.List;
 import java.util.Map;
 
 public class IL0_MagicianHouse implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();;
-	private ShopList shops = ShopList.get();
 
+	private NPCList npcs = NPCList.get();;
+
+	private ShopList shops = ShopList.get();
 
 	/**
 	 * Configure a zone.
@@ -30,15 +31,13 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildMagicianHouseArea(zone, attributes);
 	}
 
-
-	private void buildMagicianHouseArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildMagicianHouseArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Haizen") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -62,38 +61,35 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 				addHelp("You can take powerful magic with you on your adventures with the aid of my #magic #scrolls!");
 
 				addSeller(new SellerBehaviour(shops.get("scrolls")));
-				
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"I don't have any tasks for you right now. If you need anything from me, just ask.",
-					null);
-				add(ConversationStates.ATTENDING,
-					Arrays.asList("magic", "scroll", "scrolls"),
-					null,
-					ConversationStates.ATTENDING,
-					"I #offer scrolls that help you to travel faster: #home scrolls and the #markable #empty scrolls. For the more advanced customer, I also have #summon scrolls!",
-					null);
-				add(ConversationStates.ATTENDING,
-					Arrays.asList("home", "home_scroll"),
-					null,
-					ConversationStates.ATTENDING,
-					"Home scrolls take you home immediately, a good way to escape danger!",
-					null);
-				add(ConversationStates.ATTENDING,
-					Arrays.asList("empty", "marked", "empty_scroll", "markable", "marked_scroll"),
-					null,
-					ConversationStates.ATTENDING,
-					"Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
-					null);
-				add(ConversationStates.ATTENDING,
-					"summon",
-					null,
-					ConversationStates.ATTENDING,
-					"A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
-					null);
-			
+
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING,
+				        "I don't have any tasks for you right now. If you need anything from me, just ask.", null);
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("magic", "scroll", "scrolls"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "I #offer scrolls that help you to travel faster: #home scrolls and the #markable #empty scrolls. For the more advanced customer, I also have #summon scrolls!",
+				        null);
+				add(ConversationStates.ATTENDING, Arrays.asList("home", "home_scroll"), null,
+				        ConversationStates.ATTENDING,
+				        "Home scrolls take you home immediately, a good way to escape danger!", null);
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("empty", "marked", "empty_scroll", "markable", "marked_scroll"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "Empty scrolls are used to mark a position. Those marked scrolls can take you back to that position. They are a little expensive, though.",
+				        null);
+				add(
+				        ConversationStates.ATTENDING,
+				        "summon",
+				        null,
+				        ConversationStates.ATTENDING,
+				        "A summon scroll empowers you to summon animals to you; advanced magicians will be able to summon stronger monsters than others. Of course, these scrolls can be dangerous if misused.",
+				        null);
+
 				addGoodbye();
 			}
 		};
@@ -115,11 +111,11 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 		plantGrower.setY(6);
 		plantGrower.setDescription("Haizen tends to put his magic drinks here.");
 		plantGrower.setToFullGrowth();
-		
+
 		zone.add(plantGrower);
 		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
 	}
-	
+
 	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
 		zone.assignRPObjectID(item);

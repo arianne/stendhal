@@ -45,6 +45,7 @@ import marauroa.common.game.RPObject;
  * @author mtotz
  */
 public class EntitySlot extends WtPanel implements WtDropTarget {
+
 	/** the (background) sprite for this slot */
 	private Sprite graphic;
 
@@ -67,8 +68,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private Sprite sprite;
 
 	/** Creates a new instance of RPObjectSlot */
-	public EntitySlot(String name, Sprite graphic, int x, int y,
-			GameObjects gameObjects) {
+	public EntitySlot(String name, Sprite graphic, int x, int y, GameObjects gameObjects) {
 		super(name, x, y, graphic.getWidth(), graphic.getHeight());
 		this.graphic = graphic;
 		this.gameObjects = gameObjects;
@@ -81,8 +81,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** called when an object is dropped. */
 	public boolean onDrop(WtDraggable droppedObject) {
-		if ((droppedObject instanceof MoveableEntityContainer)
-				&& (parent != null)) {
+		if ((droppedObject instanceof MoveableEntityContainer) && (parent != null)) {
 			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 
 			// Don't drag an item into the same slot
@@ -137,8 +136,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private void checkQuantityImage(int quantity) {
 		if ((quantityImage == null) || (quantity != oldQuantity)) {
 			oldQuantity = quantity;
-			quantityImage = GameScreen.get().createString(
-					Integer.toString(quantity), Color.white);
+			quantityImage = GameScreen.get().createString(Integer.toString(quantity), Color.white);
 		}
 	}
 
@@ -185,8 +183,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		if (content != null) {
-			return new MoveableEntityContainer(content, parent, getName(),
-					gameObjects);
+			return new MoveableEntityContainer(content, parent, getName(), gameObjects);
 		}
 
 		return null;
@@ -199,8 +196,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			// create the context menu
 
 			Entity entity = EntityFabric.createEntity(content);
-			CommandList list = new CommandList(getName(), entity
-					.offeredActions(), entity);
+			CommandList list = new CommandList(getName(), entity.offeredActions(), entity);
 			list.setContext(parent.getID().getObjectID(), getName());
 			setContextMenu(list);
 		}
@@ -225,8 +221,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			Entity entity = EntityFabric.createEntity(content);
 			if (entity != null) {
 
-				entity.onAction(entity.defaultAction(), Integer.toString(parent
-						.getID().getObjectID()), getName());
+				entity.onAction(entity.defaultAction(), Integer.toString(parent.getID().getObjectID()), getName());
 				return (true);
 			}
 			return (false);

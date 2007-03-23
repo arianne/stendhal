@@ -20,6 +20,7 @@ import java.util.Set;
  * Helper functions to generate random numbers.
  */
 public class Rand {
+
 	private static Random rand;
 
 	static {
@@ -33,7 +34,7 @@ public class Rand {
 	public static int throwCoin() {
 		return rand.nextInt(2) + 1;
 	}
-	
+
 	/**
 	 * Simulates rolling a dice with 6 sides.
 	 * @return A random number between 1 and 6, equally distributed.
@@ -67,7 +68,7 @@ public class Rand {
 	public static int rand(int n) {
 		return rand.nextInt(n);
 	}
-	
+
 	/**
 	 * Given a list of any type, returns an arbitrary element, using
 	 * an equal distribution.
@@ -97,7 +98,7 @@ public class Rand {
 	public static <T> T rand(Set<T> set) {
 		int n = rand(set.size());
 		int i = 0;
-		for (T element: set) {
+		for (T element : set) {
 			if (i == n) {
 				return element;
 			}

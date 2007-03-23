@@ -79,7 +79,7 @@ public abstract class Door extends Portal implements TurnListener {
 	 * Opens the door. 
 	 */
 	public void open() {
-        open = true;
+		open = true;
 		put("open", "");
 		notifyWorldAboutChanges();
 	}
@@ -129,9 +129,9 @@ public abstract class Door extends Portal implements TurnListener {
 			}
 
 			// register automatic close
-	        turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
+			turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
 
-	        // use it
+			// use it
 			super.onUsed(user);
 
 		} else { // player may not use it
@@ -143,7 +143,7 @@ public abstract class Door extends Portal implements TurnListener {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onUsedBackwards(RPEntity user) {
 		open();

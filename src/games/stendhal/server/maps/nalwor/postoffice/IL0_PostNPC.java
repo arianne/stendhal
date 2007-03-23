@@ -19,22 +19,24 @@ import java.util.Map;
  * @author kymara
  */
 public class IL0_PostNPC implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
+
 	private ShopList shops = ShopList.get();
+
 	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Lorithien") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -71,6 +73,5 @@ public class IL0_PostNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 
-	
 	}
 }

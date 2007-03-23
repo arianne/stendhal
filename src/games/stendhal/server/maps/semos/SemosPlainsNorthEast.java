@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public class SemosPlainsNorthEast implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -23,24 +23,24 @@ public class SemosPlainsNorthEast implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosNorthEastPlainsArea(zone);
 	}
 
-
 	private void buildSemosNorthEastPlainsArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Jenny") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
 			}
-		
+
 			@Override
 			protected void createDialog() {
 				addJob("I run this windmill, where I can #mill people's #grain into flour for them. I also supply the bakery in Semos.");
-				addReply("grain", "There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");
+				addReply("grain",
+				        "There's a farm nearby; they usually let people harvest there. You'll need a scythe, of course.");
 				addHelp("Do you know the bakery in Semos? I'm proud to say they use my flour. But the wolves ate my delivery boy again recently... they're probably running out.");
 				addGoodbye();
 
@@ -48,12 +48,12 @@ public class SemosPlainsNorthEast implements ZoneConfigurator {
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
 				requiredResources.put("grain", new Integer(5));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"jenny_mill_flour", "mill", "flour", requiredResources, 2 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("jenny_mill_flour", "mill", "flour",
+				        requiredResources, 2 * 60);
 
 				addProducer(behaviour,
-						"Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.");
-				
+				        "Greetings! I am Jenny, the local miller. If you bring me some #grain, I can #mill it into flour for you.");
+
 			}
 		};
 		npcs.add(npc);

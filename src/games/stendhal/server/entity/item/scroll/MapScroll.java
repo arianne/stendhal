@@ -1,5 +1,5 @@
 /* $Id$
-/***************************************************************************
+ /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
@@ -20,6 +20,7 @@ import java.util.Map;
  * Represents a map (on a scroll).
  */
 public class MapScroll extends Scroll {
+
 	/**
 	 * Creates a new map.
 	 *
@@ -28,11 +29,9 @@ public class MapScroll extends Scroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public MapScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public MapScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
 
 	@Override
 	public void onUsed(RPEntity user) {

@@ -14,18 +14,18 @@ import java.util.List;
 import marauroa.common.game.IRPZone;
 
 public abstract class CroupierNPC extends SpeakerNPC {
-	
+
 	/**
 	 * The time (in seconds) it takes before the NPC removes
 	 * thrown dice from the table.
 	 */
 	private static final int CLEAR_PLAYING_AREA_TIME = 10;
-	
+
 	/**
 	 * The area on which the dice have to be thrown.  
 	 */
 	private Area playingArea;
-	
+
 	/**
 	 * A list where each possible dice sum is the index of the element
 	 * which is either the name of the prize for this dice sum and
@@ -33,15 +33,15 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	 * if the player doesn't win anything for this sum.
 	 */
 	private List<Pair<String, String>> prizes;
-	
+
 	public CroupierNPC(String name) {
 		super(name);
 	}
-	
+
 	public void setPrizes(List<Pair<String, String>> prizes) {
 		this.prizes = prizes;
 	}
-	
+
 	public void onThrown(Dice dice, Player player) {
 		if (playingArea.contains(dice)) {
 			int sum = dice.getSum();
@@ -53,19 +53,11 @@ public abstract class CroupierNPC extends SpeakerNPC {
 				if (prizeName.equals("golden_legs")) {
 					prize.put("bound", player.getName());
 				}
-				say("Congratulations, "
-						+ player.getName()
-						+ ", you have "
-						+ sum
-						+ " points. "
-						+ text);
+				say("Congratulations, " + player.getName() + ", you have " + sum + " points. " + text);
 				player.equip(prize, true);
 			} else {
-				say("Sorry, "
-						+ player.getName()
-						+ ", you only have "
-						+ sum
-						+ " points. You haven't won anything. Better luck next time!");
+				say("Sorry, " + player.getName() + ", you only have " + sum
+				        + " points. You haven't won anything. Better luck next time!");
 			}
 			// The croupier takes the dice away from the table after some time.
 			// This is simulated by shortening the degradation time of the dice.

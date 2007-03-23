@@ -10,6 +10,7 @@ import games.stendhal.server.events.TurnListener;
  * Teleport the player far away if he/she had logged out in the deathmatch arena.
  */
 public class DealWithLogoutCoward implements TurnListener {
+
 	private Player player = null;
 
 	/**
@@ -26,7 +27,8 @@ public class DealWithLogoutCoward implements TurnListener {
 			if (deathmatchInfo.getArena().contains(player)) {
 				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_mountain_n2_w");
 				player.teleport(zone, 104, 123, Direction.DOWN, player);
-				player.sendPrivateText("You wake up far away from the city in the mountains. But you don't know what happened.");
+				player
+				        .sendPrivateText("You wake up far away from the city in the mountains. But you don't know what happened.");
 				break;
 			}
 		}

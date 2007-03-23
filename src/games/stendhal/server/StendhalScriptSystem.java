@@ -16,10 +16,11 @@ import org.apache.log4j.Logger;
  */
 @Deprecated
 public class StendhalScriptSystem {
+
 	private List<Pair<ScriptCondition, ScriptAction>> scripts;
-    /** the logger instance. */
-    private static final Logger logger = Log4J
-            .getLogger(StendhalRPRuleProcessor.class);
+
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
 
 	private StendhalScriptSystem() {
 		scripts = new CopyOnWriteArrayList<Pair<ScriptCondition, ScriptAction>>();
@@ -35,10 +36,8 @@ public class StendhalScriptSystem {
 		return instance;
 	}
 
-	public Pair<ScriptCondition, ScriptAction> addScript(
-			ScriptCondition condition, ScriptAction action) {
-		Pair<ScriptCondition, ScriptAction> scriptPair = new Pair<ScriptCondition, ScriptAction>(
-				condition, action);
+	public Pair<ScriptCondition, ScriptAction> addScript(ScriptCondition condition, ScriptAction action) {
+		Pair<ScriptCondition, ScriptAction> scriptPair = new Pair<ScriptCondition, ScriptAction>(condition, action);
 		scripts.add(scriptPair);
 		return (scriptPair);
 	}
@@ -49,16 +48,15 @@ public class StendhalScriptSystem {
 
 	public void logic() {
 		for (Pair<ScriptCondition, ScriptAction> script : scripts) {
-            try {
-                if ((script.first() == null) || script.first().fire()) {
-                    if (script.second() != null) {
-                        script.second().fire();
-                    }
-                }                
-            }
-            catch (Exception e) {
-                logger.error("error in StendhalScriptSystem", e);                
-            }
+			try {
+				if ((script.first() == null) || script.first().fire()) {
+					if (script.second() != null) {
+						script.second().fire();
+					}
+				}
+			} catch (Exception e) {
+				logger.error("error in StendhalScriptSystem", e);
+			}
 		}
 	}
 }

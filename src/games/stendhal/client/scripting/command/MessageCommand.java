@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Send a message to a player.
  */
 class MessageCommand implements SlashCommand {
+
 	private String lastPlayerTell;
 
 	/**
@@ -17,7 +18,7 @@ class MessageCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		lastPlayerTell = params[0];
 
 		RPAction tell = new RPAction();
@@ -39,7 +40,6 @@ class MessageCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 1;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

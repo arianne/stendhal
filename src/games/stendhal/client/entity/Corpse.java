@@ -23,6 +23,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Corpse extends PassiveEntity implements Inspectable {
+
 	private Inspector _inspector;
 
 	private EntityContainer contentWindow;
@@ -34,16 +35,16 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	@Override
 	public Rectangle2D getArea() {
 
-		return new Rectangle.Double(x, y, (double) sprite.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, (double) sprite.getHeight()
-				/ GameScreen.SIZE_UNIT_PIXELS);
+		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
+		        .getHeight()
+		        / GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	@Override
 	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, (double) sprite.getWidth()
-				/ GameScreen.SIZE_UNIT_PIXELS, (double) sprite.getHeight()
-				/ GameScreen.SIZE_UNIT_PIXELS);
+		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
+		        .getHeight()
+		        / GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 	@Override
@@ -65,8 +66,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 	}
 
@@ -75,20 +75,17 @@ public class Corpse extends PassiveEntity implements Inspectable {
 		return ActionType.INSPECT;
 	}
 
-
-
 	@Override
 	public void onAction(ActionType at, String... params) {
 		// ActionType at=handleAction(action);
 		switch (at) {
-		case INSPECT:
-			contentWindow = _inspector.inspectMe(this, rpObject
-					.getSlot("content"), contentWindow);
-			break;
+			case INSPECT:
+				contentWindow = _inspector.inspectMe(this, rpObject.getSlot("content"), contentWindow);
+				break;
 
-		default:
-			super.onAction(at, params);
-			break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 	}
 

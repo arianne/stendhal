@@ -24,9 +24,13 @@ import org.apache.log4j.Logger;
 public class PathfinderProfile {
 
 	private static final Logger logger = Log4J.getLogger(PathfinderProfile.class);
-	private static final String pathfinderProfileData = "PathfinderProfile.data";  
-	private static final String pathfinderZone = "int_pathfinding";  
+
+	private static final String pathfinderProfileData = "PathfinderProfile.data";
+
+	private static final String pathfinderZone = "int_pathfinding";
+
 	private static final int iterations = 1000;
+
 	private static final int dataSize = 1000;
 
 	/**
@@ -39,15 +43,15 @@ public class PathfinderProfile {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(pathfinderZone);
 
 		// read profile data
-		ArrayList<String> tests; 
+		ArrayList<String> tests;
 		try {
 			FileInputStream fis = new FileInputStream(pathfinderProfileData);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			String[] testsIn = (String[])ois.readObject();
+			String[] testsIn = (String[]) ois.readObject();
 			tests = new ArrayList<String>(Arrays.asList(testsIn));
 			ois.close();
 		} catch (Exception e) {
-			tests = new ArrayList<String>(); 
+			tests = new ArrayList<String>();
 		}
 
 		// create profile data, if not read
@@ -62,7 +66,8 @@ public class PathfinderProfile {
 				y0 = Rand.rand(zone.getHeight());
 				x1 = Rand.rand(zone.getWidth());
 				y1 = Rand.rand(zone.getHeight());
-			} while (zone.collides(x0, y0) || zone.collides(x1, y1) || (Math.abs(x0 -x1) > 8) || (Math.abs(y0 -y1) > 8));
+			} while (zone.collides(x0, y0) || zone.collides(x1, y1) || (Math.abs(x0 - x1) > 8)
+			        || (Math.abs(y0 - y1) > 8));
 			String test = "rat;" + x0 + ";" + y0 + ";rat;" + x1 + ";" + y1;
 			logger.debug(test);
 			tests.add(test);
@@ -79,8 +84,7 @@ public class PathfinderProfile {
 			oos.close();
 		}
 
-		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld
-				.get().getRuleManager().getEntityManager();
+		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 		long searchTime = 0;
 		long searchTimeValidPath = 0;
@@ -103,15 +107,11 @@ public class PathfinderProfile {
 			zone.add(target);
 
 			// calculate the destArea
-			Rectangle2D entityArea = entity.getArea(entity.getX(), entity
-					.getY());
-			Rectangle2D targetArea = target.getArea(target.getX(), target
-					.getY());
-			Rectangle destArea = new Rectangle(
-					(int) (targetArea.getX() - entityArea.getWidth()),
-					(int) (targetArea.getY() - entityArea.getHeight()),
-					(int) (entityArea.getWidth() + targetArea.getWidth() + 1),
-					(int) (entityArea.getHeight() + targetArea.getHeight() + 1));
+			Rectangle2D entityArea = entity.getArea(entity.getX(), entity.getY());
+			Rectangle2D targetArea = target.getArea(target.getX(), target.getY());
+			Rectangle destArea = new Rectangle((int) (targetArea.getX() - entityArea.getWidth()), (int) (targetArea
+			        .getY() - entityArea.getHeight()), (int) (entityArea.getWidth() + targetArea.getWidth() + 1),
+			        (int) (entityArea.getHeight() + targetArea.getHeight() + 1));
 
 			// for 1x2 size creatures the destArea, needs bo be one up
 			destArea.translate(0, (int) (entity.getY() - entityArea.getY()));
@@ -130,8 +130,11 @@ public class PathfinderProfile {
 			zone.remove(target);
 		}
 		logger.info("Total search time: " + searchTime + "ms");
-		logger.info("average search time: " + (1000 * searchTime / (iterations * tests.size())) + "ns per searchPath()");
-		logger.info("average search time for " + validPath + " valid Pathes: " + (1000 * searchTimeValidPath / (iterations * tests.size())) + "ns per searchPath()");
+		logger
+		        .info("average search time: " + (1000 * searchTime / (iterations * tests.size()))
+		                + "ns per searchPath()");
+		logger.info("average search time for " + validPath + " valid Pathes: "
+		        + (1000 * searchTimeValidPath / (iterations * tests.size())) + "ns per searchPath()");
 	}
 
 	/**
@@ -140,8 +143,7 @@ public class PathfinderProfile {
 	private static void startLogSystem() {
 		Log4J.init("data/conf/log4j.properties");
 
-		logger.info("OS: " + System.getProperty("os.name") + " "
-				+ System.getProperty("os.version"));
+		logger.info("OS: " + System.getProperty("os.name") + " " + System.getProperty("os.version"));
 		logger.info("Java: " + System.getProperty("java.version"));
 	}
 }

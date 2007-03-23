@@ -21,41 +21,41 @@ import org.apache.log4j.Logger;
  * @author daniel
  */
 public class TurnNotifier {
-	
+
 	/**
 	 * Struct to store a pair of TurnListener and String.
 	 */
 	protected static class TurnEvent {
+
 		public TurnListener turnListener;
-		
-		public String message; 
-		
+
+		public String message;
+
 		public TurnEvent(TurnListener turnListener, String message) {
 			this.turnListener = turnListener;
 			this.message = message;
 		}
-		
+
 		public boolean equals(TurnEvent other) {
 			return (turnListener == other.turnListener)
-					&& (((message == null) && (other.message == null))
-							|| message.equals(other.message));
+			        && (((message == null) && (other.message == null)) || message.equals(other.message));
 		}
 	}
-	
+
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
-	
+
 	/** The Singleton instance **/
 	private static TurnNotifier instance = null;
-	
+
 	private int currentTurn = -1;
-	
+
 	/**
 	 * This Map maps each turn to the set of all events that will take place
 	 * at this turn.
 	 * Turns at which no event should take place needn't be registered here.
 	 */
 	private Map<Integer, Set<TurnEvent>> register = new HashMap<Integer, Set<TurnEvent>>();
-	
+
 	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
 
@@ -102,7 +102,7 @@ public class TurnNotifier {
 					turnListener.onTurnReached(currentTurn, message);
 				} catch (RuntimeException e) {
 					logger.error(e, e);
-				}				
+				}
 			}
 		}
 	}
@@ -115,7 +115,7 @@ public class TurnNotifier {
 	public int getNumberOfNextTurn() {
 		return this.currentTurn + 1;
 	}
-	
+
 	/**
 	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
 	 * 
@@ -162,7 +162,7 @@ public class TurnNotifier {
 			set.add(new TurnEvent(turnListener, message));
 		}
 	}
-	
+
 	/**
 	 * Forgets all registered notification entries for the given TurnListener
 	 * where the entry's message equals the given one. 
@@ -172,7 +172,7 @@ public class TurnNotifier {
 	public void dontNotify(TurnListener turnListener, String message) {
 		// all events that are equal to this one should be forgotten.
 		TurnEvent turnEvent = new TurnEvent(turnListener, message);
-		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry: register.entrySet()) {
+		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry : register.entrySet()) {
 			Set<TurnEvent> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions. 
@@ -187,7 +187,7 @@ public class TurnNotifier {
 			}
 		}
 	}
-	
+
 	/**
 	 * Finds out how many turns will pass until the given TurnListener
 	 * will be notified with the given message.
@@ -202,7 +202,7 @@ public class TurnNotifier {
 		// the HashMap is unsorted, so we need to run through
 		// all of it.
 		List<Integer> matchingTurns = new ArrayList<Integer>();
-		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry: register.entrySet()) {
+		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry : register.entrySet()) {
 			Set<TurnEvent> set = mapEntry.getValue();
 			for (TurnEvent currentEvent : set) {
 				if (currentEvent.equals(turnEvent)) {

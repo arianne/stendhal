@@ -11,8 +11,8 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class OL0_PlainsNorth implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -20,14 +20,13 @@ public class OL0_PlainsNorth implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosNorthPlainsArea(zone);
 	}
 
-
 	private void buildSemosNorthPlainsArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Plink") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -46,10 +45,10 @@ public class OL0_PlainsNorth implements ZoneConfigurator {
 				nodes.add(new Path.Node(46, 98));
 				nodes.add(new Path.Node(46, 99));
 				nodes.add(new Path.Node(36, 99));
-				
+
 				setPath(nodes, true);
 			}
-		
+
 			@Override
 			protected void createDialog() {
 				addGreeting();

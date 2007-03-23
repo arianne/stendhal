@@ -10,9 +10,11 @@ import org.apache.log4j.Logger;
  * Enable/disable input recording.
  */
 public class RecordCommand implements SlashCommand {
+
 	private static Logger logger = Logger.getLogger(RecordCommand.class);
+
 	private ScriptRecorder recorder = null;
-	
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -21,7 +23,7 @@ public class RecordCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		if (recorder != null) {
 			recorder.end();
 			recorder = null;
@@ -29,7 +31,7 @@ public class RecordCommand implements SlashCommand {
 
 		String name = params[0];
 
-		if(!name.equals("stop")) {
+		if (!name.equals("stop")) {
 			try {
 				recorder = new ScriptRecorder(name);
 				recorder.start();
@@ -41,7 +43,6 @@ public class RecordCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -50,7 +51,6 @@ public class RecordCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 1;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Send a support response message.
  */
 class SupportAnswerCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class SupportAnswerCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction tell = new RPAction();
 
 		tell.put("type", "supportanswer");
@@ -27,7 +28,6 @@ class SupportAnswerCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -36,7 +36,6 @@ class SupportAnswerCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 1;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

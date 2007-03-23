@@ -26,6 +26,7 @@ import java.awt.Point;
  * @author mtotz
  */
 public interface WtDraggable {
+
 	/**
 	 * this object has been started to drag around
 	 * 

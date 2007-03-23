@@ -25,7 +25,8 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		helmet.put("def", 1);
 		helmet.put("infostring", player.getName());
 		helmet.put("persistent", 1);
-		helmet.setDescription("This is " + player.getName() + "'s grand prize for Deathmatch winners. Wear it with pride.");
+		helmet.setDescription("This is " + player.getName()
+		        + "'s grand prize for Deathmatch winners. Wear it with pride.");
 		player.equip(helmet, true);
 		return helmet;
 	}
@@ -56,7 +57,8 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		Item helmet = player.getFirstEquipped("trophy_helmet");
 		if (helmet == null) {
 			createTrophyHelmet(player);
-			engine.say("Congratulations, your score is now " + points + "! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
+			engine.say("Congratulations, your score is now " + points
+			        + "! Here is your special trophy helmet. Enjoy it. Now, tell me if you want to #leave.");
 		} else {
 			int defense = 1;
 			if (helmet.has("def")) {
@@ -66,10 +68,15 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 			int maxdefense = 5 + (player.getLevel() / 5);
 			if (defense > maxdefense) {
 				helmet.put("def", maxdefense);
-				engine.say("Congratulations, your score is now " + points + "! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is " + maxdefense);
+				engine
+				        .say("Congratulations, your score is now "
+				                + points
+				                + "! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is "
+				                + maxdefense);
 			} else {
 				helmet.put("def", defense);
-				engine.say("Congratulations, your score is now " + points + "! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
+				engine.say("Congratulations, your score is now " + points
+				        + "! And your helmet has been magically strengthened. Now, tell me if you want to #leave.");
 			}
 		}
 		player.updateItemAtkDef();

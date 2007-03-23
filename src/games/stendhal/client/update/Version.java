@@ -8,8 +8,8 @@ package games.stendhal.client.update;
  * @author hendrik
  */
 public class Version {
-	
-	public static final String VERSION="0.58.5";
+
+	public static final String VERSION = "0.58.5";
 
 	/**
 	 * Extract the specified number of parts from a version-string.
@@ -56,7 +56,7 @@ public class Version {
 			if (component1.equals("")) {
 				component1 = "0";
 			}
-	
+
 			String component2;
 			int pos2 = version2.indexOf(".");
 			if (pos2 > -1) {
@@ -73,20 +73,20 @@ public class Version {
 			// if the current component of both version is equal,
 			// we have to have a look at the next one. Otherwise
 			// we return the result of this comparison.
-            int res = 0;
-            try {
-                // try an integer comparison so that 2 < 13
-                int componentInt1 = Integer.parseInt(component1.trim());
-                int componentInt2 = Integer.parseInt(component2.trim());
-                res = componentInt1 - componentInt2;
-            } catch (NumberFormatException e) {
-                // integer comparison failed because one component is not a
-                // number. Do a string comparison.
-    			res = component1.compareTo(component2);
-            }
-            if (res != 0) {
-                return res;
-            }
+			int res = 0;
+			try {
+				// try an integer comparison so that 2 < 13
+				int componentInt1 = Integer.parseInt(component1.trim());
+				int componentInt2 = Integer.parseInt(component2.trim());
+				res = componentInt1 - componentInt2;
+			} catch (NumberFormatException e) {
+				// integer comparison failed because one component is not a
+				// number. Do a string comparison.
+				res = component1.compareTo(component2);
+			}
+			if (res != 0) {
+				return res;
+			}
 		}
 		return 0;
 	}

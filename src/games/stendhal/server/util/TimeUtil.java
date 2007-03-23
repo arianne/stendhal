@@ -14,11 +14,14 @@ import games.stendhal.common.Grammar;
  * Utility functions for time in the game.
  */
 public class TimeUtil {
-	protected static final int SECONDS_IN_WEEK	= 60 * 60 * 24 * 7;
-	protected static final int SECONDS_IN_DAY	= 60 * 60 * 24;
-	protected static final int SECONDS_IN_HOUR	= 60 * 60;
-	protected static final int SECONDS_IN_MINUTE	= 60;
 
+	protected static final int SECONDS_IN_WEEK = 60 * 60 * 24 * 7;
+
+	protected static final int SECONDS_IN_DAY = 60 * 60 * 24;
+
+	protected static final int SECONDS_IN_HOUR = 60 * 60;
+
+	protected static final int SECONDS_IN_MINUTE = 60;
 
 	/**
 	 * Create a text representing a saying of approximate time until.
@@ -29,15 +32,13 @@ public class TimeUtil {
 	 * @return	A text representation.
 	 */
 	public static String approxTimeUntil(int seconds) {
-		StringBuffer	sbuf;
-
+		StringBuffer sbuf;
 
 		sbuf = new StringBuffer();
 		approxTimeUntil(sbuf, seconds);
 
 		return sbuf.toString();
 	}
-
 
 	/**
 	 * Append a text representing a saying of approximate time until.
@@ -47,25 +48,24 @@ public class TimeUtil {
 	 *				(in positive values).
 	 */
 	public static void approxTimeUntil(StringBuffer sbuf, int seconds) {
-		if(approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week")) {
+		if (approxUnit(sbuf, seconds, SECONDS_IN_WEEK, "week")) {
 			return;
 		}
 
-		if(approxUnit(sbuf, seconds, SECONDS_IN_DAY, "day")) {
+		if (approxUnit(sbuf, seconds, SECONDS_IN_DAY, "day")) {
 			return;
 		}
 
-		if(approxUnit(sbuf, seconds, SECONDS_IN_HOUR, "hour")) {
+		if (approxUnit(sbuf, seconds, SECONDS_IN_HOUR, "hour")) {
 			return;
 		}
 
-		if(approxUnit(sbuf, seconds, SECONDS_IN_MINUTE, "minute")) {
+		if (approxUnit(sbuf, seconds, SECONDS_IN_MINUTE, "minute")) {
 			return;
 		}
 
 		sbuf.append("less than a minute");
 	}
-
 
 	/**
 	 * For a given amount and unit size, generate the approximate value.
@@ -78,26 +78,24 @@ public class TimeUtil {
 	 * @return	<code>true</code> if unit used, <code>false</code> if
 	 *		the amount was too small to apply.
 	 */
-	protected static boolean approxUnit(StringBuffer sbuf, int amount,
-	 int size, String name) {
-		int	count;
-		int	remainder;
+	protected static boolean approxUnit(StringBuffer sbuf, int amount, int size, String name) {
+		int count;
+		int remainder;
 
-
-		if((count = amount / size) == 0) {
+		if ((count = amount / size) == 0) {
 			return false;
 		}
 
 		remainder = amount - (count * size);
 
-		if(remainder >= (size * 95 / 100)) {
+		if (remainder >= (size * 95 / 100)) {
 			count++;
 			sbuf.append(count);
-		} else if(remainder >= (size * 3 / 4)) {
+		} else if (remainder >= (size * 3 / 4)) {
 			count++;
 			sbuf.append("just under ");
 			sbuf.append(count);
-		} else if(remainder >= (size * 1 / 4)) {
+		} else if (remainder >= (size * 1 / 4)) {
 			sbuf.append("about ");
 			sbuf.append(count);
 			sbuf.append(" and a half");
@@ -106,7 +104,7 @@ public class TimeUtil {
 			 * Force plural context (e.g. "1 and a half moments")
 			 */
 			count = 2;
-		} else if(remainder >= (size * 5 / 100)) {
+		} else if (remainder >= (size * 5 / 100)) {
 			sbuf.append("just over ");
 			sbuf.append(count);
 		} else {
@@ -117,7 +115,6 @@ public class TimeUtil {
 		sbuf.append(Grammar.plnoun(count, name));
 		return true;
 	}
-
 
 	/**
 	 * Create a text representing a saying of time until.
@@ -131,7 +128,6 @@ public class TimeUtil {
 		return timeUntil(seconds, false);
 	}
 
-
 	/**
 	 * Create a text representing a saying of time until.
 	 *
@@ -142,15 +138,13 @@ public class TimeUtil {
 	 * @return	A text representation.
 	 */
 	public static String timeUntil(int seconds, boolean forceSeconds) {
-		StringBuffer	sbuf;
-
+		StringBuffer sbuf;
 
 		sbuf = new StringBuffer();
 		timeUntil(sbuf, seconds, forceSeconds);
 
 		return sbuf.toString();
 	}
-
 
 	/**
 	 * Append a text representing a saying of time until.
@@ -163,7 +157,6 @@ public class TimeUtil {
 		timeUntil(sbuf, seconds, false);
 	}
 
-
 	/**
 	 * Append a text representing a saying of time until.
 	 *
@@ -172,15 +165,13 @@ public class TimeUtil {
 	 *				(in positive values).
 	 * @param	forceSeconds	Show seconds even if over a minute.
 	 */
-	public static void timeUntil(StringBuffer sbuf, int seconds,
-	 boolean forceSeconds) {
-		boolean	appended;
-		int	count;
-
+	public static void timeUntil(StringBuffer sbuf, int seconds, boolean forceSeconds) {
+		boolean appended;
+		int count;
 
 		appended = false;
 
-		if((count = seconds / SECONDS_IN_WEEK) != 0) {
+		if ((count = seconds / SECONDS_IN_WEEK) != 0) {
 			seconds -= (count * SECONDS_IN_WEEK);
 
 			sbuf.append(count);
@@ -190,10 +181,10 @@ public class TimeUtil {
 			appended = true;
 		}
 
-		if((count = seconds / SECONDS_IN_DAY) != 0) {
+		if ((count = seconds / SECONDS_IN_DAY) != 0) {
 			seconds -= (count * SECONDS_IN_DAY);
 
-			if(appended) {
+			if (appended) {
 				sbuf.append(", ");
 			} else {
 				appended = true;
@@ -204,10 +195,10 @@ public class TimeUtil {
 			sbuf.append(Grammar.plnoun(count, "day"));
 		}
 
-		if((count = seconds / SECONDS_IN_HOUR) != 0) {
+		if ((count = seconds / SECONDS_IN_HOUR) != 0) {
 			seconds -= (count * SECONDS_IN_HOUR);
 
-			if(appended) {
+			if (appended) {
 				sbuf.append(", ");
 			} else {
 				appended = true;
@@ -218,10 +209,10 @@ public class TimeUtil {
 			sbuf.append(Grammar.plnoun(count, "hour"));
 		}
 
-		if((count = seconds / SECONDS_IN_MINUTE) != 0) {
+		if ((count = seconds / SECONDS_IN_MINUTE) != 0) {
 			seconds -= (count * SECONDS_IN_MINUTE);
 
-			if(appended) {
+			if (appended) {
 				sbuf.append(", ");
 			} else {
 				appended = true;
@@ -232,8 +223,8 @@ public class TimeUtil {
 			sbuf.append(Grammar.plnoun(count, "minute"));
 		}
 
-		if(!appended || (forceSeconds && (seconds != 0))) {
-			if(appended) {
+		if (!appended || (forceSeconds && (seconds != 0))) {
+			if (appended) {
 				sbuf.append(", ");
 			}
 
@@ -246,21 +237,14 @@ public class TimeUtil {
 	//
 	//
 
-	public static void main(String [] args) throws Exception {
-		int	seconds;
+	public static void main(String[] args) throws Exception {
+		int seconds;
 
-
-		if(args.length == 0) {
-			args = new String[] {
-				"5",
-				"421",
-				"82789",
-				"6728282",
-				"83736372"
-			};
+		if (args.length == 0) {
+			args = new String[] { "5", "421", "82789", "6728282", "83736372" };
 		}
 
-		for(String arg : args) {
+		for (String arg : args) {
 			seconds = Integer.parseInt(arg);
 
 			System.out.println(seconds + ":");

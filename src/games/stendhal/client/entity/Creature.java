@@ -35,6 +35,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public abstract class Creature extends NPC {
+
 	@Override
 	protected void nonCreatureClientAddEventLine(String text) {
 		// no logging for Creature sounds in the client window
@@ -110,51 +111,35 @@ public abstract class Creature extends NPC {
 		// cyclic sound management
 		if (type.startsWith("creature")) {
 			if (name.equals("wolf")) {
-				SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50,
-						100);
-			} else if (name.equals("rat") || name.equals("caverat")
-					|| name.equals("venomrat")) {
-				SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30,
-						80);
+				SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50, 100);
+			} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
+				SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30, 80);
 			} else if (name.equals("razorrat")) {
-				SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10,
-						50, 75);
+				SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10, 50, 75);
 			} else if (name.equals("gargoyle")) {
-				SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10,
-						50, 100);
+				SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10, 50, 100);
 			} else if (name.equals("boar")) {
-				SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50,
-						100);
+				SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50, 100);
 			} else if (name.equals("bear")) {
-				SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80,
-						75);
+				SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80, 75);
 			} else if (name.equals("giantrat")) {
-				SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30,
-						60, 65);
+				SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30, 60, 65);
 			} else if (name.equals("cobra")) {
-				SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20,
-						60, 65);
+				SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20, 60, 65);
 			} else if (name.equals("kobold")) {
-				SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40,
-						70, 80);
+				SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40, 70, 80);
 			} else if (name.equals("goblin")) {
-				SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30,
-						85, 65);
+				SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30, 85, 65);
 			} else if (name.equals("troll")) {
-				SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20,
-						60, 100);
+				SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20, 60, 100);
 			} else if (name.equals("orc")) {
-				SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80,
-						50);
+				SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80, 50);
 			} else if (name.equals("ogre")) {
-				SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60,
-						80);
+				SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60, 80);
 			} else if (name.equals("skeleton")) {
-				SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30,
-						60, 80);
+				SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30, 60, 80);
 			} else if (name.equals("cyclops")) {
-				SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30,
-						75, 100);
+				SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30, 75, 100);
 			}
 		}
 	}
@@ -170,8 +155,8 @@ public abstract class Creature extends NPC {
 		for (Node node : path) {
 			Point2D p2 = screen.invtranslate(new Point.Double(node.x, node.y));
 
-			g2d.drawLine((int) p1.getX() + delta, (int) p1.getY() + delta,
-					(int) p2.getX() + delta, (int) p2.getY() + delta);
+			g2d.drawLine((int) p1.getX() + delta, (int) p1.getY() + delta, (int) p2.getX() + delta, (int) p2.getY()
+			        + delta);
 			p1 = p2;
 		}
 	}
@@ -186,27 +171,24 @@ public abstract class Creature extends NPC {
 			if (targetMoved && (targetMovedPath != null)) {
 				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);
-				drawPath(screen, targetMovedPath,
-						GameScreen.SIZE_UNIT_PIXELS / 2);
+				drawPath(screen, targetMovedPath, GameScreen.SIZE_UNIT_PIXELS / 2);
 			}
 
 			if (patrol && (patrolPath != null)) {
 				g2d.setColor(Color.green);
-				drawPath(screen, patrolPath,
-						GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
+				drawPath(screen, patrolPath, GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
 			}
 
 			if ((moveToTarget || moveToTargetNew) && (moveToTargetPath != null)) {
 				g2d.setColor(Color.blue);
-				drawPath(screen, moveToTargetPath,
-						GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
+				drawPath(screen, moveToTargetPath, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
 			}
 		}
 	}
 
 	public List<Node> getPath(String token) {
-		String[] values = token.replace(',', ' ').replace('(', ' ').replace(
-				')', ' ').replace('[', ' ').replace(']', ' ').split(" ");
+		String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ').replace('[', ' ').replace(']',
+		        ' ').split(" ");
 		List<Node> list = new ArrayList<Node>();
 
 		int x = 0;
@@ -228,8 +210,7 @@ public abstract class Creature extends NPC {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		// Check if debug is enabled
@@ -313,9 +294,8 @@ public abstract class Creature extends NPC {
 							}
 						}
 					} catch (Exception e) {
-						logger.warn("error parsing debug string '" + debug
-								+ "' actions [" + Arrays.asList(actions)
-								+ "] action '" + action + "'", e);
+						logger.warn("error parsing debug string '" + debug + "' actions [" + Arrays.asList(actions)
+						        + "] action '" + action + "'", e);
 					}
 				}
 			}
@@ -336,25 +316,26 @@ public abstract class Creature extends NPC {
 	public void onAction(ActionType at, String... params) {
 		// ActionType at = handleAction(action);
 		switch (at) {
-		case DEBUG_SHOW_PATH:
-			hidePath = false;
-			break;
-		case DEBUG_HIDE_PATH:
-			hidePath = true;
-			break;
-		case DEBUG_ENABLE_WATCH:
-			watch = true;
-			break;
-		case DEBUG_DISABLE_WATCH:
-			watch = false;
-			break;
-		default:
-			super.onAction(at, params);
-			break;
+			case DEBUG_SHOW_PATH:
+				hidePath = false;
+				break;
+			case DEBUG_HIDE_PATH:
+				hidePath = true;
+				break;
+			case DEBUG_ENABLE_WATCH:
+				watch = true;
+				break;
+			case DEBUG_DISABLE_WATCH:
+				watch = false;
+				break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 	}
 
 	private class Node {
+
 		int x, y;
 
 		public Node(int x, int y) {
@@ -390,13 +371,12 @@ public abstract class Creature extends NPC {
 				list.add(ActionType.DEBUG_SHOW_PATH.getRepresentation());
 			else
 				list.add(ActionType.DEBUG_HIDE_PATH.getRepresentation());
-			if (watch){
+			if (watch) {
 				list.add(ActionType.DEBUG_DISABLE_WATCH.getRepresentation());
-			}
-			else{
+			} else {
 				list.add(ActionType.DEBUG_ENABLE_WATCH.getRepresentation());
 			}
-			
+
 		}
 
 	}

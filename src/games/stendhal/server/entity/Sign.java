@@ -22,18 +22,16 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Sign extends Entity {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sign.class);
-	
+
 	/**
 	 * Classes of signs that players, NPCs etc. can walk over
 	 * and where you can put items on if they are not placed
 	 * on a collision tile.
-	 */ 
-	private static final List<String> NON_OBSTACLE_CLASSES = Arrays.asList(
-			"book_blue",
-			"book_red",
-			"transparent");
+	 */
+	private static final List<String> NON_OBSTACLE_CLASSES = Arrays.asList("book_blue", "book_red", "transparent");
 
 	public static void generateRPClass() {
 		try {
@@ -59,7 +57,7 @@ public class Sign extends Entity {
 	public void setText(String text) {
 		put("text", text);
 	}
-	
+
 	/**
 	 * States what type of sign this should be. This defines how
 	 * it will look like in the client.
@@ -68,7 +66,7 @@ public class Sign extends Entity {
 	public void setClass(String clazz) {
 		put("class", clazz);
 	}
-	
+
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return !(has("class") && NON_OBSTACLE_CLASSES.contains(get("class")));

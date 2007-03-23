@@ -37,7 +37,7 @@ public class EntityFabric {
 			if (object.has("class")) {
 				eclass = object.get("class");
 			}
-		
+
 			Class entityClass = EntityMap.getClass(type, eclass);
 
 			if (entityClass == null) {
@@ -45,12 +45,10 @@ public class EntityFabric {
 				entityClass = EntityMap.getClass(type, null);
 			}
 
-			java.lang.reflect.Constructor constr = entityClass
-					.getConstructor(RPObject.class);
+			java.lang.reflect.Constructor constr = entityClass.getConstructor(RPObject.class);
 			Entity en = (Entity) constr.newInstance(object);
 			if (en instanceof Inspectable) {
-				((Inspectable) en).setInspector(StendhalClient.get()
-						.getGameGUI());
+				((Inspectable) en).setInspector(StendhalClient.get().getGameGUI());
 			}
 			return en;
 		} catch (Exception e) {

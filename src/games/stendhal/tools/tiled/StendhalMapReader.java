@@ -21,111 +21,96 @@ import java.io.*;
 /**
  * experimental reader for *.stend files 
  */
-public class StendhalMapReader implements MapReader
-{
-  private PluginLogger pluginLogger;
+public class StendhalMapReader implements MapReader {
 
-  /**
-   * Method readMap
-   * 
-   * @param filename
-   * @throws Exception
-   * @return null
-   */
-  public Map readMap(String filename) throws Exception
-  {
-    return null;
-  }
+	private PluginLogger pluginLogger;
 
-  /**
-   * Method readTileset
-   * 
-   * @param filename
-   * @throws Exception
-   * @return null
-   */
-  public TileSet readTileset(String filename) throws Exception
-  {
-    return null;
-  }
+	/**
+	 * Method readMap
+	 * 
+	 * @param filename
+	 * @throws Exception
+	 * @return null
+	 */
+	public Map readMap(String filename) throws Exception {
+		return null;
+	}
 
-  /**
-   * Method readMap
-   * 
-   * @param in
-   * @throws Exception
-   * @return null
-   */
-  public Map readMap(InputStream in) throws Exception
-  {
-    return null;
-  }
+	/**
+	 * Method readTileset
+	 * 
+	 * @param filename
+	 * @throws Exception
+	 * @return null
+	 */
+	public TileSet readTileset(String filename) throws Exception {
+		return null;
+	}
 
-  /**
-   * Method readTileset
-   * 
-   * @param in
-   * @throws Exception
-   * @return null
-   */
-  public TileSet readTileset(InputStream in) throws Exception
-  {
-    return null;
-  }
+	/**
+	 * Method readMap
+	 * 
+	 * @param in
+	 * @throws Exception
+	 * @return null
+	 */
+	public Map readMap(InputStream in) throws Exception {
+		return null;
+	}
 
-  public boolean accept(File pathname)
-  {
-    try
-    {
-      String path = pathname.getCanonicalPath().toLowerCase();
-      if (path.endsWith(".stend"))
-      {
-        return true;
-      }
-    } catch (IOException e)
-    {
-    	pluginLogger.error(e);
-    }
-    return false;
-  }
+	/**
+	 * Method readTileset
+	 * 
+	 * @param in
+	 * @throws Exception
+	 * @return null
+	 */
+	public TileSet readTileset(InputStream in) throws Exception {
+		return null;
+	}
 
-  public String getFilter() throws Exception
-  {
-    return "*.stend";
-  }
+	public boolean accept(File pathname) {
+		try {
+			String path = pathname.getCanonicalPath().toLowerCase();
+			if (path.endsWith(".stend")) {
+				return true;
+			}
+		} catch (IOException e) {
+			pluginLogger.error(e);
+		}
+		return false;
+	}
 
-  public FileFilter[] getFilters()
-  {
-    return null;
-  }
+	public String getFilter() throws Exception {
+		return "*.stend";
+	}
 
-  public String getName()
-  {
-    return "Stendhal reader";
-  }
+	public FileFilter[] getFilters() {
+		return null;
+	}
 
-  public String getDescription()
-  {
-    return "+---------------------------------------------+\n"
-         + "|      An experimental reader for Stendhal    |\n"
-         + "|                                             |\n"
-         + "|      (c) Miguel Angel Blanch Lardin 2005    |\n"
-         + "|                                             |\n"
-         + "+---------------------------------------------+";
-  }
+	public String getName() {
+		return "Stendhal reader";
+	}
 
-  public String getPluginPackage()
-  {
-    return "Stendhal Reader/Writer Plugin";
-  }
+	public String getDescription() {
+		return "+---------------------------------------------+\n"
+		        + "|      An experimental reader for Stendhal    |\n"
+		        + "|                                             |\n"
+		        + "|      (c) Miguel Angel Blanch Lardin 2005    |\n"
+		        + "|                                             |\n"
+		        + "+---------------------------------------------+";
+	}
 
-  public void setErrorStack(Stack es)
-  {
-	  // not implemented
-  }
+	public String getPluginPackage() {
+		return "Stendhal Reader/Writer Plugin";
+	}
 
-  public void setLogger(PluginLogger pluginLogger)
-  {
-	this.pluginLogger = pluginLogger;
-  }
+	public void setErrorStack(Stack es) {
+		// not implemented
+	}
+
+	public void setLogger(PluginLogger pluginLogger) {
+		this.pluginLogger = pluginLogger;
+	}
 }

@@ -19,22 +19,21 @@ public enum Direction {
 
 	public static Direction build(int val) {
 		switch (val) {
-		case 1:
-			return UP;
-			
-		case 2:
-			return RIGHT;
-			
-		case 3:
-			return DOWN;
-			
-		case 4:
-			return LEFT;
-			
+			case 1:
+				return UP;
 
-		default:
-			return STOP;
-			
+			case 2:
+				return RIGHT;
+
+			case 3:
+				return DOWN;
+
+			case 4:
+				return LEFT;
+
+			default:
+				return STOP;
+
 		}
 	}
 
@@ -72,16 +71,16 @@ public enum Direction {
 
 	public Direction oppositeDirection() {
 		switch (this) {
-		case UP:
-			return DOWN;
-		case RIGHT:
-			return LEFT;
-		case DOWN:
-			return UP;
-		case LEFT:
-			return RIGHT;
-		default:
-			return STOP;
+			case UP:
+				return DOWN;
+			case RIGHT:
+				return LEFT;
+			case DOWN:
+				return UP;
+			case LEFT:
+				return RIGHT;
+			default:
+				return STOP;
 		}
 	}
 }

@@ -8,16 +8,16 @@ public class TestClasspathEntry extends TestCase {
 		String test = "stendhal-0.54.jar";
 		ClasspathEntry ce = new ClasspathEntry(test);
 		assertEquals(test + " filename", "stendhal-0.54.jar", ce.getFilename());
-		assertEquals(test + " type",     "stendhal", ce.getType());
-		assertEquals(test + " version",  "0.54", ce.getVersion());
+		assertEquals(test + " type", "stendhal", ce.getType());
+		assertEquals(test + " version", "0.54", ce.getVersion());
 	}
 
 	public void testParsingJarInFolder() {
 		String test = "/tmp/stendhal-0.54.jar";
 		ClasspathEntry ce = new ClasspathEntry(test);
 		assertEquals(test + " filename", "/tmp/stendhal-0.54.jar", ce.getFilename());
-		assertEquals(test + " type",     "stendhal", ce.getType());
-		assertEquals(test + " version",  "0.54", ce.getVersion());
+		assertEquals(test + " type", "stendhal", ce.getType());
+		assertEquals(test + " version", "0.54", ce.getVersion());
 	}
 
 	public void testCompare() {

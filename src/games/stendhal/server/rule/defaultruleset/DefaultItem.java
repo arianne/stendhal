@@ -30,6 +30,7 @@ import org.apache.log4j.Logger;
  * @author Matthias Totz
  */
 public class DefaultItem {
+
 	private static final Logger logger = Log4J.getLogger(DefaultItem.class);
 
 	/** items class */
@@ -95,7 +96,6 @@ public class DefaultItem {
 		creator = buildCreator(implementation);
 	}
 
-
 	/**
 	 * Build a creator for the class. It uses the following constructor
 	 * search order:<br>
@@ -113,17 +113,16 @@ public class DefaultItem {
 	protected Creator buildCreator(Class implementation) {
 		Constructor construct;
 
-
 		/*
 		 * <Class>(name, clazz, subclazz, attributes)
 		 */
 		try {
-			construct = implementation.getConstructor(new Class[] { String.class, String.class, String.class, Map.class });
+			construct = implementation
+			        .getConstructor(new Class[] { String.class, String.class, String.class, Map.class });
 
 			return new FullCreator(construct);
 		} catch (NoSuchMethodException ex) {
 		}
-
 
 		/*
 		 * <Class>(attributes)
@@ -135,7 +134,6 @@ public class DefaultItem {
 		} catch (NoSuchMethodException ex) {
 		}
 
-
 		/*
 		 * <Class>()
 		 */
@@ -146,10 +144,8 @@ public class DefaultItem {
 		} catch (NoSuchMethodException ex) {
 		}
 
-
 		return null;
 	}
-
 
 	/**
 	 * Returns an item-instance.
@@ -196,16 +192,15 @@ public class DefaultItem {
 	 * Base item creator (using a constructor)
 	 */
 	protected abstract class Creator {
-		protected Constructor construct;
 
+		protected Constructor construct;
 
 		public Creator(Constructor construct) {
 			this.construct = construct;
 		}
 
-
-		protected abstract Object create() throws IllegalAccessException, InstantiationException, InvocationTargetException;
-
+		protected abstract Object create() throws IllegalAccessException, InstantiationException,
+		        InvocationTargetException;
 
 		public Item createItem() {
 			try {
@@ -227,15 +222,14 @@ public class DefaultItem {
 		}
 	}
 
-
 	/**
 	 * Create an item class via the <em>attributes</em> constructor.
 	 */
 	protected class AttributesCreator extends Creator {
+
 		public AttributesCreator(Constructor construct) {
 			super(construct);
 		}
-
 
 		@Override
 		protected Object create() throws IllegalAccessException, InstantiationException, InvocationTargetException {
@@ -243,11 +237,11 @@ public class DefaultItem {
 		}
 	}
 
-
 	/**
 	 * Create an item class via the default constructor.
 	 */
 	protected class DefaultCreator extends Creator {
+
 		public DefaultCreator(Constructor construct) {
 			super(construct);
 		}
@@ -259,12 +253,12 @@ public class DefaultItem {
 		}
 	}
 
-
 	/**
 	 * Create an item class via the full arguments (<em>name, clazz,
 	 * subclazz, attributes</em>) constructor.
 	 */
 	protected class FullCreator extends Creator {
+
 		public FullCreator(Constructor construct) {
 			super(construct);
 		}

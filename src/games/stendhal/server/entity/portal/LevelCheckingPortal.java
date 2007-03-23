@@ -21,7 +21,9 @@ import games.stendhal.server.entity.player.Player;
  * @author hendrik
  */
 public class LevelCheckingPortal extends Portal {
+
 	private int minLevel = 0;
+
 	private int maxLevel = 99;
 
 	/**

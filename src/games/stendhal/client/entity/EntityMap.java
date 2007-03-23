@@ -32,7 +32,7 @@ public final class EntityMap {
 		try {
 			register();
 		} catch (ClassNotFoundException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -61,7 +61,7 @@ public final class EntityMap {
 
 		register("walk_blocker", null, "InvisibleEntity");
 		register("damaging_area", null, "InvisibleEntity");
-		
+
 		register("food", null, "SheepFood");
 		register("chest", null, "Chest");
 
@@ -72,7 +72,7 @@ public final class EntityMap {
 		register("blackboard", null, "Sign");
 
 		register("item", null, "Item");
-		register("item","box","Box");
+		register("item", "box", "Box");
 		register("item", "drink", "StackableItem");
 		register("item", "food", "StackableItem");
 		register("item", "herb", "StackableItem");
@@ -86,7 +86,7 @@ public final class EntityMap {
 		register("door", null, "Door");
 	}
 
-/**
+	/**
 	 * @param type
 	 *            the type of the entity to be created, such as Item, creature
 	 * @param eclass
@@ -96,10 +96,9 @@ public final class EntityMap {
 	 *            the java class of the Entity
 	 */
 	private static void register(String type, String eclass, String entityClass) throws ClassNotFoundException {
-		entityClass="games.stendhal.client.entity."+ entityClass;
+		entityClass = "games.stendhal.client.entity." + entityClass;
 		entityMap.put(new Pair<String, String>(type, eclass), Class.forName(entityClass));
 	}
-			
 
 	/**
 	 * @param type
@@ -113,7 +112,5 @@ public final class EntityMap {
 	public static Class getClass(String type, String eclass) {
 		return entityMap.get(new Pair<String, String>(type, eclass));
 	}
-	
-	
 
 }

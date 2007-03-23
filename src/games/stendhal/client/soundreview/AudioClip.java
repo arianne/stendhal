@@ -72,14 +72,12 @@ public class AudioClip {
 		this.name = name;
 
 		try {
-			AudioInputStream audioInputStream = AudioSystem
-			        .getAudioInputStream(new ByteArrayInputStream(audioData));
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
 			this.audioData = audioData;
 			format = audioInputStream.getFormat();
 
 			if (!mixer.isLineSupported(new DataLine.Info(Clip.class, audioInputStream.getFormat()))) {
-				logger.error(name + " format is not supported(" + audioInputStream.getFormat()
-				        + ")");
+				logger.error(name + " format is not supported(" + audioInputStream.getFormat() + ")");
 				supported = false;
 				return;
 			}
@@ -120,11 +118,9 @@ public class AudioClip {
 	 * @throws UnsupportedAudioFileException
 	 * @throws LineUnavailableException
 	 */
-	public Clip openLine() throws UnsupportedAudioFileException, IOException,
-	        LineUnavailableException {
+	public Clip openLine() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		if (supported) {
-			AudioInputStream audioInputStream = AudioSystem
-			        .getAudioInputStream(new ByteArrayInputStream(audioData));
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
 
 			DataLine.Info info = new DataLine.Info(Clip.class, audioInputStream.getFormat());
 			if (!mixer.isLineSupported(info)) {
@@ -146,10 +142,9 @@ public class AudioClip {
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getName()
-		        + ": "
-		        + (!supported ? "(format not supported by " + mixer.getMixerInfo().getDescription()
-		                + ") " : "") + format;
+		return this.getClass().getName() + ": "
+		        + (!supported ? "(format not supported by " + mixer.getMixerInfo().getDescription() + ") " : "")
+		        + format;
 	}
 
 }

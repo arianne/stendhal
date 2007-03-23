@@ -24,6 +24,7 @@ import java.util.List;
  * @author Matthias Totz
  */
 public final class QueuedPath {
+
 	private PathListener listener;
 
 	private Entity entity;
@@ -34,14 +35,12 @@ public final class QueuedPath {
 
 	private Rectangle2D destination;
 
-
 	private List<Path.Node> path;
 
 	private boolean canceled;
 
 	/** Creates a new instance of QueuedPath */
-	public QueuedPath(PathListener listener, Entity entity, int x, int y,
-			Rectangle2D destination) {
+	public QueuedPath(PathListener listener, Entity entity, int x, int y, Rectangle2D destination) {
 		this.listener = listener;
 		this.entity = entity;
 		this.x = x;

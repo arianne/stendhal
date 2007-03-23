@@ -90,8 +90,7 @@ public class SoundFileReader {
 	 * @param bufferSize
 	 * @throws java.io.IOException
 	 */
-	static void transferData(InputStream input, OutputStream output, int bufferSize)
-	        throws java.io.IOException {
+	static void transferData(InputStream input, OutputStream output, int bufferSize) throws java.io.IOException {
 		byte[] buffer = new byte[bufferSize];
 		int len;
 

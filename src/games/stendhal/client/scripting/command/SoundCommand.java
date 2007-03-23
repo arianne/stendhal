@@ -8,6 +8,7 @@ import games.stendhal.client.sound.SoundSystem;
  * Set sound characteristics.
  */
 class SoundCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -16,23 +17,21 @@ class SoundCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		String command = params[0];
 
-
-		if(command.equals("mute")) {
+		if (command.equals("mute")) {
 			String param = params[1];
 
-			WtWindowManager.getInstance().setProperty(
-				"sound.mute", param);
+			WtWindowManager.getInstance().setProperty("sound.mute", param);
 
 			SoundSystem.get().setMute(param.equals("on"));
-		} else if(command.equals("volume")) {
+		} else if (command.equals("volume")) {
 			int vol;
 
 			try {
 				vol = Integer.parseInt(params[1]);
-			} catch(NumberFormatException ex) {
+			} catch (NumberFormatException ex) {
 				vol = -1;
 			}
 
@@ -47,7 +46,6 @@ class SoundCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -56,7 +54,6 @@ class SoundCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 2;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

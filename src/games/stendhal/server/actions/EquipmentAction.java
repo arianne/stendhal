@@ -35,6 +35,7 @@ import marauroa.common.game.RPSlot;
 import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
+
 /**
  * This listener handles all entity movements from a slot to
  * either another slot or the ground.
@@ -59,6 +60,7 @@ import org.apache.log4j.Logger;
  *    y            - the y-coordinate on the ground  
  */
 public class EquipmentAction extends ActionListener {
+
 	static final Logger logger = Log4J.getLogger(EquipmentAction.class);
 
 	private static final String BASE_ITEM = "baseitem";
@@ -82,8 +84,7 @@ public class EquipmentAction extends ActionListener {
 	private double MAXDISTANCE = 0.25;
 
 	/** the list of valid container classes */
-	private static final Class[] validContainerClasses = new Class[] {
-			Player.class, Chest.class, Corpse.class };
+	private static final Class[] validContainerClasses = new Class[] { Player.class, Chest.class, Corpse.class };
 
 	private static final int MAX_CONTAINED_DEPTH = 25;
 
@@ -125,7 +126,7 @@ public class EquipmentAction extends ActionListener {
 		// get source and check it
 		SourceObject source = new SourceObject(action, player);
 		if (!source.isValid() || !source.checkDistance(player, MAXDISTANCE)
-				|| !source.checkClass(validContainerClassesList)) {
+		        || !source.checkClass(validContainerClassesList)) {
 			// source is not valid
 			logger.debug("Source is not valid");
 			return;
@@ -140,14 +141,14 @@ public class EquipmentAction extends ActionListener {
 			} else if (entity instanceof Item) {
 				temp = "item";
 			}
-			player.sendPrivateText("This " + temp + " is a special reward for " + entity.get("bound") + ". You do not deserve to use it.");
+			player.sendPrivateText("This " + temp + " is a special reward for " + entity.get("bound")
+			        + ". You do not deserve to use it.");
 			return;
 		}
-		
+
 		// get destination and check it
 		DestinationObject dest = new DestinationObject(action, player);
-		if (!dest.isValid() || !dest.checkDistance(player, MAXDISTANCE)
-				|| !dest.checkClass(validContainerClassesList)) {
+		if (!dest.isValid() || !dest.checkDistance(player, MAXDISTANCE) || !dest.checkClass(validContainerClassesList)) {
 			// destination is not valid
 			logger.debug("Destination is not valid");
 			return;
@@ -155,7 +156,7 @@ public class EquipmentAction extends ActionListener {
 
 		// looks good
 		source.moveTo(dest, player);
-		
+
 		player.updateItemAtkDef();
 
 		Log4J.finishMethod(logger, "equip");
@@ -173,15 +174,14 @@ public class EquipmentAction extends ActionListener {
 			// get source and check it
 			SourceObject source = new SourceObject(action, player);
 			if (!source.isValid() || !source.checkDistance(player, MAXDISTANCE)
-					|| !source.checkClass(validContainerClassesList)) {
+			        || !source.checkClass(validContainerClassesList)) {
 				// source is not valid
 				return;
 			}
 
 			// get destination and check it
 			DestinationObject dest = new DestinationObject(action, player);
-			if (!dest.isValid() || !dest.checkDistance(player, 5.0)
-					|| !dest.checkClass(validContainerClassesList)) {
+			if (!dest.isValid() || !dest.checkDistance(player, 5.0) || !dest.checkClass(validContainerClassesList)) {
 				logger.warn("destination is invalid. action is: " + action);
 				// destination is not valid
 				return;
@@ -195,10 +195,9 @@ public class EquipmentAction extends ActionListener {
 		}
 		// Old Code Starts Here
 
-		if (action.has("baseobject") && action.has("baseslot")
-				&& action.has("x") && action.has("y") && action.has("baseitem")) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-					.getID());
+		if (action.has("baseobject") && action.has("baseslot") && action.has("x") && action.has("y")
+		        && action.has("baseitem")) {
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 
 			int baseObject = action.getInt("baseobject");
 
@@ -254,16 +253,14 @@ public class EquipmentAction extends ActionListener {
 					int entityQuantity = ((Stackable) entity).getQuantity();
 
 					quantity = action.getInt(QUANTITY);
-					if ((entityQuantity < 1) || (quantity < 1)
-							|| (quantity >= entityQuantity)) {
+					if ((entityQuantity < 1) || (quantity < 1) || (quantity >= entityQuantity)) {
 						quantity = 0; // quantity == 0 performs a regular move
-										// of the entire item
+						// of the entire item
 					}
 				}
 
-				if (player.nextTo(baseEntity, 0.25)
-						&& (baseEntity.squaredDistance(x, y) < 8 * 8)
-						&& !zone.simpleCollides(entity, x, y)) {
+				if (player.nextTo(baseEntity, 0.25) && (baseEntity.squaredDistance(x, y) < 8 * 8)
+				        && !zone.simpleCollides(entity, x, y)) {
 					if (quantity != 0) {
 						StackableItem newItem = ((StackableItem) entity).splitOff(quantity);
 
@@ -298,6 +295,7 @@ public class EquipmentAction extends ActionListener {
 	 * this encapsulates the equip/drop source
 	 */
 	private class SourceObject {
+
 		/** the item */
 		private Entity base;
 
@@ -311,14 +309,12 @@ public class EquipmentAction extends ActionListener {
 		public SourceObject(RPAction action, Player player) {
 			// base item must be there
 			if (!action.has(BASE_ITEM)) {
-				logger.warn("action does not have a base item. action: "
-						+ action);
+				logger.warn("action does not have a base item. action: " + action);
 				return;
 			}
 
 			// get base item
-			RPObject.ID baseItemId = new RPObject.ID(action.getInt(BASE_ITEM),
-					player.getID().getZoneID());
+			RPObject.ID baseItemId = new RPObject.ID(action.getInt(BASE_ITEM), player.getID().getZoneID());
 			// is the item in a container?
 			if (action.has(BASE_OBJECT)) {
 				// yes, contained
@@ -326,8 +322,7 @@ public class EquipmentAction extends ActionListener {
 				// remove zone from id (contained items does not have a zone)
 				baseItemId = new RPObject.ID(baseItemId.getObjectID(), "");
 
-				parent = getEntityFromId(player, action
-						.getInt(BASE_OBJECT));
+				parent = getEntityFromId(player, action.getInt(BASE_OBJECT));
 
 				if (parent == null) {
 					// Object doesn't exist.
@@ -335,8 +330,7 @@ public class EquipmentAction extends ActionListener {
 				}
 
 				// is the container a player and not the current one?
-				if ((parent instanceof Player)
-						&& !parent.getID().equals(player.getID())) {
+				if ((parent instanceof Player) && !parent.getID().equals(player.getID())) {
 					// trying to remove an item from another player
 					return;
 				}
@@ -346,9 +340,8 @@ public class EquipmentAction extends ActionListener {
 				RPSlot baseSlot = parent.getSlot(slot);
 
 				if (!baseSlot.has(baseItemId)) {
-					logger.warn("Base item(" + parent
-							+ ") doesn't containt item(" + baseItemId
-							+ ") on given slot(" + slot + ")");
+					logger.warn("Base item(" + parent + ") doesn't containt item(" + baseItemId + ") on given slot("
+					        + slot + ")");
 					return;
 				}
 
@@ -365,16 +358,15 @@ public class EquipmentAction extends ActionListener {
 		public boolean moveTo(DestinationObject dest, Player player) {
 			StendhalRPWorld world = StendhalRPWorld.get();
 
-            if ( (!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
-            	// give some feedback
-    			player.sendPrivateText("You can't carry this " + base.getName() + " on your " + dest.slot);
-                logger.warn("tried to equip an entity into disallowed slot: " + base.getClass() + "; equip rejected");
-                return false;
-            }
-            
+			if ((!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
+				// give some feedback
+				player.sendPrivateText("You can't carry this " + base.getName() + " on your " + dest.slot);
+				logger.warn("tried to equip an entity into disallowed slot: " + base.getClass() + "; equip rejected");
+				return false;
+			}
+
 			if (!dest.isValid() || !dest.preCheck(base, world)) {
-				logger.warn("moveto not possible: " + dest.isValid() + "\t"
-						+ dest.preCheck(base, world));
+				logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(base, world));
 				return false;
 			}
 
@@ -429,8 +421,7 @@ public class EquipmentAction extends ActionListener {
 		public boolean checkClass(List<Class> validClasses) {
 			if (parent != null) {
 				if (!isCorrectClass(validClasses, parent)) {
-					logger.debug("parent is the wrong class "
-							+ parent.getClass().getName());
+					logger.debug("parent is the wrong class " + parent.getClass().getName());
 					return false;
 				}
 			}
@@ -451,6 +442,7 @@ public class EquipmentAction extends ActionListener {
 	 * this encapsulates the equip/drop destination
 	 */
 	private class DestinationObject {
+
 		/** true when this object is valid */
 		private boolean valid;
 
@@ -476,8 +468,7 @@ public class EquipmentAction extends ActionListener {
 
 				// check slot
 				if (parent == null) {
-					logger.warn("cannot find target entity for action "
-							+ action);
+					logger.warn("cannot find target entity for action " + action);
 					// Not valid...
 					return;
 				}
@@ -485,10 +476,8 @@ public class EquipmentAction extends ActionListener {
 				slot = action.get(TARGET_SLOT);
 
 				// is the container a player and not the current one?
-				if ((parent instanceof Player)
-						&& !parent.getID().equals(player.getID())) {
-					logger
-							.warn("trying to drop an item into another players inventory");
+				if ((parent instanceof Player) && !parent.getID().equals(player.getID())) {
+					logger.warn("trying to drop an item into another players inventory");
 					// trying to drop an item into another players inventory
 					return;
 				}
@@ -515,8 +504,7 @@ public class EquipmentAction extends ActionListener {
 
 		/** checks if it is possible to add the entity to the world */
 		public boolean preCheck(Entity entity, RPWorld world) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity
-					.getID());
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity.getID());
 
 			if (parent != null) {
 				RPSlot rpslot = parent.getSlot(slot);
@@ -573,8 +561,7 @@ public class EquipmentAction extends ActionListener {
 				// through
 				// various levels of indirection)
 				if (rpslot.hasAsParent(entity.getID())) {
-					logger.warn("tried to put item " + entity.getID()
-							+ " into itself, equip rejected");
+					logger.warn("tried to put item " + entity.getID() + " into itself, equip rejected");
 					return false;
 				}
 
@@ -588,24 +575,20 @@ public class EquipmentAction extends ActionListener {
 
 				// check the maximum level of contained elements
 				if ((entity.slots().size() > 0) && (depth > MAX_CONTAINED_DEPTH)) {
-					logger.warn("maximum contained depth (is: " + depth
-							+ " max: " + MAX_CONTAINED_DEPTH
-							+ ") reached, equip rejected");
+					logger.warn("maximum contained depth (is: " + depth + " max: " + MAX_CONTAINED_DEPTH
+					        + ") reached, equip rejected");
 					return false;
 				}
 			} else {
 				logger.warn("entity: " + entity + " zone: " + zone);
 				// check if the destination is free
 				if ((zone != null) && zone.simpleCollides(entity, x, y)) {
-					logger.warn("object " + entity + " collides with " + x
-							+ "x" + y);
+					logger.warn("object " + entity + " collides with " + x + "x" + y);
 					return false;
 				}
 				// and in reach
-				if (entity.has("x") && entity.has("y")
-						&& (entity.squaredDistance(x, y) > 8 * 8)) {
-					logger.warn("object " + entity + " is too far away from "
-							+ x + "x" + y);
+				if (entity.has("x") && entity.has("y") && (entity.squaredDistance(x, y) > 8 * 8)) {
+					logger.warn("object " + entity + " is too far away from " + x + "x" + y);
 					return false;
 				}
 
@@ -664,7 +647,7 @@ public class EquipmentAction extends ActionListener {
 								// other is the same type...merge them
 								other.add(stackEntity);
 								entity = null; // do not process the entity
-												// further
+								// further
 								break;
 							}
 						}
@@ -682,8 +665,7 @@ public class EquipmentAction extends ActionListener {
 			} else {
 				// drop the entity to the ground. Do this always in the players
 				// zone
-				StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
-						.getID());
+				StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
 				logger.warn("adding " + entity.get("name") + " to " + zone);
 
 				// HACK: Avoid a problem on database

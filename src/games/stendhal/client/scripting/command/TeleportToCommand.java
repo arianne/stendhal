@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Teleport player to another player's location.
  */
 class TeleportToCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class TeleportToCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction teleport = new RPAction();
 
 		teleport.put("type", "teleportto");
@@ -26,7 +27,6 @@ class TeleportToCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -35,7 +35,6 @@ class TeleportToCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 1;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

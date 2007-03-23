@@ -22,6 +22,7 @@ import java.util.Map;
  * @author hendrik
  */
 public class Token extends Item {
+
 	private TokenMoveListener tokenMoveListener = null;
 
 	/**

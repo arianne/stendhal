@@ -14,12 +14,12 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 public class ScriptInGroovy extends ScriptingSandbox {
+
 	private String groovyScript;
 
 	private Binding groovyBinding;
 
-	private static final Logger logger = Log4J
-			.getLogger(ScriptInGroovy.class);
+	private static final Logger logger = Log4J.getLogger(ScriptInGroovy.class);
 
 	public ScriptInGroovy(String filename) {
 		super(filename);
@@ -34,9 +34,9 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		groovyBinding.setVariable("rules", StendhalRPRuleProcessor.get());
 		groovyBinding.setVariable("world", StendhalRPWorld.get());
 	}
-	
+
 	// ------------------------------------------------------------------------
-	
+
 	@Override
 	public boolean load(Player player, String[] args) {
 		groovyBinding.setVariable("player", player);

@@ -1,5 +1,5 @@
 /* $Id$
-/***************************************************************************
+ /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
@@ -32,10 +32,10 @@ import org.apache.log4j.Logger;
  * Represents a creature summon scroll.
  */
 public class SummonScroll extends InfoStringScroll {
-	private static final int MAX_ZONE_NPCS= 10;
 
-	private static final Logger logger =
-				Logger.getLogger(SummonScroll.class);
+	private static final int MAX_ZONE_NPCS = 10;
+
+	private static final Logger logger = Logger.getLogger(SummonScroll.class);
 
 	/**
 	 * Creates a new summon scroll
@@ -45,11 +45,9 @@ public class SummonScroll extends InfoStringScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public SummonScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public SummonScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
 
 	/**
 	 * Is invoked when a summon scroll is used.
@@ -63,8 +61,8 @@ public class SummonScroll extends InfoStringScroll {
 			player.sendPrivateText("The aura of protection in this area prevents the scroll from working!");
 			return false;
 		}
-		
-		if(zone.getNPCList().size() >= MAX_ZONE_NPCS) {
+
+		if (zone.getNPCList().size() >= MAX_ZONE_NPCS) {
 			player.sendPrivateText("Mysteriously, the scroll does not function! Perhaps this area is too crowded...");
 			logger.error("too many npcs");
 			return false;
@@ -73,17 +71,16 @@ public class SummonScroll extends InfoStringScroll {
 		int x = player.getInt("x");
 		int y = player.getInt("y");
 
-		EntityManager manager = StendhalRPWorld.get()
-				.getRuleManager().getEntityManager();
+		EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 		Creature pickedCreature = null;
 		if (has("infostring")) {
 
 			// scroll for special monster
 			String type = get("infostring");
-			pickedCreature = manager.getCreature(type);			
+			pickedCreature = manager.getCreature(type);
 		} else {
-			
+
 			// pick it randomly
 			Collection<Creature> creatures = manager.getCreatures();
 			int magiclevel = 4;
@@ -96,9 +93,10 @@ public class SummonScroll extends InfoStringScroll {
 			int pickedIdx = (int) (Math.random() * possibleCreatures.size());
 			pickedCreature = possibleCreatures.get(pickedIdx);
 		}
-		
+
 		if (pickedCreature == null) {
-			player.sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
+			player
+			        .sendPrivateText("This scroll does not seem to work. You should talk to the magician who created it.");
 			return false;
 		}
 

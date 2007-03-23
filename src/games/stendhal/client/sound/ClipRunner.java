@@ -35,6 +35,7 @@ import org.apache.log4j.Logger;
  * @author Jane Hunt
  */
 class ClipRunner implements LineListener {
+
 	/** the logger */
 	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
 
@@ -161,7 +162,6 @@ class ClipRunner implements LineListener {
 		// no samples...
 		return null;
 	}
-
 
 	/* (non-Javadoc)
 	 * @see javax.sound.sampled.LineListener#update(javax.sound.sampled.LineEvent)

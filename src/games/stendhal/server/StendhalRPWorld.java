@@ -46,18 +46,18 @@ import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
+
 	/**
 	 * A common place for milliseconds per turn.
 	 */
-	public static final int	MILLISECONDS_PER_TURN		= 300;
-
+	public static final int MILLISECONDS_PER_TURN = 300;
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
 
 	/** The Singleton instance */
 	private static StendhalRPWorld instance;
-	
+
 	/** The pathfinder thread. */
 	private PathfinderThread pathfinderThread;
 
@@ -69,7 +69,7 @@ public class StendhalRPWorld extends RPWorld {
 
 		Log4J.startMethod(logger, "StendhalRPWorld");
 		createRPClasses();
-		
+
 		// init language support
 		String language = "en";
 		try {
@@ -90,7 +90,7 @@ public class StendhalRPWorld extends RPWorld {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * This method is a workaround for a groovy bug:
 	 * http://jira.codehaus.org/browse/GROOVY-1484
@@ -106,7 +106,6 @@ public class StendhalRPWorld extends RPWorld {
 		return get();
 	}
 
-
 	/**
 	 * Gives the number of turns that will take place during a given number
 	 * of seconds.
@@ -119,7 +118,6 @@ public class StendhalRPWorld extends RPWorld {
 		return seconds * 1000 / MILLISECONDS_PER_TURN;
 	}
 
-	
 	/**
 	 * Returns the pathfinder. The return value is undefined until onInit() is
 	 * called.
@@ -189,12 +187,9 @@ public class StendhalRPWorld extends RPWorld {
 		pathfinderThread = new PathfinderThread(this);
 		pathfinderThread.start();
 
-		ZoneGroupsXMLLoader loader =
-			new ZoneGroupsXMLLoader(
-				new URI("/data/conf/zones.xml"));
+		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml"));
 
 		loader.load(this);
-
 
 		/**
 		 * After all the zones has been loaded, check how many portals are
@@ -207,43 +202,41 @@ public class StendhalRPWorld extends RPWorld {
 		}
 	}
 
-
 	protected void validatePortal(Portal portal) {
 		if (!portal.loaded()) {
 			logger.warn(portal + " has no destination");
 			return;
 		}
 
-		if(portal instanceof OneWayPortalDestination) {
+		if (portal instanceof OneWayPortalDestination) {
 			return;
 		}
 
 		String id = portal.getDestinationZone();
 
-		if(id == null) {
+		if (id == null) {
 			logger.warn(portal + " has no destination zone");
 			return;
 		}
 
 		StendhalRPZone zone = (StendhalRPZone) getRPZone(id);
 
-		if(zone == null) {
+		if (zone == null) {
 			logger.warn(portal + " has an invalid destination zone: " + id);
 			return;
 		}
 
 		Object ref = portal.getDestinationReference();
 
-		if(ref == null) {
+		if (ref == null) {
 			logger.warn(portal + " has no destination reference");
 			return;
 		}
 
-		if(zone.getPortal(ref) == null) {
+		if (zone.getPortal(ref) == null) {
 			logger.warn(portal + " has an invalid destination reference: " + id + "[" + ref + "]");
 		}
 	}
-
 
 	public IRPZone getRPZone(String zone) {
 		return getRPZone(new IRPZone.ID(zone));
@@ -255,13 +248,11 @@ public class StendhalRPWorld extends RPWorld {
 	 * Pathfinding code still uses this, but should use it's own XML
 	 * file for testing.
 	 */
-	public StendhalRPZone addArea(String name) throws org.xml.sax.SAXException,
-			java.io.IOException {
+	public StendhalRPZone addArea(String name) throws org.xml.sax.SAXException, java.io.IOException {
 		return addArea(name, name.replace("-", "sub_"));
 	}
 
-	public StendhalRPZone addArea(String name, String content)
-			throws org.xml.sax.SAXException, java.io.IOException {
+	public StendhalRPZone addArea(String name, String content) throws org.xml.sax.SAXException, java.io.IOException {
 		logger.info("Loading area: " + name);
 		StendhalRPZone area = new StendhalRPZone(name);
 
@@ -281,17 +272,17 @@ public class StendhalRPWorld extends RPWorld {
 		area.addCollisionLayer(name + "_collision", xmlzone.getLayer("collision"));
 		area.addProtectionLayer(name + "_protection", xmlzone.getLayer("protection"));
 
-/*
-		try {
-			String filename = "/home/brummermann/workspace/HEAD/stendhal/tiled/world/" + content + ".png";
-			InputStream is = new FileInputStream(filename);
-			byte[] mapData = new byte[(int) new File(filename).length()];
-			is.read(mapData);
-			area.addMap(name + "_map", mapData);
-		} catch (Exception e) {
-			logger.error(e, e);
-		}
-*/
+		/*
+		 try {
+		 String filename = "/home/brummermann/workspace/HEAD/stendhal/tiled/world/" + content + ".png";
+		 InputStream is = new FileInputStream(filename);
+		 byte[] mapData = new byte[(int) new File(filename).length()];
+		 is.read(mapData);
+		 area.addMap(name + "_map", mapData);
+		 } catch (Exception e) {
+		 logger.error(e, e);
+		 }
+		 */
 
 		if (xmlzone.isInterior()) {
 			area.setPosition();
@@ -309,15 +300,13 @@ public class StendhalRPWorld extends RPWorld {
 	 * Creates a new house and add it to the zone. num is the unique idenfier
 	 * for portals x and y are the position of the door of the house.
 	 */
-	public void createHouse(StendhalRPZone zone, int x, int y)
-			throws org.xml.sax.SAXException, java.io.IOException {
+	public void createHouse(StendhalRPZone zone, int x, int y) throws org.xml.sax.SAXException, java.io.IOException {
 		Portal door = new Portal();
 		door.setX(x);
 		door.setY(y);
 		Object dest = zone.assignPortalID(door);
 
-		String name = "int_" + zone.getID().getID() + "_house_"
-				+ dest;
+		String name = "int_" + zone.getID().getID() + "_house_" + dest;
 
 		door.setDestination(name, new Integer(0));
 		zone.assignRPObjectID(door);

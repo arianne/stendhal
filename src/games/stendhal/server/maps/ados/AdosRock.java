@@ -15,21 +15,19 @@ public class AdosRock implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();;
 
-
 	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildRockArea(zone);
 	}
 
-
 	private void buildRockArea(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Balduin") {
+
 			@Override
 			protected void createPath() {
 				// NPC doesn't move

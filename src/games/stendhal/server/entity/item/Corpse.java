@@ -34,12 +34,18 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
+
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
+
 	/** Time (in seconds) until a corpse disappears. */
 	private static final int DEGRADATION_TIMEOUT = 15 * 60; // 15 minutes
+
 	private static final int MAX_STAGE = 5; // number of degradation steps
+
 	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
+
 	private int stage;
+
 	private boolean isDegrading = true;
 
 	public static void generateRPClass() {
@@ -69,8 +75,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		addSlot(slot);
 	}
 
-	public Corpse(RPEntity entity, Entity killer)
-			throws AttributeNotFoundException {
+	public Corpse(RPEntity entity, Entity killer) throws AttributeNotFoundException {
 		put("type", "corpse");
 
 		if (entity.has("class")) {
@@ -94,8 +99,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		}
 
 		if ((killer == null) && has("killer")) {
-			logger.error("Corpse: (" + entity + ") with null killer: ("
-					+ killer + ")");
+			logger.error("Corpse: (" + entity + ") with null killer: (" + killer + ")");
 			remove("killer");
 		}
 
@@ -104,7 +108,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
 		setX((int) Math.round(rect.getCenterX() - 1));
 		setY((int) Math.round(rect.getCenterY() - 1));
-		
+
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this, null);
 		stage = 0;
 		put("stage", stage);
@@ -118,7 +122,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
-	
+
 	private void modify() {
 		if (isContained()) {
 			// We modify the base container if the object change.
@@ -183,7 +187,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	 */
 	public void setDegrading(boolean isDegrading) {
 		this.isDegrading = isDegrading;
-	} 
+	}
 
 	/**
 	 * Sets the current degrading state. Set it to MAX_STAGE
@@ -202,8 +206,8 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 				modify();
 			}
 		}
-	}   
-	  
+	}
+
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
 		content.assignValidID(entity);
@@ -226,8 +230,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	@Override
 	public String describe() {
-		String stageText[] = { "new", "fresh", "cold", "slightly rotten",
-				"rotten", "very rotten" };
+		String stageText[] = { "new", "fresh", "cold", "slightly rotten", "rotten", "very rotten" };
 		String text = "You see the " + stageText[stage] + " corpse of ";
 		if (hasDescription()) {
 			text = getDescription();

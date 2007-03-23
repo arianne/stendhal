@@ -39,8 +39,8 @@ import javax.swing.JPopupMenu;
  * 
  * @author mtotz
  */
-public class WtBaseframe extends WtPanel implements MouseListener,
-		MouseMotionListener {
+public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionListener {
+
 	/** the currently dragged object or null if there is no such drag operation */
 	private WtDraggable draggedObject;
 
@@ -58,8 +58,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 
 	/** Creates the Frame from the given GameScreen instance */
 	public WtBaseframe(GameScreen screen) {
-		super("baseframe", 0, 0, screen.getWidthInPixels(), screen
-				.getHeightInPixels());
+		super("baseframe", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
 		setFrame(false);
 		setTitleBar(false);
 		setMinimizeable(false);
@@ -183,8 +182,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 		// Added support for ctrl + click for Mac OS X intensifly@gmx.com
 
 		int onmask = InputEvent.CTRL_DOWN_MASK;
-		if (System.getProperty("os.name").toLowerCase().contains("os x")
-				&& ((e.getModifiersEx() & onmask) == onmask)) {
+		if (System.getProperty("os.name").toLowerCase().contains("os x") && ((e.getModifiersEx() & onmask) == onmask)) {
 			onMouseRightClick(p);
 		}
 
@@ -199,15 +197,12 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			onMouseRightClick(p);
 		}
 
-		if(recreatedContextMenu) {
+		if (recreatedContextMenu) {
 			/*
 			 * A context menu was added
 			 */
-			if(jcontextMenu != null) {
-				jcontextMenu.show(
-					e.getComponent(),
-					e.getX() - 10,
-					e.getY() - 10);
+			if (jcontextMenu != null) {
+				jcontextMenu.show(e.getComponent(), e.getX() - 10, e.getY() - 10);
 			}
 
 			recreatedContextMenu = false;
@@ -216,7 +211,7 @@ public class WtBaseframe extends WtPanel implements MouseListener,
 			 * whatever the click was...delete the context menu
 			 * (if it wasn't recreated during the callbacks)
 			 */
-			if(jcontextMenu != null) {
+			if (jcontextMenu != null) {
 				jcontextMenu.setVisible(false);
 				jcontextMenu = null;
 			}

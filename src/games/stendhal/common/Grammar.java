@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
  * Helper functions for producing grammatically-correct sentences.
  */
 public class Grammar {
+
 	private static final Logger logger = Logger.getLogger(Grammar.class);
 
 	/**
@@ -130,7 +131,7 @@ public class Grammar {
 	public static String fullform(String noun) {
 		String enoun = noun.toLowerCase();
 		if (enoun.equals("meat") || enoun.equals("ham") || enoun.equals("cheese") || enoun.equals("wood")
-				|| enoun.equals("paper") || enoun.equals("iron")) {
+		        || enoun.equals("paper") || enoun.equals("iron")) {
 			enoun = addPrefixIfNotAlreadyThere("piece of ", enoun);
 		} else if (enoun.endsWith(" ore") || enoun.endsWith("_ore")) {
 			enoun = addPrefixIfNotAlreadyThere("nugget of ", enoun);
@@ -151,7 +152,8 @@ public class Grammar {
 			enoun = addPrefixIfNotAlreadyThere("sprig of ", enoun);
 		} else if ((enoun.indexOf("_armor") > -1) || (enoun.indexOf(" armor") > -1)) {
 			enoun = addPrefixIfNotAlreadyThere("suit of ", enoun);
-		} else if (enoun.endsWith("_legs") || enoun.endsWith(" legs") || enoun.endsWith("_boots") || enoun.endsWith(" boots")) {
+		} else if (enoun.endsWith("_legs") || enoun.endsWith(" legs") || enoun.endsWith("_boots")
+		        || enoun.endsWith(" boots")) {
 			enoun = addPrefixIfNotAlreadyThere("pair of ", enoun);
 		}
 		return enoun;
@@ -200,14 +202,15 @@ public class Grammar {
 		try {
 			// in "of"-phrases pluralize only the first part
 			if (enoun.indexOf(" of ") > -1) {
-				return plural(enoun.substring(0, enoun.indexOf(" of "))) + enoun.substring(enoun.indexOf(" of ")) + postfix;
+				return plural(enoun.substring(0, enoun.indexOf(" of "))) + enoun.substring(enoun.indexOf(" of "))
+				        + postfix;
 
-			// first of all handle words which do not change
+				// first of all handle words which do not change
 			} else if (enoun.endsWith("sheep") || enoun.endsWith("money") || enoun.endsWith("dice")
-					|| enoun.equals("deer")) {
+			        || enoun.equals("deer")) {
 				return enoun + postfix;
 
-			// ok and now all the special cases
+				// ok and now all the special cases
 			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 				return enoun + "s" + postfix;
 			} else if (enoun.endsWith("f") && ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
@@ -234,7 +237,8 @@ public class Grammar {
 				return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
 			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha") || enoun.endsWith("larva")) {
 				return enoun + "e" + postfix;
-			} else if ((enoun.length() > 3) && enoun.endsWith("us") && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
+			} else if ((enoun.length() > 3) && enoun.endsWith("us")
+			        && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
 				return enoun.substring(0, enoun.length() - 3) + "i" + postfix;
 			} else if (enoun.endsWith("man") && !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 				return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
@@ -244,13 +248,14 @@ public class Grammar {
 				return enoun.substring(0, enoun.length() - 2) + "ces" + postfix;
 			} else if (enoun.endsWith("sis")) {
 				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-			/*} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
-				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;*/
+				/*} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
+				 return enoun.substring(0, enoun.length() - 2) + "es" + postfix;*/
 			} else if (enoun.endsWith("mumak")) {
 				return enoun + "il" + postfix;
 			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
 				return enoun.substring(0, enoun.length() - 2) + postfix;
-			} else if (enoun.endsWith("ch") || enoun.endsWith("sh") || ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
+			} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
+			        || ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("y") && consonant_p(enoun.charAt(enoun.length() - 2))) {
 				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
@@ -267,7 +272,6 @@ public class Grammar {
 			return enoun + postfix;
 		}
 	}
-
 
 	/**
 	 * Returns either the plural or singular form of the given noun, depending on the quantity
@@ -324,12 +328,15 @@ public class Grammar {
 		if ((n <= 0) || (n > 3)) {
 		}
 		switch (n) {
-			case 1: return "first";
-			case 2: return "second";
-			case 3: return "third";
+			case 1:
+				return "first";
+			case 2:
+				return "second";
+			case 3:
+				return "third";
 			default: {
 				// TODO: implement this if needed
-				logger.error("Gramar.ordered not implemented for: " + n, new Throwable() );
+				logger.error("Gramar.ordered not implemented for: " + n, new Throwable());
 				return Integer.toString(n);
 			}
 		}

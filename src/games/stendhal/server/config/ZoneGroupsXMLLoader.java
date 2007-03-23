@@ -31,23 +31,21 @@ import games.stendhal.server.StendhalRPWorld;
  * Load and configure zones via an XML configuration file.
  */
 public class ZoneGroupsXMLLoader extends DefaultHandler {
+
 	/**
 	 * Logger
 	 */
-	private static final Logger	logger =
-				Log4J.getLogger(ZoneGroupsXMLLoader.class);
+	private static final Logger logger = Log4J.getLogger(ZoneGroupsXMLLoader.class);
 
 	/**
 	 * The main zone configuration file.
 	 */
-	protected URI			uri;
-
+	protected URI uri;
 
 	/**
 	 * A list of zone group files.
 	 */
-	protected LinkedList<URI>	zoneGroups;
-
+	protected LinkedList<URI> zoneGroups;
 
 	/**
 	 * Create an xml based loader of zone groups.
@@ -57,7 +55,6 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	public ZoneGroupsXMLLoader(URI uri) {
 		this.uri = uri;
 	}
-
 
 	//
 	// ZoneGroupsXMLLoader
@@ -76,9 +73,8 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	public void load(RPWorld world) throws SAXException, IOException {
 		InputStream in = getClass().getResourceAsStream(uri.getPath());
 
-		if(in == null) {
-			throw new FileNotFoundException(
-				"Cannot find resource: " + uri.getPath());
+		if (in == null) {
+			throw new FileNotFoundException("Cannot find resource: " + uri.getPath());
 		}
 
 		try {
@@ -87,7 +83,6 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 			in.close();
 		}
 	}
-
 
 	/**
 	 * Load zones into a world using a config file.
@@ -98,11 +93,9 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	 * @throws	SAXException	If a SAX error occured.
 	 * @throws	IOException	If an I/O error occured.
 	 */
-	protected void load(RPWorld world, InputStream in)
-	 throws SAXException, IOException {
-		SAXParser	saxParser;
-		ZonesXMLLoader	loader;
-
+	protected void load(RPWorld world, InputStream in) throws SAXException, IOException {
+		SAXParser saxParser;
+		ZonesXMLLoader loader;
 
 		/*
 		 * Use the default (non-validating) parser
@@ -111,10 +104,9 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 		try {
 			saxParser = factory.newSAXParser();
-		} catch(ParserConfigurationException ex) {
+		} catch (ParserConfigurationException ex) {
 			throw new SAXException(ex);
 		}
-
 
 		/*
 		 * Parse the XML
@@ -125,48 +117,40 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		/*
 		 * Load each group
 		 */
-		for(URI uri : zoneGroups) {
+		for (URI uri : zoneGroups) {
 			logger.debug("Loading zone group [" + uri + "]");
 
 			loader = new ZonesXMLLoader(uri);
 
 			try {
 				loader.load(world);
-			} catch(SAXException ex) {
-				logger.error(
-				 "Error loading zone group: " + uri, ex);
-			} catch(IOException ex) {
-				logger.error(
-				 "Error loading zone group: " + uri, ex);
+			} catch (SAXException ex) {
+				logger.error("Error loading zone group: " + uri, ex);
+			} catch (IOException ex) {
+				logger.error("Error loading zone group: " + uri, ex);
 			}
 		}
 	}
-
 
 	//
 	// ContentHandler
 	//
 
 	@Override
-	public void startElement(String namespaceURI, String lName,
-	 String qName, Attributes attrs) {
-		String	s;
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+		String s;
 
-
-		if(qName.equals("zone-groups")) {
+		if (qName.equals("zone-groups")) {
 			// Ignore
-		} else if(qName.equals("zone-group")) {
-			if((s = attrs.getValue("uri")) == null) {
+		} else if (qName.equals("zone-group")) {
+			if ((s = attrs.getValue("uri")) == null) {
 				logger.warn("Zone group without 'uri'");
 			} else {
 				try {
 					zoneGroups.add(uri.resolve(s));
-				} catch(IllegalArgumentException ex) {
-					logger.error(
-					 "Invalid zone group reference: " + s
-					 + " [" + ex.getMessage() + "]");
+				} catch (IllegalArgumentException ex) {
+					logger.error("Invalid zone group reference: " + s + " [" + ex.getMessage() + "]");
 				}
-
 
 			}
 		} else {
@@ -180,27 +164,18 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	/*
 	 * XXX - THIS REQUIRES StendhalRPWorld SETUP (i.e. marauroa.ini)
 	 */
-	public static void main(String [] args) throws Exception {
-		if(args.length != 1) {
-			System.err.println(
-				"Usage: java "
-					+ ZoneGroupsXMLLoader.class.getName()
-						+ " <filename>");
+	public static void main(String[] args) throws Exception {
+		if (args.length != 1) {
+			System.err.println("Usage: java " + ZoneGroupsXMLLoader.class.getName() + " <filename>");
 			System.exit(1);
 		}
 
-
-		ZoneGroupsXMLLoader loader =
-			new ZoneGroupsXMLLoader(URI.create(args[0]));
+		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(URI.create(args[0]));
 
 		try {
 			loader.load(StendhalRPWorld.get());
-		} catch(org.xml.sax.SAXParseException ex) {
-			System.err.print(
-				"Source "
-				+ args[0]
-				+ ":" + ex.getLineNumber()
-				+ "<" + ex.getColumnNumber() + ">");
+		} catch (org.xml.sax.SAXParseException ex) {
+			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
 
 			throw ex;
 		}

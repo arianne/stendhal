@@ -32,9 +32,10 @@ import org.apache.log4j.Logger;
 
 /** A Player entity */
 public class Player extends RPEntity {
+
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
-		
+
 	}
 
 	/** the logger instance. */
@@ -43,7 +44,6 @@ public class Player extends RPEntity {
 	private int outfit;
 
 	private int outfitOrg;
-
 
 	/**
 	 * An away message was set/cleared.
@@ -54,15 +54,12 @@ public class Player extends RPEntity {
 	protected void onAway(String message) {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
 
-		if(isClientPlayer()) {
+		if (isClientPlayer()) {
 			StendhalClient.get().addEventLine(
-				(message != null)
-				 ? "You have been marked as being away."
-				 : "You are no longer marked as being away.",
-				Color.orange);
+			        (message != null) ? "You have been marked as being away."
+			                : "You are no longer marked as being away.", Color.orange);
 		}
 	}
-
 
 	/**
 	 * Determine if this is the player using this client.
@@ -72,7 +69,6 @@ public class Player extends RPEntity {
 	public boolean isClientPlayer() {
 		return (StendhalClient.get().getPlayer() == rpObject);
 	}
-
 
 	@Override
 	protected void buildAnimations(RPObject base) {
@@ -101,9 +97,7 @@ public class Player extends RPEntity {
 		}
 
 		sprites.put("move_up", store.getAnimatedSprite(tempSprite, 0, 4, 1.5, 2));
-		sprites
-				.put("move_right", store
-						.getAnimatedSprite(tempSprite, 1, 4, 1.5, 2));
+		sprites.put("move_right", store.getAnimatedSprite(tempSprite, 1, 4, 1.5, 2));
 		sprites.put("move_down", store.getAnimatedSprite(tempSprite, 2, 4, 1.5, 2));
 		sprites.put("move_left", store.getAnimatedSprite(tempSprite, 3, 4, 1.5, 2));
 
@@ -114,8 +108,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("outfit")) {
@@ -127,12 +120,11 @@ public class Player extends RPEntity {
 			setName(diff.get("name"));
 		}
 
-		if(diff.has("away")) {
+		if (diff.has("away")) {
 			/*
 			 * Filter out a player "changing" to the same message
 			 */
-			if(!base.has("away")
-			 || !base.get("away").equals(diff.get("away"))) {
+			if (!base.has("away") || !base.get("away").equals(diff.get("away"))) {
 				onAway(diff.get("away"));
 			}
 		}
@@ -142,30 +134,26 @@ public class Player extends RPEntity {
 			if (diff.has("online")) {
 				String[] players = diff.get("online").split(",");
 				for (String playerName : players) {
-					StendhalClient.get().addEventLine(playerName + " has joined Stendhal.",
-							Color.orange);
+					StendhalClient.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
 				}
 			}
 
 			if (diff.has("offline")) {
 				String[] players = diff.get("offline").split(",");
 				for (String playername : players) {
-					StendhalClient.get().addEventLine(playername + " has left Stendhal.",
-							Color.orange);
+					StendhalClient.get().addEventLine(playername + " has left Stendhal.", Color.orange);
 				}
 			}
 		}
 	}
 
-
 	public void onChangedRemoved(RPObject base, RPObject diff) {
 		super.onChangedRemoved(base, diff);
 
-		if(diff.has("away")) {
+		if (diff.has("away")) {
 			onAway(null);
 		}
 	}
-
 
 	@Override
 	public Rectangle2D getArea() {
@@ -183,52 +171,47 @@ public class Player extends RPEntity {
 	 * @return Rectangle2D area
 	 */
 	public Rectangle2D getHearingArea() {
-		final double HEARING_RANGE= 20;
+		final double HEARING_RANGE = 20;
 		double width = HEARING_RANGE * 2;
-		return new Rectangle2D.Double(getX() - HEARING_RANGE, getY()
-				- HEARING_RANGE, width, width);
+		return new Rectangle2D.Double(getX() - HEARING_RANGE, getY() - HEARING_RANGE, width, width);
 	}
 
 	@Override
 	public void onAction(ActionType at, String... params) {
-	   
+
 		// ActionType at =handleAction(action);
 		RPAction rpaction;
 		switch (at) {
-		case SET_OUTFIT:
-			int outfitTemp = outfit;
-			if (outfitOrg > 0) {
-				outfitTemp = outfitOrg;
-			}
-			StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
-			break;
-		case LEAVE_SHEEP:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			rpaction.put("target", "-1");
-			at.send(rpaction);
-			playSound("sheep-chat-2", 15, 50);
-			break;
-		case ADD_BUDDY:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			rpaction.put("target", getName());
-			at.send(rpaction);
-			break;
-		default:
-			super.onAction(at, params);
-			break;
+			case SET_OUTFIT:
+				int outfitTemp = outfit;
+				if (outfitOrg > 0) {
+					outfitTemp = outfitOrg;
+				}
+				StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
+				break;
+			case LEAVE_SHEEP:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				rpaction.put("target", "-1");
+				at.send(rpaction);
+				playSound("sheep-chat-2", 15, 50);
+				break;
+			case ADD_BUDDY:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				rpaction.put("target", getName());
+				at.send(rpaction);
+				break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}
 
-	
-
-	
 	@Override
 	public void onEnter(int _x, int _y) {
-		if ((StendhalClient.get().getPlayer() != null)
-				&& StendhalClient.get().getPlayer().getID().equals(getID())) {
+		if ((StendhalClient.get().getPlayer() != null) && StendhalClient.get().getPlayer().getID().equals(getID())) {
 			WorldObjects.firePlayerMoved(this);
 		}
 	}
@@ -258,8 +241,8 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onMove(int x, int y, Direction direction, double speed) {
-			super.onMove(x, y, direction, speed);
-			if (this.rpObject == StendhalClient.get().getPlayer())
+		super.onMove(x, y, direction, speed);
+		if (this.rpObject == StendhalClient.get().getPlayer())
 			WorldObjects.firePlayerMoved(this);
 	}
 

@@ -12,8 +12,8 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class IL0_Bank implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -21,15 +21,13 @@ public class IL0_Bank implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosBankArea(zone, attributes);
 	}
 
-
-	private void buildSemosBankArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildSemosBankArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Dagobert") {
+
 			@Override
 			protected void createPath() {
 				// NPC doesn't move

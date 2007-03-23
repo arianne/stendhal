@@ -19,6 +19,7 @@ package games.stendhal.server.pathfinder;
  * @author Matthias Totz
  */
 public interface PathListener {
+
 	/**
 	 * Returns when the pathfinder is finished. Do <b>not</b> do some wild
 	 * things in this method as it runs in the pathfinder thread. Just save the

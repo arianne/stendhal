@@ -3,6 +3,7 @@ package games.stendhal.client.events;
 import games.stendhal.client.entity.*;
 
 interface EquipmentEvent {
+
 	// Called when an item is equipped on the entity, you know the slot by
 	// calling item.getContainerSlot()
 	public void onEquipItem(Item item);

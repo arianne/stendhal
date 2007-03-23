@@ -16,6 +16,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A factory for <code>PersonalChest</code> objects.
  */
 public class PersonalChestFactory implements ConfigurableFactory {
+
 	//
 	// PersonalChestFactory
 	//
@@ -30,18 +31,15 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected String getSlot(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected String getSlot(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("slot")) == null) {
+		if ((s = ctx.getAttribute("slot")) == null) {
 			return PersonalChest.DEFAULT_BANK;
 		}
 
 		return s;
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -62,8 +60,7 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	 *
 	 * @see		PersonalChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new PersonalChest(getSlot(ctx));
 	}
 }

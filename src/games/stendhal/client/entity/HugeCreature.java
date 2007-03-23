@@ -23,9 +23,9 @@ import marauroa.common.game.RPObject;
 
 /** A Creature entity */
 public class HugeCreature extends Creature {
-	public HugeCreature( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+
+	public HugeCreature(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
@@ -34,9 +34,7 @@ public class HugeCreature extends Creature {
 		Sprite creature = loadAnimationSprite(object);
 
 		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, 3, 4));
-		sprites
-				.put("move_right", store
-						.getAnimatedSprite(creature, 1, 4, 3, 4));
+		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, 3, 4));
 		sprites.put("move_down", store.getAnimatedSprite(creature, 2, 4, 3, 4));
 		sprites.put("move_left", store.getAnimatedSprite(creature, 3, 4, 3, 4));
 

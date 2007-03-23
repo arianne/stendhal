@@ -29,17 +29,17 @@ import marauroa.common.game.RPSlot;
  * request 1510680.
  */
 public class PersonalChest extends Chest {
+
 	/**
 	 * The default bank slot name.
 	 */
-	public static final String	DEFAULT_BANK	= "bank";
+	public static final String DEFAULT_BANK = "bank";
 
 	private Player attending;
 
 	private IRPZone zone;
 
-	private String	bankName;
-
+	private String bankName;
 
 	/**
 	 * Create a personal chest using the default bank slot.
@@ -48,18 +48,16 @@ public class PersonalChest extends Chest {
 		this(DEFAULT_BANK);
 	}
 
-
 	/**
 	 * Create a personal chest using a specific bank slot.
 	 *
 	 * @param	bankName	The name of the bank slot.
 	 */
-	public PersonalChest(String bankName)
-	 throws AttributeNotFoundException {
+	public PersonalChest(String bankName) throws AttributeNotFoundException {
 		this.bankName = bankName;
 
 		attending = null;
-		
+
 		TurnListener turnListener = new TurnListener() {
 
 			public void onTurnReached(int currentTurn, String message) {
@@ -82,30 +80,29 @@ public class PersonalChest extends Chest {
 					}
 
 					/* If player is not next to depot clean it. */
-					if (!nextTo(attending)
-							|| !zone.has(attending.getID())) {
+					if (!nextTo(attending) || !zone.has(attending.getID())) {
 						content = getSlot("content");
-						
-						List<RPObject> itemsList=new LinkedList<RPObject>();
+
+						List<RPObject> itemsList = new LinkedList<RPObject>();
 
 						for (RPObject item : getSlot("content")) {
 							itemsList.add(item);
 						}
-						
+
 						content.clear();
 
 						// NOTE: As content.clear() remove the contained flag of the object
 						// we need to do this hack.
 						RPSlot playerContent = getBankSlot();
 						playerContent.clear();
-						
-						for(RPObject item: itemsList) {
-							playerContent.add(item);							
-						}					
-						
+
+						for (RPObject item : itemsList) {
+							playerContent.add(item);
+						}
+
 						close();
 						PersonalChest.this.notifyWorldAboutChanges();
-						
+
 						attending = null;
 					}
 				}
@@ -114,7 +111,6 @@ public class PersonalChest extends Chest {
 		};
 		TurnNotifier.get().notifyInTurns(0, turnListener, null);
 	}
-
 
 	/**
 	 * Get the slot that holds items for this chest.
@@ -127,7 +123,6 @@ public class PersonalChest extends Chest {
 		 */
 		return attending.getSlot(bankName);
 	}
-
 
 	@Override
 	public void onUsed(RPEntity user) {
@@ -144,7 +139,7 @@ public class PersonalChest extends Chest {
 				RPSlot content = getSlot("content");
 				content.clear();
 
-				for (RPObject item : getBankSlot()) {					
+				for (RPObject item : getBankSlot()) {
 					content.add(item);
 				}
 

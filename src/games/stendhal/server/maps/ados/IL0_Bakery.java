@@ -20,8 +20,8 @@ import java.util.Map;
  * @author hendrik
  */
 public class IL0_Bakery implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -29,15 +29,13 @@ public class IL0_Bakery implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildBakery(zone, attributes);
 	}
 
-
-	private void buildBakery(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildBakery(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC baker = new SpeakerNPC("Arlindo") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -66,7 +64,7 @@ public class IL0_Bakery implements ZoneConfigurator {
 				nodes.add(new Path.Node(5, 3));
 				// towards the well
 				nodes.add(new Path.Node(15, 3));
-				
+
 				setPath(nodes, true);
 			}
 
@@ -74,7 +72,8 @@ public class IL0_Bakery implements ZoneConfigurator {
 			protected void createDialog() {
 				// addGreeting("Hi, most of the people are out of town at the moment.");
 				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work to do.");
-				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"), "Ados is short on supplies. We get most of our food from Semos City which is west of here.");
+				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"),
+				        "Ados is short on supplies. We get most of our food from Semos City which is west of here.");
 				addHelp("My wife is searching for that lost girl, too. So we cannot sell you anthing at the moment.");
 				addGoodbye();
 
@@ -85,11 +84,11 @@ public class IL0_Bakery implements ZoneConfigurator {
 				requiredResources.put("carrot", new Integer(1));
 				requiredResources.put("button_mushroom", new Integer(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"arlindo_make_pie", "make", "pie", requiredResources, 7 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
+				        requiredResources, 7 * 60);
 
 				addProducer(behaviour,
-						"Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
+				        "Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
 			}
 		};
 		npcs.add(baker);

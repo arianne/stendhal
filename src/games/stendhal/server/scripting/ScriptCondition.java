@@ -5,5 +5,6 @@ package games.stendhal.server.scripting;
  */
 @Deprecated
 public abstract class ScriptCondition {
+
 	abstract public boolean fire();
 }

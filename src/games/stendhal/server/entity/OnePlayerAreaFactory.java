@@ -16,6 +16,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A base factory for <code>OnePlayerArea</code> objects.
  */
 public class OnePlayerAreaFactory implements ConfigurableFactory {
+
 	//
 	// OnePlayerAreaFactory
 	//
@@ -30,24 +31,19 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("height")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'height' missing");
+		if ((s = ctx.getAttribute("height")) == null) {
+			throw new IllegalArgumentException("Required attribute 'height' missing");
 		}
 
 		try {
 			return Integer.parseInt(s);
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'height' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'height' attribute: " + s);
 		}
 	}
-
 
 	/**
 	 * Extract the area width from a context.
@@ -59,24 +55,19 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("width")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'width' missing");
+		if ((s = ctx.getAttribute("width")) == null) {
+			throw new IllegalArgumentException("Required attribute 'width' missing");
 		}
 
 		try {
 			return Integer.parseInt(s);
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'width' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'width' attribute: " + s);
 		}
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -97,8 +88,7 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 *
 	 * @see		OnePlayerArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new OnePlayerArea(getWidth(ctx), getHeight(ctx));
 	}
 }

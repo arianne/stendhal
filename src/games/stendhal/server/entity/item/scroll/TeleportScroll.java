@@ -1,5 +1,5 @@
 /* $Id$
-/***************************************************************************
+ /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
@@ -31,11 +31,9 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public TeleportScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public TeleportScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
 
 	/**
 	 * Is invoked when a teleporting scroll is actually used.
@@ -46,7 +44,6 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 * @return true iff teleport was successful
 	 */
 	protected abstract boolean useTeleportScroll(Player player);
-
 
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the

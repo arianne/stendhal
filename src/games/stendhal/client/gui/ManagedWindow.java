@@ -10,13 +10,13 @@ package games.stendhal.client.gui;
  * A managed window.
  */
 public interface ManagedWindow {
+
 	/**
 	 * Get the managed window name.
 	 *
 	 *
 	 */
 	public String getName();
-
 
 	/**
 	 * Get X coordinate of the window.
@@ -25,14 +25,12 @@ public interface ManagedWindow {
 	 */
 	public int getX();
 
-
 	/**
 	 * Get Y coordinate of the window.
 	 *
 	 * @return	A value sutable for passing to <code>moveTo()</code>.
 	 */
 	public int getY();
-
 
 	/**
 	 * Determine if the window is minimized.
@@ -41,14 +39,12 @@ public interface ManagedWindow {
 	 */
 	public boolean isMinimized();
 
-
 	/**
 	 * Determine if the window is visible.
 	 *
 	 * @return	<code>true</code> if the window is visible.
 	 */
 	public boolean isVisible();
-
 
 	/**
 	 * Move to a location. This may be subject to internal representation,
@@ -62,14 +58,12 @@ public interface ManagedWindow {
 	 */
 	public boolean moveTo(int x, int y);
 
-
 	/**
 	 * Set the window as minimized.
 	 *
 	 * @param	minimized	Whether the window should be minimized.
 	 */
 	public void setMinimized(boolean minimized);
-
 
 	/**
 	 * Set the window as visible (or hidden).

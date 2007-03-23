@@ -40,8 +40,9 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public abstract class Entity implements MovementEvent, ZoneChangeEvent,
-		AttributeEvent, CollisionEvent, Comparable<Entity> {
+public abstract class Entity implements MovementEvent, ZoneChangeEvent, AttributeEvent, CollisionEvent,
+        Comparable<Entity> {
+
 	/** session wide instance identifier for this class */
 	private byte[] ID_Token = new byte[0];
 
@@ -79,8 +80,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-
-
 	private int modificationCount;
 
 	/*
@@ -88,18 +87,17 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 * in onChangedAdded() from other onAdded() hack.
 	 * Need to fix it all to work right, but not now.
 	 */
-	protected boolean inAdd=false;
+	protected boolean inAdd = false;
 
 	public Entity() {
 		modificationCount = 0;
 	}
 
 	protected Entity(RPObject object) throws AttributeNotFoundException {
-	
 
 		type = object.get("type");
 
-		if(object.has("name")) {
+		if (object.has("name")) {
 			name = object.get("name");
 		} else {
 			name = type.replace("_", " ");
@@ -154,8 +152,8 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	}
 
 	public double distance(RPObject object) {
-		return (object.getInt("x") - x) * (object.getInt("x") - x)
-				+ (object.getInt("y") - y) * (object.getInt("y") - y);
+		return (object.getInt("x") - x) * (object.getInt("x") - x) + (object.getInt("y") - y)
+		        * (object.getInt("y") - y);
 	}
 
 	protected static String translate(String type) {
@@ -177,8 +175,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		}
 
 		double width = audibleRange * 2;
-		return new Rectangle2D.Double(getX() - audibleRange, getY()
-				- audibleRange, width, width);
+		return new Rectangle2D.Double(getX() - audibleRange, getY() - audibleRange, width, width);
 	}
 
 	/**
@@ -196,7 +193,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 
 	/** Loads the sprite that represent this entity */
 	protected void loadSprite(RPObject object) {
-		
+
 		sprite = SpriteStore.get().getSprite(translate(object.get("type")));
 	}
 
@@ -228,8 +225,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 *            the movement based on direction
 	 * @return the new delta to correct the movement error
 	 */
-	public static double calcDeltaMovement(double clientPos, double serverPos,
-			double delta) {
+	public static double calcDeltaMovement(double clientPos, double serverPos, double delta) {
 		double moveErr = clientPos - serverPos;
 		double moveCorrection = (delta - moveErr) / delta;
 		return (delta + delta * moveCorrection) / 2;
@@ -246,9 +242,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			this.y = y;
 			if (compareDouble(this.x, x, 1.0)) {
 				// make the movement look more nicely: + this.dx * 0.1
-				this.dx = calcDeltaMovement(this.x + this.dx * 0.1, x,
-						direction.getdx())
-						* speed;
+				this.dx = calcDeltaMovement(this.x + this.dx * 0.1, x, direction.getdx()) * speed;
 			} else {
 				this.x = x;
 			}
@@ -258,9 +252,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			this.dx = 0;
 			if (compareDouble(this.y, y, 1.0)) {
 				// make the movement look more nicely: + this.dy * 0.1
-				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y,
-						direction.getdy())
-						* speed;
+				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y, direction.getdy()) * speed;
 			} else {
 				this.y = y;
 			}
@@ -313,7 +305,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	public void onChangedAdded(RPObject base, RPObject diff) {
 		modificationCount++;
 
-		if(!inAdd) {
+		if (!inAdd) {
 			fireMovementEvent(base, diff);
 		}
 	}
@@ -337,7 +329,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	public void onCollide(int x, int y) {
 	}
 
-
 	protected void fireZoneChangeEvent(RPObject base, RPObject diff) {
 		RPObject.ID id = getID();
 		if ((diff == null) && (base == null)) {
@@ -348,7 +339,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			onEnterZone(id.getZoneID());
 		}
 	}
-
 
 	protected void fireMovementEvent(RPObject base, RPObject diff) {
 		if ((diff == null) && (base == null)) {
@@ -412,7 +402,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		}
 	}
 
-
 	public void draw(GameScreen screen) {
 		screen.draw(sprite, x, y);
 
@@ -422,18 +411,16 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 			g2d.setColor(Color.green);
 			Point2D p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(),
-					(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-					(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 
 			g2d = screen.expose();
 			rect = getDrawedArea();
 			g2d.setColor(Color.blue);
 			p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(),
-					(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-					(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 
@@ -465,8 +452,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 *         <b>null</b> if not performing
 	 */
 	public DataLine playSound(String token, int volBot, int volTop, int chance) {
-		return SoundSystem.playMapSound(getPosition(), getAudibleArea(), token,
-				volBot, volTop, chance);
+		return SoundSystem.playMapSound(getPosition(), getAudibleArea(), token, volBot, volTop, chance);
 	}
 
 	/**
@@ -484,8 +470,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 	 *         <b>null</b> if not performing
 	 */
 	public DataLine playSound(String token, int volBot, int volTop) {
-		return SoundSystem.playMapSound(getPosition(), getAudibleArea(), token,
-				volBot, volTop, 100);
+		return SoundSystem.playMapSound(getPosition(), getAudibleArea(), token, volBot, volTop, 100);
 	}
 
 	/** returns the number of slots this entity has */
@@ -567,43 +552,42 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent,
 		int id;
 		RPAction rpaction;
 		switch (at) {
-		case LOOK:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			id = getID().getObjectID();
+			case LOOK:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				id = getID().getObjectID();
 
-			if (params.length > 0) {
-				rpaction.put("baseobject", params[0]);
-				rpaction.put("baseslot", params[1]);
-				rpaction.put("baseitem", id);
-			} else {
-				rpaction.put("target", id);
-			}
-			at.send(rpaction);
-			break;
-		case ADMIN_INSPECT:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			id = getID().getObjectID();
-			rpaction.put("targetid", id);
-			at.send(rpaction);
-			break;
-		case ADMIN_DESTROY:
-			rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			id = getID().getObjectID();
-			rpaction.put("targetid", id);
-			at.send(rpaction);
-			break;
-		case ADMIN_ALTER:
-			id = getID().getObjectID();
-			StendhalClient.get().getTextLineGUI().setText("/alter #" + id + " ");
-			break;
-		default:
+				if (params.length > 0) {
+					rpaction.put("baseobject", params[0]);
+					rpaction.put("baseslot", params[1]);
+					rpaction.put("baseitem", id);
+				} else {
+					rpaction.put("target", id);
+				}
+				at.send(rpaction);
+				break;
+			case ADMIN_INSPECT:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				id = getID().getObjectID();
+				rpaction.put("targetid", id);
+				at.send(rpaction);
+				break;
+			case ADMIN_DESTROY:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				id = getID().getObjectID();
+				rpaction.put("targetid", id);
+				at.send(rpaction);
+				break;
+			case ADMIN_ALTER:
+				id = getID().getObjectID();
+				StendhalClient.get().getTextLineGUI().setText("/alter #" + id + " ");
+				break;
+			default:
 
-			Log4J.getLogger(Entity.class).error(
-					at.toString() + ": Action not processed");
-			break;
+				Log4J.getLogger(Entity.class).error(at.toString() + ": Action not processed");
+				break;
 		}
 
 	}

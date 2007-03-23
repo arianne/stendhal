@@ -15,8 +15,9 @@
  *
  * Created on 26. Oktober 2005, 20:12
  */
- 
+
 package games.stendhal.client.gui.wt;
+
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Player;
 // Native window code (not yet)
@@ -34,7 +35,8 @@ import marauroa.common.game.RPObject;
  * 
  * @author mtotz
  */
-public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseListener {
+public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseListener {
+
 	/** width of this panel */
 	private static final int WIDTH = 200;
 
@@ -45,8 +47,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	private Character character;
 
 	/** the buddy list panel */
-// Native window code (not yet)
-//	private BuddyListDialog buddies;
+	// Native window code (not yet)
+	//	private BuddyListDialog buddies;
 	private Buddies buddies;
 
 	/** the minimap panel */
@@ -78,8 +80,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 		character.registerCloseListener(this);
 		frame.addChild(character);
 
-// Native window code (not yet)
-//		buddies = new BuddyListDialog(j2DClient.getInstance());
+		// Native window code (not yet)
+		//		buddies = new BuddyListDialog(j2DClient.getInstance());
 		buddies = new Buddies(gameObjects);
 		buddies.registerCloseListener(this);
 		frame.addChild(buddies);
@@ -96,14 +98,14 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 
 		WtButton button;
 
-		button = new WtButton("minimap", 150, 30,"Enable Minimap");
+		button = new WtButton("minimap", 150, 30, "Enable Minimap");
 		button.moveTo(10, 10);
 		button.setPressed(minimap.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("minimap", button);
 
-		button = new WtButton("character", 150, 30,"Enable Character");
+		button = new WtButton("character", 150, 30, "Enable Character");
 		button.moveTo(10, 50);
 		button.setPressed(character.isVisible());
 		button.registerClickListener(this);
@@ -132,7 +134,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 	}
 
 	/** updates the minimap */
-	public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc,String zone) {
+	public void updateMinimap(CollisionDetection cd, GraphicsConfiguration gc, String zone) {
 		minimap.update(cd, gc, zone);
 	}
 
@@ -142,12 +144,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener,WtCloseLis
 			return;
 		}
 
-// Native window code (not yet)
-//		/*
-//		 * Hack! Need to update list when changes arrival
-//		 */
-//		if(buddies.isVisible())
-//			buddies.update();
+		// Native window code (not yet)
+		//		/*
+		//		 * Hack! Need to update list when changes arrival
+		//		 */
+		//		if(buddies.isVisible())
+		//			buddies.update();
 
 		Player newPlayer = (Player) gameObjects.get(playerObject.getID());
 

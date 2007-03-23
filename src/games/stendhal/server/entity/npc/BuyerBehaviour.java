@@ -35,7 +35,8 @@ public class BuyerBehaviour extends MerchantBehaviour {
 	 * @param player The player who sells
 	 */
 	protected void payPlayer(Player player) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
+		        .getItem("money");
 		money.setQuantity(getCharge(player));
 		player.equip(money, true);
 	}
@@ -55,7 +56,8 @@ public class BuyerBehaviour extends MerchantBehaviour {
 			seller.say("Thanks! Here is your money.");
 			return true;
 		} else {
-			seller.say("Sorry! You don't have " + (amount==1 ? "any" : "that many") + " " + Grammar.plnoun(amount, chosenItem) + ".");
+			seller.say("Sorry! You don't have " + (amount == 1 ? "any" : "that many") + " "
+			        + Grammar.plnoun(amount, chosenItem) + ".");
 			return false;
 		}
 	}

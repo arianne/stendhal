@@ -19,23 +19,18 @@ import java.awt.geom.*;
 
 public class Blood extends AnimatedEntity {
 
-	public Blood( RPObject base)
-			throws AttributeNotFoundException {
-		super( base);
+	public Blood(RPObject base) throws AttributeNotFoundException {
+		super(base);
 	}
 
 	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
-		sprites.put("0", store.getAnimatedSprite(
-				"data/sprites/combat/blood_red.png", 0, 1, 1, 1));
-		sprites.put("1", store.getAnimatedSprite(
-				"data/sprites/combat/blood_red.png", 1, 1, 1, 1));
-		sprites.put("2", store.getAnimatedSprite(
-				"data/sprites/combat/blood_red.png", 2, 1, 1, 1));
-		sprites.put("3", store.getAnimatedSprite(
-				"data/sprites/combat/blood_red.png", 3, 1, 1, 1));
+		sprites.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1));
+		sprites.put("1", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 1, 1, 1, 1));
+		sprites.put("2", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 2, 1, 1, 1));
+		sprites.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
 	}
 
 	@Override
@@ -45,8 +40,7 @@ public class Blood extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("class")) {

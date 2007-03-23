@@ -16,42 +16,40 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {
+
 	/** the logger instance. */
-	private static final Logger logger = Log4J
-			.getLogger(StendhalChatLineListener.class);
+	private static final Logger logger = Log4J.getLogger(StendhalChatLineListener.class);
 
 	private JTextField playerChatText;
+
 	private LinkedList<String> lines;
 
 	private int actual;
 
-	public StendhalChatLineListener(StendhalClient client,
-			JTextField playerChatText) {
+	public StendhalChatLineListener(StendhalClient client, JTextField playerChatText) {
 		super();
 		this.playerChatText = playerChatText;
 		lines = new LinkedList<String>();
 		actual = 0;
 	}
 
-
-
 	public void keyPressed(KeyEvent e) {
 		if (e.isShiftDown()) {
 			switch (e.getKeyCode()) {
-			case KeyEvent.VK_UP: {
-				if (actual > 0) {
-					playerChatText.setText(lines.get(actual - 1));
-					actual--;
+				case KeyEvent.VK_UP: {
+					if (actual > 0) {
+						playerChatText.setText(lines.get(actual - 1));
+						actual--;
+					}
+					break;
 				}
-				break;
-			}
-			case KeyEvent.VK_DOWN: {
-				if (actual < lines.size()) {
-					playerChatText.setText(lines.get(actual));
-					actual++;
+				case KeyEvent.VK_DOWN: {
+					if (actual < lines.size()) {
+						playerChatText.setText(lines.get(actual));
+						actual++;
+					}
+					break;
 				}
-				break;
-			}
 			}
 		}
 	}
@@ -68,8 +66,8 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		String text = playerChatText.getText();
 
 		logger.debug("Player wrote: " + text);
-		
-		if(ChatLineParser.get().parseAndHandle(text)) {
+
+		if (ChatLineParser.get().parseAndHandle(text)) {
 			lines.add(text);
 			actual = lines.size();
 

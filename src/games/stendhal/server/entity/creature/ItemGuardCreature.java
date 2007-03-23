@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
  * is given to the player who killed it.
  */
 public class ItemGuardCreature extends Creature {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(ItemGuardCreature.class);
 
@@ -43,12 +44,10 @@ public class ItemGuardCreature extends Creature {
 		this.itemType = itemType;
 
 		noises = new LinkedList<String>(noises);
-		noises.add("Thou shall not obtain the "
-				+ itemType.replace("_", " ") + "!");
+		noises.add("Thou shall not obtain the " + itemType.replace("_", " ") + "!");
 
 		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(itemType)) {
-			logger.error(copy.getName() + " drops unexisting item "
-					+ itemType);
+			logger.error(copy.getName() + " drops unexisting item " + itemType);
 		}
 	}
 
@@ -62,8 +61,7 @@ public class ItemGuardCreature extends Creature {
 		if (killer instanceof RPEntity) {
 			RPEntity killerRPEntity = (RPEntity) killer;
 			if (!killerRPEntity.isEquipped(itemType)) {
-				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-						itemType);
+				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemType);
 				item.put("bound", killerRPEntity.getName());
 				killerRPEntity.equip(item, true);
 			}

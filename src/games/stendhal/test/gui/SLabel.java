@@ -18,6 +18,7 @@ import javax.swing.border.CompoundBorder;
  * 
  */
 public class SLabel extends JLabel {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -64,10 +65,9 @@ public class SLabel extends JLabel {
 	 */
 	public SLabel(String text, Icon icon, int horizontalAlignment) {
 		super(text, icon, horizontalAlignment);
-		setBorder(new CompoundBorder(new ImageBorder(
-				ImageBorder.RaisedState.RAISED, 3), new CompoundBorder(
-				new ImageBorder(ImageBorder.RaisedState.NORMAL, 3),
-				new ImageBorder(ImageBorder.RaisedState.LOWERED, 3))));
+		setBorder(new CompoundBorder(new ImageBorder(ImageBorder.RaisedState.RAISED, 3),
+		        new CompoundBorder(new ImageBorder(ImageBorder.RaisedState.NORMAL, 3), new ImageBorder(
+		                ImageBorder.RaisedState.LOWERED, 3))));
 		setOpaque(false);
 		setForeground(Color.WHITE);
 	}

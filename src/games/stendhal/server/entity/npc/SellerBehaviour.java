@@ -31,7 +31,7 @@ import marauroa.common.game.IRPZone;
  * to a player.
  */
 public class SellerBehaviour extends MerchantBehaviour {
-	
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SellerBehaviour.class);
 

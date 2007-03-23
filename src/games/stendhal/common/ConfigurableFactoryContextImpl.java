@@ -15,10 +15,9 @@ import java.util.Map;
  * A simple implementation of a configuration context for general object
  * factories.
  */
-public class ConfigurableFactoryContextImpl
- implements ConfigurableFactoryContext {
-	protected Map<String, String>	attributes;
+public class ConfigurableFactoryContextImpl implements ConfigurableFactoryContext {
 
+	protected Map<String, String> attributes;
 
 	/**
 	 * Create a configuration context using an attribute map.
@@ -29,7 +28,6 @@ public class ConfigurableFactoryContextImpl
 	public ConfigurableFactoryContextImpl(Map<String, String> attributes) {
 		this.attributes = attributes;
 	}
-
 
 	//
 	// ConfigurableFactoryContext
@@ -43,8 +41,7 @@ public class ConfigurableFactoryContextImpl
 	 * @return	The value of the attribute, or <code>null</code> if
 	 *		not set.
 	 */
-	public String getAttribute(String name)
-	{
+	public String getAttribute(String name) {
 		return attributes.get(name);
 	}
 }

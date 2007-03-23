@@ -18,6 +18,7 @@ import org.apache.log4j.spi.ThrowableInformation;
  * @author Matthias Totz
  */
 public class GameConsoleAppender extends AppenderSkeleton {
+
 	@Override
 	protected void append(LoggingEvent loggingEvent) {
 		StringBuilder buf = new StringBuilder();

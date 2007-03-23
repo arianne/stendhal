@@ -1,6 +1,5 @@
 package games.stendhal.client.update;
 
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +15,15 @@ import java.util.Properties;
  * @author hendrik
  */
 public class UpdateManager {
+
 	private String jarFolder = null;
+
 	private Properties bootProp = null;
+
 	private String serverFolder = null;
+
 	private Properties updateProp = null;
+
 	private UpdateProgressBar updateProgressBar = null;
 
 	/**
@@ -29,7 +33,8 @@ public class UpdateManager {
 	private void init(boolean initialDownload) {
 		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER") + "/update.properties";
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")) + "/";
+			serverFolder = bootProp.getProperty("server.folder", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER"))
+			        + "/";
 			updatePropertiesFile = bootProp.getProperty("server.update-prop", serverFolder + "update.properties");
 		}
 		HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
@@ -53,7 +58,8 @@ public class UpdateManager {
 		init(initialDownload.booleanValue());
 		if (updateProp == null) {
 			if (initialDownload.booleanValue()) {
-				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from " + serverFolder + " but that server is not reachable at the moment. Please try again later.");
+				UpdateGUIDialogs.messageBox("Sorry, we need to download additional files from " + serverFolder
+				        + " but that server is not reachable at the moment. Please try again later.");
 				System.exit(1);
 			}
 			return;
@@ -76,7 +82,8 @@ public class UpdateManager {
 				break;
 			}
 			case OUTDATED: {
-				UpdateGUIDialogs.messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
+				UpdateGUIDialogs
+				        .messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
 				break;
 			}
 			case INITIAL_DOWNLOAD: {
@@ -129,7 +136,7 @@ public class UpdateManager {
 	 * @param files list of files to check and clean
 	 */
 	private void removeAlreadyExistingFiles(List<String> files) {
-		Iterator<String> itr = files.iterator(); 
+		Iterator<String> itr = files.iterator();
 		while (itr.hasNext()) {
 			String file = itr.next();
 			if (file.trim().equals("")) {
@@ -172,7 +179,7 @@ public class UpdateManager {
 	 */
 	private List<String> getFilesToUpdate(String version) {
 		List<String> res = new LinkedList<String>();
-		
+
 		while (true) {
 			String list = updateProp.getProperty("update-file-list." + version);
 			if (list == null) {
@@ -181,7 +188,7 @@ public class UpdateManager {
 			res.addAll(Arrays.asList(list.split(",")));
 			version = updateProp.getProperty("version.destination." + version);
 		}
-		
+
 		while (res.contains("")) {
 			res.remove("");
 		}
@@ -229,7 +236,7 @@ public class UpdateManager {
 				int shouldSize = Integer.parseInt(updateProp.getProperty("file-size." + file, ""));
 				if (fileObj.length() != shouldSize) {
 					UpdateGUIDialogs.messageBox("Sorry, an error occured while downloading the update. File size of "
-									+ file + " does not match. We got " + fileObj.length() + " but it should be " + shouldSize);
+					        + file + " does not match. We got " + fileObj.length() + " but it should be " + shouldSize);
 					updateProgressBar.dispose();
 					return false;
 				}
@@ -237,7 +244,7 @@ public class UpdateManager {
 				e.printStackTrace(System.err);
 				updateProgressBar.dispose();
 				return false;
-			}			
+			}
 		}
 		updateProgressBar.dispose();
 		return true;

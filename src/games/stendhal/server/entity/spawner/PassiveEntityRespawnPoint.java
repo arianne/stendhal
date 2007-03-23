@@ -45,29 +45,29 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	/**
 	 * Is there still a fruit that has not yet been picked up? 
 	 */
-	private boolean hasPickableFruit; 
-	
+	private boolean hasPickableFruit;
+
 	/**
 	 * The name of the fruit (Item) that is grown by the PlantGrower.
 	 */
 	private String growingItemName;
-	
-    /**
-     * Remember which turn we were called last to compute the ripeness
-     */
+
+	/**
+	 * Remember which turn we were called last to compute the ripeness
+	 */
 	//private int lastTurn = 0;
-    
 	/**
 	 * Tells how many turns it takes in average for a new fruit to become ripe.
 	 */
 	protected int meanTurnsForRegrow;
-	
-	public PassiveEntityRespawnPoint(RPObject object, String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
+
+	public PassiveEntityRespawnPoint(RPObject object, String growingItemName, int meanTurnsForRegrow)
+	        throws AttributeNotFoundException {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
 		setDescription("It looks like there's " + Grammar.a_noun(growingItemName) + " sprout growing here.");
-		
+
 		put("type", "plant_grower");
 		//update();
 	}
@@ -105,11 +105,11 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		}
 		TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
 	}
-	
+
 	protected int getRandomTurnsForRegrow() {
 		return Rand.rand(meanTurnsForRegrow, (int) (0.1 * meanTurnsForRegrow));
 	}
-	
+
 	/**
 	 * Creates a new fruit.
 	 */
@@ -121,12 +121,12 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		grownItem.setPlantGrower(this);
 		grownItem.setX(this.getX());
 		grownItem.setY(this.getY());
-		
+
 		zone.assignRPObjectID(grownItem);
 		zone.add(grownItem);
 		hasPickableFruit = true;
 	}
-	
+
 	public void setToFullGrowth() {
 		if (!hasPickableFruit) {
 			growNewFruit();
@@ -134,7 +134,6 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		// don't grow anything new until someone picks a fruit
 		TurnNotifier.get().dontNotify(this, null);
 	}
-
 
 	/**
 	 * Determine if this is an obstacle for another entity.
@@ -148,7 +147,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		// The player can walk over the PlantGrower.
 		return false;
 	}
-	
+
 	public void onTurnReached(int currentTurn, String message) {
 		growNewFruit();
 	}

@@ -25,13 +25,14 @@ import games.stendhal.server.events.TurnNotifier;
  * A regenerative source of food that can be eaten by sheep.
  */
 public class SheepFood extends PassiveEntityRespawnPoint {
+
 	private int amount;
-	
+
 	private static final int MAX_NUMBER_OF_FRUITS = 5;
 
 	/** How long it takes to regrow one berry */
 	private static final int GROWING_RATE = 2000;
-	
+
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
 		food.isA("plant_grower");
@@ -63,7 +64,7 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 		setAmount(amount - 1);
 		notifyWorldAboutChanges();
 	}
-	
+
 	private void setAmount(int amount) {
 		this.amount = amount;
 		put("amount", amount);
@@ -86,10 +87,11 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 
 	@Override
 	public String describe() {
-		String text = "You see an aeryberry bush, with " + Grammar.quantityplnoun(getAmount(), "berry") + " on it. Only sheep can eat aeryberries.";
+		String text = "You see an aeryberry bush, with " + Grammar.quantityplnoun(getAmount(), "berry")
+		        + " on it. Only sheep can eat aeryberries.";
 		return (text);
 	}
-	
+
 	@Override
 	public void setToFullGrowth() {
 		setAmount(MAX_NUMBER_OF_FRUITS);

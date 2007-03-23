@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Query for online players.
  */
 class WhoCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class WhoCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction who = new RPAction();
 
 		who.put("type", "who");
@@ -25,7 +26,6 @@ class WhoCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -34,7 +34,6 @@ class WhoCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 0;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

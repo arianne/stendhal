@@ -19,9 +19,12 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 	 * Listener for turn events
 	 */
 	protected static class PlayerPositionListener implements TurnListener {
-                                                 //5 10 15  30  60 120, 300
-		private final int[] INTERVALS = new int[] {5, 5, 5, 15, 30, 60, 280};
+
+		//5 10 15  30  60 120, 300
+		private final int[] INTERVALS = new int[] { 5, 5, 5, 15, 30, 60, 280 };
+
 		private Player admin = null;
+
 		private int counter = 0;
 
 		/**
@@ -30,7 +33,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		 * @param admin the admin to notify
 		 */
 		protected PlayerPositionListener(Player admin) {
-			this.admin  = admin;
+			this.admin = admin;
 		}
 
 		private void list() {
@@ -45,15 +48,15 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 			}
 			admin.sendPrivateText(sb.toString());
 		}
-		
+
 		public void onTurnReached(int currentTurn, String message) {
 			list();
 			if (counter < INTERVALS.length) {
-				TurnNotifier.get().notifyInTurns((int) (INTERVALS[counter] * 1000/300f), this, null);
+				TurnNotifier.get().notifyInTurns((int) (INTERVALS[counter] * 1000 / 300f), this, null);
 			}
 			counter++;
 		}
-		
+
 	}
 
 	@Override
@@ -62,5 +65,4 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		TurnNotifier.get().notifyInTurns(1, new PlayerPositionListener(admin), null);
 	}
 
-	
 }

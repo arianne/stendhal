@@ -23,13 +23,13 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class Dice extends Item {
-	
+
 	private static int NUMBER_OF_DICE = 3;
-	
+
 	private int[] topFaces;
-	
+
 	private CroupierNPC croupierNPC;
-	
+
 	public Dice(Map<String, String> attributes) {
 		super("dice", "misc", "dice", attributes);
 		randomize(null);
@@ -39,12 +39,12 @@ public class Dice extends Item {
 		super("dice", "misc", "dice", null);
 		randomize(null);
 	}
-	
+
 	public void setCroupierNPC(CroupierNPC croupierNPC) {
 		this.croupierNPC = croupierNPC;
 		put("infostring", croupierNPC.getName());
 	}
-	
+
 	/**
 	 * When the player gets the dice, then disconnects and reconnects,
 	 * the CroupierNPC is lost. That's why we store the croupier's name
@@ -58,14 +58,14 @@ public class Dice extends Item {
 	private void updateCroupierNPC() {
 		if ((croupierNPC == null) && has("infostring")) {
 			String name = get("infostring");
-			croupierNPC = (CroupierNPC) NPCList.get().get(name); 
+			croupierNPC = (CroupierNPC) NPCList.get().get(name);
 		}
 	}
-	
+
 	public int[] getTopFaces() {
 		return topFaces;
 	}
-	
+
 	public String getTopFacesString() {
 		List<String> topFacesStrings = new LinkedList<String>();
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
@@ -73,7 +73,7 @@ public class Dice extends Item {
 		}
 		return Grammar.enumerateCollection(topFacesStrings);
 	}
-	
+
 	public int getSum() {
 		int result = 0;
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
@@ -81,7 +81,7 @@ public class Dice extends Item {
 		}
 		return result;
 	}
-	
+
 	private void randomize(Player player) {
 		topFaces = new int[NUMBER_OF_DICE];
 		for (int i = 0; i < NUMBER_OF_DICE; i++) {
@@ -93,18 +93,16 @@ public class Dice extends Item {
 			croupierNPC.onThrown(this, player);
 		}
 	}
-	
+
 	@Override
 	public void onPutOnGround(Player player) {
 		super.onPutOnGround(player);
 		randomize(player);
 	}
-	
+
 	@Override
 	public String describe() {
-		
-		return "You see a set of dice. The top faces are "
-				+ getTopFacesString()
-				+ ".";
+
+		return "You see a set of dice. The top faces are " + getTopFacesString() + ".";
 	}
 }

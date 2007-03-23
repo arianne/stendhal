@@ -26,6 +26,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class DisplaceAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(DisplaceAction.class);
 
 	public static void register() {
@@ -38,8 +39,7 @@ public class DisplaceAction extends ActionListener {
 		if (action.has("baseitem")) {
 			int targetObject = action.getInt("baseitem");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-					.getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
@@ -61,11 +61,10 @@ public class DisplaceAction extends ActionListener {
 
 						PassiveEntity entity = (PassiveEntity) object;
 
-						if (player.nextTo(entity, 0.25)
-								&& (player.squaredDistance(x, y) < 8 * 8)
-								&& !zone.simpleCollides(entity, x, y)) {
-							StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "displace",
-									entity.get("type"));
+						if (player.nextTo(entity, 0.25) && (player.squaredDistance(x, y) < 8 * 8)
+						        && !zone.simpleCollides(entity, x, y)) {
+							StendhalRPRuleProcessor.get()
+							        .addGameEvent(player.getName(), "displace", entity.get("type"));
 
 							entity.setX(x);
 							entity.setY(y);

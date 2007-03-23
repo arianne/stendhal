@@ -13,8 +13,8 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class IL0_Townhall implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -22,16 +22,14 @@ public class IL0_Townhall implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosTownhallArea(zone, attributes);
 		buildSemosTownhallAreaMayor(zone);
 	}
 
-
-	private void buildSemosTownhallArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildSemosTownhallArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Tad") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -41,16 +39,13 @@ public class IL0_Townhall implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
+
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (!player.isQuestCompleted("introduce_players")) {
-							engine.say("Ssshh! Come here, " + player.getName()
-									+ "! I have a #task for you.");
+							engine.say("Ssshh! Come here, " + player.getName() + "! I have a #task for you.");
 						} else {
-							engine.say("Hi again "
-									+ player.getName()
-									+ "! Thanks again, I'm feeling much better now.");
+							engine.say("Hi again " + player.getName() + "! Thanks again, I'm feeling much better now.");
 						}
 					}
 				});
@@ -60,6 +55,7 @@ public class IL0_Townhall implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.addInitChatMessage(null, new SpeakerNPC.ChatAction() {
+
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				if (!player.hasQuest("TadFirstChat")) {
@@ -74,13 +70,14 @@ public class IL0_Townhall implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 	}
-	
+
 	/**
 	 * Adding a a Mayor to the townhall who gives out daily quests
 	 */
 	private void buildSemosTownhallAreaMayor(StendhalRPZone zone) {
 		// We create an NPC
 		SpeakerNPC npc = new SpeakerNPC("Mayor Sakhs") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

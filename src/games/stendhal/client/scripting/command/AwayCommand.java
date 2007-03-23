@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Set/clear the player's away status.
  */
 class AwayCommand implements SlashCommand {
+
 	/**
 	 * Execute an away command.
 	 *
@@ -15,12 +16,12 @@ class AwayCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction action = new RPAction();
 
 		action.put("type", "away");
 
-		if(remainder.length() != 0) {
+		if (remainder.length() != 0) {
 			action.put("message", remainder);
 		}
 
@@ -37,7 +38,6 @@ class AwayCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 0;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

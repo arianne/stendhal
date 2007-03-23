@@ -21,8 +21,8 @@ import java.util.Map;
  * @author hendrik
  */
 public class IL0_Library implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -30,15 +30,13 @@ public class IL0_Library implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildLibrary(zone, attributes);
 	}
 
-
-	private void buildLibrary(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildLibrary(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Wikipedian") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -54,30 +52,33 @@ public class IL0_Library implements ZoneConfigurator {
 				addGreeting();
 				addJob("I am the librarian");
 				addHelp("Just ask me to #explain #something");
-				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+				add(ConversationStates.ATTENDING, "explain", null, ConversationStates.ATTENDING, null,
+				        new SpeakerNPC.ChatAction() {
 
-					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						// extract the title
-						int pos = text.indexOf(" ");
-						if (pos < 0) {
-							engine.say("What do you want to be explained?");
-							return;
-						}
-						String title = text.substring(pos + 1).trim();
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        // extract the title
+						        int pos = text.indexOf(" ");
+						        if (pos < 0) {
+							        engine.say("What do you want to be explained?");
+							        return;
+						        }
+						        String title = text.substring(pos + 1).trim();
 
-						WikipediaAccess access = new WikipediaAccess(title);
-						Thread thread = new Thread(access);
-						thread.setPriority(Thread.MIN_PRIORITY);
-						thread.setDaemon(true);
-						thread.start();
-						TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(engine, access), null);
-						engine.say("Please wait, while i am looking it up in the book called #Wikipedia!");
-					}
-					// TODO: implement pointer to authors, GFDL, etc...
-				});
+						        WikipediaAccess access = new WikipediaAccess(title);
+						        Thread thread = new Thread(access);
+						        thread.setPriority(Thread.MIN_PRIORITY);
+						        thread.setDaemon(true);
+						        thread.start();
+						        TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(engine, access), null);
+						        engine.say("Please wait, while i am looking it up in the book called #Wikipedia!");
+					        }
+					        // TODO: implement pointer to authors, GFDL, etc...
+				        });
 				addReply("wikipedia", "Wikipedia is an Internet based to create a #free encyclopedia");
-				addReply("free", "The Wikipedia content may be used according to the rules specified in the GNU General Documentation License which can be found at http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License");
+				addReply(
+				        "free",
+				        "The Wikipedia content may be used according to the rules specified in the GNU General Documentation License which can be found at http://en.wikipedia.org/wiki/Wikipedia:Text_of_the_GNU_Free_Documentation_License");
 				addGoodbye();
 			}
 		};
@@ -89,9 +90,10 @@ public class IL0_Library implements ZoneConfigurator {
 		zone.add(npc);
 	}
 
-
 	protected class WikipediaWaiter implements TurnListener {
+
 		private WikipediaAccess access = null;
+
 		private SpeakerNPC engine = null;
 
 		public WikipediaWaiter(SpeakerNPC engine, WikipediaAccess access) {

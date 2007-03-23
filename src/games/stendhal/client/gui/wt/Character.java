@@ -44,17 +44,18 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Character extends WtPanel {
+
 	/** Panel width */
-	private static final int PANEL_WIDTH	= 144;
+	private static final int PANEL_WIDTH = 144;
 
 	/** Panel height */
-	private static final int PANEL_HEIGHT	= 280;
+	private static final int PANEL_HEIGHT = 280;
 
 	/** Height/width of slots */
-	private static final int SLOT_SIZE	= 39;	// estimate
+	private static final int SLOT_SIZE = 39; // estimate
 
 	/** Space between slots */
-	private static final int SLOT_SPACING	= 3;	// estimate
+	private static final int SLOT_SPACING = 3; // estimate
 
 	/** the stats panel */
 	private WtTextPanel statsPanel;
@@ -91,59 +92,38 @@ public class Character extends WtPanel {
 		// Offset to center the slot holders
 		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head",
-			new EntitySlot("head", slotSprite,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				0,
-				gameObjects));
+		slotPanels.put("head", new EntitySlot("head", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0,
+		        gameObjects));
 
-		slotPanels.put("armor",
-			new EntitySlot("armor", slotSprite,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 1),
-				gameObjects));
+		slotPanels.put("armor", new EntitySlot("armor", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 1), gameObjects));
 
-		slotPanels.put("rhand",
-			new EntitySlot("rhand", slotSprite,
-				xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + 10,
-				gameObjects));
+		slotPanels.put("rhand", new EntitySlot("rhand", slotSprite, xoff, ((SLOT_SIZE + SLOT_SPACING) * 1) + 10,
+		        gameObjects));
 
-		slotPanels.put("lhand",
-			new EntitySlot("lhand", slotSprite,
-				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + 10,
-				gameObjects));
+		slotPanels.put("lhand", new EntitySlot("lhand", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 1) + 10, gameObjects));
 
-		slotPanels.put("cloak",
-			new EntitySlot("cloak", slotSprite,
-				((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 2) + 10,
-				gameObjects));
+		slotPanels.put("cloak", new EntitySlot("cloak", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 2) + 10, gameObjects));
 
-		slotPanels.put("legs",
-			new EntitySlot("legs", slotSprite,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 2),
-				gameObjects));
+		slotPanels.put("legs", new EntitySlot("legs", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 2), gameObjects));
 
-		slotPanels.put("feet",
-			new EntitySlot("feet", slotSprite,
-				((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-				((SLOT_SIZE + SLOT_SPACING) * 3),
-				gameObjects));
+		slotPanels.put("feet", new EntitySlot("feet", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 3), gameObjects));
 
 		for (EntitySlot slot : slotPanels.values()) {
 			addChild(slot);
 		}
 
 		statsPanel = new WtTextPanel(
-				"stats",
-				5,
-				((SLOT_SIZE + SLOT_SPACING) * 4),
-				170,
-				100,
-				"HP: ${hp}/${maxhp}\nMana: ${mana}/${basemana}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nMoney: $${money}");
+		        "stats",
+		        5,
+		        ((SLOT_SIZE + SLOT_SPACING) * 4),
+		        170,
+		        100,
+		        "HP: ${hp}/${maxhp}\nMana: ${mana}/${basemana}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nMoney: $${money}");
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
 		addChild(statsPanel);
@@ -175,19 +155,16 @@ public class Character extends WtPanel {
 		List<String> checkedItems = new LinkedList<String>();
 
 		// taverse all carrying slots
-		String [] slotsCarrying = {
-			"bag", "rhand", "lhand", "head", "armor",
-			"legs", "feet", "cloak"
-		};
+		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak" };
 
-		for(String slotName : slotsCarrying) {
+		for (String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);
 
-			if(slot == null) {
+			if (slot == null) {
 				continue;
 			}
 
-                        EntitySlot entitySlot = slotPanels.get(slotName);
+			EntitySlot entitySlot = slotPanels.get(slotName);
 
 			if (entitySlot != null) {
 				entitySlot.clear();
@@ -200,8 +177,7 @@ public class Character extends WtPanel {
 
 			// count all money
 			for (RPObject content : slot) {
-				if (content.get("class").equals("money")
-						&& content.has("quantity")) {
+				if (content.get("class").equals("money") && content.has("quantity")) {
 					money += content.getInt("quantity");
 				}
 			}
@@ -218,32 +194,30 @@ public class Character extends WtPanel {
 			for (RPSlot slot : playerEntity.getSlots()) {
 				for (RPObject content : slot) {
 					if (!slot.getName().equals("bag") && !slot.getName().startsWith("!")) {
-						final List<String> weapons = Arrays.asList("sword", "axe",
-								"club", "ranged", "projectiles");
-						final List<String> defense = Arrays.asList("shield",
-								"armor", "helmet", "legs", "boots", "cloak");
-	
-						if (weapons.contains(content.get("class"))
-								&& !checkedItems.contains(content.get("class"))) {
+						final List<String> weapons = Arrays.asList("sword", "axe", "club", "ranged", "projectiles");
+						final List<String> defense = Arrays.asList("shield", "armor", "helmet", "legs", "boots",
+						        "cloak");
+
+						if (weapons.contains(content.get("class")) && !checkedItems.contains(content.get("class"))) {
 							atkitem += content.getInt("atk");
 							checkedItems.add(content.get("class"));
 						}
-						if (defense.contains(content.get("class"))
-								&& !checkedItems.contains(content.get("class"))) {
+						if (defense.contains(content.get("class")) && !checkedItems.contains(content.get("class"))) {
 							defitem += content.getInt("def");
 							checkedItems.add(content.get("class"));
 						}
 					}
 				}
 			}
-			if (!usedCompatibilityCode ) {
+			if (!usedCompatibilityCode) {
 				StendhalClient.get().addEventLine(
-					"Client is newer than Server: Using compatibility code for atkitem and defitem calculation.", Color.RED);
+				        "Client is newer than Server: Using compatibility code for atkitem and defitem calculation.",
+				        Color.RED);
 				usedCompatibilityCode = true;
 			}
 		}
 		// TODO: Remove-Me End
-		
+
 		setTitletext(playerEntity.getName());
 		statsPanel.set("hp", playerEntity.getHP());
 		statsPanel.set("maxhp", playerEntity.getBase_hp());
@@ -255,10 +229,9 @@ public class Character extends WtPanel {
 		statsPanel.set("defxp", playerEntity.getDefXp());
 		statsPanel.set("xp", playerEntity.getXp());
 		statsPanel.set("money", money);
-                //statsPanel.set("mana", "Not Available"); 
-                statsPanel.set("mana", Integer.toString(playerEntity.getMana()));
-                statsPanel.set("basemana", playerEntity.getBaseMana());
-                
+		//statsPanel.set("mana", "Not Available"); 
+		statsPanel.set("mana", Integer.toString(playerEntity.getMana()));
+		statsPanel.set("basemana", playerEntity.getBaseMana());
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
 	}
@@ -266,7 +239,7 @@ public class Character extends WtPanel {
 	/** refreshes the player stats and draws them */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 

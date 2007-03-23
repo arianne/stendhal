@@ -40,13 +40,13 @@ public class OrcishHappyMeal extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"-4_semos_dungeon"));
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-4_semos_dungeon"));
 		NPCList npcs = NPCList.get();
-		
+
 		// Nishiya's part has already been defined in the quest SheepGrowing.
 
 		SpeakerNPC npc = new SpeakerNPC("Tor'Koom") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -62,6 +62,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 				// TODO: The code is identical to Sato's SheepBuyerBehaviour,
 				// except that the phrasing is different. Unite them.
 				class SheepBuyerBehaviour extends BuyerBehaviour {
+
 					SheepBuyerBehaviour(Map<String, Integer> items) {
 						super(items);
 					}
@@ -70,7 +71,8 @@ public class OrcishHappyMeal extends AbstractQuest {
 					public int getCharge(Player player) {
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+							return Math.round(getUnitPrice(chosenItem)
+							        * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 						} else {
 							return 0;
 						}
@@ -106,9 +108,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 
 				addGreeting();
 				addJob(getName() + " is buy real cheep from hoomans.");
-				addHelp(getName()
-						+ " buy sheep! Sell me sheep! " + getName()
-						+ " is hungry!");
+				addHelp(getName() + " buy sheep! Sell me sheep! " + getName() + " is hungry!");
 				addBuyer(new SheepBuyerBehaviour(buyitems));
 				addGoodbye();
 			}

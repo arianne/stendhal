@@ -28,7 +28,7 @@ public class OnePlayerRoomDoor extends Door {
 			}
 			TurnNotifier.get().notifyInTurns(60, this, null);
 		}
-		
+
 	}
 
 	/**

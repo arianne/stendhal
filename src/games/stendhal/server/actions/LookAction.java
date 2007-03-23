@@ -25,6 +25,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 public class LookAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(LookAction.class);
 
 	public static void register() {
@@ -34,7 +35,7 @@ public class LookAction extends ActionListener {
 	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "look");
-		
+
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// When look is casted over something in a slot
@@ -96,8 +97,7 @@ public class LookAction extends ActionListener {
 		else if (action.has("target")) {
 			int usedObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player
-					.getID());
+			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
 			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);

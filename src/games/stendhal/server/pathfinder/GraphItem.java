@@ -12,6 +12,7 @@ import java.util.*;
  * @version
  */
 public class GraphItem implements Graphable {
+
 	/** Brother's list */
 	public List<GraphItem> adjList = new ArrayList<GraphItem>();
 

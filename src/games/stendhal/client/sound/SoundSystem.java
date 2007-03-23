@@ -97,13 +97,14 @@ import org.apache.log4j.Logger;
  * @author Jane Hunt
  */
 public class SoundSystem implements WorldObjects.WorldListener {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SoundSystem.class);
 
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
 
-	private static SoundSystem singleton ;
+	private static SoundSystem singleton;
 
 	/** */
 	private Map<byte[], SoundCycle> cycleMap = Collections.synchronizedMap(new HashMap<byte[], SoundCycle>());
@@ -235,7 +236,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return <code>javax.sound.sampled.DataLine</code> the sound line that
 	 *         is being performed or <b>null</b> if no performance takes place
 	 */
-	public static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop, int chance) {
+	public static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop,
+	        int chance) {
 		Point2D playerPosition;
 		Rectangle2D playerHearing;
 		double distance;
@@ -271,7 +273,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return null;
 		}
 
-		logger.debug("SoundSystem: playing map sound (" + name + ") at pos " + (int) where.getX() + ", " + (int) where.getY());
+		logger.debug("SoundSystem: playing map sound (" + name + ") at pos " + (int) where.getX() + ", "
+		        + (int) where.getY());
 
 		// determine sound volume cutoff due to distance (fog value)
 		distance = where.distance(playerPosition);
@@ -437,7 +440,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		return url.openStream();
 	}
 
-
 	private void init() {
 
 		String value;
@@ -480,7 +482,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					value = entry.getValue();
 
 					logger.debug("- sound definition: " + name + " = " + value);
-
 
 					String filename = null;
 					if ((pos = value.indexOf(',')) > -1) {
@@ -538,7 +539,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 			// report to startup console
 
-			hstr = "Stendhal Soundsystem OK: " + count + " samples approved / " + loaded + " loaded / " + SoundEffectMap.getInstance().size() + " library sounds";
+			hstr = "Stendhal Soundsystem OK: " + count + " samples approved / " + loaded + " loaded / "
+			        + SoundEffectMap.getInstance().size() + " library sounds";
 			logger.info(hstr);
 			System.out.println(hstr);
 			if (failedCounted != 0) {
@@ -564,7 +566,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	// (do not load when ",x" trailing path; 
 	// always load when "." in
 	// name)
-
 
 	/**
 	 * A key/value pair is assumed valid if 	
@@ -592,7 +593,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return false;
 		}
 	}
-
 
 	/**
 	 * @param prop
@@ -714,7 +714,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * Whether the sound system has been initialized and is ready to operate.
 	 *
 	 * @return true, iff the sound system was initialized
-     */
+	 */
 	public boolean isOperative() {
 		return operative;
 	}
@@ -723,8 +723,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the singleton instance of the Stendhal sound system.
 	 */
 	public static SoundSystem get() {
-		 if (singleton == null)
-		 singleton = new SoundSystem();
+		if (singleton == null)
+			singleton = new SoundSystem();
 		return singleton;
 	}
 

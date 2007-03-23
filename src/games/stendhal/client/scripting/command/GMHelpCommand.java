@@ -9,6 +9,7 @@ import java.awt.Color;
  * Eventually replace this with ChatCommand.usage().
  */
 class GMHelpCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -17,33 +18,30 @@ class GMHelpCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		String[] lines = {
-			"For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
-			"Here are the most-used GM commands:",
-			"- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
-			"- /tellall <message> \t\tSend a private message to all logged-in players",
-			"- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
-			"- /script <scriptname> \t\tLoad (or reload) a script on the server",
-			"- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
-			"- /teleportto <player> \t\tTeleport yourself near the specified player",
-			"- /ghostmode \t\t\t Makes yourself invisible and intangible",
-			"- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp_alter for details",
-			"- /summon <creature|item> <x> <y> \tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
-			"- /summonat <player> <slot> <item> <amount> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
-			"- /invisible \t\t\tToggles whether or not you are invisible to creatures",
-			"- /inspect <player> \t\t\tShow complete details of <player>",
-			"- /destroy <entity> \t\t\tDestroy an entity completely"
-		};
+		        "For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php?title=Stendhal:Administration",
+		        "Here are the most-used GM commands:",
+		        "- /adminlevel <player> [<newlevel>] \t\tDisplay or set the adminlevel of the specified <player>",
+		        "- /tellall <message> \t\tSend a private message to all logged-in players",
+		        "- /jail <player> <minutes> <reason>\t\tImprisons the player for a given length of time",
+		        "- /script <scriptname> \t\tLoad (or reload) a script on the server",
+		        "- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
+		        "- /teleportto <player> \t\tTeleport yourself near the specified player",
+		        "- /ghostmode \t\t\t Makes yourself invisible and intangible",
+		        "- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp_alter for details",
+		        "- /summon <creature|item> <x> <y> \tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
+		        "- /summonat <player> <slot> <item> <amount> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
+		        "- /invisible \t\t\tToggles whether or not you are invisible to creatures",
+		        "- /inspect <player> \t\t\tShow complete details of <player>",
+		        "- /destroy <entity> \t\t\tDestroy an entity completely" };
 
 		for (String line : lines) {
-			StendhalClient.get().addEventLine(
-				line, Color.gray);
+			StendhalClient.get().addEventLine(line, Color.gray);
 		}
 
 		return true;
 	}
-
 
 	/**
 	 * Get the maximum number of formal parameters.
@@ -53,7 +51,6 @@ class GMHelpCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 0;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

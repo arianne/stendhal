@@ -20,9 +20,10 @@ import java.util.Map;
  * Inside Semos Tavern - Level 1 (upstairs)
  */
 public class SemosCityTavern1 implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
-	private ShopList shops = ShopList.get();
 
+	private NPCList npcs = NPCList.get();
+
+	private ShopList shops = ShopList.get();
 
 	/**
 	 * Configure a zone.
@@ -30,15 +31,14 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildOuchit(zone);
 		buildMcPegleg(zone);
 	}
 
-
 	private void buildOuchit(StendhalRPZone zone) {
 		SpeakerNPC ouchit = new SpeakerNPC("Ouchit") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -71,6 +71,7 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 	private void buildMcPegleg(StendhalRPZone zone) {
 		// Adding a new NPC that buys some of the stuff that Xin doesn't
 		SpeakerNPC mcpegleg = new SpeakerNPC("McPegleg") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -89,30 +90,21 @@ public class SemosCityTavern1 implements ZoneConfigurator {
 				addQuest("Perhaps if you find some #rare #armor or #weapon ...");
 				addGoodbye("I see you!");
 				add(ConversationStates.ATTENDING, Arrays.asList("weapon", "armor", "rare"),
-					ConversationStates.ATTENDING,
-					"Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer",
-					null);
-				add(ConversationStates.ATTENDING,
-					"offer",
-					null,
-					ConversationStates.ATTENDING,
-					"Have a look at the blackboard on the wall to see my offers.",
-					null);
-				add(ConversationStates.ATTENDING, Arrays.asList("eye","leg","wood","patch"),
-						ConversationStates.ATTENDING,
-						"Not every day is a lucky day ...",
-						null);
-				add(ConversationStates.ATTENDING, "pirate", 
-						null, ConversationStates.ATTENDING, 
-						"That's none of you business!",
-						null);
+				        ConversationStates.ATTENDING,
+				        "Ssshh! I'm occasionally buying rare weapons and armor. Got any? Ask for my #offer", null);
+				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
+				        "Have a look at the blackboard on the wall to see my offers.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("eye", "leg", "wood", "patch"),
+				        ConversationStates.ATTENDING, "Not every day is a lucky day ...", null);
+				add(ConversationStates.ATTENDING, "pirate", null, ConversationStates.ATTENDING,
+				        "That's none of you business!", null);
 				addBuyer(new BuyerBehaviour(shops.get("buyrare")), false);
 			}
 		};
 
 		// Add some atmosphere
-		mcpegleg.setDescription("You see a dubious man with a patched eye and a wooden leg.");  
-		  
+		mcpegleg.setDescription("You see a dubious man with a patched eye and a wooden leg.");
+
 		// Add our new NPC to the game world
 		npcs.add(mcpegleg);
 		zone.assignRPObjectID(mcpegleg);

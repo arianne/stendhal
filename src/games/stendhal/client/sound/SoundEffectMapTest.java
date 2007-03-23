@@ -21,6 +21,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SoundEffectMapTest {
+
 	private SoundEffectMap sem;
 
 	private SoundEffectMap sem2;
@@ -33,12 +34,10 @@ public class SoundEffectMapTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-
 	@Before
 	public final void setup() {
 		sem = SoundEffectMap.getInstance();
 		sem2 = SoundEffectMap.getInstance();
-
 
 	}
 
@@ -65,8 +64,6 @@ public class SoundEffectMapTest {
 		SoundEffectMap.getInstance().put(key, cvalue);
 		assertEquals("ClipRunnerValue", cvalue, SoundEffectMap.getInstance().getByName(key));
 	}
-
-
 
 	@Test
 	public final void testPutStringString() {

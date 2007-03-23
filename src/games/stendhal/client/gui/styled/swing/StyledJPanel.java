@@ -21,11 +21,11 @@ import games.stendhal.client.gui.styled.Style;
  * A styled JPanel.
  */
 public class StyledJPanel extends JPanel {
+
 	/*
 	 * Style used.
 	 */
-	private Style	style;
-
+	private Style style;
 
 	/**
 	 * Create a styled JPanel.
@@ -38,7 +38,6 @@ public class StyledJPanel extends JPanel {
 		applyStyle(style, this);
 	}
 
-
 	//
 	// StyledJPanel
 	//
@@ -48,24 +47,21 @@ public class StyledJPanel extends JPanel {
 	 * 
 	 */
 	protected void applyStyle(Style style, JPanel panel) {
-		Border	border;
-		Font	font;
+		Border border;
+		Font font;
 
-
-		if((border = style.getBorder()) != null) {
+		if ((border = style.getBorder()) != null) {
 			panel.setBorder(border);
 		}
 
-		if((font = style.getFont()) != null) {
+		if ((font = style.getFont()) != null) {
 			panel.setFont(font);
 		}
 	}
 
-
 	//
 	// JComponent
 	//
-
 
 	/**
 	 * Paint the component background.
@@ -74,17 +70,15 @@ public class StyledJPanel extends JPanel {
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		Sprite	texture;
+		Sprite texture;
 
-
-		if((texture = style.getBackground()) != null) {
-			int	twidth;
-			int	theight;
-			int	width;
-			int	height;
-			int	x;
-			int	y;
-
+		if ((texture = style.getBackground()) != null) {
+			int twidth;
+			int theight;
+			int width;
+			int height;
+			int x;
+			int y;
 
 			twidth = texture.getWidth();
 			theight = texture.getHeight();
@@ -92,8 +86,8 @@ public class StyledJPanel extends JPanel {
 			width = getWidth();
 			height = getHeight();
 
-			for(x = 0; x < width; x += twidth) {
-				for(y = 0; y < height; y += theight) {
+			for (x = 0; x < width; x += twidth) {
+				for (y = 0; y < height; y += theight) {
 					texture.draw(g, x, y);
 				}
 			}

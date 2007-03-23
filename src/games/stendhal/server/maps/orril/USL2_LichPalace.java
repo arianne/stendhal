@@ -14,9 +14,8 @@ import java.util.Map;
  * Configure Orril Lich Palace (Underground/Level -2).
  */
 public class USL2_LichPalace implements ZoneConfigurator {
-	DefaultEntityManager manager = (DefaultEntityManager)
-		StendhalRPWorld.get().getRuleManager().getEntityManager();
 
+	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 	/**
 	 * Configure a zone.
@@ -24,19 +23,14 @@ public class USL2_LichPalace implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildLichPalace(zone, attributes);
 	}
 
+	private void buildLichPalace(StendhalRPZone zone, Map<String, String> attributes) {
+		Creature creature = new ItemGuardCreature(manager.getCreature("royal_mummy"), "lich_gold_key");
 
-	private void buildLichPalace(StendhalRPZone zone,
-	 Map<String, String> attributes) {
-		Creature creature = new ItemGuardCreature(
-			manager.getCreature("royal_mummy"), "lich_gold_key");
-
-		CreatureRespawnPoint point =
-			new CreatureRespawnPoint(zone, 54, 48, creature, 1);
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 54, 48, creature, 1);
 
 		zone.addRespawnPoint(point);
 	}

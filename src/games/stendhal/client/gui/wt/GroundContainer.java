@@ -48,10 +48,8 @@ public class GroundContainer extends WtPanel {
 	private InGameGUI ingameGUI;
 
 	/** creates a new groundcontainer */
-	public GroundContainer(GameScreen screen, GameObjects gameObjects,
-			InGameGUI gameGUI) {
-		super("ground", 0, 0, screen.getWidthInPixels(), screen
-				.getHeightInPixels());
+	public GroundContainer(GameScreen screen, GameObjects gameObjects, InGameGUI gameGUI) {
+		super("ground", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
 
 		setMoveable(false);
 		setCloseable(false);
@@ -113,13 +111,11 @@ public class GroundContainer extends WtPanel {
 			return other;
 		}
 		Point2D point = screen.translate(new Point2D.Double(x, y));
-		Entity object = gameObjects
-				.at_undercreature(point.getX(), point.getY());
+		Entity object = gameObjects.at_undercreature(point.getX(), point.getY());
 
 		// only Items can be dragged
 		if ((object != null) && (object instanceof PassiveEntity)) {
-			return new MoveableEntityContainer(object, (int) point.getX(),
-					(int) point.getY(), gameObjects);
+			return new MoveableEntityContainer(object, (int) point.getX(), (int) point.getY(), gameObjects);
 		}
 		return null;
 	}
@@ -197,8 +193,7 @@ public class GroundContainer extends WtPanel {
 			// ... show context menu (aka command list)
 			String[] actions = entity.offeredActions();
 			if (actions.length > 0) {
-				CommandList list = new CommandList(entity.getType(), actions,
-						entity);
+				CommandList list = new CommandList(entity.getType(), actions, entity);
 				ingameGUI.getFrame().setContextMenu(list);
 			}
 		}

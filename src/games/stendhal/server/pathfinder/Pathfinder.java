@@ -31,6 +31,7 @@ import java.util.*;
  * 
  */
 public class Pathfinder {
+
 	/**
 	 * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
 	 * 
@@ -64,12 +65,14 @@ public class Pathfinder {
 	/**
 	 * The open list.
 	 */
-	protected PriorityQueue<Pathfinder.Node> listOpen = new PriorityQueue<Pathfinder.Node>(
-			16, new Comparator<Pathfinder.Node>() {
-				public int compare(Pathfinder.Node o1, Pathfinder.Node o2) {
-					return (int) Math.signum(o1.f - o2.f);
-				}
-			});
+	protected PriorityQueue<Pathfinder.Node> listOpen = new PriorityQueue<Pathfinder.Node>(16,
+	        new Comparator<Pathfinder.Node>() {
+
+		        public int compare(Pathfinder.Node o1, Pathfinder.Node o2) {
+			        return (int) Math.signum(o1.f - o2.f);
+		        }
+	        });
+
 	protected HashMap<Integer, Pathfinder.Node> hashOpen = new HashMap<Integer, Pathfinder.Node>();
 
 	/**
@@ -98,7 +101,7 @@ public class Pathfinder {
 	 */
 	protected Navigable navMap = null;
 
-		/**
+	/**
 	 * Return the current status of the pathfinder.
 	 * 
 	 * @return the pathfindre status.

@@ -15,22 +15,22 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class IL0_Bakery implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
+
 	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosBakeryArea(zone, attributes);
 	}
 
-
-	private void buildSemosBakeryArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildSemosBakeryArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC erna = new SpeakerNPC("Erna") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -49,7 +49,9 @@ public class IL0_Bakery implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addJob("I'm the shop assistant at this bakery.");
-				addReply("flour", "We usually get our #flour from a mill northeast of here, but the wolves ate their delivery boy! If you help us out by bringing some, we can #bake delicious bread for you.");
+				addReply(
+				        "flour",
+				        "We usually get our #flour from a mill northeast of here, but the wolves ate their delivery boy! If you help us out by bringing some, we can #bake delicious bread for you.");
 				addHelp("Bread is very good for you, especially for you adventurers who are always gulping down red meat. And my boss, Leander, happens to make the best sandwiches on the island!");
 				addGoodbye();
 
@@ -57,10 +59,11 @@ public class IL0_Bakery implements ZoneConfigurator {
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
 				requiredResources.put("flour", new Integer(2));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"erna_bake_bread", "bake", "bread", requiredResources, 10 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("erna_bake_bread", "bake", "bread",
+				        requiredResources, 10 * 60);
 
-				addProducer(behaviour, "Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.");
+				addProducer(behaviour,
+				        "Welcome to the Semos bakery! We'll #bake fine bread for anyone who helps bring our #flour delivery from the mill.");
 			}
 		};
 		npcs.add(erna);
@@ -71,6 +74,7 @@ public class IL0_Bakery implements ZoneConfigurator {
 		zone.add(erna);
 
 		SpeakerNPC leander = new SpeakerNPC("Leander") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -99,7 +103,7 @@ public class IL0_Bakery implements ZoneConfigurator {
 				nodes.add(new Path.Node(5, 3));
 				// towards the well
 				nodes.add(new Path.Node(15, 3));
-				
+
 				setPath(nodes, true);
 			}
 
@@ -108,11 +112,18 @@ public class IL0_Bakery implements ZoneConfigurator {
 				addJob("I'm the local baker. I also run a #pizza delivery service. We used to get a lot of orders from Ados before the war broke out and they blocked the road. At least it gives me more time to #make sandwiches for out valuable customers; everybody says they're great!");
 				addHelp("If you want to earn some money, you could do me a #favor and help me with the #pizza deliveries. My daughter #Sally used to do it, but she's camping at the moment.");
 				addReply("bread", "Oh, Erna handles that side of the business; just go over and talk to her.");
-				addReply("cheese", "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to?");
-				addReply("ham", "Well, you look like a skilled hunter; why not go to the forest and hunt some up fresh? Don't bring me those little pieces of meat, though... I only make sandwiches from high quality ham!");
-				addReply("Sally", "My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");
+				addReply(
+				        "cheese",
+				        "Cheese is pretty hard to find at the minute, we had a big rat infestation recently. I wonder where the little rodents took it all to?");
+				addReply(
+				        "ham",
+				        "Well, you look like a skilled hunter; why not go to the forest and hunt some up fresh? Don't bring me those little pieces of meat, though... I only make sandwiches from high quality ham!");
+				addReply(
+				        "Sally",
+				        "My daughter Sally might be able to help you get ham. She's a scout, you see; I think she's currently camped out south of Or'ril Castle.");
 				addReply("pizza", "I need someone who helps me delivering pizza. Maybe you could do that #task.");
-				addReply(Arrays.asList("sandwich", "sandwiches"), "My sandwiches are tasty and nutritious. If you want one, just tell me to #make #1 #sandwich.");
+				addReply(Arrays.asList("sandwich", "sandwiches"),
+				        "My sandwiches are tasty and nutritious. If you want one, just tell me to #make #1 #sandwich.");
 				addGoodbye();
 
 				// Leander makes sandwiches if you bring him bread, cheese, and ham.
@@ -121,11 +132,10 @@ public class IL0_Bakery implements ZoneConfigurator {
 				requiredResources.put("cheese", new Integer(2));
 				requiredResources.put("ham", new Integer(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"leander_make_sandwiches", "make", "sandwich", requiredResources, 3 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("leander_make_sandwiches", "make", "sandwich",
+				        requiredResources, 3 * 60);
 
-				addProducer(behaviour,
-						"Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
+				addProducer(behaviour, "Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.");
 			}
 		};
 		npcs.add(leander);

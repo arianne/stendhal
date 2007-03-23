@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
  * should be replaced by independent tiles as soon as possible .
  */
 public class TileRenderer extends LayerRenderer {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileRenderer.class);
 
@@ -34,16 +35,16 @@ public class TileRenderer extends LayerRenderer {
 
 	private int[] map;
 
-//	private int width;
+	//	private int width;
 
-//	private int height;
+	//	private int height;
 
 	private int frame;
 
 	private long delta;
 
 	public TileRenderer(TileStore tiles) {
-    super();
+		super();
 		this.tiles = tiles;
 		map = null;
 		frame = 0;
@@ -83,17 +84,14 @@ public class TileRenderer extends LayerRenderer {
 		Log4J.finishMethod(logger, "setMapData");
 	}
 
-  
 	/** Returns the widht in world units */
-//	public int getWidth() {
-//		return width;
-//	}
-
+	//	public int getWidth() {
+	//		return width;
+	//	}
 	/** Returns the height in world units */
-//	public int getHeight() {
-//		return height;
-//	}
-
+	//	public int getHeight() {
+	//		return height;
+	//	}
 	private int get(int x, int y) {
 		return map[y * width + x];
 	}
@@ -123,89 +121,57 @@ public class TileRenderer extends LayerRenderer {
 		// Interior_1 = 3562 - 3942
 
 		// Double white daisy
-		addAnimatedTile(22, new int[] { 22, 52, 82, 112, 112, 112, 112, 112,
-				112, 112 });
-		addAnimatedTile(52,
-				new int[] { 52, 82, 112, 22, 22, 22, 22, 22, 22, 22 });
-		addAnimatedTile(82,
-				new int[] { 82, 112, 22, 52, 52, 52, 52, 52, 52, 52 });
-		addAnimatedTile(112, new int[] { 112, 22, 52, 82, 82, 82, 82, 82, 82,
-				82 });
+		addAnimatedTile(22, new int[] { 22, 52, 82, 112, 112, 112, 112, 112, 112, 112 });
+		addAnimatedTile(52, new int[] { 52, 82, 112, 22, 22, 22, 22, 22, 22, 22 });
+		addAnimatedTile(82, new int[] { 82, 112, 22, 52, 52, 52, 52, 52, 52, 52 });
+		addAnimatedTile(112, new int[] { 112, 22, 52, 82, 82, 82, 82, 82, 82, 82 });
 
 		// Single white daisy
-		addAnimatedTile(23, new int[] { 23, 53, 83, 113, 113, 113, 113, 113,
-				113, 113 });
-		addAnimatedTile(53,
-				new int[] { 53, 83, 113, 23, 23, 23, 23, 23, 23, 23 });
-		addAnimatedTile(83,
-				new int[] { 83, 113, 23, 53, 53, 53, 53, 53, 53, 53 });
-		addAnimatedTile(113, new int[] { 113, 23, 53, 83, 83, 83, 83, 83, 83,
-				83 });
+		addAnimatedTile(23, new int[] { 23, 53, 83, 113, 113, 113, 113, 113, 113, 113 });
+		addAnimatedTile(53, new int[] { 53, 83, 113, 23, 23, 23, 23, 23, 23, 23 });
+		addAnimatedTile(83, new int[] { 83, 113, 23, 53, 53, 53, 53, 53, 53, 53 });
+		addAnimatedTile(113, new int[] { 113, 23, 53, 83, 83, 83, 83, 83, 83, 83 });
 
 		// Double yellow daisy
-		addAnimatedTile(24, new int[] { 24, 54, 84, 114, 114, 114, 114, 114,
-				114, 114 });
-		addAnimatedTile(54,
-				new int[] { 54, 84, 114, 24, 24, 24, 24, 24, 24, 24 });
-		addAnimatedTile(84,
-				new int[] { 84, 114, 24, 54, 54, 54, 54, 54, 54, 54 });
-		addAnimatedTile(114, new int[] { 114, 24, 54, 84, 84, 84, 84, 84, 84,
-				84 });
+		addAnimatedTile(24, new int[] { 24, 54, 84, 114, 114, 114, 114, 114, 114, 114 });
+		addAnimatedTile(54, new int[] { 54, 84, 114, 24, 24, 24, 24, 24, 24, 24 });
+		addAnimatedTile(84, new int[] { 84, 114, 24, 54, 54, 54, 54, 54, 54, 54 });
+		addAnimatedTile(114, new int[] { 114, 24, 54, 84, 84, 84, 84, 84, 84, 84 });
 
 		// Single yellow daisy
-		addAnimatedTile(25, new int[] { 25, 55, 85, 115, 115, 115, 115, 115,
-				115, 115 });
-		addAnimatedTile(55,
-				new int[] { 55, 85, 115, 25, 25, 25, 25, 25, 25, 25 });
-		addAnimatedTile(85,
-				new int[] { 85, 115, 25, 55, 55, 55, 55, 55, 55, 55 });
-		addAnimatedTile(115, new int[] { 115, 25, 55, 85, 85, 85, 85, 85, 85,
-				85 });
+		addAnimatedTile(25, new int[] { 25, 55, 85, 115, 115, 115, 115, 115, 115, 115 });
+		addAnimatedTile(55, new int[] { 55, 85, 115, 25, 25, 25, 25, 25, 25, 25 });
+		addAnimatedTile(85, new int[] { 85, 115, 25, 55, 55, 55, 55, 55, 55, 55 });
+		addAnimatedTile(115, new int[] { 115, 25, 55, 85, 85, 85, 85, 85, 85, 85 });
 
 		// Double red daisy
-		addAnimatedTile(26, new int[] { 26, 56, 86, 116, 116, 116, 116, 116,
-				116, 116 });
-		addAnimatedTile(56, new int[] { 56, 86, 116, 26, 26, 26, 26, 26, 26,
-				26, 26, 26 });
-		addAnimatedTile(86,
-				new int[] { 86, 116, 26, 56, 56, 56, 56, 56, 56, 56 });
-		addAnimatedTile(116, new int[] { 116, 26, 56, 86, 86, 86, 86, 86, 86,
-				86 });
+		addAnimatedTile(26, new int[] { 26, 56, 86, 116, 116, 116, 116, 116, 116, 116 });
+		addAnimatedTile(56, new int[] { 56, 86, 116, 26, 26, 26, 26, 26, 26, 26, 26, 26 });
+		addAnimatedTile(86, new int[] { 86, 116, 26, 56, 56, 56, 56, 56, 56, 56 });
+		addAnimatedTile(116, new int[] { 116, 26, 56, 86, 86, 86, 86, 86, 86, 86 });
 
 		// Single red daisy
-		addAnimatedTile(27, new int[] { 27, 57, 87, 117, 117, 117, 117, 117,
-				117, 117 });
-		addAnimatedTile(57,
-				new int[] { 57, 87, 117, 27, 27, 27, 27, 27, 27, 27 });
-		addAnimatedTile(87,
-				new int[] { 87, 117, 27, 57, 57, 57, 57, 57, 57, 57 });
-		addAnimatedTile(117, new int[] { 117, 27, 57, 87, 87, 87, 87, 87, 87,
-				87 });
+		addAnimatedTile(27, new int[] { 27, 57, 87, 117, 117, 117, 117, 117, 117, 117 });
+		addAnimatedTile(57, new int[] { 57, 87, 117, 27, 27, 27, 27, 27, 27, 27 });
+		addAnimatedTile(87, new int[] { 87, 117, 27, 57, 57, 57, 57, 57, 57, 57 });
+		addAnimatedTile(117, new int[] { 117, 27, 57, 87, 87, 87, 87, 87, 87, 87 });
 
 		// Double blue daisy
-		addAnimatedTile(28, new int[] { 28, 58, 88, 118, 118, 118, 118, 118,
-				118, 118 });
-		addAnimatedTile(58,
-				new int[] { 58, 88, 118, 28, 28, 28, 28, 28, 28, 28 });
-		addAnimatedTile(88,
-				new int[] { 88, 118, 28, 58, 58, 58, 58, 58, 58, 58 });
-		addAnimatedTile(118, new int[] { 118, 28, 58, 88, 88, 88, 88, 88, 88,
-				88 });
+		addAnimatedTile(28, new int[] { 28, 58, 88, 118, 118, 118, 118, 118, 118, 118 });
+		addAnimatedTile(58, new int[] { 58, 88, 118, 28, 28, 28, 28, 28, 28, 28 });
+		addAnimatedTile(88, new int[] { 88, 118, 28, 58, 58, 58, 58, 58, 58, 58 });
+		addAnimatedTile(118, new int[] { 118, 28, 58, 88, 88, 88, 88, 88, 88, 88 });
 
 		// Single blue daisy
-		addAnimatedTile(29, new int[] { 29, 59, 89, 119, 119, 119, 119, 119,
-				119, 119 });
-		addAnimatedTile(59,
-				new int[] { 59, 89, 119, 29, 29, 29, 29, 29, 29, 29 });
-		addAnimatedTile(89,
-				new int[] { 89, 119, 29, 59, 59, 59, 59, 59, 59, 59 });
-		addAnimatedTile(119, new int[] { 119, 29, 59, 89, 89, 89, 89, 89, 89,
-				89 });
+		addAnimatedTile(29, new int[] { 29, 59, 89, 119, 119, 119, 119, 119, 119, 119 });
+		addAnimatedTile(59, new int[] { 59, 89, 119, 29, 29, 29, 29, 29, 29, 29 });
+		addAnimatedTile(89, new int[] { 89, 119, 29, 59, 59, 59, 59, 59, 59, 59 });
+		addAnimatedTile(119, new int[] { 119, 29, 59, 89, 89, 89, 89, 89, 89, 89 });
 
 		// Fire
 		addAnimatedTile(1167, new int[] { 1167, 1258 });
 		addAnimatedTile(1258, new int[] { 1167, 1258 });
-		
+
 		// Green Water, Top Left
 		addAnimatedTile(3083, new int[] { 3083, 3086, 3089, 3086 });
 		addAnimatedTile(3086, new int[] { 3083, 3086, 3089, 3086 });
@@ -291,8 +257,6 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(995, new int[] { 965, 995, 1025, 995 });
 		addAnimatedTile(1025, new int[] { 965, 995, 1025, 995 });
 
-
-
 		// Waterfall start
 		addAnimatedTile(145, new int[] { 145, 175, 205 });
 		addAnimatedTile(175, new int[] { 175, 205, 235 });
@@ -343,8 +307,6 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(299, new int[] { 299, 329, 359 });
 		addAnimatedTile(329, new int[] { 329, 359, 269 });
 
-
-
 		// Golden Teleport
 		addAnimatedTile(1443, new int[] { 1443, 1444, 1445 });
 		addAnimatedTile(1444, new int[] { 1444, 1445, 1443 });
@@ -378,92 +340,59 @@ public class TileRenderer extends LayerRenderer {
 		// Interior_1 = 3562 - 394
 
 		// Blacksmith fire (small), Top
-		addAnimatedTile(3660, new int[] { 3660, 3660, 3661, 3661, 3662, 3662,
-				3661, 3661 });
-		addAnimatedTile(3661, new int[] { 3660, 3660, 3661, 3661, 3662, 3662,
-				3661, 3661 });
-		addAnimatedTile(3662, new int[] { 3660, 3660, 3661, 3661, 3662, 3662,
-				3661, 3661 });
+		addAnimatedTile(3660, new int[] { 3660, 3660, 3661, 3661, 3662, 3662, 3661, 3661 });
+		addAnimatedTile(3661, new int[] { 3660, 3660, 3661, 3661, 3662, 3662, 3661, 3661 });
+		addAnimatedTile(3662, new int[] { 3660, 3660, 3661, 3661, 3662, 3662, 3661, 3661 });
 
 		// Blacksmith fire (small), Bottom
-		addAnimatedTile(3690, new int[] { 3690, 3690, 3691, 3691, 3692, 3692,
-				3691, 3691 });
-		addAnimatedTile(3691, new int[] { 3690, 3690, 3691, 3691, 3692, 3692,
-				3691, 3691 });
-		addAnimatedTile(3692, new int[] { 3690, 3690, 3691, 3691, 3692, 3692,
-				3691, 3691 });
+		addAnimatedTile(3690, new int[] { 3690, 3690, 3691, 3691, 3692, 3692, 3691, 3691 });
+		addAnimatedTile(3691, new int[] { 3690, 3690, 3691, 3691, 3692, 3692, 3691, 3691 });
+		addAnimatedTile(3692, new int[] { 3690, 3690, 3691, 3691, 3692, 3692, 3691, 3691 });
 
 		// Blacksmith fire (large), Top Left
-		addAnimatedTile(3657, new int[] { 3657, 3657, 3747, 3747, 3837, 3837,
-				3747, 3747 });
-		addAnimatedTile(3747, new int[] { 3657, 3657, 3747, 3747, 3837, 3837,
-				3747, 3747 });
-		addAnimatedTile(3837, new int[] { 3657, 3657, 3747, 3747, 3837, 3837,
-				3747, 3747 });
+		addAnimatedTile(3657, new int[] { 3657, 3657, 3747, 3747, 3837, 3837, 3747, 3747 });
+		addAnimatedTile(3747, new int[] { 3657, 3657, 3747, 3747, 3837, 3837, 3747, 3747 });
+		addAnimatedTile(3837, new int[] { 3657, 3657, 3747, 3747, 3837, 3837, 3747, 3747 });
 
 		// Blacksmith fire (large), Top
-		addAnimatedTile(3658, new int[] { 3658, 3658, 3748, 3748, 3838, 3838,
-				3748, 3748 });
-		addAnimatedTile(3748, new int[] { 3658, 3658, 3748, 3748, 3838, 3838,
-				3748, 3748 });
-		addAnimatedTile(3838, new int[] { 3658, 3658, 3748, 3748, 3838, 3838,
-				3748, 3748 });
+		addAnimatedTile(3658, new int[] { 3658, 3658, 3748, 3748, 3838, 3838, 3748, 3748 });
+		addAnimatedTile(3748, new int[] { 3658, 3658, 3748, 3748, 3838, 3838, 3748, 3748 });
+		addAnimatedTile(3838, new int[] { 3658, 3658, 3748, 3748, 3838, 3838, 3748, 3748 });
 
 		// Blacksmith fire (large), Top Right
-		addAnimatedTile(3659, new int[] { 3659, 3659, 3749, 3749, 3839, 3839,
-				3749, 3749 });
-		addAnimatedTile(3749, new int[] { 3659, 3659, 3749, 3749, 3839, 3839,
-				3749, 3749 });
-		addAnimatedTile(3839, new int[] { 3659, 3659, 3749, 3749, 3839, 3839,
-				3749, 3749 });
+		addAnimatedTile(3659, new int[] { 3659, 3659, 3749, 3749, 3839, 3839, 3749, 3749 });
+		addAnimatedTile(3749, new int[] { 3659, 3659, 3749, 3749, 3839, 3839, 3749, 3749 });
+		addAnimatedTile(3839, new int[] { 3659, 3659, 3749, 3749, 3839, 3839, 3749, 3749 });
 
 		// Blacksmith fire (large), Left
-		addAnimatedTile(3687, new int[] { 3687, 3687, 3777, 3777, 3867, 3867,
-				3777, 3777 });
-		addAnimatedTile(3777, new int[] { 3687, 3687, 3777, 3777, 3867, 3867,
-				3777, 3777 });
-		addAnimatedTile(3867, new int[] { 3687, 3687, 3777, 3777, 3867, 3867,
-				3777, 3777 });
+		addAnimatedTile(3687, new int[] { 3687, 3687, 3777, 3777, 3867, 3867, 3777, 3777 });
+		addAnimatedTile(3777, new int[] { 3687, 3687, 3777, 3777, 3867, 3867, 3777, 3777 });
+		addAnimatedTile(3867, new int[] { 3687, 3687, 3777, 3777, 3867, 3867, 3777, 3777 });
 
 		// Blacksmith fire (large), Center
-		addAnimatedTile(3688, new int[] { 3688, 3688, 3778, 3778, 3868, 3868,
-				3778, 3778 });
-		addAnimatedTile(3778, new int[] { 3688, 3688, 3778, 3778, 3868, 3868,
-				3778, 3778 });
-		addAnimatedTile(3868, new int[] { 3688, 3688, 3778, 3778, 3868, 3868,
-				3778, 3778 });
+		addAnimatedTile(3688, new int[] { 3688, 3688, 3778, 3778, 3868, 3868, 3778, 3778 });
+		addAnimatedTile(3778, new int[] { 3688, 3688, 3778, 3778, 3868, 3868, 3778, 3778 });
+		addAnimatedTile(3868, new int[] { 3688, 3688, 3778, 3778, 3868, 3868, 3778, 3778 });
 
 		// Blacksmith fire (large), Right
-		addAnimatedTile(3689, new int[] { 3689, 3689, 3779, 3779, 3869, 3869,
-				3779, 3779 });
-		addAnimatedTile(3779, new int[] { 3689, 3689, 3779, 3779, 3869, 3869,
-				3779, 3779 });
-		addAnimatedTile(3869, new int[] { 3689, 3689, 3779, 3779, 3869, 3869,
-				3779, 3779 });
+		addAnimatedTile(3689, new int[] { 3689, 3689, 3779, 3779, 3869, 3869, 3779, 3779 });
+		addAnimatedTile(3779, new int[] { 3689, 3689, 3779, 3779, 3869, 3869, 3779, 3779 });
+		addAnimatedTile(3869, new int[] { 3689, 3689, 3779, 3779, 3869, 3869, 3779, 3779 });
 
 		// Blacksmith fire (large), Bottom Left
-		addAnimatedTile(3717, new int[] { 3717, 3717, 3807, 3807, 3897, 3897,
-				3807, 3807 });
-		addAnimatedTile(3807, new int[] { 3717, 3717, 3807, 3807, 3897, 3897,
-				3807, 3807 });
-		addAnimatedTile(3897, new int[] { 3717, 3717, 3807, 3807, 3897, 3897,
-				3807, 3807 });
+		addAnimatedTile(3717, new int[] { 3717, 3717, 3807, 3807, 3897, 3897, 3807, 3807 });
+		addAnimatedTile(3807, new int[] { 3717, 3717, 3807, 3807, 3897, 3897, 3807, 3807 });
+		addAnimatedTile(3897, new int[] { 3717, 3717, 3807, 3807, 3897, 3897, 3807, 3807 });
 
 		// Blacksmith fire (large), Bottom
-		addAnimatedTile(3718, new int[] { 3718, 3718, 3808, 3808, 3898, 3898,
-				3808, 3808 });
-		addAnimatedTile(3808, new int[] { 3718, 3718, 3808, 3808, 3898, 3898,
-				3808, 3808 });
-		addAnimatedTile(3898, new int[] { 3718, 3718, 3808, 3808, 3898, 3898,
-				3808, 3808 });
+		addAnimatedTile(3718, new int[] { 3718, 3718, 3808, 3808, 3898, 3898, 3808, 3808 });
+		addAnimatedTile(3808, new int[] { 3718, 3718, 3808, 3808, 3898, 3898, 3808, 3808 });
+		addAnimatedTile(3898, new int[] { 3718, 3718, 3808, 3808, 3898, 3898, 3808, 3808 });
 
 		// Blacksmith fire (large), Bottom Right
-		addAnimatedTile(3719, new int[] { 3719, 3719, 3809, 3809, 3899, 3899,
-				3809, 3809 });
-		addAnimatedTile(3809, new int[] { 3719, 3719, 3809, 3809, 3899, 3899,
-				3809, 3809 });
-		addAnimatedTile(3899, new int[] { 3719, 3719, 3809, 3809, 3899, 3899,
-				3809, 3809 });
+		addAnimatedTile(3719, new int[] { 3719, 3719, 3809, 3809, 3899, 3899, 3809, 3809 });
+		addAnimatedTile(3809, new int[] { 3719, 3719, 3809, 3809, 3899, 3899, 3809, 3809 });
+		addAnimatedTile(3899, new int[] { 3719, 3719, 3809, 3809, 3899, 3899, 3809, 3809 });
 
 		// Flame Brazier
 		addAnimatedTile(1567, new int[] { 1567, 1597, 1627, 1597 });

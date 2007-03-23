@@ -18,42 +18,42 @@ import org.apache.log4j.Logger;
  * @author daniel
  */
 public class LoginNotifier {
-	
+
 	/**
 	 * Struct to store a pair of LoginListener and String.
 	 */
 	protected static class LoginEvent {
-		public LoginListener loginListener;
-		
-		public String message; 
 
-		public String playerName; 
-		
+		public LoginListener loginListener;
+
+		public String message;
+
+		public String playerName;
+
 		public LoginEvent(LoginListener loginListener, String playerName, String message) {
 			this.loginListener = loginListener;
 			this.message = message;
 			this.playerName = playerName;
 		}
-		
+
 		public boolean equals(LoginEvent other) {
 			return (loginListener == other.loginListener)
-					&& (((message == null) && (other.message == null))
-							|| message.equals(other.message));
+			        && (((message == null) && (other.message == null)) || message.equals(other.message));
 		}
 	}
-	
+
 	private static Logger logger = Logger.getLogger(LoginNotifier.class);
-	
+
 	/** The Singleton instance **/
 	private static LoginNotifier instance = null;
-	
+
 	/**
 	 * This Map maps each player name to the set of all events that will
 	 * take place when that player logs in.
 	 * Players for whom no event should take place needn't be registered here.
 	 */
 	private Map<String, Set<LoginEvent>> register = new HashMap<String, Set<LoginEvent>>();
-	
+
 	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
 
@@ -94,7 +94,7 @@ public class LoginNotifier {
 					loginListener.onLoggedIn(playerName, message);
 				} catch (RuntimeException e) {
 					logger.error(e, e);
-				}				
+				}
 			}
 		}
 	}
@@ -126,7 +126,7 @@ public class LoginNotifier {
 			set.add(new LoginEvent(loginListener, playerName, message));
 		}
 	}
-	
+
 	/**
 	 * Forgets all registered notification entries for the given LoginListener
 	 * where the entry's message equals the given one. 
@@ -136,7 +136,7 @@ public class LoginNotifier {
 	public void dontNotify(LoginListener loginListener, String playerName, String message) {
 		// all events that are equal to this one should be forgotten.
 		LoginEvent loginEvent = new LoginEvent(loginListener, playerName, message);
-		for (Map.Entry<String, Set<LoginEvent>> mapEntry: register.entrySet()) {
+		for (Map.Entry<String, Set<LoginEvent>> mapEntry : register.entrySet()) {
 			Set<LoginEvent> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions. 

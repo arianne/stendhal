@@ -44,6 +44,7 @@ import org.apache.log4j.Logger;
  * created by an older version of Stendhal.
  */
 class PlayerRPClass {
+
 	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
 
 	/** list of super admins read from admins.list */
@@ -53,13 +54,12 @@ class PlayerRPClass {
 	private static boolean firstWelcomeException = true;
 
 	/** these items should be bound */
-	private static final List<String> itemsToBind = Arrays.asList(
-					"dungeon_silver_key", "lich_gold_key",  
-					"golden_armor", "golden_boots", "golden_helmet", "golden_legs", "golden_shield", 
-					"steel_boots", "trophy_helmet",
-					"marked_scroll");
+	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key",
+	        "golden_armor", "golden_boots", "golden_helmet", "golden_legs", "golden_shield", "steel_boots",
+	        "trophy_helmet", "marked_scroll");
 
 	private static final List<String> itemNamesOld = Arrays.asList("flail_+2");
+
 	private static final List<String> itemNamesNew = Arrays.asList("morning_star");
 
 	/**
@@ -101,7 +101,7 @@ class PlayerRPClass {
 		player.addRPSlot("zaras_chest_ados", 20, RPClass.HIDDEN);
 		player.addRPSlot("bank_fado", 20, RPClass.HIDDEN);
 		player.addRPSlot("bank_nalwor", 20, RPClass.HIDDEN);
-		
+
 		// Kills recorder - needed for quest
 		player.addRPSlot("!kills", 1, RPClass.HIDDEN);
 
@@ -129,14 +129,10 @@ class PlayerRPClass {
 	 * @param object RPObject representing a player
 	 */
 	static void updatePlayerRPObject(RPObject object) {
-		String[] slotsNormal = {
-			"bag", "rhand", "lhand", "head", "armor", "legs",
-			"feet", "cloak", "bank", "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor" 
-		};
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank",
+		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor" };
 
-		String[] slotsSpecial = {
-			"!quests", "!kills", "!buddy", "!ignore", "!visited", "skills"
-		};
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills" };
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -154,7 +150,7 @@ class PlayerRPClass {
 		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
 		//     Port from 0.44 to 0.50: cloak, bank
 		//     Port from 0.57 to 0.58: bank_ados, bank_fado
-        //	   Port from 0.58 to ?: bank_nalwor,
+		//	   Port from 0.58 to ?: bank_nalwor,
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new RPSlot(slotName));
@@ -196,21 +192,21 @@ class PlayerRPClass {
 			object.put("age", "0");
 		}
 
-		if(!object.has("karma")) {
+		if (!object.has("karma")) {
 			// A little beginner's luck
 			object.put("karma", 10);
 		}
-                if(!object.has("mana")) {
-                    // Give the new users some mana to use... Can be set later..
-                    object.put("mana", 100);
-                }
-                if (!object.has("base_mana")) {
-                    // the first base mana stat
-                    object.put("base_mana", 100);
-                }
+		if (!object.has("mana")) {
+			// Give the new users some mana to use... Can be set later..
+			object.put("mana", 100);
+		}
+		if (!object.has("base_mana")) {
+			// the first base mana stat
+			object.put("base_mana", 100);
+		}
 
 		// Renamed to skills
-		if(object.has("!skills")) {
+		if (object.has("!skills")) {
 			object.remove("!skills");
 		}
 	}
@@ -223,31 +219,29 @@ class PlayerRPClass {
 	static void readAdminsFromFile(Player player) {
 		if (adminNames == null) {
 			adminNames = new LinkedList<String>();
-			
-			String adminFilename="data/conf/admins.list";
+
+			String adminFilename = "data/conf/admins.list";
 
 			try {
-				InputStream is = player.getClass().getClassLoader()
-						.getResourceAsStream(adminFilename);
+				InputStream is = player.getClass().getClassLoader().getResourceAsStream(adminFilename);
 
 				if (is == null) {
 					logger.info("data/conf/admins.list does not exist.");
 				} else {
-					
-					BufferedReader in = new BufferedReader(
-							new InputStreamReader(is));
+
+					BufferedReader in = new BufferedReader(new InputStreamReader(is));
 					try {
 						String line;
 						while ((line = in.readLine()) != null) {
 							adminNames.add(line);
 						}
 					} catch (Exception e) {
-						logger.error("Error loading admin names from: "+adminFilename, e);
+						logger.error("Error loading admin names from: " + adminFilename, e);
 					}
 					in.close();
 				}
 			} catch (Exception e) {
-				logger.error("Error loading admin names from: "+adminFilename, e);
+				logger.error("Error loading admin names from: " + adminFilename, e);
 			}
 		}
 
@@ -278,13 +272,12 @@ class PlayerRPClass {
 				firstVisit = true;
 			}
 
-			boolean newReleaseHappened = !object.get("release").equals(
-					Debug.VERSION);
+			boolean newReleaseHappened = !object.get("release").equals(Debug.VERSION);
 			if (newReleaseHappened) {
 				firstVisit = true;
 				player.put("release", Debug.VERSION);
 			}
-			
+
 			IRPZone tempZone = StendhalRPWorld.get().getRPZone(new IRPZone.ID(object.get("zoneid")));
 			if (tempZone == null) {
 				firstVisit = true;
@@ -296,8 +289,8 @@ class PlayerRPClass {
 
 			world.add(player);
 		} catch (Exception e) { // If placing the player at its last position
-								// fails, we reset it to city entry point
-			logger.warn("cannot place player at its last position. reseting to semos city entry point",	e);
+			// fails, we reset it to city entry point
+			logger.warn("cannot place player at its last position. reseting to semos city entry point", e);
 
 			firstVisit = true;
 			player.put("zoneid", "int_semos_townhall");
@@ -336,16 +329,16 @@ class PlayerRPClass {
 				StendhalRPAction.placeat(zone, sheep, x, y);
 				zone.addPlayerAndFriends(sheep);
 			}
-		} catch (Exception e) { /**
-								 * No idea how but some players get a sheep but
-								 * they don't have it really. Me thinks that it
-								 * is a player that has been running for a while
-								 * the game and was kicked of server because
-								 * shutdown on a pre 1.00 version of Marauroa.
-								 * We shouldn't see this anymore.
-								 */
-			logger.error("Pre 1.00 Marauroa sheep bug. (player = "
-					+ player.getName() + ")", e);
+		} catch (Exception e) {
+			/**
+			 * No idea how but some players get a sheep but
+			 * they don't have it really. Me thinks that it
+			 * is a player that has been running for a while
+			 * the game and was kicked of server because
+			 * shutdown on a pre 1.00 version of Marauroa.
+			 * We shouldn't see this anymore.
+			 */
+			logger.error("Pre 1.00 Marauroa sheep bug. (player = " + player.getName() + ")", e);
 
 			if (player.has("sheep")) {
 				player.remove("sheep");
@@ -370,9 +363,8 @@ class PlayerRPClass {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// load items
-		String[] slotsItems = {
-			"bag", "rhand", "lhand", "head", "armor", "legs",
-			"feet", "cloak", "bank", "bank_ados", "zaras_chest_ados", "bank_fado" };
+		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank", "bank_ados",
+		        "zaras_chest_ados", "bank_fado" };
 
 		for (String slotName : slotsItems) {
 			try {
@@ -396,9 +388,7 @@ class PlayerRPClass {
 									name = itemNamesNew.get(itemNamesOld.indexOf(name));
 								}
 
-								Item entity = world.getRuleManager()
-										.getEntityManager().getItem(
-												name);
+								Item entity = world.getRuleManager().getEntityManager().getItem(name);
 
 								// log removed items
 								if (entity == null) {
@@ -406,15 +396,16 @@ class PlayerRPClass {
 									if (item.has("quantity")) {
 										quantity = item.getInt("quantity");
 									}
-									logger.warn("Cannot restore " + quantity + " " + item.get("name")
-											+ " on login of " + player.get("name") + " because this item"
-											+ " was removed from items.xml");
+									logger
+									        .warn("Cannot restore " + quantity + " " + item.get("name")
+									                + " on login of " + player.get("name") + " because this item"
+									                + " was removed from items.xml");
 									continue;
 								}
 
 								entity.setID(item.getID());
 
-								if(item.has("persistent") && (item.getInt("persistent")==1)) {
+								if (item.has("persistent") && (item.getInt("persistent") == 1)) {
 									entity.fill(item);
 								}
 
@@ -423,32 +414,31 @@ class PlayerRPClass {
 									if (item.has("quantity")) {
 										quantity = item.getInt("quantity");
 									} else {
-										logger.warn("Adding quantity=1 to " + item + ". Most likly cause is that this item was not stackable in the past");
+										logger.warn("Adding quantity=1 to " + item
+										        + ". Most likly cause is that this item was not stackable in the past");
 									}
 									((StackableItem) entity).setQuantity(quantity);
 								}
-								
+
 								// make sure saved individual information is
 								// restored
-								String[] individualAttributes = {"infostring", "description", "bound"};
+								String[] individualAttributes = { "infostring", "description", "bound" };
 								for (String attribute : individualAttributes) {
 									if (item.has(attribute)) {
 										entity.put(attribute, item.get(attribute));
 									}
 								}
-								
+
 								boundOldItemsToPlayer(player, entity);
 
 								slot.add(entity);
 							}
 						} catch (Exception e) {
-							logger.error("Error adding " + item
-									+ " to player slot" + slot, e);
+							logger.error("Error adding " + item + " to player slot" + slot, e);
 						}
 					}
 				} else {
-					logger.warn("player " + player.getName()
-							+ " does not have the slot " + slotName);
+					logger.warn("player " + player.getName() + " does not have the slot " + slotName);
 				}
 			} catch (RuntimeException e) {
 				logger.error("cannot create player", e);
@@ -495,10 +485,8 @@ class PlayerRPClass {
 				if (msg.startsWith("http://")) {
 					URL url = new URL(msg);
 					HttpURLConnection.setFollowRedirects(false);
-					HttpURLConnection connection = (HttpURLConnection) url
-							.openConnection();
-					BufferedReader br = new BufferedReader(new InputStreamReader(
-							connection.getInputStream()));
+					HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+					BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					msg = br.readLine();
 					br.close();
 					connection.disconnect();
@@ -514,5 +502,5 @@ class PlayerRPClass {
 			player.sendPrivateText(msg);
 		}
 	}
-  
+
 }

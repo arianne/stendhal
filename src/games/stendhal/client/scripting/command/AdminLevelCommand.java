@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Set the admin level of a player.
  */
 class AdminLevelCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,13 +16,13 @@ class AdminLevelCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction adminlevel = new RPAction();
 
 		adminlevel.put("type", "adminlevel");
 		adminlevel.put("target", params[0]);
 
-		if(params[1] != null) {
+		if (params[1] != null) {
 			adminlevel.put("newlevel", params[1]);
 		}
 
@@ -29,7 +30,6 @@ class AdminLevelCommand implements SlashCommand {
 
 		return true;
 	}
-
 
 	/**
 	 * Get the maximum number of formal parameters.
@@ -39,7 +39,6 @@ class AdminLevelCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 2;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

@@ -11,6 +11,7 @@ import games.stendhal.client.SpriteStore;
  * 
  */
 public class SwingUtils {
+
 	private static final String BACKGROUND_IMAGE = "data/gui/paneldrock009.jpg";
 
 	/** the normal sprite */

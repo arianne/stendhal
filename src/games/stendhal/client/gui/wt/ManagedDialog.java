@@ -33,26 +33,26 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  *
  */
 public abstract class ManagedDialog implements ManagedWindow {
+
 	/**
 	 * The actual dialog.
 	 */
-	protected JDialog		dialog;
+	protected JDialog dialog;
 
 	/**
 	 * The window name.
 	 */
-	protected String		name;
+	protected String name;
 
 	/**
 	 * The owner window.
 	 */
-	protected Frame			owner;
+	protected Frame owner;
 
 	/**
 	 * Listeners interesting in close notifications.
 	 */
-	protected List<WtCloseListener>	closeListeners;
-
+	protected List<WtCloseListener> closeListeners;
 
 	/**
 	 * Create a managed dialog window.
@@ -62,8 +62,7 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 * @param	title		The dialog window title.
 	 */
 	public ManagedDialog(Frame owner, String name, String title) {
-		JComponent	content;
-
+		JComponent content;
 
 		this.owner = owner;
 		this.name = name;
@@ -76,15 +75,13 @@ public abstract class ManagedDialog implements ManagedWindow {
 
 		content = createContent();
 
-		content.addPropertyChangeListener(
-			"size-change", new ContentSizeChangeCB());
+		content.addPropertyChangeListener("size-change", new ContentSizeChangeCB());
 
 		dialog.setContentPane(content);
 		dialog.pack();
 
 		WtWindowManager.getInstance().formatWindow(this);
 	}
-
 
 	//
 	// ManagedDialog
@@ -99,7 +96,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 	 */
 	protected abstract JComponent createContent();
 
-
 	/**
 	 * Get the actual dialog.
 	 *
@@ -108,7 +104,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 	public JDialog getDialog() {
 		return dialog;
 	}
-
 
 	/**
 	 * Called when the window's visible state changes.
@@ -122,27 +117,23 @@ public abstract class ManagedDialog implements ManagedWindow {
 		/*
 		 * Notify close listeners
 		 */
-		if(!isVisible()) {
+		if (!isVisible()) {
 			fireCloseListeners();
 		}
 	}
-
 
 	/**
 	 * Call all registered close listeners.
 	 */
 	protected void fireCloseListeners() {
-		WtCloseListener []	listeners;
+		WtCloseListener[] listeners;
 
+		listeners = closeListeners.toArray(new WtCloseListener[closeListeners.size()]);
 
-		listeners = closeListeners.toArray(
-			new WtCloseListener[closeListeners.size()]);
-
-		for(WtCloseListener l : listeners) {
+		for (WtCloseListener l : listeners) {
 			l.onClose(getName());
 		}
 	}
-
 
 	/**
 	 * Register a close listener.
@@ -153,7 +144,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 		closeListeners.add(listener);
 	}
 
-
 	/**
 	 * Unregister a close listener.
 	 *
@@ -162,7 +152,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 	public void removeCloseListener(WtCloseListener listener) {
 		closeListeners.remove(listener);
 	}
-
 
 	/**
 	 * Called when the window's position changes.
@@ -173,7 +162,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 */
 		WtWindowManager.getInstance().moveTo(this, getX(), getY());
 	}
-
 
 	//
 	// ManagedWindow
@@ -188,7 +176,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 		return name;
 	}
 
-
 	/**
 	 * Get X coordinate of the window.
 	 *
@@ -197,7 +184,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 	public int getX() {
 		return (dialog.getX() - owner.getX());
 	}
-
 
 	/**
 	 * Get Y coordinate of the window.
@@ -208,7 +194,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 		return (dialog.getY() - owner.getY());
 	}
 
-
 	/**
 	 * Determine if the window is minimized.
 	 *
@@ -218,7 +203,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 		return false;
 	}
 
-
 	/**
 	 * Determine if the window is visible.
 	 *
@@ -227,7 +211,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 	public boolean isVisible() {
 		return dialog.isVisible();
 	}
-
 
 	/**
 	 * Move to a location. This may be subject to internal representation,
@@ -249,7 +232,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 		return true;
 	}
 
-
 	/**
 	 * Set the window as minimized.
 	 *
@@ -258,7 +240,6 @@ public abstract class ManagedDialog implements ManagedWindow {
 	public void setMinimized(boolean minimized) {
 		// No-op
 	}
-
 
 	/**
 	 * Set the window as visible (or hidden).
@@ -288,11 +269,10 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 */
 		@Override
 		public void componentHidden(ComponentEvent ev) {
-//System.err.println("componentHidden() - ev = " + ev);
-//System.err.println("componentHidden() - dialog = " + getDialog());
+			//System.err.println("componentHidden() - ev = " + ev);
+			//System.err.println("componentHidden() - dialog = " + getDialog());
 			visibilityChanged();
 		}
-
 
 		/**
 		 * Dialog was moved.
@@ -301,11 +281,10 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 */
 		@Override
 		public void componentMoved(ComponentEvent ev) {
-//System.err.println("componentMoved() - ev = " + ev);
-//System.err.println("componentMoved() - dialog = " + getDialog());
+			//System.err.println("componentMoved() - ev = " + ev);
+			//System.err.println("componentMoved() - dialog = " + getDialog());
 			windowMoved();
 		}
-
 
 		/**
 		 * Dialog was made visible.
@@ -314,12 +293,11 @@ public abstract class ManagedDialog implements ManagedWindow {
 		 */
 		@Override
 		public void componentShown(ComponentEvent ev) {
-//System.err.println("componentShown() - ev = " + ev);
-//System.err.println("componentShown() - dialog.insets = " + getDialog().getInsets());
+			//System.err.println("componentShown() - ev = " + ev);
+			//System.err.println("componentShown() - dialog.insets = " + getDialog().getInsets());
 			visibilityChanged();
 		}
 	}
-
 
 	/**
 	 * Handle content resize require property change.

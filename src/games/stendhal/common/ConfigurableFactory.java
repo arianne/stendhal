@@ -10,6 +10,7 @@ package games.stendhal.common;
  * A general object factory that accepts confguration attributes.
  */
 public interface ConfigurableFactory {
+
 	/**
 	 * Create an object.
 	 *
@@ -24,6 +25,5 @@ public interface ConfigurableFactory {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException;
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException;
 }

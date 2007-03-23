@@ -23,9 +23,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author mtotz
  */
 public class CheckSounds {
+
 	private static final boolean TESTPLAY_SAMPLES = false;
 
 	private static class TestLineListener implements LineListener {
+
 		public boolean active = true;
 
 		public void update(LineEvent event) {
@@ -69,7 +71,7 @@ public class CheckSounds {
 					AudioInputStream ais = AudioSystem.getAudioInputStream(is);
 					AudioFormat format = ais.getFormat();
 					String formatString = format.toString();
-	
+
 					if (TESTPLAY_SAMPLES) {
 						// testplay the sound
 						DataLine.Info info = new DataLine.Info(Clip.class, format);
@@ -81,9 +83,9 @@ public class CheckSounds {
 							} else {
 								System.out.println("conversion not supported (to " + defaultFormat + ")");
 							}
-	
+
 							System.out.println("testplaying " + name + " " + playStream.getFormat());
-	
+
 							Clip line = (Clip) defaultMixer.getLine(info);
 							line.open(playStream);
 							line.loop(2);
@@ -95,7 +97,7 @@ public class CheckSounds {
 							line.close();
 						}
 					}
-	
+
 					fileFormatMap.put(name, formatString);
 					if (!formatMap.containsKey(formatString)) {
 						formatMap.put(formatString, format);
@@ -119,7 +121,8 @@ public class CheckSounds {
 		System.out.println("Default: " + AudioSystem.getMixer(null).getMixerInfo().getName());
 		System.out.println("\n");
 
-		System.out.println(formatMap.size()+ " audio formats\nThe maximum available lines for the format is in brackets.");
+		System.out.println(formatMap.size()
+		        + " audio formats\nThe maximum available lines for the format is in brackets.");
 		for (int i = 0; i < mixerList.length; i++) {
 			System.out.print(getString(mixerList[i].getName(), width[i], ' ') + " | ");
 		}
@@ -130,15 +133,13 @@ public class CheckSounds {
 		System.out.println("---------------------");
 
 		for (String key : formatMap.keySet()) {
-			DataLine.Info info = new DataLine.Info(Clip.class, formatMap
-					.get(key));
+			DataLine.Info info = new DataLine.Info(Clip.class, formatMap.get(key));
 			for (int i = 0; i < mixerList.length; i++) {
 				Mixer mixer = AudioSystem.getMixer(mixerList[i]);
 				boolean supported = mixer.isLineSupported(info);
-				System.out.print(getString((supported ? "  " : "un")
-						+ "supported (" + mixer.getMaxLines(info) + ")",
-						width[i], ' ')
-						+ " | ");
+				System.out.print(getString((supported ? "  " : "un") + "supported (" + mixer.getMaxLines(info) + ")",
+				        width[i], ' ')
+				        + " | ");
 			}
 
 			System.out.print(key);
@@ -159,7 +160,7 @@ public class CheckSounds {
 	// ------------------------------------------------------------------------ 
 	//              TODO: clean up this copied code from SoundSystem
 	// ------------------------------------------------------------------------ 
-	
+
 	/** expected location of the sound definition file (classloader). */
 	private static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
 

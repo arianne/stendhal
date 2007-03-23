@@ -34,6 +34,7 @@ import org.apache.log4j.Logger;
  * @author mtotz
  */
 public class EntityContainer extends WtPanel {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(EntityContainer.class);
 
@@ -52,8 +53,7 @@ public class EntityContainer extends WtPanel {
 	private RPSlot shownSlot;
 
 	/** creates the panel */
-	public EntityContainer(GameObjects gameObjects, String name, int width,
-			int height) {
+	public EntityContainer(GameObjects gameObjects, String name, int width, int height) {
 		super(name, 0, 300, 100, 100);
 		setTitletext(name);
 		setTitleBar(true);
@@ -72,15 +72,14 @@ public class EntityContainer extends WtPanel {
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(name, slotSprite, x
-						* spriteWidth + x, y * spriteHeight + y, gameObjects);
+				EntitySlot entitySlot = new EntitySlot(name, slotSprite, x * spriteWidth + x, y * spriteHeight + y,
+				        gameObjects);
 				slotPanels.add(entitySlot);
 			}
 		}
 
 		// resize panel
-		this.resizeToFitClientArea(width * spriteWidth + (width - 1), height
-				* spriteHeight + (height - 1));
+		this.resizeToFitClientArea(width * spriteWidth + (width - 1), height * spriteHeight + (height - 1));
 
 		for (EntitySlot entitySlot : slotPanels) {
 			addChild(entitySlot);
@@ -138,8 +137,9 @@ public class EntityContainer extends WtPanel {
 		}
 
 		if (distance > MAX_DISTANCE) {
-			logger.info("Closing " + slotName + " container because " + px
-					+ "," + py + " is far from " + ix + "," + iy);
+			logger
+			        .info("Closing " + slotName + " container because " + px + "," + py + " is far from " + ix + ","
+			                + iy);
 			destroy();
 		}
 	}
@@ -156,7 +156,7 @@ public class EntityContainer extends WtPanel {
 	 */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 

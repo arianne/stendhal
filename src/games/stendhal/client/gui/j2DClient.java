@@ -52,6 +52,7 @@ import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends JFrame {
+
 	private static final long serialVersionUID = 3356310866399084117L;
 
 	/** height of the chat line */
@@ -86,7 +87,7 @@ public class j2DClient extends JFrame {
 	private JTextField playerChatText;
 
 	private FXLayer fx;
-	 
+
 	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
 		try {
@@ -94,6 +95,7 @@ public class j2DClient extends JFrame {
 			// This fixs the problem.
 			Runtime.getRuntime().exec("xset r off");
 			Runtime.getRuntime().addShutdownHook(new Thread() {
+
 				@Override
 				public void run() {
 					try {
@@ -107,26 +109,22 @@ public class j2DClient extends JFrame {
 		} catch (Exception e) {
 			logger.error("Error setting keyboard handling", e);
 		}
-		
+
 		return false;
 	}
 
-	
-	
 	public j2DClient(StendhalClient sc) {
 		super();
 		this.client = sc;
-
 
 		/**
 		 * XXX - TEMP! For native dialog window transition.
 		 */
 		sharedInstance = this;
 
-
 		// create a frame to contain our game
 		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
-				+ " - a multiplayer online game using Arianne");
+		        + " - a multiplayer online game using Arianne");
 
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
@@ -134,8 +132,7 @@ public class j2DClient extends JFrame {
 		// get hold the content of the frame and set up the resolution of the
 		// game
 		JPanel panel = (JPanel) this.getContentPane();
-		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT
-				+ CHAT_LINE_SIZE));
+		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT + CHAT_LINE_SIZE));
 		panel.setLayout(null);
 
 		// setup our canvas size and put it into the content of the frame
@@ -149,8 +146,7 @@ public class j2DClient extends JFrame {
 		playerChatText = new JTextField("");
 		playerChatText.setBounds(0, SCREEN_HEIGHT, SCREEN_WIDTH, CHAT_LINE_SIZE);
 
-		StendhalChatLineListener chatListener = new StendhalChatLineListener(
-				client, playerChatText);
+		StendhalChatLineListener chatListener = new StendhalChatLineListener(client, playerChatText);
 		playerChatText.addActionListener(chatListener);
 		playerChatText.addKeyListener(chatListener);
 		panel.add(playerChatText);
@@ -167,6 +163,7 @@ public class j2DClient extends JFrame {
 		if (!System.getProperty("os.name").toLowerCase().contains("os x")) {
 
 			canvas.addFocusListener(new FocusListener() {
+
 				public void focusGained(FocusEvent e) {
 					playerChatText.requestFocus();
 				}
@@ -177,6 +174,7 @@ public class j2DClient extends JFrame {
 		}
 
 		addFocusListener(new FocusListener() {
+
 			public void focusGained(FocusEvent e) {
 				playerChatText.requestFocus();
 			}
@@ -198,21 +196,19 @@ public class j2DClient extends JFrame {
 
 		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 		inGameGUI = new InGameGUI(client);
-		
 
 		// When the user tries to close the window, don't close immediately,
 		// but show a confirmation dialog. 
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		// add a listener to respond to the user trying to close the window.
 		addWindowListener(new WindowAdapter() {
+
 			@Override
 			public void windowClosing(WindowEvent e) {
 				inGameGUI.showQuitDialog();
 			}
 		});
 
-
-		
 		// workaround for key auto repeat on X11 (linux)
 		// First we try the JNI solution. In case this fails, we do this:
 		// In the default case xset -r is execute on program start and xset r on exit
@@ -243,6 +239,7 @@ public class j2DClient extends JFrame {
 		client.setGameLogDialog(new GameLogDialog(this, playerChatText));
 
 		addComponentListener(new ComponentAdapter() {
+
 			@Override
 			public void componentHidden(ComponentEvent e) {
 			}
@@ -253,8 +250,7 @@ public class j2DClient extends JFrame {
 				Point location = getLocation();
 
 				client.getGameLogDialog().setLocation(
-						new Point((int) location.getX(),
-								(int) (location.getY() + size.getHeight())));
+				        new Point((int) location.getX(), (int) (location.getY() + size.getHeight())));
 			}
 
 			@Override
@@ -280,12 +276,10 @@ public class j2DClient extends JFrame {
 		gameLoop();
 	} // constructor
 
-
 	/**
 	 * XXX - TEMP! For native dialog window transition.
 	 */
-	private static j2DClient	sharedInstance;
-
+	private static j2DClient sharedInstance;
 
 	/**
 	 * XXX - TEMP! For native dialog window transition.
@@ -293,7 +287,6 @@ public class j2DClient extends JFrame {
 	public static j2DClient getInstance() {
 		return sharedInstance;
 	}
-
 
 	public void gameLoop() {
 
@@ -359,8 +352,7 @@ public class j2DClient extends JFrame {
 				long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
 				long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
 
-				logger.debug("Total/Used memory: " + totalMemory + "/"
-						+ (totalMemory - freeMemory));
+				logger.debug("Total/Used memory: " + totalMemory + "/" + (totalMemory - freeMemory));
 
 				fps = 0;
 			}
@@ -467,8 +459,7 @@ public class j2DClient extends JFrame {
 				i++;
 			}
 
-			if ((username != null) && (password != null) && (host != null)
-					&& (port != null)) {
+			if ((username != null) && (password != null) && (host != null) && (port != null)) {
 				StendhalClient client = StendhalClient.get();
 				try {
 					client.connect(host, Integer.parseInt(port));
@@ -484,8 +475,7 @@ public class j2DClient extends JFrame {
 		}
 
 		System.out.println("Stendhal j2DClient\n");
-		System.out
-				.println("  games.stendhal.j2DClient -u username -p pass -h host -c character\n");
+		System.out.println("  games.stendhal.j2DClient -u username -p pass -h host -c character\n");
 		System.out.println("Required parameters");
 		System.out.println("* -h\tHost that is running Marauroa server");
 		System.out.println("* -port\tport of the Marauroa server (try 32160)");

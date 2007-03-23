@@ -11,9 +11,13 @@ import java.io.PrintStream;
  * @author hendrik
  */
 public class ScriptRecorder {
+
 	private String classname = null;
+
 	private String filename = null;
+
 	private PrintStream ps = null;
+
 	private long lastTimestamp = 0;
 
 	/**
@@ -68,7 +72,7 @@ public class ScriptRecorder {
 			if (diff > 60000) {
 				ps.println("\t\t// -----------------------------------");
 			}
-			ps.println("\t\tcsi.sleepSeconds(" + (diff/1000) + ");");
+			ps.println("\t\tcsi.sleepSeconds(" + (diff / 1000) + ");");
 		} else if (diff > 0) {
 			ps.println("\t\tcsi.sleepMillis(" + diff + ");");
 		}

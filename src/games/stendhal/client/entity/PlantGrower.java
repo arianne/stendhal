@@ -8,11 +8,10 @@ import marauroa.common.game.RPObject;
 
 public class PlantGrower extends Entity {
 
-	public PlantGrower( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public PlantGrower(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
-	
+
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);

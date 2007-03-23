@@ -22,29 +22,23 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class SheepFood extends AnimatedEntity {
+
 	private int amount;
 
-	public SheepFood( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public SheepFood(RPObject object) throws AttributeNotFoundException {
+		super(object);
 	}
 
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		sprites.put("0", store.getAnimatedSprite(translate(object.get("type")),
-				0, 1, 1, 1));
-		sprites.put("1", store.getAnimatedSprite(translate(object.get("type")),
-				1, 1, 1, 1));
-		sprites.put("2", store.getAnimatedSprite(translate(object.get("type")),
-				2, 1, 1, 1));
-		sprites.put("3", store.getAnimatedSprite(translate(object.get("type")),
-				3, 1, 1, 1));
-		sprites.put("4", store.getAnimatedSprite(translate(object.get("type")),
-				4, 1, 1, 1));
-		sprites.put("5", store.getAnimatedSprite(translate(object.get("type")),
-				5, 1, 1, 1));
+		sprites.put("0", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
+		sprites.put("1", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
+		sprites.put("2", store.getAnimatedSprite(translate(object.get("type")), 2, 1, 1, 1));
+		sprites.put("3", store.getAnimatedSprite(translate(object.get("type")), 3, 1, 1, 1));
+		sprites.put("4", store.getAnimatedSprite(translate(object.get("type")), 4, 1, 1, 1));
+		sprites.put("5", store.getAnimatedSprite(translate(object.get("type")), 5, 1, 1, 1));
 	}
 
 	@Override
@@ -54,8 +48,7 @@ public class SheepFood extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("amount")) {
@@ -83,7 +76,6 @@ public class SheepFood extends AnimatedEntity {
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
-
 
 	@Override
 	public int getZIndex() {

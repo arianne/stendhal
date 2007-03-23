@@ -13,8 +13,8 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class IL0_Storage implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -22,15 +22,13 @@ public class IL0_Storage implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosStorageArea(zone, attributes);
 	}
 
-
-	private void buildSemosStorageArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildSemosStorageArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Eonna") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -60,6 +58,7 @@ public class IL0_Storage implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 		npc = new SpeakerNPC("Ketteh Wehoh") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -74,12 +73,9 @@ public class IL0_Storage implements ZoneConfigurator {
 			protected void createDialog() {
 				addHelp("I am the town Decency and Manners Warden. I can advise you on how to conduct yourself in many ways; like not wandering around naked, for instance.");
 				addJob("My job is to maintain a civilized level of behaviour in Semos. I know the protocol for every situation, AND all the ways of handling it wrong. Well, sometimes I get confused on whether to use a spoon or a fork; but then, nobody really uses cutlery in Semos anyway.");
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"The only task I have for you is to behave nicely towards others.",
-					null);
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING,
+				        "The only task I have for you is to behave nicely towards others.", null);
 				addGoodbye();
 			}
 		};

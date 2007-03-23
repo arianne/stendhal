@@ -33,6 +33,7 @@ import org.apache.log4j.Logger;
  *
  */
 public class Sheep extends DomesticAnimal {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sheep.class);
 
@@ -108,10 +109,9 @@ public class Sheep extends DomesticAnimal {
 		logger.debug("Created Sheep: " + this);
 	}
 
-
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
-     * @param killer The entity who caused the death
+	 * @param killer The entity who caused the death
 	 */
 	@Override
 	public void onDead(Entity killer) {
@@ -119,8 +119,7 @@ public class Sheep extends DomesticAnimal {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
 			} else {
-				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by "
-						+ owner);
+				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by " + owner);
 			}
 		} else {
 			StendhalRPRuleProcessor.get().removeNPC(this);
@@ -154,8 +153,7 @@ public class Sheep extends DomesticAnimal {
 				int fx = food.getX();
 				int fy = food.getY();
 
-				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range)
-						&& (food.getAmount() > 0)) {
+				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range) && (food.getAmount() > 0)) {
 					if (this.squaredDistance(food) < squaredDistance) {
 						chosen = food;
 						squaredDistance = this.squaredDistance(food);
@@ -196,8 +194,7 @@ public class Sheep extends DomesticAnimal {
 		hunger++;
 		SheepFood food = null;
 
-		if ((hunger > 50) && ((food = getNearestFood(6)) != null)
-				&& (weight < MAX_WEIGHT)) {
+		if ((hunger > 50) && ((food = getNearestFood(6)) != null) && (weight < MAX_WEIGHT)) {
 			if (nextTo(food, 0.25)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
@@ -223,8 +220,7 @@ public class Sheep extends DomesticAnimal {
 			clearPath();
 		}
 
-		if ((owner != null) && owner.has("text")
-				&& owner.get("text").contains("sheep")) {
+		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
 			clearPath();
 			moveToOwner();
 		}
@@ -235,16 +231,16 @@ public class Sheep extends DomesticAnimal {
 			if (collides()) {
 				stop();
 				clearPath();
-				
+
 				// move randomly, hoping we find a way by chance
 				moveRandomly();
 				if (hunger > 50) { // ignore food-movement for a short time
-					hunger = hunger -5;
+					hunger = hunger - 5;
 				}
 			}
 		}
 
-		if(getHP() < getBaseHP()) {
+		if (getHP() < getBaseHP()) {
 			healSelf(5, 100);
 		}
 

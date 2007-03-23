@@ -40,12 +40,13 @@ import org.apache.log4j.Logger;
  * @author Kevin Glass
  */
 public class SpriteStore {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpriteStore.class);
 
 	/** The single instance of this class */
 	private static SpriteStore single = new SpriteStore();
-	
+
 	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
@@ -75,10 +76,8 @@ public class SpriteStore {
 	 * @param height
 	 *            of the frame
 	 */
-	public Sprite[] getAnimatedSprite(String ref, int animation, int frames,
-			double width, double height) {
-		return getAnimatedSprite(getSprite(ref), animation, frames, width,
-				height);
+	public Sprite[] getAnimatedSprite(String ref, int animation, int frames, double width, double height) {
+		return getAnimatedSprite(getSprite(ref), animation, frames, width, height);
 	}
 
 	/**
@@ -90,8 +89,7 @@ public class SpriteStore {
 	 * @param height The height of one animation frame, in tiles
 	 * @return array of sprites
 	 */
-	public Sprite[] getAnimatedSprite(Sprite animImage, int animation,
-			int frameCount, double width, double height) {
+	public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frameCount, double width, double height) {
 		// calculate width and height in pixels from width and height
 		// in tiles
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
@@ -99,19 +97,16 @@ public class SpriteStore {
 
 		Sprite[] animatedSprite = new Sprite[frameCount];
 
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
 
 		for (int i = 0; i < frameCount; i++) {
-			Image image = gc.createCompatibleImage(pixelWidth, pixelHeight,
-					Transparency.BITMASK);
+			Image image = gc.createCompatibleImage(pixelWidth, pixelHeight, Transparency.BITMASK);
 			// Bugfixs: parameters width and height added, see comment in
 			// Sprite.java
 			// animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
 			// intensifly @ gmx.com, April 20th, 2006
-			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation
-					* pixelHeight, pixelWidth, pixelHeight);
+			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation * pixelHeight, pixelWidth, pixelHeight);
 			animatedSprite[i] = new Sprite(image);
 		}
 
@@ -162,9 +157,8 @@ public class SpriteStore {
 		}
 
 		// create an accelerated image of the right size to store our sprite in
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
 
 		int mode = Transparency.BITMASK;
 
@@ -174,8 +168,7 @@ public class SpriteStore {
 		// mode=Transparency.TRANSLUCENT;
 		// }
 
-		Image image = gc.createCompatibleImage(sourceImage.getWidth(),
-				sourceImage.getHeight(), mode);
+		Image image = gc.createCompatibleImage(sourceImage.getWidth(), sourceImage.getHeight(), mode);
 
 		// draw our source image into the accelerated image
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);
@@ -213,7 +206,7 @@ public class SpriteStore {
 			ClassLoader classloader = this.getClass().getClassLoader();
 			Method method = ClassLoader.class.getDeclaredMethod("findResource", String.class);
 			method.setAccessible(true);
-			
+
 			url = (URL) method.invoke(classloader, ref);
 			if (url == null) {
 				ClassLoader parent = classloader.getParent();
@@ -233,4 +226,4 @@ public class SpriteStore {
 		}
 		return url;
 	}
-	}
+}

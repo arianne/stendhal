@@ -22,11 +22,12 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class StackableItem extends Item implements Stackable {
+
 	private int quantity = 1;
+
 	private static Logger logger = Logger.getLogger(StackableItem.class);
 
-	public StackableItem(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public StackableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		update();
 	}
@@ -58,12 +59,12 @@ public class StackableItem extends Item implements Stackable {
 		setQuantity(other.getQuantity() + quantity);
 		return quantity;
 	}
-	
+
 	public StackableItem splitOff(int amountToSplitOff) {
 		if (quantity >= amountToSplitOff) {
-			StackableItem newItem = (StackableItem) StendhalRPWorld.get()
-					.getRuleManager().getEntityManager().getItem(get("name"));
-			
+			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			        get("name"));
+
 			newItem.setQuantity(amountToSplitOff);
 			if (has("infostring")) {
 				newItem.put("infostring", get("infostring"));
@@ -92,7 +93,7 @@ public class StackableItem extends Item implements Stackable {
 				/* If quantity=0 then it means that item has to be removed */
 				super.removeOne();
 			}
-			
+
 			return newItem;
 		}
 		return null;
@@ -106,7 +107,6 @@ public class StackableItem extends Item implements Stackable {
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 
-		return getItemClass().equals(otheri.getItemClass())
-				&& getItemSubclass().equals(otheri.getItemSubclass());
+		return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
 	}
 }

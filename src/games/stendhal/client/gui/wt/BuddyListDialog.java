@@ -16,8 +16,8 @@ import javax.swing.JComponent;
  * The player's buddy list dialog.
  */
 public class BuddyListDialog extends ManagedDialog {
-	protected BuddyListPanel	content;
 
+	protected BuddyListPanel content;
 
 	/** Creates a new instance of Buddies */
 	public BuddyListDialog(Frame frame) {
@@ -26,7 +26,6 @@ public class BuddyListDialog extends ManagedDialog {
 		dialog.setResizable(false);
 	}
 
-
 	//
 	// BuddyListDialog
 	//
@@ -34,7 +33,6 @@ public class BuddyListDialog extends ManagedDialog {
 	public void update() {
 		content.updateList();
 	}
-
 
 	//
 	// ManagedDialog

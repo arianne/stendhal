@@ -32,16 +32,27 @@ import marauroa.common.net.TransferContent;
  * @author hendrik
  */
 public class PostmanMain extends Thread {
+
 	private String host;
+
 	private String username;
+
 	private String password;
+
 	protected String character;
-    private String port;
-    private boolean tcp;
-    protected Postman postman = null;
-    protected long lastPerceptionTimestamp = 0;
+
+	private String port;
+
+	private boolean tcp;
+
+	protected Postman postman = null;
+
+	protected long lastPerceptionTimestamp = 0;
+
 	protected Map<RPObject.ID, RPObject> world_objects;
+
 	protected marauroa.client.ariannexp clientManager;
+
 	protected PerceptionHandler handler;
 
 	/**
@@ -55,21 +66,20 @@ public class PostmanMain extends Thread {
 	 * @param t TCP?
 	 * @throws SocketException on an network error
 	 */
-	public PostmanMain(String h, String u, String p, String c, String P, boolean t)
-			throws SocketException {
+	public PostmanMain(String h, String u, String p, String c, String P, boolean t) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
 		character = c;
-        port = P;
-        tcp = t;
+		port = P;
+		tcp = t;
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
 		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+
 			@Override
-			public int onException(Exception e,
-					marauroa.common.net.MessageS2CPerception perception) {
+			public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
 				e.printStackTrace();
@@ -78,8 +88,8 @@ public class PostmanMain extends Thread {
 
 		});
 
-		clientManager = new marauroa.client.ariannexp(
-				"games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ariannexp("games/stendhal/log4j.properties") {
+
 			@Override
 			protected String getGameName() {
 				return "stendhal";
@@ -96,19 +106,18 @@ public class PostmanMain extends Thread {
 				try {
 					handler.apply(message, world_objects);
 
-                    for (RPObject object : world_objects.values()) {
-                        if (object.has("private_text") || object.has("text")) {
-                        	postman.processTalkEvent(object);
-                        }
-                    }               
+					for (RPObject object : world_objects.values()) {
+						if (object.has("private_text") || object.has("text")) {
+							postman.processTalkEvent(object);
+						}
+					}
 				} catch (Exception e) {
 					onError(3, "Exception while applying perception");
 				}
 			}
 
 			@Override
-			protected List<TransferContent> onTransferREQ(
-					List<TransferContent> items) {
+			protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
 				for (TransferContent item : items) {
 					item.ack = true;
 				}
@@ -172,11 +181,11 @@ public class PostmanMain extends Thread {
 		while (cond) {
 			clientManager.loop(0);
 
-			if ((lastPerceptionTimestamp > 0) && (lastPerceptionTimestamp + 10*1000 < System.currentTimeMillis())) {
+			if ((lastPerceptionTimestamp > 0) && (lastPerceptionTimestamp + 10 * 1000 < System.currentTimeMillis())) {
 				System.err.println("Timeout");
 				Runtime.getRuntime().halt(1);
 			}
-			
+
 			try {
 				sleep(100);
 			} catch (InterruptedException e) {
@@ -210,8 +219,8 @@ public class PostmanMain extends Thread {
 				String password = null;
 				String character = null;
 				String host = null;
-                String port = null;
-                boolean tcp = false;
+				String port = null;
+				boolean tcp = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -222,16 +231,15 @@ public class PostmanMain extends Thread {
 						character = args[i + 1];
 					} else if (args[i].equals("-h")) {
 						host = args[i + 1];
-                     } else if (args[i].equals("-P")) {
-                         port = args[i + 1];
-                     } else if (args[i].equals("-t")) {
-                    	 tcp = true;
-                     }
+					} else if (args[i].equals("-P")) {
+						port = args[i + 1];
+					} else if (args[i].equals("-t")) {
+						tcp = true;
+					}
 					i++;
 				}
 
-				if ((username != null) && (password != null) && (character != null)
-						&& (host != null) && (port != null)) {
+				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
 					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port, tcp);
 					postmanMain.start();
 					return;

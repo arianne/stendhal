@@ -28,6 +28,7 @@ import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
 public class PlayersQuery extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(PlayersQuery.class);
 
 	public static void register() {
@@ -47,7 +48,7 @@ public class PlayersQuery extends ActionListener {
 
 	public void onWho(Player player, RPAction action) {
 		Log4J.startMethod(logger, "who");
-		
+
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		rules.addGameEvent(player.getName(), "who");
 
@@ -70,6 +71,7 @@ public class PlayersQuery extends ActionListener {
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		List<Player> players = new ArrayList<Player>(rules.getPlayers());
 		Collections.sort(players, new Comparator<Player>() {
+
 			public int compare(Player o1, Player o2) {
 				return o1.getName().compareTo(o2.getName());
 			}
@@ -85,21 +87,19 @@ public class PlayersQuery extends ActionListener {
 			String whoName = action.get("target");
 
 			rules.addGameEvent(player.getName(), "where", whoName);
-			
+
 			Player who = rules.getPlayer(whoName);
 			if (who != null) {
-				player.sendPrivateText(who.getName() + " is in "
-						+ who.get("zoneid") + " at (" + who.getX() + ","
-						+ who.getY() + ")");
+				player.sendPrivateText(who.getName() + " is in " + who.get("zoneid") + " at (" + who.getX() + ","
+				        + who.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else if (whoName.equals("sheep") && player.hasSheep()) {
 				Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-				player.sendPrivateText("Your sheep is in " + sheep.get("zoneid")
-						       + " at (" + sheep.getX() + "," + sheep.getY() + ")");
+				player.sendPrivateText("Your sheep is in " + sheep.get("zoneid") + " at (" + sheep.getX() + ","
+				        + sheep.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else {
-				player.sendPrivateText("No player named \"" + action.get("target")
-					+ "\" is currently logged in.");
+				player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently logged in.");
 			}
 		}
 

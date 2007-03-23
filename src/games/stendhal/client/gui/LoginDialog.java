@@ -51,18 +51,19 @@ import marauroa.common.io.Persistence;
  * 
  */
 public class LoginDialog extends JDialog {
-//	private static final long serialVersionUID = 4436228792112530975L;
+
+	//	private static final long serialVersionUID = 4436228792112530975L;
 
 	private static final String TCPIP_TEXT = "TCP/IP (default)";
-		
+
 	private static final String UDP_TEXT = "UDP";
-		
+
 	// Variables declaration
 
 	private JComboBox profilesComboBox;
 
 	private JCheckBox saveLoginBox;
-	
+
 	private JComboBox protocolComboBox;
 
 	private JTextField usernameField;
@@ -82,8 +83,7 @@ public class LoginDialog extends JDialog {
 
 	private Frame owner;
 
-	protected ProfileList	profiles;
-
+	protected ProfileList profiles;
 
 	public LoginDialog(Frame owner, StendhalClient client) {
 		super(owner, true);
@@ -95,8 +95,7 @@ public class LoginDialog extends JDialog {
 	}
 
 	private void initializeComponent() {
-		JLabel	l;
-
+		JLabel l;
 
 		this.setTitle("Login to Server");
 		this.setResizable(false);
@@ -106,14 +105,11 @@ public class LoginDialog extends JDialog {
 		//
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createEtchedBorder(),
-				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		contentPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(), BorderFactory
+		        .createEmptyBorder(5, 5, 5, 5)));
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_START;
-
 
 		/*
 		 * Profiles
@@ -132,7 +128,6 @@ public class LoginDialog extends JDialog {
 		c.gridy = 0;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(profilesComboBox, c);
-
 
 		/*
 		 *  Server Host
@@ -159,7 +154,6 @@ public class LoginDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverField, c);
 
-
 		/*
 		 * Server Port
 		 */
@@ -178,7 +172,6 @@ public class LoginDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverPortField, c);
 
-
 		/*
 		 * Network Protocol
 		 */
@@ -188,8 +181,7 @@ public class LoginDialog extends JDialog {
 		c.gridy = 3;
 		contentPane.add(l, c);
 
-		protocolComboBox = new JComboBox(
-			new String[] {TCPIP_TEXT, UDP_TEXT} );
+		protocolComboBox = new JComboBox(new String[] { TCPIP_TEXT, UDP_TEXT });
 
 		c.gridx = 1;
 		c.gridy = 3;
@@ -204,13 +196,12 @@ public class LoginDialog extends JDialog {
 		if (Debug.WEB_START_SANDBOX) {
 			// UDP is not supported in sandbox mode.
 			l.setEnabled(false);
-//			l.setVisible(false);
+			//			l.setVisible(false);
 
 			protocolComboBox.setSelectedItem(TCPIP_TEXT);
 			protocolComboBox.setEnabled(false);
-//			protocolComboBox.setVisible(false);
+			//			protocolComboBox.setVisible(false);
 		}
-
 
 		/*
 		 * Username
@@ -229,7 +220,6 @@ public class LoginDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(usernameField, c);
 
-
 		/*
 		 * Password
 		 */
@@ -247,7 +237,6 @@ public class LoginDialog extends JDialog {
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordField, c);
 
-
 		/*
 		 * Save Profile/Login
 		 */
@@ -263,6 +252,7 @@ public class LoginDialog extends JDialog {
 		loginButton.setMnemonic(KeyEvent.VK_L);
 
 		loginButton.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				loginButton_actionPerformed(e);
 			}
@@ -274,13 +264,11 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
 
-
 		/*
 		 * Load saved profiles
 		 */
 		profiles = loadProfiles();
 		populateProfiles(profiles);
-
 
 		//
 		// Dialog
@@ -290,47 +278,38 @@ public class LoginDialog extends JDialog {
 		this.setLocationRelativeTo(owner);
 	}
 
-
 	private void loginButton_actionPerformed(ActionEvent e) {
-		Profile	profile;
-
+		Profile profile;
 
 		profile = new Profile();
 
-		profile.setHost(
-			((String) serverField.getSelectedItem()).trim());
+		profile.setHost(((String) serverField.getSelectedItem()).trim());
 
 		try {
-			profile.setPort(
-				Integer.parseInt(
-					serverPortField.getText().trim()));
+			profile.setPort(Integer.parseInt(serverPortField.getText().trim()));
 
 			// Support for saving port number. Only save when input is a number
 			// intensifly@gmx.com
 
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(this,
-				"That is not a valid port number. Please try again.", "Invalid port",
-				JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "That is not a valid port number. Please try again.", "Invalid port",
+			        JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
 		profile.setUser(usernameField.getText().trim());
 		profile.setPassword(new String(passwordField.getPassword()));
 
-		profile.setTCP(
-			protocolComboBox.getSelectedItem() == TCPIP_TEXT);
-
+		profile.setTCP(protocolComboBox.getSelectedItem() == TCPIP_TEXT);
 
 		/*
 		 * Save profile?
 		 */
-		if(saveLoginBox.isSelected()) {
+		if (saveLoginBox.isSelected()) {
 			profiles.add(profile);
 			populateProfiles(profiles);
 			saveProfiles(profiles);
 		}
-
 
 		/*
 		 * Run the connection procces in separate thread.
@@ -340,29 +319,26 @@ public class LoginDialog extends JDialog {
 		t.start();
 	}
 
-
 	/**
 	 * Add an item to a combobox if it doesn't already exist.
 	 *
 	 *
 	 */
 	protected void augmentComboBox(JComboBox combobox, Object item) {
-		int	i;
-
+		int i;
 
 		i = combobox.getItemCount();
 
-		while(i-- != 0) {
-			if(combobox.getItemAt(i).equals(item)) {
+		while (i-- != 0) {
+			if (combobox.getItemAt(i).equals(item)) {
 				break;
 			}
 		}
 
-		if(i == -1) {
+		if (i == -1) {
 			combobox.addItem(item);
 		}
 	}
-
 
 	/**
 	 * Connect to a server using a given profile.
@@ -371,8 +347,7 @@ public class LoginDialog extends JDialog {
 	 */
 	protected void connect(Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
-		boolean	useTCP;
-
+		boolean useTCP;
 
 		// intialize progress bar
 		progressBar.start();
@@ -382,10 +357,9 @@ public class LoginDialog extends JDialog {
 
 		// Force TCP for Web Start Sandbox
 		useTCP = profile.isTCP() || Debug.WEB_START_SANDBOX;
-		
+
 		try {
-			client.connect(
-				profile.getHost(), profile.getPort(), useTCP);
+			client.connect(profile.getHost(), profile.getPort(), useTCP);
 
 			// for each major connection milestone call step()
 			progressBar.step();
@@ -394,8 +368,7 @@ public class LoginDialog extends JDialog {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this,
-				"Unable to connect to server. Did you misspell the server name?");
+			JOptionPane.showMessageDialog(this, "Unable to connect to server. Did you misspell the server name?");
 
 			Log4J.getLogger(LoginDialog.class).error("unable to connect to server", ex);
 
@@ -407,17 +380,15 @@ public class LoginDialog extends JDialog {
 				String result = client.getEvent();
 
 				if (result == null) {
-					result = "Server is not available right now. The server " +
-						"may be down or, if you are using a custom server, " +
-						"you may have entered its name and port number incorrectly.";
+					result = "Server is not available right now. The server "
+					        + "may be down or, if you are using a custom server, "
+					        + "you may have entered its name and port number incorrectly.";
 				}
 
 				progressBar.cancel();
 				setEnabled(true);
 
-				JOptionPane.showMessageDialog(
-					this, result,
-					"Error Logging In", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, result, "Error Logging In", JOptionPane.ERROR_MESSAGE);
 			} else {
 				progressBar.step();
 				progressBar.finish();
@@ -430,22 +401,17 @@ public class LoginDialog extends JDialog {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this,
-				"Server does not respond. The server may be down or, " +
-				"if you are using a custom server, you may have entered " +
-				"its name and port number incorrectly.",
-				"Error Logging In", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Server does not respond. The server may be down or, "
+			        + "if you are using a custom server, you may have entered "
+			        + "its name and port number incorrectly.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
 		} catch (Exception ex) {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this,
-				"Stendhal cannot connect. Please check that your connection " +
-				"is set up and active, then try again.", "Error Logging In",
-				JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Stendhal cannot connect. Please check that your connection "
+			        + "is set up and active, then try again.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 
 	/**
 	 * Load saves profiles.
@@ -453,12 +419,10 @@ public class LoginDialog extends JDialog {
 	private ProfileList loadProfiles() {
 		ProfileList profiles;
 
-
 		profiles = new ProfileList();
 
 		try {
-			InputStream is = Persistence.get().getInputStream(
-				true, "stendhal", "user.dat");
+			InputStream is = Persistence.get().getInputStream(true, "stendhal", "user.dat");
 
 			try {
 				profiles.load(is);
@@ -468,62 +432,54 @@ public class LoginDialog extends JDialog {
 		} catch (FileNotFoundException fnfe) {
 			// Ignore
 		} catch (IOException ioex) {
-			JOptionPane.showMessageDialog(
-				this,
-				"An error occurred while loading your login information",
-				"Error Loading Login Information",
-				JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "An error occurred while loading your login information",
+			        "Error Loading Login Information", JOptionPane.WARNING_MESSAGE);
 		}
 
 		return profiles;
 	}
 
-
 	/**
 	 * Populate the profiles combobox and select the default.
 	 */
 	protected void populateProfiles(ProfileList profiles) {
-		Iterator	iter;
-		int		count;
-
+		Iterator iter;
+		int count;
 
 		profilesComboBox.removeAllItems();
 
 		iter = profiles.iterator();
 
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			profilesComboBox.addItem(iter.next());
 		}
 
 		/*
 		 * The last profile (if any) is the default.
 		 */
-		if((count = profilesComboBox.getItemCount()) != 0) {
+		if ((count = profilesComboBox.getItemCount()) != 0) {
 			profilesComboBox.setSelectedIndex(count - 1);
 		}
 	}
-
 
 	/**
 	 * Called when a profile selection is changed.
 	 */
 	protected void profilesCB() {
-		Profile	profile;
-		String	host;
-
+		Profile profile;
+		String host;
 
 		profile = (Profile) profilesComboBox.getSelectedItem();
 
-		if(profile != null) {
+		if (profile != null) {
 			host = profile.getHost();
 
 			augmentComboBox(serverField, host);
 			serverField.setSelectedItem(host);
 
-			serverPortField.setText(
-				String.valueOf(profile.getPort()));
+			serverPortField.setText(String.valueOf(profile.getPort()));
 
-			if(profile.isTCP()) {
+			if (profile.isTCP()) {
 				protocolComboBox.setSelectedItem(TCPIP_TEXT);
 			} else {
 				protocolComboBox.setSelectedItem(UDP_TEXT);
@@ -534,8 +490,7 @@ public class LoginDialog extends JDialog {
 		} else {
 			serverField.setSelectedIndex(0);
 
-			serverPortField.setText(
-				String.valueOf(Profile.DEFAULT_SERVER_PORT));
+			serverPortField.setText(String.valueOf(Profile.DEFAULT_SERVER_PORT));
 
 			protocolComboBox.setSelectedItem(TCPIP_TEXT);
 
@@ -543,7 +498,6 @@ public class LoginDialog extends JDialog {
 			passwordField.setText("");
 		}
 	}
-
 
 	/*
 	 * Author: Da_MusH Description: Methods for saving and loading login
@@ -554,24 +508,18 @@ public class LoginDialog extends JDialog {
 	 */
 	private void saveProfiles(ProfileList profiles) {
 		try {
-			OutputStream os = Persistence.get().getOutputStream(
-				true, "stendhal", "user.dat");
+			OutputStream os = Persistence.get().getOutputStream(true, "stendhal", "user.dat");
 
 			try {
 				profiles.save(os);
-			}
-			finally {
+			} finally {
 				os.close();
 			}
 		} catch (IOException ioex) {
-			JOptionPane.showMessageDialog(
-				this,
-				"An error occurred while saving your login information",
-				"Error Saving Login Information",
-				JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "An error occurred while saving your login information",
+			        "Error Saving Login Information", JOptionPane.WARNING_MESSAGE);
 		}
 	}
-
 
 	public static void main(String args[]) {
 		new LoginDialog(null, null).setVisible(true);
@@ -584,24 +532,23 @@ public class LoginDialog extends JDialog {
 	 * Server connect thread runnable.
 	 */
 	protected class ConnectRunnable implements Runnable {
-		protected Profile	profile;
 
+		protected Profile profile;
 
 		public ConnectRunnable(Profile profile) {
 			this.profile = profile;
 		}
-
 
 		public void run() {
 			connect(profile);
 		}
 	}
 
-
 	/**
 	 * Profiles combobox selection change listener.
 	 */
 	protected class ProfilesCB implements ActionListener {
+
 		public void actionPerformed(ActionEvent e) {
 			profilesCB();
 		}

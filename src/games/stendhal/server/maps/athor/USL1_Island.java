@@ -11,8 +11,8 @@ import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import java.util.Map;
 
 public class USL1_Island implements ZoneConfigurator {
-	DefaultEntityManager manager = (DefaultEntityManager)
-	StendhalRPWorld.get().getRuleManager().getEntityManager();
+
+	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 	/**
 	 * Configure a zone.
@@ -20,21 +20,17 @@ public class USL1_Island implements ZoneConfigurator {
 	 * @param 	zone		The zone to be configured.
 	 * @param 	attributes	Configuration attributes.
 	 */
-	
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildLabyrinth(zone, attributes);
 	}
 
-	private void buildLabyrinth(StendhalRPZone zone,
-			Map<String, String> attributes) {
-		Creature creature = new ItemGuardCreature(
-				manager.getCreature("minotaur_king"), "kokuda");
+	private void buildLabyrinth(StendhalRPZone zone, Map<String, String> attributes) {
+		Creature creature = new ItemGuardCreature(manager.getCreature("minotaur_king"), "kokuda");
 
-				CreatureRespawnPoint point =
-					new CreatureRespawnPoint(zone, 83, 103, creature, 1);
-				
-				zone.addRespawnPoint(point);
-		
-		}
+		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 83, 103, creature, 1);
+
+		zone.addRespawnPoint(point);
+
+	}
 }

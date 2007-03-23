@@ -25,9 +25,13 @@ import javax.swing.JOptionPane;
  * @author hendrik
  */
 public class Bootstrap {
+
 	private String pathSep = null;
+
 	private String jarFolder = null;
+
 	private Properties bootProp = null;
+
 	private Properties bootPropOrg = null;
 
 	/**
@@ -35,28 +39,29 @@ public class Bootstrap {
 	 * missing classes to the parent classloader (default is the other way round)
 	 */
 	private static class ButtomUpOrderClassLoader extends URLClassLoader {
-	    private ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
-			super(urls, parent);
-	    }
 
-	    @Override
-		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException  {
+		private ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
+			super(urls, parent);
+		}
+
+		@Override
+		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
 			if (clazz == null) {
-			    try {
-			    	clazz = findClass(name);
-			    } catch (ClassNotFoundException e) {
-		    		clazz = parent.loadClass(name);
-			    }
+				try {
+					clazz = findClass(name);
+				} catch (ClassNotFoundException e) {
+					clazz = parent.loadClass(name);
+				}
 			}
 			if (resolve) {
-			    resolveClass(clazz);
+				resolveClass(clazz);
 			}
 			return clazz;
-	    }
+		}
 
-	    @Override
+		@Override
 		public URL getResource(String name) {
 			ClassLoader parent = super.getParent();
 			URL url = findResource(name);
@@ -68,7 +73,6 @@ public class Bootstrap {
 			return url;
 		}
 	}
-
 
 	/**
 	 * saves modifed boot properties to disk
@@ -97,7 +101,7 @@ public class Bootstrap {
 		}
 		System.setProperty("log4j.ignoreTCL", "true");
 	}
-	
+
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it
 	 *
@@ -127,7 +131,7 @@ public class Bootstrap {
 		} else {
 			System.out.println("no jar.properties");
 		}
-		
+
 		// add boot classpath at the end so that those classes
 		// are loaded by our classloader as well (otherwise the dependencies
 		// would be loaded by the system classloader as well).
@@ -139,17 +143,19 @@ public class Bootstrap {
 			jarFiles.add(new File(filename).toURI().toURL());
 		}
 
-	    // Create new class loader which the list of .jar-files as classpath
+		// Create new class loader which the list of .jar-files as classpath
 		URL[] urlArray = jarFiles.toArray(new URL[jarFiles.size()]);
-	    ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
-	    return loader;
+		ClassLoader loader = new ButtomUpOrderClassLoader(urlArray, this.getClass().getClassLoader());
+		return loader;
 	}
 
 	/**
 	 * Do the whole start up process in a privilaged block
 	 */
 	private class PrivilagedBoot<T> implements PrivilegedAction<T> {
+
 		private String className = null;
+
 		private String[] args = null;
 
 		/**
@@ -183,14 +189,18 @@ public class Bootstrap {
 					initialDownload = true;
 					System.out.println("Initial Download");
 				}
-				
+
 				// start update handling
 				Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(null, "Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+				JOptionPane
+				        .showMessageDialog(
+				                null,
+				                "Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+				                        + e);
 			}
 		}
 
@@ -201,7 +211,8 @@ public class Bootstrap {
 			try {
 				saveBootProp();
 			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Sorry, an error occured while downloading the update. Could not write bootProperties");
+				JOptionPane.showMessageDialog(null,
+				        "Sorry, an error occured while downloading the update. Could not write bootProperties");
 			}
 		}
 
@@ -211,7 +222,7 @@ public class Bootstrap {
 		private void loadProgram() {
 			// regenerate classloader stuff, because in handleUpdate additional
 			// .jar-files may have been added
-			
+
 			try {
 				ClassLoader classLoader = createClassloader();
 				Class clazz = classLoader.loadClass(className);
@@ -221,7 +232,11 @@ public class Bootstrap {
 				if (e instanceof InvocationTargetException) {
 					unexspectedErrorHandling(e);
 				} else {
-					JOptionPane.showMessageDialog(null, "Something nasty happened while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+					JOptionPane
+					        .showMessageDialog(
+					                null,
+					                "Something nasty happened while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+					                        + e);
 					e.printStackTrace(System.err);
 					try {
 						Class clazz = Class.forName(className);
@@ -234,7 +249,7 @@ public class Bootstrap {
 			}
 
 		}
-		
+
 		public T run() {
 			init();
 			handleUpdate();
@@ -282,7 +297,8 @@ public class Bootstrap {
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
 				err.printStackTrace(System.err);
-				JOptionPane.showMessageDialog(null, "Something nasty happened while trying to start your self build client: " + err);
+				JOptionPane.showMessageDialog(null,
+				        "Something nasty happened while trying to start your self build client: " + err);
 			}
 		}
 	}
@@ -295,11 +311,15 @@ public class Bootstrap {
 		}
 
 		e.printStackTrace();
-		
+
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
 		} else {
-			JOptionPane.showMessageDialog(null, "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n" + e);
+			JOptionPane
+			        .showMessageDialog(
+			                null,
+			                "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+			                        + e);
 		}
 		System.exit(1);
 	}

@@ -24,13 +24,15 @@ import java.util.List;
 import java.util.Map;
 
 public class OL0_OutsideNorthWest implements ZoneConfigurator {
-	
+
 	private NPCList npcs = NPCList.get();;
+
 	private ShopList shops = ShopList.get();
 
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
+
 		private static long lastShoutTime = 0;
-		
+
 		private String cryForHelp = null;
 
 		/**
@@ -46,11 +48,12 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		@Override
 		public void onDead(Entity killer) {
 			super.onDead(killer);
-			if (! (killer instanceof Player)) {
+			if (!(killer instanceof Player)) {
 				long currentTime = System.currentTimeMillis();
-				if (lastShoutTime + 5*60*1000 < currentTime) {
+				if (lastShoutTime + 5 * 60 * 1000 < currentTime) {
 					lastShoutTime = currentTime;
-					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.get("name")) + " is eating our " + Grammar.plural(this.get("name")) + ".";
+					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.get("name")) + " is eating our "
+					        + Grammar.plural(this.get("name")) + ".";
 					// HACK: we need to wait a turn because the message is lost otherwise
 					TurnNotifier.get().notifyInTurns(0, this, null);
 				}
@@ -69,22 +72,19 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		}
 	}
 
-
 	/**
 	 * Configure a zone.
 	 *
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildZooArea(zone, attributes);
 	}
 
-
-	private void buildZooArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildZooArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Katinka") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -115,6 +115,7 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		zone.add(npc);
 
 		npc = new SpeakerNPC("Dr. Feelgood") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -133,12 +134,13 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 			protected void createDialog() {
 				//Behaviours.addHelp(this,
 				//				   "...");
-				
+
 				addReply("heal",
-						"Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
+				        "Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
 
 				addJob("I'm the veterinarian.");
 				addSeller(new SellerBehaviour(shops.get("healing")) {
+
 					@Override
 					public int getUnitPrice(String item) {
 						// Player gets 20 % rebate
@@ -168,7 +170,7 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		// 67, 29 bear
 		point = new CreatureRespawnPoint(zone, 67, 29, creature, 1);
 		zone.addRespawnPoint(point);
-		
+
 		// 67, 31 black_bear
 		creature = new AdosAttackableCreature(manager.getCreature("black_bear"));
 		point = new CreatureRespawnPoint(zone, 67, 31, creature, 1);

@@ -9,6 +9,7 @@ import games.stendhal.server.entity.player.Player;
  * the same one); while doing so, other actions can take place.
  */
 public class Transition {
+
 	/** The state where this transition starts at */
 	private int state;
 
@@ -43,8 +44,8 @@ public class Transition {
 	 * @param reply        output
 	 * @param action       additional action after the condition
 	 */
-	public Transition(int currentState, String trigger, PreTransitionCondition condition,
-			int nextState, String reply, PostTransitionAction action) {
+	public Transition(int currentState, String trigger, PreTransitionCondition condition, int nextState, String reply,
+	        PostTransitionAction action) {
 		this.state = currentState;
 		this.condition = condition;
 		this.nextState = nextState;
@@ -108,13 +109,13 @@ public class Transition {
 	/**
 	 * @return Action to execute after transition or null if there is none
 	 */
-    public PostTransitionAction getAction() {
+	public PostTransitionAction getAction() {
 		return action;
 	}
 
-    /**
-     * @return condition to check before doing the transition or null if there is non
-     */
+	/**
+	 * @return condition to check before doing the transition or null if there is non
+	 */
 	public PreTransitionCondition getCondition() {
 		return condition;
 	}
@@ -158,8 +159,7 @@ public class Transition {
 
 	@Override
 	public String toString() {
-		return "[" + state + "," + trigger + "," + nextState + ","
-				+ condition + "]";
+		return "[" + state + "," + trigger + "," + nextState + "," + condition + "]";
 	}
 
 }

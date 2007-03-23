@@ -24,7 +24,9 @@ import marauroa.common.Log4J;
 
 /** It is class to get tiles from the tileset */
 public class TileStore extends SpriteStore {
+
 	private class RangeFilename {
+
 		int base;
 
 		int amount;
@@ -66,16 +68,13 @@ public class TileStore extends SpriteStore {
 			sprites = get();
 			Sprite tiles = sprites.getSprite(filename);
 
-			GraphicsConfiguration gc = GraphicsEnvironment
-					.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-					.getDefaultConfiguration();
+			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+			        .getDefaultConfiguration();
 
 			for (int j = 0; j < tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS; j++) {
-				for (int i = 0; i < tiles.getWidth()
-						/ GameScreen.SIZE_UNIT_PIXELS; i++) {
-					Image image = gc.createCompatibleImage(
-							GameScreen.SIZE_UNIT_PIXELS,
-							GameScreen.SIZE_UNIT_PIXELS, Transparency.BITMASK);
+				for (int i = 0; i < tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS; i++) {
+					Image image = gc.createCompatibleImage(GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
+					        Transparency.BITMASK);
 					Graphics2D g = (Graphics2D) image.getGraphics();
 
 					// Bugfixs: parameters width and height added, see comment
@@ -83,14 +82,11 @@ public class TileStore extends SpriteStore {
 					// tiles.draw(g,0,0,i*GameScreen.SIZE_UNIT_PIXELS,j*GameScreen.SIZE_UNIT_PIXELS);
 					// intensifly @ gmx.com, April 20th, 2006
 
-					tiles.draw(g, 0, 0, i * GameScreen.SIZE_UNIT_PIXELS, j
-							* GameScreen.SIZE_UNIT_PIXELS,
-							GameScreen.SIZE_UNIT_PIXELS,
-							GameScreen.SIZE_UNIT_PIXELS);
+					tiles.draw(g, 0, 0, i * GameScreen.SIZE_UNIT_PIXELS, j * GameScreen.SIZE_UNIT_PIXELS,
+					        GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
 
 					// create a sprite, add it the cache then return it
-					tileset.set(base + i + j * tiles.getWidth()
-							/ GameScreen.SIZE_UNIT_PIXELS, new Sprite(image));
+					tileset.set(base + i + j * tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS, new Sprite(image));
 				}
 			}
 
@@ -130,38 +126,39 @@ public class TileStore extends SpriteStore {
 			new RangeFilename(base, amount, ref).load();
 		}
 	}
-	
-	private Object locker=new Object();
+
+	private Object locker = new Object();
 
 	public void preload() {
-		Thread loader=new Thread() {
+		Thread loader = new Thread() {
+
 			@Override
 			public void run() {
-				for(RangeFilename range: rangesTiles) {	
-					synchronized(locker) {
-						if(!range.isLoaded())  {
+				for (RangeFilename range : rangesTiles) {
+					synchronized (locker) {
+						if (!range.isLoaded()) {
 							range.load();
 						}
 					}
 				}
 			}
 		};
-		
+
 		loader.start();
 	}
 
 	public Sprite getTile(int i) {
 		Sprite sprite = tileset.get(i);
-	
+
 		if (Debug.VERY_FAST_CLIENT_START && (sprite == null)) {
-			synchronized(locker) {
+			synchronized (locker) {
 				for (RangeFilename range : rangesTiles) {
 					if (range.isInRange(i)) {
 						//TODO: decide which of them to be used astridemma 18.02.2007
-						 Log4J.getLogger(AnimatedEntity.class).info("Loading tileset " + range.getFilename());
+						Log4J.getLogger(AnimatedEntity.class).info("Loading tileset " + range.getFilename());
 						//StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
 						range.load();
-						
+
 						sprite = tileset.get(i);
 						break;
 					}

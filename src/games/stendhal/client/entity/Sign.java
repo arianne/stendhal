@@ -20,6 +20,7 @@ import java.awt.geom.*;
 import java.util.List;
 
 public class Sign extends Entity {
+
 	private final static long STANDARD_PERSISTENCE_TIME = 5000;
 
 	private String text;
@@ -36,8 +37,7 @@ public class Sign extends Entity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 		GameScreen screen = GameScreen.get();
 
@@ -56,14 +56,12 @@ public class Sign extends Entity {
 				}
 			}
 
-			GraphicsConfiguration gc = GraphicsEnvironment
-					.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-					.getDefaultConfiguration();
+			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+			        .getDefaultConfiguration();
 			int width = lineLengthPixels + 4;
 			int height = 16 * lines.length;
 
-			Image image = gc.createCompatibleImage(width, height,
-					Transparency.BITMASK);
+			Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
 
 			Graphics g = image.getGraphics();
 			g.setColor(Color.white);
@@ -82,8 +80,7 @@ public class Sign extends Entity {
 
 			textImage = new Sprite(image);
 
-			textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length()
-					* STANDARD_PERSISTENCE_TIME / 50);
+			textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50);
 		}
 	}
 
@@ -110,7 +107,7 @@ public class Sign extends Entity {
 
 		sprite = store.getSprite("data/sprites/signs/" + name + ".png");
 	}
-	
+
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.READ;
@@ -127,22 +124,20 @@ public class Sign extends Entity {
 	public void onAction(ActionType at, String... params) {
 		// =handleAction(action);
 		switch (at) {
-		case READ:
-			GameObjects.getInstance().addText(this, textImage, textPersistTime);
-			if (text.contains("\n")) {
-				// The sign's text has multiple lines. Add a linebreak after
-				// "you read" so that it is easier readable.
-				StendhalClient.get().addEventLine("You read:\n\"" + text + "\"",
-					signColor);
-			} else {
-				StendhalClient.get().addEventLine("You read: \"" + text + "\"",
-						signColor);
-			}
-			break;
+			case READ:
+				GameObjects.getInstance().addText(this, textImage, textPersistTime);
+				if (text.contains("\n")) {
+					// The sign's text has multiple lines. Add a linebreak after
+					// "you read" so that it is easier readable.
+					StendhalClient.get().addEventLine("You read:\n\"" + text + "\"", signColor);
+				} else {
+					StendhalClient.get().addEventLine("You read: \"" + text + "\"", signColor);
+				}
+				break;
 
-		default:
-			super.onAction(at, params);
-			break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}

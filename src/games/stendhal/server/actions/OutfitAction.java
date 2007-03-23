@@ -21,6 +21,7 @@ import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
 public class OutfitAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(OutfitAction.class);
 
 	public static void register() {

@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Summon an item (presumably) into an entity's slot.
  */
 class SummonAtCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class SummonAtCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction summon = new RPAction();
 
 		summon.put("type", "summonat");
@@ -23,7 +24,7 @@ class SummonAtCommand implements SlashCommand {
 		summon.put("slot", params[1]);
 		summon.put("item", params[2]);
 
-		if(params[3] != null) {
+		if (params[3] != null) {
 			summon.put("amount", params[3]);
 		}
 
@@ -31,7 +32,6 @@ class SummonAtCommand implements SlashCommand {
 
 		return true;
 	}
-
 
 	/**
 	 * Get the maximum number of formal parameters.
@@ -41,7 +41,6 @@ class SummonAtCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 4;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

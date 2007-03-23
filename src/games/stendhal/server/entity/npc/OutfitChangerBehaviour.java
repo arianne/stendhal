@@ -32,38 +32,31 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	public static final int NEVER_WEARS_OFF = -1;
 
 	private int endurance;
-	
+
 	private String wearOffMessage;
-	
+
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
 	static {
 		// In each line, there is one possible outfit of this
 		// outfit type, in the order: hair, head, dress, base.
 		// One of these outfit will be chosen randomly.
-		
+
 		// swimsuits for men
-		outfitTypes.put("trunks", Arrays.asList(
-				new Outfit(Outfit.NONE, Outfit.NONE, 95, Outfit.NONE),
-				new Outfit(Outfit.NONE, Outfit.NONE, 96, Outfit.NONE),
-				new Outfit(Outfit.NONE, Outfit.NONE, 97, Outfit.NONE),
-				new Outfit(Outfit.NONE, Outfit.NONE, 98, Outfit.NONE)));
-		
+		outfitTypes.put("trunks", Arrays.asList(new Outfit(Outfit.NONE, Outfit.NONE, 95, Outfit.NONE), new Outfit(
+		        Outfit.NONE, Outfit.NONE, 96, Outfit.NONE), new Outfit(Outfit.NONE, Outfit.NONE, 97, Outfit.NONE),
+		        new Outfit(Outfit.NONE, Outfit.NONE, 98, Outfit.NONE)));
+
 		// swimsuits for women
-		outfitTypes.put("swimsuit", Arrays.asList(
-				new Outfit(Outfit.NONE, Outfit.NONE, 91, Outfit.NONE),
-				new Outfit(Outfit.NONE, Outfit.NONE, 92, Outfit.NONE),
-				new Outfit(Outfit.NONE, Outfit.NONE, 93, Outfit.NONE),
-				new Outfit(Outfit.NONE, Outfit.NONE, 94, Outfit.NONE)));
-		
-		outfitTypes.put("mask", Arrays.asList(
-				new Outfit(0, 80, Outfit.NONE, Outfit.NONE),
-				new Outfit(0, 81, Outfit.NONE, Outfit.NONE),
-				new Outfit(0, 82, Outfit.NONE, Outfit.NONE),
-				new Outfit(0, 83, Outfit.NONE, Outfit.NONE),
-				new Outfit(0, 84, Outfit.NONE, Outfit.NONE)));
+		outfitTypes.put("swimsuit", Arrays.asList(new Outfit(Outfit.NONE, Outfit.NONE, 91, Outfit.NONE), new Outfit(
+		        Outfit.NONE, Outfit.NONE, 92, Outfit.NONE), new Outfit(Outfit.NONE, Outfit.NONE, 93, Outfit.NONE),
+		        new Outfit(Outfit.NONE, Outfit.NONE, 94, Outfit.NONE)));
+
+		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, Outfit.NONE, Outfit.NONE), new Outfit(0, 81,
+		        Outfit.NONE, Outfit.NONE), new Outfit(0, 82, Outfit.NONE, Outfit.NONE), new Outfit(0, 83, Outfit.NONE,
+		        Outfit.NONE), new Outfit(0, 84, Outfit.NONE, Outfit.NONE)));
 	}
-	
+
 	/**
 	 * Creates a new OutfitChangerBehaviour for outfits never wear off
 	 * automatically.
@@ -135,7 +128,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 			TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
 		}
 	}
-	
+
 	/**
 	 * Checks whether or not the given player is currently
 	 * wearing an outfit that may have been bought/lent from an
@@ -145,10 +138,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 */
 	public boolean wearsOutfitFromHere(Player player) {
 		Outfit currentOutfit = player.getOutfit();
-		
-		for (String outfitType: priceList.keySet()) { 
+
+		for (String outfitType : priceList.keySet()) {
 			List<Outfit> possibleOutfits = outfitTypes.get(outfitType);
-			for (Outfit possibleOutfit: possibleOutfits) {
+			for (Outfit possibleOutfit : possibleOutfits) {
 				if (possibleOutfit.isPartOf(currentOutfit)) {
 					return true;
 				}
@@ -171,7 +164,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		}
 		return false;
 	}
-	
+
 	/** Puts the outfit off, but only if the player hasn't taken
 	 * it off himself already.
 	 */

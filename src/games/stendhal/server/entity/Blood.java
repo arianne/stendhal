@@ -28,6 +28,7 @@ import marauroa.common.game.RPClass;
  * was injured or killed.
  */
 public class Blood extends PassiveEntity implements TurnListener {
+
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
@@ -55,7 +56,6 @@ public class Blood extends PassiveEntity implements TurnListener {
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
-
 
 	@Override
 	public String describe() {

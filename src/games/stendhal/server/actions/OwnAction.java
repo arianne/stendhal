@@ -29,6 +29,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class OwnAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(OwnAction.class);
 
 	public static void register() {
@@ -41,8 +42,7 @@ public class OwnAction extends ActionListener {
 
 		// BUG: This features is potentially abusable right now. Consider
 		// removing it...
-		if (player.hasSheep() && action.has("target")
-				&& (action.getInt("target") == -1)) // Allow release of sheep
+		if (player.hasSheep() && action.has("target") && (action.getInt("target") == -1)) // Allow release of sheep
 		{
 			Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 			player.removeSheep(sheep);
@@ -66,8 +66,7 @@ public class OwnAction extends ActionListener {
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-					.getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
@@ -75,13 +74,13 @@ public class OwnAction extends ActionListener {
 					Sheep sheep = (Sheep) object;
 					if (sheep.getOwner() == null) {
 
-						List<Node> path = Path.searchPath(player, player.getX(), player.getY(), 
-								sheep.getArea(sheep.getX(), sheep.getY()), 7);
+						List<Node> path = Path.searchPath(player, player.getX(), player.getY(), sheep.getArea(sheep
+						        .getX(), sheep.getY()), 7);
 						if (!path.isEmpty()) {
-						
+
 							sheep.setOwner(player);
 							StendhalRPRuleProcessor.get().removeNPC(sheep);
-	
+
 							player.setSheep(sheep);
 							player.notifyWorldAboutChanges();
 						} else {

@@ -11,6 +11,7 @@ import marauroa.common.game.RPObject;
  * Drop a player item.
  */
 class DropCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -19,7 +20,7 @@ class DropCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		int quantity;
 
 		try {
@@ -46,8 +47,7 @@ class DropCommand implements SlashCommand {
 			RPAction drop = new RPAction();
 
 			drop.put("type", "drop");
-			drop.put("baseobject",
-				player.getID().getObjectID());
+			drop.put("baseobject", player.getID().getObjectID());
 
 			drop.put("baseslot", "bag");
 			drop.put("x", player.getInt("x"));
@@ -57,14 +57,11 @@ class DropCommand implements SlashCommand {
 
 			StendhalClient.get().send(drop);
 		} else {
-			StendhalClient.get().addEventLine(
-				"You don't have any " + itemName,
-				Color.black);
+			StendhalClient.get().addEventLine("You don't have any " + itemName, Color.black);
 		}
 
 		return true;
 	}
-
 
 	/**
 	 * Get the maximum number of formal parameters.
@@ -74,7 +71,6 @@ class DropCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 2;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

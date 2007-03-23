@@ -13,15 +13,16 @@
 package games.stendhal.common;
 
 public class CRC {
+
 	// calculating 16-bit CRC
 
 	/**
 	 * generator polynomial
 	 */
 	private static final int poly = 0x1021; /*
-											 * x16 + x12 + x5 + 1 generator
-											 * polynomial
-											 */
+	 * x16 + x12 + x5 + 1 generator
+	 * polynomial
+	 */
 
 	/* 0x8408 used in European X.25 */
 

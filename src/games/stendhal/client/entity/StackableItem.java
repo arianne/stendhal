@@ -24,19 +24,18 @@ import marauroa.common.game.RPObject;
  * This is the money item. StackableItem is stackable
  */
 public class StackableItem extends Item {
+
 	private int quantity;
 
 	private Sprite quantityImage;
 
-	public StackableItem( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public StackableItem(RPObject object) throws AttributeNotFoundException {
+		super(object);
 		quantity = 0;
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("quantity")) {
@@ -44,8 +43,7 @@ public class StackableItem extends Item {
 			if (quantity == 1) {
 				quantityImage = null;
 			} else {
-				quantityImage = GameScreen.get().createString(
-						Integer.toString(quantity), Color.white);
+				quantityImage = GameScreen.get().createString(Integer.toString(quantity), Color.white);
 			}
 		}
 	}

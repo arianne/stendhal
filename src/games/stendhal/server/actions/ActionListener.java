@@ -23,6 +23,7 @@ import games.stendhal.server.entity.*;
 import games.stendhal.server.entity.player.Player;
 
 public abstract class ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(ActionListener.class);
 
 	/** callback for the registered action */
@@ -65,8 +66,7 @@ public abstract class ActionListener {
 		RPObject.ID id = new RPObject.ID(objectId, zone.getID());
 
 		if (!zone.has(id)) {
-			logger.debug("Rejected because zone doesn't have object "
-					+ objectId);
+			logger.debug("Rejected because zone doesn't have object " + objectId);
 			return null;
 		}
 
@@ -89,8 +89,8 @@ public abstract class ActionListener {
 			return true;
 		}
 
-		logger.debug("object is to far. distance+ " + distance + " first: "
-				+ first.getID() + " second: " + second.getID());
+		logger.debug("object is to far. distance+ " + distance + " first: " + first.getID() + " second: "
+		        + second.getID());
 		return false;
 	}
 
@@ -114,9 +114,7 @@ public abstract class ActionListener {
 		// return true;
 		// }
 
-		logger.debug("object " + object.getID()
-				+ " is not of the correct class. it is "
-				+ object.getClass().getName());
+		logger.debug("object " + object.getID() + " is not of the correct class. it is " + object.getClass().getName());
 		return false;
 	}
 

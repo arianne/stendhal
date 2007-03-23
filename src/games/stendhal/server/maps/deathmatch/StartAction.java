@@ -10,6 +10,7 @@ import games.stendhal.server.events.TurnNotifier;
  * @author hendrik
  */
 public class StartAction extends SpeakerNPC.ChatAction {
+
 	private DeathmatchInfo deathmatchInfo;
 
 	/**

@@ -21,7 +21,9 @@ import java.util.Map;
  * @author kymara
  */
 public class IL0_BuyerNPC implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
+
 	private ShopList shops = ShopList.get();
 
 	/**
@@ -30,14 +32,13 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Elodrin") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -55,19 +56,12 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 				addGreeting("*grrr* You dare come in my shop?");
 				addJob("I buy weapons. I pay more to elves. Ha!");
 				addHelp("I buy rare weapons, ask me for my #offer.");
-				add(ConversationStates.ATTENDING,
-					"offer",
-					null,
-					ConversationStates.ATTENDING,
-					"Look at the blackboard on the wall to see what I will buy.",
-					null);
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"You think I'd trust a human with anything important? You're wrong!",
-					null);
-				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")),false); //why does this false go here? what is it?
+				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
+				        "Look at the blackboard on the wall to see what I will buy.", null);
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING,
+				        "You think I'd trust a human with anything important? You're wrong!", null);
+				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")), false); //why does this false go here? what is it?
 				addGoodbye("Bye - be careful not to annoy the other elves as much");
 			}
 		};

@@ -20,12 +20,12 @@ import marauroa.common.game.RPObject;
  * - A* expands a lost if the straight line is blocked  
  */
 public class StendhalNavigableEntities extends StendhalNavigable {
-	
+
 	/**
 	 * contains the collision data for entities
 	 */
 	private CollisionDetection collisionMap;
-	
+
 	/**
 	 * Creates a new navigation map
 	 * @param entity The entity searching a path
@@ -34,8 +34,7 @@ public class StendhalNavigableEntities extends StendhalNavigable {
 	 * @param startY The start y position
 	 * @param destination The goal
 	 */
-	public StendhalNavigableEntities(Entity entity, StendhalRPZone zone,
-			int startX, int startY, Rectangle2D destination) {
+	public StendhalNavigableEntities(Entity entity, StendhalRPZone zone, int startX, int startY, Rectangle2D destination) {
 
 		super(entity, zone, startX, startY, destination);
 		createEntityCollisionMap();
@@ -50,8 +49,8 @@ public class StendhalNavigableEntities extends StendhalNavigable {
 	 * @param destination The goal
 	 * @param maxDist The maximum distance for the path
 	 */
-	public StendhalNavigableEntities(Entity entity, StendhalRPZone zone,
-			int startX, int startY, Rectangle2D destination, double maxDist) {
+	public StendhalNavigableEntities(Entity entity, StendhalRPZone zone, int startX, int startY,
+	        Rectangle2D destination, double maxDist) {
 
 		super(entity, zone, startX, startY, destination, maxDist);
 		createEntityCollisionMap();
@@ -70,7 +69,7 @@ public class StendhalNavigableEntities extends StendhalNavigable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * cerates collision data for entities
 	 * the positions with entities are only considered as not valid if they  
@@ -82,16 +81,12 @@ public class StendhalNavigableEntities extends StendhalNavigable {
 		collisionMap.init(zone.getWidth(), zone.getHeight());
 		for (Iterator<RPObject> it = zone.iterator(); it.hasNext();) {
 			Entity otherEntity = (Entity) it.next();
-			if (!entity.getID().equals(otherEntity.getID())
-					&& otherEntity.isObstacle(entity)
-					&& (otherEntity.stopped() 
-							|| otherEntity.nextTo(x, y , 0.25))) {
+			if (!entity.getID().equals(otherEntity.getID()) && otherEntity.isObstacle(entity)
+			        && (otherEntity.stopped() || otherEntity.nextTo(x, y, 0.25))) {
 
-				Rectangle2D area = otherEntity.getArea(otherEntity.getX(),
-						otherEntity.getY());
+				Rectangle2D area = otherEntity.getArea(otherEntity.getX(), otherEntity.getY());
 				collisionMap.setCollide(area, true);
 			}
 		}
 	}
 }
-	  	 

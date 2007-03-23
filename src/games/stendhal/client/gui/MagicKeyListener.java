@@ -166,6 +166,7 @@ public class MagicKeyListener implements KeyListener {
 	 * it fires the event to the keyTyped method of the adaptee.
 	 */
 	private class KeyTypedLater implements Runnable {
+
 		private final KeyEvent event;
 
 		private KeyTypedLater(KeyEvent event) {
@@ -184,6 +185,7 @@ public class MagicKeyListener implements KeyListener {
 	 * already been informed.
 	 */
 	private class KeyPressedLater implements Runnable {
+
 		private final KeyEvent event;
 
 		private KeyPressedLater(KeyEvent event) {
@@ -206,6 +208,7 @@ public class MagicKeyListener implements KeyListener {
 	 * already been informed of the release.
 	 */
 	private class KeyReleasedLater implements Runnable {
+
 		private final KeyEvent event;
 
 		private KeyReleasedLater(KeyEvent event) {

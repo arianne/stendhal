@@ -22,7 +22,7 @@ import games.stendhal.server.entity.player.Player;
  * Use SpeakerNPC.addHealer() to assign this behaviour to an NPC.
  */
 public class HealerBehaviour extends SellerBehaviour {
-	
+
 	/**
 	 * Creates a new HealerBehaviour.
 	 *

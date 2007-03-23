@@ -250,8 +250,7 @@ public class Graph {
 				for (int j = 0; j < list.size(); j++) {
 					GraphItem z = list.get(j);
 
-					if ((z != null)
-							&& (d[z.dijkstraindex] > d[w.dijkstraindex] + 1)) {
+					if ((z != null) && (d[z.dijkstraindex] > d[w.dijkstraindex] + 1)) {
 						d[z.dijkstraindex] = d[w.dijkstraindex] + 1;
 						p[z.dijkstraindex] = w.dijkstraindex;
 						z.setParent(w);
@@ -282,8 +281,7 @@ public class Graph {
 	}
 
 	public static void main(String[] args) {
-		System.out
-				.println("SHORTEST PATH USING Dijkstra's ALGORITHM : July 2002 ,Ramon Talavera: maxdemian@terra.es");
+		System.out.println("SHORTEST PATH USING Dijkstra's ALGORITHM : July 2002 ,Ramon Talavera: maxdemian@terra.es");
 		System.out.println("Use at your own risk :)");
 
 		Graph my_graph = new Graph();
@@ -308,13 +306,11 @@ public class Graph {
 		}
 
 		System.out.println("\nSHORTEST PATH:");
-		System.out
-				.println("Parent's list to follow backwards to get the shortest path to the origin:");
+		System.out.println("Parent's list to follow backwards to get the shortest path to the origin:");
 		System.out.println("(node,parent_of_node)");
 
 		for (int i = 0; i < my_graph.getLastDijkstraParents().length; i++) {
-			System.out.print("(" + i + ","
-					+ my_graph.getLastDijkstraParents()[i] + "),");
+			System.out.print("(" + i + "," + my_graph.getLastDijkstraParents()[i] + "),");
 		}
 	}
 }

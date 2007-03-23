@@ -25,38 +25,37 @@ public class EntityTest {
 		assertEquals(0l, en.getModificationCount());
 	}
 
-	@Test (expected= AttributeNotFoundException.class)
+	@Test(expected = AttributeNotFoundException.class)
 	public final void testEntityInvalidRPObject() {
-		new MockEntity(new RPObject() );
+		new MockEntity(new RPObject());
 	}
-	
-	@Test 
+
+	@Test
 	public final void testEntityRPObject() {
-		RPObject rpo= new RPObject();
+		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
-		Entity en = new MockEntity(rpo );
+		Entity en = new MockEntity(rpo);
 		assertEquals(Direction.STOP, en.getDirection());
 		assertEquals("hugo", en.getType());
 		assertEquals("hugo", en.getName());
-		
-		
+
 	}
-	
+
 	@Test
 	public final void testGet_IDToken() {
-		RPObject rpo= new RPObject();
+		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
-		Entity en = new MockEntity(rpo );
-		assertNotNull( en.get_IDToken());
-		
+		Entity en = new MockEntity(rpo);
+		assertNotNull(en.get_IDToken());
+
 	}
 
 	@Test
 	public final void testGetID() {
-		RPObject rpo= new RPObject();
+		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
-		rpo.setID(new ID(1,"woohoo"));
-		Entity en = new MockEntity(rpo );
+		rpo.setID(new ID(1, "woohoo"));
+		Entity en = new MockEntity(rpo);
 		assertNotNull(en.getID());
 		assertEquals(1, en.getID().getObjectID());
 		assertEquals("woohoo", en.getID().getZoneID());
@@ -66,86 +65,83 @@ public class EntityTest {
 	public final void testGetNamegetType() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		en = new MockEntity(rpo );
+		en = new MockEntity(rpo);
 		assertEquals("_hugo", en.getType());
 		assertEquals(" hugo", en.getName());
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "ragnarok");
-		en = new MockEntity(rpo );
+		en = new MockEntity(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("ragnarok", en.getName());
 	}
 
-	
 	@Test
 	public final void testGetXGetY() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
-		
-		assertEquals(0.0,en.getX());
-		assertEquals(0.0,en.getY());
+
+		en = new MockEntity(rpo);
+
+		assertEquals(0.0, en.getX());
+		assertEquals(0.0, en.getY());
 		en.onMove(3, 4, Direction.STOP, 0);
-		assertEquals(3.0,en.getX());
-		assertEquals(4.0,en.getY());
-		
-		
+		assertEquals(3.0, en.getX());
+		assertEquals(4.0, en.getY());
+
 	}
 
-	
 	@Test
 	public final void testGetDirection() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
-		assertEquals(Direction.STOP,en.getDirection());
-			
+
+		en = new MockEntity(rpo);
+		assertEquals(Direction.STOP, en.getDirection());
+
 	}
 
 	@Test
 	public final void testGetPosition() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
-		assertEquals(new Point2D.Double(0.0,0.0),en.getPosition());
+
+		en = new MockEntity(rpo);
+		assertEquals(new Point2D.Double(0.0, 0.0), en.getPosition());
 	}
 
 	@Test
 	public final void testGetSpeed() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
-		assertEquals(0.0,en.getSpeed());
+
+		en = new MockEntity(rpo);
+		assertEquals(0.0, en.getSpeed());
 	}
 
 	@Test
 	public final void testDistance() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
 		rpo.put("x", 0);
-		rpo.put("y",0);
-		en = new MockEntity(rpo );
+		rpo.put("y", 0);
+		en = new MockEntity(rpo);
 		en.onMove(3, 4, Direction.STOP, 0);
-		assertEquals(3.0,en.getX());
-		assertEquals(4.0,en.getY());
-		assertEquals(25.0,en.distance(rpo));
+		assertEquals(3.0, en.getX());
+		assertEquals(4.0, en.getY());
+		assertEquals(25.0, en.distance(rpo));
 	}
 
 	@Test
@@ -158,31 +154,29 @@ public class EntityTest {
 	public final void testGetSprite() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
+
+		en = new MockEntity(rpo);
 		assertNotNull(en.getSprite());
-		
+
 	}
 
-
-	
 	@Test
 	public final void testSetAudibleRangegetAudibleArea() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
-		assertNull(en.getAudibleArea() );
+
+		en = new MockEntity(rpo);
+		assertNull(en.getAudibleArea());
 		en.setAudibleRange(5d);
-		Rectangle2D rectangle= new Rectangle2D.Double(-5d,-5d,10d,10d); 
-		assertEquals(rectangle,en.getAudibleArea());
+		Rectangle2D rectangle = new Rectangle2D.Double(-5d, -5d, 10d, 10d);
+		assertEquals(rectangle, en.getAudibleArea());
 		en.setAudibleRange(1d);
-		 rectangle= new Rectangle2D.Double(-1d,-1d,2d,2d); 
-		assertEquals(rectangle,en.getAudibleArea());
+		rectangle = new Rectangle2D.Double(-1d, -1d, 2d, 2d);
+		assertEquals(rectangle, en.getAudibleArea());
 
 	}
 
@@ -208,12 +202,12 @@ public class EntityTest {
 	public final void testOnStop() {
 		Entity en;
 		RPObject rpo;
-		rpo= new RPObject();
+		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		
-		en = new MockEntity(rpo );
+
+		en = new MockEntity(rpo);
 		assertTrue(en.stopped());
-		en.onStop(0,0);
+		en.onStop(0, 0);
 		assertTrue(en.stopped());
 	}
 
@@ -384,28 +378,31 @@ public class EntityTest {
 	public final void testGetZIndex() {
 		fail("Not yet implemented"); // TODO
 	}
-private class MockEntity extends Entity{
 
-	public MockEntity(RPObject object) {
-		super(object);
-	}
-	public MockEntity() {
-		super();
-	}
-	@Override
-	public Rectangle2D getArea() {
-		return null;
-	}
+	private class MockEntity extends Entity {
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return null;
-	}
+		public MockEntity(RPObject object) {
+			super(object);
+		}
 
-	@Override
-	public int getZIndex() {
-		return 0;
+		public MockEntity() {
+			super();
+		}
+
+		@Override
+		public Rectangle2D getArea() {
+			return null;
+		}
+
+		@Override
+		public Rectangle2D getDrawedArea() {
+			return null;
+		}
+
+		@Override
+		public int getZIndex() {
+			return 0;
+		}
+
 	}
-	
-}
 }

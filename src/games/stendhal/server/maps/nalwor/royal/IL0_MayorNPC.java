@@ -17,6 +17,7 @@ import java.util.Map;
  * @author kymara
  */
 public class IL0_MayorNPC implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
 
 	/**
@@ -25,14 +26,13 @@ public class IL0_MayorNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Maerion") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -56,12 +56,8 @@ public class IL0_MayorNPC implements ZoneConfigurator {
 				addJob("You dare ask, little human?!");
 				addHelp("Well, perhaps you can help me with a #problem I see brewing. But not yet, not yet...");
 				addQuest("Thanks, one day, I will remember that you offered. I may need you.");
-				add(ConversationStates.ATTENDING,
-					"problem",
-					null,
-					ConversationStates.ATTENDING,
-				    "Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...",
-					null);
+				add(ConversationStates.ATTENDING, "problem", null, ConversationStates.ATTENDING,
+				        "Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...", null);
 				addGoodbye("Farewell, human.");
 			}
 		};
@@ -73,6 +69,5 @@ public class IL0_MayorNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 
-	
 	}
 }

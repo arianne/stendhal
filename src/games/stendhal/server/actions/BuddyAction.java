@@ -19,6 +19,7 @@ import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
 public class BuddyAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(BuddyAction.class);
 
 	public static void register() {
@@ -33,7 +34,7 @@ public class BuddyAction extends ActionListener {
 	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("addbuddy")) {
 			onAddBuddy(player, action);
-		} else if (action.get("type").equals("removebuddy")){
+		} else if (action.get("type").equals("removebuddy")) {
 			onRemoveBuddy(player, action);
 		} else if (action.get("type").equals("ignore")) {
 			onIgnore(player, action);
@@ -41,7 +42,6 @@ public class BuddyAction extends ActionListener {
 			onUnignore(player, action);
 		}
 	}
-	
 
 	private void onAddBuddy(Player player, RPAction action) {
 		String who = action.get("target");
@@ -53,30 +53,29 @@ public class BuddyAction extends ActionListener {
 
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "add", who);
 	}
-	
-	private void onIgnore(Player player, RPAction action) {
-		int	duration;
-		String	reason;
 
+	private void onIgnore(Player player, RPAction action) {
+		int duration;
+		String reason;
 
 		Log4J.startMethod(logger, "ignore");
 
 		if (action.has("target")) {
 			String who = action.get("target");
 
-			if(action.has("duration")) {
+			if (action.has("duration")) {
 				duration = action.getInt("duration");
 			} else {
 				duration = 0;
 			}
 
-			if(action.has("reason")) {
+			if (action.has("reason")) {
 				reason = action.get("reason");
 			} else {
 				reason = null;
 			}
 
-			if(player.addIgnore(who, duration, reason)) {
+			if (player.addIgnore(who, duration, reason)) {
 				player.sendPrivateText(who + " was added to your ignore list.");
 			}
 		}
@@ -84,14 +83,13 @@ public class BuddyAction extends ActionListener {
 		Log4J.finishMethod(logger, "ignore");
 	}
 
-
 	private void onUnignore(Player player, RPAction action) {
 		Log4J.startMethod(logger, "unignore");
 
 		if (action.has("target")) {
 			String who = action.get("target");
 
-			if(player.removeIgnore(who)) {
+			if (player.removeIgnore(who)) {
 				player.sendPrivateText(who + " was removed from your ignore list.");
 			}
 		}

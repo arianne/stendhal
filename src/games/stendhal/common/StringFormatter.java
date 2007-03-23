@@ -30,6 +30,7 @@ import java.util.Map;
  * @author matthias
  */
 public class StringFormatter {
+
 	/** start of each parameter. no escaping. */
 	private static final String PARAMETER_START = "${";
 
@@ -66,8 +67,7 @@ public class StringFormatter {
 				// we found something
 				if (hasStart) {
 					// found the end of the parameter definition
-					String param = current.substring(PARAMETER_START.length(),
-							index);
+					String param = current.substring(PARAMETER_START.length(), index);
 					current = current.substring(index + PARAMETER_END.length());
 					parameter.put(param, "");
 					parameterPositions.add(param);
@@ -128,8 +128,7 @@ public class StringFormatter {
 		System.out.println(formatter.toString());
 		formatter.set("test", "hello");
 		System.out.println(formatter.toString());
-		formatter = new StringFormatter(
-				"<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
+		formatter = new StringFormatter("<first>${first}</first><2nd>${2nd}</2nd><3rd>${3rd}</3rd>");
 		System.out.println(formatter.toString());
 		formatter.set("3rd", "last");
 		formatter.set("first", "winner");

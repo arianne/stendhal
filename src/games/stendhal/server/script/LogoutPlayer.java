@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class LogoutPlayer extends ScriptImpl {
+
 	private static Logger logger = Logger.getLogger(LogoutPlayer.class);
 
 	@Override
@@ -42,4 +43,3 @@ public class LogoutPlayer extends ScriptImpl {
 	}
 
 }
-

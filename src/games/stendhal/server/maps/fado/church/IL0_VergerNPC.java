@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class IL0_VergerNPC implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
 
 	/**
@@ -19,14 +20,13 @@ public class IL0_VergerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Lukas") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -59,6 +59,5 @@ public class IL0_VergerNPC implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 
-	
 	}
 }

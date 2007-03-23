@@ -15,6 +15,7 @@ package games.stendhal.server.entity.item;
 import java.util.Map;
 
 public class Money extends StackableItem {
+
 	// WARNING: Don't use this constructur! (Unless you know what you're
 	// doing...)
 	// If you use it e.g. in a quest, the variable possibleSlots will not

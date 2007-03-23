@@ -6,7 +6,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 
 public class StendhalNavigable implements Navigable {
-	
+
 	/**
 	 * The start x position.
 	 */
@@ -39,8 +39,8 @@ public class StendhalNavigable implements Navigable {
 	 * The minimum for working pathfinding is heuristicFromStartNode + 1
 	 */
 	protected double maxDistance;
-	protected static final double defaultMaxDistance = 40.0;
 
+	protected static final double defaultMaxDistance = 40.0;
 
 	/**
 	 * Creates a new navigation map
@@ -50,8 +50,7 @@ public class StendhalNavigable implements Navigable {
 	 * @param startY The start y position
 	 * @param destination The goal
 	 */
-	public StendhalNavigable(Entity entity, StendhalRPZone zone, int startX,
-			int startY, Rectangle2D destination) {
+	public StendhalNavigable(Entity entity, StendhalRPZone zone, int startX, int startY, Rectangle2D destination) {
 
 		this(entity, zone, startX, startY, destination, defaultMaxDistance);
 	}
@@ -65,23 +64,22 @@ public class StendhalNavigable implements Navigable {
 	 * @param destination The goal
 	 * @param maxDist The maximum distance for the path
 	 */
-	public StendhalNavigable(Entity entity, StendhalRPZone zone, int startX,
-			int startY, Rectangle2D destination, double maxDist) {
+	public StendhalNavigable(Entity entity, StendhalRPZone zone, int startX, int startY, Rectangle2D destination,
+	        double maxDist) {
 
 		this.entity = entity;
 		this.zone = zone;
 		this.x = startX;
 		this.y = startY;
 		this.goal = destination;
-		
-		double startF = getHeuristic(startX, startY,
-				(int) destination.getCenterX(), (int) destination.getCenterY());
+
+		double startF = getHeuristic(startX, startY, (int) destination.getCenterX(), (int) destination.getCenterY());
 
 		// check the maxDistance
 		if (maxDist > startF + 1) {
 			this.maxDistance = maxDist;
 		} else {
-			this.maxDistance = startF + 1; 
+			this.maxDistance = startF + 1;
 		}
 	}
 
@@ -181,7 +179,7 @@ public class StendhalNavigable implements Navigable {
 			}
 		}
 	}
-	
+
 	/**
 	 * Checks if the goal is unreachable.
 	 * Only the outer nodes of the goal are checked. 
@@ -190,17 +188,17 @@ public class StendhalNavigable implements Navigable {
 	 * @return true checks if the goal is unreachable
 	 */
 	public boolean unrechable() {
-		int w = (int)goal.getWidth() - 1;
-		int h = (int)goal.getHeight() - 1;
-		int x = (int)goal.getX();
-		int y = (int)goal.getY();
+		int w = (int) goal.getWidth() - 1;
+		int h = (int) goal.getHeight() - 1;
+		int x = (int) goal.getX();
+		int y = (int) goal.getY();
 		Pathfinder.Node node = new Pathfinder.Node();
-		
+
 		for (int i = 0; i <= w; i++) {
 			for (int j = 0; j <= h; j++) {
 				if ((i == 0) || (j == 0) || (i == w) || (j == h)) {
-					node.x = x + i; 
-					node.y = y + j; 
+					node.x = x + i;
+					node.y = y + j;
 					if (isValid(node)) {
 						return false;
 					}
@@ -209,7 +207,7 @@ public class StendhalNavigable implements Navigable {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * calculates the manhattan distance between to positions
 	 * @param x1 x value for postion 1 

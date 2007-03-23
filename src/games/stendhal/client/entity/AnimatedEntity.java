@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
  * compound of multiple frames.
  */
 public abstract class AnimatedEntity extends Entity {
+
 	private static final Logger logger = Log4J.getLogger(AnimatedEntity.class);
 
 	/** This map contains animation name, frames association */
@@ -42,9 +43,8 @@ public abstract class AnimatedEntity extends Entity {
 	 */
 	protected long delta;
 
-	public AnimatedEntity( RPObject object)
-			throws AttributeNotFoundException {
-		super( object);
+	public AnimatedEntity(RPObject object) throws AttributeNotFoundException {
+		super(object);
 		delta = System.currentTimeMillis();
 		frame = 0;
 	}
@@ -93,18 +93,18 @@ public abstract class AnimatedEntity extends Entity {
 		} else {
 			int value = direction.get();
 			switch (value) {
-			case 4:
-				animation = "move_left";
-				break;
-			case 2:
-				animation = "move_right";
-				break;
-			case 1:
-				animation = "move_up";
-				break;
-			case 3:
-				animation = "move_down";
-				break;
+				case 4:
+					animation = "move_left";
+					break;
+				case 2:
+					animation = "move_right";
+					break;
+				case 1:
+					animation = "move_up";
+					break;
+				case 3:
+					animation = "move_down";
+					break;
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public abstract class AnimatedEntity extends Entity {
 			logger.fatal(this.getClass().getName() + ": sprites.get() returned null for " + animation);
 			return SpriteStore.get().getSprite("data/sprites/failsafe.png");
 		}
-		
+
 		if (frame == anim.length) {
 			frame = 0;
 		}

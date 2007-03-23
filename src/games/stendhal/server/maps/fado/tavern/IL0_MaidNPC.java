@@ -18,9 +18,10 @@ import games.stendhal.server.pathfinder.Path;
  * @author timothyb89
  */
 public class IL0_MaidNPC implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
-	private ShopList shops = ShopList.get();
 
+	private NPCList npcs = NPCList.get();
+
+	private ShopList shops = ShopList.get();
 
 	//
 	// ZoneConfigurator
@@ -32,19 +33,17 @@ public class IL0_MaidNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
-
 
 	//
 	// L0_TellerNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC tavernMaid = new SpeakerNPC("Mother Helena") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
  */
 public class GenerateLanguageProperties {
 
-
 	/**
 	 * Generates a xx.properties file based on Translate._() invokations
 	 *

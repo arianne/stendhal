@@ -11,8 +11,11 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class TestCase {
+
 	private int testCaseCounter = 0;
+
 	private int errorCounter = 0;
+
 	private static Logger logger = Logger.getLogger(TestCase.class);
 
 	/**
@@ -52,11 +55,11 @@ public class TestCase {
 		} else {
 			ok = object1.equals(object2);
 		}
-		
+
 		if (!ok) {
 			String t = "";
 			if (text != null) {
-				 t = " (" + text + ")";
+				t = " (" + text + ")";
 			}
 			String msg = "assertEquals failed" + t + ": \"" + object1 + "\" \"" + object2 + "\"";
 			throw new AssertionError(msg);
@@ -128,7 +131,7 @@ public class TestCase {
 	 * @param clazz test case class
 	 */
 	public void runTestCase(Class<? extends TestCase> clazz) {
-		
+
 		try {
 			Method[] methods = clazz.getMethods();
 			for (Method method : methods) {
@@ -141,7 +144,7 @@ public class TestCase {
 		} catch (Exception e) {
 			logger.error(e, e);
 		}
-		
+
 		System.err.println();
 		System.err.println();
 		System.err.println("Tests: " + testCaseCounter + "  Errors: " + errorCounter);

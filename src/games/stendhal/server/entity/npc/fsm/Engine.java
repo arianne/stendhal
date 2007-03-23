@@ -19,13 +19,15 @@ import org.apache.log4j.Logger;
  * a finate state machine.
  */
 public class Engine {
+
 	private static final Logger logger = Log4J.getLogger(Engine.class);
 
 	// TODO: remove this dependency cicle, this is just here to simplify refactoring
 	// TODO: later: remove dependency on games.stendhal.server.entity.npc.* and Player
 	private SpeakerNPC speakerNPC = null;
+
 	private int maxState = 0;
-	
+
 	// FSM state transition table
 	private List<Transition> stateTransitionTable = new LinkedList<Transition>();
 
@@ -40,7 +42,6 @@ public class Engine {
 	public Engine(SpeakerNPC speakerNPC) {
 		this.speakerNPC = speakerNPC;
 	}
-
 
 	private Transition get(int state, String trigger, ChatCondition condition) {
 		for (Transition transition : stateTransitionTable) {
@@ -73,8 +74,7 @@ public class Engine {
 	 * @param reply        output
 	 * @param action       additional action after the condition
 	 */
-	public void add(int state, String trigger, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(int state, String trigger, ChatCondition condition, int nextState, String reply, ChatAction action) {
 		if (state > maxState) {
 			maxState = state;
 		}
@@ -82,13 +82,11 @@ public class Engine {
 		Transition existing = get(state, trigger, condition);
 		if (existing != null) {
 			// A previous state, trigger combination exist.
-			logger.warn("Adding to " + existing + " the state [" + state + ","
-					+ trigger + "," + nextState + "]");
+			logger.warn("Adding to " + existing + " the state [" + state + "," + trigger + "," + nextState + "]");
 			existing.setReply(existing.getReply() + " " + reply);
 		}
 
-		Transition item = new Transition(state, trigger, condition, nextState,
-				reply, action);
+		Transition item = new Transition(state, trigger, condition, nextState, reply, action);
 		stateTransitionTable.add(item);
 	}
 
@@ -102,8 +100,8 @@ public class Engine {
 	 * @param reply a simple text replay (may be null for no replay)
 	 * @param action a special action to be taken (may be null)
 	 */
-	public void add(int state, List<String> triggers, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(int state, List<String> triggers, ChatCondition condition, int nextState, String reply,
+	        ChatAction action) {
 		for (String trigger : triggers) {
 			add(state, trigger, condition, nextState, reply, action);
 		}
@@ -143,21 +141,21 @@ public class Engine {
 			return true;
 		} else {
 			// Couldn't match the text with the current FSM state
-			logger.debug("Couldn't match any state: " + getCurrentState() + ":"	+ text);
+			logger.debug("Couldn't match any state: " + getCurrentState() + ":" + text);
 			return false;
 		}
 	}
-	
+
 	private boolean matchTransition(MatchType type, Player player, String text) {
 		List<Transition> listCondition = new LinkedList<Transition>();
 		List<Transition> listConditionLess = new LinkedList<Transition>();
 
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
-			if (((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE)
-					&& transition.isAbsoluteJump(text))
-					|| ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text))
-					|| ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text))) {
+			if (((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE) && transition
+			        .isAbsoluteJump(text))
+			        || ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text))
+			        || ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text))) {
 				if (transition.isConditionFulfilled(player, text, speakerNPC)) {
 					if (transition.getCondition() == null) {
 						listConditionLess.add(transition);
@@ -182,7 +180,7 @@ public class Engine {
 
 		return false;
 	}
-	
+
 	private void executeTransition(Player player, String text, Transition state) {
 		int nextState = state.getNextState();
 		if (state.getReply() != null) {
@@ -195,7 +193,6 @@ public class Engine {
 			state.getAction().fire(player, text, speakerNPC);
 		}
 	}
-	
 
 	/**
 	 * Returns a copy of the transition table

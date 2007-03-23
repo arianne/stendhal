@@ -29,26 +29,16 @@ import org.apache.log4j.Logger;
 public class Jail implements TurnListener, LoginListener {
 
 	private static final Logger logger = Log4J.getLogger(Jail.class);
-	
+
 	/** The Singleton instance */
 	private static Jail instance = null;
-	
-	private static List<Point> cellEntryPoints = Arrays.asList(
-			new Point(3, 2),
-			new Point(8, 2),
-			// elf cell new Point(13, 2),
-			new Point(18, 2),
-			new Point(23, 2),
-			new Point(28, 2),
-			new Point(8, 11),
-			new Point(13, 11),
-			new Point(18, 11),
-			new Point(23, 11),
-			new Point(28, 11));
 
-	private static Rectangle[] cellBlocks = {
-		new Rectangle(1,  1, 30,  3),
-		new Rectangle(7, 10, 30, 12)};
+	private static List<Point> cellEntryPoints = Arrays.asList(new Point(3, 2), new Point(8, 2),
+	        // elf cell new Point(13, 2),
+	        new Point(18, 2), new Point(23, 2), new Point(28, 2), new Point(8, 11), new Point(13, 11),
+	        new Point(18, 11), new Point(23, 11), new Point(28, 11));
+
+	private static Rectangle[] cellBlocks = { new Rectangle(1, 1, 30, 3), new Rectangle(7, 10, 30, 12) };
 
 	/**
 	 * returns the Jail object (Singleton Pattern)
@@ -61,7 +51,7 @@ public class Jail implements TurnListener, LoginListener {
 		}
 		return instance;
 	}
-	
+
 	/**
 	 * @param criminalName The name of the player who should be jailed
 	 * @param policeman The name of the admin who wants to jail the criminal
@@ -94,7 +84,8 @@ public class Jail implements TurnListener, LoginListener {
 			Point cell = Rand.rand(cellEntryPoints);
 			successful = criminal.teleport(jail, cell.x, cell.y, Direction.DOWN, policeman);
 		}
-		policeman.sendPrivateText("You have jailed " + criminal.getName() + " for " + minutes + " minutes. Reason: " + reason + ".");
+		policeman.sendPrivateText("You have jailed " + criminal.getName() + " for " + minutes + " minutes. Reason: "
+		        + reason + ".");
 		criminal.sendPrivateText("You have been jailed by " + policeman.getName() + ". Reason: " + reason + ".");
 
 		// Set a timer so that the inmate is automatically released after
@@ -106,7 +97,7 @@ public class Jail implements TurnListener, LoginListener {
 		// server is restarted before the player could be released.
 		TurnNotifier.get().notifyInSeconds(minutes * 60, this, criminalName);
 	}
-	
+
 	/**
 	 * Releases an inmate and teleports him to Semos city, but only if
 	 * he is still in jail.
@@ -131,7 +122,7 @@ public class Jail implements TurnListener, LoginListener {
 				logger.debug(text);
 			}
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
-			
+
 			inmate.teleport(semosCity, 30, 40, Direction.UP, null);
 			inmate.sendPrivateText("Your sentence is over.");
 			logger.debug("Player " + inmateName + "released from jail.");
@@ -157,7 +148,7 @@ public class Jail implements TurnListener, LoginListener {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Is called when the time has come to release an inmate.
 	 * @param turn
@@ -165,7 +156,7 @@ public class Jail implements TurnListener, LoginListener {
 	 */
 	public void onTurnReached(int turn, String message) {
 		String playerName = message;
-		if (! release(playerName)) {
+		if (!release(playerName)) {
 			// The player has logged out. Release him when he logs in again.
 			LoginNotifier.get().notifyOnLogin(playerName, this, null);
 		}

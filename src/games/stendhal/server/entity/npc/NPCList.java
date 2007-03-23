@@ -15,9 +15,8 @@ public class NPCList {
 	 * The Singleton instance.
 	 */
 	private static NPCList instance;
-	
-	private Map<String, SpeakerNPC> contents;
 
+	private Map<String, SpeakerNPC> contents;
 
 	/**
 	 * Returns the Singleton instance.

@@ -20,6 +20,7 @@ import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
 public class StopAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(StopAction.class);
 
 	public static void register() {

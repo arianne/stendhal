@@ -20,7 +20,7 @@ package games.stendhal.common;
 public class Debug {
 
 	/** server version */
-	public static final String VERSION="0.58.5";
+	public static final String VERSION = "0.58.5";
 
 	/** if this is enable tileset are loaded on demand. */
 	public static final boolean VERY_FAST_CLIENT_START = true;
@@ -46,7 +46,7 @@ public class Debug {
 	 * CVS
 	 */
 	public static final boolean EMULATE_PERCEPTION_LOSS = false;
-	
+
 	/**
 	 * Just a try to get webstart work without additional rights
 	 */

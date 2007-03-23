@@ -36,15 +36,25 @@ import marauroa.common.net.TransferContent;
  * @author hendrik
  */
 public class ShouterMain {
+
 	private String host;
+
 	private String username;
+
 	private String password;
+
 	protected String character;
-    private String port;
-    private boolean tcp;
-    protected long lastPerceptionTimestamp = 0;
+
+	private String port;
+
+	private boolean tcp;
+
+	protected long lastPerceptionTimestamp = 0;
+
 	protected Map<RPObject.ID, RPObject> world_objects;
+
 	protected marauroa.client.ariannexp clientManager;
+
 	protected PerceptionHandler handler;
 
 	/**
@@ -58,21 +68,20 @@ public class ShouterMain {
 	 * @param t TCP?
 	 * @throws SocketException on an network error
 	 */
-	public ShouterMain(String h, String u, String p, String c, String P, boolean t)
-			throws SocketException {
+	public ShouterMain(String h, String u, String p, String c, String P, boolean t) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
 		character = c;
-        port = P;
-        tcp = t;
+		port = P;
+		tcp = t;
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
 		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+
 			@Override
-			public int onException(Exception e,
-					marauroa.common.net.MessageS2CPerception perception) {
+			public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
 				e.printStackTrace();
@@ -81,8 +90,8 @@ public class ShouterMain {
 
 		});
 
-		clientManager = new marauroa.client.ariannexp(
-				"games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ariannexp("games/stendhal/log4j.properties") {
+
 			@Override
 			protected String getGameName() {
 				return "stendhal";
@@ -104,8 +113,7 @@ public class ShouterMain {
 			}
 
 			@Override
-			protected List<TransferContent> onTransferREQ(
-					List<TransferContent> items) {
+			protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
 				for (TransferContent item : items) {
 					item.ack = true;
 				}
@@ -145,11 +153,11 @@ public class ShouterMain {
 		try {
 			clientManager.connect(host, Integer.parseInt(port), tcp);
 			clientManager.login(username, password);
-	        readMessagesAndShoutThem();
-	        clientManager.logout();
-	        System.exit(0);
+			readMessagesAndShoutThem();
+			clientManager.logout();
+			System.exit(0);
 
-	        // exit with an exit code of 1 on error
+			// exit with an exit code of 1 on error
 		} catch (SocketException e) {
 			System.err.println("Socket Exception");
 			Runtime.getRuntime().halt(1);
@@ -163,7 +171,7 @@ public class ShouterMain {
 		}
 
 	}
-	
+
 	private void readMessagesAndShoutThem() throws IOException, InterruptedException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String line = br.readLine();
@@ -171,18 +179,18 @@ public class ShouterMain {
 			if (line.trim().length() > 0) {
 				shout(line);
 			}
-	        Thread.sleep(1000);
-	        line = br.readLine();
+			Thread.sleep(1000);
+			line = br.readLine();
 		}
 		br.close();
 	}
 
-    private void shout(String message) {
-        RPAction chat=new RPAction();
-        chat.put("type","tellall");
-        chat.put("text", message);
-        clientManager.send(chat);
-    }
+	private void shout(String message) {
+		RPAction chat = new RPAction();
+		chat.put("type", "tellall");
+		chat.put("text", message);
+		clientManager.send(chat);
+	}
 
 	/**
 	 * Main entry point
@@ -197,8 +205,8 @@ public class ShouterMain {
 				String password = null;
 				String character = null;
 				String host = null;
-                String port = null;
-                boolean tcp = false;
+				String port = null;
+				boolean tcp = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -209,16 +217,15 @@ public class ShouterMain {
 						character = args[i + 1];
 					} else if (args[i].equals("-h")) {
 						host = args[i + 1];
-                     } else if (args[i].equals("-P")) {
-                         port = args[i + 1];
-                     } else if (args[i].equals("-t")) {
-                    	 tcp = true;
-                     }
+					} else if (args[i].equals("-P")) {
+						port = args[i + 1];
+					} else if (args[i].equals("-t")) {
+						tcp = true;
+					}
 					i++;
 				}
 
-				if ((username != null) && (password != null) && (character != null)
-						&& (host != null) && (port != null)) {
+				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
 					ShouterMain shouter = new ShouterMain(host, username, password, character, port, tcp);
 					shouter.script();
 					return;

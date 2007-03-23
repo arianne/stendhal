@@ -20,8 +20,8 @@ import games.stendhal.server.pathfinder.Path;
  * @author timothyb89
  */
 public class IL0_BakerNPC implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	//
 	// ZoneConfigurator
@@ -33,19 +33,17 @@ public class IL0_BakerNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
 	}
-
 
 	//
 	// IL0_BakerNPC
 	//
 
-	private void buildNPC(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC baker = new SpeakerNPC("Linzo") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -82,7 +80,8 @@ public class IL0_BakerNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				// addGreeting("Hi, most of the people are out of town at the moment.");
 				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work we have to do.");
-				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"), "Ados is short on supplies. We get most of our food from Semos City which is North of here.");
+				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"),
+				        "Ados is short on supplies. We get most of our food from Semos City which is North of here.");
 				addHelp("Ask me to make you a pie.");
 				addGoodbye();
 
@@ -93,11 +92,11 @@ public class IL0_BakerNPC implements ZoneConfigurator {
 				requiredResources.put("carrot", new Integer(1));
 				requiredResources.put("button_mushroom", new Integer(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"arlindo_make_pie", "make", "pie", requiredResources, 7 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
+				        requiredResources, 7 * 60);
 
 				addProducer(behaviour,
-						"Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
+				        "Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
 			}
 		};
 

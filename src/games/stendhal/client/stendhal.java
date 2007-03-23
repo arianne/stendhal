@@ -24,13 +24,12 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 public class stendhal extends Thread {
+
 	private static final Logger logger = Log4J.getLogger(stendhal.class);
 
 	public static boolean doLogin = false;
 
-	public static final String[] SERVERS_LIST = { 
-		"stendhal.game-host.org",
-		"localhost" };
+	public static final String[] SERVERS_LIST = { "stendhal.game-host.org", "localhost" };
 
 	public static String STENDHAL_FOLDER = null;
 
@@ -85,8 +84,7 @@ public class stendhal extends Thread {
 
 		logger.info("Setting base at :" + STENDHAL_FOLDER);
 		logger.info("Stendhal " + VERSION);
-		logger.info("OS: " + System.getProperty("os.name") + " "
-				+ System.getProperty("os.version"));
+		logger.info("OS: " + System.getProperty("os.name") + " " + System.getProperty("os.version"));
 		logger.info("Java: " + System.getProperty("java.version"));
 	}
 
@@ -98,8 +96,8 @@ public class stendhal extends Thread {
 			// only enable SystemLookAndFeelClassName for MS Windows because of bug
 			// http://sourceforge.net/tracker/index.php?func=detail&aid=1601437&group_id=1111&atid=101111
 			/*if (System.getProperty("os.name", "").toLowerCase().indexOf("windows") > -1) {
-				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			}*/
+			 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			 }*/
 		} catch (Exception e) {
 			logger.error("Can't change Look&Feel to match your OS. Using the Cross-Platform look & feel", e);
 		}

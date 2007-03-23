@@ -15,6 +15,7 @@ package games.stendhal.common;
  * everything.
  */
 public interface ConfigurableFactoryContext {
+
 	/**
 	 * Get an attribute.
 	 *

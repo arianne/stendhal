@@ -22,6 +22,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 
 public class FaceAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(FaceAction.class);
 
 	public static void register() {

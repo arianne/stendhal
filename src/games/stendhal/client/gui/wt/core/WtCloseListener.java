@@ -24,6 +24,7 @@ package games.stendhal.client.gui.wt.core;
  * @author mtotz
  */
 public interface WtCloseListener {
+
 	/**
 	 * the panel has been closed
 	 * 

@@ -34,194 +34,166 @@ import tiled.io.PluginLogger;
  * Writer Plugin for tiled. Saves maps as *.stend files. This plugin ignores the
  * filename.
  */
-public class StendhalMapWriter implements MapWriter
-{
-  private PluginLogger pluginLogger;
+public class StendhalMapWriter implements MapWriter {
 
-  /**
-   * Method writeMap
-   * 
-   * @param map
-   * @param filename
-   * @throws Exception
-   */
-  public void writeMap(Map map, String filename) throws Exception
-  {  
-    String level=null;
-    String area=null;
+	private PluginLogger pluginLogger;
 
-    File file = new File(map.getFilename());
+	/**
+	 * Method writeMap
+	 * 
+	 * @param map
+	 * @param filename
+	 * @throws Exception
+	 */
+	public void writeMap(Map map, String filename) throws Exception {
+		String level = null;
+		String area = null;
 
-    area=file.getParentFile().getName();
-    
-    String fileContainer=file.getParentFile().getParent();
-    
-    if(fileContainer.contains("Level "))
-      {
-      level=fileContainer.split("Level ")[1];
-      }
-    else
-      {
-      level="int";
-      }
-      
-    String destination=new File(filename).getParent();
-    String mapName=file.getName().split(".tmx")[0];
+		File file = new File(map.getFilename());
 
-    if(level.equals("int") && area.equals("abstract"))
-      {
-      filename=destination+File.separator+level.replace("-","sub_")+"_"+mapName.replace("-","sub_")+".xstend";
-      }
-    else
-      {
-      filename=destination+File.separator+level.replace("-","sub_")+"_"+area+"_"+mapName.replace("-","sub_")+".xstend";
-      }
-    
-    FileOutputStream os = new FileOutputStream(filename);
-    PrintWriter writer = new PrintWriter(new java.util.zip.DeflaterOutputStream(os));
-    
-    writer.println("<map name=\""+mapName+"\">");
-    
-    Properties prop=map.getProperties();
-    String x=(String)prop.get("x");
-    String y=(String)prop.get("y");
+		area = file.getParentFile().getName();
 
-    if(level.equals("int")==false)
-      {
-      writer.println("  <location level=\""+level+"\" x=\""+x+"\" y=\""+y+"\"/>");
-      }
-    else
-      {
-      writer.println("  <location level=\"int\"/>");
-      }
+		String fileContainer = file.getParentFile().getParent();
 
-    boolean firstTime=true;
-    for(MapLayer layer: (List<MapLayer>)map.getLayerVector())
-    {
-      if(firstTime)
-      {
-        firstTime=false;        
-        writer.println("  <size width=\""+layer.getWidth()+"\" height=\""+layer.getHeight()+"\"/>");
-      }
-      
-      writer.println("  <layer name=\""+layer.getName()+"\">");
-      for (int j = 0; j < layer.getHeight(); j++)
-      {
-        for (int i = 0; i < layer.getWidth(); i++)
-        {
-          Tile tile = ((TileLayer) layer).getTileAt(i, j);
-          int gid = 0;
+		if (fileContainer.contains("Level ")) {
+			level = fileContainer.split("Level ")[1];
+		} else {
+			level = "int";
+		}
 
-          if (tile != null)
-          {
-            gid = tile.getGid();
-          }
+		String destination = new File(filename).getParent();
+		String mapName = file.getName().split(".tmx")[0];
 
-          writer.print(gid + ((i == layer.getWidth() - 1) ? "" : ","));
-        }
+		if (level.equals("int") && area.equals("abstract")) {
+			filename = destination + File.separator + level.replace("-", "sub_") + "_" + mapName.replace("-", "sub_")
+			        + ".xstend";
+		} else {
+			filename = destination + File.separator + level.replace("-", "sub_") + "_" + area + "_"
+			        + mapName.replace("-", "sub_") + ".xstend";
+		}
 
-        writer.println();
-      }
-      writer.println("  </layer>");
-    
-    }
+		FileOutputStream os = new FileOutputStream(filename);
+		PrintWriter writer = new PrintWriter(new java.util.zip.DeflaterOutputStream(os));
 
-    writer.println("  </map>");
-    writer.close();
-  }
- 
+		writer.println("<map name=\"" + mapName + "\">");
 
-  /**
-   * Method writeTileset. Tilesets won't be written.
-   * 
-   * @param set
-   * @param filename
-   * @throws Exception
-   */
-  public void writeTileset(TileSet set, String filename) throws Exception
-  {
-	  // no implemented
-  }
+		Properties prop = map.getProperties();
+		String x = (String) prop.get("x");
+		String y = (String) prop.get("y");
 
-  /**
-   * Method writeMap. Writing to an outputstream is not supported
-   * 
-   * @param map
-   * @param out
-   * @throws Exception
-   */
-  public void writeMap(Map map, OutputStream out) throws Exception
-  {
-	  // not implemented
-  }
+		if (level.equals("int") == false) {
+			writer.println("  <location level=\"" + level + "\" x=\"" + x + "\" y=\"" + y + "\"/>");
+		} else {
+			writer.println("  <location level=\"int\"/>");
+		}
 
-  /**
-   * Method writeTileset. Tilesets won't be written.
-   * 
-   * @param set
-   * @param out
-   * @throws Exception
-   */
-  public void writeTileset(TileSet set, OutputStream out) throws Exception
-  {
-	  // not implemented
-  }
+		boolean firstTime = true;
+		for (MapLayer layer : (List<MapLayer>) map.getLayerVector()) {
+			if (firstTime) {
+				firstTime = false;
+				writer.println("  <size width=\"" + layer.getWidth() + "\" height=\"" + layer.getHeight() + "\"/>");
+			}
 
-  /** accepts all filenames ending with .stend */
-  public boolean accept(File pathname)
-  {
-    try
-    {
-      String path = pathname.getCanonicalPath().toLowerCase();
-      if (path.endsWith(".xstend"))
-      {
-        return true;
-      }
-    } catch (IOException e)
-    {
-    	pluginLogger.error(e);
-    }
-    return false;
-  }
+			writer.println("  <layer name=\"" + layer.getName() + "\">");
+			for (int j = 0; j < layer.getHeight(); j++) {
+				for (int i = 0; i < layer.getWidth(); i++) {
+					Tile tile = ((TileLayer) layer).getTileAt(i, j);
+					int gid = 0;
 
-  public String getFilter() throws Exception
-  {
-    return "*.xstend";
-  }
+					if (tile != null) {
+						gid = tile.getGid();
+					}
 
-  public String getName()
-  {
-    return "Stendhal Writer";
-  }
+					writer.print(gid + ((i == layer.getWidth() - 1) ? "" : ","));
+				}
 
-  public String getDescription()
-  {
-    return "+---------------------------------------------+\n"
-        + "|      An experimental writer for Stendhal    |\n"
-        + "|                                             |\n"
-        + "|      (c) Miguel Angel Blanch Lardin 2005    |\n"
-        + "|                                             |\n"
-        + "+---------------------------------------------+";
-  }
+				writer.println();
+			}
+			writer.println("  </layer>");
 
-  public String getPluginPackage()
-  {
-    return "Stendhal Reader/Writer Plugin";
-  }
+		}
 
-  public void setErrorStack(Stack es)
-  {
-	  // not implemented
-  }
+		writer.println("  </map>");
+		writer.close();
+	}
 
-  public FileFilter[] getFilters()
-  {
-    return null;
-  }
+	/**
+	 * Method writeTileset. Tilesets won't be written.
+	 * 
+	 * @param set
+	 * @param filename
+	 * @throws Exception
+	 */
+	public void writeTileset(TileSet set, String filename) throws Exception {
+		// no implemented
+	}
 
-  public void setLogger(PluginLogger pluginLogger)
-  {
-	this.pluginLogger = pluginLogger;
-  }
+	/**
+	 * Method writeMap. Writing to an outputstream is not supported
+	 * 
+	 * @param map
+	 * @param out
+	 * @throws Exception
+	 */
+	public void writeMap(Map map, OutputStream out) throws Exception {
+		// not implemented
+	}
+
+	/**
+	 * Method writeTileset. Tilesets won't be written.
+	 * 
+	 * @param set
+	 * @param out
+	 * @throws Exception
+	 */
+	public void writeTileset(TileSet set, OutputStream out) throws Exception {
+		// not implemented
+	}
+
+	/** accepts all filenames ending with .stend */
+	public boolean accept(File pathname) {
+		try {
+			String path = pathname.getCanonicalPath().toLowerCase();
+			if (path.endsWith(".xstend")) {
+				return true;
+			}
+		} catch (IOException e) {
+			pluginLogger.error(e);
+		}
+		return false;
+	}
+
+	public String getFilter() throws Exception {
+		return "*.xstend";
+	}
+
+	public String getName() {
+		return "Stendhal Writer";
+	}
+
+	public String getDescription() {
+		return "+---------------------------------------------+\n"
+		        + "|      An experimental writer for Stendhal    |\n"
+		        + "|                                             |\n"
+		        + "|      (c) Miguel Angel Blanch Lardin 2005    |\n"
+		        + "|                                             |\n"
+		        + "+---------------------------------------------+";
+	}
+
+	public String getPluginPackage() {
+		return "Stendhal Reader/Writer Plugin";
+	}
+
+	public void setErrorStack(Stack es) {
+		// not implemented
+	}
+
+	public FileFilter[] getFilters() {
+		return null;
+	}
+
+	public void setLogger(PluginLogger pluginLogger) {
+		this.pluginLogger = pluginLogger;
+	}
 
 }

@@ -48,19 +48,19 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 public class Player extends RPEntity implements TurnListener {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
 	/**
 	 * The base log for karma use.
 	 */
-	private static final double	KARMA_BASELOG	= Math.log(10.0);
-
+	private static final double KARMA_BASELOG = Math.log(10.0);
 
 	/**
 	 * A random generator (for karma payout).
 	 */
-	private static final Random	karmaRand	= new Random();
+	private static final Random karmaRand = new Random();
 
 	/**
 	 * The number of minutes that this player has been logged in on the
@@ -86,7 +86,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * antidote, and thus immune from poison.
 	 */
 	private boolean isImmune;
-	
+
 	/**
 	 * The last player who privately talked to this player using
 	 * the /tell command. It needs to be stored non-persistently
@@ -97,25 +97,24 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Currently active client directions (in oldest-newest order)
 	 */
-	protected List<Direction>	directions;
+	protected List<Direction> directions;
 
 	/**
 	 * Karma (luck).
 	 */
-	protected double		karma;
-        
-        /**
-         *Mana [magic system]
-         */
-         protected int mana;
-         protected int base_mana;
+	protected double karma;
 
+	/**
+	 *Mana [magic system]
+	 */
+	protected int mana;
+
+	protected int base_mana;
 
 	/**
 	 * A list of away replys sent to players.
 	 */
-	protected HashMap<String,Long>	awayReplies;
-
+	protected HashMap<String, Long> awayReplies;
 
 	public static void generateRPClass() {
 		try {
@@ -135,7 +134,7 @@ public class Player extends RPEntity implements TurnListener {
 		player.stop();
 		player.stopAttack();
 
-		if(player.has("away")) {
+		if (player.has("away")) {
 			player.remove("away");
 		}
 
@@ -185,16 +184,15 @@ public class Player extends RPEntity implements TurnListener {
 				}
 			}
 		} catch (Exception e) /**
-								 * No idea how but some players get a sheep but
-								 * they don't have it really. Me thinks that it
-								 * is a player that has been running for a while
-								 * the game and was kicked of server because
-								 * shutdown on a pre 1.00 version of Marauroa.
-								 * We shouldn't see this anymore.
-								 */
+		 * No idea how but some players get a sheep but
+		 * they don't have it really. Me thinks that it
+		 * is a player that has been running for a while
+		 * the game and was kicked of server because
+		 * shutdown on a pre 1.00 version of Marauroa.
+		 * We shouldn't see this anymore.
+		 */
 		{
-			logger.error("Pre 1.00 Marauroa sheep bug. (player = "
-					+ player.getName() + ")", e);
+			logger.error("Pre 1.00 Marauroa sheep bug. (player = " + player.getName() + ")", e);
 
 			if (player.has("sheep")) {
 				player.remove("sheep");
@@ -218,26 +216,25 @@ public class Player extends RPEntity implements TurnListener {
 		if (object.has("name") && object.get("name").equals("postman")) {
 			put("title_type", "npc");
 		}
-		
+
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
-		awayReplies = new HashMap<String,Long>();
+		awayReplies = new HashMap<String, Long>();
 
 		/*
 		 * Beginner's luck (unless overriden by update)
 		 */
 		karma = 10.0;
 
-                /**
-                 * Start off mana (will be able to be set... but not now)
-                 */
-                mana = 100;
-                base_mana = 100;
-                
+		/**
+		 * Start off mana (will be able to be set... but not now)
+		 */
+		mana = 100;
+		base_mana = 100;
+
 		update();
 	}
-
 
 	/**
 	 * Add an active client direction.
@@ -253,7 +250,6 @@ public class Player extends RPEntity implements TurnListener {
 		directions.add(direction);
 	}
 
-
 	/**
 	 * Remove an active client direction.
 	 *
@@ -263,7 +259,6 @@ public class Player extends RPEntity implements TurnListener {
 		directions.remove(direction);
 	}
 
-
 	/**
 	 * Apply the most recent active client direction.
 	 *
@@ -271,9 +266,8 @@ public class Player extends RPEntity implements TurnListener {
 	 *				are active if <code>true</code>.
 	 */
 	public void applyClientDirection(boolean stopOnNone) {
-		int		size;
-		Direction	direction;
-
+		int size;
+		Direction direction;
 
 		/*
 		 * For now just take last direction.
@@ -281,7 +275,7 @@ public class Player extends RPEntity implements TurnListener {
 		 * Eventually try each (last-to-first) until a non-blocked
 		 * one is found (if any).
 		 */
-		if((size = directions.size()) != 0) {
+		if ((size = directions.size()) != 0) {
 			direction = directions.get(size - 1);
 
 			// as an effect of the poisoning, the player's controls
@@ -292,11 +286,10 @@ public class Player extends RPEntity implements TurnListener {
 
 			setDirection(direction);
 			setSpeed(1);
-		} else if(stopOnNone) {
+		} else if (stopOnNone) {
 			stop();
 		}
 	}
-
 
 	/**
 	 * Stop and clear any active directions.
@@ -306,7 +299,6 @@ public class Player extends RPEntity implements TurnListener {
 		super.stop();
 	}
 
-
 	/**
 	 * Get the away message.
 	 *
@@ -315,7 +307,6 @@ public class Player extends RPEntity implements TurnListener {
 	public String getAwayMessage() {
 		return has("away") ? get("away") : null;
 	}
-
 
 	/**
 	 * Check if another player should be notified that this player is
@@ -327,17 +318,16 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return	<code>true</code> if the player should be notified.
 	 */
 	public boolean isAwayNotifyNeeded(String name) {
-		long	now;
-		Long	lObj;
-
+		long now;
+		Long lObj;
 
 		now = System.currentTimeMillis();
 
-		if((lObj = awayReplies.get(name)) != null) {
+		if ((lObj = awayReplies.get(name)) != null) {
 			/*
 			 * Only notify once an hour
 			 */
-			if((now - lObj.longValue()) < (1000L * 60L * 60L)) {
+			if ((now - lObj.longValue()) < (1000L * 60L * 60L)) {
 				return false;
 			}
 		}
@@ -346,15 +336,12 @@ public class Player extends RPEntity implements TurnListener {
 		return true;
 	}
 
-
 	/**
 	 * Clear out all recorded away respones.
 	 */
 	public void resetAwayReplies() {
 		awayReplies.clear();
 	}
-
-
 
 	/**
 	 * Give the player some karma (good or bad).
@@ -366,7 +353,6 @@ public class Player extends RPEntity implements TurnListener {
 
 		put("karma", karma);
 	}
-
 
 	/**
 	 * Get some of the player's karma. A positive value indicates
@@ -380,7 +366,6 @@ public class Player extends RPEntity implements TurnListener {
 	public double getKarma(double scale) {
 		return getKarma(-scale, scale);
 	}
-        
 
 	/**
 	 * Get some of the player's karma. A positive value indicates
@@ -393,13 +378,11 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	public double getKarma(double negLimit, double posLimit) {
-		double	limit;
-		double	score;
+		double limit;
+		double score;
 
-
-		if(logger.isDebugEnabled()) {
-			logger.debug("karma request: "
-				+ negLimit + " <= x <= " + posLimit);
+		if (logger.isDebugEnabled()) {
+			logger.debug("karma request: " + negLimit + " <= x <= " + posLimit);
 		}
 
 		/*
@@ -410,21 +393,21 @@ public class Player extends RPEntity implements TurnListener {
 		/*
 		 * Positive or Negative?
 		 */
-		if(karma < 0.0) {
-			if(negLimit >= 0.0) {
+		if (karma < 0.0) {
+			if (negLimit >= 0.0) {
 				return 0.0;
 			}
 
 			limit = Math.max(negLimit, -limit);
 		} else {
-			if(posLimit <= 0.0) {
+			if (posLimit <= 0.0) {
 				return 0.0;
 			}
 
 			limit = Math.min(posLimit, limit);
 		}
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("karma limit: " + limit);
 		}
 
@@ -434,7 +417,7 @@ public class Player extends RPEntity implements TurnListener {
 		score = (0.2 + (karmaRand.nextDouble() * 0.8)) * limit;
 		karma -= score;
 
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("karma given: " + score);
 		}
 
@@ -442,7 +425,6 @@ public class Player extends RPEntity implements TurnListener {
 
 		return score;
 	}
-
 
 	@Override
 	public void update() throws AttributeNotFoundException {
@@ -452,11 +434,10 @@ public class Player extends RPEntity implements TurnListener {
 			age = getInt("age");
 		}
 
-                if(has("karma")) {
-                        karma = getDouble("karma");
-                }
+		if (has("karma")) {
+			karma = getDouble("karma");
+		}
 	}
-
 
 	/**
 	 * Add a player ignore entry.
@@ -470,26 +451,22 @@ public class Player extends RPEntity implements TurnListener {
 	 *		if there was a problem.
 	 */
 	public boolean addIgnore(String name, int duration, String reply) {
-		StringBuffer	sbuf;
-
+		StringBuffer sbuf;
 
 		sbuf = new StringBuffer();
 
-		if(duration != 0) {
-			sbuf.append(
-				System.currentTimeMillis()
-					+ (duration *  60000L));
+		if (duration != 0) {
+			sbuf.append(System.currentTimeMillis() + (duration * 60000L));
 		}
 
 		sbuf.append(';');
 
-		if(reply != null) {
+		if (reply != null) {
 			sbuf.append(reply);
 		}
 
 		return setKeyedSlot("!ignore", "_" + name, sbuf.toString());
 	}
-
 
 	/**
 	 * Determine if a player is on the ignore list and return their reply
@@ -501,16 +478,15 @@ public class Player extends RPEntity implements TurnListener {
 	 *		or <code>null</code> if not ignoring.
 	 */
 	public String getIgnore(String name) {
-		String	info;
-		int	i;
-		long	expiration;
+		String info;
+		int i;
+		long expiration;
 
-
-		if((info = getKeyedSlot("!ignore", "_" + name)) == null) {
+		if ((info = getKeyedSlot("!ignore", "_" + name)) == null) {
 			return null;
 		}
 
-		if((i = info.indexOf(';')) == -1) {
+		if ((i = info.indexOf(';')) == -1) {
 			/*
 			 * Do default
 			 */
@@ -520,10 +496,10 @@ public class Player extends RPEntity implements TurnListener {
 		/*
 		 * Has expiration?
 		 */
-		if(i != 0) {
+		if (i != 0) {
 			expiration = Long.parseLong(info.substring(0, i));
 
-			if(System.currentTimeMillis() >= expiration) {
+			if (System.currentTimeMillis() >= expiration) {
 				setKeyedSlot("!ignore", "_" + name, null);
 				return null;
 			}
@@ -531,7 +507,6 @@ public class Player extends RPEntity implements TurnListener {
 
 		return info.substring(i + 1);
 	}
-
 
 	/**
 	 * Remove a player ignore entry.
@@ -545,7 +520,6 @@ public class Player extends RPEntity implements TurnListener {
 		return setKeyedSlot("!ignore", "_" + name, null);
 	}
 
-
 	/**
 	 * Get a named skills value.
 	 *
@@ -556,7 +530,6 @@ public class Player extends RPEntity implements TurnListener {
 	public String getSkill(String key) {
 		return getKeyedSlot("skills", key);
 	}
-
 
 	/**
 	 * Set a named skills value.
@@ -571,7 +544,6 @@ public class Player extends RPEntity implements TurnListener {
 		return setKeyedSlot("skills", key, value);
 	}
 
-
 	/**
 	 * Get a keyed string value on a named slot.
 	 *
@@ -582,18 +554,17 @@ public class Player extends RPEntity implements TurnListener {
 	 *		if not set.
 	 */
 	public String getKeyedSlot(String name, String key) {
-		RPSlot		slot;
-		RPObject	object;
+		RPSlot slot;
+		RPObject object;
 
-
-		if(!hasSlot(name)) {
+		if (!hasSlot(name)) {
 			logger.error("Expected to find " + name + " slot");
 			return null;
 		}
 
 		slot = getSlot(name);
 
-		if(slot.size() == 0) {
+		if (slot.size() == 0) {
 			logger.error("Found empty " + name + " slot");
 			return null;
 		}
@@ -602,7 +573,6 @@ public class Player extends RPEntity implements TurnListener {
 
 		return object.has(key) ? object.get(key) : null;
 	}
-
 
 	/**
 	 * Set a keyed string value on a named slot.
@@ -616,42 +586,40 @@ public class Player extends RPEntity implements TurnListener {
 	 *		if there was a problem.
 	 */
 	public boolean setKeyedSlot(String name, String key, String value) {
-		RPSlot		slot;
-		RPObject	object;
+		RPSlot slot;
+		RPObject object;
 
-
-		if(!hasSlot(name)) {
+		if (!hasSlot(name)) {
 			logger.error("Expected to find " + name + " slot");
 			return false;
 		}
 
 		slot = getSlot(name);
 
-		if(slot.size() == 0) {
+		if (slot.size() == 0) {
 			logger.error("Found empty " + name + " slot");
 			return false;
 		}
 
 		object = slot.iterator().next();
 
-		if(value != null) {
+		if (value != null) {
 			object.put(key, value);
-		} else if(object.has(key)) {
+		} else if (object.has(key)) {
 			object.remove(key);
 		}
 
 		return true;
 	}
 
-
 	public void sendPrivateText(String text) {
-        if (has("private_text")) {
-            text = get("private_text") + "\r\n" + text;
-        }
+		if (has("private_text")) {
+			text = get("private_text") + "\r\n" + text;
+		}
 		put("private_text", text);
 		StendhalRPRuleProcessor.get().removePlayerText(this);
 	}
-	
+
 	/**
 	 * Sets the name of the last player who privately talked to this player
 	 * using the /tell command. It needs to be stored non-persistently
@@ -660,35 +628,36 @@ public class Player extends RPEntity implements TurnListener {
 	public void setLastPrivateChatter(String lastPrivateChatterName) {
 		this.lastPrivateChatterName = lastPrivateChatterName;
 	}
-	
-        /**
-         * Gets the mana (magic) of a player...
-         */
-        public int getMana() {
-            return mana;
-        }
-        
-        /** 
-         * Gets the base mana (like base_hp) 
-         */
-        public int getBaseMana() {
-            return base_mana;
-        }
-        
-        // sets the available mana
-        public void setMana(int ManaToSet) {
-            mana = ManaToSet;
-            update();
-        }
-        /**
-         *Sets the base mana (like base_hp)
-         */
-        public void setBaseMana(int value) {
-            base_mana = value;
-            update();
-            
-        }
-        
+
+	/**
+	 * Gets the mana (magic) of a player...
+	 */
+	public int getMana() {
+		return mana;
+	}
+
+	/** 
+	 * Gets the base mana (like base_hp) 
+	 */
+	public int getBaseMana() {
+		return base_mana;
+	}
+
+	// sets the available mana
+	public void setMana(int ManaToSet) {
+		mana = ManaToSet;
+		update();
+	}
+
+	/**
+	 *Sets the base mana (like base_hp)
+	 */
+	public void setBaseMana(int value) {
+		base_mana = value;
+		update();
+
+	}
+
 	/**
 	 * Gets the name of the last player who privately talked to this player
 	 * using the /tell command, or null if nobody has talked to this player
@@ -748,8 +717,7 @@ public class Player extends RPEntity implements TurnListener {
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
 
-		StendhalRPZone zone =
-			(StendhalRPZone) world.getRPZone("int_afterlife");
+		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_afterlife");
 
 		zone.placeObjectAtEntryPoint(this);
 		StendhalRPAction.changeZone(this, zone);
@@ -759,7 +727,6 @@ public class Player extends RPEntity implements TurnListener {
 	protected void dropItemsOn(Corpse corpse) {
 		int maxItemsToDrop = Rand.rand(4);
 
-
 		for (String slotName : CARRYING_SLOTS) {
 			// XXX - If this check fails, something is BROKEN
 			if (hasSlot(slotName)) {
@@ -768,7 +735,7 @@ public class Player extends RPEntity implements TurnListener {
 				// a list that will contain the objects that will
 				// be dropped.
 				List<RPObject> objects = new LinkedList<RPObject>();
-				
+
 				// get a random set of items to drop
 				for (RPObject objectInSlot : slot) {
 					if (maxItemsToDrop == 0) {
@@ -779,7 +746,7 @@ public class Player extends RPEntity implements TurnListener {
 					if (objectInSlot.has("bound")) {
 						continue;
 					}
-					
+
 					if (Rand.throwCoin() == 1) {
 						objects.add(objectInSlot);
 						maxItemsToDrop--;
@@ -847,6 +814,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public static class NoSheepException extends RuntimeException {
+
 		private static final long serialVersionUID = -6689072547778842040L;
 
 		public NoSheepException() {
@@ -1028,7 +996,7 @@ public class Player extends RPEntity implements TurnListener {
 	public void setQuest(String name, String status) {
 		RPSlot slot = getSlot("!quests");
 		RPObject quests = slot.iterator().next();
-		if (status != null ) {
+		if (status != null) {
 			quests.put(name, status);
 		} else {
 			quests.remove(name);
@@ -1065,7 +1033,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * @param states valid states
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
-	public boolean isQuestInState(String name, String ... states) {
+	public boolean isQuestInState(String name, String... states) {
 		if (!hasQuest(name)) {
 			return false;
 		}
@@ -1077,7 +1045,7 @@ public class Player extends RPEntity implements TurnListener {
 				break;
 			}
 		}
-		
+
 		return res;
 	}
 
@@ -1184,8 +1152,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void consumeItem(ConsumableItem item) {
-		if ((item.getRegen() > 0) && (itemsToConsume.size() > 5)
-				&& !item.getName().contains("potion")) {
+		if ((item.getRegen() > 0) && (itemsToConsume.size() > 5) && !item.getName().contains("potion")) {
 			sendPrivateText("You can't consume anymore");
 			return;
 		}
@@ -1213,8 +1180,8 @@ public class Player extends RPEntity implements TurnListener {
 		 * item runs out the other ones also runs out. Perhaps this must be
 		 * fixed inside StackableItem itself
 		 */
-		ConsumableItem soloItem = (ConsumableItem) StendhalRPWorld.get().getRuleManager()
-				.getEntityManager().getEntity(item.getName());
+		ConsumableItem soloItem = (ConsumableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getEntity(
+		        item.getName());
 
 		logger.debug("Consuming item: " + soloItem.getAmount());
 		if (soloItem.getRegen() > 0) {
@@ -1237,6 +1204,7 @@ public class Player extends RPEntity implements TurnListener {
 		}
 
 		Collections.sort(itemsToConsume, new Comparator<ConsumableItem>() {
+
 			public int compare(ConsumableItem o1, ConsumableItem o2) {
 				return Math.abs(o2.getRegen()) - Math.abs(o1.getRegen());
 			}
@@ -1313,7 +1281,7 @@ public class Player extends RPEntity implements TurnListener {
 			}
 		}
 	}
-	
+
 	// TODO: use the turn notifier for consumable items to
 	// get rid of Player.consume().
 	public void onTurnReached(int turn, String message) {
@@ -1334,12 +1302,11 @@ public class Player extends RPEntity implements TurnListener {
 		int hours = age / 60;
 		int minutes = age % 60;
 		String time = hours + " hours and " + minutes + " minutes";
-		String text = "You see " + getName() + ".\n"
-				+ getName() + " is level " + getLevel()
-				+ " and has been playing " + time + ".";
+		String text = "You see " + getName() + ".\n" + getName() + " is level " + getLevel() + " and has been playing "
+		        + time + ".";
 		return (text);
 	}
-	
+
 	/**
 	 * Teleports this player to the given destination.
 	 * @param zone The zone where this player should be teleported to.
@@ -1369,26 +1336,26 @@ public class Player extends RPEntity implements TurnListener {
 				this.sendPrivateText(text);
 			}
 			return false;
-		}	
-		
+		}
+
 	}
 
-    /**
-     * Removes all units of an item from the RPEntity. The item can
-     * either be stackable or non-stackable. If the RPEntity doesn't
-     * have any of the item, doesn't remove anything.
-     * @param name The name of the item
-     * @return true iff dropping the item was successful.
-     */
+	/**
+	      * Removes all units of an item from the RPEntity. The item can
+	      * either be stackable or non-stackable. If the RPEntity doesn't
+	      * have any of the item, doesn't remove anything.
+	      * @param name The name of the item
+	      * @return true iff dropping the item was successful.
+	      */
 	public boolean dropAll(String name) {
 		return drop(name, getNumberOfEquipped(name));
 	}
-	
+
 	@Override
 	public void setOutfit(Outfit outfit) {
 		setOutfit(outfit, false);
 	}
-	
+
 	public void setOutfit(Outfit outfit, boolean temporary) {
 		// if the new outfit is temporary and the player is not wearing
 		// a temporary outfit already, store the current outfit in a 
@@ -1398,18 +1365,18 @@ public class Player extends RPEntity implements TurnListener {
 		}
 		// combine the old outfit with the new one, as the new one might
 		// contain Outfit.NONE parts.
-		Outfit newOutfit = outfit.putOver(getOutfit()); 
+		Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
 	}
-	
+
 	public Outfit getOriginalOutfit() {
 		if (has("outfit_org")) {
 			return new Outfit(getInt("outfit_org"));
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Tries to give the player his original outfit back after he has put on
 	 * a temporary outfit.

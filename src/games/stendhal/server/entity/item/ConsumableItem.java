@@ -33,15 +33,14 @@ import games.stendhal.server.entity.player.Player;
  * fixed inside StackableItem itself
  */
 public class ConsumableItem extends StackableItem implements UseListener {
-	
+
 	/** How much of this item has not yet been consumed. */
 	private int left;
 
-	public ConsumableItem(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
-		
+	public ConsumableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
+
 		super(name, clazz, subclass, attributes);
-		
+
 		left = getAmount();
 	}
 

@@ -7,39 +7,37 @@ import java.util.StringTokenizer;
  * User login profile.
  */
 public class Profile {
+
 	/** Old server names to remap */
-	protected static final String []	OLD_SERVER_HOSTS	=
-					{ "stendhal.ath.cx" };
+	protected static final String[] OLD_SERVER_HOSTS = { "stendhal.ath.cx" };
 
 	/** Default server name to replace old ones with */
-	protected static final String		NEW_SERVER_HOST	=
-					"stendhal.game-host.org"; 
+	protected static final String NEW_SERVER_HOST = "stendhal.game-host.org";
 
 	/** Default server port */
-	public static final int			DEFAULT_SERVER_PORT	=
-					32160;
+	public static final int DEFAULT_SERVER_PORT = 32160;
 
-	protected String	host;
-	protected int		port;
-	protected String	user;
-	protected String	password;
-	protected boolean	tcp;
+	protected String host;
 
+	protected int port;
+
+	protected String user;
+
+	protected String password;
+
+	protected boolean tcp;
 
 	public Profile() {
 		this("", DEFAULT_SERVER_PORT, "", "", true);
 	}
 
-
-	public Profile(String host, int port, String user, String password,
-	 boolean tcp) {
+	public Profile(String host, int port, String user, String password, boolean tcp) {
 		this.host = host;
 		this.port = port;
 		this.user = user;
 		this.password = password;
 		this.tcp = tcp;
 	}
-
 
 	//
 	// Profile
@@ -51,8 +49,7 @@ public class Profile {
 	 * @return	A string excoded form (with newlines).
 	 */
 	public String encode() {
-		StringBuffer	sbuf;
-
+		StringBuffer sbuf;
 
 		sbuf = new StringBuffer();
 		sbuf.append(getHost());
@@ -68,31 +65,25 @@ public class Profile {
 		return sbuf.toString();
 	}
 
-
 	public String getHost() {
 		return host;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public int getPort() {
 		return port;
 	}
-
 
 	public String getUser() {
 		return user;
 	}
 
-
 	public boolean isTCP() {
 		return tcp;
 	}
-
 
 	/**
 	 * Decode a login profile from a string.
@@ -102,10 +93,9 @@ public class Profile {
 	 * @return	A login profile.
 	 */
 	public static Profile decode(String info) {
-		StringTokenizer	st;
-		Profile		profile;
-		String		s;
-
+		StringTokenizer st;
+		Profile profile;
+		String s;
 
 		if (info.indexOf('\n') != -1) {
 			st = new StringTokenizer(info, "\n");
@@ -115,107 +105,94 @@ public class Profile {
 
 		profile = new Profile();
 
-
 		/*
 		 * Server Host
 		 */
-		if(st.hasMoreTokens()) {
+		if (st.hasMoreTokens()) {
 			s = st.nextToken();
 
 			for (String host : OLD_SERVER_HOSTS) {
-				if(s.equals(host)) {
+				if (s.equals(host)) {
 					s = NEW_SERVER_HOST;
 					break;
 				}
 			}
 
-			if(s.length() != 0) {
+			if (s.length() != 0) {
 				profile.setHost(s);
 			}
 		}
 
-
 		/*
 		 * User
 		 */
-		if(st.hasMoreTokens()) {
+		if (st.hasMoreTokens()) {
 			s = st.nextToken();
 
-			if(s.length() != 0) {
+			if (s.length() != 0) {
 				profile.setUser(s);
 			}
 		}
 
-
 		/*
 		 * Password
 		 */
-		if(st.hasMoreTokens()) {
+		if (st.hasMoreTokens()) {
 			s = st.nextToken();
 
-			if(s.length() != 0) {
+			if (s.length() != 0) {
 				profile.setPassword(s);
 			}
 		}
 
-
 		/*
 		 * Server Port
 		 */
-		if(st.hasMoreTokens()) {
+		if (st.hasMoreTokens()) {
 			s = st.nextToken();
 
-			if(s.length() != 0) {
+			if (s.length() != 0) {
 				try {
 					profile.setPort(Integer.parseInt(s));
-				} catch(NumberFormatException ex) {
+				} catch (NumberFormatException ex) {
 
 				}
 			}
 		}
 
-
 		/*
 		 * Server Protocol (TCP/UDP)
 		 */
-		if(st.hasMoreTokens()) {
+		if (st.hasMoreTokens()) {
 			s = st.nextToken();
 
-			if(s.length() != 0) {
-				profile.setTCP(
-					Boolean.parseBoolean(s));
+			if (s.length() != 0) {
+				profile.setTCP(Boolean.parseBoolean(s));
 			}
 		}
 
-
 		return profile;
 	}
-
 
 	public void setHost(String host) {
 		this.host = host;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public void setPort(int port) {
 		this.port = port;
 	}
 
-
 	public void setUser(String user) {
 		this.user = user;
 	}
 
-
 	public void setTCP(boolean tcp) {
 		this.tcp = tcp;
 	}
-
 
 	//
 	// Object
@@ -223,34 +200,31 @@ public class Profile {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Profile)) {
+		if (!(obj instanceof Profile)) {
 			return false;
 		}
 
+		Profile profile = (Profile) obj;
 
-		Profile	profile = (Profile) obj;
-
-		if(!getHost().equals(profile.getHost())) {
+		if (!getHost().equals(profile.getHost())) {
 			return false;
 		}
 
-		if(getPort() != profile.getPort()) {
+		if (getPort() != profile.getPort()) {
 			return false;
 		}
 
-		if(!getUser().equals(profile.getUser())) {
+		if (!getUser().equals(profile.getUser())) {
 			return false;
 		}
 
 		return true;
 	}
 
-
 	@Override
 	public int hashCode() {
 		return getHost().hashCode() ^ getUser().hashCode();
 	}
-
 
 	/**
 	 * Get the label string. This label is used for the profile selection
@@ -260,16 +234,14 @@ public class Profile {
 	 */
 	@Override
 	public String toString() {
-		StringBuffer	sbuf;
-
+		StringBuffer sbuf;
 
 		sbuf = new StringBuffer();
 		sbuf.append(getUser());
 		sbuf.append('@');
 		sbuf.append(getHost());
 
-		if(getPort() != DEFAULT_SERVER_PORT)
-		{
+		if (getPort() != DEFAULT_SERVER_PORT) {
 			sbuf.append(':');
 			sbuf.append(getPort());
 		}

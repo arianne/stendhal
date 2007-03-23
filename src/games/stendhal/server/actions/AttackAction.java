@@ -25,6 +25,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class AttackAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(AttackAction.class);
 
 	public static void register() {
@@ -37,16 +38,13 @@ public class AttackAction extends ActionListener {
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-					.getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
 
-				if (object instanceof RPEntity)
-				{
-					StendhalRPAction.startAttack(
-						player, (RPEntity) object);
+				if (object instanceof RPEntity) {
+					StendhalRPAction.startAttack(player, (RPEntity) object);
 				}
 			}
 		}

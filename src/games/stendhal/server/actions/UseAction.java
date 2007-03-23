@@ -29,6 +29,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 public class UseAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(UseAction.class);
 
 	public static void register() {
@@ -40,10 +41,8 @@ public class UseAction extends ActionListener {
 		Log4J.startMethod(logger, "use");
 
 		// When use is casted over something in a slot
-		if (action.has("baseitem") && action.has("baseobject")
-				&& action.has("baseslot")) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-					.getID());
+		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 
 			int baseObject = action.getInt("baseobject");
 
@@ -94,8 +93,7 @@ public class UseAction extends ActionListener {
 		else if (action.has("target")) {
 			int usedObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player
-					.getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
@@ -106,9 +104,8 @@ public class UseAction extends ActionListener {
 
 		Log4J.finishMethod(logger, "use");
 	}
-	
-	private void invokeUseListener(Player player, RPObject object) {
 
+	private void invokeUseListener(Player player, RPObject object) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
 		//       use items like home scroll.

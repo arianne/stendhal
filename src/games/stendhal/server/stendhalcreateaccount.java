@@ -25,6 +25,7 @@ import marauroa.common.Log4J;
  * so that it defines the specific behaviour for an account of stendhal
  */
 public class stendhalcreateaccount extends marauroa.server.createaccount {
+
 	public static void main(String[] args) {
 		Log4J.init("data/conf/stendhalcreateaccount.properties");
 		Entity.generateRPClass();
@@ -32,12 +33,12 @@ public class stendhalcreateaccount extends marauroa.server.createaccount {
 		Player.generateRPClass();
 
 		stendhalcreateaccount instance = new stendhalcreateaccount();
-		if(instance.run(args)==Result.OK_ACCOUNT_CREATED) {
-			System.exit(0);			
+		if (instance.run(args) == Result.OK_ACCOUNT_CREATED) {
+			System.exit(0);
 		} else {
 			System.exit(1);
 		}
-			
+
 	}
 
 	public stendhalcreateaccount() {
@@ -45,15 +46,14 @@ public class stendhalcreateaccount extends marauroa.server.createaccount {
 	}
 
 	public marauroa.server.createaccount.Result execute(String username, String password, String email) {
-		String[] args = { "-u", username, "-p", password, "-c", username, "-e",
-				email, "-i", Configuration.getConfigurationFile() };
+		String[] args = { "-u", username, "-p", password, "-c", username, "-e", email, "-i",
+		        Configuration.getConfigurationFile() };
 
 		return run(args);
 	}
 
 	@Override
-	public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase)
-			throws Exception {
+	public RPObject populatePlayerRPObject(IPlayerDatabase playerDatabase) throws Exception {
 		RPObject object = new RPObject(RPObject.INVALID_ID);
 		object.put("type", "player");
 		object.put("name", get("character"));

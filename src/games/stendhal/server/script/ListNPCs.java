@@ -34,4 +34,3 @@ public class ListNPCs extends ScriptImpl {
 	}
 
 }
-

@@ -26,10 +26,12 @@ import org.apache.log4j.Logger;
  * item in the first place.
  */
 public class ItemChangeGuardCreature extends Creature {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(ItemChangeGuardCreature.class);
 
 	private String itemType;
+
 	private String oldItemType;
 
 	/**
@@ -44,8 +46,7 @@ public class ItemChangeGuardCreature extends Creature {
 		this.oldItemType = oldItemType;
 
 		if (!StendhalRPWorld.get().getRuleManager().getEntityManager().isItem(itemType)) {
-			logger.error(copy.getName() + " drops unexisting item "
-					+ itemType);
+			logger.error(copy.getName() + " drops unexisting item " + itemType);
 		}
 	}
 
@@ -59,8 +60,7 @@ public class ItemChangeGuardCreature extends Creature {
 		if (killer instanceof RPEntity) {
 			RPEntity killerRPEntity = (RPEntity) killer;
 			if (!killerRPEntity.drop(oldItemType)) {
-				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
-						itemType);
+				Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemType);
 				killerRPEntity.equip(item, true);
 			}
 		}

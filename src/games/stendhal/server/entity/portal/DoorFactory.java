@@ -17,6 +17,7 @@ import games.stendhal.common.Direction;
  * A base factory for <code>Door</code> objects.
  */
 public abstract class DoorFactory implements ConfigurableFactory {
+
 	//
 	// DoorFactory
 	//
@@ -31,19 +32,15 @@ public abstract class DoorFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
-	protected String getClass(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected String getClass(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("class")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'class' missing");
+		if ((s = ctx.getAttribute("class")) == null) {
+			throw new IllegalArgumentException("Required attribute 'class' missing");
 		}
 
 		return s;
 	}
-
 
 	/**
 	 * Extract the door direction from a context.
@@ -56,27 +53,23 @@ public abstract class DoorFactory implements ConfigurableFactory {
 	 *				If the direction attribute is missing
 	 *				or invalid.
 	 */
-	protected Direction getDirection(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected Direction getDirection(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("direction")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'direction' missing");
+		if ((s = ctx.getAttribute("direction")) == null) {
+			throw new IllegalArgumentException("Required attribute 'direction' missing");
 		}
 
-		if(s.equals("up")) {
+		if (s.equals("up")) {
 			return Direction.UP;
-		} else if(s.equals("down")) {
+		} else if (s.equals("down")) {
 			return Direction.DOWN;
-		} else if(s.equals("left")) {
+		} else if (s.equals("left")) {
 			return Direction.LEFT;
-		} else if(s.equals("right")) {
+		} else if (s.equals("right")) {
 			return Direction.RIGHT;
 		}
 
-		throw new IllegalArgumentException(
-			"Invalid direction attribute: " + s);
+		throw new IllegalArgumentException("Invalid direction attribute: " + s);
 	}
 }

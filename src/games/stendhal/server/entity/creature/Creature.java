@@ -60,7 +60,9 @@ import org.apache.log4j.Logger;
  * The ai
  */
 public class Creature extends NPC {
+
 	public static class DropItem {
+
 		public String name;
 
 		public double probability;
@@ -85,6 +87,7 @@ public class Creature extends NPC {
 	}
 
 	public static class EquipItem {
+
 		public String slot;
 
 		public String name;
@@ -146,17 +149,17 @@ public class Creature extends NPC {
 	private int height;
 
 	/** Ths list of item names this creature may drop 
-     *  Note; per default this list is shared with all creatures
-     *  of that class*/
+	 *  Note; per default this list is shared with all creatures
+	 *  of that class*/
 	protected List<Creature.DropItem> dropsItems;
 
-    /** Ths list of item instances this creature may drop for
-     *  use in quests. This is always creature specific */
-    protected List<Item> dropItemInstances;
+	/** Ths list of item instances this creature may drop for
+	 *  use in quests. This is always creature specific */
+	protected List<Item> dropItemInstances;
 
-    /**
-     * List of things this creature should say
-     */
+	/**
+	 * List of things this creature should say
+	 */
 	protected List<String> noises;
 
 	private int respawnTime;
@@ -199,15 +202,15 @@ public class Creature extends NPC {
 		this.width = copy.width;
 		this.height = copy.height;
 
-         /** Creatures created with this function will share their
-         *  dropsItems with any other creature of that kind. If you want
-         *  individual dropsItems, use clearDropItemList first!
-         */
+		/** Creatures created with this function will share their
+		 *  dropsItems with any other creature of that kind. If you want
+		 *  individual dropsItems, use clearDropItemList first!
+		 */
 		if (copy.dropsItems != null) {
 			this.dropsItems = copy.dropsItems;
 		}
-        // this.dropItemInstances is ignored;
-        
+		// this.dropItemInstances is ignored;
+
 		this.aiProfiles = copy.aiProfiles;
 		this.noises = copy.noises;
 
@@ -278,26 +281,23 @@ public class Creature extends NPC {
 	 * @param description
 	 * @throws AttributeNotFoundException
 	 */
-	public Creature(String clazz, String subclass, String name, int hp,
-			int attack, int defense, int level, int xp, int width, int height,
-			double speed, List<DropItem> dropItems,
-			Map<String, String> aiProfiles, List<String> noises,
-			int respawnTime, String description)
-			throws AttributeNotFoundException {
+	public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp,
+	        int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles,
+	        List<String> noises, int respawnTime, String description) throws AttributeNotFoundException {
 		this();
 
 		this.speed = speed;
 		this.width = width;
 		this.height = height;
 
-        /** Creatures created with this function will share their
-         *  dropItems with any other creature of that kind. If you want
-         *  individual dropItems, use clearDropItemList first!
-         */
+		/** Creatures created with this function will share their
+		 *  dropItems with any other creature of that kind. If you want
+		 *  individual dropItems, use clearDropItemList first!
+		 */
 		if (dropItems != null) {
 			this.dropsItems = dropItems;
 		}
-        // this.dropItemInstances is ignored;
+		// this.dropItemInstances is ignored;
 
 		this.aiProfiles = aiProfiles;
 		this.noises = noises;
@@ -357,46 +357,46 @@ public class Creature extends NPC {
 	public CreatureRespawnPoint getRespawnPoint() {
 		return point;
 	}
-    
-    /**
-     *  clears the list of predefined dropItems and creates
-     *  an empty list specific to this creature
-     *
-     */
-    public void clearDropItemList() {
-        dropsItems = new ArrayList<Creature.DropItem>();
-        dropItemInstances.clear();
-    }
 
-    /**
-     *  adds a named item to the List of Items that will be dropped on dead
-     *  if clearDropItemList hasn't been called first, this will change
-     *  all creatures of this kind
-     */
-    public void addDropItem(String name, double probability, int min, int max) {
-        dropsItems.add(new DropItem(name, probability, min, max));
-    }
-    
-    /**
-     *  adds a named item to the List of Items that will be dropped on dead
-     *  if clearDropItemList hasn't been called first, this will change
-     *  all creatures of this kind
-     */
-    public void addDropItem(String name, double probability, int amount) {
-        dropsItems.add(new DropItem(name, probability, amount));
-    }
-    
-    /**
-     * adds a specific item to the List of Items that will be dropped on dead
-     * with 100 % probability. this is always for that specific creature only.
-     * @param item
-     */
-    public void addDropItem(Item item) {
-        dropItemInstances.add(item);
-    }
+	/**
+	 *  clears the list of predefined dropItems and creates
+	 *  an empty list specific to this creature
+	 *
+	 */
+	public void clearDropItemList() {
+		dropsItems = new ArrayList<Creature.DropItem>();
+		dropItemInstances.clear();
+	}
+
+	/**
+	 *  adds a named item to the List of Items that will be dropped on dead
+	 *  if clearDropItemList hasn't been called first, this will change
+	 *  all creatures of this kind
+	 */
+	public void addDropItem(String name, double probability, int min, int max) {
+		dropsItems.add(new DropItem(name, probability, min, max));
+	}
+
+	/**
+	 *  adds a named item to the List of Items that will be dropped on dead
+	 *  if clearDropItemList hasn't been called first, this will change
+	 *  all creatures of this kind
+	 */
+	public void addDropItem(String name, double probability, int amount) {
+		dropsItems.add(new DropItem(name, probability, amount));
+	}
+
+	/**
+	 * adds a specific item to the List of Items that will be dropped on dead
+	 * with 100 % probability. this is always for that specific creature only.
+	 * @param item
+	 */
+	public void addDropItem(Item item) {
+		dropItemInstances.add(item);
+	}
 
 	@Override
-    public void onDead(Entity killer) {
+	public void onDead(Entity killer) {
 		if (point != null) {
 			point.notifyDead(this);
 		} else {
@@ -407,15 +407,15 @@ public class Creature extends NPC {
 		super.onDead(killer);
 	}
 
-    @Override
+	@Override
 	protected void dropItemsOn(Corpse corpse) {
-        for (Item item : dropItemInstances) {
-            corpse.add(item);
-            if (corpse.isFull()) {
+		for (Item item : dropItemInstances) {
+			corpse.add(item);
+			if (corpse.isFull()) {
 				break;
 			}
-        }
-        
+		}
+
 		for (Item item : createDroppedItems(StendhalRPWorld.get().getRuleManager().getEntityManager())) {
 			corpse.add(item);
 
@@ -425,7 +425,7 @@ public class Creature extends NPC {
 		}
 	}
 
-    @Override
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		if ((width == 1) && (height == 2)) {
 			// The size 1,2 is a bit special... :)
@@ -471,7 +471,7 @@ public class Creature extends NPC {
 		List<RPEntity> enemyList = getEnemyList();
 
 		// calculate the distance of all possible enemies
-		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>(); 
+		Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
 		for (RPEntity enemy : enemyList) {
 			if (enemy == this) {
 				continue;
@@ -482,8 +482,7 @@ public class Creature extends NPC {
 			}
 
 			if (enemy.get("zoneid").equals(get("zoneid"))) {
-				java.awt.geom.Rectangle2D rect = enemy.getArea(enemy.getX(),
-						enemy.getY());
+				java.awt.geom.Rectangle2D rect = enemy.getArea(enemy.getX(), enemy.getY());
 				int fx = (int) rect.getCenterX();
 				int fy = (int) rect.getCenterY();
 
@@ -496,7 +495,7 @@ public class Creature extends NPC {
 		// now choose the nearest enemy for which there is a path
 		RPEntity chosen = null;
 		while ((chosen == null) && (distances.size() > 0)) {
-			double shortestDistance = Double.MAX_VALUE; 
+			double shortestDistance = Double.MAX_VALUE;
 			for (RPEntity enemy : distances.keySet()) {
 				double distance = distances.get(enemy).doubleValue();
 				if (distance < shortestDistance) {
@@ -504,16 +503,15 @@ public class Creature extends NPC {
 					shortestDistance = distance;
 				}
 			}
-	
+
 			// calculate the destArea
 			Rectangle2D targetArea = chosen.getArea(chosen.getX(), chosen.getY());
-			Rectangle destArea = new Rectangle((int)(targetArea.getX() - entityArea.getWidth()), 
-			                                        (int)(targetArea.getY() - entityArea.getHeight()), 
-			                                        (int)(entityArea.getWidth() + targetArea.getWidth() + 1), 
-			                                        (int)(entityArea.getHeight() + targetArea.getHeight() + 1));
+			Rectangle destArea = new Rectangle((int) (targetArea.getX() - entityArea.getWidth()), (int) (targetArea
+			        .getY() - entityArea.getHeight()), (int) (entityArea.getWidth() + targetArea.getWidth() + 1),
+			        (int) (entityArea.getHeight() + targetArea.getHeight() + 1));
 
 			// for 1x2 size creatures the destArea, needs bo be one up
-			destArea.translate(0, (int)(this.getY() - entityArea.getY()));
+			destArea.translate(0, (int) (this.getY() - entityArea.getY()));
 
 			// is there a path to this enemy?
 			// List<Node> path = Path.searchPath(this, chosen, 20.0);
@@ -535,7 +533,7 @@ public class Creature extends NPC {
 		int y = getY();
 
 		double distance = range * range; // We save this way several sqrt
-											// operations
+		// operations
 
 		List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.size() == 0) {
@@ -585,12 +583,12 @@ public class Creature extends NPC {
 
 	private void logicHeal() {
 		if (aiProfiles.containsKey("heal")) {
-            if(getHP() < getBaseHP()) {
-                String[] healingAttributes = aiProfiles.get("heal").split(",");
-                int amount = Integer.parseInt(healingAttributes[0]);
-                int frequency = Integer.parseInt(healingAttributes[1]);
-                healSelf(amount, frequency);
-            }
+			if (getHP() < getBaseHP()) {
+				String[] healingAttributes = aiProfiles.get("heal").split(",");
+				int amount = Integer.parseInt(healingAttributes[0]);
+				int frequency = Integer.parseInt(healingAttributes[1]);
+				healSelf(amount, frequency);
+			}
 		}
 	}
 
@@ -602,7 +600,7 @@ public class Creature extends NPC {
 	private boolean logicSleep() {
 		// if there is no player near and none will see us...
 		// sleep so we don't waste cpu resources
-		if (!isEnemyNear(30)) { 
+		if (!isEnemyNear(30)) {
 
 			// If we are already sleeping, than don't modify the Entity.
 			if (aiState == AiState.SLEEP) {
@@ -633,8 +631,8 @@ public class Creature extends NPC {
 			/*
 			 * Use the first attacking RPEntity found (if any)
 			 */
-			for(Entity entity : getAttackSources()) {
-				if(entity instanceof RPEntity) {
+			for (Entity entity : getAttackSources()) {
+				if (entity instanceof RPEntity) {
 					target = (RPEntity) entity;
 					break;
 				}
@@ -642,13 +640,11 @@ public class Creature extends NPC {
 		}
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("attacked;").append(target.getID().getObjectID())
-					.append('|');
+			debug.append("attacked;").append(target.getID().getObjectID()).append('|');
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(getIDforDebug() + " Creature(" + get("type") + ") has been attacked by "
-				+ target.get("type"));
+			logger.debug(getIDforDebug() + " Creature(" + get("type") + ") has been attacked by " + target.get("type"));
 		}
 	}
 
@@ -676,12 +672,10 @@ public class Creature extends NPC {
 		target = getNearestEnemy(7 + Math.max(width, height));
 		if (target != null) {
 			if (logger.isDebugEnabled()) {
-				logger.debug(getIDforDebug() + " Creature(" + get("type")
-						+ ") gets a new target.");
+				logger.debug(getIDforDebug() + " Creature(" + get("type") + ") gets a new target.");
 			}
 			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("newtarget;").append(
-						target.getID().getObjectID()).append('|');
+				debug.append("newtarget;").append(target.getID().getObjectID()).append('|');
 			}
 		}
 	}
@@ -697,16 +691,15 @@ public class Creature extends NPC {
 		List<Path.Node> nodes = new LinkedList<Path.Node>();
 		long time = System.nanoTime();
 		if (aiProfiles.keySet().contains("patrolling")) {
-			
+
 			int size = patrolPath.size();
-	
+
 			for (int i = 0; i < size; i++) {
 				Path.Node actual = patrolPath.get(i);
 				Path.Node next = patrolPath.get((i + 1) % size);
-	
-				nodes.addAll(Path.searchPath(this, actual.x + getX(),
-						actual.y + getY(), new Rectangle2D.Double(next.x
-								+ getX(), next.y + getY(), 1.0, 1.0)));
+
+				nodes.addAll(Path.searchPath(this, actual.x + getX(), actual.y + getY(), new Rectangle2D.Double(next.x
+				        + getX(), next.y + getY(), 1.0, 1.0)));
 			}
 		}
 		long time2 = System.nanoTime() - time;
@@ -717,8 +710,7 @@ public class Creature extends NPC {
 		setPath(nodes, true);
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("generatepatrolpath;").append(time2).append(
-					"|");
+			debug.append("generatepatrolpath;").append(time2).append("|");
 		}
 	}
 
@@ -755,7 +747,7 @@ public class Creature extends NPC {
 			debug.append("outofreachstopped|");
 		}
 	}
-	
+
 	/**
 	 * Create a path to the target because it moved.
 	 */
@@ -766,7 +758,7 @@ public class Creature extends NPC {
 		}
 		clearPath();
 		setMovement(target, 0, 0, 20.0);
-		
+
 		if ((getPath() == null) || (getPath().size() == 0)) {
 			if (!nextTo(target, 0.25)) {
 				stopAttack();
@@ -777,15 +769,14 @@ public class Creature extends NPC {
 				return;
 			}
 		}
-		
+
 		moveto(getSpeed());
 		waitRounds = 0; // clear waitrounds
 		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			List path = getPath();
 			if (path != null) {
-				debug.append("targetmoved;").append(pathToString()).append(
-						"|");
+				debug.append("targetmoved;").append(pathToString()).append("|");
 			}
 		}
 	}
@@ -872,7 +863,7 @@ public class Creature extends NPC {
 		}
 		// The higher the distance, the higher is the chance to move
 		if (distance > rand) {
-			
+
 			// move randomly but give closer postions a higher chance
 			double nextRndDistance = distance + Rand.rand(7);
 
@@ -918,7 +909,7 @@ public class Creature extends NPC {
 		}
 		aiState = AiState.APPROACHING_STOPPED_TARGET;
 		attack(target);
-		
+
 		if (waitRounds == 0) {
 			faceTo(target);
 		}
@@ -931,7 +922,7 @@ public class Creature extends NPC {
 			}
 			// invalidate the path and stop
 			clearPath();
-			
+
 			// Try to fix the issue by moving randomly.
 			Direction dir = Direction.rand();
 			setDirection(dir);
@@ -972,7 +963,7 @@ public class Creature extends NPC {
 				if (logger.isDebugEnabled()) {
 					logger.debug(getIDforDebug() + " Blocked. Choosing a new target.");
 				}
-				
+
 				target = null;
 				clearPath();
 				stopAttack();
@@ -990,7 +981,7 @@ public class Creature extends NPC {
 		}
 	}
 
-	private void logicDoMove(){
+	private void logicDoMove() {
 		if (!stopped()) {
 			StendhalRPAction.move(this);
 		}
@@ -1026,9 +1017,8 @@ public class Creature extends NPC {
 		// are we attacked and we don't attack ourself?
 		if (isAttacked() && (target == null)) {
 			logicWeAreNotAttackingButGotAttacked();
-		} else if ((target == null)
-				|| (!target.get("zoneid").equals(get("zoneid")) && world
-						.has(target.getID())) || !world.has(target.getID())) {
+		} else if ((target == null) || (!target.get("zoneid").equals(get("zoneid")) && world.has(target.getID()))
+		        || !world.has(target.getID())) {
 			// no target or current target left the zone (or is dead)
 			logicForgetCurrentTarget();
 			logicFindNewTarget();
@@ -1065,8 +1055,7 @@ public class Creature extends NPC {
 	}
 
 	protected void tryToPoison() {
-		if ((getAttackTarget() != null) && nextTo(getAttackTarget(), 0.25)
-					&& aiProfiles.containsKey("poisonous")) {
+		if ((getAttackTarget() != null) && nextTo(getAttackTarget(), 0.25) && aiProfiles.containsKey("poisonous")) {
 			// probability of poisoning is 1 %
 			int roll = Rand.roll1D100();
 			String[] poison = aiProfiles.get("poisonous").split(",");
@@ -1074,12 +1063,10 @@ public class Creature extends NPC {
 			String poisonType = poison[1];
 
 			if (roll <= prob) {
-				ConsumableItem item = (ConsumableItem) StendhalRPWorld.get()
-						.getRuleManager().getEntityManager().getItem(
-								poisonType);
+				ConsumableItem item = (ConsumableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
+				        .getItem(poisonType);
 				if (item == null) {
-					logger.error("Creature unable to poisoning with "
-							+ poisonType);
+					logger.error("Creature unable to poisoning with " + poisonType);
 				} else {
 					RPEntity entity = getAttackTarget();
 
@@ -1087,18 +1074,16 @@ public class Creature extends NPC {
 						Player player = (Player) entity;
 
 						if (!player.isPoisoned() && player.poison(item)) {
-							StendhalRPRuleProcessor.get().addGameEvent(getName(), "poison", player
-									.getName());
+							StendhalRPRuleProcessor.get().addGameEvent(getName(), "poison", player.getName());
 
-							player.sendPrivateText("You have been poisoned by a "
-											+ getName());
+							player.sendPrivateText("You have been poisoned by a " + getName());
 						}
 					}
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * This method should be called every turn if the animal is supposed to
 	 * heal itself on its own. If it is used, an injured animal will heal
@@ -1107,15 +1092,15 @@ public class Creature extends NPC {
 	 * @param frequency The number of turns between healings  
 	 */
 	protected void healSelf(int amount, int frequency) {
-        if ((StendhalRPRuleProcessor.get().getTurn() % frequency == 0) && (getHP() > 0) ) {
-            if (getHP() + amount < getBaseHP()) {
-                setHP(getHP() + amount);
-                put("heal", amount);
-            } else {
-                setHP(getBaseHP());
-                put("heal", getHP() + amount - getBaseHP());
-            }
-        }
+		if ((StendhalRPRuleProcessor.get().getTurn() % frequency == 0) && (getHP() > 0)) {
+			if (getHP() + amount < getBaseHP()) {
+				setHP(getHP() + amount);
+				put("heal", amount);
+			} else {
+				setHP(getBaseHP());
+				put("heal", getHP() + amount - getBaseHP());
+			}
+		}
 	}
 
 	public void equip(List<EquipItem> items) {
@@ -1154,8 +1139,7 @@ public class Creature extends NPC {
 					list.add(item);
 				} else {
 					StackableItem stackItem = (StackableItem) item;
-					stackItem.setQuantity(Rand.rand(dropped.max - dropped.min)
-							+ dropped.min);
+					stackItem.setQuantity(Rand.rand(dropped.max - dropped.min) + dropped.min);
 					list.add(stackItem);
 				}
 			}

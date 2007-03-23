@@ -48,6 +48,7 @@ public class MapConverter extends Task {
 
 	/** path where the *.stend goes */
 	private String stendPath;
+
 	private String imagePath;
 
 	/** list of *.tmx files to convert */
@@ -59,8 +60,7 @@ public class MapConverter extends Task {
 
 	/** converts the map files */
 	public void convert(String tmxFile) throws Exception {
-		File resourceFile = new File(stendPath + File.separator
-				+ getResourceFilename(tmxFile));
+		File resourceFile = new File(stendPath + File.separator + getResourceFilename(tmxFile));
 
 		File file = new File(tmxFile);
 		if (file.lastModified() < resourceFile.lastModified()) {
@@ -74,7 +74,7 @@ public class MapConverter extends Task {
 		saveImageMap(map, tmxFile);
 	}
 
-	private String getResourceFilename(String tmxFile){
+	private String getResourceFilename(String tmxFile) {
 		String filename = null;
 		File file = new File(tmxFile);
 		String area = file.getParentFile().getName();
@@ -87,11 +87,9 @@ public class MapConverter extends Task {
 		}
 		String mapName = file.getName().split(".tmx")[0];
 		if (level.equals("int") && area.equals("abstract")) {
-			filename = level.replace("-", "sub_") + "_"
-					+ mapName.replace("-", "sub_") + ".xstend";
+			filename = level.replace("-", "sub_") + "_" + mapName.replace("-", "sub_") + ".xstend";
 		} else {
-			filename = level.replace("-", "sub_") + "_" + area + "_"
-					+ mapName.replace("-", "sub_") + ".xstend";
+			filename = level.replace("-", "sub_") + "_" + area + "_" + mapName.replace("-", "sub_") + ".xstend";
 		}
 		return filename;
 	}
@@ -99,20 +97,16 @@ public class MapConverter extends Task {
 	private void saveMap(Map map, String tmxFile) throws Exception {
 		File file = new File(tmxFile);
 		// and save it
-		String filename = stendPath + File.separator
-				+ file.getName().replaceAll("\\.tmx", ".stend");
-		new games.stendhal.tools.tiled.StendhalMapWriter().writeMap(map,
-				filename);
+		String filename = stendPath + File.separator + file.getName().replaceAll("\\.tmx", ".stend");
+		new games.stendhal.tools.tiled.StendhalMapWriter().writeMap(map, filename);
 	}
 
 	private void saveImageMap(Map map, String tmxFile) {
 		File file = new File(tmxFile);
 		String filename = file.getAbsolutePath();
 		for (MapLayer layer : (List<MapLayer>) map.getLayerVector()) {
-			if (layer.getName().equals("navigation")
-				|| layer.getName().equals("collision")
-				|| layer.getName().equals("objects")
-				|| layer.getName().equals("protection")) {
+			if (layer.getName().equals("navigation") || layer.getName().equals("collision")
+			        || layer.getName().equals("objects") || layer.getName().equals("protection")) {
 				layer.setVisible(false);
 			} else {
 				layer.setVisible(true);
@@ -123,12 +117,10 @@ public class MapConverter extends Task {
 		//myView.enableMode(MapView.PF_NOSPECIAL);
 		myView.setZoom(0.0625);
 		Dimension d = myView.getPreferredSize();
-		BufferedImage i = new BufferedImage(d.width, d.height,
-		BufferedImage.TYPE_INT_ARGB);
+		BufferedImage i = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = i.createGraphics();
 		g.setClip(0, 0, d.width, d.height);
 		myView.paint(g);
-		 
 
 		String area = file.getParentFile().getName();
 		String level;
@@ -139,22 +131,20 @@ public class MapConverter extends Task {
 			level = "int";
 		}
 
-		if (level.equals("int") && area.equals("abstract"))	{
-			filename = imagePath + File.separator + level.replace("-", "sub_")
-					+ "_" + file.getName().replaceAll("\\.tmx", ".png");
+		if (level.equals("int") && area.equals("abstract")) {
+			filename = imagePath + File.separator + level.replace("-", "sub_") + "_"
+			        + file.getName().replaceAll("\\.tmx", ".png");
 		} else {
-			filename = imagePath + File.separator + level.replace("-", "sub_")
-					+ "_" + area + "_"
-					+ file.getName().replaceAll("\\.tmx", ".png");
+			filename = imagePath + File.separator + level.replace("-", "sub_") + "_" + area + "_"
+			        + file.getName().replaceAll("\\.tmx", ".png");
 		}
 
-		
 		try {
 			ImageIO.write(i, "png", new File(filename));
 		} catch (java.io.IOException e) {
 			e.printStackTrace();
 		}
-		 
+
 	}
 
 	/**
@@ -185,15 +175,13 @@ public class MapConverter extends Task {
 	 */
 	@Override
 	public void execute() throws BuildException {
-		try	{
+		try {
 			for (FileSet fileset : filesets) {
 				DirectoryScanner ds = fileset.getDirectoryScanner(getProject());
 				String[] includedFiles = ds.getIncludedFiles();
 				for (String filename : includedFiles) {
-					System.out.println(ds.getBasedir().getAbsolutePath()
-							+ File.separator + filename);
-					convert(ds.getBasedir().getAbsolutePath() + File.separator
-							+ filename);
+					System.out.println(ds.getBasedir().getAbsolutePath() + File.separator + filename);
+					convert(ds.getBasedir().getAbsolutePath() + File.separator + filename);
 				}
 			}
 		} catch (Exception e) {
@@ -201,10 +189,11 @@ public class MapConverter extends Task {
 		}
 	}
 
-	public static void main(String[] args) throws Exception	{
+	public static void main(String[] args) throws Exception {
 		// args = new String[] {"G:\\project\\stendhal\\tiled","c:\\temp"};
 		if (args.length < 2) {
-			System.out.println("usage: java games.stendhal.tools.MapConverter <tmx file> <path where the *.stend files goes>");
+			System.out
+			        .println("usage: java games.stendhal.tools.MapConverter <tmx file> <path where the *.stend files goes>");
 			return;
 		}
 

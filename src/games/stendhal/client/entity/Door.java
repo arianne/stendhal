@@ -20,6 +20,7 @@ import java.awt.geom.*;
 import java.util.List;
 
 public class Door extends AnimatedEntity {
+
 	private boolean open;
 
 	private int orientation;
@@ -38,18 +39,18 @@ public class Door extends AnimatedEntity {
 
 		orientation = base.getInt("dir");
 		switch (orientation) {
-		case 4:
-			direction = "w";
-			break;
-		case 2:
-			direction = "e";
-			break;
-		case 1:
-			direction = "n";
-			break;
-		case 3:
-			direction = "s";
-			break;
+			case 4:
+				direction = "w";
+				break;
+			case 2:
+				direction = "e";
+				break;
+			case 1:
+				direction = "n";
+				break;
+			case 3:
+				direction = "s";
+				break;
 		}
 
 		int width;
@@ -61,10 +62,10 @@ public class Door extends AnimatedEntity {
 			width = 2;
 			height = 3;
 		}
-		sprites.put("open", store.getAnimatedSprite("data/sprites/doors/"
-				+ clazz + "_" + direction + ".png", 0, 1, width, height));
-		sprites.put("close", store.getAnimatedSprite("data/sprites/doors/"
-				+ clazz + "_" + direction + ".png", 1, 1, width, height));
+		sprites.put("open", store.getAnimatedSprite("data/sprites/doors/" + clazz + "_" + direction + ".png", 0, 1,
+		        width, height));
+		sprites.put("close", store.getAnimatedSprite("data/sprites/doors/" + clazz + "_" + direction + ".png", 1, 1,
+		        width, height));
 	}
 
 	@Override
@@ -86,8 +87,7 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("open")) {
@@ -97,8 +97,7 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("open")) {
@@ -131,18 +130,18 @@ public class Door extends AnimatedEntity {
 	public void onAction(ActionType at, String... params) {
 		// ActionType at =handleAction(action);
 		switch (at) {
-		case OPEN:
-		case CLOSE:
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			break;
+			case OPEN:
+			case CLOSE:
+				RPAction rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
 
-		default:
-			super.onAction(at, params);
-			break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}

@@ -12,12 +12,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Kanmararn implements ZoneConfigurator {
+
 	private NPCList npcs;
 
 	public Kanmararn() {
 		this.npcs = NPCList.get();
 	}
-
 
 	/**
 	 * Configure a zone.
@@ -25,12 +25,10 @@ public class Kanmararn implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildKanmararnCityJames(zone);
 		buildKanmararnCityHenry(zone);
 	}
-
 
 	private void buildKanmararnCityHenry(StendhalRPZone zone) {
 		SpeakerNPC henry = new SpeakerNPC("Henry") {
@@ -51,11 +49,16 @@ public class Kanmararn implements ZoneConfigurator {
 				addJob("I'm a soldier in the army.");
 				addGoodbye("Bye and be careful with all those dwarves around!");
 				addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
-				add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves"), ConversationStates.ATTENDING, "They are everywhere! Their #kingdom must be close.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING, "Kanmararn, the legendary city of the #dwarves.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING, "The General sent five of us to explore this area in search for #treasure.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING, "A big treasure is rumored to be #somewhere in this dungeon.", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("somewhere"), ConversationStates.ATTENDING, "If you #help me I might give you a clue.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("dwarf", "dwarves"), ConversationStates.ATTENDING,
+				        "They are everywhere! Their #kingdom must be close.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("kingdom", "Kanmararn"), ConversationStates.ATTENDING,
+				        "Kanmararn, the legendary city of the #dwarves.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("group"), ConversationStates.ATTENDING,
+				        "The General sent five of us to explore this area in search for #treasure.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("treasure"), ConversationStates.ATTENDING,
+				        "A big treasure is rumored to be #somewhere in this dungeon.", null);
+				add(ConversationStates.ATTENDING, Arrays.asList("somewhere"), ConversationStates.ATTENDING,
+				        "If you #help me I might give you a clue.", null);
 			}
 		};
 
@@ -74,7 +77,7 @@ public class Kanmararn implements ZoneConfigurator {
 	private void buildKanmararnCityJames(StendhalRPZone zone) {
 		// We create NPC James, the chief and last survivor of the quintet
 		SpeakerNPC james = new SpeakerNPC("Sergeant James") {
-			
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -82,7 +85,7 @@ public class Kanmararn implements ZoneConfigurator {
 				nodes.add(new Path.Node(66, 47));
 				setPath(nodes, true);
 			}
-	
+
 			@Override
 			protected void createDialog() {
 				// Adds all the behaviour chat

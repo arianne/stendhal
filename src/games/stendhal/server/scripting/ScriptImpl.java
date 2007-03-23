@@ -10,6 +10,7 @@ import java.util.List;
  * @author hendrik
  */
 public class ScriptImpl implements Script {
+
 	/** all modifications must be done using this object to be undoable on unload */
 	protected ScriptingSandbox sandbox = null;
 

@@ -33,7 +33,7 @@ public class NPCShout extends ScriptImpl {
 				}
 			}
 			String text = sb.toString();
-		
+
 			List<Player> players = StendhalRPRuleProcessor.get().getPlayers();
 			for (Player player : players) {
 				player.sendPrivateText(text);
@@ -41,5 +41,4 @@ public class NPCShout extends ScriptImpl {
 		}
 	}
 
-	
 }

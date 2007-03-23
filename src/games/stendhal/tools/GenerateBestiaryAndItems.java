@@ -11,12 +11,13 @@ import java.util.Comparator;
 import java.util.List;
 
 public class GenerateBestiaryAndItems {
+
 	public static void generateCreatures() throws Exception {
 		CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
-		List<DefaultCreature> creatures = creatureLoader
-				.load("data/conf/creatures.xml");
+		List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
 
 		Collections.sort(creatures, new Comparator<DefaultCreature>() {
+
 			public int compare(DefaultCreature o1, DefaultCreature o2) {
 				return o1.getLevel() - o2.getLevel();
 			}
@@ -58,8 +59,7 @@ public class GenerateBestiaryAndItems {
 			System.out.println("|loot = ");
 
 			for (Creature.DropItem item : creature.getDropItems()) {
-				System.out.println(item.min + "-" + item.max + " " + item.name
-						+ "<br>");
+				System.out.println(item.min + "-" + item.max + " " + item.name + "<br>");
 			}
 
 			System.out.println("}}");
@@ -80,8 +80,7 @@ public class GenerateBestiaryAndItems {
 			}
 
 			System.out.println("{{Item|");
-			System.out.println("|name       = "
-					+ item.getItemName().replace("_", " "));
+			System.out.println("|name       = " + item.getItemName().replace("_", " "));
 			System.out.println("|class      = " + item.getItemClass());
 			System.out.println("|image      = " + item.getItemName());
 			System.out.println("|description= TODO");

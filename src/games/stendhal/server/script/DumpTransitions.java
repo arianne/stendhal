@@ -20,7 +20,9 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class DumpTransitions extends ScriptImpl {
+
 	private static Logger logger = Logger.getLogger(DumpTransitions.class);
+
 	private StringBuilder dumpedTable = null;
 
 	@Override
@@ -53,7 +55,7 @@ public class DumpTransitions extends ScriptImpl {
 
 	private void dumpHeader() {
 		dumpedTable.append("digraph finite_state_machine {\r\n");
-		dumpedTable.append("rankdir=LR\r\n");		
+		dumpedTable.append("rankdir=LR\r\n");
 	}
 
 	private void dumpNPC(SpeakerNPC npc) {
@@ -70,7 +72,7 @@ public class DumpTransitions extends ScriptImpl {
 			dumpedTable.append(" [ label = \"" + transitionName + "\" ];\r\n");
 		}
 	}
-	
+
 	private static String getStateName(int number) {
 		Integer num = Integer.valueOf(number);
 		Field[] fields = ConversationStates.class.getFields();
@@ -92,6 +94,4 @@ public class DumpTransitions extends ScriptImpl {
 		dumpedTable.append("}");
 	}
 
-	
 }
-

@@ -32,7 +32,9 @@ import org.apache.log4j.Logger;
  * Processes /chat, /tell (/msg) and /support
  */
 public class ChatAction extends ActionListener {
+
 	private static final Logger logger = Log4J.getLogger(ChatAction.class);
+
 	// HashMap <players_name, last_message_time>
 	private Map<String, Long> last_msg = new HashMap<String, Long>();;
 
@@ -69,8 +71,8 @@ public class ChatAction extends ActionListener {
 		if (action.has("text")) {
 			String text = action.get("text");
 			player.put("text", text);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, 
-					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", null, Integer.toString(text.length()),
+			        text.substring(0, Math.min(text.length(), 1000)));
 
 			player.notifyWorldAboutChanges();
 			StendhalRPRuleProcessor.get().removePlayerText(player);
@@ -86,20 +88,20 @@ public class ChatAction extends ActionListener {
 				action.put("target", player.getLastPrivateChatter());
 				onTell(player, action);
 			} else {
-				player.sendPrivateText("Nobody has talked privately to you.");				
+				player.sendPrivateText("Nobody has talked privately to you.");
 			}
 		}
-		
+
 	}
 
 	private void onTell(Player player, RPAction action) {
-		String	away;
-		String	reply;
-
+		String away;
+		String reply;
 
 		// TODO: find a cleaner way to implement it
 		if (Jail.isInJail(player)) {
-			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
+			player
+			        .sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
 			return;
 		}
 
@@ -128,17 +130,15 @@ public class ChatAction extends ActionListener {
 			}
 
 			// check ignore list
-			if((reply = receiver.getIgnore(senderName)) != null) {
+			if ((reply = receiver.getIgnore(senderName)) != null) {
 				// sender is on ignore list
 				// HACK: do not notify postman
 				if (!senderName.equals("postman")) {
-					if(reply.length() == 0) {
-						player.sendPrivateText(Grammar.suffix_s(receiverName) + " mind is not attuned to yours, so you cannot reach them.");
+					if (reply.length() == 0) {
+						player.sendPrivateText(Grammar.suffix_s(receiverName)
+						        + " mind is not attuned to yours, so you cannot reach them.");
 					} else {
-						player.sendPrivateText(
-							receiverName
-							+ " is ignoring you: "
-							+ reply);
+						player.sendPrivateText(receiverName + " is ignoring you: " + reply);
 					}
 
 					player.notifyWorldAboutChanges();
@@ -153,23 +153,20 @@ public class ChatAction extends ActionListener {
 			/*
 			 * Handle /away messages
 			 */
-			if((away = receiver.getAwayMessage()) != null) {
-				if(receiver.isAwayNotifyNeeded(senderName)) {
+			if ((away = receiver.getAwayMessage()) != null) {
+				if (receiver.isAwayNotifyNeeded(senderName)) {
 					/*
 					 * Send away response
 					 */
-					player.sendPrivateText(
-						receiverName + " is away: "
-						+ away);
+					player.sendPrivateText(receiverName + " is away: " + away);
 
 					player.notifyWorldAboutChanges();
 				}
 			}
 
-
 			receiver.setLastPrivateChatter(player.getName());
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName, 
-					Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "chat", receiverName,
+			        Integer.toString(text.length()), text.substring(0, Math.min(text.length(), 1000)));
 			receiver.notifyWorldAboutChanges();
 			player.notifyWorldAboutChanges();
 			return;
@@ -180,24 +177,24 @@ public class ChatAction extends ActionListener {
 		Log4J.startMethod(logger, "support");
 
 		if (action.has("text")) {
-			
+
 			if (Jail.isInJail(player)) {
 				// check if the player sent a support message before
-				if (last_msg.containsKey(player.getName())){
+				if (last_msg.containsKey(player.getName())) {
 					Long time_lastmsg = System.currentTimeMillis() - last_msg.get(player.getName());
-				
+
 					// the player have to wait one second since the last support message was sent
 					if (time_lastmsg < 60000) {
 						player.sendPrivateText("We only allow one support message per minute.");
 						return;
 					}
 				}
-			
+
 				last_msg.put(player.getName(), System.currentTimeMillis());
 			}
-			
-			String message = player.getName() + " asks for support to ADMIN: "
-					+ action.get("text") + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
+
+			String message = player.getName() + " asks for support to ADMIN: " + action.get("text")
+			        + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "support", action.get("text"));
 
@@ -215,7 +212,8 @@ public class ChatAction extends ActionListener {
 			if (found) {
 				player.sendPrivateText("You ask for support: " + action.get("text"));
 			} else {
-				player.sendPrivateText("Sorry, your support request cannot be processed at the moment, because no administrators are currently active. Please try again in a short while, or visit #irc://irc.freenode.net/#arianne");
+				player
+				        .sendPrivateText("Sorry, your support request cannot be processed at the moment, because no administrators are currently active. Please try again in a short while, or visit #irc://irc.freenode.net/#arianne");
 			}
 			player.notifyWorldAboutChanges();
 		}
@@ -229,6 +227,7 @@ public class ChatAction extends ActionListener {
 	 * because the SQL command may take more then 100ms on MySQL. 
 	 */
 	protected static class LogCleaner extends Thread {
+
 		public LogCleaner() {
 			super("ChatLogCleaner");
 			super.setDaemon(true);

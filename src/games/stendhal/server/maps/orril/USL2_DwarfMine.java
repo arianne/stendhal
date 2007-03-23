@@ -18,15 +18,13 @@ import java.util.Map;
 public class USL2_DwarfMine implements ZoneConfigurator {
 
 	private NPCList npcs;
-	
-	private ShopList shops;
 
+	private ShopList shops;
 
 	public USL2_DwarfMine() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
 	}
-
 
 	/**
 	 * Configure a zone.
@@ -34,15 +32,14 @@ public class USL2_DwarfMine implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildDwarfMineArea(zone);
 	}
-
 
 	private void buildDwarfMineArea(StendhalRPZone zone) {
 		// NOTE: This is a female character ;)
 		SpeakerNPC loretta = new SpeakerNPC("Loretta") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

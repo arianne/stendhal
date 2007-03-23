@@ -16,6 +16,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A factory for <code>LevelCheckingPortal</code> objects.
  */
 public class LevelCheckingPortalFactory implements ConfigurableFactory {
+
 	//
 	// LevelCheckingPortalFactory
 	//
@@ -30,18 +31,15 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the level attribute is invalid.
 	 */
-	protected int getMaximumLevel(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
-		int	level;
+	protected int getMaximumLevel(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
+		int level;
 
-
-		if((s = ctx.getAttribute("maximum-level")) != null) {
+		if ((s = ctx.getAttribute("maximum-level")) != null) {
 			try {
 				level = Integer.parseInt(s);
-			} catch(NumberFormatException ex) {
-				throw new IllegalArgumentException(
-					"Invalid maximum-level: " + s);
+			} catch (NumberFormatException ex) {
+				throw new IllegalArgumentException("Invalid maximum-level: " + s);
 			}
 		} else {
 			level = 9999; // LevelCheckingPortal.DEFAULT_MAX;
@@ -49,7 +47,6 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 
 		return level;
 	}
-
 
 	/**
 	 * Extract the minimum player level from a context.
@@ -61,18 +58,15 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the level attribute is invalid.
 	 */
-	protected int getMinimumLevel(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
-		int	level;
+	protected int getMinimumLevel(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
+		int level;
 
-
-		if((s = ctx.getAttribute("minimum-level")) != null) {
+		if ((s = ctx.getAttribute("minimum-level")) != null) {
 			try {
 				level = Integer.parseInt(s);
-			} catch(NumberFormatException ex) {
-				throw new IllegalArgumentException(
-					"Invalid minimum-level: " + s);
+			} catch (NumberFormatException ex) {
+				throw new IllegalArgumentException("Invalid minimum-level: " + s);
 			}
 		} else {
 			level = 0; // LevelCheckingPortal.DEFAULT_MIN;
@@ -80,7 +74,6 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 
 		return level;
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -101,10 +94,7 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 	 *
 	 * @see		LevelCheckingPortal
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		return new LevelCheckingPortal(
-			getMinimumLevel(ctx),
-			getMaximumLevel(ctx));
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return new LevelCheckingPortal(getMinimumLevel(ctx), getMaximumLevel(ctx));
 	}
 }

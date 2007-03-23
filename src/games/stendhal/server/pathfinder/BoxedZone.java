@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Vector;
 
 public class BoxedZone {
+
 	private Graph my_graph;
 
 	private List<Rectangle> boxes;
@@ -130,25 +131,20 @@ public class BoxedZone {
 		Graph graph = new Graph();
 
 		for (Rectangle rect : boxes) {
-			graph.addElement(rect, (int) rect.getCenterX(), (int) rect
-					.getCenterY());
+			graph.addElement(rect, (int) rect.getCenterX(), (int) rect.getCenterY());
 		}
 
 		for (Rectangle rect : boxes) {
 			for (Rectangle neighbour : boxes) {
 				if (rect != neighbour) {
-					if (((rect.getX() == neighbour.getMaxX())
-							&& (rect.getY() <= neighbour.getMaxY())
-							&& (rect.getY() >= neighbour.getY()))
-							|| ((rect.getMaxX() == neighbour.getX())
-							&& (rect.getY() <= neighbour.getMaxY())
-							&& (rect.getY() >= neighbour.getY()))
-							|| ((rect.getY() == neighbour.getMaxY())
-							&& (rect.getX() <= neighbour.getMaxX())
-							&& (rect.getX() >= neighbour.getX()))
-							|| ((rect.getMaxY() == neighbour.getY())
-							&& (rect.getX() <= neighbour.getMaxX())
-							&& (rect.getX() >= neighbour.getX()))) {
+					if (((rect.getX() == neighbour.getMaxX()) && (rect.getY() <= neighbour.getMaxY()) && (rect.getY() >= neighbour
+					        .getY()))
+					        || ((rect.getMaxX() == neighbour.getX()) && (rect.getY() <= neighbour.getMaxY()) && (rect
+					                .getY() >= neighbour.getY()))
+					        || ((rect.getY() == neighbour.getMaxY()) && (rect.getX() <= neighbour.getMaxX()) && (rect
+					                .getX() >= neighbour.getX()))
+					        || ((rect.getMaxY() == neighbour.getY()) && (rect.getX() <= neighbour.getMaxX()) && (rect
+					                .getX() >= neighbour.getX()))) {
 						graph.addBiConnection(rect, neighbour);
 					}
 				}
@@ -201,8 +197,7 @@ public class BoxedZone {
 			int destx = x;
 			int desty = y;
 
-			if ((actual.getY() == previous.getMaxY())
-					|| (actual.getMaxY() == previous.getY())) {
+			if ((actual.getY() == previous.getMaxY()) || (actual.getMaxY() == previous.getY())) {
 				if (actual.getWidth() <= previous.getWidth()) {
 					destx = (int) actual.getCenterX();
 					desty = (int) actual.getY();
@@ -212,8 +207,7 @@ public class BoxedZone {
 				}
 			}
 
-			if ((actual.getX() == previous.getMaxX())
-					|| (actual.getMaxX() == previous.getX())) {
+			if ((actual.getX() == previous.getMaxX()) || (actual.getMaxX() == previous.getX())) {
 				if (actual.getHeight() <= previous.getHeight()) {
 					desty = (int) actual.getCenterY();
 					destx = (int) actual.getX();

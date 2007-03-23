@@ -14,6 +14,7 @@ import javax.swing.border.CompoundBorder;
  * 
  */
 public class SInternalFrame extends JInternalFrame {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -22,10 +23,9 @@ public class SInternalFrame extends JInternalFrame {
 	public SInternalFrame(String name) {
 		super(name, true, true, false, true);
 		setFrameIcon(null);
-		setBorder(new CompoundBorder(new ImageBorder(
-				ImageBorder.RaisedState.RAISED, 3), new CompoundBorder(
-				new ImageBorder(ImageBorder.RaisedState.NORMAL, 3),
-				new ImageBorder(ImageBorder.RaisedState.LOWERED, 3))));
+		setBorder(new CompoundBorder(new ImageBorder(ImageBorder.RaisedState.RAISED, 3),
+		        new CompoundBorder(new ImageBorder(ImageBorder.RaisedState.NORMAL, 3), new ImageBorder(
+		                ImageBorder.RaisedState.LOWERED, 3))));
 	}
 
 	/*

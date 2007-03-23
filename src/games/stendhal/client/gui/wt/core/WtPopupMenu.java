@@ -21,10 +21,10 @@ import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
  * A popup-menu that will redirect most key events to it's invoker.
  */
 public abstract class WtPopupMenu extends StyledJPopupMenu {
+
 	public WtPopupMenu(String name) {
 		super(WoodStyle.getInstance(), name);
 	}
-
 
 	//
 	// WtPopupMenu
@@ -39,50 +39,40 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 		return new RedirectingMenuItem(label, icon);
 	}
 
-
 	/**
 	 * Redirect key event to the menu's invoker.
 	 *
 	 */
 	protected void redirectEvent(MenuKeyEvent ev) {
-		Component	invoker;
+		Component invoker;
 
+		if ((invoker = getInvoker()) != null) {
+			KeyEvent nev;
+			KeyListener[] listeners;
 
-		if((invoker = getInvoker()) != null) {
-			KeyEvent	nev;
-			KeyListener []	listeners;
-
-
-			nev = new KeyEvent(
-				invoker,
-				ev.getID(),
-				ev.getWhen(),
-				ev.getModifiersEx(),
-				ev.getKeyCode(),
-				ev.getKeyChar(),
-				ev.getKeyLocation());
-
+			nev = new KeyEvent(invoker, ev.getID(), ev.getWhen(), ev.getModifiersEx(), ev.getKeyCode(),
+			        ev.getKeyChar(), ev.getKeyLocation());
 
 			/*
 			 * Call listeners directly to avoid modal redirect
 			 */
 			listeners = invoker.getKeyListeners();
 
-			switch(nev.getID()) {
+			switch (nev.getID()) {
 				case KeyEvent.KEY_PRESSED:
-					for(KeyListener l : listeners) {
+					for (KeyListener l : listeners) {
 						l.keyPressed(nev);
 					}
 					break;
 
 				case KeyEvent.KEY_RELEASED:
-					for(KeyListener l : listeners) {
+					for (KeyListener l : listeners) {
 						l.keyReleased(nev);
 					}
 					break;
 
 				case KeyEvent.KEY_TYPED:
-					for(KeyListener l : listeners) {
+					for (KeyListener l : listeners) {
 						l.keyTyped(nev);
 					}
 					break;
@@ -96,17 +86,17 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	//
 
 	protected class RedirectingMenuItem extends JMenuItem {
+
 		public RedirectingMenuItem(String label, Icon icon) {
 			super(label, icon);
 		}
-
 
 		//
 		// JMenuItem
 		//
 
 		public void processMenuKeyEvent(MenuKeyEvent ev) {
-			switch(ev.getKeyCode()) {
+			switch (ev.getKeyCode()) {
 				case KeyEvent.VK_ESCAPE:
 					break;
 
@@ -114,7 +104,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 					redirectEvent(ev);
 			}
 
-			if(!ev.isConsumed())
+			if (!ev.isConsumed())
 				super.processMenuKeyEvent(ev);
 		}
 	}

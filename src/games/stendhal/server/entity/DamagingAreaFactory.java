@@ -17,6 +17,7 @@ import games.stendhal.server.StendhalRPWorld;
  * A base factory for <code>DamagingArea</code> objects.
  */
 public class DamagingAreaFactory implements ConfigurableFactory {
+
 	//
 	// DamagingAreaFactory
 	//
@@ -31,24 +32,19 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected int getDamage(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected int getDamage(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("damage")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'damage' missing");
+		if ((s = ctx.getAttribute("damage")) == null) {
+			throw new IllegalArgumentException("Required attribute 'damage' missing");
 		}
 
 		try {
 			return Integer.parseInt(s);
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'damage' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'damage' attribute: " + s);
 		}
 	}
-
 
 	/**
 	 * Extract the name of the damaging entity.
@@ -60,19 +56,15 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected String getName(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected String getName(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("name")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'name' missing");
+		if ((s = ctx.getAttribute("name")) == null) {
+			throw new IllegalArgumentException("Required attribute 'name' missing");
 		}
 
 		return s;
 	}
-
 
 	/**
 	 * Extract the interval (in seconds) to inflict damage while
@@ -85,24 +77,19 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected int getInterval(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
+	protected int getInterval(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		String s = ctx.getAttribute("interval");
 
 		if (s == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'interval' missing");
+			throw new IllegalArgumentException("Required attribute 'interval' missing");
 		}
 
 		try {
-			return (int) StendhalRPWorld.get().getTurnsInSeconds(
-				Integer.parseInt(s));
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'interval' attribute: " + s);
+			return (int) StendhalRPWorld.get().getTurnsInSeconds(Integer.parseInt(s));
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'interval' attribute: " + s);
 		}
 	}
-
 
 	/**
 	 * Extract the flag to only damage players.
@@ -114,27 +101,23 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("players-only")) == null) {
+		if ((s = ctx.getAttribute("players-only")) == null) {
 			return false;
 		}
 
-		if(s.equals("true")) {
+		if (s.equals("true")) {
 			return true;
 		}
 
-		if(s.equals("false")) {
+		if (s.equals("false")) {
 			return false;
 		}
 
-		throw new IllegalArgumentException(
-			"Invalid 'players-only' attribute: " + s);
+		throw new IllegalArgumentException("Invalid 'players-only' attribute: " + s);
 	}
-
 
 	/**
 	 * Extract the moving damage probability (as percent) from a context.
@@ -146,23 +129,19 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected double getProbability(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected double getProbability(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("probability")) == null) {
+		if ((s = ctx.getAttribute("probability")) == null) {
 			return 0.0;
 		}
 
 		try {
 			return Integer.parseInt(s) / 100.0;
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'probability' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'probability' attribute: " + s);
 		}
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -183,16 +162,10 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	 *
 	 * @see		DamagingArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		DamagingArea	area;
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		DamagingArea area;
 
-
-		area =  new DamagingArea(
-			getName(ctx),
-			getDamage(ctx),
-			getInterval(ctx),
-			getProbability(ctx));
+		area = new DamagingArea(getName(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
 
 		area.setPlayersOnly(getPlayersOnly(ctx));
 

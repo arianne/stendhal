@@ -21,9 +21,10 @@ import java.util.List;
 import java.util.Map;
 
 public class SemosCityOutside implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
-	private ShopList shops = ShopList.get();
 
+	private NPCList npcs = NPCList.get();
+
+	private ShopList shops = ShopList.get();
 
 	/**
 	 * Configure a zone.
@@ -31,8 +32,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosCityAreaChest(zone);
 
 		buildSemosCityAreaNomyrAhba(zone);
@@ -42,26 +42,22 @@ public class SemosCityOutside implements ZoneConfigurator {
 		buildSemosCityAreaCarmen(zone);
 	}
 
-
 	private void buildSemosCityAreaChest(StendhalRPZone zone) {
 
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);
 		chest.setX(44);
 		chest.setY(60);
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("knife"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("wooden_shield"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("leather_armor"));
-		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager()
-				.getItem("money"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("knife"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wooden_shield"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("leather_armor"));
+		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money"));
 		zone.add(chest);
 	}
 
 	private void buildSemosCityAreaNomyrAhba(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -76,36 +72,28 @@ public class SemosCityOutside implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE,
-					ConversationPhrases.GREETING_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							// A little trick to make NPC remember if it has met
-							// player before anc react accordingly
-							// NPC_name quest doesn't exist anywhere else neither is
-							// used for any other purpose
-							if (!player.isQuestCompleted("Nomyr")) {
-								engine.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
-								player.setQuest("Nomyr", "done");
-							} else {
-								engine.say("Hi again, " + player.getName()
-										+ ". How can I #help you this time?");
-							}
-						}
-					});
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
+				        null, new SpeakerNPC.ChatAction() {
+
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        // A little trick to make NPC remember if it has met
+						        // player before anc react accordingly
+						        // NPC_name quest doesn't exist anywhere else neither is
+						        // used for any other purpose
+						        if (!player.isQuestCompleted("Nomyr")) {
+							        engine
+							                .say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
+							        player.setQuest("Nomyr", "done");
+						        } else {
+							        engine.say("Hi again, " + player.getName() + ". How can I #help you this time?");
+						        }
+					        }
+				        });
 				addHelp("I'm a... let's call me an \"observer\". I can tell you about all the latest rumours. Do you want to hear?");
 				addJob("I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.");
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					"Thanks for asking, but I don't need anything right now.",
-					null);
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING, "Thanks for asking, but I don't need anything right now.", null);
 				addGoodbye();
 			}
 		};
@@ -119,6 +107,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 
 	private void buildSemosCityAreaMonogenes(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Monogenes") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -128,7 +117,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addJob("Me? I give directions to newcomers to Semos and help them settle in. When I'm in a bad mood I sometimes give misleading directions to amuse myself... hee hee hee! Of course, sometimes I get my wrong directions wrong and they end up being right after all! Ha ha!");
-				
+
 				// All further behaviour is defined in MeetMonogenes.java.
 			}
 		};
@@ -143,6 +132,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 
 	private void buildSemosCityAreaHayunnNaratha(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Hayunn Naratha") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -157,28 +147,24 @@ public class SemosCityOutside implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE,
-					ConversationPhrases.GREETING_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							// A little trick to make NPC remember if it has met
-							// player before anc react accordingly
-							// NPC_name quest doesn't exist anywhere else neither is
-							// used for any other purpose
-							if (!player.hasQuest("meet_hayunn")) {
-								engine.say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
-								player.setQuest("meet_hayunn", "start");
-							} else {
-								engine.say("Hi again, " + player.getName()
-										+ ". How can I #help you this time?");
-							}
-						}
-					});
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
+				        null, new SpeakerNPC.ChatAction() {
+
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        // A little trick to make NPC remember if it has met
+						        // player before anc react accordingly
+						        // NPC_name quest doesn't exist anywhere else neither is
+						        // used for any other purpose
+						        if (!player.hasQuest("meet_hayunn")) {
+							        engine
+							                .say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
+							        player.setQuest("meet_hayunn", "start");
+						        } else {
+							        engine.say("Hi again, " + player.getName() + ". How can I #help you this time?");
+						        }
+					        }
+				        });
 				addHelp("As I say, I'm a retired adventurer, and now I teach people. Do you want me to teach you about killing creatures?");
 				addJob("My job is to guard the people of Semos from any creature that might escape this vile dungeon! With all our young people away battling Blordrough's evil legions to the south, the monsters down there are getting more confident about coming to the surface.");
 				addGoodbye();
@@ -194,6 +180,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 
 	private void buildSemosCityAreaDiogenes(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Diogenes") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -214,46 +201,38 @@ public class SemosCityOutside implements ZoneConfigurator {
 				addJob("Ha ha! Job? I retired decades ago! Ha ha!");
 				addHelp("I can't help you, but you can help Stendhal; tell all your friends, and help out with development! Visit http://arianne.sourceforge.net and see how you can help!");
 				addGoodbye();
-				add(ConversationStates.ATTENDING,
-					ConversationPhrases.QUEST_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							if (Rand.rand(2) == 0) {
-								say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
-							} else {
-								say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
-							}
-						}
-					});
-				
-				add(ConversationStates.ATTENDING,
-					"cleanme!",
-					null,
-					ConversationStates.ATTENDING,
-					"What?",
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
-								for (String quest : player.getQuests()) {
-									player.removeQuest(quest);
-								}
-							} else {
-								say("What? No; you clean me! Begin with my back, thanks.");
-								player.setHP(player.getHP() - 5);
-								player.notifyWorldAboutChanges();
-							}
-						}
-					});
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        if (Rand.rand(2) == 0) {
+							        say("Ah, quests... just like the old days when I was young! I remember one quest that was about... Oh look, a bird! Hmm, what? Ah, quests... just like the old days when I was young!");
+						        } else {
+							        say("You know that Sato over there buys sheep? Well, rumour has it that there's a creature deep in the dungeons who also buys sheep... and it pays much better than Sato, too!");
+						        }
+					        }
+				        });
+
+				add(ConversationStates.ATTENDING, "cleanme!", null, ConversationStates.ATTENDING, "What?",
+				        new SpeakerNPC.ChatAction() {
+
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        if (AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "alter", false)) {
+							        for (String quest : player.getQuests()) {
+								        player.removeQuest(quest);
+							        }
+						        } else {
+							        say("What? No; you clean me! Begin with my back, thanks.");
+							        player.setHP(player.getHP() - 5);
+							        player.notifyWorldAboutChanges();
+						        }
+					        }
+				        });
 			}
 		};
-		npcs.add(npc);		
+		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "beggarnpc");
 		npc.set(24, 42);
@@ -263,6 +242,7 @@ public class SemosCityOutside implements ZoneConfigurator {
 
 	private void buildSemosCityAreaCarmen(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Carmen") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

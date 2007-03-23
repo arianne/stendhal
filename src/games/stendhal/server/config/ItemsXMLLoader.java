@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
-
 public class ItemsXMLLoader extends DefaultHandler {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(ItemsXMLLoader.class);
 

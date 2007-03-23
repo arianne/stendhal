@@ -19,12 +19,17 @@ import org.xml.sax.helpers.DefaultHandler;
  * @author hendrik
  */
 public class WikipediaAccess extends DefaultHandler implements Runnable {
+
 	private String title = null;
+
 	private StringBuilder text = new StringBuilder();
+
 	/** used by the parser to detect the right tag */
 	private boolean isContent = false;
+
 	/** was the parsing completed */
 	private boolean finished = false;
+
 	private String error = null;
 
 	/**
@@ -89,10 +94,10 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 			content = content.replaceAll("\\]\\]", "");
 			// remove tags
 			content = content.replaceAll("<[^>]*>", "");
-			
+
 			// ignore leading empty lines and spaces
 			content = content.trim();
-	
+
 			// extract the first paragraph (ignoring very short once but oposing a max len)
 			int size = content.length();
 			int endOfFirstParagraph = content.indexOf("\n", 50);
@@ -112,13 +117,14 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	public void parse() throws Exception {
 		try {
 			// look it up using the Wikipedia API
-			HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles=" + title.replace(" ", "_").replace("%", "%25") + "&what=content");
+			HttpClient httpClient = new HttpClient("http://en.wikipedia.org/w/query.php?format=xml&titles="
+			        + title.replace(" ", "_").replace("%", "%25") + "&what=content");
 			SAXParserFactory factory = SAXParserFactory.newInstance();
-	
+
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 			saxParser.parse(httpClient.getInputStream(), this);
-	
+
 			// finished
 			finished = true;
 		} catch (Exception e) {

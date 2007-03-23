@@ -35,6 +35,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 public class InGameGUI implements KeyListener, Inspector {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(InGameGUI.class);
 
@@ -76,7 +77,8 @@ public class InGameGUI implements KeyListener, Inspector {
 	private long lastKeyRelease;
 
 	private int[] veryFastKeyEvents = new int[4]; // at leat one more than
-													// checked
+
+	// checked
 
 	private long lastKeyEventsCleanUpStart;
 
@@ -126,20 +128,20 @@ public class InGameGUI implements KeyListener, Inspector {
 
 	protected Direction keyCodeToDirection(int keyCode) {
 		switch (keyCode) {
-		case KeyEvent.VK_LEFT:
-			return Direction.LEFT;
+			case KeyEvent.VK_LEFT:
+				return Direction.LEFT;
 
-		case KeyEvent.VK_RIGHT:
-			return Direction.RIGHT;
+			case KeyEvent.VK_RIGHT:
+				return Direction.RIGHT;
 
-		case KeyEvent.VK_UP:
-			return Direction.UP;
+			case KeyEvent.VK_UP:
+				return Direction.UP;
 
-		case KeyEvent.VK_DOWN:
-			return Direction.DOWN;
+			case KeyEvent.VK_DOWN:
+				return Direction.DOWN;
 
-		default:
-			return null;
+			default:
+				return null;
 		}
 	}
 
@@ -162,10 +164,8 @@ public class InGameGUI implements KeyListener, Inspector {
 			/* If Ctrl+R we remove Chat bubbles */
 			gameObjects.clearTexts();
 
-		} else if ((e.getKeyCode() == KeyEvent.VK_LEFT)
-				|| (e.getKeyCode() == KeyEvent.VK_RIGHT)
-				|| (e.getKeyCode() == KeyEvent.VK_UP)
-				|| (e.getKeyCode() == KeyEvent.VK_DOWN)) {
+		} else if ((e.getKeyCode() == KeyEvent.VK_LEFT) || (e.getKeyCode() == KeyEvent.VK_RIGHT)
+		        || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_DOWN)) {
 
 			action = new RPAction();
 
@@ -193,43 +193,43 @@ public class InGameGUI implements KeyListener, Inspector {
 		int size;
 
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_DOWN:
-			dir = keyCodeToDirection(e.getKeyCode());
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_DOWN:
+				dir = keyCodeToDirection(e.getKeyCode());
 
-			/*
-			 * Send direction release
-			 */
-			action = new RPAction();
-			action.put("type", "move");
-			action.put("dir", -dir.get());
-			client.send(action);
+				/*
+				 * Send direction release
+				 */
+				action = new RPAction();
+				action.put("type", "move");
+				action.put("dir", -dir.get());
+				client.send(action);
 
-			/*
-			 * Client side direction tracking (for now)
-			 */
-			directions.remove(dir);
+				/*
+				 * Client side direction tracking (for now)
+				 */
+				directions.remove(dir);
 
-			// Existing one reusable???
-			action = new RPAction();
+				// Existing one reusable???
+				action = new RPAction();
 
-			if ((size = directions.size()) == 0) {
-				action.put("type", "stop");
-			} else {
-				if (e.isControlDown()) {
-					// We use Ctrl+arrow to face
-					action.put("type", "face");
+				if ((size = directions.size()) == 0) {
+					action.put("type", "stop");
 				} else {
-					// While arrow only moves the player
-					action.put("type", "move");
+					if (e.isControlDown()) {
+						// We use Ctrl+arrow to face
+						action.put("type", "face");
+					} else {
+						// While arrow only moves the player
+						action.put("type", "move");
+					}
+
+					action.put("dir", directions.get(size - 1).get());
 				}
 
-				action.put("dir", directions.get(size - 1).get());
-			}
-
-			client.send(action);
+				client.send(action);
 		}
 	}
 
@@ -237,16 +237,13 @@ public class InGameGUI implements KeyListener, Inspector {
 		// detect X11 auto repeat still beeing active
 		if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
 			veryFastKeyEvents[veryFastKeyEvents.length - 1]++;
-			if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2)
-					&& (veryFastKeyEvents[2] > 2)) {
-				StendhalClient.get().addEventLine(
-						"Detecting serious bug in keyboard handling.",
-						Color.RED);
+			if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2) && (veryFastKeyEvents[2] > 2)) {
+				StendhalClient.get().addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
 				StendhalClient
-						.get()
-						.addEventLine(
-								"Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution",
-								Color.BLACK);
+				        .get()
+				        .addEventLine(
+				                "Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution",
+				                Color.BLACK);
 			}
 		}
 		altDown = e.isAltDown();
@@ -298,9 +295,10 @@ public class InGameGUI implements KeyListener, Inspector {
 		// quit messagebox already showing?
 		if (quitDialog == null) {
 			// no, so show it
-			quitDialog = new WtMessageBox("quit", 220, 220, 200,
-					"Quit Stendhal?", WtMessageBox.ButtonCombination.YES_NO);
+			quitDialog = new WtMessageBox("quit", 220, 220, 200, "Quit Stendhal?",
+			        WtMessageBox.ButtonCombination.YES_NO);
 			quitDialog.registerClickListener(new WtClickListener() {
+
 				public void onClick(String name, Point point) {
 					quitDialog = null; // remove field as the messagebox is
 					// closed now
@@ -329,14 +327,12 @@ public class InGameGUI implements KeyListener, Inspector {
 		return inspect(entity, slot, 2, 2);
 	}
 
-	public EntityContainer inspect(Entity entity, RPSlot slot, int width,
-			int height) {
+	public EntityContainer inspect(Entity entity, RPSlot slot, int width, int height) {
 		if ((entity == null) || (slot == null) || (ground == null)) {
 			return null;
 		}
 
-		EntityContainer container = new EntityContainer(gameObjects, entity
-				.getType(), width, height);
+		EntityContainer container = new EntityContainer(gameObjects, entity.getType(), width, height);
 		container.setSlot(entity, slot.getName());
 		if (!container.hasParent()) {
 			ground.addChild(container);
@@ -353,8 +349,7 @@ public class InGameGUI implements KeyListener, Inspector {
 			CollisionDetection cd = gl.getCollisionDetection();
 			if (cd != null) {
 				gl.resetChangedArea();
-				settings.updateMinimap(cd, screen.expose()
-						.getDeviceConfiguration(), gl.getArea());
+				settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gl.getArea());
 			}
 		}
 
@@ -404,16 +399,13 @@ public class InGameGUI implements KeyListener, Inspector {
 		return frame;
 	}
 
-	public EntityContainer inspectMe(Entity suspect, RPSlot content,
-			EntityContainer container) {
+	public EntityContainer inspectMe(Entity suspect, RPSlot content, EntityContainer container) {
 		if (container == null || !container.isVisible()) {
 			{
 				if (suspect instanceof Chest) {
-					container = new EntityContainer(gameObjects, suspect
-							.getType(), 4, 5);
+					container = new EntityContainer(gameObjects, suspect.getType(), 4, 5);
 				} else {
-					container = new EntityContainer(gameObjects, suspect
-							.getType(), 2, 2);
+					container = new EntityContainer(gameObjects, suspect.getType(), 2, 2);
 				}
 				ground.addChild(container);
 			}

@@ -28,6 +28,7 @@ import marauroa.common.game.RPObject;
  * sprites for it.
  */
 public class Portal extends Entity {
+
 	private boolean hidden = false;
 
 	public Portal(RPObject object) throws AttributeNotFoundException {
@@ -55,25 +56,25 @@ public class Portal extends Entity {
 	public ActionType defaultAction() {
 		if (!hidden) {
 			return ActionType.USE;
-		}
-		else return null;
+		} else
+			return null;
 	}
 
 	@Override
 	public void onAction(ActionType at, String... params) {
 		// ActionType at =handleAction(action);
 		switch (at) {
-		case USE:
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			break;
+			case USE:
+				RPAction rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
 
-		default:
-			super.onAction(at, params);
-			break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}

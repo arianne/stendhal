@@ -24,14 +24,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * A simple MessageBox.
  * 
  * @author matthias
  */
-public class WtMessageBox extends WtPanel implements WtClickListener,
-		WtCloseListener {
+public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseListener {
+
 	/** the max height of the panel */
 	private static final int MAX_HEIGHT = 100;
 
@@ -51,12 +50,10 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	private boolean layedout;
 
 	/** Creates a new instance of MessageBox */
-	public WtMessageBox(String name, int x, int y, int width, String message,
-			ButtonCombination buttonCombination) {
+	public WtMessageBox(String name, int x, int y, int width, String message, ButtonCombination buttonCombination) {
 		super(name, x, y, width, MAX_HEIGHT);
 
-		textPanel = new WtTextPanel("messageboxtext", 5, 0, width - 20,
-				MAX_HEIGHT, message);
+		textPanel = new WtTextPanel("messageboxtext", 5, 0, width - 20, MAX_HEIGHT, message);
 		addChild(textPanel);
 
 		buttons = new ArrayList<WtButton>();
@@ -90,7 +87,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 	/** draws the MessageBox */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 
@@ -125,8 +122,7 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 
 	/** some default buttons */
 	public enum ButtonEnum {
-		YES("Yes", 50, 30), NO("No", 50, 30), CANCEL("Cancel", 50, 30), OK(
-				"Ok", 50, 30), QUIT("Quit", 50, 30);
+		YES("Yes", 50, 30), NO("No", 50, 30), CANCEL("Cancel", 50, 30), OK("Ok", 50, 30), QUIT("Quit", 50, 30);
 
 		private String name;
 
@@ -154,11 +150,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener,
 
 	/** some button combinations */
 	public enum ButtonCombination {
-		OK(ButtonEnum.OK, ButtonEnum.OK), YES_NO(ButtonEnum.NO, ButtonEnum.YES,
-				ButtonEnum.NO), YES_NO_CANCEL(ButtonEnum.CANCEL,
-				ButtonEnum.YES, ButtonEnum.NO, ButtonEnum.CANCEL), OK_CANCEL(
-				ButtonEnum.CANCEL, ButtonEnum.OK, ButtonEnum.CANCEL), QUIT_CANCEL(
-				ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
+		OK(ButtonEnum.OK, ButtonEnum.OK), YES_NO(ButtonEnum.NO, ButtonEnum.YES, ButtonEnum.NO), YES_NO_CANCEL(
+		        ButtonEnum.CANCEL, ButtonEnum.YES, ButtonEnum.NO, ButtonEnum.CANCEL), OK_CANCEL(ButtonEnum.CANCEL,
+		        ButtonEnum.OK, ButtonEnum.CANCEL), QUIT_CANCEL(ButtonEnum.CANCEL, ButtonEnum.QUIT, ButtonEnum.CANCEL);
 
 		/** list of buttons for this combination */
 		private List<ButtonEnum> buttons;

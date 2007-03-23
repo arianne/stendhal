@@ -1,5 +1,5 @@
 /* $Id$
-/***************************************************************************
+ /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
@@ -21,6 +21,7 @@ import java.util.Map;
  * Represents a scroll with a context stackable infostring.
  */
 public class InfoStringScroll extends Scroll {
+
 	/**
 	 * Creates a new infostring stackable scroll.
 	 *
@@ -29,19 +30,16 @@ public class InfoStringScroll extends Scroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public InfoStringScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public InfoStringScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
 
 	@Override
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 
-
 		// Same types?
-		if(!super.isStackable(other)) {
+		if (!super.isStackable(other)) {
 			return false;
 		}
 
@@ -50,7 +48,7 @@ public class InfoStringScroll extends Scroll {
 			return (get("infostring").equals(otheri.get("infostring")));
 		}
 
-                // scrolls without infostring can be stacked as well
-                return (!has("infostring") && !otheri.has("infostring"));
+		// scrolls without infostring can be stacked as well
+		return (!has("infostring") && !otheri.has("infostring"));
 	}
 }

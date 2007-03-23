@@ -11,6 +11,7 @@ package games.stendhal.server.pathfinder;
  * @version
  */
 public interface Graphable {
+
 	public void setIDInGraph(int idx);
 
 	public int getIDInGraph();

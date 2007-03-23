@@ -29,6 +29,7 @@ import java.awt.Point;
  * @author mtotz
  */
 public class WtButton extends WtPanel {
+
 	/** image for the button */
 	private Sprite image;
 
@@ -37,8 +38,7 @@ public class WtButton extends WtPanel {
 		super(name, 0, 0, width, height);
 		initialize();
 		int clientHeight = (getClientHeight() - WtTextPanel.DEFAULT_FONT_SIZE) / 2;
-		WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight,
-				width, height, text);
+		WtTextPanel textPanel = new WtTextPanel(name + "text", 2, clientHeight, width, height, text);
 		addChild(textPanel);
 		setTitletext(text);
 	}
@@ -61,7 +61,7 @@ public class WtButton extends WtPanel {
 	/** draws the button */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 

@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
  * @author Kevin Glass
  */
 public class Sprite {
+
 	/** The image to be drawn for this sprite */
 	protected Image image;
 
@@ -48,11 +49,9 @@ public class Sprite {
 	}
 
 	public Sprite copy() {
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
-		Image image = gc.createCompatibleImage(getWidth(), getHeight(),
-				Transparency.BITMASK);
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
+		Image image = gc.createCompatibleImage(getWidth(), getHeight(), Transparency.BITMASK);
 		draw(image.getGraphics(), 0, 0);
 		return new Sprite(image);
 	}
@@ -119,25 +118,20 @@ public class Sprite {
 	// SpriteStore.java
 	// intensifly @ gmx.com, April 20th, 2006
 	// public void draw(Graphics g, int destx, int desty, int x,int y) {
-	public void draw(Graphics g, int destx, int desty, int x, int y, int w,
-			int h) {
+	public void draw(Graphics g, int destx, int desty, int x, int y, int w, int h) {
 
 		// g.drawImage(image,destx,desty,image.getWidth(null),image.getHeight(null),x,y,x+image.getWidth(null),y+image.getHeight(null),null);
-		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y
-				+ h, null);
+		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y + h, null);
 	}
 
 	/** overlays the image with the given color and returns a new image. */
 	private Image getModifiedImage(Color color, float alpha) {
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
-		BufferedImage i = gc.createCompatibleImage(getWidth(), getHeight(),
-				Transparency.TRANSLUCENT);
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
+		BufferedImage i = gc.createCompatibleImage(getWidth(), getHeight(), Transparency.TRANSLUCENT);
 		draw(i.getGraphics(), 0, 0);
 		Graphics2D g = i.createGraphics();
-		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(),
-				(int) (alpha * 255)));
+		g.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), (int) (alpha * 255)));
 		g.fillRect(0, 0, i.getWidth(), i.getHeight());
 
 		return i;

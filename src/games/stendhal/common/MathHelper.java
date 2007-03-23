@@ -10,16 +10,21 @@ public class MathHelper {
 	 * @return An integer
 	 */
 	public static int parseInt_default(String s, int def) {
-	    int r;
-	    try { r = Integer.parseInt(s); }
-	    catch(NumberFormatException e) { r = def; }
-	    return r;
+		int r;
+		try {
+			r = Integer.parseInt(s);
+		} catch (NumberFormatException e) {
+			r = def;
+		}
+		return r;
 	}
-	
+
 	/**
 	 * parses an integer safely, returning 0 if nothing can be sanely parsed from it
 	 * @return An integer
 	 */
-	public static int parseInt(String s) { return parseInt_default(s, 0); }
-	
+	public static int parseInt(String s) {
+		return parseInt_default(s, 0);
+	}
+
 }

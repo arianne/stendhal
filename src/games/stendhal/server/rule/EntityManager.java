@@ -18,6 +18,7 @@ import java.util.Collection;
  * @author Matthias Totz
  */
 public interface EntityManager {
+
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown
 	 * 

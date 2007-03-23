@@ -40,6 +40,7 @@ import marauroa.common.game.RPObject;
  * @author Jane Hunt
  */
 class AmbientSound {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(AmbientSound.class);
 
@@ -73,6 +74,7 @@ class AmbientSound {
 	 * continuously looping sound elements of this ambient sound.
 	 */
 	private static class LoopSoundInfo implements Cloneable {
+
 		/**
 		 *  the String representing the LoopSoundInfo
 		 */
@@ -137,10 +139,10 @@ class AmbientSound {
 	 *
 	 */
 	private class SoundStarter extends Thread {
+
 		LoopSoundInfo soundInfo;
 
 		float correctionDB;
-
 
 		/**
 		 * Starts a looping sound.
@@ -178,14 +180,14 @@ class AmbientSound {
 				soundInfo.stopClip();
 
 				// start playing
-				soundInfo.clip = libClip.getAudioClip(SoundSystem.get().getVolume(), loudnessDB + soundInfo.loudnessDB + correctionDB, getVolumeDelta());
+				soundInfo.clip = libClip.getAudioClip(SoundSystem.get().getVolume(), loudnessDB + soundInfo.loudnessDB
+				        + correctionDB, getVolumeDelta());
 				if (soundInfo.clip != null) {
 					soundInfo.clip.loop(Clip.LOOP_CONTINUOUSLY);
 				}
 				isPlaying = true;
 			}
 		}
-
 
 	} // SoundStarter
 
@@ -237,7 +239,8 @@ class AmbientSound {
 		}
 
 		if (soundObject != null) {
-			hstr = "-- created LOC AMBIENT: " + name + " at (" + (int) soundObject.getX() + "," + (int) soundObject.getY() + "), rad=" + radius + " vol=" + volume;
+			hstr = "-- created LOC AMBIENT: " + name + " at (" + (int) soundObject.getX() + ","
+			        + (int) soundObject.getY() + "), rad=" + radius + " vol=" + volume;
 		} else {
 			hstr = "-- created GLOB AMBIENT: " + name + ", vol=" + volume;
 		}
@@ -280,7 +283,8 @@ class AmbientSound {
 			cycleList.add(cycle);
 		}
 
-		String hstr = "-- content supplied to " + name + ": " + loopSounds.size() + " loops, " + cycleList.size() + " cycles";
+		String hstr = "-- content supplied to " + name + ": " + loopSounds.size() + " loops, " + cycleList.size()
+		        + " cycles";
 		logger.debug(hstr);
 	} // constructor
 
@@ -323,7 +327,8 @@ class AmbientSound {
 	} // addCycle
 
 	private boolean canPlay() {
-		return (soundPos == null) || (playerHearing.contains(soundPos) && soundObject.getAudibleArea().contains(playerPos));
+		return (soundPos == null)
+		        || (playerHearing.contains(soundPos) && soundObject.getAudibleArea().contains(playerPos));
 	}
 
 	/**

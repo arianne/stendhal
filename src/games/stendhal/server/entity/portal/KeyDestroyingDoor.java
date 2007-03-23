@@ -18,13 +18,13 @@ import marauroa.common.game.AttributeNotFoundException;
  * @author daniel
  */
 public class KeyDestroyingDoor extends LockedDoor {
-	
+
 	/**
 	 * The number of key items that are destroyed while
 	 * passing through the door
 	 */
 	private int requiredAmount;
-	
+
 	/**
 	 * Creates a new KeyDestroying door which destroys 1 key when the player
 	 * uses it.
@@ -37,7 +37,7 @@ public class KeyDestroyingDoor extends LockedDoor {
 	public KeyDestroyingDoor(String key, String clazz, Direction dir) {
 		this(key, clazz, dir, 1);
 	}
-	
+
 	/**
 	 * Creates a new KeyDestroying door.
 	 * @param key The name of the item that is required to use the door
@@ -49,11 +49,11 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 * @throws AttributeNotFoundException
 	 */
 	public KeyDestroyingDoor(String key, String clazz, Direction dir, int requiredAmount)
-	throws AttributeNotFoundException {
+	        throws AttributeNotFoundException {
 		super(key, clazz, dir);
 		this.requiredAmount = requiredAmount;
 	}
-	
+
 	@Override
 	public void onUsed(RPEntity user) {
 		if (has("locked") && user.isEquipped(get("locked"), requiredAmount)) {

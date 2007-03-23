@@ -23,20 +23,23 @@ import games.stendhal.server.util.Area;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 /**
  * Creating the Stendhal Deathmatch Game
  */
 public class AdosDeathmatch extends AbstractQuest {
+
 	private NPCList npcs = NPCList.get();
+
 	private StendhalRPZone zone = null;
+
 	private Area arena = null;
+
 	private DeathmatchInfo deathmatchInfo = null;
-	
+
 	public AdosDeathmatch() {
 		// constructor for quest system
 	}
-	
+
 	public AdosDeathmatch(String zoneName, StendhalRPZone zone, Area arena) {
 		this.zone = zone;
 		this.arena = arena;
@@ -62,11 +65,10 @@ public class AdosDeathmatch extends AbstractQuest {
 		zone.add(helmet);
 	}
 
-
 	public void createNPC(String name, int x, int y) {
 
 		// We create an NPC
-		SpeakerNPC npc=new SpeakerNPC(name) {
+		SpeakerNPC npc = new SpeakerNPC(name) {
 
 			@Override
 			protected void createPath() {
@@ -77,40 +79,48 @@ public class AdosDeathmatch extends AbstractQuest {
 			protected void createDialog() {
 
 				// player is outside the fence
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-						new StandardInteraction.Not(new StandardInteraction.PlayerInAreaCondition(arena)),
-						ConversationStates.INFORMATION_1, "Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join", null);
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.Not(
+				        new StandardInteraction.PlayerInAreaCondition(arena)), ConversationStates.INFORMATION_1,
+				        "Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join", null);
 				add(ConversationStates.INFORMATION_1, "Thonatus", null, ConversationStates.INFORMATION_1,
-						"Thonatus is the official Deathmatch Recrutor. He is in the swamp south west of Ados.", null);
-
+				        "Thonatus is the official Deathmatch Recrutor. He is in the swamp south west of Ados.", null);
 
 				// player is inside
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.PlayerInAreaCondition(arena),
-						ConversationStates.ATTENDING, "Welcome to Ados Deathmatch! Do you need #help?", null);
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+				        new StandardInteraction.PlayerInAreaCondition(arena), ConversationStates.ATTENDING,
+				        "Welcome to Ados Deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
 				addGoodbye("I hope you enjoy the Deathmatch!");
 
-				add(ConversationStates.ATTENDING, Arrays.asList("everything", "appears"), ConversationStates.ATTENDING, 
-						"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!", null);
-				add(ConversationStates.ATTENDING, Arrays.asList("trophy","helm","helmet"), ConversationStates.ATTENDING,
-						"If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.", null);
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("everything", "appears"),
+				        ConversationStates.ATTENDING,
+				        "Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
+				        null);
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("trophy", "helm", "helmet"),
+				        ConversationStates.ATTENDING,
+				        "If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.",
+				        null);
 
 				// 'start' command will start spawning creatures
-				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null, 
-						ConversationStates.ATTENDING, null, new StartAction(deathmatchInfo));
-				
+				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null,
+				        ConversationStates.ATTENDING, null, new StartAction(deathmatchInfo));
+
 				// 'victory' command will scan, if all creatures are killed and reward the player
 				add(ConversationStates.ATTENDING, Arrays.asList("victory", "done", "yay"), null,
-						ConversationStates.ATTENDING, null, new DoneAction());
-				
+				        ConversationStates.ATTENDING, null, new DoneAction());
+
 				// 'leave' command will send the victorious player home
-				add(ConversationStates.ATTENDING, Arrays.asList("leave", "home"), null, 
-						ConversationStates.ATTENDING, null, new LeaveAction());
-				
+				add(ConversationStates.ATTENDING, Arrays.asList("leave", "home"), null, ConversationStates.ATTENDING,
+				        null, new LeaveAction());
+
 				// 'bail' command will teleport the player out of it
 				add(ConversationStates.ATTENDING, Arrays.asList("bail", "flee", "run", "exit"), null,
-						ConversationStates.ATTENDING, null, new BailAction());
+				        ConversationStates.ATTENDING, null, new BailAction());
 			}
 		};
 

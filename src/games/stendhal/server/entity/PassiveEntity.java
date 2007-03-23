@@ -3,6 +3,7 @@ package games.stendhal.server.entity;
 import marauroa.common.game.*;
 
 public abstract class PassiveEntity extends Entity {
+
 	public PassiveEntity() throws AttributeNotFoundException {
 		super();
 	}
@@ -10,7 +11,6 @@ public abstract class PassiveEntity extends Entity {
 	public PassiveEntity(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-
 
 	/**
 	 * Determine if this is an obstacle for another entity.

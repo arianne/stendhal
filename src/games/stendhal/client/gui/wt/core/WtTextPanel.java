@@ -31,6 +31,7 @@ import java.awt.Graphics2D;
  * @author matthias
  */
 public class WtTextPanel extends WtPanel {
+
 	/** default font size */
 	public static final int DEFAULT_FONT_SIZE = 12;
 
@@ -58,8 +59,7 @@ public class WtTextPanel extends WtPanel {
 	}
 
 	/** Creates a new TextPanel with the given StringFormatter. */
-	public WtTextPanel(String name, int x, int y, int width, int height,
-			String formatString) {
+	public WtTextPanel(String name, int x, int y, int width, int height, String formatString) {
 		super(name, x, y, width, height);
 		this.formatter = new StringFormatter(formatString);
 		this.fontSize = DEFAULT_FONT_SIZE;
@@ -108,7 +108,7 @@ public class WtTextPanel extends WtPanel {
 	/** draws the String */
 	@Override
 	public Graphics draw(Graphics g) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return g;
 		}
 

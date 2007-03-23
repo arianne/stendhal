@@ -40,7 +40,7 @@ public class DeepInspect extends ScriptImpl {
 				sb.append("   " + object + "\n");
 			}
 		}
-		
+
 		player.sendPrivateText(sb.toString());
 	}
 }

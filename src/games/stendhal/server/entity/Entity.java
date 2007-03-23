@@ -23,6 +23,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 public abstract class Entity extends RPObject {
+
 	private int x;
 
 	private int y;
@@ -108,18 +109,16 @@ public abstract class Entity extends RPObject {
 		put("x", x);
 	}
 
-
 	/**
 	 * Get the entity name.
 	 *
 	 * @return	The entity's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
-		String	name;
+		String name;
 
-
-		if(has("name")) {
-			if((name = get("name")) != null) {
+		if (has("name")) {
+			if ((name = get("name")) != null) {
 				return name.replace("_", " ");
 			}
 		}
@@ -127,7 +126,6 @@ public abstract class Entity extends RPObject {
 		return null;
 	}
 
-	
 	public int getX() {
 		return x;
 	}
@@ -156,7 +154,6 @@ public abstract class Entity extends RPObject {
 		return direction;
 	}
 
-
 	/**
 	 * Get the zone this entity is in.
 	 *
@@ -167,10 +164,8 @@ public abstract class Entity extends RPObject {
 		// POSSIBLE TODO: Use onAdded()/onRemoved() to grab a copy
 		// of the zone and save as a local variable.
 		//
-		return (StendhalRPZone)
-			StendhalRPWorld.get().getRPZone(getID());
+		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
 	}
-
 
 	public void setSpeed(double speed) {
 		if (speed == this.speed) {
@@ -215,7 +210,6 @@ public abstract class Entity extends RPObject {
 		return collides;
 	}
 
-
 	/**
 	 * Checks whether an entity is a ghost (non physically interactive).
 	 *
@@ -224,7 +218,6 @@ public abstract class Entity extends RPObject {
 	public boolean isGhost() {
 		return has("ghostmode");
 	}
-
 
 	/**
 	 * Determine if this is an obstacle for another entity.
@@ -275,11 +268,11 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean nextTo(int x, int y, double step) {
 		Rectangle2D thisArea = getArea(this.x, this.y);
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
-				thisArea.getWidth() + step, thisArea.getHeight() + step);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, thisArea.getWidth() + step, thisArea
+		        .getHeight()
+		        + step);
 		return thisArea.contains(x, y);
 	}
-
 
 	/**
 	 * Checks whether the given entity is directly next to this entity.
@@ -294,7 +287,6 @@ public abstract class Entity extends RPObject {
 		return nextTo(entity, 0.25);
 	}
 
-
 	/**
 	 * Checks whether the given entity is near this entity.
 	 * @param entity the entity
@@ -304,10 +296,12 @@ public abstract class Entity extends RPObject {
 	public boolean nextTo(Entity entity, double step) {
 		Rectangle2D thisArea = getArea(x, y);
 		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
-				thisArea.getWidth() + step, thisArea.getHeight() + step);
-		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step,
-				otherArea.getWidth() + step, otherArea.getHeight() + step);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, thisArea.getWidth() + step, thisArea
+		        .getHeight()
+		        + step);
+		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step, otherArea.getWidth() + step, otherArea
+		        .getHeight()
+		        + step);
 		return thisArea.intersects(otherArea);
 	}
 
@@ -315,22 +309,19 @@ public abstract class Entity extends RPObject {
 		Rectangle2D thisArea = getArea(x, y);
 		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
 		if ((direction == Direction.UP) && (thisArea.getX() == otherArea.getX())
-				&& (thisArea.getY() - 1 == otherArea.getY())) {
+		        && (thisArea.getY() - 1 == otherArea.getY())) {
 			return true;
 		}
-		if ((direction == Direction.DOWN)
-				&& (thisArea.getX() == otherArea.getX())
-				&& (thisArea.getY() + 1 == otherArea.getY())) {
+		if ((direction == Direction.DOWN) && (thisArea.getX() == otherArea.getX())
+		        && (thisArea.getY() + 1 == otherArea.getY())) {
 			return true;
 		}
-		if ((direction == Direction.LEFT)
-				&& (thisArea.getY() == otherArea.getY())
-				&& (thisArea.getX() - 1 == otherArea.getX())) {
+		if ((direction == Direction.LEFT) && (thisArea.getY() == otherArea.getY())
+		        && (thisArea.getX() - 1 == otherArea.getX())) {
 			return true;
 		}
-		if ((direction == Direction.RIGHT)
-				&& (thisArea.getY() == otherArea.getY())
-				&& (thisArea.getX() + 1 == otherArea.getX())) {
+		if ((direction == Direction.RIGHT) && (thisArea.getY() == otherArea.getY())
+		        && (thisArea.getX() + 1 == otherArea.getX())) {
 			return true;
 		}
 		return false;
@@ -360,7 +351,6 @@ public abstract class Entity extends RPObject {
 		}
 	}
 
-
 	/**
 	 * Get the area this object currently occupies.
 	 *
@@ -370,7 +360,6 @@ public abstract class Entity extends RPObject {
 		return getArea(getX(), getY());
 	}
 
-
 	public Rectangle2D getArea(double ex, double ey) {
 		Rectangle2D rect = new Rectangle.Double();
 		getArea(rect, ex, ey);
@@ -378,7 +367,6 @@ public abstract class Entity extends RPObject {
 	}
 
 	abstract public void getArea(Rectangle2D rect, double x, double y);
-
 
 	/**
 	 * Called when this object is added to a zone.
@@ -388,7 +376,6 @@ public abstract class Entity extends RPObject {
 	public void onAdded(StendhalRPZone zone) {
 	}
 
-
 	/**
 	 * Called when this object is being removed from a zone.
 	 *
@@ -397,7 +384,6 @@ public abstract class Entity extends RPObject {
 	public void onRemoved(StendhalRPZone zone) {
 	}
 
-	
 	/**
 	 * Notifies the StendhalRPWorld that this entity's attributes have
 	 * changed.
@@ -409,14 +395,14 @@ public abstract class Entity extends RPObject {
 	}
 
 	public String describe() {
-		String	name;
+		String name;
 
 		String ret = "You see ";
 		if (hasDescription()) {
 			return (getDescription());
 		}
 
-		if((name = getName()) != null) {
+		if ((name = getName()) != null) {
 			ret += name;
 		} else if (has("subclass")) {
 			ret += Grammar.a_noun(get("subclass"));

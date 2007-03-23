@@ -16,6 +16,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A base factory for <code>Sign</code> objects.
  */
 public class SignFactory implements ConfigurableFactory {
+
 	//
 	// SignFactory
 	//
@@ -30,19 +31,15 @@ public class SignFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is missing.
 	 */
-	protected String getText(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected String getText(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("text")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'text' missing");
+		if ((s = ctx.getAttribute("text")) == null) {
+			throw new IllegalArgumentException("Required attribute 'text' missing");
 		}
 
 		return s;
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -63,10 +60,9 @@ public class SignFactory implements ConfigurableFactory {
 	 *
 	 * @see		Sign
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		Sign sign = new Sign();
-		
+
 		sign.setText(getText(ctx));
 		String clazz = ctx.getAttribute("class");
 		if (clazz != null) {

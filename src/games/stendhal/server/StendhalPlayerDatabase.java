@@ -14,11 +14,10 @@ import java.util.zip.*;
 import org.apache.log4j.Logger;
 
 public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
-	private static final Logger logger = Log4J
-			.getLogger(StendhalPlayerDatabase.class);
 
-	private StendhalPlayerDatabase(Properties connInfo)
-			throws NoDatabaseConfException, GenericDatabaseException {
+	private static final Logger logger = Log4J.getLogger(StendhalPlayerDatabase.class);
+
+	private StendhalPlayerDatabase(Properties connInfo) throws NoDatabaseConfException, GenericDatabaseException {
 		super(connInfo);
 		runDBScript("games/stendhal/server/stendhal_init.sql");
 	}
@@ -40,8 +39,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
-			String query = "select count(*) as amount from avatars where object_id="
-					+ id;
+			String query = "select count(*) as amount from avatars where object_id=" + id;
 
 			logger.debug("hasRPObject is executing query " + query);
 
@@ -60,8 +58,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 
 			return rpObjectExists;
 		} catch (SQLException e) {
-			logger.error(
-					"error checking if database has RPObject (" + id + ")", e);
+			logger.error("error checking if database has RPObject (" + id + ")", e);
 			return false;
 		} finally {
 			Log4J.finishMethod(logger, "hasRPObject");
@@ -94,8 +91,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 			output.close();
 
 			ByteArrayInputStream inStream = new ByteArrayInputStream(content);
-			InflaterInputStream szlib = new InflaterInputStream(inStream,
-					new Inflater());
+			InflaterInputStream szlib = new InflaterInputStream(inStream, new Inflater());
 			InputSerializer inser = new InputSerializer(szlib);
 
 			rs.close();
@@ -113,8 +109,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	}
 
 	@Override
-	public synchronized int storeRPObject(Transaction trans, RPObject object)
-			throws SQLException {
+	public synchronized int storeRPObject(Transaction trans, RPObject object) throws SQLException {
 		Connection connection = ((JDBCTransaction) trans).getConnection();
 
 		int object_id = -1;
@@ -165,19 +160,11 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		String query;
 
 		if ((objectid != null) && hasRPObject(trans, object_id)) {
-			query = "update avatars set name='" + name + "',outfit='" + outfit
-					+ "',level=" + level + ",xp=" + xp
-					+ ",data=? where object_id=" + objectid;
+			query = "update avatars set name='" + name + "',outfit='" + outfit + "',level=" + level + ",xp=" + xp
+			        + ",data=? where object_id=" + objectid;
 		} else {
-			query = "insert into avatars(object_id,name,outfit,level,xp,data) values("
-					+ objectid
-					+ ",'"
-					+ name
-					+ "','"
-					+ outfit
-					+ "',"
-					+ level
-					+ "," + xp + ",?)";
+			query = "insert into avatars(object_id,name,outfit,level,xp,data) values(" + objectid + ",'" + name + "','"
+			        + outfit + "'," + level + "," + xp + ",?)";
 		}
 		logger.debug("storeRPObject is executing query " + query);
 
@@ -254,18 +241,16 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	 * @return points or 0 in case there is no entry
 	 * @throws GenericDatabaseException in case of an database error
 	 */
-	public int getHallOfFamePoints(Transaction trans, String playername, String fametype) throws GenericDatabaseException {
+	public int getHallOfFamePoints(Transaction trans, String playername, String fametype)
+	        throws GenericDatabaseException {
 		Log4J.startMethod(logger, "addStatisticsEvent");
 		int res = 0;
 		try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
 
-			String query = "SELECT points FROM halloffame WHERE charname='"
-					+ escapeSQLString(playername)
-					+ "' AND fametype='"
-					+ escapeSQLString(fametype)
-					+ "'";
+			String query = "SELECT points FROM halloffame WHERE charname='" + escapeSQLString(playername)
+			        + "' AND fametype='" + escapeSQLString(fametype) + "'";
 			ResultSet result = stmt.executeQuery(query);
 			if (result.next()) {
 				res = result.getInt("points");
@@ -290,30 +275,22 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	 * @param points     points to store
 	 * @throws GenericDatabaseException in case of an database error
 	 */
-	public void setHallOfFamePoints(Transaction trans, String playername, String fametype, int points) throws GenericDatabaseException {
+	public void setHallOfFamePoints(Transaction trans, String playername, String fametype, int points)
+	        throws GenericDatabaseException {
 		Log4J.startMethod(logger, "addStatisticsEvent");
 		try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
 
 			// first try an update
-			String query = "UPDATE halloffame SET points='"  
-					+ escapeSQLString(Integer.toString(points))
-					+ "' WHERE charname='"
-					+ escapeSQLString(playername)
-					+ "' AND fametype='"
-					+ escapeSQLString(fametype)
-					+ "';";
+			String query = "UPDATE halloffame SET points='" + escapeSQLString(Integer.toString(points))
+			        + "' WHERE charname='" + escapeSQLString(playername) + "' AND fametype='"
+			        + escapeSQLString(fametype) + "';";
 			int count = stmt.executeUpdate(query);
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
-				query = "INSERT INTO halloffame (charname, fametype, points) VALUES ('"  
-					+ escapeSQLString(playername)
-					+ "','"
-					+ escapeSQLString(fametype)
-					+ "','"
-					+ escapeSQLString(Integer.toString(points))
-					+ "');";
+				query = "INSERT INTO halloffame (charname, fametype, points) VALUES ('" + escapeSQLString(playername)
+				        + "','" + escapeSQLString(fametype) + "','" + escapeSQLString(Integer.toString(points)) + "');";
 				stmt.executeUpdate(query);
 			}
 			stmt.close();
@@ -326,15 +303,12 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.out
-				.println("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables to AVATARS new system");
+		System.out.println("PORTING RPOBJECT, RPATTRIBUTE and RPSLOT tables to AVATARS new system");
 		System.out.println();
 		Configuration.setConfigurationFile("stendhal.ini");
-		JDBCPlayerDatabase odb = (JDBCPlayerDatabase) JDBCPlayerDatabase
-				.getDatabase();
+		JDBCPlayerDatabase odb = (JDBCPlayerDatabase) JDBCPlayerDatabase.getDatabase();
 
-		JDBCPlayerDatabase sdb = (JDBCPlayerDatabase) StendhalPlayerDatabase
-				.resetDatabaseConnection();
+		JDBCPlayerDatabase sdb = (JDBCPlayerDatabase) StendhalPlayerDatabase.resetDatabaseConnection();
 
 		Transaction transA = odb.getTransaction();
 		Transaction transB = sdb.getTransaction();
@@ -353,8 +327,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 			transB.commit();
 			long p3 = System.currentTimeMillis();
 
-			System.out.println("Times LOAD(" + (p2 - p1) / 1000.0 + ")\tSTORE("
-					+ (p3 - p2) / 1000.0 + ")");
+			System.out.println("Times LOAD(" + (p2 - p1) / 1000.0 + ")\tSTORE(" + (p3 - p2) / 1000.0 + ")");
 		}
 	}
 
@@ -365,7 +338,8 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("DELETE FROM gameEvents WHERE event='chat' AND timedate < DATE_SUB(CURDATE(), INTERVAL 2 DAY);");
+			stmt
+			        .executeUpdate("DELETE FROM gameEvents WHERE event='chat' AND timedate < DATE_SUB(CURDATE(), INTERVAL 2 DAY);");
 			stmt.close();
 		} catch (SQLException e) {
 			logger.error(e, e);

@@ -15,6 +15,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A factory for <code>LockedDoor</code> objects.
  */
 public class LockedDoorFactory extends DoorFactory {
+
 	//
 	// LockedDoorFactory
 	//
@@ -29,19 +30,15 @@ public class LockedDoorFactory extends DoorFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
-	protected String getKey(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected String getKey(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("key")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'key' missing");
+		if ((s = ctx.getAttribute("key")) == null) {
+			throw new IllegalArgumentException("Required attribute 'key' missing");
 		}
 
 		return s;
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -62,11 +59,7 @@ public class LockedDoorFactory extends DoorFactory {
 	 *
 	 * @see		LockedDoor
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		return new LockedDoor(
-			getKey(ctx),
-			getClass(ctx),
-			getDirection(ctx));
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return new LockedDoor(getKey(ctx), getClass(ctx), getDirection(ctx));
 	}
 }

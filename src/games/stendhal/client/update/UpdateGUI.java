@@ -89,7 +89,8 @@ public class UpdateGUI extends JFrame {
 		if (jEditorPane == null) {
 			jEditorPane = new JEditorPane();
 			jEditorPane.setEditable(false);
-			jEditorPane.setText("<html>\n  <head>\n\n  </head>\n  <body>\n   <h1>Version 0.55.1</h1>\n  </body>\n</html>\n");
+			jEditorPane
+			        .setText("<html>\n  <head>\n\n  </head>\n  <body>\n   <h1>Version 0.55.1</h1>\n  </body>\n</html>\n");
 			jEditorPane.setContentType("text/html");
 		}
 		return jEditorPane;
@@ -101,6 +102,7 @@ public class UpdateGUI extends JFrame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
+
 			public void run() {
 				UpdateGUI thisClass = new UpdateGUI();
 				thisClass.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

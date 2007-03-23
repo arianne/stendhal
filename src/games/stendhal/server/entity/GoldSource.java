@@ -33,19 +33,19 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	 * The chance that prospecting is successful.
 	 */
 	private final static double FINDING_PROBABILITY = 0.1;
-	
+
 	/**
 	 * How long it takes to prospect for gold (in seconds) 
 	 * TODO: randomize this number a bit.
 	 */
 	private final static int PROSPECTING_DURATION = 10;
-	
+
 	public GoldSource() {
 		super();
 		setDescription("You see something golden glittering.");
 		put("type", "gold_source");
 	}
-	
+
 	public GoldSource(RPObject object) {
 		super(object);
 		setDescription("You see something golden glittering.");
@@ -74,7 +74,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
 	}
-	
+
 	/**
 	 * Decides randomly if a prospecting action should be
 	 * successful.
@@ -93,7 +93,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 			if (player.nextTo(this, 0.25)) {
-				
+
 				if (player.isEquipped("gold_pan")) {
 					String name = player.getName();
 					// You can't start a new prospecting action before
@@ -101,7 +101,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 					if (TurnNotifier.get().getRemainingTurns(this, name) == -1) {
 						player.faceTo(this);
 						player.notifyWorldAboutChanges();
-						
+
 						// some feedback is needed.
 						player.sendPrivateText("You have started to prospect for gold.");
 						TurnNotifier.get().notifyInSeconds(PROSPECTING_DURATION, this, name);

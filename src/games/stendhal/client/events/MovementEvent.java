@@ -13,7 +13,6 @@ public interface MovementEvent {
 	 */
 	public void onMove(int x, int y, Direction direction, double speed);
 
-
 	/**
 	 * When rpentity reachs the [x,y,1,1] area.
 	 * @param x
@@ -28,7 +27,6 @@ public interface MovementEvent {
 	 */
 	public void onLeave(int x, int y);
 
-	
 	/**
 	 * Entity has been stopped at Point(x,y)
 	 * @param x

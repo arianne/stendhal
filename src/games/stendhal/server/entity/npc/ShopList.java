@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
  *
  */
 public class ShopList {
+
 	static {
 		ShopList shops = get();
 
@@ -29,16 +30,16 @@ public class ShopList {
 		shops.add("scrolls", "home_scroll", 250);
 		shops.add("scrolls", "summon_scroll", 200);
 		shops.add("scrolls", "empty_scroll", 1200);
-		
+
 		shops.add("fadoscrolls", "fado_city_scroll", 400);
 		shops.add("fadoscrolls", "empty_scroll", 1200);
-		
+
 		shops.add("nalworscrolls", "nalwor_city_scroll", 400);
 		shops.add("nalworscrolls", "empty_scroll", 1200);
-		
+
 		shops.add("adosscrolls", "ados_city_scroll", 400);
 		shops.add("adosscrolls", "empty_scroll", 1200);
-		
+
 		shops.add("sellstuff", "knife", 15);
 		shops.add("sellstuff", "club", 10);
 		shops.add("sellstuff", "dagger", 25);
@@ -60,7 +61,7 @@ public class ShopList {
 		shops.add("buystuff", "chain_armor", 29);
 		shops.add("buystuff", "chain_helmet", 25);
 		shops.add("buystuff", "chain_legs", 27);
-		
+
 		shops.add("selltools", "small_axe", 15);
 		shops.add("selltools", "hand_axe", 25);
 		shops.add("selltools", "axe", 40);
@@ -73,7 +74,7 @@ public class ShopList {
 		shops.add("selltools", "gold_pan", 230);
 
 		shops.add("buyiron", "iron", 75);
-		
+
 		shops.add("buygrain", "grain", 1);
 
 		// rare weapons shop
@@ -98,7 +99,6 @@ public class ShopList {
 		shops.add("elfbuyrare", "staff", 75);
 		shops.add("elfbuyrare", "lion_shield_+1", 52);
 		shops.add("elfbuyrare", "crown_shield", 80);
-
 
 	}
 

@@ -21,8 +21,8 @@ import java.util.Map;
  * @author dine
  */
 public class IL0_Goldsmith implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -30,15 +30,13 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildGoldsmith(zone, attributes);
 	}
 
-
-	private void buildGoldsmith(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC goldsmith = new SpeakerNPC("Joshua") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -60,34 +58,32 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 				nodes.add(new Path.Node(18, 4));
 				// to the starting point
 				nodes.add(new Path.Node(18, 2));
-				
+
 				setPath(nodes, true);
 			}
 
 			@Override
 			protected void createDialog() {
 				addGreeting("Hi!");
-				add(ConversationStates.ATTENDING,
-						"wood",
-						null,
-						ConversationStates.ATTENDING,
-						"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						Arrays.asList("ore", "gold", "gold_nugget"),
-						null,
-						ConversationStates.ATTENDING,
-						"I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						"gold_pan",
-						null,
-						ConversationStates.ATTENDING,
-						"If you had a gold pan, you would be able to prospect for gold at certain places.",
-						null);
-				
+				add(
+				        ConversationStates.ATTENDING,
+				        "wood",
+				        null,
+				        ConversationStates.ATTENDING,
+				        "I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.",
+				        null);
+
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("ore", "gold", "gold_nugget"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.",
+				        null);
+
+				add(ConversationStates.ATTENDING, "gold_pan", null, ConversationStates.ATTENDING,
+				        "If you had a gold pan, you would be able to prospect for gold at certain places.", null);
+
 				addJob("I'm the goldsmith of this city.");
 				addHelp("My brother Xoderos is a blacksmith in Semos. Currently he is selling tools. Perhaps he can make a #gold_pan for you.");
 				addGoodbye("Bye");
@@ -97,11 +93,11 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 				requiredResources.put("wood", new Integer(2));
 				requiredResources.put("gold_nugget", new Integer(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"joshua_cast_gold", "cast", "gold", requiredResources, 15 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("joshua_cast_gold", "cast", "gold",
+				        requiredResources, 15 * 60);
 
 				addProducer(behaviour,
-						"Hi! I'm the local goldsmith. If I should #cast you a barrel of gold just tell me!");
+				        "Hi! I'm the local goldsmith. If I should #cast you a barrel of gold just tell me!");
 			}
 		};
 		npcs.add(goldsmith);

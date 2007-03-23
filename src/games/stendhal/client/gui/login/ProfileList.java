@@ -16,8 +16,8 @@ import games.stendhal.client.gui.Encoder;
  * User login profile list.
  */
 public class ProfileList {
-	protected ArrayList<Profile>	profiles;
 
+	protected ArrayList<Profile> profiles;
 
 	/**
 	 * Create an empty profile list.
@@ -25,7 +25,6 @@ public class ProfileList {
 	public ProfileList() {
 		profiles = new ArrayList<Profile>();
 	}
-
 
 	//
 	// ProfileList
@@ -46,14 +45,12 @@ public class ProfileList {
 		profiles.add(profile);
 	}
 
-
 	/**
 	 * Remove all profiles.
 	 */
 	public void clear() {
 		profiles.clear();
 	}
-
 
 	/**
 	 * Get an iterator of profiles.
@@ -64,26 +61,22 @@ public class ProfileList {
 		return profiles.iterator();
 	}
 
-
 	/**
 	 * Load a list of profiles from an input stream.
 	 * This will replace any existing list.
 	 */
 	public void load(InputStream in) throws IOException {
 		Encoder codec = new Encoder();
-		String	s;
+		String s;
 
-
-		BufferedReader r =
-			new BufferedReader(new InputStreamReader(in));
+		BufferedReader r = new BufferedReader(new InputStreamReader(in));
 
 		clear();
 
-		while((s = r.readLine()) != null) {
+		while ((s = r.readLine()) != null) {
 			add(Profile.decode(codec.decode(s)));
 		}
 	}
-
 
 	/**
 	 * Remove a profile.
@@ -94,7 +87,6 @@ public class ProfileList {
 		profiles.remove(profile);
 	}
 
-
 	/**
 	 * Save a list of profiles to an output stream.
 	 *
@@ -103,13 +95,12 @@ public class ProfileList {
 	public void save(OutputStream out) throws IOException {
 		Encoder codec = new Encoder();
 
-
 		PrintStream ps = new PrintStream(out);
 
 		try {
 			Iterator<Profile> iter = iterator();
 
-			while(iter.hasNext()) {
+			while (iter.hasNext()) {
 				ps.println(codec.encode(iter.next().encode()));
 			}
 		} finally {
@@ -120,20 +111,15 @@ public class ProfileList {
 	//
 	//
 
-	public static void main(String [] args) throws Exception
-	{
-		ProfileList	list;
-		InputStream	in;
+	public static void main(String[] args) throws Exception {
+		ProfileList list;
+		InputStream in;
 
-
-		if(args.length != 1)
-		{
-			System.err.println("Usage: java "
-				+ ProfileList.class.getName() + " <user.dat>");
+		if (args.length != 1) {
+			System.err.println("Usage: java " + ProfileList.class.getName() + " <user.dat>");
 
 			System.exit(1);
 		}
-
 
 		list = new ProfileList();
 
@@ -146,10 +132,9 @@ public class ProfileList {
 			in.close();
 		}
 
-
 		Iterator iter = list.iterator();
 
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			System.out.println(iter.next());
 		}
 	}

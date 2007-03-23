@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Remove a player from buddy list.
  */
 class RemoveBuddyCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -15,7 +16,7 @@ class RemoveBuddyCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
+	public boolean execute(String[] params, String remainder) {
 		RPAction remove = new RPAction();
 
 		remove.put("type", "removebuddy");
@@ -26,7 +27,6 @@ class RemoveBuddyCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -35,7 +35,6 @@ class RemoveBuddyCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 1;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

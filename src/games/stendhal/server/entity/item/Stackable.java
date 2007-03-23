@@ -18,6 +18,7 @@ package games.stendhal.server.entity.item;
  * @author mtotz
  */
 public interface Stackable {
+
 	/** returns the quantity */
 	public int getQuantity();
 

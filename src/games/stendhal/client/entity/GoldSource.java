@@ -28,11 +28,11 @@ import marauroa.common.game.RPObject;
  *
  */
 public class GoldSource extends AnimatedEntity {
-	
+
 	public GoldSource(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-		
+
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
@@ -70,16 +70,16 @@ public class GoldSource extends AnimatedEntity {
 	@Override
 	public void onAction(ActionType at, String... params) {
 		switch (at) {
-		case PROSPECT:
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			break;
-		default:
-			super.onAction(at, params);
-			break;
+			case PROSPECT:
+				RPAction rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}

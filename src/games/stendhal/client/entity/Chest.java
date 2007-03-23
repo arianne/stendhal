@@ -26,9 +26,10 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class Chest extends AnimatedEntity implements Inspectable {
+
 	private boolean open;
 
-	private Inspector _inspector=null;
+	private Inspector _inspector = null;
 
 	private RPSlot content;
 
@@ -46,10 +47,8 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
-		sprites.put("close", store.getAnimatedSprite(
-				translate(base.get("type")), 0, 1, 1, 1));
-		sprites.put("open", store.getAnimatedSprite(
-				translate(base.get("type")), 1, 1, 1, 1));
+		sprites.put("close", store.getAnimatedSprite(translate(base.get("type")), 0, 1, 1, 1));
+		sprites.put("open", store.getAnimatedSprite(translate(base.get("type")), 1, 1, 1, 1));
 	}
 
 	@Override
@@ -59,8 +58,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("open")) {
@@ -68,7 +66,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 			animation = "open";
 			// we're wanted to open this?
 			if (requestOpen) {
-				wtEntityContainer = _inspector.inspectMe(this, content,wtEntityContainer);
+				wtEntityContainer = _inspector.inspectMe(this, content, wtEntityContainer);
 				requestOpen = false;
 			}
 		}
@@ -83,8 +81,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	}
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("open")) {
@@ -131,26 +128,25 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	public void onAction(ActionType at, String... params) {
 		// ActionType at =handleAction(action);
 		switch (at) {
-		case INSPECT:
-			wtEntityContainer = _inspector.inspectMe(this, content,
-					wtEntityContainer);// inspect(this, content, 4, 5);
-			break;
-		case OPEN:
-		case CLOSE:
-			if (!open) {
-				// If it was closed, open it and inspect it...
-				requestOpen = true;
-			}
+			case INSPECT:
+				wtEntityContainer = _inspector.inspectMe(this, content, wtEntityContainer);// inspect(this, content, 4, 5);
+				break;
+			case OPEN:
+			case CLOSE:
+				if (!open) {
+					// If it was closed, open it and inspect it...
+					requestOpen = true;
+				}
 
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			break;
-		default:
-			super.onAction(at, params);
-			break;
+				RPAction rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}

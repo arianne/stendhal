@@ -17,7 +17,9 @@ import java.util.Map;
  * @author hendrik
  */
 public class AdminSign extends ScriptImpl {
+
 	private Map<Integer, Sign> storage = new HashMap<Integer, Sign>();
+
 	private int signcounter = 0;
 
 	/**
@@ -68,7 +70,10 @@ public class AdminSign extends ScriptImpl {
 			storage.put(new Integer(signcounter), sign);
 		} else {
 			// syntax error, print help text
-			sandbox.privateText(player, "This script creates, lists or removes signs. Syntax: \r\nAdminSign.class <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nAdminSign.class list\r\nAdminSign.class del <n>");
+			sandbox
+			        .privateText(
+			                player,
+			                "This script creates, lists or removes signs. Syntax: \r\nAdminSign.class <zone> <x> <y> <text> The first 3 parameters can be \"-\".\r\nAdminSign.class list\r\nAdminSign.class del <n>");
 		}
 	}
 
@@ -82,7 +87,7 @@ public class AdminSign extends ScriptImpl {
 		int i;
 		try {
 			i = Integer.parseInt(args.get(1));
-		} catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			sandbox.privateText(player, "Please specify a number");
 			return;
 		}
@@ -98,7 +103,7 @@ public class AdminSign extends ScriptImpl {
 			sandbox.privateText(player, "Sign " + i + " does not exist");
 		}
 	}
-	
+
 	private void signToString(StringBuilder sb, Sign sign) {
 		StendhalRPWorld world = StendhalRPWorld.getInstance();
 		String zone = world.getRPZone(sign.getID()).getID().getID();
@@ -137,7 +142,8 @@ public class AdminSign extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		if (args.size() == 0) {
-			admin.sendPrivateText("/script AdminSign.class add zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
+			admin
+			        .sendPrivateText("/script AdminSign.class add zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
 			return;
 		}
 
@@ -152,4 +158,3 @@ public class AdminSign extends ScriptImpl {
 	}
 
 }
-

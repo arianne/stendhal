@@ -52,6 +52,7 @@ import org.apache.log4j.Logger;
  * @author mtotz
  */
 public class WtPanel implements ManagedWindow, WtDraggable {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(WtPanel.class);
 
@@ -488,8 +489,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** adds a child-panel to this panel */
 	public synchronized void addChild(WtPanel panel) {
 		if (panel.hasParent()) {
-			logger.error("Panel " + panel.name + " cannot be added to " + name
-					+ " because it already is a child of " + panel.parent.name);
+			logger.error("Panel " + panel.name + " cannot be added to " + name + " because it already is a child of "
+			        + panel.parent.name);
 			return;
 		}
 		LinkedList<WtPanel> newChildren = new LinkedList<WtPanel>(children);
@@ -514,11 +515,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** tells this panel (and all subpanels) to close */
 	public void close() {
-		if(isCloseable()) {
+		if (isCloseable()) {
 			setVisible(false);
 		}
 	}
-
 
 	/**
 	 * Destroy the panel.
@@ -529,7 +529,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// destroy/remove all children
 		Iterator<WtPanel> iter = children.iterator();
 
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			WtPanel child = iter.next();
 
 			child.destroy();
@@ -541,7 +541,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		clickListeners.clear();
 	}
 
-
 	/**
 	 * Scan all children and remove those without our parenting
 	 */
@@ -549,15 +548,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// remove un/reparented children
 		Iterator<WtPanel> iter = children.iterator();
 
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			WtPanel child = iter.next();
 
-			if(child.getParent() != this) {
+			if (child.getParent() != this) {
 				iter.remove();
 			}
 		}
 	}
-
 
 	/**
 	 * Determine if the window is visible.
@@ -567,7 +565,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	public boolean isVisible() {
 		return !closed;
 	}
-
 
 	/**
 	 * Set the window as visible (or hidden). This does not check if
@@ -579,24 +576,22 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		/*
 		 * No change?
 		 */
-		if(visible != closed) {
+		if (visible != closed) {
 			return;
 		}
 
 		/*
 		 * Apply to children
 		 */
-		for(WtPanel child : children) {
+		for (WtPanel child : children) {
 			child.setVisible(visible);
 		}
 
 		closed = !visible;
 
-		if(closed) {
+		if (closed) {
 			// inform all listeners we're closed
-			WtCloseListener [] listeners =
-				closeListeners.toArray(
-			 new WtCloseListener[closeListeners.size()]);
+			WtCloseListener[] listeners = closeListeners.toArray(new WtCloseListener[closeListeners.size()]);
 
 			for (WtCloseListener listener : listeners) {
 				listener.onClose(name);
@@ -604,17 +599,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// tell the windowmanager we're changed (if we use it)
-		if(useWindowManager()) {
+		if (useWindowManager()) {
 			WtWindowManager.getInstance().setVisible(this, visible);
 		}
 	}
 
-
 	/** notifies all registered clicklisteners that this panel has been clicked */
 	protected void notifyClickListeners(String name, Point point) {
-		WtClickListener [] listeners =
-			clickListeners.toArray(
-			new WtClickListener[clickListeners.size()]);
+		WtClickListener[] listeners = clickListeners.toArray(new WtClickListener[clickListeners.size()]);
 
 		for (WtClickListener listener : listeners) {
 			listener.onClick(name, point);
@@ -658,11 +650,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	private BufferedImage recreatePanelImage(Graphics g) {
 		int localHeight = this.height;
 
-		GraphicsConfiguration gc = GraphicsEnvironment
-				.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-				.getDefaultConfiguration();
-		BufferedImage tempImage = gc.createCompatibleImage(width, height,
-				Transparency.TRANSLUCENT);
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+		        .getDefaultConfiguration();
+		BufferedImage tempImage = gc.createCompatibleImage(width, height, Transparency.TRANSLUCENT);
 		Graphics panelGraphics = tempImage.createGraphics();
 
 		// if this frame is minimized, reduce frame to enclose the title bar
@@ -679,8 +669,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 		for (int x = 0; x < repeatx; x++) {
 			for (int y = 0; y < repeaty; y++) {
-				woodTexture.draw(panelGraphics, x * woodTexture.getWidth(), y
-						* woodTexture.getHeight());
+				woodTexture.draw(panelGraphics, x * woodTexture.getWidth(), y * woodTexture.getHeight());
 			}
 		}
 
@@ -695,14 +684,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				panelGraphics.drawLine(i, i, i, localHeight - i - 2);
 
 				panelGraphics.setColor(frameEmbossed ? lightColor : darkColor);
-				panelGraphics.drawLine(width - i - 1, i, width - i - 1,
-						localHeight - i - 1);
-				panelGraphics.drawLine(i, localHeight - i - 1, width - i - 1,
-						localHeight - i - 1);
+				panelGraphics.drawLine(width - i - 1, i, width - i - 1, localHeight - i - 1);
+				panelGraphics.drawLine(i, localHeight - i - 1, width - i - 1, localHeight - i - 1);
 			}
 			// update clipping to exclude the frame
-			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width
-					- (FRAME_SIZE * 2), localHeight - (FRAME_SIZE * 2));
+			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width - (FRAME_SIZE * 2), localHeight
+			        - (FRAME_SIZE * 2));
 		}
 
 		// draw title bar
@@ -711,61 +698,48 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				// minimize button
 				panelGraphics.setColor(lightColor);
 				Rectangle rect = getMiminizeButton();
-				panelGraphics.fillRect(rect.x - FRAME_SIZE,
-						rect.y - FRAME_SIZE, rect.width, rect.height);
+				panelGraphics.fillRect(rect.x - FRAME_SIZE, rect.y - FRAME_SIZE, rect.width, rect.height);
 
 				panelGraphics.setColor(Color.BLACK);
-				panelGraphics.fillRect(rect.x - FRAME_SIZE + 1, rect.y
-						- FRAME_SIZE + rect.height - 3, rect.width - 2, 2);
+				panelGraphics.fillRect(rect.x - FRAME_SIZE + 1, rect.y - FRAME_SIZE + rect.height - 3, rect.width - 2,
+				        2);
 			}
 
 			if (isCloseable()) {
 				// minimize button
 				panelGraphics.setColor(lightColor);
 				Rectangle rect = getCloseButton();
-				panelGraphics.fillRect(rect.x - FRAME_SIZE,
-						rect.y - FRAME_SIZE, rect.width, rect.height);
+				panelGraphics.fillRect(rect.x - FRAME_SIZE, rect.y - FRAME_SIZE, rect.width, rect.height);
 
 				panelGraphics.setColor(Color.BLACK);
-				panelGraphics.drawLine(rect.x - FRAME_SIZE + 1, rect.y
-						- FRAME_SIZE + 1, rect.x - FRAME_SIZE + rect.width - 2,
-						rect.y - FRAME_SIZE + rect.height - 2);
-				panelGraphics.drawLine(rect.x - FRAME_SIZE + 2, rect.y
-						- FRAME_SIZE + 1, rect.x - FRAME_SIZE + rect.width - 2,
-						rect.y - FRAME_SIZE + rect.height - 3);
-				panelGraphics.drawLine(rect.x - FRAME_SIZE + 1, rect.y
-						- FRAME_SIZE + 2, rect.x - FRAME_SIZE + rect.width - 3,
-						rect.y - FRAME_SIZE + rect.height - 2);
-				panelGraphics.drawLine(rect.x - FRAME_SIZE + rect.width - 2,
-						rect.y - FRAME_SIZE + 1, rect.x - FRAME_SIZE + 1,
-						rect.y - FRAME_SIZE + rect.height - 2);
-				panelGraphics.drawLine(
-						rect.x - FRAME_SIZE + rect.width - 2 - 1, rect.y
-								- FRAME_SIZE + 1, rect.x - FRAME_SIZE + 1,
-						rect.y - FRAME_SIZE + rect.height - 2 - 1);
-				panelGraphics.drawLine(rect.x - FRAME_SIZE + rect.width - 2,
-						rect.y - FRAME_SIZE + 1 + 1, rect.x - FRAME_SIZE + 1
-								+ 1, rect.y - FRAME_SIZE + rect.height - 2);
+				panelGraphics.drawLine(rect.x - FRAME_SIZE + 1, rect.y - FRAME_SIZE + 1, rect.x - FRAME_SIZE
+				        + rect.width - 2, rect.y - FRAME_SIZE + rect.height - 2);
+				panelGraphics.drawLine(rect.x - FRAME_SIZE + 2, rect.y - FRAME_SIZE + 1, rect.x - FRAME_SIZE
+				        + rect.width - 2, rect.y - FRAME_SIZE + rect.height - 3);
+				panelGraphics.drawLine(rect.x - FRAME_SIZE + 1, rect.y - FRAME_SIZE + 2, rect.x - FRAME_SIZE
+				        + rect.width - 3, rect.y - FRAME_SIZE + rect.height - 2);
+				panelGraphics.drawLine(rect.x - FRAME_SIZE + rect.width - 2, rect.y - FRAME_SIZE + 1, rect.x
+				        - FRAME_SIZE + 1, rect.y - FRAME_SIZE + rect.height - 2);
+				panelGraphics.drawLine(rect.x - FRAME_SIZE + rect.width - 2 - 1, rect.y - FRAME_SIZE + 1, rect.x
+				        - FRAME_SIZE + 1, rect.y - FRAME_SIZE + rect.height - 2 - 1);
+				panelGraphics.drawLine(rect.x - FRAME_SIZE + rect.width - 2, rect.y - FRAME_SIZE + 1 + 1, rect.x
+				        - FRAME_SIZE + 1 + 1, rect.y - FRAME_SIZE + rect.height - 2);
 			}
 
 			// the dark line under the title bar
 			panelGraphics.setColor(darkColor);
-			panelGraphics.drawLine(0, TITLEBAR_SIZE, width - (FRAME_SIZE * 2),
-					TITLEBAR_SIZE);
-			panelGraphics.drawLine(0, TITLEBAR_SIZE + 1, width
-					- (FRAME_SIZE * 2), TITLEBAR_SIZE + 1);
+			panelGraphics.drawLine(0, TITLEBAR_SIZE, width - (FRAME_SIZE * 2), TITLEBAR_SIZE);
+			panelGraphics.drawLine(0, TITLEBAR_SIZE + 1, width - (FRAME_SIZE * 2), TITLEBAR_SIZE + 1);
 
 			// panels title text
 			panelGraphics.setColor(new Color(0.8f, 0.8f, 0.8f, 1.0f));
 			Font font = panelGraphics.getFont();
-			panelGraphics.setFont(font.deriveFont(Font.BOLD,
-					TITLEBAR_FONT_SIZE));
+			panelGraphics.setFont(font.deriveFont(Font.BOLD, TITLEBAR_FONT_SIZE));
 			panelGraphics.drawString(titleText, 3, TITLEBAR_FONT_SIZE);
 
 			// update clipping
-			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width
-					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2)
-					- TITLEBAR_SIZE - 2);
+			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width - (FRAME_SIZE * 2), height
+			        - (FRAME_SIZE * 2) - TITLEBAR_SIZE - 2);
 		}
 
 		BufferedImage image = gc.createCompatibleImage(width, localHeight);
@@ -808,13 +782,12 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		if (frame) {
-			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width
-					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2));
+			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width - (FRAME_SIZE * 2), height
+			        - (FRAME_SIZE * 2));
 		}
 		if (titleBar) {
-			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width
-					- (FRAME_SIZE * 2), height - (FRAME_SIZE * 2)
-					- TITLEBAR_SIZE - 2);
+			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width - (FRAME_SIZE * 2), height
+			        - (FRAME_SIZE * 2) - TITLEBAR_SIZE - 2);
 		}
 
 		if (!minimized) {
@@ -864,7 +837,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @return true when the point is in this panel, false otherwise
 	 */
 	public boolean isHit(int x, int y) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return false;
 		}
 
@@ -875,8 +848,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			height = TITLEBAR_SIZE + (frame ? FRAME_SIZE * 2 : 0);
 		}
 
-		if ((x < this.x) || (y < this.y) || (x > this.x + width)
-				|| (y > this.y + height)) {
+		if ((x < this.x) || (y < this.y) || (x > this.x + width) || (y > this.y + height)) {
 			return false;
 		}
 		return true;
@@ -890,8 +862,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		}
 
 		// 
-		if ((x < FRAME_SIZE) || (y < FRAME_SIZE) || (x > width - FRAME_SIZE)
-				|| (y > FRAME_SIZE + TITLEBAR_SIZE)) {
+		if ((x < FRAME_SIZE) || (y < FRAME_SIZE) || (x > width - FRAME_SIZE) || (y > FRAME_SIZE + TITLEBAR_SIZE)) {
 			return false;
 		}
 
@@ -905,7 +876,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** return a object for dragging which is at the position (x,y) or null */
 	protected WtDraggable getDragged(int x, int y) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return null;
 		}
 
@@ -922,8 +893,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		for (WtPanel panel : children) {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
-				WtDraggable draggedObject = panel.getDragged(x - panel.getX(),
-						y - panel.getY());
+				WtDraggable draggedObject = panel.getDragged(x - panel.getX(), y - panel.getY());
 
 				// did we get an object
 				if (draggedObject != null) {
@@ -973,8 +943,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 			// only if the point is inside the child
 			if (panel.isHit(x, y)) {
 				// the child checks itself
-				if (panel.checkDropped(x - panel.getX(), y - panel.getY(),
-						droppedObject)) {
+				if (panel.checkDropped(x - panel.getX(), y - panel.getY(), droppedObject)) {
 					return true;
 				}
 			}
@@ -985,8 +954,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** returns the rectangle for the minimize button */
 	private Rectangle getMiminizeButton() {
-		return new Rectangle(width - (TITLEBAR_SIZE * 2) - FRAME_SIZE,
-				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
+		return new Rectangle(width - (TITLEBAR_SIZE * 2) - FRAME_SIZE, FRAME_SIZE + 1, TITLEBAR_SIZE - 2,
+		        TITLEBAR_SIZE - 2);
 	}
 
 	/** returns true when the point (x,y) is inside the minimize button */
@@ -996,8 +965,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** returns the rectangle for the close button */
 	private Rectangle getCloseButton() {
-		return new Rectangle(width - TITLEBAR_SIZE - FRAME_SIZE,
-				FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
+		return new Rectangle(width - TITLEBAR_SIZE - FRAME_SIZE, FRAME_SIZE + 1, TITLEBAR_SIZE - 2, TITLEBAR_SIZE - 2);
 	}
 
 	/** returns true when the point (x,y) is inside the close button */
@@ -1010,7 +978,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * processed
 	 */
 	public synchronized boolean onMouseClick(Point p) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return false;
 		}
 
@@ -1062,7 +1030,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** callback for a doubleclick */
 	public synchronized boolean onMouseDoubleClick(Point p) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return false;
 		}
 
@@ -1089,7 +1057,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** the right mouse button has been clicked (callback) */
 	public synchronized boolean onMouseRightClick(Point p) {
-		if(isClosed()) {
+		if (isClosed()) {
 			return false;
 		}
 
@@ -1115,7 +1083,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/** ignored */
 	public boolean dragStarted() {
-		if(isClosed()) {
+		if (isClosed()) {
 			return false;
 		}
 
@@ -1158,7 +1126,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** toString */
 	@Override
 	public String toString() {
-		return super.toString() + ": " + name + " at " + x + "x" + y + " size:"
-				+ width + "x" + height;
+		return super.toString() + ": " + name + " at " + x + "x" + y + " size:" + width + "x" + height;
 	}
 }

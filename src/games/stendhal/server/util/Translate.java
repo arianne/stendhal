@@ -17,8 +17,11 @@ import org.apache.velocity.app.Velocity;
  * @author hendrik
  */
 public class Translate {
+
 	private static Logger logger = Logger.getLogger(Translate.class);
+
 	private static Properties dictionary = new Properties();
+
 	private static Grammar grammar = new Grammar();
 
 	/**
@@ -28,9 +31,11 @@ public class Translate {
 	 */
 	public static void initLanguage(String language) {
 		try {
-			InputStream is = Translate.class.getClassLoader().getResourceAsStream("data/languages/" + language + ".properties");
+			InputStream is = Translate.class.getClassLoader().getResourceAsStream(
+			        "data/languages/" + language + ".properties");
 			if (is == null) {
-				logger.error("No dictionary for language " + language + " on classpath. Check that data/languages/" + language + ".properties exists and that the parent folder of \"data\" is on the classpath.");
+				logger.error("No dictionary for language " + language + " on classpath. Check that data/languages/"
+				        + language + ".properties exists and that the parent folder of \"data\" is on the classpath.");
 			} else {
 				dictionary.load(is);
 				String className = dictionary.getProperty("_grammar.class");
@@ -58,7 +63,8 @@ public class Translate {
 	public static String _(String text, String... args) {
 
 		// use translated text, if one was specified
-		String translated = dictionary.getProperty(text, text);;
+		String translated = dictionary.getProperty(text, text);
+		;
 		if (translated.indexOf("$TODO") > -1) {
 			translated = text;
 		}
@@ -79,7 +85,7 @@ public class Translate {
 		} catch (Exception e) {
 			logger.error(e, e);
 		}
-		
+
 		// return result
 		return writer.toString();
 	}

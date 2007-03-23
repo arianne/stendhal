@@ -15,10 +15,12 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 
 public class ZoneXMLLoader extends DefaultHandler {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(ZoneXMLLoader.class);
 
 	public static class XMLZone {
+
 		public String name;
 
 		public int x;
@@ -98,11 +100,9 @@ public class ZoneXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(
-					ref);
+			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref
-						+ "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
 
 			saxParser.parse(new java.util.zip.InflaterInputStream(is), this);
@@ -131,8 +131,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 	private String layerName;
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs){
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		if (qName.equals("map")) {
 			currentZone.name = attrs.getValue("name");
 		} else if (qName.equals("location")) {
@@ -141,7 +140,8 @@ public class ZoneXMLLoader extends DefaultHandler {
 			if (level.equals("int") == false) {
 				currentZone.interior = false;
 				currentZone.level = Integer.parseInt(level);
-				if ((attrs.getValue("x") == null) || (attrs.getValue("y") == null) || attrs.getValue("x").equals("null") || attrs.getValue("y").equals("null")) {
+				if ((attrs.getValue("x") == null) || (attrs.getValue("y") == null)
+				        || attrs.getValue("x").equals("null") || attrs.getValue("y").equals("null")) {
 					throw new RuntimeException("x or y propertied undefined for non \"int\" zone.");
 				}
 				currentZone.x = Integer.parseInt(attrs.getValue("x"));

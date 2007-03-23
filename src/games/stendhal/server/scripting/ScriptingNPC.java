@@ -8,6 +8,7 @@ import java.util.Map;
 import games.stendhal.server.pathfinder.Path;
 
 public class ScriptingNPC extends SpeakerNPC {
+
 	public ScriptingNPC(String name) {
 		super(name);
 		setBaseHP(100);
@@ -37,8 +38,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public void behave(String method, List<String> triggers, String reply)
-			throws NoSuchMethodException {
+	public void behave(String method, List<String> triggers, String reply) throws NoSuchMethodException {
 		if ("reply".equalsIgnoreCase(method)) {
 			addReply(triggers, reply);
 		} else {
@@ -50,8 +50,7 @@ public class ScriptingNPC extends SpeakerNPC {
 		addReply(triggers, reply);
 	}
 
-	public void behave(String method, Map<String, Integer> items)
-			throws NoSuchMethodException {
+	public void behave(String method, Map<String, Integer> items) throws NoSuchMethodException {
 		if ("buy".equalsIgnoreCase(method)) {
 			addBuyer(new BuyerBehaviour(items));
 		} else if ("sell".equalsIgnoreCase(method)) {
@@ -74,6 +73,7 @@ public class ScriptingNPC extends SpeakerNPC {
 	}
 
 	public static class NotQuestCondition extends SpeakerNPC.ChatCondition {
+
 		String quest;
 
 		public NotQuestCondition(String quest) {
@@ -86,8 +86,8 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public static class NotQuestCompletedCondition extends
-			SpeakerNPC.ChatCondition {
+	public static class NotQuestCompletedCondition extends SpeakerNPC.ChatCondition {
+
 		String quest;
 
 		public NotQuestCompletedCondition(String quest) {
@@ -100,8 +100,8 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public static class QuestCompletedCondition extends
-			SpeakerNPC.ChatCondition {
+	public static class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
+
 		String quest;
 
 		public QuestCompletedCondition(String quest) {

@@ -20,9 +20,11 @@ import org.apache.log4j.Logger;
  * her back in int_admin_playground after use.
  */
 public class Maria extends ScriptImpl {
+
 	private static Logger logger = Logger.getLogger(Maria.class);
 
 	class MargaretCouponAction extends SpeakerNPC.ChatAction {
+
 		private ScriptingSandbox sandbox = null;
 
 		public MargaretCouponAction(ScriptingSandbox sandbox) {
@@ -69,8 +71,10 @@ public class Maria extends ScriptImpl {
 
 		// Create Dialog
 		npc.behave("greet", "Hi, how can i help you?");
-		npc.behave("job", "I am one of the bar maids at Semos' #tavern and doing outside services. We sell fine beers and food.");
-		npc.behave("tavern", /* "I have a #coupon for a free beer in Semos' tavern. "+ */ "It is on the left side of the temple.");
+		npc.behave("job",
+		        "I am one of the bar maids at Semos' #tavern and doing outside services. We sell fine beers and food.");
+		npc.behave("tavern", /* "I have a #coupon for a free beer in Semos' tavern. "+ */
+		        "It is on the left side of the temple.");
 		npc.behave("help", "You can get an #offer of drinks and take a break to meet new people!");
 		try {
 			npc.behave("sell", ShopList.get().get("food&drinks"));

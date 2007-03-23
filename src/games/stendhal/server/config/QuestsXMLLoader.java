@@ -31,9 +31,13 @@ public class QuestsXMLLoader extends DefaultHandler {
 
 	// used while parsing the XML structure
 	private String name;
+
 	private QuestInfo currentQuestInfo;
+
 	private Map<String, String> currentList;
+
 	private StringBuilder text;
+
 	private String entryName;
 
 	public static void main(String argv[]) {
@@ -65,7 +69,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 		}
 		return instance;
 	}
-	
+
 	public QuestInfo get(String name) {
 		QuestInfo questInfo = questInfos.get(name);
 		if (questInfo == null) {
@@ -85,11 +89,9 @@ public class QuestsXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(
-					ref);
+			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref
-						+ "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -112,8 +114,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		text = new StringBuilder();
 
 		if (qName.equals("quest")) {
@@ -126,7 +127,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 			// TODO
 
 		} else if (qName.equals("history") || qName.equals("hints")) {
-			currentList = new HashMap<String, String>(); 
+			currentList = new HashMap<String, String>();
 		} else if (qName.equals("entry")) {
 			entryName = attrs.getValue("name");
 		}

@@ -1,5 +1,5 @@
 /* $Id$
-/***************************************************************************
+ /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
@@ -22,7 +22,8 @@ import java.util.Map;
  * Represents an empty/unmarked teleport scroll.
  */
 public class EmptyScroll extends Scroll {
-//	private static final Logger logger = Logger.getLogger(EmptyScroll.class);
+
+	//	private static final Logger logger = Logger.getLogger(EmptyScroll.class);
 
 	/**
 	 * Creates a new empty scroll
@@ -32,11 +33,9 @@ public class EmptyScroll extends Scroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public EmptyScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public EmptyScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
 
 	/**
 	 * Use a [empty] scroll.
@@ -49,7 +48,7 @@ public class EmptyScroll extends Scroll {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		if (zone.isTeleportable()) {
 			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("marked_scroll");
-			markedScroll.put("infostring", player.getID().getZoneID() + " "	+ player.getX() + " " + player.getY());
+			markedScroll.put("infostring", player.getID().getZoneID() + " " + player.getX() + " " + player.getY());
 			markedScroll.put("bound", player.getName());
 			player.equip(markedScroll, true);
 			return true;

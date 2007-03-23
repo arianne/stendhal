@@ -14,13 +14,12 @@ import java.util.Map;
  * Configure Orril Jynath House (Inside/Level 0).
  */
 public class IL0_JynathHouse implements ZoneConfigurator {
+
 	private NPCList npcs;
-	
 
 	public IL0_JynathHouse() {
 		this.npcs = NPCList.get();
 	}
-
 
 	/**
 	 * Configure a zone.
@@ -28,15 +27,13 @@ public class IL0_JynathHouse implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildJynathHouse(zone, attributes);
 	}
 
-
-	private void buildJynathHouse(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildJynathHouse(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Jynath") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -55,7 +52,7 @@ public class IL0_JynathHouse implements ZoneConfigurator {
 				nodes.add(new Path.Node(21, 8));
 				nodes.add(new Path.Node(21, 6));
 				nodes.add(new Path.Node(24, 6));
-			setPath(nodes, true);
+				setPath(nodes, true);
 			}
 
 			@Override

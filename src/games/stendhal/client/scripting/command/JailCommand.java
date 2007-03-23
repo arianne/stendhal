@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Send a player to jail.
  */
 class JailCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -19,10 +20,9 @@ class JailCommand implements SlashCommand {
 		/*
 		 * Reason required
 		 */
-		if(remainder.length() == 0) {
+		if (remainder.length() == 0) {
 			return false;
 		}
-
 
 		RPAction action = new RPAction();
 
@@ -36,7 +36,6 @@ class JailCommand implements SlashCommand {
 		return true;
 	}
 
-
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -45,7 +44,6 @@ class JailCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 2;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

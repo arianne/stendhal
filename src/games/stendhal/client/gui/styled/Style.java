@@ -19,13 +19,13 @@ import games.stendhal.client.Sprite;
  * Style information.
  */
 public interface Style {
+
 	/**
 	 * Get the background texture.
 	 *
 	 * @return	A texture sprite.
 	 */
 	public Sprite getBackground();
-
 
 	/**
 	 * Get component border.
@@ -34,14 +34,12 @@ public interface Style {
 	 */
 	public Border getBorder();
 
-
 	/**
 	 * Get the normal font.
 	 *
 	 * @return	A font.
 	 */
 	public Font getFont();
-
 
 	/**
 	 * Get the foreground color appropriete for the background texture.

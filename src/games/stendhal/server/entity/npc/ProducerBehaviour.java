@@ -19,6 +19,7 @@ import java.util.Set;
  * @author daniel
  */
 public class ProducerBehaviour extends Behaviour {
+
 	/**
 	 * To store the current status of a production order, each
 	 * ProducerBehaviour needs to have an exclusive quest slot.
@@ -40,43 +41,42 @@ public class ProducerBehaviour extends Behaviour {
 	 * system extensible.
 	 */
 	private String questSlot;
-	
+
 	/**
 	 * The name of the activity, e.g. "build", "forge", "bake"
 	 */
 	private String productionActivity;
-	
+
 	/**
 	 * The unit in which the product is counted, e.g. "bags", "pieces",
 	 * "pounds"
 	 */
 	// private String productUnit;
-	
 	/**
 	 * The name of the product, e.g. "plate_armor". It must be a valid item
 	 * name.
 	 */
 	private String productName;
-	
+
 	/**
 	 * Whether the produced item should be player bound.
 	 */
-	private boolean	productBound;
-	
+	private boolean productBound;
+
 	/**
 	 * A mapping which maps the name of each required resource
 	 * (e.g. "iron_ore") to the amount of this resource that is
 	 * required for one unit of the product.
 	 */
 	private Map<String, Integer> requiredResourcesPerItem;
-	
+
 	/**
 	 * The number of seconds required to produce one unit of the product.
 	 */
 	private int productionTimePerItem;
-	
+
 	protected int amount;
-	
+
 	/**
 	 * Creates a new ProducerBehaviour.
 	 * @param questSlot the slot that is used to store the status 
@@ -91,15 +91,11 @@ public class ProducerBehaviour extends Behaviour {
 	 * @param productionTimePerItem the number of seconds required to produce
 	 *                              one unit of the product.
 	 */
-	public ProducerBehaviour(String questSlot, String productionActivity,
-	 String productName, Map<String, Integer> requiredResourcesPerItem,
-	 int productionTimePerItem) {
-		this(questSlot, productionActivity, productName,
-			requiredResourcesPerItem, productionTimePerItem,
-			false);
+	public ProducerBehaviour(String questSlot, String productionActivity, String productName,
+	        Map<String, Integer> requiredResourcesPerItem, int productionTimePerItem) {
+		this(questSlot, productionActivity, productName, requiredResourcesPerItem, productionTimePerItem, false);
 	}
 
-	
 	/**
 	 * Creates a new ProducerBehaviour.
 	 * @param questSlot the slot that is used to store the status 
@@ -117,9 +113,8 @@ public class ProducerBehaviour extends Behaviour {
 	 *				player bound. Use only for special
 	 *				one-time items.
 	 */
-	public ProducerBehaviour(String questSlot, String productionActivity,
-	 String productName, Map<String, Integer> requiredResourcesPerItem,
-	 int productionTimePerItem, boolean productBound) {
+	public ProducerBehaviour(String questSlot, String productionActivity, String productName,
+	        Map<String, Integer> requiredResourcesPerItem, int productionTimePerItem, boolean productBound) {
 		this.questSlot = questSlot;
 		this.productionActivity = productionActivity;
 		// this.productUnit = productUnit;
@@ -128,27 +123,27 @@ public class ProducerBehaviour extends Behaviour {
 		this.productionTimePerItem = productionTimePerItem;
 		this.productBound = productBound;
 	}
-	
+
 	protected String getQuestSlot() {
 		return questSlot;
 	}
-	
+
 	protected Map<String, Integer> getRequiredResourcesPerItem() {
 		return requiredResourcesPerItem;
 	}
-	
+
 	protected String getProductionActivity() {
 		return productionActivity;
 	}
-	
-//	protected String getProductUnit() {
-//		return productUnit;
-//	}
+
+	//	protected String getProductUnit() {
+	//		return productUnit;
+	//	}
 
 	protected String getProductName() {
 		return productName;
 	}
-	
+
 	protected int getProductionTime(int amount) {
 		return productionTimePerItem * amount;
 	}
@@ -172,12 +167,12 @@ public class ProducerBehaviour extends Behaviour {
 	 */
 	private String getRequiredResourceNamesWithHashes(int amount) {
 		Set<String> requiredResourcesWithHashes = new HashSet<String>();
-		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
-			requiredResourcesWithHashes.add(amount * entry.getValue() + " #" + entry.getKey());	
+		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
+			requiredResourcesWithHashes.add(amount * entry.getValue() + " #" + entry.getKey());
 		}
 		return Grammar.enumerateCollection(requiredResourcesWithHashes);
 	}
-	
+
 	public String getApproximateRemainingTime(Player player) {
 		String orderString = player.getQuest(questSlot);
 		String[] order = orderString.split(";");
@@ -191,16 +186,16 @@ public class ProducerBehaviour extends Behaviour {
 		return TimeUtil.approxTimeUntil(remainingSeconds);
 
 	}
-	
+
 	private int getMaximalAmount(Player player) {
 		int maxAmount = Integer.MAX_VALUE;
-		for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
+		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 			int limitationByThisResource = player.getNumberOfEquipped(entry.getKey()) / entry.getValue();
 			maxAmount = Math.min(maxAmount, limitationByThisResource);
 		}
 		return maxAmount;
 	}
-	
+
 	/**
 	 * Tries to take all the resources required to produce <i>amount</i>
 	 * units of the product from the player. If this is possible, asks the
@@ -212,25 +207,17 @@ public class ProducerBehaviour extends Behaviour {
 	 */
 	public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
 		if (getMaximalAmount(player) < amount) {
-			npc.say("I can only "
-					+ getProductionActivity()
-					+ " "
-					+ amount
-					+ " "
-					+ getProductName()
-					+ " if you bring me "
-					+ getRequiredResourceNamesWithHashes(amount)
-					+ ".");
+			npc.say("I can only " + getProductionActivity() + " " + amount + " " + getProductName()
+			        + " if you bring me " + getRequiredResourceNamesWithHashes(amount) + ".");
 			return false;
 		} else {
 			this.amount = amount;
-			npc.say("I need you to fetch me "
-					+ getRequiredResourceNamesWithHashes(amount)
-					+ " for this job. Do you have it?");
+			npc.say("I need you to fetch me " + getRequiredResourceNamesWithHashes(amount)
+			        + " for this job. Do you have it?");
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Tries to take all the resources required to produce the agreed amount
 	 * of the product from the player. If this is possible, initiates
@@ -247,23 +234,19 @@ public class ProducerBehaviour extends Behaviour {
 			npc.say("Hey! I'm over here! You'd better not be trying to trick me...");
 			return false;
 		} else {
-			for (Map.Entry<String, Integer> entry: getRequiredResourcesPerItem().entrySet()) {
+			for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
 				int amountToDrop = amount * entry.getValue();
 				player.drop(entry.getKey(), amountToDrop);
 			}
 			long timeNow = new Date().getTime();
 			player.setQuest(questSlot, amount + ";" + getProductName() + ";" + timeNow);
-			npc.say("OK, I will "
-					+ getProductionActivity()
-					+ " "
-					+ amount
-					+ " "
-					+ getProductName()
-					+ " for you, but that will take some time. Please come back in " + getApproximateRemainingTime(player) + ".");
+			npc.say("OK, I will " + getProductionActivity() + " " + amount + " " + getProductName()
+			        + " for you, but that will take some time. Please come back in "
+			        + getApproximateRemainingTime(player) + ".");
 			return true;
 		}
 	}
-	
+
 	/**
 	 * This method is called when the player returns to pick up the finished
 	 * product. It checks if the NPC is already done with the order. If that
@@ -279,31 +262,24 @@ public class ProducerBehaviour extends Behaviour {
 		// String productName = order[1];
 		long orderTime = Long.parseLong(order[2]);
 		long timeNow = new Date().getTime();
-		if (timeNow - orderTime < getProductionTime(numberOfProductItems)
-								  * 1000) {
-			npc.say("Welcome back! I'm still busy with your order to "
-					+ getProductionActivity()
-					+ " "
-					+ getProductName()
-					+ " for you. Come back in "
-					+ getApproximateRemainingTime(player)
-					+ " to get it.");
+		if (timeNow - orderTime < getProductionTime(numberOfProductItems) * 1000) {
+			npc.say("Welcome back! I'm still busy with your order to " + getProductionActivity() + " "
+			        + getProductName() + " for you. Come back in " + getApproximateRemainingTime(player)
+			        + " to get it.");
 		} else {
-			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(getProductName());            
+			StackableItem products = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
+			        getProductName());
 			products.setQuantity(numberOfProductItems);
 
-			if(isProductBound()) {
+			if (isProductBound()) {
 				products.put("bound", player.getName());
 			}
 
 			player.equip(products, true);
-			npc.say("Welcome back! I'm done with your order. Here you have "
-					+ numberOfProductItems
-					+ " "
-					// + getProductUnit()
-					// + " of "
-					+ getProductName()
-					+ ".");
+			npc.say("Welcome back! I'm done with your order. Here you have " + numberOfProductItems + " "
+			// + getProductUnit()
+			        // + " of "
+			        + getProductName() + ".");
 			player.setQuest(questSlot, "done");
 			// give some XP as a little bonus for industrious workers
 			player.addXP(numberOfProductItems);

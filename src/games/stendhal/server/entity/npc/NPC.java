@@ -25,6 +25,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public abstract class NPC extends RPEntity {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(NPC.class);
 
@@ -114,8 +115,7 @@ public abstract class NPC extends RPEntity {
 	 * @param maxPathRadius
 	 *            the maximum radius in which a path is searched
 	 */
-	public void setAsynchonousMovement(Entity destEntity, double min,
-			double max, double maxPathRadius) {
+	public void setAsynchonousMovement(Entity destEntity, double min, double max, double maxPathRadius) {
 		int destX = destEntity.getX();
 		int destY = destEntity.getY();
 		if (nextTo(destX, destY, min) && hasPath()) {
@@ -145,21 +145,17 @@ public abstract class NPC extends RPEntity {
 	 * @param maxPathRadius
 	 *            the maximum radius in which a path is searched
 	 */
-	public void setMovement(Entity destEntity, double min, double max,
-			double maxPathRadius) {
+	public void setMovement(Entity destEntity, double min, double max, double maxPathRadius) {
 		if (nextTo(destEntity.getX(), destEntity.getY(), min) && hasPath()) {
-			logger.debug("Removing path because nextto(" + destEntity.getX()
-					+ "," + destEntity.getY() + "," + min + ") of (" + getX()
-					+ "," + getY() + ")");
+			logger.debug("Removing path because nextto(" + destEntity.getX() + "," + destEntity.getY() + "," + min
+			        + ") of (" + getX() + "," + getY() + ")");
 			clearPath();
 		}
 
 		if ((squaredDistance(destEntity.getX(), destEntity.getY()) > max) && !hasPath()) {
-			logger.debug("Creating path because (" + getX() + "," + getY()
-					+ ") distance(" + destEntity.getX() + ","
-					+ destEntity.getY() + ")>" + max);
-			List<Path.Node> path = Path.searchPath(this, destEntity,
-					maxPathRadius);
+			logger.debug("Creating path because (" + getX() + "," + getY() + ") distance(" + destEntity.getX() + ","
+			        + destEntity.getY() + ")>" + max);
+			List<Path.Node> path = Path.searchPath(this, destEntity, maxPathRadius);
 			setPath(path, false);
 		}
 	}

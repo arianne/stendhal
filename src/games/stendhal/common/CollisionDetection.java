@@ -22,6 +22,7 @@ import java.io.Reader;
  * not with any of the non trespasable areas of the world
  */
 public class CollisionDetection {
+
 	private boolean[] blocked;
 
 	private int width;

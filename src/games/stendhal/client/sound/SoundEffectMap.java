@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SoundEffectMap {
+
 	/**
 	 *  the singleton instance initated by default
 	 */
@@ -46,7 +47,6 @@ public class SoundEffectMap {
 		return sfxmap.containsKey(key);
 
 	}
-
 
 	Object put(String key, String value) {
 		pathMap.put(key, value);

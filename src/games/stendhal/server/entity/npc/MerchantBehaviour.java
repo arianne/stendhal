@@ -23,7 +23,7 @@ import java.util.Set;
  * to a player, or buy items from a player.
  */
 public abstract class MerchantBehaviour extends Behaviour {
-	
+
 	protected Map<String, Integer> priceList;
 
 	protected String chosenItem;

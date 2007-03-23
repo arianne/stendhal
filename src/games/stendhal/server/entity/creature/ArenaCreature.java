@@ -13,6 +13,7 @@ import java.util.List;
  * @author hendrik
  */
 public class ArenaCreature extends Creature {
+
 	private Shape arena = null;
 
 	/**

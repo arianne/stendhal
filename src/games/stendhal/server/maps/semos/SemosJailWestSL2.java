@@ -16,8 +16,8 @@ import java.util.Map;
  * @author hendrik
  */
 public class SemosJailWestSL2 implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -25,15 +25,14 @@ public class SemosJailWestSL2 implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildJailKeeper(zone);
 		disabledMagicScrolls(zone);
 	}
 
-
 	private void buildJailKeeper(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Sten Tanquilos") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -43,7 +42,7 @@ public class SemosJailWestSL2 implements ZoneConfigurator {
 				nodes.add(new Path.Node(4, 17));
 				setPath(nodes, true);
 			}
-	
+
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings! How may I #help you?");
@@ -53,7 +52,7 @@ public class SemosJailWestSL2 implements ZoneConfigurator {
 			}
 		};
 		npcs.add(npc);
-	
+
 		zone.assignRPObjectID(npc);
 		npc.put("class", "youngsoldiernpc");
 		npc.set(4, 14);

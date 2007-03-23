@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
  * A utility class for creating objects using ConfigurableFactory.
  */
 public class ConfigurableFactoryHelper {
+
 	/**
 	 * A class type safe wrapper for a ConfigurableFactory that takes
 	 * a desired target class and returns <code>null</code> if the factory
@@ -35,17 +36,14 @@ public class ConfigurableFactoryHelper {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 */
-	public static Object create(ConfigurableFactory factory,
-	 ConfigurableFactoryContext ctx, Class clazz)
-	 throws IllegalArgumentException {
-		Object	obj;
-
+	public static Object create(ConfigurableFactory factory, ConfigurableFactoryContext ctx, Class clazz)
+	        throws IllegalArgumentException {
+		Object obj;
 
 		obj = factory.create(ctx);
 
 		return (clazz.isInstance(obj) ? obj : null);
 	}
-
 
 	/**
 	 * Create an object factory using a [logical] class name.
@@ -81,7 +79,7 @@ public class ConfigurableFactoryHelper {
 	 *		was found.
 	 */
 	public static ConfigurableFactory getFactory(String className) {
-		Class		clazz;
+		Class clazz;
 		/*
 		 * First the <class>Factory form
 		 */
@@ -91,24 +89,18 @@ public class ConfigurableFactoryHelper {
 			/*
 			 * Is it a ConfigurableFactory?
 			 */
-			if(ConfigurableFactory.class.isAssignableFrom(clazz)) {
+			if (ConfigurableFactory.class.isAssignableFrom(clazz)) {
 				try {
-					return (ConfigurableFactory)
-						clazz.newInstance();
-				} catch(InstantiationException ex) {
-					throw new IllegalArgumentException(
-						"Class is not instantiatable: "
-							+ clazz.getName(), ex);
-				} catch(IllegalAccessException ex) {
-					throw new IllegalArgumentException(
-						"Unable to access class: "
-							+ clazz.getName(), ex);
+					return (ConfigurableFactory) clazz.newInstance();
+				} catch (InstantiationException ex) {
+					throw new IllegalArgumentException("Class is not instantiatable: " + clazz.getName(), ex);
+				} catch (IllegalAccessException ex) {
+					throw new IllegalArgumentException("Unable to access class: " + clazz.getName(), ex);
 				}
 			}
-		} catch(ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			// Fall through
 		}
-
 
 		/*
 		 * Now <class> directly
@@ -119,18 +111,13 @@ public class ConfigurableFactoryHelper {
 			/*
 			 * Is it a ConfigurableFactory?
 			 */
-			if(ConfigurableFactory.class.isAssignableFrom(clazz)) {
+			if (ConfigurableFactory.class.isAssignableFrom(clazz)) {
 				try {
-					return (ConfigurableFactory)
-						clazz.newInstance();
-				} catch(InstantiationException ex) {
-					throw new IllegalArgumentException(
-						"Class is not instantiatable: "
-							+ className, ex);
-				} catch(IllegalAccessException ex) {
-					throw new IllegalArgumentException(
-						"Unable to access class: "
-							+ className, ex);
+					return (ConfigurableFactory) clazz.newInstance();
+				} catch (InstantiationException ex) {
+					throw new IllegalArgumentException("Class is not instantiatable: " + className, ex);
+				} catch (IllegalAccessException ex) {
+					throw new IllegalArgumentException("Unable to access class: " + className, ex);
 				}
 			}
 
@@ -139,11 +126,8 @@ public class ConfigurableFactoryHelper {
 			 * constructor.
 			 */
 			try {
-				return new ACFactory(
-					clazz.getConstructor(
-						new Class[] {
-					ConfigurableFactoryContext.class }));
-			} catch(NoSuchMethodException ex) {
+				return new ACFactory(clazz.getConstructor(new Class[] { ConfigurableFactoryContext.class }));
+			} catch (NoSuchMethodException ex) {
 				// Fall through
 			}
 
@@ -154,16 +138,15 @@ public class ConfigurableFactoryHelper {
 				/*
 				 * Trigger's NoSuchMethodException if missing.
 				 */
-				clazz.getConstructor(new Class[] { });
+				clazz.getConstructor(new Class[] {});
 
 				return new DCFactory(clazz);
-			} catch(NoSuchMethodException ex) {
+			} catch (NoSuchMethodException ex) {
 				// Fall through
 			}
-		} catch(ClassNotFoundException ex) {
+		} catch (ClassNotFoundException ex) {
 			// Fall through
 		}
-
 
 		return null;
 	}
@@ -176,73 +159,53 @@ public class ConfigurableFactoryHelper {
 	 * parameter constructor.
 	 */
 	protected static class ACFactory implements ConfigurableFactory {
-		protected Constructor	cnstr;
 
+		protected Constructor cnstr;
 
-		public
-		ACFactory(Constructor cnstr) {
+		public ACFactory(Constructor cnstr) {
 			this.cnstr = cnstr;
 		}
-
 
 		//
 		// ConfigurableFactory
 		//
 
-		public Object create(ConfigurableFactoryContext ctx)
-		 throws IllegalArgumentException {
+		public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 			try {
-				return cnstr.newInstance(
-					new Object[] { ctx } );
-			} catch(InstantiationException ex) {
-				throw new IllegalArgumentException(
-					"Class is not instantiatable: "
-					+ cnstr.getDeclaringClass().getName(),
-					ex);
-			} catch(IllegalAccessException ex) {
-				throw new IllegalArgumentException(
-					"Unable to access class: "
-					+ cnstr.getDeclaringClass().getName(),
-					ex);
-			} catch(InvocationTargetException ex) {
-				throw new IllegalArgumentException(
-					"Error creating class: "
-					+ cnstr.getDeclaringClass().getName(),
-					ex);
+				return cnstr.newInstance(new Object[] { ctx });
+			} catch (InstantiationException ex) {
+				throw new IllegalArgumentException("Class is not instantiatable: "
+				        + cnstr.getDeclaringClass().getName(), ex);
+			} catch (IllegalAccessException ex) {
+				throw new IllegalArgumentException("Unable to access class: " + cnstr.getDeclaringClass().getName(), ex);
+			} catch (InvocationTargetException ex) {
+				throw new IllegalArgumentException("Error creating class: " + cnstr.getDeclaringClass().getName(), ex);
 			}
 		}
 	}
-
 
 	/**
 	 * A wrapper factory that uses the default constructor of a class.
 	 */
 	protected static class DCFactory implements ConfigurableFactory {
-		protected Class		clazz;
 
+		protected Class clazz;
 
-		public
-		DCFactory(Class clazz) {
+		public DCFactory(Class clazz) {
 			this.clazz = clazz;
 		}
-
 
 		//
 		// ConfigurableFactory
 		//
 
-		public Object create(ConfigurableFactoryContext ctx)
-		 throws IllegalArgumentException {
+		public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 			try {
 				return clazz.newInstance();
-			} catch(InstantiationException ex) {
-				throw new IllegalArgumentException(
-					"Class is not instantiatable: "
-						+ clazz.getName(), ex);
-			} catch(IllegalAccessException ex) {
-				throw new IllegalArgumentException(
-					"Unable to access class: "
-						+ clazz.getName(), ex);
+			} catch (InstantiationException ex) {
+				throw new IllegalArgumentException("Class is not instantiatable: " + clazz.getName(), ex);
+			} catch (IllegalAccessException ex) {
+				throw new IllegalArgumentException("Unable to access class: " + clazz.getName(), ex);
 			}
 		}
 	}

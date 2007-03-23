@@ -12,32 +12,22 @@ import java.util.StringTokenizer;
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest {
+
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private String[] points = new String[] {
-		"Carmen",
-		"Monogenes",
-		"Hayunn Naratha",
-		//TODO: load groovy before quest are inited (or convert kanmararn.groovy to java) "Henry", // TODO: ignore if groovy is inactive
-		"Margaret",
-		"Balduin",
-		//TODO: load groovy before quest are inited (or convert deathmatch_entry.groovy to java) "Deathmatch Recruiter", // TODO: ignore if groovy is inactive
-		"Katinka",
-		"Haizen",
-		"Bario",
-		"Ceryl",
-		"Nishiya",
-		"Marcus",
-		"Jynath",
-		"Loretta",
-		"Fidorea"
-	};
+	private String[] points = new String[] { "Carmen", "Monogenes", "Hayunn Naratha",
+	//TODO: load groovy before quest are inited (or convert kanmararn.groovy to java) "Henry", // TODO: ignore if groovy is inactive
+	        "Margaret", "Balduin",
+	        //TODO: load groovy before quest are inited (or convert deathmatch_entry.groovy to java) "Deathmatch Recruiter", // TODO: ignore if groovy is inactive
+	        "Katinka", "Haizen", "Bario", "Ceryl", "Nishiya", "Marcus", "Jynath", "Loretta", "Fidorea" };
 
 	/**
 	 * Handles all normal points in this paper chase (without the first and last one)
 	 */
 	private class PaperChasePoint extends SpeakerNPC.ChatAction {
+
 		int idx;
+
 		PaperChasePoint(int idx) {
 			this.idx = idx;
 		}
@@ -55,7 +45,7 @@ public class PaperChase extends AbstractQuest {
 			}
 
 			// analyse quest state
-			StringTokenizer st = new StringTokenizer(questState, ";"); 
+			StringTokenizer st = new StringTokenizer(questState, ";");
 			String nextNPC = st.nextToken();
 			String startTime = st.nextToken();
 
@@ -70,7 +60,7 @@ public class PaperChase extends AbstractQuest {
 			String newState = next + ";" + startTime;
 			player.setQuest(QUEST_SLOT, newState);
 		}
-		
+
 	}
 
 	@Override
@@ -87,12 +77,8 @@ public class PaperChase extends AbstractQuest {
 	private void addTaskToNPC(int idx) {
 		String state = points[idx];
 		SpeakerNPC npc = npcs.get(state);
-		npc.add(ConversationStates.ATTENDING, 
-					"paper",
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new PaperChasePoint(idx));
+		npc.add(ConversationStates.ATTENDING, "paper", null, ConversationStates.ATTENDING, null, new PaperChasePoint(
+		        idx));
 	}
 
 	@Override

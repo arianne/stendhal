@@ -13,6 +13,7 @@ package games.stendhal.server.rule;
  * @author Matthias Totz
  */
 public interface RuleManager {
+
 	/**
 	 * returns the EntityManager for this ruleset
 	 * 

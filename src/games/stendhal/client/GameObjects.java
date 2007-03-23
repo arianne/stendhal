@@ -42,9 +42,10 @@ import org.apache.log4j.Logger;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects implements Iterable<Entity> {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
- 
+
 	private Map<RPObject.ID, Entity> objects;
 
 	private List<Text> texts;
@@ -88,6 +89,7 @@ public class GameObjects implements Iterable<Entity> {
 
 		return instance;
 	}
+
 	/**
 	 * constructor
 	 * 
@@ -107,8 +109,6 @@ public class GameObjects implements Iterable<Entity> {
 	public Iterator<Entity> iterator() {
 		return sortedObjects.iterator();
 	}
-
-
 
 	public Sprite spriteType(RPObject object) {
 		try {
@@ -144,8 +144,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	/** Modify a existing Entity so its propierties change */
-	public void modifyAdded(RPObject object, RPObject changes)
-			throws AttributeNotFoundException {
+	public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "modifyAdded");
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
@@ -156,8 +155,7 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.finishMethod(logger, "modifyAdded");
 	}
 
-	public void modifyRemoved(RPObject object, RPObject changes)
-			throws AttributeNotFoundException {
+	public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "modifyRemoved");
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
@@ -223,11 +221,9 @@ public class GameObjects implements Iterable<Entity> {
 		Rectangle2D area = entity.getArea();
 
 		for (Entity other : sortedObjects) {
-			if (!(other instanceof PassiveEntity || other instanceof Blood
-					|| other instanceof PlantGrower || other instanceof GrainField
-					|| other instanceof Portal || other instanceof GoldSource)) {
-				if (area.intersects(other.getArea())
-						&& !entity.getID().equals(other.getID())) {
+			if (!(other instanceof PassiveEntity || other instanceof Blood || other instanceof PlantGrower
+			        || other instanceof GrainField || other instanceof Portal || other instanceof GoldSource)) {
+				if (area.intersects(other.getArea()) && !entity.getID().equals(other.getID())) {
 					entity.onCollideWith(other);
 					return true;
 				}
@@ -252,8 +248,7 @@ public class GameObjects implements Iterable<Entity> {
 		}
 	}
 
-	public void addText(Entity speaker, String text, Color color,
-			boolean isTalking) {
+	public void addText(Entity speaker, String text, Color color, boolean isTalking) {
 		double x = speaker.getX();
 		double y = speaker.getY();
 
@@ -275,8 +270,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	public void addText(Entity speaker, Sprite sprite, long persistTime) {
-		Text entity = new Text(this, sprite, speaker.getX(), speaker.getY(),
-				persistTime);
+		Text entity = new Text(this, sprite, speaker.getX(), speaker.getY(), persistTime);
 		texts.add(entity);
 	}
 
@@ -285,8 +279,7 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	public Entity at(double x, double y) {
-		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects
-				.size());
+		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects.size());
 		while (it.hasPrevious()) {
 			Entity entity = it.previous();
 
@@ -314,7 +307,7 @@ public class GameObjects implements Iterable<Entity> {
 			Entity entity = it.previous();
 
 			if (entity.getArea().contains(x, y)) {
-				if (entity.getType().compareTo("creature")==0) {
+				if (entity.getType().compareTo("creature") == 0) {
 					continue;
 				}
 				return entity;
@@ -327,7 +320,7 @@ public class GameObjects implements Iterable<Entity> {
 			Entity entity = it.previous();
 
 			if (entity.getDrawedArea().contains(x, y)) {
-				if (entity.getType().compareTo("creature")==0) {
+				if (entity.getType().compareTo("creature") == 0) {
 					continue;
 				}
 				return entity;
@@ -336,7 +329,6 @@ public class GameObjects implements Iterable<Entity> {
 
 		return null;
 	}
-
 
 	/** Draw all the objects in game */
 	public void draw(GameScreen screen) {
@@ -347,19 +339,20 @@ public class GameObjects implements Iterable<Entity> {
 		}
 		// System.err.println(temp);
 	}
-	
+
 	/** Draw the creature's Name/HP Bar */
 	public void drawHPbar(GameScreen screen) {
 		//sort();
 
 		for (Entity entity : sortedObjects) {
-			if (entity instanceof RPEntity){
-				RPEntity rpentity = (RPEntity)entity;
+			if (entity instanceof RPEntity) {
+				RPEntity rpentity = (RPEntity) entity;
 				rpentity.drawHPbar(screen);
 			}
 		}
 		// System.err.println(temp);
 	}
+
 	public void drawText(GameScreen screen) {
 		texts.removeAll(textsToRemove);
 		textsToRemove.clear();
@@ -373,5 +366,4 @@ public class GameObjects implements Iterable<Entity> {
 		}
 	}
 
-	
 }

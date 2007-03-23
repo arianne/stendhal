@@ -26,6 +26,7 @@ import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC {
+
 	private int weight;
 
 	public Sheep(RPObject object) throws AttributeNotFoundException {
@@ -36,27 +37,18 @@ public class Sheep extends NPC {
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		sprites.put("move_up", store.getAnimatedSprite(translate(object
-				.get("type")), 0, 3, 1, 1));
-		sprites.put("move_right", store.getAnimatedSprite(translate(object
-				.get("type")), 1, 3, 1, 1));
-		sprites.put("move_down", store.getAnimatedSprite(translate(object
-				.get("type")), 2, 3, 1, 1));
-		sprites.put("move_left", store.getAnimatedSprite(translate(object
-				.get("type")), 3, 3, 1, 1));
-		sprites.put("big_move_up", store.getAnimatedSprite(translate(object
-				.get("type")), 4, 3, 1, 1));
-		sprites.put("big_move_right", store.getAnimatedSprite(translate(object
-				.get("type")), 5, 3, 1, 1));
-		sprites.put("big_move_down", store.getAnimatedSprite(translate(object
-				.get("type")), 6, 3, 1, 1));
-		sprites.put("big_move_left", store.getAnimatedSprite(translate(object
-				.get("type")), 7, 3, 1, 1));
+		sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 3, 1, 1));
+		sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")), 1, 3, 1, 1));
+		sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")), 2, 3, 1, 1));
+		sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")), 3, 3, 1, 1));
+		sprites.put("big_move_up", store.getAnimatedSprite(translate(object.get("type")), 4, 3, 1, 1));
+		sprites.put("big_move_right", store.getAnimatedSprite(translate(object.get("type")), 5, 3, 1, 1));
+		sprites.put("big_move_down", store.getAnimatedSprite(translate(object.get("type")), 6, 3, 1, 1));
+		sprites.put("big_move_left", store.getAnimatedSprite(translate(object.get("type")), 7, 3, 1, 1));
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("weight")) {
@@ -102,19 +94,19 @@ public class Sheep extends NPC {
 	public void onAction(ActionType at, String... params) {
 		// ActionType at = handleAction(action);
 		switch (at) {
-		case OWN:
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			playSound("sheep-chat-2", 25, 60);
-			break;
+			case OWN:
+				RPAction rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				playSound("sheep-chat-2", 25, 60);
+				break;
 
-		default:
-			playSound((weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40);
-			super.onAction(at, params);
-			break;
+			default:
+				playSound((weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40);
+				super.onAction(at, params);
+				break;
 		}
 
 	}
@@ -146,10 +138,10 @@ public class Sheep extends NPC {
 	protected void buildOfferedActions(List<String> list) {
 
 		super.buildOfferedActions(list);
-		if (!(StendhalClient.get().getPlayer()==null))
-		if (!StendhalClient.get().getPlayer().has("sheep")) {
-			list.add(ActionType.OWN.getRepresentation());
-		}
+		if (!(StendhalClient.get().getPlayer() == null))
+			if (!StendhalClient.get().getPlayer().has("sheep")) {
+				list.add(ActionType.OWN.getRepresentation());
+			}
 
 	}
 

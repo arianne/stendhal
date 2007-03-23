@@ -14,6 +14,7 @@ import java.util.List;
  * @author hendrik
  */
 public class AttackableCreature extends Creature {
+
 	private RPEntity master = null;
 
 	/**

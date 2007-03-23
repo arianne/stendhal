@@ -21,8 +21,9 @@ import games.stendhal.server.util.TimeUtil;
  * As they are by invitation, it ignores destination zone anti-teleport rules.
  */
 public class InvitationScroll extends TeleportScroll {
-//	private static final Logger logger =
-//				Logger.getLogger(InvitationScroll.class);
+
+	//	private static final Logger logger =
+	//				Logger.getLogger(InvitationScroll.class);
 
 	/**
 	 * Creates a new invitation teleport scroll.
@@ -32,11 +33,9 @@ public class InvitationScroll extends TeleportScroll {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public InvitationScroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public InvitationScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
-
 
 	/**
 	 * Try to teleport to a marked scroll infostring style place.
@@ -48,44 +47,41 @@ public class InvitationScroll extends TeleportScroll {
 	 * @return	<code>true</code> if teleport was successful.
 	 */
 	protected boolean teleportTo(String where, Player player) {
-		StringTokenizer	st;
-		StendhalRPZone	zone;
-		int		x;
-		int		y;
-
+		StringTokenizer st;
+		StendhalRPZone zone;
+		int x;
+		int y;
 
 		st = new StringTokenizer(where, " ");
 
-		if(!st.hasMoreTokens()) {
+		if (!st.hasMoreTokens()) {
 			return false;
 		}
 
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
-			st.nextToken());
+		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
 
-		if(!st.hasMoreTokens()) {
+		if (!st.hasMoreTokens()) {
 			return false;
 		}
 
 		try {
 			x = Integer.parseInt(st.nextToken());
-		} catch(NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			return false;
 		}
 
-		if(!st.hasMoreTokens()) {
+		if (!st.hasMoreTokens()) {
 			return false;
 		}
 
 		try {
 			y = Integer.parseInt(st.nextToken());
-		} catch(NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			return false;
 		}
 
 		return player.teleport(zone, x, y, null, player);
 	}
-
 
 	/**
 	 * Is invoked when a teleporting scroll is actually used.
@@ -97,29 +93,26 @@ public class InvitationScroll extends TeleportScroll {
 	 */
 	@Override
 	protected boolean useTeleportScroll(Player player) {
-		if(!has("infostring")) {
-			player.sendPrivateText(
-				"This invitation has not been filled in.");
+		if (!has("infostring")) {
+			player.sendPrivateText("This invitation has not been filled in.");
 
 			return false;
 		}
 
-//		String dest = StendhalRPZone.get().getGatheringLocation(
-//			get("infostring"));
-String dest = null;
+		//		String dest = StendhalRPZone.get().getGatheringLocation(
+		//			get("infostring"));
+		String dest = null;
 
 		// TODO: implement me
 
-		if(dest == null) {
-			player.sendPrivateText(
-				"You do not recognize the event.");
+		if (dest == null) {
+			player.sendPrivateText("You do not recognize the event.");
 
 			return false;
 		}
 
 		return teleportTo(dest, player);
 	}
-
 
 	/**
 	 * Get a description of the event and it's time.
@@ -128,35 +121,34 @@ String dest = null;
 	 */
 	@Override
 	public String describe() {
-		StringBuffer	sbuf;
-		int		secondsTill;
-
+		StringBuffer sbuf;
+		int secondsTill;
 
 		/*
 		 * Base description (set by creator?)
 		 */
-                if(hasDescription()) {
-					sbuf = new StringBuffer(getDescription());
-				} else {
-					sbuf = new StringBuffer("An invitation to an event.");
-				}
+		if (hasDescription()) {
+			sbuf = new StringBuffer(getDescription());
+		} else {
+			sbuf = new StringBuffer("An invitation to an event.");
+		}
 
 		/*
 		 * When is it?
 		 */
-		if(has("infostring")) {
-//			secondsTill = StendhalRPZone.get().getGatheringTime(
-//				get("infostring"));
-secondsTill = Integer.MIN_VALUE;
+		if (has("infostring")) {
+			//			secondsTill = StendhalRPZone.get().getGatheringTime(
+			//				get("infostring"));
+			secondsTill = Integer.MIN_VALUE;
 
-			if(secondsTill != Integer.MIN_VALUE) {
+			if (secondsTill != Integer.MIN_VALUE) {
 				sbuf.append(" This event ");
 
-				if(secondsTill < 0) {
+				if (secondsTill < 0) {
 					sbuf.append("happened ");
 					TimeUtil.approxTimeUntil(-secondsTill);
 					sbuf.append(" ago.");
-				} else if(secondsTill > 0) {
+				} else if (secondsTill > 0) {
 					sbuf.append("starts in ");
 					TimeUtil.approxTimeUntil(secondsTill);
 					sbuf.append('.');

@@ -6,8 +6,11 @@ package games.stendhal.client.update;
  * @author hendrik
  */
 public class ClasspathEntry implements Comparable<ClasspathEntry> {
+
 	private String filename = null;
+
 	private String type = null;
+
 	private String version = null;
 
 	/**
@@ -79,7 +82,7 @@ public class ClasspathEntry implements Comparable<ClasspathEntry> {
 		if (versionDiff != 0) {
 			return versionDiff;
 		}
-		
+
 		// 3. TODO: handle ...-diff-... files
 		return 0;
 	}

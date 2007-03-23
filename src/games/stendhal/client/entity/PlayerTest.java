@@ -66,35 +66,37 @@ public class PlayerTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test (expected=NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public final void testPlayerNull() {
 		new Player(null);
-		
+
 	}
 
-	@Test (expected=AttributeNotFoundException.class)
+	@Test(expected = AttributeNotFoundException.class)
 	public final void testPlayerNewRPObject() {
 		new Player(new RPObject());
-		
+
 	}
-	@Test // (expected=AttributeNotFoundException.class)
+
+	@Test
+	// (expected=AttributeNotFoundException.class)
 	public final void testPlayer() {
 		RPObject rpo = new RPObject();
-		rpo.put("type","player");
+		rpo.put("type", "player");
 		new Player(rpo);
 		fail("Attribute Outfit cannot be found and  throws an exception, which is not reflected here");
-		
+
 	}
-	
+
 	@Test
 	public final void testGetHearingArea() {
 		RPObject rpo = new RPObject();
-		rpo.put("type","player");
+		rpo.put("type", "player");
 		Player pl = new Player(rpo);
 		Rectangle2D rect = pl.getHearingArea();
-		assertEquals(new Rectangle2D.Double(-20.0,-20.0,40,40), rect);
+		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 		pl.setAudibleRange(4);
-		assertEquals(new Rectangle2D.Double(-20.0,-20.0,40,40), rect);
+		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 	}
 
 }

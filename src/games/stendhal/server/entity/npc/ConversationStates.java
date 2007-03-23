@@ -17,7 +17,7 @@ package games.stendhal.server.entity.npc;
  */
 public class ConversationStates {
 
-    /**
+	/**
 	 * A wildcard that always matches, regardless of the current state
 	 */
 	public static final int ANY = -1;
@@ -27,37 +27,37 @@ public class ConversationStates {
 	 */
 	public static final int IDLE = 0;
 
-    /**
+	/**
 	 * The SpeakerNPC is attending one player; all prior talk is irrelevant.
 	 */
 	public static final int ATTENDING = 1;
 
-    /**
+	/**
 	 * The player wants to buy an item; the SpeakerNPC has told the price and
 	 * waits for the player to accept or reject the offer.
 	 */
 	public static final int BUY_PRICE_OFFERED = 20;
 
-    /**
+	/**
 	 * The player wants to sell an item; the SpeakerNPC has told the price and
 	 * waits for the player to accept or reject the offer.
 	 */
 	public static final int SELL_PRICE_OFFERED = 30;
 
-    /**
+	/**
 	 * The player wants to be healed; the SpeakerNPC has told the price and
 	 * waits for the player to accept or reject the offer.
 	 */
 	public static final int HEAL_OFFERED = 40;
 
-    /**
+	/**
 	 * The player wants the NPC to produce something; the SpeakerNPC has told
 	 * about the required resources and waits for the player to accept or
 	 * reject the offer.
 	 */
 	public static final int PRODUCTION_OFFERED = 45;
 
-    /**
+	/**
 	 * The player wants the NPC to do something; the SpeakerNPC has told
 	 * about the required cash/resources and waits for the player to accept or
 	 * reject the offer.
@@ -68,14 +68,23 @@ public class ConversationStates {
 	 * The SpeakerNPC is simply telling something to the player.
 	 */
 	public static final int INFORMATION_1 = 50;
+
 	public static final int INFORMATION_2 = 51;
+
 	public static final int INFORMATION_3 = 52;
+
 	public static final int INFORMATION_4 = 53;
+
 	public static final int INFORMATION_5 = 54;
+
 	public static final int INFORMATION_6 = 55;
+
 	public static final int INFORMATION_7 = 56;
+
 	public static final int INFORMATION_8 = 57;
+
 	public static final int INFORMATION_9 = 58;
+
 	public static final int INFORMATION_10 = 59;
 
 	/**
@@ -108,6 +117,8 @@ public class ConversationStates {
 
 	/** Multi-purpose states for multiple questions*/
 	public static final int QUESTION_1 = 70;
+
 	public static final int QUESTION_2 = 71;
+
 	public static final int QUESTION_3 = 72;
 }

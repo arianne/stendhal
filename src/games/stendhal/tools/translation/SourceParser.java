@@ -10,8 +10,11 @@ import java.io.FileReader;
  * @author hendrik
  */
 public class SourceParser {
-	private static final String TRANSLATE = "Trans" + /* mask */ "late._(";
+
+	private static final String TRANSLATE = "Trans" + /* mask */"late._(";
+
 	private String stendhalFolder = null;
+
 	private LanguageWriter writer = null;
 
 	/**
@@ -41,7 +44,8 @@ public class SourceParser {
 				// find entity names
 				int pos = line.indexOf(token);
 				if (pos > -1) {
-					String name = line.substring(pos + token.length() + 1, line.indexOf("\"", pos + token.length() + 1));
+					String name = line
+					        .substring(pos + token.length() + 1, line.indexOf("\"", pos + token.length() + 1));
 					writer.write(name);
 				}
 
@@ -96,7 +100,8 @@ public class SourceParser {
 	private void parseJavaFile(String packageName, String filename) {
 		writer.writeBanner(filename);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(stendhalFolder + "/src/" + packageName + "/" + filename));
+			BufferedReader br = new BufferedReader(new FileReader(stendhalFolder + "/src/" + packageName + "/"
+			        + filename));
 			String line = br.readLine();
 			while (line != null) {
 				parseJavaLine(line);

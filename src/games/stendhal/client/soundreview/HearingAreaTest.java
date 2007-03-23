@@ -22,22 +22,14 @@ public class HearingAreaTest {
 	public void contains() {
 		assertTrue("both in ", area.contains(0, 0));
 		assertFalse("both out", area.contains(100, 100));
-		assertFalse("edge does not belong", area.contains(-HearingArea.HEARINGDIST,
-		        -HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", area.contains(HearingArea.HEARINGDIST,
-		        HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", area.contains(-HearingArea.HEARINGDIST,
-		        HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", area.contains(HearingArea.HEARINGDIST,
-		        -HearingArea.HEARINGDIST));
-		assertTrue("inner edge belongs", area.contains(-(HearingArea.HEARINGDIST - 1),
-		        -(HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", area.contains((HearingArea.HEARINGDIST - 1),
-		        (HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", area.contains(-(HearingArea.HEARINGDIST - 1),
-		        (HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", area.contains((HearingArea.HEARINGDIST - 1),
-		        -(HearingArea.HEARINGDIST - 1)));
+		assertFalse("edge does not belong", area.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", area.contains(HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", area.contains(-HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", area.contains(HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
+		assertTrue("inner edge belongs", area.contains(-(HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", area.contains((HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", area.contains(-(HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", area.contains((HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
 		assertFalse("x in , y out", area.contains(0, 100));
 		assertFalse("x out y in", area.contains(100, 10));
 	}

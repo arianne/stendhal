@@ -41,7 +41,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * The player who owns the domestic animal, or null if the animal is wild.
 	 */
 	protected Player owner;
-	
+
 	/**
 	 * Creates a new wild DomesticAnimal.
 	 * @throws AttributeNotFoundException
@@ -125,7 +125,7 @@ public abstract class DomesticAnimal extends Creature {
 	public int getWeight() {
 		return weight;
 	}
-	
+
 	protected void moveToOwner() {
 		logger.debug("Domestic animal (owner) moves to owner");
 		setIdea("follow");
@@ -133,12 +133,12 @@ public abstract class DomesticAnimal extends Creature {
 		//      setAsynchonousMovement(owner,0,0);
 		moveto(getSpeed());
 	}
-	
+
 	protected void moveRandomly() {
 		setIdea("walk");
 		moveRandomly(getSpeed());
 	}
-	
+
 	/**
 	 * Can be called when the sheep dies. Puts meat onto its corpse; the
 	 * amount of meat depends on the domestic animal's weight.

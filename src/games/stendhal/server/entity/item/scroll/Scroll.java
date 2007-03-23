@@ -1,5 +1,5 @@
 /* $Id$
-/***************************************************************************
+ /***************************************************************************
  *                      (C) Copyright 2003 - Marauroa                      *
  ***************************************************************************
  ***************************************************************************
@@ -28,6 +28,7 @@ import org.apache.log4j.Logger;
  * Represents a scroll.
  */
 public class Scroll extends StackableItem implements UseListener {
+
 	private static final Logger logger = Logger.getLogger(Scroll.class);
 
 	/**
@@ -38,8 +39,7 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @param subclass
 	 * @param attributes
 	 */
-	public Scroll(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Scroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
 
@@ -52,10 +52,8 @@ public class Scroll extends StackableItem implements UseListener {
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 
-		return (getItemClass().equals(otheri.getItemClass())
-			&& getItemSubclass().equals(otheri.getItemSubclass()));
+		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass()));
 	}
-
 
 	public void onUsed(RPEntity user) {
 		RPObject base = this;
@@ -66,7 +64,7 @@ public class Scroll extends StackableItem implements UseListener {
 		}
 
 		if (user.nextTo((Entity) base, 0.25)) {
-			if(useScroll((Player) user)) {
+			if (useScroll((Player) user)) {
 				this.removeOne();
 				user.notifyWorldAboutChanges();
 			}
@@ -74,7 +72,6 @@ public class Scroll extends StackableItem implements UseListener {
 			logger.debug("Scroll is too far away");
 		}
 	}
-
 
 	/**
 	 * Use a scroll.
@@ -84,8 +81,7 @@ public class Scroll extends StackableItem implements UseListener {
 	 * @return	<code>true</code> if successful,
 	 *		<code>false</code> otherwise.
 	 */
-	protected boolean useScroll(Player player)
-	{
+	protected boolean useScroll(Player player) {
 		/*
 		 * Default behaviour
 		 * XXX - obsolete?? Can never really happen, make abstract?
@@ -93,7 +89,6 @@ public class Scroll extends StackableItem implements UseListener {
 		player.sendPrivateText("What a strange scroll! You can't make heads or tails of it.");
 		return false;
 	}
-
 
 	@Override
 	public String describe() {

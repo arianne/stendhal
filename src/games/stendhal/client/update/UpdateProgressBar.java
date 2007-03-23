@@ -16,9 +16,13 @@ import javax.swing.JProgressBar;
  * a progress bar for the download progress
  */
 public class UpdateProgressBar extends JFrame implements HttpClient.ProgressListener {
+
 	private int max = 100;
+
 	private int sizeOfLastFiles = 0;
+
 	private JPanel contentPane = null;
+
 	private JProgressBar progressBar = null;
 
 	/**

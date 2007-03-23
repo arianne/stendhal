@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class USL2_ShipWest2 implements ZoneConfigurator {
-	DefaultEntityManager manager = (DefaultEntityManager)
-	StendhalRPWorld.get().getRuleManager().getEntityManager();
+
+	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
 	/**
 	 * Configure a zone.
@@ -25,18 +25,16 @@ public class USL2_ShipWest2 implements ZoneConfigurator {
 	 * @param 	zone		The zone to be configured.
 	 * @param 	attributes	Configuration attributes.
 	 */
-	
-	public void configureZone(StendhalRPZone zone,
-			Map<String, String> attributes) {
+
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		createKlaas(zone, attributes);
 	}
 
-	private void createKlaas(StendhalRPZone zone,
-			Map<String, String> attributes) {
+	private void createKlaas(StendhalRPZone zone, Map<String, String> attributes) {
 		// Klaas is defined as a ferry announcer because she notifies
 		// passengers when the ferry arrives or departs.
-		AthorFerryService.FerryAnnouncerNPC klaas = new AthorFerryService.FerryAnnouncerNPC(
-				"Klaas") {
+		AthorFerryService.FerryAnnouncerNPC klaas = new AthorFerryService.FerryAnnouncerNPC("Klaas") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -54,14 +52,14 @@ public class USL2_ShipWest2 implements ZoneConfigurator {
 				nodes.add(new Path.Node(22, 41));
 				setPath(nodes, true);
 			}
-	
+
 			@Override
 			protected void createDialog() {
 				addGreeting("Ahoy! Nice to see you in the cargo hold!");
 				addJob("I'm taking care of the cargo. My job would be much easier without all these #rats.");
 				addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
 				addReply(Arrays.asList("rat", "rats"),
-						"These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
+				        "These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
 				Map<String, Integer> offerings = new HashMap<String, Integer>();
 				offerings.put("poison", 40);
 				offerings.put("toadstool", 60);
@@ -70,12 +68,12 @@ public class USL2_ShipWest2 implements ZoneConfigurator {
 				addBuyer(new BuyerBehaviour(offerings));
 				addGoodbye("Please kill some rats on your way up!");
 			}
-			
+
 			public void onNewFerryState(int status) {
 				if (status == AthorFerryService.AthorFerry.ANCHORED_AT_MAINLAND
-						|| status == AthorFerryService.AthorFerry.ANCHORED_AT_ISLAND) {
+				        || status == AthorFerryService.AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: We have arrived!");
-				} else  {
+				} else {
 					say("Attention: We have set sail!");
 				}
 			}

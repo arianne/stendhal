@@ -18,6 +18,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
  * A factory for <code>NPCOwnedChest</code> objects.
  */
 public class NPCOwnedChestFactory implements ConfigurableFactory {
+
 	//
 	// NPCOwnedChestFactory
 	//
@@ -32,25 +33,20 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid or missing.
 	 */
-	protected SpeakerNPC getNPC(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String		s;
-		SpeakerNPC	npc;
+	protected SpeakerNPC getNPC(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
+		SpeakerNPC npc;
 
-
-		if((s = ctx.getAttribute("npc")) == null) {
-			throw new IllegalArgumentException(
-				"Required attribute 'npc' missing");
+		if ((s = ctx.getAttribute("npc")) == null) {
+			throw new IllegalArgumentException("Required attribute 'npc' missing");
 		}
 
-		if((npc = NPCList.get().get(s)) == null) {
-			throw new IllegalArgumentException(
-				"Unknown NPC: " + s);
+		if ((npc = NPCList.get().get(s)) == null) {
+			throw new IllegalArgumentException("Unknown NPC: " + s);
 		}
 
 		return npc;
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -71,8 +67,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 *
 	 * @see		NPCOwnedChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new NPCOwnedChest(getNPC(ctx));
 	}
 }

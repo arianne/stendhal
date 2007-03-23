@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Add a player to the ignore list.
  */
 class IgnoreCommand implements SlashCommand {
+
 	/**
 	 * Execute an ignore command.
 	 *
@@ -15,27 +16,25 @@ class IgnoreCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String [] params, String remainder) {
-		String	duration;
-
+	public boolean execute(String[] params, String remainder) {
+		String duration;
 
 		RPAction action = new RPAction();
 
 		action.put("type", "ignore");
 		action.put("target", params[0]);
 
-		if((duration = params[1]) != null) {
+		if ((duration = params[1]) != null) {
 			/*
 			 * Ignore "forever" values
 			 */
-			if(!duration.equals("*")
-			 || !duration.equals("-")) {
+			if (!duration.equals("*") || !duration.equals("-")) {
 				/*
 				 * Validate it's a number
 				 */
 				try {
 					Integer.parseInt(duration);
-				} catch(NumberFormatException ex) {
+				} catch (NumberFormatException ex) {
 					return false;
 				}
 
@@ -43,7 +42,7 @@ class IgnoreCommand implements SlashCommand {
 			}
 		}
 
-		if(remainder.length() != 0) {
+		if (remainder.length() != 0) {
 			action.put("reason", remainder);
 		}
 
@@ -61,7 +60,6 @@ class IgnoreCommand implements SlashCommand {
 		return 2;
 	}
 
-
 	/**
 	 * Get the minimum number of formal parameters.
 	 *
@@ -71,4 +69,3 @@ class IgnoreCommand implements SlashCommand {
 		return 1;
 	}
 }
-

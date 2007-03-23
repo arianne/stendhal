@@ -17,15 +17,16 @@ import org.apache.log4j.Logger;
  * Loads and manages all quests 
  */
 public class StendhalQuestSystem {
+
 	/** the logger instance. */
-	private static final Logger logger = Log4J
-			.getLogger(StendhalQuestSystem.class);
+	private static final Logger logger = Log4J.getLogger(StendhalQuestSystem.class);
 
 	private List<IQuest> quests = new LinkedList<IQuest>();
 
 	private QuestsXMLLoader questInfos;
+
 	private static StendhalQuestSystem stendhalQuestSystem;
-	
+
 	public static StendhalQuestSystem get() {
 		if (stendhalQuestSystem == null) {
 			stendhalQuestSystem = new StendhalQuestSystem();
@@ -89,10 +90,9 @@ public class StendhalQuestSystem {
 
 	private boolean loadQuest(String name) {
 		try {
-			Class questClass = Class
-					.forName("games.stendhal.server.maps.quests." + name);
+			Class questClass = Class.forName("games.stendhal.server.maps.quests." + name);
 
-			if (!IQuest.class.isAssignableFrom(questClass)) { 
+			if (!IQuest.class.isAssignableFrom(questClass)) {
 				logger.error("Class " + name + " doesn't implement IQuest interface.");
 				return false;
 			}
@@ -113,7 +113,7 @@ public class StendhalQuestSystem {
 			return false;
 		}
 	}
-	
+
 	private void dumpQuest(StringBuilder sb, IQuest quest, Player player) {
 		QuestInfo questInfo = questInfos.get(quest.getName());
 		sb.append("\t" + questInfo.getTitle() + "\r\n");
@@ -127,10 +127,10 @@ public class StendhalQuestSystem {
 		}
 		sb.append("\r\n");
 	}
-	
+
 	public String listQuests(Player player) {
 		StringBuilder sb = new StringBuilder();
-		
+
 		// Open quests
 		sb.append("\r\n\r\n");
 		sb.append("Open Quests\r\n");
@@ -150,7 +150,7 @@ public class StendhalQuestSystem {
 				dumpQuest(sb, quest, player);
 			}
 		}
-		
+
 		return sb.toString();
 	}
 

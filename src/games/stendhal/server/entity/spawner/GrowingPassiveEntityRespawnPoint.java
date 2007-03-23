@@ -27,11 +27,12 @@ import marauroa.common.game.RPObject;
  * @author daniel, hendrik
  */
 public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityRespawnPoint {
-	
+
 	/** How long it takes for one regrowing step */
 	private static final int GROWING_RATE = 3000;
-	
+
 	private int ripeness;
+
 	private int maxRipeness;
 
 	public static void generateRPClass() {
@@ -53,8 +54,9 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		put("width", width);
 		put("height", height);
 	}
-	
-	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String actionName, int maxRipeness, int width, int height) {
+
+	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String actionName, int maxRipeness,
+	        int width, int height) {
 		super(object, null, GROWING_RATE);
 		init(type, actionName, maxRipeness, width, height);
 		update();

@@ -34,9 +34,10 @@ import marauroa.common.game.RPSlot;
  * This is an item.
  */
 public class Item extends PassiveEntity implements TurnListener, EquipListener {
+
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
-	
+
 	/**
 	 * The plant grower where this item was grown, until it has been picked.
 	 * null if it wasn't grown by a plant grower, or if it has already been
@@ -49,20 +50,20 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("item");
 		entity.isA("entity");
-		entity.add("class",    RPClass.STRING); // class, sword/armor/...
+		entity.add("class", RPClass.STRING); // class, sword/armor/...
 		entity.add("subclass", RPClass.STRING); // subclass, long sword/leather // armor/...
-		entity.add("name", RPClass.STRING);     // name of item (ie 'Kings Sword')
-		entity.add("atk",  RPClass.SHORT);      // Some items has attack values
-		entity.add("def",  RPClass.SHORT);      // Some items has defense values
-		entity.add("amount", RPClass.INT);      // Some items(food) has amount of
-												//      something (a bottle, a piece of meat).
-		entity.add("regen",  RPClass.INT);      // Some items(food) has regeneration speed
-		entity.add("frequency", RPClass.INT);   // Some items(food) has regeneration speed
-		entity.add("quantity",  RPClass.INT);   // Some items(Stackable) has quantity
+		entity.add("name", RPClass.STRING); // name of item (ie 'Kings Sword')
+		entity.add("atk", RPClass.SHORT); // Some items has attack values
+		entity.add("def", RPClass.SHORT); // Some items has defense values
+		entity.add("amount", RPClass.INT); // Some items(food) has amount of
+		//      something (a bottle, a piece of meat).
+		entity.add("regen", RPClass.INT); // Some items(food) has regeneration speed
+		entity.add("frequency", RPClass.INT); // Some items(food) has regeneration speed
+		entity.add("quantity", RPClass.INT); // Some items(Stackable) has quantity
 		entity.add("infostring", RPClass.STRING); // To store additional info with an item
-		entity.add("persistent", RPClass.SHORT);  // Some items have individual values
-		entity.add("lifesteal",  RPClass.FLOAT);  // Some items has lifesteal values
-		entity.add("bound", RPClass.STRING);      // Some items are quest rewards that other players don't deserve.
+		entity.add("persistent", RPClass.SHORT); // Some items have individual values
+		entity.add("lifesteal", RPClass.FLOAT); // Some items has lifesteal values
+		entity.add("bound", RPClass.STRING); // Some items are quest rewards that other players don't deserve.
 	}
 
 	/**
@@ -74,8 +75,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param subclass subclass of this item
 	 * @param attributes attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Item(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Item(String name, String clazz, String subclass, Map<String, String> attributes) {
 		this();
 		put("class", clazz);
 		put("subclass", subclass);
@@ -195,8 +195,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return get("class");
 		}
 
-		throw new IllegalStateException("the item does not have a class: "
-				+ this);
+		throw new IllegalStateException("the item does not have a class: " + this);
 	}
 
 	/** returns the type of the item */
@@ -205,8 +204,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			return get("subclass");
 		}
 
-		throw new IllegalStateException("the item does not have a subclass: "
-				+ this);
+		throw new IllegalStateException("the item does not have a subclass: " + this);
 	}
 
 	/** returns the name of the item */
@@ -214,7 +212,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public String getName() {
 		return get("name");
 	}
-
 
 	/**
 	 * Get item count.
@@ -224,7 +221,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public int getQuantity() {
 		return 1;
 	}
-
 
 	/** returns the list of possible slots for this item */
 	public List<String> getPossibleSlots() {
@@ -240,7 +236,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public String toString() {
 		return "Item, " + super.toString();
 	}
-	
+
 	/**
 	 * Is called when the item is created, moved to the ground, or moved on
 	 * the ground.
@@ -254,7 +250,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
 		}
 	}
-	
+
 	public void onRemoveFromGround() {
 		// persistent items don't degrade
 		if (!isPersistent()) {
@@ -265,7 +261,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			plantGrower.onFruitPicked(this);
 		}
 	}
-	
+
 	public void onTurnReached(int currentTurn, String message) {
 		// remove this object from the zone where it's lying on
 		// the ground
@@ -330,9 +326,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public boolean canBeEquippedIn(String slot) {
 		System.out.println("'" + slot + "'");
 		return possibleSlots.contains(slot)
-				// when the slot is called "content", it's a personal chest.
-				|| slot.equals("content");
+		// when the slot is called "content", it's a personal chest.
+		        || slot.equals("content");
 	}
-	
 
 }

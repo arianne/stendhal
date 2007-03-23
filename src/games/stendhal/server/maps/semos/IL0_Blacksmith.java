@@ -19,8 +19,8 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 public class IL0_Blacksmith implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -28,15 +28,13 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildSemosBlacksmithArea(zone, attributes);
 	}
 
-
-	private void buildSemosBlacksmithArea(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildSemosBlacksmithArea(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC hackim = new SpeakerNPC("Hackim Easso") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -56,24 +54,20 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE,
-					ConversationPhrases.GREETING_MESSAGES,
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new SpeakerNPC.ChatAction() {
-						@Override
-						public void fire(Player player, String text,
-								SpeakerNPC engine) {
-							if (!player.hasQuest("meet_hackim")) {
-								engine.say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
-								player.setQuest("meet_hackim", "start");
-							} else {
-								engine.say("Hi again, " + player.getName()
-										+ ". How can I #help you this time?");
-							}
-						}
-					});
+				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
+				        null, new SpeakerNPC.ChatAction() {
+
+					        @Override
+					        public void fire(Player player, String text, SpeakerNPC engine) {
+						        if (!player.hasQuest("meet_hackim")) {
+							        engine
+							                .say("Hi stranger, I'm Hackim Easso, the blacksmith's assistant. Have you come here to buy weapons?");
+							        player.setQuest("meet_hackim", "start");
+						        } else {
+							        engine.say("Hi again, " + player.getName() + ". How can I #help you this time?");
+						        }
+					        }
+				        });
 				addHelp("I'm the blacksmith's assistant. Tell me... Have you come here to buy weapons?");
 				addJob("I help Xoderos the blacksmith to make weapons for Deniran's army. I mostly only bring the coal for the fire and put the weapons up on the shelves. Sometimes, when Xoderos isn't looking, I like to use one of the swords to pretend I'm a famous adventurer!");
 				addGoodbye();
@@ -85,8 +79,9 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 		hackim.set(5, 1);
 		hackim.initHP(100);
 		zone.add(hackim);
-		
+
 		SpeakerNPC xoderos = new SpeakerNPC("Xoderos") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -102,34 +97,33 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.ATTENDING,
-						"wood",
-						null,
-						ConversationStates.ATTENDING,
-						"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						Arrays.asList("ore", "iron", "iron_ore"),
-						null,
-						ConversationStates.ATTENDING,
-						"You can find iron ore up in the mountains west of Or'ril, near the dwarf mines. Be careful up there!",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						"gold_pan",
-						null,
-						ConversationStates.ATTENDING,
-						"With this tool you are able to prospect for gold. In the south there is a lake near a waterfall where I once found a #gold_nugget. Maybe you are lucky as well.",
-						null);
-				
-				add(ConversationStates.ATTENDING,
-						"gold_nugget",
-						null,
-						ConversationStates.ATTENDING,
-						"My brother Joshua lives in Ados. He can cast iron_ore to barrels of pure gold.",
-						null);
-				
+				add(
+				        ConversationStates.ATTENDING,
+				        "wood",
+				        null,
+				        ConversationStates.ATTENDING,
+				        "I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.",
+				        null);
+
+				add(
+				        ConversationStates.ATTENDING,
+				        Arrays.asList("ore", "iron", "iron_ore"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "You can find iron ore up in the mountains west of Or'ril, near the dwarf mines. Be careful up there!",
+				        null);
+
+				add(
+				        ConversationStates.ATTENDING,
+				        "gold_pan",
+				        null,
+				        ConversationStates.ATTENDING,
+				        "With this tool you are able to prospect for gold. In the south there is a lake near a waterfall where I once found a #gold_nugget. Maybe you are lucky as well.",
+				        null);
+
+				add(ConversationStates.ATTENDING, "gold_nugget", null, ConversationStates.ATTENDING,
+				        "My brother Joshua lives in Ados. He can cast iron_ore to barrels of pure gold.", null);
+
 				addHelp("If you bring me #wood and #iron_ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
 				addJob("Greetings. Unfortunately, because of the war, I'm not currently allowed to sell weapons to anyone except the official armoury. However, I can still #cast iron for you, or I can make you an #offer on some good tools.");
 				addGoodbye();
@@ -142,11 +136,12 @@ public class IL0_Blacksmith implements ZoneConfigurator {
 				requiredResources.put("wood", new Integer(1));
 				requiredResources.put("iron_ore", new Integer(1));
 
-				ProducerBehaviour behaviour = new ProducerBehaviour(
-						"xoderos_cast_iron", "cast", "iron", requiredResources, 5 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("xoderos_cast_iron", "cast", "iron",
+				        requiredResources, 5 * 60);
 
-				addProducer(behaviour,
-							"Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
+				addProducer(
+				        behaviour,
+				        "Greetings. I am sorry to tell you that, because of the war, I am not allowed to sell you any weapons. However, I can #cast iron for you. I can also #offer you tools.");
 
 			}
 		};

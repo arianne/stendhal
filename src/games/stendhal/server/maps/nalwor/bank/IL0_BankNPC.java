@@ -16,6 +16,7 @@ import games.stendhal.server.pathfinder.Path;
  * @author kymara
  */
 public class IL0_BankNPC implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
 
 	//
@@ -28,34 +29,32 @@ public class IL0_BankNPC implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildoldNPC(zone, attributes);
 		buildladyNPC(zone, attributes);
 	}
-
 
 	//
 	// name inspired by a name in lotr
 	// I want him to complain if someone steals something from his chest: they should be sent to elf jail.
 
-	private void buildoldNPC(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildoldNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC oldnpc = new SpeakerNPC("Grafindle") {
+
 			@Override
-					protected void createPath() {
+			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				setPath(nodes, false);
-					}
-	
-					@Override
-							protected void createDialog() {
-						addGreeting("Greetings. If you need #help, please ask.");
-						addJob("I work here in the bank.");
-						addHelp("That room has two chests owned by this bank and two owned by Semos bank, so you can access all your savings.");
-						addQuest("I ask only that you are honest");
-						addGoodbye("Goodbye, young human.");
-							}
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Greetings. If you need #help, please ask.");
+				addJob("I work here in the bank.");
+				addHelp("That room has two chests owned by this bank and two owned by Semos bank, so you can access all your savings.");
+				addQuest("I ask only that you are honest");
+				addGoodbye("Goodbye, young human.");
+			}
 		};
 		npcs.add(oldnpc);
 		zone.assignRPObjectID(oldnpc);
@@ -65,13 +64,13 @@ public class IL0_BankNPC implements ZoneConfigurator {
 		oldnpc.initHP(100);
 		zone.add(oldnpc);
 	}
-	
+
 	//
 	// Ariannyddion is welsh for bank, so ...
 	//
-	private void buildladyNPC(StendhalRPZone zone,
-			 Map<String, String> attributes) {
+	private void buildladyNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ladynpc = new SpeakerNPC("Nnyddion") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -83,6 +82,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(26, 29));
 				setPath(nodes, true);
 			}
+
 			@Override
 			protected void createDialog() {
 				addGreeting("Welcome to Nalwor Bank. I'm here to #help.");

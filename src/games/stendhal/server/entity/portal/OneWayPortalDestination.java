@@ -9,6 +9,7 @@ import games.stendhal.server.entity.RPEntity;
  * with OneWayPortalDestinations in any other way.
  */
 public class OneWayPortalDestination extends Portal {
+
 	public OneWayPortalDestination() {
 		put("hidden", "");
 	}
@@ -19,15 +20,13 @@ public class OneWayPortalDestination extends Portal {
 	 */
 	@Override
 	public void setDestination(String zone, Object number) {
-		throw new IllegalArgumentException(
-				"One way portal destinations are only destinations of other portals");
+		throw new IllegalArgumentException("One way portal destinations are only destinations of other portals");
 	}
 
 	@Override
 	public boolean loaded() {
 		return true; // Always loaded
 	}
-
 
 	/**
 	 * Determine if this is an obstacle for another entity.

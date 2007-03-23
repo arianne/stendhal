@@ -54,6 +54,7 @@ import org.apache.log4j.Logger;
  * easily connect to an marauroa server and operate it easily.
  */
 public class StendhalClient extends ariannexp {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalClient.class);
 
@@ -189,8 +190,7 @@ public class StendhalClient extends ariannexp {
 	}
 
 	public boolean isAdmin() {
-		return (player != null) && player.has("adminlevel")
-				&& (player.getInt("adminlevel") >= 600);
+		return (player != null) && player.has("adminlevel") && (player.getInt("adminlevel") >= 600);
 	}
 
 	/**
@@ -199,8 +199,7 @@ public class StendhalClient extends ariannexp {
 	 * server version equals the client's.
 	 */
 	@Override
-	public void connect(String host, int port, boolean protocol)
-			throws java.net.SocketException {
+	public void connect(String host, int port, boolean protocol) throws java.net.SocketException {
 		super.connect(host, port, protocol);
 		// if connect was successfull try if server has http service, too
 		String testServer = "http://" + host + "/";
@@ -209,16 +208,11 @@ public class StendhalClient extends ariannexp {
 		if (version != null) {
 			if (!Version.checkCompatibility(version, stendhal.VERSION)) {
 				// custom title, warning icon
-				JOptionPane
-						.showMessageDialog(
-								null,
-								"Your client may not function properly.\nThe version of this server is "
-										+ version
-										+ " but your client is version "
-										+ stendhal.VERSION
-										+ ".\nPlease download the new version from http://arianne.sourceforge.net ",
-								"Version Mismatch With Server",
-								JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+				        "Your client may not function properly.\nThe version of this server is " + version
+				                + " but your client is version " + stendhal.VERSION
+				                + ".\nPlease download the new version from http://arianne.sourceforge.net ",
+				        "Version Mismatch With Server", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}
@@ -261,29 +255,25 @@ public class StendhalClient extends ariannexp {
 
 				String zoneid = message.getRPZoneID().getID();
 				staticLayers.setRPZoneLayersSet(zoneid);
-				GameScreen.get().setMaxWorldSize((int) staticLayers.getWidth(),
-						(int) staticLayers.getHeight());
+				GameScreen.get().setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
 
 				/** And finally place player in screen */
 				Graphics2D g = screen.expose();
 				g.setColor(Color.BLACK);
-				g.fill(new Rectangle(0, 0, j2DClient.SCREEN_WIDTH,
-						j2DClient.SCREEN_HEIGHT));
+				g.fill(new Rectangle(0, 0, j2DClient.SCREEN_WIDTH, j2DClient.SCREEN_HEIGHT));
 
 				double x = object.getDouble("x") - screen.getWidth() / 2;
 				double y = object.getDouble("y") - screen.getHeight() / 2;
 
 				if (x < 0) {
 					x = 0;
-				} else if ((staticLayers.getWidth() != 0)
-						&& (x + screen.getWidth() > staticLayers.getWidth())) {
+				} else if ((staticLayers.getWidth() != 0) && (x + screen.getWidth() > staticLayers.getWidth())) {
 					x = staticLayers.getWidth() - screen.getWidth();
 				}
 
 				if (y < 0) {
 					y = 0;
-				} else if ((staticLayers.getHeight() != 0)
-						&& (y + screen.getHeight() > staticLayers.getHeight())) {
+				} else if ((staticLayers.getHeight() != 0) && (y + screen.getHeight() > staticLayers.getHeight())) {
 					y = staticLayers.getHeight() - screen.getHeight();
 				}
 
@@ -294,9 +284,8 @@ public class StendhalClient extends ariannexp {
 			}
 
 			/** This code emulate a perception loss. */
-			if (Debug.EMULATE_PERCEPTION_LOSS
-					&& (message.getPerceptionType() != Perception.SYNC)
-					&& ((message.getPerceptionTimestamp() % 30) == 0)) {
+			if (Debug.EMULATE_PERCEPTION_LOSS && (message.getPerceptionType() != Perception.SYNC)
+			        && ((message.getPerceptionTimestamp() % 30) == 0)) {
 				return;
 			}
 
@@ -327,8 +316,7 @@ public class StendhalClient extends ariannexp {
 					System.exit(0);
 				}
 			} else {
-				logger.debug("Content " + item.name
-						+ " is NOT on cache. We have to transfer");
+				logger.debug("Content " + item.name + " is NOT on cache. We have to transfer");
 				item.ack = true;
 			}
 		}
@@ -339,8 +327,7 @@ public class StendhalClient extends ariannexp {
 
 	private void contentHandling(String name, Reader reader) throws IOException {
 		staticLayers.addLayer(reader, name);
-		GameScreen.get().setMaxWorldSize((int) staticLayers.getWidth(),
-				(int) staticLayers.getHeight());
+		GameScreen.get().setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
 	}
 
 	@Override
@@ -349,8 +336,7 @@ public class StendhalClient extends ariannexp {
 		for (TransferContent item : items) {
 			try {
 				cache.store(item, item.data);
-				contentHandling(item.name, new InputStreamReader(
-						new ByteArrayInputStream(item.data)));
+				contentHandling(item.name, new InputStreamReader(new ByteArrayInputStream(item.data)));
 			} catch (java.io.IOException e) {
 				logger.fatal("onTransfer", e);
 				System.exit(2);
@@ -394,11 +380,11 @@ public class StendhalClient extends ariannexp {
 	}
 
 	class StendhalPerceptionListener extends DefaultPerceptionListener {
+
 		@Override
 		public boolean onAdded(RPObject object) {
 			try {
-				logger.debug("Object(" + object.getID()
-						+ ") added to Game Objects container");
+				logger.debug("Object(" + object.getID() + ") added to Game Objects container");
 				gameObjects.add(object);
 			} catch (Exception e) {
 				logger.error("onAdded failed, object is " + object, e);
@@ -411,13 +397,11 @@ public class StendhalClient extends ariannexp {
 			// NOTE: We do handle the perception here ourselves. See that we
 			// return true
 			try {
-				logger.debug("Object(" + object.getID()
-						+ ") modified in Game Objects container");
+				logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
 				gameObjects.modifyAdded(object, changes);
 				object.applyDifferences(changes, null);
 			} catch (Exception e) {
-				logger.debug("onModifiedAdded failed, object is " + object
-						+ ", changes is " + changes, e);
+				logger.debug("onModifiedAdded failed, object is " + object + ", changes is " + changes, e);
 			}
 			return true;
 		}
@@ -425,21 +409,16 @@ public class StendhalClient extends ariannexp {
 		@Override
 		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
 			try {
-				logger.debug("Object(" + object.getID()
-						+ ") modified in Game Objects container");
-				logger.debug("Original(" + object
-						+ ") modified in Game Objects container");
+				logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
+				logger.debug("Original(" + object + ") modified in Game Objects container");
 
 				gameObjects.modifyRemoved(object, changes);
 				object.applyDifferences(null, changes);
 
-				logger.debug("Modified(" + object
-						+ ") modified in Game Objects container");
-				logger.debug("Changes(" + changes
-						+ ") modified in Game Objects container");
+				logger.debug("Modified(" + object + ") modified in Game Objects container");
+				logger.debug("Changes(" + changes + ") modified in Game Objects container");
 			} catch (Exception e) {
-				logger.error("onModifiedDeleted failed, object is " + object
-						+ ", changes is " + changes, e);
+				logger.error("onModifiedDeleted failed, object is " + object + ", changes is " + changes, e);
 			}
 			return true;
 		}
@@ -447,8 +426,7 @@ public class StendhalClient extends ariannexp {
 		@Override
 		public boolean onDeleted(RPObject object) {
 			try {
-				logger.debug("Object(" + object.getID()
-						+ ") removed from Static Objects container");
+				logger.debug("Object(" + object.getID() + ") removed from Static Objects container");
 				gameObjects.remove(object.getID());
 			} catch (Exception e) {
 				logger.error("onDeleted failed, object is " + object, e);
@@ -486,8 +464,7 @@ public class StendhalClient extends ariannexp {
 					player.applyDifferences(added, null);
 				}
 			} catch (Exception e) {
-				logger.error("onMyRPObject failed, added=" + added
-						+ " deleted=" + deleted, e);
+				logger.error("onMyRPObject failed, added=" + added + " deleted=" + deleted, e);
 			}
 
 			return true;
@@ -497,8 +474,7 @@ public class StendhalClient extends ariannexp {
 		public int onTimeout() {
 			logger.debug("Request resync because of timeout");
 
-			StendhalClient.get().addEventLine(
-					"Timeout: Requesting synchronization", Color.gray);
+			StendhalClient.get().addEventLine("Timeout: Requesting synchronization", Color.gray);
 			resync();
 			return 0;
 		}
@@ -522,8 +498,7 @@ public class StendhalClient extends ariannexp {
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				StendhalClient.get().addEventLine(
-						"Unsynced: Resynchronizing...", Color.gray);
+				StendhalClient.get().addEventLine("Unsynced: Resynchronizing...", Color.gray);
 				resync();
 			} else {
 				// Fix: Prevent spam from logger window intensifly@gmx.com
@@ -534,8 +509,7 @@ public class StendhalClient extends ariannexp {
 		}
 
 		@Override
-		public int onException(Exception e,
-				marauroa.common.net.MessageS2CPerception perception) {
+		public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
 			logger.fatal("perception caused an error: " + perception, e);
 			System.exit(-1);
 

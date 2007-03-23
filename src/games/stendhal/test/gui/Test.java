@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
  * 
  */
 public class Test {
+
 	public static void main(String[] args) throws Exception {
 		JFrame frame = new JFrame();
 		frame.setBounds(0, 0, 500, 500);

@@ -19,10 +19,12 @@ import games.stendhal.server.events.TurnNotifier;
  * like a normal portal.
  */
 public class KeyedPortal extends Portal {
-	protected String	key;
-	protected int		quantity;
-	protected String	rejected;
 
+	protected String key;
+
+	protected int quantity;
+
+	protected String rejected;
 
 	/**
 	 * Creates a new keyed portal.
@@ -33,7 +35,6 @@ public class KeyedPortal extends Portal {
 		this(key, 1);
 	}
 
-
 	/**
 	 * Creates a new keyed portal.
 	 *
@@ -43,7 +44,6 @@ public class KeyedPortal extends Portal {
 	public KeyedPortal(String key, int quantity) {
 		this(key, quantity, null);
 	}
-
 
 	/**
 	 * Creates a new keyed portal.
@@ -58,20 +58,15 @@ public class KeyedPortal extends Portal {
 		this.rejected = rejected;
 	}
 
-
-        /**
-         * Use the portal, if allowed.
-         */
-        @Override
-        public void onUsed(RPEntity user) {
-		if(user.isEquipped(key, quantity))
-		{
+	/**
+	 * Use the portal, if allowed.
+	 */
+	@Override
+	public void onUsed(RPEntity user) {
+		if (user.isEquipped(key, quantity)) {
 			super.onUsed(user);
-		}
-		else if(rejected != null)
-		{
-			TurnNotifier.get().notifyInTurns(
-				0, new SendMessage(user), rejected);
+		} else if (rejected != null) {
+			TurnNotifier.get().notifyInTurns(0, new SendMessage(user), rejected);
 		}
 	}
 
@@ -84,11 +79,11 @@ public class KeyedPortal extends Portal {
 	 * away.
 	 */
 	protected static class SendMessage implements TurnListener {
+
 		/**
 		 * The user to send to.
 		 */
-		protected RPEntity	user;
-
+		protected RPEntity user;
 
 		/**
 		 * Create a message sending turn listener.
@@ -98,7 +93,6 @@ public class KeyedPortal extends Portal {
 		public SendMessage(RPEntity user) {
 			this.user = user;
 		}
-
 
 		//
 		// TurnListener

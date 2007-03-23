@@ -75,7 +75,6 @@ public interface IQuest {
 	 * @return list of history item-names
 	 */
 	public List<String> getHint(Player player);
-	
 
 	/**
 	 * Returns the name of the quest

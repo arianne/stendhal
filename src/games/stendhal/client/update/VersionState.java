@@ -9,7 +9,7 @@ public enum VersionState {
 
 	/** this version is up to date, no update available */
 	CURRENT,
-	
+
 	/** we are unable to get version state */
 	ERROR,
 
@@ -23,7 +23,7 @@ public enum VersionState {
 
 	/** the update system does not know about this version */
 	UNKOWN,
-	
+
 	/** there are updates, which should be installed */
 	UPDATE_NEEDED,
 
@@ -39,7 +39,7 @@ public enum VersionState {
 	public static VersionState getFromString(String versionStateString) {
 		try {
 			if ((versionStateString == null) || (versionStateString.trim().equals(""))) {
-				return UNKOWN; 
+				return UNKOWN;
 			}
 			return VersionState.valueOf(versionStateString.toUpperCase());
 		} catch (IllegalArgumentException e) {

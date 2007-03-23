@@ -25,32 +25,31 @@ import games.stendhal.server.entity.creature.Creature;
  * of criteria. Think of this as a creature firewall.
  */
 public class CreatureProtectionArea extends Entity {
+
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger	logger =
-				Log4J.getLogger(CreatureProtectionArea.class);
+	private static final Logger logger = Log4J.getLogger(CreatureProtectionArea.class);
 
 	/**
 	 * Whether to block on no match.
 	 */
-	protected boolean		defaultBlocked;
+	protected boolean defaultBlocked;
 
 	/**
 	 * The list (if any specific) of blocked creatues.
 	 */
-	protected List<Entry>		entries;
+	protected List<Entry> entries;
 
 	/**
 	 * The area height.
 	 */
-	protected int			height;
+	protected int height;
 
 	/**
 	 * The area width.
 	 */
-	protected int			width;
-
+	protected int width;
 
 	/**
 	 * Create a 1x1 creature protection area.
@@ -59,18 +58,15 @@ public class CreatureProtectionArea extends Entity {
 		this(1, 1);
 	}
 
-
 	/**
 	 * Create a creature protection area.
 	 *
 	 * @param	width		The area width.
 	 * @param	height		The area height.
 	 */
-	public CreatureProtectionArea(int width, int height)
-	 throws AttributeNotFoundException {
+	public CreatureProtectionArea(int width, int height) throws AttributeNotFoundException {
 		this(width, height, true);
 	}
-
 
 	/**
 	 * Create a creature protection area.
@@ -79,8 +75,7 @@ public class CreatureProtectionArea extends Entity {
 	 * @param	height		The area height.
 	 * @param	defaultBlocked	Whether blocked on no match.
 	 */
-	public CreatureProtectionArea(int width, int height,
-	 boolean defaultBlocked) throws AttributeNotFoundException {
+	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) throws AttributeNotFoundException {
 		put("type", "creature_protection_area");
 		put("server-only", "");
 
@@ -90,7 +85,6 @@ public class CreatureProtectionArea extends Entity {
 
 		entries = new LinkedList<Entry>();
 	}
-
 
 	//
 	// CreatureProtectionArea
@@ -106,7 +100,6 @@ public class CreatureProtectionArea extends Entity {
 		add(clazz, null);
 	}
 
-
 	/**
 	 * Add a blocked criteria entry.
 	 *
@@ -118,7 +111,6 @@ public class CreatureProtectionArea extends Entity {
 	public void add(String clazz, String subclazz) {
 		add(clazz, subclazz, true);
 	}
-
 
 	/**
 	 * Add a criteria entry.
@@ -133,7 +125,6 @@ public class CreatureProtectionArea extends Entity {
 		entries.add(new Entry(clazz, subclazz, blocked));
 	}
 
-
 	/**
 	 * Does a creature match a criteria entry.
 	 *
@@ -142,31 +133,28 @@ public class CreatureProtectionArea extends Entity {
 	 *
 	 * @return	The matching criteria, or default response.
 	 */
-	protected boolean matchesCriteria(Creature creature,
-	 boolean defaultAnswer) {
-		String	clazz;
-		String	subclazz;
-
+	protected boolean matchesCriteria(Creature creature, boolean defaultAnswer) {
+		String clazz;
+		String subclazz;
 
 		/**
 		 * No class/subclass defined?
 		 */
-		if(!creature.has("class") || !creature.has("subclass")) {
+		if (!creature.has("class") || !creature.has("subclass")) {
 			return false;
 		}
 
 		clazz = creature.get("class");
 		subclazz = creature.get("subclass");
 
-		for(Entry entry : entries) {
-			if(entry.matches(clazz, subclazz)) {
+		for (Entry entry : entries) {
+			if (entry.matches(clazz, subclazz)) {
 				return entry.isBlocked();
 			}
 		}
 
 		return defaultAnswer;
 	}
-
 
 	//
 	// Entity
@@ -184,7 +172,6 @@ public class CreatureProtectionArea extends Entity {
 		rect.setRect(x, y, width, height);
 	}
 
-
 	/**
 	 * Checks whether a creature can enter.
 	 *
@@ -195,7 +182,7 @@ public class CreatureProtectionArea extends Entity {
 		/*
 		 * Only applies to Creature's
 		 */
-		if(!(entity instanceof Creature)) {
+		if (!(entity instanceof Creature)) {
 			return false;
 		}
 
@@ -209,21 +196,21 @@ public class CreatureProtectionArea extends Entity {
 	 * An entry representing creature criteria.
 	 */
 	protected static class Entry {
+
 		/**
 		 * Whether it should be blocked.
 		 */
-		protected boolean	blocked;
+		protected boolean blocked;
 
 		/**
 		 * The creature class to match.
 		 */
-		protected String	clazz;
+		protected String clazz;
 
 		/**
 		 * The creature subclass to match.
 		 */
-		protected String	subclazz;
-
+		protected String subclazz;
 
 		/**
 		 * Create a criteria entry.
@@ -240,7 +227,6 @@ public class CreatureProtectionArea extends Entity {
 			this.blocked = blocked;
 		}
 
-
 		//
 		// Entry
 		//
@@ -254,7 +240,6 @@ public class CreatureProtectionArea extends Entity {
 			return blocked;
 		}
 
-
 		/**
 		 * Check if a class/subclass matches.
 		 *
@@ -262,13 +247,11 @@ public class CreatureProtectionArea extends Entity {
 		 *
 		 */
 		public boolean matches(String clazz, String subclazz) {
-			if((this.clazz != null)
-			 && !clazz.equals(this.clazz)) {
+			if ((this.clazz != null) && !clazz.equals(this.clazz)) {
 				return false;
 			}
 
-			if((this.subclazz != null) &&
-			 !subclazz.equals(this.subclazz)) {
+			if ((this.subclazz != null) && !subclazz.equals(this.subclazz)) {
 				return false;
 			}
 

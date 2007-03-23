@@ -2,13 +2,13 @@ package games.stendhal.client.scripting;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * Interface used by client side scripts to interact with the game
  *
  * @author hendrik
  */
 public class ClientScriptInterface {
+
 	private static Logger logger = Logger.getLogger(ClientScriptInterface.class);
 
 	/**
@@ -20,7 +20,7 @@ public class ClientScriptInterface {
 		ChatLineParser.get().parseAndHandle(input);
 		sleepMillis(300);
 	}
-	
+
 	/**
 	 * waits the specified number of milliseconds.
 	 *

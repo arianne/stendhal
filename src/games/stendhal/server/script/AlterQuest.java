@@ -18,7 +18,8 @@ public class AlterQuest extends ScriptImpl {
 
 		// help text
 		if (args.size() < 2) {
-			admin.sendPrivateText("Usage /script AlterQuest.class <player> <questname> <state>. Ommit <state> to remove the quest.");
+			admin
+			        .sendPrivateText("Usage /script AlterQuest.class <player> <questname> <state>. Ommit <state> to remove the quest.");
 			return;
 		}
 
@@ -44,10 +45,10 @@ public class AlterQuest extends ScriptImpl {
 			target.setQuest(questName, newQuestState);
 
 			// notify admin and altered player
-			target.sendPrivateText("Admin " + admin.getName() + " changed your state of the quest '" 
-					+ questName + "' from '" + oldQuestState + "' to '" + newQuestState + "'");
-			admin.sendPrivateText("Changed the state of quest '" 
-					+ questName + "' from '" + oldQuestState + "' to '" + newQuestState + "'");
+			target.sendPrivateText("Admin " + admin.getName() + " changed your state of the quest '" + questName
+			        + "' from '" + oldQuestState + "' to '" + newQuestState + "'");
+			admin.sendPrivateText("Changed the state of quest '" + questName + "' from '" + oldQuestState + "' to '"
+			        + newQuestState + "'");
 		} else {
 			admin.sendPrivateText(args.get(0) + " is not logged in");
 		}

@@ -29,8 +29,10 @@ import org.apache.log4j.Logger;
  * this is the internal class which handles an active deathmatch session
  */
 class DeathmatchEngine implements TurnListener {
+
 	// BAIL_DELAY needs to be smaller than SPAWN_DELAY
 	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
+
 	private static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
 
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
@@ -92,7 +94,7 @@ class DeathmatchEngine implements TurnListener {
 
 	private void action() {
 		String questInfo = player.getQuest("deathmatch");
-		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch")); 
+		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
 		String[] tokens = (questInfo + ";0;0").split(";");
 		int questLevel = deathmatchState.getQuestLevel();
 		String questLast = tokens[2];
@@ -128,7 +130,7 @@ class DeathmatchEngine implements TurnListener {
 				keepRunning = false;
 			}
 			return; // all creature are there
-		} 
+		}
 
 		// spawn new monster
 		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > SPAWN_DELAY)) {
@@ -250,7 +252,8 @@ class DeathmatchEngine implements TurnListener {
 	 * @return Creature or <code>null</code> in case it cannot be created
 	 */
 	private DeathMatchCreature spawnNewCreature(Creature template, int x, int y) {
-		DeathMatchCreature creature = new DeathMatchCreature(new ArenaCreature(template.getInstance(), arena.getShape()));
+		DeathMatchCreature creature = new DeathMatchCreature(
+		        new ArenaCreature(template.getInstance(), arena.getShape()));
 		zone.assignRPObjectID(creature);
 		if (StendhalRPAction.placeat(zone, creature, x, y, arena.getShape())) {
 			zone.add(creature);

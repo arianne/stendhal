@@ -114,12 +114,14 @@ import org.apache.log4j.Logger;
  * exception of the IDLE state.
  */
 public abstract class SpeakerNPC extends NPC {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
 
 	private Engine engine = new Engine(this);
+
 	private BehaviourAdder behaviourAdder = new BehaviourAdder(this, engine);
-	
+
 	/**
 	 * Determines how long a conversation can be paused before it will
 	 * terminated by the NPC.
@@ -150,7 +152,7 @@ public abstract class SpeakerNPC extends NPC {
 	/**
 	 * The player who is currently talking to the NPC, or null if the NPC
 	 * is currently not taking part in a conversation. 
-	 */  
+	 */
 	private Player attending;
 
 	/**
@@ -180,7 +182,7 @@ public abstract class SpeakerNPC extends NPC {
 	protected void onGoodbye(Player player) {
 		// do nothing
 	}
-	
+
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y + 1, 1, 1);
@@ -209,9 +211,8 @@ public abstract class SpeakerNPC extends NPC {
 			int px = player.getX();
 			int py = player.getY();
 
-			if (player.has("text")
-					&& get("zoneid").equals(player.get("zoneid"))
-					&& (Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
+			if (player.has("text") && get("zoneid").equals(player.get("zoneid")) && (Math.abs(px - x) < range)
+			        && (Math.abs(py - y) < range)) {
 				players.add(player);
 			}
 		}
@@ -241,8 +242,7 @@ public abstract class SpeakerNPC extends NPC {
 			int px = player.getX();
 			int py = player.getY();
 
-			if (get("zoneid").equals(player.get("zoneid"))
-					&& (Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
+			if (get("zoneid").equals(player.get("zoneid")) && (Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
 				int squaredDistanceOfThisPlayer = (px - x) * (px - x) + (py - y) * (py - y);
 				if (squaredDistanceOfThisPlayer < squaredDistanceOfNearestPlayer) {
 					squaredDistanceOfNearestPlayer = squaredDistanceOfThisPlayer;
@@ -292,7 +292,7 @@ public abstract class SpeakerNPC extends NPC {
 	public void setPlayerChatTimeout(long playerChatTimeout) {
 		this.playerChatTimeout = playerChatTimeout;
 	}
-	
+
 	@Override
 	public void logic() {
 		if (has("text")) {
@@ -305,12 +305,12 @@ public abstract class SpeakerNPC extends NPC {
 				Path.followPath(this, 0.2);
 				StendhalRPAction.move(this);
 			}
-		} else if(attending != null) {
-		     // If the player is too far away
-		    if ((attending.squaredDistance(this) > 8 * 8)                
-             // or if the player fell asleep ;) 
-                 || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > playerChatTimeout)) {
-             // we force him to say bye to NPC :)  
+		} else if (attending != null) {
+			// If the player is too far away
+			if ((attending.squaredDistance(this) > 8 * 8)
+			// or if the player fell asleep ;) 
+			        || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > playerChatTimeout)) {
+				// we force him to say bye to NPC :)  
 				if (goodbyeMessage != null) {
 					say(goodbyeMessage);
 				}
@@ -323,18 +323,17 @@ public abstract class SpeakerNPC extends NPC {
 			}
 		}
 
-         // now look for nearest player only if there's an initChatAction 
+		// now look for nearest player only if there's an initChatAction 
 		if (!isTalking() && (initChatAction != null)) {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
-				if ((initChatCondition == null) 
-					|| initChatCondition.fire(nearest, null, this)) {
+				if ((initChatCondition == null) || initChatCondition.fire(nearest, null, this)) {
 					initChatAction.fire(nearest, null, this);
 				}
 			}
 		}
 
-        // and finally react on anybody talking to us
+		// and finally react on anybody talking to us
 		List<Player> speakers = getNearbyPlayersThatHaveSpoken(this, 5);
 		for (Player speaker : speakers) {
 			tell(speaker, speaker.get("text"));
@@ -348,10 +347,12 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	abstract public static class ChatAction implements PostTransitionAction {
+
 		abstract public void fire(Player player, String text, SpeakerNPC npc);
 	}
 
 	abstract public static class ChatCondition implements PreTransitionCondition {
+
 		abstract public boolean fire(Player player, String text, SpeakerNPC npc);
 	}
 
@@ -362,14 +363,14 @@ public abstract class SpeakerNPC extends NPC {
 		// turn towards player if necessary, then say it.
 		say(text, true);
 	}
-	
+
 	protected void say(String text, boolean turnToPlayer) {
 		// be polite and face the player we are talking to
 		if (turnToPlayer && (attending != null) && (!facingTo(attending))) {
 			faceTo(attending);
 		}
 		super.say(text);
-		
+
 	}
 
 	/** Message when NPC is attending another player. */
@@ -385,8 +386,7 @@ public abstract class SpeakerNPC extends NPC {
 	}
 
 	/** Add a new transition to FSM */
-	public void add(int state, String trigger, ChatCondition condition,
-			int next_state, String reply, ChatAction action) {
+	public void add(int state, String trigger, ChatCondition condition, int next_state, String reply, ChatAction action) {
 		engine.add(state, trigger, condition, next_state, reply, action);
 	}
 
@@ -400,8 +400,8 @@ public abstract class SpeakerNPC extends NPC {
 	 * @param reply a simple text replay (may be null for no replay)
 	 * @param action a special action to be taken (may be null)
 	 */
-	public void add(int state, List<String> triggers, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(int state, List<String> triggers, ChatCondition condition, int nextState, String reply,
+	        ChatAction action) {
 		engine.add(state, triggers, condition, nextState, reply, action);
 	}
 
@@ -415,8 +415,8 @@ public abstract class SpeakerNPC extends NPC {
 	 * @param reply a simple text replay (may be null for no replay)
 	 * @param action a special action to be taken (may be null)
 	 */
-	public void add(int[] states, String trigger, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(int[] states, String trigger, ChatCondition condition, int nextState, String reply,
+	        ChatAction action) {
 		for (int state : states) {
 			add(state, trigger, condition, nextState, reply, action);
 		}
@@ -432,8 +432,8 @@ public abstract class SpeakerNPC extends NPC {
 	 * @param reply a simple text replay (may be null for no replay)
 	 * @param action a special action to be taken (may be null)
 	 */
-	public void add(int[] states, List<String> triggers, ChatCondition condition,
-			int nextState, String reply, ChatAction action) {
+	public void add(int[] states, List<String> triggers, ChatCondition condition, int nextState, String reply,
+	        ChatAction action) {
 		for (int state : states) {
 			add(state, triggers, condition, nextState, reply, action);
 		}
@@ -442,8 +442,7 @@ public abstract class SpeakerNPC extends NPC {
 	/**
 	 * 
 	 */
-	public void add(int state, List<String> triggers, int nextState,
-			String reply, ChatAction action) {
+	public void add(int state, List<String> triggers, int nextState, String reply, ChatAction action) {
 		for (String trigger : triggers) {
 			add(state, trigger, null, nextState, reply, action);
 		}
@@ -452,7 +451,7 @@ public abstract class SpeakerNPC extends NPC {
 	public void listenTo(Player player, String text) {
 		tell(player, text);
 	}
-	
+
 	/**
 	 * If the given player says something to this NPC, and the NPC is already
 	 * speaking to another player, tells the given player to wait.
@@ -466,12 +465,12 @@ public abstract class SpeakerNPC extends NPC {
 		// with it (case-insensitive)
 		if (!player.equals(attending)) {
 			if (ConversationPhrases.GREETING_MESSAGES.contains(text)) {
-			
+
 				logger.debug("Already attending a player");
 				if (waitMessage != null) {
 					say(waitMessage);
 				}
-	
+
 				if (waitAction != null) {
 					waitAction.fire(player, text, this);
 				}
@@ -510,22 +509,17 @@ public abstract class SpeakerNPC extends NPC {
 		addGreeting(text, null);
 	}
 
-	public void addGreeting(String text,
-			SpeakerNPC.ChatAction action) {
-		add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			ConversationStates.ATTENDING,
-			text,
-			action);
+	public void addGreeting(String text, SpeakerNPC.ChatAction action) {
+		add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, ConversationStates.ATTENDING, text, action);
 
-		addWaitMessage(null,
-				new SpeakerNPC.ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc.say("Please wait, " + player.getName() + "! I am still attending to "
-								+ npc.getAttending().getName() + ".");
-					}
-				});
+		addWaitMessage(null, new SpeakerNPC.ChatAction() {
+
+			@Override
+			public void fire(Player player, String text, SpeakerNPC npc) {
+				npc.say("Please wait, " + player.getName() + "! I am still attending to "
+				        + npc.getAttending().getName() + ".");
+			}
+		});
 	}
 
 	/**
@@ -535,43 +529,27 @@ public abstract class SpeakerNPC extends NPC {
 	 * @param text The answer
 	 */
 	public void addReply(String trigger, String text) {
-		add(ConversationStates.ATTENDING,
-				trigger,
-				null,
-				ConversationStates.ATTENDING,
-				text,
-				null);
+		add(ConversationStates.ATTENDING, trigger, null, ConversationStates.ATTENDING, text, null);
 	}
 
 	/**
 	 * @param triggers
 	 * @param text
 	 */
-	public void addReply(List<String> triggers,
-			String text) {
-		add(ConversationStates.ATTENDING,
-		triggers,
-		ConversationStates.ATTENDING,
-		text,
-		null);
+	public void addReply(List<String> triggers, String text) {
+		add(ConversationStates.ATTENDING, triggers, ConversationStates.ATTENDING, text, null);
 	}
 
 	public void addQuest(String text) {
-		add(ConversationStates.ATTENDING,
-				ConversationPhrases.QUEST_MESSAGES,
-				ConversationStates.ATTENDING,
-				text,
-				null);
+		add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, ConversationStates.ATTENDING, text, null);
 	}
 
 	public void addJob(String jobDescription) {
-		addReply(ConversationPhrases.JOB_MESSAGES,
-				jobDescription);
+		addReply(ConversationPhrases.JOB_MESSAGES, jobDescription);
 	}
 
 	public void addHelp(String helpDescription) {
-		addReply(ConversationPhrases.HELP_MESSAGES,
-				 helpDescription);
+		addReply(ConversationPhrases.HELP_MESSAGES, helpDescription);
 	}
 
 	public void addGoodbye() {
@@ -580,24 +558,21 @@ public abstract class SpeakerNPC extends NPC {
 
 	public void addGoodbye(String text) {
 		goodbyeMessage = text;
-		add(ConversationStates.ANY,
-				ConversationPhrases.GOODBYE_MESSAGES,
-				ConversationStates.IDLE,
-				text,
-				new ChatAction() {
-					@Override
-					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc.onGoodbye(player);
-					}
-				});
+		add(ConversationStates.ANY, ConversationPhrases.GOODBYE_MESSAGES, ConversationStates.IDLE, text,
+		        new ChatAction() {
+
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+				        npc.onGoodbye(player);
+			        }
+		        });
 	}
 
 	public void addSeller(SellerBehaviour behaviour) {
 		behaviourAdder.addSeller(behaviour, true);
 	}
 
-	public void addSeller(final SellerBehaviour behaviour,
-					boolean offer) {
+	public void addSeller(final SellerBehaviour behaviour, boolean offer) {
 		behaviourAdder.addSeller(behaviour, offer);
 	}
 
@@ -632,15 +607,14 @@ public abstract class SpeakerNPC extends NPC {
 	 * @param canReturn If true, a player can say "return" to get his original
 	 *                  outfit back.
 	 */
-	public void addOutfitChanger(final OutfitChangerBehaviour behaviour,
-			final String command, boolean offer, final boolean canReturn) {
+	public void addOutfitChanger(final OutfitChangerBehaviour behaviour, final String command, boolean offer,
+	        final boolean canReturn) {
 		behaviourAdder.addOutfitChanger(behaviour, command, offer, canReturn);
 	}
-	
+
 	public void addProducer(final ProducerBehaviour behaviour, String welcomeMessage) {
 		behaviourAdder.addProducer(behaviour, welcomeMessage);
 	}
-
 
 	/**
 	 * Returns a copy of the transition table

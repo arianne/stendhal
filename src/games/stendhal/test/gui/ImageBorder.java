@@ -19,6 +19,7 @@ import javax.swing.border.AbstractBorder;
  * 
  */
 public class ImageBorder extends AbstractBorder {
+
 	private static final long serialVersionUID = 1L;
 
 	/** size of the border */
@@ -86,8 +87,7 @@ public class ImageBorder extends AbstractBorder {
 
 	/** paints the border */
 	@Override
-	public void paintBorder(Component c, Graphics g, int x, int y, int width,
-			int height) {
+	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
 		Sprite bottomRight;
 		Sprite topLeft;
 		SwingUtils utils = SwingUtils.getInstance();
@@ -99,15 +99,12 @@ public class ImageBorder extends AbstractBorder {
 
 			if (c instanceof AbstractButton) {
 				AbstractButton button = (AbstractButton) c;
-				if (button.getModel().isArmed()
-						|| button.getModel().isPressed()) {
+				if (button.getModel().isArmed() || button.getModel().isPressed()) {
 					localRaised = !localRaised;
 				}
 			}
-			bottomRight = localRaised ? utils.getDarkSprite() : utils
-					.getBrightSprite();
-			topLeft = localRaised ? utils.getBrightSprite() : utils
-					.getDarkSprite();
+			bottomRight = localRaised ? utils.getDarkSprite() : utils.getBrightSprite();
+			topLeft = localRaised ? utils.getBrightSprite() : utils.getDarkSprite();
 		}
 
 		int spriteWidth = topLeft.getWidth();
@@ -144,10 +141,8 @@ public class ImageBorder extends AbstractBorder {
 			xPos = (xPos + w) % spriteWidth;
 		}
 
-		Shape clip = new Polygon(new int[] { 0, borderSize, width, width,
-				width - borderSize, 0 }, new int[] { height,
-				height - borderSize, height - borderSize, 0, borderSize,
-				borderSize }, 6);
+		Shape clip = new Polygon(new int[] { 0, borderSize, width, width, width - borderSize, 0 }, new int[] { height,
+		        height - borderSize, height - borderSize, 0, borderSize, borderSize }, 6);
 		g2.setClip(clip);
 
 		// left and right edges

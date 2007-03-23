@@ -38,6 +38,7 @@ import org.apache.log4j.Logger;
  */
 // TODO: Split this class into parts (the property file handling)
 public class WtWindowManager {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(WtWindowManager.class);
 
@@ -71,12 +72,10 @@ public class WtWindowManager {
 	 * Sets default window properties. These are used only when there are no
 	 * properties known for this panel.
 	 */
-	public void setDefaultProperties(String name, boolean minimized, int x,
-			int y) {
+	public void setDefaultProperties(String name, boolean minimized, int x, int y) {
 		if (!configs.containsKey(name)) {
 			WindowConfiguration config = new WindowConfiguration(name);
-			config.readFromProperties(
-				properties, minimized, x, y, true);
+			config.readFromProperties(properties, minimized, x, y, true);
 			configs.put(name, config);
 		}
 	}
@@ -128,7 +127,7 @@ public class WtWindowManager {
 		}
 		return winC;
 	}
-	
+
 	/**
 	 * Returns a property.
 	 *
@@ -186,8 +185,7 @@ public class WtWindowManager {
 					SoundSystem.playSound("inventory-open", 10);
 				} else if ((panel instanceof Character)) {
 					SoundSystem.playSound("window-open-1", 40);
-				} else if (config.name.equals("settings")
-						|| config.name.equals("minimap")) {
+				} else if (config.name.equals("settings") || config.name.equals("minimap")) {
 					SoundSystem.playSound("window-open-2", 30);
 				} else if (config.name.equals("chest")) {
 					SoundSystem.playSound("chest-open", 75);
@@ -200,16 +198,15 @@ public class WtWindowManager {
 		config.minimized = state;
 	}
 
-
 	public void setVisible(ManagedWindow panel, boolean state) {
 		WindowConfiguration config = getConfig(panel);
 
 		config.visible = state;
 	}
 
-
 	/** encapsulates the configuration of a window */
 	private class WindowConfiguration {
+
 		/** name of the window */
 		public String name;
 
@@ -231,10 +228,8 @@ public class WtWindowManager {
 
 		/** returns to config as a property string */
 		public String writeToPropertyString() {
-			return "window." + name + ".minimized=" + minimized + "\n"
-					+ "window." + name + ".visible=" + visible + "\n"
-					+ "window." + name + ".x=" + x + "\n" + "window." + name
-					+ ".y=" + y + "\n";
+			return "window." + name + ".minimized=" + minimized + "\n" + "window." + name + ".visible=" + visible
+			        + "\n" + "window." + name + ".x=" + x + "\n" + "window." + name + ".y=" + y + "\n";
 		}
 
 		/** returns to config as a property string */
@@ -252,24 +247,19 @@ public class WtWindowManager {
 		}
 
 		/** reads the config from the properties */
-		public void readFromProperties(Properties props,
-		 boolean defaultMinimized, int defaultX, int defaultY,
-		 boolean defaultVisible) {
-			minimized = Boolean.parseBoolean(props.getProperty("window." + name
-					+ ".minimized", Boolean.toString(minimized)));
-			visible = Boolean.parseBoolean(props.getProperty("window." + name
-					+ ".visible", Boolean.toString(defaultVisible)));
-			x = Integer.parseInt(props.getProperty("window." + name + ".x",
-					Integer.toString(defaultX)));
-			y = Integer.parseInt(props.getProperty("window." + name + ".y",
-					Integer.toString(defaultY)));
+		public void readFromProperties(Properties props, boolean defaultMinimized, int defaultX, int defaultY,
+		        boolean defaultVisible) {
+			minimized = Boolean.parseBoolean(props.getProperty("window." + name + ".minimized", Boolean
+			        .toString(minimized)));
+			visible = Boolean.parseBoolean(props.getProperty("window." + name + ".visible", Boolean
+			        .toString(defaultVisible)));
+			x = Integer.parseInt(props.getProperty("window." + name + ".x", Integer.toString(defaultX)));
+			y = Integer.parseInt(props.getProperty("window." + name + ".y", Integer.toString(defaultY)));
 		}
 
 		/** reads the config from the properties */
 		public void readFromProperties(Properties props, ManagedWindow defaults) {
-			readFromProperties(props, defaults.isMinimized(),
-				defaults.getX(), defaults.getY(),
-				defaults.isVisible());
+			readFromProperties(props, defaults.isMinimized(), defaults.getX(), defaults.getY(), defaults.isVisible());
 		}
 
 	}

@@ -16,6 +16,7 @@ import java.util.Map;
  * @author kymara
  */
 public class OL0_BridgeGuardNPC implements ZoneConfigurator {
+
 	private NPCList npcs = NPCList.get();
 
 	/**
@@ -25,14 +26,13 @@ public class OL0_BridgeGuardNPC implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 * 
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone);
 	}
 
-
 	private void buildNPC(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Stefan") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

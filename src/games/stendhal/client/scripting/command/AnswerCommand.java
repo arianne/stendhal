@@ -7,6 +7,7 @@ import marauroa.common.game.RPAction;
  * Send a message to the player who has last contacted us privately.
  */
 class AnswerCommand implements SlashCommand {
+
 	/**
 	 * Execute a chat command.
 	 *
@@ -35,7 +36,6 @@ class AnswerCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 0;
 	}
-
 
 	/**
 	 * Get the minimum number of formal parameters.

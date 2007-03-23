@@ -26,6 +26,7 @@ import marauroa.common.game.*;
  * can take out items that another player put in.
  */
 public class Chest extends Entity implements UseListener {
+
 	private boolean open;
 
 	public static void generateRPClass() {

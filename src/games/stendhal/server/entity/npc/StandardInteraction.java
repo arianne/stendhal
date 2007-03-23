@@ -36,6 +36,7 @@ public class StandardInteraction {
 	 * Is the player an admin?
 	 */
 	public static class AdminCondition extends SpeakerNPC.ChatCondition {
+
 		private int requiredAdminlevel;
 
 		public AdminCondition() {
@@ -56,10 +57,11 @@ public class StandardInteraction {
 	 * Is the player in the specified area?
 	 */
 	public static class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
+
 		private Area area = null;
 
 		public PlayerInAreaCondition(Area area) {
-			this.area  = area;
+			this.area = area;
 		}
 
 		@Override
@@ -73,6 +75,7 @@ public class StandardInteraction {
 	 * An inverse condition
 	 */
 	public static class Not extends SpeakerNPC.ChatCondition {
+
 		private SpeakerNPC.ChatCondition condition = null;
 
 		/**
@@ -88,7 +91,7 @@ public class StandardInteraction {
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return !condition.fire(player, text, engine);
 		}
-		
+
 	}
 
 	// ------------------------------------------------------------------------
@@ -99,6 +102,7 @@ public class StandardInteraction {
 	 * Was this quest started?
 	 */
 	public static class QuestStartedCondition extends SpeakerNPC.ChatCondition {
+
 		private String questname = null;
 
 		public QuestStartedCondition(String questname) {
@@ -115,6 +119,7 @@ public class StandardInteraction {
 	 * Was this quest not started yet?
 	 */
 	public static class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
+
 		private String questname = null;
 
 		public QuestNotStartedCondition(String questname) {
@@ -131,6 +136,7 @@ public class StandardInteraction {
 	 * Was this quest completed?
 	 */
 	public static class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
+
 		private String questname = null;
 
 		public QuestCompletedCondition(String questname) {
@@ -147,6 +153,7 @@ public class StandardInteraction {
 	 * Is this quest not completed?
 	 */
 	public static class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+
 		private String questname = null;
 
 		public QuestNotCompletedCondition(String questname) {
@@ -163,7 +170,9 @@ public class StandardInteraction {
 	 * Is this quest in this state?
 	 */
 	public static class QuestInStateCondition extends SpeakerNPC.ChatCondition {
+
 		private String questname = null;
+
 		private String state = null;
 
 		public QuestInStateCondition(String questname, String state) {
@@ -173,15 +182,17 @@ public class StandardInteraction {
 
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
-		    return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
+			return (player.hasQuest(questname) && player.getQuest(questname).equals(state));
 		}
 	}
-	
+
 	/**
 	 * Is this quest not in this state?
 	 */
 	public static class QuestNotInStateCondition extends SpeakerNPC.ChatCondition {
+
 		private String questname = null;
+
 		private String state = null;
 
 		public QuestNotInStateCondition(String questname, String state) {
@@ -191,7 +202,7 @@ public class StandardInteraction {
 
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
-		    return (!player.hasQuest(questname) || !player.getQuest(questname).equals(state));
+			return (!player.hasQuest(questname) || !player.getQuest(questname).equals(state));
 		}
 	}
 
@@ -199,7 +210,9 @@ public class StandardInteraction {
 	 * Sets the current state of this quest
 	 */
 	public static class SetQuestAction extends SpeakerNPC.ChatAction {
+
 		private String questname = null;
+
 		private String state = null;
 
 		public SetQuestAction(String questname, String state) {

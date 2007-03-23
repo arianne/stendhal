@@ -51,17 +51,23 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class BetManager extends ScriptImpl implements TurnListener {
-	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 10 * 3; 
+
+	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 10 * 3;
+
 	private static Logger logger = Logger.getLogger(BetManager.class);
 
 	/** the NPC */
 	protected ScriptingNPC npc = null;
+
 	/** current state */
 	protected State state = State.IDLE;
+
 	/** list of bets */
 	protected List<BetInfo> betInfos = new LinkedList<BetInfo>();
+
 	/** possible targets */
 	protected List<String> targets = new ArrayList<String>();
+
 	/** winner (in state State.PAYING_BETS) */
 	protected String winner = null;
 
@@ -69,14 +75,18 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 * Stores information about a bet
 	 */
 	protected static class BetInfo {
+
 		// use player name instead of player object
 		// because player may reconnect during the show
 		/** name of player */
 		String playerName = null;
+
 		/** target of bet */
 		String target = null;
+
 		/** name of item */
 		String itemName = null;
+
 		/** amount */
 		int amount = 0;
 
@@ -119,6 +129,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 * Do we accept bets at the moment?
 	 */
 	protected class BetCondition extends SpeakerNPC.ChatCondition {
+
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return state == State.ACCEPTING_BETS;
@@ -129,6 +140,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 * Do we NOT accept bets at the moment?
 	 */
 	protected class NoBetCondition extends SpeakerNPC.ChatCondition {
+
 		@Override
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return state != State.ACCEPTING_BETS;
@@ -139,6 +151,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	 * handles a bet.
 	 */
 	protected class BetAction extends SpeakerNPC.ChatAction {
+
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			BetInfo betInfo = new BetInfo();
@@ -149,7 +162,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			boolean error = false;
 			if (st.countTokens() == 5) {
 				st.nextToken(); // bet
-				String amountStr = st.nextToken();  // 5
+				String amountStr = st.nextToken(); // 5
 				betInfo.itemName = st.nextToken(); // cheese
 				st.nextToken(); // on
 				betInfo.target = st.nextToken();
@@ -157,7 +170,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				try {
 					betInfo.amount = Integer.parseInt(amountStr);
 				} catch (NumberFormatException e) {
-					error =true;
+					error = true;
 				}
 			} else {
 				error = true;
@@ -171,7 +184,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 			// check that item is a Consumeable Item
 			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(betInfo.itemName);
-			if (! (item instanceof ConsumableItem)) {
+			if (!(item instanceof ConsumableItem)) {
 				engine.say("Sorry " + player.getName() + ", i only accept food and drinks.");
 				return;
 			}
@@ -191,7 +204,6 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			// store bet in list and confirm it
 			betInfos.add(betInfo);
 			engine.say(player.getName() + " your bet " + betInfo.betToString() + " was accepted");
-
 
 			// TODO: put items on ground
 			// TODO: mark items on ground with: playername "betted" amount itemname "on" target.
@@ -214,11 +226,13 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				if (winner.equals(betInfo.target)) {
 					npc.say(betInfo.playerName + " would have won but he or she went away.");
 				} else {
-					npc.say(betInfo.playerName + " went away. But as he or she has lost anyway it makes no differents.");
+					npc
+					        .say(betInfo.playerName
+					                + " went away. But as he or she has lost anyway it makes no differents.");
 				}
-				
+
 			} else {
-					
+
 				// create announcement
 				StringBuilder sb = new StringBuilder();
 				sb.append(betInfo.playerName);
@@ -269,7 +283,6 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		}
 	}
 
-
 	// ------------------------------------------------------------------------
 	//                 scripting stuff and game master control                
 	// ------------------------------------------------------------------------
@@ -297,10 +310,14 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		// Create Dialog
 		npc.behave("greet", "Hi, do you want to bet?");
 		npc.behave("job", "I am the Bet Dialer");
-		npc.behave("help", "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
+		npc
+		        .behave(
+		                "help",
+		                "Say \"bet 5 cheese on fire\" to get an additional 5 pieces of cheese if fire wins. If he loses, you will lose your 5 cheese.");
 		npc.addGoodbye();
 		npc.add(ConversationStates.IDLE, "bet", new BetCondition(), ConversationStates.IDLE, null, new BetAction());
-		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(), ConversationStates.IDLE, "I am not accepting any bets at the moment.", null);
+		npc.add(ConversationStates.IDLE, "bet", new NoBetCondition(), ConversationStates.IDLE,
+		        "I am not accepting any bets at the moment.", null);
 
 		// TODO: remove warning
 		admin.sendPrivateText("BetManager is not fully coded yet");
@@ -313,8 +330,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		List<String> commands = Arrays.asList("accept", "action", "winner");
 		if ((args.size() == 0) || (!commands.contains(args.get(0)))) {
 			admin.sendPrivateText("Syntax: /script BetManager.class accept #fire #water\n"
-					+ "/script BetManager.class action\n"
-					+ "/script BetManager.class winner #fire\n");
+			        + "/script BetManager.class action\n" + "/script BetManager.class winner #fire\n");
 			return;
 		}
 
@@ -323,13 +339,16 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			case 0: // accept #fire #water 
 			{
 				if (state != State.IDLE) {
-					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state + " now.\n");
+					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state
+					        + " now.\n");
 					return;
 				}
 				for (int i = 1; i < args.size(); i++) {
 					targets.add(args.get(i));
 				}
-				npc.say("Hi, I am accepting bets on " + targets + ". If you want to bet simply say: \"bet 5 cheese on " + targets.get(0) + "\" to get an additional 5 pieces of cheese if " + targets.get(0) + " wins. If he loses, you will lose your 5 cheese.");
+				npc.say("Hi, I am accepting bets on " + targets + ". If you want to bet simply say: \"bet 5 cheese on "
+				        + targets.get(0) + "\" to get an additional 5 pieces of cheese if " + targets.get(0)
+				        + " wins. If he loses, you will lose your 5 cheese.");
 				state = State.ACCEPTING_BETS;
 				break;
 			}
@@ -337,7 +356,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			case 1: // action 
 			{
 				if (state != State.ACCEPTING_BETS) {
-					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state + " now.\n");
+					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state
+					        + " now.\n");
 					return;
 				}
 				npc.say("Ok, Let the fun begin! I will not accept bets anymore.");
@@ -348,7 +368,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 			case 2: // winner #fire
 			{
 				if (state != State.ACTION) {
-					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state + " now.\n");
+					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state
+					        + " now.\n");
 					return;
 				}
 				if (args.size() < 2) {

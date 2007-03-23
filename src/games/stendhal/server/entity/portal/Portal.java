@@ -24,6 +24,7 @@ import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 
 public class Portal extends Entity implements UseListener {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Portal.class);
 
@@ -125,8 +126,8 @@ public class Portal extends Entity implements UseListener {
 	public void onUsed(RPEntity user) {
 		usePortal((Player) user);
 	}
-    
-    public void onUsedBackwards(RPEntity user) {
-        // do nothing
-    }
+
+	public void onUsedBackwards(RPEntity user) {
+		// do nothing
+	}
 }

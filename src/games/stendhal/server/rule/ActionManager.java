@@ -21,6 +21,7 @@ import games.stendhal.server.entity.item.Item;
  * @author Matthias Totz
  */
 public interface ActionManager {
+
 	/** PRE 0.40 */
 	String canEquip(RPEntity entity, Item item);
 

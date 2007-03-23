@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public class USL3_OutsideNorthWest implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
 
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.
@@ -20,15 +20,13 @@ public class USL3_OutsideNorthWest implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildZooSub3Area(zone, attributes);
 	}
 
-
-	private void buildZooSub3Area(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	private void buildZooSub3Area(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Bario") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

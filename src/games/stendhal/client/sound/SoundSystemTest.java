@@ -115,7 +115,6 @@ public class SoundSystemTest {
 		assertEquals(100, SoundSystem.get().getVolume());
 	}
 
-
 	@Test
 	public final void testIsOperative() {
 		assertTrue(SoundSystem.get().isOperative());
@@ -128,7 +127,6 @@ public class SoundSystemTest {
 		assertTrue("must receive identical instance", (ss1 == ss2));
 
 	}
-
 
 	@Ignore
 	public final void testExit() {

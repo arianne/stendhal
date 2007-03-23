@@ -22,9 +22,10 @@ import java.util.Map;
  * Inside Semos Tavern - Level 0 (ground floor)
  */
 public class SemosCityTavern0 implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();
-	private ShopList shops = ShopList.get();
 
+	private NPCList npcs = NPCList.get();
+
+	private ShopList shops = ShopList.get();
 
 	/**
 	 * Configure a zone.
@@ -32,16 +33,15 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 	 * @param	zone		The zone to be configured.
 	 * @param	attributes	Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone,
-	 Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildMargaret(zone);
 		buildXinBlanca(zone);
 		buildRicardo(zone);
 	}
 
-
 	private void buildMargaret(StendhalRPZone zone) {
 		SpeakerNPC margaret = new SpeakerNPC("Margaret") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -74,10 +74,11 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 		margaret.set(17, 12);
 		margaret.initHP(100);
 		zone.add(margaret);
-	}		
+	}
 
 	private void buildXinBlanca(final StendhalRPZone zone) {
 		SpeakerNPC xinBlanca = new SpeakerNPC("Xin Blanca") {
+
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -97,12 +98,8 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 				addHelp("I buy and sell several items, ask me for my #offer.");
 				addSeller(new SellerBehaviour(shops.get("sellstuff")), false);
 				addBuyer(new BuyerBehaviour(shops.get("buystuff")), false);
-				add(ConversationStates.ATTENDING,
-					"offer",
-					null,
-					ConversationStates.ATTENDING,
-					"Have a look at the blackboards on the wall to see my offers.",
-					null);
+				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
+				        "Have a look at the blackboards on the wall to see my offers.", null);
 				addGoodbye();
 				Sign board = new Sign();
 				zone.assignRPObjectID(board);
@@ -120,7 +117,7 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 			}
 		};
 		npcs.add(xinBlanca);
-		
+
 		zone.assignRPObjectID(xinBlanca);
 		xinBlanca.put("class", "weaponsellernpc");
 		xinBlanca.setX(2);
@@ -132,6 +129,7 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 
 	private void buildRicardo(StendhalRPZone zone) {
 		CroupierNPC ricardo = new CroupierNPC("Ricardo") {
+
 			@Override
 			protected void createPath() {
 				// Ricardo doesn't move
@@ -141,17 +139,19 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				
+
 				addGreeting("Welcome to the #gambling table, where dreams can come true.");
 				addJob("I'm the only person in Semos who is licensed to offer gambling activities.");
-				addReply("gambling", "The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
+				addReply(
+				        "gambling",
+				        "The rules are simple: just tell me if you want to #play, pay the stake, and throw the dice on the table. The higher the sum of the upper faces is, the nicer will be your prize. Take a look at the blackboards on the wall!");
 				addHelp("If you are looking for Ouchit: he's upstairs.");
 				addGoodbye();
 			}
 		};
-		
+
 		npcs.add(ricardo);
-		
+
 		zone.assignRPObjectID(ricardo);
 		ricardo.put("class", "naughtyteen2npc");
 		ricardo.setX(28);
@@ -161,6 +161,6 @@ public class SemosCityTavern0 implements ZoneConfigurator {
 		ricardo.setHP(ricardo.getBaseHP());
 		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
 		ricardo.setTableArea(tableArea);
-		zone.add(ricardo);		
+		zone.add(ricardo);
 	}
 }

@@ -44,6 +44,7 @@ import marauroa.server.game.Statistics;
 import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends Entity {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RPEntity.class);
 
@@ -66,12 +67,12 @@ public abstract class RPEntity extends Entity {
 	private int xp;
 
 	private int level;
-        
-        private int mana;
-        
-        private int base_mana;
 
-	private HashMap <RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
+	private int mana;
+
+	private int base_mana;
+
+	private HashMap<RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
 
 	/** List of all attackers of this entity */
 	private List<Entity> attackSource;
@@ -80,6 +81,7 @@ public abstract class RPEntity extends Entity {
 	private RPEntity attackTarget;
 
 	private Map<Entity, Integer> damageReceived;
+
 	/** list of players which are to reward with xp on killing this creature */
 	protected Set<Player> playersToReward;
 
@@ -96,22 +98,11 @@ public abstract class RPEntity extends Entity {
 
 	private static int TURNS_WHILE_ATK_DEF_XP_INCREASE = 40;
 
-
 	/**
 	 * All the slots considered to be "with" the entity.
 	 * Listed in priority order (ie. bag first).
 	 */
-	public static final String [] CARRYING_SLOTS = {
-		"bag",
-		"head",
-		"rhand",
-		"lhand",
-		"armor",
-		"cloak",
-		"legs",
-		"feet"
-	};
-
+	public static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet" };
 
 	public static void generateRPClass() {
 		stats = Statistics.getStatistics();
@@ -122,8 +113,8 @@ public abstract class RPEntity extends Entity {
 			entity.add("name", RPClass.STRING);
 			entity.add("level", RPClass.SHORT);
 			entity.add("xp", RPClass.INT);
-                        entity.add("mana", RPClass.INT);
-                        entity.add("base_mana", RPClass.INT);
+			entity.add("mana", RPClass.INT);
+			entity.add("base_mana", RPClass.INT);
 
 			entity.add("hp/base_hp", RPClass.FLOAT, RPClass.VOLATILE);
 			entity.add("base_hp", RPClass.SHORT, RPClass.PRIVATE);
@@ -133,8 +124,8 @@ public abstract class RPEntity extends Entity {
 			entity.add("atk_xp", RPClass.INT, RPClass.PRIVATE);
 			entity.add("def", RPClass.SHORT, RPClass.PRIVATE);
 			entity.add("def_xp", RPClass.INT, RPClass.PRIVATE);
-			entity.add("atk_item", RPClass.INT, (byte) (RPClass.PRIVATE|RPClass.VOLATILE));
-			entity.add("def_item", RPClass.INT, (byte) (RPClass.PRIVATE|RPClass.VOLATILE));
+			entity.add("atk_item", RPClass.INT, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+			entity.add("def_item", RPClass.INT, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
 
 			entity.add("risk", RPClass.BYTE, RPClass.VOLATILE);
 			entity.add("damage", RPClass.INT, RPClass.VOLATILE);
@@ -171,7 +162,6 @@ public abstract class RPEntity extends Entity {
 		totalDamageReceived = 0;
 	}
 
-
 	/**
 	 * Give the player some karma (good or bad).
 	 *
@@ -180,7 +170,6 @@ public abstract class RPEntity extends Entity {
 	public void addKarma(double karma) {
 		// No nothing
 	}
-
 
 	/**
 	 * Get some of the player's karma. A positive value indicates
@@ -195,7 +184,6 @@ public abstract class RPEntity extends Entity {
 		// No impact
 		return 0.0;
 	}
-
 
 	/**
 	 * Get some of the player's karma. A positive value indicates
@@ -212,7 +200,6 @@ public abstract class RPEntity extends Entity {
 		return 0.0;
 	}
 
-
 	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
@@ -221,13 +208,12 @@ public abstract class RPEntity extends Entity {
 	 * @return	<code>true</code> if the other entity is an RPEntity.
 	 */
 	public boolean isObstacle(Entity entity) {
-		if(isGhost()) {
+		if (isGhost()) {
 			return false;
 		}
 
 		return (entity instanceof RPEntity);
 	}
-
 
 	@Override
 	public void update() throws AttributeNotFoundException {
@@ -264,12 +250,12 @@ public abstract class RPEntity extends Entity {
 		if (has("level")) {
 			level = getInt("level");
 		}
-                if (has("mana")) {
-                        mana = getInt("mana");
-                }
-                if (has("base_mana")) {
-                        mana = getInt("base_mana");
-                }
+		if (has("mana")) {
+			mana = getInt("mana");
+		}
+		if (has("base_mana")) {
+			mana = getInt("base_mana");
+		}
 
 		if (base_hp != 0) {
 			put("hp/base_hp", (double) hp / (double) base_hp);
@@ -434,8 +420,7 @@ public abstract class RPEntity extends Entity {
 		return xp;
 	}
 
-
-	public void sendPrivateText(String text) { 
+	public void sendPrivateText(String text) {
 		// Ignore - Sub-classes may use
 	}
 
@@ -497,7 +482,7 @@ public abstract class RPEntity extends Entity {
 	public boolean stillHasBlood(RPEntity enemy) {
 		Integer integer = blood.get(enemy);
 		if (integer != null) {
-			int i = integer.intValue(); 
+			int i = integer.intValue();
 			if (i > 0) {
 				i--;
 				blood.put(enemy, new Integer(i));
@@ -517,8 +502,8 @@ public abstract class RPEntity extends Entity {
 	 */
 	public void onAttack(Entity who, boolean status) {
 		if (status) {
-// Attacker should manage their own target
-//			who.attackTarget = this;
+			// Attacker should manage their own target
+			//			who.attackTarget = this;
 			if (!attackSource.contains(who)) {
 				attackSource.add(who);
 			}
@@ -526,8 +511,8 @@ public abstract class RPEntity extends Entity {
 			if (who.has("target")) {
 				who.remove("target");
 			}
-// Attacker should manage their own target
-//			who.attackTarget = null;
+			// Attacker should manage their own target
+			//			who.attackTarget = null;
 			attackSource.remove(who);
 		}
 	}
@@ -539,8 +524,7 @@ public abstract class RPEntity extends Entity {
 	public void onDamage(Entity who, int damage) {
 		logger.debug("Damaged " + damage + " points by " + who.getID());
 
-		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer
-				.toString(damage));
+		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer.toString(damage));
 
 		Rectangle2D rect = getArea();
 		if (!StendhalRPRuleProcessor.get().bloodAt((int) rect.getX(), (int) rect.getY())) {
@@ -612,19 +596,18 @@ public abstract class RPEntity extends Entity {
 	protected void onDead(Entity killer, boolean remove) {
 		stopAttack();
 		int oldlevel = this.getLevel();
-		int oldxp    = this.getXP();
-		
+		int oldxp = this.getXP();
+
 		if (killer instanceof RPEntity) {
 			((RPEntity) killer).stopAttack();
-			StendhalRPRuleProcessor.get().addGameEvent(
-				killer.getName(), "killed", getName());
+			StendhalRPRuleProcessor.get().addGameEvent(killer.getName(), "killed", getName());
 			killer.notifyWorldAboutChanges();
 		}
 		if (this instanceof Player) {
-		    this.setXP((oldxp * 10) / 9);
-		    oldlevel = this.getLevel();
-		    oldxp    = this.getXP();
-		    this.setXP((int)(oldxp * 0.9));
+			this.setXP((oldxp * 10) / 9);
+			oldlevel = this.getLevel();
+			oldxp = this.getXP();
+			this.setXP((int) (oldxp * 0.9));
 		}
 
 		// Establish how much xp points your are rewarded
@@ -639,19 +622,14 @@ public abstract class RPEntity extends Entity {
 				}
 				int damageDone = temp.intValue();
 
-				if(logger.isDebugEnabled()) {
-					String name = player.has("name")
-						? player.get("name")
-						: player.get("type");
+				if (logger.isDebugEnabled()) {
+					String name = player.has("name") ? player.get("name") : player.get("type");
 
-					logger.debug(name
-						+ " did " + damageDone
-						+ " of " + totalDamageReceived
-						+ ". Reward was " + xpReward);
+					logger.debug(name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was "
+					        + xpReward);
 				}
 
-				int xpEarn = (xpReward * damageDone)
-						/ totalDamageReceived;
+				int xpEarn = (xpReward * damageDone) / totalDamageReceived;
 
 				/** We limit xp gain for up to eight levels difference */
 				double gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
@@ -661,19 +639,19 @@ public abstract class RPEntity extends Entity {
 					gainXpLimitation = 1.0;
 				}
 
-				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t"
-						+ totalDamageReceived + "\t" + gainXpLimitation);
+				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t" + totalDamageReceived + "\t"
+				        + gainXpLimitation);
 
 				int reward = (int) (xpEarn * gainXpLimitation);
-				
+
 				// We ensure that the player gets at least 1 experience
 				// point, because getting nothing lowers motivation.
 				if (reward == 0) {
 					reward = 1;
-				}						 
-				
+				}
+
 				player.addXP(reward);
-				
+
 				// find out if the player killed this RPEntity on his own
 				// TODO: don't overwrite solo with shared.
 				if (damageDone == totalDamageReceived) {
@@ -724,20 +702,18 @@ public abstract class RPEntity extends Entity {
 		return attackSource;
 	}
 
-
 	/** Return the RPEntities that are attacking this character */
 	public List<RPEntity> getAttackingRPEntities() {
 		List<RPEntity> list = new ArrayList<RPEntity>();
 
-		for(Entity entity : getAttackSources()) {
-			if(entity instanceof RPEntity) {
+		for (Entity entity : getAttackSources()) {
+			if (entity instanceof RPEntity) {
 				list.add((RPEntity) entity);
 			}
 		}
 
 		return list;
 	}
-
 
 	/** Return true if this entity is attacking */
 	public boolean isAttacking() {
@@ -892,10 +868,10 @@ public abstract class RPEntity extends Entity {
 		if (!isEquipped(name, amount)) {
 			return false;
 		}
-		
+
 		int toDrop = amount;
 
-		for(String slotName : CARRYING_SLOTS) {
+		for (String slotName : CARRYING_SLOTS) {
 			RPSlot slot = getSlot(slotName);
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
@@ -966,7 +942,7 @@ public abstract class RPEntity extends Entity {
 	 * @return true iff dropping the item was successful.
 	 */
 	public boolean drop(Item item) {
-		for(String slotName : CARRYING_SLOTS) {
+		for (String slotName : CARRYING_SLOTS) {
 			RPSlot slot = getSlot(slotName);
 
 			Iterator<RPObject> objectsIterator = slot.iterator();
@@ -986,7 +962,7 @@ public abstract class RPEntity extends Entity {
 	public boolean isEquipped(String name, int amount) {
 		int found = 0;
 
-		for(String slotName : CARRYING_SLOTS) {
+		for (String slotName : CARRYING_SLOTS) {
 			RPSlot slot = getSlot(slotName);
 
 			for (RPObject object : slot) {
@@ -996,7 +972,7 @@ public abstract class RPEntity extends Entity {
 
 				Item item = (Item) object;
 
-				if(item.getName().equals(name)) {
+				if (item.getName().equals(name)) {
 					found += item.getQuantity();
 
 					if (found >= amount) {
@@ -1007,7 +983,7 @@ public abstract class RPEntity extends Entity {
 		}
 		return false;
 	}
-	
+
 	public boolean isEquipped(String name) {
 		return isEquipped(name, 1);
 	}
@@ -1021,7 +997,7 @@ public abstract class RPEntity extends Entity {
 	public int getNumberOfEquipped(String name) {
 		int result = 0;
 
-		for(String slotName : CARRYING_SLOTS) {
+		for (String slotName : CARRYING_SLOTS) {
 			RPSlot slot = getSlot(slotName);
 
 			for (RPObject object : slot) {
@@ -1045,7 +1021,7 @@ public abstract class RPEntity extends Entity {
 	 *         was found
 	 */
 	public Item getFirstEquipped(String name) {
-		for(String slotName : CARRYING_SLOTS) {
+		for (String slotName : CARRYING_SLOTS) {
 			RPSlot slot = getSlot(slotName);
 
 			for (RPObject object : slot) {
@@ -1060,7 +1036,7 @@ public abstract class RPEntity extends Entity {
 
 		return null;
 	}
-	
+
 	/**
 	 * Gets an item that is carried by the RPEntity.
 	 * If the item is stackable, gets all that are on the first
@@ -1072,7 +1048,7 @@ public abstract class RPEntity extends Entity {
 	public List<Item> getAllEquipped(String name) {
 		List<Item> result = new LinkedList<Item>();
 
-		for(String slotName : CARRYING_SLOTS) {
+		for (String slotName : CARRYING_SLOTS) {
 			RPSlot slot = getSlot(slotName);
 
 			for (RPObject object : slot) {
@@ -1086,7 +1062,7 @@ public abstract class RPEntity extends Entity {
 		}
 		return result;
 	}
-	
+
 	public Item dropItemClass(String[] slots, String clazz) {
 		for (String slotName : slots) {
 			RPSlot slot = getSlot(slotName);
@@ -1154,8 +1130,7 @@ public abstract class RPEntity extends Entity {
 		String[] weaponsClasses = { "club", "sword", "axe", "ranged" };
 
 		for (String weaponClass : weaponsClasses) {
-			if (isEquippedItemClass("lhand", weaponClass)
-					|| isEquippedItemClass("rhand", weaponClass)) {
+			if (isEquippedItemClass("lhand", weaponClass) || isEquippedItemClass("rhand", weaponClass)) {
 				return true;
 			}
 		}
@@ -1200,7 +1175,6 @@ public abstract class RPEntity extends Entity {
 		}
 		return weapons;
 	}
-	
 
 	private StackableItem getProjectiles() {
 		String[] slots = { "lhand", "rhand" };
@@ -1216,8 +1190,7 @@ public abstract class RPEntity extends Entity {
 
 	/** returns true if the entity has a shield equipped */
 	public boolean hasShield() {
-		return isEquippedItemClass("lhand", "shield")
-				|| isEquippedItemClass("rhand", "shield");
+		return isEquippedItemClass("lhand", "shield") || isEquippedItemClass("rhand", "shield");
 	}
 
 	public Item getShield() {
@@ -1299,13 +1272,13 @@ public abstract class RPEntity extends Entity {
 		for (Item weaponItem : weapons) {
 			weapon += weaponItem.getAttack();
 		}
-	
+
 		// range weapons
 		StackableItem projectileItem = null;
 		if (weapons.size() > 0) {
 			if (weapons.get(0).isOfClass("ranged")) {
 				projectileItem = getProjectiles();
-	
+
 				if (projectileItem != null) {
 					weapon += projectileItem.getAttack();
 				} else {
@@ -1335,7 +1308,7 @@ public abstract class RPEntity extends Entity {
 		int legs = 0;
 		int boots = 0;
 		int cloak = 0;
-        int weapon = 0;
+		int weapon = 0;
 
 		if (hasShield()) {
 			shield = getShield().getDefense();
@@ -1360,19 +1333,13 @@ public abstract class RPEntity extends Entity {
 		if (hasCloak()) {
 			cloak = getCloak().getDefense();
 		}
-        
-        List<Item> targetWeapons = getWeapons();
+
+		List<Item> targetWeapons = getWeapons();
 		for (Item weaponItem : targetWeapons) {
 			weapon += weaponItem.getDefense();
 		}
 
-		return    4.0f * shield
-                + 2.0f * armor
-                + 1.5f * cloak
-				+ 1.0f * helmet
-                + 1.0f * legs
-				+ 1.0f * boots
-                + 4.0f * weapon;
+		return 4.0f * shield + 2.0f * armor + 1.5f * cloak + 1.0f * helmet + 1.0f * legs + 1.0f * boots + 4.0f * weapon;
 	}
 
 	/**
@@ -1409,7 +1376,7 @@ public abstract class RPEntity extends Entity {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Sets this RPEntity's outfit.
 	 * 
@@ -1421,6 +1388,5 @@ public abstract class RPEntity extends Entity {
 	public void setOutfit(Outfit outfit) {
 		put("outfit", outfit.getCode());
 	}
-	
 
 }

@@ -18,6 +18,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
  * A base factory for <code>CreatureProtectionArea</code> objects.
  */
 public class CreatureProtectionAreaFactory implements ConfigurableFactory {
+
 	//
 	// CreatureProtectionAreaFactory
 	//
@@ -31,55 +32,52 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected void defineCreatures(CreatureProtectionArea area,
-	 ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String		s;
-		String		clazz;
-		String		subclazz;
-		boolean		blocked;
-		StringTokenizer	st;
-		int		i;
+	protected void defineCreatures(CreatureProtectionArea area, ConfigurableFactoryContext ctx)
+	        throws IllegalArgumentException {
+		String s;
+		String clazz;
+		String subclazz;
+		boolean blocked;
+		StringTokenizer st;
+		int i;
 
-
-		if((s = ctx.getAttribute("rules")) == null) {
+		if ((s = ctx.getAttribute("rules")) == null) {
 			return;
 		}
 
 		blocked = true;
 		st = new StringTokenizer(s, " \n\t,");
 
-		while(st.hasMoreTokens()) {
+		while (st.hasMoreTokens()) {
 			s = st.nextToken();
 
 			/*
 			 * Possible with "   "?
 			 */
-			if(s.length() == 0) {
+			if (s.length() == 0) {
 				continue;
 			}
 
 			/*
 			 * blocking modifier?
 			 */
-			if(s.charAt(0) == '-') {
+			if (s.charAt(0) == '-') {
 				blocked = true;
 				s = s.substring(1);
-			} else if(s.charAt(0) == '+') {
+			} else if (s.charAt(0) == '+') {
 				blocked = false;
 				s = s.substring(1);
 			}
-
 
 			/*
 			 * <class>
 			 * <class>:<subclass>
 			 */
-			if((i = s.indexOf(':')) != -1) {
+			if ((i = s.indexOf(':')) != -1) {
 				clazz = s.substring(0, i);
 				subclazz = s.substring(i + 1);
 
-				if((subclazz.length() == 0)
-				 || subclazz.equals("*")) {
+				if ((subclazz.length() == 0) || subclazz.equals("*")) {
 					subclazz = null;
 				}
 			} else {
@@ -87,14 +85,13 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 				subclazz = null;
 			}
 
-			if((clazz.length() == 0) || clazz.equals("*")) {
+			if ((clazz.length() == 0) || clazz.equals("*")) {
 				clazz = null;
 			}
 
 			area.add(clazz, subclazz, blocked);
 		}
 	}
-
 
 	/**
 	 * Extract the default action from a context.
@@ -106,25 +103,22 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("default")) == null) {
+		if ((s = ctx.getAttribute("default")) == null) {
 			return true;
 		}
 
-		if(s.equals("block")) {
+		if (s.equals("block")) {
 			return true;
 		}
 
-		if(s.equals("allow")) {
+		if (s.equals("allow")) {
 			return false;
 		}
 
-		throw new IllegalArgumentException(
-			"Invalid 'default' attribute: " + s);
+		throw new IllegalArgumentException("Invalid 'default' attribute: " + s);
 	}
 
 	/**
@@ -137,23 +131,19 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("height")) == null) {
+		if ((s = ctx.getAttribute("height")) == null) {
 			return 1;
 		}
 
 		try {
 			return Integer.parseInt(s);
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'height' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'height' attribute: " + s);
 		}
 	}
-
 
 	/**
 	 * Extract the area width from a context.
@@ -165,23 +155,19 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		String	s;
+	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
 
-
-		if((s = ctx.getAttribute("width")) == null) {
+		if ((s = ctx.getAttribute("width")) == null) {
 			return 1;
 		}
 
 		try {
 			return Integer.parseInt(s);
-		} catch(NumberFormatException ex) {
-			throw new IllegalArgumentException(
-				"Invalid 'width' attribute: " + s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'width' attribute: " + s);
 		}
 	}
-
 
 	//
 	// ConfigurableFactory
@@ -202,13 +188,10 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 *
 	 * @see		CreatureProtectionArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-	 throws IllegalArgumentException {
-		CreatureProtectionArea	area;
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		CreatureProtectionArea area;
 
-
-		area =  new CreatureProtectionArea(
-			getWidth(ctx), getHeight(ctx), getBlockedDefault(ctx));
+		area = new CreatureProtectionArea(getWidth(ctx), getHeight(ctx), getBlockedDefault(ctx));
 
 		defineCreatures(area, ctx);
 

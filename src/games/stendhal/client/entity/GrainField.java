@@ -24,7 +24,6 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class GrainField extends AnimatedEntity {
-	
 
 	private int width;
 
@@ -38,11 +37,10 @@ public class GrainField extends AnimatedEntity {
 		super(object);
 		init(object);
 	}
-		
 
 	private void init(RPObject object) {
 		// default values are for compatibility to server <= 0.56
-		
+
 		width = 1;
 		height = 2;
 		clazz = "grain_field";
@@ -56,7 +54,7 @@ public class GrainField extends AnimatedEntity {
 		if (object.has("height")) {
 			height = object.getInt("height");
 		}
-	
+
 		// load sprites
 		if (object.has("class")) {
 			clazz = object.get("class");
@@ -74,8 +72,7 @@ public class GrainField extends AnimatedEntity {
 
 		SpriteStore store = SpriteStore.get();
 		for (int i = 0; i <= maxRipeness; i++) {
-			sprites.put(Integer.toString(i), store.getAnimatedSprite(
-					translate(clazz), i, 1, width, height));
+			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(clazz), i, 1, width, height));
 		}
 	}
 
@@ -86,8 +83,7 @@ public class GrainField extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff)
-			throws AttributeNotFoundException {
+	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("ripeness")) {
@@ -126,17 +122,17 @@ public class GrainField extends AnimatedEntity {
 	public void onAction(ActionType at, String... params) {
 		// ActionType at=handleAction(action);
 		switch (at) {
-		case HARVEST:
-			RPAction rpaction = new RPAction();
-			rpaction.put("type", at.toString());
-			int id = getID().getObjectID();
-			rpaction.put("target", id);
-			at.send(rpaction);
-			break;
+			case HARVEST:
+				RPAction rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
 
-		default:
-			super.onAction(at, params);
-			break;
+			default:
+				super.onAction(at, params);
+				break;
 		}
 
 	}

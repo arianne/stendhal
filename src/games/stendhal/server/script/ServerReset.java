@@ -35,5 +35,5 @@ public class ServerReset extends ScriptImpl {
 
 		Runtime.getRuntime().halt(1);
 	}
-	
+
 }

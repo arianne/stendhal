@@ -31,44 +31,42 @@ import games.stendhal.server.events.TurnNotifier;
  * An area that damages an RPEntity while over it.
  *
  */
-public class DamagingArea extends PassiveEntity
- implements MovementListener, TurnListener {
+public class DamagingArea extends PassiveEntity implements MovementListener, TurnListener {
+
 	/**
 	 * The logger instance.
 	 */
-	private static final Logger	logger =
-					Log4J.getLogger(DamagingArea.class);
+	private static final Logger logger = Log4J.getLogger(DamagingArea.class);
 
 	/**
 	 * The damage inflicted each hit.
 	 */
-	protected int			damage;
+	protected int damage;
 
 	/**
 	 * How often damage is given while stationary (in turns).
 	 */
-	protected int			interval;
+	protected int interval;
 
 	/**
 	 * The inflict damage only on players.
 	 */
-	protected boolean		playersOnly;
+	protected boolean playersOnly;
 
 	/**
 	 * The chance of damage while walking (0.0 - 1.0).
 	 */
-	protected double		probability;
+	protected double probability;
 
 	/**
 	 * A list of entities [potentially] in range.
 	 */
-	protected List<RPEntity.ID>	targets;
+	protected List<RPEntity.ID> targets;
 
 	/**
 	 * Random number generator.
 	 */
-	protected Random		rand;
-
+	protected Random rand;
 
 	/**
 	 * Create a damaging area.
@@ -79,8 +77,7 @@ public class DamagingArea extends PassiveEntity
 	 * @param	probability	The chance of damage while walking
 	 *				(0.0 - 1.0).
 	 */
-	public DamagingArea(String name, int damage, int interval,
-	 double probability) throws AttributeNotFoundException {
+	public DamagingArea(String name, int damage, int interval, double probability) throws AttributeNotFoundException {
 		put("name", name);
 		put("type", "damaging_area");
 
@@ -92,7 +89,6 @@ public class DamagingArea extends PassiveEntity
 		rand = new Random();
 		targets = new LinkedList<RPEntity.ID>();
 	}
-
 
 	//
 	// DamagingArea
@@ -107,28 +103,25 @@ public class DamagingArea extends PassiveEntity
 		targets.add(entity.getID());
 		entity.onAttack(this, true);
 
-		if(targets.size() == 1) {
+		if (targets.size() == 1) {
 			TurnNotifier.get().notifyInTurns(interval, this, null);
 		}
 	}
-
 
 	/**
 	 * Calculate the entity's final defense value.
 	 * Taken from new (potential replacement) combat code.
 	 */
 	protected float calculateDefense(RPEntity entity) {
-		float	potential;
-		float	min;
-		float	score;
-
+		float potential;
+		float min;
+		float score;
 
 		float armor = entity.getItemDef() + 1.0f;
 		int def = entity.getDEF();
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("defender has " + def
-				+ " and uses a armor of " + armor);
+			logger.debug("defender has " + def + " and uses a armor of " + armor);
 		}
 
 		/*
@@ -149,14 +142,11 @@ public class DamagingArea extends PassiveEntity
 		score += ((float) entity.getKarma(0.1) * potential);
 
 		if (logger.isDebugEnabled()) {
-			logger.debug(
-				"DEF MAX: " + potential
-					+ "  DEF SCORE: " + score);
+			logger.debug("DEF MAX: " + potential + "  DEF SCORE: " + score);
 		}
 
 		return score;
 	}
-
 
 	/**
 	 * Inflict damage on an entity.
@@ -164,15 +154,14 @@ public class DamagingArea extends PassiveEntity
 	 * @param	entity		The entity to damage.
 	 */
 	protected boolean doDamage(RPEntity entity) {
-		float	attack;
-		float	defense;
-		int	actualDamage;
-
+		float attack;
+		float defense;
+		int actualDamage;
 
 		/*
 		 * Don't beat a dead horse!
 		 */
-		if(entity.getHP() == 0) {
+		if (entity.getHP() == 0) {
 			return false;
 		}
 
@@ -183,11 +172,11 @@ public class DamagingArea extends PassiveEntity
 		defense = calculateDefense(entity);
 		actualDamage = Math.round(attack - defense);
 
-//logger.info("attack: " + attack);
-//logger.info("defense: " + defense);
-//logger.info("actualDamage: " + actualDamage);
+		//logger.info("attack: " + attack);
+		//logger.info("defense: " + defense);
+		//logger.info("actualDamage: " + actualDamage);
 
-		if(actualDamage <= 0) {
+		if (actualDamage <= 0) {
 			return true;
 		}
 
@@ -195,19 +184,16 @@ public class DamagingArea extends PassiveEntity
 		return true;
 	}
 
-
 	/**
 	 * Apply any damage done while moving.
 	 *
 	 * @param	entity		The RPEntity to [possibly] damage.
 	 */
 	protected void handleMovement(RPEntity entity) {
-		if(rand.nextDouble() < probability) {
+		if (rand.nextDouble() < probability) {
 			doDamage(entity);
 		}
 	}
-
-
 
 	/**
 	 * Remove an entity from the target list.
@@ -218,11 +204,10 @@ public class DamagingArea extends PassiveEntity
 		entity.onAttack(this, false);
 		targets.remove(entity.getID());
 
-		if(targets.isEmpty()) {
+		if (targets.isEmpty()) {
 			TurnNotifier.get().dontNotify(this, null);
 		}
 	}
-
 
 	/**
 	 * Set whether only players get damage.
@@ -247,7 +232,6 @@ public class DamagingArea extends PassiveEntity
 		rect.setRect(x, y, 1, 1);
 	}
 
-
 	/**
 	 * Called when this object is added to a zone.
 	 *
@@ -258,7 +242,6 @@ public class DamagingArea extends PassiveEntity
 		super.onAdded(zone);
 		zone.addMovementListener(this);
 	}
-
 
 	/**
 	 * Called when this object is being removed from a zone.
@@ -271,14 +254,12 @@ public class DamagingArea extends PassiveEntity
 		super.onRemoved(zone);
 	}
 
-
 	/**
 	 * Handle object attribute change(s).
 	 */
 	@Override
 	public void update() throws AttributeNotFoundException {
-		StendhalRPZone	zone;
-
+		StendhalRPZone zone;
 
 		super.update();
 
@@ -289,7 +270,6 @@ public class DamagingArea extends PassiveEntity
 		zone.removeMovementListener(this);
 		zone.addMovementListener(this);
 	}
-
 
 	//
 	// MovementListener
@@ -303,19 +283,17 @@ public class DamagingArea extends PassiveEntity
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onEntered(RPEntity entity, StendhalRPZone zone,
-	 int newX, int newY) {
+	public void onEntered(RPEntity entity, StendhalRPZone zone, int newX, int newY) {
 		/*
 		 * Only effect players?
 		 */
-		if(playersOnly && !(entity instanceof Player)) {
+		if (playersOnly && !(entity instanceof Player)) {
 			return;
 		}
 
 		handleMovement(entity);
 		addTarget(entity);
 	}
-
 
 	/**
 	 * Invoked when an entity leaves the object area.
@@ -326,19 +304,17 @@ public class DamagingArea extends PassiveEntity
 	 * @param	oldY		The old Y coordinate.
 	 *
 	 */
-	public void onExited(RPEntity entity, StendhalRPZone zone,
-	 int oldX, int oldY) {
+	public void onExited(RPEntity entity, StendhalRPZone zone, int oldX, int oldY) {
 		/*
 		 * Only effect players?
 		 */
-		if(playersOnly && !(entity instanceof Player)) {
+		if (playersOnly && !(entity instanceof Player)) {
 			return;
 		}
 
 		handleMovement(entity);
 		removeTarget(entity);
 	}
-
 
 	/**
 	 * Invoked when an entity moves while over the object area.
@@ -350,18 +326,16 @@ public class DamagingArea extends PassiveEntity
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onMoved(RPEntity entity, StendhalRPZone zone,
-	 int oldX, int oldY, int newX, int newY) {
+	public void onMoved(RPEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
 		/*
 		 * Only effect players?
 		 */
-		if(playersOnly && !(entity instanceof Player)) {
+		if (playersOnly && !(entity instanceof Player)) {
 			return;
 		}
 
 		handleMovement(entity);
 	}
-
 
 	//
 	// TurnListener
@@ -374,9 +348,8 @@ public class DamagingArea extends PassiveEntity
 	 * @param	message		The string that was used.
 	 */
 	public void onTurnReached(int currentTurn, String message) {
-		IRPZone		zone;
-		Rectangle2D	area;
-
+		IRPZone zone;
+		Rectangle2D area;
 
 		zone = getZone();
 		area = getArea();
@@ -386,16 +359,16 @@ public class DamagingArea extends PassiveEntity
 		 */
 		Iterator<RPEntity.ID> iter = targets.iterator();
 
-		while(iter.hasNext()) {
+		while (iter.hasNext()) {
 			RPEntity.ID id = iter.next();
 
-			if(!zone.has(id)) {
+			if (!zone.has(id)) {
 				iter.remove();
 			} else {
 				RPEntity entity = (RPEntity) zone.get(id);
 
-				if(area.intersects(entity.getArea())) {
-					if(!doDamage(entity)) {
+				if (area.intersects(entity.getArea())) {
+					if (!doDamage(entity)) {
 						entity.onAttack(this, false);
 						iter.remove();
 					}
@@ -406,7 +379,7 @@ public class DamagingArea extends PassiveEntity
 			}
 		}
 
-		if(!targets.isEmpty()) {
+		if (!targets.isEmpty()) {
 			TurnNotifier.get().notifyInTurns(interval, this, null);
 		}
 	}

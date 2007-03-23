@@ -40,6 +40,7 @@ import marauroa.server.game.RPServerManager;
 import org.apache.log4j.Logger;
 
 public class StendhalRPAction {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalRPAction.class);
 
@@ -61,13 +62,13 @@ public class StendhalRPAction {
 		 */
 		double karma = source.getKarma(0.3) - target.getKarma(0.3);
 
-		if(karma > 0.2) {
+		if (karma > 0.2) {
 			risk += 4;
-		} else if(karma > 0.1) {
+		} else if (karma > 0.1) {
 			risk++;
-		} else if(karma < -0.2) {
+		} else if (karma < -0.2) {
 			risk -= 4;
-		} else if(karma < -0.1) {
+		} else if (karma < -0.1) {
 			risk--;
 		}
 
@@ -88,7 +89,6 @@ public class StendhalRPAction {
 		return result;
 	}
 
-
 	public static int damageDone(RPEntity source, RPEntity target) {
 
 		float weapon = source.getItemAtk();
@@ -105,11 +105,9 @@ public class StendhalRPAction {
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		attackerComponent +=
-			(attackerComponent * (float) source.getKarma(0.1));
+		attackerComponent += (attackerComponent * (float) source.getKarma(0.1));
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: " + attackerComponent);
-
 
 		float armor = target.getItemDef();
 		int targetDef = target.getDEF();
@@ -120,14 +118,14 @@ public class StendhalRPAction {
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		defenderComponent +=
-			(defenderComponent * (float) target.getKarma(0.1));
+		defenderComponent += (defenderComponent * (float) target.getKarma(0.1));
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: " + defenderComponent);
 		}
 
-		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent) * (maxAttackerComponent / maxDefenderComponent) * (source.getATK() / 10.0f));
+		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
+		        * (maxAttackerComponent / maxDefenderComponent) * (source.getATK() / 10.0f));
 
 		if (projectileItem != null) {
 			projectileItem.add(-1);
@@ -141,14 +139,15 @@ public class StendhalRPAction {
 
 			double minrange = 2 * 2;
 			double maxrange = 7 * 7;
-			int rangeDamage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage * (1.0 - (minrange / maxrange))) * (1.0 - distance / maxrange));
+			int rangeDamage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
+			        * (1.0 - (minrange / maxrange)))
+			        * (1.0 - distance / maxrange));
 			// limit damage to target hp
 			return Math.min(rangeDamage, target.getHP());
 		}
 		// limit damage to target hp
 		return Math.min(damage, target.getHP());
 	}
-
 
 	/**
 	 * Do logic for starting an attack on an entity.
@@ -167,19 +166,16 @@ public class StendhalRPAction {
 		// Disable attacking NPCS.
 		// Just make sure no creature is instanceof SpeakerNPC...
 		if (entity instanceof SpeakerNPC) {
-			logger.info("REJECTED. " + player.getName()
-				+ " is attacking " + entity.getName());
+			logger.info("REJECTED. " + player.getName() + " is attacking " + entity.getName());
 			return;
 		}
 
 		// Enabled PVP
 		if ((entity instanceof Player) || (entity instanceof Sheep)) {
-			StendhalRPZone zone = (StendhalRPZone)
-				StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 
 			if (zone.isInProtectionArea(entity)) {
-				logger.info("REJECTED. " + entity.getName()
-					+ " is in a protection zone");
+				logger.info("REJECTED. " + entity.getName() + " is in a protection zone");
 
 				String name = entity.getName();
 
@@ -192,16 +188,15 @@ public class StendhalRPAction {
 					}
 				}
 
-				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking " + name + ".");
+				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking " + name
+				        + ".");
 				return;
 			}
 
-			logger.info(player.getName() + " is attacking "
-					+ entity.getName());
+			logger.info(player.getName() + " is attacking " + entity.getName());
 		}
 
-		StendhalRPRuleProcessor.get().addGameEvent(
-			player.getName(), "attack", entity.getName());
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "attack", entity.getName());
 
 		player.attack(entity);
 		player.faceTo(entity);
@@ -209,15 +204,16 @@ public class StendhalRPAction {
 		player.notifyWorldAboutChanges();
 	}
 
-
-	public static boolean attack(RPEntity source, RPEntity target) throws AttributeNotFoundException, NoRPZoneException, RPObjectNotFoundException {
+	public static boolean attack(RPEntity source, RPEntity target) throws AttributeNotFoundException,
+	        NoRPZoneException, RPObjectNotFoundException {
 		//Log4J.startMethod(logger, "attack");
 		boolean result = false;
 
 		try {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(source.getID());
 			if (!zone.has(target.getID()) || (target.getHP() == 0)) {
-				logger.debug("Attack from " + source + " to " + target + " stopped because target was lost(" + zone.has(target.getID()) + ") or dead.");
+				logger.debug("Attack from " + source + " to " + target + " stopped because target was lost("
+				        + zone.has(target.getID()) + ") or dead.");
 				target.onAttack(source, false);
 				source.notifyWorldAboutChanges();
 
@@ -226,12 +222,12 @@ public class StendhalRPAction {
 
 			target.onAttack(source, true);
 
-			if(source.nextTo(target)) {
+			if (source.nextTo(target)) {
 				// Continue (skip range checks if next to)
-			} else if(source.canDoRangeAttacks()) {
+			} else if (source.canDoRangeAttacks()) {
 				// XXX - Should different weapons have different ranges??
 
-//				 Check Line of View to see if there is any obstacle.
+				//				 Check Line of View to see if there is any obstacle.
 				if (zone.collidesOnLine(source.getX(), source.getY(), target.getX(), target.getY())) {
 					return false;
 				}
@@ -258,7 +254,7 @@ public class StendhalRPAction {
 				int damage = damageDone(source, target);
 				if (damage > 0) {
 					damage = handleLivesteal(source, weapons, damage);
-						
+
 					target.onDamage(source, damage);
 					source.put("damage", damage);
 					logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + damage);
@@ -359,7 +355,7 @@ public class StendhalRPAction {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
 			boolean collision = zone.collides(entity, nx, ny);
 			boolean ignoreCollision = entity.isGhost();
-			
+
 			if (collision) {
 				if (entity instanceof Player) {
 					Player player = (Player) entity;
@@ -395,7 +391,7 @@ public class StendhalRPAction {
 					return;
 				}
 
-				if(logger.isDebugEnabled()) {
+				if (logger.isDebugEnabled()) {
 					logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
 				}
 
@@ -408,7 +404,7 @@ public class StendhalRPAction {
 				entity.notifyWorldAboutChanges();
 			} else {
 				/* Collision */
-				if(logger.isDebugEnabled()) {
+				if (logger.isDebugEnabled()) {
 					logger.debug("Collision at (" + nx + "," + ny + ")");
 				}
 				entity.setCollides(true);
@@ -430,7 +426,8 @@ public class StendhalRPAction {
 		Log4J.finishMethod(logger, "transferContent");
 	}
 
-	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException, NoRPZoneException {
+	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException,
+	        NoRPZoneException {
 		// String zoneid = player.get("zoneid");
 
 		StendhalRPZone origin = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
@@ -461,7 +458,8 @@ public class StendhalRPAction {
 		}
 
 		if (!found) {
-			logger.warn("Unable to choose a new zone for player " + player.getName() + " at (" + player_x + "," + player_y + ") source was " + origin.getID().getID() + " at (" + x + ", " + y + ")");
+			logger.warn("Unable to choose a new zone for player " + player.getName() + " at (" + player_x + ","
+			        + player_y + ") source was " + origin.getID().getID() + " at (" + x + ", " + y + ")");
 		}
 	}
 
@@ -479,7 +477,8 @@ public class StendhalRPAction {
 			return false;
 		}
 
-		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(portal.getDestinationZone()));
+		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
+		        new IRPZone.ID(portal.getDestinationZone()));
 
 		Portal dest = destZone.getPortal(portal.getDestinationReference());
 		if (dest == null) // This portal is incomplete
@@ -496,7 +495,6 @@ public class StendhalRPAction {
 		Log4J.finishMethod(logger, "usePortal");
 		return true;
 	}
-
 
 	/**
 	 * Places an entity at a specified position in a specified zone. If this point is 
@@ -549,9 +547,9 @@ public class StendhalRPAction {
 							nx = x + i;
 							ny = y + j;
 							if (!zone.collides(entity, nx, ny)) {
-	
+
 								// OK, we may place the entity on this spot.
-	
+
 								// Check the possibleArea now. This is a performance
 								// optimization because the next step (pathfinding)
 								// is very expensive. (5 seconds for a unplaceable
@@ -559,19 +557,20 @@ public class StendhalRPAction {
 								if ((allowedArea != null) && (!allowedArea.contains(nx, ny))) {
 									continue;
 								}
-	
+
 								// We verify that there is a walkable path between the original
 								// spot and the new destination. This is to prevent players to 
 								// enter not allowed places by logging in on top of other players.
 								// Or monsters to spawn on the other side of a wall.
-	
-								List<Node> path = Path.searchPath(entity, zone, x, y, new Rectangle(nx, ny, 1, 1), maxDestination * maxDestination, false);
+
+								List<Node> path = Path.searchPath(entity, zone, x, y, new Rectangle(nx, ny, 1, 1),
+								        maxDestination * maxDestination, false);
 								if (!checkPath || !path.isEmpty()) {
-	
+
 									// We found a place!
 									entity.setX(nx);
 									entity.setY(ny);
-	
+
 									found = true;
 									break outerLoop; // break all for-loops
 								}
@@ -629,7 +628,8 @@ public class StendhalRPAction {
 
 	}
 
-	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException, NoRPZoneException {
+	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException,
+	        NoRPZoneException {
 		Log4J.startMethod(logger, "changeZone");
 
 		StendhalRPWorld world = StendhalRPWorld.get();
@@ -637,7 +637,7 @@ public class StendhalRPAction {
 		String destination = zone.getID().getID();
 
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "change zone", destination);
-		
+
 		player.setKeyedSlot("!visited", destination, Long.toString(System.currentTimeMillis()));
 
 		player.clearPath();
@@ -666,7 +666,6 @@ public class StendhalRPAction {
 		}
 		zone.addPlayerAndFriends(player);
 
-
 		placeat(zone, player, player.getX(), player.getY());
 		player.stop();
 		player.stopAttack();
@@ -678,7 +677,7 @@ public class StendhalRPAction {
 			sheep.stop();
 		}
 
-		if(!source.equals(destination)) {
+		if (!source.equals(destination)) {
 			transferContent(player);
 		}
 

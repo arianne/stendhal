@@ -21,11 +21,11 @@ import games.stendhal.server.entity.player.Player;
  * Process /away commands.
  */
 public class AwayAction extends ActionListener {
+
 	/**
 	 * Logger.
 	 */
 	private static final Logger logger = Log4J.getLogger(AwayAction.class);
-
 
 	//
 	// AwayAction
@@ -38,7 +38,6 @@ public class AwayAction extends ActionListener {
 		StendhalRPRuleProcessor.register("away", new AwayAction());
 	}
 
-
 	/**
 	 * Handle an away action.
 	 *
@@ -50,7 +49,7 @@ public class AwayAction extends ActionListener {
 
 		if (action.has("message")) {
 			player.put("away", action.get("message"));
-		} else if(player.has("away")) {
+		} else if (player.has("away")) {
 			player.remove("away");
 		}
 
@@ -59,7 +58,6 @@ public class AwayAction extends ActionListener {
 
 		Log4J.finishMethod(logger, "away");
 	}
-
 
 	//
 	// ActionListener
