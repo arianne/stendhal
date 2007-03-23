@@ -251,7 +251,7 @@ public class Bootstrap {
 	 * @return true, if there is some kind of signature; false otherwise
 	 */
 	private boolean isSigned() {
-		URL url = Bootstrap.class.getClassLoader().getResource("META-INF/MIGUELAN.SF");
+		URL url = Bootstrap.class.getClassLoader().getResource(ClientGameConfiguration.get("UPDATE_SIGNER_FILE_NAME"));
 		return url != null;
 	}
 

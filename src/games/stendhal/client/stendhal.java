@@ -46,8 +46,6 @@ public class stendhal extends Thread {
 
 	public static final String VERSION = Version.VERSION;
 
-	public static final String VERSION_LOCATION = "http://arianne.sourceforge.net/stendhal.version";
-
 	public static String SCREEN_SIZE = "640x480";
 
 	public static final boolean SHOW_COLLISION_DETECTION = false;

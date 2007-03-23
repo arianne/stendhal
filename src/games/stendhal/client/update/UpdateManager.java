@@ -18,8 +18,7 @@ import java.util.Properties;
 public class UpdateManager {
 	private String jarFolder = null;
 	private Properties bootProp = null;
-	private static final String DEFAULT_SERVER_FOLDER = "http://arianne.sourceforge.net/stendhal/updates/";
-	private String serverFolder = DEFAULT_SERVER_FOLDER;
+	private String serverFolder = null;
 	private Properties updateProp = null;
 	private UpdateProgressBar updateProgressBar = null;
 
@@ -28,9 +27,9 @@ public class UpdateManager {
 	 * information about the files available for update.
 	 */
 	private void init(boolean initialDownload) {
-		String updatePropertiesFile = serverFolder + "update.properties";
+		String updatePropertiesFile = ClientGameConfiguration.get("UPDATE_SERVER_FOLDER") + "/update.properties";
 		if (bootProp != null) {
-			serverFolder = bootProp.getProperty("server.folder", DEFAULT_SERVER_FOLDER);
+			serverFolder = bootProp.getProperty("server.folder", ClientGameConfiguration.get("UPDATE_SERVER_FOLDER")) + "/";
 			updatePropertiesFile = bootProp.getProperty("server.update-prop", serverFolder + "update.properties");
 		}
 		HttpClient httpClient = new HttpClient(updatePropertiesFile, initialDownload);
@@ -45,6 +44,10 @@ public class UpdateManager {
 	 * @param initialDownload true, if only the small starter.jar is available
 	 */
 	public void process(String jarFolder, Properties bootProp, Boolean initialDownload) {
+		if (!Boolean.parseBoolean(ClientGameConfiguration.get("UPDATE_ENABLE_AUTO_UPDATE"))) {
+			System.out.println("Automatic Update disabled");
+			return;
+		}
 		this.jarFolder = jarFolder;
 		this.bootProp = bootProp;
 		init(initialDownload.booleanValue());

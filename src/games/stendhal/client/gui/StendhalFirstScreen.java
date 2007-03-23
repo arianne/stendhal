@@ -183,7 +183,7 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void checkVersion() {
-        HttpClient httpClient = new HttpClient(stendhal.VERSION_LOCATION);
+        HttpClient httpClient = new HttpClient(ClientGameConfiguration.get("UPDATE_VERSION_CHECK"));
         String version = httpClient.fetchFirstLine();
         if (version != null) {
 			if (Version.compare(version, stendhal.VERSION) > 0) {
