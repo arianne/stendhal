@@ -6,30 +6,20 @@
 
 package games.stendhal.server.entity.area;
 
-//
-//
-
-import java.awt.geom.Rectangle2D;
-import java.util.List;
-import java.util.LinkedList;
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
-
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
+
+import java.awt.geom.Rectangle2D;
+import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
 
 /**
  * An area prevents creatures from entering. This allows a layered chain
  * of criteria. Think of this as a creature firewall.
  */
 public class CreatureProtectionArea extends Entity {
-
-	/**
-	 * The logger instance.
-	 */
-	private static final Logger logger = Log4J.getLogger(CreatureProtectionArea.class);
 
 	/**
 	 * Whether to block on no match.
