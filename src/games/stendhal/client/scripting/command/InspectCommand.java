@@ -4,9 +4,9 @@ import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Toggle between invisibility.
+ * Inspect an entity.
  */
-class InvisibleCommand implements SlashCommand {
+class InspectCommand implements SlashCommand {
 	/**
 	 * Execute a chat command.
 	 *
@@ -16,11 +16,12 @@ class InvisibleCommand implements SlashCommand {
 	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String [] params, String remainder) {
-		RPAction invisible = new RPAction();
+		RPAction add = new RPAction();
 
-		invisible.put("type", "invisible");
+		add.put("type", "inspect");
+		add.put("target", params[0]);
 
-		StendhalClient.get().send(invisible);
+		StendhalClient.get().send(add);
 
 		return true;
 	}
@@ -32,7 +33,7 @@ class InvisibleCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 0;
+		return 1;
 	}
 
 
@@ -42,6 +43,6 @@ class InvisibleCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 0;
+		return 1;
 	}
 }
