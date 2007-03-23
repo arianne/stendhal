@@ -17,6 +17,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import games.stendhal.client.*;
+import games.stendhal.client.update.ClientGameConfiguration;
 import marauroa.client.*;
 
 /**
@@ -48,7 +49,7 @@ public class CreateAccountDialog extends JDialog {
 
 	private JTextField emailField;
 
-	private JComboBox serverField;
+	private JTextField serverField;
 
 	private JTextField serverPortField;
 
@@ -79,11 +80,11 @@ public class CreateAccountDialog extends JDialog {
 	 * in future, before revising this method.
 	 */
 	private void initializeComponent() {
-		serverLabel = new JLabel("Stendhal server for this account");
-		serverField = new JComboBox();
+		serverLabel = new JLabel("Server name");
+		serverField = new JTextField(ClientGameConfiguration.get("DEFAULT_SERVER"));
 		serverField.setEditable(true);
 		serverPortLabel = new JLabel("Server port");
-		serverPortField = new JTextField("32160");
+		serverPortField = new JTextField(ClientGameConfiguration.get("DEFAULT_PORT"));
 
 		usernameLabel = new JLabel("Choose a username");
 		usernameField = new JTextField();
@@ -100,12 +101,6 @@ public class CreateAccountDialog extends JDialog {
 		createAccountButton = new JButton();
 		contentPane = (JPanel) this.getContentPane();
 
-		//
-		// serverField
-		//
-		for (String server : stendhal.SERVERS_LIST) {
-			serverField.addItem(server);
-		}
 
 		// createAccountButton
 		//
@@ -121,29 +116,34 @@ public class CreateAccountDialog extends JDialog {
 		// contentPane
 		//
 		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(), BorderFactory
-		        .createEmptyBorder(5, 5, 5, 5)));
+		contentPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
+				BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		GridBagConstraints c = new GridBagConstraints();
 
 		//row 0
 		c.anchor = GridBagConstraints.LINE_START;
-		c.insets = new Insets(4, 4, 15, 4);
+		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;//column
 		c.gridy = 0;//row
+		c.fill = GridBagConstraints.NONE;
 		contentPane.add(serverLabel, c);
 		c.gridx = 1;
 		c.gridy = 0;
+		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverField, c);
+
 		//row 1
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 1;
+		c.fill = GridBagConstraints.NONE;
 		contentPane.add(serverPortLabel, c);
 		c.gridx = 1;
 		c.gridy = 1;
 		c.insets = new Insets(4, 4, 4, 150);
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(serverPortField, c);
+
 		//row 2
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
@@ -153,6 +153,9 @@ public class CreateAccountDialog extends JDialog {
 		c.gridy = 2;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(usernameField, c);
+		// TODO: put the caret into the username field, does not work?!
+		usernameField.requestFocusInWindow();
+
 		//row 3
 		c.gridx = 0;
 		c.gridy = 3;
@@ -162,6 +165,7 @@ public class CreateAccountDialog extends JDialog {
 		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordField, c);
+
 		//row 4
 		c.gridx = 0;
 		c.gridy = 4;
@@ -171,6 +175,7 @@ public class CreateAccountDialog extends JDialog {
 		c.gridy = 4;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordretypeField, c);
+
 		//row 5
 		c.gridx = 0;
 		c.gridy = 5;
@@ -180,6 +185,7 @@ public class CreateAccountDialog extends JDialog {
 		c.gridy = 5;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(emailField, c);
+
 		//row 6
 		c.gridx = 1;
 		c.gridy = 6;
@@ -187,12 +193,10 @@ public class CreateAccountDialog extends JDialog {
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(createAccountButton, c);
 
-		//
 		// CreateAccountDialog
-		//
 		this.setTitle("Create New Account");
 		this.setResizable(false);
-		this.setSize(new Dimension(410, 275));
+		this.setSize(new Dimension(350, 275));
 		this.setLocationRelativeTo(owner);
 
 	}
@@ -209,7 +213,7 @@ public class CreateAccountDialog extends JDialog {
 		}
 
 		final String email = emailField.getText();
-		final String server = (String) serverField.getSelectedItem();
+		final String server = serverField.getText();
 		int port = 32160;
 
 		final int finalPort;//port couldnt be accessed from inner class
