@@ -22,7 +22,6 @@ import org.apache.log4j.Logger;
 public class ChatLineParser {
 	private static Logger logger = Logger.getLogger(ChatLineParser.class);
 	private static ChatLineParser instance = null;
-	private StendhalClient client = null;
 	private String lastPlayerTell;
 	private ScriptRecorder recorder = null;
 
@@ -34,7 +33,6 @@ public class ChatLineParser {
 	
 	private ChatLineParser() {
 		// hide constructor (Singleton)
-		client = StendhalClient.get();
 
 		commands = new HashMap<String, SlashCommand>();
 
@@ -125,7 +123,7 @@ public class ChatLineParser {
 			chat.put("type", "chat");
 			chat.put("text", text);
 
-			client.send(chat);
+			StendhalClient.get().send(chat);
 
 			return true;
 		}
@@ -284,7 +282,7 @@ public class ChatLineParser {
 				extension.put("args", remainder);
 			}
 
-			client.send(extension);
+			StendhalClient.get().send(extension);
 
 			return true;
 		}
@@ -313,7 +311,7 @@ public class ChatLineParser {
 				action.put("message", remainder);
 			}
 
-			client.send(action);
+			StendhalClient.get().send(action);
 
 			return true;
 		}
@@ -383,7 +381,7 @@ public class ChatLineParser {
 				action.put("reason", remainder);
 			}
 
-			client.send(action);
+			StendhalClient.get().send(action);
 
 			return true;
 		}
@@ -432,7 +430,7 @@ public class ChatLineParser {
 			tell.put("target", lastPlayerTell);
 			tell.put("text", remainder);
 
-			client.send(tell);
+			StendhalClient.get().send(tell);
 
 			return true;
 		}
@@ -480,7 +478,7 @@ public class ChatLineParser {
 			tell.put("target", lastPlayerTell);
 			tell.put("text", remainder);
 
-			client.send(tell);
+			StendhalClient.get().send(tell);
 
 			return true;
 		}
@@ -524,7 +522,7 @@ public class ChatLineParser {
 			answer.put("type", "answer");
 			answer.put("text", remainder);
 
-			client.send(answer);
+			StendhalClient.get().send(answer);
 
 			return true;
 		}
@@ -567,7 +565,7 @@ public class ChatLineParser {
 			tell.put("type", "support");
 			tell.put("text", remainder);
 
-			client.send(tell);
+			StendhalClient.get().send(tell);
 
 			return true;
 		}
@@ -613,7 +611,7 @@ public class ChatLineParser {
 			tell.put("target", params[0]);
 			tell.put("text", remainder);
 
-			client.send(tell);
+			StendhalClient.get().send(tell);
 
 			return true;
 		}
@@ -658,7 +656,7 @@ public class ChatLineParser {
 			where.put("type", "where");
 			where.put("target", params[0]);
 
-			client.send(where);
+			StendhalClient.get().send(where);
 
 			return true;
 		}
@@ -702,7 +700,7 @@ public class ChatLineParser {
 
 			who.put("type", "who");
 
-			client.send(who);
+			StendhalClient.get().send(who);
 
 			return true;
 		}
@@ -747,13 +745,13 @@ public class ChatLineParser {
 			try {
 				quantity = Integer.parseInt(params[0]);
 			} catch (NumberFormatException ex) {
-				client.addEventLine("Invalid quantity");
+				StendhalClient.get().addEventLine("Invalid quantity");
 				return true;
 			}
 
 			String itemName = params[1];
 
-			RPObject player = client.getPlayer();
+			RPObject player = StendhalClient.get().getPlayer();
 
 			int itemID = -1;
 
@@ -777,9 +775,9 @@ public class ChatLineParser {
 				drop.put("quantity", quantity);
 				drop.put("baseitem", itemID);
 
-				client.send(drop);
+				StendhalClient.get().send(drop);
 			} else {
-				client.addEventLine(
+				StendhalClient.get().addEventLine(
 					"You don't have any " + itemName,
 					Color.black);
 			}
@@ -827,7 +825,7 @@ public class ChatLineParser {
 			add.put("type", "addbuddy");
 			add.put("target", params[0]);
 
-			client.send(add);
+			StendhalClient.get().send(add);
 
 			return true;
 		}
@@ -872,7 +870,7 @@ public class ChatLineParser {
 			remove.put("type", "removebuddy");
 			remove.put("target", params[0]);
 
-			client.send(remove);
+			StendhalClient.get().send(remove);
 
 			return true;
 		}
@@ -917,7 +915,7 @@ public class ChatLineParser {
 			tellall.put("type", "tellall");
 			tellall.put("text", remainder);
 
-			client.send(tellall);
+			StendhalClient.get().send(tellall);
 
 			return true;
 		}
@@ -965,7 +963,7 @@ public class ChatLineParser {
 			teleport.put("x", params[2]);
 			teleport.put("y", params[3]);
 
-			client.send(teleport);
+			StendhalClient.get().send(teleport);
 
 			return true;
 		}
@@ -1010,7 +1008,7 @@ public class ChatLineParser {
 			teleport.put("type", "teleportto");
 			teleport.put("target", params[0]);
 
-			client.send(teleport);
+			StendhalClient.get().send(teleport);
 
 			return true;
 		}
@@ -1059,7 +1057,7 @@ public class ChatLineParser {
 				adminlevel.put("newlevel", params[1]);
 			}
 
-			client.send(adminlevel);
+			StendhalClient.get().send(adminlevel);
 
 			return true;
 		}
@@ -1106,7 +1104,7 @@ public class ChatLineParser {
 			alter.put("stat", params[1]);
 			alter.put("mode", params[2]);
 			alter.put("value", params[3]);
-			client.send(alter);
+			StendhalClient.get().send(alter);
 
 			return true;
 		}
@@ -1157,13 +1155,13 @@ public class ChatLineParser {
 			} else if(params[1] != null) {
 				return false;
 			} else {
-				RPObject player = client.getPlayer();
+				RPObject player = StendhalClient.get().getPlayer();
 
 				summon.put("x", player.getInt("x"));
 				summon.put("y", player.getInt("y") + 1);
 			}
 
-			client.send(summon);
+			StendhalClient.get().send(summon);
 
 			return true;
 		}
@@ -1214,7 +1212,7 @@ public class ChatLineParser {
 				summon.put("amount", params[3]);
 			}
 
-			client.send(summon);
+			StendhalClient.get().send(summon);
 
 			return true;
 		}
@@ -1259,7 +1257,7 @@ public class ChatLineParser {
 			add.put("type", "inspect");
 			add.put("target", params[0]);
 
-			client.send(add);
+			StendhalClient.get().send(add);
 
 			return true;
 		}
@@ -1314,7 +1312,7 @@ public class ChatLineParser {
 			add.put("minutes", params[1]);
 			add.put("reason", remainder);
 
-			client.send(add);
+			StendhalClient.get().send(add);
 
 			return true;
 		}
@@ -1354,7 +1352,7 @@ public class ChatLineParser {
 		 * @return	<code>true</code> if  was handled.
 		 */
 		public boolean execute(String [] params, String remainder) {
-			client.getGameGUI().showQuitDialog();
+			StendhalClient.get().getGameGUI().showQuitDialog();
 
 			return true;
 		}
@@ -1398,7 +1396,7 @@ public class ChatLineParser {
 
 			invisible.put("type", "invisible");
 
-			client.send(invisible);
+			StendhalClient.get().send(invisible);
 
 			return true;
 		}
@@ -1636,7 +1634,7 @@ public class ChatLineParser {
 				}
 
 				if ((vol < 0) || (vol > 100)) {
-					client.addEventLine("Volume must be an integer between 0 and 100");
+					StendhalClient.get().addEventLine("Volume must be an integer between 0 and 100");
 				} else {
 					WtWindowManager.getInstance().setProperty("sound.volume", Integer.toString(vol));
 					SoundSystem.get().setVolume(vol);
