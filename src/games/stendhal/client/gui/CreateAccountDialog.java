@@ -107,10 +107,6 @@ public class CreateAccountDialog extends JDialog {
 			serverField.addItem(server);
 		}
 
-		//
-		// serverPortField
-		//
-		//
 		// createAccountButton
 		//
 		createAccountButton.setText("Create Account");
@@ -198,15 +194,8 @@ public class CreateAccountDialog extends JDialog {
 		this.setResizable(false);
 		this.setSize(new Dimension(410, 275));
 		this.setLocationRelativeTo(owner);
-	}
 
-	// TODO: Never used? remove me
-	//    /** Add Component Without a Layout Manager (Absolute Positioning) */
-	//    private void addComponent(Container container, Component c, int x, int y,
-	//            int width, int height) {
-	//        c.setBounds(x, y, width, height);
-	//        container.add(c);
-	//    }
+	}
 
 	private void createAccountButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
 		final String username = usernameField.getText();
@@ -250,9 +239,8 @@ public class CreateAccountDialog extends JDialog {
 				} catch (Exception ex) {
 					progressBar.cancel();//if something goes horribly just cancel the progressbar
 					setVisible(true);
-					JOptionPane
-					        .showMessageDialog(owner,
-					                "Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
+					JOptionPane.showMessageDialog(owner,
+						"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
 
 					ex.printStackTrace();
 
@@ -274,21 +262,14 @@ public class CreateAccountDialog extends JDialog {
 					} else {
 						progressBar.step();
 						progressBar.finish();
-						//                        try {//wait just long enough for progress bar to close
-						//                            progressBar.m_run.join();
-						//                        }catch (InterruptedException ie) {}
-
-						//                        setVisible(false);
-						//                        frame.setVisible(false);
 					}
 				} catch (ariannexpTimeoutException ex) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane
-					        .showMessageDialog(
-					                owner,
-					                "Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-					                "Error Creating Account", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(
+						owner,
+						"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+						"Error Creating Account", JOptionPane.ERROR_MESSAGE);
 				}
 
 				try {
@@ -314,11 +295,10 @@ public class CreateAccountDialog extends JDialog {
 				} catch (ariannexpTimeoutException ex) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane
-					        .showMessageDialog(
-					                owner,
-					                "Unable to connect to the server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-					                "Error Logging In", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(
+						owner,
+						"Unable to connect to the server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+						"Error Logging In", JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
@@ -326,7 +306,4 @@ public class CreateAccountDialog extends JDialog {
 		m_connectionThread.start();
 	}
 
-	public static void main(String args[]) {
-		new CreateAccountDialog(null, null).setVisible(true);
-	}
 }
