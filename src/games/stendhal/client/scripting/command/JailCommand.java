@@ -24,14 +24,14 @@ class JailCommand implements SlashCommand {
 		}
 
 
-		RPAction add = new RPAction();
+		RPAction action = new RPAction();
 
-		add.put("type", "jail");
-		add.put("target", params[0]);
-		add.put("minutes", params[1]);
-		add.put("reason", remainder);
+		action.put("type", "jail");
+		action.put("target", params[0]);
+		action.put("minutes", params[1]);
+		action.put("reason", remainder);
 
-		StendhalClient.get().send(add);
+		StendhalClient.get().send(action);
 
 		return true;
 	}

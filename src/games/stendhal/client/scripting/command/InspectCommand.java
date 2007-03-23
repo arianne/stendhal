@@ -16,12 +16,12 @@ class InspectCommand implements SlashCommand {
 	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String [] params, String remainder) {
-		RPAction add = new RPAction();
+		RPAction action = new RPAction();
 
-		add.put("type", "inspect");
-		add.put("target", params[0]);
+		action.put("type", "inspect");
+		action.put("target", params[0]);
 
-		StendhalClient.get().send(add);
+		StendhalClient.get().send(action);
 
 		return true;
 	}
