@@ -52,11 +52,6 @@ import marauroa.common.io.Persistence;
  */
 public class LoginDialog extends JDialog {
 
-	//	private static final long serialVersionUID = 4436228792112530975L;
-
-	private static final String TCPIP_TEXT = "TCP/IP (default)";
-
-	private static final String UDP_TEXT = "UDP";
 
 	// Variables declaration
 
@@ -173,50 +168,19 @@ public class LoginDialog extends JDialog {
 		contentPane.add(serverPortField, c);
 
 		/*
-		 * Network Protocol
-		 */
-		l = new JLabel("Network protocol");
-
-		c.gridx = 0;
-		c.gridy = 3;
-		contentPane.add(l, c);
-
-		protocolComboBox = new JComboBox(new String[] { TCPIP_TEXT, UDP_TEXT });
-
-		c.gridx = 1;
-		c.gridy = 3;
-		c.insets = new Insets(4, 4, 4, 4);
-		c.fill = GridBagConstraints.BOTH;
-		contentPane.add(protocolComboBox, c);
-
-		/*
-		 * What if we want to "save" a profile in TCP mode, and just
-		 * use UDP when forced to?
-		 */
-		if (Debug.WEB_START_SANDBOX) {
-			// UDP is not supported in sandbox mode.
-			l.setEnabled(false);
-			//			l.setVisible(false);
-
-			protocolComboBox.setSelectedItem(TCPIP_TEXT);
-			protocolComboBox.setEnabled(false);
-			//			protocolComboBox.setVisible(false);
-		}
-
-		/*
 		 * Username
 		 */
 		l = new JLabel("Type your username");
 
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 3;
 		contentPane.add(l, c);
 
 		usernameField = new JTextField();
 
 		c.gridx = 1;
-		c.gridy = 4;
+		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(usernameField, c);
 
@@ -226,14 +190,14 @@ public class LoginDialog extends JDialog {
 		l = new JLabel("Type your password");
 
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 4;
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(l, c);
 
 		passwordField = new JPasswordField();
 
 		c.gridx = 1;
-		c.gridy = 5;
+		c.gridy = 4;
 		c.fill = GridBagConstraints.BOTH;
 		contentPane.add(passwordField, c);
 
@@ -243,7 +207,7 @@ public class LoginDialog extends JDialog {
 		saveLoginBox = new JCheckBox("Save login profile (on this machine)");
 
 		c.gridx = 0;
-		c.gridy = 6;
+		c.gridy = 5;
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(saveLoginBox, c);
 
@@ -259,7 +223,7 @@ public class LoginDialog extends JDialog {
 		});
 
 		c.gridx = 1;
-		c.gridy = 6;
+		c.gridy = 5;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
@@ -300,7 +264,7 @@ public class LoginDialog extends JDialog {
 		profile.setUser(usernameField.getText().trim());
 		profile.setPassword(new String(passwordField.getPassword()));
 
-		profile.setTCP(protocolComboBox.getSelectedItem() == TCPIP_TEXT);
+		profile.setTCP(true);
 
 		/*
 		 * Save profile?
@@ -479,20 +443,12 @@ public class LoginDialog extends JDialog {
 
 			serverPortField.setText(String.valueOf(profile.getPort()));
 
-			if (profile.isTCP()) {
-				protocolComboBox.setSelectedItem(TCPIP_TEXT);
-			} else {
-				protocolComboBox.setSelectedItem(UDP_TEXT);
-			}
-
 			usernameField.setText(profile.getUser());
 			passwordField.setText(profile.getPassword());
 		} else {
 			serverField.setSelectedIndex(0);
 
 			serverPortField.setText(String.valueOf(Profile.DEFAULT_SERVER_PORT));
-
-			protocolComboBox.setSelectedItem(TCPIP_TEXT);
 
 			usernameField.setText("");
 			passwordField.setText("");
@@ -521,12 +477,6 @@ public class LoginDialog extends JDialog {
 		}
 	}
 
-	public static void main(String args[]) {
-		new LoginDialog(null, null).setVisible(true);
-	}
-
-	//
-	//
 
 	/**
 	 * Server connect thread runnable.
