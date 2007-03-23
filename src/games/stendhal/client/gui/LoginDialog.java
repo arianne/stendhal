@@ -17,6 +17,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.common.Debug;
 import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.gui.login.ProfileList;
+import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
@@ -59,13 +60,11 @@ public class LoginDialog extends JDialog {
 
 	private JCheckBox saveLoginBox;
 
-	private JComboBox protocolComboBox;
-
 	private JTextField usernameField;
 
 	private JPasswordField passwordField;
 
-	private JComboBox serverField;
+	private JTextField serverField;
 
 	private JTextField serverPortField;
 
@@ -118,7 +117,6 @@ public class LoginDialog extends JDialog {
 
 		profilesComboBox = new JComboBox();
 		profilesComboBox.addActionListener(new ProfilesCB());
-
 		c.gridx = 1;
 		c.gridy = 0;
 		c.fill = GridBagConstraints.BOTH;
@@ -128,22 +126,12 @@ public class LoginDialog extends JDialog {
 		 *  Server Host
 		 */
 		l = new JLabel("Stendhal server");
-
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;// column
 		c.gridy = 1;// row
 		contentPane.add(l, c);
 
-		serverField = new JComboBox();
-		serverField.setEditable(true);
-
-		//
-		// Standard Servers
-		//
-		for (String server : stendhal.SERVERS_LIST) {
-			serverField.addItem(server);
-		}
-
+		serverField = new JTextField(ClientGameConfiguration.get("DEFAULT_SERVER"));
 		c.gridx = 1;
 		c.gridy = 1;
 		c.fill = GridBagConstraints.BOTH;
@@ -153,14 +141,12 @@ public class LoginDialog extends JDialog {
 		 * Server Port
 		 */
 		l = new JLabel("Server port");
-
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 2;
 		contentPane.add(l, c);
 
-		serverPortField = new JTextField("32160");
-
+		serverPortField = new JTextField(ClientGameConfiguration.get("DEFAULT_PORT"));
 		c.gridx = 1;
 		c.gridy = 2;
 		c.insets = new Insets(4, 4, 4, 4);
@@ -171,14 +157,14 @@ public class LoginDialog extends JDialog {
 		 * Username
 		 */
 		l = new JLabel("Type your username");
-
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;
 		c.gridy = 3;
 		contentPane.add(l, c);
 
 		usernameField = new JTextField();
-
+		// TODO: put the caret into the username field, does not work?!
+		usernameField.requestFocusInWindow();
 		c.gridx = 1;
 		c.gridy = 3;
 		c.fill = GridBagConstraints.BOTH;
@@ -204,7 +190,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 * Save Profile/Login
 		 */
-		saveLoginBox = new JCheckBox("Save login profile (on this machine)");
+		saveLoginBox = new JCheckBox("Save login profile locally");
 
 		c.gridx = 0;
 		c.gridy = 5;
@@ -247,7 +233,7 @@ public class LoginDialog extends JDialog {
 
 		profile = new Profile();
 
-		profile.setHost(((String) serverField.getSelectedItem()).trim());
+		profile.setHost((serverField.getText()).trim());
 
 		try {
 			profile.setPort(Integer.parseInt(serverPortField.getText().trim()));
@@ -284,30 +270,7 @@ public class LoginDialog extends JDialog {
 	}
 
 	/**
-	 * Add an item to a combobox if it doesn't already exist.
-	 *
-	 *
-	 */
-	protected void augmentComboBox(JComboBox combobox, Object item) {
-		int i;
-
-		i = combobox.getItemCount();
-
-		while (i-- != 0) {
-			if (combobox.getItemAt(i).equals(item)) {
-				break;
-			}
-		}
-
-		if (i == -1) {
-			combobox.addItem(item);
-		}
-	}
-
-	/**
 	 * Connect to a server using a given profile.
-	 *
-	 *
 	 */
 	protected void connect(Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
@@ -437,16 +400,13 @@ public class LoginDialog extends JDialog {
 
 		if (profile != null) {
 			host = profile.getHost();
-
-			augmentComboBox(serverField, host);
-			serverField.setSelectedItem(host);
+			serverField.setText(host);
 
 			serverPortField.setText(String.valueOf(profile.getPort()));
 
 			usernameField.setText(profile.getUser());
 			passwordField.setText(profile.getPassword());
 		} else {
-			serverField.setSelectedIndex(0);
 
 			serverPortField.setText(String.valueOf(Profile.DEFAULT_SERVER_PORT));
 
