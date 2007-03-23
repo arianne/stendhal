@@ -25,6 +25,8 @@ import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -38,8 +40,10 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -76,6 +80,8 @@ public class j2DClient extends JFrame {
 	private GameScreen screen;
 
 	private Canvas canvas;
+
+	private JLayeredPane	pane;
 
 	private InGameGUI inGameGUI;
 
@@ -129,27 +135,42 @@ public class j2DClient extends JFrame {
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
 
-		// get hold the content of the frame and set up the resolution of the
-		// game
-		JPanel panel = (JPanel) this.getContentPane();
-		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT + CHAT_LINE_SIZE));
-		panel.setLayout(null);
 
-		// setup our canvas size and put it into the content of the frame
+		Container content = getContentPane();
+		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+
+
+		/*
+		 * Get hold the content of the frame and set up the resolution
+		 * of the game
+		 */
+		pane = new JLayeredPane();
+		pane.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+		content.add(pane);
+
+
+		/*
+		 * Setup our rendering canvas
+		 */
 		canvas = new Canvas();
 		canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
 		canvas.setIgnoreRepaint(true);
-		panel.add(canvas);
+		pane.add(canvas, JLayeredPane.DEFAULT_LAYER);
 
+
+		/*
+		 * Chat input field
+		 */
 		playerChatText = new JTextField("");
-		playerChatText.setBounds(0, SCREEN_HEIGHT, SCREEN_WIDTH, CHAT_LINE_SIZE);
 
 		StendhalChatLineListener chatListener = new StendhalChatLineListener(client, playerChatText);
 		playerChatText.addActionListener(chatListener);
 		playerChatText.addKeyListener(chatListener);
-		panel.add(playerChatText);
+
+		content.add(playerChatText);
+
 
 		this.setLocation(new Point(20, 20));
 
@@ -287,6 +308,17 @@ public class j2DClient extends JFrame {
 	public static j2DClient getInstance() {
 		return sharedInstance;
 	}
+
+
+	/**
+	 * Add a native in-window dialog to the screen.
+	 *
+	 * @param	comp		The component to add.
+	 */
+	public void addDialog(Component comp) {
+		pane.add(comp, JLayeredPane.PALETTE_LAYER);
+	}
+
 
 	public void gameLoop() {
 
