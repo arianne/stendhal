@@ -2,11 +2,17 @@ package games.stendhal.client.scripting.command;
 
 import java.util.HashMap;
 
+/**
+ * Manages Slash Command Objects
+ */
 public class SlashCommandFactory {
 
 	/** Set of client supported commands */
 	private static HashMap<String, SlashCommand> commands;
 
+	/**
+	 * registers the available command
+	 */
 	public static void register() {
 		commands = new HashMap<String, SlashCommand>();
 
@@ -41,5 +47,15 @@ public class SlashCommandFactory {
 		commands.put("invisible", new InvisibleCommand());
 		commands.put("gmhelp", new GMHelpCommand());
 		commands.put("gmhelp_alter", new GMHelpAlterCommand());
+	}
+
+	/**
+	 * gets the command object for the specified command name
+	 *
+	 * @param name name of command
+	 * @return command object
+	 */
+	public SlashCommand get(String name) {
+		return commands.get(name);
 	}
 }
