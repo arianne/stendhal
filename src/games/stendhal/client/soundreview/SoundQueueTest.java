@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class SoundQueueTest {
 
-	SoundQueue sq;
+	SoundQueue<String> sq;
 
 	@Before
 	public void setUp() throws Exception {
