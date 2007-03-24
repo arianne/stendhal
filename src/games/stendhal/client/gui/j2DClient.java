@@ -22,6 +22,7 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
+import games.stendhal.server.StendhalRPRuleProcessor;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -309,6 +310,13 @@ public class j2DClient extends JFrame {
 			});
 		}
 
+		// Display a warning message in case the screen size was adjusted
+		// This is a temporary solution until this issue is fixed server side.
+		// I hope that it discourages its use without the risks of unabdateable
+		// clients being distributed
+		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
+			StendhalClient.get().addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, Color.RED);
+		}
 
 		// Moved to the end of the initializing sequence to regain focus from
 		// log window intensifly@gmx.com
