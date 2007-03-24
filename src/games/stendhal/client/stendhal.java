@@ -29,8 +29,6 @@ public class stendhal extends Thread {
 
 	public static boolean doLogin = false;
 
-	public static final String[] SERVERS_LIST = { "stendhal.game-host.org", "localhost" };
-
 	public static String STENDHAL_FOLDER = null;
 
 	// detect web start sandbox and init STENDHAL_FOLDER otherwise
