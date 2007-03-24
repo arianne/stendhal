@@ -147,6 +147,17 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
+
+	public void addLine(String header, String line) {
+		addLine(header, line, Color.black);
+	}
+
+
+	public void addLine(String line) {
+		addLine(line, Color.black);
+	}
+
+
 	/**
 	 * The implemented method
 	 * 
