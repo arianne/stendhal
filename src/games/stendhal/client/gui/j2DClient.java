@@ -22,7 +22,6 @@ import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
-import games.stendhal.server.StendhalRPRuleProcessor;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -46,7 +45,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
