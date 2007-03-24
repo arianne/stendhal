@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.GameLogDialog;
+import games.stendhal.client.gui.KTextEdit;
 import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.j2DClient;
@@ -70,7 +70,7 @@ public class StendhalClient extends ariannexp {
 
 	private boolean keepRunning = true;
 
-	private GameLogDialog gameDialog;
+	private KTextEdit gameLog;
 
 	private InGameGUI gameGUI;
 
@@ -110,7 +110,7 @@ public class StendhalClient extends ariannexp {
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
 		handler = new PerceptionHandler(new StendhalPerceptionListener());
-		gameDialog = null;
+		gameLog = null;
 		gameGUI = null;
 
 		cache = new Cache();
@@ -127,16 +127,16 @@ public class StendhalClient extends ariannexp {
 		return stendhal.VERSION;
 	}
 
-	public void setGameLogDialog(GameLogDialog gameDialog) {
-		this.gameDialog = gameDialog;
+	public void setGameLog(KTextEdit gameLog) {
+		this.gameLog = gameLog;
 	}
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
 	}
 
-	public GameLogDialog getGameLogDialog() {
-		return gameDialog;
+	public KTextEdit getGameLog() {
+		return gameLog;
 	}
 
 	public void setGameGUI(InGameGUI gui) {
@@ -162,19 +162,19 @@ public class StendhalClient extends ariannexp {
 	}
 
 	public void addEventLine(String text) {
-		this.gameDialog.addLine(text);
+		gameLog.addLine(text);
 	}
 
 	public void addEventLine(String header, String text) {
-		this.gameDialog.addLine(header, text);
+		gameLog.addLine(header, text);
 	}
 
 	public void addEventLine(String header, String text, Color color) {
-		this.gameDialog.addLine(header, text, color);
+		gameLog.addLine(header, text, color);
 	}
 
 	public void addEventLine(String text, Color color) {
-		this.gameDialog.addLine(text, color);
+		gameLog.addLine(text, color);
 	}
 
 	public StaticGameLayers getStaticGameLayers() {

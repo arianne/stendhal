@@ -270,9 +270,9 @@ public class j2DClient extends JFrame {
 		/*
 		 * Game log
 		 */
-		GameLogDialog log = new GameLogDialog();
+		KTextEdit log = new KTextEdit();
 		log.setPreferredSize(new Dimension(SCREEN_WIDTH, 200));
-		client.setGameLogDialog(log);
+		client.setGameLog(log);
 
 
 		if(System.getProperty("stendhal.onewindow") != null) {

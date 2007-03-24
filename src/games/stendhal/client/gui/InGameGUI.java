@@ -22,6 +22,7 @@ import games.stendhal.common.Direction;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.*;
+import javax.swing.SwingUtilities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -158,8 +159,7 @@ public class InGameGUI implements KeyListener, Inspector {
 
 		if ((e.getKeyCode() == KeyEvent.VK_L) && e.isControlDown()) {
 			/* If Ctrl+L we set the Game log dialog visible */
-			client.getGameLogDialog().setVisible(true);
-
+			SwingUtilities.getRoot(client.getGameLog()).setVisible(true);
 		} else if ((e.getKeyCode() == KeyEvent.VK_R) && e.isControlDown()) {
 			/* If Ctrl+R we remove Chat bubbles */
 			gameObjects.clearTexts();
