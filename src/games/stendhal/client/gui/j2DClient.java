@@ -42,6 +42,7 @@ import java.net.URL;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -257,31 +258,57 @@ public class j2DClient extends JFrame {
 
 		client.setTextLineGUI(playerChatText);
 
-		client.setGameLogDialog(new GameLogDialog(this, playerChatText));
 
-		addComponentListener(new ComponentAdapter() {
+		/*
+		 * Game log
+		 */
+		GameLogDialog log = new GameLogDialog();
+		log.setPreferredSize(new Dimension(SCREEN_WIDTH, 200));
+		client.setGameLogDialog(log);
 
-			@Override
-			public void componentHidden(ComponentEvent e) {
-			}
 
-			@Override
-			public void componentMoved(ComponentEvent e) {
-				Dimension size = getSize();
-				Point location = getLocation();
+		if(System.getProperty("stendhal.onewindow") != null) {
+			content.add(log);
+			pack();
+		} else {
+			/*
+			 * In own window
+			 */
+			JDialog dialog = new JDialog(this, "Game chat and events log");
 
-				client.getGameLogDialog().setLocation(
-				        new Point((int) location.getX(), (int) (location.getY() + size.getHeight())));
-			}
+			content = dialog.getContentPane();
+			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+			content.add(log);
 
-			@Override
-			public void componentResized(ComponentEvent e) {
-			}
+			dialog.addFocusListener(new FocusListener() {
+				public void focusGained(FocusEvent e) {
+					playerChatText.requestFocus();
+				}
 
-			@Override
-			public void componentShown(ComponentEvent e) {
-			}
-		});
+				public void focusLost(FocusEvent e) {
+				}
+			});
+
+			dialog.pack();
+			dialog.setLocation(getX(), getY() + getHeight());
+			dialog.setVisible(true);
+
+
+			/*
+			 * Move tracker
+			 */
+			addComponentListener(new ComponentAdapter() {
+				@Override
+				public void componentMoved(ComponentEvent e) {
+					Rectangle bounds = getBounds();
+
+					client.getGameLogDialog().setLocation(
+				        	bounds.x,
+						bounds.y + bounds.height);
+				}
+			});
+		}
+
 
 		// Moved to the end of the initializing sequence to regain focus from
 		// log window intensifly@gmx.com
