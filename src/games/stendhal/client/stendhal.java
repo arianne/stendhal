@@ -19,6 +19,8 @@ import games.stendhal.common.Debug;
 
 import java.security.AccessControlException;
 
+import javax.swing.JOptionPane;
+
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
@@ -65,6 +67,9 @@ public class stendhal extends Thread {
 		while (i != args.length) {
 			if (args[i].equals("-s")) {
 				size = args[i + 1];
+			} else if (args[i].equals("-wouterwens.bat")) {
+				JOptionPane.showConfirmDialog(null, "Do not use command line parameters, that you do not understand",
+						"Stendhal", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE);
 			}
 			i++;
 		}
