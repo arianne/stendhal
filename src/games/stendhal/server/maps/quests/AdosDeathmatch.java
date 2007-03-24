@@ -119,7 +119,7 @@ public class AdosDeathmatch extends AbstractQuest {
 				        null, new LeaveAction());
 
 				// 'bail' command will teleport the player out of it
-				add(ConversationStates.ATTENDING, Arrays.asList("bail", "flee", "run", "exit"), null,
+				add(ConversationStates.ANY, Arrays.asList("bail", "flee", "run", "exit"), null,
 				        ConversationStates.ATTENDING, null, new BailAction());
 			}
 		};
