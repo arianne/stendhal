@@ -30,7 +30,6 @@ import org.apache.log4j.Logger;
  */
 class DeathmatchEngine implements TurnListener {
 
-	// BAIL_DELAY needs to be smaller than SPAWN_DELAY
 	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
 
 	private static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
@@ -145,8 +144,10 @@ class DeathmatchEngine implements TurnListener {
 				questLevel++;
 				deathmatchState.setQuestLevel(questLevel);
 			}
+			
+			deathmatchState.refreshTimestamp();
 		}
-		deathmatchState.refreshTimestamp();
+
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 	}
 
