@@ -7,6 +7,7 @@
 ./createtileset.sh ../../../../data/sprites/monsters/elemental 48x64+48+128 elemental.png
 ./createtileset.sh ../../../../data/sprites/monsters/elf 48x64+48+128 elf.png
 ./createtileset.sh ../../../../data/sprites/monsters/gargoyle 48x64+48+128 gargoyle.png
+./createtileset.sh ../../../../data/sprites/monsters/giant 48x64+48+128 giant.png
 ./createtileset.sh ../../../../data/sprites/monsters/giant_animal 64x64+64+128 giant_animal.png
 ./createtileset.sh ../../../../data/sprites/monsters/gnome 48x64+48+128 gnome.png
 ./createtileset.sh ../../../../data/sprites/monsters/goblin 48x64+48+128 goblin.png
