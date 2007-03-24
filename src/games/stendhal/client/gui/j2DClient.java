@@ -45,6 +45,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -150,6 +151,15 @@ public class j2DClient extends JFrame {
 
 
 		/*
+		 * Wrap canvas in panel that can has setPreferredSize()
+		 */
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+		pane.add(panel, JLayeredPane.DEFAULT_LAYER);
+
+
+		/*
 		 * Setup our rendering canvas
 		 */
 		canvas = new Canvas();
@@ -157,7 +167,7 @@ public class j2DClient extends JFrame {
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
 		canvas.setIgnoreRepaint(true);
-		pane.add(canvas, JLayeredPane.DEFAULT_LAYER);
+		panel.add(canvas);
 
 
 		/*
@@ -195,7 +205,6 @@ public class j2DClient extends JFrame {
 		}
 
 		addFocusListener(new FocusListener() {
-
 			public void focusGained(FocusEvent e) {
 				playerChatText.requestFocus();
 			}
@@ -328,6 +337,9 @@ public class j2DClient extends JFrame {
 		// return until the game has finished running. Hence we are
 		// using the actual main thread to run the game.
 		gameLoop();
+
+		logger.debug("Exit");
+		System.exit(0);
 	} // constructor
 
 	/**
@@ -366,7 +378,8 @@ public class j2DClient extends JFrame {
 
 		// Clear the first screen with black color
 		screen.expose().setColor(Color.black);
-		screen.expose().fill(new Rectangle(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT));
+		screen.expose().fillRect(
+			0, 0, canvas.getWidth(), canvas.getHeight());
 
 		screen.place(-100, -100);
 		RenderingPipeline pipeline = RenderingPipeline.get();
@@ -456,9 +469,6 @@ public class j2DClient extends JFrame {
 		logger.info("Request logout");
 		client.logout();
 		SoundSystem.get().exit();
-
-		logger.debug("Exit");
-		System.exit(0);
 	}
 
 	private void moveScreen(RPObject object, StaticGameLayers gameLayers) {
