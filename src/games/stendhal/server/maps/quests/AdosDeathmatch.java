@@ -108,7 +108,7 @@ public class AdosDeathmatch extends AbstractQuest {
 
 				// 'start' command will start spawning creatures
 				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null,
-				        ConversationStates.ATTENDING, null, new StartAction(deathmatchInfo));
+				        ConversationStates.IDLE, null, new StartAction(deathmatchInfo));
 
 				// 'victory' command will scan, if all creatures are killed and reward the player
 				add(ConversationStates.ATTENDING, Arrays.asList("victory", "done", "yay"), null,
