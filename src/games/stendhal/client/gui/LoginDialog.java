@@ -125,7 +125,7 @@ public class LoginDialog extends JDialog {
 		/*
 		 *  Server Host
 		 */
-		l = new JLabel("Stendhal server");
+		l = new JLabel("Server name");
 		c.insets = new Insets(4, 4, 4, 4);
 		c.gridx = 0;// column
 		c.gridy = 1;// row
