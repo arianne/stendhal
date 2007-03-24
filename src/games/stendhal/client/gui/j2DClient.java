@@ -282,7 +282,7 @@ public class j2DClient extends JFrame {
 			/*
 			 * In own window
 			 */
-			JDialog dialog = new JDialog(this, "Game chat and events log");
+			final JDialog dialog = new JDialog(this, "Game chat and events log");
 
 			content = dialog.getContentPane();
 			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -310,7 +310,7 @@ public class j2DClient extends JFrame {
 				public void componentMoved(ComponentEvent e) {
 					Rectangle bounds = getBounds();
 
-					client.getGameLogDialog().setLocation(
+					dialog.setLocation(
 				        	bounds.x,
 						bounds.y + bounds.height);
 				}
