@@ -14,7 +14,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.RenderingPipeline;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
@@ -372,6 +371,8 @@ public class j2DClient extends JFrame {
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		inGameGUI = new InGameGUI(client);
+		inGameGUI.setGameLayer(client.getStaticGameLayers());
+		inGameGUI.setGameObjects(client.getGameObjects());
 
 
 		// Start the main game loop, note: this method will not
@@ -421,9 +422,6 @@ public class j2DClient extends JFrame {
 		screen.clear();
 
 		screen.place(-100, -100);
-		RenderingPipeline pipeline = RenderingPipeline.get();
-		pipeline.setGameLayer(staticLayers);
-		pipeline.setGameObjects(gameObjects);
 
 		SoundSystem.playSound("welcome", 100);
 
@@ -448,7 +446,6 @@ public class j2DClient extends JFrame {
 
 			if (this.getState() != ICONIFIED) {
 				logger.debug("Draw screen");
-				pipeline.draw(screen);
 				inGameGUI.draw(screen);
 				rotateKeyEventCounters();
 			}

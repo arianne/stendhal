@@ -63,6 +63,7 @@ public class InGameGUI implements Inspector {
 
 	private boolean altDown;
 
+	private StaticGameLayers gameLayers;
 
 	public InGameGUI(StendhalClient client) {
 
@@ -75,6 +76,21 @@ public class InGameGUI implements Inspector {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
 		buildGUI();
+	}
+
+	/**
+	 * 
+	 * @param layer
+	 */
+	public void setGameLayer(StaticGameLayers layer) {
+		gameLayers = layer;
+	}
+
+	/**
+	 * @param objects
+	 */
+	public void setGameObjects(GameObjects objects) {
+		gameObjects = objects;
 	}
 
 	public void offline() {
@@ -171,7 +187,27 @@ public class InGameGUI implements Inspector {
 		return container;
 	}
 
+	/*
+	 * Draw the screen.
+	 *
+	 * @param screen
+	 */
 	public void draw(GameScreen screen) {
+		/*
+		 * Draw the GameLayers from bootom to top, relies on exact
+		 * naming of the layers
+		 */
+		String set = gameLayers.getRPZoneLayerSet();
+		gameLayers.draw(screen, set + "_0_floor");
+		gameLayers.draw(screen, set + "_1_terrain");
+		gameLayers.draw(screen, set + "_2_object");
+		gameObjects.draw(screen);
+		gameLayers.draw(screen, set + "_3_roof");
+		gameLayers.draw(screen, set + "_4_roof_add");
+		gameObjects.drawHPbar(screen);
+		gameObjects.drawText(screen);
+
+
 		// create the map if there is none yet
 		StaticGameLayers gl = client.getStaticGameLayers();
 		if (gl.changedArea()) {
