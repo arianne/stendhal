@@ -309,6 +309,33 @@ public class j2DClient extends JFrame {
 			});
 		}
 
+
+		// workaround for key auto repeat on X11 (linux)
+		// First we try the JNI solution. In case this fails, we do this:
+		// In the default case xset -r is execute on program start and xset r on exit
+		// As this will affect all applications you can write keys.x=magic to use
+		// a method called MagicKeyListener. Caution: This does not work on all pcs
+		// and creates create stress on the network and server in case it does not work.
+		KeyListener keyListener = new GameKeyHandler();
+		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
+			if (!X11KeyConfig.getResult()) {
+				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
+				if (useXSet) {
+					if (!fixkeyboardHandlinginX()) {
+						keyListener = new MagicKeyListener(keyListener);
+					}
+				} else {
+					keyListener = new MagicKeyListener(keyListener);
+				}
+			}
+		}
+
+
+		// add a key input system (defined below) to our canvas so we can
+		// respond to key pressed
+		playerChatText.addKeyListener(keyListener);
+		canvas.addKeyListener(keyListener);
+
 		// Display a warning message in case the screen size was adjusted
 		// This is a temporary solution until this issue is fixed server side.
 		// I hope that it discourages its use without the risks of unabdateable
@@ -343,34 +370,6 @@ public class j2DClient extends JFrame {
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		inGameGUI = new InGameGUI(client);
-
-
-		// workaround for key auto repeat on X11 (linux)
-		// First we try the JNI solution. In case this fails, we do this:
-		// In the default case xset -r is execute on program start and xset r on exit
-		// As this will affect all applications you can write keys.x=magic to use
-		// a method called MagicKeyListener. Caution: This does not work on all pcs
-		// and creates create stress on the network and server in case it does not work.
-		KeyListener keyListener = new GameKeyHandler();
-		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
-			if (!X11KeyConfig.getResult()) {
-				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
-				if (useXSet) {
-					if (!fixkeyboardHandlinginX()) {
-						keyListener = new MagicKeyListener(keyListener);
-					}
-				} else {
-					keyListener = new MagicKeyListener(keyListener);
-				}
-			}
-		}
-
-
-		// add a key input system (defined below) to our canvas so we can
-		// respond to key pressed
-		playerChatText.addKeyListener(keyListener);
-		canvas.addKeyListener(keyListener);
-
 
 
 		// Start the main game loop, note: this method will not
