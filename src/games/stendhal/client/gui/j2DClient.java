@@ -93,7 +93,8 @@ public class j2DClient extends JFrame {
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
 
-	private FXLayer fx;
+// Not currently used (maybe later?)
+//	private FXLayer fx;
 
 	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
@@ -135,6 +136,11 @@ public class j2DClient extends JFrame {
 
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
+
+
+		// When the user tries to close the window, don't close immediately,
+		// but show a confirmation dialog. 
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 
 		Container content = getContentPane();
@@ -181,30 +187,13 @@ public class j2DClient extends JFrame {
 
 		content.add(playerChatText);
 
+		client.setTextLineGUI(playerChatText);
 
-		this.setLocation(new Point(20, 20));
 
-		// finally make the window visible
-		pack();
-		setResizable(false);
-		setVisible(true);
-
-		// adding FocusListeners makes Mac OS X actually prevent giving the
-		// focus to playerChatText
-		if (!System.getProperty("os.name").toLowerCase().contains("os x")) {
-
-			canvas.addFocusListener(new FocusListener() {
-
-				public void focusGained(FocusEvent e) {
-					playerChatText.requestFocus();
-				}
-
-				public void focusLost(FocusEvent e) {
-				}
-			});
-		}
-
-		addFocusListener(new FocusListener() {
+		/*
+		 * Always redirect focus to chat field
+		 */
+		canvas.addFocusListener(new FocusListener() {
 			public void focusGained(FocusEvent e) {
 				playerChatText.requestFocus();
 			}
@@ -213,58 +202,34 @@ public class j2DClient extends JFrame {
 			}
 		});
 
-		// create the buffering strategy which will allow AWT
 
-		// to manage our accelerated graphics
-		BufferStrategy strategy;
-		canvas.createBufferStrategy(2);
-		strategy = canvas.getBufferStrategy();
-
-		GameScreen.createScreen(strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
-		screen = GameScreen.get();
-		screen.setComponent(canvas);
-
-		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
-		inGameGUI = new InGameGUI(client);
-
-		// When the user tries to close the window, don't close immediately,
-		// but show a confirmation dialog. 
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		// add a listener to respond to the user trying to close the window.
+		/*
+		 * Handle focus assertion and window closing
+		 */
 		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent ev) {
+				playerChatText.requestFocus();
+			}
+
+
+			@Override
+			public void windowActivated(WindowEvent ev) {
+				playerChatText.requestFocus();
+			}
+
+
+			@Override
+			public void windowGainedFocus(WindowEvent ev) {
+				playerChatText.requestFocus();
+			}
+
 
 			@Override
 			public void windowClosing(WindowEvent e) {
 				inGameGUI.showQuitDialog();
 			}
 		});
-
-		// workaround for key auto repeat on X11 (linux)
-		// First we try the JNI solution. In case this fails, we do this:
-		// In the default case xset -r is execute on program start and xset r on exit
-		// As this will affect all applications you can write keys.x=magic to use
-		// a method called MagicKeyListener. Caution: This does not work on all pcs
-		// and creates create stress on the network and server in case it does not work.
-		KeyListener keyListener = inGameGUI;
-		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
-			if (!X11KeyConfig.getResult()) {
-				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
-				if (useXSet) {
-					if (!fixkeyboardHandlinginX()) {
-						keyListener = new MagicKeyListener(inGameGUI);
-					}
-				} else {
-					keyListener = new MagicKeyListener(inGameGUI);
-				}
-			}
-		}
-
-		// add a key input system (defined below) to our canvas so we can
-		// respond to key pressed
-		playerChatText.addKeyListener(keyListener);
-		canvas.addKeyListener(keyListener);
-
-		client.setTextLineGUI(playerChatText);
 
 
 		/*
@@ -298,14 +263,23 @@ public class j2DClient extends JFrame {
 			});
 
 			dialog.pack();
-			dialog.setLocation(getX(), getY() + getHeight());
-			dialog.setVisible(true);
 
 
 			/*
 			 * Move tracker
 			 */
 			addComponentListener(new ComponentAdapter() {
+				@Override
+				public void componentShown(ComponentEvent e) {
+					Rectangle bounds = getBounds();
+
+					dialog.setLocation(
+				        	bounds.x,
+						bounds.y + bounds.height);
+
+					dialog.setVisible(true);
+				}
+
 				@Override
 				public void componentMoved(ComponentEvent e) {
 					Rectangle bounds = getBounds();
@@ -325,13 +299,61 @@ public class j2DClient extends JFrame {
 			StendhalClient.get().addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, Color.RED);
 		}
 
-		// Moved to the end of the initializing sequence to regain focus from
-		// log window intensifly@gmx.com
 
-		// request the focus so key events come to us
 
-		playerChatText.requestFocus();
-		requestFocus();
+		setLocation(new Point(20, 20));
+
+		// finally make the window visible
+		pack();
+		setResizable(false);
+		setVisible(true);
+
+
+		/*
+		 * create the buffering strategy which will allow AWT
+		 * to manage our accelerated graphics
+		 */
+		BufferStrategy strategy;
+		canvas.createBufferStrategy(2);
+		strategy = canvas.getBufferStrategy();
+
+		GameScreen.createScreen(strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
+		screen = GameScreen.get();
+		screen.setComponent(canvas);
+
+// Not currently used (maybe later?)
+//		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		inGameGUI = new InGameGUI(client);
+
+
+		// workaround for key auto repeat on X11 (linux)
+		// First we try the JNI solution. In case this fails, we do this:
+		// In the default case xset -r is execute on program start and xset r on exit
+		// As this will affect all applications you can write keys.x=magic to use
+		// a method called MagicKeyListener. Caution: This does not work on all pcs
+		// and creates create stress on the network and server in case it does not work.
+		KeyListener keyListener = inGameGUI;
+		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
+			if (!X11KeyConfig.getResult()) {
+				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
+				if (useXSet) {
+					if (!fixkeyboardHandlinginX()) {
+						keyListener = new MagicKeyListener(inGameGUI);
+					}
+				} else {
+					keyListener = new MagicKeyListener(inGameGUI);
+				}
+			}
+		}
+
+
+		// add a key input system (defined below) to our canvas so we can
+		// respond to key pressed
+		playerChatText.addKeyListener(keyListener);
+		canvas.addKeyListener(keyListener);
+
+
 
 		// Start the main game loop, note: this method will not
 		// return until the game has finished running. Hence we are
