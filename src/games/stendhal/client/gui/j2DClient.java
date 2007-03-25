@@ -362,10 +362,10 @@ public class j2DClient extends JFrame {
 		canvas.createBufferStrategy(2);
 		strategy = canvas.getBufferStrategy();
 
-		GameScreen.createScreen(strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
-		screen = GameScreen.get();
+		screen = new GameScreen(strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
 		screen.setComponent(canvas);
 
+		GameScreen.setDefaultScreen(screen);
 		client.setScreen(screen);
 
 // Not currently used (maybe later?)

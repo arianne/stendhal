@@ -74,12 +74,13 @@ public class GameScreen {
 	/** the awt-component which this screen belongs to */
 	private Component component;
 
-	/** Create a screen with the given width and height */
-	public static void createScreen(BufferStrategy strategy, int sw, int sh) {
-		// if(screen==null)
-		{
-			screen = new GameScreen(strategy, sw, sh);
-		}
+	/**
+	 * Set the default [signleton] screen.
+	 *
+	 * @param	screen		The screen.
+	 */
+	public static void setDefaultScreen(GameScreen screen) {
+		GameScreen.screen = screen;
 	}
 
 	/** Returns the GameScreen object */
@@ -117,7 +118,7 @@ public class GameScreen {
 		return sh;
 	}
 
-	private GameScreen(BufferStrategy strategy, int sw, int sh) {
+	public GameScreen(BufferStrategy strategy, int sw, int sh) {
 		this.strategy = strategy;
 		this.sw = sw;
 		this.sh = sh;
