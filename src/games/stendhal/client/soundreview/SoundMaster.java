@@ -11,8 +11,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class SoundMaster implements Runnable {
 
-	private static SoundFileReader sfr;
-
+	
+	private static SoundFileMap sfm;
 	private static Cliplistener cliplisten;
 
 	public void run() {
@@ -20,8 +20,8 @@ public class SoundMaster implements Runnable {
 	}
 
 	private void init() {
-		sfr = new SoundFileReader();
-		sfr.init();
+		sfm = new SoundFileMap();
+
 		cliplisten = new Cliplistener();
 	}
 
@@ -31,7 +31,7 @@ public class SoundMaster implements Runnable {
 
 		byte[] o;
 
-		o = sfr.getData(soundName);
+		o = sfm.get(soundName);
 		if (o == null)
 			return;
 		AudioClip ac = new AudioClip(AudioSystem.getMixer(null), "hugo", o, 100);

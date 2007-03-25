@@ -9,6 +9,12 @@ import java.util.Set;
 public class SoundFileMap implements Map<String, byte[]>, Nullable {
 
 	private Map<String, byte[]> fileMap = new AbsentFileMap();
+	SoundFileReader sfr;
+	
+	public SoundFileMap() {
+		sfr = new SoundFileReader();
+		sfr.init();
+    }
 
 	public void clear() {
 		fileMap.clear();
@@ -29,8 +35,13 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 	}
 
 	public byte[] get(Object key) {
-
-		return fileMap.get(key);
+        byte[] byteArray = fileMap.get(key);
+        if (byteArray==null){
+        	
+        	byteArray = sfr.getData((String) key);
+        	put((String) key, byteArray);
+        }
+		return byteArray;
 	}
 
 	public boolean isEmpty() {
@@ -79,7 +90,7 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 
 	public boolean isNull() {
 
-		return false;
+		return (fileMap instanceof AbsentFileMap);
 	}
 
 }

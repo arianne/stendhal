@@ -12,19 +12,19 @@ import java.util.Properties;
 public class SoundFileReader {
 
 	/** expected location of the sound definition file (classloader). */
-	public static final String STORE_PROPERTYFILE = "data/sounds/stensounds.properties";
+	public static final String STORE_PROPERTYFILE = "data/sounds/";
 
-	private SoundFileMap fileMap;
+
 
 	static Properties soundprops;
 
 	public SoundFileReader() {
-		fileMap = new SoundFileMap();
+		
 
 	}
 
 	public void init() {
-		init(STORE_PROPERTYFILE);
+		init(STORE_PROPERTYFILE+"stensounds.properties");
 
 	}
 
@@ -32,6 +32,9 @@ public class SoundFileReader {
 
 		soundprops = loadSoundProperties(soundprops, propertyfile);
 
+	}
+	public void initWithXml(){
+		
 	}
 
 	/**
@@ -59,10 +62,7 @@ public class SoundFileReader {
 
 	byte[] getData(String soundname) {
 		byte[] data;
-		data = fileMap.get(soundname);
-		if (data != null) {
-			return data;
-		}
+		
 
 		String url = SoundFileReader.soundprops.getProperty("soundbase") + "/" + soundname;
 		InputStream in;
@@ -77,7 +77,7 @@ public class SoundFileReader {
 			return null;
 		}
 		data = bout.toByteArray();
-		fileMap.put(soundname, data);
+		
 		return data;
 	}
 
