@@ -460,6 +460,23 @@ public class StendhalClient extends ariannexp {
 	}
 
 
+	/**
+	 * Stop the player.
+	 */
+	public void stop() {
+		directions.clear();
+
+		RPAction rpaction = new RPAction();
+
+		rpaction.put("type", "stop");
+		rpaction.put("attack", "");
+
+		send(rpaction);
+	}
+
+	//
+	//
+
 	class StendhalPerceptionListener extends DefaultPerceptionListener {
 
 		@Override

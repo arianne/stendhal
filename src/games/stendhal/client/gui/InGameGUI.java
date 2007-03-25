@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -142,8 +141,6 @@ public class InGameGUI implements KeyListener, Inspector {
 	}
 
 	public void onKeyPressed(KeyEvent e) {
-		RPAction action;
-
 		if (e.isShiftDown()) {
 			/*
 			 * We are going to use shift to move to previous/next line of text
@@ -191,10 +188,6 @@ public class InGameGUI implements KeyListener, Inspector {
 	}
 
 	public void onKeyReleased(KeyEvent e) {
-		Direction dir;
-		RPAction action;
-		int size;
-
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_RIGHT:
@@ -262,11 +255,10 @@ public class InGameGUI implements KeyListener, Inspector {
 	 * logout via the StendhalClient class.
 	 */
 	public void showQuitDialog() {
-		// Stop the player
-		RPAction rpaction = new RPAction();
-		rpaction.put("type", "stop");
-		rpaction.put("attack", "");
-		client.send(rpaction);
+		/*
+		 * Stop the player
+		 */
+		client.stop();
 
 		// quit messagebox already showing?
 		if (quitDialog == null) {
