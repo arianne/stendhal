@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
@@ -29,12 +30,11 @@ import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 
 /**
  * A panel representing a buddy list.
  */
-public class BuddyListPanel extends StyledJPanel {
+public class BuddyListPanel extends JPanel {
 
 	/**
 	 * The online icon image.
@@ -55,7 +55,7 @@ public class BuddyListPanel extends StyledJPanel {
 	 * Create a buddy kist panel.
 	 */
 	public BuddyListPanel() {
-		super(WoodStyle.getInstance());
+		setOpaque(false);
 
 		SpriteStore st = SpriteStore.get();
 		online = st.getSprite("data/gui/buddy_online.png");
@@ -63,7 +63,7 @@ public class BuddyListPanel extends StyledJPanel {
 
 		buddies = new LinkedList<Entry>();
 
-		setPreferredSize(new Dimension(132, 20));
+		setPreferredSize(new Dimension(132, 1));
 		addMouseListener(new MouseClickCB());
 	}
 

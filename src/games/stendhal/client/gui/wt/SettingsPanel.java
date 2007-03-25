@@ -20,8 +20,8 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.entity.Player;
-// Native window code (not yet)
-//import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.core.*;
 import games.stendhal.common.CollisionDetection;
 import java.awt.GraphicsConfiguration;
@@ -47,9 +47,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	private Character character;
 
 	/** the buddy list panel */
-	// Native window code (not yet)
-	//	private BuddyListDialog buddies;
-	private Buddies buddies;
+	private BuddyListDialog nbuddies;
+	private ManagedWindow buddies;
 
 	/** the minimap panel */
 	private Minimap minimap;
@@ -62,6 +61,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** map of the buttons (for faster access) ) */
 	private Map<String, WtButton> buttonMap;
+
+	private static final boolean newCode =
+			(System.getProperty("stendhal.newgui") != null);
 
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(WtPanel frame, GameObjects gameObjects) {
@@ -80,11 +82,19 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		character.registerCloseListener(this);
 		frame.addChild(character);
 
-		// Native window code (not yet)
-		//		buddies = new BuddyListDialog(j2DClient.getInstance());
-		buddies = new Buddies(gameObjects);
-		buddies.registerCloseListener(this);
-		frame.addChild(buddies);
+		if(newCode) {
+			nbuddies = new BuddyListDialog();
+			j2DClient.getInstance().addDialog(nbuddies.getDialog());
+			nbuddies.registerCloseListener(this);
+			buddies = nbuddies;
+		} else {
+			Buddies obuddies = new Buddies(gameObjects);
+			frame.addChild(obuddies);
+			obuddies.registerCloseListener(this);
+			buddies = obuddies;
+		}
+
+		buddies.setVisible(true);
 
 		inventory = new EntityContainer(gameObjects, "bag", 3, 4);
 		inventory.registerCloseListener(this);
@@ -144,12 +154,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			return;
 		}
 
-		// Native window code (not yet)
-		//		/*
-		//		 * Hack! Need to update list when changes arrival
-		//		 */
-		//		if(buddies.isVisible())
-		//			buddies.update();
+		if(newCode) {
+			/*
+			 * Hack! Need to update list when changes arrival
+			 */
+			if(nbuddies.isVisible())
+				nbuddies.update();
+		}
 
 		Player newPlayer = (Player) gameObjects.get(playerObject.getID());
 
