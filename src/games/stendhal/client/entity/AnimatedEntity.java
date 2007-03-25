@@ -73,40 +73,22 @@ public abstract class AnimatedEntity extends Entity {
 	public void onMove(int x, int y, Direction direction, double speed) {
 		super.onMove(x, y, direction, speed);
 
-		/*
-		 * -- EXPERIMENT --
-		 * If it doesn't work right, re-enable (i.e. remove false).
-		 * If everything sets direction, eventually remove it for good
-		 */
-		if (false && !stopped()) {
-			if ((dx > 0) && (dx * dx >= dy * dy)) {
-				animation = "move_right";
-			} else if ((dx < 0) && (dx * dx >= dy * dy)) {
+		int value = direction.get();
+		switch (value) {
+			case 4:
 				animation = "move_left";
-			}
-
-			if ((dy > 0) && (dy * dy >= dx * dx)) {
-				animation = "move_down";
-			} else if ((dy < 0) && (dy * dy >= dx * dx)) {
+				break;
+			case 2:
+				animation = "move_right";
+				break;
+			case 1:
 				animation = "move_up";
-			}
-		} else {
-			int value = direction.get();
-			switch (value) {
-				case 4:
-					animation = "move_left";
-					break;
-				case 2:
-					animation = "move_right";
-					break;
-				case 1:
-					animation = "move_up";
-					break;
-				case 3:
-					animation = "move_down";
-					break;
-			}
+				break;
+			case 3:
+				animation = "move_down";
+				break;
 		}
+		
 	}
 
 	protected String getAnimation() {
