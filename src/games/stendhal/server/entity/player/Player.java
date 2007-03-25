@@ -940,15 +940,14 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return true iff the quest has been completed by the player
 	 */
 	public boolean isQuestCompleted(String name) {
-		if (hasQuest(name)) {
-			RPSlot slot = getSlot("!quests");
-			RPObject quests = slot.iterator().next();
+		String	info;
 
-			if (quests.get(name).equals("done")) {
-				return true;
-			}
+
+		if((info = getKeyedSlot("!quests", name)) == null) {
+			return false;
 		}
-		return false;
+
+		return info.equals("done");
 	}
 
 	/**
@@ -959,17 +958,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return true iff the player has made any progress in the quest
 	 */
 	public boolean hasQuest(String name) {
-		if (!hasSlot("!quests")) {
-			logger.error("Expected to find !quests slot");
-			return false;
-		}
-		RPSlot slot = getSlot("!quests");
-		if (slot.size() == 0) {
-			logger.error("Expected to find something !quests slot");
-			return false;
-		}
-		RPObject quests = slot.iterator().next();
-		return quests.has(name);
+		return (getKeyedSlot("!quests", name) != null);
 	}
 
 	/**
@@ -978,14 +967,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return the player's status in the quest
 	 */
 	public String getQuest(String name) {
-		if (hasQuest(name)) {
-			RPSlot slot = getSlot("!quests");
-			RPObject quests = slot.iterator().next();
-
-			return quests.get(name);
-		} else {
-			return null;
-		}
+		return getKeyedSlot("!quests", name);
 	}
 
 	/**
@@ -999,13 +981,7 @@ public class Player extends RPEntity implements TurnListener {
 	 *        completely reset the player's status for the quest.
 	 */
 	public void setQuest(String name, String status) {
-		RPSlot slot = getSlot("!quests");
-		RPObject quests = slot.iterator().next();
-		if (status != null) {
-			quests.put(name, status);
-		} else {
-			quests.remove(name);
-		}
+		setKeyedSlot("!quests", name, status);
 		StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest", name, status);
 	}
 
@@ -1023,12 +999,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void removeQuest(String name) {
-		if (hasQuest(name)) {
-			RPSlot slot = getSlot("!quests");
-			RPObject quests = slot.iterator().next();
-
-			quests.remove(name);
-		}
+		setKeyedSlot("!quests", name, null);
 	}
 
 	/**
@@ -1039,19 +1010,18 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return true, if the quest is in one of theses states, false otherwise
 	 */
 	public boolean isQuestInState(String name, String... states) {
-		if (!hasQuest(name)) {
-			return false;
-		}
-		String questState = getQuest(name);
-		boolean res = false;
-		for (String state : states) {
-			res = questState.equals(state);
-			if (res) {
-				break;
+		String	questState;
+
+
+		if((questState = getQuest(name)) != null) {
+			for (String state : states) {
+				if(questState.equals(state)) {
+					return true;
+				}
 			}
 		}
 
-		return res;
+		return false;
 	}
 
 	/**
@@ -1059,48 +1029,26 @@ public class Player extends RPEntity implements TurnListener {
 	 * given name without the help of any other player (?)
 	 */
 	public boolean hasKilledSolo(String name) {
-		if (hasKilled(name)) {
-			RPSlot slot = getSlot("!kills");
-			RPObject kills = slot.iterator().next();
-			if (kills.get(name).equals("solo")) {
-				return true;
-			}
+		String	info;
+
+
+		if((info = getKeyedSlot("!kills", name)) == null) {
+			return false;
 		}
-		return false;
+
+		return info.equals("solo");
 	}
 
 	public boolean hasKilled(String name) {
-		if (!hasSlot("!kills")) {
-			logger.error("Expected to find !kills slot");
-			return false;
-		}
-		RPSlot slot = getSlot("!kills");
-		if (slot.size() == 0) {
-			logger.error("Expected to find something !kills slot");
-			return false;
-		}
-		RPObject kills = slot.iterator().next();
-		if (kills.has(name)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (getKeyedSlot("!kills", name) != null);
 	}
 
 	public String getKill(String name) {
-		if (hasKilled(name)) {
-			RPSlot slot = getSlot("!kills");
-			RPObject kills = slot.iterator().next();
-			return kills.get(name);
-		} else {
-			return null;
-		}
+		return getKeyedSlot("!kills", name);
 	}
 
 	public void setKill(String name, String mode) {
-		RPSlot slot = getSlot("!kills");
-		RPObject kills = slot.iterator().next();
-		kills.put(name, mode);
+		setKeyedSlot("!kills", name, mode);
 	}
 
 	public List<String> getKills() {
@@ -1116,11 +1064,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void removeKill(String name) {
-		if (hasKilled(name)) {
-			RPSlot slot = getSlot("!kills");
-			RPObject kills = slot.iterator().next();
-			kills.remove(name);
-		}
+		setKeyedSlot("!kills", name, null);
 	}
 
 	/**
@@ -1346,12 +1290,12 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	/**
-	      * Removes all units of an item from the RPEntity. The item can
-	      * either be stackable or non-stackable. If the RPEntity doesn't
-	      * have any of the item, doesn't remove anything.
-	      * @param name The name of the item
-	      * @return true iff dropping the item was successful.
-	      */
+	  * Removes all units of an item from the RPEntity. The item can
+	  * either be stackable or non-stackable. If the RPEntity doesn't
+	  * have any of the item, doesn't remove anything.
+	  * @param name The name of the item
+	  * @return true iff dropping the item was successful.
+	  */
 	public boolean dropAll(String name) {
 		return drop(name, getNumberOfEquipped(name));
 	}
