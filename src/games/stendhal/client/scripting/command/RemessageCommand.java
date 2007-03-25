@@ -7,7 +7,6 @@ import marauroa.common.game.RPAction;
  * Send a message to the last player messaged.
  */
 class RemessageCommand implements SlashCommand {
-
 	/**
 	 * Execute a chat command.
 	 *
@@ -16,9 +15,9 @@ class RemessageCommand implements SlashCommand {
 	 *
 	 * @return	<code>true</code> if command was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
-		MessageCommand messageCommand = (MessageCommand) SlashCommandFactory.get("msg");
-
+	public boolean execute(String [] params, String remainder) {
+		MessageCommand messageCommand = (MessageCommand) SlashCommandRepository.get("msg");
+		
 		if (messageCommand == null || messageCommand.getLastPlayerTell() == null) {
 			return false;
 		}
@@ -34,6 +33,7 @@ class RemessageCommand implements SlashCommand {
 		return true;
 	}
 
+
 	/**
 	 * Get the maximum number of formal parameters.
 	 *
@@ -42,6 +42,7 @@ class RemessageCommand implements SlashCommand {
 	public int getMaximumParameters() {
 		return 0;
 	}
+
 
 	/**
 	 * Get the minimum number of formal parameters.

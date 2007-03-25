@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * Manages Slash Command Objects
  */
-public class SlashCommandFactory {
+public class SlashCommandRepository {
 
 	/** Set of client supported commands */
 	private static HashMap<String, SlashCommand> commands;
