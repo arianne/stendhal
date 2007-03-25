@@ -371,8 +371,7 @@ public class j2DClient extends JFrame {
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		inGameGUI = new InGameGUI(client);
-		inGameGUI.setGameLayer(client.getStaticGameLayers());
-		inGameGUI.setGameObjects(client.getGameObjects());
+		client.setGameGUI(inGameGUI);
 
 
 		// Start the main game loop, note: this method will not

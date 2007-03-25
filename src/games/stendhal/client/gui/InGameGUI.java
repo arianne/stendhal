@@ -37,8 +37,6 @@ public class InGameGUI implements Inspector {
 
 	private GameObjects gameObjects;
 
-	private GameScreen screen;
-
 	/** the main frame */
 	private WtBaseframe frame;
 
@@ -63,45 +61,14 @@ public class InGameGUI implements Inspector {
 
 	private boolean altDown;
 
-	private StaticGameLayers gameLayers;
-
 	public InGameGUI(StendhalClient client) {
-
-		client.setGameGUI(this);
 		this.client = client;
 
 		gameObjects = client.getGameObjects();
-		screen = GameScreen.get();
 
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
-		buildGUI();
-	}
-
-	/**
-	 * 
-	 * @param layer
-	 */
-	public void setGameLayer(StaticGameLayers layer) {
-		gameLayers = layer;
-	}
-
-	/**
-	 * @param objects
-	 */
-	public void setGameObjects(GameObjects objects) {
-		gameObjects = objects;
-	}
-
-	public void offline() {
-		offline = true;
-	}
-
-	public void online() {
-		offline = false;
-	}
-
-	private void buildGUI() {
+		GameScreen screen = GameScreen.get();
 		// create the frame
 		frame = new WtBaseframe(screen);
 		// register native event handler
@@ -118,6 +85,14 @@ public class InGameGUI implements Inspector {
 		WtWindowManager windowManager = WtWindowManager.getInstance();
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
+	}
+
+	public void offline() {
+		offline = true;
+	}
+
+	public void online() {
+		offline = false;
 	}
 
 
@@ -164,29 +139,6 @@ public class InGameGUI implements Inspector {
 	}
 
 
-	/**
-	 * This methods inspects an entity by enabling all the droppable areas. To
-	 * stop inspecting this method is called with entity=null
-	 */
-	public EntityContainer inspect(Entity entity, RPSlot slot) {
-		return inspect(entity, slot, 2, 2);
-	}
-
-	public EntityContainer inspect(Entity entity, RPSlot slot, int width, int height) {
-		if ((entity == null) || (slot == null) || (ground == null)) {
-			return null;
-		}
-
-		EntityContainer container = new EntityContainer(gameObjects, entity.getType(), width, height);
-		container.setSlot(entity, slot.getName());
-		if (!container.hasParent()) {
-			ground.addChild(container);
-		}
-		container.setVisible(true);
-
-		return container;
-	}
-
 	/*
 	 * Draw the screen.
 	 *
@@ -197,7 +149,9 @@ public class InGameGUI implements Inspector {
 		 * Draw the GameLayers from bootom to top, relies on exact
 		 * naming of the layers
 		 */
+		StaticGameLayers gameLayers = client.getStaticGameLayers();
 		String set = gameLayers.getRPZoneLayerSet();
+
 		gameLayers.draw(screen, set + "_0_floor");
 		gameLayers.draw(screen, set + "_1_terrain");
 		gameLayers.draw(screen, set + "_2_object");
@@ -209,12 +163,11 @@ public class InGameGUI implements Inspector {
 
 
 		// create the map if there is none yet
-		StaticGameLayers gl = client.getStaticGameLayers();
-		if (gl.changedArea()) {
-			CollisionDetection cd = gl.getCollisionDetection();
+		if (gameLayers.changedArea()) {
+			CollisionDetection cd = gameLayers.getCollisionDetection();
 			if (cd != null) {
-				gl.resetChangedArea();
-				settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gl.getArea());
+				gameLayers.resetChangedArea();
+				settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
 			}
 		}
 
