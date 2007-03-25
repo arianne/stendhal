@@ -75,7 +75,7 @@ public class GameScreen {
 	private Component component;
 
 	/**
-	 * Set the default [signleton] screen.
+	 * Set the default [singleton] screen.
 	 *
 	 * @param	screen		The screen.
 	 */
@@ -195,6 +195,14 @@ public class GameScreen {
 	public void setMaxWorldSize(int width, int height) {
 		ww = width;
 		wh = height;
+	}
+
+	/**
+	 * Clear the screen.
+	 */
+	public void clear() {
+		g.setColor(Color.black);
+		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());
 	}
 
 	/** Translate to world coordinates the given screen coordinate */

@@ -417,10 +417,8 @@ public class j2DClient extends JFrame {
 
 		long oldTime = System.nanoTime();
 
-		// Clear the first screen with black color
-		screen.expose().setColor(Color.black);
-		screen.expose().fillRect(
-			0, 0, canvas.getWidth(), canvas.getHeight());
+		// Clear the first screen
+		screen.clear();
 
 		screen.place(-100, -100);
 		RenderingPipeline pipeline = RenderingPipeline.get();
