@@ -159,6 +159,10 @@ public class ScriptRunner extends StendhalServerExtension {
 
 			// split remaining args
 			String[] args = cmd.split(" ");
+			if ((args.length == 1) && args[0].trim().equals("")) {
+				args = new String[0];
+			}
+
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "script", script, mode,
 			        Arrays.asList(args).toString());
 
