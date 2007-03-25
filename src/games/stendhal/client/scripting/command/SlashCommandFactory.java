@@ -15,12 +15,14 @@ public class SlashCommandFactory {
 	 */
 	public static void register() {
 		commands = new HashMap<String, SlashCommand>();
+		
+		SlashCommand msg = new MessageCommand();
 
 		commands.put("/", new RemessageCommand());
 		commands.put("away", new AwayCommand());
-		commands.put("tell", new MessageCommand());
+		commands.put("tell", msg);
 		commands.put("answer", new AnswerCommand());
-		commands.put("msg", new MessageCommand());
+		commands.put("msg", msg);
 		commands.put("support", new SupportCommand());
 		commands.put("supporta", new SupportAnswerCommand());
 		commands.put("supportanswer", new SupportAnswerCommand());
