@@ -182,7 +182,7 @@ social hub of the Semos area!
   </entity>
  </zone>
 
- <zone name="0_semos_city" file="0_semos_city.xstend">
+ <zone name="0_semos_city" level="0" x="500064" y="500000" file="0_semos_city.xstend">
   <title>The City of Semos</title>
   <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside" />
 
