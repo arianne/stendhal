@@ -17,6 +17,7 @@ public class SlashCommandRepository {
 		commands = new HashMap<String, SlashCommand>();
 		
 		SlashCommand msg = new MessageCommand();
+		SlashCommand supporta = new SupportAnswerCommand();
 
 		commands.put("/", new RemessageCommand());
 		commands.put("away", new AwayCommand());
@@ -24,8 +25,8 @@ public class SlashCommandRepository {
 		commands.put("answer", new AnswerCommand());
 		commands.put("msg", msg);
 		commands.put("support", new SupportCommand());
-		commands.put("supporta", new SupportAnswerCommand());
-		commands.put("supportanswer", new SupportAnswerCommand());
+		commands.put("supporta", supporta);
+		commands.put("supportanswer", supporta);
 		commands.put("where", new WhereCommand());
 		commands.put("who", new WhoCommand());
 		commands.put("drop", new DropCommand());
