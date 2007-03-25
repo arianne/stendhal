@@ -24,7 +24,7 @@ public class LogoutPlayer extends ScriptImpl {
 
 		// help text
 		if (args.size() == 0) {
-			admin.sendPrivateText("/script KillPlayer.class <playername> logs a player out");
+			admin.sendPrivateText("/script LogoutPlayer.class <playername> logs a player out");
 			return;
 		}
 
