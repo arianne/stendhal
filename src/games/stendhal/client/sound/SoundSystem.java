@@ -44,11 +44,11 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Map.Entry;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -442,8 +442,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	private void init() {
 
-		String value;
-		String name;
+		
 		String hstr;
 		int loaded;
 		/**
@@ -468,18 +467,22 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 			// get sound library filepath
 			String soundBase = prop.getProperty("soundbase", "data/sounds/");
-
+		
+		
+			Enumeration<Object> maps = prop.keys();
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
 			failedCounted = 0;
 			loaded = 0;
 			count = 0;
-			for (Entry<String, String> entry : ((Map<String, String>) (Map) prop).entrySet()) {
+			
+			for (String key=(String) maps.nextElement();maps.hasMoreElements(); key = (String) maps.nextElement()) {
 				byte[] soundData;
-
-				if (isValidEntry(entry.getKey(), entry.getValue())) {
-					name = entry.getKey().substring(4);
-					value = entry.getValue();
+				String value;
+				String name;
+				if (isValidEntry(key,prop.getProperty(key))) {
+					name = key.substring(4);
+					value = prop.getProperty(key);
 
 					logger.debug("- sound definition: " + name + " = " + value);
 
