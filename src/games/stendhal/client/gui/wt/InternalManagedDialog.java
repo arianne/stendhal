@@ -9,6 +9,13 @@ package games.stendhal.client.gui.wt;
 //
 //
 
+import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPanel;
+import games.stendhal.client.gui.wt.core.WtCloseListener;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -22,29 +29,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
-import javax.swing.JComponent;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-
-import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.gui.styled.Style;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
-import games.stendhal.client.gui.wt.core.WtCloseListener;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 /**
  * A base internal dialog in swing that implements ManagedWindow.
@@ -158,7 +157,7 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 		/*
 		 * Title
 		 */
-		titleLabel = new JLabel(title, JLabel.LEFT);
+		titleLabel = new JLabel(title, SwingConstants.LEFT);
 		titleLabel.setOpaque(false);
 		titleLabel.setBorder(BorderFactory.createEmptyBorder());
 
