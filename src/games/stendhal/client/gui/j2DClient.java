@@ -23,6 +23,8 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
 
+import games.stendhal.common.Direction;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Component;
@@ -35,10 +37,13 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -47,6 +52,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import marauroa.common.Log4J;
@@ -96,6 +102,16 @@ public class j2DClient extends JFrame {
 // Not currently used (maybe later?)
 //	private FXLayer fx;
 
+	private long lastKeyRelease;
+
+	private long lastKeyEventsCleanUpStart;
+
+	private int[] veryFastKeyEvents = new int[4]; // at leat one more than
+
+	/** a nicer way of handling the keyboard */
+	private Map<Integer, Object> pressed;
+
+
 	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
 		try {
@@ -129,6 +145,8 @@ public class j2DClient extends JFrame {
 		 * XXX - TEMP! For native dialog window transition.
 		 */
 		sharedInstance = this;
+
+		pressed = new HashMap<Integer, Object>();
 
 		// create a frame to contain our game
 		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
@@ -333,16 +351,16 @@ public class j2DClient extends JFrame {
 		// As this will affect all applications you can write keys.x=magic to use
 		// a method called MagicKeyListener. Caution: This does not work on all pcs
 		// and creates create stress on the network and server in case it does not work.
-		KeyListener keyListener = inGameGUI;
+		KeyListener keyListener = new GameKeyHandler();
 		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
 			if (!X11KeyConfig.getResult()) {
 				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
 				if (useXSet) {
 					if (!fixkeyboardHandlinginX()) {
-						keyListener = new MagicKeyListener(inGameGUI);
+						keyListener = new MagicKeyListener(keyListener);
 					}
 				} else {
-					keyListener = new MagicKeyListener(inGameGUI);
+					keyListener = new MagicKeyListener(keyListener);
 				}
 			}
 		}
@@ -534,6 +552,153 @@ public class j2DClient extends JFrame {
 			// Logger.thrown("j2DClient::moveScreen","X",e);
 		}
 	}
+
+
+	protected Direction keyCodeToDirection(int keyCode) {
+		switch (keyCode) {
+			case KeyEvent.VK_LEFT:
+				return Direction.LEFT;
+
+			case KeyEvent.VK_RIGHT:
+				return Direction.RIGHT;
+
+			case KeyEvent.VK_UP:
+				return Direction.UP;
+
+			case KeyEvent.VK_DOWN:
+				return Direction.DOWN;
+
+			default:
+				return null;
+		}
+	}
+
+
+	protected void onKeyPressed(KeyEvent e) {
+		if (e.isShiftDown()) {
+			/*
+			 * We are going to use shift to move to previous/next line of text
+			 * with arrows so we just ignore the keys if shift is pressed.
+			 */
+			return;
+		}
+
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_L:
+				if(e.isControlDown()) {
+					/*
+					 * Ctrl+L
+					 * Make game log visible
+					 */
+					SwingUtilities.getRoot(client.getGameLog()).setVisible(true);
+				}
+
+				break;
+
+			case KeyEvent.VK_R:
+				if(e.isControlDown()) {
+					/*
+					 * Ctrl+R
+					 * Remove text bubbles
+					 */
+					client.clearTextBubbles();
+				}
+
+				break;
+
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_DOWN:
+				/*
+				 * Ctrl means face, otherwise move
+				 */
+				client.addDirection(
+					keyCodeToDirection(e.getKeyCode()),
+					e.isControlDown());
+
+				break;
+		}
+	}
+
+
+	protected void onKeyReleased(KeyEvent e) {
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_DOWN:
+				/*
+				 * Ctrl means face, otherwise move
+				 */
+				client.removeDirection(
+					keyCodeToDirection(e.getKeyCode()),
+					e.isControlDown());
+		}
+	}
+
+
+	/**
+	 * Rotates the veryFastKeyEvents array
+	 */
+	public void rotateKeyEventCounters() {
+		if (lastKeyEventsCleanUpStart + 300 < System.currentTimeMillis()) {
+			lastKeyEventsCleanUpStart = System.currentTimeMillis();
+
+			for (int i = veryFastKeyEvents.length - 1; i > 0; i--) {
+				veryFastKeyEvents[i - 1] = veryFastKeyEvents[i];
+			}
+			veryFastKeyEvents[veryFastKeyEvents.length - 1] = 0;
+		}
+	}
+
+	//
+	//
+
+	protected class GameKeyHandler implements KeyListener {
+		public void keyPressed(KeyEvent e) {
+			// detect X11 auto repeat still beeing active
+			if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
+				veryFastKeyEvents[veryFastKeyEvents.length - 1]++;
+				if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2) && (veryFastKeyEvents[2] > 2)) {
+					client.addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
+
+					client.addEventLine(
+				                "Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution",
+				                Color.BLACK);
+				}
+			}
+
+			inGameGUI.updateModifiers(e);
+
+			if (!pressed.containsKey(Integer.valueOf(e.getKeyCode()))) {
+				onKeyPressed(e);
+				pressed.put(Integer.valueOf(e.getKeyCode()), null);
+			}
+		}
+
+
+		public void keyReleased(KeyEvent e) {
+			lastKeyRelease = e.getWhen();
+
+			inGameGUI.updateModifiers(e);
+
+			onKeyReleased(e);
+			pressed.remove(Integer.valueOf(e.getKeyCode()));
+		}
+
+
+		public void keyTyped(KeyEvent e) {
+			if (e.getKeyChar() == 27) {
+				// Escape
+				inGameGUI.showQuitDialog();
+			}
+		}
+	}
+
+
+	//
+	//
 
 	public static void main(String args[]) {
 		if (args.length > 0) {
