@@ -40,6 +40,8 @@ import javax.swing.Timer;
  */
 public class ScrollerPanel extends JPanel {
 
+	private static final long serialVersionUID = -9047582023793318785L;
+
 	private static final Logger logger = Logger.getLogger(ScrollerPanel.class);
 
 	private String[] text;

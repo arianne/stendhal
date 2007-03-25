@@ -32,6 +32,8 @@ import org.apache.log4j.Logger;
  */
 public class X11KeyConfig extends Canvas {
 
+	private static final long serialVersionUID = -2415310565133961780L;
+
 	private static X11KeyConfig instance = null;
 
 	private static Logger logger = Logger.getLogger(X11KeyConfig.class);

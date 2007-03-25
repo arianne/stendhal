@@ -32,6 +32,8 @@ import org.apache.log4j.Logger;
  */
 public class CreditsDialog extends JDialog {
 
+	private static final long serialVersionUID = 4312205320503928411L;
+
 	private static final Logger logger = Logger.getLogger(CreditsDialog.class);
 
 	private static String[] credits = { "Thanks everyone! Credits goes to: ", "", "", "Arlindo",
@@ -144,7 +146,4 @@ public class CreditsDialog extends JDialog {
 		logger.debug("about dialog closed");
 	}
 
-	/*public static void main(String[] args) {
-	 new CreditsDialog(null);
-	 }*/
 }

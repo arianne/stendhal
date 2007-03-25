@@ -53,8 +53,7 @@ import marauroa.common.io.Persistence;
  */
 public class LoginDialog extends JDialog {
 
-
-	// Variables declaration
+	private static final long serialVersionUID = -1182930046629241075L;
 
 	private JComboBox profilesComboBox;
 
