@@ -450,6 +450,7 @@ public class j2DClient extends JFrame {
 				logger.debug("Draw screen");
 				pipeline.draw(screen);
 				inGameGUI.draw(screen);
+				rotateKeyEventCounters();
 			}
 
 			// TODO: only draw it if it is required to save cpu time
@@ -640,7 +641,7 @@ public class j2DClient extends JFrame {
 	/**
 	 * Rotates the veryFastKeyEvents array
 	 */
-	public void rotateKeyEventCounters() {
+	private void rotateKeyEventCounters() {
 		if (lastKeyEventsCleanUpStart + 300 < System.currentTimeMillis()) {
 			lastKeyEventsCleanUpStart = System.currentTimeMillis();
 

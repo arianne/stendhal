@@ -196,11 +196,6 @@ public class InGameGUI implements Inspector {
 		} else {
 			blinkOffline--;
 		}
-
-		/*
-		 * Temp workaround
-		 */
-		j2DClient.getInstance().rotateKeyEventCounters();
 	}
 
 	/**
