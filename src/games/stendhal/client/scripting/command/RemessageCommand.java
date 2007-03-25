@@ -17,7 +17,7 @@ class RemessageCommand implements SlashCommand {
 	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		MessageCommand messageCommand = (MessageCommand) SlashCommandFactory.get("message");
+		MessageCommand messageCommand = (MessageCommand) SlashCommandFactory.get("msg");
 
 		if (messageCommand == null || messageCommand.getLastPlayerTell() == null) {
 			return false;
