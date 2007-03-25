@@ -204,7 +204,7 @@ public abstract class Creature extends NPC {
 
 					try {
 						String token = tokenizer.nextToken();
-						System.out.println("- creature action: " + token);
+						logger.debug("- creature action: " + token);
 						if (token.equals("sleep")) {
 							break;
 						} else if (token.equals("patrol")) {
