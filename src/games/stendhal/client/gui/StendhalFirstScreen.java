@@ -49,6 +49,11 @@ public class StendhalFirstScreen extends JFrame {
 
 	private Image background;
 
+	/**
+	 * Creates the first screen
+	 *
+	 * @param client StendhalClient
+	 */
 	public StendhalFirstScreen(StendhalClient client) {
 		super();
 		this.client = client;
@@ -204,6 +209,9 @@ public class StendhalFirstScreen extends JFrame {
 
 	}
 
+	/**
+	 * opens the create account dialog after checking the server version
+	 */
 	public void createAccount() {
 		checkVersion();
 		new CreateAccountDialog(StendhalFirstScreen.this, client);
