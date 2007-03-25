@@ -32,7 +32,7 @@ public class LogoutPlayer extends ScriptImpl {
 		try {
 			PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
 			int clientid = playerContainer.getClientidPlayer(args.get(0));
-			if (clientid > -1) {
+			if (clientid != -1) {
 				playerContainer.removeRuntimePlayer(clientid);
 			}
 		} catch (Exception e) {
