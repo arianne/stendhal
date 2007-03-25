@@ -73,30 +73,34 @@ public abstract class AnimatedEntity extends Entity {
 	public void onMove(int x, int y, Direction direction, double speed) {
 		super.onMove(x, y, direction, speed);
 
-		int value = direction.get();
-		switch (value) {
-			case 4:
+		adjustAnimation(direction);
+		
+	}
+
+	protected void adjustAnimation(Direction direction) {
+	  
+		switch (direction) {
+			case LEFT:
 				animation = "move_left";
 				break;
-			case 2:
+			case RIGHT:
 				animation = "move_right";
 				break;
-			case 1:
+			case UP:
 				animation = "move_up";
 				break;
-			case 3:
+			case DOWN:
 				animation = "move_down";
 				break;
 		}
-		
-	}
+    }
 
 	protected String getAnimation() {
 		return animation;
 	}
 
 	/** Returns the next Sprite we have to show */
-	protected Sprite nextFrame() {
+	private final Sprite nextFrame() {
 		Sprite[] anim = sprites.get(animation);
 
 		if (anim == null) {

@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.common.Direction;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -57,6 +58,8 @@ public class Sheep extends NPC {
 			if (weight > oldWeight) {
 				playSound("sheep-eat", 8, 15);
 			}
+	
+			
 		}
 
 		if (diff.has("idea")) {
@@ -116,18 +119,6 @@ public class Sheep extends NPC {
 		playSound(token, 20, 35, chance);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.AnimatedEntity#nextFrame()
-	 */
-	@Override
-	protected Sprite nextFrame() {
-		if ((weight > 60) && !animation.startsWith("big_")) {
-			animation = "big_" + animation;
-		}
-		return super.nextFrame();
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -144,5 +135,13 @@ public class Sheep extends NPC {
 			}
 
 	}
+
+	@Override
+    protected void adjustAnimation(Direction direction) {
+	    super.adjustAnimation(direction);
+		if ((weight > 60) && !animation.startsWith("big_")) {
+			animation = "big_" + animation;
+		}
+    }
 
 }
