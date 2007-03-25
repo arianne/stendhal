@@ -403,8 +403,6 @@ public class StendhalClient extends ariannexp {
 	 */
 	public void addDirection(Direction dir, boolean face) {
 		RPAction action;
-		int size;
-
 
 		/*
 		 * Move to end
