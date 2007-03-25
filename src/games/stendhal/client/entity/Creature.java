@@ -38,7 +38,7 @@ public abstract class Creature extends NPC {
 
 	@Override
 	protected void nonCreatureClientAddEventLine(String text) {
-		// no logging for Creature sounds in the client window
+		// no logging for Creature "sounds" in the client window
 	}
 
 	/** the logger instance. */
@@ -51,32 +51,11 @@ public abstract class Creature extends NPC {
 	/** display all debug messages for this creature in the game log */
 	public boolean watch = false;
 
-	// /** creature is sleeping */
-	// private boolean sleeping = false;
-	//
-	// /** creature has been attacked */
-	// private boolean attacked = false;
-	//
-	// /** objectid of the attacking rpobject */
-	// private int attackedBy = 0;
-	//
-	// /** true when this creature canceled the attack */
-	// private boolean cancelAttack = false;
-	//
-	// /** creature has choosen a new target */
-	// private boolean newTarget = false;
-	//
-	// /** id of the new target */
-	// private int newTargetId = 0;
-
 	/** creature patrols along its path */
 	private boolean patrol = false;
 
 	/** the patrolpath */
 	private List<Node> patrolPath;
-
-	// /** target is out of reach */
-	// private boolean outOfReach = false;
 
 	/** the target moved, so we'return trying to find a new path */
 	private boolean targetMoved = false;
@@ -84,17 +63,8 @@ public abstract class Creature extends NPC {
 	/** new path to the target */
 	private List<Node> targetMovedPath;
 
-	// /** we're attacking */
-	// private boolean attacking = false;
-
 	/** we're moving towards the target */
 	private boolean moveToTarget = false;
-
-	// /** we're ran against a obstacle */
-	// private boolean moveToTargetBlocked = false;
-	//
-	// /** we're waiting for the path to clear */
-	// private boolean moveToTargetWaiting = false;
 
 	/** searching new path to the target */
 	private boolean moveToTargetNew = false;
@@ -215,17 +185,9 @@ public abstract class Creature extends NPC {
 
 		// Check if debug is enabled
 		if (diff.has("debug") && Debug.CREATURES_DEBUG_CLIENT) {
-			// sleeping = false;
-			// attacked = false;
-			// cancelAttack = false;
-			// newTarget = false;
 			patrol = false;
-			// outOfReach = false;
 			targetMoved = false;
-			// attacking = false;
 			moveToTarget = false;
-			// moveToTargetBlocked = false;
-			// moveToTargetWaiting = false;
 			moveToTargetNew = false;
 
 			String debug = diff.get("debug");
@@ -244,42 +206,23 @@ public abstract class Creature extends NPC {
 						String token = tokenizer.nextToken();
 						System.out.println("- creature action: " + token);
 						if (token.equals("sleep")) {
-							// sleeping = true;
 							break;
-							// } else if (token.equals("attacked")) {
-							// attacked = true;
-							// attackedBy = Integer
-							// .parseInt(tokenizer.nextToken());
-							// } else if (token.equals("cancelattack")) {
-							// cancelAttack = true;
-							// } else if (token.equals("newtarget")) {
-							// newTarget = true;
-							// newTargetId = Integer.parseInt(tokenizer
-							// .nextToken());
 						} else if (token.equals("patrol")) {
 							patrol = true;
 							patrolPath = getPath(tokenizer.nextToken());
-							// } else if (token.equals("outofreachstopped")) {
-							// outOfReach = true;
 						} else if (token.equals("targetmoved")) {
 							targetMoved = true;
 							targetMovedPath = getPath(tokenizer.nextToken());
-						} else if (token.equals("attacking")) {
-							// attacking = true;
 						} else if (token.equals("movetotarget")) {
 							moveToTarget = true;
-							// moveToTargetBlocked = false;
-							// moveToTargetWaiting = false;
 							moveToTargetNew = false;
 							String nextToken = tokenizer.nextToken();
 
 							if (nextToken.equals("blocked")) {
-								// moveToTargetBlocked = true;
 								nextToken = tokenizer.nextToken();
 							}
 
 							if (nextToken.equals("waiting")) {
-								// moveToTargetWaiting = true;
 								nextToken = tokenizer.nextToken();
 							}
 
@@ -306,11 +249,6 @@ public abstract class Creature extends NPC {
 	public ActionType defaultAction() {
 		return ActionType.ATTACK;
 	}
-
-	// @Override
-	// public String[] offeredActions() {
-	// ret
-	// }
 
 	@Override
 	public void onAction(ActionType at, String... params) {
@@ -358,11 +296,6 @@ public abstract class Creature extends NPC {
 		return sprite;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
-	 */
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
