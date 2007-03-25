@@ -366,6 +366,8 @@ public class j2DClient extends JFrame {
 		screen = GameScreen.get();
 		screen.setComponent(canvas);
 
+		client.setScreen(screen);
+
 // Not currently used (maybe later?)
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -520,7 +522,6 @@ public class j2DClient extends JFrame {
 			double x = object.getDouble("x");
 			double y = object.getDouble("y");
 
-			GameScreen screen = GameScreen.get();
 			double screenx = screen.getX();
 			double screeny = screen.getY();
 			double screenw = screen.getWidth();

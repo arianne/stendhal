@@ -88,6 +88,8 @@ public class StendhalClient extends ariannexp {
 	private ArrayList<Direction> directions;
 
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
+	protected GameScreen screen;
+
 
 	public static StendhalClient get() {
 		if (client == null) {
@@ -144,6 +146,14 @@ public class StendhalClient extends ariannexp {
 
 	public KTextEdit getGameLog() {
 		return gameLog;
+	}
+
+	public void setScreen(GameScreen screen) {
+		this.screen = screen;
+	}
+
+	public GameScreen getScreen() {
+		return screen;
 	}
 
 	public void setGameGUI(InGameGUI gui) {
@@ -243,8 +253,6 @@ public class StendhalClient extends ariannexp {
 				// Notify zone entering.
 				WorldObjects.fireZoneEntered(message.getRPZoneID().getID());
 
-				GameScreen screen = GameScreen.get();
-
 				/** Full object is normal object+hidden objects */
 				RPObject hidden = message.getMyRPObjectAdded();
 				RPObject object = null;
@@ -262,7 +270,7 @@ public class StendhalClient extends ariannexp {
 
 				String zoneid = message.getRPZoneID().getID();
 				staticLayers.setRPZoneLayersSet(zoneid);
-				GameScreen.get().setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
+				screen.setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
 
 				/** And finally place player in screen */
 				Graphics2D g = screen.expose();
@@ -334,7 +342,7 @@ public class StendhalClient extends ariannexp {
 
 	private void contentHandling(String name, Reader reader) throws IOException {
 		staticLayers.addLayer(reader, name);
-		GameScreen.get().setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
+		screen.setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
 	}
 
 	@Override
