@@ -24,7 +24,6 @@ import java.awt.Point;
 import java.awt.event.*;
 import javax.swing.SwingUtilities;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,8 +72,6 @@ public class InGameGUI implements KeyListener, Inspector {
 
 	private boolean altDown;
 
-	private ArrayList<Direction> directions;
-
 	private long lastKeyRelease;
 
 	private int[] veryFastKeyEvents = new int[4]; // at leat one more than
@@ -92,8 +89,6 @@ public class InGameGUI implements KeyListener, Inspector {
 		screen = GameScreen.get();
 
 		pressed = new HashMap<Integer, Object>();
-
-		directions = new ArrayList<Direction>(4);
 
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
@@ -157,33 +152,41 @@ public class InGameGUI implements KeyListener, Inspector {
 			return;
 		}
 
-		if ((e.getKeyCode() == KeyEvent.VK_L) && e.isControlDown()) {
-			/* If Ctrl+L we set the Game log dialog visible */
-			SwingUtilities.getRoot(client.getGameLog()).setVisible(true);
-		} else if ((e.getKeyCode() == KeyEvent.VK_R) && e.isControlDown()) {
-			/* If Ctrl+R we remove Chat bubbles */
-			gameObjects.clearTexts();
+		switch (e.getKeyCode()) {
+			case KeyEvent.VK_L:
+				if(e.isControlDown()) {
+					/*
+					 * Ctrl+L
+					 * Make game log visible
+					 */
+					SwingUtilities.getRoot(client.getGameLog()).setVisible(true);
+				}
 
-		} else if ((e.getKeyCode() == KeyEvent.VK_LEFT) || (e.getKeyCode() == KeyEvent.VK_RIGHT)
-		        || (e.getKeyCode() == KeyEvent.VK_UP) || (e.getKeyCode() == KeyEvent.VK_DOWN)) {
+				break;
 
-			action = new RPAction();
+			case KeyEvent.VK_R:
+				if(e.isControlDown()) {
+					/*
+					 * Ctrl+R
+					 * Remove text bubbles
+					 */
+					client.clearTextBubbles();
+				}
 
-			if (e.isControlDown()) {
-				// We use Ctrl+arrow to face
-				action.put("type", "face");
-			} else {
-				// While arrow only moves the player
-				action.put("type", "move");
-			}
+				break;
 
-			Direction dir = keyCodeToDirection(e.getKeyCode());
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_DOWN:
+				/*
+				 * Ctrl means face, otherwise move
+				 */
+				client.addDirection(
+					keyCodeToDirection(e.getKeyCode()),
+					e.isControlDown());
 
-			directions.remove(dir);
-			directions.add(dir);
-
-			action.put("dir", dir.get());
-			client.send(action);
+				break;
 		}
 	}
 
@@ -197,39 +200,12 @@ public class InGameGUI implements KeyListener, Inspector {
 			case KeyEvent.VK_RIGHT:
 			case KeyEvent.VK_UP:
 			case KeyEvent.VK_DOWN:
-				dir = keyCodeToDirection(e.getKeyCode());
-
 				/*
-				 * Send direction release
+				 * Ctrl means face, otherwise move
 				 */
-				action = new RPAction();
-				action.put("type", "move");
-				action.put("dir", -dir.get());
-				client.send(action);
-
-				/*
-				 * Client side direction tracking (for now)
-				 */
-				directions.remove(dir);
-
-				// Existing one reusable???
-				action = new RPAction();
-
-				if ((size = directions.size()) == 0) {
-					action.put("type", "stop");
-				} else {
-					if (e.isControlDown()) {
-						// We use Ctrl+arrow to face
-						action.put("type", "face");
-					} else {
-						// While arrow only moves the player
-						action.put("type", "move");
-					}
-
-					action.put("dir", directions.get(size - 1).get());
-				}
-
-				client.send(action);
+				client.removeDirection(
+					keyCodeToDirection(e.getKeyCode()),
+					e.isControlDown());
 		}
 	}
 

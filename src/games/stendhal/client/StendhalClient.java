@@ -21,6 +21,7 @@ import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Direction;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -30,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +44,7 @@ import marauroa.client.ariannexp;
 import marauroa.client.net.DefaultPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
 import marauroa.common.net.MessageS2CPerception;
@@ -82,6 +85,8 @@ public class StendhalClient extends ariannexp {
 
 	private Cache cache;
 
+	private ArrayList<Direction> directions;
+
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 
 	public static StendhalClient get() {
@@ -115,6 +120,8 @@ public class StendhalClient extends ariannexp {
 
 		cache = new Cache();
 		cache.init();
+
+		directions = new ArrayList<Direction>(4);
 	}
 
 	@Override
@@ -378,6 +385,80 @@ public class StendhalClient extends ariannexp {
 	public boolean shouldContinueGame() {
 		return keepRunning;
 	}
+
+
+	/**
+	 * Clear any active text bubbles.
+	 */
+	public void clearTextBubbles() {
+		gameObjects.clearTexts();
+	}
+
+
+	/**
+	 * Add an active player movement direction.
+	 *
+	 * @param	dir		The direction.
+	 * @param	face		If to face direction only.
+	 */
+	public void addDirection(Direction dir, boolean face) {
+		RPAction action;
+		int size;
+
+
+		/*
+		 * Move to end
+		 */
+		directions.remove(dir);
+		directions.add(dir);
+
+		action = new RPAction();
+		action.put("type", face ? "face" : "move");
+		action.put("dir", dir.get());
+
+		send(action);
+	}
+
+
+	/**
+	 * Remove a player movement direction.
+	 *
+	 * @param	dir		The direction.
+	 * @param	face		If to face direction only.
+	 */
+	public void removeDirection(Direction dir, boolean face) {
+		RPAction action;
+		int size;
+
+
+		/*
+		 * Send direction release
+		 */
+		action = new RPAction();
+		action.put("type", "move");
+		action.put("dir", -dir.get());
+
+		send(action);
+
+
+		/*
+		 * Client side direction tracking (for now)
+		 */
+		directions.remove(dir);
+
+		// Existing one reusable???
+		action = new RPAction();
+
+		if ((size = directions.size()) == 0) {
+			action.put("type", "stop");
+		} else {
+			action.put("type", face ? "face" : "move");
+			action.put("dir", directions.get(size - 1).get());
+		}
+
+		send(action);
+	}
+
 
 	class StendhalPerceptionListener extends DefaultPerceptionListener {
 
