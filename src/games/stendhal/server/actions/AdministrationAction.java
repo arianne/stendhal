@@ -648,7 +648,7 @@ public class AdministrationAction extends ActionListener {
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
 
-		Log4J.finishMethod(logger, "onInspect");
+		Log4J.finishMethod(logger, "onDestroy");
 	}
 
 	private void onJail(Player player, RPAction action) {
