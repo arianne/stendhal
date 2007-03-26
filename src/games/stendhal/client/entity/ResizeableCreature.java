@@ -49,7 +49,7 @@ public class ResizeableCreature extends Creature {
 
 	@Override
     public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
-		if (diff.has("with")) {
+		if (diff.has("width")) {
 			width = diff.getDouble("width");
 		} else if (base.has("width")) {
 			width = base.getDouble("width");
