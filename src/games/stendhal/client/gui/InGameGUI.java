@@ -35,8 +35,6 @@ public class InGameGUI implements Inspector {
 
 	private StendhalClient client;
 
-	private GameObjects gameObjects;
-
 	/** the main frame */
 	private WtBaseframe frame;
 
@@ -64,8 +62,6 @@ public class InGameGUI implements Inspector {
 	public InGameGUI(StendhalClient client) {
 		this.client = client;
 
-		gameObjects = client.getGameObjects();
-
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
 		GameScreen screen = GameScreen.get();
@@ -75,10 +71,11 @@ public class InGameGUI implements Inspector {
 		screen.getComponent().addMouseListener(frame);
 		screen.getComponent().addMouseMotionListener(frame);
 		// create ground
-		ground = new GroundContainer(screen, gameObjects, this);
+		ground = new GroundContainer(client, screen.getWidthInPixels(), screen.getHeightInPixels());
+
 		frame.addChild(ground);
 		// the settings panel creates all other
-		settings = new SettingsPanel(ground, gameObjects);
+		settings = new SettingsPanel(client, ground);
 		ground.addChild(settings);
 
 		// set some default window positions
@@ -152,6 +149,8 @@ public class InGameGUI implements Inspector {
 		StaticGameLayers gameLayers = client.getStaticGameLayers();
 		String set = gameLayers.getRPZoneLayerSet();
 
+		GameObjects gameObjects = client.getGameObjects();
+
 		gameLayers.draw(screen, set + "_0_floor");
 		gameLayers.draw(screen, set + "_1_terrain");
 		gameLayers.draw(screen, set + "_2_object");
@@ -219,9 +218,9 @@ public class InGameGUI implements Inspector {
 		if (container == null || !container.isVisible()) {
 			{
 				if (suspect instanceof Chest) {
-					container = new EntityContainer(gameObjects, suspect.getType(), 4, 5);
+					container = new EntityContainer(client, suspect.getType(), 4, 5);
 				} else {
-					container = new EntityContainer(gameObjects, suspect.getType(), 2, 2);
+					container = new EntityContainer(client, suspect.getType(), 2, 2);
 				}
 				ground.addChild(container);
 			}

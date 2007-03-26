@@ -70,9 +70,14 @@ public class Minimap extends WtPanel {
 	/** list of players */
 	private Player player = null;
 
+	private StendhalClient client;
+
+
 	/** Creates a new instance of Minimap */
-	public Minimap() {
+	public Minimap(StendhalClient client) {
 		super("minimap", 0, 0, 100, 100);
+
+		this.client = client;
 	}
 
 	/**
@@ -119,7 +124,7 @@ public class Minimap extends WtPanel {
 		 */
 		mapgrapics.setColor(blockedColor);
 
-		for (Entity entity : StendhalClient.get().getGameObjects()) {
+		for (Entity entity : client.getGameObjects()) {
 			if (entity instanceof SheepFood) {
 				mapgrapics.fillRect(((int) entity.getX()) * scale, ((int) entity.getY()) * scale, scale, scale);
 			}
@@ -196,11 +201,11 @@ public class Minimap extends WtPanel {
 		clientg.drawImage(image, -panx, -pany, null);
 
 		// Enabled with -Dstendhal.superman=x.
-		if (mininps && StendhalClient.get().isAdmin()) {
+		if (mininps && client.isAdmin()) {
 			// draw npcs (and creatures/sheeps)
 			clientg.translate(-panx, -pany);
 
-			for (Entity entity : StendhalClient.get().getGameObjects()) {
+			for (Entity entity : client.getGameObjects()) {
 				drawNPC(clientg, entity);
 			}
 
@@ -209,7 +214,7 @@ public class Minimap extends WtPanel {
 
 		// draw players
 		Color playerColor = Color.WHITE;
-		for (Entity entity : StendhalClient.get().getGameObjects()) {
+		for (Entity entity : client.getGameObjects()) {
 			if (entity instanceof Player) {
 				Player aPlayer = (Player) entity;
 				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale)
@@ -322,7 +327,7 @@ public class Minimap extends WtPanel {
 		action.put("type", "moveto");
 		action.put("x", go_toX);
 		action.put("y", go_toY);
-		StendhalClient.get().send(action);
+		client.send(action);
 		return true;
 	}
 }

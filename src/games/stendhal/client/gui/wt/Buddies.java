@@ -40,6 +40,7 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Buddies extends WtPanel {
+	private StendhalClient client;
 
 	private Sprite online;
 
@@ -48,8 +49,10 @@ public class Buddies extends WtPanel {
 	private LinkedList<String> buddies;
 
 	/** Creates a new instance of Buddies */
-	public Buddies(GameObjects gameObjects) {
+	public Buddies(StendhalClient client) {
 		super("buddies", j2DClient.SCREEN_WIDTH - 132, 265, 132, 200);
+
+		this.client = client;
 
 		setTitleBar(true);
 		setFrame(true);
@@ -78,7 +81,7 @@ public class Buddies extends WtPanel {
 			 * if a player is online, but it works :)
 			 */
 			boolean isOnline = false;
-			RPObject object = StendhalClient.get().getPlayer();
+			RPObject object = client.getPlayer();
 			if (object != null) {
 				RPSlot slot = object.getSlot("!buddy");
 				RPObject buddy = slot.getFirst();
@@ -125,8 +128,6 @@ public class Buddies extends WtPanel {
 	 * Handle a choosen popup item.
 	 */
 	protected void doAction(String command, String buddieName) {
-		StendhalClient client = StendhalClient.get();
-
 		if (command.equals("talk")) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
@@ -167,7 +168,7 @@ public class Buddies extends WtPanel {
 
 		if (!isMinimized()) {
 			int i = 0;
-			RPObject object = StendhalClient.get().getPlayer();
+			RPObject object = client.getPlayer();
 
 			if (object != null) {
 				RPSlot slot = object.getSlot("!buddy");

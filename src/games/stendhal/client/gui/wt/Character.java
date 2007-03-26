@@ -21,6 +21,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -68,7 +69,7 @@ public class Character extends WtPanel {
 	private long oldPlayerModificationCount;
 
 	/** Creates a new instance of Character */
-	public Character(GameObjects gameObjects) {
+	public Character(StendhalClient client) {
 		super("character", j2DClient.SCREEN_WIDTH - PANEL_WIDTH, 0, PANEL_WIDTH, PANEL_HEIGHT);
 		setTitleBar(true);
 		setFrame(true);
@@ -84,26 +85,24 @@ public class Character extends WtPanel {
 		// Offset to center the slot holders
 		int xoff = (getClientWidth() - ((SLOT_SIZE * 3) + (SLOT_SPACING * 2))) / 2;
 
-		slotPanels.put("head", new EntitySlot("head", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0,
-		        gameObjects));
+		slotPanels.put("head", new EntitySlot(client, "head", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff, 0));
 
-		slotPanels.put("armor", new EntitySlot("armor", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-		        ((SLOT_SIZE + SLOT_SPACING) * 1), gameObjects));
+		slotPanels.put("armor", new EntitySlot(client, "armor", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 1)));
 
-		slotPanels.put("rhand", new EntitySlot("rhand", slotSprite, xoff, ((SLOT_SIZE + SLOT_SPACING) * 1) + 10,
-		        gameObjects));
+		slotPanels.put("rhand", new EntitySlot(client, "rhand", slotSprite, xoff, ((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("lhand", new EntitySlot("lhand", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
-		        ((SLOT_SIZE + SLOT_SPACING) * 1) + 10, gameObjects));
+		slotPanels.put("lhand", new EntitySlot(client, "lhand", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
 
-		slotPanels.put("cloak", new EntitySlot("cloak", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
-		        ((SLOT_SIZE + SLOT_SPACING) * 2) + 10, gameObjects));
+		slotPanels.put("cloak", new EntitySlot(client, "cloak", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
-		slotPanels.put("legs", new EntitySlot("legs", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-		        ((SLOT_SIZE + SLOT_SPACING) * 2), gameObjects));
+		slotPanels.put("legs", new EntitySlot(client, "legs", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 2)));
 
-		slotPanels.put("feet", new EntitySlot("feet", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
-		        ((SLOT_SIZE + SLOT_SPACING) * 3), gameObjects));
+		slotPanels.put("feet", new EntitySlot(client, "feet", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 1) + xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 3)));
 
 		for (EntitySlot slot : slotPanels.values()) {
 			addChild(slot);

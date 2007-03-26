@@ -52,9 +52,14 @@ public class EntityContainer extends WtPanel {
 
 	private RPSlot shownSlot;
 
+	private StendhalClient client;
+
 	/** creates the panel */
-	public EntityContainer(GameObjects gameObjects, String name, int width, int height) {
+	public EntityContainer(StendhalClient client, String name, int width, int height) {
 		super(name, 0, 300, 100, 100);
+
+		this.client = client;
+
 		setTitletext(name);
 		setTitleBar(true);
 		setFrame(true);
@@ -69,11 +74,11 @@ public class EntityContainer extends WtPanel {
 		int spriteHeight = slotSprite.getHeight();
 
 		slotPanels = new ArrayList<EntitySlot>();
+
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(name, slotSprite, x * spriteWidth + x, y * spriteHeight + y,
-				        gameObjects);
+				EntitySlot entitySlot = new EntitySlot(client, name, slotSprite, x * spriteWidth + x, y * spriteHeight + y);
 				slotPanels.add(entitySlot);
 			}
 		}
@@ -122,7 +127,7 @@ public class EntityContainer extends WtPanel {
 	 * far away, this panel closes itself. Note that this is clientside only.
 	 */
 	private void checkDistance() {
-		RPObject player = StendhalClient.get().getPlayer();
+		RPObject player = client.getPlayer();
 
 		int px = player.getInt("x");
 		int py = player.getInt("y");

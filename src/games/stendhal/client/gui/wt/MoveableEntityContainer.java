@@ -12,8 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 
@@ -55,15 +55,16 @@ public class MoveableEntityContainer implements WtDraggable {
 	}
 
 	/** constuctor to use when the item is inside a container */
-	public MoveableEntityContainer(RPObject content, Entity parent, String slot, GameObjects gameObjects) {
+	public MoveableEntityContainer(RPObject content, Entity parent, String slot, StendhalClient client) {
 		this.content = content.getID().getObjectID();
 		this.parent = parent;
 		this.slot = slot;
-		this.sprite = gameObjects.spriteType(content);
+		this.sprite = client.getGameObjects().spriteType(content);
+//		this.sprite = content.getSprite();
 	}
 
 	/** constuctor to use when the item is on the ground */
-	public MoveableEntityContainer(Entity content, int x, int y, GameObjects gameObjects) {
+	public MoveableEntityContainer(Entity content, int x, int y) {
 		this.content = content.getID().getObjectID();
 		this.objectx = x;
 		this.objecty = y;

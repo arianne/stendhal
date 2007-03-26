@@ -56,7 +56,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private Entity parent;
 
 	/** need this to find the sprite for each RPObject */
-	private GameObjects gameObjects;
+	private StendhalClient client;
 
 	/** sprite for showing the quartity */
 	private Sprite quantityImage;
@@ -68,10 +68,10 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private Sprite sprite;
 
 	/** Creates a new instance of RPObjectSlot */
-	public EntitySlot(String name, Sprite graphic, int x, int y, GameObjects gameObjects) {
+	public EntitySlot(StendhalClient client, String name, Sprite graphic, int x, int y) {
 		super(name, x, y, graphic.getWidth(), graphic.getHeight());
 		this.graphic = graphic;
-		this.gameObjects = gameObjects;
+		this.client = client;
 	}
 
 	/** */
@@ -92,7 +92,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			RPAction action = new RPAction();
 
 			// Entity contained=container.getEntity();
-			// if(contained.distance(StendhalClient.get().getPlayer())>2)
+			// if(contained.distance(client.getPlayer())>2)
 			// {
 			// System.out.println (contained);
 			//
@@ -100,7 +100,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			// rpaction.put("type","moveto");
 			// rpaction.put("x",(int)contained.getX());
 			// rpaction.put("y",(int)contained.getY());
-			// StendhalClient.get().send(rpaction);
+			// client.send(rpaction);
 			// }
 			//      
 			// looks like an equip
@@ -111,8 +111,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			action.put("targetobject", parent.getID().getObjectID());
 			action.put("targetslot", getName());
 
-			System.out.println(action);
-			StendhalClient.get().send(action);
+			client.send(action);
 		}
 
 		return false;
@@ -127,7 +126,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** adds an object to this slot, this replaces any previous content */
 	public void add(RPObject object) {
 		content = object;
-		sprite = gameObjects.spriteType(content);
+		sprite = client.getGameObjects().spriteType(content);
 	}
 
 	/**
@@ -183,7 +182,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		if (content != null) {
-			return new MoveableEntityContainer(content, parent, getName(), gameObjects);
+			return new MoveableEntityContainer(content, parent, getName(), client);
 		}
 
 		return null;
@@ -227,16 +226,16 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			return (false);
 		}
 
-		RPObject player = StendhalClient.get().getPlayer();
+		RPObject player = client.getPlayer();
 
-		// if(parent.distance(StendhalClient.get().getPlayer())>2)
+		// if(parent.distance(client.getPlayer())>2)
 		// {
 		// RPAction rpaction = new RPAction();
 		// rpaction.put("type","moveto");
 		// System.out.println (parent);
 		// rpaction.put("x",(int)parent.getX());
 		// rpaction.put("y",(int)parent.getY());
-		// StendhalClient.get().send(rpaction);
+		// client.send(rpaction);
 		// }
 
 		RPAction action = new RPAction();
@@ -248,9 +247,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		// target is player's bag
 		action.put("targetobject", player.getID().getObjectID());
 		action.put("targetslot", "bag");
-		StendhalClient.get().send(action);
+		client.send(action);
 
 		return true;
 	}
-
 }

@@ -37,27 +37,25 @@ import marauroa.common.game.RPAction;
  */
 
 public class GroundContainer extends WtPanel {
-
-	/** list of game objects */
-	private GameObjects gameObjects;
+	/** the game client */
+	private StendhalClient client;
 
 	/** the game screen */
 	private GameScreen screen;
 
-	/** gui frame */
-	private InGameGUI ingameGUI;
 
 	/** creates a new groundcontainer */
-	public GroundContainer(GameScreen screen, GameObjects gameObjects, InGameGUI gameGUI) {
-		super("ground", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
+	public GroundContainer(StendhalClient client, int width, int height) {
+		super("ground", 0, 0, width, height);
+
+		this.client = client;
 
 		setMoveable(false);
 		setCloseable(false);
 		setFrame(false);
 		setTitleBar(false);
-		this.gameObjects = gameObjects;
-		this.screen = screen;
-		this.ingameGUI = gameGUI;
+
+		screen = client.getScreen();
 	}
 
 	/**
@@ -82,6 +80,8 @@ public class GroundContainer extends WtPanel {
 				// looks like an drop
 				action.put("type", "drop");
 				// HACK: if ctrl is pressed, attempt to split stackables
+				InGameGUI ingameGUI = client.getGameGUI();
+
 				if (ingameGUI.isCtrlDown()) {
 					action.put("quantity", "1");
 				}
@@ -95,7 +95,7 @@ public class GroundContainer extends WtPanel {
 			// tell the server where the item goes to
 			action.put("x", (int) point.getX());
 			action.put("y", (int) point.getY());
-			StendhalClient.get().send(action);
+			client.send(action);
 			return true;
 		}
 		// no valid item
@@ -111,11 +111,12 @@ public class GroundContainer extends WtPanel {
 			return other;
 		}
 		Point2D point = screen.translate(new Point2D.Double(x, y));
+		GameObjects gameObjects = client.getGameObjects();
 		Entity object = gameObjects.at_undercreature(point.getX(), point.getY());
 
 		// only Items can be dragged
 		if ((object != null) && (object instanceof PassiveEntity)) {
-			return new MoveableEntityContainer(object, (int) point.getX(), (int) point.getY(), gameObjects);
+			return new MoveableEntityContainer(object, (int) point.getX(), (int) point.getY());
 		}
 		return null;
 	}
@@ -135,10 +136,13 @@ public class GroundContainer extends WtPanel {
 
 		// get clicked entity
 		Point2D point = screen.translate(p);
+		GameObjects gameObjects = client.getGameObjects();
 		Entity entity = gameObjects.at(point.getX(), point.getY());
 
 		// for the clicked entity....
 		if (entity != null) {
+
+			InGameGUI ingameGUI = client.getGameGUI();
 
 			if (ingameGUI.isCtrlDown()) {
 				entity.onAction(entity.defaultAction());
@@ -158,6 +162,7 @@ public class GroundContainer extends WtPanel {
 		}
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
+		GameObjects gameObjects = client.getGameObjects();
 		Entity entity = gameObjects.at(point.getX(), point.getY());
 
 		if (entity != null) {
@@ -170,7 +175,7 @@ public class GroundContainer extends WtPanel {
 			action.put("type", "moveto");
 			action.put("x", (int) point.getX());
 			action.put("y", (int) point.getY());
-			StendhalClient.get().send(action);
+			client.send(action);
 			// TODO: let action do this
 			return true;
 		}
@@ -187,6 +192,7 @@ public class GroundContainer extends WtPanel {
 		}
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
+		GameObjects gameObjects = client.getGameObjects();
 		Entity entity = gameObjects.at(point.getX(), point.getY());
 
 		if (entity != null) {
@@ -194,6 +200,7 @@ public class GroundContainer extends WtPanel {
 			String[] actions = entity.offeredActions();
 			if (actions.length > 0) {
 				CommandList list = new CommandList(entity.getType(), actions, entity);
+				InGameGUI ingameGUI = client.getGameGUI();
 				ingameGUI.getFrame().setContextMenu(list);
 			}
 		}

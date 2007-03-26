@@ -19,6 +19,7 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.ManagedWindow;
@@ -40,8 +41,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	/** width of this panel */
 	private static final int WIDTH = 200;
 
-	/** buffered gameObjects for character panel */
-	private GameObjects gameObjects;
+	private StendhalClient client;
 
 	/** the Character panel */
 	private Character character;
@@ -66,10 +66,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			(System.getProperty("stendhal.newgui") != null);
 
 	/** Creates a new instance of OptionsPanel */
-	public SettingsPanel(WtPanel frame, GameObjects gameObjects) {
+	public SettingsPanel(StendhalClient client, WtPanel frame) {
 		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 200);
 
-		this.gameObjects = gameObjects;
+		this.client = client;
 		setTitletext("Settings");
 
 		setFrame(true);
@@ -78,7 +78,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		setMinimized(true);
 		setCloseable(false);
 
-		character = new Character(gameObjects);
+		character = new Character(client);
 		character.registerCloseListener(this);
 		frame.addChild(character);
 
@@ -88,7 +88,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			nbuddies.registerCloseListener(this);
 			buddies = nbuddies;
 		} else {
-			Buddies obuddies = new Buddies(gameObjects);
+			Buddies obuddies = new Buddies(client);
 			frame.addChild(obuddies);
 			obuddies.registerCloseListener(this);
 			buddies = obuddies;
@@ -96,11 +96,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		buddies.setVisible(true);
 
-		inventory = new EntityContainer(gameObjects, "bag", 3, 4);
+		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);
 		frame.addChild(inventory);
 
-		minimap = new Minimap();
+		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
 		frame.addChild(minimap);
 
@@ -162,6 +162,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 				nbuddies.update();
 		}
 
+		GameObjects gameObjects = client.getGameObjects();
 		Player newPlayer = (Player) gameObjects.get(playerObject.getID());
 
 		// check if the player object has changed. Note: this is an exact object
