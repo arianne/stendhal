@@ -61,7 +61,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
-public class j2DClient extends JFrame {
+public class j2DClient {
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -82,6 +82,11 @@ public class j2DClient extends JFrame {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(j2DClient.class);
+
+	/**
+	 * The man window frame.
+	 */
+	private JFrame	frame;
 
 	private GameScreen screen;
 
@@ -137,7 +142,6 @@ public class j2DClient extends JFrame {
 	}
 
 	public j2DClient(StendhalClient sc) {
-		super();
 		this.client = sc;
 
 		/**
@@ -147,20 +151,25 @@ public class j2DClient extends JFrame {
 
 		pressed = new HashMap<Integer, Object>();
 
-		// create a frame to contain our game
-		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
+
+		frame = new JFrame();
+
+		frame.setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
 		        + " - a multiplayer online game using Arianne");
 
+
+		// create a frame to contain our game
+
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
-		this.setIconImage(new ImageIcon(url).getImage());
+		frame.setIconImage(new ImageIcon(url).getImage());
 
 
 		// When the user tries to close the window, don't close immediately,
 		// but show a confirmation dialog. 
-		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 
-		Container content = getContentPane();
+		Container content = frame.getContentPane();
 		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
 
 
@@ -223,7 +232,7 @@ public class j2DClient extends JFrame {
 		/*
 		 * Handle focus assertion and window closing
 		 */
-		addWindowListener(new WindowAdapter() {
+		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent ev) {
 				playerChatText.requestFocus();
@@ -259,12 +268,12 @@ public class j2DClient extends JFrame {
 
 		if(System.getProperty("stendhal.onewindow") != null) {
 			content.add(log);
-			pack();
+			frame.pack();
 		} else {
 			/*
 			 * In own window
 			 */
-			final JDialog dialog = new JDialog(this, "Game chat and events log");
+			final JDialog dialog = new JDialog(frame, "Game chat and events log");
 
 			content = dialog.getContentPane();
 			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
@@ -285,10 +294,10 @@ public class j2DClient extends JFrame {
 			/*
 			 * Move tracker
 			 */
-			addComponentListener(new ComponentAdapter() {
+			frame.addComponentListener(new ComponentAdapter() {
 				@Override
 				public void componentShown(ComponentEvent e) {
-					Rectangle bounds = getBounds();
+					Rectangle bounds = frame.getBounds();
 
 					dialog.setLocation(
 				        	bounds.x,
@@ -299,7 +308,7 @@ public class j2DClient extends JFrame {
 
 				@Override
 				public void componentMoved(ComponentEvent e) {
-					Rectangle bounds = getBounds();
+					Rectangle bounds = frame.getBounds();
 
 					dialog.setLocation(
 				        	bounds.x,
@@ -345,12 +354,12 @@ public class j2DClient extends JFrame {
 
 
 
-		setLocation(new Point(20, 20));
+		frame.setLocation(new Point(20, 20));
 
 		// finally make the window visible
-		pack();
-		setResizable(false);
-		setVisible(true);
+		frame.pack();
+		frame.setResizable(false);
+		frame.setVisible(true);
 
 
 		/*
@@ -443,7 +452,7 @@ public class j2DClient extends JFrame {
 			logger.debug("Move objects");
 			gameObjects.move(delta);
 
-			if (this.getState() != ICONIFIED) {
+			if (frame.getState() != JFrame.ICONIFIED) {
 				logger.debug("Draw screen");
 				inGameGUI.draw(screen);
 				rotateKeyEventCounters();
@@ -722,7 +731,7 @@ public class j2DClient extends JFrame {
 					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
 
-					new j2DClient(client).setVisible(true);
+					new j2DClient(client);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
