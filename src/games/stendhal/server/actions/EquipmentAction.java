@@ -131,16 +131,17 @@ public class EquipmentAction extends ActionListener {
 			return;
 		}
 
-		// is the entity unbound or bound to the right player?
 		Entity entity = source.getEntity();
+		String itemName = "entity";
+		if (entity.has("name")) {
+			itemName = entity.get("name").replace("_", " ");
+		} else if (entity instanceof Item) {
+			itemName = "item";
+		}
+
+		// is the entity unbound or bound to the right player?
 		if (entity.has("bound") && !player.getName().equals(entity.get("bound"))) {
-			String temp = "entity";
-			if (entity.has("name")) {
-				temp = entity.get("name").replace("_", " ");
-			} else if (entity instanceof Item) {
-				temp = "item";
-			}
-			player.sendPrivateText("This " + temp + " is a special reward for " + entity.get("bound") + ". I do not deserve to use it.");
+			player.sendPrivateText("This " + itemName + " is a special reward for " + entity.get("bound") + ". I do not deserve to use it.");
 			return;
 		}
 		
@@ -155,6 +156,7 @@ public class EquipmentAction extends ActionListener {
 
 		// looks good
 		source.moveTo(dest, player);
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot());
 		
 		player.updateItemAtkDef();
 
@@ -187,10 +189,19 @@ public class EquipmentAction extends ActionListener {
 				return;
 			}
 
+			Entity entity = source.getEntity();
+			String itemName = "entity";
+			if (entity.has("name")) {
+				itemName = entity.get("name").replace("_", " ");
+			} else if (entity instanceof Item) {
+				itemName = "item";
+			}
+
 			// FIXME: This will remove the item from the slot, but it does not
 			// reappear
 			// on the ground. See DestinationObject.addToWorld()#600
 			source.moveTo(dest, player);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot());
 			return;
 		}
 		// Old Code Starts Here
@@ -284,6 +295,15 @@ public class EquipmentAction extends ActionListener {
 							entity.remove("#db_id");
 						}
 					}
+					String itemName = "entity";
+					if (entity.has("name")) {
+						itemName = entity.get("name").replace("_", " ");
+					} else if (entity instanceof Item) {
+						itemName = "item";
+					}
+					
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, slot.getName(), "ground");
+
 					baseEntity.notifyWorldAboutChanges();
 				}
 			}
@@ -359,6 +379,10 @@ public class EquipmentAction extends ActionListener {
 					base = (Entity) StendhalRPWorld.get().get(baseItemId);
 				}
 			}
+		}
+
+		String getSlot() {
+			return slot;
 		}
 
 		/** moves this entity to the destination */
@@ -711,6 +735,10 @@ public class EquipmentAction extends ActionListener {
 				return isCorrectClass(validClasses, parent);
 			}
 			return true;
+		}
+
+		String getSlot() {
+			return slot;
 		}
 	}
 
