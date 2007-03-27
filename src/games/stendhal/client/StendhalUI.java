@@ -103,4 +103,12 @@ public abstract class StendhalUI {
 	public static void setDefault(StendhalUI sharedUI) {
 		StendhalUI.sharedUI = sharedUI;
 	}
+
+
+	/**
+	 * Set the input chat line text.
+	 *
+	 * @param	text		The text.
+	 */
+	public abstract void setChatLine(String text);
 }

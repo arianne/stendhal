@@ -691,6 +691,15 @@ public class j2DClient extends StendhalUI {
 	}
 
 
+	/**
+	 * Set the input chat line text.
+	 *
+	 * @param	text		The text.
+	 */
+	public void setChatLine(String text) {
+		playerChatText.setText(text);
+	}
+
 	//
 	//
 
