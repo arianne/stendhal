@@ -1,12 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Query for online players.
+ * Toggle between invisibility.
  */
-class WhoCommand implements SlashCommand {
+class InvisibleAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
@@ -14,14 +14,14 @@ class WhoCommand implements SlashCommand {
 	 * @param	params		The formal parameters.
 	 * @param	remainder	Line content after parameters.
 	 *
-	 * @return	<code>true</code> if command was handled.
+	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction who = new RPAction();
+		RPAction invisible = new RPAction();
 
-		who.put("type", "who");
+		invisible.put("type", "invisible");
 
-		StendhalClient.get().send(who);
+		StendhalClient.get().send(invisible);
 
 		return true;
 	}

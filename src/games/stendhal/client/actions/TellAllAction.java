@@ -1,14 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Send a message to a player.
+ * Send a message to all players.
  */
-class MessageCommand implements SlashCommand {
-
-	private String lastPlayerTell;
+class TellAllAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -19,15 +17,12 @@ class MessageCommand implements SlashCommand {
 	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		lastPlayerTell = params[0];
+		RPAction tellall = new RPAction();
 
-		RPAction tell = new RPAction();
+		tellall.put("type", "tellall");
+		tellall.put("text", remainder);
 
-		tell.put("type", "tell");
-		tell.put("target", lastPlayerTell);
-		tell.put("text", remainder);
-
-		StendhalClient.get().send(tell);
+		StendhalClient.get().send(tellall);
 
 		return true;
 	}
@@ -38,7 +33,7 @@ class MessageCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 1;
+		return 0;
 	}
 
 	/**
@@ -47,15 +42,6 @@ class MessageCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
-	}
-
-	/**
-	 * get the last player we have send something using /tell
-	 *
-	 * @return player name
-	 */
-	String getLastPlayerTell() {
-		return lastPlayerTell;
+		return 0;
 	}
 }

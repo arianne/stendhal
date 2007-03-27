@@ -1,12 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Send a support request message.
+ * Summon an item (presumably) into an entity's slot.
  */
-class SupportCommand implements SlashCommand {
+class SummonAtAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
@@ -14,15 +14,21 @@ class SupportCommand implements SlashCommand {
 	 * @param	params		The formal parameters.
 	 * @param	remainder	Line content after parameters.
 	 *
-	 * @return	<code>true</code> if command was handled.
+	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction tell = new RPAction();
+		RPAction summon = new RPAction();
 
-		tell.put("type", "support");
-		tell.put("text", remainder);
+		summon.put("type", "summonat");
+		summon.put("target", params[0]);
+		summon.put("slot", params[1]);
+		summon.put("item", params[2]);
 
-		StendhalClient.get().send(tell);
+		if (params[3] != null) {
+			summon.put("amount", params[3]);
+		}
+
+		StendhalClient.get().send(summon);
 
 		return true;
 	}
@@ -33,7 +39,7 @@ class SupportCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 0;
+		return 4;
 	}
 
 	/**
@@ -42,6 +48,6 @@ class SupportCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 0;
+		return 3;
 	}
 }

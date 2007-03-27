@@ -1,9 +1,9 @@
 package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.scripting.command.RecordCommand;
-import games.stendhal.client.scripting.command.SlashCommand;
-import games.stendhal.client.scripting.command.SlashCommandRepository;
+import games.stendhal.client.actions.RecordAction;
+import games.stendhal.client.actions.SlashAction;
+import games.stendhal.client.actions.SlashActionRepository;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -15,14 +15,14 @@ import marauroa.common.game.RPAction;
  */
 public class ChatLineParser {
 	private static ChatLineParser instance = null;
-	private RecordCommand recordCommand = null;
+	private RecordAction recordAction = null;
 
 	// hide constructor (Singleton)
 	private ChatLineParser() {
 
-		SlashCommandRepository.register();
+		SlashActionRepository.register();
 
-		recordCommand = (RecordCommand) SlashCommandRepository.get("record");
+		recordAction = (RecordAction) SlashActionRepository.get("record");
 		
 	}
 
@@ -57,7 +57,7 @@ public class ChatLineParser {
 		StringBuffer	sbuf;
 		int		minimum;
 		int		maximum;
-		SlashCommand	command;
+		SlashAction	command;
 		int		i;
 
 
@@ -69,8 +69,8 @@ public class ChatLineParser {
 		}
 
 		// record it (if recording)
-		if (recordCommand.getRecorder() != null) {
-			recordCommand.getRecorder().recordChatLine(text);
+		if (recordAction.getRecorder() != null) {
+			recordAction.getRecorder().recordChatLine(text);
 		}
 		
 		if (text.charAt(0) != '/') {
@@ -125,7 +125,7 @@ public class ChatLineParser {
 		/*
 		 * Find command handler
 		 */
-		if((command = SlashCommandRepository.get(name)) != null) {
+		if((command = SlashActionRepository.get(name)) != null) {
 			minimum = command.getMinimumParameters();
 			maximum = command.getMaximumParameters();
 		} else {

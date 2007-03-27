@@ -1,4 +1,4 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 
@@ -10,7 +10,7 @@ import marauroa.common.game.RPObject;
 /**
  * Drop a player item.
  */
-class DropCommand implements SlashCommand {
+class DropAction implements SlashAction  {
 	// TODO: find a way to not have this redundand at server and client
 	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet" };
 

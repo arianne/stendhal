@@ -1,13 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
- * Summon an entity.
+ * Alter an entity's attributes.
  */
-class SummonCommand implements SlashCommand {
+class AlterAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
@@ -18,24 +17,14 @@ class SummonCommand implements SlashCommand {
 	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction summon = new RPAction();
+		RPAction alter = new RPAction();
 
-		summon.put("type", "summon");
-		summon.put("creature", params[0]);
-
-		if (params[2] != null) {
-			summon.put("x", params[1]);
-			summon.put("y", params[2]);
-		} else if (params[1] != null) {
-			return false;
-		} else {
-			RPObject player = StendhalClient.get().getPlayer();
-
-			summon.put("x", player.getInt("x"));
-			summon.put("y", player.getInt("y") + 1);
-		}
-
-		StendhalClient.get().send(summon);
+		alter.put("type", "alter");
+		alter.put("target", params[0]);
+		alter.put("stat", params[1]);
+		alter.put("mode", params[2]);
+		alter.put("value", params[3]);
+		StendhalClient.get().send(alter);
 
 		return true;
 	}
@@ -46,7 +35,7 @@ class SummonCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 3;
+		return 4;
 	}
 
 	/**
@@ -55,6 +44,6 @@ class SummonCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 4;
 	}
 }

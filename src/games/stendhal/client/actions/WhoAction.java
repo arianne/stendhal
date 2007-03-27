@@ -1,12 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Send a support response message.
+ * Query for online players.
  */
-class SupportAnswerCommand implements SlashCommand {
+class WhoAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -17,13 +17,11 @@ class SupportAnswerCommand implements SlashCommand {
 	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction tell = new RPAction();
+		RPAction who = new RPAction();
 
-		tell.put("type", "supportanswer");
-		tell.put("target", params[0]);
-		tell.put("text", remainder);
+		who.put("type", "who");
 
-		StendhalClient.get().send(tell);
+		StendhalClient.get().send(who);
 
 		return true;
 	}
@@ -34,7 +32,7 @@ class SupportAnswerCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 1;
+		return 0;
 	}
 
 	/**
@@ -43,6 +41,6 @@ class SupportAnswerCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 0;
 	}
 }

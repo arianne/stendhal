@@ -1,4 +1,4 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.scripting.ScriptRecorder;
 
@@ -9,9 +9,9 @@ import org.apache.log4j.Logger;
 /**
  * Enable/disable input recording.
  */
-public class RecordCommand implements SlashCommand {
+public class RecordAction implements SlashAction  {
 
-	private static Logger logger = Logger.getLogger(RecordCommand.class);
+	private static Logger logger = Logger.getLogger(RecordAction.class);
 
 	private ScriptRecorder recorder = null;
 

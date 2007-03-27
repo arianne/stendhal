@@ -1,12 +1,14 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Teleport a player.
+ * Send a message to a player.
  */
-class TeleportCommand implements SlashCommand {
+class MessageAction implements SlashAction  {
+
+	private String lastPlayerTell;
 
 	/**
 	 * Execute a chat command.
@@ -14,18 +16,18 @@ class TeleportCommand implements SlashCommand {
 	 * @param	params		The formal parameters.
 	 * @param	remainder	Line content after parameters.
 	 *
-	 * @return	<code>true</code> if  was handled.
+	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction teleport = new RPAction();
+		lastPlayerTell = params[0];
 
-		teleport.put("type", "teleport");
-		teleport.put("target", params[0]);
-		teleport.put("zone", params[1]);
-		teleport.put("x", params[2]);
-		teleport.put("y", params[3]);
+		RPAction tell = new RPAction();
 
-		StendhalClient.get().send(teleport);
+		tell.put("type", "tell");
+		tell.put("target", lastPlayerTell);
+		tell.put("text", remainder);
+
+		StendhalClient.get().send(tell);
 
 		return true;
 	}
@@ -36,7 +38,7 @@ class TeleportCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 4;
+		return 1;
 	}
 
 	/**
@@ -45,6 +47,15 @@ class TeleportCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 4;
+		return 1;
+	}
+
+	/**
+	 * get the last player we have send something using /tell
+	 *
+	 * @return player name
+	 */
+	String getLastPlayerTell() {
+		return lastPlayerTell;
 	}
 }

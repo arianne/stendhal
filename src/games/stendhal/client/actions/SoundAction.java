@@ -1,4 +1,4 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -7,7 +7,7 @@ import games.stendhal.client.sound.SoundSystem;
 /**
  * Set sound characteristics.
  */
-class SoundCommand implements SlashCommand {
+class SoundAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.

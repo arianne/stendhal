@@ -1,12 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Remove a player from buddy list.
+ * Add a player to buddy list.
  */
-class RemoveBuddyCommand implements SlashCommand {
+class AddBuddyAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
@@ -17,12 +17,12 @@ class RemoveBuddyCommand implements SlashCommand {
 	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction remove = new RPAction();
+		RPAction add = new RPAction();
 
-		remove.put("type", "removebuddy");
-		remove.put("target", params[0]);
+		add.put("type", "addbuddy");
+		add.put("target", params[0]);
 
-		StendhalClient.get().send(remove);
+		StendhalClient.get().send(add);
 
 		return true;
 	}

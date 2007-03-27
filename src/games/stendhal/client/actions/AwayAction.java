@@ -1,30 +1,31 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Alter an entity's attributes.
+ * Set/clear the player's away status.
  */
-class AlterCommand implements SlashCommand {
+class AwayAction implements SlashAction  {
 
 	/**
-	 * Execute a chat command.
+	 * Execute an away command.
 	 *
 	 * @param	params		The formal parameters.
 	 * @param	remainder	Line content after parameters.
 	 *
-	 * @return	<code>true</code> if  was handled.
+	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction alter = new RPAction();
+		RPAction action = new RPAction();
 
-		alter.put("type", "alter");
-		alter.put("target", params[0]);
-		alter.put("stat", params[1]);
-		alter.put("mode", params[2]);
-		alter.put("value", params[3]);
-		StendhalClient.get().send(alter);
+		action.put("type", "away");
+
+		if (remainder.length() != 0) {
+			action.put("message", remainder);
+		}
+
+		StendhalClient.get().send(action);
 
 		return true;
 	}
@@ -35,7 +36,7 @@ class AlterCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 4;
+		return 0;
 	}
 
 	/**
@@ -44,6 +45,6 @@ class AlterCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 4;
+		return 0;
 	}
 }

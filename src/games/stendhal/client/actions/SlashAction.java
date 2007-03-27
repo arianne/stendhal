@@ -1,4 +1,4 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 //
 //
@@ -11,7 +11,7 @@ package games.stendhal.client.scripting.command;
 /**
  * A chat command.
  */
-public interface SlashCommand {
+public interface SlashAction {
 
 	/**
 	 * Execute a chat command.

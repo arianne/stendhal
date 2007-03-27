@@ -1,12 +1,13 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 /**
- * Toggle between invisibility.
+ * Summon an entity.
  */
-class InvisibleCommand implements SlashCommand {
+class SummonAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
@@ -17,11 +18,24 @@ class InvisibleCommand implements SlashCommand {
 	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction invisible = new RPAction();
+		RPAction summon = new RPAction();
 
-		invisible.put("type", "invisible");
+		summon.put("type", "summon");
+		summon.put("creature", params[0]);
 
-		StendhalClient.get().send(invisible);
+		if (params[2] != null) {
+			summon.put("x", params[1]);
+			summon.put("y", params[2]);
+		} else if (params[1] != null) {
+			return false;
+		} else {
+			RPObject player = StendhalClient.get().getPlayer();
+
+			summon.put("x", player.getInt("x"));
+			summon.put("y", player.getInt("y") + 1);
+		}
+
+		StendhalClient.get().send(summon);
 
 		return true;
 	}
@@ -32,7 +46,7 @@ class InvisibleCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 0;
+		return 3;
 	}
 
 	/**
@@ -41,6 +55,6 @@ class InvisibleCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 0;
+		return 1;
 	}
 }

@@ -1,35 +1,50 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Send a player to jail.
+ * Add a player to the ignore list.
  */
-class JailCommand implements SlashCommand {
+class IgnoreAction implements SlashAction  {
 
 	/**
-	 * Execute a chat command.
+	 * Execute an ignore command.
 	 *
 	 * @param	params		The formal parameters.
 	 * @param	remainder	Line content after parameters.
 	 *
-	 * @return	<code>true</code> if  was handled.
+	 * @return	<code>true</code> if command was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		/*
-		 * Reason required
-		 */
-		if (remainder.length() == 0) {
-			return false;
-		}
+		String duration;
 
 		RPAction action = new RPAction();
 
-		action.put("type", "jail");
+		action.put("type", "ignore");
 		action.put("target", params[0]);
-		action.put("minutes", params[1]);
-		action.put("reason", remainder);
+
+		if ((duration = params[1]) != null) {
+			/*
+			 * Ignore "forever" values
+			 */
+			if (!duration.equals("*") || !duration.equals("-")) {
+				/*
+				 * Validate it's a number
+				 */
+				try {
+					Integer.parseInt(duration);
+				} catch (NumberFormatException ex) {
+					return false;
+				}
+
+				action.put("duration", duration);
+			}
+		}
+
+		if (remainder.length() != 0) {
+			action.put("reason", remainder);
+		}
 
 		StendhalClient.get().send(action);
 
@@ -51,6 +66,6 @@ class JailCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 2;
+		return 1;
 	}
 }

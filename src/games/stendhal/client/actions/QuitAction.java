@@ -1,11 +1,11 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 
 /**
  * Quit the client.
  */
-class QuitCommand implements SlashCommand {
+class QuitAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.

@@ -1,4 +1,4 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 
@@ -8,7 +8,7 @@ import java.awt.Color;
  * Display command usage.
  * Eventually replace this with ChatCommand.usage("alter", true).
  */
-class GMHelpAlterCommand implements SlashCommand {
+class GMHelpAlterAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.

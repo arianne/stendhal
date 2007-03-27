@@ -1,12 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Set the admin level of a player.
+ * Send a player to jail.
  */
-class AdminLevelCommand implements SlashCommand {
+class JailAction implements SlashAction  {
 
 	/**
 	 * Execute a chat command.
@@ -17,16 +17,21 @@ class AdminLevelCommand implements SlashCommand {
 	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction adminlevel = new RPAction();
-
-		adminlevel.put("type", "adminlevel");
-		adminlevel.put("target", params[0]);
-
-		if (params[1] != null) {
-			adminlevel.put("newlevel", params[1]);
+		/*
+		 * Reason required
+		 */
+		if (remainder.length() == 0) {
+			return false;
 		}
 
-		StendhalClient.get().send(adminlevel);
+		RPAction action = new RPAction();
+
+		action.put("type", "jail");
+		action.put("target", params[0]);
+		action.put("minutes", params[1]);
+		action.put("reason", remainder);
+
+		StendhalClient.get().send(action);
 
 		return true;
 	}
@@ -46,6 +51,6 @@ class AdminLevelCommand implements SlashCommand {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 1;
+		return 2;
 	}
 }

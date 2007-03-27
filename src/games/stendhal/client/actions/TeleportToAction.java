@@ -1,12 +1,12 @@
-package games.stendhal.client.scripting.command;
+package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 /**
- * Query for player position.
+ * Teleport player to another player's location.
  */
-class WhereCommand implements SlashCommand {
+class TeleportToAction implements SlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -14,15 +14,15 @@ class WhereCommand implements SlashCommand {
 	 * @param	params		The formal parameters.
 	 * @param	remainder	Line content after parameters.
 	 *
-	 * @return	<code>true</code> if command was handled.
+	 * @return	<code>true</code> if  was handled.
 	 */
 	public boolean execute(String[] params, String remainder) {
-		RPAction where = new RPAction();
+		RPAction teleport = new RPAction();
 
-		where.put("type", "where");
-		where.put("target", params[0]);
+		teleport.put("type", "teleportto");
+		teleport.put("target", params[0]);
 
-		StendhalClient.get().send(where);
+		StendhalClient.get().send(teleport);
 
 		return true;
 	}
