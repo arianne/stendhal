@@ -8,13 +8,12 @@ import java.util.HashMap;
 public class SlashCommandRepository {
 
 	/** Set of client supported commands */
-	private static HashMap<String, SlashCommand> commands;
+	private static HashMap<String, SlashCommand> commands = new HashMap<String, SlashCommand>();
 
 	/**
 	 * registers the available command
 	 */
 	public static void register() {
-		commands = new HashMap<String, SlashCommand>();
 		
 		SlashCommand msg = new MessageCommand();
 		SlashCommand supporta = new SupportAnswerCommand();
