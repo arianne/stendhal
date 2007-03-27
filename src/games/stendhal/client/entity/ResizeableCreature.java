@@ -33,10 +33,13 @@ public class ResizeableCreature extends Creature {
 	 */
 	public ResizeableCreature(RPObject object) {
 		super(object);
+		
 	}
 
 	@Override
 	protected void buildAnimations(RPObject object) {
+//		width = 1.5; this wont solve the problem either but this is what causes the problem
+//		height = 1.0f;
 		SpriteStore store = SpriteStore.get();
 		Sprite creature = loadAnimationSprite(object);
 
