@@ -23,7 +23,7 @@ class AlterAction implements SlashAction  {
 		alter.put("target", params[0]);
 		alter.put("stat", params[1]);
 		alter.put("mode", params[2]);
-		alter.put("value", params[3]);
+		alter.put("value", remainder);
 		StendhalClient.get().send(alter);
 
 		return true;
@@ -35,7 +35,7 @@ class AlterAction implements SlashAction  {
 	 * @return	The parameter count.
 	 */
 	public int getMaximumParameters() {
-		return 4;
+		return 3;
 	}
 
 	/**
@@ -44,6 +44,6 @@ class AlterAction implements SlashAction  {
 	 * @return	The parameter count.
 	 */
 	public int getMinimumParameters() {
-		return 4;
+		return 3;
 	}
 }
