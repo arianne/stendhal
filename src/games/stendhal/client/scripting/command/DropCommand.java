@@ -11,6 +11,9 @@ import marauroa.common.game.RPObject;
  * Drop a player item.
  */
 class DropCommand implements SlashCommand {
+	// TODO: find a way to not have this redundand at server and client
+	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet" };
+
 
 	/**
 	 * Execute a chat command.
@@ -30,18 +33,9 @@ class DropCommand implements SlashCommand {
 			return true;
 		}
 
-		String itemName = params[1];
-
 		RPObject player = StendhalClient.get().getPlayer();
-
-		int itemID = -1;
-
-		for (RPObject item : player.getSlot("bag")) {
-			if (item.get("name").equals(itemName)) {
-				itemID = item.getID().getObjectID();
-				break;
-			}
-		}
+		String itemName = params[1];
+		int itemID = findItem(itemName);
 
 		if (itemID != -1) {
 			RPAction drop = new RPAction();
@@ -62,6 +56,26 @@ class DropCommand implements SlashCommand {
 
 		return true;
 	}
+
+	/**
+	 * returns the objectid for the named item
+	 * 
+	 * @param itemName name of item
+	 * @return objectid or <code>-1</code> in case there is no such item
+	 */
+	private int findItem(String itemName) {
+		RPObject player = StendhalClient.get().getPlayer();
+		for (String slotName : CARRYING_SLOTS) { 
+			for (RPObject item : player.getSlot(slotName)) {
+				if (item.get("name").equals(itemName)) {
+					int itemID = item.getID().getObjectID();
+					return itemID;
+				}
+			}
+		}
+		return -1;
+	}
+
 
 	/**
 	 * Get the maximum number of formal parameters.
