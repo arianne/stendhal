@@ -22,10 +22,16 @@ import marauroa.common.game.RPObject;
 
 /** A Creature which a server adjustable size */
 public class ResizeableCreature extends Creature {
-	double width = 1.5;
-	double height = 1.0f;
+	private double width = 1.5;
+	private double height = 1.0f;
+	private String metamorphosis = null;
 
-	public ResizeableCreature(RPObject object) throws AttributeNotFoundException {
+	/**
+	 * Creates a new resizeable creature
+	 *
+	 * @param object RPObject
+	 */
+	public ResizeableCreature(RPObject object) {
 		super(object);
 	}
 
@@ -49,18 +55,54 @@ public class ResizeableCreature extends Creature {
 
 	@Override
     public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	    super.onChangedAdded(base, diff);
+	    boolean rebuildAnimations = false;
 		if (diff.has("width")) {
 			width = diff.getDouble("width");
+			rebuildAnimations = true;
 		} else if (base.has("width")) {
 			width = base.getDouble("width");
+			rebuildAnimations = true;
 		}
 		if (diff.has("height")) {
 			width = diff.getDouble("height");
+			rebuildAnimations = true;
 		} else if (base.has("height")) {
 			width = base.getDouble("height");
+			rebuildAnimations = true;
 		}
-	    super.onChangedAdded(base, diff);
+		if (diff.has("metamorphosis")) {
+			metamorphosis = diff.get("metamorphosis");
+			rebuildAnimations = true;
+		} else if (base.has("metamorphosis")) {
+			metamorphosis = base.get("metamorphosis");
+			rebuildAnimations = true;
+		}
+		
+		if (rebuildAnimations) {
+			buildAnimations(base);
+		}
     }
+
+	@Override
+	public void onChangedRemoved(RPObject base, RPObject diff) {
+		super.onChangedRemoved(base, diff);
+		if (diff.has("metamorphosis")) {
+			metamorphosis = null;
+			buildAnimations(base);
+		}
+	}
+
+	@Override
+	protected Sprite loadAnimationSprite(RPObject object) {
+		if (metamorphosis == null) {
+			return super.loadAnimationSprite(object);
+		} else {
+			SpriteStore store = SpriteStore.get();
+			sprite = store.getSprite("data/sprites/monsters/" + metamorphosis + ".png");
+			return sprite;
+		}
+	}
 
 	@Override
 	protected Sprite defaultAnimation() {
