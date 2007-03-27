@@ -17,6 +17,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
@@ -61,7 +62,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
-public class j2DClient {
+public class j2DClient extends StendhalUI {
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -97,8 +98,6 @@ public class j2DClient {
 	private InGameGUI inGameGUI;
 
 	private boolean gameRunning = true;
-
-	private StendhalClient client;
 
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
@@ -141,8 +140,8 @@ public class j2DClient {
 		return false;
 	}
 
-	public j2DClient(StendhalClient sc) {
-		this.client = sc;
+	public j2DClient(StendhalClient client) {
+		super(client);
 
 		/**
 		 * XXX - TEMP! For native dialog window transition.
@@ -655,6 +654,57 @@ public class j2DClient {
 			veryFastKeyEvents[veryFastKeyEvents.length - 1] = 0;
 		}
 	}
+
+
+	//
+	// StendhalUI
+	//
+
+	/**
+	 * Add an event line.
+	 *
+	 */
+	public void addEventLine(String text) {
+		client.addEventLine(text);
+	}
+
+
+	/**
+	 * Add an event line.
+	 *
+	 */
+	public void addEventLine(String header, String text) {
+		client.addEventLine(header, text);
+	}
+
+
+	/**
+	 * Add an event line.
+	 *
+	 */
+	public void addEventLine(String text, Color color) {
+		client.addEventLine(text, color);
+	}
+
+
+	/**
+	 * Add an event line.
+	 *
+	 */
+	public void addEventLine(String header, String text, Color color) {
+		client.addEventLine(header, text, color);
+	}
+
+
+	/**
+	 * Get the game screen.
+	 *
+	 * @return	The game screen.
+	 */
+	public GameScreen getScreen() {
+		return screen;
+	}
+
 
 	//
 	//
