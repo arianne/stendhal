@@ -20,6 +20,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.ManagedWindow;
@@ -84,7 +85,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		if(newCode) {
 			nbuddies = new BuddyListDialog();
-			j2DClient.getInstance().addDialog(nbuddies.getDialog());
+			((j2DClient) StendhalUI.get()).addDialog(nbuddies.getDialog());
 			nbuddies.registerCloseListener(this);
 			buddies = nbuddies;
 		} else {

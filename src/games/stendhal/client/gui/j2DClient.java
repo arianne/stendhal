@@ -143,10 +143,7 @@ public class j2DClient extends StendhalUI {
 	public j2DClient(StendhalClient client) {
 		super(client);
 
-		/**
-		 * XXX - TEMP! For native dialog window transition.
-		 */
-		sharedInstance = this;
+		setDefault(this);
 
 		pressed = new HashMap<Integer, Object>();
 
@@ -390,18 +387,6 @@ public class j2DClient extends StendhalUI {
 		logger.debug("Exit");
 		System.exit(0);
 	} // constructor
-
-	/**
-	 * XXX - TEMP! For native dialog window transition.
-	 */
-	private static j2DClient sharedInstance;
-
-	/**
-	 * XXX - TEMP! For native dialog window transition.
-	 */
-	public static j2DClient getInstance() {
-		return sharedInstance;
-	}
 
 
 	/**
