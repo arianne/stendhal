@@ -118,7 +118,7 @@ class PlayerRPClass {
 		player.addRPSlot("skills", 1, RPClass.HIDDEN);
 
 		// Non-removable while stored ones have values
-		player.addRPSlot("!skills", 1, RPClass.HIDDEN);
+		player.addRPSlot("!skills", 1, (byte) (RPClass.HIDDEN | RPClass.VOLATILE));
 
 		player.addRPSlot("!visited", 1, RPClass.HIDDEN);
 	}
