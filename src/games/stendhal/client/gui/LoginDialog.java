@@ -322,6 +322,7 @@ public class LoginDialog extends JDialog {
 				setVisible(false);
 				owner.setVisible(false);
 				stendhal.doLogin = true;
+				client.setUserName(profile.getUser());
 			}
 		} catch (ariannexpTimeoutException ex) {
 			progressBar.cancel();

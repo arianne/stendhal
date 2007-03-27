@@ -266,6 +266,7 @@ public class CreateAccountDialog extends JDialog {
 					} else {
 						progressBar.step();
 						progressBar.finish();
+						client.setUserName(username);
 					}
 				} catch (ariannexpTimeoutException ex) {
 					progressBar.cancel();

@@ -32,6 +32,11 @@ public class EntityFabric {
 	 */
 	public static Entity createEntity(RPObject object) {
 		try {
+			if (object.has("name")){
+				if (StendhalClient.userName.equals(object.get("name"))){
+			          return new User(object);
+				}
+			}
 			String type = object.get("type");
 			String eclass = null;
 			if (object.has("class")) {
