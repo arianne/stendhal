@@ -1982,6 +1982,7 @@
 		<respawn value="900"/>
 		<drops>
 			<item value="money" quantity="[5,19]" probability="100"/>
+			<item value="wood" quantity="1" probability="15"/>
 		</drops>
 		<equips>
 		</equips>
