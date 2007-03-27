@@ -389,31 +389,41 @@ public abstract class RPEntity extends Entity {
 	
 
 	/**
-	 * Gets the mana (magic) of a player...
+	 * Gets the mana (magic)
+	 *
+	 * @return mana
 	 */
 	public int getMana() {
 		return mana;
 	}
 
 	/** 
-	 * Gets the base mana (like base_hp) 
+	 * Gets the base mana (like base_hp)
+	 *
+	 * @return base mana
 	 */
 	public int getBaseMana() {
 		return base_mana;
 	}
 
-	// sets the available mana
-	public void setMana(int ManaToSet) {
-		mana = ManaToSet;
-		update();
+	/**
+	 * sets the available mana
+	 *
+	 * @param newMana new amount of mana
+	 */
+	public void setMana(int newMana) {
+		mana = newMana;
+		put("mana", newMana);
 	}
 
 	/**
-	 *Sets the base mana (like base_hp)
+	 * Sets the base mana (like base_hp)
+	 *
+	 * @param newBaseMana new amount of base mana
 	 */
-	public void setBaseMana(int value) {
-		base_mana = value;
-		update();
+	public void setBaseMana(int newBaseMana) {
+		base_mana = newBaseMana;
+		put("base_mana", newBaseMana);
 	}
 
 	public void setXP(int newxp) {
