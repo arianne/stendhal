@@ -65,10 +65,10 @@ public class ResizeableCreature extends Creature {
 			rebuildAnimations = true;
 		}
 		if (diff.has("height")) {
-			width = diff.getDouble("height");
+			height = diff.getDouble("height");
 			rebuildAnimations = true;
 		} else if (base.has("height")) {
-			width = base.getDouble("height");
+			height = base.getDouble("height");
 			rebuildAnimations = true;
 		}
 		if (diff.has("metamorphosis")) {
