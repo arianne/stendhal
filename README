@@ -34,7 +34,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.57
+Version 0.58
 
 
 How to play
@@ -47,7 +47,7 @@ Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.57.jar
+  java -jar stendhal-0.58.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -68,10 +68,13 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 0.59
-- easter bunny
 - introduced scoring system in deathmatch instead of XP
 - client prevents putting items into useless slots (like a sword into the head-slot)
 - the Easter Bunny is hopping around
+- added a quest to deliver pizza to several NPC's
+- added a sunny island and a new quest on it
+- created a ferry service to the island
+- added blackjack gambling on the ferry
 - non semos city scrolls - nalwor, fado (when open), ados (needs NPC seller)
 - nalwor bank with nalwor and semos bank chests
 - added /away command (like in irc)
