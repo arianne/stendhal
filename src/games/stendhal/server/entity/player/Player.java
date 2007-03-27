@@ -105,13 +105,6 @@ public class Player extends RPEntity implements TurnListener {
 	protected double karma;
 
 	/**
-	 *Mana [magic system]
-	 */
-	protected int mana;
-
-	protected int base_mana;
-
-	/**
 	 * A list of away replys sent to players.
 	 */
 	protected HashMap<String, Long> awayReplies;
@@ -226,16 +219,8 @@ public class Player extends RPEntity implements TurnListener {
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
 
-		/*
-		 * Beginner's luck (unless overriden by update)
-		 */
+		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
-
-		/**
-		 * Start off mana (will be able to be set... but not now)
-		 */
-		mana = 100;
-		base_mana = 100;
 
 		update();
 	}
@@ -636,35 +621,6 @@ public class Player extends RPEntity implements TurnListener {
 	 */
 	public void setLastPrivateChatter(String lastPrivateChatterName) {
 		this.lastPrivateChatterName = lastPrivateChatterName;
-	}
-
-	/**
-	 * Gets the mana (magic) of a player...
-	 */
-	public int getMana() {
-		return mana;
-	}
-
-	/** 
-	 * Gets the base mana (like base_hp) 
-	 */
-	public int getBaseMana() {
-		return base_mana;
-	}
-
-	// sets the available mana
-	public void setMana(int ManaToSet) {
-		mana = ManaToSet;
-		update();
-	}
-
-	/**
-	 *Sets the base mana (like base_hp)
-	 */
-	public void setBaseMana(int value) {
-		base_mana = value;
-		update();
-
 	}
 
 	/**
