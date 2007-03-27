@@ -116,6 +116,8 @@ public class Player extends RPEntity implements TurnListener {
 	 */
 	protected HashMap<String, Long> awayReplies;
 
+	private PlayerSheepManager playerSheepManager = null;
+
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
@@ -174,7 +176,7 @@ public class Player extends RPEntity implements TurnListener {
 		try {
 			if (player.hasSheep()) {
 				Sheep sheep = (Sheep) world.remove(player.getSheep());
-				player.storeSheep(sheep);
+				player.playerSheepManager.storeSheep(sheep);
 				StendhalRPRuleProcessor.get().removeNPC(sheep);
 				zone.removePlayerAndFriends(sheep);
 			} else {
@@ -211,6 +213,8 @@ public class Player extends RPEntity implements TurnListener {
 
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
+		playerSheepManager = new PlayerSheepManager(this);
+		
 		put("type", "player");
 		// HACK: postman as NPC
 		if (object.has("name") && object.get("name").equals("postman")) {
@@ -831,18 +835,7 @@ public class Player extends RPEntity implements TurnListener {
 		return new RPObject.ID(getInt("sheep"), get("zoneid"));
 	}
 
-	public void storeSheep(Sheep sheep) {
-		Log4J.startMethod(logger, "storeSheep");
-		if (!hasSlot("#flock")) {
-			addSlot(new RPSlot("#flock"));
-		}
 
-		RPSlot slot = getSlot("#flock");
-		slot.clear();
-		slot.add(sheep);
-		put("sheep", sheep.getID().getObjectID());
-		Log4J.finishMethod(logger, "storeSheep");
-	}
 
 	public Sheep retrieveSheep() throws NoSheepException {
 		Log4J.startMethod(logger, "retrieveSheep");
