@@ -47,6 +47,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
+import marauroa.client.net.IPerceptionListener;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
 
@@ -90,6 +91,7 @@ public class StendhalClient extends ariannexp {
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 	protected GameScreen screen;
 
+	protected PerceptionListenerMulticaster listeners;
 
 	public static StendhalClient get() {
 		if (client == null) {
@@ -116,7 +118,12 @@ public class StendhalClient extends ariannexp {
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
-		handler = new PerceptionHandler(new StendhalPerceptionListener());
+
+		listeners = new PerceptionListenerMulticaster();
+		listeners.addListener(new StendhalPerceptionListener());
+
+		handler = new PerceptionHandler(listeners);
+
 		gameLog = null;
 		gameGUI = null;
 
@@ -125,6 +132,17 @@ public class StendhalClient extends ariannexp {
 
 		directions = new ArrayList<Direction>(4);
 	}
+
+
+	public void addPerceptionListener(IPerceptionListener listener) {
+		listeners.addListener(listener);
+	}
+
+
+	public void removePerceptionListener(IPerceptionListener listener) {
+		listeners.removeListener(listener);
+	}
+
 
 	@Override
 	protected String getGameName() {
