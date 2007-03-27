@@ -311,7 +311,7 @@ class PlayerRPClass {
 		try {
 			if (player.hasSheep()) {
 				logger.debug("Player has a sheep");
-				Sheep sheep = player.retrieveSheep();
+				Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
 				sheep.put("zoneid", object.get("zoneid"));
 				if (!sheep.has("base_hp")) {
 					sheep.put("base_hp", "10");

@@ -836,29 +836,6 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 
-
-	public Sheep retrieveSheep() throws NoSheepException {
-		Log4J.startMethod(logger, "retrieveSheep");
-		try {
-			if (hasSlot("#flock")) {
-				RPSlot slot = getSlot("#flock");
-				if (slot.size() > 0) {
-					RPObject object = slot.getFirst();
-					slot.remove(object.getID());
-
-					Sheep sheep = new Sheep(object, this);
-
-					removeSlot("#flock");
-					return sheep;
-				}
-			}
-
-			throw new NoSheepException();
-		} finally {
-			Log4J.finishMethod(logger, "retrieveSheep");
-		}
-	}
-
 	/**
 	 * Gets the number of minutes that this player has been logged in on the
 	 * server.
@@ -1335,6 +1312,15 @@ public class Player extends RPEntity implements TurnListener {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * gets the sheep manager for this player
+	 *
+	 * @return PlayerSheepManager
+	 */
+	public PlayerSheepManager getPlayerSheepManager() {
+		return playerSheepManager;
 	}
 
 }
