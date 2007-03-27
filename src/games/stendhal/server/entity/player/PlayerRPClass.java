@@ -197,12 +197,10 @@ class PlayerRPClass {
 			object.put("karma", 10);
 		}
 		if (!object.has("mana")) {
-			// Give the new users some mana to use... Can be set later..
-			object.put("mana", 100);
+			object.put("mana", 0);
 		}
 		if (!object.has("base_mana")) {
-			// the first base mana stat
-			object.put("base_mana", 100);
+			object.put("base_mana", 0);
 		}
 
 		// Renamed to skills
