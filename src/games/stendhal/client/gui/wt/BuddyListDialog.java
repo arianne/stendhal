@@ -10,17 +10,27 @@ package games.stendhal.client.gui.wt;
 //
 
 import javax.swing.JComponent;
+import games.stendhal.client.StendhalUI;
 
 /**
  * The player's buddy list dialog.
  */
 public class BuddyListDialog extends InternalManagedDialog {
+	/**
+	 * The UI.
+	 */
+	protected StendhalUI	ui;
 
+	/**
+	 * The buddy list.
+	 */
 	protected BuddyListPanel content;
 
 	/** Creates a new instance of Buddies */
-	public BuddyListDialog() {
+	public BuddyListDialog(StendhalUI ui) {
 		super("buddies", "Buddies");
+
+		this.ui = ui;
 	}
 
 	//
@@ -37,7 +47,7 @@ public class BuddyListDialog extends InternalManagedDialog {
 
 	@Override
 	protected JComponent createContent() {
-		content = new BuddyListPanel();
+		content = new BuddyListPanel(ui);
 
 		return content;
 	}

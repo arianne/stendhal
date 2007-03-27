@@ -84,7 +84,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		frame.addChild(character);
 
 		if(newCode) {
-			nbuddies = new BuddyListDialog();
+			nbuddies = new BuddyListDialog(StendhalUI.get());
 			((j2DClient) StendhalUI.get()).addDialog(nbuddies.getDialog());
 			nbuddies.registerCloseListener(this);
 			buddies = nbuddies;

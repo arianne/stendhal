@@ -28,6 +28,7 @@ import marauroa.common.game.RPSlot;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 
@@ -35,6 +36,10 @@ import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
  * A panel representing a buddy list.
  */
 public class BuddyListPanel extends JPanel {
+	/**
+	 * The UI.
+	 */
+	protected StendhalUI	ui;
 
 	/**
 	 * The online icon image.
@@ -52,9 +57,11 @@ public class BuddyListPanel extends JPanel {
 	private List<Entry> buddies;
 
 	/**
-	 * Create a buddy kist panel.
+	 * Create a buddy list panel.
 	 */
-	public BuddyListPanel() {
+	public BuddyListPanel(StendhalUI ui) {
+		this.ui = ui;
+
 		setOpaque(false);
 
 		SpriteStore st = SpriteStore.get();
@@ -165,7 +172,7 @@ public class BuddyListPanel extends JPanel {
 	 * @param	buddieName	The buddy name to act on.
 	 */
 	protected void doAction(String command, String buddieName) {
-		StendhalClient client = StendhalClient.get();
+		StendhalClient client = ui.getClient();
 
 		if (command.equals("talk")) {
 			/*
@@ -176,7 +183,7 @@ public class BuddyListPanel extends JPanel {
 				buddieName = "'" + buddieName + "'";
 			}
 
-			client.getTextLineGUI().setText("/tell " + buddieName + " ");
+			ui.setChatLine("/tell " + buddieName + " ");
 		} else if (command.equals("leave-message")) {
 			/*
 			 * Compatibility to grandfathered accounts with spaces.
@@ -186,7 +193,7 @@ public class BuddyListPanel extends JPanel {
 				buddieName = "'" + buddieName + "'";
 			}
 
-			client.getTextLineGUI().setText("/msg postman tell " + buddieName + " ");
+			ui.setChatLine("/msg postman tell " + buddieName + " ");
 		} else if (command.equals("where")) {
 			RPAction where = new RPAction();
 			where.put("type", "where");
@@ -245,7 +252,7 @@ public class BuddyListPanel extends JPanel {
 		protected String name;
 
 		/**
-		 * Whether the buffy is online.
+		 * Whether the buddy is online.
 		 */
 		protected boolean online;
 
@@ -253,7 +260,7 @@ public class BuddyListPanel extends JPanel {
 		 * Create a buddy entry.
 		 *
 		 * @param	name		The buddy name.
-		 * @param	online		Whether the buffy is online.
+		 * @param	online		Whether the buddy is online.
 		 */
 		public Entry(String name, boolean online) {
 			this.name = name;
