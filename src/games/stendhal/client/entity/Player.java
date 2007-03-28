@@ -66,7 +66,7 @@ public class Player extends RPEntity {
 	 *
 	 * @return	<code>true</code> if this is the client's player.
 	 */
-	public boolean isClientPlayer() {
+	private boolean isClientPlayer() {
 		return (StendhalClient.get().getPlayer() == rpObject);
 	}
 
@@ -225,25 +225,16 @@ public class Player extends RPEntity {
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 
-		if (getID().equals(StendhalClient.get().getPlayer().getID())) {
-			list.add(ActionType.SET_OUTFIT.getRepresentation());
-			if (list.contains(ActionType.ATTACK.getRepresentation())) {
-				list.remove(ActionType.ATTACK.getRepresentation());
-			}
-			if (StendhalClient.get().getPlayer().has("sheep")) {
-				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
-			}
-		} else {
+
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
-		}
+		
 
 	}
 
 	@Override
 	public void onMove(int x, int y, Direction direction, double speed) {
 		super.onMove(x, y, direction, speed);
-		if (this.rpObject == StendhalClient.get().getPlayer())
-			WorldObjects.firePlayerMoved(this);
+		
 	}
 
 }
