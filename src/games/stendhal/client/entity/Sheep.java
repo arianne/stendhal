@@ -28,14 +28,7 @@ import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC {
-	static {
-		SpriteStore st = SpriteStore.get();
-
-		eat = st.getSprite("data/sprites/ideas/eat.png");
-		food = st.getSprite("data/sprites/ideas/food.png");
-		walk = st.getSprite("data/sprites/ideas/walk.png");
-		follow = st.getSprite("data/sprites/ideas/follow.png");
-	}
+	
 
 	private int weight;
 	private Sprite ideaImage;
@@ -46,6 +39,14 @@ public class Sheep extends NPC {
 	private static Sprite walk=null;
 
 	private static Sprite follow=null;
+	static {
+		SpriteStore st = SpriteStore.get();
+
+		eat = st.getSprite("data/sprites/ideas/eat.png");
+		food = st.getSprite("data/sprites/ideas/food.png");
+		walk = st.getSprite("data/sprites/ideas/walk.png");
+		follow = st.getSprite("data/sprites/ideas/follow.png");
+	}
 
 	public Sheep(RPObject object) throws AttributeNotFoundException {
 		super(object);
