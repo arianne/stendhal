@@ -42,9 +42,9 @@ public class Player extends RPEntity {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
-	private int outfit;
+	protected int outfit;
 
-	private int outfitOrg;
+	protected int outfitOrg;
 
 	/**
 	 * An away message was set/cleared.
@@ -183,20 +183,6 @@ public class Player extends RPEntity {
 		// ActionType at =handleAction(action);
 		RPAction rpaction;
 		switch (at) {
-			case SET_OUTFIT:
-				int outfitTemp = outfit;
-				if (outfitOrg > 0) {
-					outfitTemp = outfitOrg;
-				}
-				StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
-				break;
-			case LEAVE_SHEEP:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				rpaction.put("target", "-1");
-				at.send(rpaction);
-				playSound("sheep-chat-2", 15, 50);
-				break;
 			case ADD_BUDDY:
 				rpaction = new RPAction();
 				rpaction.put("type", at.toString());

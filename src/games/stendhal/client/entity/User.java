@@ -6,6 +6,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
 import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 
@@ -38,7 +39,32 @@ public class User extends Player {
 			}
 		}
 	  
+	@Override
+	public void onAction(ActionType at, String... params) {
 
+		// ActionType at =handleAction(action);
+		RPAction rpaction;
+		switch (at) {
+			case SET_OUTFIT:
+				int outfitTemp = outfit;
+				if (outfitOrg > 0) {
+					outfitTemp = outfitOrg;
+				}
+				StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
+				break;
+			case LEAVE_SHEEP:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				rpaction.put("target", "-1");
+				at.send(rpaction);
+				playSound("sheep-chat-2", 15, 50);
+				break;
+			default:
+				super.onAction(at, params);
+				break;
+		}
+
+	}
 
     }
 
