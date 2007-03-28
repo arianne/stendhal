@@ -30,27 +30,11 @@ public class NPC extends RPEntity {
 
 	private static final Logger logger = Log4J.getLogger(NPC.class);
 
-	private Sprite ideaImage;
-
-	private static Sprite eat;
-
-	private static Sprite food;
-
-	private static Sprite walk;
-
-	private static Sprite follow;
+	
 
 	private int outfit;
 
-	static {
-		SpriteStore st = SpriteStore.get();
-
-		eat = st.getSprite("data/sprites/ideas/eat.png");
-		food = st.getSprite("data/sprites/ideas/food.png");
-		walk = st.getSprite("data/sprites/ideas/walk.png");
-		follow = st.getSprite("data/sprites/ideas/follow.png");
-	}
-
+	
 	public NPC(RPObject object) throws AttributeNotFoundException {
 		super(object);
 
@@ -121,18 +105,7 @@ public class NPC extends RPEntity {
 	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
-		if (diff.has("idea")) {
-			String idea = diff.get("idea");
-			if (idea.equals("eat")) {
-				ideaImage = eat;
-			} else if (idea.equals("food")) {
-				ideaImage = food;
-			} else if (idea.equals("walk")) {
-				ideaImage = walk;
-			} else if (idea.equals("follow")) {
-				ideaImage = follow;
-			}
-		}
+	
 	}
 
 	@Override
@@ -145,15 +118,5 @@ public class NPC extends RPEntity {
 		return new Rectangle.Double(x, y, 1.5, 2);
 	}
 
-	@Override
-	public void draw(GameScreen screen) {
-		super.draw(screen);
-
-		if (ideaImage != null) {
-			Rectangle2D rect = getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getY();
-			screen.draw(ideaImage, sx - 0.25, sy - 0.25);
-		}
-	}
+	
 }

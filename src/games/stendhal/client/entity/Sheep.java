@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
@@ -27,8 +28,24 @@ import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC {
+	static {
+		SpriteStore st = SpriteStore.get();
+
+		eat = st.getSprite("data/sprites/ideas/eat.png");
+		food = st.getSprite("data/sprites/ideas/food.png");
+		walk = st.getSprite("data/sprites/ideas/walk.png");
+		follow = st.getSprite("data/sprites/ideas/follow.png");
+	}
 
 	private int weight;
+	private Sprite ideaImage;
+	private static Sprite eat;
+
+	private static Sprite food;
+
+	private static Sprite walk;
+
+	private static Sprite follow;
 
 	public Sheep(RPObject object) throws AttributeNotFoundException {
 		super(object);
@@ -66,15 +83,18 @@ public class Sheep extends NPC {
 			String idea = diff.get("idea");
 			if (idea.equals("eat")) {
 				probableChat(15);
+				ideaImage = eat;
 			} else if (idea.equals("food")) {
 				probableChat(20);
+				ideaImage = food;
 			} else if (idea.equals("walk")) {
 				probableChat(20);
+				ideaImage = walk;
 			} else if (idea.equals("follow")) {
 				probableChat(20);
+				ideaImage = follow;
 			}
 		}
-
 	}
 
 	@Override
@@ -143,5 +163,16 @@ public class Sheep extends NPC {
 			animation = "big_" + animation;
 		}
     }
+	@Override
+	public void draw(GameScreen screen) {
+		super.draw(screen);
+		if (ideaImage != null) {
+			Rectangle2D rect = getArea();
+			double sx = rect.getMaxX();
+			double sy = rect.getY();
+			screen.draw(ideaImage, sx - 0.25, sy - 0.25);
+		}
+	
+	}
 
 }
