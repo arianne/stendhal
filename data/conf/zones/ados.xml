@@ -264,7 +264,6 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone>
    
    <zone name="int_ados_storage" file="int_ados_storage.xstend">
-    
     <portal x="14" y="30" ref="storage_inside_left">
      <destination zone="0_ados_city" ref="storage_outside_1"/>
     </portal>
@@ -272,10 +271,45 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <portal x="15" y="30" ref="storage_inside_right">
      <destination zone="0_ados_city" ref="storage_outside_5"/>
     </portal>
-    
-    
    </zone> 
-
+   
+   <zone name="int_ados_town_hall" file="int_ados_buraucrazy_0.xstend">
+    <portal x="22" y="17" ref="entrance">
+     <destination zone="0_ados_city" ref="town_hall_entrance"/>
+    </portal>
+    
+    <portal x="4" y="4" ref="upstairs">
+     <destination zone="int_ados_town_hall_1" ref="downstairs"/>
+    </portal>
+   </zone> 
+   
+   <zone name="int_ados_town_hall_1" file="int_ados_buraucrazy_1.xstend">
+    <portal x="36" y="3" ref="upstairs">
+     <destination zone="int_ados_town_hall_2" ref="downstairs"/>
+    </portal>
+    
+    <portal x="4" y="4" ref="downstairs">
+     <destination zone="int_ados_town_hall" ref="upstairs"/>
+    </portal>
+   </zone> 
+   
+   <zone name="int_ados_town_hall_2" file="int_ados_buraucrazy_2.xstend">
+    <configurator class-name="games.stendhal.server.maps.ados.IL0_Mayor" />
+    <portal x="36" y="3" ref="downstairs">
+     <destination zone="int_ados_town_hall_1" ref="upstairs"/>
+    </portal>
+    
+    <portal x="3" y="3" ref="upstairs">
+     <destination zone="int_ados_town_hall_3" ref="downstairs"/>
+    </portal>
+   </zone> 
+   
+   <zone name="int_ados_town_hall_3" file="int_ados_buraucrazy_3.xstend">
+    <portal x="3" y="3" ref="downstairs">
+     <destination zone="int_ados_town_hall_2" ref="upstairs"/>
+    </portal>
+   </zone> 
+   
  <zone name="0_ados_city" file="0_ados_city.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside" />
 
@@ -340,6 +374,10 @@ Please leave my mail at my neighbour's house.
 
   <portal x="66" y="86" ref="storage_outside_5">
    <destination zone="int_ados_storage" ref="storage_inside_right"/>
+  </portal>
+  
+  <portal x="39" y="20" ref="town_hall_entrance">
+   <destination zone="int_ados_town_hall" ref="entrance"/>
   </portal>
 
  </zone>
