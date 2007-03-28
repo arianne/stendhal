@@ -4,11 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -48,9 +51,21 @@ public class PlayerTest {
 	}
 
 	@Test
-	@Ignore
+
 	public final void testBuildOfferedActions() {
-		fail("Not yet implemented"); // TODO
+		RPObject rpo = new RPObject();
+		rpo.put("type", "player");
+		rpo.put("outfit",0);
+		Player pl =new Player(rpo);
+		List<String> expected = new ArrayList<String>();
+		expected.add("Look");
+		expected.add("Attack");
+		expected.add("Add to Buddies");
+		ArrayList<String> list = new ArrayList<String>();
+		pl.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+		fail("throws unreflected Attribute [outfit] notfound exception");
 	}
 
 	@Test
@@ -78,13 +93,13 @@ public class PlayerTest {
 	}
 
 	@Test
-	// (expected=AttributeNotFoundException.class)
 	public final void testPlayer() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "player");
+	
 		new Player(rpo);
-		fail("Attribute Outfit cannot be found and  throws an exception, which is not reflected here");
-
+		
+		
 	}
 
 	@Test
