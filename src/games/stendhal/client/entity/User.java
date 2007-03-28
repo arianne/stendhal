@@ -79,6 +79,11 @@ public class User extends Player {
 		                : "You are no longer marked as being away.", Color.orange);
     }
 
+	@Override
+    public void onEnter(int _x, int _y) {
+		WorldObjects.firePlayerMoved(this);
+    }
+
     }
 
 

@@ -184,12 +184,7 @@ public class Player extends RPEntity {
 
 	}
 
-	@Override
-	public void onEnter(int _x, int _y) {
-		if ((StendhalClient.get().getPlayer() != null) && StendhalClient.get().getPlayer().getID().equals(getID())) {
-			WorldObjects.firePlayerMoved(this);
-		}
-	}
+	
 
 	/*
 	 * (non-Javadoc)
