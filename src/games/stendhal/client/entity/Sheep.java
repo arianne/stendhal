@@ -39,13 +39,13 @@ public class Sheep extends NPC {
 
 	private int weight;
 	private Sprite ideaImage;
-	private static Sprite eat;
+	private static Sprite eat=null;
 
-	private static Sprite food;
+	private static Sprite food=null;
 
-	private static Sprite walk;
+	private static Sprite walk=null;
 
-	private static Sprite follow;
+	private static Sprite follow=null;
 
 	public Sheep(RPObject object) throws AttributeNotFoundException {
 		super(object);
@@ -81,16 +81,16 @@ public class Sheep extends NPC {
 
 		if (diff.has("idea")) {
 			String idea = diff.get("idea");
-			if (idea.equals("eat")) {
+			if ("eat".equals( idea )) {
 				probableChat(15);
 				ideaImage = eat;
-			} else if (idea.equals("food")) {
+			} else if ("food".equals( idea )) {
 				probableChat(20);
 				ideaImage = food;
-			} else if (idea.equals("walk")) {
+			} else if ("walk".equals( idea )) {
 				probableChat(20);
 				ideaImage = walk;
-			} else if (idea.equals("follow")) {
+			} else if ("follow".equals( idea )) {
 				probableChat(20);
 				ideaImage = follow;
 			} else if ("stop".equals(idea)){
