@@ -3365,7 +3365,7 @@
 ../../zelda_outside_2_chipset.png:266:3350:../../tileset/ground/ridge/ice_2.png:4
 ../../zelda_outside_2_chipset.png:267:3351:../../tileset/ground/ridge/ice_2.png:5
 ../../zelda_outside_2_chipset.png:268:3352:../../tileset/ground/ridge/ice_2.png:6
-../../zelda_outside_2_chipset.png:269:3353::
+../../zelda_outside_2_chipset.png:269:3353:../../tileset/ground/ladder/horizontal_pale.png:0
 ../../zelda_outside_2_chipset.png:270:3354:../../tileset/ground/water/channels_grassy.png:3
 ../../zelda_outside_2_chipset.png:271:3355:../../tileset/ground/water/channels_grassy.png:4
 ../../zelda_outside_2_chipset.png:272:3356:../../tileset/ground/water/channels_grassy.png:5
@@ -3395,7 +3395,7 @@
 ../../zelda_outside_2_chipset.png:296:3380:../../tileset/ground/ridge/ice_2.png:11
 ../../zelda_outside_2_chipset.png:297:3381:../../tileset/ground/ridge/ice_2.png:12
 ../../zelda_outside_2_chipset.png:298:3382:../../tileset/ground/ridge/ice_2.png:13
-../../zelda_outside_2_chipset.png:299:3383::
+../../zelda_outside_2_chipset.png:299:3383:../../tileset/ground/ladder/horizontal_pale.png:1
 ../../zelda_outside_2_chipset.png:300:3384:../../tileset/plant/tree/tree_golden_large.png:0
 ../../zelda_outside_2_chipset.png:301:3385:../../tileset/plant/tree/tree_golden_large.png:1
 ../../zelda_outside_2_chipset.png:302:3386:../../tileset/plant/tree/tree_golden_large.png:2
@@ -3425,7 +3425,7 @@
 ../../zelda_outside_2_chipset.png:326:3410:../../tileset/ground/ridge/ice_2.png:18
 ../../zelda_outside_2_chipset.png:327:3411:../../tileset/ground/ridge/ice_2.png:19
 ../../zelda_outside_2_chipset.png:328:3412:../../tileset/ground/ridge/ice_2.png:20
-../../zelda_outside_2_chipset.png:329:3413::
+../../zelda_outside_2_chipset.png:329:3413:../../tileset/ground/ladder/horizontal_pale.png:2
 ../../zelda_outside_2_chipset.png:330:3414:../../tileset/plant/tree/tree_golden_large.png:4
 ../../zelda_outside_2_chipset.png:331:3415:../../tileset/plant/tree/tree_golden_large.png:5
 ../../zelda_outside_2_chipset.png:332:3416:../../tileset/plant/tree/tree_golden_large.png:6
