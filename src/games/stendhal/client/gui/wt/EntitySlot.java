@@ -182,7 +182,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		if (content != null) {
-			return new MoveableEntityContainer(content, parent, getName(), client);
+			return new MoveableEntityContainer(content, parent, getName(), sprite);
 		}
 
 		return null;

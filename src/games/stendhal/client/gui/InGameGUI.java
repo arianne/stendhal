@@ -59,23 +59,23 @@ public class InGameGUI implements Inspector {
 
 	private boolean altDown;
 
-	public InGameGUI(StendhalClient client) {
-		this.client = client;
+	public InGameGUI(StendhalUI ui) {
+		this.client = ui.getClient();
 
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
-		GameScreen screen = GameScreen.get();
+		GameScreen screen = ui.getScreen();
 		// create the frame
 		frame = new WtBaseframe(screen);
 		// register native event handler
 		screen.getComponent().addMouseListener(frame);
 		screen.getComponent().addMouseMotionListener(frame);
 		// create ground
-		ground = new GroundContainer(client, screen.getWidthInPixels(), screen.getHeightInPixels());
+		ground = new GroundContainer(ui);
 
 		frame.addChild(ground);
 		// the settings panel creates all other
-		settings = new SettingsPanel(client, ground);
+		settings = new SettingsPanel(ui, ground);
 		ground.addChild(settings);
 
 		// set some default window positions

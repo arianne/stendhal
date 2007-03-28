@@ -377,7 +377,7 @@ public class j2DClient extends StendhalUI {
 // Not currently used (maybe later?)
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-		inGameGUI = new InGameGUI(client);
+		inGameGUI = new InGameGUI(this);
 		client.setGameGUI(inGameGUI);
 
 

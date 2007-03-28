@@ -67,10 +67,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			(System.getProperty("stendhal.newgui") != null);
 
 	/** Creates a new instance of OptionsPanel */
-	public SettingsPanel(StendhalClient client, WtPanel frame) {
+	public SettingsPanel(StendhalUI ui, WtPanel frame) {
 		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 200);
 
-		this.client = client;
+		this.client = ui.getClient();
+
 		setTitletext("Settings");
 
 		setFrame(true);
@@ -79,7 +80,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		setMinimized(true);
 		setCloseable(false);
 
-		character = new Character(client);
+		character = new Character(ui);
 		character.registerCloseListener(this);
 		frame.addChild(character);
 

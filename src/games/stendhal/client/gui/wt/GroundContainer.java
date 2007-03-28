@@ -16,6 +16,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.PassiveEntity;
@@ -40,22 +41,28 @@ public class GroundContainer extends WtPanel {
 	/** the game client */
 	private StendhalClient client;
 
+	/**
+	 * The UI.
+	 */
+	private StendhalUI ui;
+
 	/** the game screen */
 	private GameScreen screen;
 
 
 	/** creates a new groundcontainer */
-	public GroundContainer(StendhalClient client, int width, int height) {
-		super("ground", 0, 0, width, height);
+	public GroundContainer(StendhalUI ui) {
+		super("ground", 0, 0, ui.getWidth(), ui.getHeight());
 
-		this.client = client;
+		this.ui = ui;
 
 		setMoveable(false);
 		setCloseable(false);
 		setFrame(false);
 		setTitleBar(false);
 
-		screen = client.getScreen();
+		client = ui.getClient();
+		screen = ui.getScreen();
 	}
 
 	/**

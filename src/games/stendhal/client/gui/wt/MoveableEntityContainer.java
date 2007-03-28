@@ -55,12 +55,11 @@ public class MoveableEntityContainer implements WtDraggable {
 	}
 
 	/** constuctor to use when the item is inside a container */
-	public MoveableEntityContainer(RPObject content, Entity parent, String slot, StendhalClient client) {
+	public MoveableEntityContainer(RPObject content, Entity parent, String slot, Sprite sprite) {
 		this.content = content.getID().getObjectID();
 		this.parent = parent;
 		this.slot = slot;
-		this.sprite = client.getGameObjects().spriteType(content);
-//		this.sprite = content.getSprite();
+		this.sprite = sprite;
 	}
 
 	/** constuctor to use when the item is on the ground */

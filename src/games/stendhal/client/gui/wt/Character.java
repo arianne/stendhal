@@ -22,8 +22,8 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Player;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
 
@@ -69,8 +69,11 @@ public class Character extends WtPanel {
 	private long oldPlayerModificationCount;
 
 	/** Creates a new instance of Character */
-	public Character(StendhalClient client) {
-		super("character", j2DClient.SCREEN_WIDTH - PANEL_WIDTH, 0, PANEL_WIDTH, PANEL_HEIGHT);
+	public Character(StendhalUI ui) {
+		super("character", ui.getWidth() - PANEL_WIDTH, 0, PANEL_WIDTH, PANEL_HEIGHT);
+
+		StendhalClient client = ui.getClient();
+
 		setTitleBar(true);
 		setFrame(true);
 		setMoveable(true);
