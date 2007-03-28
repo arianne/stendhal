@@ -40,7 +40,17 @@ public class IL0_Mayor implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				nodes.add(new Path.Node(3, 9));
+				nodes.add(new Path.Node(8, 9));	
+				nodes.add(new Path.Node(8, 15));	
+				nodes.add(new Path.Node(25, 15));
+				nodes.add(new Path.Node(25, 12));
+				nodes.add(new Path.Node(37, 12));
+				nodes.add(new Path.Node(25, 12));
+				nodes.add(new Path.Node(25, 15));
+				nodes.add(new Path.Node(8, 15));
+				nodes.add(new Path.Node(8, 9));	
+				setPath(nodes, true);
 			}
 
 			@Override
@@ -53,7 +63,7 @@ public class IL0_Mayor implements ZoneConfigurator {
 				addGoodbye("Good day to you.");
 			}
 		};
-		mayor.setDescription("You see the mayor of Ados");
+		mayor.setDescription("You see the respected mayor of Ados");
 		npcs.add(mayor);
 		zone.assignRPObjectID(mayor);
 		mayor.put("class", "badmayornpc");
