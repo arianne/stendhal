@@ -86,7 +86,7 @@ public class StendhalClient extends ariannexp {
 
 	protected PerceptionListenerMulticaster listeners;
 
-	public static String userName=null;
+	private String userName=null;
 
 	public static StendhalClient get() {
 		if (client == null) {
@@ -597,7 +597,12 @@ public class StendhalClient extends ariannexp {
 	}
 
 	public void setUserName(String username) {
-		StendhalClient.userName=username;
+		userName=username;
 	    
+    }
+
+	public Object getUserName() {
+	 
+	    return userName;
     }
 }
