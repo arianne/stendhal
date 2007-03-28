@@ -18,7 +18,6 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
@@ -117,7 +116,7 @@ public class Character extends WtPanel {
 		        ((SLOT_SIZE + SLOT_SPACING) * 4),
 		        170,
 		        100,
-		        "HP: ${hp}/${maxhp}\nMana: ${mana}/${basemana}\nATK: ${atk}(+${atkitem}) (${atkxp})\nDEF: ${def}(+${defitem}) (${defxp})\nXP:${xp}\nMoney: $${money}");
+		        "HP: ${hp}/${maxhp}\nMana: ${mana}/${basemana}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nMoney: $${money}");
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
 		addChild(statsPanel);
