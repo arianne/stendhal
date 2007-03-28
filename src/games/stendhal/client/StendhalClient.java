@@ -75,7 +75,7 @@ public class StendhalClient extends ariannexp {
 
 	private JFrame frame;
 
-	private static StendhalClient client;
+	private static StendhalClient client=null;
 
 	private Cache cache;
 
@@ -86,7 +86,7 @@ public class StendhalClient extends ariannexp {
 
 	protected PerceptionListenerMulticaster listeners;
 
-	public static String userName;
+	public static String userName=null;
 
 	public static StendhalClient get() {
 		if (client == null) {
@@ -582,10 +582,6 @@ public class StendhalClient extends ariannexp {
 				logger.debug("Request resync");
 				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...", Color.gray);
 				resync();
-			} else {
-				// Fix: Prevent spam from logger window intensifly@gmx.com
-				// StendhalUI.get().addEventLine("Out of sync: Waiting
-				// "+times+" before requesting SYNC",Color.gray);
 			}
 			return 0;
 		}
