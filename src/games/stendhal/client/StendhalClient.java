@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.KTextEdit;
 import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.j2DClient;
@@ -38,8 +37,6 @@ import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import marauroa.client.ariannexp;
 import marauroa.client.net.DefaultPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
@@ -604,7 +601,7 @@ public class StendhalClient extends ariannexp {
 	}
 
 	public void setUserName(String username) {
-		this.userName=username;
+		StendhalClient.userName=username;
 	    
     }
 }
