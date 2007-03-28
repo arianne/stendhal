@@ -2614,8 +2614,8 @@
 ../../zelda_objects_chipset.png:197:2599::
 ../../zelda_objects_chipset.png:198:2600::
 ../../zelda_objects_chipset.png:199:2601::
-../../zelda_collision_chipset.png:0:2602:../../tileset/protection.png:0
-../../zelda_collision_chipset.png:1:2603:../../tileset/collision.png:0
+../../zelda_collision_chipset.png:0:2602:../../tileset/collision.png:0
+../../zelda_collision_chipset.png:1:2603:../../tileset/protection.png:0
 ../../zelda_building_0_tileset.png:0:2604:../../tileset/object/castle.png:0
 ../../zelda_building_0_tileset.png:1:2605:../../tileset/object/castle.png:1
 ../../zelda_building_0_tileset.png:2:2606:../../tileset/object/castle.png:2
