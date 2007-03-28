@@ -15,7 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Debug;
 
@@ -193,7 +193,7 @@ public abstract class Creature extends NPC {
 			String debug = diff.get("debug");
 
 			if (watch) {
-				StendhalClient.get().addEventLine(getID() + " - " + debug);
+				StendhalUI.get().addEventLine(getID() + " - " + debug);
 			}
 
 			String[] actions = debug.split("\\|");

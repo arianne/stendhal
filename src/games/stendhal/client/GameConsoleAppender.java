@@ -33,7 +33,7 @@ public class GameConsoleAppender extends AppenderSkeleton {
 			}
 		}
 
-		StendhalClient.get().addEventLine(buf.toString(), Color.GRAY);
+		StendhalUI.get().addEventLine(buf.toString(), Color.GRAY);
 	}
 
 	public void close() {

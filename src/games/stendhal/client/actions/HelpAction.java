@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;
 
@@ -38,7 +38,7 @@ class HelpAction implements SlashAction  {
 		        "- /sound mute <on|off> \tMute or unmute the sounds" };
 
 		for (String line : lines) {
-			StendhalClient.get().addEventLine(line, Color.gray);
+			StendhalUI.get().addEventLine(line, Color.gray);
 		}
 
 		return true;

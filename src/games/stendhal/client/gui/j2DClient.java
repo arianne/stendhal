@@ -211,8 +211,6 @@ public class j2DClient extends StendhalUI {
 
 		content.add(playerChatText);
 
-		client.setTextLineGUI(playerChatText);
-
 
 		/*
 		 * Always redirect focus to chat field
@@ -261,7 +259,6 @@ public class j2DClient extends StendhalUI {
 		 */
 		gameLog = new KTextEdit();
 		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 200));
-		client.setGameLog(gameLog);
 
 
 		if(System.getProperty("stendhal.onewindow") != null) {
@@ -347,7 +344,7 @@ public class j2DClient extends StendhalUI {
 		// I hope that it discourages its use without the risks of unabdateable
 		// clients being distributed
 		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
-			StendhalClient.get().addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, Color.RED);
+			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, Color.RED);
 		}
 
 
@@ -580,7 +577,7 @@ public class j2DClient extends StendhalUI {
 					 * Ctrl+L
 					 * Make game log visible
 					 */
-					SwingUtilities.getRoot(client.getGameLog()).setVisible(true);
+					SwingUtilities.getRoot(gameLog).setVisible(true);
 				}
 
 				break;

@@ -1,6 +1,6 @@
 package games.stendhal.client.actions;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;
 
@@ -27,7 +27,7 @@ class GMHelpAlterAction implements SlashAction  {
 		        "This will make <testplayer> look like danter" };
 
 		for (String line : lines) {
-			StendhalClient.get().addEventLine(line, Color.gray);
+			StendhalUI.get().addEventLine(line, Color.gray);
 		}
 
 		return true;

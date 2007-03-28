@@ -129,9 +129,9 @@ public class Sign extends Entity {
 				if (text.contains("\n")) {
 					// The sign's text has multiple lines. Add a linebreak after
 					// "you read" so that it is easier readable.
-					StendhalClient.get().addEventLine("You read:\n\"" + text + "\"", signColor);
+					StendhalUI.get().addEventLine("You read:\n\"" + text + "\"", signColor);
 				} else {
-					StendhalClient.get().addEventLine("You read: \"" + text + "\"", signColor);
+					StendhalUI.get().addEventLine("You read: \"" + text + "\"", signColor);
 				}
 				break;
 

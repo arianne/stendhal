@@ -17,6 +17,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.events.AttackEvent;
 import games.stendhal.client.events.HPEvent;
@@ -297,14 +298,14 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 		// if (!(this instanceof Creature)) // We avoid logging creature
 		// // noises.
 		// {
-		StendhalClient.get().addEventLine(getName(), text);
+		StendhalUI.get().addEventLine(getName(), text);
 		// }
 	}
 
 	// Called when entity listen to text from talker
 	public void onPrivateListen(String text) {
 		// Change text color for private messages. intensifly@gmx.com
-		StendhalClient.get().addEventLine(text, Color.darkGray);
+		StendhalUI.get().addEventLine(text, Color.darkGray);
 
 		GameObjects.getInstance().addText(this, text.replace("|", ""), Color.darkGray, false);
 	}
@@ -315,7 +316,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 			damageSprites.add(GameScreen.get().createString("+" + Integer.toString(amount), Color.green));
 			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 			if (getID().equals(StendhalClient.get().getPlayer().getID())) {
-				StendhalClient.get().addEventLine(
+				StendhalUI.get().addEventLine(
 				        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
 			}
 		}
@@ -338,7 +339,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 			damageSprites.add(GameScreen.get().createString(Integer.toString(amount), Color.red));
 			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
-			StendhalClient.get().addEventLine(
+			StendhalUI.get().addEventLine(
 			        getName() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
 			        Color.red);
 		}
@@ -355,7 +356,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 	// Called when entity is killed by killer
 	public void onDeath(Entity killer) {
 		if (killer != null) {
-			StendhalClient.get().addEventLine(getName() + " has been killed by " + killer.getName());
+			StendhalUI.get().addEventLine(getName() + " has been killed by " + killer.getName());
 		}
 
 		/*
@@ -494,7 +495,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 				        "+" + Integer.toString(diff.getInt("xp") - base.getInt("xp")), Color.cyan));
 				damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 
-				StendhalClient.get().addEventLine(
+				StendhalUI.get().addEventLine(
 				        getName() + " earns "
 				                + Grammar.quantityplnoun(diff.getInt("xp") - base.getInt("xp"), "experience point")
 				                + ".", Color.blue);
@@ -507,7 +508,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 				String text = getName() + " reaches Level " + getLevel();
 
 				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
-				StendhalClient.get().addEventLine(text, Color.green);
+				StendhalUI.get().addEventLine(text, Color.green);
 			}
 		}
 	}
@@ -1058,7 +1059,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 		showAttackInfoForPlayer = showAttackInfoForPlayer & (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
-			StendhalClient.get().addEventLine(
+			StendhalUI.get().addEventLine(
 			        getName() + " suffers " + Grammar.quantityplnoun(damage, "point") + " of damage from "
 			                + attacker.getName(), Color.RED);
 		}

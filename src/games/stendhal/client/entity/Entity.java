@@ -16,6 +16,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.events.AttributeEvent;
 import games.stendhal.client.events.CollisionEvent;
@@ -582,7 +583,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 				break;
 			case ADMIN_ALTER:
 				id = getID().getObjectID();
-				StendhalClient.get().getTextLineGUI().setText("/alter #" + id + " ");
+				StendhalUI.get().setChatLine("/alter #" + id + " ");
 				break;
 			default:
 

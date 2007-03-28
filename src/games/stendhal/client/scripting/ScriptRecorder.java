@@ -1,6 +1,7 @@
 package games.stendhal.client.scripting;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -29,7 +30,7 @@ public class ScriptRecorder {
 	public ScriptRecorder(String classname) throws FileNotFoundException {
 		this.classname = classname;
 		filename = System.getProperty("java.io.tmpdir") + "/" + classname + ".java";
-		StendhalClient.get().addEventLine("Starting recoding to " + filename);
+		StendhalUI.get().addEventLine("Starting recoding to " + filename);
 		lastTimestamp = 0;
 		ps = new PrintStream(filename);
 	}
@@ -91,6 +92,6 @@ public class ScriptRecorder {
 		ps.println("\t}");
 		ps.println("}");
 		ps.close();
-		StendhalClient.get().addEventLine("Stoping recoding to " + filename);
+		StendhalUI.get().addEventLine("Stoping recoding to " + filename);
 	}
 }

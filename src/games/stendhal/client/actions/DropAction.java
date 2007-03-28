@@ -1,6 +1,7 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;
 
@@ -29,7 +30,7 @@ class DropAction implements SlashAction  {
 		try {
 			quantity = Integer.parseInt(params[0]);
 		} catch (NumberFormatException ex) {
-			StendhalClient.get().addEventLine("Invalid quantity");
+			StendhalUI.get().addEventLine("Invalid quantity");
 			return true;
 		}
 
@@ -51,7 +52,7 @@ class DropAction implements SlashAction  {
 
 			StendhalClient.get().send(drop);
 		} else {
-			StendhalClient.get().addEventLine("You don't have any " + itemName, Color.black);
+			StendhalUI.get().addEventLine("You don't have any " + itemName, Color.black);
 		}
 
 		return true;

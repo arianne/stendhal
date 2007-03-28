@@ -74,11 +74,7 @@ public class StendhalClient extends ariannexp {
 
 	private boolean keepRunning = true;
 
-	private KTextEdit gameLog;
-
 	private InGameGUI gameGUI;
-
-	private JTextField textLineGUI;
 
 	private JFrame frame;
 
@@ -126,7 +122,6 @@ public class StendhalClient extends ariannexp {
 
 		handler = new PerceptionHandler(listeners);
 
-		gameLog = null;
 		gameGUI = null;
 
 		cache = new Cache();
@@ -156,16 +151,8 @@ public class StendhalClient extends ariannexp {
 		return stendhal.VERSION;
 	}
 
-	public void setGameLog(KTextEdit gameLog) {
-		this.gameLog = gameLog;
-	}
-
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
-	}
-
-	public KTextEdit getGameLog() {
-		return gameLog;
 	}
 
 	public void setScreen(GameScreen screen) {
@@ -184,34 +171,10 @@ public class StendhalClient extends ariannexp {
 		return gameGUI;
 	}
 
-	public void setTextLineGUI(JTextField line) {
-		textLineGUI = line;
-	}
-
-	public JTextField getTextLineGUI() {
-		return textLineGUI;
-	}
-
 	public OutfitDialog getOutfitDialog(int outfit) {
 		// int outfit, int total_hairs, int total_heads, int total_bodies, int
 		// total_clothes) {
 		return new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
-	}
-
-	public void addEventLine(String text) {
-		gameLog.addLine(text);
-	}
-
-	public void addEventLine(String header, String text) {
-		gameLog.addLine(header, text);
-	}
-
-	public void addEventLine(String header, String text, Color color) {
-		gameLog.addLine(header, text, color);
-	}
-
-	public void addEventLine(String text, Color color) {
-		gameLog.addLine(text, color);
 	}
 
 	public StaticGameLayers getStaticGameLayers() {
@@ -596,7 +559,7 @@ public class StendhalClient extends ariannexp {
 		public int onTimeout() {
 			logger.debug("Request resync because of timeout");
 
-			StendhalClient.get().addEventLine("Timeout: Requesting synchronization", Color.gray);
+			StendhalUI.get().addEventLine("Timeout: Requesting synchronization", Color.gray);
 			resync();
 			return 0;
 		}
@@ -608,7 +571,7 @@ public class StendhalClient extends ariannexp {
 			gameGUI.online();
 
 			logger.debug("Synced with server state.");
-			StendhalClient.get().addEventLine("Synchronized", Color.gray);
+			StendhalUI.get().addEventLine("Synchronized", Color.gray);
 			return 0;
 		}
 
@@ -620,11 +583,11 @@ public class StendhalClient extends ariannexp {
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				StendhalClient.get().addEventLine("Unsynced: Resynchronizing...", Color.gray);
+				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...", Color.gray);
 				resync();
 			} else {
 				// Fix: Prevent spam from logger window intensifly@gmx.com
-				// StendhalClient.get().addEventLine("Out of sync: Waiting
+				// StendhalUI.get().addEventLine("Out of sync: Waiting
 				// "+times+" before requesting SYNC",Color.gray);
 			}
 			return 0;

@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
 
@@ -55,7 +56,7 @@ public class Player extends RPEntity {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
 
 		if (isClientPlayer()) {
-			StendhalClient.get().addEventLine(
+			StendhalUI.get().addEventLine(
 			        (message != null) ? "You have been marked as being away."
 			                : "You are no longer marked as being away.", Color.orange);
 		}
@@ -134,14 +135,14 @@ public class Player extends RPEntity {
 			if (diff.has("online")) {
 				String[] players = diff.get("online").split(",");
 				for (String playerName : players) {
-					StendhalClient.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
+					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
 				}
 			}
 
 			if (diff.has("offline")) {
 				String[] players = diff.get("offline").split(",");
 				for (String playername : players) {
-					StendhalClient.get().addEventLine(playername + " has left Stendhal.", Color.orange);
+					StendhalUI.get().addEventLine(playername + " has left Stendhal.", Color.orange);
 				}
 			}
 		}
