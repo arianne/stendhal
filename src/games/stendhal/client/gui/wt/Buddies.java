@@ -17,8 +17,9 @@
  */
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.*;
-import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
@@ -40,7 +41,9 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Buddies extends WtPanel {
-	private StendhalClient client;
+	private StendhalUI ui;
+
+//	private StendhalClient client;
 
 	private Sprite online;
 
@@ -49,10 +52,10 @@ public class Buddies extends WtPanel {
 	private LinkedList<String> buddies;
 
 	/** Creates a new instance of Buddies */
-	public Buddies(StendhalClient client) {
-		super("buddies", j2DClient.SCREEN_WIDTH - 132, 265, 132, 200);
+	public Buddies(StendhalUI ui) {
+		super("buddies", ui.getWidth() - 132, 265, 132, 200);
 
-		this.client = client;
+		this.ui = ui;
 
 		setTitleBar(true);
 		setFrame(true);
@@ -81,7 +84,7 @@ public class Buddies extends WtPanel {
 			 * if a player is online, but it works :)
 			 */
 			boolean isOnline = false;
-			RPObject object = client.getPlayer();
+			RPObject object = ui.getClient().getPlayer();
 			if (object != null) {
 				RPSlot slot = object.getSlot("!buddy");
 				RPObject buddy = slot.getFirst();
@@ -135,7 +138,7 @@ public class Buddies extends WtPanel {
 				buddieName = "'" + buddieName + "'";
 			}
 
-			client.getTextLineGUI().setText("/tell " + buddieName + " ");
+			ui.setChatLine("/tell " + buddieName + " ");
 		} else if (command.equals("leave-message")) {
 			// Compatibility to grandfathered accounts with a ' '
 			// New accounts cannot contain a space anymore.
@@ -143,17 +146,17 @@ public class Buddies extends WtPanel {
 				buddieName = "'" + buddieName + "'";
 			}
 
-			client.getTextLineGUI().setText("/msg postman tell " + buddieName + " ");
+			ui.setChatLine("/msg postman tell " + buddieName + " ");
 		} else if (command.equals("where")) {
 			RPAction where = new RPAction();
 			where.put("type", "where");
 			where.put("target", buddieName);
-			client.send(where);
+			ui.getClient().send(where);
 		} else if (command.equals("remove")) {
 			RPAction where = new RPAction();
 			where.put("type", "removebuddy");
 			where.put("target", buddieName);
-			client.send(where);
+			ui.getClient().send(where);
 		}
 	}
 
@@ -168,7 +171,7 @@ public class Buddies extends WtPanel {
 
 		if (!isMinimized()) {
 			int i = 0;
-			RPObject object = client.getPlayer();
+			RPObject object = ui.getClient().getPlayer();
 
 			if (object != null) {
 				RPSlot slot = object.getSlot("!buddy");

@@ -89,7 +89,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			nbuddies.registerCloseListener(this);
 			buddies = nbuddies;
 		} else {
-			Buddies obuddies = new Buddies(client);
+			Buddies obuddies = new Buddies(StendhalUI.get());
 			frame.addChild(obuddies);
 			obuddies.registerCloseListener(this);
 			buddies = obuddies;
