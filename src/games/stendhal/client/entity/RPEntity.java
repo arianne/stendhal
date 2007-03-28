@@ -216,7 +216,6 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
 		sprite = sprite.copy();
 		outfit /= 100;
-
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
 			Sprite dress = store.getSprite("data/sprites/outfit/dress_" + dressIdx + ".png");
@@ -295,11 +294,7 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(String text) {
-		// if (!(this instanceof Creature)) // We avoid logging creature
-		// // noises.
-		// {
 		StendhalUI.get().addEventLine(getName(), text);
-		// }
 	}
 
 	// Called when entity listen to text from talker
