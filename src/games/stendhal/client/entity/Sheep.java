@@ -93,6 +93,8 @@ public class Sheep extends NPC {
 			} else if (idea.equals("follow")) {
 				probableChat(20);
 				ideaImage = follow;
+			} else if ("stop".equals(idea)){
+				ideaImage=null;
 			}
 		}
 	}
