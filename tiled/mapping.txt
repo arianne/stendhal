@@ -410,9 +410,9 @@
 ../../zelda_outside_0_chipset.png:393:394:../../tileset/ground/earth_edges.png:3
 ../../zelda_outside_0_chipset.png:394:395:../../tileset/ground/earth_edges.png:4
 ../../zelda_outside_0_chipset.png:395:396:../../tileset/ground/earth_edges.png:5
-../../zelda_outside_0_chipset.png:396:397:../../tileset/plant/grass_2.png:0:3
-../../zelda_outside_0_chipset.png:397:398:../../tileset/plant/grass_2.png:0:4
-../../zelda_outside_0_chipset.png:398:399:../../tileset/plant/grass_2.png:0:5
+../../zelda_outside_0_chipset.png:396:397:../../tileset/plant/grass_2.png:3
+../../zelda_outside_0_chipset.png:397:398:../../tileset/plant/grass_2.png:4
+../../zelda_outside_0_chipset.png:398:399:../../tileset/plant/grass_2.png:5
 ../../zelda_outside_0_chipset.png:399:400:../../tileset/plant/grass_corners.png:6
 ../../zelda_outside_0_chipset.png:400:401:../../tileset/plant/grass_corners.png:7
 ../../zelda_outside_0_chipset.png:401:402:../../tileset/plant/grass_corners.png:8
@@ -851,7 +851,7 @@
 ../../zelda_outside_1_chipset.png:354:835::
 ../../zelda_outside_1_chipset.png:355:836::
 ../../zelda_outside_1_chipset.png:356:837::
-../../zelda_outside_1_chipset.png:357:838:../../tileset/ground/water/golden_shimmery.png:0:
+../../zelda_outside_1_chipset.png:357:838:../../tileset/ground/water/golden_shimmery.png:0
 ../../zelda_outside_1_chipset.png:358:839::
 ../../zelda_outside_1_chipset.png:359:840::
 ../../zelda_outside_1_chipset.png:360:841:../../tileset/ground/ridge/earth_pale.png:48
@@ -1003,7 +1003,7 @@
 ../../zelda_dungeon_0_chipset.png:26:987:../../tileset/item/gothic/large_gravestone.png:2
 ../../zelda_dungeon_0_chipset.png:27:988:../../tileset/building/decoration/squares.png:0
 ../../zelda_dungeon_0_chipset.png:28:989:../../tileset/building/decoration/squares.png:1
-../../zelda_dungeon_0_chipset.png:29:990::../../tileset/item/chest/small.png:0
+../../zelda_dungeon_0_chipset.png:29:990:../../tileset/item/chest/small.png:0
 ../../zelda_dungeon_0_chipset.png:30:991:../../tileset/ground/water/dungeon_water.png:3
 ../../zelda_dungeon_0_chipset.png:31:992:../../tileset/ground/water/dungeon_water.png:4
 ../../zelda_dungeon_0_chipset.png:32:993:../../tileset/ground/water/dungeon_water.png:5
@@ -2447,7 +2447,7 @@
 ../../zelda_objects_chipset.png:30:2432:../../tileset/logic/creature/ratfolk.png:1
 ../../zelda_objects_chipset.png:31:2433:../../tileset/logic/creature/dwarf.png:0
 ../../zelda_objects_chipset.png:32:2434:../../tileset/logic/creature/dwarf.png:2
-../../zelda_objects_chipset.png:33:2435:../../tileset/logic/creature/orc.png:3:
+../../zelda_objects_chipset.png:33:2435:../../tileset/logic/creature/orc.png:3
 ../../zelda_objects_chipset.png:34:2436:../../tileset/logic/creature/orc.png:0
 ../../zelda_objects_chipset.png:35:2437:../../tileset/logic/creature/animal.png:8
 ../../zelda_objects_chipset.png:36:2438:../../tileset/logic/creature/animal.png:2
@@ -3113,7 +3113,7 @@
 ../../zelda_outside_2_chipset.png:14:3098:../../tileset/object/church.png:5
 ../../zelda_outside_2_chipset.png:15:3099:../../tileset/object/church.png:6
 ../../zelda_outside_2_chipset.png:16:3100:../../tileset/object/church.png:7
-../../zelda_outside_2_chipset.png:17:3101:
+../../zelda_outside_2_chipset.png:17:3101::
 ../../zelda_outside_2_chipset.png:18:3102::
 ../../zelda_outside_2_chipset.png:19:3103::
 ../../zelda_outside_2_chipset.png:20:3104::
