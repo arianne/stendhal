@@ -1,8 +1,10 @@
 package games.stendhal.client.entity;
 
+import java.awt.Color;
 import java.util.List;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
 import marauroa.common.game.AttributeNotFoundException;
@@ -65,6 +67,17 @@ public class User extends Player {
 		}
 
 	}
+
+	
+    //TODO: verify if OnAway is still to be usable or not
+	@Override
+    protected void onAway(String message) {
+	    
+	    super.onAway(message);
+	    StendhalUI.get().addEventLine(
+		        (message != null) ? "You have been marked as being away."
+		                : "You are no longer marked as being away.", Color.orange);
+    }
 
     }
 
