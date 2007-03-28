@@ -14,9 +14,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
