@@ -22,16 +22,27 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 
+import java.awt.*;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.awt.*;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import marauroa.common.game.RPAction;
 
-public class OutfitDialog extends javax.swing.JDialog {
+public class OutfitDialog extends JDialog {
 
 	/** the logger instance. */
 	//  private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
@@ -72,7 +83,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	 * @param total_bodies an integer with the total of sprites with bodies
 	 * @param total_clothes an integer with the total of sprites with clothes
 	 */
-	public OutfitDialog(java.awt.Frame parent, String title, int outfit, int total_hairs, int total_heads,
+	public OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads,
 	        int total_bodies, int total_clothes) {
 		super(parent, false);
 		initComponents();
@@ -177,7 +188,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	 * @param g the Graphics where to clean
 	 */
 	private void clean(Graphics g) {
-		g.setColor(java.awt.Color.WHITE);
+		g.setColor(Color.WHITE);
 		g.fillRect(2, 2, 48, 64);
 	}
 
@@ -207,41 +218,41 @@ public class OutfitDialog extends javax.swing.JDialog {
 	 */
 	// <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
 	private void initComponents() {
-		jpanel = new javax.swing.JPanel();
-		jbtOK = new javax.swing.JButton();
-		jbtLeftHairs = new javax.swing.JButton();
-		jbtRightHairs = new javax.swing.JButton();
-		jbtLeftHeads = new javax.swing.JButton();
-		jbtRightHeads = new javax.swing.JButton();
-		jbtLeftBodies = new javax.swing.JButton();
-		jbtRightBodies = new javax.swing.JButton();
-		jbtLeftClothes = new javax.swing.JButton();
-		jbtRightClothes = new javax.swing.JButton();
-		jlblHairs = new javax.swing.JLabel();
-		jlblHeads = new javax.swing.JLabel();
-		jlblBodies = new javax.swing.JLabel();
-		jlblClothes = new javax.swing.JLabel();
-		jlblFinalResult = new javax.swing.JLabel();
-		jsliderAnimation = new javax.swing.JSlider();
+		jpanel = new JPanel();
+		jbtOK = new JButton();
+		jbtLeftHairs = new JButton();
+		jbtRightHairs = new JButton();
+		jbtLeftHeads = new JButton();
+		jbtRightHeads = new JButton();
+		jbtLeftBodies = new JButton();
+		jbtRightBodies = new JButton();
+		jbtLeftClothes = new JButton();
+		jbtRightClothes = new JButton();
+		jlblHairs = new JLabel();
+		jlblHeads = new JLabel();
+		jlblBodies = new JLabel();
+		jlblClothes = new JLabel();
+		jlblFinalResult = new JLabel();
+		jsliderAnimation = new JSlider();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-		setBackground(new java.awt.Color(200, 200, 200));
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		setBackground(new Color(200, 200, 200));
 		setResizable(false);
-		addWindowListener(new java.awt.event.WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 
 			@Override
-			public void windowClosing(java.awt.event.WindowEvent evt) {
+			public void windowClosing(WindowEvent evt) {
 				formWindowClosing(evt);
 			}
 		});
 
 		jpanel.setLayout(null);
 
-		jpanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 100, 100), 2, true));
+		jpanel.setBorder(new LineBorder(new Color(100, 100, 100), 2, true));
 		jbtOK.setText("OK");
-		jbtOK.addActionListener(new java.awt.event.ActionListener() {
+		jbtOK.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtOKActionPerformed(evt);
 			}
 		});
@@ -249,11 +260,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtOK);
 		jbtOK.setBounds(190, 220, 80, 30);
 
-		jbtLeftHairs.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtLeftHairs.setFont(new Font("Dialog", 1, 14));
 		jbtLeftHairs.setText("<");
-		jbtLeftHairs.addActionListener(new java.awt.event.ActionListener() {
+		jbtLeftHairs.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtLeftHairsActionPerformed(evt);
 			}
 		});
@@ -261,11 +272,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtLeftHairs);
 		jbtLeftHairs.setBounds(10, 20, 45, 30);
 
-		jbtRightHairs.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtRightHairs.setFont(new Font("Dialog", 1, 14));
 		jbtRightHairs.setText(">");
-		jbtRightHairs.addActionListener(new java.awt.event.ActionListener() {
+		jbtRightHairs.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtRightHairsActionPerformed(evt);
 			}
 		});
@@ -273,11 +284,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtRightHairs);
 		jbtRightHairs.setBounds(120, 20, 45, 30);
 
-		jbtLeftHeads.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtLeftHeads.setFont(new Font("Dialog", 1, 14));
 		jbtLeftHeads.setText("<");
-		jbtLeftHeads.addActionListener(new java.awt.event.ActionListener() {
+		jbtLeftHeads.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtLeftHeadsActionPerformed(evt);
 			}
 		});
@@ -285,11 +296,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtLeftHeads);
 		jbtLeftHeads.setBounds(10, 100, 45, 30);
 
-		jbtRightHeads.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtRightHeads.setFont(new Font("Dialog", 1, 14));
 		jbtRightHeads.setText(">");
-		jbtRightHeads.addActionListener(new java.awt.event.ActionListener() {
+		jbtRightHeads.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtRightHeadsActionPerformed(evt);
 			}
 		});
@@ -297,11 +308,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtRightHeads);
 		jbtRightHeads.setBounds(120, 100, 45, 30);
 
-		jbtLeftBodies.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtLeftBodies.setFont(new Font("Dialog", 1, 14));
 		jbtLeftBodies.setText("<");
-		jbtLeftBodies.addActionListener(new java.awt.event.ActionListener() {
+		jbtLeftBodies.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtLeftBodiesActionPerformed(evt);
 			}
 		});
@@ -309,11 +320,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtLeftBodies);
 		jbtLeftBodies.setBounds(10, 180, 45, 30);
 
-		jbtRightBodies.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtRightBodies.setFont(new Font("Dialog", 1, 14));
 		jbtRightBodies.setText(">");
-		jbtRightBodies.addActionListener(new java.awt.event.ActionListener() {
+		jbtRightBodies.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtRightBodiesActionPerformed(evt);
 			}
 		});
@@ -321,11 +332,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtRightBodies);
 		jbtRightBodies.setBounds(120, 180, 45, 30);
 
-		jbtLeftClothes.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtLeftClothes.setFont(new Font("Dialog", 1, 14));
 		jbtLeftClothes.setText("<");
-		jbtLeftClothes.addActionListener(new java.awt.event.ActionListener() {
+		jbtLeftClothes.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtLeftClothesActionPerformed(evt);
 			}
 		});
@@ -333,11 +344,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtLeftClothes);
 		jbtLeftClothes.setBounds(10, 260, 45, 30);
 
-		jbtRightClothes.setFont(new java.awt.Font("Dialog", 1, 14));
+		jbtRightClothes.setFont(new Font("Dialog", 1, 14));
 		jbtRightClothes.setText(">");
-		jbtRightClothes.addActionListener(new java.awt.event.ActionListener() {
+		jbtRightClothes.addActionListener(new ActionListener() {
 
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+			public void actionPerformed(ActionEvent evt) {
 				jbtRightClothesActionPerformed(evt);
 			}
 		});
@@ -345,47 +356,47 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jbtRightClothes);
 		jbtRightClothes.setBounds(120, 260, 45, 30);
 
-		jlblHairs.setBackground(new java.awt.Color(255, 255, 255));
-		jlblHairs.setFont(new java.awt.Font("Dialog", 0, 10));
-		jlblHairs.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jlblHairs.setBackground(new Color(255, 255, 255));
+		jlblHairs.setFont(new Font("Dialog", 0, 10));
+		jlblHairs.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblHairs.setText("loading...");
-		jlblHairs.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 100, 100), 1, true));
+		jlblHairs.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblHairs.setOpaque(true);
 		jpanel.add(jlblHairs);
 		jlblHairs.setBounds(60, 10, 52, 68);
 
-		jlblHeads.setBackground(new java.awt.Color(255, 255, 255));
-		jlblHeads.setFont(new java.awt.Font("Dialog", 0, 10));
-		jlblHeads.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jlblHeads.setBackground(new Color(255, 255, 255));
+		jlblHeads.setFont(new Font("Dialog", 0, 10));
+		jlblHeads.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblHeads.setText("loading...");
-		jlblHeads.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 100, 100), 1, true));
+		jlblHeads.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblHeads.setOpaque(true);
 		jpanel.add(jlblHeads);
 		jlblHeads.setBounds(60, 90, 52, 68);
 
-		jlblBodies.setBackground(new java.awt.Color(255, 255, 255));
-		jlblBodies.setFont(new java.awt.Font("Dialog", 0, 10));
-		jlblBodies.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jlblBodies.setBackground(new Color(255, 255, 255));
+		jlblBodies.setFont(new Font("Dialog", 0, 10));
+		jlblBodies.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblBodies.setText("loading...");
-		jlblBodies.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 100, 100), 1, true));
+		jlblBodies.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblBodies.setOpaque(true);
 		jpanel.add(jlblBodies);
 		jlblBodies.setBounds(60, 170, 52, 68);
 
-		jlblClothes.setBackground(new java.awt.Color(255, 255, 255));
-		jlblClothes.setFont(new java.awt.Font("Dialog", 0, 10));
-		jlblClothes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jlblClothes.setBackground(new Color(255, 255, 255));
+		jlblClothes.setFont(new Font("Dialog", 0, 10));
+		jlblClothes.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblClothes.setText("loading...");
-		jlblClothes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 100, 100), 1, true));
+		jlblClothes.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblClothes.setOpaque(true);
 		jpanel.add(jlblClothes);
 		jlblClothes.setBounds(60, 250, 52, 68);
 
-		jlblFinalResult.setBackground(new java.awt.Color(255, 255, 255));
-		jlblFinalResult.setFont(new java.awt.Font("Dialog", 0, 10));
-		jlblFinalResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jlblFinalResult.setBackground(new Color(255, 255, 255));
+		jlblFinalResult.setFont(new Font("Dialog", 0, 10));
+		jlblFinalResult.setHorizontalAlignment(SwingConstants.CENTER);
 		jlblFinalResult.setText("loading...");
-		jlblFinalResult.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(100, 100, 100), 1, true));
+		jlblFinalResult.setBorder(new LineBorder(new Color(100, 100, 100), 1, true));
 		jlblFinalResult.setOpaque(true);
 		jpanel.add(jlblFinalResult);
 		jlblFinalResult.setBounds(205, 90, 52, 68);
@@ -394,9 +405,9 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jsliderAnimation.setSnapToTicks(true);
 		jsliderAnimation.setValue(2);
 		jsliderAnimation.setInverted(true);
-		jsliderAnimation.addChangeListener(new javax.swing.event.ChangeListener() {
+		jsliderAnimation.addChangeListener(new ChangeListener() {
 
-			public void stateChanged(javax.swing.event.ChangeEvent evt) {
+			public void stateChanged(ChangeEvent evt) {
 				jsliderAnimationStateChanged(evt);
 			}
 		});
@@ -404,16 +415,16 @@ public class OutfitDialog extends javax.swing.JDialog {
 		jpanel.add(jsliderAnimation);
 		jsliderAnimation.setBounds(190, 170, 80, 27);
 
-		getContentPane().add(jpanel, java.awt.BorderLayout.CENTER);
+		getContentPane().add(jpanel, BorderLayout.CENTER);
 
-		java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setBounds((screenSize.width - 288) / 2, (screenSize.height - 361) / 2, 288, 361);
 	}
 
 	// </editor-fold>//GEN-END:initComponents
 
 	/** this is called everytime the user moves the slider */
-	private void jsliderAnimationStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsliderAnimationStateChanged
+	private void jsliderAnimationStateChanged(ChangeEvent evt) {//GEN-FIRST:event_jsliderAnimationStateChanged
 		animation = jsliderAnimation.getValue();
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
@@ -423,13 +434,13 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jsliderAnimationStateChanged
 
 	/** when user closes this window */
-	private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+	private void formWindowClosing(WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 		timer.cancel();
 		this.dispose();
 	}//GEN-LAST:event_formWindowClosing
 
 	/** Clothes Right button */
-	private void jbtRightClothesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightClothesActionPerformed
+	private void jbtRightClothesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtRightClothesActionPerformed
 		if (clothes_index < clothes.length - 1) {
 			clothes_index++;
 		} else {
@@ -440,7 +451,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtRightClothesActionPerformed
 
 	/** Clothes Left button */
-	private void jbtLeftClothesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftClothesActionPerformed
+	private void jbtLeftClothesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtLeftClothesActionPerformed
 		if (clothes_index > 0) {
 			clothes_index--;
 		} else {
@@ -451,7 +462,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtLeftClothesActionPerformed
 
 	/** Bodies Right button */
-	private void jbtRightBodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightBodiesActionPerformed
+	private void jbtRightBodiesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtRightBodiesActionPerformed
 		if (bodies_index < bodies.length - 1) {
 			bodies_index++;
 		} else {
@@ -462,7 +473,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtRightBodiesActionPerformed
 
 	/** Bodies Left button */
-	private void jbtLeftBodiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftBodiesActionPerformed
+	private void jbtLeftBodiesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtLeftBodiesActionPerformed
 		if (bodies_index > 0) {
 			bodies_index--;
 		} else {
@@ -473,7 +484,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtLeftBodiesActionPerformed
 
 	/** Heads Right button */
-	private void jbtRightHeadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightHeadsActionPerformed
+	private void jbtRightHeadsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtRightHeadsActionPerformed
 		if (heads_index < heads.length - 1) {
 			heads_index++;
 		} else {
@@ -484,7 +495,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtRightHeadsActionPerformed
 
 	/** Heads Left button */
-	private void jbtLeftHeadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftHeadsActionPerformed
+	private void jbtLeftHeadsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtLeftHeadsActionPerformed
 		if (heads_index > 0) {
 			heads_index--;
 		} else {
@@ -495,7 +506,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtLeftHeadsActionPerformed
 
 	/** Hairs Right button */
-	private void jbtRightHairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRightHairsActionPerformed
+	private void jbtRightHairsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtRightHairsActionPerformed
 		if (hairs_index < hairs.length - 1) {
 			hairs_index++;
 		} else {
@@ -506,7 +517,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtRightHairsActionPerformed
 
 	/** Hairs Left button */
-	private void jbtLeftHairsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtLeftHairsActionPerformed
+	private void jbtLeftHairsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtLeftHairsActionPerformed
 		if (hairs_index > 0) {
 			hairs_index--;
 		} else {
@@ -517,7 +528,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}//GEN-LAST:event_jbtLeftHairsActionPerformed
 
 	/** Button OK action */
-	private void jbtOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtOKActionPerformed
+	private void jbtOKActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jbtOKActionPerformed
 		sendAction();
 
 		timer.cancel();
@@ -540,37 +551,37 @@ public class OutfitDialog extends javax.swing.JDialog {
 	}
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton jbtLeftBodies;
+	private JButton jbtLeftBodies;
 
-	private javax.swing.JButton jbtLeftClothes;
+	private JButton jbtLeftClothes;
 
-	private javax.swing.JButton jbtLeftHairs;
+	private JButton jbtLeftHairs;
 
-	private javax.swing.JButton jbtLeftHeads;
+	private JButton jbtLeftHeads;
 
-	private javax.swing.JButton jbtOK;
+	private JButton jbtOK;
 
-	private javax.swing.JButton jbtRightBodies;
+	private JButton jbtRightBodies;
 
-	private javax.swing.JButton jbtRightClothes;
+	private JButton jbtRightClothes;
 
-	private javax.swing.JButton jbtRightHairs;
+	private JButton jbtRightHairs;
 
-	private javax.swing.JButton jbtRightHeads;
+	private JButton jbtRightHeads;
 
-	private javax.swing.JLabel jlblBodies;
+	private JLabel jlblBodies;
 
-	private javax.swing.JLabel jlblClothes;
+	private JLabel jlblClothes;
 
-	private javax.swing.JLabel jlblFinalResult;
+	private JLabel jlblFinalResult;
 
-	private javax.swing.JLabel jlblHairs;
+	private JLabel jlblHairs;
 
-	private javax.swing.JLabel jlblHeads;
+	private JLabel jlblHeads;
 
-	private javax.swing.JPanel jpanel;
+	private JPanel jpanel;
 
-	private javax.swing.JSlider jsliderAnimation;
+	private JSlider jsliderAnimation;
 
 	// End of variables declaration//GEN-END:variables
 
@@ -646,11 +657,11 @@ public class OutfitDialog extends javax.swing.JDialog {
 						String name = Integer.toString(bodies_index + clothes_index * 100 + heads_index * 100 * 100
 						        + hairs_index * 100 * 100 * 100);
 						System.out.println("Creating " + name + ".png");
-						Image image = new java.awt.image.BufferedImage(48, 64,
-						        java.awt.image.BufferedImage.TYPE_INT_ARGB);
-						drawFinalPlayer(image.getGraphics());
+						Image image = new BufferedImage(48, 64,
+						        BufferedImage.TYPE_INT_ARGB);
+						drawFinalPlayer(getGraphics());
 						try {
-							javax.imageio.ImageIO.write((java.awt.image.RenderedImage) image, "png", new File(
+							ImageIO.write((RenderedImage) image, "png", new File(
 							        "outfits\\" + name + ".png"));
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -661,7 +672,7 @@ public class OutfitDialog extends javax.swing.JDialog {
 		}
 	}
 
-	//  public OutfitDialog(java.awt.Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
+	//  public OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
 	public static void main(String args[]) {
 		//TODO: the outfit is hardcoded because I was not able to find a way of iterating the jar resources to find the existing outfits. :(
 		new OutfitDialog(null, "Stendhal - Choose outfit", 0, 23, 16, 11, 24).generateAllOutfits();
