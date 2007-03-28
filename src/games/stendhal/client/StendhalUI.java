@@ -88,11 +88,27 @@ public abstract class StendhalUI {
 
 
 	/**
+	 * Get the current game screen height.
+	 *
+	 * @return	The height.
+	 */
+	public abstract int getHeight();
+
+
+	/**
 	 * Get the game screen.
 	 *
 	 * @return	The game screen.
 	 */
 	public abstract GameScreen getScreen();
+
+
+	/**
+	 * Get the current game screen width.
+	 *
+	 * @return	The width.
+	 */
+	public abstract int getWidth();
 
 
 	/**

@@ -97,6 +97,8 @@ public class j2DClient extends StendhalUI {
 
 	private InGameGUI inGameGUI;
 
+	private KTextEdit gameLog;
+
 	private boolean gameRunning = true;
 
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
@@ -257,13 +259,13 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * Game log
 		 */
-		KTextEdit log = new KTextEdit();
-		log.setPreferredSize(new Dimension(SCREEN_WIDTH, 200));
-		client.setGameLog(log);
+		gameLog = new KTextEdit();
+		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 200));
+		client.setGameLog(gameLog);
 
 
 		if(System.getProperty("stendhal.onewindow") != null) {
-			content.add(log);
+			content.add(gameLog);
 			frame.pack();
 		} else {
 			/*
@@ -273,7 +275,7 @@ public class j2DClient extends StendhalUI {
 
 			content = dialog.getContentPane();
 			content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-			content.add(log);
+			content.add(gameLog);
 
 			dialog.addFocusListener(new FocusListener() {
 				public void focusGained(FocusEvent e) {
@@ -650,7 +652,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 */
 	public void addEventLine(String text) {
-		client.addEventLine(text);
+		gameLog.addLine(text);
 	}
 
 
@@ -659,7 +661,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 */
 	public void addEventLine(String header, String text) {
-		client.addEventLine(header, text);
+		gameLog.addLine(header, text);
 	}
 
 
@@ -668,7 +670,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 */
 	public void addEventLine(String text, Color color) {
-		client.addEventLine(text, color);
+		gameLog.addLine(text, color);
 	}
 
 
@@ -677,7 +679,18 @@ public class j2DClient extends StendhalUI {
 	 *
 	 */
 	public void addEventLine(String header, String text, Color color) {
-		client.addEventLine(header, text, color);
+		gameLog.addLine(header, text, color);
+	}
+
+
+	/**
+	 * Get the current game screen height.
+	 *
+	 * @return	The height.
+	 */
+	public int getHeight()
+	{
+		return SCREEN_HEIGHT;
 	}
 
 
@@ -688,6 +701,17 @@ public class j2DClient extends StendhalUI {
 	 */
 	public GameScreen getScreen() {
 		return screen;
+	}
+
+
+	/**
+	 * Get the current game screen width.
+	 *
+	 * @return	The width.
+	 */
+	public int getWidth()
+	{
+		return SCREEN_WIDTH;
 	}
 
 
@@ -709,9 +733,9 @@ public class j2DClient extends StendhalUI {
 			if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
 				veryFastKeyEvents[veryFastKeyEvents.length - 1]++;
 				if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2) && (veryFastKeyEvents[2] > 2)) {
-					client.addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
+					addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
 
-					client.addEventLine(
+					addEventLine(
 				                "Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution",
 				                Color.BLACK);
 				}
