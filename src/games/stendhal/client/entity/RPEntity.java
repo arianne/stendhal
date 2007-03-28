@@ -46,17 +46,22 @@ import marauroa.common.game.RPObject;
  */
 public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEvent, KillEvent, AttackEvent {
 
-	private static Sprite hitted;
-
-	private static Sprite blocked;
-
-	private static Sprite missed;
 
 	private static Map<String, Sprite[]> blade_strikes;
 
 	private int frameBladeStrike;
 
 	private boolean showBladeStrike;
+	
+	private static Sprite eating=null;
+
+	private static Sprite poisoned=null;
+	
+	private static Sprite hitted=null;
+
+	private static Sprite blocked=null;
+
+	private static Sprite missed=null;
 
 	static {
 		SpriteStore st = SpriteStore.get();
@@ -64,27 +69,16 @@ public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEv
 		hitted = st.getSprite("data/sprites/combat/hitted.png");
 		blocked = st.getSprite("data/sprites/combat/blocked.png");
 		missed = st.getSprite("data/sprites/combat/missed.png");
-
+		//	sprite to mark player killers. Not used yet.
+		// private static Sprite pk;
+		// pk = st.getSprite("data/sprites/ideas/pk.png");
+		eating = st.getSprite("data/sprites/ideas/eat.png");
+		poisoned = st.getSprite("data/sprites/ideas/poisoned.png");
 		blade_strikes = new HashMap<String, Sprite[]>();
 		blade_strikes.put("move_up", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
 		blade_strikes.put("move_right", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
 		blade_strikes.put("move_down", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
 		blade_strikes.put("move_left", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
-	}
-
-	// sprite to mark player killers. Not used yet.
-	// private static Sprite pk;
-
-	private static Sprite eating;
-
-	private static Sprite poisoned;
-
-	static {
-		SpriteStore st = SpriteStore.get();
-
-		// pk = st.getSprite("data/sprites/ideas/pk.png");
-		eating = st.getSprite("data/sprites/ideas/eat.png");
-		poisoned = st.getSprite("data/sprites/ideas/poisoned.png");
 	}
 
 	private enum Resolution {
