@@ -23,7 +23,7 @@ class TiledMap {
         }           
 
         foreach($this->layers as $layer) {
-            echo ' <layer name="'.$layer[0].'" width="64" height="64">'."\n";
+            echo ' <layer name="'.$layer[0].'" width="'.$this->width.'" height="'.$this->height.'">'."\n";
             echo '   <data encoding="base64" compression="gzip">'."\n";
             
             $data='';
