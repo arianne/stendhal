@@ -1848,7 +1848,7 @@
 ../../zelda_dungeon_1_chipset.png:391:1832:../../tileset/item/gothic/coffin.png:3
 ../../zelda_dungeon_1_chipset.png:392:1833:../../tileset/ground/rock/green_crystal.png:3
 ../../zelda_dungeon_1_chipset.png:393:1834:../../tileset/ground/rock/green_crystal.png:4
-../../zelda_dungeon_1_chipset.png:394:1835:../../tileset/ground/rock/green_crystal.png:5
+../../zelda_dungeon_1_chipset.png:394:1835:../../tileset/ground/rock/green_crystal.png:2
 ../../zelda_dungeon_1_chipset.png:395:1836:../../tileset/plant/bush/various_small.png:2
 ../../zelda_dungeon_1_chipset.png:396:1837:../../tileset/item/furniture/light/iron_lamp.png:1
 ../../zelda_dungeon_1_chipset.png:397:1838::
