@@ -1822,7 +1822,7 @@
 ../../zelda_dungeon_1_chipset.png:365:1806:../../tileset/plant/bush/various_small.png:1
 ../../zelda_dungeon_1_chipset.png:366:1807:../../tileset/item/furniture/light/iron_lamp.png:0
 ../../zelda_dungeon_1_chipset.png:367:1808::
-../../zelda_dungeon_1_chipset.png:368:1809:../../tileset/item/blood/floor_stains.png:0
+../../zelda_dungeon_1_chipset.png:368:1809:../../tileset/item/blood/floor_stain.png:0
 ../../zelda_dungeon_1_chipset.png:369:1810:../../tileset/item/blood/floor_stains_2.png:3
 ../../zelda_dungeon_1_chipset.png:370:1811:../../tileset/building/wall/earthen_3.png:12
 ../../zelda_dungeon_1_chipset.png:371:1812:../../tileset/building/wall/earthen_3.png:13
