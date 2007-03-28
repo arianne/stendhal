@@ -52,6 +52,12 @@ public class SoundObject extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 
+	public SoundObject(Point2D soundPos, int radius) {
+		x = soundPos.getX();
+		y = soundPos.getY();
+		audibleRange = radius;
+    }
+
 	@Override
 	public Rectangle2D getArea() {
 		return null;
