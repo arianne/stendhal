@@ -13,7 +13,6 @@ import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptInGroovy;
 import games.stendhal.server.scripting.ScriptingNPC;
-import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,13 +23,18 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 /**
- * code for abstract/int_admin_playground
+ * code for abstract/int_admin_playground which creates a NPC to help testers.
  * 
  * @author hendrik
  */
 public class IL0_AdminPlayground  implements ZoneConfigurator {
 	
-	// TODO
+	// WARNING: This code has been ported from a groovy script to java on a very low level.
+	//          It compiles fine, but will throw an NullPointerException at runtime because of
+	//          the missing "game" attribute. It needs some refactoring.
+	
+	
+	// TODO remove this dependency
 	private static ScriptInGroovy game = null;
 	
 	/**
@@ -42,11 +46,6 @@ public class IL0_AdminPlayground  implements ZoneConfigurator {
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildDebuggera(zone, attributes);
 	}
-
-
-/**
- * Creates a NPC to help testers.
- */
 
 
 boolean debuggeraEnabled = false;
