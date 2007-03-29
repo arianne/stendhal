@@ -373,6 +373,17 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 		zone.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
 
+		/*-
+		 *- NEW CODE (not till zone xml files updated with coords)
+		 *-
+		if(desc.isInterior()) {
+			zone.setPosition();
+		} else {
+			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
+		}
+		 *-
+		 */
+
 		if (zonedata.isInterior()) {
 			zone.setPosition();
 		} else {
@@ -393,19 +404,74 @@ public class ZonesXMLLoader extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		String s;
+		int level;
 		int x;
 		int y;
 		String zone;
+		String file;
 		Object reference;
 
 		if (qName.equals("zones")) {
 			// Ignore
 		} else if (qName.equals("zone")) {
-			if ((s = attrs.getValue("name")) == null) {
+			if ((zone = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed zone");
-			} else {
-				zdesc = new ZoneDesc(s, attrs.getValue("file"));
+				return;
 			}
+
+			if ((file = attrs.getValue("file")) == null) {
+				logger.warn("Zone [" + zone + "] without 'file' attribute");
+				return;
+			}
+
+			/*
+			 * Consistency check
+			 */
+			if (!file.equals(zone.replace("-", "sub_") + ".xstend")) {
+				logger.warn("Not the expected filename for zone " + zone + ": " + file);
+			}
+
+			/**
+			 * Interior zones don't have levels (why not?)
+			 */
+			if ((s = attrs.getValue("level")) == null) {
+				level = ZoneDesc.UNSET;
+				x = ZoneDesc.UNSET;
+				y = ZoneDesc.UNSET;
+			} else {
+				try {
+					level = Integer.parseInt(s);
+				} catch (NumberFormatException ex) {
+					logger.warn("Zone [" + zone + "] has invalid level: " + s);
+					return;
+				}
+
+				if ((s = attrs.getValue("x")) == null) {
+					logger.warn("Zone [" + zone + "] without x coordinate");
+					return;
+				}
+
+				try {
+					x = Integer.parseInt(s);
+				} catch (NumberFormatException ex) {
+					logger.warn("Zone [" + zone + "] has invalid x coordinate: " + s);
+					return;
+				}
+
+				if ((s = attrs.getValue("y")) == null) {
+					logger.warn("Zone [" + zone + "] without y coordinate");
+					return;
+				}
+
+				try {
+					y = Integer.parseInt(s);
+				} catch (NumberFormatException ex) {
+					logger.warn("Zone [" + zone + "] has invalid y coordinate: " + s);
+					return;
+				}
+			}
+
+			zdesc = new ZoneDesc(zone, file, level, x, y);
 		} else if (qName.equals("title")) {
 			content.setLength(0);
 		} else if (qName.equals("configurator")) {
@@ -619,6 +685,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 * A zone descriptor.
 	 */
 	protected static class ZoneDesc {
+		public static final int	UNSET	= Integer.MIN_VALUE;
 
 		protected String name;
 
@@ -626,19 +693,20 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 		protected String title;
 
+		protected int level;
+
+		protected int x;
+
+		protected int y;
+
 		protected ArrayList<ZoneSetupDesc> descriptors;
 
-		public ZoneDesc(String name, String file) {
+		public ZoneDesc(String name, String file, int level, int x, int y) {
 			this.name = name;
-
-			/*
-			 * XXX - Temp check
-			 */
-			if (!file.equals(name.replace("-", "sub_") + ".xstend")) {
-				logger.warn("Not the expected filename for zone " + name + ": " + file);
-			}
-
 			this.file = file;
+			this.level = level;
+			this.x = x;
+			this.y = y;
 
 			descriptors = new ArrayList<ZoneSetupDesc>();
 		}
@@ -664,6 +732,14 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 
 		/**
+		 * Get the level.
+		 *
+		 */
+		public int getLevel() {
+			return level;
+		}
+
+		/**
 		 * Get the zone name.
 		 *
 		 */
@@ -685,6 +761,26 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		public String getTitle() {
 			return title;
+		}
+
+		/**
+		 * Get the X coordinate.
+		 *
+		 */
+		public int getX() {
+			return x;
+		}
+
+		/**
+		 * Get the Y coordinate.
+		 *
+		 */
+		public int getY() {
+			return y;
+		}
+
+		public boolean isInterior() {
+			return (getLevel() == UNSET);
 		}
 
 		/**
