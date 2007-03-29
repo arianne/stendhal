@@ -2876,9 +2876,9 @@
 ../../zelda_building_0_tileset.png:257:2861:../../tileset/building/decoration/library_banner.png:0
 ../../zelda_building_0_tileset.png:258:2862:../../tileset/building/decoration/library_banner.png:1
 ../../zelda_building_0_tileset.png:259:2863:../../tileset/building/decoration/library_banner.png:2
-../../zelda_building_0_tileset.png:260:2864:../../tileset/building/window/window_long:0
-../../zelda_building_0_tileset.png:261:2865:../../tileset/building/window/window_long:1
-../../zelda_building_0_tileset.png:262:2866:../../tileset/building/window/window_long:2
+../../zelda_building_0_tileset.png:260:2864:../../tileset/building/window/window_long.png:0
+../../zelda_building_0_tileset.png:261:2865:../../tileset/building/window/window_long.png:1
+../../zelda_building_0_tileset.png:262:2866:../../tileset/building/window/window_long.png:2
 ../../zelda_building_0_tileset.png:263:2867:../../tileset/building/door/closed_with_key.png:0
 ../../zelda_building_0_tileset.png:264:2868:../../tileset/building/door/closed.png:0
 ../../zelda_building_0_tileset.png:265:2869:../../tileset/building/roof/yellow.png:0
