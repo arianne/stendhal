@@ -2544,9 +2544,9 @@
 ../../zelda_objects_chipset.png:127:2529::
 ../../zelda_objects_chipset.png:128:2530::
 ../../zelda_objects_chipset.png:129:2531::
-../../zelda_objects_chipset.png:130:2532:../../tileset/logic/creature/arandula.png:0
-../../zelda_objects_chipset.png:131:2533:../../tileset/logic/creature/resource.png:0
-../../zelda_objects_chipset.png:132:2534:../../tileset/logic/creature/resource.png:1
+../../zelda_objects_chipset.png:130:2532:../../tileset/logic/item/arandula.png:0
+../../zelda_objects_chipset.png:131:2533:../../tileset/logic/item/resources.png:0
+../../zelda_objects_chipset.png:132:2534:../../tileset/logic/item/resources.png:1
 ../../zelda_objects_chipset.png:133:2535::
 ../../zelda_objects_chipset.png:134:2536::
 ../../zelda_objects_chipset.png:135:2537::
