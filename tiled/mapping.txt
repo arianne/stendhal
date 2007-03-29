@@ -3920,7 +3920,7 @@
 ../../zelda_interior_1_chipset.png:341:3905:../../tileset/building/window/broken_window.png:0
 ../../zelda_interior_1_chipset.png:342:3906:../../tileset/building/window/broken_window.png:1
 ../../zelda_interior_1_chipset.png:343:3907:../../tileset/object/stalactite.png:0
-../../zelda_interior_1_chipset.png:344:3908:../../tileset/item/furniture/clock.png:0
+../../zelda_interior_1_chipset.png:344:3908:../../tileset/item/furniture/clocl/wooden_clock.png:0
 ../../zelda_interior_1_chipset.png:345:3909:../../tileset/item/furniture/table/long_front_on.png:1
 ../../zelda_interior_1_chipset.png:346:3910:../../tileset/item/pot/barrel.png:1
 ../../zelda_interior_1_chipset.png:347:3911:../../tileset/item/furniture/chair/stool.png:0
@@ -3950,7 +3950,7 @@
 ../../zelda_interior_1_chipset.png:371:3935:../../tileset/building/window/broken_window.png:2
 ../../zelda_interior_1_chipset.png:372:3936:../../tileset/building/window/broken_window.png:3
 ../../zelda_interior_1_chipset.png:373:3937:../../tileset/object/stalactite.png:1
-../../zelda_interior_1_chipset.png:374:3938:../../tileset/item/furniture/clock.png:1
+../../zelda_interior_1_chipset.png:374:3938:../../tileset/item/furniture/clock/wooden_clock.png:1
 ../../zelda_interior_1_chipset.png:375:3939:../../tileset/item/furniture/table/long_front_on.png:2
 ../../zelda_interior_1_chipset.png:376:3940:../../tileset/item/pot/box.png:0
 ../../zelda_interior_1_chipset.png:377:3941:../../tileset/plant/indoor/flower_vase.png:0
