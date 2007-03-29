@@ -110,6 +110,12 @@ function startElement($parser, $name, $attrs) {
 
 function getAmountOfTiles($tileset) {
     $tileset=ereg_replace('../../','',$tileset);
+
+    if(!file_exists($tileset)) {
+	echo "ERROR: Tileset not found ".$tileset."\n";
+	exit(1);
+    }
+    
     list($width, $height) = getimagesize($tileset);
     return ($height/32)*($width/32);
 }
@@ -218,5 +224,5 @@ if(sizeof($argv)==1) {
 
 list($oldmapping,$mapping)=loadMapping("mapping.txt");
 loadTMX($argv[1]);
-$map->buildXML();
+//$map->buildXML();
 ?>
