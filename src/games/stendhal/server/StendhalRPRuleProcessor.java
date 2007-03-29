@@ -20,7 +20,7 @@ import games.stendhal.server.actions.AwayAction;
 import games.stendhal.server.actions.BuddyAction;
 import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.actions.DisplaceAction;
-import games.stendhal.server.actions.EquipmentAction;
+import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.FaceAction;
 import games.stendhal.server.actions.LookAction;
 import games.stendhal.server.actions.MoveAction;
