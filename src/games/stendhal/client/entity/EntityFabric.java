@@ -44,7 +44,13 @@ public class EntityFabric {
 			String eclass = null;
 			if (object.has("class")) {
 				eclass = object.get("class");
-			}			
+			}
+
+			// TODO: remove this hack and adjust EntityMap after release of 0.59
+			if (type.equals("creature") && object.has("width") && object.has("height")) {
+				return new ResizeableCreature(object);
+			}
+
 			Class entityClass = EntityMap.getClass(type, eclass);
 
 			if (entityClass == null) {
