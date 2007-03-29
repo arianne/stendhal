@@ -18,6 +18,7 @@ next time.
 <!-- Clubs_section -->
 <!-- Ranged_section -->
 <!-- Projectiles_section -->
+<!-- Missiles_section -->
 <!-- Shield_section -->
 <!-- Armor_section -->
 <!-- Helmet_section -->
@@ -2254,7 +2255,23 @@ Makes players more offensive
 	
 	<item name="wool">
       <type class="resource" subclass="wool"/>
-	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+	  <description>You see wool.  It was recently shorn.</description>
+	  <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="2"/>
+      <equipable>
+        <slot name="lhand"/>
+		<slot name="rhand"/>
+		<slot name="bag"/>
+      </equipable>
+    </item>
+	
+	<item name="yarn">
+      <type class="resource" subclass="yarn"/>
+	  <description>You see a ball of yarn. It was spun with care.</description>
+	  <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <attributes>
         <quantity value="1"/>
       </attributes>
@@ -2268,6 +2285,7 @@ Makes players more offensive
 	
 	<item name="cloth">
       <type class="resource" subclass="cloth"/>
+	  <description>You see a roll of cloth. It is of first-class quality.</description>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
       <attributes>
         <quantity value="1"/>
@@ -2503,6 +2521,8 @@ Makes players more offensive
 			<!-- TODO: create ring slot -->
 		</equipable>
 	</item>
+	
+	
 	
 <!-- Scrolls_section -->
 	
