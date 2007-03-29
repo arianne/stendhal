@@ -24,7 +24,7 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 
-public class MoveAction extends ActionListener {
+public class MoveAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(MoveAction.class);
 
@@ -34,7 +34,6 @@ public class MoveAction extends ActionListener {
 		StendhalRPRuleProcessor.register("moveto", move);
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "move");
 

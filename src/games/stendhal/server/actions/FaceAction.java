@@ -21,7 +21,7 @@ import games.stendhal.server.entity.player.Player;
 
 import marauroa.common.Log4J;
 
-public class FaceAction extends ActionListener {
+public class FaceAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(FaceAction.class);
 
@@ -29,7 +29,6 @@ public class FaceAction extends ActionListener {
 		StendhalRPRuleProcessor.register("face", new FaceAction());
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "face");
 

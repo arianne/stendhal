@@ -24,7 +24,7 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public class AttackAction extends ActionListener {
+public class AttackAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(AttackAction.class);
 
@@ -32,7 +32,6 @@ public class AttackAction extends ActionListener {
 		StendhalRPRuleProcessor.register("attack", new AttackAction());
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "attack");
 		if (action.has("target")) {

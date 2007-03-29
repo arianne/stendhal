@@ -27,7 +27,7 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
-public class PlayersQuery extends ActionListener {
+public class PlayersQuery implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(PlayersQuery.class);
 
@@ -37,7 +37,6 @@ public class PlayersQuery extends ActionListener {
 		StendhalRPRuleProcessor.register("where", query);
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("who")) {
 			onWho(player, action);

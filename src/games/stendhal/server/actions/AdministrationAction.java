@@ -47,7 +47,7 @@ import org.apache.log4j.Logger;
 /**
  * Most /commands for admins are handled here. 
  */
-public class AdministrationAction extends ActionListener {
+public class AdministrationAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(AdministrationAction.class);
 
@@ -131,7 +131,6 @@ public class AdministrationAction extends ActionListener {
 		return true;
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 
 		String type = action.get("type");

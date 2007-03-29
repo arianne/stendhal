@@ -24,7 +24,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class LookAction extends ActionListener {
+public class LookAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(LookAction.class);
 
@@ -32,7 +32,6 @@ public class LookAction extends ActionListener {
 		StendhalRPRuleProcessor.register("look", new LookAction());
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "look");
 

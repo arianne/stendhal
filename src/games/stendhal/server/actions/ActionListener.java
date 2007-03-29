@@ -15,7 +15,7 @@ package games.stendhal.server.actions;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
 
-public abstract class ActionListener {
+public interface ActionListener {
 
 	/** callback for the registered action */
 	public abstract void onAction(Player player, RPAction action);

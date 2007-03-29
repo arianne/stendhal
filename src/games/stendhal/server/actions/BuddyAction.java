@@ -18,7 +18,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import org.apache.log4j.Logger;
 
-public class BuddyAction extends ActionListener {
+public class BuddyAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(BuddyAction.class);
 
@@ -30,7 +30,6 @@ public class BuddyAction extends ActionListener {
 		StendhalRPRuleProcessor.register("unignore", buddy);
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("addbuddy")) {
 			onAddBuddy(player, action);

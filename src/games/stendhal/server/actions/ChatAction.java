@@ -31,7 +31,7 @@ import org.apache.log4j.Logger;
 /**
  * Processes /chat, /tell (/msg) and /support
  */
-public class ChatAction extends ActionListener {
+public class ChatAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(ChatAction.class);
 
@@ -53,7 +53,6 @@ public class ChatAction extends ActionListener {
 		logCleaner.start();
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("chat")) {
 			onChat(player, action);

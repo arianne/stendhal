@@ -19,7 +19,7 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
-public class StopAction extends ActionListener {
+public class StopAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(StopAction.class);
 
@@ -27,7 +27,6 @@ public class StopAction extends ActionListener {
 		StendhalRPRuleProcessor.register("stop", new StopAction());
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "stop");
 

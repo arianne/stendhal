@@ -20,16 +20,12 @@ import games.stendhal.server.entity.player.Player;
 /**
  * Process /away commands.
  */
-public class AwayAction extends ActionListener {
+public class AwayAction implements ActionListener {
 
 	/**
 	 * Logger.
 	 */
 	private static final Logger logger = Log4J.getLogger(AwayAction.class);
-
-	//
-	// AwayAction
-	//
 
 	/**
 	 * Registers action.
@@ -59,17 +55,12 @@ public class AwayAction extends ActionListener {
 		Log4J.finishMethod(logger, "away");
 	}
 
-	//
-	// ActionListener
-	//
-
 	/**
 	 * Handle client action.
 	 *
 	 * @param	player		The player.
 	 * @param	action		The action.
 	 */
-	@Override
 	public void onAction(Player player, RPAction action) {
 		if (action.get("type").equals("away")) {
 			onAway(player, action);

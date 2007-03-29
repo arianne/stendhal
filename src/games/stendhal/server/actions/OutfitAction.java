@@ -20,7 +20,7 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
-public class OutfitAction extends ActionListener {
+public class OutfitAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(OutfitAction.class);
 
@@ -28,7 +28,6 @@ public class OutfitAction extends ActionListener {
 		StendhalRPRuleProcessor.register("outfit", new OutfitAction());
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "outfit");
 

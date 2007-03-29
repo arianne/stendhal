@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
-public abstract class StendhalServerExtension extends ActionListener {
+public abstract class StendhalServerExtension implements ActionListener {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalServerExtension.class);
@@ -39,7 +39,6 @@ public abstract class StendhalServerExtension extends ActionListener {
 		return (null);
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		return;
 	}

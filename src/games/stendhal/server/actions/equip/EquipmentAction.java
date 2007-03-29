@@ -57,7 +57,7 @@ import org.apache.log4j.Logger;
  *    x            - the x-coordinate on the ground  
  *    y            - the y-coordinate on the ground  
  */
-public class EquipmentAction extends ActionListener {
+public class EquipmentAction implements ActionListener {
 
 	static final Logger logger = Log4J.getLogger(EquipmentAction.class);
 
@@ -82,7 +82,6 @@ public class EquipmentAction extends ActionListener {
 		validContainerClassesList = Arrays.asList(validContainerClasses);
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to

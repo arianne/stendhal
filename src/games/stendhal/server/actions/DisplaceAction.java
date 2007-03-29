@@ -25,7 +25,7 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public class DisplaceAction extends ActionListener {
+public class DisplaceAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(DisplaceAction.class);
 
@@ -33,7 +33,6 @@ public class DisplaceAction extends ActionListener {
 		StendhalRPRuleProcessor.register("displace", new DisplaceAction());
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "displace");
 		if (action.has("baseitem")) {
