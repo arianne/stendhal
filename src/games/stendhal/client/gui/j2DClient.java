@@ -32,6 +32,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
@@ -67,9 +68,6 @@ import org.apache.log4j.Logger;
 public class j2DClient extends StendhalUI {
 
 	private static final long serialVersionUID = 3356310866399084117L;
-
-	/** height of the chat line */
-	private static final int CHAT_LINE_SIZE = 20;
 
 	/** width of the game screen (without the chat line) */
 	public static int SCREEN_WIDTH;
@@ -443,7 +441,7 @@ public class j2DClient extends StendhalUI {
 			logger.debug("Move objects");
 			gameObjects.move(delta);
 
-			if (frame.getState() != JFrame.ICONIFIED) {
+			if (frame.getState() != Frame.ICONIFIED) {
 				logger.debug("Draw screen");
 				inGameGUI.draw(screen);
 				rotateKeyEventCounters();
@@ -664,6 +662,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return Returns the window toolkit baseframe.
 	 */
+	@Override
 	public WtBaseframe getFrame() {
 		return inGameGUI.getFrame();
 	}
@@ -673,6 +672,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	Returns <code>true</code> if down.
 	 */
+	@Override
 	public boolean isAltDown() {
 		return altDown;
 	}
@@ -682,6 +682,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	Returns <code>true</code> if down.
 	 */
+	@Override
 	public boolean isCtrlDown() {
 		return ctrlDown;
 	}
@@ -691,6 +692,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	Returns <code>true</code> if down.
 	 */
+	@Override
 	public boolean isShiftDown() {
 		return shiftDown;
 	}
@@ -704,6 +706,7 @@ public class j2DClient extends StendhalUI {
 	 * Add an event line.
 	 *
 	 */
+	@Override
 	public void addEventLine(String text) {
 		gameLog.addLine(text);
 	}
@@ -713,6 +716,7 @@ public class j2DClient extends StendhalUI {
 	 * Add an event line.
 	 *
 	 */
+	@Override
 	public void addEventLine(String header, String text) {
 		gameLog.addLine(header, text);
 	}
@@ -722,6 +726,7 @@ public class j2DClient extends StendhalUI {
 	 * Add an event line.
 	 *
 	 */
+	@Override
 	public void addEventLine(String text, Color color) {
 		gameLog.addLine(text, color);
 	}
@@ -731,6 +736,7 @@ public class j2DClient extends StendhalUI {
 	 * Add an event line.
 	 *
 	 */
+	@Override
 	public void addEventLine(String header, String text, Color color) {
 		gameLog.addLine(header, text, color);
 	}
@@ -741,6 +747,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	The height.
 	 */
+	@Override
 	public int getHeight()
 	{
 		return SCREEN_HEIGHT;
@@ -752,6 +759,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	The inspector.
 	 */
+	@Override
 	public Inspector getInspector() {
 		return inGameGUI.getGround();
 	}
@@ -762,6 +770,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	The game screen.
 	 */
+	@Override
 	public GameScreen getScreen() {
 		return screen;
 	}
@@ -772,8 +781,8 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @return	The width.
 	 */
-	public int getWidth()
-	{
+	@Override
+	public int getWidth() {
 		return SCREEN_WIDTH;
 	}
 
@@ -781,6 +790,7 @@ public class j2DClient extends StendhalUI {
 	/**
 	 * Request quit confirmation from the user.
 	 */
+	@Override
 	public void requestQuit() {
 		inGameGUI.showQuitDialog();
 	}
@@ -791,6 +801,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @param	text		The text.
 	 */
+	@Override
 	public void setChatLine(String text) {
 		playerChatText.setText(text);
 	}
