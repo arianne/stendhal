@@ -57,7 +57,6 @@ public class TeleportMoveExtension extends StendhalServerExtension implements Ac
 		// implemented as /commands that are handled onAction
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		String type = action.get("type");
 

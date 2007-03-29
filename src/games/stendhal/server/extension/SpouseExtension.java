@@ -62,7 +62,6 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 		// implemented as /commands that are handled onAction
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		String type = action.get("type");
 

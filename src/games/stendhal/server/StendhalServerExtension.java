@@ -7,7 +7,6 @@
  */
 package games.stendhal.server;
 
-import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
@@ -18,7 +17,7 @@ import marauroa.common.game.RPAction;
 
 import org.apache.log4j.Logger;
 
-public abstract class StendhalServerExtension implements ActionListener {
+public abstract class StendhalServerExtension {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalServerExtension.class);
@@ -37,10 +36,6 @@ public abstract class StendhalServerExtension implements ActionListener {
 
 	public String getMessage(String name) {
 		return (null);
-	}
-
-	public void onAction(Player player, RPAction action) {
-		return;
 	}
 
 	public static StendhalServerExtension getInstance(String name) {

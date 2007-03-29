@@ -117,7 +117,6 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 		return (null);
 	}
 
-	@Override
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onScript");
 
