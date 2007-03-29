@@ -2781,7 +2781,7 @@
 		</equips>
 		<ai>
 			<says>
-				<noise value="You will never find the way out!"/>
+				<noise value="I am the king of this area!"/>
 			</says>
 			<profile name="human"/>
 			<profile name="offensive"/>
