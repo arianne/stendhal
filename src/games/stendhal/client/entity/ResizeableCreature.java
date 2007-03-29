@@ -33,13 +33,17 @@ public class ResizeableCreature extends Creature {
 	 */
 	public ResizeableCreature(RPObject object) {
 		super(object);
-		
 	}
 
 	@Override
 	protected void buildAnimations(RPObject object) {
-//		width = 1.5; this wont solve the problem either but this is what causes the problem
-//		height = 1.0f;
+		// this method is invoked by one of the parents constructors before 
+		// our attributes are initalized
+		if (height == 0) {
+			width = object.getDouble("width");
+			height = object.getDouble("height");
+		}
+
 		SpriteStore store = SpriteStore.get();
 		Sprite creature = loadAnimationSprite(object);
 
@@ -58,32 +62,29 @@ public class ResizeableCreature extends Creature {
 
 	@Override
     public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
-	    super.onChangedAdded(base, diff);
 	    boolean rebuildAnimations = false;
 		if (diff.has("width")) {
 			width = diff.getDouble("width");
 			rebuildAnimations = true;
-		} else if (base.has("width")) {
-			width = base.getDouble("width");
-			rebuildAnimations = true;
 		}
 		if (diff.has("height")) {
 			height = diff.getDouble("height");
-			rebuildAnimations = true;
-		} else if (base.has("height")) {
-			height = base.getDouble("height");
 			rebuildAnimations = true;
 		}
 		if (diff.has("metamorphosis")) {
 			metamorphosis = diff.get("metamorphosis");
 			rebuildAnimations = true;
 		} else if (base.has("metamorphosis")) {
-			metamorphosis = base.get("metamorphosis");
-			rebuildAnimations = true;
+			if (metamorphosis != base.get("metamorphosis")) {
+				metamorphosis = base.get("metamorphosis");
+				rebuildAnimations = true;
+			}
 		}
-		
-		if (rebuildAnimations) {
-			buildAnimations(base);
+
+	    super.onChangedAdded(base, diff);
+
+	    if (rebuildAnimations) {
+			buildAnimations(super.rpObject);
 		}
     }
 
