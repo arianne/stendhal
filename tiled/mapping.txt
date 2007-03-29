@@ -2846,11 +2846,11 @@
 ../../zelda_building_0_tileset.png:227:2831:../../tileset/item/pot/pot_golden_centred.png:0
 ../../zelda_building_0_tileset.png:228:2832:../../tileset/item/pot/pot_golden_centred.png:1
 ../../zelda_building_0_tileset.png:229:2833:../../tileset/item/pot/pot_golden_centred.png:2
-../../zelda_building_0_tileset.png:230:2834:../../tileset/building/window_left.png:0
-../../zelda_building_0_tileset.png:231:2835:../../tileset/building/window_left.png:1
+../../zelda_building_0_tileset.png:230:2834:../../tileset/building/window/window_left.png:0
+../../zelda_building_0_tileset.png:231:2835:../../tileset/building/window/window_left.png:1
 ../../zelda_building_0_tileset.png:232:2836::
 ../../zelda_building_0_tileset.png:233:2837:../../tileset/building/window_right:0
-../../zelda_building_0_tileset.png:234:2838:../../tileset/building/window_right:1r
+../../zelda_building_0_tileset.png:234:2838:../../tileset/building/window_right:1
 ../../zelda_building_0_tileset.png:235:2839:../../tileset/building/roof/red.png:15
 ../../zelda_building_0_tileset.png:236:2840:../../tileset/building/roof/red.png:16
 ../../zelda_building_0_tileset.png:237:2841:../../tileset/building/roof/red.png:17
@@ -3839,7 +3839,7 @@
 ../../zelda_interior_1_chipset.png:260:3824:../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png:5
 ../../zelda_interior_1_chipset.png:261:3825:../../tileset/item/drink/red_wine.png:0
 ../../zelda_interior_1_chipset.png:262:3826:../../tileset/item/drink/red_wine.png:1
-../../zelda_interior_1_chipset.png:263:3827:../../tileset/plant/indoor/flower_basket.png:0
+../../zelda_interior_1_chipset.png:263:3827:../../tileset/plant/indoor/flower_baskets.png:0
 ../../zelda_interior_1_chipset.png:264:3828::
 ../../zelda_interior_1_chipset.png:265:3829::
 ../../zelda_interior_1_chipset.png:266:3830::
@@ -3869,7 +3869,7 @@
 ../../zelda_interior_1_chipset.png:290:3854:../../tileset/item/furniture/other/warmer.png:0
 ../../zelda_interior_1_chipset.png:291:3855:../../tileset/item/drink/red_wine.png:2
 ../../zelda_interior_1_chipset.png:292:3856:../../tileset/item/drink/red_wine.png:3
-../../zelda_interior_1_chipset.png:293:3857:../../tileset/plant/indoor/flower_basket.png:1
+../../zelda_interior_1_chipset.png:293:3857:../../tileset/plant/indoor/flower_baskets.png:1
 ../../zelda_interior_1_chipset.png:294:3858::
 ../../zelda_interior_1_chipset.png:295:3859::
 ../../zelda_interior_1_chipset.png:296:3860::
