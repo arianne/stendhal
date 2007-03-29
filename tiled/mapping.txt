@@ -962,8 +962,8 @@
 ../../zelda_outside_1_chipset.png:465:946:../../tileset/plant/stump/stump_brown.png:2
 ../../zelda_outside_1_chipset.png:466:947:../../tileset/plant/stump/stump_brown.png:3
 ../../zelda_outside_1_chipset.png:467:948:../../tileset/plant/cactus.png:1
-../../zelda_outside_1_chipset.png:468:949:../../tileset/plant/stump/stump_purple:2
-../../zelda_outside_1_chipset.png:469:950:../../tileset/plant/stump/stump_purple:3
+../../zelda_outside_1_chipset.png:468:949:../../tileset/plant/stump/stump_purple.png:2
+../../zelda_outside_1_chipset.png:469:950:../../tileset/plant/stump/stump_purple.png:3
 ../../zelda_outside_1_chipset.png:470:951:../../tileset/plant/stump/stump_green.png:2
 ../../zelda_outside_1_chipset.png:471:952:../../tileset/plant/stump/stump_green.png:3
 ../../zelda_outside_1_chipset.png:472:953:../../tileset/item/pot/dark_barrel.png:1

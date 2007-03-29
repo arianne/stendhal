@@ -39,7 +39,7 @@
  </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNhYWAQoQMWpiHGZQcjA+3toIc/Ru0YtWPUjlE7Ru0YtWPUjqFnB60xALBJNAbECQAA
+   H4sIAAAAAAAAABNhYWAQoQMWpiHGZQcI0NoOevhj1I5RO0btGLVj1I5RO0btGHp20BoDACrwkJLECQAA
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
@@ -47,24 +47,24 @@
    H4sIAAAAAAAAALWUsU4DMQyGk0unkygDTwB0QUxlgScAsZQFGI6FsUMntq4tsPEOfcCq3YCxjnIWPtc+54D7pV+JEttfcklufeDcpkdvweXQNXR2mFrvnSt86i+gXYJfa7+B3/1+HM1HnQ9/GFMydzRoxs1L2W3CepQh6SmkduVl0xhNyJDirFxNFcmLNax9/Ickxm/Xz3Oxj4xLOOOrgZzXtTYKayLjAfqPHRnWfrEmMu5gbCL4IoMVc8eKY35fZ07vFmdUQY/lc9a4xrD0HJptzpo44zTI62pbqzRH61DGMYydhNRK+Z+Fc1/E34W8dl4HGXFsFBJ/VMeg8Lvch33T+SipTpd9aAwubR/0O3Ll7oOuh9ahDOtcZ+AP4hfjzmr3is+3jeXeP+sN8nzrfUi8v/5LKoHFudp58Fzrf1Epb5czcmSxpLjIuAbf9Ohb8A6FkcCQxAkAAA==
   </data>
  </layer>
- <layer name="2_object" width="25" height="25">
+ <layer name="2_object" width="25" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMglEwWAEvP4Tm4aedHbZQs3X5EWxqAjuomd5QmpdGfoG5346GYTUKRsFgAgCOcM8DxAkAAA==
   </data>
  </layer>
- <layer name="3_roof" width="25" height="25">
+ <layer name="3_roof" width="25" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgoB/gYh3c5g0VsIAROx61AxMcYsSOR8EoGAWjYBSMgqEOAK/9vjjECQAA
   </data>
  </layer>
- <layer name="4_roof_add" width="25" height="25">
+ <layer name="4_roof_add" width="25" height="25" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
   </data>
  </layer>
- <layer name="objects" width="25" height="25" opacity="0.9">
+ <layer name="objects" width="25" height="25" visible="0" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIA7IM6PiUTAKRsEoGAWjYBSMglEwcAAAebS/h8QJAAA=
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
   </data>
  </layer>
  <layer name="collision" width="25" height="25" visible="0" opacity="0.25">

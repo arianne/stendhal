@@ -178,8 +178,11 @@ function cdataElement($parser, $data) {
             if($gid!=0) {
                 list($tileset, $pos)=$mapping[$gid];        
                 if($tileset=='') {
+		    global $argv;
+		    
                     list($tileset, $pos)=$oldmapping[$gid];
                     echo "MISSING: $tileset:$pos --> ".(int)($pos/30).":".($pos%30)."\n";
+		    echo "Offender map: $argv[1]\n";
                     exit(1);
                 }
             
