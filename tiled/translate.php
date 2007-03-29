@@ -17,7 +17,12 @@ class TiledMap {
             
         foreach($this->tilesets as $tileset=>$gid) {
             echo ' <tileset name="'.$tileset.'" firstgid="'.$gid.'" tilewidth="32" tileheight="32">'."\n";
-            echo '  <image source="'.$tileset.'" trans="ffffff"/>'."\n";
+            $transparency='';
+            if(strpos($tileset, "creature")===FALSE) {
+                $transparency=' trans="ffffff"';
+            }
+                
+            echo '  <image source="'.$tileset.'"'.$transparency.'/>'."\n";
             echo ' </tileset>'."\n";
         }           
 
