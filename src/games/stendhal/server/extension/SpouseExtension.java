@@ -12,6 +12,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
+import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
@@ -35,7 +36,7 @@ import org.apache.log4j.Logger;
  server_extension=groovy,http,spouse
 
  */
-public class SpouseExtension extends StendhalServerExtension {
+public class SpouseExtension extends StendhalServerExtension implements ActionListener {
 
 	private final String SPOUSE = "spouse";
 

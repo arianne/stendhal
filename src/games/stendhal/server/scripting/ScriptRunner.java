@@ -4,6 +4,7 @@ package games.stendhal.server.scripting;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalServerExtension;
+import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 
@@ -24,7 +25,7 @@ import org.apache.log4j.Logger;
  *
  * @author intensifly
  */
-public class ScriptRunner extends StendhalServerExtension {
+public class ScriptRunner extends StendhalServerExtension implements ActionListener {
 
 	private Map<String, ScriptingSandbox> scripts;
 
