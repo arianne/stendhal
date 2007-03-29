@@ -2431,14 +2431,14 @@
 ../../zelda_objects_chipset.png:14:2416:../../tileset/logic/creature/animal.png:6
 ../../zelda_objects_chipset.png:15:2417:../../tileset/logic/creature/orc.png:2
 ../../zelda_objects_chipset.png:16:2418:../../tileset/logic/creature/gargoyle.png:2
-../../zelda_objects_chipset.png:17:2419:../../tileset/logic/creature/giant.png:XXX
+../../zelda_objects_chipset.png:17:2419:../../tileset/logic/creature/giant.png:2
 ../../zelda_objects_chipset.png:18:2420:../../tileset/logic/creature/kobold.png:1
 ../../zelda_objects_chipset.png:19:2421:../../tileset/logic/creature/animal.png:4
 ../../zelda_objects_chipset.png:20:2422:../../tileset/logic/creature/troll.png:0
 ../../zelda_objects_chipset.png:21:2423:../../tileset/logic/creature/goblin.png:0
 ../../zelda_objects_chipset.png:22:2424:../../tileset/logic/creature/giant_animal.png:0
 ../../zelda_objects_chipset.png:23:2425:../../tileset/logic/creature/undead.png:9
-../../zelda_objects_chipset.png:24:2426:../../tileset/logic/creature/giant.png:XXX
+../../zelda_objects_chipset.png:24:2426:../../tileset/logic/creature/giant.png:0
 ../../zelda_objects_chipset.png:25:2427:../../tileset/logic/creature/elf.png:3
 ../../zelda_objects_chipset.png:26:2428:../../tileset/logic/creature/dwarf.png:1
 ../../zelda_objects_chipset.png:27:2429:../../tileset/logic/creature/animal.png:1
@@ -2467,7 +2467,7 @@
 ../../zelda_objects_chipset.png:50:2452:../../tileset/logic/creature/huge_animal.png:2
 ../../zelda_objects_chipset.png:51:2453:../../tileset/logic/creature/huge_animal.png:0
 ../../zelda_objects_chipset.png:52:2454:../../tileset/logic/creature/mythical_animal.png:0
-../../zelda_objects_chipset.png:53:2455:../../tileset/logic/creature/giant.png:XXX
+../../zelda_objects_chipset.png:53:2455:../../tileset/logic/creature/giant.png:1
 ../../zelda_objects_chipset.png:54:2456:../../tileset/logic/creature/gargoyle.png:3
 ../../zelda_objects_chipset.png:55:2457:../../tileset/logic/creature/gargoyle.png:1
 ../../zelda_objects_chipset.png:56:2458:../../tileset/logic/creature/gargoyle.png:0
