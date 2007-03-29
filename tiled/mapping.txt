@@ -962,8 +962,8 @@
 ../../zelda_outside_1_chipset.png:465:946:../../tileset/plant/stump/stump_brown.png:2
 ../../zelda_outside_1_chipset.png:466:947:../../tileset/plant/stump/stump_brown.png:3
 ../../zelda_outside_1_chipset.png:467:948:../../tileset/plant/cactus.png:1
-../../zelda_outside_1_chipset.png:468:949:../../tileset/plant/stump/stump_purple.png:2
-../../zelda_outside_1_chipset.png:469:950:../../tileset/plant/stump/stump_purple.png:3
+../../zelda_outside_1_chipset.png:468:949:../../tileset/plant/stump/stump_purple:2
+../../zelda_outside_1_chipset.png:469:950:../../tileset/plant/stump/stump_purple:3
 ../../zelda_outside_1_chipset.png:470:951:../../tileset/plant/stump/stump_green.png:2
 ../../zelda_outside_1_chipset.png:471:952:../../tileset/plant/stump/stump_green.png:3
 ../../zelda_outside_1_chipset.png:472:953:../../tileset/item/pot/dark_barrel.png:1
@@ -1180,7 +1180,7 @@
 ../../zelda_dungeon_0_chipset.png:203:1164:../../tileset/building/decoration/arrows.png:3
 ../../zelda_dungeon_0_chipset.png:204:1165:../../tileset/building/entrance/int_iron_bars.png:0
 ../../zelda_dungeon_0_chipset.png:205:1166:../../tileset/building/entrance/int_iron_bars.png:1
-../../zelda_dungeon_0_chipset.png:206:1167:../..../../tileset/protection.png/tileset/building/entrance/int_iron_bars.png:2
+../../zelda_dungeon_0_chipset.png:206:1167:../../tileset/building/entrance/int_iron_bars.png:2
 ../../zelda_dungeon_0_chipset.png:207:1168:../../tileset/item/furniture/light/flames.png:0
 ../../zelda_dungeon_0_chipset.png:208:1169:../../tileset/plant/stump/stump_blue_green.png:2
 ../../zelda_dungeon_0_chipset.png:209:1170:../../tileset/plant/stump/stump_blue_green.png:3
@@ -2028,7 +2028,7 @@
 ../../zelda_interior_0_chipset.png:91:2012:../../tileset/building/wall/int_wall_dark_red_corners.png:5
 ../../zelda_interior_0_chipset.png:92:2013:../../tileset/building/wall/int_wall_dark_red_corners.png:14
 ../../zelda_interior_0_chipset.png:93:2014:../../tileset/building/wall/int_wall_dark_red_corners.png:15
-../../zelda_interior_0_chipset.png:94:2015:../../tileset/item/furniture/table/grey_pale:0
+../../zelda_interior_0_chipset.png:94:2015:../../tileset/item/furniture/table/grey_pale.png:0
 ../../zelda_interior_0_chipset.png:95:2016:../../tileset/building/wall/int_wall_dark_red.png:15
 ../../zelda_interior_0_chipset.png:96:2017:../../tileset/item/furniture/table/fancy_blue_red.png:0
 ../../zelda_interior_0_chipset.png:97:2018:../../tileset/item/furniture/table/fancy_blue_red.png:1
@@ -2058,7 +2058,7 @@
 ../../zelda_interior_0_chipset.png:121:2042:../../tileset/building/window/int_windows_dark_red.png:11
 ../../zelda_interior_0_chipset.png:122:2043:../../tileset/building/wall/int_wall_dark_red.png:9
 ../../zelda_interior_0_chipset.png:123:2044:../../tileset/building/entrance/dark_red_ns_fancy.png:1
-../../zelda_interior_0_chipset.png:124:2045:../../tileset/item/furniture/table/grey_pale:2
+../../zelda_interior_0_chipset.png:124:2045:../../tileset/item/furniture/table/grey_pale.png:2
 ../../zelda_interior_0_chipset.png:125:2046:../../tileset/building/wall/int_wall_dark_red.png:7
 ../../zelda_interior_0_chipset.png:126:2047:../../tileset/item/furniture/table/fancy_blue_red.png:4
 ../../zelda_interior_0_chipset.png:127:2048:../../tileset/item/furniture/table/fancy_blue_red.png:5
@@ -2122,7 +2122,7 @@
 ../../zelda_interior_0_chipset.png:185:2106:../../tileset/building/wall/int_wall_dark_red_corners.png:9
 ../../zelda_interior_0_chipset.png:186:2107:../../tileset/item/furniture/table/grey_dark.png:0
 ../../zelda_interior_0_chipset.png:187:2108:../../tileset/item/furniture/table/grey_dark.png:1
-../../zelda_interior_0_chipset.png:188:2109:../../tileset/item/pot/flat_barrel.png:0
+../../zelda_interior_0_chipset.png:188:2109:../../tileset/item/pot/barrel_flat.png:0
 ../../zelda_interior_0_chipset.png:189:2110:../../tileset/item/furniture/table/tree_stump_table.png:2
 ../../zelda_interior_0_chipset.png:190:2111:../../tileset/item/furniture/table/tree_stump_table.png:3
 ../../zelda_interior_0_chipset.png:191:2112:../../tileset/item/furniture/table/table_with_hob.png:3
@@ -2141,9 +2141,9 @@
 ../../zelda_interior_0_chipset.png:204:2125:../../tileset/building/entrance/pale_red_ns.png:6
 ../../zelda_interior_0_chipset.png:205:2126:../../tileset/building/entrance/pale_red_ns.png:7
 ../../zelda_interior_0_chipset.png:206:2127:../../tileset/building/entrance/pale_red_ns.png:8
-../../zelda_interior_0_chipset.png:207:2128:../../tileset/building/entrance/brick_ns.png:0
-../../zelda_interior_0_chipset.png:208:2129:../../tileset/building/entrance/brick_ns.png:1
-../../zelda_interior_0_chipset.png:209:2130:../../tileset/building/entrance/brick_ns.png:2
+../../zelda_interior_0_chipset.png:207:2128:../../tileset/building/entrance/bricks_ns.png:0
+../../zelda_interior_0_chipset.png:208:2129:../../tileset/building/entrance/bricks_ns.png:1
+../../zelda_interior_0_chipset.png:209:2130:../../tileset/building/entrance/bricks_ns.png:2
 ../../zelda_interior_0_chipset.png:210:2131:../../tileset/item/pot/small_barrel.png:0
 ../../zelda_interior_0_chipset.png:211:2132:../../tileset/item/furniture/carpet/carpets_2.png:11
 ../../zelda_interior_0_chipset.png:212:2133:../../tileset/building/wall/int_wall_dark_red.png:4
@@ -2171,9 +2171,9 @@
 ../../zelda_interior_0_chipset.png:234:2155:../../tileset/building/entrance/pale_red_ns.png:15
 ../../zelda_interior_0_chipset.png:235:2156:../../tileset/building/entrance/pale_red_ns.png:16
 ../../zelda_interior_0_chipset.png:236:2157:../../tileset/building/entrance/pale_red_ns.png:17
-../../zelda_interior_0_chipset.png:237:2158:../../tileset/building/entrance/brick_ns.png:3
-../../zelda_interior_0_chipset.png:238:2159:../../tileset/building/entrance/brick_ns.png:4
-../../zelda_interior_0_chipset.png:239:2160:../../tileset/building/entrance/brick_ns.png:5
+../../zelda_interior_0_chipset.png:237:2158:../../tileset/building/entrance/bricks_ns.png:3
+../../zelda_interior_0_chipset.png:238:2159:../../tileset/building/entrance/bricks_ns.png:4
+../../zelda_interior_0_chipset.png:239:2160:../../tileset/building/entrance/bricks_ns.png:5
 ../../zelda_interior_0_chipset.png:240:2161:../../tileset/item/furniture/carpet/carpets_2.png:4
 ../../zelda_interior_0_chipset.png:241:2162:../../tileset/item/furniture/carpet/carpets_2.png:5
 ../../zelda_interior_0_chipset.png:242:2163:../../tileset/building/wall/int_wall_dark_red.png:8
@@ -2201,9 +2201,9 @@
 ../../zelda_interior_0_chipset.png:264:2185:../../tileset/building/entrance/pale_red_ns.png:24
 ../../zelda_interior_0_chipset.png:265:2186:../../tileset/building/entrance/pale_red_ns.png:25
 ../../zelda_interior_0_chipset.png:266:2187:../../tileset/building/entrance/pale_red_ns.png:26
-../../zelda_interior_0_chipset.png:267:2188:../../tileset/building/entrance/brick_ns.png:6
-../../zelda_interior_0_chipset.png:268:2189:../../tileset/building/entrance/brick_ns.png:7
-../../zelda_interior_0_chipset.png:269:2190:../../tileset/building/entrance/brick_ns.png:8
+../../zelda_interior_0_chipset.png:267:2188:../../tileset/building/entrance/bricks_ns.png:6
+../../zelda_interior_0_chipset.png:268:2189:../../tileset/building/entrance/bricks_ns.png:7
+../../zelda_interior_0_chipset.png:269:2190:../../tileset/building/entrance/bricks_ns.png:8
 ../../zelda_interior_0_chipset.png:270:2191:../../tileset/item/furniture/table/table_with_hob.png:0
 ../../zelda_interior_0_chipset.png:271:2192:../../tileset/item/furniture/table/table_with_hob.png:1
 ../../zelda_interior_0_chipset.png:272:2193:../../tileset/item/furniture/table/table_with_hob.png:2
@@ -2231,9 +2231,9 @@
 ../../zelda_interior_0_chipset.png:294:2215:../../tileset/building/entrance/pale_red_ns.png:33
 ../../zelda_interior_0_chipset.png:295:2216:../../tileset/building/entrance/pale_red_ns.png:34
 ../../zelda_interior_0_chipset.png:296:2217:../../tileset/building/entrance/pale_red_ns.png:35
-../../zelda_interior_0_chipset.png:297:2218:../../tileset/building/entrance/brick_ns.png:9
-../../zelda_interior_0_chipset.png:298:2219:../../tileset/building/entrance/brick_ns.png:10
-../../zelda_interior_0_chipset.png:299:2220:../../tileset/building/entrance/brick_ns.png:11
+../../zelda_interior_0_chipset.png:297:2218:../../tileset/building/entrance/bricks_ns.png:9
+../../zelda_interior_0_chipset.png:298:2219:../../tileset/building/entrance/bricks_ns.png:10
+../../zelda_interior_0_chipset.png:299:2220:../../tileset/building/entrance/bricks_ns.png:11
 ../../zelda_interior_0_chipset.png:300:2221:../../tileset/item/furniture/bed/large_front_on_darker.png:0
 ../../zelda_interior_0_chipset.png:301:2222:../../tileset/item/furniture/bed/large_front_on_darker.png:1
 ../../zelda_interior_0_chipset.png:302:2223:../../tileset/plant/stump/int_small_stump.png:0
@@ -3866,7 +3866,7 @@
 ../../zelda_interior_1_chipset.png:287:3851:../../tileset/item/candle/lamp.png:0
 ../../zelda_interior_1_chipset.png:288:3852:../../tileset/item/food/meals_1.png:0
 ../../zelda_interior_1_chipset.png:289:3853:../../tileset/item/food/meals_1.png:1
-../../zelda_interior_1_chipset.png:290:3854:../../tileset/item/furniture/other/warmer.png:0
+../../zelda_interior_1_chipset.png:290:3854:../../tileset/item/other/warmer.png:0
 ../../zelda_interior_1_chipset.png:291:3855:../../tileset/item/drink/red_wine.png:2
 ../../zelda_interior_1_chipset.png:292:3856:../../tileset/item/drink/red_wine.png:3
 ../../zelda_interior_1_chipset.png:293:3857:../../tileset/plant/indoor/flower_basket.png:1
@@ -3896,7 +3896,7 @@
 ../../zelda_interior_1_chipset.png:317:3881:../../tileset/item/furniture/table/wooden_pale.png:0
 ../../zelda_interior_1_chipset.png:318:3882:../../tileset/item/drink/bottle_and_glass.png:0
 ../../zelda_interior_1_chipset.png:319:3883:../../tileset/item/crockery/knife_spoon.png:0
-../../zelda_interior_1_chipset.png:320:3884:../../tileset/item/furniture/other/warmer.png:1
+../../zelda_interior_1_chipset.png:320:3884:../../tileset/item/other/warmer.png:1
 ../../zelda_interior_1_chipset.png:321:3885:../../tileset/item/food/meals_2.png:0
 ../../zelda_interior_1_chipset.png:322:3886:../../tileset/item/drink/white_wine.png:0
 ../../zelda_interior_1_chipset.png:323:3887:../../tileset/item/food/fruit_basket.png:0
@@ -3920,7 +3920,7 @@
 ../../zelda_interior_1_chipset.png:341:3905:../../tileset/building/window/broken_window.png:0
 ../../zelda_interior_1_chipset.png:342:3906:../../tileset/building/window/broken_window.png:1
 ../../zelda_interior_1_chipset.png:343:3907:../../tileset/object/stalactite.png:0
-../../zelda_interior_1_chipset.png:344:3908:../../tileset/item/furniture/clock/wooden_clock.png:0
+../../zelda_interior_1_chipset.png:344:3908:../../tileset/item/furniture/clock.png:0
 ../../zelda_interior_1_chipset.png:345:3909:../../tileset/item/furniture/table/long_front_on.png:1
 ../../zelda_interior_1_chipset.png:346:3910:../../tileset/item/pot/barrel.png:1
 ../../zelda_interior_1_chipset.png:347:3911:../../tileset/item/furniture/chair/stool.png:0
@@ -3950,7 +3950,7 @@
 ../../zelda_interior_1_chipset.png:371:3935:../../tileset/building/window/broken_window.png:2
 ../../zelda_interior_1_chipset.png:372:3936:../../tileset/building/window/broken_window.png:3
 ../../zelda_interior_1_chipset.png:373:3937:../../tileset/object/stalactite.png:1
-../../zelda_interior_1_chipset.png:374:3938:../../tileset/item/furniture/clock/wooden_clock.png:1
+../../zelda_interior_1_chipset.png:374:3938:../../tileset/item/furniture/clock.png:1
 ../../zelda_interior_1_chipset.png:375:3939:../../tileset/item/furniture/table/long_front_on.png:2
 ../../zelda_interior_1_chipset.png:376:3940:../../tileset/item/pot/box.png:0
 ../../zelda_interior_1_chipset.png:377:3941:../../tileset/plant/indoor/flower_vase.png:0
