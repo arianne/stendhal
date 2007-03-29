@@ -3895,7 +3895,7 @@
 ../../zelda_interior_1_chipset.png:316:3880:../../tileset/item/pot/pot_grey.png:0
 ../../zelda_interior_1_chipset.png:317:3881:../../tileset/item/furniture/table/wooden_pale.png:0
 ../../zelda_interior_1_chipset.png:318:3882:../../tileset/item/drink/bottle_and_glass.png:0
-../../zelda_interior_1_chipset.png:319:3883:../../tileset/item/crockery/knife_spoon.png:0
+../../zelda_interior_1_chipset.png:319:3883:../../tileset/item/furniture/crockery/knife_spoon.png:0
 ../../zelda_interior_1_chipset.png:320:3884:../../tileset/item/furniture/other/warmer.png:1
 ../../zelda_interior_1_chipset.png:321:3885:../../tileset/item/food/meals_2.png:0
 ../../zelda_interior_1_chipset.png:322:3886:../../tileset/item/drink/white_wine.png:0
