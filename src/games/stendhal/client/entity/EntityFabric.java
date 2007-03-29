@@ -33,17 +33,18 @@ public class EntityFabric {
 	 */
 	public static Entity createEntity(RPObject object) {
 		try {
-			if (object.has("name")){
+			String type = object.get("type");
+
+			if (type.equals("player") && object.has("name")){
 				if (StendhalClient.get().getUserName().equals(object.get("name"))){
-			          return new User(object);
+					return new User(object);
 				}
 			}
-			String type = object.get("type");
+
 			String eclass = null;
 			if (object.has("class")) {
 				eclass = object.get("class");
-			}
-
+			}			
 			Class entityClass = EntityMap.getClass(type, eclass);
 
 			if (entityClass == null) {
