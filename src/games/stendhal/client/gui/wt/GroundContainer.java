@@ -87,9 +87,7 @@ public class GroundContainer extends WtPanel {
 				// looks like an drop
 				action.put("type", "drop");
 				// HACK: if ctrl is pressed, attempt to split stackables
-				InGameGUI ingameGUI = client.getGameGUI();
-
-				if (ingameGUI.isCtrlDown()) {
+				if (ui.isCtrlDown()) {
 					action.put("quantity", "1");
 				}
 			} else {
@@ -148,12 +146,9 @@ public class GroundContainer extends WtPanel {
 
 		// for the clicked entity....
 		if (entity != null) {
-
-			InGameGUI ingameGUI = client.getGameGUI();
-
-			if (ingameGUI.isCtrlDown()) {
+			if (ui.isCtrlDown()) {
 				entity.onAction(entity.defaultAction());
-			} else if (ingameGUI.isShiftDown()) {
+			} else if (ui.isShiftDown()) {
 				entity.onAction(ActionType.LOOK);
 			}
 		}

@@ -127,4 +127,29 @@ public abstract class StendhalUI {
 	 * @param	text		The text.
 	 */
 	public abstract void setChatLine(String text);
+
+
+
+	//
+	// <StendhalGUI>
+	//
+	// These really shouldn't be here, as they are UI implementation
+	// specific. But for now this will allow more code refactoring,
+	// until this can be pushed into a sub-class.
+	//
+
+	/**
+	 * @return Returns the altDown.
+	 */
+	public abstract boolean isAltDown();
+
+	/**
+	 * @return Returns the ctrlDown.
+	 */
+	public abstract boolean isCtrlDown();
+
+	/**
+	 * @return Returns the shiftDown.
+	 */
+	public abstract boolean isShiftDown();
 }

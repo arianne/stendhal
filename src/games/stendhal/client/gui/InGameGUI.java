@@ -53,11 +53,6 @@ public class InGameGUI implements Inspector {
 
 	private int blinkOffline;
 
-	private boolean ctrlDown;
-
-	private boolean shiftDown;
-
-	private boolean altDown;
 
 	public InGameGUI(StendhalUI ui) {
 		this.client = ui.getClient();
@@ -90,17 +85,6 @@ public class InGameGUI implements Inspector {
 
 	public void online() {
 		offline = false;
-	}
-
-
-	/**
-	 * Workaround until more refactoring is done.
-	 * Called from j2DClient's key listener.
-	 */
-	public void updateModifiers(KeyEvent ev) {
-		altDown = ev.isAltDown();
-		ctrlDown = ev.isControlDown();
-		shiftDown = ev.isShiftDown();
 	}
 
 
@@ -186,26 +170,6 @@ public class InGameGUI implements Inspector {
 		}
 	}
 
-	/**
-	 * @return Returns the altDown.
-	 */
-	public boolean isAltDown() {
-		return altDown;
-	}
-
-	/**
-	 * @return Returns the ctrlDown.
-	 */
-	public boolean isCtrlDown() {
-		return ctrlDown;
-	}
-
-	/**
-	 * @return Returns the shiftDown.
-	 */
-	public boolean isShiftDown() {
-		return shiftDown;
-	}
 
 	/**
 	 * @return Returns the window toolkit baseframe.

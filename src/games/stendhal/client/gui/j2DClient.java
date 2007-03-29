@@ -116,6 +116,12 @@ public class j2DClient extends StendhalUI {
 	/** a nicer way of handling the keyboard */
 	private Map<Integer, Object> pressed;
 
+	private boolean ctrlDown;
+
+	private boolean shiftDown;
+
+	private boolean altDown;
+
 
 	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
@@ -640,6 +646,45 @@ public class j2DClient extends StendhalUI {
 	}
 
 
+	protected void updateModifiers(KeyEvent ev) {
+		altDown = ev.isAltDown();
+		ctrlDown = ev.isControlDown();
+		shiftDown = ev.isShiftDown();
+	}
+
+
+	//
+	// <StendhalGUI>
+	//
+
+	/**
+	 * Determine if the <Alt> key is held down.
+	 *
+	 * @return	Returns <code>true</code> if down.
+	 */
+	public boolean isAltDown() {
+		return altDown;
+	}
+
+	/**
+	 * Determine if the <Ctrl> key is held down.
+	 *
+	 * @return	Returns <code>true</code> if down.
+	 */
+	public boolean isCtrlDown() {
+		return ctrlDown;
+	}
+
+	/**
+	 * Determine if the <Shift> key is held down.
+	 *
+	 * @return	Returns <code>true</code> if down.
+	 */
+	public boolean isShiftDown() {
+		return shiftDown;
+	}
+
+
 	//
 	// StendhalUI
 	//
@@ -738,7 +783,7 @@ public class j2DClient extends StendhalUI {
 				}
 			}
 
-			inGameGUI.updateModifiers(e);
+			updateModifiers(e);
 
 			if (!pressed.containsKey(Integer.valueOf(e.getKeyCode()))) {
 				onKeyPressed(e);
@@ -750,8 +795,7 @@ public class j2DClient extends StendhalUI {
 		public void keyReleased(KeyEvent e) {
 			lastKeyRelease = e.getWhen();
 
-			inGameGUI.updateModifiers(e);
-
+			updateModifiers(e);
 			onKeyReleased(e);
 			pressed.remove(Integer.valueOf(e.getKeyCode()));
 		}
