@@ -177,14 +177,14 @@ function cdataElement($parser, $data) {
 
             if($gid!=0) {
                 list($tileset, $pos)=$mapping[$gid];        
-                $newgid=tile($tileset, $pos);            
-                // echo "$gid --> $tileset:$pos --> $newgid\n";
-            
                 if($tileset=='') {
                     list($tileset, $pos)=$oldmapping[$gid];
                     echo "MISSING: $tileset:$pos --> ".(int)($pos/30).":".($pos%30)."\n";
                     exit(1);
                 }
+            
+                $newgid=tile($tileset, $pos);            
+                // echo "$gid --> $tileset:$pos --> $newgid\n";
             
                 $layerdata[]=$newgid;
             } else {
