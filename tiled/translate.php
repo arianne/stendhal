@@ -150,8 +150,31 @@ $recordLayerData=false;
 
 // Define the gzdecode function
 if (!function_exists('gzdecode')) {
-        function gzdecode ($data) {
-                // Check if data is GZIP'ed
+
+function gzdecode($in)
+{
+$tmp="tmp.tmp";
+$fp=fopen($tmp,"wb");
+if(!$fp) return false;
+fwrite($fp,$in);
+fclose($fp);
+
+$fp=gzopen($tmp,"rb");
+if(!$fp) return false;
+while(!gzeof($fp))
+    {
+    $data.=gzread($fp,128);
+    }
+gzclose($fp);
+unlink($tmp);
+return $data;
+}
+/*
+	function gzdecode ($data) {
+		global $layer;
+		
+		echo $layer.": data size: ".strlen($data)."\n";
+		// Check if data is GZIP'ed
                 if (strlen($data) < 18 || strcmp(substr($data,0,2),"\x1f\x8b")) {
                         return false;
                 }
@@ -162,6 +185,7 @@ if (!function_exists('gzdecode')) {
                 // Return regular data
                 return gzinflate($data);
         }
+*/
 }
 
 function cdataElement($parser, $data) {
@@ -227,5 +251,5 @@ if(sizeof($argv)==1) {
 
 list($oldmapping,$mapping)=loadMapping("mapping.txt");
 loadTMX($argv[1]);
-//$map->buildXML();
+$map->buildXML();
 ?>
