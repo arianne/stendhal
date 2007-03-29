@@ -1207,7 +1207,7 @@
 ../../zelda_dungeon_0_chipset.png:230:1191:../../tileset/building/entrance/grey.png:14
 ../../zelda_dungeon_0_chipset.png:231:1192:../../tileset/building/entrance/grey.png:15
 ../../zelda_dungeon_0_chipset.png:232:1193:../../tileset/ground/indoor/tiles.png:6
-../../zelda_dungeon_0_chipset.png:233:1194:../../tileset/item/furniture/chair/chair.png:0
+../../zelda_dungeon_0_chipset.png:233:1194:../../tileset/item/furniture/chair/wooden.png:0
 ../../zelda_dungeon_0_chipset.png:234:1195:../../tileset/building/entrance/int_iron_bars.png:3
 ../../zelda_dungeon_0_chipset.png:235:1196:../../tileset/building/entrance/int_iron_bars.png:4
 ../../zelda_dungeon_0_chipset.png:236:1197:../../tileset/building/entrance/int_iron_bars.png:5
