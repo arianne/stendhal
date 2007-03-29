@@ -129,41 +129,27 @@ public class StendhalRPAction {
 		        * (maxAttackerComponent / maxDefenderComponent) * (source.getATK() / 10.0f));
 
 		if (projectileItem != null) {
-			projectileItem.add(-1);
-
-			if (projectileItem.getQuantity() == 0) {
-				String[] slots = { "rhand", "lhand" };
-				source.dropItemClass(slots, "projectiles");
-			}
+			projectileItem.removeOne();
 
 			double distance = source.squaredDistance(target);
 
 			double minrange = 2 * 2;
 			double maxrange = 7 * 7;
-			int rangeDamage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
+			// TODO: docu
+			damage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
 			        * (1.0 - (minrange / maxrange)))
 			        * (1.0 - distance / maxrange));
-			// limit damage to target hp
-			return Math.min(rangeDamage, target.getHP());
-		}
-		
-		if (missileItem != null) {
-			missileItem.add(-1);
+		} else if (missileItem != null) {
+			missileItem.removeOne();
 
-			if (missileItem.getQuantity() == 0) {
-				String[] slots = { "rhand", "lhand" };
-				source.dropItemClass(slots, "missile");
-			}
-
+			// TODO: extract method to avoid code duplication
 			double distance = source.squaredDistance(target);
 
 			double minrange = 2 * 2;
 			double maxrange = 7 * 7;
-			int rangeDamage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
+			damage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
 			        * (1.0 - (minrange / maxrange)))
 			        * (1.0 - distance / maxrange));
-			// limit damage to target hp
-			return Math.min(rangeDamage, target.getHP());
 		}
 		// limit damage to target hp
 		return Math.min(damage, target.getHP());
