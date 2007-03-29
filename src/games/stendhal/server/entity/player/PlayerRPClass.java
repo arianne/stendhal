@@ -124,7 +124,7 @@ class PlayerRPClass {
                 
                 
                 // This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
-                player.addRPSlot("spells", 30, RPClass.HIDDEN);
+                player.addRPSlot("spells", 30, RPClass.PRIVATE);
 	}
 
 	/**
