@@ -2849,8 +2849,8 @@
 ../../zelda_building_0_tileset.png:230:2834:../../tileset/building/window/window_left.png:0
 ../../zelda_building_0_tileset.png:231:2835:../../tileset/building/window/window_left.png:1
 ../../zelda_building_0_tileset.png:232:2836::
-../../zelda_building_0_tileset.png:233:2837:../../tileset/building/window_right:0
-../../zelda_building_0_tileset.png:234:2838:../../tileset/building/window_right:1
+../../zelda_building_0_tileset.png:233:2837:../../tileset/building/window/window_right.png:0
+../../zelda_building_0_tileset.png:234:2838:../../tileset/building/window/window_right.png:1
 ../../zelda_building_0_tileset.png:235:2839:../../tileset/building/roof/red.png:15
 ../../zelda_building_0_tileset.png:236:2840:../../tileset/building/roof/red.png:16
 ../../zelda_building_0_tileset.png:237:2841:../../tileset/building/roof/red.png:17

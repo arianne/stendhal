@@ -65,9 +65,9 @@
    H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
   </data>
  </layer>
- <layer name="objects" width="8" height="8" visible="0">
+ <layer name="objects" width="8" height="8">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgIB6kcJKgeICBlwBx6gArIv89AAEAAA==
+   H4sIAAAAAAAAAGNgGNkAAFiFlg0AAQAA
   </data>
  </layer>
  <layer name="collision" width="8" height="8" opacity="0.37">
