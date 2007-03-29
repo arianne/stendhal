@@ -174,6 +174,9 @@ public class Creature extends NPC {
 			RPClass npc = new RPClass("creature");
 			npc.isA("npc");
 			npc.add("debug", RPClass.VERY_LONG_STRING, RPClass.VOLATILE);
+			npc.add("metamorphosis", RPClass.STRING, RPClass.VOLATILE);
+			npc.add("width", RPClass.FLOAT, RPClass.VOLATILE);
+			npc.add("height", RPClass.FLOAT, RPClass.VOLATILE);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -222,6 +225,8 @@ public class Creature extends NPC {
 
 		put("x", 0);
 		put("y", 0);
+		put("width", copy.get("width"));
+		put("height", copy.get("height"));
 		setDescription(copy.getDescription());
 		setATK(copy.getATK());
 		setDEF(copy.getDEF());
@@ -310,6 +315,8 @@ public class Creature extends NPC {
 
 		put("x", 0);
 		put("y", 0);
+		put("width", width);
+		put("height", height);		
 		setDescription(description);
 		setATK(attack);
 		setDEF(defense);
