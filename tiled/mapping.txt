@@ -3861,7 +3861,7 @@
 ../../zelda_interior_1_chipset.png:282:3846:../../tileset/item/logs.png:1
 ../../zelda_interior_1_chipset.png:283:3847:../../tileset/item/brush.png:1
 ../../zelda_interior_1_chipset.png:284:3848:../../tileset/plant/indoor/pot_plant.png:1
-../../zelda_interior_1_chipset.png:285:3849:../../tileset/item/candle/candlebra.png:0
+../../zelda_interior_1_chipset.png:285:3849:../../tileset/item/candle/candelabra.png:0
 ../../zelda_interior_1_chipset.png:286:3850:../../tileset/item/pot/barrel.png:0
 ../../zelda_interior_1_chipset.png:287:3851:../../tileset/item/candle/lamp.png:0
 ../../zelda_interior_1_chipset.png:288:3852:../../tileset/item/food/meals_1.png:0
