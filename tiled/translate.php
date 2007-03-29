@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 // Raise Memory limit usage 
-ini_set('memory_limit', '64M');
+//ini_set('memory_limit', '64M');
 
 class TiledMap {
     public $width=0;
@@ -22,12 +22,12 @@ class TiledMap {
         }           
 
         foreach($this->layers as $layer) {
-            echo ' <layer name="'.$layer[0].'" width="'.$this->width.'" height="'.$this->height.'">'."\n";
+            echo ' <layer name="'.$layer[0].'" width="'.$this->width.'" height="'.$this->height.'" opacity="'.$layer[1].'">'."\n";
             echo '   <data encoding="base64" compression="gzip">'."\n";
             
             $data='';
             
-            foreach($layer[1] as $gid) {
+            foreach($layer[2] as $gid) {
                 $b=($gid) & 0x000000FF;
                 $data.=pack("C*",$b);
 
@@ -53,6 +53,7 @@ class TiledMap {
 };
 
 $layer="";
+$opacity=1;
 $layerdata=array();
 
 $map=new TiledMap();
@@ -80,7 +81,7 @@ function loadMapping($filename) {
 }
 
 function startElement($parser, $name, $attrs) {
-    global $layer, $recordLayerData, $map;
+    global $layer, $opacity, $recordLayerData, $map;
     
     if($name=="MAP") {
         $map->width=$attrs['WIDTH'];
@@ -89,6 +90,11 @@ function startElement($parser, $name, $attrs) {
     
     if($name=="LAYER") {
         $layer=$attrs['NAME'];
+        
+        $opacity=1;        
+        if(isset($attrs['OPACITY'])) {
+            $opacity=$attrs['OPACITY'];
+        }
         $layerdata=array();
     }
     
@@ -116,10 +122,10 @@ function tile($tileset, $pos) {
 }
 
 function endElement($parser, $name) {
-    global $layer, $map, $layerdata, $recordLayerData;
+    global $layer, $opacity, $map, $layerdata, $recordLayerData;
 
     if($name=="LAYER") {
-        $map->layers[]=array($layer, $layerdata);
+        $map->layers[]=array($layer, $opacity, $layerdata);
         $layerdata=array();
     }
 
