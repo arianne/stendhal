@@ -134,7 +134,7 @@ class PlayerRPClass {
 	 */
 	static void updatePlayerRPObject(RPObject object) {
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank",
-		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor" };
+		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells" };
 
 		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills" };
 
