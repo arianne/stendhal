@@ -93,7 +93,8 @@ public class StendhalRPAction {
 
 		float weapon = source.getItemAtk();
 		StackableItem projectileItem = source.getProjectilesIfRangeCombat();
-
+		StackableItem missileItem = source.getMissile();
+		
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + source.getATK() + " and uses a weapon of " + weapon);
 		}
@@ -133,6 +134,25 @@ public class StendhalRPAction {
 			if (projectileItem.getQuantity() == 0) {
 				String[] slots = { "rhand", "lhand" };
 				source.dropItemClass(slots, "projectiles");
+			}
+
+			double distance = source.squaredDistance(target);
+
+			double minrange = 2 * 2;
+			double maxrange = 7 * 7;
+			int rangeDamage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
+			        * (1.0 - (minrange / maxrange)))
+			        * (1.0 - distance / maxrange));
+			// limit damage to target hp
+			return Math.min(rangeDamage, target.getHP());
+		}
+		
+		if (missileItem != null) {
+			missileItem.add(-1);
+
+			if (missileItem.getQuantity() == 0) {
+				String[] slots = { "rhand", "lhand" };
+				source.dropItemClass(slots, "missile");
 			}
 
 			double distance = source.squaredDistance(target);
