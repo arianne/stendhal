@@ -23,17 +23,14 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.EquipListener;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -71,6 +68,9 @@ public class EquipmentAction extends ActionListener {
 	/** List of the valid container classes for easy access */
 	private List<Class> validContainerClassesList;
 
+	/**
+	 * registers "equip" and "drop" action processors
+	 */
 	public static void register() {
 		EquipmentAction equip = new EquipmentAction();
 		StendhalRPRuleProcessor.register("equip", equip);
