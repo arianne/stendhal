@@ -196,7 +196,7 @@ function cdataElement($parser, $data) {
         $list=unpack("V*",$ugzd);
         
         $tiles=sizeof($list);
-        for($i=1;$i<$tiles;$i++) {
+        for($i=1;$i<=$tiles;$i++) {
             $gid=$list[$i];
 
             if($gid!=0) {
