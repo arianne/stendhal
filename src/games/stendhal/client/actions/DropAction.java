@@ -36,42 +36,42 @@ class DropAction implements SlashAction  {
 
 		RPObject player = StendhalClient.get().getPlayer();
 		String itemName = params[1];
-		int itemID = findItem(itemName);
 
-		if (itemID != -1) {
-			RPAction drop = new RPAction();
-
-			drop.put("type", "drop");
-			drop.put("baseobject", player.getID().getObjectID());
-
-			drop.put("baseslot", "bag");
-			drop.put("x", player.getInt("x"));
-			drop.put("y", player.getInt("y") + 1);
-			drop.put("quantity", quantity);
-			drop.put("baseitem", itemID);
-
-			StendhalClient.get().send(drop);
-		} else {
-			StendhalUI.get().addEventLine("You don't have any " + itemName, Color.black);
+		for (String slotName : CARRYING_SLOTS) { 
+			int itemID = findItem(slotName, itemName);
+			if (itemID != -1) {
+				RPAction drop = new RPAction();
+	
+				drop.put("type", "drop");
+				drop.put("baseobject", player.getID().getObjectID());
+	
+				drop.put("baseslot", slotName);
+				drop.put("x", player.getInt("x"));
+				drop.put("y", player.getInt("y") + 1);
+				drop.put("quantity", quantity);
+				drop.put("baseitem", itemID);
+	
+				StendhalClient.get().send(drop);
+				return true;
+			}
 		}
-
+		StendhalUI.get().addEventLine("You don't have any " + itemName, Color.black);
 		return true;
 	}
 
 	/**
 	 * returns the objectid for the named item
 	 * 
+	 * @param slot name of slot to search
 	 * @param itemName name of item
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
-	private int findItem(String itemName) {
+	private int findItem(String slotName, String itemName) {
 		RPObject player = StendhalClient.get().getPlayer();
-		for (String slotName : CARRYING_SLOTS) { 
-			for (RPObject item : player.getSlot(slotName)) {
-				if (item.get("name").equals(itemName)) {
-					int itemID = item.getID().getObjectID();
-					return itemID;
-				}
+		for (RPObject item : player.getSlot(slotName)) {
+			if (item.get("name").equals(itemName)) {
+				int itemID = item.getID().getObjectID();
+				return itemID;
 			}
 		}
 		return -1;
