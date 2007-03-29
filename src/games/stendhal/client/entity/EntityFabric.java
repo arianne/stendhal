@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -53,7 +54,7 @@ public class EntityFabric {
 			java.lang.reflect.Constructor constr = entityClass.getConstructor(RPObject.class);
 			Entity en = (Entity) constr.newInstance(object);
 			if (en instanceof Inspectable) {
-				((Inspectable) en).setInspector(StendhalClient.get().getGameGUI());
+				((Inspectable) en).setInspector(StendhalUI.get().getInspector());
 			}
 			return en;
 		} catch (Exception e) {

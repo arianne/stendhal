@@ -28,7 +28,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class InGameGUI implements Inspector {
+public class InGameGUI {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(InGameGUI.class);
@@ -39,7 +39,7 @@ public class InGameGUI implements Inspector {
 	private WtBaseframe frame;
 
 	/** this is the ground */
-	private WtPanel ground;
+	private GroundContainer ground;
 
 	/** settings panel */
 	private SettingsPanel settings;
@@ -172,27 +172,17 @@ public class InGameGUI implements Inspector {
 
 
 	/**
+	 * @return Returns the ground "component".
+	 */
+	public GroundContainer getGround() {
+		return ground;
+	}
+
+
+	/**
 	 * @return Returns the window toolkit baseframe.
 	 */
 	public WtBaseframe getFrame() {
 		return frame;
-	}
-
-	public EntityContainer inspectMe(Entity suspect, RPSlot content, EntityContainer container) {
-		if (container == null || !container.isVisible()) {
-			{
-				if (suspect instanceof Chest) {
-					container = new EntityContainer(client, suspect.getType(), 4, 5);
-				} else {
-					container = new EntityContainer(client, suspect.getType(), 2, 2);
-				}
-				ground.addChild(container);
-			}
-
-			container.setSlot(suspect, content.getName());
-			container.setVisible(true);
-		}
-		return container;
-
 	}
 }

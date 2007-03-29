@@ -10,6 +10,8 @@ package games.stendhal.client;
 //
 
 import java.awt.Color;
+import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.wt.core.WtBaseframe;
 
 /**
  * A base class for the stendhal client UI (not GUI).
@@ -96,6 +98,14 @@ public abstract class StendhalUI {
 
 
 	/**
+	 * Get the entity inspector.
+	 *
+	 * @return	The inspector.
+	 */
+	public abstract Inspector getInspector();
+
+
+	/**
 	 * Get the game screen.
 	 *
 	 * @return	The game screen.
@@ -109,6 +119,12 @@ public abstract class StendhalUI {
 	 * @return	The width.
 	 */
 	public abstract int getWidth();
+
+
+	/**
+	 * Request quit confirmation from the user.
+	 */
+	public abstract void requestQuit();
 
 
 	/**
@@ -137,6 +153,13 @@ public abstract class StendhalUI {
 	// specific. But for now this will allow more code refactoring,
 	// until this can be pushed into a sub-class.
 	//
+
+	/**
+	 * Get the virtual window frame.
+	 *
+	 * @return Returns the window toolkit baseframe.
+	 */
+	public abstract WtBaseframe getFrame();
 
 	/**
 	 * @return Returns the altDown.

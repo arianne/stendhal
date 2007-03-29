@@ -18,9 +18,10 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.PassiveEntity;
-import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
@@ -28,6 +29,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPSlot;
 
 /**
  * 
@@ -37,7 +39,7 @@ import marauroa.common.game.RPAction;
  * 
  */
 
-public class GroundContainer extends WtPanel {
+public class GroundContainer extends WtPanel implements Inspector {
 	/** the game client */
 	private StendhalClient client;
 
@@ -202,11 +204,32 @@ public class GroundContainer extends WtPanel {
 			String[] actions = entity.offeredActions();
 			if (actions.length > 0) {
 				CommandList list = new CommandList(entity.getType(), actions, entity);
-				InGameGUI ingameGUI = client.getGameGUI();
-				ingameGUI.getFrame().setContextMenu(list);
+				ui.getFrame().setContextMenu(list);
 			}
 		}
 
 		return true;
+	}
+
+
+	//
+	// Inspector
+	//
+
+	public EntityContainer inspectMe(Entity suspect, RPSlot content, EntityContainer container) {
+		if ((container == null) || !container.isVisible()) {
+			if (suspect instanceof Chest) {
+				container = new EntityContainer(client, suspect.getType(), 4, 5);
+			} else {
+				container = new EntityContainer(client, suspect.getType(), 2, 2);
+			}
+
+			addChild(container);
+
+			container.setSlot(suspect, content.getName());
+			container.setVisible(true);
+		}
+
+		return container;
 	}
 }

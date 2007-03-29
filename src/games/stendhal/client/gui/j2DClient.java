@@ -19,6 +19,8 @@ import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
@@ -255,7 +257,7 @@ public class j2DClient extends StendhalUI {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				inGameGUI.showQuitDialog();
+				requestQuit();
 			}
 		});
 
@@ -658,6 +660,15 @@ public class j2DClient extends StendhalUI {
 	//
 
 	/**
+	 * Get the virtual window frame.
+	 *
+	 * @return Returns the window toolkit baseframe.
+	 */
+	public WtBaseframe getFrame() {
+		return inGameGUI.getFrame();
+	}
+
+	/**
 	 * Determine if the <Alt> key is held down.
 	 *
 	 * @return	Returns <code>true</code> if down.
@@ -737,6 +748,16 @@ public class j2DClient extends StendhalUI {
 
 
 	/**
+	 * Get the entity inspector.
+	 *
+	 * @return	The inspector.
+	 */
+	public Inspector getInspector() {
+		return inGameGUI.getGround();
+	}
+
+
+	/**
 	 * Get the game screen.
 	 *
 	 * @return	The game screen.
@@ -754,6 +775,14 @@ public class j2DClient extends StendhalUI {
 	public int getWidth()
 	{
 		return SCREEN_WIDTH;
+	}
+
+
+	/**
+	 * Request quit confirmation from the user.
+	 */
+	public void requestQuit() {
+		inGameGUI.showQuitDialog();
 	}
 
 

@@ -156,16 +156,8 @@ public class StendhalClient extends ariannexp {
 		this.screen = screen;
 	}
 
-	public GameScreen getScreen() {
-		return screen;
-	}
-
 	public void setGameGUI(InGameGUI gui) {
 		gameGUI = gui;
-	}
-
-	public InGameGUI getGameGUI() {
-		return gameGUI;
 	}
 
 	public OutfitDialog getOutfitDialog(int outfit) {
