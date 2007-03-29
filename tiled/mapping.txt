@@ -3866,7 +3866,7 @@
 ../../zelda_interior_1_chipset.png:287:3851:../../tileset/item/candle/lamp.png:0
 ../../zelda_interior_1_chipset.png:288:3852:../../tileset/item/food/meals_1.png:0
 ../../zelda_interior_1_chipset.png:289:3853:../../tileset/item/food/meals_1.png:1
-../../zelda_interior_1_chipset.png:290:3854:../../tileset/item/other/warmer.png:0
+../../zelda_interior_1_chipset.png:290:3854:../../tileset/item/furniture/other/warmer.png:0
 ../../zelda_interior_1_chipset.png:291:3855:../../tileset/item/drink/red_wine.png:2
 ../../zelda_interior_1_chipset.png:292:3856:../../tileset/item/drink/red_wine.png:3
 ../../zelda_interior_1_chipset.png:293:3857:../../tileset/plant/indoor/flower_basket.png:1
@@ -3896,7 +3896,7 @@
 ../../zelda_interior_1_chipset.png:317:3881:../../tileset/item/furniture/table/wooden_pale.png:0
 ../../zelda_interior_1_chipset.png:318:3882:../../tileset/item/drink/bottle_and_glass.png:0
 ../../zelda_interior_1_chipset.png:319:3883:../../tileset/item/crockery/knife_spoon.png:0
-../../zelda_interior_1_chipset.png:320:3884:../../tileset/item/other/warmer.png:1
+../../zelda_interior_1_chipset.png:320:3884:../../tileset/item/furniture/other/warmer.png:1
 ../../zelda_interior_1_chipset.png:321:3885:../../tileset/item/food/meals_2.png:0
 ../../zelda_interior_1_chipset.png:322:3886:../../tileset/item/drink/white_wine.png:0
 ../../zelda_interior_1_chipset.png:323:3887:../../tileset/item/food/fruit_basket.png:0
