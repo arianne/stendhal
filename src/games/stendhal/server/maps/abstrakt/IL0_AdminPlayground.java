@@ -1,23 +1,27 @@
 package games.stendhal.server.maps.abstrakt;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.maps.ZoneConfigurator;
-
-import org.apache.log4j.*;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-import games.stendhal.server.*;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.StandardInteraction;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.entity.*;
-import games.stendhal.server.entity.item.*;
-import games.stendhal.server.entity.player.*;
-import games.stendhal.server.scripting.*;
-import games.stendhal.server.entity.npc.*;
-import games.stendhal.server.pathfinder.Path;
-import games.stendhal.common.Direction;
+import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.scripting.ScriptAction;
+import games.stendhal.server.scripting.ScriptInGroovy;
+import games.stendhal.server.scripting.ScriptingNPC;
+import games.stendhal.server.scripting.ScriptingSandbox;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 /**
  * code for abstract/int_admin_playground
@@ -25,6 +29,9 @@ import java.util.Map;
  * @author hendrik
  */
 public class IL0_AdminPlayground  implements ZoneConfigurator {
+	
+	// TODO
+	private static ScriptInGroovy game = null;
 	
 	/**
 	 * Configure a zone.
@@ -34,9 +41,6 @@ public class IL0_AdminPlayground  implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildDebuggera(zone, attributes);
-	}
-
-	private void buildDebuggera(StendhalRPZone zone, Map<String, String> attributes) {
 	}
 
 
@@ -68,7 +72,7 @@ class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
     }
 }
 
-/*class QuestsAction extends SpeakerNPC.ChatAction {
+class QuestsAction extends SpeakerNPC.ChatAction {
 	ScriptInGroovy game;
     public QuestsAction(ScriptInGroovy game) {
       this.game = game;
@@ -77,7 +81,7 @@ class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
 
     	// list quest
     	StringBuffer sb = new StringBuffer("Your quest states are:");
-    	List quests = player.getQuests();
+    	List<String> quests = player.getQuests();
 		for (String quest : quests) {
 			sb.append("\r\n" + quest + " = " + player.getQuest(quest));
 		}
@@ -91,14 +95,14 @@ class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
 	    		String value = quest.substring(pos + 1);
 	    		quest = quest.substring(0, pos);
 	    		sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
-				game.addGameEvent(player.getName(), "alter_quest", [player.getName(), quest, value]);
+				game.addGameEvent(player.getName(), "alter_quest", Arrays.asList(player.getName(), quest, value));
 	    		player.setQuest(quest.trim(), value.trim());
 	    	}
     	}
     	engine.say(sb.toString());
     }
 }
-*/
+
 
 class TeleportNPCAction extends SpeakerNPC.ChatAction {
 	ScriptInGroovy game;
@@ -181,11 +185,10 @@ class TeleportScriptAction extends ScriptAction {
     }
 }
 
-/*
 public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnListener {
     private ScriptInGroovy game;
     private Player player;
-    private List zones;
+    private List<String> zones;
     private int counter = 0;
 
     public SightseeingAction (ScriptInGroovy game, StendhalRPWorld world) {
@@ -231,7 +234,7 @@ public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnList
 				player.sendPrivateText("Welcome in " + zoneName);
 			}
     	} catch (Exception e) {
-    		Logger.getLogger(SightseeingAction).error(e, e);
+    		Logger.getLogger(SightseeingAction.class).error(e, e);
     	}
 
 		counter++;
@@ -242,60 +245,57 @@ public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnList
 }
 
 
-    
-if (player != null) {
 
+private void buildDebuggera(StendhalRPZone zone, Map<String, String> attributes) {
 
 	// Create NPC
-	npc=new ScriptingNPC("Debuggera");
+	ScriptingNPC npc=new ScriptingNPC("Debuggera");
 	npc.setClass("girlnpc");
 
 	// Place NPC in int_admin_playground 
     // if this script is executed by an admin
-	myZone = "int_admin_playground";
+	String myZone = "int_admin_playground";
 	game.setZone(myZone);
 	npc.set(4, 11);
 	npc.setDirection(Direction.DOWN);
-	game.add(npc)
+	game.add(npc);
 
 	// 
-	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], null, ConversationStates.IDLE, "My mom said, i am not allowed to talk to strangers.", null);
+	npc.add(ConversationStates.IDLE, Arrays.asList("hi","hello","greetings","hola"), null, ConversationStates.IDLE, "My mom said, i am not allowed to talk to strangers.", null);
 	npc.behave("bye", "Bye.");
 
 	// Greating and admins may enable or disable her
-	npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master. Do you think i am #crazy?", null);
+	npc.add(ConversationStates.IDLE, Arrays.asList("hi","hello","greetings","hola"), new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master. Do you think i am #crazy?", null);
 /*    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null); 
     npc.add(ConversationStates.QUESTION_1, SpeakerNPC.YES_MESSAGES, new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
     npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
-* /
-    npc.behave(["insane", "crazy", "mad"], "Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.")
-    npc.behave(["special", "special child"], "I can see another world in my dreams. That are more thans dreams. There the people are sitting in front of machines called computers. This are realy strange people. They cannot use telepathy without something they call inter-network. But these people and machines are somehow connected to our world. If I concentrate, I can #change thinks in our world.");
+*/
+    npc.behave(Arrays.asList("insane", "crazy", "mad"), "Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.");
+    npc.behave(Arrays.asList("special", "special child"), "I can see another world in my dreams. That are more thans dreams. There the people are sitting in front of machines called computers. This are realy strange people. They cannot use telepathy without something they call inter-network. But these people and machines are somehow connected to our world. If I concentrate, I can #change thinks in our world.");
     // npc.behave("verschmelzung", "\r\nYou have one hand,\r\nI have the other.\r\nPut them together,\r\nWe have each other.");
-    npc.add(ConversationStates.ATTENDING, ["susi"], null, ConversationStates.ATTENDING, "Yes, she is my twin sister. People consider her normal because she hides her special abilities.", null);
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("susi"), null, ConversationStates.ATTENDING, "Yes, she is my twin sister. People consider her normal because she hides her special abilities.", null);
 
 	// change
-    npc.add(ConversationStates.ATTENDING, ["change", "change"], new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "I can teleport you.", null);
-    npc.add(ConversationStates.ATTENDING, ["change", "change"], new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "Do you want to become my #friend?", null);
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("change", "change"), new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "I can teleport you.", null);
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("change", "change"), new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "Do you want to become my #friend?", null);
 
     // friends
-    npc.add(ConversationStates.ATTENDING, ["friend", "friends"], new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "We are friends.", null);
-    npc.add(ConversationStates.ATTENDING, ["friend", "friends"], new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.INFORMATION_1, "Please repeat:\r\n                        \"A circle is round,\"", null);
-    npc.add(ConversationStates.INFORMATION_1, ["A circle is round,", "A circle is round"], null, ConversationStates.INFORMATION_2, "\"it has no end.\"", null);
-    npc.add(ConversationStates.INFORMATION_2, ["it has no end.", "it has no end"], null, ConversationStates.INFORMATION_3, "\"That's how long,\"", null);
-    npc.add(ConversationStates.INFORMATION_3, ["That's how long,", "That's how long", "Thats how long,", "Thats how long"], null, ConversationStates.INFORMATION_4, "\"I will be your friend.\"", null);
-    npc.add(ConversationStates.INFORMATION_4, ["I will be your friend.", "I will be your friend"], null, ConversationStates.ATTENDING, "Cool. We are friends now.", new StandardInteraction.SetQuestAction("debuggera", "friends"));
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends"), new StandardInteraction.QuestInStateCondition("debuggera", "friends"), ConversationStates.ATTENDING, "We are friends.", null);
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("friend", "friends"), new StandardInteraction.QuestNotInStateCondition("debuggera", "friends"), ConversationStates.INFORMATION_1, "Please repeat:\r\n                        \"A circle is round,\"", null);
+    npc.add(ConversationStates.INFORMATION_1, Arrays.asList("A circle is round,", "A circle is round"), null, ConversationStates.INFORMATION_2, "\"it has no end.\"", null);
+    npc.add(ConversationStates.INFORMATION_2, Arrays.asList("it has no end.", "it has no end"), null, ConversationStates.INFORMATION_3, "\"That's how long,\"", null);
+    npc.add(ConversationStates.INFORMATION_3, Arrays.asList("That's how long,", "That's how long", "Thats how long,", "Thats how long"), null, ConversationStates.INFORMATION_4, "\"I will be your friend.\"", null);
+    npc.add(ConversationStates.INFORMATION_4, Arrays.asList("I will be your friend.", "I will be your friend"), null, ConversationStates.ATTENDING, "Cool. We are friends now.", new StandardInteraction.SetQuestAction("debuggera", "friends"));
 
     // quests
     npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(game));
     
     // teleport
-    npc.add(ConversationStates.ATTENDING, ["teleport", "teleportme"], new AdminCondition(), ConversationStates.IDLE, null, new TeleportNPCAction(game));
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("teleport", "teleportme"), new AdminCondition(), ConversationStates.IDLE, null, new TeleportNPCAction(game));
 
-    npc.add(ConversationStates.ATTENDING, ["sightseeing", "memory", "memoryhole"], new AdminCondition(), ConversationStates.IDLE, null, new SightseeingAction (game, world));
-    
-    */
-    
-
+    StendhalRPWorld world = StendhalRPWorld.get();
+    npc.add(ConversationStates.ATTENDING, Arrays.asList("sightseeing", "memory", "memoryhole"), new AdminCondition(), ConversationStates.IDLE, null, new SightseeingAction (game, world));
+}
 /*
 Make new friends,
 but keep the old.
@@ -313,4 +313,5 @@ I can help,
 To keep it clean.
 
 */
+
 }
