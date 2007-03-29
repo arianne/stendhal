@@ -10,6 +10,9 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Useful method to deal with equipable items
+ */
 public class EquipUtil {
 	private static Logger logger = Logger.getLogger(EquipUtil.class);
 
@@ -38,7 +41,7 @@ public class EquipUtil {
 
 
 	/**
-	 * Checks if the object is of one of the given class.
+	 * Checks if the object is of one of the given class or one of its children.
 	 * 
 	 * @param validClasses
 	 *            list of valid class-objects
@@ -52,11 +55,6 @@ public class EquipUtil {
 				return true;
 			}
 		}
-		// if (validClasses.contains(object.getClass()))
-		// {
-		// return true;
-		// }
-
 		logger.debug("object " + object.getID() + " is not of the correct class. it is " + object.getClass().getName());
 		return false;
 	}

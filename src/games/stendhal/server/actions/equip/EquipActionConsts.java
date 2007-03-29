@@ -1,5 +1,8 @@
 package games.stendhal.server.actions.equip;
 
+/**
+ * Constants using during the procession of an Equipment action
+ */
 public class EquipActionConsts {
 	static final String BASE_ITEM = "baseitem";
 
