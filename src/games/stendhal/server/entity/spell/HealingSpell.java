@@ -54,12 +54,6 @@ public class HealingSpell extends Spell implements UseListener {
     public void onUsed(RPEntity user) {
         Player player = (Player) user;
         
-        //now we heal the player and take away mana
-        
-        // gets old mana
-        int totalMana = player.getMana();
-        int baseMana = player.getBaseMana();
-        
         // checks to see if player has enough mana
         boolean canCastSpell = false;
         if (player.getBaseMana() >= 25) {
