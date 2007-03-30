@@ -1227,16 +1227,22 @@ public abstract class RPEntity extends Entity {
 		return null;
 	}
 
-	public StackableItem getMissile() {
-		String[] slots = { "lhand", "rhand" };
-
-		for (String slot : slots) {
-			StackableItem item = (StackableItem) getEquippedItemClass(slot, "missile");
-			if (item != null) {
-				return item;
+	public StackableItem getMissileIfNotHoldingOtherWeapon() {
+		StackableItem missileWeaponItem = null;
+		boolean holdsOtherWeapon = false;
+		
+		for (Item weaponItem: getWeapons()) {
+			if (weaponItem.isOfClass("missile")) {
+				missileWeaponItem = (StackableItem) weaponItem;
+			} else {
+				holdsOtherWeapon = true;
 			}
 		}
-		return null;
+		if (holdsOtherWeapon) {
+			return null;
+		} else {
+			return missileWeaponItem;
+		}
 	}
 	
 	/** returns true if the entity has a shield equipped */
@@ -1409,7 +1415,7 @@ public abstract class RPEntity extends Entity {
 	 */
 	public boolean canDoRangeAttacks() {
 		StackableItem ammunition = getAmmunitionIfRangeCombat();
-		StackableItem missiles = getMissile();
+		StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
 		return ((ammunition != null) && (ammunition.getQuantity() > 0)
 				|| (missiles != null) && (missiles.getQuantity() > 0));
 	}

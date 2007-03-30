@@ -139,7 +139,7 @@ public class StendhalRPAction {
 		StackableItem projectilesItem = attacker.getAmmunitionIfRangeCombat();
 		if (projectilesItem == null) {
 			// no arrows... but maybe a spear?
-			projectilesItem = attacker.getMissile();
+			projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
 		}
 		
 		if (logger.isDebugEnabled()) {
