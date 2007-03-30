@@ -99,6 +99,28 @@ public class StendhalRPAction {
 	}
 
 	/**
+	 * Calculates the damage that will be done in a distance attack (bow
+	 * and arrows, spear, etc.).
+	 * @param attacker The RPEntity that did the distance attack. 
+	 * @param defender The RPEntity that was hit.
+	 * @param damage The damage that would have been done if there would
+	 *               be no modifiers for distance attacks.
+	 * @return The damage that will be done with the distance attack.
+	 */
+	private static int applyDistanceAttackModifiers(RPEntity attacker,
+			RPEntity defender, int damage) {
+		double distance = attacker.squaredDistance(defender);
+
+		double minrangeSquared = 2 * 2;
+		double maxrangeSquared = 7 * 7;
+		// TODO: docu
+		return (int) (damage * (1.0 - distance / maxrangeSquared) + (damage - damage
+		        * (1.0 - (minrangeSquared / maxrangeSquared)))
+		        * (1.0 - distance / maxrangeSquared));
+
+	}
+	
+	/**
 	 * Is called when the given attacker has hit the given defender.
 	 * Determines how much hitpoints the defender will lose, based on the
 	 * attacker's ATK experience and weapon(s), the defender's DEF experience
@@ -111,8 +133,14 @@ public class StendhalRPAction {
 	public static int damageDone(RPEntity attacker, RPEntity defender) {
 
 		float weapon = attacker.getItemAtk();
-		StackableItem ammunitionItem = attacker.getAmmunitionIfRangeCombat();
-		StackableItem missileItem = attacker.getMissile();
+		
+		// Get the item that will be thrown/shot if the attacker is doing
+		// a distance attack.
+		StackableItem projectilesItem = attacker.getAmmunitionIfRangeCombat();
+		if (projectilesItem == null) {
+			// no arrows... but maybe a spear?
+			projectilesItem = attacker.getMissile();
+		}
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + attacker.getATK() + " and uses a weapon of " + weapon);
@@ -130,6 +158,7 @@ public class StendhalRPAction {
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: " + attackerComponent);
 
+		// TODO: docu
 		float armor = defender.getItemDef();
 		int targetDef = defender.getDEF();
 		float maxDefenderComponent = 0.6f * targetDef * targetDef + armor * targetDef;
@@ -148,32 +177,12 @@ public class StendhalRPAction {
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
 		        * (maxAttackerComponent / maxDefenderComponent) * (attacker.getATK() / 10.0f));
 
-		if (ammunitionItem != null) {
-			// The attacker is attacking using a bow and arrows, or a
-			// similar weapon.
-			ammunitionItem.removeOne();
-
-			double distance = attacker.squaredDistance(defender);
-
-			double minrange = 2 * 2;
-			double maxrange = 7 * 7;
-			// TODO: docu
-			damage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
-			        * (1.0 - (minrange / maxrange)))
-			        * (1.0 - distance / maxrange));
-		} else if (missileItem != null) {
-			// The attacker is attacking using a spear, or another weapon
-			// that must be thrown.
-			missileItem.removeOne();
-
-			// TODO: extract method to avoid duplication of the code above
-			double distance = attacker.squaredDistance(defender);
-
-			double minrange = 2 * 2;
-			double maxrange = 7 * 7;
-			damage = (int) (damage * (1.0 - distance / maxrange) + (damage - damage
-			        * (1.0 - (minrange / maxrange)))
-			        * (1.0 - distance / maxrange));
+		if (projectilesItem != null) {
+			// The attacker is attacking either using a range weapon with
+			// ammunition such as a bow and arrows, or a missile such as a
+			// spear.
+			projectilesItem.removeOne();
+			damage = applyDistanceAttackModifiers(attacker, defender, damage);
 		}
 		// limit damage to target hp
 		return Math.min(damage, defender.getHP());
