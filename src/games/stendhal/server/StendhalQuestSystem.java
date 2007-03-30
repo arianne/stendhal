@@ -51,6 +51,7 @@ public class StendhalQuestSystem {
 		loadQuest("Campfire");
 		loadQuest("CarmenCataclysm");
 		loadQuest("CleanStorageSpace");
+		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
 		//loadQuest("CostumeParty");
 		loadQuest("DailyMonsterQuest");

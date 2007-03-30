@@ -41,6 +41,10 @@
            <portal x="82" y="44" ref="battle_arena_entrance">
              <destination zone="int_fado_battle_arena" ref="entrance"/>
            </portal>
+           
+           <portal x="24" y="16" ref="house_entrance">
+             <destination zone="int_fado_house" ref="entrance_right"/>
+           </portal>
    	</zone>
          
          <zone name="int_fado_bank" file="int_fado_bank.xstend">
@@ -92,7 +96,6 @@
          
          <zone name="int_fado_bakery" file="int_fado_bakery.xstend">
            <configurator class-name="games.stendhal.server.maps.fado.bakery.IL0_BakerNPC"/>
-           
            <portal x="26" y="14" ref="entrance">
              <destination zone="0_fado_city" ref="bakery_entrance"/>
            </portal>
@@ -108,6 +111,19 @@
            <portal x="41" y="30" ref="entrance_right">
              <destination zone="0_fado_city" ref="tavern_entrance_right"/>
            </portal>
+         </zone>
+         
+   		<zone name="int_fado_house" file="int_fado_house.xstend">
+           <configurator class-name="games.stendhal.server.maps.fado.house.IL0_WomanNPC"/>
+           
+           <portal x="6" y="10" ref="entrance_left">
+             <destination zone="0_fado_city" ref="house_entrance"/>
+           </portal>
+           
+		   <portal x="7" y="10" ref="entrance_right">
+             <destination zone="0_fado_city" ref="house_entrance"/>
+           </portal>
+           
          </zone>
          
          <zone name="int_fado_church" file="int_fado_church.xstend">
