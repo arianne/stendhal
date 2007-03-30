@@ -7,14 +7,13 @@
    -->
 
  <!--  Ground level -->
-
- <zone name="0_ados_mountain_n2_w2" file="0_ados_mountain_n2_w2.xstend">
+ <zone name="0_ados_mountain_n2_w2" level="0" x="500256" y="499744" file="0_ados_mountain_n2_w2.xstend">
  </zone>
 
- <zone name="0_ados_mountain_n_w2" file="0_ados_mountain_n_w2.xstend">
+ <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="0_ados_mountain_n_w2.xstend">
  </zone>
 
- <zone name="0_ados_mountain_nw" file="0_ados_mountain_nw.xstend">
+ <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="0_ados_mountain_nw.xstend">
   <entity x="126" y="107">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -69,7 +68,7 @@ areas.
   </entity>
  </zone>
 
- <zone name="0_ados_outside_nw" file="0_ados_outside_nw.xstend">
+ <zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="0_ados_outside_nw.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest" />
 
   <portal x="67" y="24" ref="0">
@@ -96,21 +95,21 @@ West: Semos
   </entity>
  </zone>
 
- <zone name="0_ados_wall_n" file="0_ados_wall_n.xstend">
+ <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="0_ados_wall_n.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.AdosWallNorth"/>
  </zone>
 
- <zone name="0_ados_forest_w2" file="0_ados_forest_w2.xstend">
+ <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="0_ados_forest_w2.xstend">
  </zone>
 
- <zone name="0_ados_rock_w" file="0_ados_rock_w.xstend">
+ <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="0_ados_rock_w.xstend">
  </zone>
 
- <zone name="0_ados_rock" file="0_ados_rock.xstend">
+ <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.AdosRock"/>
  </zone>
 
- <zone name="0_ados_outside_w" file="0_ados_outside_w.xstend">
+ <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
  </zone>
 
 <!--
@@ -310,7 +309,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone> 
    
- <zone name="0_ados_city" file="0_ados_city.xstend">
+ <zone name="0_ados_city" level="0" x="500896" y="499872" file="0_ados_city.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside" />
 
   <portal x="60" y="16" ref="tavern_entrance_left">
@@ -385,11 +384,11 @@ Please leave my mail at my neighbour's house.
  <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
  </zone>
 
- <zone name="0_ados_swamp" file="0_ados_swamp.xstend">
+ <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
  </zone>
 
- <zone name="0_ados_coast_s_w2" file="0_ados_coast_s_w2.xstend">
+ <zone name="0_ados_coast_s_w2" level="0" x="500640" "500256" file="0_ados_coast_s_w2.xstend">
  </zone>
  
  <!--
@@ -402,13 +401,13 @@ Please leave my mail at my neighbour's house.
 
 
 <!--
- <zone name="0_ados_river_s2_w2" file="0_ados_river_s2_w2.xstend">
+ <zone name="0_ados_river_s2_w2" level="0" x="500640" y="500384" file="0_ados_river_s2_w2.xstend">
  </zone>
 -->
 
  <!--  Level -1 -->
 
- <zone name="-1_ados_outside_nw" file="sub_1_ados_outside_nw.xstend">
+ <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="sub_1_ados_outside_nw.xstend">
   <portal x="4" y="23" ref="0">
    <destination zone="0_ados_outside_nw" ref="0"/>
   </portal>
@@ -418,16 +417,13 @@ Please leave my mail at my neighbour's house.
 
  <!--  Level -2 -->
 
- <zone name="-2_ados_outside_nw" file="sub_2_ados_outside_nw.xstend">
-<!--
-  <configurator class-name="games.stendhal.server.maps.ados.AdosOutsideNorthWest" />
--->
+ <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="sub_2_ados_outside_nw.xstend">
  </zone>
 
 
  <!--  Level -3 -->
 
- <zone name="-3_ados_outside_nw" file="sub_3_ados_outside_nw.xstend">
+ <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="sub_3_ados_outside_nw.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest" />
   <!-- This must be after the NPC configurator -->
   <entity x="17" y="23">
