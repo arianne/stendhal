@@ -17,6 +17,7 @@ import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.events.EquipListener;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ import marauroa.common.game.RPClass;
 public class Spell extends PassiveEntity implements EquipListener {
 
 	/** list of possible slots for this item */
-	private List<String> possibleSlots;
+	private List<String> possibleSlots = Arrays.asList("spells");
 
 	/**
 	 * The plant grower where this item was grown, until it has been picked.
@@ -72,21 +73,9 @@ public class Spell extends PassiveEntity implements EquipListener {
 		update();
 	}
 
-	/** copy constuctor */
-	private Spell(Spell other) throws AttributeNotFoundException {
-		super(other);
-	}
-
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, 1, 1);
-	}
-
-
-	/** returns the name of the item */
-	@Override
-	public String getName() {
-		return get("name");
 	}
 
 
