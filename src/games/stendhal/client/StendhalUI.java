@@ -145,6 +145,13 @@ public abstract class StendhalUI {
 	public abstract void setChatLine(String text);
 
 
+	/**
+	 * Set the offline indication state.
+	 *
+	 * @param	offline		<code>true</code> if offline.
+	 */
+	public abstract void setOffline(boolean offline);
+
 
 	//
 	// <StendhalGUI>

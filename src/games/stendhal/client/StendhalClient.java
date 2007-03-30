@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.InGameGUI;
 import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
@@ -71,8 +70,6 @@ public class StendhalClient extends ariannexp {
 
 	private boolean keepRunning = true;
 
-	private InGameGUI gameGUI;
-
 	private JFrame frame;
 
 	private static StendhalClient client=null;
@@ -119,8 +116,6 @@ public class StendhalClient extends ariannexp {
 
 		handler = new PerceptionHandler(listeners);
 
-		gameGUI = null;
-
 		cache = new Cache();
 		cache.init();
 
@@ -154,10 +149,6 @@ public class StendhalClient extends ariannexp {
 
 	public void setScreen(GameScreen screen) {
 		this.screen = screen;
-	}
-
-	public void setGameGUI(InGameGUI gui) {
-		gameGUI = gui;
 	}
 
 	public OutfitDialog getOutfitDialog(int outfit) {
@@ -557,7 +548,7 @@ public class StendhalClient extends ariannexp {
 		public int onSynced() {
 			times = 0;
 
-			gameGUI.online();
+			StendhalUI.get().setOffline(false);
 
 			logger.debug("Synced with server state.");
 			StendhalUI.get().addEventLine("Synchronized", Color.gray);

@@ -381,7 +381,6 @@ public class j2DClient extends StendhalUI {
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 		inGameGUI = new InGameGUI(this);
-		client.setGameGUI(inGameGUI);
 
 
 		// Start the main game loop, note: this method will not
@@ -471,9 +470,9 @@ public class j2DClient extends StendhalUI {
 
 			// Shows a offline icon if no messages are recieved in 10 seconds.
 			if ((refreshTime - lastMessageHandle > 120000) || !client.getConnectionState()) {
-				inGameGUI.offline();
+				setOffline(true);
 			} else {
-				inGameGUI.online();
+				setOffline(false);
 			}
 
 			gameRunning &= client.shouldContinueGame();
@@ -804,6 +803,20 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public void setChatLine(String text) {
 		playerChatText.setText(text);
+	}
+
+
+	/**
+	 * Set the offline indication state.
+	 *
+	 * @param	offline		<code>true</code> if offline.
+	 */
+	public void setOffline(boolean offline) {
+		if(offline) {
+			inGameGUI.offline();
+		} else {
+			inGameGUI.online();
+		}
 	}
 
 	//
