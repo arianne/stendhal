@@ -73,14 +73,20 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 				        "I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.",
 				        null);
 
-				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("ore", "gold", "gold_nugget"),
+				add(ConversationStates.ATTENDING,
+				        Arrays.asList("ore", "gold_ore", "gold_nugget"),
 				        null,
 				        ConversationStates.ATTENDING,
 				        "I think there are places in the water where you can find gold ore. But you need a special tool to prospect for gold.",
 				        null);
-
+				
+				add(ConversationStates.ATTENDING,
+				        Arrays.asList("barrel", "gold", "barrel_of_gold"),
+				        null,
+				        ConversationStates.ATTENDING,
+				        "After I've casted the gold for you keep t save. I've heard rumours that Fado city will be safe to travel to again soon. There you can sell or trade gold.",
+				        null);
+				
 				add(ConversationStates.ATTENDING, "gold_pan", null, ConversationStates.ATTENDING,
 				        "If you had a gold pan, you would be able to prospect for gold at certain places.", null);
 
@@ -97,7 +103,7 @@ public class IL0_Goldsmith implements ZoneConfigurator {
 				        requiredResources, 15 * 60);
 
 				addProducer(behaviour,
-				        "Hi! I'm the local goldsmith. If I should #cast you a barrel of gold just tell me!");
+				        "Hi! I'm the local goldsmith. If you require me to #cast you a #barrel #of #gold just tell me!");
 			}
 		};
 		npcs.add(goldsmith);
