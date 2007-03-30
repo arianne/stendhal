@@ -25,6 +25,8 @@ public class ResizeableCreature extends Creature {
 	private double width = 1.5;
 	private double height = 1.0f;
 	private String metamorphosis = null;
+	private double drawWidth;
+	private double drawHeight;
 
 	/**
 	 * Creates a new resizeable creature
@@ -44,13 +46,21 @@ public class ResizeableCreature extends Creature {
 			height = object.getDouble("height");
 		}
 
+		// Hack for human like creatures
+    	drawWidth = width;
+    	drawHeight = height;
+		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
+			drawWidth = 1.5;
+			drawHeight = 2;
+		}
+
 		SpriteStore store = SpriteStore.get();
 		Sprite creature = loadAnimationSprite(object);
 
-		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, width, height));
-		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, width, height));
-		sprites.put("move_down", store.getAnimatedSprite(creature, 2, 4, width, height));
-		sprites.put("move_left", store.getAnimatedSprite(creature, 3, 4, width, height));
+		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, drawWidth, drawHeight));
+		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, drawWidth, drawHeight));
+		sprites.put("move_down", store.getAnimatedSprite(creature, 2, 4, drawWidth, drawHeight));
+		sprites.put("move_left", store.getAnimatedSprite(creature, 3, 4, drawWidth, drawHeight));
 
 		sprites.get("move_up")[3] = sprites.get("move_up")[1];
 		sprites.get("move_right")[3] = sprites.get("move_right")[1];
@@ -116,6 +126,10 @@ public class ResizeableCreature extends Creature {
 
 	@Override
 	public Rectangle2D getArea() {
+		// Hack for human like creatures
+		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
+			return new Rectangle.Double(x, y + 1, 1, 1);
+		}
 		return new Rectangle.Double(x, y, width, height);
 	}
 
