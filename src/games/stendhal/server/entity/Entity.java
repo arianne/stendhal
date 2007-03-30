@@ -327,12 +327,16 @@ public abstract class Entity extends RPObject {
 	 * @param y The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
-		if ((!has("width") || getInt("width") == 1) && (!has("height") ||getInt("height") == 1)) {
+		if ((!has("width") || getInt("width") == 1) && (!has("height") || getInt("height") == 1)) {
 			// This doesn't work properly if this entity is larger
 			// than 1x1, but it is faster.
 			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
 		}
-		return squaredDistanceBetween(getArea(), new Rectangle(x, y, 1, 1));
+		Rectangle2D thisArea = getArea();
+		// for 1x2 size creatures the destArea, needs bo be one up (this sucks badly)
+		thisArea = new Rectangle2D.Double(thisArea.getX(), this.getY(), thisArea.getWidth(), thisArea.getHeight());
+
+		return squaredDistanceBetween(thisArea, new Rectangle(x, y, 1, 1));
 	}
 
 	/**
