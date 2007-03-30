@@ -307,7 +307,7 @@ public abstract class Entity extends RPObject {
 	 * @param other the entity to which the distance should be calculated 
 	 */
 	public double squaredDistance(Entity other) {
-		if (other.getInt("width") == 1 && other.getInt("height") == 1) {
+		if ((!has("width") || getInt("width") == 1) && (!has("height") ||getInt("height") == 1)) {
 			// This doesn't work properly if the other entity is larger
 			// than 1x1, but it is faster.
 			return squaredDistance(other.x, other.y);
@@ -327,7 +327,7 @@ public abstract class Entity extends RPObject {
 	 * @param y The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
-		if (getInt("width") == 1 && getInt("height") == 1) {
+		if ((!has("width") || getInt("width") == 1) && (!has("height") ||getInt("height") == 1)) {
 			// This doesn't work properly if this entity is larger
 			// than 1x1, but it is faster.
 			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
