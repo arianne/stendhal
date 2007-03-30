@@ -152,7 +152,7 @@ public class Bootstrap {
 	/**
 	 * Do the whole start up process in a privilaged block
 	 */
-	private class PrivilagedBoot<T> implements PrivilegedAction<T> {
+	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
 		private String className = null;
 
@@ -164,7 +164,7 @@ public class Bootstrap {
 		 * @param className className to boot
 		 * @param args arguments for the main-method
 		 */
-		public PrivilagedBoot(String className, String[] args) {
+		public PrivilegedBoot(String className, String[] args) {
 			this.className = className;
 			this.args = args;
 		}
@@ -287,7 +287,7 @@ public class Bootstrap {
 		if (isSigned()) {
 			// official client, look for updates and integrate additinal .jar files
 			System.err.println("Integrating old updates and looking for new ones");
-			AccessController.doPrivileged(new PrivilagedBoot<Object>(className, args));
+			AccessController.doPrivileged(new PrivilegedBoot<Object>(className, args));
 		} else {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
