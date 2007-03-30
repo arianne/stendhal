@@ -134,14 +134,6 @@ public class StendhalRPAction {
 
 		float weapon = attacker.getItemAtk();
 		
-		// Get the item that will be thrown/shot if the attacker is doing
-		// a distance attack.
-		StackableItem projectilesItem = attacker.getAmmunitionIfRangeCombat();
-		if (projectilesItem == null) {
-			// no arrows... but maybe a spear?
-			projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
-		}
-		
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + attacker.getATK() + " and uses a weapon of " + weapon);
 		}
@@ -177,11 +169,10 @@ public class StendhalRPAction {
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
 		        * (maxAttackerComponent / maxDefenderComponent) * (attacker.getATK() / 10.0f));
 
-		if (projectilesItem != null) {
+		if (attacker.canDoRangeAttacks()) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
 			// spear.
-			projectilesItem.removeOne();
 			damage = applyDistanceAttackModifiers(attacker, defender, damage);
 		}
 		// limit damage to target hp
@@ -280,6 +271,13 @@ public class StendhalRPAction {
 				if (zone.collidesOnLine(attacker.getX(), attacker.getY(), defender.getX(), defender.getY())) {
 					return false;
 				}
+				// Get the projectile that will be thrown/shot.
+				StackableItem projectilesItem = attacker.getAmmunitionIfRangeCombat();
+				if (projectilesItem == null) {
+					// no arrows... but maybe a spear?
+					projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
+				}
+				projectilesItem.removeOne();
 			} else {
 				logger.debug("Attack from " + attacker + " to " + defender + " failed because target is not near.");
 				return false;
