@@ -8,28 +8,28 @@
 
  <!--  Ground level -->
 
- <zone name="0_semos_mountain_n_w4" file="0_semos_mountain_n_w4.xstend">
+ <zone name="0_semos_mountain_n_w4" level="0" x="499616" y="499744" file="0_semos_mountain_n_w4.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n2_w2" file="0_semos_mountain_n2_w2.xstend">
+ <zone name="0_semos_mountain_n2_w2" level="0" x="499744" y="499744" file="0_semos_mountain_n2_w2.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n2_w" file="0_semos_mountain_n2_w.xstend">
+ <zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744" file="0_semos_mountain_n2_w.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n2" file="0_semos_mountain_n2.xstend">
+ <zone name="0_semos_mountain_n2" level="0" x="500000" y="499744" file="0_semos_mountain_n2.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n2_e" file="0_semos_mountain_n2_e.xstend">
+ <zone name="0_semos_mountain_n2_e" level="0" x="500128" y="499744" file="0_semos_mountain_n2_e.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n2_e2" file="0_semos_mountain_n2_e2.xstend">
+ <zone name="0_semos_mountain_n2_e2" level="0" x="500256" y="499744" file="0_semos_mountain_n2_e2.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n_w3" file="0_semos_mountain_n_w3.xstend">
+ <zone name="0_semos_mountain_n_w3" level="0" x="499744" y="499872" file="0_semos_mountain_n_w3.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n_w2" file="0_semos_mountain_n_w2.xstend">
+ <zone name="0_semos_mountain_n_w2" level="0" x="499872" y="499872" file="0_semos_mountain_n_w2.xstend">
   <entity x="39" y="23">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -39,7 +39,7 @@
   </entity>
  </zone>
 
- <zone name="0_semos_plains_n" file="0_semos_plains_n.xstend">
+ <zone name="0_semos_plains_n" level="0" x="500000" y="499872" file="0_semos_plains_n.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
@@ -61,7 +61,7 @@ South: Semos city
   </entity>
  </zone>
 
- <zone name="0_semos_plains_ne" file="0_semos_plains_ne.xstend">
+ <zone name="0_semos_plains_ne" level="0" x="500128" y="499872" file="0_semos_plains_ne.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
   <entity x="25" y="46">
     <implementation class-name="games.stendhal.server.entity.Sign">
@@ -76,16 +76,16 @@ Southeast: Farmhouse
 
  </zone>
 
- <zone name="0_semos_plains_n_e2" file="0_semos_plains_n_e2.xstend">
+ <zone name="0_semos_plains_n_e2" level="0" x="500192" y="499872" file="0_semos_plains_n_e2.xstend">
  </zone>
 
- <zone name="0_semos_mountain_n_e2" file="0_semos_mountain_n_e2.xstend">
+ <zone name="0_semos_mountain_n_e2" level="0" x="500256" y="499872" file="0_semos_mountain_n_e2.xstend">
  </zone>
 
- <zone name="0_semos_mountain_w2" file="0_semos_mountain_w2.xstend">
+ <zone name="0_semos_mountain_w2" level="0" x="499744" y="500000" file="0_semos_mountain_w2.xstend">
  </zone>
 
- <zone name="0_semos_plains_w" file="0_semos_plains_w.xstend">
+ <zone name="0_semos_plains_w" level="0" x="499872" y="500000" file="0_semos_plains_w.xstend">
   <portal x="85" y="26" ref="jail_entrance_left">
    <destination zone="-1_semos_jail" ref="entrance"/>
   </portal>
@@ -95,7 +95,7 @@ Southeast: Farmhouse
   </portal>
  </zone>
 
- <zone name="0_semos_village_w" file="0_semos_village_w.xstend">
+ <zone name="0_semos_village_w" level="0" x="500000" y="500000" file="0_semos_village_w.xstend">
   <entity x="23" y="61">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -599,13 +599,13 @@ with you.
     </portal>
    </zone>
 
- <zone name="0_semos_road_e" file="0_semos_road_e.xstend">
+ <zone name="0_semos_road_e" level="0" x="500128" y="500000" file="0_semos_road_e.xstend">
  </zone>
 
- <zone name="0_semos_road_se" file="0_semos_road_se.xstend">
+ <zone name="0_semos_road_se" level="0" x="500128" y="500064" file="0_semos_road_se.xstend">
  </zone>
 
- <zone name="0_semos_plains_s" file="0_semos_plains_s.xstend">
+ <zone name="0_semos_plains_s" level="0" x="500000" y="500064" file="0_semos_plains_s.xstend">
   <entity x="118" y="43">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <attribute name="text">
@@ -638,7 +638,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
  </zone>
 
- <zone name="0_semos_forest_s" file="0_semos_forest_s.xstend">
+ <zone name="0_semos_forest_s" level="0" x="500000" y="500128" file="0_semos_forest_s.xstend">
  </zone>
 
  <!--  Level -1 -->
@@ -781,14 +781,14 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level -2 -->
 
- <zone name="-2_semos_dungeon" file="sub_2_semos_dungeon.xstend">
+ <zone name="-2_semos_dungeon" level="-2" x="500096" y="500032" file="sub_2_semos_dungeon.xstend">
  </zone>
 
- <zone name="-2_semos_jail" file="sub_2_semos_jail.xstend">
+ <zone name="-2_semos_jail" level="-2" x="499872" y="500000" file="sub_2_semos_jail.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
  </zone>
 
- <zone name="-2_semos_catacombs" file="sub_2_semos_catacombs.xstend">
+ <zone name="-2_semos_catacombs" level="-2" x="500000" y="499872" file="sub_2_semos_catacombs.xstend">
   <portal x="9" y="6" ref="dragon_portal_1">
    <destination zone="-2_semos_catacombs" ref="dragon_portal_2"/>
   </portal>
@@ -1247,10 +1247,10 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level -3 -->
 
- <zone name="-3_semos_dungeon" file="sub_3_semos_dungeon.xstend">
+ <zone name="-3_semos_dungeon" level="-3" x="500096" y="500032" file="sub_3_semos_dungeon.xstend">
  </zone>
 
- <zone name="-3_semos_catacombs" file="sub_3_semos_catacombs.xstend">
+ <zone name="-3_semos_catacombs" level="-3" x="500064" y="499872" file="sub_3_semos_catacombs.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
 
   <portal x="30" y="57" ref="upstairs" replacing="true">
@@ -1261,19 +1261,19 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level -4 -->
 
- <zone name="-4_semos_dungeon" file="sub_4_semos_dungeon.xstend">
+ <zone name="-4_semos_dungeon" level="-4" x="500096" y="500064" file="sub_4_semos_dungeon.xstend">
  </zone>
 
 
  <!--  Level -5 -->
 
- <zone name="-5_kanmararn_entrance" file="sub_5_kanmararn_entrance.xstend">
+ <zone name="-5_kanmararn_entrance" level="-5" x="500096" y="500064" file="sub_5_kanmararn_entrance.xstend">
  </zone>
 
 
  <!--  Level -6 -->
 
- <zone name="-6_kanmararn_city" file="sub_6_kanmararn_city.xstend">
+ <zone name="-6_kanmararn_city" level="-6" x="500160" y="500064" file="sub_6_kanmararn_city.xstend">
   <configurator class-name="games.stendhal.server.maps.Kanmararn"/>
  </zone>
 
@@ -1281,7 +1281,7 @@ Mature sheep wanted: please speak to Sato
  <!--  Level -7 -->
 
 <!--
- <zone name="-7_kanmararn_jail" file="sub_7_kanmararn_jail.xstend">
+ <zone name="-7_kanmararn_jail" level="-7" x="500160" y="500064" file="sub_7_kanmararn_jail.xstend">
  </zone>
 -->
 
