@@ -75,10 +75,11 @@ Changelog
 - added a sunny island and a new quest on it
 - created a ferry service to the island
 - added blackjack gambling on the ferry
-- non semos city scrolls - nalwor, fado (when open), ados (needs NPC seller)
+- non semos city scrolls - nalwor, fado (when open), ados available for purchase
 - nalwor bank with nalwor and semos bank chests
 - added /away command (like in irc)
 - /ignore command now supports duration and reason message
+- all buildings have had a makeover
 
 0.58
 - name/HPbar is now visible, alltime
