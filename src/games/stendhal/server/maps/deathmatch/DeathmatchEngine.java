@@ -33,6 +33,8 @@ class DeathmatchEngine implements TurnListener {
 	private static final long BAIL_DELAY = 2000; // wait 2 seconds before bail takes effect
 
 	private static final long SPAWN_DELAY = 15000; // spawn a new monster each 15 seconds
+	
+	private static final long NUMBER_OF_CREATURES = 10;
 
 	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
 
@@ -119,7 +121,7 @@ class DeathmatchEngine implements TurnListener {
 		}
 
 		// check wheter the deathmatch was completed
-		if (questLevel > player.getLevel() + 7) {
+		if (questLevel >= player.getLevel() + NUMBER_OF_CREATURES - 2 ) {
 			if (areAllCreaturesDead()) {
 				spawnDailyMonster();
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
