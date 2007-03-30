@@ -280,7 +280,11 @@ public class StendhalRPAction {
 					// no arrows... but maybe a spear?
 					projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
 				}
-				projectilesItem.removeOne();
+				// Creatures can attack without having projectiles, but players
+				// will lose a projectile for each shot. 
+				if (projectilesItem != null) {
+					projectilesItem.removeOne();
+				}
 			} else {
 				logger.debug("Attack from " + attacker + " to " + defender + " failed because target is not near.");
 				return false;
