@@ -49,6 +49,7 @@ public class StendhalQuestSystem {
 		loadQuest("BeerForHayunn");
 		loadQuest("Blackjack");
 		loadQuest("Campfire");
+		loadQuest("CarmenCataclysm");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloaksForBario");
 		//loadQuest("CostumeParty");
