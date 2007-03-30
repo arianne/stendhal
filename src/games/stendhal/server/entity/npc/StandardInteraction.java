@@ -94,6 +94,18 @@ public class StandardInteraction {
 
 	}
 
+	/**
+	 * This condition returns always true. Use it in a quest file to override 
+	 * behaviour defined in the map file
+	 */
+	public static class AllwaysTrue extends SpeakerNPC.ChatCondition {
+
+		@Override
+		public boolean fire(Player player, String text, SpeakerNPC engine) {
+			return true;
+		}
+
+	}
 	// ------------------------------------------------------------------------
 	//                           quest related stuff
 	// ------------------------------------------------------------------------
