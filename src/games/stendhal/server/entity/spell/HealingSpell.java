@@ -86,7 +86,7 @@ public class HealingSpell extends Spell implements UseListener {
             int newmana = mana - 25;
             
             // sets the new mana amount
-            player.put("mana", mana);
+            player.setMana(newmana);
             
             //now that everything has been set, notify the player.
             player.sendPrivateText("You have been healed. You now have #" + player.getMana() + " mana left.");
