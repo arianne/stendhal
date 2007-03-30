@@ -13,28 +13,21 @@
 package games.stendhal.server.entity.spell;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.EquipListener;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 /**
  * The Spell class. Based off the item code.
  * @author timothyb89
  */
-public class Spell extends PassiveEntity implements TurnListener, EquipListener {
+public class Spell extends PassiveEntity implements EquipListener {
 
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
@@ -44,14 +37,10 @@ public class Spell extends PassiveEntity implements TurnListener, EquipListener 
 	 * null if it wasn't grown by a plant grower, or if it has already been
 	 * picked.
 	 */
-	private PassiveEntityRespawnPoint plantGrower;
-
-	final public static int DEGRADATION_TIMEOUT = 54 * 60; // 54 minutes
-
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("spell");
 		entity.isA("entity");
-                entity.add("class", RPClass.STRING); // the spell class (other purposes, just to code old code for now)
+		entity.add("class", RPClass.STRING); // the spell class (other purposes, just to code old code for now)
 		entity.add("name", RPClass.STRING); // name of spell (such as "heal")
                 
 	}
@@ -61,8 +50,6 @@ public class Spell extends PassiveEntity implements TurnListener, EquipListener 
 	 * Creates a new Item.
 	 * 
 	 * @param name name of item
-	 * @param clazz class (or type) of item
-	 * @param subclass subclass of this item
 	 * @param attributes attributes (like attack). may be empty or <code>null</code>
 	 */
 	public Spell(String name, Map<String, String> attributes) {
@@ -77,17 +64,6 @@ public class Spell extends PassiveEntity implements TurnListener, EquipListener 
 			}
 		}
 	}
-
-	/**
-	 * on which slots may this item be equiped
-	 *
-	 * @param slots list of allowed slots
-	 */
-	public void setEquipableSlots(List<String> slots) {
-		// save slots
-		possibleSlots = slots;
-	}
-
 
 	/** no public 'default' item */
 	private Spell() throws AttributeNotFoundException {
@@ -106,48 +82,11 @@ public class Spell extends PassiveEntity implements TurnListener, EquipListener 
 		rect.setRect(x, y, 1, 1);
 	}
 
-	/**
-	 * Checks if the item is of type <i>type</i>
-	 * 
-	 * @param clazz
-	 *            the class to check
-	 * @return true if the type matches, else false
-	 */
-	public boolean isOfClass(String clazz) {
-		return getItemClass().equals(clazz);
-	}
-
-	/** returns the type of the item */
-	public String getItemClass() {
-		if (has("class")) {
-			return get("class");
-		}
-
-		throw new IllegalStateException("the item does not have a class: " + this);
-	}
-
-	/** returns the type of the spell ||| not valid as there is no need for a subclass yet. */
-	public String getItemSubclass() {
-		if (has("subclass")) {
-			return get("subclass");
-		}
-
-		throw new IllegalStateException("the item does not have a subclass: " + this);
-	}
 
 	/** returns the name of the item */
 	@Override
 	public String getName() {
 		return get("name");
-	}
-
-	/**
-	 * Get spell count.
-	 *
-	 * @return	1.
-	 */
-	public int getQuantity() {
-		return 1;
 	}
 
 	/** returns the list of possible slots for this item */
@@ -167,43 +106,12 @@ public class Spell extends PassiveEntity implements TurnListener, EquipListener 
 
 	@Override
 	public String describe() {
-
 		String text = "You see " + Grammar.a_noun(getName().replace("_", " ")) + ".";
 		return (text);
 	}
 
-	/**
-	 * Removes the item. I case of StackableItems only one is removed.
-	 */
-	public void removeOne() {
-		if (isContained()) {
-			// We modify the base container if the object change.
-			RPObject base = getContainer();
-
-			while (base.isContained()) {
-				base = base.getContainer();
-			}
-
-			RPSlot slot = getContainerSlot();
-			slot.remove(getID());
-
-			StendhalRPWorld.get().modify(base);
-		} else {
-			StendhalRPWorld.get().remove(getID());
-		}
-	}
 
 	public boolean canBeEquippedIn(String slot) {
-		System.out.println("'" + slot + "'");
-		return possibleSlots.contains(slot)
-		// when the slot is called "content", it's a personal chest.
-		        || slot.equals("content");
+		return possibleSlots.contains(slot);
 	}
-
-    public void onTurnReached(int currentTurn, String message) {
-        // remove this object from the zone where it's lying on
-	// the ground
-	StendhalRPWorld.get().getRPZone(getID()).remove(getID());
-    }
-
 }
