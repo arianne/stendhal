@@ -53,12 +53,12 @@ public class Box extends Item implements UseListener {
 				base = base.getContainer();
 			}
 
-			if (!user.nextTo((Entity) base, 0.25)) {
+			if (!user.nextTo((Entity) base)) {
 				logger.debug("Consumable item is too far");
 				return;
 			}
 		} else {
-			if (!user.nextTo(this, 0.25)) {
+			if (!user.nextTo(this)) {
 				logger.debug("Consumable item is too far");
 				return;
 			}

@@ -63,7 +63,7 @@ public class Scroll extends StackableItem implements UseListener {
 			base = base.getContainer();
 		}
 
-		if (user.nextTo((Entity) base, 0.25)) {
+		if (user.nextTo((Entity) base)) {
 			if (useScroll((Player) user)) {
 				this.removeOne();
 				user.notifyWorldAboutChanges();

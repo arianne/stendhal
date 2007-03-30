@@ -117,7 +117,7 @@ public class PathfinderTest {
 			if (pass) {
 				Path.Node lastNode = nodes.get(nodes.size() - 1);
 				entity.set(lastNode.x, lastNode.y);
-				pass = entity.nextTo(target, 0.25);
+				pass = entity.nextTo(target);
 				if (zone.collides(entity, lastNode.x, lastNode.y)) {
 					System.out.print("C ");
 				}

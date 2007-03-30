@@ -26,7 +26,7 @@ public class NPCOwnedChest extends Chest {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
-		if (player.nextTo(this, 0.25)) {
+		if (player.nextTo(this)) {
 			npc.say("Hey " + user.getName() + ", that is my chest.");
 		}
 	}

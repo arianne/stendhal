@@ -92,7 +92,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	public void onUsed(RPEntity entity) {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
-			if (player.nextTo(this, 0.25)) {
+			if (player.nextTo(this)) {
 
 				if (player.isEquipped("gold_pan")) {
 					String name = player.getName();
@@ -121,7 +121,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 		// check if the player is still logged in
 		if (player != null) {
 			// check if the player is still standing next to this gold source
-			if (player.nextTo(this, 0.25)) {
+			if (player.nextTo(this)) {
 				// roll the dice
 				if (prospectSuccessful()) {
 					Item nugget = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_nugget");

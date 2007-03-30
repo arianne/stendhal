@@ -62,7 +62,7 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 	 * Is called when a player tries to harvest this grain field.
 	 */
 	public void onUsed(RPEntity entity) {
-		if (entity.nextTo(this, 0.25)) {
+		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
 				if (entity.isEquipped("old_scythe") || entity.isEquipped("scythe")) {
 					onFruitPicked(null);

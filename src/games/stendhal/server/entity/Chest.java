@@ -108,7 +108,7 @@ public class Chest extends Entity implements UseListener {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
-		if (player.nextTo(this, 0.25)) {
+		if (player.nextTo(this)) {
 			if (isOpen()) {
 				close();
 			} else {

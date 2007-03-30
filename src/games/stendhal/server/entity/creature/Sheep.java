@@ -195,7 +195,7 @@ public class Sheep extends DomesticAnimal {
 		SheepFood food = null;
 
 		if ((hunger > 50) && ((food = getNearestFood(6)) != null) && (weight < MAX_WEIGHT)) {
-			if (nextTo(food, 0.25)) {
+			if (nextTo(food)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
 				eat(food);
@@ -211,7 +211,7 @@ public class Sheep extends DomesticAnimal {
 		} else if (owner == null) {
 			logger.debug("Sheep (ownerless) moves randomly");
 			moveRandomly();
-		} else if ((owner != null) && !nextTo(owner, 0.25)) {
+		} else if ((owner != null) && !nextTo(owner)) {
 			moveToOwner();
 		} else {
 			logger.debug("Sheep has nothing to do");

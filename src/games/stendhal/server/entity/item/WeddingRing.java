@@ -60,7 +60,7 @@ public class WeddingRing extends Item implements UseListener {
 			base = base.getContainer();
 		}
 
-		if (user instanceof Player && user.nextTo((Entity) base, 0.25)) {
+		if (user instanceof Player && user.nextTo((Entity) base)) {
 			teleportToSpouse((Player) user);
 		}
 	}

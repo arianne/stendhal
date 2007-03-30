@@ -767,7 +767,7 @@ public class Creature extends NPC {
 		setMovement(target, 0, 0, 20.0);
 
 		if ((getPath() == null) || (getPath().size() == 0)) {
-			if (!nextTo(target, 0.25)) {
+			if (!nextTo(target)) {
 				stopAttack();
 				target = null;
 				if (logger.isDebugEnabled()) {
@@ -1040,7 +1040,7 @@ public class Creature extends NPC {
 			logicFollowPatrolPath();
 		} else if (squaredDistance(target) > 18 * 18) {
 			logicStopAttackBecauseTargetOutOfReach();
-		} else if (nextTo(target, 0.25) && !canDoRangeAttack(target)) {
+		} else if (nextTo(target) && !canDoRangeAttack(target)) {
 			logicAttack();
 		} else if (canDoRangeAttack(target)) {
 			logicRangeAttack();
@@ -1062,7 +1062,7 @@ public class Creature extends NPC {
 	}
 
 	protected void tryToPoison() {
-		if ((getAttackTarget() != null) && nextTo(getAttackTarget(), 0.25) && aiProfiles.containsKey("poisonous")) {
+		if ((getAttackTarget() != null) && nextTo(getAttackTarget()) && aiProfiles.containsKey("poisonous")) {
 			// probability of poisoning is 1 %
 			int roll = Rand.roll1D100();
 			String[] poison = aiProfiles.get("poisonous").split(",");

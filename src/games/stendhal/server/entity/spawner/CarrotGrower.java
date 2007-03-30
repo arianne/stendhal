@@ -57,7 +57,7 @@ public class CarrotGrower extends GrowingPassiveEntityRespawnPoint implements Us
 	 * Is called when a player tries to harvest this item.
 	 */
 	public void onUsed(RPEntity entity) {
-		if (entity.nextTo(this, 0.25)) {
+		if (entity.nextTo(this)) {
 			if (getRipeness() == 1) {
 				onFruitPicked(null);
 				Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("carrot");

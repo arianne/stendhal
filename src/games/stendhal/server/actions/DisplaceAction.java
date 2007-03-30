@@ -45,7 +45,7 @@ public class DisplaceAction implements ActionListener {
 				if (object instanceof RPEntity) /** Player, Creatures and NPCs */
 				{
 					RPEntity entity = (RPEntity) object;
-					if (player.nextTo(entity, 0.25)) {
+					if (player.nextTo(entity)) {
 						if (action.has("x") && action.has("y")) {
 							// int x=action.getInt("x");
 							// int y=action.getInt("y");
@@ -60,7 +60,7 @@ public class DisplaceAction implements ActionListener {
 
 						PassiveEntity entity = (PassiveEntity) object;
 
-						if (player.nextTo(entity, 0.25) && (player.squaredDistance(x, y) < 8 * 8)
+						if (player.nextTo(entity) && (player.squaredDistance(x, y) < 8 * 8)
 						        && !zone.simpleCollides(entity, x, y)) {
 							StendhalRPRuleProcessor.get()
 							        .addGameEvent(player.getName(), "displace", entity.get("type"));

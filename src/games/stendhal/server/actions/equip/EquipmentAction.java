@@ -248,7 +248,7 @@ public class EquipmentAction implements ActionListener {
 					}
 				}
 
-				if (player.nextTo(baseEntity, 0.25) && (baseEntity.squaredDistance(x, y) < 8 * 8)
+				if (player.nextTo(baseEntity) && (baseEntity.squaredDistance(x, y) < 8 * 8)
 				        && !zone.simpleCollides(entity, x, y)) {
 					if (quantity != 0) {
 						StackableItem newItem = ((StackableItem) entity).splitOff(quantity);
