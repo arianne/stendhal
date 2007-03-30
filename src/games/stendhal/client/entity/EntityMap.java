@@ -80,7 +80,7 @@ public final class EntityMap {
 		register("item", "herb", "StackableItem");
 		register("item", "misc", "StackableItem");
 		register("item", "money", "StackableItem");
-		register("item", "projectiles", "StackableItem");
+		register("item", "ammunition", "StackableItem");
 		register("item", "resource", "StackableItem");
 		register("item", "scroll", "StackableItem");
 

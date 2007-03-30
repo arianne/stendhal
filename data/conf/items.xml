@@ -678,7 +678,7 @@ Makes players more offensive
 <!-- Projectiles_section -->
 
 	<item name="wooden_arrow">
-		<type class="projectiles" subclass="wooden_arrow"/>
+		<type class="ammunition" subclass="wooden_arrow"/>
                 <description>You see a wooden arrow. With a supply of arrows
                 in one hand and a bow in the other you can fight from a distance.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
@@ -695,7 +695,7 @@ Makes players more offensive
 	</item>
 
 	<item name="steel_arrow">
-		<type class="projectiles" subclass="steel_arrow"/>
+		<type class="ammunition" subclass="steel_arrow"/>
 		<description>You see a shining steel arrow. With plenty of
 		these, and a good bow, you'll be a formidable archer.</description>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
@@ -712,7 +712,7 @@ Makes players more offensive
 	</item>
 
 	<item name="golden_arrow">
-		<type class="projectiles" subclass="golden_arrow"/>
+		<type class="ammunition" subclass="golden_arrow"/>
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<attributes>
 			<atk value="4"/>

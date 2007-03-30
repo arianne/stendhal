@@ -92,7 +92,7 @@ public class StendhalRPAction {
 	public static int damageDone(RPEntity source, RPEntity target) {
 
 		float weapon = source.getItemAtk();
-		StackableItem projectileItem = source.getProjectilesIfRangeCombat();
+		StackableItem ammunitionItem = source.getAmmunitionIfRangeCombat();
 		StackableItem missileItem = source.getMissile();
 		
 		if (logger.isDebugEnabled()) {
@@ -128,8 +128,8 @@ public class StendhalRPAction {
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
 		        * (maxAttackerComponent / maxDefenderComponent) * (source.getATK() / 10.0f));
 
-		if (projectileItem != null) {
-			projectileItem.removeOne();
+		if (ammunitionItem != null) {
+			ammunitionItem.removeOne();
 
 			double distance = source.squaredDistance(target);
 

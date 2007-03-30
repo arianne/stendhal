@@ -1215,11 +1215,11 @@ public abstract class RPEntity extends Entity {
 		return weapons;
 	}
 
-	private StackableItem getProjectiles() {
+	private StackableItem getAmmunition() {
 		String[] slots = { "lhand", "rhand" };
 
 		for (String slot : slots) {
-			StackableItem item = (StackableItem) getEquippedItemClass(slot, "projectiles");
+			StackableItem item = (StackableItem) getEquippedItemClass(slot, "ammunition");
 			if (item != null) {
 				return item;
 			}
@@ -1325,15 +1325,15 @@ public abstract class RPEntity extends Entity {
 		}
 
 		// range weapons
-		StackableItem projectileItem = null;
+		StackableItem ammunitionItem = null;
 		if (weapons.size() > 0) {
 			if (weapons.get(0).isOfClass("ranged")) {
-				projectileItem = getProjectiles();
+				ammunitionItem = getAmmunition();
 
-				if (projectileItem != null) {
-					weapon += projectileItem.getAttack();
+				if (ammunitionItem != null) {
+					weapon += ammunitionItem.getAttack();
 				} else {
-					// If there are no projectiles...
+					// If there is no ammunition...
 					weapon = 0;
 				}
 			}
@@ -1342,26 +1342,16 @@ public abstract class RPEntity extends Entity {
 	}
 	
 	
-	public StackableItem getProjectilesIfRangeCombat() {
+	public StackableItem getAmmunitionIfRangeCombat() {
 		List<Item> weapons = getWeapons();
 		if (weapons.size() > 0) {
 			if (weapons.get(0).isOfClass("ranged")) {
-				return getProjectiles();
+				return getAmmunition();
 			}
 		}
 		return null;
 	}
 
-//	public StackableItem getMissiles() {
-//		List<Item> weapons = getWeapons();
-//		if (weapons.size() > 0) {
-//			if (weapons.get(0).isOfClass("missile")) {
-//				return getMissile();
-//			}
-//		}
-//		return null;
-//	}
-//	
 	public float getItemDef() {
 		int shield = 0;
 		int armor = 0;
@@ -1418,9 +1408,9 @@ public abstract class RPEntity extends Entity {
 	 * @return true, wenn ein Range compat moeglich ist, sonst false
 	 */
 	public boolean canDoRangeAttacks() {
-		StackableItem projectiles = getProjectilesIfRangeCombat();
+		StackableItem ammunition = getAmmunitionIfRangeCombat();
 		StackableItem missiles = getMissile();
-		return ((projectiles != null) && (projectiles.getQuantity() > 0)
+		return ((ammunition != null) && (ammunition.getQuantity() > 0)
 				|| (missiles != null) && (missiles.getQuantity() > 0));
 	}
 
