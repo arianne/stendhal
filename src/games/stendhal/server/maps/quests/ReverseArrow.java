@@ -35,37 +35,26 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
-
 	private static final String ZONE_NAME = "int_ados_reverse_arrow";
-
 	/** Time (in Seconds) to solve the puzzle */
 	private static final int TIME = 60;
-
 	/** Possible number of moves to solve the puzzle */
 	private static final int MAX_MOVES = 3;
-
 	/** Horizontal position of the upper left token at the beginning */
 	private static final int OFFSET_X = 15;
-
 	/** Vertical position of the upper left token at the beginning */
 	private static final int OFFSET_Y = 10;
 
 	// "static" data
 	protected StendhalRPZone zone = null;
-
 	protected SpeakerNPC npc = null;
-
 	protected List<Token> tokens = null;
-
 	private OnePlayerRoomDoor door = null;
-
 	private StendhalRPZone entranceZone = null;
 
 	// quest instance data
 	private int moveCount = 0;
-
 	protected Player player = null;
-
 	private Timer timer = null;
 
 	/**
@@ -90,7 +79,6 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 			// sort the tokens according to their position
 			Collections.sort(tokens, new Comparator<Token>() {
-
 				public int compare(Token t1, Token t2) {
 					int d = t1.getY() - t2.getY();
 					if (d == 0) {
@@ -133,14 +121,14 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			if (checkBoard() && (moveCount <= MAX_MOVES)) {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz.");
-					StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
-					        .getItem("money");
+					StackableItem money = (StackableItem) StendhalRPWorld.get()
+							.getRuleManager().getEntityManager()
+							.getItem("money");
 					money.setQuantity(50);
 					player.equip(money);
 					player.addXP(100);
 				} else {
-					npc
-					        .say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
+					npc.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
@@ -159,16 +147,12 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * Teleports the player out
 	 */
 	protected class FinishNotifier implements TurnListener {
-
-		private boolean reset;
-
+		private boolean reset; 
 		private Player player;
-
 		public FinishNotifier(boolean reset, Player player) {
 			this.player = player;
 			this.reset = reset;
 		}
-
 		/**
 		 * invoked shortly after the player did his job.
 		 */
@@ -182,9 +166,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * task is not completed in time.
 	 */
 	class Timer implements TurnListener {
-
 		private Player timerPlayer;
-
 		/**
 		 * Starts a teleport-out-timer
 		 *
@@ -193,9 +175,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		protected Timer(Player player) {
 			timerPlayer = player;
 		}
-
 		private int counter = TIME;
-
 		public void onTurnReached(int currentTurn, String message) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
@@ -208,7 +188,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					if (counter > 0) {
 						npc.say("You have " + counter + " seconds left.");
 						counter = counter - 10;
-						TurnNotifier.get().notifyInTurns(10 * 3, this, null);
+						TurnNotifier.get().notifyInTurns(10*3, this, null);
 					} else {
 						// teleport the player out
 						npc.say("Sorry, your time is up.");
@@ -224,7 +204,6 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * that notifies this script on sucessful usage.
 	 */
 	class NotifyingDoor extends OnePlayerRoomDoor {
-
 		NotifyingDoor(String clazz, Direction dir) {
 			super(clazz, dir);
 		}
@@ -241,7 +220,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			finish(true, (Player) user);
 		}
 	}
-
+	
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -303,7 +282,6 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	private void step1CreateNPC() {
 		npc = new SpeakerNPC("Gamblos") {
-
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
@@ -314,25 +292,20 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			@Override
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
-
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine
-							        .say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
+							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						} else {
-							engine
-							        .say("Hi again "
-							                + player.getName()
-							                + ". I rembemer that you solved this problem already. You can do it again, of course.");
+							engine.say("Hi again " + player.getName() + ". I rembemer that you solved this problem already. You can do it again, of course.");
 						}
 					}
 				});
 				addHelp("You have to stand next to a token in order to move it.");
 				addJob("I am the supervisor for this task.");
 				addGoodbye("It was nice to meet you.");
-				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within "
-				        + TIME + " seconds.");
+				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within " + TIME + " seconds.");
 			}
 		};
 		npcs.add(npc);
@@ -341,19 +314,19 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		npc.set(20, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.add(npc);
+		zone.add(npc); 
 	}
-
+	
 	private void step1CreateDoors() {
 		// 0_semos_mountain_n2 at (95,101)
-		String entranceZoneName = "0_semos_mountain_n2";
+		String entranceZoneName = "0_semos_mountain_n2"; 
 		entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
 		door = new NotifyingDoor("housedoor", Direction.DOWN);
 		entranceZone.assignRPObjectID(door);
 		door.setX(95);
 		door.setY(101);
 		door.setReference(new Integer((0)));
-		door.setDestination(ZONE_NAME, new Integer(0));
+		door.setDestination(ZONE_NAME,new Integer( 0));
 		door.open();
 		entranceZone.add(door);
 
@@ -362,16 +335,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		exit.setX(17);
 		exit.setY(20);
 		exit.setReference(new Integer(0));
-		exit.setDestination(entranceZoneName, new Integer(0));
+		exit.setDestination(entranceZoneName,new Integer( 0));
 		zone.add(exit);
 
 		Sign sign = new Sign();
 		entranceZone.assignRPObjectID(sign);
 		sign.setX(96);
 		sign.setY(102);
-		sign
-		        .setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
-		entranceZone.add(sign);
+		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
+		entranceZone.add(sign);		
 	}
 
 	@Override
@@ -441,7 +413,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			door.open();
 		}
 	}
-
+	
 	@Override
 	public void addToWorld() {
 		super.addToWorld();

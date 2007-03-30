@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 /** 
  * QUEST: Introduce new players to game
  * PARTICIPANTS: 
@@ -34,7 +35,6 @@ import java.util.List;
  * - None.
  */
 public class IntroducePlayers extends AbstractQuest {
-
 	private static final String QUEST_SLOT = "introduce_players";
 
 	@Override
@@ -55,8 +55,7 @@ public class IntroducePlayers extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "start", "ilisa", "corpse&herbs", "potion", "done")) {
 			res.add("GET_FLASK");
 		}
-		if ((questState.equals("start") && player.isEquipped("flask"))
-		        || player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
+		if ((questState.equals("start") && player.isEquipped("flask")) || player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
 			res.add("GOT_FLASK");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "ilisa", "corpse&herbs", "potion", "done")) {
@@ -65,8 +64,7 @@ public class IntroducePlayers extends AbstractQuest {
 		if (player.isQuestInState(QUEST_SLOT, "corpse&herbs", "potion", "done")) {
 			res.add("GET_HERB");
 		}
-		if ((questState.equals("corpse&herbs") && player.isEquipped("arandula"))
-		        || player.isQuestInState(QUEST_SLOT, "potion", "done")) {
+		if ((questState.equals("corpse&herbs") && player.isEquipped("arandula")) || player.isQuestInState(QUEST_SLOT, "potion", "done")) {
 			res.add("GET_HERB");
 		}
 		if (player.isQuestInState(QUEST_SLOT, "potion", "done")) {
@@ -80,217 +78,226 @@ public class IntroducePlayers extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Tad");
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-		        new StandardInteraction.QuestCompletedCondition(QUEST_SLOT), ConversationStates.ATTENDING, null,
-		        new SpeakerNPC.ChatAction() {
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("I'm alright now, thanks.");
+					}
+				});
 
-			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
-				        engine.say("I'm alright now, thanks.");
-			        }
-		        });
-
-		npc.add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES,
-		        new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT), ConversationStates.QUEST_OFFERED, null,
-		        new SpeakerNPC.ChatAction() {
-
-			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
-				        engine
-				                .say("I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?");
-			        }
-		        });
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.QUEST_OFFERED,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("I'm not feeling well... I need to get a bottle of medicine made. Can you fetch me an empty #flask?");
+					}
+				});
 
 		/** In case Quest has already been completed */
-		npc.add(ConversationStates.ATTENDING, "flask", new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.isQuestCompleted("introduce_players");
-			}
-		}, ConversationStates.ATTENDING, "You've already helped me out! I'm feeling much better now.", null);
+		npc.add(ConversationStates.ATTENDING,
+				"flask",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return player.isQuestCompleted("introduce_players");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"You've already helped me out! I'm feeling much better now.",
+				null);
 		/** If quest is not started yet, start it. */
-		npc.add(ConversationStates.QUEST_OFFERED, "flask", new SpeakerNPC.ChatCondition() {
+		npc.add(ConversationStates.QUEST_OFFERED,
+				"flask",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return !player.hasQuest("introduce_players");
+					}
+				},
+				ConversationStates.QUEST_OFFERED,
+				"You could probably get a flask from #Margaret.",
+				null);
 
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return !player.hasQuest("introduce_players");
-			}
-		}, ConversationStates.QUEST_OFFERED, "You could probably get a flask from #Margaret.", null);
+		npc.add(ConversationStates.QUEST_OFFERED,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						engine.say("Great! Please go as quickly as you can. *sneeze*");
+						player.setQuest("introduce_players", "start");
+					}
+				});
+		npc.add(ConversationStates.QUEST_OFFERED,
+				"no",
+				null,
+				ConversationStates.ATTENDING,
+				"Oh, please won't you change your mind? *sneeze*",
+				null);
 
-		npc.add(ConversationStates.QUEST_OFFERED, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
-		        null, new SpeakerNPC.ChatAction() {
-
-			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
-				        engine.say("Great! Please go as quickly as you can. *sneeze*");
-				        player.setQuest("introduce_players", "start");
-			        }
-		        });
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING,
-		        "Oh, please won't you change your mind? *sneeze*", null);
-
-		npc.add(ConversationStates.QUEST_OFFERED, "margaret", null, ConversationStates.QUEST_OFFERED,
-		        "Margaret is the maid in the inn just down the street. So, will you help?", null);
+		npc.add(ConversationStates.QUEST_OFFERED,
+				"margaret",
+				null,
+				ConversationStates.QUEST_OFFERED,
+				"Margaret is the maid in the inn just down the street. So, will you help?",
+				null);
 		/** Remind player about the quest */
-		npc.add(ConversationStates.ATTENDING, "flask", new SpeakerNPC.ChatCondition() {
+		npc.add(ConversationStates.ATTENDING,
+				"flask",
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return player.hasQuest("introduce_players")
+								&& player.getQuest("introduce_players").equals("start")
+								&& !player.isEquipped("flask");
+					}
+				},
+				ConversationStates.ATTENDING,
+				"*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.",
+				null);
 
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("start")
-				        && !player.isEquipped("flask");
-			}
-		}, ConversationStates.ATTENDING,
-		        "*cough* Oh dear... I really need this medicine! Please hurry back with the #flask from #Margaret.",
-		        null);
-
-		npc.add(ConversationStates.ATTENDING, "margaret", null, ConversationStates.ATTENDING,
-		        "Margaret is the maid in the inn just down the street.", null);
+		npc.add(ConversationStates.ATTENDING,
+				"margaret",
+				null,
+				ConversationStates.ATTENDING,
+				"Margaret is the maid in the inn just down the street.",
+				null);
 	}
-
 	private void step_2() {
 		/** Just buy the stuff from Margaret. It isn't a quest */
 	}
 
 	private void step_3() {
 		SpeakerNPC npc = npcs.get("Tad");
-		// staring the conversation the first time after getting a flask.
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("start")
-				        && player.isEquipped("flask");
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
-				engine
-				        .say("Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.");
-				StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
-				        .getItem("money");
-				money.setQuantity(10);
-				player.equip(money);
-				player.addXP(10);
-
-				player.notifyWorldAboutChanges();
-				player.setQuest("introduce_players", "ilisa");
-			}
-		});
-
-		// remind the player to take the flask to ilisa.
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("ilisa")
-				        && player.isEquipped("flask");
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
-				engine
-				        .say("Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.");
-			}
-		});
-
-		npc.add(ConversationStates.ATTENDING, "ilisa", null, ConversationStates.ATTENDING,
-		        "Ilisa is the summon healer at Semos temple.", null);
-	}
-
+    // staring the conversation the first time after getting a flask.
+    npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return player.hasQuest("introduce_players")
+								&& player.getQuest("introduce_players").equals(
+										"start") && player.isEquipped("flask");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
+						engine.say("Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.");
+						StackableItem money = (StackableItem) StendhalRPWorld.get()
+								.getRuleManager().getEntityManager().getItem(
+										"money");
+						money.setQuantity(10);
+						player.equip(money);
+						player.addXP(10);
+						player.notifyWorldAboutChanges();
+						player.setQuest("introduce_players", "ilisa");
+					}
+				});
+    // remind the player to take the flask to ilisa.    npc.add(ConversationStates.IDLE,        ConversationPhrases.GREETING_MESSAGES,        new SpeakerNPC.ChatCondition() {            @Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {                return player.hasQuest("introduce_players")                        && player.getQuest("introduce_players").equals(                                "ilisa") && player.isEquipped("flask");            }        },        ConversationStates.ATTENDING,        null,        new SpeakerNPC.ChatAction() {            @Override
+			public void fire(Player player, String text,                    SpeakerNPC engine) {				// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
+                engine.say("Ok, you got the flask! Now, I need you to take it to #ilisa... she'll know what to do next.");            }        });
+		npc.add(ConversationStates.ATTENDING,				"ilisa",				null,				ConversationStates.ATTENDING,				"Ilisa is the summon healer at Semos temple.",				null);	}
 	private void step_4() {
 		SpeakerNPC npc = npcs.get("Ilisa");
+		npc.add(ConversationStates.IDLE,				ConversationPhrases.GREETING_MESSAGES,				new SpeakerNPC.ChatCondition() {					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {						return player.hasQuest("introduce_players")								&& player.getQuest("introduce_players").equals(										"ilisa");					}				},				ConversationStates.ATTENDING,				null,				new SpeakerNPC.ChatAction() {					@Override
+					public void fire(Player player, String text,							SpeakerNPC engine) {						if (player.drop("flask")) {							engine.say("Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a few #herbs. Can you help?");							player.addXP(10);
+							player.notifyWorldAboutChanges();
+							player.setQuest("introduce_players", "corpse&herbs");						} else {							engine.say("Medicine for #Tad? Didn't he tell you to bring a flask?");						}					}				});
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("ilisa");
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				if (player.drop("flask")) {
-					engine
-					        .say("Ah, I see you have that flask. #Tad needs medicine, right? Hmm... I'll need a few #herbs. Can you help?");
-					player.addXP(10);
-					player.notifyWorldAboutChanges();
-
-					player.setQuest("introduce_players", "corpse&herbs");
-				} else {
-					engine.say("Medicine for #Tad? Didn't he tell you to bring a flask?");
-				}
-			}
-		});
-
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("herbs", "arandula"), null, ConversationStates.ATTENDING,
-		        "North of Semos, near the tree grove, grows a herb called arandula.", null);
-
-		npc
-		        .add(
-		                ConversationStates.ATTENDING,
-		                "tad",
-		                null,
-		                ConversationStates.ATTENDING,
-		                "He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him.",
-		                null);
+        npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("herbs", "arandula"),
+				null,
+				ConversationStates.ATTENDING,
+				"North of Semos, near the tree grove, grows a herb called arandula.",
+				null);
+		
+		npc.add(ConversationStates.ATTENDING,
+				"tad",
+				null,
+				ConversationStates.ATTENDING,
+				"He needs a very powerful potion to heal himself. He offers a good reward to anyone who will help him.",
+				null);
 	}
+	private void step_5() {		SpeakerNPC npc = npcs.get("Ilisa");
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return player.hasQuest("introduce_players")
+								&& player.getQuest("introduce_players").equals(
+										"corpse&herbs");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						if (player.drop("arandula")) {
+							engine.say("Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing.");
+							player.addXP(50);
 
-	private void step_5() {
-		SpeakerNPC npc = npcs.get("Ilisa");
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
+							player.notifyWorldAboutChanges();
+							player.setQuest("introduce_players", "potion");
+						} else {
+							engine.say("Can you fetch those #herbs for the medicine?");
+						}
+					}
+				});
 
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.hasQuest("introduce_players")
-				        && player.getQuest("introduce_players").equals("corpse&herbs");
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				if (player.drop("arandula")) {
-					engine
-					        .say("Okay! Thank you. Now I will just mix these... a pinch of this... and a few drops... there! Can you ask #Tad to stop by and collect it? I want to see how he's doing.");
-					player.addXP(50);
-
-					player.notifyWorldAboutChanges();
-					player.setQuest("introduce_players", "potion");
-				} else {
-					engine.say("Can you fetch those #herbs for the medicine?");
-				}
-			}
-		});
-
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("potion", "medicine"), null, ConversationStates.ATTENDING,
-		        "The medicine that #Tad is waiting for.", null);
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("potion", "medicine"),
+				null,
+				ConversationStates.ATTENDING,
+				"The medicine that #Tad is waiting for.",
+				null);
 	}
-
 	private void step_6() {
 		SpeakerNPC npc = npcs.get("Tad");
 
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC npc) {
-				return player.hasQuest("introduce_players") && player.getQuest("introduce_players").equals("potion");
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
-				engine.say("Thanks! I will go talk with #ilisa as soon as possible.");
-				player.addXP(100);
-				player.notifyWorldAboutChanges();
-				player.setQuest("introduce_players", "done");
-			}
-		});
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return player.hasQuest("introduce_players")
+								&& player.getQuest("introduce_players").equals(
+										"potion");
+					}
+				},
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						// note Ilisa is spelled with a small i here because I and l cannot be told apart in game
+						engine.say("Thanks! I will go talk with #ilisa as soon as possible.");
+						player.addXP(100);
+						player.notifyWorldAboutChanges();
+						player.setQuest("introduce_players", "done");
+					}
+				});
 	}
 
 	@Override
@@ -304,5 +311,4 @@ public class IntroducePlayers extends AbstractQuest {
 		step_5();
 		step_6();
 	}
-
-}
+}

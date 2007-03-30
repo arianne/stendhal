@@ -44,40 +44,43 @@ public class McPeglegIOU extends AbstractQuest {
 
 		SpeakerNPC npc = npcs.get("McPegleg");
 
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry", "charles", "note"),
-		        new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT), ConversationStates.ATTENDING, null,
-		        new SpeakerNPC.ChatAction() {
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("iou", "henry", "charles", "note"),
+				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING, null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						// from all notes that the player is carrying, try to
+						// find the IOU note
+						List<Item> notes = player.getAllEquipped("note");
+						Item iouNote = null;
+						for (Item note : notes) {
+							if (note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) {
+								iouNote = note;
+								break;
+							}
+						}
+						if (iouNote != null) {
+							engine.say("Where did you get that from? Anyways, here is the money *sighs*");
+							player.drop(iouNote);
+							StackableItem money = (StackableItem) StendhalRPWorld
+									.get().getRuleManager().getEntityManager()
+									.getItem("money");
+							money.setQuantity(250);
+							player.equip(money);
+							player.setQuest(QUEST_SLOT, "done");
+							engine.setCurrentState(1);
+						} else {
+							engine.say("I can't see that you got a valid IOU with my signature!");
+						}
+					}
+				});
 
-			        @Override
-			        public void fire(Player player, String text, SpeakerNPC engine) {
-				        // from all notes that the player is carrying, try to
-				        // find the IOU note
-				        List<Item> notes = player.getAllEquipped("note");
-				        Item iouNote = null;
-				        for (Item note : notes) {
-					        if (note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) {
-						        iouNote = note;
-						        break;
-					        }
-				        }
-				        if (iouNote != null) {
-					        engine.say("Where did you get that from? Anyways, here is the money *sighs*");
-					        player.drop(iouNote);
-					        StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager()
-					                .getEntityManager().getItem("money");
-					        money.setQuantity(250);
-					        player.equip(money);
-					        player.setQuest(QUEST_SLOT, "done");
-					        engine.setCurrentState(1);
-				        } else {
-					        engine.say("I can't see that you got a valid IOU with my signature!");
-				        }
-			        }
-		        });
-
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry", "charles", "note"),
-		        new StandardInteraction.QuestCompletedCondition(QUEST_SLOT), ConversationStates.ATTENDING,
-		        "You already got cash for that damned IOU!", null);
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",	"charles", "note"),
+				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
+				ConversationStates.ATTENDING,
+				"You already got cash for that damned IOU!", null);
 	}
 
 	@Override

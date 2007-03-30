@@ -24,36 +24,37 @@ import java.util.Stack;
 public class Blackjack extends AbstractQuest implements TurnListener {
 
 	private static final int MIN_STAKE = 10;
-
+	
 	private static final int MAX_STAKE = 200;
-
+	
 	private int stake;
-
+	
 	private boolean bankStands;
 
 	private boolean playerStands;
 
 	private Map<String, Integer> cardValues;
-
+	
 	private Stack<String> deck;
 
 	private List<String> playerCards = new LinkedList<String>();
 
 	private List<String> bankCards = new LinkedList<String>();
-
+	
 	private StackableItem playerCardsItem;
 
 	private StackableItem bankCardsItem;
 
 	private SpeakerNPC ramon;
 
-	private StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("-1_athor_ship_w2");
-
+	private StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
+	.getRPZone("-1_athor_ship_w2");
+	
 	private void startNewGame(Player player) {
 		cleanUpTable();
 		playerCards.clear();
 		bankCards.clear();
-
+		
 		playerCardsItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("cards");
 		zone.assignRPObjectID(playerCardsItem);
 		zone.add(playerCardsItem);
@@ -62,7 +63,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		zone.assignRPObjectID(bankCardsItem);
 		zone.add(bankCardsItem);
 		bankCardsItem.set(27, 38);
-
+		
 		playerStands = false;
 		bankStands = false;
 		// Before each game, we put all cards back on the deck and
@@ -70,14 +71,14 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		// We could change that later so that the player can
 		// try to remember what's still on the deck
 		deck = new Stack<String>();
-		for (String card : cardValues.keySet()) {
+		for (String card: cardValues.keySet()) {
 			deck.add(card);
 		}
 		Collections.shuffle(deck);
-
+		
 		dealCards(player, 2);
 	}
-
+	
 	private void cleanUpTable() {
 		if (playerCardsItem != null) {
 			zone.remove(playerCardsItem);
@@ -88,20 +89,20 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 			bankCardsItem = null;
 		}
 	}
-
+	
 	private int countAces(List<String> cards) {
 		int count = 0;
-		for (String card : cards) {
+		for (String card: cards) {
 			if (card.startsWith("A")) {
 				count++;
 			}
 		}
 		return count;
 	}
-
+	
 	private int sumValues(List<String> cards) {
 		int sum = 0;
-		for (String card : cards) {
+		for (String card: cards) {
 			sum += cardValues.get(card);
 		}
 		int numberOfAces = countAces(cards);
@@ -111,11 +112,11 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		}
 		return sum;
 	}
-
+	
 	private boolean isBlackjack(List<String> cards) {
 		return sumValues(cards) == 21 && cards.size() == 2;
 	}
-
+	
 	/**
 	 * Deals <i>number</i> cards to the player, if the player is
 	 * not standing, and to the bank, if the bank is not standing.
@@ -127,17 +128,17 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		int playerSum = sumValues(playerCards);
 		int bankSum = sumValues(bankCards);
 		for (int i = 0; i < number; i++) {
-			if (!playerStands) {
+			if (! playerStands) {
 				String playerCard = deck.pop();
 				playerCards.add(playerCard);
 				message += "You got a " + playerCard + ".\n";
 			}
-
+	
 			if (playerStands && playerSum < bankSum) {
 				message += "The bank stands.\n";
 				bankStands = true;
 			}
-			if (!bankStands) {
+			if (! bankStands) {
 				String bankCard = deck.pop();
 				bankCards.add(bankCard);
 				message += "The bank got a " + bankCard + ".\n";
@@ -151,22 +152,22 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		bankCardsItem.setQuantity(bankSum);
 		bankCardsItem.setDescription("You see the bank's cards: " + Grammar.enumerateCollection(bankCards));
 		bankCardsItem.notifyWorldAboutChanges();
-		if (!playerStands) {
+		if (! playerStands) {
 			message += "You have " + playerSum + ".\n";
 			if (playerSum == 21) {
 				playerStands = true;
 			}
 		}
-		if (!bankStands) {
+		if (! bankStands) {
 			message += "The bank has " + bankSum + ".\n";
 			if (bankSum >= 17 && bankSum <= 21 && bankSum >= playerSum) {
 				bankStands = true;
 				message += "The bank stands.\n";
 			}
 		}
-		String message2 = analyze(player);
+		String message2 = analyze(player); 
 		if (message2 != null) {
-			message += message2;
+		    message += message2;
 		}
 		ramon.say(message);
 	}
@@ -179,29 +180,29 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		int playerSum = sumValues(playerCards);
 		int bankSum = sumValues(bankCards);
 		String message = null;
-		if (isBlackjack(bankCards) && isBlackjack(playerCards)) {
+		if (isBlackjack (bankCards) && isBlackjack (playerCards)) {
 			message = "You have a blackjack, but the bank has one too. It's a push. ";
 			message += payOff(player, 1);
-		} else if (isBlackjack(bankCards)) {
-			message = "The bank has a blackjack. Better luck next time!";
-		} else if (isBlackjack(playerCards)) {
+		} else if (isBlackjack (bankCards)) {
+			message = "The bank has a blackjack. Better luck next time!";				
+		} else if (isBlackjack (playerCards)) {
 			message = "You have a blackjack! Congratulations! ";
 			message += payOff(player, 3);
 		} else if (playerSum > 21) {
-			if (bankSum > 21) {
+			if (bankSum > 21 ) {
 				message = "Both have busted! This is a draw. ";
 				message += payOff(player, 1);
 			} else {
 				message = "You have busted! Better luck next time!";
 			}
-		} else if (bankSum > 21) {
+		} else if (bankSum > 21 ) {
 			message = "The bank has busted! Congratulations! ";
 			message += payOff(player, 2);
 		} else {
-			if (!playerStands) {
+			if (! playerStands) {
 				message = "Do you want another card?";
 				ramon.setCurrentState(ConversationStates.QUESTION_1);
-			} else if (!bankStands) {
+			} else if (! bankStands) {
 				letBankDrawAfterPause(ramon.getAttending().getName());
 			} else if (bankSum > playerSum) {
 				message = "The bank has won. Better luck next time!";
@@ -215,7 +216,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		}
 		return message;
 	}
-
+	
 	private void letBankDrawAfterPause(String playerName) {
 		TurnNotifier.get().notifyInSeconds(1, this, playerName);
 	}
@@ -236,8 +237,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	 * @return A message that the NPC should say to inform the player.
 	 */
 	private String payOff(Player player, int factor) {
-		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
-		        .getItem("money");
+		StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");
 		money.setQuantity(factor * stake);
 		player.equip(money, true);
 		if (factor == 1) {
@@ -252,7 +252,6 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	public void addToWorld() {
 
 		ramon = new SpeakerNPC("Ramon") {
-
 			@Override
 			protected void createPath() {
 				// Ramon doesn't move
@@ -262,25 +261,24 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 
 			@Override
 			protected void createDialog() {
-
+				
 				addGreeting("Welcome to the #blackjack table! You can #play here to kill time until the ferry arrives.");
 				addJob("I was a card dealer in the Semos tavern, but I lost my gambling license. But my brother Ricardo is still working in the tavern.");
-				addReply("blackjack",
-				        "Blackjack is a simple card game. You can read the rules at the blackboard at the wall.");
+				addReply("blackjack", "Blackjack is a simple card game. You can read the rules at the blackboard at the wall.");
 				// TODO
 				addHelp("...");
 				addGoodbye("Goodbye!");
 			}
-
+			
 			@Override
 			protected void onGoodbye(Player player) {
 				// remove the cards when the player stops playing.
 				cleanUpTable();
 			}
 		};
-
+		
 		npcs.add(ramon);
-
+		
 		zone.assignRPObjectID(ramon);
 		ramon.put("class", "naughtyteen2npc");
 		ramon.setX(26);
@@ -288,86 +286,99 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		ramon.setDirection(Direction.DOWN);
 		ramon.setBaseHP(100);
 		ramon.setHP(ramon.getBaseHP());
-		zone.add(ramon);
+		zone.add(ramon);		
 
-		cardValues = new HashMap<String, Integer>();
-		String[] colors = { "♣", "♦", "♥", "♠" };
-		String[] pictures = { "J", "Q", "K" };
-		for (String color : colors) {
+		cardValues = new HashMap<String,Integer>();
+		String[] colors = {"♣", "♦", "♥", "♠"};
+		String[] pictures = {"J", "Q", "K"};
+		for (String color: colors) {
 			for (int i = 2; i <= 10; i++) {
 				cardValues.put(i + color, i);
 			}
-			for (String picture : pictures) {
+			for (String picture: pictures) {
 				cardValues.put(picture + color, 10);
 			}
 			// ace values can change to 1 during the game
 			cardValues.put("A" + color, 11);
 		}
-
+		
 		// increase the timeout, as otherwise the player often
 		// would use their stake because of reacting too slow.
 		ramon.setPlayerChatTimeout(180); // 1 min at 300 ms/turn
-
-		ramon.add(ConversationStates.ATTENDING, "play", null, ConversationStates.ATTENDING,
-		        "In order to play, you have to at least #stake #" + MIN_STAKE + " and at most #stake #" + MAX_STAKE
-		                + " pieces of gold. So, how much will you risk?", null);
-
-		ramon.add(ConversationStates.ATTENDING, "stake", null, ConversationStates.ATTENDING, null, new ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC npc) {
-				String[] words = text.split(" ");
-
-				if (words.length >= 2) {
-					try {
-						stake = Integer.parseInt(words[1].trim());
-					} catch (NumberFormatException e) {
-						npc.say("Just tell me how much you want to risk, for example #stake #50.");
-						return;
-					}
-					if (stake < MIN_STAKE) {
-						npc.say("You must stake at least " + MIN_STAKE + " pieces of gold.");
-					} else if (stake > MAX_STAKE) {
-						npc.say("You can't stake more than " + MIN_STAKE + " pieces of gold.");
-					} else {
-						if (player.drop("money", stake)) {
-							startNewGame(player);
+		
+		ramon.add(ConversationStates.ATTENDING,
+					"play",
+					null,
+					ConversationStates.ATTENDING,
+					"In order to play, you have to at least #stake #" + MIN_STAKE + " and at most #stake #" + MAX_STAKE + " pieces of gold. So, how much will you risk?",
+					null);
+		
+		ramon.add(ConversationStates.ATTENDING,
+				"stake",
+				null,
+				ConversationStates.ATTENDING,
+				null,
+				new ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						String[] words = text.split(" ");
+						
+						if (words.length >= 2) {
+							try {
+								stake = Integer.parseInt(words[1].trim());
+							} catch (NumberFormatException e) {
+								npc.say("Just tell me how much you want to risk, for example #stake #50.");
+								return;
+							}
+							if (stake < MIN_STAKE) {
+								npc.say("You must stake at least " + MIN_STAKE + " pieces of gold.");
+							} else if (stake > MAX_STAKE) { 
+								npc.say("You can't stake more than " + MIN_STAKE + " pieces of gold.");
+							} else {
+								if (player.drop("money", stake)) {
+									startNewGame(player);
+								} else {
+									npc.say("Hey! You don't have enough money!");
+								}
+							}
 						} else {
-							npc.say("Hey! You don't have enough money!");
+							npc.say("Just tell me how much you want to risk, for example #stake #50.");
 						}
 					}
-				} else {
-					npc.say("Just tell me how much you want to risk, for example #stake #50.");
+				});
+	ramon.add(ConversationStates.QUESTION_1,
+			ConversationPhrases.YES_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			null,
+			new ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					dealCards(player, 1);
 				}
-			}
-		});
-		ramon.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null, ConversationStates.ATTENDING,
-		        null, new ChatAction() {
+			});
 
-			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
-				        dealCards(player, 1);
-			        }
-		        });
-
-		// The player says he doesn't want to have another card.
-		// Let the dealer give cards to the bank.
-		ramon.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.ATTENDING,
-		        null, new ChatAction() {
-
-			        @Override
-			        public void fire(Player player, String text, SpeakerNPC npc) {
-				        playerStands = true;
-				        if (bankStands) {
-					        // Both stand. Let the dealer tell the final resul
-					        String message = analyze(player);
-					        if (message != null) {
-						        ramon.say(message);
-					        }
-				        } else {
-					        letBankDrawAfterPause(player.getName());
-				        }
-			        }
-		        });
+	// The player says he doesn't want to have another card.
+	// Let the dealer give cards to the bank.
+	ramon.add(ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
+			null,
+			ConversationStates.ATTENDING,
+			null,
+			new ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					playerStands = true;
+					if (bankStands) {
+						// Both stand. Let the dealer tell the final resul
+						String message = analyze(player);
+						if (message != null) {
+							ramon.say(message);
+						}
+					} else {
+						letBankDrawAfterPause(player.getName());
+					}
+				}
+			});
 	}
 }

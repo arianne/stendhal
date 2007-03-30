@@ -33,12 +33,9 @@ import java.util.List;
  * - None
  */
 public class MeetBunny extends AbstractQuest {
-
 	private static final String QUEST_SLOT = "meet_bunny_07";
-
 	/** the Bunny NPC */
 	protected SpeakerNPC bunny = null;
-
 	private StendhalRPZone zone = null;
 
 	@Override
@@ -48,7 +45,6 @@ public class MeetBunny extends AbstractQuest {
 
 	private SpeakerNPC createbunny() {
 		bunny = new SpeakerNPC("Easter Bunny") {
-
 			@Override
 			protected void createPath() {
 				// npc does not move
@@ -59,21 +55,22 @@ public class MeetBunny extends AbstractQuest {
 			@Override
 			protected void createDialog() {
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				        new StandardInteraction.QuestCompletedCondition(QUEST_SLOT), ConversationStates.ATTENDING,
-				        "Hi again!", null);
+					new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, "Hi again!", null);
 
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				        new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT), ConversationStates.ATTENDING,
-				        null, new SpeakerNPC.ChatAction() {
+					new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
+					ConversationStates.ATTENDING, null,
+					new SpeakerNPC.ChatAction() {
 
-					        @Override
-					        public void fire(Player player, String text, SpeakerNPC engine) {
-						        Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("basket");
-						        engine.say("Happy Easter! I have an easter basket for you.");
-						        player.equip(item, true);
-						        player.setQuest(QUEST_SLOT, "done");
-					        }
-				        });
+						@Override
+						public void fire(Player player, String text, SpeakerNPC engine) {
+							Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("basket");
+							engine.say("Happy Easter! I have an easter basket for you.");
+							player.equip(item, true);
+							player.setQuest(QUEST_SLOT, "done");
+						}
+				});
 
 				addJob("I am the Easter Bunny!");
 				addGoodbye("Don't eat too much this Easter! Bye!");
