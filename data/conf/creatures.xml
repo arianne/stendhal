@@ -147,7 +147,8 @@
 		</equips>
 		<ai> 
 			<says>
-				<noise value="Aooooooouuhhh!!"/>
+				<noise value="Oou! Oou!"/>
+				<noise value="*flap* *flap*"/>
 			</says>
 			<profile name="animal"/>
 			<profile name="offensive"/>
@@ -2161,6 +2162,7 @@
 		</equips>
 		<ai>
 			<says>
+				<noise value="The end of the world is nigh..."/><!--only 0.59-->
 				<noise value="Yield to the Power!"/>
 			</says>
 			<profile name="human"/>
@@ -2224,7 +2226,8 @@
 		</equips>
 		<ai>
 			<says>
-				<noise value="Uuuuhhhhh!, i'm gonna take you!"/>
+				<noise value="Judgement is coming!"/> <!--only 0.59-->
+				<noise value="Uuuuhhhhh!, i'm gonna get you!"/>
 			</says>
 			<profile name="human"/>
 			<profile name="offensive"/>
@@ -2427,6 +2430,7 @@
 		</equips>
 		<ai>
 			<says>
+				<noise value="The Cataclysm cometh"/> <!--only 0.59-->
 				<noise value="Hail to the greater Power!"/>
 			</says>
 			<profile name="human"/>
