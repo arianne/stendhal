@@ -51,16 +51,25 @@ public class StendhalRPAction {
 		StendhalRPAction.rpman = rpman;
 	}
 
-	public static boolean riskToHit(RPEntity source, RPEntity target) {
+	/**
+	 * Chooses randomly if the attacker has hit the defender, or if he missed
+	 * him. Note that, even if this method returns true, the damage done might
+	 * be 0 (if the defender blocks the attack).
+	 * @param attacker The attacking RPEntity.
+	 * @param defender The attacked RPEntity.
+	 * @return true if the attacker has hit the defender (the defender may
+	 *         still block this); false if the attacker has missed the defender.
+	 */
+	public static boolean riskToHit(RPEntity attacker, RPEntity defender) {
 		boolean result = false;
 
 		int roll = Rand.roll1D20();
-		int risk = 2 * source.getATK() - target.getDEF() + roll - 10;
+		int risk = 2 * attacker.getATK() - defender.getDEF() + roll - 10;
 
 		/*
 		 * Apply some karma
 		 */
-		double karma = source.getKarma(0.3) - target.getKarma(0.3);
+		double karma = attacker.getKarma(0.3) - defender.getKarma(0.3);
 
 		if (karma > 0.2) {
 			risk += 4;
@@ -73,7 +82,7 @@ public class StendhalRPAction {
 		}
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("attack from " + source + " to " + target + ": Risk to strike: " + risk);
+			logger.debug("attack from " + attacker + " to " + defender + ": Risk to strike: " + risk);
 		}
 
 		if (risk < 0) {
@@ -85,33 +94,44 @@ public class StendhalRPAction {
 			result = true;
 		}
 
-		source.put("risk", risk);
+		attacker.put("risk", risk);
 		return result;
 	}
 
-	public static int damageDone(RPEntity source, RPEntity target) {
+	/**
+	 * Is called when the given attacker has hit the given defender.
+	 * Determines how much hitpoints the defender will lose, based on the
+	 * attacker's ATK experience and weapon(s), the defender's DEF experience
+	 * and defensive items, and a random generator.
+	 * @param attacker The attacker.
+	 * @param defender The defender.
+	 * @return The number of hitpoints that the target should lose. 0 if the
+	 *         attack was completely blocked by the defender.
+	 */
+	public static int damageDone(RPEntity attacker, RPEntity defender) {
 
-		float weapon = source.getItemAtk();
-		StackableItem ammunitionItem = source.getAmmunitionIfRangeCombat();
-		StackableItem missileItem = source.getMissile();
+		float weapon = attacker.getItemAtk();
+		StackableItem ammunitionItem = attacker.getAmmunitionIfRangeCombat();
+		StackableItem missileItem = attacker.getMissile();
 		
 		if (logger.isDebugEnabled()) {
-			logger.debug("attacker has " + source.getATK() + " and uses a weapon of " + weapon);
+			logger.debug("attacker has " + attacker.getATK() + " and uses a weapon of " + weapon);
 		}
 
-		int sourceAtk = source.getATK();
+		// TODO: docu
+		int sourceAtk = attacker.getATK();
 		float maxAttackerComponent = 0.8f * sourceAtk * sourceAtk + weapon * sourceAtk;
 		float attackerComponent = (Rand.roll1D100() / 100.0f) * maxAttackerComponent;
 
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		attackerComponent += (attackerComponent * (float) source.getKarma(0.1));
+		attackerComponent += (attackerComponent * (float) attacker.getKarma(0.1));
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: " + attackerComponent);
 
-		float armor = target.getItemDef();
-		int targetDef = target.getDEF();
+		float armor = defender.getItemDef();
+		int targetDef = defender.getDEF();
 		float maxDefenderComponent = 0.6f * targetDef * targetDef + armor * targetDef;
 
 		float defenderComponent = (Rand.roll1D100() / 100.0f) * maxDefenderComponent;
@@ -119,19 +139,21 @@ public class StendhalRPAction {
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		defenderComponent += (defenderComponent * (float) target.getKarma(0.1));
+		defenderComponent += (defenderComponent * (float) defender.getKarma(0.1));
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: " + defenderComponent);
 		}
 
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
-		        * (maxAttackerComponent / maxDefenderComponent) * (source.getATK() / 10.0f));
+		        * (maxAttackerComponent / maxDefenderComponent) * (attacker.getATK() / 10.0f));
 
 		if (ammunitionItem != null) {
+			// The attacker is attacking using a bow and arrows, or a
+			// similar weapon.
 			ammunitionItem.removeOne();
 
-			double distance = source.squaredDistance(target);
+			double distance = attacker.squaredDistance(defender);
 
 			double minrange = 2 * 2;
 			double maxrange = 7 * 7;
@@ -140,10 +162,12 @@ public class StendhalRPAction {
 			        * (1.0 - (minrange / maxrange)))
 			        * (1.0 - distance / maxrange));
 		} else if (missileItem != null) {
+			// The attacker is attacking using a spear, or another weapon
+			// that must be thrown.
 			missileItem.removeOne();
 
-			// TODO: extract method to avoid code duplication
-			double distance = source.squaredDistance(target);
+			// TODO: extract method to avoid duplication of the code above
+			double distance = attacker.squaredDistance(defender);
 
 			double minrange = 2 * 2;
 			double maxrange = 7 * 7;
@@ -152,7 +176,7 @@ public class StendhalRPAction {
 			        * (1.0 - distance / maxrange));
 		}
 		// limit damage to target hp
-		return Math.min(damage, target.getHP());
+		return Math.min(damage, defender.getHP());
 	}
 
 	/**
@@ -180,6 +204,8 @@ public class StendhalRPAction {
 		if ((entity instanceof Player) || (entity instanceof Sheep)) {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 
+			// Make sure that you can't attack players or sheep (even wild
+			// sheep) who are inside a protection area.
 			if (zone.isInProtectionArea(entity)) {
 				logger.info("REJECTED. " + entity.getName() + " is in a protection zone");
 
@@ -194,8 +220,8 @@ public class StendhalRPAction {
 					}
 				}
 
-				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking " + name
-				        + ".");
+				player.sendPrivateText("The powerful protective aura in this place prevents you from attacking "
+						+ name + ".");
 				return;
 			}
 
@@ -210,91 +236,99 @@ public class StendhalRPAction {
 		player.notifyWorldAboutChanges();
 	}
 
-	public static boolean attack(RPEntity source, RPEntity target) throws AttributeNotFoundException,
+	/**
+	 * Lets the attacker try to attack the defender.
+	 * @param attacker The attacking RPEntity.
+	 * @param defender The defending RPEntity.
+	 * @return true iff the attacker has done damage to the defender.
+	 * @throws AttributeNotFoundException
+	 * @throws NoRPZoneException
+	 * @throws RPObjectNotFoundException
+	 */
+	public static boolean attack(RPEntity attacker, RPEntity defender) throws AttributeNotFoundException,
 	        NoRPZoneException, RPObjectNotFoundException {
-		//Log4J.startMethod(logger, "attack");
 		boolean result = false;
 
-		try {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(source.getID());
-			if (!zone.has(target.getID()) || (target.getHP() == 0)) {
-				logger.debug("Attack from " + source + " to " + target + " stopped because target was lost("
-				        + zone.has(target.getID()) + ") or dead.");
-				target.onAttack(source, false);
-				source.notifyWorldAboutChanges();
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(attacker.getID());
+		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
+			logger.debug("Attack from " + attacker + " to " + defender + " stopped because target was lost("
+			        + zone.has(defender.getID()) + ") or dead.");
+			defender.onAttack(attacker, false);
+			attacker.notifyWorldAboutChanges();
 
-				return false;
-			}
+			return false;
+		}
 
-			target.onAttack(source, true);
+		defender.onAttack(attacker, true);
 
-			if (source.nextTo(target)) {
-				// Continue (skip range checks if next to)
-			} else if (source.canDoRangeAttacks()) {
-				// XXX - Should different weapons have different ranges??
-
-				//				 Check Line of View to see if there is any obstacle.
-				if (zone.collidesOnLine(source.getX(), source.getY(), target.getX(), target.getY())) {
+		if (! attacker.nextTo(defender)) {
+			// The attacker is not directly standing next to the defender.
+			// Find out if he can attack from the distance.
+			if (attacker.canDoRangeAttacks()) {
+				// TODO: Should different weapons have different ranges??
+	
+				// Check line of view to see if there is any obstacle.
+				if (zone.collidesOnLine(attacker.getX(), attacker.getY(), defender.getX(), defender.getY())) {
 					return false;
 				}
 			} else {
-				logger.debug("Attack from " + source + " to " + target + " failed because target is not near.");
+				logger.debug("Attack from " + attacker + " to " + defender + " failed because target is not near.");
 				return false;
 			}
-
-			// {lifesteal} uncomented following line, also changed name:
-			List<Item> weapons = source.getWeapons();
-
-			if ((source instanceof Player) && ((target instanceof SpeakerNPC) == false) && source.stillHasBlood(target)) {
-				// disabled attack xp for attacking NPC's
-				source.incATKXP();
-			}
-
-			boolean beaten = riskToHit(source, target);
-
-			if (beaten) {
-				if ((target instanceof Player) && target.stillHasBlood(source)) {
-					target.incDEFXP();
-				}
-
-				int damage = damageDone(source, target);
-				if (damage > 0) {
-					damage = handleLivesteal(source, weapons, damage);
-
-					target.onDamage(source, damage);
-					source.put("damage", damage);
-					logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + damage);
-
-					target.bloodHappens(source);
-
-					result = true;
-				} else {
-					// Blocked
-					source.put("damage", 0);
-					logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Damage: " + 0);
-				}
-			} else { // Missed
-				logger.debug("attack from " + source.getID() + " to " + target.getID() + ": Missed");
-				source.put("damage", 0);
-			}
-
-			source.notifyWorldAboutChanges();
-
-			return result;
-		} finally {
-			//	Log4J.finishMethod(logger, "attack");
 		}
+
+		// {lifesteal} uncomented following line, also changed name:
+		List<Item> weapons = attacker.getWeapons();
+
+		if (attacker instanceof Player && !(defender instanceof SpeakerNPC)
+		        && attacker.stillHasBlood(defender)) {
+			// disabled attack xp for attacking NPC's
+			attacker.incATKXP();
+		}
+
+		// Throw dices to determine if the attacker has missed the defender   
+		boolean beaten = riskToHit(attacker, defender);
+
+		if (beaten) {
+			if ((defender instanceof Player) && defender.stillHasBlood(attacker)) {
+				defender.incDEFXP();
+			}
+
+			int damage = damageDone(attacker, defender);
+			if (damage > 0) {
+				damage = handleLifesteal(attacker, weapons, damage);
+
+				defender.onDamage(attacker, damage);
+				attacker.put("damage", damage);
+				logger.debug("attack from " + attacker.getID() + " to " + defender.getID() + ": Damage: " + damage);
+
+				defender.bloodHappens(attacker);
+
+				result = true;
+			} else {
+				// The attack was too weak, it was blocked
+				attacker.put("damage", 0);
+				logger.debug("attack from " + attacker.getID() + " to " + defender.getID() + ": Damage: " + 0);
+			}
+		} else { // Missed
+			logger.debug("attack from " + attacker.getID() + " to " + defender.getID() + ": Missed");
+			attacker.put("damage", 0);
+		}
+
+		attacker.notifyWorldAboutChanges();
+
+		return result;
 	}
 
 	/**
 	 * Calculate lifesteal and update hp of source
 	 *
-	 * @param source        the RPEntity doing the hit
-	 * @param sourceWeapons the weapons of the RPEntity doing the hit
-	 * @param damage        the damage done by this hit.
+	 * @param attacker        the RPEntity doing the hit
+	 * @param attackerWeapons the weapons of the RPEntity doing the hit
+	 * @param damage          the damage done by this hit.
 	 * @return damage (may be altered inside this method)
 	 */
-	private static int handleLivesteal(RPEntity source, List<Item> sourceWeapons, int damage) {
+	private static int handleLifesteal(RPEntity attacker, List<Item> attackerWeapons, int damage) {
 
 		// Calcualte the lifesteal value based on the configured factor
 		// In case of a lifesteal weapon used together with a non-lifesteal weapon,
@@ -303,17 +337,17 @@ public class StendhalRPAction {
 		float sumLifesteal = 0;
 
 		// Creature with lifesteal profile?
-		if (source instanceof Creature) {
+		if (attacker instanceof Creature) {
 			sumAll = 1;
-			String temp = ((Creature) source).getAIProfile("lifesteal");
-			if (temp == null) {
+			String value = ((Creature) attacker).getAIProfile("lifesteal");
+			if (value == null) {
+				// The creature doesn't steal life. 
 				return damage;
 			}
-			sumLifesteal = Float.parseFloat(temp);
+			sumLifesteal = Float.parseFloat(value);
 		} else {
-
 			// weapons with lifesteal attribute for players
-			for (Item weaponItem : sourceWeapons) {
+			for (Item weaponItem : attackerWeapons) {
 				sumAll += weaponItem.getAttack();
 				if (weaponItem.has("lifesteal")) {
 					sumLifesteal += weaponItem.getAttack() * weaponItem.getDouble("lifesteal");
@@ -325,104 +359,111 @@ public class StendhalRPAction {
 		if (sumLifesteal != 0) {
 			// 0.5f is used for rounding
 			int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
-			lifesteal = Math.min(lifesteal, source.getBaseHP() - source.getHP());
-			int newHP = source.getHP() + lifesteal;
+			lifesteal = Math.min(lifesteal, attacker.getBaseHP() - attacker.getHP());
+			int newHP = attacker.getHP() + lifesteal;
 			if (newHP > 1) {
-				source.setHP(newHP);
+				attacker.setHP(newHP);
 				if (lifesteal > 0) {
-					source.put("heal", lifesteal);
+					attacker.put("heal", lifesteal);
 				}
 			} else {
-				source.setHP(1);
+				attacker.setHP(1);
 				damage = damage / 2;
 			}
-			source.notifyWorldAboutChanges();
+			attacker.notifyWorldAboutChanges();
 		}
 		return damage;
 	}
 
+	/**
+	 * Lets the given entity move forwards (into the direction it is currently
+	 * facing). This can lead to a zone change or the usage of a portal.
+	 * @param entity The entity that should move
+	 * @throws AttributeNotFoundException
+	 * @throws NoRPZoneException
+	 */
 	public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException {
-		//Log4J.startMethod(logger, "move");
-		try {
-			if (entity.stopped()) {
+		if (entity.stopped()) {
+			return;
+		}
+
+		int x = entity.getX();
+		int y = entity.getY();
+
+		Direction dir = entity.getDirection();
+		int dx = dir.getdx();
+		int dy = dir.getdy();
+
+		int nx = x + dx;
+		int ny = y + dy;
+
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
+		boolean collision = zone.collides(entity, nx, ny);
+		boolean ignoreCollision = entity.isGhost();
+
+		if (collision) {
+			if (entity instanceof Player) {
+				Player player = (Player) entity;
+
+				// If we are too far from sheep skip zone change
+				Sheep sheep = null;
+				if (player.hasSheep()) {
+					sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+				}
+
+				if (!((sheep != null) && (player.squaredDistance(sheep) > 7 * 7))) {
+					if (zone.leavesZone(player, nx, ny)) {
+						logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+						decideChangeZone(player, nx, ny);
+						player.stop();
+						player.notifyWorldAboutChanges();
+						return;
+					}
+
+					for (Portal portal : zone.getPortals()) {
+						if (player.nextTo(portal) && player.facingTo(portal)) {
+							logger.debug("Using portal " + portal);
+							portal.onUsed(player);
+							return;
+						}
+					}
+				}
+			}
+		}
+		if (!collision || ignoreCollision) {
+			if (!entity.isMoveCompleted()) {
+				logger.debug(entity.get("type") + ") move not completed");
 				return;
 			}
 
-			int x = entity.getX();
-			int y = entity.getY();
-
-			Direction dir = entity.getDirection();
-			int dx = dir.getdx();
-			int dy = dir.getdy();
-
-			int nx = x + dx;
-			int ny = y + dy;
-
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
-			boolean collision = zone.collides(entity, nx, ny);
-			boolean ignoreCollision = entity.isGhost();
-
-			if (collision) {
-				if (entity instanceof Player) {
-					Player player = (Player) entity;
-
-					// If we are too far from sheep skip zone change
-					Sheep sheep = null;
-					if (player.hasSheep()) {
-						sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-					}
-
-					if (!((sheep != null) && (player.squaredDistance(sheep) > 7 * 7))) {
-						if (zone.leavesZone(player, nx, ny)) {
-							logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
-							decideChangeZone(player, nx, ny);
-							player.stop();
-							player.notifyWorldAboutChanges();
-							return;
-						}
-
-						for (Portal portal : zone.getPortals()) {
-							if (player.nextTo(portal) && player.facingTo(portal)) {
-								logger.debug("Using portal " + portal);
-								portal.onUsed(player);
-								return;
-							}
-						}
-					}
-				}
+			if (logger.isDebugEnabled()) {
+				logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
 			}
-			if (!collision || ignoreCollision) {
-				if (!entity.isMoveCompleted()) {
-					logger.debug(entity.get("type") + ") move not completed");
-					return;
-				}
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
-				}
+			entity.setX(nx);
+			entity.setY(ny);
 
-				entity.setX(nx);
-				entity.setY(ny);
+			entity.setCollides(false);
+			zone.notifyMovement(entity, x, y, nx, ny);
 
-				entity.setCollides(false);
-				zone.notifyMovement(entity, x, y, nx, ny);
-
-				entity.notifyWorldAboutChanges();
-			} else {
-				/* Collision */
-				if (logger.isDebugEnabled()) {
-					logger.debug("Collision at (" + nx + "," + ny + ")");
-				}
-				entity.setCollides(true);
-
-				entity.stop();
-				entity.notifyWorldAboutChanges();
+			entity.notifyWorldAboutChanges();
+		} else {
+			/* Collision */
+			if (logger.isDebugEnabled()) {
+				logger.debug("Collision at (" + nx + "," + ny + ")");
 			}
-		} finally {
-			//	Log4J.finishMethod(logger, "move");
+			entity.setCollides(true);
+
+			entity.stop();
+			entity.notifyWorldAboutChanges();
 		}
 	}
 
+	/**
+	 * ???
+	 * @param player
+	 * @throws AttributeNotFoundException
+	 */
 	public static void transferContent(Player player) throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "transferContent");
 
@@ -432,6 +473,14 @@ public class StendhalRPAction {
 		Log4J.finishMethod(logger, "transferContent");
 	}
 
+	/**
+	 * ???
+	 * @param player
+	 * @param x
+	 * @param y
+	 * @throws AttributeNotFoundException
+	 * @throws NoRPZoneException
+	 */
 	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException,
 	        NoRPZoneException {
 		// String zoneid = player.get("zoneid");
@@ -469,6 +518,14 @@ public class StendhalRPAction {
 		}
 	}
 
+	/**
+	 * ???
+	 * @param player
+	 * @param portal
+	 * @return
+	 * @throws AttributeNotFoundException
+	 * @throws NoRPZoneException
+	 */
 	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException {
 		Log4J.startMethod(logger, "usePortal");
 
@@ -634,6 +691,13 @@ public class StendhalRPAction {
 
 	}
 
+	/**
+	 * ???
+	 * @param player
+	 * @param zone
+	 * @throws AttributeNotFoundException
+	 * @throws NoRPZoneException
+	 */
 	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException,
 	        NoRPZoneException {
 		Log4J.startMethod(logger, "changeZone");
