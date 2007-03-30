@@ -27,7 +27,7 @@ import java.util.List;
  * 
  * REWARD:
  * - golden cloak 
- * - 5000 XP
+ * - 2500 XP
  * 
  * REPETITIONS:
  * - once the quest is complete, she asks for a blue dragon cloak, from athor island.
@@ -176,7 +176,7 @@ public class CloakCollector extends AbstractQuest {
 								Item goldencloak = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_cloak");
 								goldencloak.put("bound", player.getName());
 								player.equip(goldencloak, true);
-								player.addXP(100);
+								player.addXP(2500);
 								engine.say("Oh, they look so beautiful all together, thank you. Please take this very special cloak in return.");
 								player.setQuest("cloaks_collector", "done");
 								player.notifyWorldAboutChanges();
