@@ -89,15 +89,6 @@ public class Spell extends PassiveEntity implements EquipListener {
 		return get("name");
 	}
 
-	/** returns the list of possible slots for this item */
-	public List<String> getPossibleSlots() {
-		return possibleSlots;
-	}
-
-	/** creates a copy */
-	public Object copy() {
-		return new Spell(this);
-	}
 
 	@Override
 	public String toString() {
