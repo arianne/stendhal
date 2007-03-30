@@ -643,13 +643,13 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level -1 -->
 
- <zone name="-1_semos_mine_n2_w2" file="sub_1_semos_mine_n2_w2.xstend">
+ <zone name="-1_semos_mine_n2_w2" level="-1" x="499744" y="499744" file="sub_1_semos_mine_n2_w2.xstend">
  </zone>
 
- <zone name="-1_semos_mine_n2" file="sub_1_semos_mine_n2.xstend">
+ <zone name="-1_semos_mine_n2" level="-1" x="500000" y="499744" file="sub_1_semos_mine_n2.xstend">
  </zone>
 
- <zone name="-1_semos_mine_nw" file="sub_1_semos_mine_nw.xstend">
+ <zone name="-1_semos_mine_nw" level="-1" x="499744" y="499872" file="sub_1_semos_mine_nw.xstend">
   <!-- Spikes -->
   <entity x="205" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
@@ -752,10 +752,10 @@ Mature sheep wanted: please speak to Sato
   </entity>
  </zone>
 
- <zone name="-1_semos_dungeon" file="sub_1_semos_dungeon.xstend">
+ <zone name="-1_semos_dungeon" level="-1" x="500064" y="500000" file="sub_1_semos_dungeon.xstend">
  </zone>
 
- <zone name="-1_semos_jail" file="sub_1_semos_jail.xstend">
+ <zone name="-1_semos_jail" level="-1" x="499872" y="500000" file="sub_1_semos_jail.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1"/>
 
   <portal x="28" y="17" ref="entrance">
@@ -763,19 +763,19 @@ Mature sheep wanted: please speak to Sato
   </portal>
  </zone>
 
- <zone name="-1_semos_catacombs_ne" file="sub_1_semos_catacombs_ne.xstend">
+ <zone name="-1_semos_catacombs_ne" level="-1" x="500064" y="499872" file="sub_1_semos_catacombs_ne.xstend">
  </zone>
 
- <zone name="-1_semos_catacombs_nw" file="sub_1_semos_catacombs_nw.xstend">
+ <zone name="-1_semos_catacombs_nw" level="-1" x="500000" y="499872" file="sub_1_semos_catacombs_nw.xstend">
  </zone>
 
- <zone name="-1_semos_catacombs_se" file="sub_1_semos_catacombs_se.xstend">
+ <zone name="-1_semos_catacombs_se" level="-1" x="500064" y="499936" file="sub_1_semos_catacombs_se.xstend">
   <portal x="28" y="37" ref="entrance" replacing="true">
    <destination zone="0_semos_plains_n" ref="catacombs_entrance"/>
   </portal>
  </zone>
 
- <zone name="-1_semos_catacombs_sw" file="sub_1_semos_catacombs_sw.xstend">
+ <zone name="-1_semos_catacombs_sw" level="-1" x="500000" y="499936" file="sub_1_semos_catacombs_sw.xstend">
  </zone>
 
 
