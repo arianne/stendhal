@@ -292,7 +292,7 @@ public abstract class Creature extends NPC {
 		}
 
 		SpriteStore store = SpriteStore.get();
-		sprite = store.getSprite("data/sprites/monsters/" + name + ".png");
+		Sprite sprite = store.getSprite("data/sprites/monsters/" + name + ".png");
 		return sprite;
 	}
 
