@@ -15,16 +15,23 @@ package games.stendhal.client.gui;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.wt.GroundContainer;
+import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
+import games.stendhal.client.gui.wt.core.WtClickListener;
+import games.stendhal.client.gui.wt.core.WtMessageBox;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
 
+import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 
 import java.awt.Canvas;
@@ -95,8 +102,6 @@ public class j2DClient extends StendhalUI {
 
 	private JLayeredPane	pane;
 
-	private InGameGUI inGameGUI;
-
 	private KTextEdit gameLog;
 
 	private boolean gameRunning = true;
@@ -121,6 +126,24 @@ public class j2DClient extends StendhalUI {
 	private boolean shiftDown;
 
 	private boolean altDown;
+
+	/** the main frame */
+	private WtBaseframe baseframe;
+
+	/** this is the ground */
+	private GroundContainer ground;
+
+	/** settings panel */
+	private SettingsPanel settings;
+
+	/** the dialog "really quit?" */
+	private WtPanel quitDialog;
+
+	private Sprite offlineIcon;
+
+	private boolean offline;
+
+	private int blinkOffline;
 
 
 	private boolean fixkeyboardHandlinginX() {
@@ -380,7 +403,26 @@ public class j2DClient extends StendhalUI {
 // Not currently used (maybe later?)
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-		inGameGUI = new InGameGUI(this);
+
+		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
+
+		// create the baseframe
+		baseframe = new WtBaseframe(screen);
+		// register native event handler
+		canvas.addMouseListener(baseframe);
+		canvas.addMouseMotionListener(baseframe);
+		// create ground
+		ground = new GroundContainer(this);
+
+		baseframe.addChild(ground);
+		// the settings panel creates all other
+		settings = new SettingsPanel(this, ground);
+		ground.addChild(settings);
+
+		// set some default window positions
+		WtWindowManager windowManager = WtWindowManager.getInstance();
+		windowManager.setDefaultProperties("corpse", false, 0, 190);
+		windowManager.setDefaultProperties("chest", false, 100, 190);
 
 
 		// Start the main game loop, note: this method will not
@@ -442,7 +484,7 @@ public class j2DClient extends StendhalUI {
 
 			if (frame.getState() != Frame.ICONIFIED) {
 				logger.debug("Draw screen");
-				inGameGUI.draw(screen);
+				draw();
 				rotateKeyEventCounters();
 			}
 
@@ -652,6 +694,55 @@ public class j2DClient extends StendhalUI {
 	}
 
 
+	/*
+	 * Draw the screen.
+	 */
+	protected void draw() {
+		/*
+		 * Draw the GameLayers from bootom to top, relies on exact
+		 * naming of the layers
+		 */
+		StaticGameLayers gameLayers = client.getStaticGameLayers();
+		String set = gameLayers.getRPZoneLayerSet();
+
+		GameObjects gameObjects = client.getGameObjects();
+
+		gameLayers.draw(screen, set + "_0_floor");
+		gameLayers.draw(screen, set + "_1_terrain");
+		gameLayers.draw(screen, set + "_2_object");
+		gameObjects.draw(screen);
+		gameLayers.draw(screen, set + "_3_roof");
+		gameLayers.draw(screen, set + "_4_roof_add");
+		gameObjects.drawHPbar(screen);
+		gameObjects.drawText(screen);
+
+
+		// create the map if there is none yet
+		if (gameLayers.changedArea()) {
+			CollisionDetection cd = gameLayers.getCollisionDetection();
+			if (cd != null) {
+				gameLayers.resetChangedArea();
+				settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
+			}
+		}
+
+		RPObject player = client.getPlayer();
+		settings.setPlayer(player);
+
+		baseframe.draw(screen.expose());
+
+		if (offline && (blinkOffline > 0)) {
+			offlineIcon.draw(screen.expose(), 560, 420);
+		}
+
+		if (blinkOffline < -10) {
+			blinkOffline = 20;
+		} else {
+			blinkOffline--;
+		}
+	}
+
+
 	//
 	// <StendhalGUI>
 	//
@@ -663,7 +754,7 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public WtBaseframe getFrame() {
-		return inGameGUI.getFrame();
+		return baseframe;
 	}
 
 	/**
@@ -760,7 +851,7 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public Inspector getInspector() {
-		return inGameGUI.getGround();
+		return ground;
 	}
 
 
@@ -788,10 +879,35 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Request quit confirmation from the user.
+	 * This stops all player actions and shows a dialog in which the
+	 * player can confirm that they really wants to quit the program.
+	 * If so it flags the client for termination.
 	 */
 	@Override
 	public void requestQuit() {
-		inGameGUI.showQuitDialog();
+		/*
+		 * Stop the player
+		 */
+		client.stop();
+
+		// quit messagebox already showing?
+		if (quitDialog == null) {
+			// no, so show it
+			quitDialog = new WtMessageBox("quit", 220, 220, 200, "Quit Stendhal?",
+			        WtMessageBox.ButtonCombination.YES_NO);
+			quitDialog.registerClickListener(new WtClickListener() {
+
+				public void onClick(String name, Point point) {
+					quitDialog = null; // remove field as the messagebox is
+					// closed now
+					if (name.equals(WtMessageBox.ButtonEnum.YES.getName())) {
+						// Yes-Button clicked...logut and quit.
+						client.requestLogout();
+					}
+				};
+			});
+			baseframe.addChild(quitDialog);
+		}
 	}
 
 
@@ -812,11 +928,7 @@ public class j2DClient extends StendhalUI {
 	 * @param	offline		<code>true</code> if offline.
 	 */
 	public void setOffline(boolean offline) {
-		if(offline) {
-			inGameGUI.offline();
-		} else {
-			inGameGUI.online();
-		}
+		this.offline = offline;
 	}
 
 	//
@@ -857,7 +969,7 @@ public class j2DClient extends StendhalUI {
 		public void keyTyped(KeyEvent e) {
 			if (e.getKeyChar() == 27) {
 				// Escape
-				inGameGUI.showQuitDialog();
+				requestQuit();
 			}
 		}
 	}
