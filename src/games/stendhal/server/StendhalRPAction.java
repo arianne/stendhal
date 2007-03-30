@@ -169,7 +169,7 @@ public class StendhalRPAction {
 		int damage = (int) (((attackerComponent - defenderComponent) / maxAttackerComponent)
 		        * (maxAttackerComponent / maxDefenderComponent) * (attacker.getATK() / 10.0f));
 
-		if (attacker.canDoRangeAttacks()) {
+		if (attacker.canDoRangeAttack(defender)) {
 			// The attacker is attacking either using a range weapon with
 			// ammunition such as a bow and arrows, or a missile such as a
 			// spear.
@@ -264,7 +264,7 @@ public class StendhalRPAction {
 		if (! attacker.nextTo(defender)) {
 			// The attacker is not directly standing next to the defender.
 			// Find out if he can attack from the distance.
-			if (attacker.canDoRangeAttacks()) {
+			if (attacker.canDoRangeAttack(defender)) {
 				// TODO: Should different weapons have different ranges??
 	
 				// Check line of view to see if there is any obstacle.
@@ -272,7 +272,10 @@ public class StendhalRPAction {
 					return false;
 				}
 				// Get the projectile that will be thrown/shot.
-				StackableItem projectilesItem = attacker.getAmmunitionIfRangeCombat();
+				StackableItem projectilesItem = null;
+				if (attacker.getRangeWeapon() != null) {
+					projectilesItem = attacker.getAmmunition();
+				}
 				if (projectilesItem == null) {
 					// no arrows... but maybe a spear?
 					projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();

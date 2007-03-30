@@ -1040,9 +1040,9 @@ public class Creature extends NPC {
 			logicFollowPatrolPath();
 		} else if (squaredDistance(target) > 18 * 18) {
 			logicStopAttackBecauseTargetOutOfReach();
-		} else if (nextTo(target, 0.25) && !canDoRangeAttacks()) {
+		} else if (nextTo(target, 0.25) && !canDoRangeAttack(target)) {
 			logicAttack();
-		} else if ((squaredDistance(target) <= 7 * 7) && canDoRangeAttacks()) {
+		} else if (canDoRangeAttack(target)) {
 			logicRangeAttack();
 		} else if (!target.stopped()) {
 			logicCreateNewPathToMovingTarget();
@@ -1155,11 +1155,14 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	public boolean canDoRangeAttacks() {
+	public boolean canDoRangeAttack(RPEntity target) {
 		if (aiProfiles.containsKey("archer")) {
-			return true;
+			// The creature can shoot, but only if the target is at most
+			// 7 tiles away.
+			// TODO: make the max distance configurable via creatures.xml.
+			return squaredDistance(target) <= 7 * 7;
 		}
-		return super.canDoRangeAttacks();
+		return super.canDoRangeAttack(target);
 	}
 
 	/**

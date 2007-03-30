@@ -55,8 +55,8 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.add("name", RPClass.STRING); // name of item (ie 'Kings Sword')
 		entity.add("atk", RPClass.SHORT); // Some items has attack values
 		entity.add("def", RPClass.SHORT); // Some items has defense values
-		entity.add("amount", RPClass.INT); // Some items(food) has amount of
-		//      something (a bottle, a piece of meat).
+		entity.add("amount", RPClass.INT); // Some items(food) has amount of something (a bottle, a piece of meat).
+		entity.add("range", RPClass.SHORT); // Some items (range weapons, ammunition, missiles) have a range. 
 		entity.add("regen", RPClass.INT); // Some items(food) has regeneration speed
 		entity.add("frequency", RPClass.INT); // Some items(food) has regeneration speed
 		entity.add("quantity", RPClass.INT); // Some items(Stackable) has quantity

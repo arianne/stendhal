@@ -1215,7 +1215,7 @@ public abstract class RPEntity extends Entity {
 		return weapons;
 	}
 
-	private StackableItem getAmmunition() {
+	public StackableItem getAmmunition() {
 		String[] slots = { "lhand", "rhand" };
 
 		for (String slot : slots) {
@@ -1347,12 +1347,10 @@ public abstract class RPEntity extends Entity {
 		return 4.0f * weapon;
 	}
 	
-	
-	public StackableItem getAmmunitionIfRangeCombat() {
-		List<Item> weapons = getWeapons();
-		if (weapons.size() > 0) {
-			if (weapons.get(0).isOfClass("ranged")) {
-				return getAmmunition();
+	public Item getRangeWeapon() {
+		for (Item weapon: getWeapons()) {
+			if (weapon.isOfClass("ranged")) {
+				return weapon;
 			}
 		}
 		return null;
@@ -1413,11 +1411,21 @@ public abstract class RPEntity extends Entity {
 	 *
 	 * @return true, wenn ein Range compat moeglich ist, sonst false
 	 */
-	public boolean canDoRangeAttacks() {
-		StackableItem ammunition = getAmmunitionIfRangeCombat();
+	public boolean canDoRangeAttack(RPEntity target) {
+		Item rangeWeapon = getRangeWeapon();
+		StackableItem ammunition = getAmmunition();
 		StackableItem missiles = getMissileIfNotHoldingOtherWeapon();
-		return ((ammunition != null) && (ammunition.getQuantity() > 0)
-				|| (missiles != null) && (missiles.getQuantity() > 0));
+		int maxRange;
+		if (rangeWeapon != null && ammunition != null && ammunition.getQuantity() > 0) {
+			maxRange = rangeWeapon.getInt("range") + ammunition.getInt("range");
+		} else if (missiles != null && missiles.getQuantity() > 0) {
+			maxRange = missiles.getInt("range");
+		} else {
+			// The entity doesn't hold the necessary distance weapons. 
+			return false;
+		}
+		return squaredDistance(target) >= 2 * 2
+				&& squaredDistance(target) <= maxRange * maxRange;
 	}
 
 	/**
