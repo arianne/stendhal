@@ -231,6 +231,72 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
+	 * Calculates the squared distance between the two given rectangles,
+	 * i.e. the square of the minimal distance between a point in rect1 
+	 * and a point in rect2.
+	 *
+	 * We're calculating the square because the square root operation
+	 * would be expensive. As long as we only need to compare distances,
+	 * it doesn't matter if we compare the distances or the squares of
+	 * the distances (the square operation is strictly monotonous for positive
+	 * numbers).
+	 * 
+	 * TODO: consider moving this to a class in games.stendhal.common
+	 * 
+	 * @param rect1 The first rectangle.
+	 * @param rect2 The second rectangle.
+	 * @return The squared distance between the two rectangles.
+	 */
+	private static int squaredDistanceBetween(Rectangle2D rect1, Rectangle2D rect2) {
+		int left1 = (int) rect1.getMinX();
+		// minus one because we want the distance of two 1x1 entities standing
+		// directly next to each other to be 1, not 0.
+		int right1 = (int) rect1.getMaxX() - 1; 
+		int top1 = (int) rect1.getMinY(); 
+		int bottom1 = (int) rect1.getMaxY() - 1; 
+		
+		int left2 = (int) rect2.getMinX(); 
+		int right2 = (int) rect2.getMaxX() - 1; 
+		int top2 = (int) rect2.getMinY(); 
+		int bottom2 = (int) rect2.getMaxY() - 1; 
+
+		int xDist = 0;
+		int yDist = 0;
+		
+		if (right1 < right2) {
+			if (right1 > left2) {
+				xDist = 0;
+			} else {
+				// rect1 is left of rect2
+				xDist = left2 - right1;
+			}
+		} else {
+			if (right2 > left1) {
+				xDist = 0;
+			} else {
+				// rect1 is right of rect2
+				xDist = left1 - right2;
+			}
+		}
+		if (bottom1 < bottom2) {
+			if (bottom1 > top2) {
+				yDist = 0;
+			} else {
+				// rect1 is over rect2
+				yDist = top2 - bottom1;
+			}
+		} else {
+			if (bottom2 > top1) {
+				yDist = 0;
+			} else {
+				// rect1 is under rect2
+				yDist = top1 - bottom2;
+			}
+		}
+		return xDist * xDist + yDist * yDist;
+	}
+	
+	/**
 	 * This returns square of the distance between this entity and the
 	 * given one.
 	 * We're calculating the square because the square root operation
@@ -238,10 +304,15 @@ public abstract class Entity extends RPObject {
 	 * it doesn't matter if we compare the distances or the squares of
 	 * the distances (the square operation is strictly monotonous for positive
 	 * numbers).
-	 * @param entity the entity to which the distance should be calculated 
+	 * @param other the entity to which the distance should be calculated 
 	 */
-	public double squaredDistance(Entity entity) {
-		return squaredDistance(entity.x, entity.y);
+	public double squaredDistance(Entity other) {
+		if (other.getInt("width") == 1 && other.getInt("height") == 1) {
+			// This doesn't work properly if the other entity is larger
+			// than 1x1, but it is faster.
+			return squaredDistance(other.x, other.y);
+		}
+		return squaredDistanceBetween(getArea(), other.getArea());
 	}
 
 	/**
@@ -256,7 +327,12 @@ public abstract class Entity extends RPObject {
 	 * @param y The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
-		return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
+		if (getInt("width") == 1 && getInt("height") == 1) {
+			// This doesn't work properly if this entity is larger
+			// than 1x1, but it is faster.
+			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
+		}
+		return squaredDistanceBetween(getArea(), new Rectangle(x, y, 1, 1));
 	}
 
 	/**
