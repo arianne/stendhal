@@ -135,7 +135,11 @@ public class EquipmentAction implements ActionListener {
 
 		// looks good
 		source.moveTo(dest, player);
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot());
+		int amount = 1;
+		if (entity instanceof StackableItem) {
+			amount = ((StackableItem) entity).getQuantity();
+		}
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
 
 		player.updateItemAtkDef();
 
@@ -179,7 +183,11 @@ public class EquipmentAction implements ActionListener {
 			// reappear
 			// on the ground. See DestinationObject.addToWorld()#600
 			source.moveTo(dest, player);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot());
+			int amount = 1;
+			if (entity instanceof StackableItem) {
+				amount = ((StackableItem) entity).getQuantity();
+			}
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
 			return;
 		}
 		// Old Code Starts Here
@@ -278,7 +286,11 @@ public class EquipmentAction implements ActionListener {
 						itemName = "item";
 					}
 					
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, slot.getName(), "ground");
+					int amount = 1;
+					if (entity instanceof StackableItem) {
+						amount = ((StackableItem) entity).getQuantity();
+					}
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, slot.getName(), "ground", Integer.toString(amount));
 
 					
 					baseEntity.notifyWorldAboutChanges();
