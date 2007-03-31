@@ -45,6 +45,10 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	public void setQuantity(int amount) {
+		if (amount <= 0) {
+			logger.error("Trying to set invalid quantity: " + amount, new Throwable());
+			amount = 1;
+		}
 		quantity = amount;
 		put("quantity", quantity);
 	}
