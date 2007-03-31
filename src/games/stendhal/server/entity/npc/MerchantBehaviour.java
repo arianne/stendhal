@@ -79,14 +79,13 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 * @param amount amount
 	 */
 	public void setAmount(int amount) {
-		this.amount = amount;
 		if (amount < 1) {
 			amount = 1;
 		}
 		if (amount > 1000) {
 			amount = 1;
 		}
-
+		this.amount = amount;
 	}
 
 	/**
