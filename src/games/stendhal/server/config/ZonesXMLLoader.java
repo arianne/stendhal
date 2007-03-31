@@ -373,6 +373,25 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 		zone.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
 
+
+
+		/*
+		 * Sanity check
+		 */
+		if(desc.isInterior()) {
+			if(!zonedata.isInterior()) {
+				logger.error("XML <-> XSTEND interior mismatch for: " + name);
+			}
+		} else {
+			if(zonedata.isInterior()) {
+				logger.error("XML <-> XSTEND interior mismatch for: " + name);
+			} else if((desc.getX() != zonedata.getX()) || (desc.getY() != zonedata.getY())) {
+				logger.error("XML <-> XSTEND coorinate mismatch for: " + name);
+			}
+		}
+
+
+
 		/*-
 		 *- NEW CODE (not till zone xml files updated with coords)
 		 *-
