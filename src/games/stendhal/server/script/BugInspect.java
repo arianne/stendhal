@@ -25,12 +25,14 @@ import org.apache.log4j.Logger;
 public class BugInspect extends ScriptImpl implements TurnListener {
 	private static Logger logger = Logger.getLogger(BugInspect.class);
 	private HashSet<String> seen = new HashSet<String>();
-	private static boolean keepRunning = true;
+	private boolean keepRunning = true;
 
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		TurnNotifier.get().notifyInTurns(15, this, null);
+		TurnNotifier.get().notifyInTurns(6, this, null);
+		keepRunning = true;
+		seen.clear();
 	}
 
 	public void onTurnReached(int currentTurn, String ignoreMe) {
@@ -97,7 +99,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 		}
 		
 		if (keepRunning) {
-			TurnNotifier.get().notifyInTurns(15, this, null);
+			TurnNotifier.get().notifyInTurns(6, this, null);
 		}
 	}
 
