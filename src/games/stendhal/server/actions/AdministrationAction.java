@@ -682,7 +682,7 @@ public class AdministrationAction extends ActionListener {
 			}
 			try {
 				int minutes = action.getInt("minutes");
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleport", target, Integer.toString(minutes), reason);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "jail", target, Integer.toString(minutes), reason);
 				Jail.get().imprison(target, player, minutes);
 			} catch (NumberFormatException e) {
 				player.sendPrivateText("Usage: /jail name minutes reason");
