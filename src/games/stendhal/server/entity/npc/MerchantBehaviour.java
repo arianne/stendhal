@@ -88,7 +88,6 @@ public abstract class MerchantBehaviour extends Behaviour {
 			logger.warn("Increasing very low amount of " + amount + " to 1.");
 		}
 		if (amount > 1000) {
-			System.out.println(Integer.MAX_VALUE);
 			logger.warn("Decreasing very large amount of " + amount + " to 1.");
 			amount = 1;
 		}
