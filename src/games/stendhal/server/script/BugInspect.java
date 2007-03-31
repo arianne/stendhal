@@ -5,6 +5,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.HashSet;
@@ -20,7 +22,7 @@ import org.apache.log4j.Logger;
  *
  * @author hendrik
  */
-public class BugInspect extends ScriptImpl {
+public class BugInspect extends ScriptImpl implements TurnListener {
 	private static Logger logger = Logger.getLogger(BugInspect.class);
 	private HashSet<String> seen = new HashSet<String>();
 	private static boolean keepRunning = true;
@@ -28,6 +30,10 @@ public class BugInspect extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
+		TurnNotifier.get().notifyInTurns(15, this, null);
+	}
+
+	public void onTurnReached(int currentTurn, String ignoreMe) {
 		
 		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
 			if (seen.contains(player.getName())) {
@@ -89,6 +95,10 @@ public class BugInspect extends ScriptImpl {
 				logger.warn("User with large amout of items: " + message + "\r\n" + sb.toString());
 			}
 		}
+		
+		if (keepRunning) {
+			TurnNotifier.get().notifyInTurns(15, this, null);
+		}
 	}
 
 	@Override
@@ -96,6 +106,5 @@ public class BugInspect extends ScriptImpl {
 		super.unload(admin, args);
 		keepRunning = false;
 	}
-	
 	
 }
