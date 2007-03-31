@@ -104,7 +104,7 @@ public class j2DClient extends StendhalUI {
 
 	private KTextEdit gameLog;
 
-	private boolean gameRunning = true;
+	private boolean gameRunning;
 
 	/** NOTE: It sounds bad to see here a GUI component. Try other way. */
 	private JTextField playerChatText;
@@ -467,6 +467,8 @@ public class j2DClient extends StendhalUI {
 		long refreshTime = System.currentTimeMillis();
 		long lastMessageHandle = refreshTime;
 
+		gameRunning = true;
+
 		while (gameRunning) {
 			fps++;
 			// figure out what time it is right after the screen flip then
@@ -516,8 +518,6 @@ public class j2DClient extends StendhalUI {
 			} else {
 				setOffline(false);
 			}
-
-			gameRunning &= client.shouldContinueGame();
 
 			logger.debug("Start sleeping");
 			// we know how long we want per screen refresh (40ms) then
@@ -687,10 +687,28 @@ public class j2DClient extends StendhalUI {
 	}
 
 
+	/**
+	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
+	 *
+	 * @param	ev		The keyboard event.
+	 */
 	protected void updateModifiers(KeyEvent ev) {
 		altDown = ev.isAltDown();
 		ctrlDown = ev.isControlDown();
 		shiftDown = ev.isShiftDown();
+	}
+
+
+	/**
+	 * Shutdown the client. Save state and tell the main loop to stop.
+	 */
+	protected void shutdown() {
+		Log4J.startMethod(logger, "shutdown");
+		gameRunning = false;
+
+		// try to save the window configuration
+		WtWindowManager.getInstance().save();
+		Log4J.finishMethod(logger, "shutdown");
 	}
 
 
@@ -902,7 +920,7 @@ public class j2DClient extends StendhalUI {
 					// closed now
 					if (name.equals(WtMessageBox.ButtonEnum.YES.getName())) {
 						// Yes-Button clicked...logut and quit.
-						client.requestLogout();
+						shutdown();
 					}
 				};
 			});

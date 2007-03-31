@@ -68,8 +68,6 @@ public class StendhalClient extends ariannexp {
 
 	private GameObjects gameObjects;
 
-	private boolean keepRunning = true;
-
 	private JFrame frame;
 
 	private static StendhalClient client=null;
@@ -341,18 +339,6 @@ public class StendhalClient extends ariannexp {
 	@Override
 	protected void onError(int code, String reason) {
 		logger.error("got error code: " + code + " reason: " + reason);
-	}
-
-	public void requestLogout() {
-		Log4J.startMethod(logger, "requestLogout");
-		keepRunning = false;
-		// try to save the window configuration
-		WtWindowManager.getInstance().save();
-		Log4J.finishMethod(logger, "requestLogout");
-	}
-
-	public boolean shouldContinueGame() {
-		return keepRunning;
 	}
 
 
