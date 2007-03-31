@@ -78,7 +78,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 				
 				StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "jail", player.getName(),
 						        Integer.toString(-1), "possible bug abuse");
-				Jail.get().imprison(player.getName(), player, -1, "possible bug abuse");
+				Jail.get().imprison(player.getName(), player, -1);
 				player.sendPrivateText("Please use /support to talk to an admin about your large amount of items which may have been the result of a bug.");
 				player.notifyWorldAboutChanges();
 				
