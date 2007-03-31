@@ -26,38 +26,4 @@ public interface ActionManager {
 	public String getSlotNameToEquip(RPEntity entity, Item item);
 
 	public boolean onEquip(RPEntity entity, String slotName, Item item);
-
-	// /* Version 0.40 Action Manager new interface */
-	// /** called when attacking a target with the given weapon. */
-	// boolean onAttack(RPEntity source, RPEntity target, Item weapon);
-	// /** called when we stop attacking target */
-	// void onStopAttack(RPEntity source, RPEntity target);
-	// /** called when entity is damaged with the damage type (physical, fire,
-	// poison, magical, ... ) and the amount of damage done. */
-	// boolean onDamage(RPEntity source, RPEntity target, int amount);
-	// /** called when entity kills target */
-	// boolean onKill(RPEntity killer, RPEntity killed);
-	//  
-	// /** called when entity moves to x,y ( before moving in fact ) */
-	// boolean onMove(RPEntity source, int x, int y);
-	// /** called when entity collide at position x,y */
-	// boolean onCollide(RPEntity source, int x, int y);
-	// /** called when entity collide with another entity */
-	// boolean onCollideWith(RPEntity source, Entity target);
-	//  
-	// /** called when entity equips item on the given slot */
-	// boolean onEquip(RPEntity source, RPSlot slot, Item item);
-	// /** called when entity drops item from the given slot to floor */
-	// boolean onDrop(RPEntity source, RPSlot slot, Item item);
-	//  
-	// /** called when someone speaks near entity or write to entity */
-	// void onChat(RPEntity source, String text);
-	// /** called when someone speaks near entity or write to entity */
-	// void onTell(RPEntity source, RPEntity target, String text);
-	//  
-	// /** called when entity use item */
-	// boolean onUse(RPEntity source, Item item);
-	//  
-	// /** called when entity stops moving, attacking, etc... */
-	// boolean onStop(RPEntity source);
 }
