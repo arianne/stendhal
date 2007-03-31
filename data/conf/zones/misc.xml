@@ -3,7 +3,7 @@
 <zones>
 
  <!-- XXX - Does this belong with a major area??? -->
- <zone name="-2_kotoch_entrance" file="sub_2_kotoch_entrance.xstend">
+ <zone name="-2_kotoch_entrance" level="-2" x="500160" y="500032" file="sub_2_kotoch_entrance.xstend">
  </zone>
 
 
