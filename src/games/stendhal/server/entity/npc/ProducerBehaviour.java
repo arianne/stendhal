@@ -75,7 +75,7 @@ public class ProducerBehaviour extends Behaviour {
 	 */
 	private int productionTimePerItem;
 
-	protected int amount;
+	private int amount;
 
 	/**
 	 * Creates a new ProducerBehaviour.
@@ -211,7 +211,7 @@ public class ProducerBehaviour extends Behaviour {
 			        + " if you bring me " + getRequiredResourceNamesWithHashes(amount) + ".");
 			return false;
 		} else {
-			this.amount = amount;
+			setAmount(amount);
 			npc.say("I need you to fetch me " + getRequiredResourceNamesWithHashes(amount)
 			        + " for this job. Do you have it?");
 			return true;
@@ -285,5 +285,23 @@ public class ProducerBehaviour extends Behaviour {
 			player.addXP(numberOfProductItems);
 			player.notifyWorldAboutChanges();
 		}
+	}
+	/**
+	 * Sets the amount that the player wants to buy from the NPC.
+	 *
+	 * @param amount amount
+	 */
+	public void setAmount(int amount) {
+		this.amount = amount;
+		if (amount < 1) {
+			amount = 1;
+		}
+		if (amount > 1000) {
+			amount = 1;
+		}
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 }
