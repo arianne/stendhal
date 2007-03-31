@@ -479,37 +479,37 @@ public class AdministrationAction implements ActionListener {
 			}
 
 			String slotName = action.get("slot");
-			if (!changed.hasSlot(slotName)) {
-				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
-				player.sendPrivateText("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
-				return;
-			}
+//			if (!changed.hasSlot(slotName)) {
+//				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
+//				player.sendPrivateText("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
+//				return;
+//			}
 
-			RPSlot slot = changed.getSlot(slotName);
+//			RPSlot slot = changed.getSlot(slotName);
 
-			if (!slot.isFull()) {
-				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-				String type = action.get("item");
+			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+			String type = action.get("item");
 
-				// Is the entity an item
-				if (manager.isItem(type)) {
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summonat", changed.getName(),
-					        slot.getName(), type);
-					Item item = manager.getItem(type);
+			// Is the entity an item
+			if (manager.isItem(type)) {
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summonat", changed.getName(),
+				        slotName, type);
+				Item item = manager.getItem(type);
 
-					if (action.has("amount") && (item instanceof StackableItem)) {
-						((StackableItem) item).setQuantity(action.getInt("amount"));
-					}
-					slot.assignValidID(item);
-					slot.add(item);
+				if (action.has("amount") && (item instanceof StackableItem)) {
+					((StackableItem) item).setQuantity(action.getInt("amount"));
+				}
+				//slot.assignValidID(item);
+				//slot.add(item);
+				//changed.notifyWorldAboutChanges();
 
-					changed.notifyWorldAboutChanges();
-				} else {
-					player.sendPrivateText("Not an item.");
+				if (! player.equip(slotName, item)) {
+					player.sendPrivateText("The slot is full.");
 				}
 			} else {
-				player.sendPrivateText("Slot is full.");
+				player.sendPrivateText("Not an item.");
 			}
+
 		}
 
 		Log4J.finishMethod(logger, "onSummonAt");
