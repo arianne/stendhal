@@ -11,6 +11,7 @@ package games.stendhal.client;
 
 import java.awt.Color;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 
 /**
@@ -167,6 +168,8 @@ public abstract class StendhalUI {
 	 * @return Returns the window toolkit baseframe.
 	 */
 	public abstract WtBaseframe getFrame();
+
+	public abstract OutfitDialog getOutfitDialog(int outfit);
 
 	/**
 	 * @return Returns the altDown.

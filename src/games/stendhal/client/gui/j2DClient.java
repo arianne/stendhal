@@ -776,6 +776,15 @@ public class j2DClient extends StendhalUI {
 	}
 
 	/**
+	 * Create an outfit selection dialog.
+	 *
+	 * @param	outfit		Initial outfit.
+	 */
+	public OutfitDialog getOutfitDialog(int outfit) {
+		return new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
+	}
+
+	/**
 	 * Determine if the <Alt> key is held down.
 	 *
 	 * @return	Returns <code>true</code> if down.

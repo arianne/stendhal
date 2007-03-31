@@ -12,9 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.gui.OutfitDialog;
 import games.stendhal.client.gui.j2DClient;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
@@ -34,7 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import marauroa.client.ariannexp;
 import marauroa.client.net.DefaultPerceptionListener;
@@ -67,8 +64,6 @@ public class StendhalClient extends ariannexp {
 	private StaticGameLayers staticLayers;
 
 	private GameObjects gameObjects;
-
-	private JFrame frame;
 
 	private static StendhalClient client=null;
 
@@ -141,18 +136,8 @@ public class StendhalClient extends ariannexp {
 		return stendhal.VERSION;
 	}
 
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-	}
-
 	public void setScreen(GameScreen screen) {
 		this.screen = screen;
-	}
-
-	public OutfitDialog getOutfitDialog(int outfit) {
-		// int outfit, int total_hairs, int total_heads, int total_bodies, int
-		// total_clothes) {
-		return new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
 	}
 
 	public StaticGameLayers getStaticGameLayers() {

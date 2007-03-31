@@ -3,7 +3,6 @@ package games.stendhal.client.entity;
 import java.awt.Color;
 import java.util.List;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
@@ -52,7 +51,7 @@ public class User extends Player {
 				if (outfitOrg > 0) {
 					outfitTemp = outfitOrg;
 				}
-				StendhalClient.get().getOutfitDialog(outfitTemp).setVisible(true);
+				StendhalUI.get().getOutfitDialog(outfitTemp).setVisible(true);
 				break;
 			case LEAVE_SHEEP:
 				rpaction = new RPAction();
