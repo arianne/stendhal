@@ -6,9 +6,27 @@
    ** Please respect it!
    -->
 
- <!--  Ground level -->
+ <!-- Level 6 -->
 
-     <zone name="0_athor_ship_w2" file="0_athor_ship_w2.xstend">
+
+ <!-- Level 5 -->
+
+
+ <!-- Level 4 -->
+
+
+ <!-- Level 3 -->
+
+
+ <!-- Level 2 -->
+
+
+ <!-- Level 1 -->
+
+
+ <!-- Level 0 (Ground) -->
+
+     <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="0_athor_ship_w2.xstend">
      </zone>
 
      <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
@@ -90,7 +108,7 @@
        </portal>
      </zone>
      
-     <zone name="0_athor_island_w" file="0_athor_island_w.xstend">
+     <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="0_athor_island_w.xstend">
        <portal x="185" y="57" ref="apartment_1_entrance">
          <destination zone="int_athor_holiday_apartment_1" ref="out"/>
        </portal>
@@ -197,12 +215,12 @@
 	 </entity>
     </zone>
 
-    <zone name="0_athor_island" file="0_athor_island.xstend">
+    <zone name="0_athor_island" level="0" x="501152" y="500384" file="0_athor_island.xstend">
 	</zone>
 
- <!--  Level -1 -->
+ <!-- Level -1 -->
 
-     <zone name="-1_athor_ship_w2" file="sub_1_athor_ship_w2.xstend">
+     <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="sub_1_athor_ship_w2.xstend">
        <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/>
        <entity x="24" y="35">
          <implementation class-name="games.stendhal.server.entity.Sign">
@@ -246,9 +264,9 @@ BLACKJACK RULES
  </zone>
 
 
- <!--  Level -2 -->
+ <!-- Level -2 -->
 
- <zone name="-2_athor_ship_w2" file="sub_2_athor_ship_w2.xstend">
+ <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="sub_2_athor_ship_w2.xstend">
   <configurator class-name="games.stendhal.server.maps.athor.USL2_ShipWest2"/>
     <!-- This must be after the NPC configurator -->
     <entity x="22" y="30">
@@ -259,37 +277,18 @@ BLACKJACK RULES
  </zone>
 
 
- <!--  Level -3 -->
+ <!-- Level -3 -->
 
 
- <!--  Level -4 -->
+ <!-- Level -4 -->
 
 
- <!--  Level -5 -->
+ <!-- Level -5 -->
 
 
- <!--  Level -6 -->
+ <!-- Level -6 -->
 
 
- <!--  Level -7 -->
-
-
- <!--  Level 1 -->
-
-
- <!--  Level 2 -->
-
-
- <!--  Level 3 -->
-
-
- <!--  Level 4 -->
-
-
- <!--  Level 5 -->
-
-
- <!--  Level 6 -->
-
+ <!-- Level -7 -->
 
 </zones>

@@ -388,7 +388,7 @@ Please leave my mail at my neighbour's house.
   <configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
  </zone>
 
- <zone name="0_ados_coast_s_w2" level="0" x="500640" "500256" file="0_ados_coast_s_w2.xstend">
+ <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="0_ados_coast_s_w2.xstend">
  </zone>
  
  <!--
