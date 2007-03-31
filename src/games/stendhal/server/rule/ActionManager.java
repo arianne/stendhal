@@ -23,9 +23,9 @@ import games.stendhal.server.entity.item.Item;
 public interface ActionManager {
 
 	/** PRE 0.40 */
-	String canEquip(RPEntity entity, Item item);
+	public String getSlotNameToEquip(RPEntity entity, Item item);
 
-	boolean onEquip(RPEntity entity, String slotName, Item item);
+	public boolean onEquip(RPEntity entity, String slotName, Item item);
 
 	// /* Version 0.40 Action Manager new interface */
 	// /** called when attacking a target with the given weapon. */

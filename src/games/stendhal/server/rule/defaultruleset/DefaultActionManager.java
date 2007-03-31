@@ -46,13 +46,12 @@ public class DefaultActionManager implements ActionManager {
 	}
 
 	/**
-	 * returns the slot the entity can equip the item. This checks if the entity
-	 * has a slot for this item, not if the slot is used already.
+	 * returns the name of the slot in which the entity can equip the item.
 	 * 
 	 * @return the slot name for the item or null if there is no matching slot
 	 *         in the entity
 	 */
-	public String canEquip(RPEntity entity, Item item) {
+	public String getSlotNameToEquip(RPEntity entity, Item item) {
 		// get all possible slots for this item
 		List<String> slotNames = item.getPossibleSlots();
 
@@ -120,11 +119,16 @@ public class DefaultActionManager implements ActionManager {
 				}
 			}
 		}
-		// Simply add it
-		rpslot.assignValidID(item);
-		rpslot.add(item);
-		entity.updateItemAtkDef();
-		return true;
+		// We can't stack it on another item. Check if we can simply
+		// add it to an empty cell.
+		if (rpslot.isFull()) {
+			return false;
+		} else {
+			rpslot.assignValidID(item);
+			rpslot.add(item);
+			entity.updateItemAtkDef();
+			return true;
+		}
 	}
 
 }
