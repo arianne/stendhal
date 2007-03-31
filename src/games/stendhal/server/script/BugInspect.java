@@ -73,7 +73,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 				}
 			}
 			
-			String message = player.getName() + " has a large amount of items";
+			String message = "bug_inspect asks for support to ADMIN: " + player.getName() + " has a large amount of items";
 			if (caught) {
 				
 				StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "jail", player.getName(),
