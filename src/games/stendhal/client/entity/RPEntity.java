@@ -298,8 +298,8 @@ public abstract class RPEntity extends AnimatedEntity {
 	// When entity gets healed
 	public void onHealed(int amount) {
 		if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
-			damageSprites.add(GameScreen.get().createString("+" + Integer.toString(amount), Color.green));
-			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+			addFloater("+" + amount, Color.green);
+
 			if (getID().equals(StendhalClient.get().getPlayer().getID())) {
 				StendhalUI.get().addEventLine(
 				        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
@@ -321,8 +321,8 @@ public abstract class RPEntity extends AnimatedEntity {
 		if (getID().equals(StendhalClient.get().getPlayer().getID())
 		        || (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
 			isPoisoned = true;
-			damageSprites.add(GameScreen.get().createString(Integer.toString(amount), Color.red));
-			damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+
+			addFloater("-" + amount, Color.red);
 
 			StendhalUI.get().addEventLine(
 			        getName() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
@@ -476,9 +476,7 @@ public abstract class RPEntity extends AnimatedEntity {
 
 		if (diff.has("xp") && base.has("xp")) {
 			if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
-				damageSprites.add(GameScreen.get().createString(
-				        "+" + Integer.toString(diff.getInt("xp") - base.getInt("xp")), Color.cyan));
-				damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+				addFloater("+" + (diff.getInt("xp") - base.getInt("xp")), Color.cyan);
 
 				StendhalUI.get().addEventLine(
 				        getName() + " earns "
@@ -1035,8 +1033,7 @@ public abstract class RPEntity extends AnimatedEntity {
 
 		playSound("punch-mix", 20, 60, 80);
 
-		damageSprites.add(GameScreen.get().createString(Integer.toString(damage), Color.red));
-		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+		addFloater("-" + damage, Color.red);
 
 		boolean showAttackInfoForPlayer = (StendhalClient.get().getPlayer() != null)
 		        && (getID().equals(StendhalClient.get().getPlayer().getID()) || attacker.getID().equals(
