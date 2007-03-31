@@ -6,9 +6,28 @@
    ** Please respect it!
    -->
 
+
+ <!--  Level 6 -->
+
+
+ <!--  Level 5 -->
+
+
+ <!--  Level 4 -->
+
+
+ <!--  Level 3 -->
+
+
+ <!--  Level 2 -->
+
+
+ <!--  Level 1 -->
+
+
  <!--  Ground level -->
 
-         <zone name="0_fado_city" file="0_fado_city.xstend">
+ <zone name="0_fado_city" level="0" x="499616" y="500512" file="0_fado_city.xstend">
            <configurator class-name="games.stendhal.server.maps.fado.city.OL0_GreeterNPC"/>
            
            <portal x="36" y="16" ref="tavern_entrance_left">
@@ -297,23 +316,5 @@
 
 
  <!--  Level -7 -->
-
-
- <!--  Level 1 -->
-
-
- <!--  Level 2 -->
-
-
- <!--  Level 3 -->
-
-
- <!--  Level 4 -->
-
-
- <!--  Level 5 -->
-
-
- <!--  Level 6 -->
 
 </zones>
