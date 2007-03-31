@@ -889,7 +889,7 @@ public abstract class RPEntity extends Entity {
 	public boolean equip(Item item, boolean putOnGroundIfItCannotEquiped) {
 		ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
 
-		String slot = manager.canEquip(this, item);
+		String slot = manager.getSlotNameToEquip(this, item);
 		if (slot != null) {
 			return manager.onEquip(this, slot, item);
 		}
@@ -909,15 +909,18 @@ public abstract class RPEntity extends Entity {
 
 	/**
 	 * Tries to equip one unit of an item in the given slot.
+	 * Note: This doesn't check if it is allowed to put the given item into
+	 * the given slot, e.g. it is possible to wear your helmet at your feet
+	 * using this method.
+	 * 
 	 * @param slotName the name of the slot
 	 * @param item the item
 	 * @return true if the item can be equipped, else false
 	 */
 	public boolean equip(String slotName, Item item) {
 		if (hasSlot(slotName)) {
-			RPSlot slot = getSlot(slotName);
-			if (slot.isFull()) {
-				slot.add(item);
+			ActionManager manager = StendhalRPWorld.get().getRuleManager().getActionManager();
+			if (manager.onEquip(this, slotName, item)) {
 				updateItemAtkDef();
 				return true;
 			}
