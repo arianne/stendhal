@@ -6,18 +6,36 @@
    ** Please respect it!
    -->
 
- <!--  Ground level -->
+ <!--  Level 6 -->
 
- <zone name="0_nalwor_forest_nw" file="0_nalwor_forest_nw.xstend">
+
+ <!--  Level 5 -->
+
+
+ <!--  Level 4 -->
+
+
+ <!--  Level 3 -->
+
+
+ <!--  Level 2 -->
+
+
+ <!--  Level 1 -->
+
+
+ <!--  Level 0 (Ground) -->
+
+ <zone name="0_nalwor_forest_nw" level="0" x="500128" y="500128" file="0_nalwor_forest_nw.xstend">
  </zone>
 
- <zone name="0_nalwor_forest_n" file="0_nalwor_forest_n.xstend">
+ <zone name="0_nalwor_forest_n" level="0" x="500256" y="500128" file="0_nalwor_forest_n.xstend">
  </zone>
 
- <zone name="0_nalwor_forest_ne" file="0_nalwor_forest_ne.xstend">
+ <zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128" file="0_nalwor_forest_ne.xstend">
  </zone>
 
- <zone name="0_nalwor_forest_w" file="0_nalwor_forest_w.xstend">
+ <zone name="0_nalwor_forest_w" level="0" x="500128" y="500256" file="0_nalwor_forest_w.xstend">
 <!--
 ** Alternative configuration **
   <portal x="84" y="92" ref="entrance">
@@ -245,7 +263,7 @@
    </portal>
  </zone> 
  
- <zone name="0_nalwor_city" file="0_nalwor_city.xstend">
+ <zone name="0_nalwor_city" level="0" x="500256" y="500256" file="0_nalwor_city.xstend">
   <portal x="73" y="93" ref="pottery_entrance">
    <destination zone="int_nalwor_pottery" ref="entrance_left"/>
   </portal>
@@ -293,20 +311,19 @@
   </portal>
  </zone>
 
- <zone name="0_nalwor_forest_e" file="0_nalwor_forest_e.xstend">
+ <zone name="0_nalwor_forest_e" level="0" x="500384" y="500256" file="0_nalwor_forest_e.xstend">
  </zone>
 
- <zone name="0_nalwor_river_sw" file="0_nalwor_river_sw.xstend">
+ <zone name="0_nalwor_river_sw" level="0" x="500128" y="500384" file="0_nalwor_river_sw.xstend">
  </zone>
 
- <zone name="0_nalwor_river_s" file="0_nalwor_river_s.xstend">
+ <zone name="0_nalwor_river_s" level="0" x="500256" y="500384" file="0_nalwor_river_s.xstend">
  </zone>
 
 <!--
  <zone name="0_nalwor_river_se" file="0_nalwor_river_se.xstend">
  </zone>
 -->
-
 
  <!--  Level -1 -->
 
@@ -327,23 +344,5 @@
 
 
  <!--  Level -7 -->
-
-
- <!--  Level 1 -->
-
-
- <!--  Level 2 -->
-
-
- <!--  Level 3 -->
-
-
- <!--  Level 4 -->
-
-
- <!--  Level 5 -->
-
-
- <!--  Level 6 -->
 
 </zones>
