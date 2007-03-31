@@ -19,10 +19,6 @@ import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.events.AttackEvent;
-import games.stendhal.client.events.HPEvent;
-import games.stendhal.client.events.KillEvent;
-import games.stendhal.client.events.TalkEvent;
 import games.stendhal.common.Grammar;
 
 import java.awt.Color;
@@ -44,7 +40,7 @@ import marauroa.common.game.RPObject;
  * objects.<br>
  * You need to extend this object in order to add new elements to the game.
  */
-public abstract class RPEntity extends AnimatedEntity implements TalkEvent, HPEvent, KillEvent, AttackEvent {
+public abstract class RPEntity extends AnimatedEntity {
 
 
 	private static Map<String, Sprite[]> blade_strikes;
