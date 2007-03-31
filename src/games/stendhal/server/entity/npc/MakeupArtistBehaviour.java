@@ -78,7 +78,7 @@ public class MakeupArtistBehaviour extends MerchantBehaviour {
 
 		// When the user tries to buy several of a non-stackable item,
 		// he is forced to buy only one.
-		amount = 1;
+		setAmount(1);
 
 		if (player.isEquipped("money", getCharge(player))) {
 			player.drop("money", getCharge(player));

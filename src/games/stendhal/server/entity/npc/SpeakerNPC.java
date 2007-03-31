@@ -841,7 +841,7 @@ public abstract class SpeakerNPC extends NPC {
 							behaviour.setAmount(amount);
 		
 							int price = behaviour.getUnitPrice(item)
-									* behaviour.amount;
+									* behaviour.getAmount();
 		
 							engine.say(Grammar.quantityplnoun(amount, item) + " will cost " + price + ". Do you want to buy " + Grammar.itthem(amount) + "?");
 						} else {
@@ -981,7 +981,7 @@ public abstract class SpeakerNPC extends NPC {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						healerBehaviour.chosenItem = "heal";
-						healerBehaviour.amount = 1;
+						healerBehaviour.setAmount(1);
 						int cost = healerBehaviour.getCharge(player);
 		
 						if (cost > 0) {

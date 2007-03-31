@@ -28,7 +28,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 
 	protected String chosenItem;
 
-	protected int amount;
+	private int amount;
 
 	public MerchantBehaviour() {
 		this(new HashMap<String, Integer>());
@@ -70,10 +70,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 *             integer, the amount will be set to 1.
 	 */
 	public void setAmount(String text) {
-		amount = MathHelper.parseInt_default(text, 1);
-		if (amount < 1) {
-			amount = 1;
-		}
+		setAmount(MathHelper.parseInt_default(text, 1));
 	}
 
 	/**
@@ -83,6 +80,13 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 */
 	public void setAmount(int amount) {
 		this.amount = amount;
+		if (amount < 1) {
+			amount = 1;
+		}
+		if (amount > 1000) {
+			amount = 1;
+		}
+
 	}
 
 	/**
@@ -96,5 +100,9 @@ public abstract class MerchantBehaviour extends Behaviour {
 		} else {
 			return amount * getUnitPrice(chosenItem);
 		}
+	}
+
+	public int getAmount() {
+		return amount;
 	}
 }
