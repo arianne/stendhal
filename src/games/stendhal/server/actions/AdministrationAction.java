@@ -479,13 +479,11 @@ public class AdministrationAction implements ActionListener {
 			}
 
 			String slotName = action.get("slot");
-//			if (!changed.hasSlot(slotName)) {
-//				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
-//				player.sendPrivateText("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
-//				return;
-//			}
-
-//			RPSlot slot = changed.getSlot(slotName);
+			if (!changed.hasSlot(slotName)) {
+				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
+				player.sendPrivateText("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
+				return;
+			}
 
 			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 			String type = action.get("item");
@@ -499,9 +497,6 @@ public class AdministrationAction implements ActionListener {
 				if (action.has("amount") && (item instanceof StackableItem)) {
 					((StackableItem) item).setQuantity(action.getInt("amount"));
 				}
-				//slot.assignValidID(item);
-				//slot.add(item);
-				//changed.notifyWorldAboutChanges();
 
 				if (! player.equip(slotName, item)) {
 					player.sendPrivateText("The slot is full.");
