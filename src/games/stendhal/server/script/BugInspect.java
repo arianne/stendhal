@@ -73,7 +73,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 				}
 			}
 			
-			String message = "bug_inspect asks for support to ADMIN: " + player.getName() + " has a large amount of items";
+			String message = player.getName() + " has a large amount of items";
 			if (caught) {
 				
 				StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "jail", player.getName(),
@@ -88,9 +88,10 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 			if (warn || caught) {
 				
 				StendhalRPRuleProcessor.get().addGameEvent("bug inspect", "support", message);
+				String completeMessage = "bug_inspect asks for support to ADMIN: " + message;
 				for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 					if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
-						p.sendPrivateText(message);
+						p.sendPrivateText(completeMessage);
 						p.notifyWorldAboutChanges();
 					}
 				}
