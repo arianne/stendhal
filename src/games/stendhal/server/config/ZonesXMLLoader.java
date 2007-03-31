@@ -385,6 +385,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 		} else {
 			if(zonedata.isInterior()) {
 				logger.error("XML <-> XSTEND interior mismatch for: " + name);
+			} else if(desc.getLevel() != zonedata.getLevel()) {
+				logger.error("XML <-> XSTEND level mismatch for: " + name);
 			} else if((desc.getX() != zonedata.getX()) || (desc.getY() != zonedata.getY())) {
 				logger.error("XML <-> XSTEND coorinate mismatch for: " + name);
 			}
