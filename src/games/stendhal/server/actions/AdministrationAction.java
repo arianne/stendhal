@@ -626,9 +626,6 @@ public class AdministrationAction extends ActionListener {
 					}
 				}
 			}
-			if (inspected instanceof Player) {
-				st.append("\r\n" + StendhalQuestSystem.get().listQuests((Player) inspected));
-			}
 		} else {
 			st.append("Inspected entity has id " + action.getInt("targetid") + " and has attributes:\r\n");
 			st.append(target.toString());
