@@ -305,7 +305,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Removes the item. I case of StackableItems only one is removed.
 	 */
-	public void removeOne() {
+	public boolean removeOne() {
 		if (isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = getContainer();
@@ -321,6 +321,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		} else {
 			StendhalRPWorld.get().remove(getID());
 		}
+		return true;
 	}
 
 	public boolean canBeEquippedIn(String slot) {

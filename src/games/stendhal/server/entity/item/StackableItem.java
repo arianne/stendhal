@@ -61,6 +61,10 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	public StackableItem splitOff(int amountToSplitOff) {
+		if (quantity <= 0 || amountToSplitOff <= 0) {
+			return null;
+		}
+		
 		if (quantity >= amountToSplitOff) {
 			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 			        get("name"));
@@ -100,8 +104,8 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	@Override
-	public void removeOne() {
-		splitOff(1);
+	public boolean removeOne() {
+		return splitOff(1) != null;
 	}
 
 	public boolean isStackable(Stackable other) {
