@@ -72,6 +72,10 @@ public abstract class RPEntity extends Entity {
 
 	private int base_mana;
 
+	/**
+	 * This hashmap maps each attacker which has recently injured this RPEntity
+	 * to the number of remaining turns until the bleeding wound will be closed.   
+	 */
 	private HashMap<RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
 
 	/** List of all attackers of this entity */
@@ -80,6 +84,10 @@ public abstract class RPEntity extends Entity {
 	/** current target */
 	private RPEntity attackTarget;
 
+	/**
+	 * Maps each attacker to the sum of hitpoint loss it has caused to this
+	 * RPEntity. 
+	 */
 	private Map<Entity, Integer> damageReceived;
 
 	/** list of players which are to reward with xp on killing this creature */
@@ -96,11 +104,16 @@ public abstract class RPEntity extends Entity {
 	/** true if the path is a loop */
 	private boolean pathLoop;
 
+	/**
+	 * To prevent players from gaining attack and defense experience by
+	 * fighting against very weak creatures, they only gain atk and def xp
+	 * for so many turns after they have actually been damaged by the enemy.
+	 */
 	private static int TURNS_WHILE_ATK_DEF_XP_INCREASE = 40;
 
 	/**
 	 * All the slots considered to be "with" the entity.
-	 * Listed in priority order (ie. bag first).
+	 * Listed in priority order (i.e. bag first).
 	 */
 	public static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet" };
 
@@ -513,18 +526,17 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
-	 * keeps track of the number of turns since the last damage
+	 * Keeps track of the number of turns since the last damage.
 	 *
 	 * @param enemy the enemy which may have caused previous damage
 	 * @return true, if the last damage is still recent enough, false otherwise
 	 */
-	public boolean stillHasBlood(RPEntity enemy) {
-		Integer integer = blood.get(enemy);
-		if (integer != null) {
-			int i = integer.intValue();
+	public boolean isStillBleedingFromAttackBy(RPEntity enemy) {
+		Integer i = blood.get(enemy);
+		if (i != null) {
 			if (i > 0) {
 				i--;
-				blood.put(enemy, new Integer(i));
+				blood.put(enemy, i);
 				return true;
 			} else {
 				blood.remove(enemy);
@@ -535,36 +547,30 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
-	 * This method is called on each round when this entity has been attacked by
-	 * RPEntity who and status is true to means keep attacking and false mean
-	 * stop attacking.
+	 * This method is called on each round when this entity has been attacked 
+	 * by the given attacker.
+	 * @param attacker The attacker.
+	 * @param keepAttacking true means "keep attacking" and false means "stop
+	 *        attacking".
 	 */
-	public void onAttack(Entity who, boolean status) {
-		if (status) {
-			// Attacker should manage their own target
-			//			who.attackTarget = this;
-			if (!attackSource.contains(who)) {
-				attackSource.add(who);
+	public void onAttacked(Entity attacker, boolean keepAttacking) {
+		if (keepAttacking) {
+			if (!attackSource.contains(attacker)) {
+				attackSource.add(attacker);
 			}
 		} else {
-			if (who.has("target")) {
-				who.remove("target");
+			if (attacker.has("target")) {
+				attacker.remove("target");
 			}
-			// Attacker should manage their own target
-			//			who.attackTarget = null;
-			attackSource.remove(who);
+			attackSource.remove(attacker);
 		}
 	}
 
 	/**
-	 * This method is called when this entity has been attacked by Entity
-	 * who and it has been damaged with damage points.
+	 * Creates a blood pool on the ground under this entity, but only if there
+	 * isn't a blood pool at that position already.
 	 */
-	public void onDamage(Entity who, int damage) {
-		logger.debug("Damaged " + damage + " points by " + who.getID());
-
-		StendhalRPRuleProcessor.get().addGameEvent(who.getName(), "damaged", getName(), Integer.toString(damage));
-
+	private void bleedOnGround() {
 		Rectangle2D rect = getArea();
 		if (!StendhalRPRuleProcessor.get().bloodAt((int) rect.getX(), (int) rect.getY())) {
 			Blood blood = new Blood(this);
@@ -574,21 +580,34 @@ public abstract class RPEntity extends Entity {
 			StendhalRPRuleProcessor.get().addBlood(blood);
 		}
 
+	}
+	/**
+	 * This method is called when this entity has been attacked by Entity
+	 * attacker and it has been damaged with damage points.
+	 */
+	public void onDamaged(Entity attacker, int damage) {
+		logger.debug("Damaged " + damage + " points by " + attacker.getID());
+
+		StendhalRPRuleProcessor.get().addGameEvent(attacker.getName(), "damaged", getName(), Integer.toString(damage));
+
+		bleedOnGround();
 		int leftHP = getHP() - damage;
 
 		totalDamageReceived += damage;
 
-		if (damageReceived.containsKey(who)) {
-			damageReceived.put(who, damage + damageReceived.get(who));
+		// remember the damage done so that the attacker can later be rewarded
+		// XP etc.
+		if (damageReceived.containsKey(attacker)) {
+			damageReceived.put(attacker, damage + damageReceived.get(attacker));
 		} else {
-			damageReceived.put(who, damage);
+			damageReceived.put(attacker, damage);
 		}
-		addPlayersToReward(who);
+		addPlayersToReward(attacker);
 
 		if (leftHP > 0) {
 			setHP(leftHP);
 		} else {
-			kill(who);
+			kill(attacker);
 		}
 
 		notifyWorldAboutChanges();
@@ -623,19 +642,76 @@ public abstract class RPEntity extends Entity {
 	public void onDead(Entity killer) {
 		onDead(killer, true);
 	}
+	
+	/**
+	 * Gives XP to every player who has helped killing this RPEntity.
+	 * @param oldXP The XP that this RPEntity had before being killed.
+	 * @param oldLevel The level that this RPEntity had before being killed.
+	 */
+	private void rewardKillers(int oldXP, int oldLevel) {
+		int xpReward = (int) (oldXP * 0.05);
+
+		for (Player killer: playersToReward) {
+			Integer damageDone = damageReceived.get(killer);
+			if (damageDone == null) {
+				return;
+			}
+	
+			if (logger.isDebugEnabled()) {
+				String name = killer.has("name") ? killer.get("name") : killer.get("type");
+	
+				logger.debug(name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was "
+				        + xpReward);
+			}
+	
+			int xpEarn = (xpReward * damageDone) / totalDamageReceived;
+	
+			/** We limit xp gain for up to eight levels difference */
+			double gainXpLimitation = 1 + ((oldLevel - killer.getLevel()) / (20.0));
+			if (gainXpLimitation < 0.0) {
+				gainXpLimitation = 0.0;
+			} else if (gainXpLimitation > 1.0) {
+				gainXpLimitation = 1.0;
+			}
+	
+			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t" + totalDamageReceived + "\t"
+			        + gainXpLimitation);
+	
+			int reward = (int) (xpEarn * gainXpLimitation);
+	
+			// We ensure that the player gets at least 1 experience
+			// point, because getting nothing lowers motivation.
+			if (reward == 0) {
+				reward = 1;
+			}
+	
+			killer.addXP(reward);
+	
+			// For some quests etc., it is required that the player kills a
+			// certain creature without the help of others.
+			// Find out if the player killed this RPEntity on his own, but
+			// don't overwrite solo with shared.
+			if (damageDone == totalDamageReceived) {
+				killer.setKill(getName(), "solo");
+			} else if (!killer.hasKilledSolo(getName())) {
+				killer.setKill(getName(), "shared");
+			}
+			killer.notifyWorldAboutChanges();
+		}
+	}
 
 	/**
-	 * This method is called when the entity has been killed ( hp==0 ). For
-	 * almost everything remove is true and the creature is removed from the
-	 * world, except for the players...
+	 * This method is called when this entity has been killed (hp == 0).
 	 * 
-	 * @param killer
-	 *            The entity who caused the death
+	 * @param killer The entity who caused the death, i.e. who did the last hit.
+	 * @param remove true iff this entity should be removed from the world. For
+	 * 		  almost everything remove is true, but not for the players, who
+	 *        are instead moved to afterlife ("reborn").
 	 */
 	protected void onDead(Entity killer, boolean remove) {
 		stopAttack();
-		int oldlevel = this.getLevel();
-		int oldxp = this.getXP();
+		int oldLevel = this.getLevel();
+		int oldXP = this.getXP();
 
 		if (killer instanceof RPEntity) {
 			((RPEntity) killer).stopAttack();
@@ -643,63 +719,18 @@ public abstract class RPEntity extends Entity {
 			killer.notifyWorldAboutChanges();
 		}
 		if (this instanceof Player) {
-			this.setXP((oldxp * 10) / 9);
-			oldlevel = this.getLevel();
-			oldxp = this.getXP();
-			this.setXP((int) (oldxp * 0.9));
+			// Players lose some experience when dying.
+			// TODO: docu for formula
+			this.setXP((oldXP * 10) / 9);
+			oldLevel = this.getLevel();
+			oldXP = this.getXP();
+			this.setXP((int) (oldXP * 0.9));
 		}
 
 		// Establish how much xp points your are rewarded
-		if (oldxp > 0) {
-			int xpReward = (int) (oldxp * 0.05);
-
-			// for everyone who helped killing this RPEntity:
-			for (Player player : playersToReward) {
-				Integer temp = damageReceived.get(player);
-				if (temp == null) {
-					continue;
-				}
-				int damageDone = temp.intValue();
-
-				if (logger.isDebugEnabled()) {
-					String name = player.has("name") ? player.get("name") : player.get("type");
-
-					logger.debug(name + " did " + damageDone + " of " + totalDamageReceived + ". Reward was "
-					        + xpReward);
-				}
-
-				int xpEarn = (xpReward * damageDone) / totalDamageReceived;
-
-				/** We limit xp gain for up to eight levels difference */
-				double gainXpLimitation = 1 + ((oldlevel - player.getLevel()) / (20.0));
-				if (gainXpLimitation < 0.0) {
-					gainXpLimitation = 0.0;
-				} else if (gainXpLimitation > 1.0) {
-					gainXpLimitation = 1.0;
-				}
-
-				logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t" + totalDamageReceived + "\t"
-				        + gainXpLimitation);
-
-				int reward = (int) (xpEarn * gainXpLimitation);
-
-				// We ensure that the player gets at least 1 experience
-				// point, because getting nothing lowers motivation.
-				if (reward == 0) {
-					reward = 1;
-				}
-
-				player.addXP(reward);
-
-				// find out if the player killed this RPEntity on his own
-				// TODO: don't overwrite solo with shared.
-				if (damageDone == totalDamageReceived) {
-					player.setKill(getName(), "solo");
-				} else if (!player.hasKilledSolo(getName())) {
-					player.setKill(getName(), "shared");
-				}
-				player.notifyWorldAboutChanges();
-			}
+		if (oldXP > 0) {
+			// give XP to everyone who helped killing this RPEntity
+			rewardKillers(oldXP, oldLevel);
 		}
 
 		damageReceived.clear();
@@ -1164,18 +1195,19 @@ public abstract class RPEntity extends Entity {
 		return null;
 	}
 
-	/** returns true if the entity has a weapon equipped */
+	/**
+	 * Returns true if this entity is holding a weapon equipped in its hands.
+	 */
 	public boolean hasWeapon() {
-		String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
-
-		for (String weaponClass : weaponsClasses) {
-			if (isEquippedItemClass("lhand", weaponClass) || isEquippedItemClass("rhand", weaponClass)) {
-				return true;
-			}
-		}
-		return false;
+		return getWeapon() != null;
 	}
 
+	/**
+	 * Gets the weapon that this entity is holding in its hands.
+	 * @return The weapon, or null if this entity is not holding a weapon. If
+	 *         the entity has a weapon in each hand, returns the weapon in its
+	 *         left hand. 
+	 */
 	private Item getWeapon() {
 		String[] weaponsClasses = { "club", "sword", "axe", "ranged", "missile" };
 
@@ -1199,14 +1231,20 @@ public abstract class RPEntity extends Entity {
 
 			// pair weapons
 			if (weaponItem.getName().startsWith("l_hand_")) {
+				// check if there is a matching right-hand weapon in
+				// the other hand.
 				String rpclass = weaponItem.getItemClass();
 				weaponItem = getEquippedItemClass("rhand", rpclass);
 				if ((weaponItem != null) && (weaponItem.getName().startsWith("r_hand_"))) {
 					weapons.add(weaponItem);
 				} else {
+					// You can't use a left-hand weapon without the matching
+					// right-hand weapon. Hmmm... but why not?
 					weapons.clear();
 				}
 			} else {
+				// You can't hold a right-hand weapon with your left hand, for
+				// ergonomic reasons ;)
 				if (weaponItem.getName().startsWith("r_hand_")) {
 					weapons.clear();
 				}
@@ -1215,6 +1253,28 @@ public abstract class RPEntity extends Entity {
 		return weapons;
 	}
 
+	/**
+	 * Gets the range weapon (bow etc.) that this entity is holding in its hands.
+	 * @return The range weapon, or null if this entity is not holding a range
+	 *         weapon. If the entity has a range weapon in each hand, returns one
+	 *         in its left hand. 
+	 */
+	public Item getRangeWeapon() {
+		for (Item weapon: getWeapons()) {
+			if (weapon.isOfClass("ranged")) {
+				return weapon;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the stack of ammunition (arrows or similar) that this entity is
+	 * holding in its hands.
+	 * @return The ammunition, or null if this entity is not holding
+	 *         ammunition. If the entity has ammunition in each hand, returns
+	 *         the ammunition in its left hand. 
+	 */
 	public StackableItem getAmmunition() {
 		String[] slots = { "lhand", "rhand" };
 
@@ -1227,6 +1287,20 @@ public abstract class RPEntity extends Entity {
 		return null;
 	}
 
+	/**
+	 * Gets the stack of missiles (spears or similar) that this entity is
+	 * holding in its hands, but only if it is not holding another, non-missile
+	 * weapon in the other hand.
+	 * 
+	 * You can only throw missiles while you're not holding another weapon.
+	 * This restriction is a workaround because of the way attack strength
+	 * is determined; otherwise, one could increase one's spear attack strength
+	 * by holding an ice sword in the other hand.
+	 * 
+	 * @return The missiles, or null if this entity is not holding
+	 *         missiles. If the entity has missiles in each hand, returns
+	 *         the missiles in its left hand. 
+	 */
 	public StackableItem getMissileIfNotHoldingOtherWeapon() {
 		StackableItem missileWeaponItem = null;
 		boolean holdsOtherWeapon = false;
@@ -1303,16 +1377,18 @@ public abstract class RPEntity extends Entity {
 	 * checks if the entity has at least one item of type <i>type</i> in one of
 	 * the given slots
 	 */
-	public boolean hasItem(String[] slots, String type) {
-		boolean retVal;
-		for (String slot : slots) {
-			retVal = isEquippedItemClass(slot, type);
-			if (retVal) {
-				return true;
-			}
-		}
-		return false;
-	}
+	// Commented out because we already have equipment code for such stuff.
+	// Consider deletion.
+//	public boolean hasItem(String[] slots, String type) {
+//		boolean retVal;
+//		for (String slot : slots) {
+//			retVal = isEquippedItemClass(slot, type);
+//			if (retVal) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 
 	@Override
 	public String describe() {
@@ -1347,15 +1423,6 @@ public abstract class RPEntity extends Entity {
 		return 4.0f * weapon;
 	}
 	
-	public Item getRangeWeapon() {
-		for (Item weapon: getWeapons()) {
-			if (weapon.isOfClass("ranged")) {
-				return weapon;
-			}
-		}
-		return null;
-	}
-
 	public float getItemDef() {
 		int shield = 0;
 		int armor = 0;
@@ -1398,7 +1465,7 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
-	 * recalculate item based atk and def
+	 * Recalculates item based atk and def.
 	 */
 	public void updateItemAtkDef() {
 		put("atk_item", ((int) getItemAtk()));
@@ -1407,9 +1474,10 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
-	 * Can this Entity do a range attack?
+	 * Can this entity do a distance attack on the given target?
 	 *
-	 * @return true, wenn ein Range compat moeglich ist, sonst false
+	 * @return true if this entity is armed with a distance weapon and if the
+	 *         target is in range. 
 	 */
 	public boolean canDoRangeAttack(RPEntity target) {
 		Item rangeWeapon = getRangeWeapon();

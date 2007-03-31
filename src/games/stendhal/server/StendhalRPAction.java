@@ -253,13 +253,13 @@ public class StendhalRPAction {
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
 			logger.debug("Attack from " + attacker + " to " + defender + " stopped because target was lost("
 			        + zone.has(defender.getID()) + ") or dead.");
-			defender.onAttack(attacker, false);
+			defender.onAttacked(attacker, false);
 			attacker.notifyWorldAboutChanges();
 
 			return false;
 		}
 
-		defender.onAttack(attacker, true);
+		defender.onAttacked(attacker, true);
 
 		if (! attacker.nextTo(defender)) {
 			// The attacker is not directly standing next to the defender.
@@ -295,7 +295,7 @@ public class StendhalRPAction {
 		List<Item> weapons = attacker.getWeapons();
 
 		if (attacker instanceof Player && !(defender instanceof SpeakerNPC)
-		        && attacker.stillHasBlood(defender)) {
+		        && attacker.isStillBleedingFromAttackBy(defender)) {
 			// disabled attack xp for attacking NPC's
 			attacker.incATKXP();
 		}
@@ -304,7 +304,7 @@ public class StendhalRPAction {
 		boolean beaten = riskToHit(attacker, defender);
 
 		if (beaten) {
-			if ((defender instanceof Player) && defender.stillHasBlood(attacker)) {
+			if ((defender instanceof Player) && defender.isStillBleedingFromAttackBy(attacker)) {
 				defender.incDEFXP();
 			}
 
@@ -312,7 +312,7 @@ public class StendhalRPAction {
 			if (damage > 0) {
 				damage = handleLifesteal(attacker, weapons, damage);
 
-				defender.onDamage(attacker, damage);
+				defender.onDamaged(attacker, damage);
 				attacker.put("damage", damage);
 				logger.debug("attack from " + attacker.getID() + " to " + defender.getID() + ": Damage: " + damage);
 

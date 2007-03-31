@@ -101,7 +101,7 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 	 */
 	protected void addTarget(RPEntity entity) {
 		targets.add(entity.getID());
-		entity.onAttack(this, true);
+		entity.onAttacked(this, true);
 
 		if (targets.size() == 1) {
 			TurnNotifier.get().notifyInTurns(interval, this, null);
@@ -180,7 +180,7 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 			return true;
 		}
 
-		entity.onDamage(this, Math.min(actualDamage, entity.getHP()));
+		entity.onDamaged(this, Math.min(actualDamage, entity.getHP()));
 		return true;
 	}
 
@@ -201,7 +201,7 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 	 * @param	entity		The RPEntity to remove.
 	 */
 	protected void removeTarget(RPEntity entity) {
-		entity.onAttack(this, false);
+		entity.onAttacked(this, false);
 		targets.remove(entity.getID());
 
 		if (targets.isEmpty()) {
@@ -369,11 +369,11 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 
 				if (area.intersects(entity.getArea())) {
 					if (!doDamage(entity)) {
-						entity.onAttack(this, false);
+						entity.onAttacked(this, false);
 						iter.remove();
 					}
 				} else {
-					entity.onAttack(this, false);
+					entity.onAttacked(this, false);
 					iter.remove();
 				}
 			}
