@@ -68,9 +68,13 @@ class BehaviourAdder {
 				        // how much it costs.
 				        if (behaviour.hasItem(item)) {
 					        behaviour.chosenItem = item;
+							if (amount > 1000) {
+								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + text);
+								amount = 1; 
+							}
 					        behaviour.setAmount(amount);
 
-					        int price = behaviour.getUnitPrice(item) * behaviour.amount;
+					        int price = behaviour.getUnitPrice(item) * behaviour.getAmount();
 
 					        engine.say(Grammar.quantityplnoun(amount, item) + " will cost " + price
 					                + ". Do you want to buy " + Grammar.itthem(amount) + "?");
@@ -137,6 +141,10 @@ class BehaviourAdder {
 
 				        if (behaviour.hasItem(item)) {
 					        behaviour.chosenItem = item;
+							if (amount > 1000) {
+								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + text);
+								amount = 1; 
+							}
 					        behaviour.setAmount(amount);
 					        int price = behaviour.getCharge(player);
 
@@ -179,7 +187,7 @@ class BehaviourAdder {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        healerBehaviour.chosenItem = "heal";
-				        healerBehaviour.amount = 1;
+				        healerBehaviour.setAmount(1);
 				        int cost = healerBehaviour.getCharge(player);
 
 				        if (cost > 0) {
@@ -259,7 +267,7 @@ class BehaviourAdder {
 					        behaviour.chosenItem = item;
 					        behaviour.setAmount(1);
 
-					        int price = behaviour.getUnitPrice(item) * behaviour.amount;
+					        int price = behaviour.getUnitPrice(item) * behaviour.getAmount();
 
 					        engine.say("A " + item + " will cost " + price + ". Do you want to " + command + " it?");
 				        } else {
@@ -349,6 +357,10 @@ class BehaviourAdder {
 				int amount = 1;
 				if (words.length > 1) {
 					amount = Integer.parseInt(words[1].trim());
+				}
+				if (amount > 1000) {
+					logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);
+					amount = 1; 
 				}
 				if (behaviour.askForResources(npc, player, amount)) {
 					npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);

@@ -73,9 +73,9 @@ public class SellerBehaviour extends MerchantBehaviour {
 		// TODO: When the user tries to buy several of a non-stackable
 		// item, he is forced to buy only one.
 		if (item instanceof StackableItem) {
-			((StackableItem) item).setQuantity(amount);
+			((StackableItem) item).setQuantity(getAmount());
 		} else {
-			amount = 1;
+			setAmount(1);
 		}
 
 		item.put("zoneid", player.get("zoneid"));

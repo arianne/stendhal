@@ -11,24 +11,27 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.common.MathHelper;
+import games.stendhal.server.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.log4j.Logger;
 
 /**
  * Represents the behaviour of a NPC who is able to either sell items
  * to a player, or buy items from a player.
  */
 public abstract class MerchantBehaviour extends Behaviour {
+	private static Logger logger = Logger.getLogger(MerchantBehaviour.class);
 
 	protected Map<String, Integer> priceList;
 
 	protected String chosenItem;
 
-	protected int amount;
+	private int amount;
 
 	public MerchantBehaviour() {
 		this(new HashMap<String, Integer>());
@@ -70,10 +73,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 *             integer, the amount will be set to 1.
 	 */
 	public void setAmount(String text) {
-		amount = MathHelper.parseInt_default(text, 1);
-		if (amount < 1) {
-			amount = 1;
-		}
+		setAmount(MathHelper.parseInt_default(text, 1));
 	}
 
 	/**
@@ -82,6 +82,16 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 * @param amount amount
 	 */
 	public void setAmount(int amount) {
+		// TODO: This does not solve the problem, it is just a quick fix to get the server back online.
+		if (amount < 1) {
+			amount = 1;
+			logger.warn("Increasing very low amount of " + amount + " to 1.");
+		}
+		if (amount > 1000) {
+			System.out.println(Integer.MAX_VALUE);
+			logger.warn("Decreasing very large amount of " + amount + " to 1.");
+			amount = 1;
+		}
 		this.amount = amount;
 	}
 
@@ -96,5 +106,9 @@ public abstract class MerchantBehaviour extends Behaviour {
 		} else {
 			return amount * getUnitPrice(chosenItem);
 		}
+	}
+	
+	public int getAmount() {
+		return amount;
 	}
 }
