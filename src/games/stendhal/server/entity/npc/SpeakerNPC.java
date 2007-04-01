@@ -113,7 +113,7 @@ import org.apache.log4j.Logger;
  * transition happens, no matter in which state the FSM really is, with the
  * exception of the IDLE state.
  */
-public abstract class SpeakerNPC extends NPC {
+public class SpeakerNPC extends NPC {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
@@ -171,9 +171,13 @@ public abstract class SpeakerNPC extends NPC {
 		put("title_type", "npc");
 	}
 
-	abstract protected void createPath();
+	protected void createPath(){
+		
+	}
 
-	abstract protected void createDialog();
+	protected void createDialog() {
+		
+	}
 
 	/**
 	 * Is called when the NPC stops chatting with a player.

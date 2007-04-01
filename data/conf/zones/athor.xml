@@ -81,7 +81,15 @@
        <portal x="6" y="14" ref="out">
          <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
        </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC" />
+       <!-- <configurator class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC" /> -->
+       <entity x="3" y="10">
+         <implementation class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC">
+           <attribute name="name">David</attribute>
+           <attribute name="class">lifeguardmalenpc</attribute>
+           <attribute name="direction">right</attribute>
+         </implementation>
+       </entity>
+
         <!-- This must be after the NPC configurator -->
         <entity x="3" y="10">
           <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -180,7 +188,15 @@
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SunbatherNPC" />
-       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" />
+       <entity x="195" y="63">
+         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC">
+           <attribute name="name">Enrique</attribute>
+           <attribute name="class">swimmer3npc</attribute>
+           <attribute name="node0">195,68</attribute>
+           <attribute name="node1">195,63</attribute>
+         </implementation>
+       </entity>
+       <!-- <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" /> -->
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WalkingWomanNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />                                          
