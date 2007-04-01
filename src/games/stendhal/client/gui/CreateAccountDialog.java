@@ -134,7 +134,7 @@ public class CreateAccountDialog extends JDialog {
         contentPane.add(serverPortLabel,c);
         c.gridx=1;
         c.gridy=1;
-        c.insets = new Insets(4, 4, 4, 150);
+        c.insets = new Insets(4, 4, 4, 100);
         c.fill = GridBagConstraints.BOTH;
         contentPane.add(serverPortField,c);
         //row 2
