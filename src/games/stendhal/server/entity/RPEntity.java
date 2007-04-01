@@ -73,13 +73,16 @@ public abstract class RPEntity extends Entity {
 	private int base_mana;
 
 	/**
-	 * This hashmap maps each attacker which has recently injured this RPEntity
-	 * to the number of remaining turns until the bleeding wound will be closed.   
+	 * Maps each enemy which has recently damaged this RPEntity to the turn
+	 * when the last damage has occured.
+	 * 
+	 * You only get ATK and DEF experience by fighting against a creature that
+	 * is in this list.
 	 */
-	private HashMap<RPEntity, Integer> blood = new HashMap<RPEntity, Integer>();
+	private Map<RPEntity, Integer> enemiesThatGiveFightXP;
 
-	/** List of all attackers of this entity */
-	private List<Entity> attackSource;
+	/** List of all enemies that are currently attacking of this entity. */
+	private List<Entity> attackSources;
 
 	/** current target */
 	private RPEntity attackTarget;
@@ -109,7 +112,8 @@ public abstract class RPEntity extends Entity {
 	 * fighting against very weak creatures, they only gain atk and def xp
 	 * for so many turns after they have actually been damaged by the enemy.
 	 */
-	private static int TURNS_WHILE_ATK_DEF_XP_INCREASE = 40;
+	private static int TURNS_WHILE_FIGHT_XP_INCREASES = StendhalRPWorld
+			.get().getTurnsInSeconds(12);
 
 	/**
 	 * All the slots considered to be "with" the entity.
@@ -161,17 +165,19 @@ public abstract class RPEntity extends Entity {
 
 	public RPEntity(RPObject object) throws AttributeNotFoundException {
 		super(object);
-		attackSource = new LinkedList<Entity>();
+		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
+		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
 
 	public RPEntity() throws AttributeNotFoundException {
 		super();
-		attackSource = new LinkedList<Entity>();
+		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
+		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
 
@@ -502,50 +508,30 @@ public abstract class RPEntity extends Entity {
 		}
 
 		if (attackTarget != null) {
-			// Whould doing this in a call to
-			// attackTarget.onAttack(this, false) be better?
-			attackTarget.attackSource.remove(this);
-
-			// XXX - Trying to remove a List????
-			blood.remove(attackTarget.attackSource);
+			attackTarget.attackSources.remove(this);
 
 			// XXX - Opponent could attack again, really remove?
-			blood.remove(attackTarget);
+			// Yes, because otherwise we would have a memory leak. When else
+			// should dead creatures be removed from the hash map? --mort
+			enemiesThatGiveFightXP.remove(attackTarget);
 
 			attackTarget = null;
 		}
 	}
 
-	/**
-	 * this entity was hurt
-	 *
-	 * @param source the entity which caused damage
-	 */
-	public void bloodHappens(RPEntity source) {
-		blood.put(source, new Integer(TURNS_WHILE_ATK_DEF_XP_INCREASE));
-	}
-
-	/**
-	 * Keeps track of the number of turns since the last damage.
-	 *
-	 * @param enemy the enemy which may have caused previous damage
-	 * @return true, if the last damage is still recent enough, false otherwise
-	 */
-	public boolean isStillBleedingFromAttackBy(RPEntity enemy) {
-		Integer i = blood.get(enemy);
-		if (i != null) {
-			if (i > 0) {
-				i--;
-				blood.put(enemy, i);
-				return true;
-			} else {
-				blood.remove(enemy);
-				return false;
-			}
+	public boolean getsFightXpFrom(RPEntity enemy) {
+		Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(enemy);
+		if (turnWhenLastDamaged == null) {
+			return false;
 		}
-		return false;
+		int currentTurn = StendhalRPRuleProcessor.get().getTurn();
+		if (currentTurn - turnWhenLastDamaged < TURNS_WHILE_FIGHT_XP_INCREASES) {
+			enemiesThatGiveFightXP.remove(enemy);
+			return false;
+		}
+		return true;
 	}
-
+	
 	/**
 	 * This method is called on each round when this entity has been attacked 
 	 * by the given attacker.
@@ -555,14 +541,14 @@ public abstract class RPEntity extends Entity {
 	 */
 	public void onAttacked(Entity attacker, boolean keepAttacking) {
 		if (keepAttacking) {
-			if (!attackSource.contains(attacker)) {
-				attackSource.add(attacker);
+			if (!attackSources.contains(attacker)) {
+				attackSources.add(attacker);
 			}
 		} else {
 			if (attacker.has("target")) {
 				attacker.remove("target");
 			}
-			attackSource.remove(attacker);
+			// attackSources.remove(attacker);
 		}
 	}
 
@@ -591,6 +577,11 @@ public abstract class RPEntity extends Entity {
 		StendhalRPRuleProcessor.get().addGameEvent(attacker.getName(), "damaged", getName(), Integer.toString(damage));
 
 		bleedOnGround();
+		if (attacker instanceof RPEntity) {
+			int currentTurn = StendhalRPRuleProcessor.get().getTurn();
+			enemiesThatGiveFightXP.put((RPEntity) attacker, currentTurn);
+		}
+		
 		int leftHP = getHP() - damage;
 
 		totalDamageReceived += damage;
@@ -699,6 +690,22 @@ public abstract class RPEntity extends Entity {
 			killer.notifyWorldAboutChanges();
 		}
 	}
+	
+	private void letAttackersStopAttack() {
+		// a bit awkward, but we need to make sure there are no
+		// concurrent modification exceptions.
+		List<RPEntity> rpEntitiesThatAttacked = new LinkedList<RPEntity>();
+		for (Entity attacker: attackSources) {
+			if (attacker instanceof RPEntity) {
+				rpEntitiesThatAttacked.add((RPEntity) attacker);
+			}
+		}
+		for (RPEntity attacker: rpEntitiesThatAttacked) {
+			 if (attacker.attackTarget == this) {
+				attacker.stopAttack();
+			}
+		}
+	}
 
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
@@ -714,10 +721,11 @@ public abstract class RPEntity extends Entity {
 		int oldXP = this.getXP();
 
 		if (killer instanceof RPEntity) {
-			((RPEntity) killer).stopAttack();
 			StendhalRPRuleProcessor.get().addGameEvent(killer.getName(), "killed", getName());
-			killer.notifyWorldAboutChanges();
 		}
+		
+		letAttackersStopAttack();
+		
 		if (this instanceof Player) {
 			// Players lose some experience when dying.
 			// TODO: docu for formula
@@ -764,12 +772,12 @@ public abstract class RPEntity extends Entity {
 
 	/** Return true if this entity is attacked */
 	public boolean isAttacked() {
-		return !attackSource.isEmpty();
+		return !attackSources.isEmpty();
 	}
 
 	/** Return the Entities that are attacking this character */
 	public List<Entity> getAttackSources() {
-		return attackSource;
+		return attackSources;
 	}
 
 	/** Return the RPEntities that are attacking this character */
@@ -781,7 +789,6 @@ public abstract class RPEntity extends Entity {
 				list.add((RPEntity) entity);
 			}
 		}
-
 		return list;
 	}
 

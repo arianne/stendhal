@@ -253,8 +253,7 @@ public class StendhalRPAction {
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
 			logger.debug("Attack from " + attacker + " to " + defender + " stopped because target was lost("
 			        + zone.has(defender.getID()) + ") or dead.");
-			defender.onAttacked(attacker, false);
-			attacker.notifyWorldAboutChanges();
+			attacker.stopAttack();
 
 			return false;
 		}
@@ -295,7 +294,7 @@ public class StendhalRPAction {
 		List<Item> weapons = attacker.getWeapons();
 
 		if (attacker instanceof Player && !(defender instanceof SpeakerNPC)
-		        && attacker.isStillBleedingFromAttackBy(defender)) {
+		        && attacker.getsFightXpFrom(defender)) {
 			// disabled attack xp for attacking NPC's
 			attacker.incATKXP();
 		}
@@ -304,7 +303,7 @@ public class StendhalRPAction {
 		boolean beaten = riskToHit(attacker, defender);
 
 		if (beaten) {
-			if ((defender instanceof Player) && defender.isStillBleedingFromAttackBy(attacker)) {
+			if ((defender instanceof Player) && defender.getsFightXpFrom(attacker)) {
 				defender.incDEFXP();
 			}
 
@@ -315,8 +314,6 @@ public class StendhalRPAction {
 				defender.onDamaged(attacker, damage);
 				attacker.put("damage", damage);
 				logger.debug("attack from " + attacker.getID() + " to " + defender.getID() + ": Damage: " + damage);
-
-				defender.bloodHappens(attacker);
 
 				result = true;
 			} else {
