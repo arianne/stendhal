@@ -1692,6 +1692,24 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+   <item name="easter_egg">
+		<type class="food" subclass="easter_egg"/>
+		<description>You see a lovely chocolate easter egg.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="250"/>
+			<regen value="15"/>
+			<frequency value="30"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 	<item name="button_mushroom">
 		<type class="food" subclass="button_mushroom"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
@@ -2251,6 +2269,15 @@ Makes players more offensive
 		<type class="box" subclass="present"/>
 		<implementation class-name="games.stendhal.server.entity.item.Box"/>
 		<description>You see a christmas present. Open it.</description>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+	<item name="basket">
+		<type class="box" subclass="basket"/>
+		<description>You see an easter basket. Look inside.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Box"/>
 		<weight value="0.01"/>
 		<equipable>
 			<slot name="bag"/>
