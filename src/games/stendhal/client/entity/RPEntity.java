@@ -289,10 +289,13 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	// Called when entity listen to text from talker
 	public void onPrivateListen(String text) {
-		// Change text color for private messages. intensifly@gmx.com
-		StendhalUI.get().addEventLine(text, Color.darkGray);
-
-		GameObjects.getInstance().addText(this, text.replace("|", ""), Color.darkGray, false);
+		Color color = Color.darkGray;
+		// TODO: replace this with its own RPEvent type after port to Marauroa 2.0
+		if (text.startsWith("Tutorial: ")) {
+			color = new Color(172, 0, 172);
+		}
+		StendhalUI.get().addEventLine(text, color);
+		GameObjects.getInstance().addText(this, text.replace("|", ""), color, false);
 	}
 
 	// When entity gets healed
