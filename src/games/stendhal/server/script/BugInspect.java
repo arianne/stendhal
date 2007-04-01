@@ -65,7 +65,13 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 						if (!item.getName().equals("money") && item.getQuantity() > 10000) {
 							caught = true;
 						}
+						if (item.getName().equals("money") && item.getQuantity() > 10000000) {
+							caught = true;
+						}
 						if (!item.getName().equals("money") && item.getQuantity() > 1000) {
+							warn = true;
+						}
+						if (item.getName().equals("money") && item.getQuantity() > 100000) {
 							warn = true;
 						}
 					}
