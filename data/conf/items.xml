@@ -2686,7 +2686,7 @@ the right click menu we talked about before.
 
 	<item name="dungeon_silver_key">
 		<type class="key" subclass="silver"/>
-		<description>A fancy silver key</description>
+		<description>You see a fancy silver key.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2696,7 +2696,7 @@ the right click menu we talked about before.
 
 	<item name="lich_gold_key">
 		<type class="key" subclass="gold"/>
-		<description>A fancy golden key</description>
+		<description>You see a fancy golden key.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2706,7 +2706,7 @@ the right click menu we talked about before.
 	
 	<item name="minotaur_key">
 		<type class="key" subclass="bronze"/>
-		<description>A fancy bronze key</description>
+		<description>You see a fancy bronze key.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2747,7 +2747,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_001">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #001 in the Fado Hotel</description>
+		<description>You see a key to room #001 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2757,7 +2757,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_002">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #002 in the Fado Hotel</description>
+		<description>You see a key to room #002 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2767,7 +2767,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_003">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #003 in the Fado Hotel</description>
+		<description>You see a key to room #003 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2777,7 +2777,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_004">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #004 in the Fado Hotel</description>
+		<description>You see a key to room #004 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2787,7 +2787,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_005">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #005 in the Fado Hotel</description>
+		<description>You see a key to room #005 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2797,7 +2797,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_006">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #006 in the Fado Hotel</description>
+		<description>You see a key to room #006 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2807,7 +2807,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_007">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #007 in the Fado Hotel</description>
+		<description>You see a key to room #007 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2817,7 +2817,7 @@ probably just be named key.
 
 	<item name="fado_hotel_key_008">
 		<type class="key" subclass="hotel"/>
-		<description>You see a key to room #008 in the Fado Hotel</description>
+		<description>You see a key to room #008 in the Fado Hotel.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
@@ -2827,7 +2827,7 @@ probably just be named key.
 
 	<item name="small_key">
 		<type class="key" subclass="common"/>
-		<description>You see the key for Zara's row house in Ados</description>
+		<description>You see the key for Zara's row house in Ados.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<weight value="1"/>
 		<equipable>
