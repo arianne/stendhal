@@ -49,6 +49,9 @@ import org.apache.log4j.Logger;
 /**
  * This class is the glue to Marauroa, it extends ariannexp and allow us to
  * easily connect to an marauroa server and operate it easily.
+ *
+ * This class should be limited to functionality independant of the UI
+ * (that goes in StendhalUI or a subclass). 
  */
 public class StendhalClient extends ariannexp {
 
@@ -112,7 +115,7 @@ public class StendhalClient extends ariannexp {
 		cache = new Cache();
 		cache.init();
 
-		directions = new ArrayList<Direction>(4);
+		directions = new ArrayList<Direction>(2);
 	}
 
 
@@ -343,11 +346,44 @@ public class StendhalClient extends ariannexp {
 	 */
 	public void addDirection(Direction dir, boolean face) {
 		RPAction action;
+		Direction odir;
+		int idx;
+
 
 		/*
-		 * Move to end
+		 * Cancel existing opposite directions
 		 */
-		directions.remove(dir);
+		odir = dir.oppositeDirection();
+
+		if(directions.remove(odir)) {
+			/*
+			 * Send direction release
+			 */
+			action = new RPAction();
+			action.put("type", "move");
+			action.put("dir", -odir.get());
+
+			send(action);
+		}
+
+		/*
+		 * Handle existing
+		 */
+		if((idx = directions.indexOf(dir)) != -1) {
+			/*
+			 * Already highest priority? Don't send to server.
+			 */
+			if(idx == (directions.size() - 1)) {
+				logger.debug("Ignoring same direction: " + dir);
+				return;
+			}
+
+			/*
+			 * Move to end
+			 */
+			directions.remove(idx);
+		}
+
 		directions.add(dir);
 
 		action = new RPAction();
