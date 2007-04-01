@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.dwarfmine;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -17,11 +17,11 @@ import java.util.Map;
  * 
  * @author kymara
  */
-public class USL3_DwarfBlacksmith implements ZoneConfigurator {
+public class BlacksmithNPC implements ZoneConfigurator {
 
 	private NPCList npcs;
 
-	public USL3_DwarfBlacksmith() {
+	public BlacksmithNPC() {
 		this.npcs = NPCList.get();
 	}
 

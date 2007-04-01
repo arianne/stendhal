@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.bridge;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author kymara
  */
-public class OL0_BridgeGuardNPC implements ZoneConfigurator {
+public class GuardNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.dwarfmine;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
@@ -15,13 +15,13 @@ import java.util.Map;
 /*
  * Configure Orril Dwarf Mine (Underground/Level -2).
  */
-public class USL2_DwarfMine implements ZoneConfigurator {
+public class IronBuyerNPC implements ZoneConfigurator {
 
 	private NPCList npcs;
 
 	private ShopList shops;
 
-	public USL2_DwarfMine() {
+	public IronBuyerNPC() {
 		this.npcs = NPCList.get();
 		this.shops = ShopList.get();
 	}

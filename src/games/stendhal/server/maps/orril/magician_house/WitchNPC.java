@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.magician_house;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
@@ -13,11 +13,11 @@ import java.util.Map;
 /**
  * Configure Orril Jynath House (Inside/Level 0).
  */
-public class IL0_JynathHouse implements ZoneConfigurator {
+public class WitchNPC implements ZoneConfigurator {
 
 	private NPCList npcs;
 
-	public IL0_JynathHouse() {
+	public WitchNPC() {
 		this.npcs = NPCList.get();
 	}
 

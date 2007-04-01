@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.castle;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Configure Orril Lich Palace (Underground/Level -2).
  */
-public class USL2_LichPalace implements ZoneConfigurator {
+public class RoyalMummyCreature implements ZoneConfigurator {
 
 	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 

@@ -619,7 +619,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="12"/>
-			<range value="2"/>
+			<range value="3"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -636,7 +636,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="14"/>
-			<range value="3"/>
+			<range value="4"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -653,7 +653,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="15"/>
-			<range value="4"/>
+			<range value="5"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -668,7 +668,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="17"/>
-			<range value="2"/>
+			<range value="3"/>
 		</attributes>
 		<weight value="3"/>
 		<equipable>
@@ -742,7 +742,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
 		<attributes>
 			<atk value="10"/>
-			<range value="3"/>
+			<range value="4"/>
 			<quantity value="1"/>
 		</attributes>
 		<weight value="0.1"/>

@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.castle;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Configure Orril Castle West (Underground/Level -1).
  */
-public class USL1_CastleWest implements ZoneConfigurator {
+public class GreenDragonCreature implements ZoneConfigurator {
 
 	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 

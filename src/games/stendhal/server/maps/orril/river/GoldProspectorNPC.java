@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril;
+package games.stendhal.server.maps.orril.river;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
@@ -17,11 +17,11 @@ import java.util.Map;
 /**
  * Configure Orril River South Campfire (Outside/Level 0).
  */
-public class OL0_RiverSouthCampfire implements ZoneConfigurator {
+public class GoldProspectorNPC implements ZoneConfigurator {
 
 	private NPCList npcs;
 
-	public OL0_RiverSouthCampfire() {
+	public GoldProspectorNPC() {
 		this.npcs = NPCList.get();
 	}
 
@@ -32,37 +32,7 @@ public class OL0_RiverSouthCampfire implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildCampfireArea(zone);
 		buildGoldSourceArea(zone);
-	}
-
-	private void buildCampfireArea(StendhalRPZone zone) {
-		SpeakerNPC sally = new SpeakerNPC("Sally") {
-
-			@Override
-			protected void createPath() {
-				// NPC does not move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
-			}
-
-			@Override
-			protected void createDialog() {
-				//addGreeting();
-				addJob("Work? I'm just a little girl! I'm a scout, you know.");
-				addHelp("You can find lots of useful stuff in the forest; wood and mushrooms, for example. But beware, some mushrooms are poisonous!");
-				addGoodbye();
-				// remaining behaviour is defined in maps.quests.Campfire.				
-			}
-		};
-		npcs.add(sally);
-
-		zone.assignRPObjectID(sally);
-		sally.put("class", "littlegirlnpc");
-		sally.set(40, 60);
-		sally.setDirection(Direction.RIGHT);
-		sally.initHP(100);
-		zone.add(sally);
 	}
 
 	private void buildGoldSourceArea(StendhalRPZone zone) {
