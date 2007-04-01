@@ -28,7 +28,6 @@ import java.awt.Image;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
-import java.awt.*;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Timer;

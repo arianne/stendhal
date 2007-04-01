@@ -18,7 +18,6 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;

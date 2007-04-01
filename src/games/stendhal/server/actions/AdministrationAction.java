@@ -14,7 +14,6 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.Jail;
-import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;

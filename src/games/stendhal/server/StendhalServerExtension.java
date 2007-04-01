@@ -7,14 +7,10 @@
  */
 package games.stendhal.server;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import org.apache.log4j.Logger;
 
 public abstract class StendhalServerExtension {
