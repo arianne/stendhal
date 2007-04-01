@@ -13,8 +13,14 @@ import marauroa.common.game.RPObject;
 
 public class User extends Player {
 
+	static User _instance=null ;
+	public static User get(){
+		return _instance;
+	}
+	
 	public User(RPObject object) throws AttributeNotFoundException {
 		super(object);
+		_instance = this;
 		
 	}
 
@@ -79,7 +85,16 @@ public class User extends Player {
     public void onEnter(int _x, int _y) {
 		WorldObjects.firePlayerMoved(this);
     }
-
+	public static  boolean isAdmin() {
+		User me = User.get();
+		if (me != null){
+	      return me.rpObject.has("adminlevel") && (me.rpObject.getInt("adminlevel") >= 600);
+		}
+		else
+			return false;
+	}
+	
+	
     }
 
 

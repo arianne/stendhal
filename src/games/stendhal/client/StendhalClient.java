@@ -155,9 +155,9 @@ public class StendhalClient extends ariannexp {
 		return player;
 	}
 
-	public boolean isAdmin() {
-		return (player != null) && player.has("adminlevel") && (player.getInt("adminlevel") >= 600);
-	}
+//	public boolean isAdmin() {
+//		return (player != null) && player.has("adminlevel") && (player.getInt("adminlevel") >= 600);
+//	}
 
 	/**
 	 * connect to the Stendhal game server and if successfull, check, if the

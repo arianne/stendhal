@@ -23,6 +23,7 @@ import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
 
@@ -201,7 +202,7 @@ public class Minimap extends WtPanel {
 		clientg.drawImage(image, -panx, -pany, null);
 
 		// Enabled with -Dstendhal.superman=x.
-		if (mininps && client.isAdmin()) {
+		if (mininps && User.isAdmin()) {
 			// draw npcs (and creatures/sheeps)
 			clientg.translate(-panx, -pany);
 

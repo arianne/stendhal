@@ -15,7 +15,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.events.AttributeEvent;
@@ -535,7 +534,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 		/*
 		 * Special admin options
 		 */
-		if (StendhalClient.get().isAdmin()) {
+		if (User.isAdmin()) {
 			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
 			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
 			list.add(ActionType.ADMIN_ALTER.getRepresentation());

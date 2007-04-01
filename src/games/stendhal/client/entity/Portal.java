@@ -13,8 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.StendhalClient;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -98,7 +96,7 @@ public class Portal extends Entity {
 
 		if (!hidden) {
 			list.add(ActionType.USE.getRepresentation());
-			if (StendhalClient.get().isAdmin()) {
+			if (User.isAdmin()) {
 				list.remove(ActionType.ADMIN_ALTER.getRepresentation());
 			}
 		}
