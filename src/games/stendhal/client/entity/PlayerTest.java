@@ -96,7 +96,7 @@ public class PlayerTest {
 	public final void testPlayer() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "player");
-	
+	rpo.put("outfit", 0);
 		new Player(rpo);
 		
 		
@@ -106,6 +106,7 @@ public class PlayerTest {
 	public final void testGetHearingArea() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "player");
+		rpo.put("outfit",0);
 		Player pl = new Player(rpo);
 		Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
