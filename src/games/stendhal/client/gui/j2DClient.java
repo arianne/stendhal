@@ -1042,7 +1042,7 @@ public class j2DClient extends StendhalUI {
 			if ((username != null) && (password != null) && (host != null) && (port != null)) {
 				StendhalClient client = StendhalClient.get();
 				try {
-					client.connect(host, Integer.parseInt(port));
+					client.connect(host, Integer.parseInt(port), true);
 					client.login(username, password);
 
 					new j2DClient(client);

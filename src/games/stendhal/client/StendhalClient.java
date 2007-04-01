@@ -165,8 +165,18 @@ public class StendhalClient extends ariannexp {
 	 * server version equals the client's.
 	 */
 	@Override
+	public void connect(String host, int port) throws java.net.SocketException {
+		this.connect(host, port, true);
+	}
+
+	/**
+	 * connect to the Stendhal game server and if successfull, check, if the
+	 * server runs StendhalHttpServer extension. In that case it checks, if
+	 * server version equals the client's.
+	 */
+	@Override
 	public void connect(String host, int port, boolean protocol) throws java.net.SocketException {
-		super.connect(host, port, protocol);
+		super.connect(host, port, true);
 		// if connect was successfull try if server has http service, too
 		String testServer = "http://" + host + "/";
 		HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
@@ -349,7 +359,6 @@ public class StendhalClient extends ariannexp {
 		Direction odir;
 		int idx;
 
-
 		/*
 		 * Cancel existing opposite directions
 		 */
@@ -379,8 +388,8 @@ public class StendhalClient extends ariannexp {
 			}
 
 			/*
-			 * Move to end
-			 */
+		 * Move to end
+		 */
 			directions.remove(idx);
 		}
 

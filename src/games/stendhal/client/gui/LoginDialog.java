@@ -14,7 +14,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
-import games.stendhal.common.Debug;
 import games.stendhal.client.gui.login.Profile;
 import games.stendhal.client.gui.login.ProfileList;
 import games.stendhal.client.update.ClientGameConfiguration;
@@ -249,7 +248,6 @@ public class LoginDialog extends JDialog {
 		profile.setUser(usernameField.getText().trim());
 		profile.setPassword(new String(passwordField.getPassword()));
 
-		profile.setTCP(true);
 
 		/*
 		 * Save profile?
@@ -273,7 +271,6 @@ public class LoginDialog extends JDialog {
 	 */
 	protected void connect(Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
-		boolean useTCP;
 
 		// intialize progress bar
 		progressBar.start();
@@ -281,11 +278,8 @@ public class LoginDialog extends JDialog {
 		// disable this screen when attempting to connect
 		setEnabled(false);
 
-		// Force TCP for Web Start Sandbox
-		useTCP = profile.isTCP() || Debug.WEB_START_SANDBOX;
-
 		try {
-			client.connect(profile.getHost(), profile.getPort(), useTCP);
+			client.connect(profile.getHost(), profile.getPort(), true);
 
 			// for each major connection milestone call step()
 			progressBar.step();

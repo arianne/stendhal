@@ -25,18 +25,17 @@ public class Profile {
 
 	protected String password;
 
-	protected boolean tcp;
 
 	public Profile() {
-		this("", DEFAULT_SERVER_PORT, "", "", true);
+		this("", DEFAULT_SERVER_PORT, "", "");
 	}
 
-	public Profile(String host, int port, String user, String password, boolean tcp) {
+	public Profile(String host, int port, String user, String password) {
 		this.host = host;
 		this.port = port;
 		this.user = user;
 		this.password = password;
-		this.tcp = tcp;
+
 	}
 
 	//
@@ -60,7 +59,7 @@ public class Profile {
 		sbuf.append('\n');
 		sbuf.append(getPort());
 		sbuf.append('\n');
-		sbuf.append(isTCP());
+		sbuf.append(true); // TCP
 
 		return sbuf.toString();
 	}
@@ -81,9 +80,6 @@ public class Profile {
 		return user;
 	}
 
-	public boolean isTCP() {
-		return tcp;
-	}
 
 	/**
 	 * Decode a login profile from a string.
@@ -165,10 +161,8 @@ public class Profile {
 		 */
 		if (st.hasMoreTokens()) {
 			s = st.nextToken();
-
-			if (s.length() != 0) {
-				profile.setTCP(Boolean.parseBoolean(s));
-			}
+			// ignore this token for compatibility reasons
+			// just add what every you want behind it
 		}
 
 		return profile;
@@ -188,10 +182,6 @@ public class Profile {
 
 	public void setUser(String user) {
 		this.user = user;
-	}
-
-	public void setTCP(boolean tcp) {
-		this.tcp = tcp;
 	}
 
 	//
