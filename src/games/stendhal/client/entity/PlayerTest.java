@@ -65,7 +65,6 @@ public class PlayerTest {
 		pl.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		fail("throws unreflected Attribute [outfit] notfound exception");
 	}
 
 	@Test
