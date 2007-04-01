@@ -157,7 +157,7 @@ public class textClient extends Thread {
 	@Override
 	public void run() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port), tcp);
+			clientManager.connect(host, Integer.parseInt(port), true);
 			clientManager.login(username, password);
 		} catch (SocketException e) {
 			return;
@@ -236,7 +236,6 @@ public class textClient extends Thread {
 			System.out.println("* -c\tCharacter used to log into Marauroa server");
 			System.out.println("Optional parameters");
 			System.out.println("* -W\tShow world content? 0 or 1");
-			System.out.println("* -t\tuse tcp-connection to server");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(1);

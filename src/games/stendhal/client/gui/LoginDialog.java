@@ -51,10 +51,7 @@ import marauroa.common.io.Persistence;
  */
 public class LoginDialog extends JDialog {
 //	private static final long serialVersionUID = 4436228792112530975L;
-
-	private static final String TCPIP_TEXT = "TCP/IP (default)";
-		
-	private static final String UDP_TEXT = "UDP";
+	private static final String TCPIP_TEXT = "TCP";
 		
 	// Variables declaration
 
@@ -188,7 +185,7 @@ public class LoginDialog extends JDialog {
 		contentPane.add(l, c);
 
 		protocolComboBox = new JComboBox(
-			new String[] {TCPIP_TEXT, UDP_TEXT} );
+			new String[] {TCPIP_TEXT} );
 
 		c.gridx = 1;
 		c.gridy = 3;
@@ -317,10 +314,6 @@ public class LoginDialog extends JDialog {
 		profile.setUser(usernameField.getText().trim());
 		profile.setPassword(new String(passwordField.getPassword()));
 
-		profile.setTCP(
-			protocolComboBox.getSelectedItem() == TCPIP_TEXT);
-
-
 		/*
 		 * Save profile?
 		 */
@@ -370,21 +363,16 @@ public class LoginDialog extends JDialog {
 	 */
 	protected void connect(Profile profile) {
 		final ProgressBar progressBar = new ProgressBar(this);
-		boolean	useTCP;
-
 
 		// intialize progress bar
 		progressBar.start();
 
 		// disable this screen when attempting to connect
 		setEnabled(false);
-
-		// Force TCP for Web Start Sandbox
-		useTCP = profile.isTCP() || Debug.WEB_START_SANDBOX;
 		
 		try {
 			client.connect(
-				profile.getHost(), profile.getPort(), useTCP);
+				profile.getHost(), profile.getPort(), true);
 
 			// for each major connection milestone call step()
 			progressBar.step();
@@ -522,11 +510,7 @@ public class LoginDialog extends JDialog {
 			serverPortField.setText(
 				String.valueOf(profile.getPort()));
 
-			if(profile.isTCP()) {
-				protocolComboBox.setSelectedItem(TCPIP_TEXT);
-			} else {
-				protocolComboBox.setSelectedItem(UDP_TEXT);
-			}
+			protocolComboBox.setSelectedItem(TCPIP_TEXT);
 
 			usernameField.setText(profile.getUser());
 			passwordField.setText(profile.getPassword());
