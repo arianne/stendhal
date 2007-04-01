@@ -1,14 +1,11 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.wall;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.maps.quests.AdosDeathmatch;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.util.Area;
 
-import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +15,7 @@ import java.util.Map;
  *
  * @author hendrik
  */
-public class AdosWallNorth implements ZoneConfigurator {
+public class SoldierNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -30,7 +27,6 @@ public class AdosWallNorth implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildAdosGreetingSoldier(zone);
-		buildDeathmatch(zone);
 	}
 
 	/**
@@ -68,20 +64,5 @@ public class AdosWallNorth implements ZoneConfigurator {
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
-	}
-
-	/**
-	 * Creatures a soldier telling people a story, why Ados is so empty.
-	 *
-	 * @param zone StendhalRPZone
-	 */
-	private void buildDeathmatch(StendhalRPZone zone) {
-		String zoneName = zone.getID().getID();
-		Rectangle2D shape = new Rectangle2D.Double();
-		shape.setRect(88, 77, 112 - 88 + 1, 93 - 77 + 1);
-		Area arena = new Area(zone, shape);
-		AdosDeathmatch deathmatch = new AdosDeathmatch(zoneName, zone, arena);
-		deathmatch.createHelmet(102, 75);
-		deathmatch.createNPC("Thanatos", 98, 75);
 	}
 }

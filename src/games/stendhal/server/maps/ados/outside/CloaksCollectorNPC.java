@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class USL3_OutsideNorthWest implements ZoneConfigurator {
+public class CloaksCollectorNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

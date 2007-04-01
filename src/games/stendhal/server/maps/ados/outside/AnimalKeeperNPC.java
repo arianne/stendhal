@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.outside;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPAction;
@@ -8,8 +8,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.SellerBehaviour;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
@@ -23,11 +21,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class OL0_OutsideNorthWest implements ZoneConfigurator {
-
+public class AnimalKeeperNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();;
-
-	private ShopList shops = ShopList.get();
 
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 
@@ -110,52 +105,6 @@ public class OL0_OutsideNorthWest implements ZoneConfigurator {
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_007_npc");
 		npc.set(41, 39);
-		//npc.setDirection(Direction.DOWN);
-		npc.initHP(100);
-		zone.add(npc);
-
-		npc = new SpeakerNPC("Dr. Feelgood") {
-
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(53, 27));
-				nodes.add(new Path.Node(53, 39));
-				nodes.add(new Path.Node(62, 39));
-				nodes.add(new Path.Node(62, 31));
-				nodes.add(new Path.Node(63, 31));
-				nodes.add(new Path.Node(63, 39));
-				nodes.add(new Path.Node(51, 39));
-				nodes.add(new Path.Node(51, 27));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				//Behaviours.addHelp(this,
-				//				   "...");
-
-				addReply("heal",
-				        "Sorry, I'm only licensed to heal animals, not humans. (But... ssshh! I can make you an #offer.)");
-
-				addJob("I'm the veterinarian.");
-				addSeller(new SellerBehaviour(shops.get("healing")) {
-
-					@Override
-					public int getUnitPrice(String item) {
-						// Player gets 20 % rebate
-						return (int) (0.8f * priceList.get(item));
-					}
-				});
-
-				addGoodbye("Bye!");
-			}
-			// remaining behaviour is defined in maps.quests.ZooFood.
-		};
-		npcs.add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "doctornpc");
-		npc.set(53, 27);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);

@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.swamp;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Entrance to Deathmatch
  */
-public class AdosSwamp implements ZoneConfigurator {
+public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

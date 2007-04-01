@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.townhall;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
@@ -18,7 +18,7 @@ import java.util.Map;
  * Now he sells ados scrolls
  * @author kymara
  */
-public class IL0_Mayor implements ZoneConfigurator {
+public class MayorNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

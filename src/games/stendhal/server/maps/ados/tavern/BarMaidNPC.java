@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.tavern;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author hendrik
  */
-public class IL0_Tavern implements ZoneConfigurator {
+public class BarMaidNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

@@ -1,16 +1,12 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.magician_house;
 
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
@@ -19,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class IL0_MagicianHouse implements ZoneConfigurator {
+public class WizardNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();;
 
@@ -99,30 +95,6 @@ public class IL0_MagicianHouse implements ZoneConfigurator {
 		npc.set(7, 1);
 		npc.initHP(100);
 		zone.add(npc);
-
-		// Summon scroll
-		Item item = addPersistentItem("summon_scroll", zone, 7, 6);
-		item.put("infostring", "red_dragon");
-
-		// Plant grower for poison
-		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
-		zone.assignRPObjectID(plantGrower);
-		plantGrower.setX(3);
-		plantGrower.setY(6);
-		plantGrower.setDescription("Haizen tends to put his magic drinks here.");
-		plantGrower.setToFullGrowth();
-
-		zone.add(plantGrower);
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
-	}
-
-	private Item addPersistentItem(String name, StendhalRPZone zone, int x, int y) {
-		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
-		zone.assignRPObjectID(item);
-		item.setX(x);
-		item.setY(y);
-		item.put("persistent", 1);
-		zone.add(item);
-		return item;
+	
 	}
 }

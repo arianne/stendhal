@@ -46,7 +46,8 @@ West: Semos
  </zone>
 
  <zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.IL0_MagicianHouse" />
+  <configurator class-name="games.stendhal.server.maps.ados.magician_house.WizardNPC" />
+  <configurator class-name="games.stendhal.server.maps.ados.magician_house.ItemsOnTable" />
 
   <portal x="12" y="13" ref="entrance">
    <destination zone="0_ados_mountain_nw" ref="magician_house_entrance"/>
@@ -69,7 +70,8 @@ areas.
  </zone>
 
  <zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="0_ados_outside_nw.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.OL0_OutsideNorthWest" />
+  <configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
+  <configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
 
   <portal x="67" y="24" ref="0">
    <destination zone="-1_ados_outside_nw" ref="0"/>
@@ -96,7 +98,8 @@ West: Semos
  </zone>
 
  <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="0_ados_wall_n.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.AdosWallNorth"/>
+  <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
+    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
  </zone>
 
  <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="0_ados_forest_w2.xstend">
@@ -106,7 +109,7 @@ West: Semos
  </zone>
 
  <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.AdosRock"/>
+  <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
  </zone>
 
  <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
@@ -185,7 +188,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone>
 
    <zone name="int_ados_bakery" file="int_ados_bakery.xstend">
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Bakery" />
+    <configurator class-name="games.stendhal.server.maps.ados.bakery.BakerNPC" />
 
     <portal x="26" y="14" ref="0">
      <destination zone="0_ados_city" ref="10"/>
@@ -193,7 +196,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone>
 
    <zone name="int_ados_library" file="int_ados_library.xstend">
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Library" />
+    <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
     <portal x="8" y="30" ref="entrance_left">
      <destination zone="0_ados_city" ref="library_entrance_left"/>
@@ -205,7 +208,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone>
 
    <zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Tavern" />
+    <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
 
     <portal x="12" y="17" ref="entrance_left">
      <destination zone="0_ados_city" ref="tavern_entrance_left"/>
@@ -238,7 +241,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    
    
    <zone name="int_ados_goldsmith" file="int_ados_goldsmith.xstend">
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Goldsmith" />
+    <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <portal x="4" y="14" ref="entrance_goldsmith">
      <destination zone="0_ados_city" ref="goldsmith_entrance"/>
     </portal>
@@ -293,7 +296,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone> 
    
    <zone name="int_ados_town_hall_2" file="int_ados_buraucrazy_2.xstend">
-    <configurator class-name="games.stendhal.server.maps.ados.IL0_Mayor" />
+    <configurator class-name="games.stendhal.server.maps.ados.townhall.MayorNPC" />
     <portal x="36" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_1" ref="upstairs"/>
     </portal>
@@ -310,7 +313,8 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone> 
    
  <zone name="0_ados_city" level="0" x="500896" y="499872" file="0_ados_city.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.AdosCityOutside" />
+  <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
+  <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
 
   <portal x="60" y="16" ref="tavern_entrance_left">
    <destination zone="int_ados_tavern_0" ref="entrance_left"/>
@@ -385,7 +389,7 @@ Please leave my mail at my neighbour's house.
  </zone>
 
  <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.AdosSwamp"/>
+  <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
  </zone>
 
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="0_ados_coast_s_w2.xstend">
@@ -424,7 +428,7 @@ Please leave my mail at my neighbour's house.
  <!--  Level -3 -->
 
  <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="sub_3_ados_outside_nw.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.USL3_OutsideNorthWest" />
+  <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
   <!-- This must be after the NPC configurator -->
   <entity x="17" y="23">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">

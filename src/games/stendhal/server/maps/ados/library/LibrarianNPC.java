@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.library;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @author hendrik
  */
-public class IL0_Library implements ZoneConfigurator {
+public class LibrarianNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.ados;
+package games.stendhal.server.maps.ados.bakery;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
@@ -19,7 +19,7 @@ import java.util.Map;
  *
  * @author hendrik
  */
-public class IL0_Bakery implements ZoneConfigurator {
+public class BakerNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
