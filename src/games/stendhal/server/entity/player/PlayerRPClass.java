@@ -316,7 +316,7 @@ class PlayerRPClass {
 			if (player.hasSheep()) {
 				logger.debug("Player has a sheep");
 				Sheep sheep = player.getPlayerSheepManager().retrieveSheep();
-				sheep.put("zoneid", object.get("zoneid"));
+				sheep.put("zoneid", player.get("zoneid"));
 				if (!sheep.has("base_hp")) {
 					sheep.put("base_hp", "10");
 					sheep.put("hp", "10");
@@ -324,8 +324,6 @@ class PlayerRPClass {
 
 				world.add(sheep);
 
-				x = sheep.getX();
-				y = sheep.getY();
 				player.setSheep(sheep);
 
 				StendhalRPAction.placeat(zone, sheep, x, y);
