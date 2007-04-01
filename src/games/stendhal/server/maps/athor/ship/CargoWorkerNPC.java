@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.athor;
+package games.stendhal.server.maps.athor.ship;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class USL2_ShipWest2 implements ZoneConfigurator {
+public class CargoWorkerNPC implements ZoneConfigurator {
 
 	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 

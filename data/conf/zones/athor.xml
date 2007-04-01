@@ -81,7 +81,7 @@
        <portal x="6" y="14" ref="out">
          <destination zone="0_athor_island_w" ref="dressing_room_m_entrance"/>
        </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Male" />
+       <configurator class-name="games.stendhal.server.maps.athor.dressingroom_male.LifeguardNPC" />
         <!-- This must be after the NPC configurator -->
         <entity x="3" y="10">
           <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -94,7 +94,7 @@
        <portal x="9" y="14" ref="out">
          <destination zone="0_athor_island_w" ref="dressing_room_f_entrance"/>
        </portal>
-       <configurator class-name="games.stendhal.server.maps.athor.IL0_Dressing_Rooms_Female"/>
+       <configurator class-name="games.stendhal.server.maps.athor.dressingroom_female.LifeguardNPC"/>
        <entity x="12" y="10">
          <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
            <attribute name="npc">Pam</attribute>
@@ -176,8 +176,15 @@
        <portal x="191" y="67" ref="diving_board">
          <destination zone="0_athor_island_w" ref="diving_board_destination"/>
        </portal>
-       
-       <configurator class-name="games.stendhal.server.maps.athor.OL0_IslandWest" />
+
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SunbatherNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WalkingWomanNPC" />
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />                                          
+       <configurator class-name="games.stendhal.server.maps.athor.holiday_area.YanNPC" />       
        <entity x="211" y="42">
          <implementation class-name="games.stendhal.server.entity.Sign">
            <attribute name="text">
@@ -221,7 +228,7 @@
  <!-- Level -1 -->
 
      <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="sub_1_athor_ship_w2.xstend">
-       <configurator class-name="games.stendhal.server.maps.athor.USL1_ShipWest2"/>
+       <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
        <entity x="24" y="35">
          <implementation class-name="games.stendhal.server.entity.Sign">
            <attribute name="text">
@@ -236,7 +243,7 @@ BLACKJACK RULES
 
 
  <zone name="-1_athor_island_w" file="sub_1_athor_island_w.xstend">
-   <configurator class-name="games.stendhal.server.maps.athor.USL1_IslandWest"/>
+   <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature"/>
    <portal x="118" y="96" ref="quicksand_out">
      <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
    </portal>
@@ -254,7 +261,7 @@ BLACKJACK RULES
  </zone>
 
 <zone name="-1_athor_island" file="sub_1_athor_island.xstend">
-   <configurator class-name="games.stendhal.server.maps.athor.USL1_Island"/>
+   <configurator class-name="games.stendhal.server.maps.athor.labyrinth.MinotaurKingCreature"/>
    <portal x="1" y="118" ref="labyrinth1">
    	<destination zone="-1_athor_island_w" ref="labyrinth_locked_door"/>
    </portal>
@@ -267,7 +274,7 @@ BLACKJACK RULES
  <!-- Level -2 -->
 
  <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="sub_2_athor_ship_w2.xstend">
-  <configurator class-name="games.stendhal.server.maps.athor.USL2_ShipWest2"/>
+  <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
     <!-- This must be after the NPC configurator -->
     <entity x="22" y="30">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">

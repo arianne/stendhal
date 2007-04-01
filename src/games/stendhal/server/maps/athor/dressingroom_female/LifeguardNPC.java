@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.athor;
+package games.stendhal.server.maps.athor.dressingroom_female;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
@@ -20,7 +20,7 @@ import java.util.Map;
  *
  * @author daniel
  */
-public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
+public class LifeguardNPC implements ZoneConfigurator {
 
 	/**
 	 * Configure a zone.
@@ -29,12 +29,11 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildMaleDressingRoom(zone, attributes);
-		//buildFemaleDressingRoom(femaleZone, attributes);
+		buildFemaleDressingRoom(zone, attributes);
 	}
 
-	private void buildMaleDressingRoom(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC david = new SpeakerNPC("David") {
+	private void buildFemaleDressingRoom(StendhalRPZone zone, Map<String, String> attributes) {
+		SpeakerNPC pam = new SpeakerNPC("Pam") {
 
 			@Override
 			protected void createPath() {
@@ -45,12 +44,12 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the men's dressing room.");
-				addHelp("Just tell me if you want to #borrow #trunks!");
+				addJob("I'm one of the lifeguards at this beach. And as you can see, I also take care of the women's dressing room.");
+				addHelp("Just tell me if you want to #borrow #a #swimsuit!");
 				addGoodbye("Have fun!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
-				priceList.put("trunks", 5);
+				priceList.put("swimsuit", 5);
 				OutfitChangerBehaviour behaviour = new OutfitChangerBehaviour(priceList);
 				addOutfitChanger(behaviour, "borrow");
 
@@ -60,14 +59,14 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 				requiredResources.put("kokuda", new Integer(1));
 				requiredResources.put("minor_potion", new Integer(1));
 
-				ProducerBehaviour behaviour_mix = new ProducerBehaviour("david_mix_cream", "mix", "suntan_cream",
+				ProducerBehaviour behaviour_mix = new ProducerBehaviour("pamela_mix_cream", "mix", "suntan_cream",
 				        requiredResources, 10 * 60);
 
 				addProducer(behaviour_mix, "Hallo!");
 
 				addReply(
 				        Arrays.asList("suntan", "cream", "suntan_cream"),
-				        "Pam's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
+				        "David's and mine suntan cream is famous all over the island. But the way to the labyrinth entrance is blocked, so we can't get all the ingredients we need. If you bring me the things we need, I can #mix our special suntan cream for you.");
 
 				addReply("arandula", "Arandula is a herb which is growing around Semos.");
 
@@ -79,12 +78,12 @@ public class IL0_Dressing_Rooms_Male implements ZoneConfigurator {
 
 			}
 		};
-		NPCList.get().add(david);
-		zone.assignRPObjectID(david);
-		david.put("class", "lifeguardmalenpc");
-		david.setDirection(Direction.RIGHT);
-		david.set(3, 10);
-		david.initHP(100);
-		zone.add(david);
+		NPCList.get().add(pam);
+		zone.assignRPObjectID(pam);
+		pam.put("class", "lifeguardfemalenpc");
+		pam.setDirection(Direction.LEFT);
+		pam.set(12, 10);
+		pam.initHP(100);
+		zone.add(pam);
 	}
 }

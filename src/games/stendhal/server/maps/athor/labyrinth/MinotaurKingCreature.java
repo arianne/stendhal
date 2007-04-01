@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.athor;
+package games.stendhal.server.maps.athor.labyrinth;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
@@ -10,7 +10,7 @@ import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 
 import java.util.Map;
 
-public class USL1_Island implements ZoneConfigurator {
+public class MinotaurKingCreature implements ZoneConfigurator {
 
 	DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 
