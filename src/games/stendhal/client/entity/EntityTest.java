@@ -344,15 +344,19 @@ public class EntityTest {
 	}
 
 	@Test
-	@Ignore
+	
 	public final void testDefaultAction() {
-		fail("Not yet implemented"); // TODO
+		Entity en = new MockEntity();
+		assertEquals(ActionType.LOOK, en.defaultAction());
+
 	}
 
 	@Test
-	@Ignore
 	public final void testOfferedActions() {
-		fail("Not yet implemented"); // TODO
+		Entity en = new MockEntity();
+		String[] str = new String[1];
+		str[0]="Look";
+		assertEquals(str, en.offeredActions());
 	}
 
 	@Test
