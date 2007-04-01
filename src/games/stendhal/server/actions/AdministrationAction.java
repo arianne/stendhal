@@ -341,7 +341,7 @@ public class AdministrationAction implements ActionListener {
 	}
 
 	private void onAlter(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onChangePlayer");
+		Log4J.startMethod(logger, "onAlter");
 
 		if (action.has("target") && action.has("stat") && action.has("mode") && action.has("value")) {
 			Entity changed = getTarget(player, action);
@@ -430,7 +430,7 @@ public class AdministrationAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "onChangePlayer");
+		Log4J.finishMethod(logger, "onAlter");
 	}
 
 	private void onSummon(Player player, RPAction action) {
@@ -642,7 +642,7 @@ public class AdministrationAction implements ActionListener {
 	}
 
 	private void onJail(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onTeleport");
+		Log4J.startMethod(logger, "onJail");
 
 		if (action.has("target") && action.has("minutes")) {
 			String target = action.get("target");
@@ -662,7 +662,7 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText("Usage: /jail name minutes reason");
 		}
 
-		Log4J.finishMethod(logger, "onTeleport");
+		Log4J.finishMethod(logger, "onJail");
 	}
 
 	/**
