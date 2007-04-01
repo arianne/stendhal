@@ -96,7 +96,7 @@ public class CloakCollector extends AbstractQuest {
 					}
 				}
 			});
-		//		 player asks what exactly is missing
+		//		 player asks what cloaks are needed
 		npc.add(ConversationStates.QUEST_OFFERED,
 				"cloaks",
 				null,
@@ -123,8 +123,19 @@ public class CloakCollector extends AbstractQuest {
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.QUEST_OFFERED,
 			"Oh ... you're not very friendly", null);
-	}
+ 
 
+		// player asks about an individual cloak
+		for (String cloak : neededcloaks) {
+		    npc.add(ConversationStates.QUEST_OFFERED, cloak, null, ConversationStates.QUEST_OFFERED, null,
+			   new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+				    engine.say("You haven't seen one before? Well, it's a " + StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(text).getItemSubclass() + ". So, will you find them all?");
+				}}
+			    );
+		}
+	}
 	private void step_2() {
 		// Just find the cloaks and bring them to Josephine.
 	}
@@ -140,7 +151,7 @@ public class CloakCollector extends AbstractQuest {
 					return player.hasQuest("cloaks_collector") && !player.isQuestCompleted("cloaks_collector");
 				}
 			},
-			ConversationStates.QUESTION_1, "Hello! Did you bring any cloaks with you?", null);
+			ConversationStates.QUESTION_1, "Hello! Did you bring any #cloaks with you?", null);
 		//		 player asks what exactly is missing
 		npc.add(ConversationStates.QUESTION_1,
 				"cloaks",
@@ -156,7 +167,7 @@ public class CloakCollector extends AbstractQuest {
 				});
 		// player says he has a required cloak with him
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
-			ConversationStates.QUESTION_1, "Great! What did you bring?", null);
+			ConversationStates.QUESTION_1, "Great! What #cloaks did you bring?", null);
 
 		for (String cloak : neededcloaks) {
 			npc.add(ConversationStates.QUESTION_1, cloak, null, ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
