@@ -1279,4 +1279,18 @@ public class Player extends RPEntity implements TurnListener {
 		return playerSheepManager;
 	}
 
+	@Override
+	public int hashCode() {
+		return getName().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (getClass() != obj.getClass()) return false;
+		Player other = (Player) obj;
+		return this.getName().equals(other.getName());
+	}
+
+	
 }
