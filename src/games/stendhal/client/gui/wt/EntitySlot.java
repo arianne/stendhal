@@ -24,6 +24,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFabric;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
@@ -225,18 +226,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			return (false);
 		}
 
-		RPObject player = client.getPlayer();
-
-		// if(parent.distance(client.getPlayer())>2)
-		// {
-		// RPAction rpaction = new RPAction();
-		// rpaction.put("type","moveto");
-		// System.out.println (parent);
-		// rpaction.put("x",(int)parent.getX());
-		// rpaction.put("y",(int)parent.getY());
-		// client.send(rpaction);
-		// }
-
+	
 		RPAction action = new RPAction();
 		action.put("type", "equip");
 		// source object and content from THIS container
@@ -244,7 +234,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		action.put("baseslot", getName());
 		action.put("baseitem", content.getID().getObjectID());
 		// target is player's bag
-		action.put("targetobject", player.getID().getObjectID());
+		action.put("targetobject", User.get().getID().getObjectID());
 		action.put("targetslot", "bag");
 		client.send(action);
 

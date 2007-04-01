@@ -21,6 +21,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
@@ -499,7 +500,7 @@ public class j2DClient extends StendhalUI {
 			}
 
 			logger.debug("Move screen");
-			moveScreen(client.getPlayer(), staticLayers);
+			moveScreen( staticLayers);
 
 			if (System.nanoTime() - oldTime > 1000000000) {
 				oldTime = System.nanoTime();
@@ -546,14 +547,14 @@ public class j2DClient extends StendhalUI {
 		SoundSystem.get().exit();
 	}
 
-	private void moveScreen(RPObject object, StaticGameLayers gameLayers) {
+	private void moveScreen(StaticGameLayers gameLayers) {
 		try {
-			if (object == null) {
+			if (User.isNull()) {
 				return;
 			}
 
-			double x = object.getDouble("x");
-			double y = object.getDouble("y");
+			double x = User.get().getX();
+			double y = User.get().getY();
 
 			double screenx = screen.getX();
 			double screeny = screen.getY();

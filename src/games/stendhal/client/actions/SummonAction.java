@@ -1,8 +1,8 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.User;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
  * Summon an entity.
@@ -29,12 +29,9 @@ class SummonAction implements SlashAction  {
 		} else if (params[1] != null) {
 			return false;
 		} else {
-			RPObject player = StendhalClient.get().getPlayer();
-
-			summon.put("x", player.getInt("x"));
-			summon.put("y", player.getInt("y") + 1);
+			summon.put("x",(int)User.get().getX());
+			summon.put("y",(int)User.get().getY() + 1);
 		}
-
 		StendhalClient.get().send(summon);
 
 		return true;

@@ -26,10 +26,10 @@
 package games.stendhal.client.sound;
 
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
@@ -57,8 +57,6 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -254,19 +252,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return null;
 		}
 
-		// obtain player character's position and hearing range
-		RPObject playerObj = StendhalClient.get().getPlayer();
-		if (playerObj == null) {
+		
+		if (User.isNull()) {
 			return null;
 		}
+		Player user = User.get();
 
-		Player player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
-		if (player == null) {
-			return null;
-		}
-
-		playerPosition = player.getPosition();
-		playerHearing = player.getHearingArea();
+		playerPosition = user.getPosition();
+		playerHearing = user.getHearingArea();
 
 		// exclusion cases
 		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(playerPosition))) {

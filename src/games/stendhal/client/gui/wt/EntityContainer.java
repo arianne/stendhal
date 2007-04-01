@@ -16,6 +16,7 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Graphics;
@@ -54,13 +55,9 @@ public class EntityContainer extends WtPanel {
 
 	private RPSlot shownSlot;
 
-	private StendhalClient client;
-
 	/** creates the panel */
 	public EntityContainer(StendhalClient client, String name, int width, int height) {
 		super(name, 0, 300, 100, 100);
-
-		this.client = client;
 
 		setTitletext(name);
 		setTitleBar(true);
@@ -129,16 +126,16 @@ public class EntityContainer extends WtPanel {
 	 * far away, this panel closes itself. Note that this is clientside only.
 	 */
 	private void checkDistance() {
-		RPObject player = client.getPlayer();
+	//	RPObject player = client.getPlayer();
 
-		int px = player.getInt("x");
-		int py = player.getInt("y");
+		int px = (int) User.get().getX();
+		int py = (int) User.get().getY();
 		int ix = (int) parent.getX();
 		int iy = (int) parent.getY();
 
 		int distance = Math.abs(px - ix) + Math.abs(py - iy);
 
-		if (player.getID().equals(parent.getID())) {
+		if (User.get().getID().equals(parent.getID())) {
 			// We don't want to close our own stuff
 			return;
 		}

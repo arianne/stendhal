@@ -2,6 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.entity.User;
 
 import java.awt.Color;
 
@@ -33,21 +34,17 @@ class DropAction implements SlashAction  {
 			StendhalUI.get().addEventLine("Invalid quantity");
 			return true;
 		}
-
-		RPObject player = StendhalClient.get().getPlayer();
 		String itemName = params[1];
-
 		for (String slotName : CARRYING_SLOTS) { 
 			int itemID = findItem(slotName, itemName);
 			if (itemID != -1) {
 				RPAction drop = new RPAction();
 	
 				drop.put("type", "drop");
-				drop.put("baseobject", player.getID().getObjectID());
-	
+				drop.put("baseobject",User.get().getObjectID());
 				drop.put("baseslot", slotName);
-				drop.put("x", player.getInt("x"));
-				drop.put("y", player.getInt("y") + 1);
+				drop.put("x", (int)User.get().getX());
+				drop.put("y", (int)User.get().getY() + 1);
 				drop.put("quantity", quantity);
 				drop.put("baseitem", itemID);
 	
@@ -67,8 +64,8 @@ class DropAction implements SlashAction  {
 	 * @return objectid or <code>-1</code> in case there is no such item
 	 */
 	private int findItem(String slotName, String itemName) {
-		RPObject player = StendhalClient.get().getPlayer();
-		for (RPObject item : player.getSlot(slotName)) {
+		
+		for (RPObject item : User.get().getSlot(slotName)) {
 			if (item.get("name").equals(itemName)) {
 				int itemID = item.getID().getObjectID();
 				return itemID;

@@ -1,7 +1,7 @@
 package games.stendhal.client.scripting;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.entity.User;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -44,7 +44,7 @@ public class ScriptRecorder {
 		ps.println("/**");
 		ps.println(" * TODO: write documentation");
 		ps.println(" * ");
-		ps.println(" * @author recorded by " + StendhalClient.get().getPlayer().get("name"));
+		ps.println(" * @author recorded by " + User.get().getName());
 		ps.println(" */");
 		ps.println("public class " + classname + " extends ClientScriptImpl {");
 		ps.println("");

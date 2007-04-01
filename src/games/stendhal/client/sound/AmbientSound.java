@@ -12,10 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client.sound;
 
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.SoundObject;
+import games.stendhal.client.entity.User;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -26,10 +26,9 @@ import java.util.List;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * An ambient sound is a compound sound consisting of any number of loop sounds
@@ -339,7 +338,7 @@ class AmbientSound {
 	 * if sound position is outside the hearing range of the player.
 	 */
 	protected void play() {
-		play(getPlayer());
+		play(User.get());
 	}
 
 	/**
@@ -538,22 +537,5 @@ class AmbientSound {
 		}
 	} // updateVolume
 
-	/**
-	 * Returns the game Player object or <b>null</b> if unavailable or the
-	 * sound is not map-localized.
-	 * 
-	 * @return Player object
-	 */
-	private Player getPlayer() {
-		Player player = null;
-		RPObject playerObj;
 
-		// try to obtain player parameters if relative playing is ordered
-		if (soundPos != null) {
-			if ((playerObj = StendhalClient.get().getPlayer()) != null) {
-				player = (Player) StendhalClient.get().getGameObjects().get(playerObj.getID());
-			}
-		}
-		return player;
-	}
 }

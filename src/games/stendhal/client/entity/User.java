@@ -6,6 +6,7 @@ import java.util.List;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -14,6 +15,13 @@ import marauroa.common.game.RPObject;
 public class User extends Player {
 
 	static User _instance=null ;
+	
+	public static boolean isNull(){
+		
+		return _instance==null;
+		
+	}
+	
 	public static User get(){
 		return _instance;
 	}
@@ -93,6 +101,24 @@ public class User extends Player {
 		else
 			return false;
 	}
+
+	public int getObjectID() {
+	    return this.rpObject.getID().getObjectID();
+    }
+
+	public  boolean hasSheep() {
+		return this.rpObject.has("sheep");
+    }
+
+	@Override
+    public void onHealed(int amount) {
+	   
+	    super.onHealed(amount);
+	   
+			StendhalUI.get().addEventLine(
+			        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
+		
+    }
 	
 	
     }

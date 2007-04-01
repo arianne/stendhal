@@ -155,7 +155,12 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 		return (object.getInt("x") - x) * (object.getInt("x") - x) + (object.getInt("y") - y)
 		        * (object.getInt("y") - y);
 	}
-
+	public double distance(User user) {
+	    
+	    return (user.getX() - x) * (user.getX() - x) + (user.getY() - y)
+        * (user.getY() - y);
+    }
+	
 	protected static String translate(String type) {
 		return "data/sprites/" + type + ".png";
 	}

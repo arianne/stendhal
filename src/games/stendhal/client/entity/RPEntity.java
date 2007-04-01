@@ -16,7 +16,6 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.common.Grammar;
@@ -248,7 +247,7 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	// Called when entity says text
 	public void onTalk(String text) {
-		if ((StendhalClient.get().getPlayer() != null) && (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
+		if (!User.isNull() && (distance(User.get()) < 15 * 15)) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -281,6 +280,8 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
+	
+
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(String text) {
@@ -300,13 +301,10 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	// When entity gets healed
 	public void onHealed(int amount) {
-		if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
+		if (distance(User.get()) < 15 * 15) {
 			addFloater("+" + amount, Color.green);
 
-			if (getID().equals(StendhalClient.get().getPlayer().getID())) {
-				StendhalUI.get().addEventLine(
-				        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
-			}
+			
 		}
 	}
 
@@ -321,8 +319,7 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	// When entity is poisoned
 	public void onPoisoned(int amount) {
-		if (getID().equals(StendhalClient.get().getPlayer().getID())
-		        || (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
+		if ( (distance(User.get()) < 15 * 15)) {
 			isPoisoned = true;
 
 			addFloater("-" + amount, Color.red);
@@ -478,7 +475,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 
 		if (diff.has("xp") && base.has("xp")) {
-			if (distance(StendhalClient.get().getPlayer()) < 15 * 15) {
+			if (distance(User.get()) < 15 * 15) {
 				addFloater("+" + (diff.getInt("xp") - base.getInt("xp")), Color.cyan);
 
 				StendhalUI.get().addEventLine(
@@ -489,8 +486,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 
 		if (diff.has("level") && base.has("level")) {
-			if (getID().equals(StendhalClient.get().getPlayer().getID())
-			        || (distance(StendhalClient.get().getPlayer()) < 15 * 15)) {
+			if (distance(User.get()) < 15 * 15) {
 				String text = getName() + " reaches Level " + getLevel();
 
 				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
@@ -768,7 +764,7 @@ public abstract class RPEntity extends AnimatedEntity {
 			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
 		}
 
-		if ((attacking != null) && attacking.equals(StendhalClient.get().getPlayer().getID())) {
+		if ((attacking != null) && attacking.equals(User.get().getID())) {
 			// Draw orange box around
 			Graphics g2d = screen.expose();
 			Rectangle2D rect = getArea();
@@ -861,8 +857,8 @@ public abstract class RPEntity extends AnimatedEntity {
 		super.buildOfferedActions(list);
 		list.add(ActionType.ATTACK.getRepresentation());
 
-		if (StendhalClient.get().getPlayer() != null)
-			if (StendhalClient.get().getPlayer().has("target")) {
+		if (!User.isNull())
+			if (User.get().isAttacking()) {
 				list.add(ActionType.STOP_ATTACK.getRepresentation());
 			}
 	}
@@ -1038,9 +1034,8 @@ public abstract class RPEntity extends AnimatedEntity {
 
 		addFloater("-" + damage, Color.red);
 
-		boolean showAttackInfoForPlayer = (StendhalClient.get().getPlayer() != null)
-		        && (getID().equals(StendhalClient.get().getPlayer().getID()) || attacker.getID().equals(
-		                StendhalClient.get().getPlayer().getID()));
+		boolean showAttackInfoForPlayer = (!User.isNull())
+		        && (this.equals(User.get()) || attacker.equals(User.get()));
 		showAttackInfoForPlayer = showAttackInfoForPlayer & (!stendhal.FILTER_ATTACK_MESSAGES);
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
