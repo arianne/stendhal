@@ -10,9 +10,6 @@ package games.stendhal.server.entity;
 //
 
 import java.awt.geom.Rectangle2D;
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
@@ -31,11 +28,7 @@ import games.stendhal.server.events.MovementListener;
  */
 public class OnePlayerArea extends Entity implements MovementListener {
 
-	/**
-	 * The logger instance.
-	 */
-	private static final Logger logger = Log4J.getLogger(OnePlayerArea.class);
-
+	
 	/**
 	 * The area height.
 	 */
