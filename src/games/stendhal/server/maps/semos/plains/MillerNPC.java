@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.plains;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class SemosPlainsNorthEast implements ZoneConfigurator {
+public class MillerNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

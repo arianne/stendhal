@@ -1,6 +1,5 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.jail;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -20,7 +19,7 @@ import java.util.Map;
  * 
  * @author hendrik
  */
-public class SemosJailWestSL1 implements ZoneConfigurator {
+public class GuardNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -31,7 +30,6 @@ public class SemosJailWestSL1 implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildElf(zone);
 		buildSoldier(zone);
 		disabledMagicScrolls(zone);
 	}
@@ -77,32 +75,6 @@ public class SemosJailWestSL1 implements ZoneConfigurator {
 		npc.initHP(100);
 		zone.add(npc);
 
-	}
-
-	private void buildElf(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Conual") {
-
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(13, 2));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				addGreeting("Let me out");
-				addGoodbye();
-			}
-		};
-		npcs.add(npc);
-
-		zone.assignRPObjectID(npc);
-		npc.put("class", "militiaelfnpc");
-		npc.set(13, 2);
-		npc.initHP(100);
-		npc.setDirection(Direction.DOWN);
-		zone.add(npc);
 	}
 
 	private void disabledMagicScrolls(StendhalRPZone zone) {

@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.jail;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
@@ -15,7 +15,7 @@ import java.util.Map;
  * 
  * @author hendrik
  */
-public class SemosJailWestSL2 implements ZoneConfigurator {
+public class JailKeeperNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.plains;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
-public class OL0_PlainsNorth implements ZoneConfigurator {
+public class LittleBoyNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

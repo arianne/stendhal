@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.library;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -14,7 +14,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
-public class IL0_Library implements ZoneConfigurator {
+public class HistorianGeographerNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -95,30 +95,6 @@ public class IL0_Library implements ZoneConfigurator {
 		zone.assignRPObjectID(npc);
 		npc.put("class", "wisemannpc");
 		npc.set(15, 2);
-		npc.initHP(100);
-		zone.add(npc);
-		npc = new SpeakerNPC("Ceryl") {
-
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(28, 11));
-				nodes.add(new Path.Node(28, 20));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				addGreeting();
-				addJob("I am the librarian.");
-				addHelp("Hey, read a book and help yourself! You're never too old to stop learning.");
-				addGoodbye();
-			}
-		};
-		npcs.add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "investigatornpc");
-		npc.set(28, 11);
 		npc.initHP(100);
 		zone.add(npc);
 	}

@@ -40,7 +40,7 @@
  </zone>
 
  <zone name="0_semos_plains_n" level="0" x="500000" y="499872" file="0_semos_plains_n.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.OL0_PlainsNorth"/>
+  <configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC"/>
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
@@ -62,7 +62,7 @@ South: Semos city
  </zone>
 
  <zone name="0_semos_plains_ne" level="0" x="500128" y="499872" file="0_semos_plains_ne.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.SemosPlainsNorthEast"/>
+  <configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC"/>
   <entity x="25" y="46">
     <implementation class-name="games.stendhal.server.entity.Sign">
       <attribute name="text">
@@ -184,7 +184,12 @@ social hub of the Semos area!
 
  <zone name="0_semos_city" level="0" x="500064" y="500000" file="0_semos_city.xstend">
   <title>The City of Semos</title>
-  <configurator class-name="games.stendhal.server.maps.semos.SemosCityOutside" />
+  <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
+  <configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
+  <configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
+  <configurator class-name="games.stendhal.server.maps.semos.city.HealerNPC" />
+  <configurator class-name="games.stendhal.server.maps.semos.city.RetiredAdventurerNPC" />
+  <configurator class-name="games.stendhal.server.maps.semos.city.RetireeNPC" />
 
 <!-- TEST
   <entity x="35" y="35">
@@ -322,7 +327,10 @@ the wolves while searching for berries here
  </zone>
 
    <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern0" />
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
+    
     <!-- This must be after the NPC configurator -->
     <entity x="2" y="16">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -340,7 +348,8 @@ the wolves while searching for berries here
    </zone>
 
    <zone name="int_semos_tavern_1" file="int_semos_tavern_1.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.SemosCityTavern1" />
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC" />    
 
     <portal x="4" y="4" ref="downstairs">
      <destination zone="int_semos_tavern_0" ref="upstairs"/>
@@ -348,8 +357,9 @@ the wolves while searching for berries here
    </zone>
 
    <zone name="int_semos_temple" file="int_semos_temple.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Temple" />
-
+    <configurator class-name="games.stendhal.server.maps.semos.temple.HealerNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.temple.TelepathNPC" />
+    
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_semos_city" ref="temple_entrance"/>
     </portal>
@@ -368,7 +378,8 @@ the wolves while searching for berries here
    </zone>
 
    <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Blacksmith" />
+    <configurator class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC" />
 
     <portal x="15" y="14" ref="entrance">
      <destination zone="0_semos_city" ref="blacksmith_entrance"/>
@@ -376,7 +387,8 @@ the wolves while searching for berries here
    </zone>
 
    <zone name="int_semos_library" file="int_semos_library.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Library" />
+    <configurator class-name="games.stendhal.server.maps.semos.library.HistorianGeographerNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.library.LibrarianNPC" />
 
     <portal x="8" y="30" ref="entrance_left">
      <destination zone="0_semos_city" ref="library_entrance_left"/>
@@ -429,7 +441,8 @@ with you.
    </zone>
 
    <zone name="int_semos_storage_0" file="int_semos_storage_0.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Storage" />
+    <configurator class-name="games.stendhal.server.maps.semos.storage.DecencyAndMannersWardenNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.storage.HousewifeNPC" />
 
     <portal x="9" y="14" ref="entrance">
      <destination zone="0_semos_city" ref="storage_entrance"/>
@@ -447,7 +460,7 @@ with you.
    </zone>
 
    <zone name="int_semos_bank" file="int_semos_bank.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bank" />
+    <configurator class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC" />
 
     <portal x="9" y="30" ref="entrance">
      <destination zone="0_semos_city" ref="bank_entrance"/>
@@ -548,8 +561,9 @@ with you.
    </zone>
 
    <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Townhall" />
-
+    <configurator class-name="games.stendhal.server.maps.semos.townhall.BoyNPC" />
+    <configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
+    
     <portal x="14" y="46" ref="entrance_left">
      <destination zone="0_semos_city" ref="townhall_entrance_left"/>
     </portal>
@@ -585,7 +599,8 @@ with you.
    </zone>
 
    <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.IL0_Bakery"/>
+    <configurator class-name="games.stendhal.server.maps.semos.bakery.ChefNPC"/>
+    <configurator class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC"/>
 
     <!-- This must be after the NPC configurator -->
     <entity x="29" y="6">
@@ -756,8 +771,9 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-1_semos_jail" level="-1" x="499872" y="500000" file="sub_1_semos_jail.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL1"/>
-
+  <configurator class-name="games.stendhal.server.maps.semos.jail.GuardNPC"/>
+  <configurator class-name="games.stendhal.server.maps.semos.jail.InmateNPC"/>
+  
   <portal x="28" y="17" ref="entrance">
    <destination zone="0_semos_plains_w" ref="jail_entrance"/>
   </portal>
@@ -785,7 +801,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-2_semos_jail" level="-2" x="499872" y="500000" file="sub_2_semos_jail.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.SemosJailWestSL2"/>
+  <configurator class-name="games.stendhal.server.maps.semos.jail.JailKeeperNPC"/>
  </zone>
 
  <zone name="-2_semos_catacombs" level="-2" x="500000" y="499872" file="sub_2_semos_catacombs.xstend">
@@ -1251,7 +1267,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-3_semos_catacombs" level="-3" x="500064" y="499872" file="sub_3_semos_catacombs.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.USL3_Catacombs"/>
+  <configurator class-name="games.stendhal.server.maps.semos.catacombs.SickVampireNPC"/>
 
   <portal x="30" y="57" ref="upstairs" replacing="true">
    <destination zone="-2_semos_catacombs" ref="downstairs"/>

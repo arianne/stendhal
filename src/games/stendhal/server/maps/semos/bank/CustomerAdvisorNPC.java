@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.bank;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +11,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
-public class IL0_Bank implements ZoneConfigurator {
+public class CustomerAdvisorNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

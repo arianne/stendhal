@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos;
+package games.stendhal.server.maps.semos.catacombs;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +14,7 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
-public class USL3_Catacombs implements ZoneConfigurator {
+public class SickVampireNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
