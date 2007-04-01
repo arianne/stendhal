@@ -18,6 +18,17 @@ import games.stendhal.server.pathfinder.Path;
  * A base factory for <code>Sign</code> objects.
  */
 public class SpeakerNPCFactory implements ConfigurableFactory {
+	
+	/**
+	 * Creates a new SpeakerNPC. Override this if you want to use a
+	 * subclass of SpeakerNPC.
+	 * 
+	 * @param name The NPC name.
+	 * @return An object of class SpeakerNPC or a subclass. 
+	 */
+	protected SpeakerNPC instantiate(String name) {
+		return new SpeakerNPC(name);
+	}
 
 	/**
 	 * Extract the NPC name from a context.
@@ -147,7 +158,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @see		Sign
 	 */
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		SpeakerNPC npc = new SpeakerNPC(getName(ctx));
+		SpeakerNPC npc = instantiate(getName(ctx));
 		// XXX - in fact, we could move this step to the constructor
 		// of SpeakerNPC.
 		NPCList.get().add(npc);

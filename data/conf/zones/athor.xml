@@ -290,7 +290,26 @@ BLACKJACK RULES
  <!-- Level -2 -->
 
  <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="sub_2_athor_ship_w2.xstend">
-  <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
+   <entity x="24" y="41">
+     <implementation class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC">
+       <attribute name="name">Klaas</attribute>
+       <attribute name="class">seller2npc</attribute>
+
+       <!-- to the bucket -->
+       <attribute name="node0">24,41</attribute>
+       <!-- along the corridor -->
+       <attribute name="node1">24,34</attribute>
+       <!-- walk between barrels and boxes -->
+       <attribute name="node2">17,34</attribute>
+       <!-- to the stairs -->
+       <attribute name="node3">17,38</attribute>
+       <!-- walk between the barrels -->
+       <attribute name="node4">22,38</attribute>
+       <!-- towards the bow -->
+       <attribute name="node5">22,41</attribute>
+     </implementation>
+   </entity>
+   <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
     <!-- This must be after the NPC configurator -->
     <entity x="22" y="30">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
