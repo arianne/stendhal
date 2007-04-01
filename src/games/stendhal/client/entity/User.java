@@ -47,12 +47,9 @@ public class User extends Player {
 		RPAction rpaction;
 		switch (at) {
 			case SET_OUTFIT:
-				int outfitTemp = outfit;
-				if (outfitOrg > 0) {
-					outfitTemp = outfitOrg;
-				}
-				StendhalUI.get().getOutfitDialog(outfitTemp).setVisible(true);
+				StendhalUI.get().chooseOutfit();
 				break;
+
 			case LEAVE_SHEEP:
 				rpaction = new RPAction();
 				rpaction.put("type", at.toString());

@@ -775,14 +775,6 @@ public class j2DClient extends StendhalUI {
 		return baseframe;
 	}
 
-	/**
-	 * Create an outfit selection dialog.
-	 *
-	 * @param	outfit		Initial outfit.
-	 */
-	public OutfitDialog getOutfitDialog(int outfit) {
-		return new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
-	}
 
 	/**
 	 * Determine if the <Alt> key is held down.
@@ -856,6 +848,27 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public void addEventLine(String header, String text, Color color) {
 		gameLog.addLine(header, text, color);
+	}
+
+
+	/**
+	 * Initiate outfit selection by the user.
+	 */
+	public void chooseOutfit() {
+		int	outfit;
+
+
+		RPObject player = client.getPlayer();
+
+		if(player.has("outfit_org")) {
+			outfit = player.getInt("outfit_org");
+		} else {
+			outfit = player.getInt("outfit");
+		}
+
+		// Should really keep only one instance of this around
+		OutfitDialog dialog = new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
+		dialog.setVisible(true);
 	}
 
 
