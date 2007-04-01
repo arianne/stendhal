@@ -145,42 +145,39 @@ public class ChatAction extends ActionListener {
 
 		if (action.has("text")) {
 			
+			if (action.get("text").trim().equals("")) {
+				player.sendPrivateText("Useage /support <your message here>");
+				return;
+			}
+
 			if (Jail.isInJail(player)) {
 				// check if the player sent a support message before
-				if (last_msg.containsKey(player.getName())){
+				if (last_msg.containsKey(player.getName())) {
 					Long time_lastmsg = System.currentTimeMillis() - last_msg.get(player.getName());
-				
-					// the player have to wait one second since the last support message was sent
+
+					// the player have to wait one minute since the last support message was sent
 					if (time_lastmsg < 60000) {
-						player.sendPrivateText("We only allow one support message per minute.");
+						player.sendPrivateText("We only allow inmates one support message per minute.");
 						return;
 					}
 				}
-			
+
 				last_msg.put(player.getName(), System.currentTimeMillis());
 			}
-			
-			String message = player.getName() + " asks for support to ADMIN: "
-					+ action.get("text") + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
+
+			String message = player.getName() + " asks for support to ADMIN: " + action.get("text")
+			        + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "support", action.get("text"));
 
-			boolean found = false;
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
 					p.sendPrivateText(message);
 					p.notifyWorldAboutChanges();
-					if (!p.getName().equals("postman")) {
-						found = true;
-					}
 				}
 			}
 
-			if (found) {
-				player.sendPrivateText("You ask for support: " + action.get("text"));
-			} else {
-				player.sendPrivateText("Sorry, your support request cannot be processed at the moment, because no administrators are currently active. Please try again in a short while, or visit #irc://irc.freenode.net/#arianne");
-			}
+			player.sendPrivateText("You ask for support: " + action.get("text") + "\nIt may take a little time until your question is answered.");
 			player.notifyWorldAboutChanges();
 		}
 
