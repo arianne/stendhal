@@ -16,11 +16,11 @@ public class TutorialNotifier {
 	 * @param player Player
 	 * @param key    EventType
 	 */
-	private static void process(Player player, String key) {
+	private static void process(Player player, TutorialEventType type) {
+		String key = type.name().toLowerCase();
 		if (player.getKeyedSlot("!tutorial", key) == null) {
 			player.setKeyedSlot("!tutorial", key, "1");
-			// TODO: Use text instead of key
-			player.sendPrivateText("Tutorial: " + key);
+			player.sendPrivateText("Tutorial: " + type.getMessage());
 		}
 	}
 
@@ -30,7 +30,7 @@ public class TutorialNotifier {
 	 * @param player Player
 	 */
 	public static void login(Player player) {
-		process(player, "FIRST_LOGIN");
+		process(player, TutorialEventType.FIRST_LOGIN);
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class TutorialNotifier {
 	 * @param player Player
 	 */
 	public static void move(Player player) {
-		process(player, "FIRST_WALK");
+		process(player, TutorialEventType.FIRST_MOVE);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class TutorialNotifier {
 	 */
 	public static void zoneChange(Player player, String sourceZone, String destinationZone) {
 		if (sourceZone.equals("int_semos_townhall")) {
-			process(player, "FIRST_VISIT_TO_SEMOS_CITY");
+			process(player, TutorialEventType.VISIT_SEMOS_CITY);
 		}
 	}
 }
