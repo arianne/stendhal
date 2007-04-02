@@ -26,18 +26,21 @@ public class SoundMaster implements Runnable {
 	}
 
 	public static void play(String soundName) {
-		if (soundName == null)
-			return;
+		if (soundName == null) {
+	        return;
+        }
 
 		byte[] o;
 
 		o = sfm.get(soundName);
-		if (o == null)
-			return;
+		if (o == null) {
+	        return;
+        }
+		try {
 		AudioClip ac = new AudioClip(AudioSystem.getMixer(null), "hugo", o, 100);
 
 		Clip cl;
-		try {
+		
 			cl = ac.openLine();
 
 			cl.addLineListener(cliplisten);
@@ -45,14 +48,11 @@ public class SoundMaster implements Runnable {
 			cl.drain();
 			cl = null;
 		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 
 	}

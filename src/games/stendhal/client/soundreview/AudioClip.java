@@ -65,14 +65,18 @@ public class AudioClip {
 	 * @param name the name of the audio clip
 	 * @param audioData the audio data 
 	 * @param volume   the loudness 0..100
+	 * @throws IOException 
+	 * @throws UnsupportedAudioFileException 
 	 */
-	public AudioClip(Mixer mixer, String name, byte[] audioData, int volume) {
+	public AudioClip(Mixer mixer, String name, byte[] audioData, int volume) throws UnsupportedAudioFileException, IOException {
 		this.volume = volume;
 		this.mixer = mixer;
 		this.name = name;
 
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
+		
+			AudioInputStream audioInputStream;
+           audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
+            
 			this.audioData = audioData;
 			format = audioInputStream.getFormat();
 
@@ -92,9 +96,8 @@ public class AudioClip {
 			} else {
 				length = 0;
 			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+            
+		
 	}
 
 	/**
