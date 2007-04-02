@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
@@ -201,8 +202,8 @@ public class StendhalClient extends ariannexp {
 				logger.debug("UPDATING screen position");
 
 				// If player exists, notify zone leaving.
-				if (player != null) {
-					WorldObjects.fireZoneLeft(player.getID().getZoneID());
+				if (!User.isNull()) {
+					WorldObjects.fireZoneLeft(User.get().getID().getZoneID());
 				}
 
 				// Notify zone entering.
@@ -596,7 +597,7 @@ public class StendhalClient extends ariannexp {
 	    
     }
 
-	public Object getUserName() {
+	public String getUserName() {
 	 
 	    return userName;
     }
