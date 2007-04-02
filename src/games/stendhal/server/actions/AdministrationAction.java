@@ -70,6 +70,7 @@ public class AdministrationAction implements ActionListener {
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
 		StendhalRPRuleProcessor.register("ghostmode", administration);
+		StendhalRPRuleProcessor.register("teleclickmode", administration);
 		StendhalRPRuleProcessor.register("jail", administration);
 
 		REQUIRED_ADMIN_LEVELS.put("adminlevel", 0);
@@ -81,6 +82,7 @@ public class AdministrationAction implements ActionListener {
 		REQUIRED_ADMIN_LEVELS.put("jail", 400);
 		REQUIRED_ADMIN_LEVELS.put("invisible", 500);
 		REQUIRED_ADMIN_LEVELS.put("ghostmode", 500);
+		REQUIRED_ADMIN_LEVELS.put("teleclickmode", 500);
 		REQUIRED_ADMIN_LEVELS.put("inspect", 600);
 		REQUIRED_ADMIN_LEVELS.put("destroy", 700);
 		REQUIRED_ADMIN_LEVELS.put("summon", 800);
@@ -157,6 +159,8 @@ public class AdministrationAction implements ActionListener {
 			onInvisible(player, action);
 		} else if (type.equals("ghostmode")) {
 			onGhostMode(player, action);
+		} else if (type.equals("teleclickmode")) {
+			onTeleClickMode(player, action);
 		} else if (type.equals("inspect")) {
 			onInspect(player, action);
 		} else if (type.equals("destroy")) {
@@ -536,6 +540,19 @@ public class AdministrationAction implements ActionListener {
 			player.setOutfit(invisible, true);
 		}
 		Log4J.finishMethod(logger, "onGhostMode");
+	}
+
+	private void onTeleClickMode(Player player, RPAction action) {
+		Log4J.startMethod(logger, "onTeleClickMode");
+
+		if (player.has("teleclickmode")) {
+			player.remove("teleclickmode");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleclickmode", "off");
+		} else {
+			player.put("teleclickmode", "");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleclickmode", "on");
+		}
+		Log4J.finishMethod(logger, "onTeleClickMode");
 	}
 
 	private void onInspect(Player player, RPAction action) {

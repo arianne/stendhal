@@ -86,6 +86,7 @@ class PlayerRPClass {
 		player.add("adminlevel", RPClass.INT);
 		player.add("invisible", RPClass.FLAG, RPClass.HIDDEN);
 		player.add("ghostmode", RPClass.FLAG, RPClass.HIDDEN);
+		player.add("teleclickmode", RPClass.FLAG, RPClass.HIDDEN);
 
 		player.add("release", RPClass.STRING, RPClass.HIDDEN);
 

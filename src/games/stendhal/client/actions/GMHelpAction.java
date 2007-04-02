@@ -28,6 +28,7 @@ class GMHelpAction implements SlashAction  {
 		        "- /script <scriptname> \t\tLoad (or reload) a script on the server",
 		        "- /teleport <player> <zone> <x> <y> \tTeleport the specified <player> to the given location",
 		        "- /teleportto <player> \t\tTeleport yourself near the specified player",
+		        "- /teleclickmode \t\t\t Makes you teleport to the location you double click",
 		        "- /ghostmode \t\t\t Makes yourself invisible and intangible",
 		        "- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp_alter for details",
 		        "- /summon <creature|item> <x> <y> \tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",

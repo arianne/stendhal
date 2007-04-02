@@ -76,9 +76,15 @@ public class MoveAction implements ActionListener {
 		if (action.has("x") && action.has("y")) {
 			int x = action.getInt("x");
 			int y = action.getInt("y");
-
-			List<Path.Node> path = Path.searchPath(player, x, y - 2);
-			player.setPath(path, false);
+			if(!player.has("teleclickmode")) {
+				//Walk
+				List<Path.Node> path = Path.searchPath(player, x, y - 2);
+				player.setPath(path, false);
+			} else {
+				//Teleport
+				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+				player.teleport(zone, x, y, null, null);
+			}
 		}
 
 		player.applyClientDirection(false);
