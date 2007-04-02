@@ -100,8 +100,8 @@ public abstract class AnimatedEntity extends Entity {
 	}
 
 	/** Returns the next Sprite we have to show */
-	private final Sprite nextFrame() {
-		Sprite[] anim = sprites.get(animation);
+	private Sprite nextFrame() {
+		Sprite[] anim = sprites.get(getAnimation());
 
 		if (anim == null) {
 			logger.fatal(this.getClass().getName() + ": sprites.get() returned null for " + animation);

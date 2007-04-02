@@ -36,8 +36,10 @@ public class GoldSource extends AnimatedEntity {
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
-		// TODO: make the animation work 
-		sprites.put("0", store.getAnimatedSprite(translate("gold_source"), 0, 8, 1, 1));
+		
+		for (int i = 0; i <= 7; i++) {
+			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate("gold_source"), i, 1, 1, 1));
+		}	
 	}
 
 	@Override
@@ -88,4 +90,18 @@ public class GoldSource extends AnimatedEntity {
 	public int getZIndex() {
 		return 3000;
 	}
+
+	@Override
+    protected String getAnimation() {
+	    Integer i = new Integer(animation);
+	    if (i==7){
+	    	i=0;
+	    } else {
+	    	i++;
+	    	
+	    }
+	    animation=i.toString();
+	
+	    return animation;
+    }
 }
