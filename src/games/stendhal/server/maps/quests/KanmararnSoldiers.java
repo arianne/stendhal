@@ -2,20 +2,24 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalScriptSystem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.scripting.ScriptAction;
-import games.stendhal.server.scripting.ScriptCondition;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.SlotIsFullException;
 
 
 /**
@@ -49,44 +53,77 @@ import marauroa.common.game.IRPZone;
  */
 public class KanmararnSoldiers extends AbstractQuest {
 
+	private static final Logger logger = Log4J.getLogger(KanmararnSoldiers.class);
+
 	private static final String QUEST_SLOT = "soldier_henry";
+	
+	/**
+	 * The maximum time (in seconds) until plundered corpses will be filled
+	 * again, so that other players can do the quest as well.
+	 */
+	private static final int CORPSE_REFILL_SECONDS = 60;
 
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
 	
-	class CorpseEmptyCondition extends ScriptCondition {
-		Corpse corpse;
+	/**
+	 * A CorpseRefiller checks, in regular intervals, if the given corpse
+	 * @author daniel
+	 *
+	 */
+	private class CorpseRefiller implements TurnListener {
+		private Corpse corpse;
+		private String itemName;
+		private String description;
 		
-		public CorpseEmptyCondition (Corpse corpse) {
-			this.corpse = corpse;
-		}
-		
-		public boolean fire() {
-			return corpse.size() < 1;
-		}
-	}
-
-	class CorpseFillAction extends ScriptAction {
-		Corpse corpse;
-		String itemName;
-		String description;
-		public CorpseFillAction (Corpse corpse, String itemName, String description) {
+		public CorpseRefiller (Corpse corpse, String itemName, String description) {
 			this.corpse = corpse;
 			this.itemName = itemName;
 			this.description = description;
 		}
 		
-		public void fire() {
-			Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
-			item.put("infostring", corpse.get("name"));
-			item.setDescription(description);
-			corpse.add(item);
+		public void start() {
+			TurnNotifier.get().notifyInTurns(1, this, null);
 		}
+		
+		private boolean equalsExpectedItem(Item item) {
+			return item.getName().equals(itemName) && item.getDescription().equals(description) && item.has("infostring") && item.get("infostring").equals(corpse.get("name")); 
+		}
+		
+		public void onTurnReached(int currentTurn, String message) {
+			boolean isStillFilled = false;
+			// Check if the item is still in the corpse. Note that somebody
+			// might have put other stuff into the corpse.
+			for (RPObject object: corpse.getSlot("content")) {
+				if (object instanceof Item) {
+					Item item = (Item) object;
+					if (equalsExpectedItem(item)) {
+						isStillFilled = true;
+					}
+				}
+			}
+			try {
+				if (! isStillFilled) {
+					// recreate the item and fill the corpse
+					Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+					item.put("infostring", corpse.get("name"));
+					item.setDescription(description);
+					corpse.add(item);
+					corpse.notifyWorldAboutChanges();
+				}
+			} catch (SlotIsFullException e) {
+				// ignore, just don't refill the corpse until someone removes
+				// the other items from the corpse
+				logger.warn("Quest corpse is full: " + corpse.get("name"));
+			}
+			// continue the checking cycle
+			TurnNotifier.get().notifyInSeconds(CORPSE_REFILL_SECONDS, this, null);
+        }
 	}
 
-	class HenryQuestAction extends SpeakerNPC.ChatAction {
+	private class HenryQuestAction extends SpeakerNPC.ChatAction {
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			if(!player.isQuestCompleted("soldier_henry") && !"map".equals(player.getQuest("soldier_henry"))) {
 				engine.say("Find my #group, Peter, Tom and Charles, prove it and I will reward you. Will you do it?");
@@ -97,31 +134,31 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class HenryQuestAcceptAction extends SpeakerNPC.ChatAction {
+	private class HenryQuestAcceptAction extends SpeakerNPC.ChatAction {
 		public void fire(Player player, String text, SpeakerNPC engine) {
 			player.setQuest("soldier_henry","start");
 		}
 	}
 
-	class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
+	private class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && player.getQuest("soldier_henry").equals("start"));
 		}
 	}
 
-	class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+	private class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (!player.hasQuest("soldier_henry") || player.getQuest("soldier_henry").equals("start"));
 		}
 	}
 
-	class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
+	private class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && !player.getQuest("soldier_henry").equals("start"));
 		}
 	}
 
-	class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
+	private class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
 		public void fire(Player player, String text, SpeakerNPC engine) {
 
 			List<Item> allLeatherLegs = player.getAllEquipped("leather_legs");
@@ -168,19 +205,19 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 	}
 
-	class JamesQuestCompleteCondition extends SpeakerNPC.ChatCondition {
+	private class JamesQuestCompleteCondition extends SpeakerNPC.ChatCondition {
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.hasQuest("soldier_henry") && player.getQuest("soldier_henry").equals("map"));
 		}
 	}
 
-	class JamesQuestCompletedCondition extends SpeakerNPC.ChatCondition {
+	private class JamesQuestCompletedCondition extends SpeakerNPC.ChatCondition {
 		public boolean fire(Player player, String text, SpeakerNPC engine) {
 			return (player.isQuestCompleted("soldier_henry"));
 		}
 	}
 
-	class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
+	private class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
 		public void fire(Player player, String text, SpeakerNPC engine) {
 		
 			List<Item> allMaps = player.getAllEquipped("map");
@@ -229,7 +266,6 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 */
 	private void step_2() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
-		StendhalScriptSystem scripts = StendhalScriptSystem.get();
 
 		// Now we create the corpse of the second NPC
 		Corpse tom = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 5, 47);
@@ -240,9 +276,10 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add our new Ex-NPC to the game world
 		zone.assignRPObjectID(tom);
 		zone.add(tom);
-		// Add a script to automatically fill the corpse of unlucky Tom
-		scripts.addScript(new CorpseEmptyCondition(tom), 
-				new CorpseFillAction(tom, "leather_legs", "You see torn leather legs that are heavily covered with blood."));
+
+		// Add a refiller to automatically fill the corpse of unlucky Tom
+		CorpseRefiller tomRefiller = new CorpseRefiller(tom, "leather_legs", "You see torn leather legs that are heavily covered with blood.");
+		tomRefiller.start();
 
 		// Now we create the corpse of the third NPC
 		Corpse charles = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 94, 5);
@@ -253,10 +290,10 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add our new Ex-NPC to the game world
 		zone.assignRPObjectID(charles);
 		zone.add(charles);
-		// Add a script to automatically fill the corpse of unlucky Charles
-		scripts.addScript(new CorpseEmptyCondition(charles), 
-				new CorpseFillAction(charles, "note", "You read: \"IOU 250 gold. (signed) McPegleg\""));
-	 
+		// Add a refiller to automatically fill the corpse of unlucky Charles
+		CorpseRefiller charlesRefiller = new CorpseRefiller(charles, "note", "You read: \"IOU 250 gold. (signed) McPegleg\"");
+		charlesRefiller.start();
+
 		// Now we create the corpse of the fourth NPC
 		Corpse peter = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 11, 63);
 		peter.setDegrading(false);
@@ -266,9 +303,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add our new Ex-NPC to the game world
 		zone.assignRPObjectID(peter);
 		zone.add(peter);
-		// Add a script to automatically fill the corpse of unlucky Peter
-		scripts.addScript(new CorpseEmptyCondition(peter), 
-				new CorpseFillAction(peter, "scale_armor", "You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows."));
+		// Add a refiller to automatically fill the corpse of unlucky Peter
+		CorpseRefiller peterRefiller = new CorpseRefiller(peter, "scale_armor", "You see a slightly rusty scale armor. It is heavily deformed by several strong hammer blows.");
+		peterRefiller.start();
 	}
 
 	/**
