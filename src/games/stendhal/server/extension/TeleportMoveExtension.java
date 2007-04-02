@@ -100,8 +100,8 @@ public class TeleportMoveExtension extends StendhalServerExtension implements Ac
 
 	private void onTeleMoveTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onTeleMoveTo");
-		//even with verbose false isPlayerAllowedToExecuteAdminCommand will tell non-admins
-		//that they lack access, and the cmd lvls can't be accessed through any other means
+		//even with verbose false isPlayerAllowedToExecuteAdminCommand will
+		//logger.warn spam, and the cmd lvls can't be accessed through any other means
 		if (!(player.getAdminLevel() >= TELE_CLICK_CMD_LVL) || !player.hasQuest(QUEST)
 		        || !(player.getQuest(QUEST)).equals("on")) {
 			move.onAction(player, action);
