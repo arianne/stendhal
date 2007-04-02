@@ -90,8 +90,8 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
-
+		        ConversationStates.ATTENDING, "Thanks.", 
+		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        String itemName = behaviour.chosenItem;
@@ -162,8 +162,8 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Thanks.", new SpeakerNPC.ChatAction() {
-
+		        ConversationStates.ATTENDING, "Thanks.", 
+		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        logger.debug("Buying something from player " + player.getName());
@@ -183,7 +183,6 @@ class BehaviourAdder {
 
 		engine.add(ConversationStates.ATTENDING, "heal", null, ConversationStates.HEAL_OFFERED, null,
 		        new SpeakerNPC.ChatAction() {
-
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        healerBehaviour.chosenItem = "heal";
@@ -202,8 +201,8 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.HEAL_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
+		        ConversationStates.ATTENDING, null, 
+		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
 				        if (player.drop("money", healerBehaviour.getCharge(player))) {
@@ -282,8 +281,8 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
+		        ConversationStates.ATTENDING, null, 
+		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 				        String itemName = behaviour.chosenItem;
@@ -291,122 +290,130 @@ class BehaviourAdder {
 
 				        if (behaviour.transactAgreedDeal(npc, player)) {
 					        if (canReturn) {
-						        npc
-						                .say("Thanks, and please don't forget to #return it when you don't need it anymore!");
+						        npc.say("Thanks, and please don't forget to #return it when you don't need it anymore!");
 					        } else {
 						        npc.say("Thanks!");
 					        }
 				        }
 			        }
-		        });
+		        }
+			);
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 		        ConversationStates.ATTENDING, "Ok, how else may I help you?", null);
 
 		if (canReturn) {
 			engine.add(ConversationStates.ATTENDING, "return", null, ConversationStates.ATTENDING, null,
-			        new SpeakerNPC.ChatAction() {
-
-				        @Override
-				        public void fire(Player player, String text, SpeakerNPC npc) {
-					        if (behaviour.returnToOriginalOutfit(player)) {
-						        // TODO: it would be cool if you could get a refund
-						        // for returning the outfit, i. e. the money is
-						        // only paid as a deposit.
-						        npc.say("Thank you!");
-					        } else {
-						        npc.say("I can't remember that I gave you anything.");
-					        }
-				        }
-			        });
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						if (behaviour.returnToOriginalOutfit(player)) {
+							// TODO: it would be cool if you could get a refund
+							// for returning the outfit, i. e. the money is
+							// only paid as a deposit.
+							npc.say("Thank you!");
+						} else {
+							npc.say("I can't remember that I gave you anything.");
+						}
+					}
+				}
+			);
 		}
 	}
 
 	public void addProducer(final ProducerBehaviour behaviour, String welcomeMessage) {
-
 		final String thisWelcomeMessage = welcomeMessage;
 
-		speakerNPC.addWaitMessage(null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC engine) {
-				engine.say("Please wait! I am attending " + engine.getAttending().getName() + ".");
-			}
-		});
-
-		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC engine) {
-				return !player.hasQuest(behaviour.getQuestSlot()) || player.isQuestCompleted(behaviour.getQuestSlot());
-			}
-		}, ConversationStates.ATTENDING, thisWelcomeMessage, null);
-
-		engine.add(ConversationStates.ATTENDING, behaviour.getProductionActivity(), new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC engine) {
-				return !player.hasQuest(behaviour.getQuestSlot()) || player.isQuestCompleted(behaviour.getQuestSlot());
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC npc) {
-
-				String[] words = text.split(" ");
-				int amount = 1;
-				if (words.length > 1) {
-					amount = Integer.parseInt(words[1].trim());
-				}
-				if (amount > 1000) {
-					logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);
-					amount = 1; 
-				}
-				if (behaviour.askForResources(npc, player, amount)) {
-					npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+		speakerNPC.addWaitMessage(null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					engine.say("Please wait! I am attending " + engine.getAttending().getName() + ".");
 				}
 			}
-		});
+		);
+
+		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !player.hasQuest(behaviour.getQuestSlot()) || player.isQuestCompleted(behaviour.getQuestSlot());
+				}
+			},
+			ConversationStates.ATTENDING, thisWelcomeMessage, null);
+
+		engine.add(ConversationStates.ATTENDING, behaviour.getProductionActivity(), 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return !player.hasQuest(behaviour.getQuestSlot()) || player.isQuestCompleted(behaviour.getQuestSlot());
+				}
+			},
+			ConversationStates.ATTENDING, null, 
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+	
+					String[] words = text.split(" ");
+					int amount = 1;
+					if (words.length > 1) {
+						amount = Integer.parseInt(words[1].trim());
+					}
+					if (amount > 1000) {
+						logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);
+						amount = 1; 
+					}
+					if (behaviour.askForResources(npc, player, amount)) {
+						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
+					}
+				}
+			}
+		);
 
 		engine.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
+		        ConversationStates.ATTENDING, null, 
+		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 				        behaviour.transactAgreedDeal(npc, player);
 			        }
-		        });
+		        }
+			);
 
 		engine.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.NO_MESSAGES, null,
 		        ConversationStates.ATTENDING, "OK, no problem.", null);
 
-		engine.add(ConversationStates.ATTENDING, behaviour.getProductionActivity(), new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC engine) {
-				return player.hasQuest(behaviour.getQuestSlot()) && !player.isQuestCompleted(behaviour.getQuestSlot());
+		engine.add(ConversationStates.ATTENDING, behaviour.getProductionActivity(),
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return player.hasQuest(behaviour.getQuestSlot()) && !player.isQuestCompleted(behaviour.getQuestSlot());
+				}
+			},
+			ConversationStates.ATTENDING, null, 
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					npc.say("I still haven't finished your last order. Come back in "
+					        + behaviour.getApproximateRemainingTime(player) + "!");
+				}
 			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+		);
 
-			@Override
-			public void fire(Player player, String text, SpeakerNPC npc) {
-				npc.say("I still haven't finished your last order. Come back in "
-				        + behaviour.getApproximateRemainingTime(player) + "!");
+		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC engine) {
+					return player.hasQuest(behaviour.getQuestSlot()) && !player.isQuestCompleted(behaviour.getQuestSlot());
+				}
+			}, 
+			ConversationStates.ATTENDING, null, 
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC npc) {
+					behaviour.giveProduct(npc, player);
+				}
 			}
-		});
-
-		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new SpeakerNPC.ChatCondition() {
-
-			@Override
-			public boolean fire(Player player, String text, SpeakerNPC engine) {
-				return player.hasQuest(behaviour.getQuestSlot()) && !player.isQuestCompleted(behaviour.getQuestSlot());
-			}
-		}, ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
-
-			@Override
-			public void fire(Player player, String text, SpeakerNPC npc) {
-				behaviour.giveProduct(npc, player);
-			}
-		});
+		);
 	}
 }
