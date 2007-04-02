@@ -243,7 +243,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 		this.dy = direction.getdy() * speed;
 		this.speed = speed;
 
-		if ((direction == Direction.LEFT) || (direction == Direction.RIGHT)) {
+		if ((Direction.LEFT.equals( direction )) || (Direction.RIGHT.equals( direction ))) {
 			this.y = y;
 			if (compareDouble(this.x, x, 1.0)) {
 				// make the movement look more nicely: + this.dx * 0.1
@@ -252,7 +252,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 				this.x = x;
 			}
 			this.dy = 0;
-		} else if ((direction == Direction.UP) || (direction == Direction.DOWN)) {
+		} else if ((Direction.UP.equals( direction )) || (Direction.DOWN.equals( direction ))) {
 			this.x = x;
 			this.dx = 0;
 			if (compareDouble(this.y, y, 1.0)) {
@@ -396,7 +396,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 
 			onMove(x, y, direction, speed);
 
-			if ((direction == Direction.STOP) || (speed == 0)) {
+			if ((Direction.STOP.equals( direction )) || (speed == 0)) {
 				onStop(x, y);
 			}
 
