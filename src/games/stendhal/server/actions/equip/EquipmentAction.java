@@ -183,6 +183,9 @@ public class EquipmentAction implements ActionListener {
 			// reappear
 			// on the ground. See DestinationObject.addToWorld()#600
 			source.moveTo(dest, player);
+			if (entity.has("bound")) {
+				player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in " + (Item.DEGRADATION_TIMEOUT / 60) + " minutes, as all items do. But in this case there is no way to restore it.");
+			}
 			int amount = 1;
 			if (entity instanceof StackableItem) {
 				amount = ((StackableItem) entity).getQuantity();
@@ -277,6 +280,9 @@ public class EquipmentAction implements ActionListener {
 						if (entity.has("#db_id")) {
 							entity.remove("#db_id");
 						}
+					}
+					if (entity.has("bound")) {
+						player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in " + (Item.DEGRADATION_TIMEOUT / 60) + " minutes, as all items do. But in this case there is no way to restore it.");
 					}
 
 					String itemName = "entity";
