@@ -103,7 +103,7 @@ public class UseAction implements ActionListener {
 
 		Log4J.finishMethod(logger, "use");
 	}
-
+	
 	private void invokeUseListener(Player player, RPObject object) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
@@ -126,9 +126,17 @@ public class UseAction implements ActionListener {
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "use", name, infostring);
 
 		if (object instanceof UseListener) {
-			UseListener item = (UseListener) object;
-			item.onUsed(player);
-			return;
+			UseListener listener = (UseListener) object;
+			// Make sure nobody uses items bound to someone else.
+			if (listener instanceof Item) {
+				Item item = (Item) listener;
+				if (item.has("bound") && ! item.get("bound").equals(player.getName())) {
+					player.sendPrivateText("This " + ((Item) listener).getName() + " is a special reward for " + item.get("bound")
+							+ ". You do not deserve to use it.");
+					return;
+				}
+			}
+			listener.onUsed(player);
 		}
 	}
 }
