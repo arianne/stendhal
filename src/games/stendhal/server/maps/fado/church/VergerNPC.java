@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class IL0_VergerNPC implements ZoneConfigurator {
+public class VergerNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

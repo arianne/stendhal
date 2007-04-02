@@ -15,7 +15,7 @@ import games.stendhal.server.pathfinder.Path;
  *
  * @author timothyb89
  */
-public class IL0_GreeterNPC implements ZoneConfigurator {
+public class GreeterNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

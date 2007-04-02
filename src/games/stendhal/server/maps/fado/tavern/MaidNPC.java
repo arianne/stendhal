@@ -15,9 +15,9 @@ import games.stendhal.server.pathfinder.Path;
 /**
  * Builds the tavern maid NPC.
  *
- * @author timothyb89
+ * @author timothyb89/kymara
  */
-public class IL0_MaidNPC implements ZoneConfigurator {
+public class MaidNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -38,11 +38,11 @@ public class IL0_MaidNPC implements ZoneConfigurator {
 	}
 
 	//
-	// L0_TellerNPC
+	// MaidNPC
 	//
 
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC tavernMaid = new SpeakerNPC("Mother Helena") {
+		SpeakerNPC tavernMaid = new SpeakerNPC("Old Mother Helena") {
 
 			@Override
 			protected void createPath() {

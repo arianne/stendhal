@@ -34,7 +34,7 @@ import marauroa.common.game.IRPZone;
  * @author daniel
  *
  */
-public class IL0_PriestNPC implements ZoneConfigurator {
+public class PriestNPC implements ZoneConfigurator {
 
 	// The spouse's name is stored in one of the player's quest slots.
 	// This is necessary to disallow polygamy.

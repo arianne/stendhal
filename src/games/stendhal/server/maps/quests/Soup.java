@@ -18,10 +18,10 @@ import marauroa.common.game.IRPZone;
  * QUEST: Special Soup
  * 
  * PARTICIPANTS:
- * - Mother Helena in Fado tavern
+ * - Old Mother Helena in Fado tavern
  * 
  * STEPS:
- * - OldLady tells you the ingredients of a special soup
+ * - Old Mother Helena tells you the ingredients of a special soup
  * - You collect the ingredients 
  * - You bring the ingredients to the tavern and pay a small fee
  * - Eating the soup (must be at table) heals you fully and gives you a base HP/mana bonus
@@ -75,14 +75,14 @@ public class Soup extends AbstractQuest {
 		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("soup");
 		IRPZone zone = StendhalRPWorld.get().getRPZone("int_fado_tavern");
 		zone.assignRPObjectID(soup);
-		soup.setX(10);
-		soup.setY(10);
+		soup.setX(17);
+		soup.setY(23);
 		soup.put("bound", player.getName());
 		zone.add(soup);
 	}
 
 	private void step_1() {
-		SpeakerNPC npc = npcs.get("Mother Helena");
+		SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player says hi before starting the quest
 		npc.add(ConversationStates.IDLE,
@@ -111,7 +111,7 @@ public class Soup extends AbstractQuest {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
 					if (!player.isQuestCompleted("soup_maker")) {
-						npc.say("My special soup will revive you. I need you to bring me the #ingredients.");
+						npc.say("My special soup will revive you. It has a magic touch. I need you to bring me the #ingredients.");
 					} else { // to be honest i don't understand when this would be implemented. i put the text i want down in stage 3 and it works fine.
 						npc.say("I have everything for the recipe now.");
 						npc.setCurrentState(ConversationStates.ATTENDING);
@@ -174,7 +174,7 @@ public class Soup extends AbstractQuest {
 	}
 
 	private void step_3() {
-		SpeakerNPC npc = npcs.get("Mother Helena");
+		SpeakerNPC npc = npcs.get("Old Mother Helena");
 
 		// player returns while quest is still active
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -229,9 +229,9 @@ public class Soup extends AbstractQuest {
 
 								player.addBaseMana(10);
 								player.addXP(100);
-								player.setHP(player.getBaseHP());
+								//player.setHP(player.getBaseHP());
 								player.healPoison();
-								npc.say("The soup's on the table or floor. I healed you already, one day the soup will do that. The magical method in making teh soup means your base mana is increased.");
+								npc.say("The soup's on the table for you. It will be more than enough to heal you. My magical method in making the soup has increased your base mana.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.ATTENDING);

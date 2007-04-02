@@ -15,7 +15,7 @@ import games.stendhal.server.pathfinder.Path;
  *
  * @author timothyb89
  */
-public class IL0_TellerNPC implements ZoneConfigurator {
+public class TellerNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 

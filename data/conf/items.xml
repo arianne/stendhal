@@ -2045,8 +2045,9 @@ Makes players more offensive
 		class-name="games.stendhal.server.entity.item.Drink"/>
                 <attributes>
                         <quantity value="1"/>
-                        <amount value="1000"/>
-                        <regen value="1000"/>
+                        <amount value="2500"/>
+                        <regen value="2500"/>
+                        <frequency value="1"/>
                  </attributes>
                 <weight value="1"/>
                 <equipable>

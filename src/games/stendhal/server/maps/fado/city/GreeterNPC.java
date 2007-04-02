@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.fado.city;
 
-import games.stendhal.common.Direction;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +18,7 @@ import games.stendhal.server.pathfinder.Path;
  *
  * @author timothyb89
  */
-public class OL0_GreeterNPC implements ZoneConfigurator {
+public class GreeterNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -37,7 +36,6 @@ public class OL0_GreeterNPC implements ZoneConfigurator {
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
 		buildNPC(zone, attributes);
-		buildNunNPC(zone, attributes);
 	}
 
 	//
@@ -79,41 +77,4 @@ public class OL0_GreeterNPC implements ZoneConfigurator {
 		zone.add(GreeterNPC);
 	}
 
-	//
-	// A Nun NPC outside church
-	//
-	private void buildNunNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC nunnpc = new SpeakerNPC("Sister Benedicta") {
-
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				// does not move
-				setPath(nodes, false);
-			}
-
-			@Override
-			protected void createDialog() {
-				addGreeting("Welcome to this place of worship.");
-				addHelp("I don't know what you need, dear child.");
-				addJob("I am a nun. But this is my life, not my work.");
-				addQuest("The great quest of all life is to be #married.");
-				addReply(
-				        "married",
-				        "When you have found your partner, and you are very sure that you want to be joined together in matrimony, tell a suitable #priest");
-				addReply(
-				        "priest",
-				        "A priest will say the rites in the ceremony. You will need to book a time when the priest can come. Try asking /support and a response may come.");
-				addGoodbye("Goodbye, may peace be with you.");
-			}
-		};
-		nunnpc.setDescription("You see Sister Benedicta, a holy nun.");
-		npcs.add(nunnpc);
-		zone.assignRPObjectID(nunnpc);
-		nunnpc.put("class", "nunnpc");
-		nunnpc.setDirection(Direction.RIGHT);
-		nunnpc.set(53, 53);
-		nunnpc.initHP(100);
-		zone.add(nunnpc);
-	}
 }

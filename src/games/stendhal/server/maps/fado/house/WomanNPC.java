@@ -15,7 +15,7 @@ import games.stendhal.server.pathfinder.Path;
  *
  * @author kymara
  */
-public class IL0_WomanNPC implements ZoneConfigurator {
+public class WomanNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
