@@ -54,8 +54,8 @@ public class StackableItem extends Item implements Stackable {
 		put("quantity", quantity);
 	}
 
-	public int add(int amount) {
-		setQuantity(amount + quantity);
+	public int sub(int amount) {
+		setQuantity(quantity - amount);
 		return quantity;
 	}
 
@@ -80,7 +80,7 @@ public class StackableItem extends Item implements Stackable {
 			if (has("description")) {
 				newItem.put("description", get("description"));
 			}
-			add(-amountToSplitOff);
+			sub(amountToSplitOff);
 
 			if (quantity > 0) {
 				if (isContained()) {

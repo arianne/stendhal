@@ -25,9 +25,6 @@ public interface Stackable {
 	/** sets the quantity */
 	public void setQuantity(int amount);
 
-	/** adds some value to the quantity */
-	public int add(int amount);
-
 	/** adds the quantity of the other Stackable to this */
 	public int add(Stackable other);
 
