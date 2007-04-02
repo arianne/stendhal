@@ -2,8 +2,6 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -13,6 +11,8 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+
+import marauroa.common.game.IRPZone;
 
 /**
  * QUEST: Special Soup
@@ -39,14 +39,14 @@ import java.util.List;
  */
 public class Soup extends AbstractQuest {
 
-    private static final List<String> neededFood = Arrays.asList("carrot", "spinach", "courgette", "cabbage", "salad", "onion", "cauliflower", "broccoli", "leek");
+    private static final List<String> NEEDED_FOOD = Arrays.asList("carrot", "spinach", "courgette", "cabbage", "salad", "onion", "cauliflower", "broccoli", "leek");
 
 	/**
 	 * Returns a list of the names of all food that the given player
 	 * still has to bring to fulfil the quest.
 	 * @param player The player doing the quest
 	 * @param hash If true, sets a # character in front of every name
-	 * @return A list of toy names
+	 * @return A list of food item names
 	 */
 	private List<String> missingFood(Player player, boolean hash) {
 		List<String> result = new LinkedList<String>();
@@ -56,7 +56,7 @@ public class Soup extends AbstractQuest {
 			doneText = "";
 		}
 		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String ingredient : neededFood) {
+		for (String ingredient : NEEDED_FOOD) {
 			if (!done.contains(ingredient)) {
 				if (hash) {
 					ingredient = "#" + ingredient;
@@ -66,15 +66,30 @@ public class Soup extends AbstractQuest {
 		}
 		return result;
 	}
+	
+	
+	/**
+	 * Serves the soup as a reward for the given player.
+	 */
+	private void placeSoupFor(Player player) {
+		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("soup");
+		IRPZone zone = StendhalRPWorld.get().getRPZone("int_fado_tavern");
+		zone.assignRPObjectID(soup);
+		soup.setX(10);
+		soup.setY(10);
+		soup.put("bound", player.getName());
+		zone.add(soup);
+	}
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Mother Helena");
 
 		// player says hi before starting the quest
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE,
+			ConversationPhrases.GREETING_MESSAGES, 
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return !player.hasQuest("soup_maker");
 				}
 			},
@@ -82,22 +97,24 @@ public class Soup extends AbstractQuest {
 			"Hello, stranger. You look weary from your travels. I know what would #help you.",
 			null);
 
-		npc.add(ConversationStates.ATTENDING, "help",
+		npc.add(ConversationStates.ATTENDING,
+			"help",
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return !player.hasQuest("soup_maker");
 				}
 			},
-			ConversationStates.QUEST_OFFERED, null,
+			ConversationStates.QUEST_OFFERED,
+			null,
 			new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, String text, SpeakerNPC npc) {
 					if (!player.isQuestCompleted("soup_maker")) {
-						engine.say("My special soup will revive you. I need you to bring me the #ingredients.");
+						npc.say("My special soup will revive you. I need you to bring me the #ingredients.");
 					} else { // to be honest i don't understand when this would be implemented. i put the text i want down in stage 3 and it works fine.
-						engine.say("I have everything for the recipe now.");
-						engine.setCurrentState(ConversationStates.ATTENDING);
+						npc.say("I have everything for the recipe now.");
+						npc.setCurrentState(ConversationStates.ATTENDING);
 					}
 				}
 			});
@@ -110,9 +127,9 @@ public class Soup extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						List<String> needed = missingFood(player, true);
-						engine.say("I need " + Grammar.quantityplnoun(needed.size(), "ingredient") + " before I make the soup: " + Grammar.enumerateCollection(needed) + ". Will you collect them?");
+						npc.say("I need " + Grammar.quantityplnoun(needed.size(), "ingredient") + " before I make the soup: " + Grammar.enumerateCollection(needed) + ". Will you collect them?");
 					}
 			});
 				// player is willing to collect
@@ -123,14 +140,14 @@ public class Soup extends AbstractQuest {
 					null,
 					new SpeakerNPC.ChatAction() {
 						@Override
-						public void fire(Player player, String text, SpeakerNPC engine) {
-							engine.say("You made a wise choice. Farewell, traveller.");
+						public void fire(Player player, String text, SpeakerNPC npc) {
+							npc.say("You made a wise choice. Farewell, traveller.");
 							player.setQuest("soup_maker", "");
 					}
 			});
 			   // player is not willing to help
 			npc.add(ConversationStates.QUEST_OFFERED,
-					"no",
+					ConversationPhrases.NO_MESSAGES,
 					null,
 					ConversationStates.ATTENDING,
 					"Well, maybe someone else will happen by and help me.",
@@ -141,7 +158,7 @@ public class Soup extends AbstractQuest {
 					Arrays.asList("spinach", "courgette", "cabbage", "onion", "cauliflower", "broccoli", "leek"),
 					null,
 					ConversationStates.QUEST_OFFERED,
-					"You will find that in allotments close to fado. So will you fetch the ingredients?",
+					"You will find that in allotments close to Fado. So will you fetch the ingredients?",
 					null
 			);
 			npc.add(ConversationStates.QUEST_OFFERED,
@@ -163,7 +180,7 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return player.hasQuest("soup_maker") && !player.isQuestCompleted("soup_maker");
 				}
 			},
@@ -174,7 +191,7 @@ public class Soup extends AbstractQuest {
 				"ingredients",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest("soup_maker") &&
 								!player.isQuestCompleted("soup_maker");
 					}
@@ -183,9 +200,9 @@ public class Soup extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						List<String> needed = missingFood(player, true);
-						engine.say("I still need " + Grammar.quantityplnoun(needed.size(), "ingredient") + ": " + Grammar.enumerateCollection(needed) + ". Did you bring anything I need?");
+						npc.say("I still need " + Grammar.quantityplnoun(needed.size(), "ingredient") + ": " + Grammar.enumerateCollection(needed) + ". Did you bring anything I need?");
 					}
 				});
 		
@@ -193,10 +210,10 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.QUESTION_1, "What did you bring?", null);
 
-		for (String ingredient : neededFood) {
+		for (String ingredient : NEEDED_FOOD) {
 			npc.add(ConversationStates.QUESTION_1, ingredient, null, ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
 				@Override
-				public void fire(Player player, String text, SpeakerNPC engine) {
+				public void fire(Player player, String text, SpeakerNPC npc) {
 					List<String> missing = missingFood(player, false);
 					if (missing.contains(text)) {
 						if (player.drop(text)) {
@@ -206,25 +223,24 @@ public class Soup extends AbstractQuest {
 							// check if the player has brought all Food
 							missing = missingFood(player, true);
 							if (missing.size() > 0) {
-								engine.say("Thank you very much! What else did you bring?");
+								npc.say("Thank you very much! What else did you bring?");
 							} else {
+								placeSoupFor(player);
 
-								Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("soup");
-								StendhalRPAction.placeat((StendhalRPZone) StendhalRPWorld.get().getRPZone("int_fado_tavern"), soup, 10, 10, null);
 								player.addBaseMana(10);
 								player.addXP(100);
 								player.setHP(player.getBaseHP());
 								player.healPoison();
-								engine.say("The soup's on the table or floor. I healed you already, one day the soup will do that. The magical method in making teh soup means your base mana is increased.");
+								npc.say("The soup's on the table or floor. I healed you already, one day the soup will do that. The magical method in making teh soup means your base mana is increased.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
-								engine.setCurrentState(ConversationStates.ATTENDING);
+								npc.setCurrentState(ConversationStates.ATTENDING);
 							}
 						} else {
-							engine.say("Don't take me for a fool, traveller. You don't have " + Grammar.a_noun(text) + " with you.");
+							npc.say("Don't take me for a fool, traveller. You don't have " + Grammar.a_noun(text) + " with you.");
 						}
 					} else {
-						engine.say("You brought me that ingredient already.");
+						npc.say("You brought me that ingredient already.");
 					}
 				}
 			});
@@ -233,16 +249,17 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, "",
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return !neededFood.contains(text);
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
+					return !NEEDED_FOOD.contains(text);
 				}
 			},
 			ConversationStates.QUESTION_1, "I won't put that in your soup.", null);
 
-		npc.add(ConversationStates.ATTENDING, "no",
+		npc.add(ConversationStates.ATTENDING,
+			ConversationPhrases.NO_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return !player.isQuestCompleted("soup_maker");
 				}
 			},
@@ -250,10 +267,11 @@ public class Soup extends AbstractQuest {
 			"I'm not sure what you want from me, then.", null);
 
 		// player says he didn't bring any Food to different question
-		npc.add(ConversationStates.QUESTION_1, "no",
+		npc.add(ConversationStates.QUESTION_1,
+			ConversationPhrases.NO_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return !player.isQuestCompleted("soup_maker");
 				}
 			},
@@ -264,7 +282,7 @@ public class Soup extends AbstractQuest {
 		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return player.isQuestCompleted("soup_maker");
 				}
 			}, 
