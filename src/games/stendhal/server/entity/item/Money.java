@@ -39,4 +39,9 @@ public class Money extends StackableItem {
 	public boolean isStackable(Stackable other) {
 		return (other.getClass() == Money.class);
 	}
+
+	@Override
+    public String describe() {
+	    return "you see " + getQuantity() + " money.";
+    }
 }
