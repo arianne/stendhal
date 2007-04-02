@@ -12,8 +12,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class SoundMaster implements Runnable {
 
 	
-	private static SoundFileMap sfm;
-	private static Cliplistener cliplisten;
+	private static SoundFileMap sfm=null;
+	private static Cliplistener cliplisten=null;
 
 	public void run() {
 		init();
@@ -60,15 +60,19 @@ public class SoundMaster implements Runnable {
 	class Cliplistener implements LineListener {
 
 		public void update(LineEvent event) {
-			if (event.getType().equals(LineEvent.Type.START))
-				System.out.println("start");
-			if (event.getType().equals(LineEvent.Type.CLOSE))
-				System.out.println("close");
-			if (event.getType().equals(LineEvent.Type.STOP))
-				event.getLine().close();
-			System.out.println("stop");
-			if (event.getType().equals(LineEvent.Type.OPEN))
-				System.out.println("open");
+			if (event.getType().equals(LineEvent.Type.START)) {
+	          
+            }
+			if (event.getType().equals(LineEvent.Type.CLOSE)) {
+	            
+            }
+			if (event.getType().equals(LineEvent.Type.STOP)) {
+	            event.getLine().close();
+            }
+			
+			if (event.getType().equals(LineEvent.Type.OPEN)) {
+	            
+            }
 		}
 
 	}
