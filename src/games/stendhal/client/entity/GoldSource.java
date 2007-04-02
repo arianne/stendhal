@@ -28,6 +28,8 @@ import marauroa.common.game.RPObject;
  *
  */
 public class GoldSource extends AnimatedEntity {
+	
+	private static final int FRAME_COUNT = 32;
 
 	public GoldSource(RPObject object) throws AttributeNotFoundException {
 		super(object);
@@ -37,7 +39,7 @@ public class GoldSource extends AnimatedEntity {
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		
-		for (int i = 0; i <= 7; i++) {
+		for (int i = 0; i < FRAME_COUNT; i++) {
 			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate("gold_source"), i, 1, 1, 1));
 		}	
 	}
@@ -93,14 +95,9 @@ public class GoldSource extends AnimatedEntity {
 
 	@Override
     protected String getAnimation() {
-	    Integer i = new Integer(animation);
-	    if (i==7){
-	    	i=0;
-	    } else {
-	    	i++;
-	    	
-	    }
-	    animation=i.toString();
+	    int i = Integer.parseInt(animation);
+	    i = (i + 1) % FRAME_COUNT;
+	    animation = Integer.toString(i);
 	
 	    return animation;
     }
