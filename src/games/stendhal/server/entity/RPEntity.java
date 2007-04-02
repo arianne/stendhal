@@ -444,7 +444,15 @@ public abstract class RPEntity extends Entity {
 		base_mana = newBaseMana;
 		put("base_mana", newBaseMana);
 	}
-
+        /**                                                                                                                 
+        * adds to base mana (like addXP)                                                                                 
+        *                                                                                                                   
+        * @param newBaseMana amount of base mana to be added                                                                        */
+        public void addBaseMana(int newBaseMana) {
+	        base_mana += newBaseMana;
+	        put("base_mana", base_mana);
+        }
+    
 	public void setXP(int newxp) {
 		this.xp = newxp;
 		put("xp", xp);
