@@ -127,6 +127,18 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected, list);
 
 	}
+	@Test
+	public void testGoldSource() {
+		StendhalClient.get();
+		GoldSource gs = new GoldSource(new MockRPObject("item", "box"));
+		List<String> expected = new ArrayList<String>();
+		expected.add("Look");
+		expected.add("Prospect");
+		gs.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+
+	}
 
 	class MockEntity extends Entity {
 
