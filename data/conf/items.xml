@@ -2039,6 +2039,19 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+       <item name="soup">
+                <type class="drink" subclass="soup"/>
+                <implementation
+		class-name="games.stendhal.server.entity.item.Drink"/>
+                <attributes>
+                        <quantity value="1"/>
+                        <amount value="1000"/>
+                        <regen value="1000"/>
+                 </attributes>
+                <weight value="1"/>
+                <equipable>
+                </equipable>
+        </item>
 
 	<item name="poison">
 		<type class="drink" subclass="poison"/>

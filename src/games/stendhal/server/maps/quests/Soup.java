@@ -2,7 +2,9 @@ package games.stendhal.server.maps.quests;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -21,13 +23,13 @@ import java.util.List;
  * STEPS:
  * - OldLady tells you the ingredients of a special soup
  * - You collect the ingredients 
- * - You bring the ingredients to the taven and pay a small fee
+ * - You bring the ingredients to the tavern and pay a small fee
  * - Eating the soup (must be at table) heals you fully and gives you a base HP/mana bonus
  *  
  *  
  * REWARD:
  * - heal
- * - base hp/mana bonus
+ * - base mana bonus of 10
  * - 100 XP
  * 
  * REPETITIONS:
@@ -139,14 +141,14 @@ public class Soup extends AbstractQuest {
 					Arrays.asList("spinach", "courgette", "cabbage", "onion", "cauliflower", "broccoli", "leek"),
 					null,
 					ConversationStates.QUEST_OFFERED,
-					"You will find that in allotments close to fado.",
+					"You will find that in allotments close to fado. So will you fetch the ingredients?",
 					null
 			);
 			npc.add(ConversationStates.QUEST_OFFERED,
 					Arrays.asList("salad", "carrot"),
 					null,
 					ConversationStates.QUEST_OFFERED,
-					"I usually have to get them imported from Semos.",
+					"I usually have to get them imported from Semos. So do you want the soup?",
 					null
 			);
 	}
@@ -206,13 +208,14 @@ public class Soup extends AbstractQuest {
 							if (missing.size() > 0) {
 								engine.say("Thank you very much! What else did you bring?");
 							} else {
-								StackableItem pie = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("pie");
-								pie.setQuantity(3);
-								player.equip(pie, true);
+
+								Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("soup");
+								StendhalRPAction.placeat((StendhalRPZone) StendhalRPWorld.get().getRPZone("int_fado_tavern"), soup, 10, 10, null);
+								player.addBaseMana(10);
 								player.addXP(100);
 								player.setHP(player.getBaseHP());
 								player.healPoison();
-								engine.say("Ok so I lied, you can't have soup yet because the image isn't drawn. Have some pies and a full heal instead. Sorry about that.");
+								engine.say("The soup's on the table or floor. I healed you already, one day the soup will do that. The magical method in making teh soup means your base mana is increased.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
 								engine.setCurrentState(ConversationStates.ATTENDING);
