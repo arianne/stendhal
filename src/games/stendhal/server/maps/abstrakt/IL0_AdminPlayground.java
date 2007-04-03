@@ -177,7 +177,8 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 							engine.say("We will always be.");
 							break;
 						default:
-							game.transferPlayer(player, "int_admin_playground", 10, 10);
+							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
+						    player.teleport(zone, 10, 10, null, null);
 							inversedSpeed = 1;
 							beamed = true;
 							break;
@@ -237,11 +238,13 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		public void onTurnReached(int currentTurn, String message) {
 			try {
 				String zoneName = zones.get(counter);
-				if (!game.transferPlayer(player, zoneName, 5, 5)) {
-					if (!game.transferPlayer(player, zoneName, 50, 50)) {
-						if (!game.transferPlayer(player, zoneName, 20, 20)) {
-							if (!game.transferPlayer(player, zoneName, 100, 100)) {
-								if (!game.transferPlayer(player, zoneName, 100, 5)) {
+				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+				 
+				if (!player.teleport(zone, 5, 5, null, null)) {
+					if  (!player.teleport(zone, 50, 50, null, null))  {
+						if  (!player.teleport(zone, 20, 20, null, null))  {
+							if  (!player.teleport(zone, 100, 100, null, null))  {
+								if ( !player.teleport(zone, 100, 5, null, null))  {
 									player.sendPrivateText("Sorry, did not find a free spot in " + zoneName);
 								} else {
 									player.sendPrivateText("Welcome in " + zoneName);
