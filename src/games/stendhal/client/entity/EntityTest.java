@@ -119,17 +119,6 @@ public class EntityTest {
 	}
 
 	@Test
-	public final void testGetSpeed() {
-		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-
-		en = new MockEntity(rpo);
-		assertEquals(0.0, en.getSpeed());
-	}
-
-	@Test
 	public final void testDistance() {
 		Entity en;
 		RPObject rpo;
@@ -145,7 +134,7 @@ public class EntityTest {
 	}
 
 	@Test
-	@Ignore
+	
 	public final void testTranslate() {
 		assertEquals("data/sprites/hugo.png", Entity.translate("hugo"));
 	}

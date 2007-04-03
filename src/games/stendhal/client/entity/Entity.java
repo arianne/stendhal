@@ -54,7 +54,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 
 	private Direction direction;
 
-	private double speed;
+
 
 	/** The current speed of this entity horizontally (pixels/sec) */
 	protected double dx;
@@ -147,9 +147,9 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 		return new Point2D.Double(x, y);
 	}
 
-	public double getSpeed() {
-		return speed;
-	}
+//	public double getSpeed() {
+//		return speed;
+//	}
 
 	public double distance(RPObject object) {
 		return (object.getInt("x") - x) * (object.getInt("x") - x) + (object.getInt("y") - y)
@@ -241,7 +241,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
-		this.speed = speed;
+		
 
 		if ((Direction.LEFT.equals( direction )) || (Direction.RIGHT.equals( direction ))) {
 			this.y = y;
@@ -271,7 +271,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 	// When rpentity stops
 	public void onStop(int x, int y) {
 		direction = Direction.STOP;
-		speed = 0;
+		
 		this.dx = 0;
 		this.dy = 0;
 
