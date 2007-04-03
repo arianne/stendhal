@@ -67,6 +67,10 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
+0.60
+- a woman in fado collects cloaks
+- the tavern maid in fado makes a special soup
+
 0.59
 - introduced scoring system in deathmatch instead of XP
 - client prevents putting items into useless slots (like a sword into the head-slot)
@@ -80,6 +84,7 @@ Changelog
 - added /away command (like in irc)
 - /ignore command now supports duration and reason message
 - all buildings have had a makeover
+- nalwor river can be crossed over the waterfall, to make travelling east<->west possible without going back to semos
 
 0.58
 - name/HPbar is now visible, alltime
