@@ -778,7 +778,7 @@ public class j2DClient extends StendhalUI {
 
 
 	/**
-	 * Determine if the <Alt> key is held down.
+	 * Determine if the Alt key is held down.
 	 *
 	 * @return	Returns <code>true</code> if down.
 	 */
