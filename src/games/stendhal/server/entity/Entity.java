@@ -348,9 +348,8 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean nextTo(int x, int y, double step) {
 		Rectangle2D thisArea = getArea(this.x, this.y);
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, thisArea.getWidth() + step, thisArea
-		        .getHeight()
-		        + step);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, 
+				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
 		return thisArea.contains(x, y);
 	}
 
