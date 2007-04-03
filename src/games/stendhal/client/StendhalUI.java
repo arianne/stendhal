@@ -10,6 +10,7 @@ package games.stendhal.client;
 //
 
 import java.awt.Color;
+import javax.swing.JPopupMenu;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 
@@ -188,4 +189,10 @@ public abstract class StendhalUI {
 	 * @return Returns the shiftDown.
 	 */
 	public abstract boolean isShiftDown();
+
+	/**
+	 * Sets the context menu. It is closed automatically one the user
+	 * clicks outside of it.
+	 */
+	 public abstract void setContextMenu(JPopupMenu contextMenu);
 }

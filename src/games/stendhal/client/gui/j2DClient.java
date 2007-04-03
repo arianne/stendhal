@@ -62,6 +62,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
@@ -805,6 +806,14 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public boolean isShiftDown() {
 		return shiftDown;
+	}
+
+	/**
+	 * Sets the context menu. It is closed automatically one the user
+	 * clicks outside of it.
+	 */
+	public void setContextMenu(JPopupMenu contextMenu) {
+		baseframe.setContextMenu(contextMenu);
 	}
 
 
