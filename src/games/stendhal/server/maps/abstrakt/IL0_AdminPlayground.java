@@ -10,7 +10,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.scripting.ScriptAction;
 import games.stendhal.server.scripting.ScriptInGroovy;
 import games.stendhal.server.scripting.ScriptingNPC;
 
