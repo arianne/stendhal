@@ -44,7 +44,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class PizzaDelivery extends AbstractQuest {
 	
-	private static final Outfit UNIFORM = new Outfit(Outfit.NONE, Outfit.NONE, 90, Outfit.NONE);
+	private static final Outfit UNIFORM = new Outfit(null, null, 90, null);
 	
 	private static class CustomerData {
 		/** A hint where to find the customer */

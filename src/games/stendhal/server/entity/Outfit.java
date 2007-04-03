@@ -11,32 +11,26 @@ package games.stendhal.server.entity;
  * dress, and base.
  * 
  * Note, however, that you can create outfit objects that consist of less than
- * four parts by setting the other parts to NONE. For example, you can create
- * a dress outfit that you can combine with the player's current so that the
- * player gets the dress, but keeps his hair, head, and base.  
+ * four parts by setting the other parts to <code>null</code>. For example,
+ * you can create a dress outfit that you can combine with the player's current
+ * so that the player gets the dress, but keeps his hair, head, and base.  
  * 
  * @author daniel
  *
  */
 public class Outfit {
 
-	/**
-	 * State that a part of an outfit should not be used
-	 * when combining with another outfit. 
-	 */
-	public static final int NONE = -1;
-
 	/** The hair index, as a value between 0 and 99. */
-	private int hair;
+	private Integer hair;
 
 	/** The head index, as a value between 0 and 99. */
-	private int head;
+	private Integer head;
 
 	/** The dress index, as a value between 0 and 99. */
-	private int dress;
+	private Integer dress;
 
 	/** The base index, as a value between 0 and 99. */
-	private int base;
+	private Integer base;
 
 	/**
 	 * Creates a new default outfit (naked person). 
@@ -46,13 +40,16 @@ public class Outfit {
 	}
 
 	/**
-	 * Creates a new outfit.
-	 * @param hair
-	 * @param head
-	 * @param dress
-	 * @param base
+	 * Creates a new outfit. Set some of the parameters to null if you want an
+	 * entity that put on this outfit to keep on the corresponding parts of its
+	 * current outfit.
+	 * 
+	 * @param hair The index of the hair style, or null 
+	 * @param head The index of the head style, or null
+	 * @param dress The index of the dress style, or null
+	 * @param base The index of the base style, or null
 	 */
-	public Outfit(int hair, int head, int dress, int base) {
+	public Outfit(Integer hair, Integer head, Integer dress, Integer base) {
 		this.hair = hair;
 		this.head = head;
 		this.dress = dress;
@@ -61,9 +58,9 @@ public class Outfit {
 
 	/**
 	 * Creates a new outfit based on a numeric code.
-	 * @param code A 8-digit decimal number where the first pair of digits
-	 * stand for hair, the second pair for head, the third pair for dress,
-	 * and the fourth pair for base.  
+	 * @param code A 8-digit decimal number where the first pair (from the
+	 * left) of digits stand for hair, the second pair for head, the third
+	 * pair for dress, and the fourth pair for base.  
 	 */
 	public Outfit(int code) {
 		this.base = code % 100;
@@ -131,22 +128,22 @@ public class Outfit {
 		int newBase;
 		// wear the this outfit 'over' the other outfit;
 		// use the other outfit for parts that are not defined for this outfit.
-		if (this.hair == NONE) {
+		if (this.hair == null) {
 			newHair = other.hair;
 		} else {
 			newHair = this.hair;
 		}
-		if (this.head == NONE) {
+		if (this.head == null) {
 			newHead = other.head;
 		} else {
 			newHead = this.head;
 		}
-		if (this.dress == NONE) {
+		if (this.dress == null) {
 			newDress = other.dress;
 		} else {
 			newDress = this.dress;
 		}
-		if (this.base == NONE) {
+		if (this.base == null) {
 			newBase = other.base;
 		} else {
 			newBase = this.base;
@@ -160,7 +157,7 @@ public class Outfit {
 	 * @return true iff this outfit is part of the given outfit.
 	 */
 	public boolean isPartOf(Outfit other) {
-		return (hair == Outfit.NONE || hair == other.hair) && (head == Outfit.NONE || head == other.head)
-		        && (dress == Outfit.NONE || dress == other.dress) && (base == Outfit.NONE || base == other.base);
+		return (hair == null || hair == other.hair) && (head == null || head == other.head)
+		        && (dress == null || dress == other.dress) && (base == null || base == other.base);
 	}
 }

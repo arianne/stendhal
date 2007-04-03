@@ -43,18 +43,22 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		// One of these outfit will be chosen randomly.
 
 		// swimsuits for men
-		outfitTypes.put("trunks", Arrays.asList(new Outfit(Outfit.NONE, Outfit.NONE, 95, Outfit.NONE), new Outfit(
-		        Outfit.NONE, Outfit.NONE, 96, Outfit.NONE), new Outfit(Outfit.NONE, Outfit.NONE, 97, Outfit.NONE),
-		        new Outfit(Outfit.NONE, Outfit.NONE, 98, Outfit.NONE)));
+		outfitTypes.put("trunks", Arrays.asList(
+				new Outfit(null, null, 95, null),
+				new Outfit(null, null, 96, null),
+				new Outfit(null, null, 97, null),
+		        new Outfit(null, null, 98, null)));
 
 		// swimsuits for women
-		outfitTypes.put("swimsuit", Arrays.asList(new Outfit(Outfit.NONE, Outfit.NONE, 91, Outfit.NONE), new Outfit(
-		        Outfit.NONE, Outfit.NONE, 92, Outfit.NONE), new Outfit(Outfit.NONE, Outfit.NONE, 93, Outfit.NONE),
-		        new Outfit(Outfit.NONE, Outfit.NONE, 94, Outfit.NONE)));
+		outfitTypes.put("swimsuit", Arrays.asList(
+				new Outfit(null, null, 91, null),
+				new Outfit(null, null, 92, null),
+				new Outfit(null, null, 93, null),
+		        new Outfit(null, null, 94, null)));
 
-		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, Outfit.NONE, Outfit.NONE), new Outfit(0, 81,
-		        Outfit.NONE, Outfit.NONE), new Outfit(0, 82, Outfit.NONE, Outfit.NONE), new Outfit(0, 83, Outfit.NONE,
-		        Outfit.NONE), new Outfit(0, 84, Outfit.NONE, Outfit.NONE)));
+		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, null, null), new Outfit(0, 81,
+		        null, null), new Outfit(0, 82, null, null), new Outfit(0, 83, null,
+		        null), new Outfit(0, 84, null, null)));
 	}
 
 	/**
