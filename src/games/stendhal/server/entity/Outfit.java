@@ -72,35 +72,67 @@ public class Outfit {
 		this.hair = code;
 	}
 
-	public int getBase() {
+	/**
+	 * Gets the index of this outfit's base style. 
+	 * @return The index, or null if this outfit doesn't contain a base.
+	 */
+	public Integer getBase() {
 		return base;
 	}
 
-	public void setBase(int base) {
+	/**
+	 * Sets the index of this outfit's base style. 
+	 * @param base The index, or null if this outfit shouldn't contain a base.
+	 */
+	public void setBase(Integer base) {
 		this.base = base;
 	}
 
-	public int getDress() {
+	/**
+	 * Gets the index of this outfit's dress style. 
+	 * @return The index, or null if this outfit doesn't contain a dress.
+	 */
+	public Integer getDress() {
 		return dress;
 	}
 
-	public void setDress(int dress) {
+	/**
+	 * Sets the index of this outfit's dress style. 
+	 * @param dress The index, or null if this outfit shouldn't contain a dress.
+	 */
+	public void setDress(Integer dress) {
 		this.dress = dress;
 	}
 
-	public int getHair() {
+	/**
+	 * Gets the index of this outfit's hair style. 
+	 * @return The index, or null if this outfit doesn't contain hair.
+	 */
+	public Integer getHair() {
 		return hair;
 	}
 
-	public void setHair(int hair) {
+	/**
+	 * Sets the index of this outfit's hair style. 
+	 * @param hair The index, or null if this outfit shouldn't contain hair.
+	 */
+	public void setHair(Integer hair) {
 		this.hair = hair;
 	}
 
-	public int getHead() {
+	/**
+	 * Gets the index of this outfit's head style. 
+	 * @return The index, or null if this outfit doesn't contain a head.
+	 */
+	public Integer getHead() {
 		return head;
 	}
 
-	public void setHead(int head) {
+	/**
+	 * Sets the index of this outfit's head style. 
+	 * @param head The index, or null if this outfit shouldn't contain a head.
+	 */
+	public void setHead(Integer head) {
 		this.head = head;
 	}
 
