@@ -1,6 +1,3 @@
-/**
- * 
- */
 package games.stendhal.server.entity.slot;
 
 import games.stendhal.server.entity.Entity;
