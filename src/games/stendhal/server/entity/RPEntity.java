@@ -1048,6 +1048,9 @@ public abstract class RPEntity extends Entity {
 	}
 
 	public boolean isEquipped(String name, int amount) {
+		if (amount <= 0) {
+			return false;
+		}
 		int found = 0;
 
 		for (String slotName : CARRYING_SLOTS) {
