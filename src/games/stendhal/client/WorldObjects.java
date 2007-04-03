@@ -23,9 +23,6 @@
 
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.User;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
