@@ -1,6 +1,7 @@
 package games.stendhal.client.entity;
 
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import games.stendhal.client.StendhalUI;
@@ -35,7 +36,7 @@ public class User extends Player {
 	@Override
     public void onMove(int x, int y, Direction direction, double speed) {
 	   super.onMove(x, y, direction, speed);
-			WorldObjects.firePlayerMoved(this);
+			WorldObjects.firePlayerMoved();
     }
 
 	@Override
@@ -91,7 +92,7 @@ public class User extends Player {
 
 	@Override
     public void onEnter(int _x, int _y) {
-		WorldObjects.firePlayerMoved(this);
+		WorldObjects.firePlayerMoved();
     }
 	public static  boolean isAdmin() {
 		User me = User.get();
@@ -118,6 +119,17 @@ public class User extends Player {
 			StendhalUI.get().addEventLine(
 			        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
 		
+    }
+
+	/**
+     * the absolute world area (coordinates) where the player can possibly hear
+     * sounds
+     * @return Rectangle2D area
+     */
+    public Rectangle2D getHearingArea() {
+    	final double HEARING_RANGE = 20;
+    	double width = HEARING_RANGE * 2;
+    	return new Rectangle2D.Double(getX() - HEARING_RANGE, getY() - HEARING_RANGE, width, width);
     }
 	
 	

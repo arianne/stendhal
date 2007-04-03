@@ -152,17 +152,6 @@ public class Player extends RPEntity {
 		return new Rectangle.Double(x, y, 1, 2);
 	}
 
-	/**
-	 * the absolute world area (coordinates) where the player can possibly hear
-	 * sounds
-	 * @return Rectangle2D area
-	 */
-	public Rectangle2D getHearingArea() {
-		final double HEARING_RANGE = 20;
-		double width = HEARING_RANGE * 2;
-		return new Rectangle2D.Double(getX() - HEARING_RANGE, getY() - HEARING_RANGE, width, width);
-	}
-
 	@Override
 	public void onAction(ActionType at, String... params) {
 

@@ -106,7 +106,7 @@ public class PlayerTest {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "player");
 		rpo.put("outfit",0);
-		Player pl = new Player(rpo);
+		User pl = new User(rpo);
 		Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 		pl.setAudibleRange(4);

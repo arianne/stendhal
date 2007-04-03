@@ -28,7 +28,6 @@ package games.stendhal.client.sound;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.common.MathHelper;
@@ -256,7 +255,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		if (User.isNull()) {
 			return null;
 		}
-		Player user = User.get();
+		User user = User.get();
 
 		playerPosition = user.getPosition();
 		playerHearing = user.getHearingArea();
@@ -950,11 +949,11 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * 
 	 * @see games.stendhal.client.WorldObjects.WorldListener#playerMoved(games.stendhal.client.entity.Player)
 	 */
-	public void playerMoved(Player player) {
+	public void playerMoved() {
 		// update ambient sounds about player position
 		synchronized (ambientList) {
 			for (AmbientSound a : ambientList) {
-				a.performPlayerMoved(player, isOperative(), isMute());
+				a.performPlayerMoved( isOperative(), isMute());
 			}
 		}
 	}

@@ -13,7 +13,6 @@
 package games.stendhal.client.sound;
 
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.entity.User;
 
@@ -352,7 +351,7 @@ class AmbientSound {
 	 * @param player
 	 *            the client player object
 	 */
-	protected void play(Player player) {
+	protected void play(User player) {
 		float fogDB;
 
 		if (isPlaying) {
@@ -483,25 +482,23 @@ class AmbientSound {
 	 * parameters. Does nothing if player is <b>null</b> or the sound is not
 	 * map-localized. (Otherwise this will adjust sound fog loudness.)
 	 * 
-	 * @param player
-	 *            client player object (may be <b>null</b>
 	 * @param isOperative TODO
 	 * @param isMute TODO
 	 */
-	public void performPlayerMoved(Player player, boolean isOperative, boolean isMute) {
+	public void performPlayerMoved(boolean isOperative, boolean isMute) {
 		//SoundSystem sys;
 
 		// operation control
 		//sys = SoundSystem.get();
-		if (!isOperative || isMute || (player == null) || (soundPos == null)) {
+		if (!isOperative || isMute || User.isNull() || (soundPos == null)) {
 			return;
 		}
 
 		// if not yet playing, start playing
 		if (isPlaying) {
 			// set new player parameters
-			playerPos = player.getPosition();
-			playerHearing = player.getHearingArea();
+			playerPos = User.get().getPosition();
+			playerHearing = User.get().getHearingArea();
 
 			// decide on stopping to play (when sound object has moved out
 			// of range)
@@ -511,7 +508,7 @@ class AmbientSound {
 				stop();
 			}
 		} else {
-			play(player);
+			play();
 		}
 	} // performPlayerPosition
 
