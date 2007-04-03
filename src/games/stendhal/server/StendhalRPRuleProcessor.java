@@ -98,8 +98,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<Blood> bloodsToRemove;
 
-	private StendhalScriptSystem scripts;
-
 	public static void register(String action, ActionListener actionClass) {
 		if (actionsMap.get(action) != null) {
 			logger.error("Registering twice the same action handler: " + action);
@@ -137,7 +135,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
 		bloods = new LinkedList<Blood>();
 		bloodsToRemove = new LinkedList<Blood>();
-		scripts = StendhalScriptSystem.get();
 		registerActions();
 		instance = this;
 		addGameEvent("server system", "startup");
@@ -518,21 +515,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				point.logic();
 			}
 
-			// PlantGrowers
-			// To save some CPU cycles, we don't cycle through the plant
-			// regrowing loop each turn, but only each fifth turn. 
-			// We don't care if a fruit gets ripe a few milliseconds too late.
-			//            if (currentTurn % 5 == 0) {
-			//                for (PlantGrower plantGrower : plantGrowers) {
-			//                    plantGrower.regrow(currentTurn);
-			//                }
-			//            }
-
 			// Registeres classes for this turn
 			TurnNotifier.get().logic(currentTurn);
 
-			// Scripts
-			scripts.logic();
 		} catch (Exception e) {
 			logger.error("error in endTurn", e);
 		} finally {
