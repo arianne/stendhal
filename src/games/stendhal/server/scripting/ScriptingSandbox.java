@@ -1,11 +1,9 @@
 package games.stendhal.server.scripting;
 
-import games.stendhal.common.Pair;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalScriptSystem;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
@@ -27,10 +25,6 @@ public abstract class ScriptingSandbox {
 
 	private ArrayList<RPObject> loadedRPObjects = new ArrayList<RPObject>();
 
-	private ArrayList<Pair<ScriptCondition, ScriptAction>> loadedScripts = new ArrayList<Pair<ScriptCondition, ScriptAction>>();
-
-	private StendhalScriptSystem scripts;
-
 	private String exceptionMessage;
 
 	private StendhalRPZone zone;
@@ -41,7 +35,6 @@ public abstract class ScriptingSandbox {
 
 	public ScriptingSandbox(String filename) {
 		this.filename = filename;
-		this.scripts = StendhalScriptSystem.get();
 	}
 
 	public StendhalRPZone getZone(RPObject rpobject) {
@@ -107,13 +100,6 @@ public abstract class ScriptingSandbox {
 			loadedRPObjects.add(object);
 			logger.info(filename + " added object: " + object);
 		}
-	}
-
-	public Pair<ScriptCondition, ScriptAction> add(ScriptCondition condition, ScriptAction action) {
-		Pair<ScriptCondition, ScriptAction> script = scripts.addScript(condition, action);
-		loadedScripts.add(script);
-		logger.info(filename + " added a script.");
-		return (script);
 	}
 
 	public Creature[] getCreatures() {
@@ -208,40 +194,9 @@ public abstract class ScriptingSandbox {
 		}
 	}
 
-	public void remove(Pair<ScriptCondition, ScriptAction> script) {
-		scripts.removeScript(script);
-		loadedScripts.remove(script);
-	}
-
-	/** removes the first loaded script that has the required action */
-	public void remove(ScriptAction scriptAction) {
-		for (Pair<ScriptCondition, ScriptAction> script : loadedScripts) {
-			if (script.second() == scriptAction) {
-				logger.info("Removing " + filename + " added script.");
-				remove(script);
-				return;
-			}
-		}
-	}
-
-	/** removes the first loaded script that has the required condition */
-	public void remove(ScriptCondition scriptCondition) {
-		for (Pair<ScriptCondition, ScriptAction> script : loadedScripts) {
-			if (script.first() == scriptCondition) {
-				logger.info("Removing " + filename + " added script.");
-				remove(script);
-			}
-		}
-	}
 
 	public void unload(Player player, String[] args) {
 		Log4J.startMethod(logger, "unload");
-
-		for (Pair<ScriptCondition, ScriptAction> script : (List<Pair<ScriptCondition, ScriptAction>>) loadedScripts
-		        .clone()) {
-			logger.info("Removing " + filename + " added script.");
-			remove(script);
-		}
 
 		for (NPC npc : (List<NPC>) loadedNPCs.clone()) {
 			remove(npc);
