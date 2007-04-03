@@ -320,10 +320,9 @@
  <zone name="0_nalwor_river_s" level="0" x="500256" y="500384" file="0_nalwor_river_s.xstend">
  </zone>
 
-<!--
- <zone name="0_nalwor_river_se" file="0_nalwor_river_se.xstend">
+ <zone name="0_nalwor_river_se" level="0" x="500384" y="500384" file="0_nalwor_river_se.xstend">
  </zone>
--->
+
 
  <!--  Level -1 -->
 

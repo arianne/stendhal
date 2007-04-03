@@ -73,7 +73,7 @@ sub_7_kanmararn_jail 500160 500064
 0_nalwor_forest_nw 500128 500128
 0_nalwor_forest_w 500128 500256
 0_nalwor_river_s 500256 500384
-0_nalwor_river_se 500000 500000
+0_nalwor_river_se 500384 500384
 0_nalwor_river_sw 500128 500384
 0_orril_castle 499872 500256
 0_orril_forest_e 500000 500256
