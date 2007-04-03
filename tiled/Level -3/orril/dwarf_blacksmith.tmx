@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <properties>
-  <property name="x" value="499776"/>
+  <property name="x" value="499712"/>
   <property name="y" value="500352"/>
  </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">

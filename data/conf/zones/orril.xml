@@ -176,7 +176,7 @@ East: Nalwor, Semos
  <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128" file="sub_1_kotoch_entrance.xstend">
  </zone>
 
- <zone name="-1_orril_mountain_w" level="-1" x="499744" y="500256" file="sub_1_orril_mountain_w.xstend">
+ <zone name="-1_orril_mountain_w2" level="-1" x="499744" y="500256" file="sub_1_orril_mountain_w2.xstend">
  </zone>
 
  <zone name="-1_orril_dungeon" level="-1" x="500000" y="500256" file="sub_1_orril_dungeon.xstend">
@@ -209,7 +209,7 @@ East: Nalwor, Semos
 
  <!-- Level -2 -->
 
- <zone name="-2_orril_dwarf_mine" level="-2" x="499744" y="500256" file="sub_2_orril_dwarf_mine.xstend">
+ <zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256" file="sub_2_orril_dwarf_mine.xstend">
   <configurator class-name="games.stendhal.server.maps.orril.dwarfmine.IronBuyerNPC"/>
  </zone>
 
@@ -244,7 +244,7 @@ East: Nalwor, Semos
 
  <!-- Level -3 -->
 
- <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499776" y="500352" file="sub_3_orril_dwarf_blacksmith.xstend">
+ <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352" file="sub_3_orril_dwarf_blacksmith.xstend">
   <configurator class-name="games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC"/>
  </zone>
 

@@ -263,8 +263,8 @@
  <tileset name="0_ados_swamp.png" firstgid="1416" tilewidth="64" tileheight="64">
   <image source="0_ados_swamp.png"/>
  </tileset>
- <tileset name="sub_1_orril_mountain_w.png" firstgid="1432" tilewidth="64" tileheight="64">
-  <image source="sub_1_orril_mountain_w.png"/>
+ <tileset name="sub_1_orril_mountain_w2.png" firstgid="1432" tilewidth="64" tileheight="64">
+  <image source="sub_1_orril_mountain_w2.png"/>
  </tileset>
  <tileset name="sub_2_orril_dwarf_mine.png" firstgid="1440" tilewidth="64" tileheight="64">
   <image source="sub_2_orril_dwarf_mine.png"/>
