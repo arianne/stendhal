@@ -36,7 +36,7 @@ public class Schnick {
 		SoundMaster.play("hammer-1.wav");
 	}
 
-	private static void loadFromPropertiesintoXML() {
+	 static void loadFromPropertiesintoXML() {
 	    Properties prop=new Properties();
 	    try {
 	        prop.load(getResourceStream("data/sounds/stensounds.properties"));
@@ -55,7 +55,7 @@ public class Schnick {
 	    }
     }
 
-	private static void loadPropertiesFromXML() {
+	 static void loadPropertiesFromXML() {
 	    Properties prop=new Properties();
 		try {
 	        prop.loadFromXML(new FileInputStream(new File("data/sounds/stensounds.xml")));
