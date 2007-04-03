@@ -53,7 +53,6 @@ public class StendhalQuestSystem {
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
-		//loadQuest("CostumeParty");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
 		loadQuest("HatForMonogenes");
@@ -71,12 +70,11 @@ public class StendhalQuestSystem {
 		// loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
-		loadQuest("OrcishHappyMeal");
+		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		// loadQuest("ReverseArrow");
 		// loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");
-		loadQuest("SheepGrowing");
 		loadQuest("Soup");
 		loadQuest("SuntanCreamForZara");
 		loadQuest("ToysCollector");
@@ -85,9 +83,6 @@ public class StendhalQuestSystem {
 		loadQuest("WeaponsCollector2");
 		loadQuest("ZooFood");
 
-		// This quest uses NPCs defined in other quests as customers.
-		// Therefore it should be initialized last.
-		loadQuest("PizzaDelivery");
 	}
 
 	private boolean loadQuest(String name) {

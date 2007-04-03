@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.quests;
+package games.stendhal.server.maps.semos.dungeon;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.HashMap;
@@ -15,37 +16,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.IRPZone;
-
-/** 
- * QUEST: Orcish Happy Meal
- * PARTICIPANTS: 
- * - Nishiya 
- * - Tor'Koom 
- * 
- * STEPS: 
- * - Buy a sheep from Nishiya in Village 
- * - Grow sheep in plains 
- * - Sell sheep to Tor'Koom in Dungeon 
- * 
- * REWARD: 
- * - You get the weight of the sheep * 50 in gold coins.
- *
- * REPETITIONS:
- * - As much as wanted.
+/**
+ * An orcish NPC who buys sheep from players.
+ * You get the weight of the sheep * 50 in gold coins.
  */
-public class OrcishHappyMeal extends AbstractQuest {
+public class SheepBuyerNPC implements ZoneConfigurator {
 
-	@Override
-	public void addToWorld() {
-		super.addToWorld();
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		buildSemosCityAreaCarmen(zone);
+	}
 
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(
-				"-4_semos_dungeon"));
-		NPCList npcs = NPCList.get();
-		
-		// Nishiya's part has already been defined in the quest SheepGrowing.
-
+	private void buildSemosCityAreaCarmen(StendhalRPZone zone) {
 		SpeakerNPC npc = new SpeakerNPC("Tor'Koom") {
 			@Override
 			protected void createPath() {
@@ -113,7 +100,7 @@ public class OrcishHappyMeal extends AbstractQuest {
 				addGoodbye();
 			}
 		};
-		npcs.add(npc);
+		NPCList.get().add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "orcbuyernpc");
 		npc.set(67, 12);
