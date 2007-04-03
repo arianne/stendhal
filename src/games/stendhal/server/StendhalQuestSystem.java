@@ -53,6 +53,7 @@ public class StendhalQuestSystem {
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
+		loadQuest("DailyItemQuest");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
 		loadQuest("HatForMonogenes");
