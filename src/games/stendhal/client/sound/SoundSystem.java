@@ -235,8 +235,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	public static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop,
 	        int chance) {
-		Point2D playerPosition;
-		Rectangle2D playerHearing;
+		
 		double distance;
 		double maxDist;
 		int fogVolume;
@@ -255,11 +254,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		if (User.isNull()) {
 			return null;
 		}
-		User user = User.get();
-
-		playerPosition = user.getPosition();
-		playerHearing = user.getHearingArea();
-
+		Point2D playerPosition= User.get().getPosition();
+		Rectangle2D playerHearing= User.get().getHearingArea();;
 		// exclusion cases
 		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(playerPosition))) {
 			return null;
@@ -296,9 +292,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	static void stopAmbientSound(AmbientSound ambient) {
 		//		  TODO: assert the sound  is stopped
-		SoundSystem sys;
-
-		sys = get();
+		SoundSystem sys= get();
 
 		synchronized (sys.ambientList) {
 			sys.ambientList.remove(ambient);
