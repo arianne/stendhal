@@ -155,7 +155,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 *
-	 * @see		Sign
+	 * @see		games.stendhal.server.entity.npc.SpeakerNPC
 	 */
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		SpeakerNPC npc = instantiate(getName(ctx));

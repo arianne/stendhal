@@ -86,7 +86,7 @@ public class StendhalNavigable implements Navigable {
 	/**
 	 * checks if the entity could stand on a position
 	 * @param node the position to be checked
-	 * @retrun true if the the entity could stand on the position 
+	 * @return true if the the entity could stand on the position 
 	 */
 	public boolean isValid(Pathfinder.Node node) {
 		return !zone.simpleCollides(entity, node.x, node.y);
@@ -98,7 +98,7 @@ public class StendhalNavigable implements Navigable {
 	 * costs are allway 1 in stendhal
 	 * @param parent the parent node 
 	 * @param child the cild node
-	 * @retrun 1 
+	 * @return 1 
 	 */
 	public double getCost(Pathfinder.Node parent, Pathfinder.Node child) {
 		return 1;
@@ -118,7 +118,7 @@ public class StendhalNavigable implements Navigable {
 	 * A* will prefer nodes closer to the goal.
 	 * @param node1 the parent node 
 	 * @param node2 the cild node
-	 * @retrun the estimated cost to walk from node1 to node2
+	 * @return the estimated cost to walk from node1 to node2
 	 */
 	public double getHeuristic(Pathfinder.Node node1, Pathfinder.Node node2) {
 		return getHeuristic(node1.x, node1.y, node2.x, node2.y);
@@ -140,7 +140,7 @@ public class StendhalNavigable implements Navigable {
 	/**
 	 * checks if the goal is reached 
 	 * @param nodeBest the currently best node 
-	 * @retrun true if the goal is reached
+	 * @return true if the goal is reached
 	 */
 	public boolean reachedGoal(Pathfinder.Node nodeBest) {
 		return goal.contains(nodeBest.getX(), nodeBest.getY());
@@ -149,7 +149,7 @@ public class StendhalNavigable implements Navigable {
 	/**
 	 * calculates the node id
 	 * @param node the node 
-	 * @retrun the id of the node
+	 * @return the id of the node
 	 */
 	public int createNodeID(Pathfinder.Node node) {
 		return node.x + node.y * zone.getWidth();

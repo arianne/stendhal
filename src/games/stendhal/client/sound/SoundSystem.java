@@ -392,7 +392,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * Loads a junk of data from the jar soundfile and returns it as a byte
 	 * array.
 	 * 
-	 * @param entry
+	 * @param name
 	 * @return the data in the Zipentry
 	 * @throws IOException
 	 */

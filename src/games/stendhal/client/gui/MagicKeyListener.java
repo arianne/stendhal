@@ -53,25 +53,24 @@ import java.util.Iterator;
 public class MagicKeyListener implements KeyListener {
 
 	/**
-	 * @requires adaptee != null
+	 * creates a new MagicKeyListener without the generation of
+	 * additional key release events (the third option given in the
+	 * class overview is disabled).
 	 * 
-	 * @effects creates a new MagicKeyListener without the generation of
-	 *          additional key release events (the third option given in the
-	 *          class overview is disabled).
+	 * @param adaptee != null
 	 */
 	public MagicKeyListener(KeyListener adaptee) {
 		this(adaptee, false);
 	}
 
 	/**
-	 * @requires adaptee != null
+	 * Creates a new MagicKeyListener.
 	 * 
+	 * @param adaptee != null
 	 * @param assumeAllReleased
 	 *            enables the third option listed in the class overview, namely
 	 *            that any key release event implies that all keys have been
 	 *            released.
-	 * 
-	 * @effects creates a new MagicKeyListener.
 	 */
 	public MagicKeyListener(KeyListener adaptee, boolean assumeAllReleased) {
 		if (adaptee == null) {
@@ -103,7 +102,7 @@ public class MagicKeyListener implements KeyListener {
 	//
 
 	/**
-	 * @returns an immutable object which is representative of the key
+	 * @return an immutable object which is representative of the key
 	 *          associated with the given event
 	 */
 	private static Integer marker(KeyEvent e) {
@@ -111,7 +110,7 @@ public class MagicKeyListener implements KeyListener {
 	}
 
 	/**
-	 * @returns an event which is constructed from the given immutable key (from
+	 * @return an event which is constructed from the given immutable key (from
 	 *          the marker method) and a template event.
 	 */
 	private static KeyEvent eventFromMarker(Integer marker, KeyEvent e) {
@@ -126,7 +125,7 @@ public class MagicKeyListener implements KeyListener {
 	}
 
 	/**
-	 * @effects Acts on the given event as specified in the class overview.
+	 * Acts on the given event as specified in the class overview.
 	 */
 	public void keyPressed(KeyEvent e) {
 		real.add(marker(e));
@@ -134,7 +133,7 @@ public class MagicKeyListener implements KeyListener {
 	}
 
 	/**
-	 * @effects Acts on the given event as specified in the class overview.
+	 * Acts on the given event as specified in the class overview.
 	 */
 	public void keyReleased(KeyEvent e) {
 		real.remove(marker(e));
@@ -155,7 +154,7 @@ public class MagicKeyListener implements KeyListener {
 	}
 
 	/**
-	 * @effects Acts on the given event as specified in the class overview
+	 * Acts on the given event as specified in the class overview
 	 */
 	public void keyTyped(KeyEvent e) {
 		SwingUtilities.invokeLater(new KeyTypedLater(e));

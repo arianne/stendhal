@@ -113,7 +113,6 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 * This will only be successful if the player is wearing an outfit
 	 * he got here, and if the original outfit has been stored.
 	 * @param player The player.
-	 * @return true iff returning was successful.
 	 */
 	public void putOnOutfit(Player player, String outfitType) {
 		List<Outfit> possibleNewOutfits = outfitTypes.get(outfitType);

@@ -110,8 +110,8 @@ public class LoginNotifier {
 	/**
 	 * Notifies the <i>turnListener</i> at turn number <i>turn</i>.
 	 * 
-	 * @param turn the number of the turn
-	 * @param turnListener the object to notify
+	 * @param playerName the name of the player who should be tracked
+	 * @param loginListener the object to notify
 	 * @param message an object to pass to the event handler
 	 */
 	public void notifyOnLogin(String playerName, LoginListener loginListener, String message) {
@@ -130,8 +130,9 @@ public class LoginNotifier {
 	/**
 	 * Forgets all registered notification entries for the given LoginListener
 	 * where the entry's message equals the given one. 
-	 * @param loginListener
-	 * @param message
+	 * @param playerName the name of the player who should not be tracked
+	 * @param loginListener the object which should not be notified
+	 * @param message an object that was passed to the event handler
 	 */
 	public void dontNotify(LoginListener loginListener, String playerName, String message) {
 		// all events that are equal to this one should be forgotten.

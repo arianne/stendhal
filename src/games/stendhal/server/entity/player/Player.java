@@ -434,7 +434,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * @param	name		The player name.
 	 * @param	duration	The ignore duration (in minutes),
 	 *				or <code>0</code> for infinite.
-	 * @param	reason		The reason.
+	 * @param	reply		The reply.
 	 *
 	 * @return	<code>true</code> if value changed, <code>false</code>
 	 *		if there was a problem.
@@ -1257,7 +1257,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * a temporary outfit.
 	 * This will only be successful if the player is wearing an outfit
 	 * he got here, and if the original outfit has been stored.
-	 * @param player The player.
+	 *
 	 * @return true iff returning was successful.
 	 */
 	public boolean returnToOriginalOutfit() {

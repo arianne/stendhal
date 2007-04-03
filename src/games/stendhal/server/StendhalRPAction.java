@@ -530,23 +530,23 @@ public class StendhalRPAction {
 	}
 
 	/**
-	 * ???
-	 * @param player
-	 * @param portal
-	 * @return
+	 * Tries to teleport the given player through the given portal.
+	 * @param player The player who wants to use the portal.
+	 * @param portal The portal that should be used.
+	 * @return true if using the portal was successful.
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
 	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException {
 		Log4J.startMethod(logger, "usePortal");
 
-		if (!player.nextTo(portal)) // Too far to use the portal
-		{
+		if (!player.nextTo(portal)) {
+			// Too far to use the portal
 			return false;
 		}
 
-		if (portal.getDestinationZone() == null) // This portal is incomplete
-		{
+		if (portal.getDestinationZone() == null) {
+			// This portal is incomplete
 			logger.error("Portal " + portal + " has no destination.");
 			return false;
 		}
@@ -555,8 +555,8 @@ public class StendhalRPAction {
 		        new IRPZone.ID(portal.getDestinationZone()));
 
 		Portal dest = destZone.getPortal(portal.getDestinationReference());
-		if (dest == null) // This portal is incomplete
-		{
+		if (dest == null) {
+			// This portal is incomplete
 			logger.error("Portal " + portal + " has invalid destination");
 			return false;
 		}

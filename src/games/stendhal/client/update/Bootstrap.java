@@ -105,8 +105,7 @@ public class Bootstrap {
 	/**
 	 * Sets a dynamic classpath up and returns a Class reference loaded from it
 	 *
-	 * @param className  name of class to load form the dynamic path
-	 * @return Class-object
+	 * @return ClassLoader object
 	 * @throws Exception if an unexpected error occurs
 	 */
 	private ClassLoader createClassloader() throws Exception {

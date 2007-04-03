@@ -8,7 +8,6 @@ package games.stendhal.server.pathfinder;
 
 /**
  * @author Ramon Talavera: maxdemian@terra.es
- * @version
  */
 public interface Graphable {
 

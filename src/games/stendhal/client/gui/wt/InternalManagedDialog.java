@@ -113,7 +113,6 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 	/**
 	 * Create a managed dialog window.
 	 *
-	 * @param	owner		The owner window.
 	 * @param	name		The logical name.
 	 * @param	title		The dialog window title.
 	 */

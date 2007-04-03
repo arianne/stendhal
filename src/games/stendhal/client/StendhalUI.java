@@ -136,7 +136,7 @@ public abstract class StendhalUI {
 	/**
 	 * Set the shared [singleton] value.
 	 *
-	 * @param	The stendhal UI.
+	 * @param sharedUI The stendhal UI.
 	 */
 	public static void setDefault(StendhalUI sharedUI) {
 		StendhalUI.sharedUI = sharedUI;

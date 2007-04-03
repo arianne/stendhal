@@ -59,7 +59,7 @@ public class StendhalNavigableEntities extends StendhalNavigable {
 	/**
 	 * checks if the entity could stand on a position
 	 * @param node the position to be checked
-	 * @retrun true if the the entity could stand on the position 
+	 * @return true if the the entity could stand on the position 
 	 */
 	@Override
 	public boolean isValid(Pathfinder.Node node) {

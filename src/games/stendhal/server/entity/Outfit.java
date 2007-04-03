@@ -157,7 +157,7 @@ public class Outfit {
 	/**
 	 * Checks whether this outfit is equal to or part of another outfit.
 	 * @param other Another outfit.
-	 * @return
+	 * @return true iff this outfit is part of the given outfit.
 	 */
 	public boolean isPartOf(Outfit other) {
 		return (hair == Outfit.NONE || hair == other.hair) && (head == Outfit.NONE || head == other.head)

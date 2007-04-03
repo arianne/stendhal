@@ -9,7 +9,6 @@ import java.util.*;
 
 /**
  * @author Ramon Talavera: maxdemian@terra.es
- * @version
  */
 public class GraphItem implements Graphable {
 

@@ -14,7 +14,7 @@ public class TutorialNotifier {
 	 * send the text to the player.
 	 *
 	 * @param player Player
-	 * @param key    EventType
+	 * @param type    EventType
 	 */
 	private static void process(Player player, TutorialEventType type) {
 		String key = type.name().toLowerCase();
