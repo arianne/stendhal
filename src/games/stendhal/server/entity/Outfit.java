@@ -20,16 +20,16 @@ package games.stendhal.server.entity;
  */
 public class Outfit {
 
-	/** The hair index, as a value between 0 and 99. */
+	/** The hair index, as a value between 0 and 99, or null. */
 	private Integer hair;
 
-	/** The head index, as a value between 0 and 99. */
+	/** The head index, as a value between 0 and 99, or null. */
 	private Integer head;
 
-	/** The dress index, as a value between 0 and 99. */
+	/** The dress index, as a value between 0 and 99, or null. */
 	private Integer dress;
 
-	/** The base index, as a value between 0 and 99. */
+	/** The base index, as a value between 0 and 99, or null. */
 	private Integer base;
 
 	/**
@@ -189,7 +189,7 @@ public class Outfit {
 	 * @return true iff this outfit is part of the given outfit.
 	 */
 	public boolean isPartOf(Outfit other) {
-		return (hair == null || hair == other.hair) && (head == null || head == other.head)
-		        && (dress == null || dress == other.dress) && (base == null || base == other.base);
+		return (hair == null || hair.equals(other.hair)) && (head == null || head.equals(other.head))
+		        && (dress == null || dress.equals(other.dress)) && (base == null || base.equals(other.base));
 	}
 }
