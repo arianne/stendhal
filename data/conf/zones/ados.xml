@@ -115,15 +115,11 @@ West: Semos
  <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
  </zone>
 
-<!--
- <zone name="0_ados_wall" file="0_ados_wall.xstend">
+ <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
  </zone>
--->
 
-<!--
- <zone name="0_ados_city_w" file="0_ados_city_w.xstend">
+ <zone name="0_ados_city_s" level="0" x="500896" y="500000" file="0_ados_city_s.xstend">
  </zone>
--->
 
    <zone name="int_ados_bank" file="int_ados_bank.xstend">
     <portal x="22" y="17" ref="0">
