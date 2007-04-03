@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 /**
  * this encapsulates the equip/drop source
  */
-class SourceObject {
+class SourceObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(SourceObject.class);
 
 	/** the item */
@@ -25,9 +25,6 @@ class SourceObject {
 
 	/** optional, parent item */
 	private Entity parent;
-
-	/** optional, slot */
-	private String slot;
 
 	/** interprets the given action */
 	public SourceObject(RPAction action, Player player) {
@@ -78,10 +75,6 @@ class SourceObject {
 		}
 	}
 	
-	String getSlot() {
-		return slot;
-	}
-
 	/** moves this entity to the destination */
 	public boolean moveTo(DestinationObject dest, Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();

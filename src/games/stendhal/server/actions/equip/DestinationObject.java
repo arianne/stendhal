@@ -18,7 +18,7 @@ import marauroa.server.game.RPWorld;
 /**
  * this encapsulates the equip/drop destination
  */
-class DestinationObject {
+class DestinationObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(DestinationObject.class);
 
 
@@ -27,9 +27,6 @@ class DestinationObject {
 
 	/** optional, parent item */
 	private Entity parent;
-
-	/** optional, slot */
-	String slot;
 
 	/** x coordinate when dropped on ground */
 	private int x;
@@ -273,10 +270,6 @@ class DestinationObject {
 			return EquipUtil.isCorrectClass(validClasses, parent);
 		}
 		return true;
-	}
-
-	String getSlot() {
-		return slot;
 	}
 
 }
