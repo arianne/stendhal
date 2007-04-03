@@ -159,7 +159,7 @@ class DestinationObject {
 				return false;
 			}
 		} else {
-			logger.warn("entity: " + entity + " zone: " + zone);
+			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
 			if ((zone != null) && zone.simpleCollides(entity, x, y)) {
 				logger.warn("object " + entity + " collides with " + x + "x" + y);
@@ -205,7 +205,7 @@ class DestinationObject {
 		if (parent != null) {
 			// drop the entity into a slot
 			if (parent.getID().equals(entity.getID())) {
-				logger.warn("tried to put an item into itself");
+				logger.debug("tried to put an item into itself");
 				// tried to add the item to itself
 				return false;
 			}
@@ -254,12 +254,11 @@ class DestinationObject {
 
 			entity.setX(x);
 			entity.setY(y);
-			logger.warn("entity set to " + x + "x" + y);
+			logger.debug("entity set to " + x + "x" + y);
 
 			zone.assignRPObjectID(entity);
-			logger.warn("entity has valid id: " + entity.getID());
+			logger.debug("entity has valid id: " + entity.getID());
 
-			// FIXME: This should add the item to the zone.
 			zone.add(entity);
 		}
 		return true;
