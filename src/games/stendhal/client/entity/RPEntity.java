@@ -640,14 +640,10 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	protected void fireKillEvent(RPObject base, RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-		} else {
-			if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
-				onDeath(lastAttacker);
-			}
+		if (diff!=null){
+				if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
+					onDeath(lastAttacker);
+				}
 		}
 	}
 
