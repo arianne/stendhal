@@ -245,7 +245,7 @@ class DestinationObject {
 			// drop the entity to the ground. Do this always in the players
 			// zone
 			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
-			logger.warn("adding " + entity.get("name") + " to " + zone);
+			logger.debug("adding " + entity.get("name") + " to " + zone);
 
 			// HACK: Avoid a problem on database
 			if (entity.has("#db_id")) {
