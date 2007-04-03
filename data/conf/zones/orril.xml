@@ -173,6 +173,9 @@ East: Nalwor, Semos
 
  <!-- Level -1 -->
 
+ <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128" file="sub_1_kotoch_entrance.xstend">
+ </zone>
+
  <zone name="-1_orril_mountain_w" level="-1" x="499744" y="500256" file="sub_1_orril_mountain_w.xstend">
  </zone>
 
