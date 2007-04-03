@@ -1,0 +1,3 @@
+TODO: remove this directory when version 0.59 is released.
+
+Projectiles was renamed to ammunition, this directory is kept as a copy so that you can play with the CVS client on the 0.58 server.
