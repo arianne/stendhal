@@ -23,8 +23,10 @@ import marauroa.common.game.IRPZone;
  * STEPS:
  * - Old Mother Helena tells you the ingredients of a special soup
  * - You collect the ingredients 
- * - You bring the ingredients to the tavern and pay a small fee
- * - Eating the soup (must be at table) heals you fully and gives you a base HP/mana bonus
+ * - You bring the ingredients to the tavern 
+ * - Collecting them all gives you a base mana bonus
+ * - The soup is served at table
+ * - Eating the soup heals you fully
  *  
  *  
  * REWARD:
@@ -33,7 +35,7 @@ import marauroa.common.game.IRPZone;
  * - 100 XP
  * 
  * REPETITIONS:
- * - None.
+ * - as many as desired
  * 
  * @author kymara
  */
@@ -75,9 +77,14 @@ public class Soup extends AbstractQuest {
 		Item soup = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("soup");
 		IRPZone zone = StendhalRPWorld.get().getRPZone("int_fado_tavern");
 		zone.assignRPObjectID(soup);
+		// place on table. note: it's not equippable so must be eaten in tavern
 		soup.setX(17);
 		soup.setY(23);
+		// only allow player who made soup to eat the soup
 		soup.put("bound", player.getName());
+		// here the soup is altered to have the same heal value as the player's base HP.
+		soup.put("amount", player.getBaseHP());
+		soup.put("regen", player.getBaseHP());
 		zone.add(soup);
 	}
 
@@ -96,7 +103,17 @@ public class Soup extends AbstractQuest {
 			ConversationStates.ATTENDING,
 			"Hello, stranger. You look weary from your travels. I know what would #help you.",
 			null);
-
+		
+		// player returns after finishing the quest (it is repeatable)
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+			new SpeakerNPC.ChatCondition() {
+				@Override
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
+					return player.isQuestCompleted("soup_maker");
+				}
+			}, 
+			ConversationStates.QUEST_OFFERED, "Hello again. Have you returned for more of my magical soup?", null);
+		// player responds to word 'help'
 		npc.add(ConversationStates.ATTENDING,
 			"help",
 			new SpeakerNPC.ChatCondition() {
@@ -161,6 +178,7 @@ public class Soup extends AbstractQuest {
 					"You will find that in allotments close to Fado. So will you fetch the ingredients?",
 					null
 			);
+			// players asks about the vegetables individually
 			npc.add(ConversationStates.QUEST_OFFERED,
 					Arrays.asList("salad", "carrot"),
 					null,
@@ -227,11 +245,10 @@ public class Soup extends AbstractQuest {
 							} else {
 								placeSoupFor(player);
 
-								player.addBaseMana(10);
+								player.addBaseMana(10); // i don't know what number to choose here as i don't know about mana.
 								player.addXP(100);
-								//player.setHP(player.getBaseHP());
 								player.healPoison();
-								npc.say("The soup's on the table for you. It will be more than enough to heal you. My magical method in making the soup has increased your base mana.");
+								npc.say("The soup's on the table for you. It will heal you. My magical method in making the soup has increased your base mana.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.ATTENDING);
@@ -245,7 +262,7 @@ public class Soup extends AbstractQuest {
 				}
 			});
 		}
-	
+	//player says something which isn't in the needed food list.
 		npc.add(ConversationStates.QUESTION_1, "",
 			new SpeakerNPC.ChatCondition() {
 				@Override
@@ -277,16 +294,6 @@ public class Soup extends AbstractQuest {
 			},
 			ConversationStates.ATTENDING, "Okay then. Come back later.", null);
 
-
-		// player returns after finishing the quest
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return player.isQuestCompleted("soup_maker");
-				}
-			}, 
-			ConversationStates.ATTENDING, "Hi! Did you want more soup? This quest will be repeatable when Katie learns how. But it's not yet.", null);
 	}
 
 	@Override
