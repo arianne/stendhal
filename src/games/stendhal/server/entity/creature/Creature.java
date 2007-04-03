@@ -20,6 +20,7 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.EntitySlot;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
@@ -32,8 +33,8 @@ import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
 import games.stendhal.server.rule.EntityManager;
 
-import java.awt.geom.Rectangle2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -1113,7 +1114,7 @@ public class Creature extends NPC {
 	public void equip(List<EquipItem> items) {
 		for (Creature.EquipItem equipedItem : items) {
 			if (!hasSlot(equipedItem.slot)) {
-				addSlot(new RPSlot(equipedItem.slot));
+				addSlot(new EntitySlot(equipedItem.slot));
 			}
 
 			RPSlot slot = getSlot(equipedItem.slot);

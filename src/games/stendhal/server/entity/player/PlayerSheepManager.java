@@ -1,5 +1,6 @@
 package games.stendhal.server.entity.player;
 
+import games.stendhal.server.entity.EntitySlot;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player.NoSheepException;
 import marauroa.common.Log4J;
@@ -19,7 +20,7 @@ public class PlayerSheepManager {
 	void storeSheep(Sheep sheep) {
 		Log4J.startMethod(logger, "storeSheep");
 		if (!player.hasSlot("#flock")) {
-			player.addSlot(new RPSlot("#flock"));
+			player.addSlot(new EntitySlot("#flock"));
 		}
 
 		RPSlot slot = player.getSlot("#flock");

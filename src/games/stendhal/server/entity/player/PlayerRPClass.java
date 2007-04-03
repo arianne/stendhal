@@ -17,6 +17,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
+import games.stendhal.server.entity.EntitySlot;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
@@ -158,7 +159,7 @@ class PlayerRPClass {
 		//	   Port from 0.58 to ?: bank_nalwor,
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
-				object.addSlot(new RPSlot(slotName));
+				object.addSlot(new EntitySlot(slotName));
 			}
 		}
 		//     Port from 0.44 to 0.50: !buddy
@@ -166,7 +167,7 @@ class PlayerRPClass {
 		//     Port from 0.57 to 0.58: skills
 		for (String slotName : slotsSpecial) {
 			if (!object.hasSlot(slotName)) {
-				object.addSlot(new RPSlot(slotName));
+				object.addSlot(new EntitySlot(slotName));
 			}
 			RPSlot slot = object.getSlot(slotName);
 			if (slot.size() == 0) {

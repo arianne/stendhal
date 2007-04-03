@@ -41,7 +41,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
-			RPSlot slot = new RPSlot("content");
+			RPSlot slot = new EntitySlot("content");
 			slot.setCapacity(4);
 			addSlot(slot);
 		}
@@ -54,7 +54,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 		open = false;
 
-		RPSlot slot = new RPSlot("content");
+		RPSlot slot = new EntitySlot("content");
 		slot.setCapacity(4);
 		addSlot(slot);
 	}

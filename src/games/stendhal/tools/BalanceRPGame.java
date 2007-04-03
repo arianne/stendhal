@@ -5,11 +5,12 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.config.CreaturesXMLLoader;
+import games.stendhal.server.entity.EntitySlot;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
-import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
@@ -18,7 +19,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 /** * NOTE: AWFUL CODE FOLLOWS. YOU ARE NOT SUPPOSED TO READ THIS ;P ** */
 
@@ -130,12 +130,12 @@ public class BalanceRPGame {
 		area.assignRPObjectID(boots);
 
 		Player player = new Player(new RPObject());
-		player.addSlot(new RPSlot("lhand"));
-		player.addSlot(new RPSlot("rhand"));
-		player.addSlot(new RPSlot("armor"));
-		player.addSlot(new RPSlot("head"));
-		player.addSlot(new RPSlot("legs"));
-		player.addSlot(new RPSlot("feet"));
+		player.addSlot(new EntitySlot("lhand"));
+		player.addSlot(new EntitySlot("rhand"));
+		player.addSlot(new EntitySlot("armor"));
+		player.addSlot(new EntitySlot("head"));
+		player.addSlot(new EntitySlot("legs"));
+		player.addSlot(new EntitySlot("feet"));
 
 		player.equip(weapon);
 		player.equip(shield);
