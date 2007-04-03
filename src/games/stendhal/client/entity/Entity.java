@@ -43,7 +43,10 @@ import marauroa.common.game.RPSlot;
 public abstract class Entity implements MovementEvent, ZoneChangeEvent, AttributeEvent, CollisionEvent,
         Comparable<Entity> {
 
-//	/** session wide instance identifier for this class */
+	/** session wide instance identifier for this class
+	 * TODO: get rid of this only used by Soundsystem
+	 *  
+	**/
 	public final byte[] ID_Token = new byte[0];
 
 	/** The current x location of this entity */
@@ -52,9 +55,8 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 	/** The current y location of this entity */
 	protected double y;
 
+	
 	private Direction direction;
-
-
 
 	/** The current speed of this entity horizontally (pixels/sec) */
 	protected double dx;
@@ -82,10 +84,10 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 
 	private int modificationCount;
 
-	/*
+	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling
 	 * in onChangedAdded() from other onAdded() hack.
-	 * Need to fix it all to work right, but not now.
+	 * TODO: Need to fix it all to work right, but not now.
 	 */
 	protected boolean inAdd = false;
 
