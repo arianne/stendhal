@@ -5,14 +5,14 @@ import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.AttributeNotFoundException;
 
 /**
- * A KeyDestroyingDoor works just like a normal door, except that it destroys
- * the key item when used. By using the requiredAmount parameter, it can also
- * be programmed to consume more than key item each time.
+ * A KeyDestroyingDoor works just like a normal locked door, except that it
+ * destroys the key item when used. By using the requiredAmount parameter,
+ * it can also be programmed to consume more than one key item each time.
  * 
  * Note that the item needn't be a real key; one could, for instance, also
  * create a door that costs 5 pieces of gold to use.
  * 
- * If you add such a door to the world, don't forget to add a shield or an
+ * If you add such a door to the world, don't forget to add a sign or an
  * NPC which tells the player how the door works.
  * 
  * @author daniel
