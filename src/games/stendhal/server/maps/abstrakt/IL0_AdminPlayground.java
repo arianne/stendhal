@@ -119,11 +119,11 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
-			game.add(null, new TeleportScriptAction(player, engine, text, game));
+			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, text, game), null);
 		}
 	}
 
-	class TeleportScriptAction extends ScriptAction {
+	class TeleportScriptAction implements TurnListener {
 		private ScriptInGroovy game;
 
 		private Player player;
@@ -151,8 +151,8 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 			this.game = game;
 		}
 
-		@Override
-		public void fire() {
+		public void onTurnReached(int currentTurn, String message) {
+			boolean keepRunning = true;
 			counter++;
 			if (!beamed) {
 				// speed up
@@ -196,10 +196,13 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 					if (direction == Direction.DOWN) {
 						inversedSpeed++;
 						if (inversedSpeed == 3) {
-							game.remove(this);
+							keepRunning = false;
 						}
 					}
 				}
+			}
+			if (keepRunning) {
+				TurnNotifier.get().notifyInTurns(0, this, null);
 			}
 		}
 	}
