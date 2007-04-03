@@ -73,7 +73,7 @@ Changelog
 
 0.59
 - introduced scoring system in deathmatch instead of XP
-- client prevents putting items into useless slots (like a sword into the head-slot)
+- server prevents putting items into useless slots (like a sword into the head-slot)
 - the Easter Bunny is hopping around
 - added a quest to deliver pizza to several NPC's
 - added a sunny island and a new quest on it
@@ -82,6 +82,7 @@ Changelog
 - non semos city scrolls - nalwor, fado (when open), ados available for purchase
 - nalwor bank with nalwor and semos bank chests
 - added /away command (like in irc)
+- added /answer command
 - /ignore command now supports duration and reason message
 - all buildings have had a makeover
 - nalwor river can be crossed over the waterfall, to make travelling east<->west possible without going back to semos
