@@ -96,7 +96,7 @@ class SoundCycle extends Thread implements Cloneable {
 		}
 
 		if (entity != null) {
-			this.ID_Token = entity.get_IDToken();
+			this.ID_Token = entity.ID_Token;
 			this.entityRef = new WeakReference<Entity>(entity);
 		}
 		this.token = token;

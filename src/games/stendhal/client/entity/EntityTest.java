@@ -46,7 +46,7 @@ public class EntityTest {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		Entity en = new MockEntity(rpo);
-		assertNotNull(en.get_IDToken());
+		assertNotNull(en.ID_Token);
 
 	}
 

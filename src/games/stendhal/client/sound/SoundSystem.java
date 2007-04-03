@@ -334,25 +334,24 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		SoundSystem sys;
 		SoundCycle cycle;
 		SoundCycle c1;
-		byte[] entity_token;
+		
 
 		if (!(sys = get()).isOperative()) {
 			return null;
 		}
 
-		entity_token = entity.get_IDToken();
 		cycle = null;
 		synchronized (sys.cycleMap) {
 			try {
 				cycle = new SoundCycle(entity, token, period, volBot, volTop, chance);
 				cycle.play();
 
-				c1 = sys.cycleMap.get(entity_token);
+				c1 = sys.cycleMap.get(entity.ID_Token);
 				if (c1 != null) {
 					c1.terminate();
 				}
 
-				sys.cycleMap.put(entity_token, cycle);
+				sys.cycleMap.put(entity.ID_Token, cycle);
 			} catch (IllegalStateException e) {
 				logger.error("*** Undefined sound sample: " + token, e);
 			}

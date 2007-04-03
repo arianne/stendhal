@@ -43,8 +43,8 @@ import marauroa.common.game.RPSlot;
 public abstract class Entity implements MovementEvent, ZoneChangeEvent, AttributeEvent, CollisionEvent,
         Comparable<Entity> {
 
-	/** session wide instance identifier for this class */
-	private byte[] ID_Token = new byte[0];
+//	/** session wide instance identifier for this class */
+	public final byte[] ID_Token = new byte[0];
 
 	/** The current x location of this entity */
 	protected double x;
@@ -113,9 +113,6 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 		loadSprite(object);
 	}
 
-	public byte[] get_IDToken() {
-		return ID_Token;
-	}
 
 	/** Returns the represented arianne object id */
 	public RPObject.ID getID() {
