@@ -147,14 +147,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 		return new Point2D.Double(x, y);
 	}
 
-//	public double getSpeed() {
-//		return speed;
-//	}
 
-	public double distance(RPObject object) {
-		return (object.getInt("x") - x) * (object.getInt("x") - x) + (object.getInt("y") - y)
-		        * (object.getInt("y") - y);
-	}
 	public double distance(User user) {
 	    
 	    return (user.getX() - x) * (user.getX() - x) + (user.getY() - y)

@@ -126,11 +126,13 @@ public class EntityTest {
 		rpo.put("type", "_hugo");
 		rpo.put("x", 0);
 		rpo.put("y", 0);
+		User to = new User(rpo);
 		en = new MockEntity(rpo);
 		en.onMove(3, 4, Direction.STOP, 0);
 		assertEquals(3.0, en.getX());
 		assertEquals(4.0, en.getY());
-		assertEquals(25.0, en.distance(rpo));
+		assertEquals(25.0, en.distance(to));
+		assertEquals(0.0, to.distance(to));
 	}
 
 	@Test
