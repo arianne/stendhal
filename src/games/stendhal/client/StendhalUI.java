@@ -169,13 +169,6 @@ public abstract class StendhalUI {
 	//
 
 	/**
-	 * Get the virtual window frame.
-	 *
-	 * @return Returns the window toolkit baseframe.
-	 */
-	public abstract WtBaseframe getFrame();
-
-	/**
 	 * @return Returns the altDown.
 	 */
 	public abstract boolean isAltDown();

@@ -204,7 +204,7 @@ public class GroundContainer extends WtPanel implements Inspector {
 			String[] actions = entity.offeredActions();
 			if (actions.length > 0) {
 				CommandList list = new CommandList(entity.getType(), actions, entity);
-				ui.getFrame().setContextMenu(list);
+				ui.setContextMenu(list);
 			}
 		}
 
