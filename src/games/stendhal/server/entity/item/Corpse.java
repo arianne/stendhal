@@ -15,10 +15,11 @@ package games.stendhal.server.entity.item;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.EntitySlot;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.LootableSlot;
 import games.stendhal.server.events.EquipListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -114,7 +115,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		stage = 0;
 		put("stage", stage);
 
-		RPSlot slot = new EntitySlot("content");
+		RPSlot slot = new LootableSlot(this);
 		slot.setCapacity(4);
 		addSlot(slot);
 	}

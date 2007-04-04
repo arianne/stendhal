@@ -12,13 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
+import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.LootableSlot;
+import games.stendhal.server.events.UseListener;
+
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
-
-import marauroa.common.game.*;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * A chest is an unmovable container. It can be opened and closed. While
@@ -41,7 +46,7 @@ public class Chest extends Entity implements UseListener {
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
-			RPSlot slot = new EntitySlot("content");
+			RPSlot slot = new LootableSlot(this);
 			slot.setCapacity(4);
 			addSlot(slot);
 		}
