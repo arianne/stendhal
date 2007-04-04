@@ -22,7 +22,12 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJButton;
+import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.client.gui.wt.GroundContainer;
+import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.gui.wt.core.WtClickListener;
@@ -41,8 +46,12 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
@@ -58,6 +67,7 @@ import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -141,12 +151,16 @@ public class j2DClient extends StendhalUI {
 	/** the dialog "really quit?" */
 	private WtPanel quitDialog;
 
+	private Component	xquitDialog;
+
 	private Sprite offlineIcon;
 
 	private boolean offline;
 
 	private int blinkOffline;
 
+	private static final boolean newCode =
+			(System.getProperty("stendhal.newgui") != null);
 
 	private boolean fixkeyboardHandlinginX() {
 		logger.debug("OS: " + System.getProperty("os.name"));
@@ -283,6 +297,17 @@ public class j2DClient extends StendhalUI {
 				requestQuit();
 			}
 		});
+
+
+		/*
+		 * Quit dialog
+		 */
+		if(newCode) {
+			xquitDialog = buildQuitDialog();
+			xquitDialog.setVisible(false);
+
+			pane.add(xquitDialog, JLayeredPane.MODAL_LAYER);
+		}
 
 
 		/*
@@ -444,6 +469,49 @@ public class j2DClient extends StendhalUI {
 	 */
 	public void addDialog(Component comp) {
 		pane.add(comp, JLayeredPane.PALETTE_LAYER);
+	}
+
+
+	/**
+	 * Build the in-window quit dialog [panel].
+	 *
+	 *
+	 */
+	protected Component buildQuitDialog() {
+		InternalManagedDialog	imd;
+		Style	style;
+		JPanel	panel;
+		JPanel	buttons;
+		JButton	b;
+
+
+		panel = new JPanel();
+		panel.setOpaque(false);
+		panel.setLayout(null);
+		panel.setPreferredSize(new Dimension(150, 75));
+
+		style = WoodStyle.getInstance();
+
+		b = new StyledJButton(style);
+		b.setLabel("Yes");
+		b.setBounds(30, 25, 40, 25);
+		b.addActionListener(new QuitConfirmCB());
+
+		panel.add(b);
+
+
+		b = new StyledJButton(style);
+		b.setLabel("No");
+		b.setBounds(80, 25, 40, 25);
+		b.addActionListener(new QuitCancelCB());
+
+		panel.add(b);
+
+
+		imd = new InternalManagedDialog("quit", "Quit");
+		imd.setContent(panel);
+
+		return imd.getDialog();
 	}
 
 
@@ -671,6 +739,16 @@ public class j2DClient extends StendhalUI {
 					keyCodeToDirection(e.getKeyCode()),
 					e.isControlDown());
 		}
+	}
+
+
+	protected void quitCancelCB() {
+		xquitDialog.setVisible(false);
+	}
+
+
+	protected void quitConfirmCB() {
+		shutdown();
 	}
 
 
@@ -929,6 +1007,19 @@ public class j2DClient extends StendhalUI {
 		 */
 		client.stop();
 
+		if(newCode) {
+			Dimension psize = xquitDialog.getPreferredSize();
+
+			xquitDialog.setBounds(
+				(getWidth() - psize.width) / 2,
+				(getHeight() - psize.height) / 2,
+				psize.width,
+				psize.height);
+
+			xquitDialog.validate();
+			xquitDialog.setVisible(true);
+
+		} else {
 		// quit messagebox already showing?
 		if (quitDialog == null) {
 			// no, so show it
@@ -946,6 +1037,7 @@ public class j2DClient extends StendhalUI {
 				};
 			});
 			baseframe.addChild(quitDialog);
+		}
 		}
 	}
 
@@ -1010,6 +1102,22 @@ public class j2DClient extends StendhalUI {
 				// Escape
 				requestQuit();
 			}
+		}
+	}
+
+	//
+	//
+
+	protected class QuitCancelCB implements ActionListener {
+		public void actionPerformed(ActionEvent ev) {
+			quitCancelCB();
+		}
+	}
+
+
+	protected class QuitConfirmCB implements ActionListener {
+		public void actionPerformed(ActionEvent ev) {
+			quitConfirmCB();
 		}
 	}
 
