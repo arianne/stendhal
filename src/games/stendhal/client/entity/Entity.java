@@ -92,12 +92,26 @@ public final byte[] ID_Token = new byte[0];
 	protected boolean inAdd = false;
 
 	public Entity() {
+		x = 0.0;
+		y = 0.0;
+		dx = 0.0;
+		dy = 0.0;
+		direction = Direction.STOP;
 		modificationCount = 0;
 	}
 
 	protected Entity(RPObject object) throws AttributeNotFoundException {
+		x = 0.0;
+		y = 0.0;
+		dx = 0.0;
+		dy = 0.0;
+		direction = Direction.STOP;
+		modificationCount = 0;
+		init(object);
+	}
 
-		type = object.get("type");
+	void init(RPObject object) {
+	    type = object.get("type");
 
 		if (object.has("name")) {
 			name = object.get("name");
@@ -106,15 +120,11 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		rpObject = object;
-		x = 0.0;
-		y = 0.0;
-		dx = 0.0;
-		dy = 0.0;
-		direction = Direction.STOP;
-
+	
 		loadSprite(object);
-	}
-
+    }
+	
+	
 
 	/** Returns the represented arianne object id */
 	public RPObject.ID getID() {

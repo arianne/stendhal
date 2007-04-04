@@ -37,8 +37,12 @@ public class GrainField extends AnimatedEntity {
 		super(object);
 		init(object);
 	}
-
-	private void init(RPObject object) {
+	public GrainField()  {
+		super();
+		
+	}
+	void init(RPObject object) {
+	
 		// default values are for compatibility to server <= 0.56
 
 		width = 1;
@@ -59,6 +63,7 @@ public class GrainField extends AnimatedEntity {
 		if (object.has("class")) {
 			clazz = object.get("class");
 		}
+		super.init(object);
 	}
 
 	@Override
@@ -68,7 +73,7 @@ public class GrainField extends AnimatedEntity {
 		// So we have to load the object now. But after this method
 		// The values we loaded are overriden by the default values, so
 		// init has to be called again in our constructor.
-		init(object);
+//		init(object);
 
 		SpriteStore store = SpriteStore.get();
 		for (int i = 0; i <= maxRipeness; i++) {

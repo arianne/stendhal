@@ -62,6 +62,38 @@ public class NPC extends RPEntity {
 		}
 	}
 
+	public NPC()  {
+		super();
+
+	
+	}
+	
+	void init(RPObject object){
+		super.init(object);
+		String type = getType();
+
+		String name = null;
+		if (object.has("name")) {
+			name = object.get("name");
+		} else {
+			name = object.get("type");
+		}
+
+		if (type.startsWith("npc")) {
+			setAudibleRange(3);
+			if (name.equals("Diogenes")) {
+				SoundSystem.startSoundCycle(this, "Diogenes-patrol", 10000, 20, 50, 100);
+			} else if (name.equals("Carmen")) {
+				SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20, 50, 75);
+			} else if (name.equals("Nishiya")) {
+				SoundSystem.startSoundCycle(this, "Nishiya-patrol", 40000, 20, 50, 80);
+			} else if (name.equals("Margaret")) {
+				SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000, 10, 30, 70);
+			} else if (name.equals("Sato")) {
+				SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30, 50, 70);
+			}
+		}
+	}
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();

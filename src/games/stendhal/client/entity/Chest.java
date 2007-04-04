@@ -42,7 +42,10 @@ public class Chest extends AnimatedEntity implements Inspectable {
 		super(base);
 		requestOpen = false;
 	}
-
+	public Chest() {
+		super();
+		requestOpen = false;
+	}
 	@Override
 	protected void buildAnimations(RPObject base) {
 		SpriteStore store = SpriteStore.get();

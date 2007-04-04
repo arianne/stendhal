@@ -28,7 +28,9 @@ public class SheepFood extends AnimatedEntity {
 	public SheepFood(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-
+	public SheepFood(){
+		super();
+	}
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();

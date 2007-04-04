@@ -25,6 +25,11 @@ public class Food extends AnimatedEntity {
 
 	private int amount;
 
+	public Food() {
+	    super();
+	    
+    }
+
 	public Food(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}

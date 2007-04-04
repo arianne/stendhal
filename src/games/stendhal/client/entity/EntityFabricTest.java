@@ -125,5 +125,52 @@ public class EntityFabricTest {
 		assertEquals("we should have created a box by now", Box.class, en.getClass());
 
 	}
+//	register("player", null, "Player");
+//
+//	register("creature", "small_animal", "SmallCreature");
+//	register("creature", "giant_animal", "BigCreature");
+//	register("creature", "huge_animal", "HugeCreature");
+//	register("creature", "mythical_animal", "MythicalCreature");
+//	register("creature", null, "NormalCreature");
+//	// TODO: deactivate compatibility code in EntityFabric after release of 0.59
+//	// and use this: register("creature", null, "ResizeableCreature");
+//
+//	register("sheep", null, "Sheep");
+//
+//	register("npc", null, "NPC");
+//
+//	register("plant_grower", null, "PlantGrower");
+//	register("growing_entity_spawner", "items/grower/carrot_grower", "CarrotGrower");
+//	register("growing_entity_spawner", null, "GrainField");
+//	register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
+//	register("gold_source", null, "GoldSource");
+//
+//	register("walk_blocker", null, "InvisibleEntity");
+//	register("damaging_area", null, "InvisibleEntity");
+//
+//	register("food", null, "SheepFood");
+//	register("chest", null, "Chest");
+//
+//	register("corpse", null, "Corpse");
+//
+//	register("blood", null, "Blood");
+//	register("sign", null, "Sign");
+//	register("blackboard", null, "Sign");
+//
+//	register("item", null, "Item");
+
+//	register("item", "drink", "StackableItem");
+//	register("item", "food", "StackableItem");
+//	register("item", "herb", "StackableItem");
+//	register("item", "misc", "StackableItem");
+//	register("item", "money", "StackableItem");
+//	register("item", "ammunition", "StackableItem");
+//	// TODO: remove this after release of 0.59
+//	register("item", "projectiles", "StackableItem");
+//	register("item", "resource", "StackableItem");
+//	register("item", "scroll", "StackableItem");
+//
+//	register("portal", null, "Portal");
+//	register("door", null, "Door");
 
 }

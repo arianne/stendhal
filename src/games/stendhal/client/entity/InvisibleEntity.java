@@ -20,6 +20,11 @@ import games.stendhal.client.GameScreen;
  */
 public class InvisibleEntity extends Entity {
 
+	public InvisibleEntity() {
+	    super();
+	  
+    }
+
 	/**
 	 * Create an invisible 1x1 entity.
 	 *

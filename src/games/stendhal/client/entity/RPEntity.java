@@ -157,6 +157,14 @@ public abstract class RPEntity extends AnimatedEntity {
 		attackTarget = null;
 		lastAttacker = null;
 	}
+	/** Create a new game entity based on the arianne object passed */
+	public RPEntity()  {
+		super();
+		damageSprites = new LinkedList<Sprite>();
+		damageSpritesTimes = new LinkedList<Long>();
+		attackTarget = null;
+		lastAttacker = null;
+	}
 
 	/**
 	 * Create/add a "floater" message.

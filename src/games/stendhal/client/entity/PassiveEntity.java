@@ -20,4 +20,7 @@ public abstract class PassiveEntity extends Entity {
 	public PassiveEntity(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
+	public PassiveEntity()  {
+		super();
+	}
 }

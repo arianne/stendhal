@@ -28,6 +28,11 @@ public class ResizeableCreature extends Creature {
 	private double drawWidth;
 	private double drawHeight;
 
+	public ResizeableCreature() {
+	    super();
+	   
+    }
+
 	/**
 	 * Creates a new resizeable creature
 	 *
@@ -39,12 +44,6 @@ public class ResizeableCreature extends Creature {
 
 	@Override
 	protected void buildAnimations(RPObject object) {
-		// this method is invoked by one of the parents constructors before 
-		// our attributes are initalized
-		if (height == 0) {
-			width = object.getDouble("width");
-			height = object.getDouble("height");
-		}
 
 		// Hack for human like creatures
     	drawWidth = width;
@@ -137,4 +136,13 @@ public class ResizeableCreature extends Creature {
 	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, width, height);
 	}
+
+	@Override
+    void init(RPObject object) {
+		
+			width = object.getDouble("width");
+			height = object.getDouble("height");
+		
+	    super.init(object);
+    }
 }

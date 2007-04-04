@@ -20,6 +20,11 @@ import marauroa.common.game.RPObject;
 /** A Creature entity */
 public class NormalCreature extends Creature {
 
+	public NormalCreature() {
+	    super();
+	    
+    }
+
 	public NormalCreature(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}

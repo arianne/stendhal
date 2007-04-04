@@ -8,6 +8,11 @@ import marauroa.common.game.RPObject;
 
 public class Box extends Item {
 
+	public Box() {
+	    super();
+	    
+    }
+
 	public Box(RPObject object) throws AttributeNotFoundException {
 		super(object);
 

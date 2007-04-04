@@ -31,6 +31,11 @@ public class GoldSource extends AnimatedEntity {
 	
 	private static final int FRAME_COUNT = 32;
 
+	public GoldSource() {
+	    super();
+	  
+    }
+
 	public GoldSource(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}

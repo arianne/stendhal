@@ -27,7 +27,9 @@ public class BigCreature extends Creature {
 	public BigCreature(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-
+	public BigCreature() {
+		super();
+	}
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();

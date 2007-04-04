@@ -12,7 +12,10 @@ public class CarrotGrower extends GrainField {
 		super(object);
 
 	}
+	public CarrotGrower() {
+		super();
 
+	}
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 

@@ -34,7 +34,14 @@ public class Portal extends Entity {
 
 		this.hidden = object.has("hidden");
 	}
+	public Portal() {
+		super();
 
+		
+	}
+
+	
+	
 	@Override
 	protected void loadSprite(RPObject object) {
 		sprite = null;
@@ -102,4 +109,9 @@ public class Portal extends Entity {
 		}
 
 	}
+	@Override
+    void init(RPObject object) {
+	    super.init(object);
+	    this.hidden = object.has("hidden");
+    }
 }

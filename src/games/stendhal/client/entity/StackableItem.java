@@ -33,7 +33,10 @@ public class StackableItem extends Item {
 		super(object);
 		quantity = 0;
 	}
-
+	public StackableItem()  {
+		super();
+		quantity = 0;
+	}
 	@Override
 	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);

@@ -25,6 +25,11 @@ public class Door extends AnimatedEntity {
 
 	private int orientation;
 
+	public Door() {
+	    super();
+	  
+    }
+
 	public Door(RPObject base) throws AttributeNotFoundException {
 		super(base);
 

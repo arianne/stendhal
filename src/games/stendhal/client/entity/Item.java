@@ -27,7 +27,9 @@ public class Item extends PassiveEntity {
 	public Item(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-
+	public Item()  {
+		super();
+	}
 	@Override
 	protected void loadSprite(RPObject object) {
 		SpriteStore store = SpriteStore.get();

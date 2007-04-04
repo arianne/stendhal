@@ -37,7 +37,10 @@ public class EntityFabric {
 
 			if (type.equals("player") && object.has("name")){
 				if (StendhalClient.get().getUserName().equals(object.get("name"))){
-					return new User(object);
+					User me = new User();
+					me.init(object);
+					return me;
+					
 				}
 			}
 
@@ -59,7 +62,16 @@ public class EntityFabric {
 			}
 
 			java.lang.reflect.Constructor constr = entityClass.getConstructor(RPObject.class);
-			Entity en = (Entity) constr.newInstance(object);
+			Entity en=null;
+			try{
+				en= (Entity) entityClass.newInstance();
+				en.init(object);
+				
+			}catch (Exception e){
+				e.printStackTrace();
+				en = (Entity) constr.newInstance(object);
+			}
+			
 			if (en instanceof Inspectable) {
 				((Inspectable) en).setInspector(StendhalUI.get().getInspector());
 			}

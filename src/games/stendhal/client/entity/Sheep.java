@@ -50,7 +50,9 @@ public class Sheep extends NPC {
 	public Sheep(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-
+	public Sheep() {
+		super();
+	}
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();

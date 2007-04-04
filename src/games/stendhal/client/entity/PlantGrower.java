@@ -8,6 +8,11 @@ import marauroa.common.game.RPObject;
 
 public class PlantGrower extends Entity {
 
+	public PlantGrower() {
+	    super();
+	   
+    }
+
 	public PlantGrower(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}

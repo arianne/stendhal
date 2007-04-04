@@ -36,7 +36,10 @@ public class Player extends RPEntity {
 		super(object);
 
 	}
+	public Player()  {
+		super();
 
+	}
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 

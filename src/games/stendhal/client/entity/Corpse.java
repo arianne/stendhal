@@ -31,6 +31,9 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	public Corpse(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
+	public Corpse()  {
+		super();
+	}
 
 	@Override
 	public Rectangle2D getArea() {

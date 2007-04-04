@@ -27,6 +27,9 @@ public class SmallCreature extends Creature {
 	public SmallCreature(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
+	public SmallCreature() {
+		super();
+	}
 
 	@Override
 	protected void buildAnimations(RPObject object) {

@@ -32,6 +32,11 @@ public class User extends Player {
 		_instance = this;
 		
 	}
+	public User()  {
+		super();
+		_instance = this;
+		
+	}
 
 	@Override
     public void onMove(int x, int y, Direction direction, double speed) {

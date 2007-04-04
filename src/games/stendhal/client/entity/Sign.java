@@ -35,6 +35,9 @@ public class Sign extends Entity {
 	public Sign(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
+	public Sign()  {
+		super();
+	}
 
 	@Override
 	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {

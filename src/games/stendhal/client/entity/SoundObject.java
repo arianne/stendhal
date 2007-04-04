@@ -38,7 +38,7 @@ public class SoundObject extends Entity {
 
 	public SoundObject() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public SoundObject(int x, int y) {

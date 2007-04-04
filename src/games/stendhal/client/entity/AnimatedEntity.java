@@ -54,6 +54,11 @@ public abstract class AnimatedEntity extends Entity {
 		delta = System.currentTimeMillis();
 		frame = 0;
 	}
+	public AnimatedEntity() {
+		super();
+		delta = System.currentTimeMillis();
+		frame = 0;
+	}
 
 	/** This method fills the sprites map 
 	 * @param object

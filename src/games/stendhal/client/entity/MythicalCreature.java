@@ -27,7 +27,9 @@ public class MythicalCreature extends Creature {
 	public MythicalCreature(RPObject object) throws AttributeNotFoundException {
 		super(object);
 	}
-
+	public MythicalCreature()  {
+		super();
+	}
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();
