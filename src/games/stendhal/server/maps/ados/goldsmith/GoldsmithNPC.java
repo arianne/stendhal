@@ -77,7 +77,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 						"cast", "gold_bar", requiredResources, 15 * 60);
 
 				addProducer(behaviour,
-				        "Hi! I'm the local goldsmith. If you require me to #cast you a #barrel #of #gold just tell me!");
+				        "Hi! I'm the local goldsmith. If you require me to #cast you a #gold #bar just tell me!");
 				addReply("wood",
 		        		"I need some wood to keep my furnace lit. You can find any amount of it just lying around in the forest.");
 				addReply(Arrays.asList("ore", "gold_ore", "gold_nugget"),
