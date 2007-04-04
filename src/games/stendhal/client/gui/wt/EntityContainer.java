@@ -103,6 +103,7 @@ public class EntityContainer extends WtPanel {
 		}
 
 		RPSlot rpslot = parent.getSlot(slotName);
+		if (rpslot == null) return;  // TODO: fix the non existing "keyring slot" for old server
 		shownSlot = (RPSlot) rpslot.clone();
 
 		Iterator<RPObject> it = (rpslot != null) ? shownSlot.iterator() : null;
