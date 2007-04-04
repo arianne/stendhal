@@ -481,7 +481,6 @@ public class j2DClient extends StendhalUI {
 		InternalManagedDialog	imd;
 		Style	style;
 		JPanel	panel;
-		JPanel	buttons;
 		JButton	b;
 
 
