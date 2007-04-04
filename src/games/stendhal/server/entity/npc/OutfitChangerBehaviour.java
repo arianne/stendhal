@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,6 +35,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	private int endurance;
 
 	private String wearOffMessage;
+	
+	// TODO: make this persistent, e.g. by replacing this list with one
+	// quest slot reserved for each OutfitChangerBehaviour.
+	private List<String> namesOfPlayersWithWornOffOutfits;
 
 	// all available outfit types are predefined here.
 	private static Map<String, List<Outfit>> outfitTypes = new HashMap<String, List<Outfit>>();
@@ -56,13 +61,16 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 				new Outfit(null, null, 93, null),
 		        new Outfit(null, null, 94, null)));
 
-		outfitTypes.put("mask", Arrays.asList(new Outfit(0, 80, null, null), new Outfit(0, 81,
-		        null, null), new Outfit(0, 82, null, null), new Outfit(0, 83, null,
-		        null), new Outfit(0, 84, null, null)));
+		outfitTypes.put("mask", Arrays.asList(
+				new Outfit(0, 80, null, null),
+				new Outfit(0, 81, null, null),
+				new Outfit(0, 82, null, null),
+				new Outfit(0, 83, null, null),
+				new Outfit(0, 84, null, null)));
 	}
 
 	/**
-	 * Creates a new OutfitChangerBehaviour for outfits never wear off
+	 * Creates a new OutfitChangerBehaviour for outfits that never wear off
 	 * automatically.
 	 *
 	 * @param priceList list of outfit types and their prices
@@ -77,7 +85,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 	 *
 	 * @param priceList list of outfit types and their prices
 	 * @param endurance the time (in turns) the outfit will stay, or
-	 * 					DONT_WEAR_OFF if the outfit should never disappear
+	 * 					NEVER_WEARS_OFF if the outfit should never disappear
 	 * 				    automatically.
 	 * @param wearOffMessage the message that the player should receive after
 	 * 					the outfit has worn off, or null if no message should
@@ -87,6 +95,10 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		super(priceList);
 		this.endurance = endurance;
 		this.wearOffMessage = wearOffMessage;
+		if (endurance != NEVER_WEARS_OFF) {
+			LoginNotifier.get().addListener(this);
+			namesOfPlayersWithWornOffOutfits = new ArrayList<String>();
+		}
 	}
 
 	/**
@@ -186,12 +198,14 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		} else {
 			// The player has logged out before the outfit wore off.
 			// Remove it when the player logs in again.
-			LoginNotifier.get().notifyOnLogin(playerName, this, null);
+			namesOfPlayersWithWornOffOutfits.add(playerName);
 		}
 	}
 
-	public void onLoggedIn(String playerName, String message) {
-		Player player = StendhalRPRuleProcessor.get().getPlayer(playerName);
-		onWornOff(player);
+	public void onLoggedIn(Player player) {
+		if (namesOfPlayersWithWornOffOutfits.contains(player.getName())) {
+			onWornOff(player);
+			namesOfPlayersWithWornOffOutfits.remove(player.getName());
+		}
 	}
 }

@@ -537,7 +537,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				p.notifyOnline(player.getName());
 			}
 			addGameEvent(player.getName(), "login");
-			LoginNotifier.get().onPlayerLoggedIn(player.getName());
+			LoginNotifier.get().onPlayerLoggedIn(player);
 
 			return true;
 		} catch (Exception e) {

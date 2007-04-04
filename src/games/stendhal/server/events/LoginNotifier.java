@@ -1,48 +1,19 @@
 package games.stendhal.server.events;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import games.stendhal.server.entity.player.Player;
 
-import org.apache.log4j.Logger;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Other classes can register here to be notified when a certain
- * player logs in.
- * 
- * Attention: LoginEvents aren't stored persistently, i.e. if the server
- * is restarted, all LoginEvents are lost. Thus, don't use this for anything
- * critical. 
+ * Other classes can register here to be notified when a player logs in.
+ *
+ * It is the responsibility of the LoginListener to determine which
+ * players are of interest for it, and to store this information persistently. 
  * 
  * @author daniel
  */
 public class LoginNotifier {
-
-	/**
-	 * Struct to store a pair of LoginListener and String.
-	 */
-	protected static class LoginEvent {
-
-		public LoginListener loginListener;
-
-		public String message;
-
-		public String playerName;
-
-		public LoginEvent(LoginListener loginListener, String playerName, String message) {
-			this.loginListener = loginListener;
-			this.message = message;
-			this.playerName = playerName;
-		}
-
-		public boolean equals(LoginEvent other) {
-			return (loginListener == other.loginListener)
-			        && (((message == null) && (other.message == null)) || message.equals(other.message));
-		}
-	}
-
-	private static Logger logger = Logger.getLogger(LoginNotifier.class);
 
 	/** The Singleton instance **/
 	private static LoginNotifier instance = null;
@@ -52,19 +23,17 @@ public class LoginNotifier {
 	 * take place when that player logs in.
 	 * Players for whom no event should take place needn't be registered here.
 	 */
-	private Map<String, Set<LoginEvent>> register = new HashMap<String, Set<LoginEvent>>();
+	private List<LoginListener> listeners;
 
-	/** Used for multi-threading synchronization. **/
-	private final Object sync = new Object();
-
+	// singleton
 	private LoginNotifier() {
-		// singleton
+		listeners = new ArrayList<LoginListener>();
 	}
 
 	/**
-	 * Return the TurnNotifier instance.
+	 * Return the LoginNotifier instance.
 	 *
-	 * @return TurnNotifier the Singleton instance
+	 * @return LoginNotifier the Singleton instance
 	 */
 	public static LoginNotifier get() {
 		if (instance == null) {
@@ -73,83 +42,22 @@ public class LoginNotifier {
 		return instance;
 	}
 
+	public void addListener(LoginListener listener) {
+		listeners.add(listener);
+	}
+	
+	public void removeListener(LoginListener listener) {
+		listeners.remove(listener);
+	}
+	
 	/**
 	 * This method is invoked by Player.create().
 	 *
-	 * @param playerName the name of the player who logged in
+	 * @param player the player who logged in
 	 */
-	public void onPlayerLoggedIn(String playerName) {
-
-		// get and remove the set for this turn
-		Set<LoginEvent> set = null;
-		synchronized (sync) {
-			set = register.remove(playerName);
-		}
-
-		if (set != null) {
-			for (LoginEvent event : set) {
-				LoginListener loginListener = event.loginListener;
-				String message = event.message;
-				try {
-					loginListener.onLoggedIn(playerName, message);
-				} catch (RuntimeException e) {
-					logger.error(e, e);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
-	 * 
-	 * @param diff the number of turns to wait
-	 * @param turnListener the object to notify
-	 * @param message an object to pass to the event handler
-	 */
-
-	/**
-	 * Notifies the <i>turnListener</i> at turn number <i>turn</i>.
-	 * 
-	 * @param playerName the name of the player who should be tracked
-	 * @param loginListener the object to notify
-	 * @param message an object to pass to the event handler
-	 */
-	public void notifyOnLogin(String playerName, LoginListener loginListener, String message) {
-		synchronized (sync) {
-			// do we have other events for this turn?
-			Set<LoginEvent> set = register.get(playerName);
-			if (set == null) {
-				set = new HashSet<LoginEvent>();
-				register.put(playerName, set);
-			}
-			// add it to the list
-			set.add(new LoginEvent(loginListener, playerName, message));
-		}
-	}
-
-	/**
-	 * Forgets all registered notification entries for the given LoginListener
-	 * where the entry's message equals the given one. 
-	 * @param playerName the name of the player who should not be tracked
-	 * @param loginListener the object which should not be notified
-	 * @param message an object that was passed to the event handler
-	 */
-	public void dontNotify(LoginListener loginListener, String playerName, String message) {
-		// all events that are equal to this one should be forgotten.
-		LoginEvent loginEvent = new LoginEvent(loginListener, playerName, message);
-		for (Map.Entry<String, Set<LoginEvent>> mapEntry : register.entrySet()) {
-			Set<LoginEvent> set = mapEntry.getValue();
-			// We don't remove directly, but first store in this
-			// set. This is to avoid ConcurrentModificationExceptions. 
-			Set<LoginEvent> toBeRemoved = new HashSet<LoginEvent>();
-			for (LoginEvent currentEvent : set) {
-				if (currentEvent.equals(loginEvent)) {
-					toBeRemoved.add(currentEvent);
-				}
-			}
-			for (LoginEvent event : toBeRemoved) {
-				set.remove(event);
-			}
+	public void onPlayerLoggedIn(Player player) {
+		for (LoginListener listener: listeners) {
+			listener.onLoggedIn(player);
 		}
 	}
 }

@@ -1,18 +1,16 @@
 package games.stendhal.server.events;
 
+import games.stendhal.server.entity.player.Player;
+
 /**
- * Implementing classes can be notified that a certain player has
- * logged in.
+ * Implementing classes can be notified that a player has logged in.
  * 
- * After registering at the LoginNotifier, the LoginNotifier will wait
- * until the specified user has logged in, and notify the
- * LoginListener.
+ * After registering at the LoginNotifier, the LoginNotifier will
+ * notify it about each player who logs in.
  * 
- * A string can be passed to the LoginNotifier while registering; this
- * string will then be passed back to the LoginListener when the specified
- * player has logged in. Using this string, a LoginListener can
- * register itself multiple times at the LoginNotifier. 
- *
+ * It is the responsibility of the LoginListener to determine which
+ * players are of interest for it, and to store this information persistently. 
+ * 
  * @author daniel
  */
 public interface LoginListener {
@@ -23,5 +21,5 @@ public interface LoginListener {
 	 * @param playerName the name of the player who has logged in
 	 * @param message the string that was used 
 	 */
-	public void onLoggedIn(String playerName, String message);
+	public void onLoggedIn(Player player);
 }

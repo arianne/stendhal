@@ -10,6 +10,7 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,14 +32,28 @@ public class Jail implements TurnListener, LoginListener {
 	private static final Logger logger = Log4J.getLogger(Jail.class);
 
 	/** The Singleton instance */
-	private static Jail instance = null;
+	private static Jail instance;
 
-	private static List<Point> cellEntryPoints = Arrays.asList(new Point(3, 2), new Point(8, 2),
+	private static List<Point> cellEntryPoints = Arrays.asList(
+			new Point(3, 2),
+			new Point(8, 2),
 	        // elf cell new Point(13, 2),
-	        new Point(18, 2), new Point(23, 2), new Point(28, 2), new Point(8, 11), new Point(13, 11),
-	        new Point(18, 11), new Point(23, 11), new Point(28, 11));
+	        new Point(18, 2),
+	        new Point(23, 2),
+	        new Point(28, 2),
+	        new Point(8, 11),
+	        new Point(13, 11),
+	        new Point(18, 11),
+	        new Point(23, 11),
+	        new Point(28, 11));
 
-	private static Rectangle[] cellBlocks = { new Rectangle(1, 1, 30, 3), new Rectangle(7, 10, 30, 12) };
+	private static Rectangle[] cellBlocks = {
+			new Rectangle(1, 1, 30, 3),
+			new Rectangle(7, 10, 30, 12) };
+	
+	// TODO: make this persistent, e.g. by replacing this list with a
+	// quest slot reserved for jail.
+	private List<String> namesOfPlayersToRelease;
 
 	/**
 	 * returns the Jail object (Singleton Pattern)
@@ -50,6 +65,12 @@ public class Jail implements TurnListener, LoginListener {
 			instance = new Jail();
 		}
 		return instance;
+	}
+	
+	// singleton
+	private Jail() {
+		namesOfPlayersToRelease = new ArrayList<String>();
+		LoginNotifier.get().addListener(this);
 	}
 
 	/**
@@ -158,11 +179,15 @@ public class Jail implements TurnListener, LoginListener {
 		String playerName = message;
 		if (!release(playerName)) {
 			// The player has logged out. Release him when he logs in again.
-			LoginNotifier.get().notifyOnLogin(playerName, this, null);
+			namesOfPlayersToRelease.add(playerName);
 		}
 	}
 
-	public void onLoggedIn(String playerName, String message) {
-		release(playerName);
+	public void onLoggedIn(Player player) {
+		String name = player.getName();
+		if (namesOfPlayersToRelease.contains(name)) {
+			release(name);
+			namesOfPlayersToRelease.remove(name);
+		}
 	}
 }
