@@ -14,13 +14,11 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 
@@ -29,9 +27,6 @@ import java.util.List;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-
 import org.apache.log4j.Logger;
 
 /**
