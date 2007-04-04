@@ -17,11 +17,6 @@ import games.stendhal.client.StendhalUI;
  */
 public class BuddyListDialog extends InternalManagedDialog {
 	/**
-	 * The UI.
-	 */
-	protected StendhalUI	ui;
-
-	/**
 	 * The buddy list.
 	 */
 	protected BuddyListPanel content;
@@ -30,7 +25,7 @@ public class BuddyListDialog extends InternalManagedDialog {
 	public BuddyListDialog(StendhalUI ui) {
 		super("buddies", "Buddies");
 
-		this.ui = ui;
+		setContent(new BuddyListPanel(ui));
 	}
 
 	//
@@ -39,16 +34,5 @@ public class BuddyListDialog extends InternalManagedDialog {
 
 	public void update() {
 		content.updateList();
-	}
-
-	//
-	// ManagedDialog
-	//
-
-	@Override
-	protected JComponent createContent() {
-		content = new BuddyListPanel(ui);
-
-		return content;
 	}
 }

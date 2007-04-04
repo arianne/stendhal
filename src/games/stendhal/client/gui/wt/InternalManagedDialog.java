@@ -49,7 +49,7 @@ import javax.swing.SwingUtilities;
  * A base internal dialog in swing that implements ManagedWindow.
  *
  */
-public abstract class InternalManagedDialog implements ManagedWindow {
+public class InternalManagedDialog implements ManagedWindow {
 	/** size of the titlebar */
 	private static final int TITLEBAR_HEIGHT	= 13;
 
@@ -98,6 +98,8 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 	 * The window name.
 	 */
 	protected String		name;
+
+	protected ContentSizeChangeCB	sizeChangeListener;
 
 	/**
 	 * The titlebar.
@@ -202,13 +204,7 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 		closeButton.addActionListener(new CloseCB());
 		titlebar.add(closeButton);
 
-
-		content = createContent();
-		contentPane.add(content);
-
-		content.addPropertyChangeListener(
-			"size-change", new ContentSizeChangeCB());
-
+		sizeChangeListener = new ContentSizeChangeCB();
 
 		pack();
 		WtWindowManager.getInstance().formatWindow(this);
@@ -245,15 +241,24 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 
 
 		tbSize = titlebar.getPreferredSize();
-		cSize = content.getPreferredSize();
+
+		if(content != null) {
+			cSize = content.getPreferredSize();
+		} else {
+			cSize = new Dimension(0, 0);
+		}
 
 		width = Math.max(tbSize.width, cSize.width);
 
 		titlebar.setBounds(0, 0, width, tbSize.height);
 		titlebar.validate();
 
-		content.setBounds(0, tbSize.height, width, cSize.height);
-		content.validate();
+		if(content != null) {
+			content.setBounds(
+				0, tbSize.height, width, cSize.height);
+
+			content.validate();
+		}
 
 		if(isMinimized()) {
 			dialog.setBounds(0, 0, width, tbSize.height);
@@ -342,16 +347,6 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 
 
 	/**
-	 * Create the content component.
-	 * For now, if the content wishes to resize the dialog, it should
-	 * set a client property named <code>size-change</code> on itself.
-	 *
-	 * @return	A component to implement the content.
-	 */
-	protected abstract JComponent createContent();
-
-
-	/**
 	 * Get the actual dialog.
 	 *
 	 * @return	The dialog.
@@ -373,6 +368,32 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 
 		for(WtCloseListener l : listeners)
 			l.onClose(getName());
+	}
+
+
+	/**
+	 * Set the content component.
+	 * For now, if the content wishes to resize the dialog, it should
+	 * set a client property named <code>size-change</code> on itself.
+	 *
+	 * @param	content		A component to implement the content.
+	 */
+	public void setContent(JComponent content) {
+		if(this.content != null) {
+			this.content.removePropertyChangeListener(
+				sizeChangeListener);
+
+			contentPane.remove(this.content);
+		}
+
+		this.content = content;
+
+		contentPane.add(content);
+
+		content.addPropertyChangeListener(
+			"size-change", sizeChangeListener);
+
+		pack();
 	}
 
 
@@ -483,10 +504,15 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 	 * @param	minimized	Whether the window should be minimized.
 	 */
 	public void setMinimized(boolean minimized) {
+		int	cheight;
+
+
 		this.minimized = minimized;
 
 		if(minimized) {
-			content.setVisible(false);
+			if(content != null) {
+				content.setVisible(false);
+			}
 
 			dialog.setSize(
 				titlebar.getWidth(),
@@ -496,15 +522,20 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 				titlebar.getWidth(),
 				titlebar.getHeight());
 		} else {
-			content.setVisible(true);
+			if(content != null) {
+				content.setVisible(true);
+				cheight = content.getHeight();
+			} else {
+				cheight = 0;
+			}
 
 			dialog.setSize(
 				titlebar.getWidth(),
-				titlebar.getHeight() + content.getHeight());
+				titlebar.getHeight() + cheight);
 
 			contentPane.setSize(
 				titlebar.getWidth(),
-				titlebar.getHeight() + content.getHeight());
+				titlebar.getHeight() + cheight);
 		}
 	}
 
