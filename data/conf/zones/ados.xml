@@ -118,12 +118,12 @@ West: Semos
  <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
  </zone>
 
- <zone name="0_ados_city_s" level="0" x="500896" y="500000" file="0_ados_city_s.xstend">
+ <zone name="0_ados_city" level="0" x="500896" y="500000" file="0_ados_city_s.xstend">
  </zone>
 
    <zone name="int_ados_bank" file="int_ados_bank.xstend">
     <portal x="22" y="17" ref="0">
-     <destination zone="0_ados_city" ref="6"/>
+     <destination zone="0_ados_city_n" ref="6"/>
     </portal>
 
     <entity x="3" y="12">
@@ -179,7 +179,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
 
    <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
     <portal x="7" y="1" ref="0">
-     <destination zone="0_ados_city" ref="11"/>
+     <destination zone="0_ados_city_n" ref="11"/>
     </portal>
    </zone>
 
@@ -187,7 +187,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <configurator class-name="games.stendhal.server.maps.ados.bakery.BakerNPC" />
 
     <portal x="26" y="14" ref="0">
-     <destination zone="0_ados_city" ref="10"/>
+     <destination zone="0_ados_city_n" ref="10"/>
     </portal>
    </zone>
 
@@ -195,11 +195,11 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
     <portal x="8" y="30" ref="entrance_left">
-     <destination zone="0_ados_city" ref="library_entrance_left"/>
+     <destination zone="0_ados_city_n" ref="library_entrance_left"/>
     </portal>
 
     <portal x="21" y="30" ref="entrance_right">
-     <destination zone="0_ados_city" ref="library_entrance_right"/>
+     <destination zone="0_ados_city_n" ref="library_entrance_right"/>
     </portal>
    </zone>
 
@@ -207,17 +207,17 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
 
     <portal x="12" y="17" ref="entrance_left">
-     <destination zone="0_ados_city" ref="tavern_entrance_left"/>
+     <destination zone="0_ados_city_n" ref="tavern_entrance_left"/>
     </portal>
 
     <portal x="27" y="17" ref="entrance_right">
-     <destination zone="0_ados_city" ref="tavern_entrance_right"/>
+     <destination zone="0_ados_city_n" ref="tavern_entrance_right"/>
     </portal>
    </zone>
    
    <zone name="int_ados_zaras_house_0" file="int_ados_zaras_house_0.xstend">
     <portal x="8" y="14" ref="entrance_zaras_house">
-     <destination zone="0_ados_city" ref="zaras_house_entrance"/>
+     <destination zone="0_ados_city_n" ref="zaras_house_entrance"/>
     </portal>
     <portal x="11" y="2" ref="up_zaras_house">
      <destination zone="int_ados_zaras_house_1" ref="down_zaras_house"/>
@@ -239,41 +239,41 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    <zone name="int_ados_goldsmith" file="int_ados_goldsmith.xstend">
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <portal x="4" y="14" ref="entrance_goldsmith">
-     <destination zone="0_ados_city" ref="goldsmith_entrance"/>
+     <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
     </portal>
    </zone>
 
    <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <portal x="10" y="23" ref="entrance_left">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
+     <destination zone="0_ados_city_n" ref="temple_entrance"/>
     </portal>
 
     <portal x="11" y="23" ref="entrance_center_left">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
+     <destination zone="0_ados_city_n" ref="temple_entrance"/>
     </portal>
 
     <portal x="12" y="23" ref="entrance_center_right">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
+     <destination zone="0_ados_city_n" ref="temple_entrance"/>
     </portal>
 
     <portal x="13" y="23" ref="entrance_right">
-     <destination zone="0_ados_city" ref="temple_entrance"/>
+     <destination zone="0_ados_city_n" ref="temple_entrance"/>
     </portal>
    </zone>
    
    <zone name="int_ados_storage" file="int_ados_storage.xstend">
     <portal x="14" y="30" ref="storage_inside_left">
-     <destination zone="0_ados_city" ref="storage_outside_1"/>
+     <destination zone="0_ados_city_n" ref="storage_outside_1"/>
     </portal>
     
     <portal x="15" y="30" ref="storage_inside_right">
-     <destination zone="0_ados_city" ref="storage_outside_5"/>
+     <destination zone="0_ados_city_n" ref="storage_outside_5"/>
     </portal>
    </zone> 
    
    <zone name="int_ados_town_hall" file="int_ados_buraucrazy_0.xstend">
     <portal x="22" y="17" ref="entrance">
-     <destination zone="0_ados_city" ref="town_hall_entrance"/>
+     <destination zone="0_ados_city_n" ref="town_hall_entrance"/>
     </portal>
     
     <portal x="4" y="4" ref="upstairs">
@@ -308,7 +308,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone> 
    
- <zone name="0_ados_city" level="0" x="500896" y="499872" file="0_ados_city.xstend">
+ <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="0_ados_city_n.xstend">
   <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
   <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
 
