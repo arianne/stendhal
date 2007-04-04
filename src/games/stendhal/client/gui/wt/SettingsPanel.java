@@ -21,7 +21,6 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.ManagedWindow;

@@ -22,7 +22,6 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
