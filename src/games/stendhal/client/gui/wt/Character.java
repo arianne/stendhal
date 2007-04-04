@@ -96,7 +96,10 @@ public class Character extends WtPanel {
 
 		slotPanels.put("lhand", new EntitySlot(client, "lhand", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 		        ((SLOT_SIZE + SLOT_SPACING) * 1) + 10));
-
+		
+		slotPanels.put("finger", new EntitySlot(client, "finger", slotSprite, xoff,
+		        ((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
+		
 		slotPanels.put("cloak", new EntitySlot(client, "cloak", slotSprite, ((SLOT_SIZE + SLOT_SPACING) * 2) + xoff,
 		        ((SLOT_SIZE + SLOT_SPACING) * 2) + 10));
 
@@ -146,7 +149,7 @@ public class Character extends WtPanel {
 		money = 0;
 
 		// taverse all carrying slots
-		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "keyring" };
+		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "keyring" };
 
 		for (String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);

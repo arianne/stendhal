@@ -135,7 +135,7 @@ class PlayerRPClass {
 	 * @param object RPObject representing a player
 	 */
 	static void updatePlayerRPObject(RPObject object) {
-		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank",
+		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank",
 		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
 
 		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills" };
@@ -156,7 +156,7 @@ class PlayerRPClass {
 		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
 		//     Port from 0.44 to 0.50: cloak, bank
 		//     Port from 0.57 to 0.58: bank_ados, bank_fado
-		//	   Port from 0.58 to ?: bank_nalwor, keyring
+		//	   Port from 0.58 to ?: bank_nalwor, keyring, finger
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new EntitySlot(slotName));
@@ -365,7 +365,7 @@ class PlayerRPClass {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// load items
-		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank", "bank_ados",
+		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank", "bank_ados",
 		        "zaras_chest_ados", "bank_fado", "bank_nalwor", "keyring" };
 
 		for (String slotName : slotsItems) {

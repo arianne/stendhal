@@ -14,7 +14,7 @@ import marauroa.common.game.RPObject;
  */
 class DropAction implements SlashAction  {
 	// TODO: find a way to not have this redundand at server and client
-	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet", "keyring" };
+	private static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet", "finger", "keyring" };
 
 
 	/**

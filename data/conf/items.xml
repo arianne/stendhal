@@ -2540,7 +2540,7 @@ Makes players more offensive
 		<weight value="0.1"/>
 		<equipable>
 			<slot name="bag"/>
-			<!-- TODO: create ring slot -->
+			<slot name="finger"/>
 		</equipable>
 	</item>
 	
