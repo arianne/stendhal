@@ -377,26 +377,6 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 
 
 	/**
-	 * Register a close listener.
-	 *
-	 * @param	listener	A close listener.
-	 */
-	public void registerCloseListener(WtCloseListener listener) {
-		closeListeners.add(listener);
-	}
-
-
-	/**
-	 * Unregister a close listener.
-	 *
-	 * @param	listener	A close listener.
-	 */
-	public void removeCloseListener(WtCloseListener listener) {
-		closeListeners.remove(listener);
-	}
-
-
-	/**
 	 * Called when the window's position changes.
 	 */
 	protected void windowMoved() {
@@ -474,6 +454,26 @@ public abstract class InternalManagedDialog implements ManagedWindow {
 	public boolean moveTo(int x, int y) {
 		dialog.setLocation(x, y);
 		return true;
+	}
+
+
+	/**
+	 * Register a close listener.
+	 *
+	 * @param	listener	A close listener.
+	 */
+	public void registerCloseListener(WtCloseListener listener) {
+		closeListeners.add(listener);
+	}
+
+
+	/**
+	 * Unregister a close listener.
+	 *
+	 * @param	listener	A close listener.
+	 */
+	public void removeCloseListener(WtCloseListener listener) {
+		closeListeners.remove(listener);
 	}
 
 
