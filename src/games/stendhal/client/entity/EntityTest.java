@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import games.stendhal.common.Direction;
 
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.AttributeNotFoundException;
@@ -23,13 +22,23 @@ public class EntityTest {
 	public final void testEntity() {
 		Entity en = new MockEntity();
 		assertEquals(0l, en.getModificationCount());
+		assertEquals(0.0,en.getX());
+		assertEquals(0.0,en.getY());
+		assertEquals(0.0,en.dx);
+		assertEquals(0.0,en.dy);
+		assertEquals(Direction.STOP,en.getDirection());
+		assertEquals(0L, en.getModificationCount());
 	}
 
 	@Test(expected = AttributeNotFoundException.class)
-	public final void testEntityInvalidRPObject() {
+	public final void testEntityRpobjectInvalidRPObject() {
 		new MockEntity(new RPObject());
 	}
-
+	@Test
+	public final void testEntityInvalidRPObject() {
+		Entity en = EntityFabric.createEntity(new RPObject());
+		assertEquals(null, en);
+	}
 	@Test
 	public final void testEntityRPObject() {
 		RPObject rpo = new RPObject();
@@ -43,20 +52,20 @@ public class EntityTest {
 
 	@Test
 	public final void testGet_IDToken() {
-		RPObject rpo = new RPObject();
-		rpo.put("type", "hugo");
-		Entity en = new MockEntity(rpo);
+		Entity en = new MockEntity();
 		assertNotNull(en.ID_Token);
 
 	}
 
 	@Test
 	public final void testGetID() {
+		
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.setID(new ID(1, "woohoo"));
-		Entity en = new MockEntity(rpo);
-		assertNotNull(en.getID());
+		Entity en = new MockEntity();
+		en.init(rpo);
+		assertNotNull("id must not be null",en.getID());
 		assertEquals(1, en.getID().getObjectID());
 		assertEquals("woohoo", en.getID().getZoneID());
 	}
@@ -67,13 +76,15 @@ public class EntityTest {
 		RPObject rpo;
 		rpo = new RPObject();
 		rpo.put("type", "_hugo");
-		en = new MockEntity(rpo);
+		en = new MockEntity();
+		en.init(rpo);
 		assertEquals("_hugo", en.getType());
 		assertEquals(" hugo", en.getName());
 		rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "ragnarok");
-		en = new MockEntity(rpo);
+		en = new MockEntity();
+		en.init(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("ragnarok", en.getName());
 	}
@@ -81,11 +92,7 @@ public class EntityTest {
 	@Test
 	public final void testGetXGetY() {
 		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-
-		en = new MockEntity(rpo);
+		en = new MockEntity();
 
 		assertEquals(0.0, en.getX());
 		assertEquals(0.0, en.getY());
@@ -95,30 +102,15 @@ public class EntityTest {
 
 	}
 
-	@Test
-	public final void testGetDirection() {
-		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
 
-		en = new MockEntity(rpo);
-		assertEquals(Direction.STOP, en.getDirection());
-
-	}
 
 	
 
 	@Test
 	public final void testDistance() {
-		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-		rpo.put("x", 0);
-		rpo.put("y", 0);
-		User to = new User(rpo);
-		en = new MockEntity(rpo);
+		
+		User to = new User();
+		Entity en = new MockEntity();
 		en.onMove(3, 4, Direction.STOP, 0);
 		assertEquals(3.0, en.getX());
 		assertEquals(4.0, en.getY());
@@ -139,7 +131,9 @@ public class EntityTest {
 		rpo = new RPObject();
 		rpo.put("type", "_hugo");
 
-		en = new MockEntity(rpo);
+		en = new MockEntity();
+		en.init(rpo);
+		
 		assertNotNull(en.getSprite());
 
 	}
@@ -147,11 +141,7 @@ public class EntityTest {
 	@Test
 	public final void testSetAudibleRangegetAudibleArea() {
 		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-
-		en = new MockEntity(rpo);
+		en = new MockEntity();
 		assertNull(en.getAudibleArea());
 		en.setAudibleRange(5d);
 		Rectangle2D rectangle = new Rectangle2D.Double(-5d, -5d, 10d, 10d);
@@ -169,15 +159,33 @@ public class EntityTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testCalcDeltaMovement() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(1.0,Entity.calcDeltaMovement(1, 1, 1));
+		assertEquals(0.5,Entity.calcDeltaMovement(1, 1, 0.5));
+		assertEquals(0.0,Entity.calcDeltaMovement(2, 1, 0.5));
+		assertEquals(1.0,Entity.calcDeltaMovement(1, 2, 0.5));
+		assertEquals(0.1,Entity.calcDeltaMovement(1, 1, 0.1));
+		assertEquals(-0.4,Entity.calcDeltaMovement(2, 1, 0.1));
+		assertEquals(1.1,Entity.calcDeltaMovement(1, 3, 0.1));
+
+		assertEquals(0.5,Entity.calcDeltaMovement(2, 1, 1));
+		assertEquals(1.5,Entity.calcDeltaMovement(1, 2, 1));
+			
 	}
 
 	@Test
-	@Ignore
+
 	public final void testOnMove() {
-		fail("Not yet implemented"); // TODO
+//		TODO: try to find out why this behaves as weird as it does astridemma
+		Entity en = new MockEntity();
+		en.onMove(1,2, Direction.DOWN, 1);
+		assertEquals(1.0,en.getX());
+		assertEquals(2.0,en.getY());
+		assertEquals(0.0,en.dx);
+		assertEquals(1.0,en.dy);
+		assertEquals(Direction.STOP,en.getDirection());
+		assertEquals(0L, en.getModificationCount());
+ 		
 	}
 
 	@Test
