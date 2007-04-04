@@ -17,11 +17,15 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
-import games.stendhal.server.entity.EntitySlot;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.slot.BankSlot;
+import games.stendhal.server.entity.slot.Banks;
+import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.entity.slot.KeyedSlot;
+import games.stendhal.server.entity.slot.PlayerSlot;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -162,12 +166,13 @@ class PlayerRPClass {
 				object.addSlot(new EntitySlot(slotName));
 			}
 		}
+
 		//     Port from 0.44 to 0.50: !buddy
 		//     Port from 0.56 to 0.56.1: !ignore
 		//     Port from 0.57 to 0.58: skills
 		for (String slotName : slotsSpecial) {
 			if (!object.hasSlot(slotName)) {
-				object.addSlot(new EntitySlot(slotName));
+				object.addSlot(new KeyedSlot(slotName));
 			}
 			RPSlot slot = object.getSlot(slotName);
 			if (slot.size() == 0) {
@@ -362,92 +367,101 @@ class PlayerRPClass {
 	 * @param player Player
 	 */
 	static void loadItemsIntoSlots(Player player) {
-		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// load items
-		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank", "bank_ados",
-		        "zaras_chest_ados", "bank_fado", "bank_nalwor", "keyring" };
+		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "zaras_chest_ados", "keyring" };
 
-		for (String slotName : slotsItems) {
+		try {
+			for (String slotName : slotsItems) {
+				RPSlot slot = player.getSlot(slotName);
+				RPSlot newSlot = new PlayerSlot(slotName);
+				loadSlotContent(player, slot, newSlot);
+			}
+			
+			for (Banks bank : Banks.values()) {
+				RPSlot slot = player.getSlot(bank.getSlotName());
+				RPSlot newSlot = new BankSlot(bank);
+				loadSlotContent(player, slot, newSlot);
+			}
+		} catch (RuntimeException e) {
+			logger.error("cannot create player", e);
+		}
+	}
+
+	/**
+	 * Loads the items into the slots of the player on login.
+	 *
+	 * @param player Player
+	 * @param slot original slot
+	 * @param newSlot new Stendhal specific slot
+	 */
+	private static void loadSlotContent(Player player, RPSlot slot, RPSlot newSlot) {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		List<RPObject> objects = new LinkedList<RPObject>();
+		for (RPObject objectInSlot : slot) {
+			objects.add(objectInSlot);
+		}
+		slot.clear();
+		player.removeSlot(slot.getName());
+		player.addSlot(newSlot);
+
+		for (RPObject item : objects) {
 			try {
-				if (player.hasSlot(slotName)) {
-					RPSlot slot = player.getSlot(slotName);
+				// We simply ignore corpses...
+				if (item.get("type").equals("item")) {
 
-					List<RPObject> objects = new LinkedList<RPObject>();
-					for (RPObject objectInSlot : slot) {
-						objects.add(objectInSlot);
+					// handle renamed items
+					String name = item.get("name");
+					if (itemNamesOld.indexOf(name) > -1) {
+						name = itemNamesNew.get(itemNamesOld.indexOf(name));
 					}
-					slot.clear();
 
-					for (RPObject item : objects) {
-						try {
-							// We simply ignore corpses...
-							if (item.get("type").equals("item")) {
+					Item entity = world.getRuleManager().getEntityManager().getItem(name);
 
-								// handle renamed items
-								String name = item.get("name");
-								if (itemNamesOld.indexOf(name) > -1) {
-									name = itemNamesNew.get(itemNamesOld.indexOf(name));
-								}
+					// log removed items
+					if (entity == null) {
+						int quantity = 1;
+						if (item.has("quantity")) {
+							quantity = item.getInt("quantity");
+						}
+						logger.warn("Cannot restore " + quantity + " " + item.get("name")
+						     + " on login of " + player.get("name") + " because this item"
+						     + " was removed from items.xml");
+						continue;
+					}
 
-								Item entity = world.getRuleManager().getEntityManager().getItem(name);
+					entity.setID(item.getID());
 
-								// log removed items
-								if (entity == null) {
-									int quantity = 1;
-									if (item.has("quantity")) {
-										quantity = item.getInt("quantity");
-									}
-									logger
-									        .warn("Cannot restore " + quantity + " " + item.get("name")
-									                + " on login of " + player.get("name") + " because this item"
-									                + " was removed from items.xml");
-									continue;
-								}
+					if (item.has("persistent") && (item.getInt("persistent") == 1)) {
+						entity.fill(item);
+					}
 
-								entity.setID(item.getID());
+					if (entity instanceof StackableItem) {
+						int quantity = 1;
+						if (item.has("quantity")) {
+							quantity = item.getInt("quantity");
+						} else {
+							logger.warn("Adding quantity=1 to " + item
+							        + ". Most likly cause is that this item was not stackable in the past");
+						}
+						((StackableItem) entity).setQuantity(quantity);
+					}
 
-								if (item.has("persistent") && (item.getInt("persistent") == 1)) {
-									entity.fill(item);
-								}
-
-								if (entity instanceof StackableItem) {
-									int quantity = 1;
-									if (item.has("quantity")) {
-										quantity = item.getInt("quantity");
-									} else {
-										logger.warn("Adding quantity=1 to " + item
-										        + ". Most likly cause is that this item was not stackable in the past");
-									}
-									((StackableItem) entity).setQuantity(quantity);
-								}
-
-								// make sure saved individual information is
-								// restored
-								String[] individualAttributes = { "infostring", "description", "bound" };
-								for (String attribute : individualAttributes) {
-									if (item.has(attribute)) {
-										entity.put(attribute, item.get(attribute));
-									}
-								}
-
-								boundOldItemsToPlayer(player, entity);
-
-								slot.add(entity);
-							}
-						} catch (Exception e) {
-							logger.error("Error adding " + item + " to player slot" + slot, e);
+					// make sure saved individual information is
+					// restored
+					String[] individualAttributes = { "infostring", "description", "bound" };
+					for (String attribute : individualAttributes) {
+						if (item.has(attribute)) {
+							entity.put(attribute, item.get(attribute));
 						}
 					}
-				} else {
-					logger.warn("player " + player.getName() + " does not have the slot " + slotName);
+
+					boundOldItemsToPlayer(player, entity);
+
+					newSlot.add(entity);
 				}
-			} catch (RuntimeException e) {
-				logger.error("cannot create player", e);
-				if (player.hasSlot(slotName)) {
-					RPSlot slot = player.getSlot(slotName);
-					slot.clear();
-				}
+			} catch (Exception e) {
+				logger.error("Error adding " + item + " to player slot" + slot, e);
 			}
 		}
 	}
