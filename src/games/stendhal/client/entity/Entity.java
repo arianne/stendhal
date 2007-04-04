@@ -47,7 +47,7 @@ public abstract class Entity implements MovementEvent, ZoneChangeEvent, Attribut
 	 * TODO: get rid of this only used by Soundsystem
 	 *  
 	**/
-	public final byte[] ID_Token = new byte[0];
+public final byte[] ID_Token = new byte[0];
 
 	/** The current x location of this entity */
 	protected double x;

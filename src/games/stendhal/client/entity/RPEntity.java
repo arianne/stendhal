@@ -824,9 +824,8 @@ public abstract class RPEntity extends AnimatedEntity {
 			}
 		}
 
-		if ((damageSprites != null) && (damageSprites.size() > 0)) // Draw the
-		// damage done
-		{
+		if ((damageSprites != null) && (damageSprites.size() > 0)) 	{
+			//			 Draw the damage done
 			long current = System.currentTimeMillis();
 
 			int i = 0;

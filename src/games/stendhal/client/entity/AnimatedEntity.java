@@ -12,11 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.Log4J;
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.common.Direction;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import marauroa.common.Log4J;
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -29,7 +35,7 @@ public abstract class AnimatedEntity extends Entity {
 	private static final Logger logger = Log4J.getLogger(AnimatedEntity.class);
 
 	/** This map contains animation name, frames association */
-	protected Map<String, Sprite[]> sprites;
+	protected Map < String, Sprite[] > sprites;
 
 	/** actual animation */
 	protected String animation;
@@ -43,14 +49,16 @@ public abstract class AnimatedEntity extends Entity {
 	 */
 	protected long delta;
 
-	public AnimatedEntity(RPObject object) throws AttributeNotFoundException {
+	public AnimatedEntity(final RPObject object) throws AttributeNotFoundException {
 		super(object);
 		delta = System.currentTimeMillis();
 		frame = 0;
 	}
 
-	/** This method fills the sprites map */
-	abstract protected void buildAnimations(RPObject object);
+	/** This method fills the sprites map 
+	 * @param object
+	 */
+	protected abstract void buildAnimations(RPObject object);
 
 	/** This method sets the default animation */
 	protected Sprite defaultAnimation() {
@@ -62,22 +70,22 @@ public abstract class AnimatedEntity extends Entity {
 	 * rendered
 	 */
 	@Override
-	protected void loadSprite(RPObject object) {
-		sprites = new HashMap<String, Sprite[]>();
+	protected void loadSprite(final RPObject object) {
+		sprites = new HashMap < String, Sprite[] >();
 
 		buildAnimations(object);
 		sprite = defaultAnimation();
 	}
 
 	@Override
-	public void onMove(int x, int y, Direction direction, double speed) {
+	public void onMove(final int x, final int y, final Direction direction, final double speed) {
 		super.onMove(x, y, direction, speed);
 
 		adjustAnimation(direction);
 		
 	}
 
-	protected void adjustAnimation(Direction direction) {
+	protected void adjustAnimation(final Direction direction) {
 	  
 		switch (direction) {
 			case LEFT:
@@ -100,7 +108,7 @@ public abstract class AnimatedEntity extends Entity {
 	}
 
 	/** Returns the next Sprite we have to show */
-	private final Sprite nextFrame() {
+	private  Sprite nextFrame() {
 		Sprite[] anim = sprites.get(getAnimation());
 
 		if (anim == null) {
@@ -123,7 +131,7 @@ public abstract class AnimatedEntity extends Entity {
 
 	/** Draws this entity in the screen */
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		if (System.currentTimeMillis() - delta > 100) {
 			delta = System.currentTimeMillis();
 			sprite = nextFrame();
