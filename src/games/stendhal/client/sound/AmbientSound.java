@@ -52,8 +52,6 @@ class AmbientSound {
 
 	private Point2D soundPos;
 
-	private Point2D playerPos;
-
 	private Rectangle2D playerHearing;
 
 	private float loudnessDB;
@@ -326,7 +324,7 @@ class AmbientSound {
 
 	private boolean canPlay() {
 		return (soundPos == null)
-		        || (playerHearing.contains(soundPos) && soundObject.getAudibleArea().contains(playerPos));
+		        || (playerHearing.contains(soundPos) && soundObject.getAudibleArea().contains(User.get().getX(),User.get().getY()));
 	}
 
 	/**
@@ -364,7 +362,7 @@ class AmbientSound {
 		if (soundPos != null) {
 			// adjust to player settings
 			if (player != null) {
-				playerPos = player.getPosition();
+				
 				playerHearing = player.getHearingArea();
 
 				// return if sound object is out of range
@@ -459,14 +457,14 @@ class AmbientSound {
 			return 0;
 		} else {
 			// maximum fog if no player infos available
-			if ((playerPos == null) || (playerHearing == null)) {
+			if ((User.isNull()) || (playerHearing == null)) {
 				// System.out.println( "ambient (" + name + ") fog volume: 0
 				// (player unavailable)" );
 				return DBValues.getDBValue(0);
 			}
 
 			// determine sound volume cutoff due to distance (fog value)
-			distance = soundPos.distance(playerPos);
+			distance = soundPos.distance(User.get().getX(),User.get().getY());
 			maxDist = playerHearing.getWidth() / 2;
 			// System.out.println("ambient player hearing radius: " +
 			// maxDist );
@@ -497,7 +495,7 @@ class AmbientSound {
 		// if not yet playing, start playing
 		if (isPlaying) {
 			// set new player parameters
-			playerPos = User.get().getPosition();
+			
 			playerHearing = User.get().getHearingArea();
 
 			// decide on stopping to play (when sound object has moved out
