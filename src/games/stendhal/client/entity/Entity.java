@@ -151,12 +151,6 @@ public final byte[] ID_Token = new byte[0];
 		return direction;
 	}
 
-	/** the absolute position on the map of this entity */
-	public Point2D getPosition() {
-		return new Point2D.Double(x, y);
-	}
-
-
 	public double distance(User user) {
 	    
 	    return (user.getX() - x) * (user.getX() - x) + (user.getY() - y)
@@ -459,7 +453,7 @@ public final byte[] ID_Token = new byte[0];
 	 *         <b>null</b> if not performing
 	 */
 	public DataLine playSound(String token, int volBot, int volTop, int chance) {
-		return SoundSystem.playMapSound(getPosition(), getAudibleArea(), token, volBot, volTop, chance);
+		return SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
 	}
 
 	/**
@@ -477,7 +471,7 @@ public final byte[] ID_Token = new byte[0];
 	 *         <b>null</b> if not performing
 	 */
 	public DataLine playSound(String token, int volBot, int volTop) {
-		return SoundSystem.playMapSound(getPosition(), getAudibleArea(), token, volBot, volTop, 100);
+		return SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, 100);
 	}
 
 	/** returns the number of slots this entity has */

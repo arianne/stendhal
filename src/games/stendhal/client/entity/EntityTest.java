@@ -107,16 +107,7 @@ public class EntityTest {
 
 	}
 
-	@Test
-	public final void testGetPosition() {
-		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-
-		en = new MockEntity(rpo);
-		assertEquals(new Point2D.Double(0.0, 0.0), en.getPosition());
-	}
+	
 
 	@Test
 	public final void testDistance() {
