@@ -146,7 +146,7 @@ public class Character extends WtPanel {
 		money = 0;
 
 		// taverse all carrying slots
-		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak" };
+		String[] slotsCarrying = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "keyring" };
 
 		for (String slotName : slotsCarrying) {
 			RPSlot slot = playerEntity.getSlot(slotName);

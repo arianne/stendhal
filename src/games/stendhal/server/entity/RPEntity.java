@@ -119,7 +119,7 @@ public abstract class RPEntity extends Entity {
 	 * All the slots considered to be "with" the entity.
 	 * Listed in priority order (i.e. bag first).
 	 */
-	public static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet" };
+	public static final String[] CARRYING_SLOTS = { "bag", "head", "rhand", "lhand", "armor", "cloak", "legs", "feet" , "keyring" };
 
 	public static void generateRPClass() {
 		stats = Statistics.getStatistics();
@@ -158,6 +158,7 @@ public abstract class RPEntity extends Entity {
 			entity.addRPSlot("legs", 1, RPClass.PRIVATE);
 			entity.addRPSlot("feet", 1, RPClass.PRIVATE);
 			entity.addRPSlot("bag", 12, RPClass.PRIVATE);
+			entity.addRPSlot("keyring", 6, RPClass.PRIVATE);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}

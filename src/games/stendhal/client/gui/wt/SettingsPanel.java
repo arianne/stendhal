@@ -46,6 +46,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** the Character panel */
 	private Character character;
+	
+	/** the Key ring panel */
+	private EntityContainer keyring;
 
 	/** the buddy list panel */
 	private BuddyListDialog nbuddies;
@@ -68,7 +71,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(StendhalUI ui, WtPanel frame) {
-		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 200);
+		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 240);
 
 		this.client = ui.getClient();
 
@@ -83,6 +86,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		character = new Character(ui);
 		character.registerCloseListener(this);
 		frame.addChild(character);
+		
+		keyring = new EntityContainer(client, "keyring", 2, 3);
+		keyring.registerCloseListener(this);
+		frame.addChild(keyring);
 
 		if(newCode) {
 			nbuddies = new BuddyListDialog(StendhalUI.get());
@@ -129,9 +136,16 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("bag", button);
+		
+		button = new WtButton("keyring", 150, 30, "Enable Key Ring");
+		button.moveTo(10, 130);
+		button.setPressed(keyring.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("keyring", button);
 
 		button = new WtButton("buddies", 150, 30, "Enable Buddies");
-		button.moveTo(10, 130);
+		button.moveTo(10, 170);
 		button.setPressed(buddies.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
@@ -172,6 +186,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			this.player = newPlayer;
 
 			character.setPlayer(player);
+			keyring.setSlot(player, "keyring");
 			inventory.setSlot(player, "bag");
 			minimap.setPlayer(player);
 		}
@@ -190,6 +205,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		} else if (name.equals("bag")) {
 			// check inventory panel
 			inventory.setVisible(state);
+		}	else if (name.equals("keyring")) {
+				// check keyring panel
+				keyring.setVisible(state);
 		} else if (name.equals("buddies")) {
 			// check buddy panel
 			buddies.setVisible(state);

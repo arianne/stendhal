@@ -136,7 +136,7 @@ class PlayerRPClass {
 	 */
 	static void updatePlayerRPObject(RPObject object) {
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank",
-		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells" };
+		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
 
 		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills" };
 
@@ -156,7 +156,7 @@ class PlayerRPClass {
 		//     Port from 0.20 to 0.30: bag, rhand, lhand, armor, head, legs, feet
 		//     Port from 0.44 to 0.50: cloak, bank
 		//     Port from 0.57 to 0.58: bank_ados, bank_fado
-		//	   Port from 0.58 to ?: bank_nalwor,
+		//	   Port from 0.58 to ?: bank_nalwor, keyring
 		for (String slotName : slotsNormal) {
 			if (!object.hasSlot(slotName)) {
 				object.addSlot(new EntitySlot(slotName));
@@ -366,7 +366,7 @@ class PlayerRPClass {
 
 		// load items
 		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank", "bank_ados",
-		        "zaras_chest_ados", "bank_fado", "bank_nalwor" };
+		        "zaras_chest_ados", "bank_fado", "bank_nalwor", "keyring" };
 
 		for (String slotName : slotsItems) {
 			try {
