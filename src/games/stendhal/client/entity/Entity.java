@@ -56,7 +56,7 @@ public final byte[] ID_Token = new byte[0];
 	protected double y;
 
 	
-	private Direction direction;
+	
 
 	/** The current speed of this entity horizontally (pixels/sec) */
 	protected double dx;
@@ -96,7 +96,7 @@ public final byte[] ID_Token = new byte[0];
 		y = 0.0;
 		dx = 0.0;
 		dy = 0.0;
-		direction = Direction.STOP;
+	
 		modificationCount = 0;
 	}
 
@@ -105,7 +105,7 @@ public final byte[] ID_Token = new byte[0];
 		y = 0.0;
 		dx = 0.0;
 		dy = 0.0;
-		direction = Direction.STOP;
+		
 		modificationCount = 0;
 		init(object);
 	}
@@ -147,9 +147,6 @@ public final byte[] ID_Token = new byte[0];
 		return y;
 	}
 
-	public Direction getDirection() {
-		return direction;
-	}
 
 	public double distance(User user) {
 	    
@@ -266,7 +263,7 @@ public final byte[] ID_Token = new byte[0];
 
 	// When rpentity stops
 	public void onStop(int x, int y) {
-		direction = Direction.STOP;
+	
 		
 		this.dx = 0;
 		this.dy = 0;

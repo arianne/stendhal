@@ -26,7 +26,7 @@ public class EntityTest {
 		assertEquals(0.0,en.getY());
 		assertEquals(0.0,en.dx);
 		assertEquals(0.0,en.dy);
-		assertEquals(Direction.STOP,en.getDirection());
+
 		assertEquals(0L, en.getModificationCount());
 	}
 
@@ -44,7 +44,6 @@ public class EntityTest {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		Entity en = new MockEntity(rpo);
-		assertEquals(Direction.STOP, en.getDirection());
 		assertEquals("hugo", en.getType());
 		assertEquals("hugo", en.getName());
 
@@ -183,7 +182,7 @@ public class EntityTest {
 		assertEquals(2.0,en.getY());
 		assertEquals(0.0,en.dx);
 		assertEquals(1.0,en.dy);
-		assertEquals(Direction.STOP,en.getDirection());
+		
 		assertEquals(0L, en.getModificationCount());
  		
 	}
