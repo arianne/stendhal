@@ -73,7 +73,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				        null);
 
 				add(ConversationStates.ATTENDING, "gold_nugget", null, ConversationStates.ATTENDING,
-				        "My brother Joshua lives in Ados. He can cast iron_ore to barrels of pure gold.", null);
+				        "My brother Joshua lives in Ados. He can cast gold nuggets to bars of pure gold.", null);
 
 				addHelp("If you bring me #wood and #iron_ore, I can #cast the iron for you. Then you could sell it to the dwarves, to make yourself a little money.");
 				addJob("Greetings. Unfortunately, because of the war, I'm not currently allowed to sell weapons to anyone except the official armoury. However, I can still #cast iron for you, or I can make you an #offer on some good tools.");
