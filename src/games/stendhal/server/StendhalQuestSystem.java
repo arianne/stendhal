@@ -73,7 +73,7 @@ public class StendhalQuestSystem {
 		loadQuest("NewsFromHackim");
 		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
-		// loadQuest("ReverseArrow");
+		loadQuest("ReverseArrow");
 		// loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");
 		loadQuest("Soup");
@@ -150,16 +150,5 @@ public class StendhalQuestSystem {
 		}
 
 		return sb.toString();
-	}
-
-	/**
-	 * does stuff to update quest states on player login
-	 *
-	 * @param player Player
-	 */
-	public void onPlayerLogin(Player player) {
-		for (IQuest quest : quests) {
-			quest.onPlayerLogin(player);
-		}
 	}
 }

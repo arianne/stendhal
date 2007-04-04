@@ -14,7 +14,6 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -132,8 +131,6 @@ public class Player extends RPEntity implements TurnListener {
 		if (player.has("away")) {
 			player.remove("away");
 		}
-
-		StendhalQuestSystem.get().onPlayerLogin(player);
 
 		PlayerRPClass.readAdminsFromFile(player);
 		PlayerRPClass.placePlayerIntoWorldOnLogin(object, player);

@@ -41,10 +41,6 @@ public abstract class AbstractQuest implements IQuest {
 	public void addToWorld() {
 	}
 
-	public void onPlayerLogin(Player player) {
-		// do nothing
-	}
-
 	public List<String> getHint(Player player) {
 		return emptyList;
 	}

@@ -23,15 +23,6 @@ public interface IQuest {
 	public void addToWorld();
 
 	/**
-	 * Adjusts the quest states of an old release. This method is
-	 * called after a player logs in the first time after an server
-	 * update.
-	 *
-	 * @param player Player
-	 */
-	public void onPlayerLogin(Player player);
-
-	/**
 	 * Was the quest started?
 	 *
 	 * @param player Player

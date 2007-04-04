@@ -12,6 +12,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OnePlayerRoomDoor;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.Path;
@@ -31,7 +33,7 @@ import marauroa.common.game.IRPZone;
  * @author hendrik
  */
 // TODO: split this class, it does too many different things
-public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListener {
+public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListener, LoginListener {
 
 	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
@@ -346,9 +348,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		entranceZone.add(sign);		
 	}
 
-	@Override
-	public void onPlayerLogin(Player player) {
-		super.onPlayerLogin(player);
+	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new FinishNotifier(false, player), null);
 	}
@@ -417,6 +417,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
+		
+		LoginNotifier.get().addListener(this);
 
 		step_1();
 	}

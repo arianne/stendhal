@@ -10,6 +10,8 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.deathmatch.BailAction;
 import games.stendhal.server.maps.deathmatch.DealWithLogoutCoward;
@@ -26,7 +28,7 @@ import java.util.Arrays;
 /**
  * Creating the Stendhal Deathmatch Game
  */
-public class AdosDeathmatch extends AbstractQuest {
+public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 
 	private NPCList npcs = NPCList.get();
 
@@ -46,6 +48,8 @@ public class AdosDeathmatch extends AbstractQuest {
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
 		zone.setTeleportable(false);
 		DeathmatchInfo.add(deathmatchInfo);
+		
+		LoginNotifier.get().addListener(this);
 	}
 
 	/**
@@ -133,11 +137,9 @@ public class AdosDeathmatch extends AbstractQuest {
 		zone.add(npc);
 	}
 
-	@Override
-	public void onPlayerLogin(Player player) {
-		super.onPlayerLogin(player);
+	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player), null);
-	}
+    }
 
 }
