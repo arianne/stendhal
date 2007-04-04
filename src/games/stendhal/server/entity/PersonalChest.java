@@ -23,10 +23,6 @@ import marauroa.common.game.RPSlot;
  * player can stand next to it at a time, to prevent other players from
  * stealing while the owner is looking at his items.
  * TODO: fix this.
- * 
- * TODO: make it possible to have several banks in different cities. Currently
- * all PersonalChests access the same bank slot of a player. This is feature
- * request 1510680.
  */
 public class PersonalChest extends Chest {
 
