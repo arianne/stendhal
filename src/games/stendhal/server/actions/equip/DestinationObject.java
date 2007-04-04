@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
 
 import java.util.Iterator;
 import java.util.List;
@@ -63,6 +64,7 @@ class DestinationObject extends MoveableObject {
 				logger.warn("Parent don't have slot: " + action);
 				return;
 			}
+			
 			// ok, action is valid
 			valid = true;
 			return;
@@ -79,34 +81,17 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/** checks if it is possible to add the entity to the world */
-	public boolean preCheck(Entity entity, RPWorld world) {
+	public boolean preCheck(Entity entity, RPWorld world, Player player) {
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity.getID());
 
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
+			if (!(rpslot instanceof EntitySlot) || (!((EntitySlot) rpslot).isReachableBy(player))) {
+				logger.warn("Unreachable slot");
+				return false;
+			}
+
 			if (rpslot.isFull()) {
-				// RPSlot bag=parent.getSlot("bag");
-				//              
-				// if(!bag.isFull())
-				// {
-				// // We change the entity
-				// RPObject object=rpslot.getFirst();
-				//
-				// System.out.println (object);
-				// System.out.println ("BEFORE SLOT: "+rpslot);
-				// System.out.println ("BEFORE BAG: "+bag);
-				//    
-				// rpslot.remove(object.getID());
-				// bag.assignValidID(object);
-				// bag.add(object);
-				//
-				// System.out.println ("AFTER SLOT: "+rpslot);
-				// System.out.println ("AFTER BAG: "+bag);
-				//    
-				// return true;
-				// }
-				//
-				//
 				boolean isStackable = false;
 				// is the entity stackable
 				if (entity instanceof Stackable) {

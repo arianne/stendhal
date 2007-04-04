@@ -3,6 +3,7 @@ package games.stendhal.server.actions.equip;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.EquipListener;
 
 import java.util.List;
@@ -65,6 +66,11 @@ class SourceObject extends MoveableObject {
 				        + slot + ")");
 				return;
 			}
+			
+			if (!(baseSlot instanceof EntitySlot) || (!((EntitySlot) baseSlot).isReachableBy(player))) {
+				logger.warn("Unreachable slot");
+				return;
+			}
 
 			base = (Entity) baseSlot.get(baseItemId);
 		} else {
@@ -86,8 +92,8 @@ class SourceObject extends MoveableObject {
 			return false;
 		}
 
-		if (!dest.isValid() || !dest.preCheck(base, world)) {
-			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(base, world));
+		if (!dest.isValid() || !dest.preCheck(base, world, player)) {
+			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(base, world, player));
 			return false;
 		}
 
