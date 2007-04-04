@@ -254,10 +254,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		if (User.isNull()) {
 			return null;
 		}
-		Point2D playerPosition= User.get().getPosition();
+		
 		Rectangle2D playerHearing= User.get().getHearingArea();;
 		// exclusion cases
-		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(playerPosition))) {
+		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(User.get().getX(),User.get().getY()))) {
 			return null;
 		}
 
@@ -265,7 +265,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		        + (int) where.getY());
 
 		// determine sound volume cutoff due to distance (fog value)
-		distance = where.distance(playerPosition);
+		distance = where.distance(User.get().getX(),User.get().getY());
 		maxDist = playerHearing.getWidth() / 2;
 		fogVolume = Math.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
 
@@ -950,5 +950,10 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			}
 		}
 	}
+
+	public static DataLine playMapSound(double x, double y, Rectangle2D audibleArea, String token, int volBot, int volTop, int chance) {
+	  return  playMapSound(new Point2D.Double(x,y),audibleArea, token,  volBot,  volTop,  chance); 
+	    
+    }
 
 }
