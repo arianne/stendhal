@@ -389,6 +389,13 @@ Please leave my mail at my neighbour's house.
  </zone>
 
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="0_ados_coast_s_w2.xstend">
+   <entity x="101" y="102">
+     <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
+       <attribute name="name">Eliza</attribute>
+       <attribute name="class">woman_008_npc</attribute>
+       <attribute name="direction">left</attribute>
+     </implementation>
+   </entity>
  </zone>
  
  <!--

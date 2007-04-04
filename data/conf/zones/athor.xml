@@ -27,6 +27,20 @@
  <!-- Level 0 (Ground) -->
 
      <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="0_athor_ship_w2.xstend">
+       <entity x="22" y="37">
+         <implementation class-name="games.stendhal.server.maps.athor.ship.CaptainNPC">
+           <attribute name="name">Captain</attribute>
+           <attribute name="class">piratenpc</attribute>
+           <attribute name="direction">down</attribute>
+         </implementation>
+       </entity>
+       <entity x="29" y="33">
+         <implementation class-name="games.stendhal.server.maps.athor.ship.CoastConveyerNPC">
+           <attribute name="name">Jackie</attribute>
+           <attribute name="class">pirate_sailor2npc</attribute>
+           <attribute name="direction">left</attribute>
+         </implementation>
+       </entity>
      </zone>
 
      <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
@@ -185,6 +199,13 @@
          <destination zone="0_athor_island_w" ref="diving_board_destination"/>
        </portal>
 
+       <entity x="144" y="89">
+         <implementation class-name="games.stendhal.server.maps.athor.holiday_area.FerryConveyerNPC">
+           <attribute name="name">Jessica</attribute>
+           <attribute name="class">woman_008_npc</attribute>
+           <attribute name="direction">left</attribute>
+         </implementation>
+       </entity>
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.DiverNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.HusbandNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SunbatherNPC" />
@@ -196,7 +217,6 @@
            <attribute name="node1">195,63</attribute>
          </implementation>
        </entity>
-       <!-- <configurator class-name="games.stendhal.server.maps.athor.holiday_area.SwimmerNPC" /> -->
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.TouristFromAdosNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WalkingWomanNPC" />
        <configurator class-name="games.stendhal.server.maps.athor.holiday_area.WifeNPC" />                                          
@@ -244,8 +264,22 @@
  <!-- Level -1 -->
 
      <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="sub_1_athor_ship_w2.xstend">
-       <configurator class-name="games.stendhal.server.maps.athor.ship.CookNPC"/>
-       <entity x="24" y="35">
+       <entity x="27" y="27">
+         <implementation class-name="games.stendhal.server.maps.athor.ship.CookNPC">
+           <attribute name="name">Laura</attribute>
+           <attribute name="class">tavernbarmaidnpc</attribute>
+           
+           <!-- to the oven -->
+           <attribute name="node0">27,27</attribute>
+           <!-- to the table -->
+           <attribute name="node1">27,30</attribute>
+           <!-- to the dining room -->
+           <attribute name="node2">18,30</attribute>
+           <!-- to the barrel -->
+           <attribute name="node2">28,30</attribute>
+         </implementation>
+   </entity>
+   <entity x="24" y="35">
          <implementation class-name="games.stendhal.server.entity.Sign">
            <attribute name="text">
 BLACKJACK RULES
@@ -309,13 +343,12 @@ BLACKJACK RULES
        <attribute name="node5">22,41</attribute>
      </implementation>
    </entity>
-   <configurator class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC"/>
-    <!-- This must be after the NPC configurator -->
-    <entity x="22" y="30">
+    <!-- This must be after the NPC factory -->
+   <entity x="22" y="30">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Klaas</attribute>
+       <attribute name="npc">Klaas</attribute>
      </implementation>
-    </entity>
+   </entity>
  </zone>
 
 

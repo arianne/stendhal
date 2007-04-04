@@ -45,7 +45,6 @@ public class StendhalQuestSystem {
 		questInfos = QuestsXMLLoader.get();
 		loadQuest("AdosDeathmatch");
 		loadQuest("ArmorForDagobert");
-		loadQuest("AthorFerryService");
 		loadQuest("BeerForHayunn");
 		loadQuest("Blackjack");
 		loadQuest("Campfire");

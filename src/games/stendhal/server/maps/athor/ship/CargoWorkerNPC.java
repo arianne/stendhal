@@ -3,22 +3,22 @@ package games.stendhal.server.maps.athor.ship;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
-import games.stendhal.server.maps.quests.AthorFerryService;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Factory for cargo worker on Athor Ferry */
 public class CargoWorkerNPC extends SpeakerNPCFactory {
 
 	@Override
 	protected SpeakerNPC instantiate(String name) {
 		// The NPC is defined as a ferry announcer because he notifies
 		// passengers when the ferry arrives or departs.
-		SpeakerNPC npc = new AthorFerryService.FerryAnnouncerNPC(name) {
+		SpeakerNPC npc = new AthorFerry.FerryAnnouncerNPC(name) {
 			public void onNewFerryState(int status) {
-				if (status == AthorFerryService.AthorFerry.ANCHORED_AT_MAINLAND
-						|| status == AthorFerryService.AthorFerry.ANCHORED_AT_ISLAND) {
+				if (status == AthorFerry.ANCHORED_AT_MAINLAND
+						|| status == AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: We have arrived!");
 				} else {
 					say("Attention: We have set sail!");
@@ -44,5 +44,7 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		npc.addBuyer(new BuyerBehaviour(offerings));
 		
 		npc.addGoodbye("Please kill some rats on your way up!");
+		AthorFerry.get().addListener(
+				(AthorFerry.FerryAnnouncerNPC) npc);
 	}
 }
