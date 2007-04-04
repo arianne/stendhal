@@ -218,6 +218,10 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    <zone name="int_ados_zaras_house_0" file="int_ados_zaras_house_0.xstend">
     <portal x="8" y="14" ref="entrance_zaras_house">
      <destination zone="0_ados_city_n" ref="zaras_house_entrance"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+     <attribute name="key">small_key</attribute>
+     <attribute name="rejected">Zara would be angry if you forgot the key inside her house.</attribute>
+     </implementation>
     </portal>
     <portal x="11" y="2" ref="up_zaras_house">
      <destination zone="int_ados_zaras_house_1" ref="down_zaras_house"/>
