@@ -82,7 +82,7 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-	private int modificationCount;
+	
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling
@@ -97,7 +97,7 @@ public final byte[] ID_Token = new byte[0];
 		dx = 0.0;
 		dy = 0.0;
 	
-		modificationCount = 0;
+		
 	}
 
 	protected Entity(RPObject object) throws AttributeNotFoundException {
@@ -106,7 +106,7 @@ public final byte[] ID_Token = new byte[0];
 		dx = 0.0;
 		dy = 0.0;
 		
-		modificationCount = 0;
+		
 		init(object);
 	}
 
@@ -301,15 +301,14 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 	public void onChangedAdded(RPObject base, RPObject diff) {
-		modificationCount++;
-
+		
 		if (!inAdd) {
 			fireMovementEvent(base, diff);
 		}
 	}
 
 	public void onChangedRemoved(RPObject base, RPObject diff) {
-		modificationCount++;
+		
 	}
 
 	public void onRemoved() {
@@ -493,28 +492,8 @@ public final byte[] ID_Token = new byte[0];
 		return new ArrayList<RPSlot>(rpObject.slots());
 	}
 
-	/**
-	 * returns the modificationCount. This counter is increased each time a
-	 * perception is received from the server (so all serverside changes
-	 * increases the mod-count). This counters purpose is to be sure that this
-	 * entity is modified or not (ie for gui elements).
-	 */
-	public long getModificationCount() {
-		return modificationCount;
-	}
-
-	/**
-	 * Returns true when the entity was modified since the
-	 * <i>oldModificationCount</i>.
-	 * 
-	 * @param oldModificationCount
-	 *            the old modificationCount
-	 * @return true when the entity was modified, false otherwise
-	 * @see #getModificationCount()
-	 */
-	public boolean isModified(long oldModificationCount) {
-		return oldModificationCount != modificationCount;
-	}
+	
+	
 
 	abstract public Rectangle2D getArea();
 

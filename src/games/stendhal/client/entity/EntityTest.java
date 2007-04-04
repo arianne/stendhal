@@ -21,13 +21,13 @@ public class EntityTest {
 	@Test
 	public final void testEntity() {
 		Entity en = new MockEntity();
-		assertEquals(0l, en.getModificationCount());
+		
 		assertEquals(0.0,en.getX());
 		assertEquals(0.0,en.getY());
 		assertEquals(0.0,en.dx);
 		assertEquals(0.0,en.dy);
 
-		assertEquals(0L, en.getModificationCount());
+		
 	}
 
 	@Test(expected = AttributeNotFoundException.class)
@@ -183,7 +183,7 @@ public class EntityTest {
 		assertEquals(0.0,en.dx);
 		assertEquals(1.0,en.dy);
 		
-		assertEquals(0L, en.getModificationCount());
+		
  		
 	}
 

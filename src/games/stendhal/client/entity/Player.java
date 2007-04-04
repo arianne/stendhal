@@ -34,11 +34,11 @@ public class Player extends RPEntity {
 
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
-
+		
 	}
 	public Player()  {
 		super();
-
+	
 	}
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
@@ -58,6 +58,7 @@ public class Player extends RPEntity {
 
 		
 	}
+	
 
 
 	@Override
@@ -99,6 +100,8 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	
+
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("outfit")) {
@@ -138,6 +141,7 @@ public class Player extends RPEntity {
 	}
 
 	public void onChangedRemoved(RPObject base, RPObject diff) {
+		
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("away")) {

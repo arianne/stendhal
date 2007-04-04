@@ -22,6 +22,7 @@ import games.stendhal.client.GameObjects;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.core.*;
@@ -61,7 +62,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	private EntityContainer inventory;
 
 	/** the player */
-	private Player player;
+	private User player;
 
 	/** map of the buttons (for faster access) ) */
 	private Map<String, WtButton> buttonMap;
@@ -164,8 +165,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	}
 
 	/** updates the minimap */
-	public void setPlayer(RPObject playerObject) {
-		if (playerObject == null) {
+	public void setPlayer(User user) {
+		if (User.isNull()) {
 			return;
 		}
 
@@ -178,7 +179,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		}
 
 		GameObjects gameObjects = client.getGameObjects();
-		Player newPlayer = (Player) gameObjects.get(playerObject.getID());
+		User newPlayer = (User) gameObjects.get(user.getID());
 
 		// check if the player object has changed. Note: this is an exact object
 		// reference check

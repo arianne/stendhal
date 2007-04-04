@@ -23,6 +23,7 @@ import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
 
@@ -59,7 +60,7 @@ public class Character extends WtPanel {
 	private Map<String, EntitySlot> slotPanels;
 
 	/** cached player entity */
-	private Player playerEntity;
+	private User playerEntity;
 
 	/** the money we have */
 	int money;
@@ -132,8 +133,8 @@ public class Character extends WtPanel {
 	}
 
 	/** sets the player entity */
-	public void setPlayer(Player playerEntity) {
-		this.playerEntity = playerEntity;
+	public void setPlayer(User userEntity) {
+		this.playerEntity = userEntity;
 	}
 
 	/** refreshes the player stats and updates the text/slot panels */

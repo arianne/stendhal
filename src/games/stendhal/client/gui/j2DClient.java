@@ -824,8 +824,8 @@ public class j2DClient extends StendhalUI {
 			}
 		}
 
-		RPObject player = client.getPlayer();
-		settings.setPlayer(player);
+	//	RPObject player = client.getPlayer();
+		settings.setPlayer(User.get());
 
 		baseframe.draw(screen.expose());
 

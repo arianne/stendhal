@@ -30,11 +30,13 @@ public class User extends Player {
 	public User(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		_instance = this;
+		modificationCount = 0;
 		
 	}
 	public User()  {
 		super();
 		_instance = this;
+		modificationCount = 0;
 		
 	}
 
@@ -84,7 +86,16 @@ public class User extends Player {
 
 	}
 
-	
+	private int modificationCount;
+	/**
+	 * returns the modificationCount. This counter is increased each time a
+	 * perception is received from the server (so all serverside changes
+	 * increases the mod-count). This counters purpose is to be sure that this
+	 * entity is modified or not (ie for gui elements).
+	 */
+	public long getModificationCount() {
+		return modificationCount;
+	}
     //TODO: verify if OnAway is still to be usable or not
 	@Override
     protected void onAway(String message) {
@@ -136,8 +147,31 @@ public class User extends Player {
     	double width = HEARING_RANGE * 2;
     	return new Rectangle2D.Double(getX() - HEARING_RANGE, getY() - HEARING_RANGE, width, width);
     }
+
+	@Override
+    public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+		modificationCount++;
+	    super.onChangedAdded(base, diff);
+    }
+
+	@Override
+    public void onChangedRemoved(RPObject base, RPObject diff) {
+		modificationCount++;
+	    super.onChangedRemoved(base, diff);
+    }
 	
-	
+	/**
+	 * Returns true when the entity was modified since the
+	 * <i>oldModificationCount</i>.
+	 * 
+	 * @param oldModificationCount
+	 *            the old modificationCount
+	 * @return true when the entity was modified, false otherwise
+	 * @see #getModificationCount()
+	 */
+	public boolean isModified(long oldModificationCount) {
+		return oldModificationCount != modificationCount;
+	}
     }
 
 
