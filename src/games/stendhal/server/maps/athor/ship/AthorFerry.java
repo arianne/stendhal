@@ -153,8 +153,8 @@ public class AthorFerry implements TurnListener {
 
 	public void disembarkToIsland(Player player) {
 		StendhalRPZone islandDocksZone = (StendhalRPZone) StendhalRPWorld
-				.get().getRPZone("0_athor_island_w");
-		player.teleport(islandDocksZone, 144, 89, Direction.LEFT, null);
+				.get().getRPZone("0_athor_island");
+		player.teleport(islandDocksZone, 80, 89, Direction.LEFT, null);
 	}
 
 }

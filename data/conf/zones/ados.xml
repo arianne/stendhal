@@ -229,7 +229,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone>   
    
    <zone name="int_ados_zaras_house_1" file="int_ados_zaras_house_1.xstend">
-    <portal x="11" y="2" ref="down_zaras_house">
+    <portal x="11" y="4" ref="down_zaras_house">
      <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
     </portal>
     <entity x="3" y="3">
