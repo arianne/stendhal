@@ -366,7 +366,7 @@ class PlayerRPClass {
 
 		// load items
 		String[] slotsItems = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "cloak", "bank", "bank_ados",
-		        "zaras_chest_ados", "bank_fado" };
+		        "zaras_chest_ados", "bank_fado", "bank_nalwor" };
 
 		for (String slotName : slotsItems) {
 			try {

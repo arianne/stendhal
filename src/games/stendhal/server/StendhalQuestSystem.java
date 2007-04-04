@@ -78,6 +78,7 @@ public class StendhalQuestSystem {
 		loadQuest("SevenCherubs");
 		loadQuest("Soup");
 		loadQuest("SuntanCreamForZara");
+		loadQuest("TakeGoldforGrafindle");
 		loadQuest("ToysCollector");
 		loadQuest("VampireSword");
 		loadQuest("WeaponsCollector");

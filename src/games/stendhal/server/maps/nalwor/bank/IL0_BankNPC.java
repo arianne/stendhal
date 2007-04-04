@@ -51,9 +51,9 @@ public class IL0_BankNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Greetings. If you need #help, please ask.");
 				addJob("I work here in the bank.");
-				addHelp("That room has two chests owned by this bank and two owned by Semos bank, so you can access all your savings.");
-				addQuest("I ask only that you are honest");
+				addHelp("That room has two chests owned by this bank and two owned by Semos bank.");
 				addGoodbye("Goodbye, young human.");
+				//remaning behaviour defined in Take Gold for Grafindle quest
 			}
 		};
 		npcs.add(oldnpc);
@@ -86,10 +86,10 @@ public class IL0_BankNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Welcome to Nalwor Bank. I'm here to #help.");
-				addHelp("You can deposit your items in the chests in that small room behind me. The two chests on the right are under Semos management.");
+				addHelp("Customers can deposit their items in the chests in that small room behind me. The two chests on the right are under Semos management.");
 				addJob("I help customers of the bank, elves and even humans.");
 				addQuest("I don't need anything, thank you.");
-				addGoodbye("Goodbye, thank you for your custom.");
+				addGoodbye("Goodbye, thank you for your time.");
 			}
 		};
 		ladynpc.setDescription("You see a pretty female elf in a beautiful dress.");
