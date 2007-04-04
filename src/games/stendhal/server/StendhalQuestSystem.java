@@ -56,6 +56,7 @@ public class StendhalQuestSystem {
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
 		loadQuest("HatForMonogenes");
+		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
 		loadQuest("LookBookforCeryl");
 		loadQuest("KanmararnSoldiers");
