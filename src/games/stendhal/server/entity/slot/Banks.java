@@ -29,7 +29,7 @@ public enum Banks {
 	 * get the slot name
 	 * @return slotName
 	 */
-	String getSlotName() {
+	public String getSlotName() {
 		return slotName;
 	}
 }
