@@ -25,7 +25,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJButton;
-import games.stendhal.client.gui.styled.swing.StyledJPanel;
 import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.SettingsPanel;
@@ -46,8 +45,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
-import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -492,7 +489,7 @@ public class j2DClient extends StendhalUI {
 		style = WoodStyle.getInstance();
 
 		b = new StyledJButton(style);
-		b.setLabel("Yes");
+		b.setText("Yes");
 		b.setBounds(30, 25, 40, 25);
 		b.addActionListener(new QuitConfirmCB());
 
@@ -500,7 +497,7 @@ public class j2DClient extends StendhalUI {
 
 
 		b = new StyledJButton(style);
-		b.setLabel("No");
+		b.setText("No");
 		b.setBounds(80, 25, 40, 25);
 		b.addActionListener(new QuitCancelCB());
 
