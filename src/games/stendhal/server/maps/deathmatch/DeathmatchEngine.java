@@ -161,7 +161,11 @@ class DeathmatchEngine implements TurnListener {
 			if (helmet.has("def")) {
 				defense = helmet.getInt("def");
 			}
-			defense--;
+			if (defense > 1) {
+				defense--;
+			} else {
+				defense = 1;
+			}
 			helmet.put("def", "" + defense);
 			player.updateItemAtkDef();
 		} else {

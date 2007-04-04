@@ -31,7 +31,7 @@ public class BailAction extends SpeakerNPC.ChatAction {
 
 		// TODO: fix race condition until bail is processed in DeathmatchEngine
 		Item helmet = player.getFirstEquipped("trophy_helmet");
-		if (helmet != null) {
+		if (helmet != null && helmet.has("def") && helmet.getInt("def") > 1) {
 			engine.say("Coward! I'm sorry to inform you, for this your helmet has been magically weakened.");
 		} else {
 			engine.say("Coward! You're not as experienced as you used to be.");
