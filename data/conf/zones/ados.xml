@@ -102,25 +102,82 @@ West: Semos
     <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
  </zone>
 
- <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="0_ados_forest_w2.xstend">
+ <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="0_ados_city_n.xstend">
+   <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
+   <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
+   
+   <portal x="60" y="16" ref="tavern_entrance_left">
+     <destination zone="int_ados_tavern_0" ref="entrance_left"/>
+   </portal>
+   
+   <portal x="65" y="16" ref="tavern_entrance_right">
+     <destination zone="int_ados_tavern_0" ref="entrance_right"/>
+   </portal>
+   
+   <portal x="19" y="85" ref="zaras_house_entrance">
+     <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
+     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+       <attribute name="key">small_key</attribute>
+       <attribute name="rejected">The door is locked.</attribute>
+     </implementation>
+   </portal>
+   
+   <entity x="18" y="85">
+     <implementation class-name="games.stendhal.server.entity.Sign">
+       <attribute name="text">
+         Home of Zara 
+         Dear postman, I'm on holiday!
+         Please leave my mail at my neighbour's house.
+       </attribute>
+       <attribute name="class">transparent</attribute>
+     </implementation>
+   </entity>
+   
+   <portal x="38" y="52" ref="goldsmith_entrance">
+     <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
+   </portal>
+   
+   <portal x="54" y="19" ref="6">
+     <destination zone="int_ados_bank" ref="0"/>
+   </portal>
+   
+   <portal x="27" y="39" ref="10">
+     <destination zone="int_ados_bakery" ref="0"/>
+   </portal>
+   
+   <portal x="12" y="38" ref="11">
+     <destination zone="int_ados_haunted_house" ref="0"/>
+   </portal>
+   
+   <portal x="62" y="86" ref="storage_outside_1">
+     <destination zone="int_ados_storage" ref="storage_inside_left"/>
+   </portal>
+   
+   <portal x="63" y="86" ref="storage_outside_2">
+     <destination zone="int_ados_storage" ref="storage_inside_left"/>
+   </portal>
+   
+   <portal x="64" y="86" ref="storage_outside_3">
+     <destination zone="int_ados_storage" ref="storage_inside_left"/>
+   </portal>
+   
+   <portal x="65" y="86" ref="storage_outside_4">
+     <destination zone="int_ados_storage" ref="storage_inside_right"/>
+   </portal>
+   
+   <portal x="66" y="86" ref="storage_outside_5">
+     <destination zone="int_ados_storage" ref="storage_inside_right"/>
+   </portal>
+   
+   <portal x="39" y="20" ref="town_hall_entrance">
+     <destination zone="int_ados_town_hall" ref="entrance"/>
+   </portal>
+   
  </zone>
-
- <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="0_ados_rock_w.xstend">
+ 
+ <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
  </zone>
-
- <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
- </zone>
-
- <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
- </zone>
-
- <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
- </zone>
-
- <zone name="0_ados_city" level="0" x="500896" y="500000" file="0_ados_city.xstend">
- </zone>
-
+ 
    <zone name="int_ados_bank" file="int_ados_bank.xstend">
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city_n" ref="6"/>
@@ -312,84 +369,30 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone> 
    
- <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="0_ados_city_n.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
-  <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
-
-  <portal x="60" y="16" ref="tavern_entrance_left">
-   <destination zone="int_ados_tavern_0" ref="entrance_left"/>
-  </portal>
-
-  <portal x="65" y="16" ref="tavern_entrance_right">
-   <destination zone="int_ados_tavern_0" ref="entrance_right"/>
-  </portal>
-
-  <portal x="19" y="85" ref="zaras_house_entrance">
-   <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
-   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-   <attribute name="key">small_key</attribute>
-   <attribute name="rejected">The door is locked.</attribute>
-   </implementation>
-  </portal>
-  
-  <entity x="18" y="85">
-    <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
-Home of Zara 
-Dear postman, I'm on holiday!
-Please leave my mail at my neighbour's house.
-      </attribute>
-      <attribute name="class">transparent</attribute>
-    </implementation>
-  </entity>
-  
-  <portal x="38" y="52" ref="goldsmith_entrance">
-   <destination zone="int_ados_goldsmith" ref="entrance_goldsmith"/>
-  </portal>
-
-  <portal x="54" y="19" ref="6">
-   <destination zone="int_ados_bank" ref="0"/>
-  </portal>
-
-  <portal x="27" y="39" ref="10">
-   <destination zone="int_ados_bakery" ref="0"/>
-  </portal>
-
-  <portal x="12" y="38" ref="11">
-   <destination zone="int_ados_haunted_house" ref="0"/>
-  </portal>
-
-  <portal x="62" y="86" ref="storage_outside_1">
-   <destination zone="int_ados_storage" ref="storage_inside_left"/>
-  </portal>
-
-  <portal x="63" y="86" ref="storage_outside_2">
-   <destination zone="int_ados_storage" ref="storage_inside_left"/>
-  </portal>
-
-  <portal x="64" y="86" ref="storage_outside_3">
-   <destination zone="int_ados_storage" ref="storage_inside_left"/>
-  </portal>
-
-  <portal x="65" y="86" ref="storage_outside_4">
-   <destination zone="int_ados_storage" ref="storage_inside_right"/>
-  </portal>
-
-  <portal x="66" y="86" ref="storage_outside_5">
-   <destination zone="int_ados_storage" ref="storage_inside_right"/>
-  </portal>
-  
-  <portal x="39" y="20" ref="town_hall_entrance">
-   <destination zone="int_ados_town_hall" ref="entrance"/>
-  </portal>
-
- </zone>
-
- <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
- </zone>
-
- <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
+   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="0_ados_forest_w2.xstend">
+   </zone>
+   
+   <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="0_ados_rock_w.xstend">
+   </zone>
+   
+   <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
+     <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
+   </zone>
+   
+   <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
+   </zone>
+   
+   <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
+   </zone>
+   
+   <zone name="0_ados_city" level="0" x="500896" y="500000" file="0_ados_city.xstend">
+   </zone>
+   
+   <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
+     <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
+   </zone>
+   
+ <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="0_ados_wall_s.xstend">
  </zone>
 
  <zone name="0_ados_city_s" level="0" x="500896" y="500000" file="0_ados_city_s.xstend">
