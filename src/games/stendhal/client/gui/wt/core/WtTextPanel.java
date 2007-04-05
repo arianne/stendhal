@@ -35,7 +35,7 @@ public class WtTextPanel extends WtPanel {
 	/** default font size */
 	public static final int DEFAULT_FONT_SIZE = 12;
 
-	/** default font size */
+	/** default color */
 	public static final Color DEFAULT_COLOR = Color.WHITE;
 
 	/** the text to display */
