@@ -9,7 +9,6 @@ package games.stendhal.client.gui.wt;
 //
 //
 
-import javax.swing.JComponent;
 import games.stendhal.client.StendhalUI;
 
 /**
