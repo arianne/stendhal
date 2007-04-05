@@ -393,23 +393,22 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 
 
-
-		/*-
-		 *- NEW CODE (not till zone xml files updated with coords)
-		 *-
 		if(desc.isInterior()) {
 			zone.setPosition();
 		} else {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
 		}
-		 *-
-		 */
 
+		/*-
+		 *- OLD CODE
+		 *-
 		if (zonedata.isInterior()) {
 			zone.setPosition();
 		} else {
 			zone.setPosition(zonedata.getLevel(), zonedata.getX(), zonedata.getY());
 		}
+		 *-
+		 */
 
 		world.addRPZone(zone);
 
