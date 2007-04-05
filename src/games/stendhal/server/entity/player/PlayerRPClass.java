@@ -334,7 +334,7 @@ class PlayerRPClass {
 				player.setSheep(sheep);
 
 				StendhalRPAction.placeat(zone, sheep, x, y);
-				zone.addPlayerAndFriends(sheep);
+//				zone.addPlayerAndFriends(sheep);
 			}
 		} catch (Exception e) {
 			/**
@@ -357,7 +357,7 @@ class PlayerRPClass {
 		}
 
 		StendhalRPAction.placeat(zone, player, x, y);
-		zone.addPlayerAndFriends(player);
+//		zone.addPlayerAndFriends(player);
 
 	}
 

@@ -78,6 +78,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<RPEntity> playersAndFriends;
 
+	private List<Player> players;
+
 	private boolean teleportable = true;
 
 	/**
@@ -122,6 +124,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
 		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
+		players = new LinkedList<Player>();
 		playersAndFriends = new LinkedList<RPEntity>();
 
 		movementListeners = new LinkedList<MovementListener>();
@@ -591,13 +594,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 			itemsOnGround.add(item);
 		}
 
-		if (object instanceof SpeakerNPC) {
-			npcs.add((NPC) object);
+		/*
+		 * Eventually move to <Entity>.onAdded().
+		 */
+		if (object instanceof Player) {
+			players.add((Player) object);
+			playersAndFriends.add((Player) object);
 		} else if (object instanceof AttackableCreature) {
-			npcs.add((NPC) object);
-		}
-
-		if (object instanceof Portal) {
+			npcs.add((AttackableCreature) object);
+			playersAndFriends.add((AttackableCreature) object);
+		} else if (object instanceof Sheep) {
+			playersAndFriends.add((Sheep) object);
+		} else if (object instanceof SpeakerNPC) {
+			npcs.add((SpeakerNPC) object);
+		} else if (object instanceof Portal) {
 			portals.add((Portal) object);
 		}
 
@@ -614,18 +624,29 @@ public class StendhalRPZone extends MarauroaRPZone {
 			((Entity) object).onRemoved(this);
 		}
 
-		if (object instanceof Portal) {
-			portals.remove((Portal) object);
-		}
-
 		/*
 		 * Remove from secondary lists
 		 */
-		playersAndFriends.remove(object);
-
 		if (object instanceof NPC) {
 			npcs.remove(object);
 			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
+		}
+
+		/*
+		 * Eventually move to <Entity>.onRemoved().
+		 */
+		if (object instanceof Player) {
+			players.remove((Player) object);
+			playersAndFriends.remove((Player) object);
+		} else if (object instanceof AttackableCreature) {
+			npcs.remove((AttackableCreature) object);
+			playersAndFriends.remove((AttackableCreature) object);
+		} else if (object instanceof Sheep) {
+			playersAndFriends.remove((Sheep) object);
+		} else if (object instanceof SpeakerNPC) {
+			npcs.remove((SpeakerNPC) object);
+		} else if (object instanceof Portal) {
+			portals.remove((Portal) object);
 		}
 
 		super.remove(id);
@@ -885,9 +906,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return itemsOnGround;
 	}
 
-	public void addPlayerAndFriends(RPEntity player) {
-		playersAndFriends.add(player);
+
+	/**
+	 * Gets all players in this zone.
+	 *
+	 * @return	A list of all players.
+	 */
+	public List<Player> getPlayers() {
+		return players;
 	}
+
+
+//	public void addPlayerAndFriends(RPEntity player) {
+//		playersAndFriends.add(player);
+//	}
 
 	/**
 	 * Gets all players in this zone, as well as friendly entities
@@ -899,9 +931,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return playersAndFriends;
 	}
 
-	public void removePlayerAndFriends(RPEntity player) {
-		playersAndFriends.remove(player);
-	}
+//	public void removePlayerAndFriends(RPEntity player) {
+//		playersAndFriends.remove(player);
+//	}
 
 	/**
 	 * Can magic scrolls for teleportation be used in this zone?
