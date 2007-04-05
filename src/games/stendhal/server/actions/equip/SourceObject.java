@@ -2,6 +2,7 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.EquipListener;
@@ -26,6 +27,8 @@ class SourceObject extends MoveableObject {
 
 	/** optional, parent item */
 	private Entity parent;
+	
+	private int quantity = 0;
 
 	/** interprets the given action */
 	public SourceObject(RPAction action, Player player) {
@@ -77,6 +80,16 @@ class SourceObject extends MoveableObject {
 			// item is not contained
 			if (StendhalRPWorld.get().has(baseItemId)) {
 				base = (Entity) StendhalRPWorld.get().get(baseItemId);
+			}
+		}
+		
+		if ((base instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
+			int entityQuantity = ((Stackable) base).getQuantity();
+
+			quantity = action.getInt(EquipActionConsts.QUANTITY);
+			if ((entityQuantity < 1) || (quantity < 1) || (quantity >= entityQuantity)) {
+				quantity = 0; // quantity == 0 performs a regular move
+				// of the entire item
 			}
 		}
 	}
