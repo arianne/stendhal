@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
  * <pre>/script BetManager.class winner fire</pre>.
  *
  * <p>The NPC will than tell all players the results and give it to winners:
- * <pre>mort betted 50 ham on fire and won an additional 50 ham
+ * <pre>mort bet 50 ham on fire and won an additional 50 ham
  * hendrik lost 5 cheese betting on water</pre></p>   
  * 
  * Note: Betting is possible in "idle conversation state" to enable 
@@ -236,7 +236,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				// create announcement
 				StringBuilder sb = new StringBuilder();
 				sb.append(betInfo.playerName);
-				sb.append(" betted on ");
+				sb.append(" bet on ");
 				sb.append(betInfo.target);
 				sb.append(". So ");
 				sb.append(betInfo.playerName);
