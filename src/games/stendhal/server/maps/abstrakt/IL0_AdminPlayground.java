@@ -219,7 +219,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		public SightseeingAction(ScriptInGroovy game, StendhalRPWorld world) {
 			this.game = game;
 
-			zones = new ArrayList();
+			zones = new ArrayList<String>();
 			Iterator itr = world.iterator();
 			while (itr.hasNext()) {
 				StendhalRPZone zone = (StendhalRPZone) itr.next();
