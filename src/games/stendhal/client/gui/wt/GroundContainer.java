@@ -22,6 +22,7 @@ import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.PassiveEntity;
+import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
@@ -144,9 +145,16 @@ public class GroundContainer extends WtPanel implements Inspector {
 		// get clicked entity
 		Point2D point = screen.translate(p);
 		GameObjects gameObjects = client.getGameObjects();
-		Entity entity = gameObjects.at(point.getX(), point.getY());
+
+		// for the text pop up....
+		Text text = gameObjects.at_text(point.getX(), point.getY());
+		if (text != null) {
+			gameObjects.removeText(text);
+			return true;
+		}
 
 		// for the clicked entity....
+		Entity entity = gameObjects.at(point.getX(), point.getY());
 		if (entity != null) {
 			if (ui.isCtrlDown()) {
 				entity.onAction(entity.defaultAction());
@@ -167,8 +175,15 @@ public class GroundContainer extends WtPanel implements Inspector {
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
 		GameObjects gameObjects = client.getGameObjects();
-		Entity entity = gameObjects.at(point.getX(), point.getY());
 
+		// for the text pop up....
+		Text text = gameObjects.at_text(point.getX(), point.getY());
+		if (text != null) {
+			gameObjects.removeText(text);
+			return true;
+		}
+
+		Entity entity = gameObjects.at(point.getX(), point.getY());
 		if (entity != null) {
 			// ... do the default action
 			// String action = entity.defaultAction();

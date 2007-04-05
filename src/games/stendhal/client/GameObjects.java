@@ -48,7 +48,7 @@ public class GameObjects implements Iterable<Entity> {
 
 	private Map<RPObject.ID, Entity> objects;
 
-	private List<Text> texts;
+	private LinkedList<Text> texts;
 
 	private List<Text> textsToRemove;
 
@@ -323,6 +323,19 @@ public class GameObjects implements Iterable<Entity> {
 				if (entity.getType().compareTo("creature") == 0) {
 					continue;
 				}
+				return entity;
+			}
+		}
+
+		return null;
+	}
+
+	public Text at_text(double x, double y) {
+		ListIterator<Text> it = texts.listIterator(texts.size());
+		while (it.hasPrevious()) {
+			Text entity = it.previous();
+
+			if (entity.getDrawedArea().contains(x, y)) {
 				return entity;
 			}
 		}
