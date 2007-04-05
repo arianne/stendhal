@@ -501,7 +501,7 @@ public class AdministrationAction implements ActionListener {
 					((StackableItem) item).setQuantity(action.getInt("amount"));
 				}
 
-				if (! player.equip(slotName, item)) {
+				if (! changed.equip(slotName, item)) {
 					player.sendPrivateText("The slot is full.");
 				}
 			} else {
