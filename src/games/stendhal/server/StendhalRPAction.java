@@ -725,7 +725,7 @@ public class StendhalRPAction {
 
 		String source = player.getID().getZoneID();
 
-		StendhalRPZone oldzone = player.getZone();
+//		StendhalRPZone oldzone = player.getZone();
 
 //		oldzone.removePlayerAndFriends(player);
 

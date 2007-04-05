@@ -161,7 +161,7 @@ public class Player extends RPEntity implements TurnListener {
 
 	public static void destroy(Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+//		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
 //		zone.removePlayerAndFriends(player);
 		try {
 			if (player.hasSheep()) {
