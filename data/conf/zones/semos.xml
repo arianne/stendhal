@@ -617,6 +617,15 @@ with you.
    </zone>
 
  <zone name="0_semos_road_e" level="0" x="500128" y="500000" file="0_semos_road_e.xstend">
+   <entity x="113" y="51">
+     <implementation class-name="games.stendhal.server.entity.Sign">
+       <attribute name="text">
+West: Semos city
+East: Ados city
+       </attribute>
+       <attribute name="class">signpost</attribute>
+     </implementation>
+   </entity>
  </zone>
 
  <zone name="0_semos_road_se" level="0" x="500128" y="500064" file="0_semos_road_se.xstend">
