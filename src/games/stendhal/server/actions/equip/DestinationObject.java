@@ -1,5 +1,6 @@
 package games.stendhal.server.actions.equip;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Stackable;
@@ -9,12 +10,11 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
+
+import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop destination
@@ -81,8 +81,8 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/** checks if it is possible to add the entity to the world */
-	public boolean preCheck(Entity entity, RPWorld world, Player player) {
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(entity.getID());
+	public boolean preCheck(Entity entity, Player player) {
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
 
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
@@ -183,7 +183,7 @@ class DestinationObject extends MoveableObject {
 	 * 
 	 * @return true when the item is added, false otherwise
 	 */
-	public boolean addToWorld(Entity entity, RPWorld world, Player player) {
+	public boolean addToWorld(Entity entity, Player player) {
 		if (parent != null) {
 			// drop the entity into a slot
 			if (parent.getID().equals(entity.getID())) {
@@ -222,11 +222,11 @@ class DestinationObject extends MoveableObject {
 				rpslot.add(entity);
 			}
 
-			world.modify(parent);
+			StendhalRPWorld.get().modify(parent);
 		} else {
 			// drop the entity to the ground. Do this always in the players
 			// zone
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 			logger.debug("adding " + entity.get("name") + " to " + zone);
 
 			// HACK: Avoid a problem on database

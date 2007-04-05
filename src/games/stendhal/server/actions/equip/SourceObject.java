@@ -12,7 +12,6 @@ import java.util.List;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 
@@ -96,8 +95,6 @@ class SourceObject extends MoveableObject {
 	
 	/** moves this entity to the destination */
 	public boolean moveTo(DestinationObject dest, Player player) {
-		StendhalRPWorld world = StendhalRPWorld.get();
-
 		if ((!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
 			// give some feedback
 			player.sendPrivateText("You can't carry this " + base.getName() + " on your " + dest.slot);
@@ -105,14 +102,14 @@ class SourceObject extends MoveableObject {
 			return false;
 		}
 
-		if (!dest.isValid() || !dest.preCheck(base, world, player)) {
-			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(base, world, player));
+		if (!dest.isValid() || !dest.preCheck(base, player)) {
+			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(base, player));
 			return false;
 		}
 
-		removeFromWorld(world);
+		removeFromWorld();
 		logger.debug("item removed");
-		dest.addToWorld(base, world, player);
+		dest.addToWorld(base, player);
 		logger.debug("item readded");
 
 		return true;
@@ -144,12 +141,12 @@ class SourceObject extends MoveableObject {
 	 * removes the entity from the world and returns it (so it may nbe added
 	 * again)
 	 */
-	public Entity removeFromWorld(RPWorld world) {
+	public Entity removeFromWorld() {
 		if (parent == null) {
-			world.remove(base.getID());
+			StendhalRPWorld.get().remove(base.getID());
 		} else {
 			parent.getSlot(slot).remove(base.getID());
-			world.modify(parent);
+			StendhalRPWorld.get().modify(parent);
 		}
 		return base;
 	}
