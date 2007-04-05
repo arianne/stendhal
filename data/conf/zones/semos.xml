@@ -416,13 +416,12 @@ the surface...
     <entity x="27" y="5">
      <implementation class-name="games.stendhal.server.entity.Sign">
       <attribute name="text">
-The dwarve mine west of Or'ril castle
+The dwarf mine west of Or'ril castle
 is one of the main iron ore resources
 of Faiumoni. Even rumors of a dragon
 living under the earth cannot stop
-the industrious dwarves from digging
-galleries further and further into
-the mountain.
+the industrious dwarves from digging 
+further and further into the mountain.
       </attribute>
       <attribute name="class">book_blue</attribute>
      </implementation>
@@ -560,6 +559,36 @@ with you.
      </implementation>
     </entity>
 -->
+<!-- Prevent table dancing (this is a family friendly bank) -->
+    <entity x="30" y="4">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+    </entity>
+
+    <entity x="31" y="4">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+    </entity>
+
+    <entity x="32" y="4">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+    </entity>
+
+    <entity x="30" y="6">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+    </entity>
+
+    <entity x="31" y="6">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+    </entity>
+
+    <entity x="32" y="6">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+    </entity>
    </zone>
 
    <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
@@ -578,26 +607,6 @@ with you.
      <destination zone="0_semos_city" ref="townhall_entrance_right"/>
     </portal>
 
-    <!-- Prevent table dancing (this is a family friendly townhall) -->
-    <entity x="4" y="32">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
-    </entity>
-
-    <entity x="4" y="33">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
-    </entity>
-
-    <entity x="6" y="32">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
-    </entity>
-
-    <entity x="6" y="33">
-     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
-    </entity>
    </zone>
 
    <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
