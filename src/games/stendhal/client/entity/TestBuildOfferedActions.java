@@ -94,7 +94,37 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected, list);
 		Assert.assertEquals(new String[] { "Pick", "Look" }, en.offeredActions());
 	}
-
+	@Test
+	public void testPlantGrower() throws Exception {
+		StendhalClient.get();
+		RPObject rp = new MockRPObject("plant_grower", null);
+		
+		Entity en = EntityFabric.createEntity(rp);
+		List<String> expected = new ArrayList<String>();
+		expected.add("Look");
+		
+		en.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+		Assert.assertEquals(new String[] { "Look" }, en.offeredActions());
+	}
+	@Test
+	public void testSalad() throws Exception {
+		StendhalClient.get();
+		RPObject rp = new RPObject();
+		rp.put("type","item");
+		
+		rp.put("class","food");
+		
+		Entity en = EntityFabric.createEntity(rp);
+		List<String> expected = new ArrayList<String>();
+		expected.add("Look");
+		
+		en.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+		Assert.assertEquals(new String[] { "Use","Look" }, en.offeredActions());
+	}
 	@Test
 	public void testDoor() throws Exception {
 		StendhalClient.get();
