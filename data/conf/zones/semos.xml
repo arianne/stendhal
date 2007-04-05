@@ -560,35 +560,37 @@ with you.
     </entity>
 -->
 <!-- Prevent table dancing (this is a family friendly bank) -->
-    <entity x="30" y="4">
+
+    <entity x="39" y="4">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
-    <entity x="31" y="4">
+    <entity x="40" y="4">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
-    <entity x="32" y="4">
+    <entity x="41" y="4">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
-    <entity x="30" y="6">
+    <entity x="39" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
-    <entity x="31" y="6">
+    <entity x="40" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
-    <entity x="32" y="6">
+    <entity x="41" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
+
    </zone>
 
    <zone name="int_semos_townhall" file="int_semos_townhall.xstend">
