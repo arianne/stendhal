@@ -49,6 +49,7 @@ public class StendhalQuestSystem {
 		loadQuest("KanmararnSoldiers");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
+		loadQuest("MeetBunny");
 		loadQuest("MeetHayunn");
 		loadQuest("MeetIo");
 		loadQuest("MeetKetteh");
