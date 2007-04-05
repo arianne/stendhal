@@ -211,11 +211,11 @@ public class SpeakerNPC extends NPC {
 
 		List<Player> players = new LinkedList<Player>();
 
-		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
+		for (Player player : getZone().getPlayers()) {
 			int px = player.getX();
 			int py = player.getY();
 
-			if (player.has("text") && get("zoneid").equals(player.get("zoneid")) && (Math.abs(px - x) < range)
+			if (player.has("text") && (Math.abs(px - x) < range)
 			        && (Math.abs(py - y) < range)) {
 				players.add(player);
 			}
@@ -242,11 +242,11 @@ public class SpeakerNPC extends NPC {
 
 		int squaredDistanceOfNearestPlayer = Integer.MAX_VALUE;
 
-		for (Player player : StendhalRPRuleProcessor.get().getPlayers()) {
+		for (Player player : getZone().getPlayers()) {
 			int px = player.getX();
 			int py = player.getY();
 
-			if (get("zoneid").equals(player.get("zoneid")) && (Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
+			if ((Math.abs(px - x) < range) && (Math.abs(py - y) < range)) {
 				int squaredDistanceOfThisPlayer = (px - x) * (px - x) + (py - y) * (py - y);
 				if (squaredDistanceOfThisPlayer < squaredDistanceOfNearestPlayer) {
 					squaredDistanceOfNearestPlayer = squaredDistanceOfThisPlayer;
