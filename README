@@ -72,6 +72,7 @@ Changelog
 - the tavern maid in fado makes a special soup
 
 0.59
+- use zone level/coordinates from data/conf/zones/*.xml instead of tmx files
 - introduced scoring system in deathmatch instead of XP
 - server prevents putting items into useless slots (like a sword into the head-slot)
 - the Easter Bunny is hopping around
