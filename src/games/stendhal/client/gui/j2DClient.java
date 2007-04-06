@@ -20,6 +20,9 @@ import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.entity.ActionType;
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
@@ -55,6 +58,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
@@ -683,6 +687,7 @@ public class j2DClient extends StendhalUI {
 			return;
 		}
 
+		
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_L:
 				if(e.isControlDown()) {
@@ -713,9 +718,25 @@ public class j2DClient extends StendhalUI {
 				/*
 				 * Ctrl means face, otherwise move
 				 */
+				Direction direction = keyCodeToDirection(e.getKeyCode());
+//				int dy;
+//				if (direction.getdy()==0)
+//					dy=1;
+//				else if (direction.getdy()==-1)
+//					dy=0;
+//				else
+//					dy=2;
+
+				Entity en =GameObjects.getInstance().at(User.get().getX()+direction.getdx(),User.get().getY()+direction.getdy()+1
+				);
+				if (en != null&& !en.equals(User.get())){
+					if (e.isAltGraphDown()){
+						en.onAction(en.defaultAction());	
+					}
+				}
 				client.addDirection(
-					keyCodeToDirection(e.getKeyCode()),
-					e.isControlDown());
+						direction,
+						e.isControlDown());
 
 				break;
 		}
