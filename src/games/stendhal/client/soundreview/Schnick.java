@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
-
+//TODO: delete me when new soundsystem works
 public class Schnick {
 
 	public static InputStream getResourceStream(String name) throws IOException {
@@ -26,11 +26,6 @@ public class Schnick {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-	
-	   
-        
-		// TODO Auto-generated method stub
 		SoundMaster sm = new SoundMaster();
 		sm.run();
 		SoundMaster.play("hammer-1.wav");
@@ -41,16 +36,16 @@ public class Schnick {
 	    try {
 	        prop.load(getResourceStream("data/sounds/stensounds.properties"));
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	       
 	        e.printStackTrace();
 	    }
 	    try {
 	        prop.storeToXML(new FileOutputStream(new File("data/sounds/stensounds.xml")),"autmatic");
 	    } catch (FileNotFoundException e) {
-	        // TODO Auto-generated catch block
+	       
 	        e.printStackTrace();
 	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	        
 	        e.printStackTrace();
 	    }
     }
@@ -60,13 +55,13 @@ public class Schnick {
 		try {
 	        prop.loadFromXML(new FileInputStream(new File("data/sounds/stensounds.xml")));
         } catch (InvalidPropertiesFormatException e) {
-	        // TODO Auto-generated catch block
+	        
 	        e.printStackTrace();
         } catch (FileNotFoundException e) {
-	        // TODO Auto-generated catch block
+	        
 	        e.printStackTrace();
         } catch (IOException e) {
-	        // TODO Auto-generated catch block
+	       
 	        e.printStackTrace();
         }
     }
