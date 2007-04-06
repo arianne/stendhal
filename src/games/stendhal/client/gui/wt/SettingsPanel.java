@@ -47,7 +47,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	private Character character;
 	
 	/** the Key ring panel */
-	private EntityContainer keyring;
+	private KeyRing keyring;
 
 	/** the buddy list panel */
 	private BuddyListDialog nbuddies;
@@ -86,7 +86,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		character.registerCloseListener(this);
 		frame.addChild(character);
 		
-		keyring = new EntityContainer(client, "keyring", 2, 3);
+		keyring = new KeyRing(client);
 		keyring.registerCloseListener(this);
 		frame.addChild(keyring);
 
@@ -170,7 +170,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		if(newCode) {
 			/*
-			 * Hack! Need to update list when changes arrival
+			 * Hack! Need to update list when changes arrive
 			 */
 			if(nbuddies.isVisible())
 				nbuddies.update();
@@ -189,6 +189,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			inventory.setSlot(player, "bag");
 			minimap.setPlayer(player);
 		}
+
+		/*
+		 * Hack! Need to update when changes arrive
+		 */
+		if(keyring.isVisible())
+			keyring.update();
 	}
 
 	/** a button was clicked */
