@@ -61,8 +61,9 @@ public class EntityFactoryHelper {
 
 		entity = (Entity) obj;
 
+
 		/*
-		 * Apply optional direct attributes
+		 * Apply optional attributes
 		 */
 		if(attributes != null) {
 			for(String name : attributes.keySet()) {

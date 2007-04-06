@@ -132,27 +132,27 @@
            </portal>
            <entity x="17" y="20">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <parameter name="description">You see a table clean enough to eat from.</parameter>
+             <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity>
            <entity x="17" y="21">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <parameter name="description">You see a table clean enough to eat from.</parameter>
+             <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity> 	
             <entity x="17" y="22">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <parameter name="description">You see a table clean enough to eat from.</parameter>
+             <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity>
            <entity x="17" y="23">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <parameter name="description">You see a table clean enough to eat from.</parameter>
+             <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity> 
   		   <entity x="17" y="24">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <parameter name="description">You see a table clean enough to eat from.</parameter>
+             <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity> 
   		   <entity x="17" y="25">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <parameter name="description">You see a table clean enough to eat from.</parameter>
+             <attribute name="description">You see a table clean enough to eat from.</attribute>
   		   </entity>		    		   	   
          </zone>
          
