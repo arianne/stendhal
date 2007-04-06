@@ -42,41 +42,9 @@ import marauroa.common.game.RPObject;
 public abstract class RPEntity extends AnimatedEntity {
 
 
-	private static Map<String, Sprite[]> blade_strikes;
-
-	private int frameBladeStrike;
-
 	private boolean showBladeStrike;
 	
-	private static Sprite eating=null;
-
-	private static Sprite poisoned=null;
-	
-	private static Sprite hitted=null;
-
-	private static Sprite blocked=null;
-
-	private static Sprite missed=null;
-
-	static {
-		SpriteStore st = SpriteStore.get();
-
-		hitted = st.getSprite("data/sprites/combat/hitted.png");
-		blocked = st.getSprite("data/sprites/combat/blocked.png");
-		missed = st.getSprite("data/sprites/combat/missed.png");
-		//	sprite to mark player killers. Not used yet.
-		// private static Sprite pk;
-		// pk = st.getSprite("data/sprites/ideas/pk.png");
-		eating = st.getSprite("data/sprites/ideas/eat.png");
-		poisoned = st.getSprite("data/sprites/ideas/poisoned.png");
-		blade_strikes = new HashMap<String, Sprite[]>();
-		blade_strikes.put("move_up", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
-		blade_strikes.put("move_right", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
-		blade_strikes.put("move_down", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
-		blade_strikes.put("move_left", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
-	}
-
-	private enum Resolution {
+	public enum Resolution {
 		HITTED(0), BLOCKED(1), MISSED(2);
 
 		private final int val;
@@ -104,9 +72,9 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	private int level;
 
-	private boolean isEating;
+	private boolean eating;
 
-	private boolean isPoisoned;
+	private boolean poisoned;
 
 	private Sprite nameImage;
 
@@ -318,17 +286,54 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	// When entity eats food
 	public void onEat(int amount) {
-		isEating = true;
+		eating = true;
 	}
 
 	public void onEatEnd() {
-		isEating = false;
+		eating = false;
 	}
+
+
+	public boolean isBeingStruck() {
+		return showBladeStrike;
+	}
+
+	public void doneStriking() {
+		showBladeStrike = false;
+	}
+
+	public boolean isDefending() {
+                return (isBeingAttacked()
+			&& (System.currentTimeMillis() - combatIconTime < 4 * 300));
+	}
+
+	public boolean isEating() {
+		return eating;
+	}
+
+	public boolean isPoisoned() {
+		return poisoned;
+	}
+
+	public boolean isAttackingUser() {
+		return ((attacking != null)
+			&& attacking.equals(User.get().getID()));
+
+	}
+
+	public boolean isBeingAttacked() {
+		return (lastAttacker != null);
+	}
+
+	public Resolution getResolution() {
+		return resolution;
+	}
+
 
 	// When entity is poisoned
 	public void onPoisoned(int amount) {
 		if ( (distance(User.get()) < 15 * 15)) {
-			isPoisoned = true;
+			poisoned = true;
 
 			addFloater("-" + amount, Color.red);
 
@@ -339,7 +344,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	public void onPoisonEnd() {
-		isPoisoned = false;
+		poisoned = false;
 	}
 
 	// Called when entity kills another entity
@@ -752,85 +757,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	/** Draws this entity in the screen */
 	@Override
 	public void draw(GameScreen screen) {
-		if (lastAttacker != null) {
-			// Draw red box around
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = getArea();
-
-			g2d.setColor(Color.red);
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
-			g2d.setColor(Color.black);
-			g2d.drawRect((int) p.getX() - 1, (int) p.getY() - 1,
-			        (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) + 2,
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
-		}
-
-		if ((attacking != null) && attacking.equals(User.get().getID())) {
-			// Draw orange box around
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = getArea();
-
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-
-			g2d.setColor(Color.orange);
-			g2d.drawRect((int) p.getX() + 1, (int) p.getY() + 1,
-			        (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) - 2,
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) - 2);
-		}
-
-		if (isAttacking() && showBladeStrike) {
-			Rectangle2D rect = getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-
-			if (frameBladeStrike < 3) {
-				screen.draw(blade_strikes.get(getAnimation())[frameBladeStrike], sx - 1.5, sy - 3.3);
-			} else {
-				showBladeStrike = false;
-				frameBladeStrike = 0;
-			}
-
-			frameBladeStrike++;
-		}
-
 		super.draw(screen);
-
-		if (isEating) {
-			Rectangle2D rect = getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-			screen.draw(eating, sx - 0.75, sy - 0.25);
-		}
-
-		if (isPoisoned) {
-			Rectangle2D rect = getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-			screen.draw(poisoned, sx - 1.25, sy - 0.25);
-		}
-
-		if ((lastAttacker != null) && (System.currentTimeMillis() - combatIconTime < 4 * 300)) {
-			// Draw bottom right combat icon
-			Rectangle2D rect = getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-
-			switch (resolution) {
-				case BLOCKED:
-					screen.draw(blocked, sx - 0.25, sy - 0.25);
-					break;
-				case MISSED:
-					screen.draw(missed, sx - 0.25, sy - 0.25);
-					break;
-				case HITTED:
-					screen.draw(hitted, sx - 0.25, sy - 0.25);
-					break;
-			}
-		}
 
 		if ((damageSprites != null) && (damageSprites.size() > 0)) 	{
 			//			 Draw the damage done
@@ -1058,5 +985,19 @@ public abstract class RPEntity extends AnimatedEntity {
 	public void onMissed(Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new RPEntity2DView(this);
 	}
 }

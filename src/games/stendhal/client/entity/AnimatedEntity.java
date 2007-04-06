@@ -40,24 +40,12 @@ public abstract class AnimatedEntity extends Entity {
 	/** actual animation */
 	protected String animation;
 
-	/** actual frame * */
-	protected int frame;
-
-	/**
-	 * we need to measure time to ahve a coherent frame rendering, that is what
-	 * delta is for
-	 */
-	protected long delta;
 
 	public AnimatedEntity(final RPObject object) throws AttributeNotFoundException {
 		super(object);
-		delta = System.currentTimeMillis();
-		frame = 0;
 	}
+
 	public AnimatedEntity() {
-		super();
-		delta = System.currentTimeMillis();
-		frame = 0;
 	}
 
 	/** This method fills the sprites map 
@@ -87,7 +75,6 @@ public abstract class AnimatedEntity extends Entity {
 		super.onMove(x, y, direction, speed);
 
 		adjustAnimation(direction);
-		
 	}
 
 	protected void adjustAnimation(final Direction direction) {
@@ -106,42 +93,30 @@ public abstract class AnimatedEntity extends Entity {
 				animation = "move_down";
 				break;
 		}
-    }
+	}
 
 	protected String getAnimation() {
 		return animation;
 	}
 
-	/** Returns the next Sprite we have to show */
-	private  Sprite nextFrame() {
-		Sprite[] anim = sprites.get(getAnimation());
-
-		if (anim == null) {
-			logger.fatal(this.getClass().getName() + ": sprites.get() returned null for " + animation);
-			return SpriteStore.get().getSprite("data/sprites/failsafe.png");
-		}
-
-		if (frame == anim.length) {
-			frame = 0;
-		}
-
-		Sprite sprite = anim[frame];
-
-		if (!stopped()) {
-			frame++;
-		}
-
-		return sprite;
+	/**
+	 * Temp for AnimatedEntity2DView (till it gets full impl)
+	 */
+	public Sprite [] getSprites(String animation) {
+		return sprites.get(animation);
 	}
 
-	/** Draws this entity in the screen */
-	@Override
-	public void draw(final GameScreen screen) {
-		if (System.currentTimeMillis() - delta > 100) {
-			delta = System.currentTimeMillis();
-			sprite = nextFrame();
-		}
 
-		super.draw(screen);
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new AnimatedEntity2DView(this);
 	}
 }

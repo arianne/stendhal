@@ -82,7 +82,10 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-	
+	/**
+	 * The "view" portion of an entity.
+	 */
+	private Entity2DView	view;
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling
@@ -97,16 +100,12 @@ public final byte[] ID_Token = new byte[0];
 		dx = 0.0;
 		dy = 0.0;
 	
-		
+		view = createView();
 	}
 
 	protected Entity(RPObject object) throws AttributeNotFoundException {
-		x = 0.0;
-		y = 0.0;
-		dx = 0.0;
-		dy = 0.0;
-		
-		
+		this();
+
 		init(object);
 	}
 
@@ -123,8 +122,6 @@ public final byte[] ID_Token = new byte[0];
 	
 		loadSprite(object);
     }
-	
-	
 
 	/** Returns the represented arianne object id */
 	public RPObject.ID getID() {
@@ -400,7 +397,7 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 	public void draw(GameScreen screen) {
-		screen.draw(sprite, x, y);
+		view.draw(screen);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
 			Graphics g2d = screen.expose();
@@ -497,7 +494,9 @@ public final byte[] ID_Token = new byte[0];
 
 	abstract public Rectangle2D getArea();
 
-	abstract public Rectangle2D getDrawedArea();
+	public Rectangle2D getDrawedArea() {
+		return view.getDrawnArea();
+	}
 
 	public ActionType defaultAction() {
 		return ActionType.LOOK;
@@ -611,5 +610,17 @@ public final byte[] ID_Token = new byte[0];
 	 * 
 	 * @return drawing index
 	 */
-	abstract public int getZIndex();
+	public int getZIndex() {
+		return view.getZIndex();
+	}
+
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Entity2DView(this);
+	}
 }
