@@ -505,8 +505,11 @@ public final byte[] ID_Token = new byte[0];
 	final public String[] offeredActions() {
 		List<String> list = new ArrayList<String>();
 		buildOfferedActions(list);
-		list.remove(defaultAction().getRepresentation());
-		list.add(0, defaultAction().getRepresentation());
+		if (defaultAction() != null) {
+			list.remove(defaultAction().getRepresentation());
+			list.add(0, defaultAction().getRepresentation());
+		}
+
 		/*
 		 * Special admin options
 		 */
