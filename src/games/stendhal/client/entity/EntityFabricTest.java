@@ -234,32 +234,107 @@ public class EntityFabricTest {
 	}
 	@Test
 	public final void Corpse() {
-		// class must not be null otherwise creation fails because of image 
 		RPObject rp = new MockRPObject("corpse",  null);
 		
 		Entity en = EntityFabric.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Corpse by now", Corpse.class, en.getClass());
 	}
+	@Test
+	public final void Blood() {
+		RPObject rp = new MockRPObject("blood",  null);
+		
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Blood by now", Blood.class, en.getClass());
+	}
 
-//	register("blood", null, "Blood");
-//	register("sign", null, "Sign");
-//	register("blackboard", null, "Sign");
-//
-//	register("item", null, "Item");
+	@Test
+	public final void Sign() {
+		RPObject rp = new MockRPObject("sign",  null);
+		
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Sign by now", Sign.class, en.getClass());
+	
+		rp = new MockRPObject("blackboard",  null);
+		
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Sign by now", Sign.class, en.getClass());
+	}
 
-//	register("item", "drink", "StackableItem");
-//	register("item", "food", "StackableItem");
-//	register("item", "herb", "StackableItem");
-//	register("item", "misc", "StackableItem");
-//	register("item", "money", "StackableItem");
-//	register("item", "ammunition", "StackableItem");
-//	// TODO: remove this after release of 0.59
-//	register("item", "projectiles", "StackableItem");
-//	register("item", "resource", "StackableItem");
-//	register("item", "scroll", "StackableItem");
-//
-//	register("portal", null, "Portal");
-//	register("door", null, "Door");
+	
+	@Test
+	public final void Item() {
+		RPObject rp = new MockRPObject("item",  null);
+		
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Item by now", Item.class, en.getClass());
+	}
+	
+	@Test
+	public final void StackableItem() {
+		RPObject rp = new MockRPObject("item",  "drink");
+		
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "drink");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "food");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "herb");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "misc");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "money");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "ammunition");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "projectiles");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "resource");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		rp = new MockRPObject("item",  "scroll");
+		en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+
+	}
+	@Test
+	public final void Portal() {
+		RPObject rp = new MockRPObject("portal",  null);
+		
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Portal by now", Portal.class, en.getClass());
+	}
+	@Test
+	public final void Door() {
+		RPObject rp = new MockRPObject("door",  null);
+		rp.put("dir", 1);
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Door by now", Door.class, en.getClass());
+	}
+
 
 }
