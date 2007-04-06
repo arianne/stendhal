@@ -100,7 +100,7 @@ public final byte[] ID_Token = new byte[0];
 		dx = 0.0;
 		dy = 0.0;
 	
-		view = createView();
+		
 	}
 
 	protected Entity(RPObject object) throws AttributeNotFoundException {
@@ -121,6 +121,7 @@ public final byte[] ID_Token = new byte[0];
 		rpObject = object;
 	
 		loadSprite(object);
+		view = createView();
     }
 
 	/** Returns the represented arianne object id */
