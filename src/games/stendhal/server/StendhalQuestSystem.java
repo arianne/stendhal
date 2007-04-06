@@ -60,7 +60,7 @@ public class StendhalQuestSystem {
 		loadQuest("IntroducePlayers");
 		loadQuest("LookBookforCeryl");
 		loadQuest("KanmararnSoldiers");
-		loadQuest("MeetBunny");
+		// loadQuest("MeetBunny");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
 		loadQuest("MeetHayunn");
