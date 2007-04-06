@@ -14,47 +14,24 @@ public class EntityFabricTest {
 
 	private class MockRPObject extends RPObject {
 
-		private String _type;
-
-		private String _eclass;
-
-		private String _subclass;
-
+		
 		MockRPObject() {
 
 		}
 
 		MockRPObject(String type, String eclass) {
-			_type = type;
-			_eclass = eclass;
+			super.put("type", type);
+			super.put("class",eclass);
 		}
 
 		public MockRPObject(String type, String eclass, String subclass) {
-			_type = type;
-
-			_eclass = eclass;
-			_subclass = subclass;
+			this(type,eclass);
+			super.put("subclass",subclass);
 		}
 
-		@Override
-		public boolean has(String attribute) {
-			if (attribute.equals("subtype")) {
-	            return _subclass == null;
-            }
-			return true;
-		}
+	
 
-		@Override
-		public String get(String attribute) throws AttributeNotFoundException {
-			if (attribute.equals("type")) {
-				return _type;
-			} else if (attribute.equals("class")) {
-				return _eclass;
-			} else {//if (attribute.equals("subtype")){
-				return _subclass;
-			}
-
-		}
+		
 
 	}
 
@@ -70,9 +47,9 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreateCarrot() {
 		RPObject rp = new MockRPObject("growing_entity_spawner", "items/grower/carrot_grower", "carrot");
-		rp.add("max_ripeness", 1);
-		rp.add("width", 1);
-		rp.add("height", 1);
+		rp.put("max_ripeness", 1);
+		rp.put("width", 1);
+		rp.put("height", 1);
 		Entity en = EntityFabric.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Carrotgrower now", CarrotGrower.class, en.getClass());
@@ -82,9 +59,9 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreateGrainfield() {
 		RPObject rp = new MockRPObject("grain_field", null, null);
-		rp.add("max_ripeness", 1);
-		rp.add("width", 1);
-		rp.add("height", 1);
+		rp.put("max_ripeness", 1);
+		rp.put("width", 1);
+		rp.put("height", 1);
 		Entity en = EntityFabric.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Grainfield now", GrainField.class, en.getClass());
@@ -126,15 +103,69 @@ public class EntityFabricTest {
 		assertEquals("we should have created a box by now", Box.class, en.getClass());
 
 	}
-//	register("player", null, "Player");
-//
-//	register("creature", "small_animal", "SmallCreature");
-//	register("creature", "giant_animal", "BigCreature");
-//	register("creature", "huge_animal", "HugeCreature");
-//	register("creature", "mythical_animal", "MythicalCreature");
-//	register("creature", null, "NormalCreature");
-//	// TODO: deactivate compatibility code in EntityFabric after release of 0.59
-//	// and use this: register("creature", null, "ResizeableCreature");
+	@Test
+	public final void testCreatePlayer() {
+		RPObject rp = new MockRPObject("player", null);
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a player by now", Player.class, en.getClass());
+
+	}
+
+	@Test
+	public final void smallCreature() {
+		RPObject rp = new MockRPObject("creature","small_animal");
+	
+		
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a SmallCreature by now", SmallCreature.class, en.getClass());
+
+	}
+	@Test
+	public final void BigCreature() {
+		RPObject rp = new MockRPObject("creature", "giant_animal");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a BigCreature by now", BigCreature.class, en.getClass());
+
+	}
+	@Test
+	public final void HugeCreature() {
+		RPObject rp = new MockRPObject("creature", "huge_animal");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a HugeCreature by now", HugeCreature.class, en.getClass());
+
+	}
+	@Test
+	public final void MythicalCreature() {
+		RPObject rp = new MockRPObject("creature", "mythical_animal");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a MythicalCreature by now", MythicalCreature.class, en.getClass());
+
+	}
+	@Test
+	public final void NormalCreature() {
+		RPObject rp = new MockRPObject("creature", "null");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a NormalCreature by now", NormalCreature.class, en.getClass());
+
+	}
+	@Test
+	public final void ResizeableCreature() {
+		RPObject rp = new MockRPObject("creature", "null");
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertFalse("we should have created a ResizeableCreature by now", ResizeableCreature.class.equals(en.getClass()));
+
+	}
+
+
+
+
 //
 //	register("sheep", null, "Sheep");
 //

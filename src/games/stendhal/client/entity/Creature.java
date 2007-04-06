@@ -281,45 +281,47 @@ public abstract class Creature extends NPC {
 
 	@Override
     void init(RPObject object) {
-	    
-	    super.init(object);
-		String type = getType();
-		String name = object.get("name");
 
-		// cyclic sound management
-		if (type.startsWith("creature")) {
-			if (name.equals("wolf")) {
-				SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50, 100);
-			} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
-				SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30, 80);
-			} else if (name.equals("razorrat")) {
-				SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10, 50, 75);
-			} else if (name.equals("gargoyle")) {
-				SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10, 50, 100);
-			} else if (name.equals("boar")) {
-				SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50, 100);
-			} else if (name.equals("bear")) {
-				SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80, 75);
-			} else if (name.equals("giantrat")) {
-				SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30, 60, 65);
-			} else if (name.equals("cobra")) {
-				SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20, 60, 65);
-			} else if (name.equals("kobold")) {
-				SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40, 70, 80);
-			} else if (name.equals("goblin")) {
-				SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30, 85, 65);
-			} else if (name.equals("troll")) {
-				SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20, 60, 100);
-			} else if (name.equals("orc")) {
-				SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80, 50);
-			} else if (name.equals("ogre")) {
-				SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60, 80);
-			} else if (name.equals("skeleton")) {
-				SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30, 60, 80);
-			} else if (name.equals("cyclops")) {
-				SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30, 75, 100);
+		super.init(object);
+		String type = getType();
+		if (object.has("name")){
+			String name = object.get("name");
+
+			// cyclic sound management
+			if (type.startsWith("creature")) {
+				if (name.equals("wolf")) {
+					SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50, 100);
+				} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
+					SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30, 80);
+				} else if (name.equals("razorrat")) {
+					SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10, 50, 75);
+				} else if (name.equals("gargoyle")) {
+					SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10, 50, 100);
+				} else if (name.equals("boar")) {
+					SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50, 100);
+				} else if (name.equals("bear")) {
+					SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80, 75);
+				} else if (name.equals("giantrat")) {
+					SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30, 60, 65);
+				} else if (name.equals("cobra")) {
+					SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20, 60, 65);
+				} else if (name.equals("kobold")) {
+					SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40, 70, 80);
+				} else if (name.equals("goblin")) {
+					SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30, 85, 65);
+				} else if (name.equals("troll")) {
+					SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20, 60, 100);
+				} else if (name.equals("orc")) {
+					SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80, 50);
+				} else if (name.equals("ogre")) {
+					SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60, 80);
+				} else if (name.equals("skeleton")) {
+					SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30, 60, 80);
+				} else if (name.equals("cyclops")) {
+					SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30, 75, 100);
+				}
 			}
 		}
-    }
+	}
 
 }
