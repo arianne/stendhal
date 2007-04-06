@@ -98,11 +98,7 @@ public final byte[] ID_Token = new byte[0];
 		
 	}
 
-	protected Entity(RPObject object) throws AttributeNotFoundException {
-		this();
 
-		init(object);
-	}
 
 	void init(RPObject object) {
 	    type = object.get("type");

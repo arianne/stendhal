@@ -30,9 +30,7 @@ public class Food extends AnimatedEntity {
 	    
     }
 
-	public Food(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+	
 
 	@Override
 	protected void buildAnimations(RPObject object) {

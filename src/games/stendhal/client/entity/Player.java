@@ -32,10 +32,7 @@ import org.apache.log4j.Logger;
 /** A Player entity */
 public class Player extends RPEntity {
 
-	public Player(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		
-	}
+	
 	public Player()  {
 		super();
 	

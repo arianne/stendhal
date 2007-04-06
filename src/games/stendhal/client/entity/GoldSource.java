@@ -36,9 +36,7 @@ public class GoldSource extends AnimatedEntity {
 	  
     }
 
-	public GoldSource(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+	
 
 	@Override
 	protected void buildAnimations(RPObject object) {

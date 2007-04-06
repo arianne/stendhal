@@ -13,10 +13,7 @@ public class Box extends Item {
 	    
     }
 
-	public Box(RPObject object) throws AttributeNotFoundException {
-		super(object);
-
-	}
+	
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {

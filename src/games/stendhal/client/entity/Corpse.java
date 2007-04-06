@@ -28,9 +28,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 
 	private EntityContainer contentWindow;
 
-	public Corpse(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+
 	public Corpse()  {
 		super();
 	}

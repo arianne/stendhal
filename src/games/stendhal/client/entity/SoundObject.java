@@ -47,10 +47,7 @@ public class SoundObject extends Entity {
 		this.y = y;
 	}
 
-	public SoundObject(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public SoundObject(Point2D soundPos, int radius) {
 		x = soundPos.getX();

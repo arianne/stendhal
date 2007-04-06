@@ -61,7 +61,9 @@ public class TestBuildOfferedActions {
 	@Test
 	public void testChest() throws Exception {
 		StendhalClient.get();
-		Chest sh = new Chest(new MockRPObject("chest", null));
+		RPObject rpo =new MockRPObject("chest", null);
+		Chest sh = new Chest();
+		sh.init(rpo);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Open");
@@ -128,7 +130,8 @@ public class TestBuildOfferedActions {
 	@Test
 	public void testDoor() throws Exception {
 		StendhalClient.get();
-		Door door = new Door(new MockRPObject("door", "skulldoor"));
+		RPObject rpo = new MockRPObject("door", "skulldoor");
+		Door door = new Door();
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Open");
@@ -148,7 +151,7 @@ public class TestBuildOfferedActions {
 	@Test
 	public void testBox() {
 		StendhalClient.get();
-		Box box = new Box(new MockRPObject("item", "box"));
+		Box box = new Box();
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Open");
@@ -160,7 +163,8 @@ public class TestBuildOfferedActions {
 	@Test
 	public void testGoldSource() {
 		StendhalClient.get();
-		GoldSource gs = new GoldSource(new MockRPObject("item", "box"));
+		RPObject rpo =new MockRPObject("item", "box");
+		GoldSource gs = new GoldSource();
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Prospect");

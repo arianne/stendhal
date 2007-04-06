@@ -19,9 +19,7 @@ import java.awt.geom.*;
 
 public class Blood extends AnimatedEntity {
 
-	public Blood(RPObject base) throws AttributeNotFoundException {
-		super(base);
-	}
+	
 	public Blood()  {
 		super();
 	}

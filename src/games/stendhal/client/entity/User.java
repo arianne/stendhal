@@ -27,12 +27,7 @@ public class User extends Player {
 		return _instance;
 	}
 	
-	public User(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		_instance = this;
-		modificationCount = 0;
-		
-	}
+
 	public User()  {
 		super();
 		_instance = this;
@@ -111,12 +106,13 @@ public class User extends Player {
 		WorldObjects.firePlayerMoved();
     }
 	public static  boolean isAdmin() {
+		
+		if (isNull()) return false;
 		User me = User.get();
-		if (me != null){
-	      return me.rpObject.has("adminlevel") && (me.rpObject.getInt("adminlevel") >= 600);
-		}
-		else
-			return false;
+		if (me.rpObject== null) return false;
+		
+		return me.rpObject.has("adminlevel") && (me.rpObject.getInt("adminlevel") >= 600);
+	
 	}
 
 	public int getObjectID() {
@@ -124,6 +120,7 @@ public class User extends Player {
     }
 
 	public  boolean hasSheep() {
+		if (rpObject== null) return false;
 		return this.rpObject.has("sheep");
     }
 

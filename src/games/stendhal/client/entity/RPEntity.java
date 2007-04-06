@@ -117,15 +117,9 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	private int defItem = -1;
 
-	/** Create a new game entity based on the arianne object passed */
-	public RPEntity(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		damageSprites = new LinkedList<Sprite>();
-		damageSpritesTimes = new LinkedList<Long>();
-		attackTarget = null;
-		lastAttacker = null;
-	}
-	/** Create a new game entity based on the arianne object passed */
+	
+	
+	/** Create a new game entity */
 	public RPEntity()  {
 		super();
 		damageSprites = new LinkedList<Sprite>();

@@ -17,8 +17,8 @@ public final void onChangedAddedTest(){
 	rp.put("width", 1);
 	rp.put("height", 1);
 	
-	new ResizeableCreature(rp);
-	
+	ResizeableCreature rc =new ResizeableCreature();
+	rc.init(rp);	
 
 }
 }

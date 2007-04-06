@@ -38,10 +38,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	/** true means the user requested to open this chest */
 	private boolean requestOpen;
 
-	public Chest(RPObject base) throws AttributeNotFoundException {
-		super(base);
-		requestOpen = false;
-	}
+	
 	public Chest() {
 		super();
 		requestOpen = false;

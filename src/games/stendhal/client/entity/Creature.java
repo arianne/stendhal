@@ -72,11 +72,7 @@ public abstract class Creature extends NPC {
 	/** the path we got */
 	private List<Node> moveToTargetPath;
 
-	public Creature(RPObject object) throws AttributeNotFoundException {
-		super(object);
-init(object);
 	
-	}
 	public Creature()  {
 		super();
 

@@ -56,7 +56,8 @@ public class PlayerTest {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "player");
 		rpo.put("outfit",0);
-		Player pl =new Player(rpo);
+		Player pl =new Player();
+		pl.init(rpo);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Attack");
@@ -79,34 +80,19 @@ public class PlayerTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Test(expected = NullPointerException.class)
-	public final void testPlayerNull() {
-		new Player(null);
+	
 
-	}
 
-	@Test(expected = AttributeNotFoundException.class)
-	public final void testPlayerNewRPObject() {
-		new Player(new RPObject());
 
-	}
 
-	@Test
-	public final void testPlayer() {
-		RPObject rpo = new RPObject();
-		rpo.put("type", "player");
-	rpo.put("outfit", 0);
-		new Player(rpo);
-		
-		
-	}
 
 	@Test
 	public final void testGetHearingArea() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "player");
 		rpo.put("outfit",0);
-		User pl = new User(rpo);
+		User pl = new User();
+		pl.init(rpo);
 		Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 		pl.setAudibleRange(4);

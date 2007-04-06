@@ -8,10 +8,7 @@ import marauroa.common.game.RPObject;
 
 public class CarrotGrower extends GrainField {
 
-	public CarrotGrower(RPObject object) throws AttributeNotFoundException {
-		super(object);
-
-	}
+	
 	public CarrotGrower() {
 		super();
 

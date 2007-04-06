@@ -25,9 +25,7 @@ public class NormalCreature extends Creature {
 	    
     }
 
-	public NormalCreature(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+
 
 	@Override
 	protected void buildAnimations(RPObject object) {

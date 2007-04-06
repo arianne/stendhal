@@ -24,9 +24,7 @@ import marauroa.common.game.RPObject;
 
 public class Item extends PassiveEntity {
 
-	public Item(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+
 	public Item()  {
 		super();
 	}

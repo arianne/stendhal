@@ -41,9 +41,7 @@ public abstract class AnimatedEntity extends Entity {
 	protected String animation;
 
 
-	public AnimatedEntity(final RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+	
 
 	public AnimatedEntity() {
 	}

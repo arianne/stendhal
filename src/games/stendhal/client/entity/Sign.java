@@ -32,9 +32,7 @@ public class Sign extends Entity {
 	// Give Signs same color on Screen and Log window. intensifly@gmx.com
 	static final private Color signColor = new Color(0x006400); // dark green
 
-	public Sign(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+
 	public Sign()  {
 		super();
 	}

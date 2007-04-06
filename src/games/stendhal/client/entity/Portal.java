@@ -29,11 +29,7 @@ public class Portal extends Entity {
 
 	private boolean hidden = false;
 
-	public Portal(RPObject object) throws AttributeNotFoundException {
-		super(object);
-
-		this.hidden = object.has("hidden");
-	}
+	
 	public Portal() {
 		super();
 

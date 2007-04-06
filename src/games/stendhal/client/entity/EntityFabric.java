@@ -51,7 +51,9 @@ public class EntityFabric {
 
 			// TODO: remove this hack and adjust EntityMap after release of 0.59
 			if (type.equals("creature") && object.has("width") && object.has("height")) {
-				return new ResizeableCreature(object);
+				ResizeableCreature resCreature =new ResizeableCreature();
+				resCreature.init(object);
+				return resCreature;
 			}
 
 			Class entityClass = EntityMap.getClass(type, eclass);
@@ -61,7 +63,7 @@ public class EntityFabric {
 				entityClass = EntityMap.getClass(type, null);
 			}
 
-			java.lang.reflect.Constructor constr = entityClass.getConstructor(RPObject.class);
+			java.lang.reflect.Constructor constr = entityClass.getConstructor();
 			Entity en=null;
 			try{
 				en= (Entity) entityClass.newInstance();

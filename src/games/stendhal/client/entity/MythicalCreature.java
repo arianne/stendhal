@@ -24,9 +24,7 @@ import marauroa.common.game.RPObject;
 /** A Creature entity */
 public class MythicalCreature extends Creature {
 
-	public MythicalCreature(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+	
 	public MythicalCreature()  {
 		super();
 	}

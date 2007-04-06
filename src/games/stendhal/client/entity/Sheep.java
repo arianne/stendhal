@@ -47,9 +47,7 @@ public class Sheep extends NPC {
 		follow = st.getSprite("data/sprites/ideas/follow.png");
 	}
 
-	public Sheep(RPObject object) throws AttributeNotFoundException {
-		super(object);
-	}
+	
 	public Sheep() {
 		super();
 	}

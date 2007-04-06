@@ -33,14 +33,7 @@ public class ResizeableCreature extends Creature {
 	   
     }
 
-	/**
-	 * Creates a new resizeable creature
-	 *
-	 * @param object RPObject
-	 */
-	public ResizeableCreature(RPObject object) {
-		super(object);
-	}
+	
 
 	@Override
 	protected void buildAnimations(RPObject object) {

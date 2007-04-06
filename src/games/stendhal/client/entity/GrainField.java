@@ -33,10 +33,7 @@ public class GrainField extends AnimatedEntity {
 
 	private int maxRipeness;
 
-	public GrainField(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		init(object);
-	}
+
 	public GrainField()  {
 		super();
 		

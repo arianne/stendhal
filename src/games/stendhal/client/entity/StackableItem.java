@@ -29,10 +29,7 @@ public class StackableItem extends Item {
 
 	private Sprite quantityImage;
 
-	public StackableItem(RPObject object) throws AttributeNotFoundException {
-		super(object);
-		quantity = 0;
-	}
+	
 	public StackableItem()  {
 		super();
 		quantity = 0;

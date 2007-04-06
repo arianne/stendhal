@@ -25,14 +25,7 @@ public class InvisibleEntity extends Entity {
 	  
     }
 
-	/**
-	 * Create an invisible 1x1 entity.
-	 *
-	 * @param	object		Raw object to build from.
-	 */
-	public InvisibleEntity(RPObject object) {
-		super(object);
-	}
+	
 
 	//
 	//

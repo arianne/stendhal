@@ -30,10 +30,6 @@ public class Door extends AnimatedEntity {
 	  
     }
 
-	public Door(RPObject base) throws AttributeNotFoundException {
-		super(base);
-
-	}
 
 	@Override
 	protected void buildAnimations(RPObject base) {

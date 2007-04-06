@@ -30,10 +30,7 @@ public class EntityTest {
 		
 	}
 
-	@Test(expected = AttributeNotFoundException.class)
-	public final void testEntityRpobjectInvalidRPObject() {
-		new MockEntity(new RPObject());
-	}
+	
 	@Test
 	public final void testEntityInvalidRPObject() {
 		Entity en = EntityFabric.createEntity(new RPObject());
@@ -43,7 +40,8 @@ public class EntityTest {
 	public final void testEntityRPObject() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
-		Entity en = new MockEntity(rpo);
+		Entity en = new MockEntity();
+		en.init(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("hugo", en.getName());
 
@@ -194,7 +192,8 @@ public class EntityTest {
 		rpo = new RPObject();
 		rpo.put("type", "_hugo");
 
-		en = new MockEntity(rpo);
+		en = new MockEntity();
+		en.init(rpo);
 		assertTrue(en.stopped());
 		en.onStop(0, 0);
 		assertTrue(en.stopped());
@@ -374,10 +373,7 @@ public class EntityTest {
 
 	private class MockEntity extends Entity {
 
-		public MockEntity(RPObject object) {
-			super(object);
-		}
-
+	
 		public MockEntity() {
 			super();
 		}
