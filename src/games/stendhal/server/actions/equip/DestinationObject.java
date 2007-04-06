@@ -217,7 +217,7 @@ class DestinationObject extends MoveableObject {
 
 			// entity still there?
 			if (entity != null) {
-				// yep, so it is stacked. simplay add it
+				// yep, so it is not stacked. simplay add it
 				rpslot.assignValidID(entity);
 				rpslot.add(entity);
 			}
