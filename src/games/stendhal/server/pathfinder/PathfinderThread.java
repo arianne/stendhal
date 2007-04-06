@@ -72,7 +72,7 @@ public class PathfinderThread extends Thread {
 			logger.info("pathfinder terminated, finished=" + finished);
 		} catch (Exception e) {
 			// log the error
-			logger.fatal("Pathfinder loop terminated with exeption (finished=" + finished + ")", e);
+			logger.error("Pathfinder loop terminated with exeption (finished=" + finished + ")", e);
 			throw new RuntimeException(e);
 		}
 	}

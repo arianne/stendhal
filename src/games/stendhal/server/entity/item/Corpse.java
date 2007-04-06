@@ -131,7 +131,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 			RPObject base = getContainer();
 			while (base.isContained()) {
 				if (base == base.getContainer()) {
-					logger.fatal("A corpse is contained by itself.");
+					logger.error("A corpse is contained by itself.");
 					break;
 				}
 
@@ -163,7 +163,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 				RPObject base = getContainer();
 				while (base.isContained()) {
 					if (base == base.getContainer()) {
-						logger.fatal("A corpse is contained by itself.");
+						logger.error("A corpse is contained by itself.");
 						break;
 					}
 

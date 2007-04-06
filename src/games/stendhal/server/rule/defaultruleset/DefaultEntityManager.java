@@ -80,7 +80,7 @@ public class DefaultEntityManager implements EntityManager {
 				}
 			}
 		} catch (org.xml.sax.SAXException e) {
-			e.printStackTrace();
+			logger.error("items.xml could not be loaded",e);
 		}
 
 		// Build the creatures tables

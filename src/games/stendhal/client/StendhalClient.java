@@ -307,7 +307,7 @@ public class StendhalClient extends ariannexp {
 				cache.store(item, item.data);
 				contentHandling(item.name, new InputStreamReader(new ByteArrayInputStream(item.data)));
 			} catch (java.io.IOException e) {
-				logger.fatal("onTransfer", e);
+				logger.error("onTransfer", e);
 				System.exit(2);
 			}
 		}
@@ -584,7 +584,7 @@ public class StendhalClient extends ariannexp {
 
 		@Override
 		public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
-			logger.fatal("perception caused an error: " + perception, e);
+			logger.error("perception caused an error: " + perception, e);
 			System.exit(-1);
 
 			// Never executed

@@ -73,6 +73,7 @@ public class EntityFabric {
 			}
 			return en;
 		} catch (Exception e) {
+			
 			Logger logger = Log4J.getLogger(EntityFabric.class);
 			logger.error("cannot create entity for object " + object, e);
 			return null;

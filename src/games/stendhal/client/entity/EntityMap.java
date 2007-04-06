@@ -33,7 +33,7 @@ public final class EntityMap {
 			register();
 		} catch (ClassNotFoundException e) {
 
-			e.printStackTrace();
+			marauroa.common.Log4J.getLogger(EntityMap.class).error("register failed",e);
 		}
 	}
 

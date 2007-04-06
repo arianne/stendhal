@@ -63,7 +63,7 @@ public class FileOp {
 				}
 
 			} catch (FileNotFoundException fnfe) {
-				fnfe.printStackTrace();
+				logger.error("File not found: " + fileToRead,fnfe);
 				return null; //returns null if file does not exist
 			}
 		}

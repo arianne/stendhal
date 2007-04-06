@@ -243,7 +243,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 
 		} catch (Exception e) {
-			logger.fatal("cannot set Context. exiting", e);
+			logger.error("cannot set Context. exiting", e);
 			System.exit(-1);
 		}
 	}
@@ -422,7 +422,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				try {
 					entry.first().onDead(entry.second());
 				} catch (Exception e) {
-					logger.fatal("Player has logout before dead", e);
+					logger.error("Player has logout before dead", e);
 				}
 			}
 			entityToKill.clear();

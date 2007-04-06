@@ -144,15 +144,14 @@ public class SpriteStore {
 		try {
 			URL url = getResourceURL(ref);
 			if (url == null) {
-				logger.fatal("Can't find ref: " + ref);
+				logger.error("Can't find ref: " + ref);
 				return getSprite("data/sprites/failsafe.png");
 			}
 
 			// use ImageIO to read the image in
 			sourceImage = ImageIO.read(url);
 		} catch (IOException e) {
-			e.printStackTrace();
-			logger.fatal("Failed to load: " + ref);
+			logger.error("Failed to load: " + ref,e);
 			return getSprite("data/sprites/failsafe.png");
 		}
 

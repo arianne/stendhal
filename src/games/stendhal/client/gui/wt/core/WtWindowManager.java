@@ -99,8 +99,7 @@ public class WtWindowManager {
 			writer.close();
 		} catch (IOException e) {
 			// ignore exception
-			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME);
-			e.printStackTrace();
+			logger.error("Can't write " + stendhal.STENDHAL_FOLDER + FILE_NAME,e);
 		}
 	}
 

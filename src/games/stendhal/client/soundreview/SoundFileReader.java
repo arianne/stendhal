@@ -54,7 +54,6 @@ public class SoundFileReader {
 			prop.load(in1);
 			in1.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return prop;
