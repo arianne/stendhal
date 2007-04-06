@@ -445,6 +445,12 @@ class PlayerRPClass {
 							        + ". Most likly cause is that this item was not stackable in the past");
 						}
 						((StackableItem) entity).setQuantity(quantity);
+
+						if (quantity <= 0) {
+							logger.warn("Ignoring item " + item.get("name") + " on login of player "
+									+ player.get("name") + " because this item has an invalid quantity: " + quantity);
+							continue;
+						}
 					}
 
 					// make sure saved individual information is
