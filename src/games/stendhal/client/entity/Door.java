@@ -12,12 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.common.Direction;
-import games.stendhal.client.*;
-import java.awt.*;
-import java.awt.geom.*;
+
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 public class Door extends AnimatedEntity {
 
@@ -29,7 +34,7 @@ public class Door extends AnimatedEntity {
 
 
 	@Override
-	protected void buildAnimations(RPObject base) {
+	protected void buildAnimations(final RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
 		String clazz = base.get("class");
@@ -74,7 +79,7 @@ public class Door extends AnimatedEntity {
 
 	// When rpentity moves, it will be called with the data.
 	@Override
-	public void onMove(int x, int y, Direction direction, double speed) {
+	public void onMove(final int x, final int y, final Direction direction, final double speed) {
 		if ((orientation == 1) || (orientation == 3)) {
 			this.x = x - 1;
 			this.y = y;
@@ -85,7 +90,7 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("open")) {
@@ -95,7 +100,7 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("open")) {
@@ -125,7 +130,7 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at =handleAction(action);
 		switch (at) {
 			case OPEN:

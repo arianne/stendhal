@@ -19,7 +19,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -35,7 +34,7 @@ public class GoldSource extends AnimatedEntity {
 	
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		
 		for (int i = 0; i < FRAME_COUNT; i++) {
@@ -71,7 +70,7 @@ public class GoldSource extends AnimatedEntity {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		switch (at) {
 			case PROSPECT:
 				RPAction rpaction = new RPAction();

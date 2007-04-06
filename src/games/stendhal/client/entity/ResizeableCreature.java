@@ -36,7 +36,7 @@ public class ResizeableCreature extends Creature {
 	
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 
 		// Hack for human like creatures
     	drawWidth = width;
@@ -63,7 +63,7 @@ public class ResizeableCreature extends Creature {
 	
 
 	@Override
-    public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+    public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 	    boolean rebuildAnimations = false;
 		if (diff.has("width")) {
 			width = diff.getDouble("width");
@@ -91,7 +91,7 @@ public class ResizeableCreature extends Creature {
     }
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff) {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		super.onChangedRemoved(base, diff);
 		if (diff.has("metamorphosis")) {
 			metamorphosis = null;
@@ -100,7 +100,7 @@ public class ResizeableCreature extends Creature {
 	}
 
 	@Override
-	protected Sprite loadAnimationSprite(RPObject object) {
+	protected Sprite loadAnimationSprite(final RPObject object) {
 		if (metamorphosis == null) {
 			return super.loadAnimationSprite(object);
 		} else {
@@ -131,7 +131,7 @@ public class ResizeableCreature extends Creature {
 	}
 
 	@Override
-    void init(RPObject object) {
+    void init(final RPObject object) {
 		
 			width = object.getDouble("width");
 			height = object.getDouble("height");

@@ -21,12 +21,12 @@ public class TestBuildOfferedActions {
 	static List<String> list = null;
 
 	@Before
-	public void setUpBefore() throws Exception {
+	public final void setUpBefore() throws Exception {
 		list = new ArrayList<String>();
 	}
 
 	@Test
-	public void testEntity() {
+	public final void testEntity() {
 		StendhalClient.get();
 
 		MockEntity me = new MockEntity();
@@ -43,7 +43,7 @@ public class TestBuildOfferedActions {
 	 * @throws Exception
 	 */
 	@Test
-	public void testSheep() throws Exception {
+	public final void testSheep() throws Exception {
 
 		RPObject rp = new MockRPObject("sheep", null);
 		Entity en = EntityFabric.createEntity(rp);
@@ -59,7 +59,7 @@ public class TestBuildOfferedActions {
 	}
 
 	@Test
-	public void testChest() throws Exception {
+	public final void testChest() throws Exception {
 		StendhalClient.get();
 		RPObject rpo =new MockRPObject("chest", null);
 		Chest sh = new Chest();
@@ -81,7 +81,7 @@ public class TestBuildOfferedActions {
 	}
 
 	@Test
-	public void testCarrot() throws Exception {
+	public final void testCarrot() throws Exception {
 		StendhalClient.get();
 		RPObject rp = new MockRPObject("growing_entity_spawner", "items/grower/carrot_grower");
 		rp.add("max_ripeness", 1);
@@ -97,7 +97,7 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(new String[] { "Pick", "Look" }, en.offeredActions());
 	}
 	@Test
-	public void testPlantGrower() throws Exception {
+	public final void testPlantGrower() throws Exception {
 		StendhalClient.get();
 		RPObject rp = new MockRPObject("plant_grower", null);
 		
@@ -111,7 +111,7 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(new String[] { "Look" }, en.offeredActions());
 	}
 	@Test
-	public void testSalad() throws Exception {
+	public final void testSalad() throws Exception {
 		StendhalClient.get();
 		RPObject rp = new RPObject();
 		rp.put("type","item");
@@ -128,9 +128,8 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(new String[] { "Use","Look" }, en.offeredActions());
 	}
 	@Test
-	public void testDoor() throws Exception {
+	public final void testDoor() throws Exception {
 		StendhalClient.get();
-		RPObject rpo = new MockRPObject("door", "skulldoor");
 		Door door = new Door();
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
@@ -149,7 +148,7 @@ public class TestBuildOfferedActions {
 	}
 
 	@Test
-	public void testBox() {
+	public final void testBox() {
 		StendhalClient.get();
 		Box box = new Box();
 		List<String> expected = new ArrayList<String>();
@@ -161,9 +160,8 @@ public class TestBuildOfferedActions {
 
 	}
 	@Test
-	public void testGoldSource() {
+	public final void testGoldSource() {
 		StendhalClient.get();
-		RPObject rpo =new MockRPObject("item", "box");
 		GoldSource gs = new GoldSource();
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
@@ -191,15 +189,7 @@ public class TestBuildOfferedActions {
 			return 0;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
-		 */
-		@Override
-		protected void buildOfferedActions(List<String> list) {
-			super.buildOfferedActions(list);
-		}
+		
 
 	}
 

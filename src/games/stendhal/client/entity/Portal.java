@@ -31,7 +31,7 @@ public class Portal extends Entity {
 
 
 	@Override
-	protected void loadSprite(RPObject object) {
+	protected void loadSprite(final RPObject object) {
 		sprite = null;
 	}
 
@@ -49,12 +49,13 @@ public class Portal extends Entity {
 	public ActionType defaultAction() {
 		if (!hidden) {
 			return ActionType.USE;
-		} else
-			return null;
+		} else {
+	        return null;
+        }
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at =handleAction(action);
 		switch (at) {
 			case USE:
@@ -73,7 +74,7 @@ public class Portal extends Entity {
 	}
 
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		// portals are invisible; use a Door to get a changing sprite
 	}
 
@@ -98,7 +99,7 @@ public class Portal extends Entity {
 
 	}
 	@Override
-    void init(RPObject object) {
+    void init(final RPObject object) {
 	    super.init(object);
 	    this.hidden = object.has("hidden");
     }

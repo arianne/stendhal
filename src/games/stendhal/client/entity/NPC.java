@@ -41,7 +41,7 @@ public class NPC extends RPEntity {
 	
 	}
 	
-	void init(RPObject object){
+	void init(final RPObject object){
 		super.init(object);
 		String type = getType();
 
@@ -68,7 +68,7 @@ public class NPC extends RPEntity {
 		}
 	}
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
 		Sprite aspect;
@@ -106,7 +106,7 @@ public class NPC extends RPEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 	

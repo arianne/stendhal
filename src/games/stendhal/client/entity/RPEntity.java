@@ -695,9 +695,8 @@ public abstract class RPEntity extends AnimatedEntity {
 			}
 
 			if (diff.has("poisoned")) {
-				int poisoned = diff.getInt("poisoned");
 				// To remove the - sign on poison.
-				onPoisoned(Math.abs(poisoned));
+				onPoisoned(Math.abs(diff.getInt("poisoned")));
 			}
 
 			if (diff.has("eating")) {
@@ -781,14 +780,15 @@ public abstract class RPEntity extends AnimatedEntity {
 		super.buildOfferedActions(list);
 		list.add(ActionType.ATTACK.getRepresentation());
 
-		if (!User.isNull())
-			if (User.get().isAttacking()) {
+		if (!User.isNull()) {
+	        if (User.get().isAttacking()) {
 				list.add(ActionType.STOP_ATTACK.getRepresentation());
 			}
+        }
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at = handleAction(action);
 		RPAction rpaction;
 		switch (at) {
@@ -813,7 +813,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	@Override
-	public int compareTo(Entity entity) {
+	public int compareTo(final Entity entity) {
 		if (!(entity instanceof RPEntity)) {
 			return super.compareTo(entity);
 		}

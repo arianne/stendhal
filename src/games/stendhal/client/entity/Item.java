@@ -18,7 +18,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -29,7 +28,7 @@ public class Item extends PassiveEntity {
 		super();
 	}
 	@Override
-	protected void loadSprite(RPObject object) {
+	protected void loadSprite(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		String name = null;
 
@@ -63,7 +62,7 @@ public class Item extends PassiveEntity {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at =handleAction(action);
 
 		switch (at) {

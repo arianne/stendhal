@@ -12,16 +12,21 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
 
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 public class Text extends Entity {
 
-	private final static long STANDARD_PERSISTENCE_TIME = 5000;
+	private static final long STANDARD_PERSISTENCE_TIME = 5000;
 
 	private double tx;
 
@@ -35,7 +40,7 @@ public class Text extends Entity {
 
 	private String text;
 
-	public Text(GameObjects gameObjects, Sprite text, double x, double y, long persistTime)
+	public Text(final GameObjects gameObjects, final Sprite text, final double x, final double y, final long persistTime)
 	        throws AttributeNotFoundException {
 
 		textImage = text;
@@ -60,7 +65,7 @@ public class Text extends Entity {
 		return text;
 	}
 
-	public Text(GameObjects gameObjects, String text, double x, double y, Color color, boolean isTalking)
+	public Text(final GameObjects gameObjects, final String text, final double x, final double y, final Color color, final boolean isTalking)
 	        throws AttributeNotFoundException {
 
 		// Speech bubbles will only be drawn if there's a background color
@@ -85,11 +90,11 @@ public class Text extends Entity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 	}
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 	}
 
 	@Override
@@ -109,7 +114,7 @@ public class Text extends Entity {
 	}
 
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		screen.draw(textImage, tx, ty);
 
 		if (System.currentTimeMillis() - textImageTime > textPersistTime) {

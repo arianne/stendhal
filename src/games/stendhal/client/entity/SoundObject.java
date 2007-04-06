@@ -41,7 +41,7 @@ public class SoundObject extends Entity {
 	
 	}
 
-	public SoundObject(int x, int y) {
+	public SoundObject(final int x, final int y) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -49,7 +49,7 @@ public class SoundObject extends Entity {
 
 	
 
-	public SoundObject(Point2D soundPos, int radius) {
+	public SoundObject(final Point2D soundPos,final  int radius) {
 		x = soundPos.getX();
 		y = soundPos.getY();
 		audibleRange = radius;
@@ -71,7 +71,7 @@ public class SoundObject extends Entity {
 		return null;
 	}
 
-	public void setLocation(Point2D position) {
+	public void setLocation(final Point2D position) {
 		x = position.getX();
 		y = position.getY();
 	}
@@ -87,7 +87,7 @@ public class SoundObject extends Entity {
 	 * @param name -
 	 *            the new value for name to set.
 	 */
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -102,7 +102,7 @@ public class SoundObject extends Entity {
 	 * @param volume -
 	 *            the new value for volume to set.
 	 */
-	public void setVolume(int volume) {
+	public void setVolume(final int volume) {
 		this.volume = volume;
 	}
 

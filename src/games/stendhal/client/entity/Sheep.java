@@ -52,7 +52,7 @@ public class Sheep extends NPC {
 		super();
 	}
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
 		sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 3, 1, 1));
@@ -66,7 +66,7 @@ public class Sheep extends NPC {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("weight")) {
@@ -81,16 +81,16 @@ public class Sheep extends NPC {
 
 		if (diff.has("idea")) {
 			String idea = diff.get("idea");
-			if ("eat".equals( idea )) {
+			if ("eat".equals(idea)) {
 				probableChat(15);
 				ideaImage = eat;
-			} else if ("food".equals( idea )) {
+			} else if ("food".equals(idea)) {
 				probableChat(20);
 				ideaImage = food;
-			} else if ("walk".equals( idea )) {
+			} else if ("walk".equals(idea)) {
 				probableChat(20);
 				ideaImage = walk;
-			} else if ("follow".equals( idea )) {
+			} else if ("follow".equals(idea)) {
 				probableChat(20);
 				ideaImage = follow;
 			} else if ("stop".equals(idea)){
@@ -116,7 +116,7 @@ public class Sheep extends NPC {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at = handleAction(action);
 		switch (at) {
 			case OWN:
@@ -136,7 +136,7 @@ public class Sheep extends NPC {
 
 	}
 
-	private void probableChat(int chance) {
+	private void probableChat(final int chance) {
 		String token = weight > 50 ? "sheep-mix2" : "sheep-mix";
 		playSound(token, 20, 35, chance);
 	}
@@ -151,22 +151,23 @@ public class Sheep extends NPC {
 	protected void buildOfferedActions(List<String> list) {
 
 		super.buildOfferedActions(list);
-		if (!(User.isNull()))
-			if (!User.get().hasSheep()) {
+		if (!(User.isNull())) {
+	        if (!User.get().hasSheep()) {
 				list.add(ActionType.OWN.getRepresentation());
 			}
+        }
 
 	}
 
 	@Override
-    protected void adjustAnimation(Direction direction) {
+    protected void adjustAnimation(final Direction direction) {
 	    super.adjustAnimation(direction);
 		if ((weight > 60) && !animation.startsWith("big_")) {
 			animation = "big_" + animation;
 		}
     }
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		super.draw(screen);
 		if (ideaImage != null) {
 			Rectangle2D rect = getArea();

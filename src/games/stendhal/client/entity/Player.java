@@ -50,7 +50,7 @@ public class Player extends RPEntity {
 	 * @param	message		The away message, or <code>null</code>
 	 *				if no-longer away.
 	 */
-	protected void onAway(String message) {
+	protected void onAway(final String message) {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
 
 		
@@ -59,7 +59,7 @@ public class Player extends RPEntity {
 
 
 	@Override
-	protected void buildAnimations(RPObject base) {
+	protected void buildAnimations(final RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
 		Sprite tempSprite;
@@ -96,7 +96,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 	
 
 		super.onChangedAdded(base, diff);
@@ -137,7 +137,7 @@ public class Player extends RPEntity {
 		}
 	}
 
-	public void onChangedRemoved(RPObject base, RPObject diff) {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		
 		super.onChangedRemoved(base, diff);
 
@@ -157,7 +157,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 
 		// ActionType at =handleAction(action);
 		RPAction rpaction;
@@ -193,7 +193,7 @@ public class Player extends RPEntity {
 	}
 
 	@Override
-	public void onMove(int x, int y, Direction direction, double speed) {
+	public void onMove(final int x, final int y, final Direction direction, final double speed) {
 		super.onMove(x, y, direction, speed);
 		
 	}

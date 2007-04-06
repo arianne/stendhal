@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
 public abstract class Creature extends NPC {
 
 	@Override
-	protected void nonCreatureClientAddEventLine(String text) {
+	protected void nonCreatureClientAddEventLine(final String text) {
 		// no logging for Creature "sounds" in the client window
 	}
 
@@ -79,16 +79,16 @@ public abstract class Creature extends NPC {
 	
 	}
 
-	protected static String translate(String type) {
+	protected static String translate(final String type) {
 		return "data/sprites/monsters/" + type + ".png";
 	}
 
-	public void drawPath(GameScreen screen, List<Node> path, int delta) {
+	public void drawPath(final GameScreen screen, final List<Node> path, final int delta) {
 		Graphics g2d = screen.expose();
 		Point2D p1 = screen.invtranslate(new Point.Double(getX(), getY()));
 
 		for (Node node : path) {
-			Point2D p2 = screen.invtranslate(new Point.Double(node.x, node.y));
+			Point2D p2 = screen.invtranslate(new Point.Double(node.nodeX, node.nodeY));
 
 			g2d.drawLine((int) p1.getX() + delta, (int) p1.getY() + delta, (int) p2.getX() + delta, (int) p2.getY()
 			        + delta);
@@ -97,7 +97,7 @@ public abstract class Creature extends NPC {
 	}
 
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		super.draw(screen);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
@@ -121,7 +121,7 @@ public abstract class Creature extends NPC {
 		}
 	}
 
-	public List<Node> getPath(String token) {
+	public List<Node> getPath(final String token) {
 		String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ').replace('[', ' ').replace(']',
 		        ' ').split(" ");
 		List<Node> list = new ArrayList<Node>();
@@ -145,7 +145,7 @@ public abstract class Creature extends NPC {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		// Check if debug is enabled
@@ -216,7 +216,7 @@ public abstract class Creature extends NPC {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at = handleAction(action);
 		switch (at) {
 			case DEBUG_SHOW_PATH:
@@ -239,15 +239,15 @@ public abstract class Creature extends NPC {
 
 	private class Node {
 
-		int x, y;
+		private int nodeX, nodeY;
 
-		public Node(int x, int y) {
-			this.x = x;
-			this.y = y;
+		public Node(final int x, final int y) {
+			this.nodeX = x;
+			this.nodeY = y;
 		}
 	}
 
-	protected Sprite loadAnimationSprite(RPObject object) {
+	protected Sprite loadAnimationSprite(final RPObject object) {
 		String name = null;
 
 		if (object.has("subclass")) {

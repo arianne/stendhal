@@ -49,7 +49,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	}
 
 	@Override
-	protected void loadSprite(RPObject object) {
+	protected void loadSprite(final RPObject object) {
 		String corpseType = object.get("type");
 
 		if (object.get("class").equals("player")) {
@@ -67,7 +67,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 	}
 
@@ -77,7 +77,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at=handleAction(action);
 		switch (at) {
 			case INSPECT:
@@ -100,7 +100,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 		return 5500;
 	}
 
-	public void setInspector(Inspector inspector) {
+	public void setInspector(final Inspector inspector) {
 		_inspector = inspector;
 
 	}

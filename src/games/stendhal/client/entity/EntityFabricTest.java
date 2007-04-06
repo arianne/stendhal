@@ -38,8 +38,9 @@ public class EntityFabricTest {
 
 		@Override
 		public boolean has(String attribute) {
-			if (attribute.equals("subtype"))
-				return _subclass == null;
+			if (attribute.equals("subtype")) {
+	            return _subclass == null;
+            }
 			return true;
 		}
 

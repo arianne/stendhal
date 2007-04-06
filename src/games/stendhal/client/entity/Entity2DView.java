@@ -8,19 +8,16 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.stendhal;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-
-import marauroa.common.game.RPObject;
-
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-import games.stendhal.client.stendhal;
 
 //
 //
@@ -40,7 +37,7 @@ public class Entity2DView { // implements EntityView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public Entity2DView(Entity entity) {
+	public Entity2DView(final Entity entity) {
 		this.entity = entity;
 	}
 
@@ -90,7 +87,7 @@ public class Entity2DView { // implements EntityView {
 	// <EntityView>
 	//
 
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		screen.draw(getSprite(), entity.getX(), entity.getY());
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {

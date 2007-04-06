@@ -9,7 +9,6 @@ import games.stendhal.common.Direction;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 

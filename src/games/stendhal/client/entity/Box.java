@@ -28,7 +28,7 @@ public class Box extends Item {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		switch (at) {
 			case OPEN:
 				RPAction rpaction = new RPAction();

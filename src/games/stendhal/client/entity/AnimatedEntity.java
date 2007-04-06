@@ -12,27 +12,19 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.common.Direction;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * This class is a special type of GameEntity that has animation, that is it is
  * compound of multiple frames.
  */
 public abstract class AnimatedEntity extends Entity {
-
-	private static final Logger logger = Log4J.getLogger(AnimatedEntity.class);
 
 	/** This map contains animation name, frames association */
 	protected Map < String, Sprite[] > sprites;
@@ -99,7 +91,7 @@ public abstract class AnimatedEntity extends Entity {
 	/**
 	 * Temp for AnimatedEntity2DView (till it gets full impl)
 	 */
-	public Sprite [] getSprites(String animation) {
+	public Sprite [] getSprites(final String animation) {
 		return sprites.get(animation);
 	}
 

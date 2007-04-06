@@ -35,7 +35,7 @@ public class InvisibleEntity extends Entity {
 	}
 
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 	}
 
 	@Override
@@ -44,6 +44,6 @@ public class InvisibleEntity extends Entity {
 	}
 
 	@Override
-	protected void loadSprite(RPObject object) {
+	protected void loadSprite(final RPObject object) {
 	}
 }

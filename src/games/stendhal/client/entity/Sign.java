@@ -12,16 +12,28 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.*;
-import games.stendhal.client.*;
+import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.StendhalUI;
 
-import java.awt.*;
-import java.awt.geom.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Transparency;
+import java.awt.geom.Rectangle2D;
 import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {
 
-	private final static long STANDARD_PERSISTENCE_TIME = 5000;
+	private static final long STANDARD_PERSISTENCE_TIME = 5000;
 
 	private String text;
 
@@ -30,12 +42,12 @@ public class Sign extends Entity {
 	private long textPersistTime;
 
 	// Give Signs same color on Screen and Log window. intensifly@gmx.com
-	static final private Color signColor = new Color(0x006400); // dark green
+	private static final Color signColor = new Color(0x006400); // dark green
 
 
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 		GameScreen screen = GameScreen.get();
 
@@ -93,7 +105,7 @@ public class Sign extends Entity {
 	}
 
 	@Override
-	protected void loadSprite(RPObject object) {
+	protected void loadSprite(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		String name = null;
 
@@ -119,7 +131,7 @@ public class Sign extends Entity {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// =handleAction(action);
 		switch (at) {
 			case READ:

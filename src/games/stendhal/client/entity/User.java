@@ -15,7 +15,7 @@ import marauroa.common.game.RPObject;
 
 public class User extends Player {
 
-	static User _instance=null ;
+	private static User _instance=null ;
 	
 	public static boolean isNull(){
 		
@@ -36,7 +36,7 @@ public class User extends Player {
 	}
 
 	@Override
-    public void onMove(int x, int y, Direction direction, double speed) {
+    public void onMove(final int x, final int y, final Direction direction, final double speed) {
 	   super.onMove(x, y, direction, speed);
 			WorldObjects.firePlayerMoved();
     }
@@ -58,7 +58,7 @@ public class User extends Player {
 		}
 	  
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 
 		// ActionType at =handleAction(action);
 		RPAction rpaction;
@@ -93,7 +93,7 @@ public class User extends Player {
 	}
     //TODO: verify if OnAway is still to be usable or not
 	@Override
-    protected void onAway(String message) {
+    protected void onAway(final String message) {
 	    
 	    super.onAway(message);
 	    StendhalUI.get().addEventLine(
@@ -102,14 +102,18 @@ public class User extends Player {
     }
 
 	@Override
-    public void onEnter(int _x, int _y) {
+    public void onEnter(final int _x, final int _y) {
 		WorldObjects.firePlayerMoved();
     }
 	public static  boolean isAdmin() {
 		
-		if (isNull()) return false;
+		if (isNull()) {
+	        return false;
+        }
 		User me = User.get();
-		if (me.rpObject== null) return false;
+		if (me.rpObject== null) {
+	        return false;
+        }
 		
 		return me.rpObject.has("adminlevel") && (me.rpObject.getInt("adminlevel") >= 600);
 	
@@ -120,12 +124,14 @@ public class User extends Player {
     }
 
 	public  boolean hasSheep() {
-		if (rpObject== null) return false;
+		if (rpObject== null) {
+	        return false;
+        }
 		return this.rpObject.has("sheep");
     }
 
 	@Override
-    public void onHealed(int amount) {
+    public void onHealed(final int amount) {
 	   
 	    super.onHealed(amount);
 	   
@@ -146,13 +152,13 @@ public class User extends Player {
     }
 
 	@Override
-    public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+    public void onChangedAdded(final RPObject base, final  RPObject diff) throws AttributeNotFoundException {
 		modificationCount++;
 	    super.onChangedAdded(base, diff);
     }
 
 	@Override
-    public void onChangedRemoved(RPObject base, RPObject diff) {
+    public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		modificationCount++;
 	    super.onChangedRemoved(base, diff);
     }
@@ -166,7 +172,7 @@ public class User extends Player {
 	 * @return true when the entity was modified, false otherwise
 	 * @see #getModificationCount()
 	 */
-	public boolean isModified(long oldModificationCount) {
+	public boolean isModified(final long oldModificationCount) {
 		return oldModificationCount != modificationCount;
 	}
     }

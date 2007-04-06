@@ -8,22 +8,11 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import games.stendhal.client.stendhal;
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
 
 //
 //
@@ -65,7 +54,7 @@ public class AnimatedEntity2DView extends Entity2DView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedEntity2DView(AnimatedEntity entity) {
+	public AnimatedEntity2DView(final AnimatedEntity entity) {
 		super(entity);
 
 		this.entity = entity;

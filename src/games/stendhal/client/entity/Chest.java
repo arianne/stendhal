@@ -44,7 +44,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 		requestOpen = false;
 	}
 	@Override
-	protected void buildAnimations(RPObject base) {
+	protected void buildAnimations(final RPObject base) {
 		SpriteStore store = SpriteStore.get();
 
 		sprites.put("close", store.getAnimatedSprite(translate(base.get("type")), 0, 1, 1, 1));
@@ -58,7 +58,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("open")) {
@@ -81,7 +81,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	}
 
 	@Override
-	public void onChangedRemoved(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("open")) {
@@ -125,7 +125,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at =handleAction(action);
 		switch (at) {
 			case INSPECT:
@@ -156,7 +156,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 		return 5000;
 	}
 
-	public void setInspector(Inspector inspector) {
+	public void setInspector(final Inspector inspector) {
 		_inspector = inspector;
 
 	}

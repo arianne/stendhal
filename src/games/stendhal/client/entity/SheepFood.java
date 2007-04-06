@@ -27,7 +27,7 @@ public class SheepFood extends AnimatedEntity {
 
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
 		sprites.put("0", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
@@ -45,7 +45,7 @@ public class SheepFood extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("amount")) {

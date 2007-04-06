@@ -24,7 +24,8 @@ import java.util.Map;
  * 
  */
 public final class EntityMap {
-
+	protected EntityMap(){
+	}
 	private static Map<Pair<String, String>, Class> entityMap= new HashMap<Pair<String, String>, Class>();
 
 	static {
@@ -99,7 +100,7 @@ public final class EntityMap {
 	 * @param entityClass
 	 *            the java class of the Entity
 	 */
-	private static void register(String type, String eclass, String entityClass) throws ClassNotFoundException {
+	private static void register(final String type, final String eclass, final String entityClass) throws ClassNotFoundException {
 		entityMap.put(new Pair<String, String>(type, eclass), Class.forName("games.stendhal.client.entity." + entityClass));
 	}
 
@@ -112,7 +113,7 @@ public final class EntityMap {
 	 * 
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
-	public static Class getClass(String type, String eclass) {
+	public static Class getClass(final String type, final String eclass) {
 		return entityMap.get(new Pair<String, String>(type, eclass));
 	}
 

@@ -2,9 +2,7 @@ package games.stendhal.client.entity;
 
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 public class CarrotGrower extends GrainField {
 
@@ -26,7 +24,7 @@ public class CarrotGrower extends GrainField {
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at=handleAction(action);
 		switch (at) {
 			case PICK:

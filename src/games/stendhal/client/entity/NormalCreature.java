@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 /** A Creature entity */
@@ -28,7 +27,7 @@ public class NormalCreature extends Creature {
 
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		Sprite creature = loadAnimationSprite(object);
 

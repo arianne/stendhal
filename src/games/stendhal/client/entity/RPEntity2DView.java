@@ -8,24 +8,21 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-import games.stendhal.client.stendhal;
+import org.apache.log4j.Logger;
 
 //
 //
@@ -84,7 +81,7 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public RPEntity2DView(RPEntity entity) {
+	public RPEntity2DView(final RPEntity entity) {
 		super(entity);
 
 		this.entity = entity;
@@ -102,7 +99,7 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 
 	/** Draws this entity in the screen */
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		if (entity.isBeingAttacked()) {
 			// Draw red box around
 			Graphics g2d = screen.expose();

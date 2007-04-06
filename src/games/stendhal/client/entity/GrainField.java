@@ -41,7 +41,7 @@ public class GrainField extends AnimatedEntity {
 		clazz = "grain_field";
 		maxRipeness = 5;
 	}
-	void init(RPObject object) {
+	void init(final RPObject object) {
 	
 		// default values are for compatibility to server <= 0.56
 
@@ -64,7 +64,7 @@ public class GrainField extends AnimatedEntity {
 	}
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		// Note: This method is called from the parent constructor, so our
 		// own constructor was not able to do any initialisation, yet.
 		// So we have to load the object now. But after this method
@@ -85,7 +85,7 @@ public class GrainField extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("ripeness")) {
@@ -116,12 +116,12 @@ public class GrainField extends AnimatedEntity {
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
-		;
+	
 		list.add(ActionType.HARVEST.getRepresentation());
 	}
 
 	@Override
-	public void onAction(ActionType at, String... params) {
+	public void onAction(final ActionType at, final String... params) {
 		// ActionType at=handleAction(action);
 		switch (at) {
 			case HARVEST:
