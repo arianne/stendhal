@@ -51,15 +51,16 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	@Override
 	protected void loadSprite(final RPObject object) {
 		String corpseType = object.get("type");
-
-		if (object.get("class").equals("player")) {
-			corpseType = corpseType + "_player";
-		} else if (object.get("class").equals("giant_animal")) {
-			corpseType = corpseType + "_giantrat";
-		} else if (object.get("class").equals("huge_animal")) {
-			corpseType = corpseType + "_giantrat";
-		} else if (object.get("class").equals("mythical_animal")) {
-			corpseType = corpseType + "_giantrat";
+		if (object.get("class")!=null) {
+			if (object.get("class").equals("player")) {
+				corpseType = corpseType + "_player";
+			} else if (object.get("class").equals("giant_animal")) {
+				corpseType = corpseType + "_giantrat";
+			} else if (object.get("class").equals("huge_animal")) {
+				corpseType = corpseType + "_giantrat";
+			} else if (object.get("class").equals("mythical_animal")) {
+				corpseType = corpseType + "_giantrat";
+			}
 		}
 
 		SpriteStore store = SpriteStore.get();
