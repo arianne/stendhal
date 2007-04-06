@@ -39,7 +39,7 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	private boolean requestOpen;
 
 	
-	public Chest() {
+	Chest() {
 		super();
 		requestOpen = false;
 	}

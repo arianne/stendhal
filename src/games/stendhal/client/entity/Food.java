@@ -25,10 +25,7 @@ public class Food extends AnimatedEntity {
 
 	private int amount;
 
-	public Food() {
-	    super();
-	    
-    }
+	
 
 	
 

@@ -63,16 +63,10 @@ public class EntityFabric {
 				entityClass = EntityMap.getClass(type, null);
 			}
 
-			java.lang.reflect.Constructor constr = entityClass.getConstructor();
 			Entity en=null;
-			try{
 				en= (Entity) entityClass.newInstance();
 				en.init(object);
 				
-			}catch (Exception e){
-				e.printStackTrace();
-				en = (Entity) constr.newInstance(object);
-			}
 			
 			if (en instanceof Inspectable) {
 				((Inspectable) en).setInspector(StendhalUI.get().getInspector());

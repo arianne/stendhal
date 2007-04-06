@@ -33,9 +33,6 @@ public class Sign extends Entity {
 	static final private Color signColor = new Color(0x006400); // dark green
 
 
-	public Sign()  {
-		super();
-	}
 
 	@Override
 	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {

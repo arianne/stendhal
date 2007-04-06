@@ -43,8 +43,7 @@ public abstract class AnimatedEntity extends Entity {
 
 	
 
-	public AnimatedEntity() {
-	}
+
 
 	/** This method fills the sprites map 
 	 * @param object

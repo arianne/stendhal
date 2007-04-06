@@ -9,10 +9,7 @@ import marauroa.common.game.RPObject;
 public class CarrotGrower extends GrainField {
 
 	
-	public CarrotGrower() {
-		super();
-
-	}
+	
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 

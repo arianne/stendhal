@@ -25,10 +25,7 @@ public class Door extends AnimatedEntity {
 
 	private int orientation;
 
-	public Door() {
-	    super();
-	  
-    }
+	
 
 
 	@Override

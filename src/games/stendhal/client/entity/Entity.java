@@ -89,7 +89,7 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected boolean inAdd = false;
 
-	public Entity() {
+	Entity() {
 		x = 0.0;
 		y = 0.0;
 		dx = 0.0;

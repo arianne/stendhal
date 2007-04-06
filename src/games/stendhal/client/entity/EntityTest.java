@@ -31,7 +31,7 @@ public class EntityTest {
 	}
 
 	
-	@Test
+	@Test // throws ounnoticed Attribute not found exception
 	public final void testEntityInvalidRPObject() {
 		Entity en = EntityFabric.createEntity(new RPObject());
 		assertEquals(null, en);

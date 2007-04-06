@@ -34,18 +34,18 @@ public class GrainField extends AnimatedEntity {
 	private int maxRipeness;
 
 
-	public GrainField()  {
+	GrainField()  {
 		super();
-		
+		width = 1;
+		height = 2;
+		clazz = "grain_field";
+		maxRipeness = 5;
 	}
 	void init(RPObject object) {
 	
 		// default values are for compatibility to server <= 0.56
 
-		width = 1;
-		height = 2;
-		clazz = "grain_field";
-		maxRipeness = 5;
+		
 		if (object.has("max_ripeness")) {
 			maxRipeness = object.getInt("max_ripeness");
 		}

@@ -226,8 +226,7 @@ public class VampireSword extends AbstractQuest {
 
 			String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 			long delay = REQUIRED_TIME * 60 * 1000; // minutes -> milliseconds
-			long timeRemaining = (Long.parseLong(tokens[1]) + delay) -
-			    System.currentTimeMillis();
+			long timeRemaining = (Long.parseLong(tokens[1]) + delay) - System.currentTimeMillis();
 
 			if ( timeRemaining > 0L ){
 			    engine.say("I haven't finished forging the sword. Please check back in " +

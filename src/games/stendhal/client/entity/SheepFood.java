@@ -26,9 +26,6 @@ public class SheepFood extends AnimatedEntity {
 	private int amount;
 
 
-	public SheepFood(){
-		super();
-	}
 	@Override
 	protected void buildAnimations(RPObject object) {
 		SpriteStore store = SpriteStore.get();

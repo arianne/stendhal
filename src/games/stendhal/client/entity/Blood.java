@@ -20,9 +20,7 @@ import java.awt.geom.*;
 public class Blood extends AnimatedEntity {
 
 	
-	public Blood()  {
-		super();
-	}
+	
 
 	@Override
 	protected void buildAnimations(RPObject base) {

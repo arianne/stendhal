@@ -15,7 +15,5 @@ package games.stendhal.client.entity;
 public abstract class PassiveEntity extends Entity {
 
 	
-	public PassiveEntity()  {
-		super();
-	}
+	
 }

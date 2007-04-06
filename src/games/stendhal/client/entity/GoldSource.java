@@ -31,11 +31,7 @@ public class GoldSource extends AnimatedEntity {
 	
 	private static final int FRAME_COUNT = 32;
 
-	public GoldSource() {
-	    super();
-	  
-    }
-
+	
 	
 
 	@Override

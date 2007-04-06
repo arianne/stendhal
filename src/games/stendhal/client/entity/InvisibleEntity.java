@@ -20,16 +20,9 @@ import games.stendhal.client.GameScreen;
  */
 public class InvisibleEntity extends Entity {
 
-	public InvisibleEntity() {
-	    super();
-	  
-    }
 
 	
 
-	//
-	//
-	//
 
 	@Override
 	public Rectangle2D getArea() {

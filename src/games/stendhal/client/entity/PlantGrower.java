@@ -8,11 +8,7 @@ import marauroa.common.game.RPObject;
 
 public class PlantGrower extends Entity {
 
-	public PlantGrower() {
-	    super();
-	   
-    }
-
+	
 	
 	@Override
 	public Rectangle2D getArea() {

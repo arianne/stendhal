@@ -29,15 +29,7 @@ public class Portal extends Entity {
 
 	private boolean hidden = false;
 
-	
-	public Portal() {
-		super();
 
-		
-	}
-
-	
-	
 	@Override
 	protected void loadSprite(RPObject object) {
 		sprite = null;
