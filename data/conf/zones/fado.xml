@@ -75,40 +75,40 @@
            
            <entity x="2" y="8">
              <implementation class-name="games.stendhal.server.entity.PersonalChest">
-               <attribute name="slot">bank_fado</attribute>
+               <parameter name="slot">bank_fado</parameter>
              </implementation>
            </entity>
            
            <entity x="2" y="8">
              <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-               <attribute name="width">2</attribute>
-               <attribute name="height">2</attribute>
+               <parameter name="width">2</parameter>
+               <parameter name="height">2</parameter>
              </implementation>
            </entity>
            
            <entity x="2" y="12">
              <implementation class-name="games.stendhal.server.entity.PersonalChest">
-               <attribute name="slot">bank_fado</attribute>
+               <parameter name="slot">bank_fado</parameter>
              </implementation>
            </entity>
            
            <entity x="2" y="12">
              <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-               <attribute name="width">2</attribute>
-               <attribute name="height">2</attribute>
+               <parameter name="width">2</parameter>
+               <parameter name="height">2</parameter>
              </implementation>
            </entity>
            
            <entity x="2" y="16">
              <implementation class-name="games.stendhal.server.entity.PersonalChest">
-               <attribute name="slot">bank_fado</attribute>
+               <parameter name="slot">bank_fado</parameter>
              </implementation>
            </entity>
            
            <entity x="2" y="16">
              <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-               <attribute name="width">2</attribute>
-               <attribute name="height">2</attribute>
+               <parameter name="width">2</parameter>
+               <parameter name="height">2</parameter>
              </implementation>
            </entity>
          </zone>
@@ -132,27 +132,27 @@
            </portal>
            <entity x="17" y="20">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <parameter name="description">You see a table clean enough to eat from.</parameter>
   		   </entity>
            <entity x="17" y="21">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <parameter name="description">You see a table clean enough to eat from.</parameter>
   		   </entity> 	
             <entity x="17" y="22">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <parameter name="description">You see a table clean enough to eat from.</parameter>
   		   </entity>
            <entity x="17" y="23">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <parameter name="description">You see a table clean enough to eat from.</parameter>
   		   </entity> 
   		   <entity x="17" y="24">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <parameter name="description">You see a table clean enough to eat from.</parameter>
   		   </entity> 
   		   <entity x="17" y="25">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-             <attribute name="description">You see a table clean enough to eat from.</attribute>
+             <parameter name="description">You see a table clean enough to eat from.</parameter>
   		   </entity>		    		   	   
          </zone>
          
@@ -205,64 +205,64 @@
            <portal x="0" y="40" ref="room_001_entrance">
              <destination zone="int_fado_hotel_room_001" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_001</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_001</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="10" y="40" ref="room_002_entrance">
              <destination zone="int_fado_hotel_room_002" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_002</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_002</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="0" y="33" ref="room_003_entrance">
              <destination zone="int_fado_hotel_room_003" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_003</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_003</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="10" y="33" ref="room_004_entrance">
              <destination zone="int_fado_hotel_room_004" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_004</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_004</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="0" y="26" ref="room_005_entrance">
              <destination zone="int_fado_hotel_room_005" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_005</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_005</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="10" y="26" ref="room_006_entrance">
              <destination zone="int_fado_hotel_room_006" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_006</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_006</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="0" y="19" ref="room_007_entrance">
              <destination zone="int_fado_hotel_room_007" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_007</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_007</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
            
            <portal x="10" y="19" ref="room_008_entrance">
              <destination zone="int_fado_hotel_room_008" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-               <attribute name="key">fado_hotel_key_008</attribute>
-               <attribute name="rejected">Keys are at the front desk</attribute>
+               <parameter name="key">fado_hotel_key_008</parameter>
+               <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
            </portal>
          </zone>

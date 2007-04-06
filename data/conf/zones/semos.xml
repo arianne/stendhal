@@ -32,9 +32,9 @@
  <zone name="0_semos_mountain_n_w2" level="0" x="499872" y="499872" file="0_semos_mountain_n_w2.xstend">
   <entity x="39" y="23">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 	 Warning: The mountain pass has been blocked by a landslide!
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
  </zone>
@@ -44,19 +44,19 @@
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
-    <attribute name="quest">vs_quest</attribute>
-    <attribute name="rejected">You find it hard to enter. Perhaps you're not
-  prepared for what is below.</attribute>
+    <parameter name="quest">vs_quest</parameter>
+    <parameter name="rejected">You find it hard to enter. Perhaps you're not
+  prepared for what is below.</parameter>
    </implementation>
   </portal>
   <entity x="82" y="63">
     <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 North: Old mine
 East: Mill
 South: Semos city
-      </attribute>
-      <attribute name="class">signpost</attribute>
+      </parameter>
+      <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
  </zone>
@@ -65,12 +65,12 @@ South: Semos city
   <configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC"/>
   <entity x="25" y="46">
     <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 Southwest: Semos city
 East: Ados (road destroyed)
 Southeast: Farmhouse
-      </attribute>
-      <attribute name="class">signpost</attribute>
+      </parameter>
+      <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
 
@@ -99,86 +99,86 @@ Southeast: Farmhouse
   <configurator class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
   <entity x="23" y="61">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO THE PLAINS
 
 Shepherds please note: keep watch for
 the wolves while searching for berries here
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
   
   <entity x="23" y="48">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 West: Semos city
 East: Jail
 South: Or'ril castle
-    </attribute>
-    <attribute name="class">signpost</attribute>
+    </parameter>
+    <parameter name="class">signpost</parameter>
    </implementation>
   </entity>
   <entity x="24" y="49">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Welcome to Semos
-    </attribute>
-    <attribute name="class">transparent</attribute>
+    </parameter>
+    <parameter name="class">transparent</parameter>
    </implementation>
   </entity>
   <!-- writing on the wooden arch -->
   <entity x="24" y="49">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Welcome to Semos
-    </attribute>
-    <attribute name="class">transparent</attribute>
+    </parameter>
+    <parameter name="class">transparent</parameter>
    </implementation>
   </entity>
   <entity x="25" y="49">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Welcome to Semos
-    </attribute>
-    <attribute name="class">transparent</attribute>
+    </parameter>
+    <parameter name="class">transparent</parameter>
    </implementation>
   </entity>
   <entity x="26" y="49">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Welcome to Semos
-    </attribute>
-    <attribute name="class">transparent</attribute>
+    </parameter>
+    <parameter name="class">transparent</parameter>
    </implementation>
   </entity>
   <entity x="27" y="49">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Welcome to Semos
-    </attribute>
-    <attribute name="class">transparent</attribute>
+    </parameter>
+    <parameter name="class">transparent</parameter>
    </implementation>
   </entity>
 
   <entity x="60" y="47">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO SEMOS
 
 Mature sheep wanted: please speak to Sato
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
 
   <entity x="16" y="35">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 [CLOSED]
 
 The tavern has moved into a more central
 location in Semos. Please come join us at the
 social hub of the Semos area!
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
  </zone>
@@ -196,28 +196,28 @@ social hub of the Semos area!
 <!-- TEST
   <entity x="35" y="35">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">purple kryptonite</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">1</attribute>
+    <parameter name="name">purple kryptonite</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">1</parameter>
    </implementation>
   </entity>
 
   <entity x="35" y="36">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">purple kryptonite</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">1</attribute>
+    <parameter name="name">purple kryptonite</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">1</parameter>
    </implementation>
   </entity>
 
   <entity x="35" y="37">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">purple kryptonite</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">1</attribute>
+    <parameter name="name">purple kryptonite</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">1</parameter>
    </implementation>
   </entity>
 -->
@@ -272,29 +272,29 @@ social hub of the Semos area!
 
   <entity x="4" y="41">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO OLD SEMOS VILLAGE
 
 Shepherds wanted: please ask Nishiya
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
 
   <entity x="26" y="40">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 DUNGEONS
 
 Caution: These dungeons contain many rats,
 and more dangerous creatures. Enter at own risk.
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
   <entity x="41" y="20">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Assistance needed, to help with pizza deliveries.
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
   
@@ -303,27 +303,27 @@ and more dangerous creatures. Enter at own risk.
 <!--
   <entity x="26" y="40">
    <implementation class-name="games.stendhal.server.entity.area.CreatureProtectionArea">
-    <attribute name="width">6</attribute>
-    <attribute name="height">6</attribute>
-    <attribute name="default">block</attribute>
-    <attribute name="rules">
+    <parameter name="width">6</parameter>
+    <parameter name="height">6</parameter>
+    <parameter name="default">block</parameter>
+    <parameter name="rules">
      -animal:wolf
      +animal:*
      -*:lich,*:ghost
      +undead:*
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
 -->
 
   <entity x="44" y="62">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO THE PLAINS
 
 Shepherds please note: keep watch for
 the wolves while searching for berries here
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
  </zone>
@@ -336,7 +336,7 @@ the wolves while searching for berries here
     <!-- This must be after the NPC configurator -->
     <entity x="2" y="16">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Xin Blanca</attribute>
+      <parameter name="npc">Xin Blanca</parameter>
      </implementation>
     </entity>
 
@@ -401,7 +401,7 @@ the wolves while searching for berries here
     </portal>
     <entity x="26" y="5">
      <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 The island of Athor is famous for its
 golden beaches. Having long been an
 untouched piece of nature, it has become
@@ -409,34 +409,34 @@ a holiday paradise since a ferry service
 was installed. Little do the tourists
 know about the dangers that lurk under
 the surface...
-      </attribute>
-      <attribute name="class">book_red</attribute>
+      </parameter>
+      <parameter name="class">book_red</parameter>
      </implementation>
     </entity>
     <entity x="27" y="5">
      <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 The dwarf mine west of Or'ril castle
 is one of the main iron ore resources
 of Faiumoni. Even rumors of a dragon
 living under the earth cannot stop
 the industrious dwarves from digging 
 further and further into the mountain.
-      </attribute>
-      <attribute name="class">book_blue</attribute>
+      </parameter>
+      <parameter name="class">book_blue</parameter>
      </implementation>
     </entity>
     <entity x="4" y="28">
      <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 Adventurers have described the effects
 of poisonous creatures and mushrooms
 as not only unhealthy, but also as
 confusing for the orientation. They
 recommend always to take an antidote
 with you.	  
-      </attribute>
-      <attribute name="class">book_blue</attribute>
+      </parameter>
+      <parameter name="class">book_blue</parameter>
      </implementation>
     </entity>
    </zone>
@@ -477,8 +477,8 @@ with you.
 <!--
     <entity x="2" y="3">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -488,8 +488,8 @@ with you.
 <!--
     <entity x="8" y="3">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -499,8 +499,8 @@ with you.
 <!--
     <entity x="14" y="3">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -510,8 +510,8 @@ with you.
 <!--
     <entity x="20" y="3">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -521,8 +521,8 @@ with you.
 <!--
     <entity x="2" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -532,8 +532,8 @@ with you.
 <!--
     <entity x="8" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -543,8 +543,8 @@ with you.
 <!--
     <entity x="14" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -554,8 +554,8 @@ with you.
 <!--
     <entity x="20" y="10">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">4</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">4</parameter>
      </implementation>
     </entity>
 -->
@@ -563,32 +563,32 @@ with you.
 
     <entity x="39" y="4">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+     <parameter name="description">Place your item here to trade. Both walk around to make the exchange.</parameter>
     </entity>
 
     <entity x="40" y="4">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+     <parameter name="description">Place your item here to trade. Both walk around to make the exchange.</parameter>
     </entity>
 
     <entity x="41" y="4">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+     <parameter name="description">Place your item here to trade. Both walk around to make the exchange.</parameter>
     </entity>
 
     <entity x="39" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+     <parameter name="description">Place your item here to trade. Both walk around to make the exchange.</parameter>
     </entity>
 
     <entity x="40" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+     <parameter name="description">Place your item here to trade. Both walk around to make the exchange.</parameter>
     </entity>
 
     <entity x="41" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
-     <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
+     <parameter name="description">Place your item here to trade. Both walk around to make the exchange.</parameter>
     </entity>
 
    </zone>
@@ -618,7 +618,7 @@ with you.
     <!-- This must be after the NPC configurator -->
     <entity x="29" y="6">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Erna</attribute>
+      <parameter name="npc">Erna</parameter>
      </implementation>
     </entity>
 
@@ -630,11 +630,11 @@ with you.
  <zone name="0_semos_road_e" level="0" x="500128" y="500000" file="0_semos_road_e.xstend">
    <entity x="113" y="51">
      <implementation class-name="games.stendhal.server.entity.Sign">
-       <attribute name="text">
+       <parameter name="text">
 West: Semos city
 East: Ados city
-       </attribute>
-       <attribute name="class">signpost</attribute>
+       </parameter>
+       <parameter name="class">signpost</parameter>
      </implementation>
    </entity>
  </zone>
@@ -645,32 +645,32 @@ East: Ados city
  <zone name="0_semos_plains_s" level="0" x="500000" y="500064" file="0_semos_plains_s.xstend">
   <entity x="118" y="43">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO THE FOREST
 
 Shepherds please note: keep watch for
 the wolves while searching for berries here
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
 
   <entity x="38" y="3">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO OLD SEMOS VILLAGE
 
 Shepherds wanted: please ask Nishiya
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
 
   <entity x="113" y="3">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 TO SEMOS
 
 Mature sheep wanted: please speak to Sato
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
  </zone>
@@ -690,101 +690,101 @@ Mature sheep wanted: please speak to Sato
   <!-- Spikes -->
   <entity x="205" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
     <entity x="206" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
   <entity x="205" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
  <entity x="206" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity> 
   <entity x="205" y="22">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
     <entity x="206" y="22">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
    <entity x="205" y="26">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
   <entity x="206" y="26">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
    <entity x="205" y="27">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
   <entity x="206" y="27">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
    <entity x="206" y="28">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
  </zone>
@@ -902,382 +902,382 @@ Mature sheep wanted: please speak to Sato
   <portal x="94" y="57" ref="downstairs" replacing="true">
    <destination zone="-3_semos_catacombs" ref="upstairs"/>
    <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-    <attribute name="key">vampirette_entrails</attribute>
-    <attribute name="quantity">7</attribute>
-    <attribute name="rejected">
+    <parameter name="key">vampirette_entrails</parameter>
+    <parameter name="quantity">7</parameter>
+    <parameter name="rejected">
      Prove that you killed all vampirettes before you face their lord.
-    </attribute>
+    </parameter>
    </implementation>
   </portal>
 
   <!-- Spikes -->
   <entity x="4" y="57">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="5" y="57">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="6" y="57">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="4" y="58">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="5" y="58">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="6" y="58">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="4" y="59">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="5" y="59">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="6" y="59">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="4" y="60">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="5" y="60">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="6" y="60">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="4" y="61">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">2</attribute>
-    <attribute name="damage">100</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">2</parameter>
+    <parameter name="damage">100</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="65" y="18">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="66" y="18">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="61" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="62" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="63" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="64" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="65" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="66" y="19">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="55" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="56" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="57" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="58" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="59" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="60" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="61" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="62" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="63" y="20">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="55" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="56" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="57" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="58" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="59" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="60" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
 
   <entity x="61" y="21">
    <implementation class-name="games.stendhal.server.entity.DamagingArea">
-    <attribute name="name">razor sharp spikes</attribute>
-    <attribute name="interval">3</attribute>
-    <attribute name="damage">50</attribute>
-    <attribute name="probability">30</attribute>
-    <attribute name="players-only">true</attribute>
+    <parameter name="name">razor sharp spikes</parameter>
+    <parameter name="interval">3</parameter>
+    <parameter name="damage">50</parameter>
+    <parameter name="probability">30</parameter>
+    <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
  </zone>

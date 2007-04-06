@@ -131,7 +131,7 @@
   <!-- This must be after the NPC configurator -->
   <entity x="37" y="60">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Sally</attribute>
+      <parameter name="npc">Sally</parameter>
     </implementation>
   </entity>
   <entity x="101" y="67">
@@ -149,12 +149,12 @@
   </portal>
   <entity x="67" y="9">
     <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 North: Or'ril castle
 West: Planned bridge construction site
 East: Nalwor, Semos
-      </attribute>
-      <attribute name="class">signpost</attribute>
+      </parameter>
+      <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
  </zone>
@@ -188,9 +188,9 @@ East: Nalwor, Semos
   <portal x="69" y="37" ref="0">
    <destination zone="-2_orril_lich_palace" ref="0"/>
    <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <attribute name="class">skulldoor</attribute>
-    <attribute name="direction">down</attribute>
-    <attribute name="key">dungeon_silver_key</attribute>
+    <parameter name="class">skulldoor</parameter>
+    <parameter name="direction">down</parameter>
+    <parameter name="key">dungeon_silver_key</parameter>
    </implementation>
   </portal>
 
@@ -223,9 +223,9 @@ East: Nalwor, Semos
   <portal x="54" y="52" ref="locked_outside">
    <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
    <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <attribute name="class">skulldoor</attribute>
-    <attribute name="direction">up</attribute>
-    <attribute name="key">lich_gold_key</attribute>
+    <parameter name="class">skulldoor</parameter>
+    <parameter name="direction">up</parameter>
+    <parameter name="key">lich_gold_key</parameter>
    </implementation>
   </portal>
 

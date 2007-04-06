@@ -16,27 +16,27 @@
  <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="0_ados_mountain_nw.xstend">
   <entity x="126" y="107">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Beware of bandits beyond!
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
   <entity x="77" y="82">
     <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 North: Haizen's house
 East: Ados
 West: Semos
-      </attribute>
-      <attribute name="class">signpost</attribute>
+      </parameter>
+      <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
 
   <entity x="126" y="115">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
      Beware of bandits beyond!
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
 
@@ -54,7 +54,7 @@ West: Semos
   </portal>
   <entity x="9" y="6">
     <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 Summon scrolls will immediately
 summon a creature that will attack
 your foes. Strong magicians are
@@ -63,8 +63,8 @@ creatures. Therefore, some cities,
 such as Semos, have forbidden
 the usage of these scrolls in their
 areas.
-      </attribute>
-      <attribute name="class">book_red</attribute>
+      </parameter>
+      <parameter name="class">book_red</parameter>
     </implementation>
   </entity>
  </zone>
@@ -79,20 +79,20 @@ areas.
 
   <entity x="53" y="48">
    <implementation class-name="games.stendhal.server.entity.Sign">
-    <attribute name="text">
+    <parameter name="text">
 Ados Wildlife Refuge
 Home for endangered animals
-    </attribute>
+    </parameter>
    </implementation>
   </entity>
   <entity x="52" y="107">
     <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 North: Wildlife refuge
 East: Ados
 West: Semos
-      </attribute>
-      <attribute name="class">signpost</attribute>
+      </parameter>
+      <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
  </zone>
@@ -117,19 +117,19 @@ West: Semos
    <portal x="19" y="85" ref="zaras_house_entrance">
      <destination zone="int_ados_zaras_house_0" ref="entrance_zaras_house"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-       <attribute name="key">small_key</attribute>
-       <attribute name="rejected">The door is locked.</attribute>
+       <parameter name="key">small_key</parameter>
+       <parameter name="rejected">The door is locked.</parameter>
      </implementation>
    </portal>
    
    <entity x="18" y="85">
      <implementation class-name="games.stendhal.server.entity.Sign">
-       <attribute name="text">
+       <parameter name="text">
          Home of Zara 
          Dear postman, I'm on holiday!
          Please leave my mail at my neighbour's house.
-       </attribute>
-       <attribute name="class">transparent</attribute>
+       </parameter>
+       <parameter name="class">transparent</parameter>
      </implementation>
    </entity>
    
@@ -185,51 +185,51 @@ West: Semos
 
     <entity x="3" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank_ados</attribute>
+      <parameter name="slot">bank_ados</parameter>
      </implementation>
     </entity>
 <!--
     <entity x="3" y="13">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">3</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">3</parameter>
      </implementation>
     </entity>
 -->
     <entity x="5" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank_ados</attribute>
+      <parameter name="slot">bank_ados</parameter>
      </implementation>
     </entity>
 <!--
     <entity x="5" y="13">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">3</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">3</parameter>
      </implementation>
     </entity>
 -->
     <entity x="10" y="12">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
       <!-- semos slot -->
-      <attribute name="slot">bank</attribute>
+      <parameter name="slot">bank</parameter>
      </implementation>
     </entity>
 <!--
     <entity x="10" y="13">
      <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
-      <attribute name="width">1</attribute>
-      <attribute name="height">3</attribute>
+      <parameter name="width">1</parameter>
+      <parameter name="height">3</parameter>
      </implementation>
     </entity>
 -->
 
     <entity x="8" y="1">
      <implementation class-name="games.stendhal.server.entity.Sign">
-      <attribute name="text">
+      <parameter name="text">
 Under new management. Chest to the right is still held by Semos Bank Merchants Ltd.
-      </attribute>
-      <attribute name="class">blackboard</attribute>
+      </parameter>
+      <parameter name="class">blackboard</parameter>
      </implementation>
     </entity>
    </zone>
@@ -276,8 +276,8 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <portal x="8" y="14" ref="entrance_zaras_house">
      <destination zone="0_ados_city_n" ref="zaras_house_entrance"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-     <attribute name="key">small_key</attribute>
-     <attribute name="rejected">Zara would be angry if you forgot the key inside her house.</attribute>
+     <parameter name="key">small_key</parameter>
+     <parameter name="rejected">Zara would be angry if you forgot the key inside her house.</parameter>
      </implementation>
     </portal>
     <portal x="11" y="2" ref="up_zaras_house">
@@ -291,7 +291,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
     <entity x="3" y="3">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">zaras_chest_ados</attribute>
+      <parameter name="slot">zaras_chest_ados</parameter>
      </implementation>
     </entity>
    </zone>   
@@ -401,9 +401,9 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
  <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="0_ados_coast_s_w2.xstend">
    <entity x="101" y="102">
      <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
-       <attribute name="name">Eliza</attribute>
-       <attribute name="class">woman_008_npc</attribute>
-       <attribute name="direction">left</attribute>
+       <parameter name="name">Eliza</parameter>
+       <parameter name="class">woman_008_npc</parameter>
+       <parameter name="direction">left</parameter>
      </implementation>
    </entity>
  </zone>
@@ -445,7 +445,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
   <!-- This must be after the NPC configurator -->
   <entity x="17" y="23">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Bario</attribute>
+      <parameter name="npc">Bario</parameter>
     </implementation>
   </entity>
  </zone>

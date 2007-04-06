@@ -233,41 +233,41 @@
   <portal x="15" y="21" ref="customer_room_entrance">
     <destination zone="int_nalwor_bank" ref="customer_room_exit"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-      <attribute name="key">nalwor_bank_key</attribute>
-      <attribute name="rejected">The door is locked.</attribute>
+      <parameter name="key">nalwor_bank_key</parameter>
+      <parameter name="rejected">The door is locked.</parameter>
     </implementation>
   </portal>
   <!-- seems strange to lock it from the inside? Else, a player will leave their key in the nalwor bank chest -->
   <portal x="16" y="21" ref="customer_room_exit">
     <destination zone="int_nalwor_bank" ref="customer_room_entrance"/>
     <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
-      <attribute name="key">nalwor_bank_key</attribute>
-      <attribute name="rejected">The door is locked.</attribute>
+      <parameter name="key">nalwor_bank_key</parameter>
+      <parameter name="rejected">The door is locked.</parameter>
     </implementation>
   </portal>
   <entity x="18" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank_nalwor</attribute>
+      <parameter name="slot">bank_nalwor</parameter>
      </implementation>
   </entity>
   <entity x="20" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank_nalwor</attribute>
+      <parameter name="slot">bank_nalwor</parameter>
      </implementation>
   </entity>
   <entity x="25" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank</attribute>
+      <parameter name="slot">bank</parameter>
      </implementation>
   </entity> 
   <entity x="27" y="17">
      <implementation class-name="games.stendhal.server.entity.PersonalChest">
-      <attribute name="slot">bank</attribute>
+      <parameter name="slot">bank</parameter>
      </implementation>
   </entity> 
   <entity x="12" y="17">
     <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
-      <attribute name="npc">Grafindle</attribute>
+      <parameter name="npc">Grafindle</parameter>
     </implementation>
   </entity>
  </zone> 
