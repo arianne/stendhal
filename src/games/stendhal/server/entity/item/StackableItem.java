@@ -99,7 +99,7 @@ public class StackableItem extends Item implements Stackable {
 				}
 			} else {
 				/* If quantity=0 then it means that item has to be removed */
-				super.removeOne();
+				super.removeFromWorld();
 			}
 
 			return newItem;
@@ -108,8 +108,8 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	@Override
-	public boolean removeOne() {
-		return splitOff(1) != null;
+	public void removeOne() {
+		splitOff(1);
 	}
 
 	public boolean isStackable(Stackable other) {
