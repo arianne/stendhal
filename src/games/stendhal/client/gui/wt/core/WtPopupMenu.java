@@ -109,7 +109,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 
 		public void processMenuKeyEvent(MenuKeyEvent ev) {
 			switch(ev.getKeyCode()) {
-				case MenuKeyEvent.VK_ESCAPE:
+				case KeyEvent.VK_ESCAPE:
 					break;
 
 				default:
