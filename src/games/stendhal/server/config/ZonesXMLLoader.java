@@ -86,9 +86,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 	protected PortalDesc pdesc;
 
 	/**
-	 * The current attribute name.
+	 * The current parameter name.
 	 */
-	protected String attrName;
+	protected String paramName;
 
 	/**
 	 * The current text content.
@@ -174,7 +174,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		cdesc = null;
 		edesc = null;
 		pdesc = null;
-		attrName = null;
+		paramName = null;
 		scope = SCOPE_NONE;
 
 		saxParser.parse(in, this);
@@ -248,7 +248,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		if (obj instanceof ZoneConfigurator) {
 			logger.info("Configuring zone [" + zone.getID().getID() + "] with: " + className);
 
-			((ZoneConfigurator) obj).configureZone(zone, cdesc.getAttributes());
+			((ZoneConfigurator) obj).configureZone(zone, cdesc.getParameters());
 		} else {
 			logger.warn("Unsupported zone configurator: " + className);
 		}
@@ -279,7 +279,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 				return;
 			}
 
-			portal = (Portal) factory.create(new ConfigurableFactoryContextImpl(pdesc.getAttributes()));
+			portal = (Portal) factory.create(new ConfigurableFactoryContextImpl(pdesc.getParameters()));
 
 			zone.assignRPObjectID(portal);
 
@@ -328,7 +328,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 				return;
 			}
 
-			entity = (Entity) factory.create(new ConfigurableFactoryContextImpl(edesc.getAttributes()));
+			entity = (Entity) factory.create(new ConfigurableFactoryContextImpl(edesc.getParameters()));
 
 			zone.assignRPObjectID(entity);
 
@@ -573,8 +573,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 			if ((s = attrs.getValue("replacing")) != null) {
 				pdesc.setReplacing(s.equals("true"));
 			}
-		} else if (qName.equals("attribute")) {
-			if ((attrName = attrs.getValue("name")) == null) {
+		} else if (qName.equals("attribute") || qName.equals("parameter")) {
+			if ((paramName = attrs.getValue("name")) == null) {
 				logger.warn("Unnamed attribute");
 			} else {
 				content.setLength(0);
@@ -657,14 +657,14 @@ public class ZonesXMLLoader extends DefaultHandler {
 			}
 
 			scope = SCOPE_NONE;
-		} else if (qName.equals("attribute")) {
-			if (attrName != null) {
+		} else if (qName.equals("attribute") || qName.equals("parameter")) {
+			if (paramName != null) {
 				if ((scope == SCOPE_CONFIGURATOR) && (cdesc != null)) {
-					cdesc.setAttribute(attrName, content.toString().trim());
+					cdesc.setParameter(paramName, content.toString().trim());
 				} else if ((scope == SCOPE_PORTAL) && (pdesc != null)) {
-					pdesc.setAttribute(attrName, content.toString().trim());
+					pdesc.setParameter(paramName, content.toString().trim());
 				} else if ((scope == SCOPE_ENTITY) && (edesc != null)) {
-					edesc.setAttribute(attrName, content.toString().trim());
+					edesc.setParameter(paramName, content.toString().trim());
 				}
 			}
 		}
@@ -817,10 +817,10 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 */
 	protected static abstract class ZoneSetupDesc {
 
-		protected HashMap<String, String> attributes;
+		protected HashMap<String, String> parameters;
 
 		public ZoneSetupDesc() {
-			attributes = new HashMap<String, String>();
+			parameters = new HashMap<String, String>();
 		}
 
 		//
@@ -830,19 +830,19 @@ public class ZonesXMLLoader extends DefaultHandler {
 		public abstract void doSetup(StendhalRPZone zone);
 
 		/**
-		 * Get the attributes.
+		 * Get the parameters.
 		 *
 		 */
-		public Map<String, String> getAttributes() {
-			return attributes;
+		public Map<String, String> getParameters() {
+			return parameters;
 		}
 
 		/**
 		 * Set an attribute.
 		 *
 		 */
-		public void setAttribute(String name, String value) {
-			attributes.put(name, value);
+		public void setParameter(String name, String value) {
+			parameters.put(name, value);
 		}
 	}
 
