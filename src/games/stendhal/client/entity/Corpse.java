@@ -28,11 +28,6 @@ public class Corpse extends PassiveEntity implements Inspectable {
 
 	private EntityContainer contentWindow;
 
-
-	public Corpse()  {
-		super();
-	}
-
 	@Override
 	public Rectangle2D getArea() {
 

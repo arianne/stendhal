@@ -24,9 +24,7 @@ import marauroa.common.game.RPObject;
 public class Item extends PassiveEntity {
 
 
-	public Item()  {
-		super();
-	}
+	
 	@Override
 	protected void loadSprite(final RPObject object) {
 		SpriteStore store = SpriteStore.get();

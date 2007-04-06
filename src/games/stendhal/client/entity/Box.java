@@ -8,13 +8,6 @@ import marauroa.common.game.RPObject;
 
 public class Box extends Item {
 
-	public Box() {
-	    super();
-	    
-    }
-
-	
-
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
