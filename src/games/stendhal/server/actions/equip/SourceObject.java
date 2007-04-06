@@ -2,7 +2,9 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.Stackable;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.EquipListener;
@@ -22,7 +24,7 @@ class SourceObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(SourceObject.class);
 
 	/** the item */
-	private Entity base;
+	private Item base;
 
 	/** optional, parent item */
 	private Entity parent;
@@ -74,11 +76,19 @@ class SourceObject extends MoveableObject {
 				return;
 			}
 
-			base = (Entity) baseSlot.get(baseItemId);
+			Entity entity = (Entity) baseSlot.get(baseItemId);
+			if (!(entity instanceof Item)) {
+				return;
+			}
+			base = (Item) entity;
 		} else {
 			// item is not contained
 			if (StendhalRPWorld.get().has(baseItemId)) {
-				base = (Entity) StendhalRPWorld.get().get(baseItemId);
+				Entity entity = (Entity) StendhalRPWorld.get().get(baseItemId);
+				if (!(entity instanceof Item)) {
+					return;
+				}
+				base = (Item) entity;
 			}
 		}
 		
@@ -107,9 +117,9 @@ class SourceObject extends MoveableObject {
 			return false;
 		}
 
-		removeFromWorld();
+		Entity entity = removeFromWorld();
 		logger.debug("item removed");
-		dest.addToWorld(base, player);
+		dest.addToWorld(entity, player);
 		logger.debug("item readded");
 
 		return true;
@@ -139,16 +149,19 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * removes the entity from the world and returns it (so it may nbe added
-	 * again)
+	 * again). In case of splitted StackableItem the only item is reduced and
+	 * a new StackableItem with the splitted off amount is returned.
+	 *
+	 * @return Entity to place somewhere else in the world
 	 */
 	public Entity removeFromWorld() {
-		if (parent == null) {
-			StendhalRPWorld.get().remove(base.getID());
+		if (quantity != 0) {
+			StackableItem newItem = ((StackableItem) base).splitOff(quantity);
+			return newItem;
 		} else {
-			parent.getSlot(slot).remove(base.getID());
-			StendhalRPWorld.get().modify(parent);
+			base.removeFromWorld();
+			return base;
 		}
-		return base;
 	}
 
 	/**
