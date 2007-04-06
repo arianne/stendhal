@@ -35,9 +35,11 @@ public class DropPlayerItems extends ScriptImpl {
 		String msg = "Admin " + admin.getName() + " removed "
 			+ amount + " " + Grammar.plnoun(amount, itemName)
 			+ " from player " + player.getName() + ": " + res;
-		player.sendPrivateText(msg);
 		admin.sendPrivateText(msg);
-		StendhalRPRuleProcessor.get().addGameEvent(admin.getName(), "admindrop", 
-				player.getName(), Integer.toString(amount), itemName);
+		if (res) {
+			player.sendPrivateText(msg);
+			StendhalRPRuleProcessor.get().addGameEvent(admin.getName(), "admindrop", 
+					player.getName(), Integer.toString(amount), itemName);
+		}
 	}
 }
