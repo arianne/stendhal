@@ -1,15 +1,15 @@
 package games.stendhal.client.events;
 
-import marauroa.common.game.*;
+import marauroa.common.game.RPObject;
 
 public interface AttributeEvent {
 
 	// Still has old way of access to object
-	public void onAdded(RPObject base);
+	void onAdded(RPObject base);
 
-	public void onChangedAdded(RPObject base, RPObject diff);
+	void onChangedAdded(RPObject base, RPObject diff);
 
-	public void onChangedRemoved(RPObject base, RPObject diff);
+	void onChangedRemoved(RPObject base, RPObject diff);
 
-	public void onRemoved();
+	void onRemoved();
 }

@@ -11,26 +11,26 @@ public interface MovementEvent {
 	 * @param direction
 	 * @param speed 
 	 */
-	public void onMove(int x, int y, Direction direction, double speed);
+	void onMove(int x, int y, Direction direction, double speed);
 
 	/**
 	 * When rpentity reachs the [x,y,1,1] area.
 	 * @param x
 	 * @param y
 	 */
-	public void onEnter(int x, int y);
+	void onEnter(int x, int y);
 
 	/**
 	 * When rpentity leaves the [x,y,1,1] area.
 	 * @param x
 	 * @param y
 	 */
-	public void onLeave(int x, int y);
+	void onLeave(int x, int y);
 
 	/**
 	 * Entity has been stopped at Point(x,y)
 	 * @param x
 	 * @param y
 	 */
-	public void onStop(int x, int y);
+	void onStop(int x, int y);
 }
