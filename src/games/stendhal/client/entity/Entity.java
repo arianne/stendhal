@@ -22,7 +22,6 @@ import games.stendhal.client.events.CollisionEvent;
 import games.stendhal.client.events.MovementEvent;
 import games.stendhal.client.events.ZoneChangeEvent;
 import games.stendhal.client.sound.SoundSystem;
-import games.stendhal.client.entity.ActionType;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -32,6 +31,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.sound.sampled.DataLine;
 
 import marauroa.common.Log4J;
@@ -334,14 +334,11 @@ public final byte[] ID_Token = new byte[0];
 		}
 	}
 
-	protected void fireMovementEvent(RPObject base, RPObject diff) {
+	protected final void fireMovementEvent(final RPObject base, final RPObject diff) {
 		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
 			// First time case.
-			int x = base.getInt("x");
-			int y = base.getInt("y");
-
 			Direction direction = Direction.STOP;
 			if (base.has("dir")) {
 				direction = Direction.build(base.getInt("dir"));
@@ -352,19 +349,20 @@ public final byte[] ID_Token = new byte[0];
 				speed = base.getDouble("speed");
 			}
 
-			onMove(x, y, direction, speed);
+			onMove(base.getInt("x"), base.getInt("y"), direction, speed);
 		} else {
 			// Real movement case
-			int x = base.getInt("x");
-			int y = base.getInt("y");
+			int oldx = base.getInt("x");
+			int oldy = base.getInt("y");
 
-			int oldx = x, oldy = y;
+			int newX=oldx;
+			int newY=oldy;
 
 			if (diff.has("x")) {
-				x = diff.getInt("x");
+				newX = diff.getInt("x");
 			}
 			if (diff.has("y")) {
-				y = diff.getInt("y");
+				newY = diff.getInt("y");
 			}
 
 			Direction direction = Direction.STOP;
@@ -383,15 +381,15 @@ public final byte[] ID_Token = new byte[0];
 				speed = diff.getDouble("speed");
 			}
 
-			onMove(x, y, direction, speed);
+			onMove(newX, newY, direction, speed);
 
-			if ((Direction.STOP.equals( direction )) || (speed == 0)) {
-				onStop(x, y);
+			if ((Direction.STOP.equals(direction)) || (speed == 0)) {
+				onStop(newX, newY);
 			}
 
-			if ((oldx != x) && (oldy != y)) {
+			if ((oldx != newX) && (oldy != newY)) {
 				onLeave(oldx, oldy);
-				onEnter(x, y);
+				onEnter(newX, newY);
 			}
 		}
 	}
