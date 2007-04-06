@@ -17,10 +17,6 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.events.AttributeEvent;
-import games.stendhal.client.events.CollisionEvent;
-import games.stendhal.client.events.MovementEvent;
-import games.stendhal.client.events.ZoneChangeEvent;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
 
@@ -40,8 +36,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public abstract class Entity implements MovementEvent, ZoneChangeEvent, AttributeEvent, CollisionEvent,
-        Comparable<Entity> {
+public abstract class Entity implements Comparable<Entity> {
 
 	/** session wide instance identifier for this class
 	 * TODO: get rid of this only used by Soundsystem
