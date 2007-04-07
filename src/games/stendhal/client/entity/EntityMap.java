@@ -89,6 +89,8 @@ public final class EntityMap {
 
 		register("portal", null, "Portal");
 		register("door", null, "Door");
+		
+		register("fire",null,"Fire");
 	}
 
 	/**

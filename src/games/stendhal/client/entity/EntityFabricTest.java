@@ -335,6 +335,12 @@ public class EntityFabricTest {
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Door by now", Door.class, en.getClass());
 	}
-
+	@Test
+	public final void Fire() {
+		RPObject rp = new MockRPObject("fire",  null);
+		Entity en = EntityFabric.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a Door by now", Fire.class, en.getClass());
+	}
 
 }

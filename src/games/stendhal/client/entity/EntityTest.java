@@ -118,6 +118,8 @@ public class EntityTest {
 	
 	public final void testTranslate() {
 		assertEquals("data/sprites/hugo.png", Entity.translate("hugo"));
+		assertEquals("data/sprites/fire.png", Entity.translate("fire"));
+		
 	}
 
 	@Test
