@@ -4,7 +4,11 @@ package games.stendhal.server.script;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
@@ -21,6 +25,7 @@ public class Doomsday extends ScriptImpl {
 	    super.execute(admin, args);
 	    
 	    reduceNPCsHP();
+	    addGreeting();
     }
 
 	private void reduceNPCsHP() {
@@ -28,6 +33,19 @@ public class Doomsday extends ScriptImpl {
 	    
 	    for (NPC npc : semos.getNPCList()) {
 	    	npc.setHP(Rand.rand(30) + 10);
+	    }
+    }
+	
+	private void addGreeting() {
+	    StendhalRPZone semos = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
+	    
+	    for (NPC npc : semos.getNPCList()) {
+	    	if (npc instanceof SpeakerNPC) {
+	    		SpeakerNPC speakerNPC = (SpeakerNPC) npc;
+	    		speakerNPC.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
+	    				new StandardInteraction.AllwaysTrue(), ConversationStates.ATTENDING, "Help, Help", null);
+	    		
+	    	}
 	    }
     }
 	
