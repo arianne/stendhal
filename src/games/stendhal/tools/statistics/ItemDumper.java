@@ -53,6 +53,7 @@ public class ItemDumper {
 			int id = it.next();
 			RPObject object = db.loadRPObject(trans, id);
 			String name = object.get("name");
+			System.out.println(id + " " + name);
 			for (RPSlot slot : object.slots()) {
 				String slotName = slot.getName();
 				for (RPObject item : slot) {
