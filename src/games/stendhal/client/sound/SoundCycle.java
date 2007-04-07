@@ -14,7 +14,6 @@ package games.stendhal.client.sound;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.common.Rand;
-import java.lang.ref.WeakReference;
 import javax.sound.sampled.DataLine;
 import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
@@ -37,7 +36,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 	private byte[] ID_Token;
 
-	WeakReference<Entity> entityRef;
+	Entity entityRef;
 
 	private String token;
 
@@ -97,7 +96,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 		if (entity != null) {
 			this.ID_Token = entity.ID_Token;
-			this.entityRef = new WeakReference<Entity>(entity);
+			this.entityRef = entity;
 		}
 		this.token = token;
 		this.period = period;
@@ -121,7 +120,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 		o = null;
 		if (entityRef != null) {
-			o = entityRef.get();
+			o = entityRef;
 		}
 
 		if (o != null) {
@@ -197,7 +196,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 			// if object bound sound cycle
 			if (entityRef != null) {
-				if ((o = entityRef.get()) != null) {
+				if ((o = entityRef) != null) {
 					logger.debug("- start cyclic sound for entity: " + o.getType());
 					dataline = o.playSound(token, volBot, volTop, chance);
 				} else {
@@ -220,7 +219,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 		entity = null;
 		if (entityRef != null) {
-			entity = entityRef.get();
+			entity = entityRef;
 		}
 
 		c = new SoundCycle(entity, token, period, volBot, volTop, chance);

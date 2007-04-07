@@ -255,7 +255,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			return null;
 		}
 		
-		Rectangle2D playerHearing= User.get().getHearingArea();;
+		Rectangle2D playerHearing= User.get().getHearingArea();
 		// exclusion cases
 		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(User.get().getX(),User.get().getY()))) {
 			return null;
@@ -331,12 +331,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return SoundCycle
 	 */
 	public static SoundCycle startSoundCycle(Entity entity, String token, int period, int volBot, int volTop, int chance) {
-		SoundSystem sys;
+		SoundSystem sys=get();
 		SoundCycle cycle;
 		SoundCycle c1;
 		
 
-		if (!(sys = get()).isOperative()) {
+		if (!(sys.isOperative())) {
 			return null;
 		}
 
@@ -472,7 +472,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					logger.debug("- sound definition: " + name + " = " + value);
 
 					String filename = null;
-					if ((pos = value.indexOf(',')) > -1) {
+					pos = value.indexOf(',');
+					if (pos > -1) {
 						filename = value.substring(0, pos);
 					} else {
 						filename = value;
@@ -485,13 +486,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 					try {
 						// determine equalizing loudness setting
 						loudness = 100;
-						if ((pos = value.lastIndexOf(',')) != -1) {
+						pos = value.lastIndexOf(',');
+						if (pos != -1) {
 							loudness = MathHelper.parseInt_default(value.substring(pos + 1), 100);
 						}
 
 						// investigate sample status
-						int i;
-						if ((i = name.indexOf('.')) != -1) {
+						int i=name.indexOf('.');
+						if (i != -1) {
 							name = name.substring(0, i);
 						}
 
@@ -570,7 +572,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		boolean load;
 		int pos1;
 		if (key.startsWith("sfx.")) {
-			if ((pos1 = value.indexOf(',')) > -1) {
+			pos1 = value.indexOf(',');
+			if (pos1 > -1) {
 				load = value.substring(pos1 + 1).charAt(0) != 'x';
 			} else {
 				load = true;
@@ -604,8 +607,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		Info info;
 		Info[] mixInfos;
 		String hstr;
-
-		if (((mixInfos = AudioSystem.getMixerInfo()) == null) || (mixInfos.length == 0)) {
+		mixInfos = AudioSystem.getMixerInfo();
+		if ((mixInfos == null) || (mixInfos.length == 0)) {
 			logger.error("*** SoundSystem: no sound driver available!");
 			return false;
 		}
@@ -944,11 +947,18 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 	public void playerMoved() {
 		// update ambient sounds about player position
-		synchronized (ambientList) {
-			for (AmbientSound a : ambientList) {
-				a.performPlayerMoved( isOperative(), isMute());
+		if (isOperative()){
+			if (!isMute()){
+				if(!User.isNull()) {
+	                synchronized (ambientList) {
+	                	for (AmbientSound a : ambientList) {
+	                		a.performPlayerMoved();
+	                	}
+	                }
+                }		
 			}
 		}
+		
 	}
 
 	public static DataLine playMapSound(double x, double y, Rectangle2D audibleArea, String token, int volBot, int volTop, int chance) {

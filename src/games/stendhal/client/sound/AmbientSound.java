@@ -12,13 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.sound;
 
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.entity.User;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -272,7 +270,7 @@ class AmbientSound {
 		for (SoundCycle c : sound.cycleList) {
 			SoundCycle cycle = c.clone();
 			if (soundObject != null) {
-				cycle.entityRef = new WeakReference<Entity>(soundObject);
+				cycle.entityRef =soundObject;
 			} else {
 				cycle.entityRef = null;
 			}
@@ -480,15 +478,15 @@ class AmbientSound {
 	 * parameters. Does nothing if player is <b>null</b> or the sound is not
 	 * map-localized. (Otherwise this will adjust sound fog loudness.)
 	 * 
-	 * @param isOperative TODO
+	 * @param isOperative 
 	 * @param isMute TODO
 	 */
-	public void performPlayerMoved(boolean isOperative, boolean isMute) {
+	public void performPlayerMoved() {
 		//SoundSystem sys;
 
 		// operation control
 		//sys = SoundSystem.get();
-		if (!isOperative || isMute || User.isNull() || (soundPos == null)) {
+		if (soundPos == null) {
 			return;
 		}
 
