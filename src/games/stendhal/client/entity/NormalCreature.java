@@ -12,6 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import marauroa.common.game.RPObject;
@@ -23,6 +26,11 @@ public class NormalCreature extends Creature {
 	    super();
 	    
     }
+	@Override
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y + 1, 1, 1);
+	}
+
 
 
 

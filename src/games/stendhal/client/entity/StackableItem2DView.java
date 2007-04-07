@@ -60,7 +60,7 @@ public class StackableItem2DView extends Item2DView {
 
 		quantity = item.getQuantity();
 
-		if (quantity == 1) {
+		if (quantity <= 1) {
 			return null;
 		} else {
 			return GameScreen.get().createString(

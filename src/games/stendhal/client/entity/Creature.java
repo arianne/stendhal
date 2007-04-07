@@ -34,7 +34,7 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public abstract class Creature extends NPC {
+public abstract class Creature extends RPEntity {
 
 	@Override
 	protected void nonCreatureClientAddEventLine(final String text) {
