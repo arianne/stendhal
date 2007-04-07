@@ -23,11 +23,6 @@ import marauroa.common.game.RPObject;
 /** A Creature entity */
 public class SmallCreature extends Creature {
 
-	
-	public SmallCreature() {
-		super();
-	}
-
 	@Override
 	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
@@ -55,9 +50,17 @@ public class SmallCreature extends Creature {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
 
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new SmallCreature2DView(this);
+	}
 }

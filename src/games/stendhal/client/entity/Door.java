@@ -30,7 +30,14 @@ public class Door extends AnimatedEntity {
 
 	private int orientation;
 
-	
+
+	public int getOrientation() {
+		return orientation;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
 
 
 	@Override
@@ -115,11 +122,6 @@ public class Door extends AnimatedEntity {
 	}
 
 	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
 	public ActionType defaultAction() {
 		if (open) {
 			return ActionType.CLOSE;
@@ -146,18 +148,12 @@ public class Door extends AnimatedEntity {
 				super.onAction(at, params);
 				break;
 		}
-
-	}
-
-	@Override
-	public int getZIndex() {
-		return 5000;
 	}
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
-
 		super.buildOfferedActions(list);
+
 		if (open) {
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
@@ -166,4 +162,17 @@ public class Door extends AnimatedEntity {
 		}
 	}
 
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Door2DView(this);
+	}
 }
