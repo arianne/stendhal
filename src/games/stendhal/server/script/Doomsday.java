@@ -1,6 +1,7 @@
 // $Id$
 package games.stendhal.server.script;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPC;
@@ -26,7 +27,7 @@ public class Doomsday extends ScriptImpl {
 	    StendhalRPZone semos = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
 	    
 	    for (NPC npc : semos.getNPCList()) {
-	    	npc.setHP(10);
+	    	npc.setHP(Rand.rand(30) + 10);
 	    }
     }
 	
