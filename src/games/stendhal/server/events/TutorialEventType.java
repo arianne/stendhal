@@ -12,8 +12,10 @@ public enum TutorialEventType {
 	VISIT_SEMOS_CITY ("You should talk to Monogeneses by saying \"hi\". He has a white beard and is south west (down left) of here."),
 	FIRST_ATTACKED ("Did you notice that creature walking towards you with the yellow square? It is attacking you."),
 	FIRST_CREATURE_SEEN ("You can attack that creature by right clicking on it and choosing \"Attack\""),
-	FIRST_KILL ("Double click on the Corpse and drag the items over your bag with the mouse and drop them there.");
-
+	FIRST_KILL ("Double click on the Corpse and drag the items with the mouse over your bag and drop them there."),
+	FIRST_PLAYER ("Have you notices that this name is printed in white? It is another real human player"),
+	FIRST_DEATH ("Oh, you have just died. But fortunatally death is not permanent in this world.");
+	
 	private String message = null;
 
 	/**
