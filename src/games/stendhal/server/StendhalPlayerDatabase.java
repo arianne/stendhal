@@ -1,15 +1,34 @@
 package games.stendhal.server;
 
-import marauroa.common.net.*;
-import marauroa.common.game.*;
-import marauroa.server.game.*;
+import games.stendhal.server.entity.player.Player;
 
-import java.io.*;
-import java.util.*;
-import marauroa.common.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+import java.util.zip.DeflaterOutputStream;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterInputStream;
 
-import java.sql.*;
-import java.util.zip.*;
+import marauroa.common.Configuration;
+import marauroa.common.Log4J;
+import marauroa.common.game.DetailLevel;
+import marauroa.common.game.RPObject;
+import marauroa.common.net.InputSerializer;
+import marauroa.common.net.OutputSerializer;
+import marauroa.server.game.GenericDatabaseException;
+import marauroa.server.game.IPlayerDatabase;
+import marauroa.server.game.JDBCPlayerDatabase;
+import marauroa.server.game.JDBCTransaction;
+import marauroa.server.game.NoDatabaseConfException;
+import marauroa.server.game.Transaction;
 
 import org.apache.log4j.Logger;
 
@@ -22,7 +41,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		runDBScript("games/stendhal/server/stendhal_init.sql");
 	}
 
-	protected static IPlayerDatabase resetDatabaseConnection() throws Exception {
+	public static IPlayerDatabase resetDatabaseConnection() throws Exception {
 		Configuration conf = Configuration.getConfiguration();
 		Properties props = new Properties();
 
@@ -330,6 +349,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 			System.out.println("Times LOAD(" + (p2 - p1) / 1000.0 + ")\tSTORE(" + (p3 - p2) / 1000.0 + ")");
 		}
 	}
+
 
 	/**
 	 * Cleans the old chat log entries.
