@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
@@ -25,33 +22,18 @@ import marauroa.common.game.RPObject;
  * A portal which can be "used" by the player. Use a Door if you want some
  * sprites for it.
  */
-public class Portal extends Entity {
+public class Portal extends InvisibleEntity {
 
 	private boolean hidden = false;
 
-
-	@Override
-	protected void loadSprite(final RPObject object) {
-		sprite = null;
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
 
 	@Override
 	public ActionType defaultAction() {
 		if (!hidden) {
 			return ActionType.USE;
 		} else {
-	        return null;
-        }
+			return null;
+		}
 	}
 
 	@Override
@@ -70,17 +52,6 @@ public class Portal extends Entity {
 				super.onAction(at, params);
 				break;
 		}
-
-	}
-
-	@Override
-	public void draw(final GameScreen screen) {
-		// portals are invisible; use a Door to get a changing sprite
-	}
-
-	@Override
-	public int getZIndex() {
-		return 5000;
 	}
 
 	@Override
@@ -96,11 +67,12 @@ public class Portal extends Entity {
 				list.remove(ActionType.ADMIN_ALTER.getRepresentation());
 			}
 		}
-
 	}
+
 	@Override
-    void init(final RPObject object) {
-	    super.init(object);
-	    this.hidden = object.has("hidden");
-    }
+	public void init(final RPObject object) {
+		super.init(object);
+
+		this.hidden = object.has("hidden");
+	}
 }

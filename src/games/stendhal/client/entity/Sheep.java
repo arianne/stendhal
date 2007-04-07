@@ -27,30 +27,10 @@ import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC {
-	
-
 	private int weight;
-	private Sprite ideaImage;
-	private static Sprite eat=null;
+	private String	idea;
 
-	private static Sprite food=null;
 
-	private static Sprite walk=null;
-
-	private static Sprite follow=null;
-	static {
-		SpriteStore st = SpriteStore.get();
-
-		eat = st.getSprite("data/sprites/ideas/eat.png");
-		food = st.getSprite("data/sprites/ideas/food.png");
-		walk = st.getSprite("data/sprites/ideas/walk.png");
-		follow = st.getSprite("data/sprites/ideas/follow.png");
-	}
-
-	
-	public Sheep() {
-		super();
-	}
 	@Override
 	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
@@ -75,37 +55,50 @@ public class Sheep extends NPC {
 			if (weight > oldWeight) {
 				playSound("sheep-eat", 8, 15);
 			}
-	
-			
 		}
 
 		if (diff.has("idea")) {
-			String idea = diff.get("idea");
+			idea = diff.get("idea");
+
 			if ("eat".equals(idea)) {
 				probableChat(15);
-				ideaImage = eat;
 			} else if ("food".equals(idea)) {
 				probableChat(20);
-				ideaImage = food;
 			} else if ("walk".equals(idea)) {
 				probableChat(20);
-				ideaImage = walk;
 			} else if ("follow".equals(idea)) {
 				probableChat(20);
-				ideaImage = follow;
 			} else if ("stop".equals(idea)){
-				ideaImage=null;
+				idea = null;
 			}
+
+			updateView();
 		}
 	}
 
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
+
+	/**
+	 * Get the idea setting.
+	 *
+	 *
+	 */
+	public String getIdea() {
+		return idea;
 	}
 
+
+	/**
+	 * Get the weight.
+	 *
+	 *
+	 */
+	public int getWeight() {
+		return weight;
+	}
+
+
 	@Override
-	public Rectangle2D getDrawedArea() {
+	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
@@ -155,27 +148,29 @@ public class Sheep extends NPC {
 	        if (!User.get().hasSheep()) {
 				list.add(ActionType.OWN.getRepresentation());
 			}
-        }
-
+		}
 	}
 
 	@Override
-    protected void adjustAnimation(final Direction direction) {
-	    super.adjustAnimation(direction);
+	protected void adjustAnimation(final Direction direction) {
+		super.adjustAnimation(direction);
+
 		if ((weight > 60) && !animation.startsWith("big_")) {
 			animation = "big_" + animation;
 		}
-    }
-	@Override
-	public void draw(final GameScreen screen) {
-		super.draw(screen);
-		if (ideaImage != null) {
-			Rectangle2D rect = getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getY();
-			screen.draw(ideaImage, sx - 0.25, sy - 0.25);
-		}
-	
 	}
 
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Sheep2DView(this);
+	}
 }

@@ -31,12 +31,6 @@ import org.apache.log4j.Logger;
 
 /** A Player entity */
 public class Player extends RPEntity {
-
-	
-	public Player()  {
-		super();
-	
-	}
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
@@ -53,9 +47,8 @@ public class Player extends RPEntity {
 	protected void onAway(final String message) {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
 
-		
+
 	}
-	
 
 
 	@Override
@@ -97,7 +90,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-	
+
 
 		super.onChangedAdded(base, diff);
 
@@ -138,7 +131,7 @@ public class Player extends RPEntity {
 	}
 
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-		
+
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("away")) {
@@ -149,11 +142,6 @@ public class Player extends RPEntity {
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y + 1, 1, 1);
-	}
-
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1, 2);
 	}
 
 	@Override
@@ -175,7 +163,7 @@ public class Player extends RPEntity {
 
 	}
 
-	
+
 
 	/*
 	 * (non-Javadoc)
@@ -188,14 +176,27 @@ public class Player extends RPEntity {
 
 
 			list.add(ActionType.ADD_BUDDY.getRepresentation());
-		
+
 
 	}
 
 	@Override
 	public void onMove(final int x, final int y, final Direction direction, final double speed) {
 		super.onMove(x, y, direction, speed);
-		
+
 	}
 
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Player2DView(this);
+	}
 }

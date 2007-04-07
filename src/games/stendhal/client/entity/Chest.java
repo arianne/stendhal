@@ -38,11 +38,11 @@ public class Chest extends AnimatedEntity implements Inspectable {
 	/** true means the user requested to open this chest */
 	private boolean requestOpen;
 
-	
+
 	Chest() {
-		super();
 		requestOpen = false;
 	}
+
 	@Override
 	protected void buildAnimations(final RPObject base) {
 		SpriteStore store = SpriteStore.get();
@@ -93,17 +93,11 @@ public class Chest extends AnimatedEntity implements Inspectable {
 				wtEntityContainer.destroy();
 				wtEntityContainer = null;
 			}
-
 		}
 	}
 
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
-	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
@@ -148,16 +142,24 @@ public class Chest extends AnimatedEntity implements Inspectable {
 				super.onAction(at, params);
 				break;
 		}
-
-	}
-
-	@Override
-	public int getZIndex() {
-		return 5000;
 	}
 
 	public void setInspector(final Inspector inspector) {
 		_inspector = inspector;
 
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Chest2DView(this);
 	}
 }

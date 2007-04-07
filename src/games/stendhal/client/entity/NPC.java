@@ -29,18 +29,9 @@ public class NPC extends RPEntity {
 
 	private static final Logger logger = Log4J.getLogger(NPC.class);
 
-	
-
 	private int outfit;
 
-	
-	
-	public NPC()  {
-		super();
 
-	
-	}
-	
 	void init(final RPObject object){
 		super.init(object);
 		String type = getType();
@@ -67,6 +58,7 @@ public class NPC extends RPEntity {
 			}
 		}
 	}
+
 	@Override
 	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
@@ -109,7 +101,7 @@ public class NPC extends RPEntity {
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
-	
+
 	}
 
 	@Override
@@ -117,10 +109,17 @@ public class NPC extends RPEntity {
 		return new Rectangle.Double(x, y + 1, 1, 1);
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1.5, 2);
-	}
 
-	
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new NPC2DView(this);
+	}
 }

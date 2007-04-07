@@ -89,15 +89,32 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 
 
 	//
-	// RPEntity2DView
-	//
-
-
-	//
 	// Entity2DView
 	//
 
-	/** Draws this entity in the screen */
+	/**
+	 * Determines on top of which other entities this entity should be
+	 * drawn. Entities with a high Z index will be drawn on top of ones
+	 * with a lower Z index.
+	 * 
+	 * Also, players can only interact with the topmost entity.
+	 * 
+	 * @return	The drawing index.
+	 */
+	public int getZIndex() {
+		return 8000;
+	}
+
+
+	//
+	// <EntityView>
+	//
+
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
 	@Override
 	public void draw(final GameScreen screen) {
 		if (entity.isBeingAttacked()) {

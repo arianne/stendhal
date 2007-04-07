@@ -47,13 +47,13 @@ public class Entity2DView { // implements EntityView {
 	//
 
 	/**
-	 * Get the 2D drawn area.
+	 * Get the 2D area that is drawn in.
 	 *
 	 * @return	The 2D area this draws in.
 	 */
 	public Rectangle2D getDrawnArea() {
 		// XXX - Eventually abstract, but for transition
-		return new Rectangle.Double(entity.getX(), entity.getY(), 1, 1);
+		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
         }
 
 
@@ -65,6 +65,26 @@ public class Entity2DView { // implements EntityView {
 	protected Sprite getSprite() {
 		// XXX - Eventually manage own sprite, but for now
 		return entity.getSprite();
+	}
+
+
+	/**
+	 * Get the entity's X coordinate.
+	 *
+	 * @return	The X coordinate.
+	 */
+	protected double getX() {
+		return entity.getX();
+	}
+
+
+	/**
+	 * Get the entity's Y coordinate.
+	 *
+	 * @return	The Y coordinate.
+	 */
+	protected double getY() {
+		return entity.getY();
 	}
 
 
@@ -87,8 +107,13 @@ public class Entity2DView { // implements EntityView {
 	// <EntityView>
 	//
 
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
 	public void draw(final GameScreen screen) {
-		screen.draw(getSprite(), entity.getX(), entity.getY());
+		screen.draw(getSprite(), getX(), getY());
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
 			Graphics g2d = screen.expose();
@@ -107,5 +132,12 @@ public class Entity2DView { // implements EntityView {
 			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
 			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 		}
+	}
+
+
+	/**
+	 * Update representation.
+	 */
+	public void update() {
 	}
 }

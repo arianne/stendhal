@@ -12,48 +12,55 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
-
-import java.awt.Color;
-
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 /**
- * This is the money item. StackableItem is stackable
+ * This is a stackable item.
  */
 public class StackableItem extends Item {
-
 	private int quantity;
 
-	private Sprite quantityImage;
-
-	
 	public StackableItem()  {
-		super();
 		quantity = 0;
 	}
+
+
+	//
+	// StackableItem
+	//
+
+	/**
+	 * Get the item quantity.
+	 *
+	 * @return	The number of items.
+	 */
+	public int getQuantity() {
+		return quantity;
+	}
+
+
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("quantity")) {
 			quantity = diff.getInt("quantity");
-			if (quantity == 1) {
-				quantityImage = null;
-			} else {
-				quantityImage = GameScreen.get().createString(Integer.toString(quantity), Color.white);
-			}
+			updateView();
 		}
 	}
 
-	@Override
-	public void draw(final GameScreen screen) {
-		super.draw(screen);
 
-		if ((quantityImage != null)) {
-			screen.draw(quantityImage, x, y);
-		}
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new StackableItem2DView(this);
 	}
 }

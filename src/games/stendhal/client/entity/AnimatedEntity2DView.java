@@ -101,7 +101,7 @@ public class AnimatedEntity2DView extends Entity2DView {
 	 * @return	The image representation.
 	 */
 	protected Sprite getSprite() {
-		if ((System.currentTimeMillis() - delta) > 100) {
+		if ((System.currentTimeMillis() - delta) > 100L) {
 			sprite = nextFrame();
 			delta = System.currentTimeMillis();
 		}

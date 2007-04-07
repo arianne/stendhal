@@ -51,75 +51,36 @@ public abstract class Creature extends NPC {
 	/** display all debug messages for this creature in the game log */
 	public boolean watch = false;
 
-	/** creature patrols along its path */
-	private boolean patrol = false;
-
 	/** the patrolpath */
 	private List<Node> patrolPath;
-
-	/** the target moved, so we'return trying to find a new path */
-	private boolean targetMoved = false;
 
 	/** new path to the target */
 	private List<Node> targetMovedPath;
 
-	/** we're moving towards the target */
-	private boolean moveToTarget = false;
-
-	/** searching new path to the target */
-	private boolean moveToTargetNew = false;
-
 	/** the path we got */
 	private List<Node> moveToTargetPath;
 
-	
-	public Creature()  {
-		super();
-
-	
-	}
 
 	protected static String translate(final String type) {
 		return "data/sprites/monsters/" + type + ".png";
 	}
 
-	public void drawPath(final GameScreen screen, final List<Node> path, final int delta) {
-		Graphics g2d = screen.expose();
-		Point2D p1 = screen.invtranslate(new Point.Double(getX(), getY()));
-
-		for (Node node : path) {
-			Point2D p2 = screen.invtranslate(new Point.Double(node.nodeX, node.nodeY));
-
-			g2d.drawLine((int) p1.getX() + delta, (int) p1.getY() + delta, (int) p2.getX() + delta, (int) p2.getY()
-			        + delta);
-			p1 = p2;
-		}
+	public List<Node> getPatrolPath() {
+		return patrolPath;
 	}
 
-	@Override
-	public void draw(final GameScreen screen) {
-		super.draw(screen);
-
-		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
-			Graphics g2d = screen.expose();
-
-			if (targetMoved && (targetMovedPath != null)) {
-				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
-				g2d.setColor(Color.red);
-				drawPath(screen, targetMovedPath, GameScreen.SIZE_UNIT_PIXELS / 2);
-			}
-
-			if (patrol && (patrolPath != null)) {
-				g2d.setColor(Color.green);
-				drawPath(screen, patrolPath, GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
-			}
-
-			if ((moveToTarget || moveToTargetNew) && (moveToTargetPath != null)) {
-				g2d.setColor(Color.blue);
-				drawPath(screen, moveToTargetPath, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
-			}
-		}
+	public List<Node> getTargetMovedPath() {
+		return targetMovedPath;
 	}
+
+	public List<Node> getMoveToTargetPath() {
+		return moveToTargetPath;
+	}
+
+	public boolean isPathHidden() {
+		return hidePath;
+	}
+
 
 	public List<Node> getPath(final String token) {
 		String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ').replace('[', ' ').replace(']',
@@ -150,10 +111,9 @@ public abstract class Creature extends NPC {
 
 		// Check if debug is enabled
 		if (diff.has("debug") && Debug.CREATURES_DEBUG_CLIENT) {
-			patrol = false;
-			targetMoved = false;
-			moveToTarget = false;
-			moveToTargetNew = false;
+			patrolPath = null;
+			targetMovedPath = null;
+			moveToTargetPath = null;
 
 			String debug = diff.get("debug");
 
@@ -173,14 +133,11 @@ public abstract class Creature extends NPC {
 						if (token.equals("sleep")) {
 							break;
 						} else if (token.equals("patrol")) {
-							patrol = true;
 							patrolPath = getPath(tokenizer.nextToken());
 						} else if (token.equals("targetmoved")) {
-							targetMoved = true;
 							targetMovedPath = getPath(tokenizer.nextToken());
 						} else if (token.equals("movetotarget")) {
-							moveToTarget = true;
-							moveToTargetNew = false;
+							moveToTargetPath = null;
 							String nextToken = tokenizer.nextToken();
 
 							if (nextToken.equals("blocked")) {
@@ -192,7 +149,7 @@ public abstract class Creature extends NPC {
 							}
 
 							if (nextToken.equals("newpath")) {
-								moveToTargetNew = true;
+								moveToTargetPath = null;
 								nextToken = tokenizer.nextToken();
 								if (nextToken.equals("blocked")) {
 									moveToTargetPath = null;
@@ -237,9 +194,9 @@ public abstract class Creature extends NPC {
 		}
 	}
 
-	private class Node {
+	public class Node {
 
-		private int nodeX, nodeY;
+		public int nodeX, nodeY;
 
 		public Node(final int x, final int y) {
 			this.nodeX = x;
@@ -323,5 +280,4 @@ public abstract class Creature extends NPC {
 			}
 		}
 	}
-
 }

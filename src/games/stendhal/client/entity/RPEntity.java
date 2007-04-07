@@ -833,11 +833,6 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	@Override
-	public int getZIndex() {
-		return 8000;
-	}
-
 	/**
 	 * @return Returns the atk.
 	 */

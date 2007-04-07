@@ -615,4 +615,9 @@ public final byte[] ID_Token = new byte[0];
 	protected Entity2DView createView() {
 		return new Entity2DView(this);
 	}
+
+
+	protected void updateView() {
+		view.update();
+	}
 }
