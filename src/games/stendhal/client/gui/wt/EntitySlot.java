@@ -76,6 +76,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		this.graphic = graphic;
 		this.client = client;
 		this.background = background;
+		this.sprite = background;
 	}
 
 	/** */
