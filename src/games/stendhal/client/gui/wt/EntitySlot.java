@@ -66,12 +66,16 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** cached sprite for the entity */
 	private Sprite sprite;
+	
+	/** background sprite */
+	private Sprite background;
 
 	/** Creates a new instance of RPObjectSlot */
-	public EntitySlot(StendhalClient client, String name, Sprite graphic, int x, int y) {
+	public EntitySlot(StendhalClient client, String name, Sprite graphic, Sprite background, int x, int y) {
 		super(name, x, y, graphic.getWidth(), graphic.getHeight());
 		this.graphic = graphic;
 		this.client = client;
+		this.background = background;
 	}
 
 	/** */
@@ -91,18 +95,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 			RPAction action = new RPAction();
 
-			// Entity contained=container.getEntity();
-			// if(contained.distance(client.getPlayer())>2)
-			// {
-			// System.out.println (contained);
-			//
-			// RPAction rpaction = new RPAction();
-			// rpaction.put("type","moveto");
-			// rpaction.put("x",(int)contained.getX());
-			// rpaction.put("y",(int)contained.getY());
-			// client.send(rpaction);
-			// }
-			//      
 			// looks like an equip
 			action.put("type", "equip");
 			// fill 'moved from' parameters
@@ -120,7 +112,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** clears the content of this slot */
 	public void clear() {
 		content = null;
-		sprite = null;
+		sprite = background;
 	}
 
 	/** adds an object to this slot, this replaces any previous content */
@@ -158,19 +150,20 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		// draw the background image
 		graphic.draw(childArea, 0, 0);
 		// draw the content (if there is any)
-		if ((content != null) && (sprite != null)) {
+		if (sprite != null) {
 			// be sure to center the sprite
 			int x = (getWidth() - sprite.getWidth()) / 2;
 			int y = (getHeight() - sprite.getHeight()) / 2;
 			sprite.draw(childArea, x, y);
 
-			// draw the amount if this item is stackable
-			if (content.has("quantity")) {
-				int quantity = content.getInt("quantity");
-				checkQuantityImage(quantity);
-				quantityImage.draw(childArea, 0, 0);
+			if (content != null) {
+				// draw the amount if this item is stackable
+				if (content.has("quantity")) {
+					int quantity = content.getInt("quantity");
+					checkQuantityImage(quantity);
+					quantityImage.draw(childArea, 0, 0);
+				}
 			}
-
 		}
 
 		return childArea;

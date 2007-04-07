@@ -77,7 +77,7 @@ public class EntityContainer extends WtPanel {
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(client, name, slotSprite, x * spriteWidth + x, y * spriteHeight + y);
+				EntitySlot entitySlot = new EntitySlot(client, name, slotSprite, null, x * spriteWidth + x, y * spriteHeight + y);
 				slotPanels.add(entitySlot);
 			}
 		}
