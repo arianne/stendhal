@@ -58,6 +58,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** the inventory */
 	private EntityContainer inventory;
+        
+        /** the spells list */
+        private EntityContainer spells;
 
 	/** the player */
 	private User player;
@@ -70,8 +73,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(StendhalUI ui, WtPanel frame) {
-		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 240);
-
+		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 280);
+                
+                
 		this.client = ui.getClient();
 
 		setTitletext("Settings");
@@ -107,6 +111,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		inventory.registerCloseListener(this);
 		frame.addChild(inventory);
 
+                //the spells list
+                spells = new EntityContainer(client, "spells", 3, 4);
+                spells.registerCloseListener(this);
+                frame.addChild(spells);
+                spells.setSlot(player, "spells");
+                
 		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
 		frame.addChild(minimap);
@@ -149,6 +159,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("buddies", button);
+                
+                button = new WtButton("spells", 150, 30, "Enable Spells Window");
+		button.moveTo(10, 210);
+		button.setPressed(spells.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("spells", button);
 	}
 
 	/** we're using the window manager */
@@ -188,6 +205,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			keyring.setSlot(player, "keyring");
 			inventory.setSlot(player, "bag");
 			minimap.setPlayer(player);
+                        spells.setSlot(player, "spells");
 		}
 
 		/*
@@ -216,7 +234,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		} else if (name.equals("buddies")) {
 			// check buddy panel
 			buddies.setVisible(state);
-		}
+		} else if (name.equals("spells")) {
+                        spells.setVisible(state);
+                }
 	}
 
 	/** a window is closed */
