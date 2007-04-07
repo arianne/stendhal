@@ -13,18 +13,11 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Transparency;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
@@ -32,8 +25,6 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {
-
-	private static final long STANDARD_PERSISTENCE_TIME = 5000;
 
 	private String text;
 
