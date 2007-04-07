@@ -18,7 +18,7 @@ import org.junit.Test;
  */
 public class TestBuildOfferedActions {
 
-	static List<String> list = null;
+	private static List<String> list = null;
 
 	@Before
 	public final void setUpBefore() throws Exception {
@@ -203,19 +203,19 @@ public class TestBuildOfferedActions {
 			// no super(), so implementation needed for use
 		}
 
-		MockRPObject(String type, String eclass) {
+		MockRPObject(final String type, final String eclass) {
 			_type = type;
 			_eclass = eclass;
 		}
 
 		@Override
-		public boolean has(String attribute) {
+		public boolean has(final String attribute) {
 
 			return true;
 		}
 
 		@Override
-		public String get(String attribute) throws AttributeNotFoundException {
+		public String get(final String attribute) throws AttributeNotFoundException {
 			if (attribute.equals("type")) {
 				return _type;
 			}
@@ -224,12 +224,12 @@ public class TestBuildOfferedActions {
 		}
 
 		@Override
-		public int getInt(String dir) {
+		public int getInt(final String dir) {
 			return 1;
 		}
 
 		@Override
-		public double getDouble(String arg0) throws AttributeNotFoundException {
+		public double getDouble(final String arg0) throws AttributeNotFoundException {
 			return 0.0;
 		}
 	}
