@@ -1,9 +1,8 @@
 /*
- * @(#) games/stendhal/client/entity/FishSource2DView.java
+ * @(#) games/stendhal/client/entity/GrainField2DView.java
  *
  * $Id$
  */
-
 package games.stendhal.client.entity;
 
 //
@@ -13,16 +12,21 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 /**
- * The 2D view of a fish source.
+ * The 2D view of a grain field.
  */
-public class FishSource2DView extends AnimatedEntity2DView {
+public class GrainField2DView extends AnimatedEntity2DView {
+	private GrainField	grainField;
+
+
 	/**
-	 * Create a 2D view of food.
+	 * Create a 2D view of a grain field.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param	grainField	The entity to render.
 	 */
-	public FishSource2DView(final FishSource fishSource) {
-		super(fishSource);
+	public GrainField2DView(final GrainField grainField) {
+		super(grainField);
+
+		this.grainField = grainField;
 	}
 
 
@@ -35,11 +39,12 @@ public class FishSource2DView extends AnimatedEntity2DView {
 	 *
 	 * @return	The 2D area this draws in.
 	 */
-	@Override
 	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
-	}
-
+		return new Rectangle.Double(
+			getX() + grainField.getWidth() - 1.0,
+			getY() + grainField.getHeight() - 1.0,
+			1.0, 1.0);
+        }
 
 	/**
 	 * Determines on top of which other entities this entity should be

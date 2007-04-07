@@ -28,19 +28,22 @@ public class ResizeableCreature extends Creature {
 	private double drawWidth;
 	private double drawHeight;
 
-	public ResizeableCreature() {
-	    super();
-	   
-    }
 
-	
+	public double getHeight() {
+		return height;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
 
 	@Override
 	protected void buildAnimations(final RPObject object) {
-
 		// Hack for human like creatures
-    	drawWidth = width;
-    	drawHeight = height;
+		drawWidth = width;
+		drawHeight = height;
+
 		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
 			drawWidth = 1.5;
 			drawHeight = 2;
@@ -59,8 +62,8 @@ public class ResizeableCreature extends Creature {
 		sprites.get("move_down")[3] = sprites.get("move_down")[1];
 		sprites.get("move_left")[3] = sprites.get("move_left")[1];
 	}
-	
-	
+
+
 
 	@Override
     public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
@@ -131,11 +134,10 @@ public class ResizeableCreature extends Creature {
 	}
 
 	@Override
-    void init(final RPObject object) {
-		
-			width = object.getDouble("width");
-			height = object.getDouble("height");
-		
-	    super.init(object);
-    }
+	public void init(final RPObject object) {
+		width = object.getDouble("width");
+		height = object.getDouble("height");
+
+		super.init(object);
+	}
 }

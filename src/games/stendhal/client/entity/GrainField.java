@@ -35,17 +35,26 @@ public class GrainField extends AnimatedEntity {
 
 
 	GrainField()  {
-		super();
 		width = 1;
 		height = 2;
 		clazz = "grain_field";
 		maxRipeness = 5;
 	}
+
+	public double getHeight() {
+		return height;
+	}
+
+
+	public double getWidth() {
+		return width;
+	}
+
 	void init(final RPObject object) {
-	
+
 		// default values are for compatibility to server <= 0.56
 
-		
+
 		if (object.has("max_ripeness")) {
 			maxRipeness = object.getInt("max_ripeness");
 		}
@@ -104,11 +113,6 @@ public class GrainField extends AnimatedEntity {
 	}
 
 	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y + height - 1, 1, 1);
-	}
-
-	@Override
 	public ActionType defaultAction() {
 		return ActionType.HARVEST;
 	}
@@ -116,7 +120,7 @@ public class GrainField extends AnimatedEntity {
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
-	
+
 		list.add(ActionType.HARVEST.getRepresentation());
 	}
 
@@ -136,11 +140,19 @@ public class GrainField extends AnimatedEntity {
 				super.onAction(at, params);
 				break;
 		}
-
 	}
 
-	@Override
-	public int getZIndex() {
-		return 3000;
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new GrainField2DView(this);
 	}
 }
