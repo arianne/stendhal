@@ -2,9 +2,7 @@ package games.stendhal.client.entity;
 
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 public class Box extends Item {
 

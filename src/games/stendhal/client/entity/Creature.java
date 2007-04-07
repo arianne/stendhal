@@ -18,10 +18,6 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Debug;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -221,10 +217,11 @@ public abstract class Creature extends RPEntity {
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 		if (Debug.CREATURES_DEBUG_CLIENT) {
-			if (hidePath)
-				list.add(ActionType.DEBUG_SHOW_PATH.getRepresentation());
-			else
-				list.add(ActionType.DEBUG_HIDE_PATH.getRepresentation());
+			if (hidePath) {
+	            list.add(ActionType.DEBUG_SHOW_PATH.getRepresentation());
+            } else {
+	            list.add(ActionType.DEBUG_HIDE_PATH.getRepresentation());
+            }
 			if (watch) {
 				list.add(ActionType.DEBUG_DISABLE_WATCH.getRepresentation());
 			} else {
@@ -236,7 +233,7 @@ public abstract class Creature extends RPEntity {
 	}
 
 	@Override
-    void init(RPObject object) {
+    void init(final RPObject object) {
 
 		super.init(object);
 		String type = getType();

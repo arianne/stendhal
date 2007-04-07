@@ -13,7 +13,7 @@ import marauroa.common.game.RPObject;
 public class Fire extends AnimatedEntity {
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 		for (int i = 0; i < 2; i++) {
 			

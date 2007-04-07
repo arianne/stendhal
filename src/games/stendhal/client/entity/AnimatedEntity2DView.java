@@ -81,13 +81,13 @@ public class AnimatedEntity2DView extends Entity2DView {
 			frame = 0;
 		}
 
-		Sprite sprite = anim[frame];
+		Sprite tempSprite = anim[frame];
 
 		if (!entity.stopped()) {
 			frame++;
 		}
 
-		return sprite;
+		return tempSprite;
 	}
 
 

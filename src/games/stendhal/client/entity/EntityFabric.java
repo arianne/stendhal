@@ -71,9 +71,9 @@ public class EntityFabric {
 				
 			
 			if (en instanceof Inspectable) {
-				if (StendhalUI.get()!=null)
-				
-				((Inspectable) en).setInspector(StendhalUI.get().getInspector());
+				if (StendhalUI.get()!=null) {
+	                ((Inspectable) en).setInspector(StendhalUI.get().getInspector());
+                }
 			}
 			return en;
 		} catch (Exception e) {

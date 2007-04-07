@@ -24,11 +24,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -49,7 +46,7 @@ public abstract class RPEntity extends AnimatedEntity {
 
 		private final int val;
 
-		Resolution(int val) {
+		Resolution(final int val) {
 			this.val = val;
 		}
 
@@ -134,7 +131,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	 * @param	text		The text message.
 	 * @param	color		The color of the text.
 	 */
-	protected void addFloater(String text, Color color) {
+	protected  void addFloater(final String text, final Color color) {
 		damageSprites.add(GameScreen.get().createString(text, color));
 
 		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
@@ -144,7 +141,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		return (attacking != null);
 	}
 
-	protected void setName(String name) {
+	protected void setName(final String name) {
 		this.name = name;
 	}
 
@@ -169,7 +166,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	 *            The object. The outfit attribute needs to be set.
 	 * @return A sprite for the object
 	 */
-	protected Sprite getOutfitSprite(SpriteStore store, RPObject object) {
+	protected Sprite getOutfitSprite(final SpriteStore store, final RPObject object) {
 		int outfit = object.getInt("outfit");
 
 		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
@@ -195,7 +192,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	@Override
-	protected void buildAnimations(RPObject object) {
+	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
 		sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 4, 1.5, 2));
@@ -216,7 +213,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// Called when entity says text
-	public void onTalk(String text) {
+	public void onTalk(final String text) {
 		if (!User.isNull() && (distance(User.get()) < 15 * 15)) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
@@ -254,12 +251,12 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
-	protected void nonCreatureClientAddEventLine(String text) {
+	protected void nonCreatureClientAddEventLine(final String text) {
 		StendhalUI.get().addEventLine(getName(), text);
 	}
 
 	// Called when entity listen to text from talker
-	public void onPrivateListen(String text) {
+	public  void onPrivateListen(final String text) {
 		Color color = Color.darkGray;
 		// TODO: replace this with its own RPEvent type after port to Marauroa 2.0
 		if (text.startsWith("Tutorial: ")) {
@@ -270,7 +267,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// When entity gets healed
-	public void onHealed(int amount) {
+	public void onHealed(final int amount) {
 		if (distance(User.get()) < 15 * 15) {
 			addFloater("+" + amount, Color.green);
 
@@ -279,7 +276,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// When entity eats food
-	public void onEat(int amount) {
+	public void onEat(final int amount) {
 		eating = true;
 	}
 
@@ -325,8 +322,8 @@ public abstract class RPEntity extends AnimatedEntity {
 
 
 	// When entity is poisoned
-	public void onPoisoned(int amount) {
-		if ( (distance(User.get()) < 15 * 15)) {
+	public final void onPoisoned(final int amount) {
+		if ((distance(User.get()) < 15 * 15)) {
 			poisoned = true;
 
 			addFloater("-" + amount, Color.red);
@@ -342,11 +339,11 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// Called when entity kills another entity
-	public void onKill(Entity killed) {
+	public void onKill(final Entity killed) {
 	}
 
 	// Called when entity is killed by killer
-	public void onDeath(Entity killer) {
+	public void onDeath(final Entity killer) {
 		if (killer != null) {
 			StendhalUI.get().addEventLine(getName() + " has been killed by " + killer.getName());
 		}
@@ -366,7 +363,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	 *
 	 */
 	@Override
-	public void onAdded(RPObject base) {
+	public void onAdded(final RPObject base) {
 		super.onAdded(base);
 
 		fireTalkEvent(base, null);
@@ -389,7 +386,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
 		if (!inAdd) {
@@ -502,14 +499,14 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	public void onChangedRemoved(RPObject base, RPObject diff) {
+	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		super.onChangedRemoved(base, diff);
 
 		fireHPEventChangedRemoved(base, diff);
 		fireAttackEventChangedRemoved(base, diff);
 	}
 
-	protected void fireAttackEvent(RPObject base, RPObject diff) {
+	protected void fireAttackEvent(final RPObject base, final RPObject diff) {
 		if ((diff == null) && (base == null)) {
 			// Remove case
 
@@ -635,7 +632,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	protected void fireAttackEventChangedRemoved(RPObject base, RPObject diff) {
+	protected void fireAttackEventChangedRemoved(final RPObject base, final RPObject diff) {
 		if (diff.has("target")) {
 			onStopAttack();
 
@@ -646,7 +643,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	protected void fireKillEvent(RPObject base, RPObject diff) {
+	protected void fireKillEvent(final RPObject base,final  RPObject diff) {
 		if (diff!=null){
 				if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
 					onDeath(lastAttacker);
@@ -654,7 +651,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	protected void fireTalkEvent(RPObject base, RPObject diff) {
+	protected void fireTalkEvent(final RPObject base,final  RPObject diff) {
 		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
@@ -681,7 +678,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	protected void fireHPEvent(RPObject base, RPObject diff) {
+	protected void fireHPEvent(final RPObject base, final RPObject diff) {
 		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
@@ -705,7 +702,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		}
 	}
 
-	private void fireHPEventChangedRemoved(RPObject base, RPObject diff) {
+	private void fireHPEventChangedRemoved(final RPObject base, final RPObject diff) {
 		if (diff.has("poisoned")) {
 			onPoisonEnd();
 		}
@@ -716,7 +713,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	/** Draws only the Name and hp bar **/
-	public void drawHPbar(GameScreen screen) {
+	public void drawHPbar(final GameScreen screen) {
 		if (nameImage != null) {
 			screen.draw(nameImage, x, y - 0.5);
 
@@ -749,7 +746,7 @@ public abstract class RPEntity extends AnimatedEntity {
 
 	/** Draws this entity in the screen */
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		super.draw(screen);
 
 		if ((damageSprites != null) && (damageSprites.size() > 0)) 	{
@@ -904,12 +901,12 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// When this entity attacks target.
-	public void onAttack(Entity target) {
+	public void onAttack(final Entity target) {
 		attacking = target.getID();
 	}
 
 	// When attacker attacks this entity.
-	public void onAttacked(Entity attacker) {
+	public void onAttacked(final Entity attacker) {
 		/*
 		 * Could keep track of all attackers, but right now we only
 		 * need one of them for onDeath() sake
@@ -923,29 +920,29 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// When attacket stop attacking us
-	public void onStopAttacked(Entity attacker) {
+	public void onStopAttacked(final Entity attacker) {
 		if (attacker == lastAttacker) {
 			lastAttacker = null;
 		}
 	}
 
 	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(Entity target, int damage) {
+	public void onAttackDamage(final Entity target, final int damage) {
 		showBladeStrike = true;
 	}
 
 	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(Entity target) {
+	public void onAttackBlocked(final Entity target) {
 		showBladeStrike = true;
 	}
 
 	// When this entity's attack is missing the adversary
-	public void onAttackMissed(Entity target) {
+	public void onAttackMissed(final Entity target) {
 		showBladeStrike = true;
 	}
 
 	// When this entity is damaged by attacker with damage amount
-	public void onDamaged(Entity attacker, int damage) {
+	public void onDamaged(final Entity attacker, final int damage) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
 
@@ -965,13 +962,13 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	// When this entity blocks the attack by attacker
-	public void onBlocked(Entity attacker) {
+	public void onBlocked(final Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.BLOCKED;
 	}
 
 	// When this entity skip attacker's attack.
-	public void onMissed(Entity attacker) {
+	public void onMissed(final Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
 	}
