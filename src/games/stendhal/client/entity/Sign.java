@@ -37,70 +37,20 @@ public class Sign extends Entity {
 
 	private String text;
 
-	private Sprite textImage;
-
-	private long textPersistTime;
-
 	// Give Signs same color on Screen and Log window. intensifly@gmx.com
 	private static final Color signColor = new Color(0x006400); // dark green
-
-
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
-		GameScreen screen = GameScreen.get();
 
 		if (diff.has("text")) {
 			text = diff.get("text");
-
-			Graphics g2d = screen.expose();
-
-			String[] lines = text.split("\n");
-
-			int lineLengthPixels = 0;
-			for (String line : lines) {
-				int val = g2d.getFontMetrics().stringWidth(line);
-				if (val > lineLengthPixels) {
-					lineLengthPixels = val;
-				}
-			}
-
-			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-			        .getDefaultConfiguration();
-			int width = lineLengthPixels + 4;
-			int height = 16 * lines.length;
-
-			Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
-
-			Graphics g = image.getGraphics();
-			g.setColor(Color.white);
-			g.fillRect(0, 0, width, height);
-			g.setColor(signColor);
-			g.drawRect(0, 0, width - 1, height - 1);
-
-			int j = 0;
-			for (String line : lines) {
-				g.setColor(signColor);
-				// Give 1 more pixel distance to top sign border.
-				// intensifly@gmx.com
-				g.drawString(line, 2, 12 + j * 16);
-				j++;
-			}
-
-			textImage = new Sprite(image);
-
-			textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50);
 		}
 	}
 
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
-	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
@@ -135,7 +85,9 @@ public class Sign extends Entity {
 		// =handleAction(action);
 		switch (at) {
 			case READ:
-				GameObjects.getInstance().addText(this, textImage, textPersistTime);
+				GameObjects.getInstance().addText(
+					this, text, signColor, false);
+
 				if (text.contains("\n")) {
 					// The sign's text has multiple lines. Add a linebreak after
 					// "you read" so that it is easier readable.
@@ -152,8 +104,17 @@ public class Sign extends Entity {
 
 	}
 
-	@Override
-	public int getZIndex() {
-		return 5000;
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Sign2DView(this);
 	}
 }

@@ -22,10 +22,6 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Blood extends AnimatedEntity {
-
-	
-	
-
 	@Override
 	protected void buildAnimations(final RPObject base) {
 		SpriteStore store = SpriteStore.get();
@@ -56,14 +52,17 @@ public class Blood extends AnimatedEntity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
 
-	@Override
-	public int getZIndex() {
-		return 2000;
-	}
+	//
+	// Entity
+	//
 
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Blood2DView(this);
+	}
 }

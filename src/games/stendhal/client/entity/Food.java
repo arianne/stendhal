@@ -22,12 +22,13 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Food extends AnimatedEntity {
-
 	private int amount;
 
-	
 
-	
+	public int getAmount() {
+		return amount;
+	}
+
 
 	@Override
 	protected void buildAnimations(final RPObject object) {
@@ -72,13 +73,17 @@ public class Food extends AnimatedEntity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
 
-	@Override
-	public int getZIndex() {
-		return 6000;
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Food2DView(this);
 	}
 }

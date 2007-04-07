@@ -27,19 +27,15 @@ import marauroa.common.game.RPObject;
  *
  */
 public class GoldSource extends AnimatedEntity {
-	
 	private static final int FRAME_COUNT = 32;
-
-	
-	
 
 	@Override
 	protected void buildAnimations(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
-		
+
 		for (int i = 0; i < FRAME_COUNT; i++) {
 			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate("gold_source"), i, 1, 1, 1));
-		}	
+		}
 	}
 
 	@Override
@@ -50,11 +46,6 @@ public class GoldSource extends AnimatedEntity {
 
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
-	public Rectangle2D getDrawedArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
@@ -87,16 +78,25 @@ public class GoldSource extends AnimatedEntity {
 	}
 
 	@Override
-	public int getZIndex() {
-		return 3000;
+	protected String getAnimation() {
+		int i = Integer.parseInt(animation);
+		i = (i + 1) % FRAME_COUNT;
+		animation = Integer.toString(i);
+
+		return animation;
 	}
 
-	@Override
-    protected String getAnimation() {
-	    int i = Integer.parseInt(animation);
-	    i = (i + 1) % FRAME_COUNT;
-	    animation = Integer.toString(i);
-	
-	    return animation;
-    }
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new GoldSource2DView(this);
+	}
 }
