@@ -82,10 +82,10 @@ public class Sheep2DView extends RPEntity2DView {
 	 *
 	 */
 	protected Sprite getIdeaSprite() {
-		String idea;
+		String idea= entity.getIdea();
 
 
-		if((idea = entity.getIdea()) == null) {
+		if(idea == null) {
 			return null;
 		}
 
