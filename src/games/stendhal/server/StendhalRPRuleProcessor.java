@@ -27,6 +27,7 @@ import games.stendhal.server.actions.MoveAction;
 import games.stendhal.server.actions.OutfitAction;
 import games.stendhal.server.actions.OwnAction;
 import games.stendhal.server.actions.PlayersQuery;
+import games.stendhal.server.actions.QuestListAction;
 import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
 import games.stendhal.server.entity.Blood;
@@ -119,6 +120,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		OutfitAction.register();
 		OwnAction.register();
 		PlayersQuery.register();
+		QuestListAction.register();
 		StopAction.register();
 		UseAction.register();
 	}
