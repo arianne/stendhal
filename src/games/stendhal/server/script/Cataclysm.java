@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * end of the world
  */
-public class Doomsday extends ScriptImpl {
+public class Cataclysm extends ScriptImpl {
 
 	@Override
     public void execute(Player admin, List<String> args) {
