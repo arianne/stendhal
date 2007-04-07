@@ -191,7 +191,7 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 				case MISSED:
 					screen.draw(missedSprite, sx - 0.25, sy - 0.25);
 					break;
-				case HITTED:
+				case HIT:
 					screen.draw(hitSprite, sx - 0.25, sy - 0.25);
 					break;
 			}

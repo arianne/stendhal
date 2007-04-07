@@ -45,7 +45,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	private boolean showBladeStrike;
 	
 	public enum Resolution {
-		HITTED(0), BLOCKED(1), MISSED(2);
+		HIT(0), BLOCKED(1), MISSED(2);
 
 		private final int val;
 
@@ -947,7 +947,7 @@ public abstract class RPEntity extends AnimatedEntity {
 	// When this entity is damaged by attacker with damage amount
 	public void onDamaged(Entity attacker, int damage) {
 		combatIconTime = System.currentTimeMillis();
-		resolution = Resolution.HITTED;
+		resolution = Resolution.HIT;
 
 		playSound("punch-mix", 20, 60, 80);
 
