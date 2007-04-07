@@ -31,4 +31,8 @@ public class Doomsday extends ScriptImpl {
 	    }
     }
 	
+	// TODO: remove HealerBehaviour from Carmen
+	// TODO: Change Greetings of the SpeakerNPCs in Semos
+	// TODO: Try to use a animated entity for the fire instead of adding it to the map.
+	
 }
