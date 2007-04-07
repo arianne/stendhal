@@ -11,7 +11,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.maps.semos.village.SheepSellerNPC;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.util.Translate;
+
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,7 +35,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 	}
 
 	private void buildSemosCityAreaCarmen(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC(Translate._("Sato")) {
+		SpeakerNPC npc = new SpeakerNPC("Sato") {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
@@ -77,12 +77,12 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 						if (player.hasSheep()) {
 							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
 							if (seller.squaredDistance(sheep) > 5 * 5) {
-								seller.say(Translate._("I can't see that sheep from here! Bring it over so I can assess it properly."));
+								seller.say("I can't see that sheep from here! Bring it over so I can assess it properly.");
 							} else if (getValue(sheep) < SheepSellerNPC.BUYING_PRICE) {
 								// prevent newbies from selling their sheep too early
-								say(Translate._("Nah, that sheep looks too skinny. Feed it with red berries, and come back when it has become fatter."));
+								say("Nah, that sheep looks too skinny. Feed it with red berries, and come back when it has become fatter.");
 							} else {
-								say(Translate._("Thanks! Here is your money."));
+								say("Thanks! Here is your money.");
 								payPlayer(player);
 
 								StendhalRPRuleProcessor.get().removeNPC(sheep);
@@ -93,7 +93,7 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 								return true;
 							}
 						} else {
-							seller.say(Translate._("You don't have any sheep, $1! What are you trying to pull?", player.get("name")));
+							seller.say("You don't have any sheep, $1! What are you trying to pull?" + player.get("name"));
 						}
 
 						return false;
@@ -101,11 +101,11 @@ public class SheepBuyerNPC implements ZoneConfigurator {
 				}
 
 				Map<String, Integer> buyitems = new HashMap<String, Integer>();
-				buyitems.put(Translate._("sheep"), 150);
+				buyitems.put("sheep", 150);
 
 				addGreeting();
-				addJob(Translate._("I buy sheep here in Semos, then I send them up to Ados where they are exported."));
-				addHelp(Translate._("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!"));
+				addJob("I buy sheep here in Semos, then I send them up to Ados where they are exported.");
+				addHelp("I purchase sheep, at what I think is a fairly reasonable price. Just say if you want to #sell #sheep, and I will set up a deal!");
 				addBuyer(new SheepBuyerBehaviour(buyitems));
 				addGoodbye();
 			}

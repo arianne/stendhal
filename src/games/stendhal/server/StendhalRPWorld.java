@@ -35,7 +35,7 @@ import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
-import games.stendhal.server.util.Translate;
+
 
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
@@ -71,13 +71,13 @@ public class StendhalRPWorld extends RPWorld {
 		createRPClasses();
 
 		// init language support
-		String language = "en";
-		try {
-			language = Configuration.getConfiguration().get("language");
-		} catch (Exception e) {
-			// ignore
-		}
-		Translate.initLanguage(language);
+//		String language = "en";
+//		try {
+//			language = Configuration.getConfiguration().get("language");
+//		} catch (Exception e) {
+//			// ignore
+//		}
+		//Translate.initLanguage(language);
 
 		ruleManager = RuleSetFactory.getRuleSet("default");
 		Log4J.finishMethod(logger, "StendhalRPWorld");
