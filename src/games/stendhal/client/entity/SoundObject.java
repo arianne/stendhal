@@ -27,9 +27,6 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPObject;
-
 public class SoundObject extends Entity {
 
 	private String name;
