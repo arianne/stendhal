@@ -1919,6 +1919,23 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>	
+	
+	<item name="trout">
+		<type class="food" subclass="trout"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="40"/>
+			<regen value="3"/>
+			<frequency value="20"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>	
 <!-- Drinks_section -->
 <!-- Dunno if this is a good place or a good way to describe an alcoholic effect,
        maybe value can be how powerful the alcoholic drink is, and be the one
@@ -2886,4 +2903,15 @@ probably just be named key.
 		</equipable>
 	</item>
 		
+	<item name="fishing_rod">
+		<type class="tool" subclass="fishing_rod"/>
+		<description>You see a fishing rod. If you find a fishing spot you can catch fish with it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="10"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>	
 </items>
