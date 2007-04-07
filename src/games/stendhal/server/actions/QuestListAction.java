@@ -18,9 +18,6 @@ public class QuestListAction implements ActionListener {
 		
 		Log4J.startMethod(logger, "onAction");
 
-		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
-		rules.addGameEvent(player.getName(), "who");
-
 		StringBuilder st = new StringBuilder();
 		if (action.has("target")){
 			String which=action.get("target");
