@@ -40,14 +40,16 @@ public class Text extends Entity {
 
 	private String text;
 
-	public Text(final GameObjects gameObjects, final Sprite text, final double x, final double y, final long persistTime)
+	public Text(final GameObjects gameObjects, final Sprite textSprite, final double x, final double y, final long persistTime)
 	        throws AttributeNotFoundException {
 
-		textImage = text;
+		textImage = textSprite;
 		textImageTime = System.currentTimeMillis();
-
-		if ((textPersistTime = persistTime) == 0) {
+			 
+		if (persistTime == 0) {
 			textPersistTime = STANDARD_PERSISTENCE_TIME;
+		} else {
+			textPersistTime= persistTime;
 		}
 
 		// Speech bubbles should be top right of speaker intensifly@gmx.com
