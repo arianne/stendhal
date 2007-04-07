@@ -154,10 +154,7 @@ public class StendhalQuestSystem {
 	}
 	public String listQuest(Player player,String questName) {
 		StringBuilder sb = new StringBuilder();
-
-		
 		for (IQuest quest : quests) {
-			System.out.println(quest.getName());
 			if (quest.getName().equals(questName)){
 				dumpQuest(sb, quest, player);	
 			}
