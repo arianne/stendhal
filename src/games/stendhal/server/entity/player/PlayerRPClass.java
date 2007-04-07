@@ -131,6 +131,10 @@ class PlayerRPClass {
                 
                 // This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
                 player.addRPSlot("spells", 30, RPClass.PRIVATE);
+                
+                //The guild slot. Just one so player can't be in more than one (can be changed but thats what I'm going by)
+                player.add("guild", RPClass.STRING);
+
 	}
 
 	/**
