@@ -27,16 +27,15 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-public class SoundObject extends Entity {
+public class SoundObject extends InvisibleEntity {
 
 	private String name;
 
 	private int volume;
 
 	public SoundObject() {
-		super();
-	
 	}
+
 
 	public SoundObject(final int x, final int y) {
 		super();
@@ -50,7 +49,8 @@ public class SoundObject extends Entity {
 		x = soundPos.getX();
 		y = soundPos.getY();
 		audibleRange = radius;
-    }
+	}
+
 
 	@Override
 	public Rectangle2D getArea() {
@@ -117,5 +117,4 @@ public class SoundObject extends Entity {
 	protected void buildOfferedActions(List<String> list) {
 		list.clear();
 	}
-
 }

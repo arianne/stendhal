@@ -34,9 +34,6 @@ public class Player extends RPEntity {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
-	protected int outfit;
-
-	protected int outfitOrg;
 
 	/**
 	 * An away message was set/cleared.
@@ -46,47 +43,8 @@ public class Player extends RPEntity {
 	 */
 	protected void onAway(final String message) {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
-
-
 	}
 
-
-//	@Override
-//	protected void buildAnimations(final RPObject base) {
-//		SpriteStore store = SpriteStore.get();
-//
-//		Sprite tempSprite;
-//
-//		try {
-//			if (base.has("outfit_org")) {
-//				outfitOrg = base.getInt("outfit_org");
-//			} else {
-//				outfitOrg = 0;
-//			}
-//			if ((outfit == base.getInt("outfit")) && (outfit != 0)) {
-//				// We avoid creating again the outfit if it is already done.
-//				// Save CPU cycles.
-//				return;
-//			}
-//			outfit = base.getInt("outfit");
-//			tempSprite = getOutfitSprite(store, base);
-//		} catch (Exception e) {
-//			logger.error("cannot build Animations", e);
-//			// use default outfit
-//			base.put("outfit", 0);
-//			tempSprite = getOutfitSprite(store, base);
-//		}
-//
-//		sprites.put("move_up", store.getAnimatedSprite(tempSprite, 0, 4, 1.5, 2));
-//		sprites.put("move_right", store.getAnimatedSprite(tempSprite, 1, 4, 1.5, 2));
-//		sprites.put("move_down", store.getAnimatedSprite(tempSprite, 2, 4, 1.5, 2));
-//		sprites.put("move_left", store.getAnimatedSprite(tempSprite, 3, 4, 1.5, 2));
-//
-//		sprites.get("move_up")[3] = sprites.get("move_up")[1];
-//		sprites.get("move_right")[3] = sprites.get("move_right")[1];
-//		sprites.get("move_down")[3] = sprites.get("move_down")[1];
-//		sprites.get("move_left")[3] = sprites.get("move_left")[1];
-//	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
@@ -172,13 +130,6 @@ public class Player extends RPEntity {
 
 		list.add(ActionType.ADD_BUDDY.getRepresentation());
 	}
-
-
-//	@Override
-//	public void onMove(final int x, final int y, final Direction direction, final double speed) {
-//		super.onMove(x, y, direction, speed);
-//
-//	}
 
 
 	//

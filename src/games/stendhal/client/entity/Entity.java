@@ -586,11 +586,12 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
-	protected Entity2DView createView() {
-		return new Entity2DView(this);
-	}
+	protected abstract Entity2DView createView();
 
 
+	/**
+	 * Tell the view it may need to update it's representation.
+	 */
 	protected void updateView() {
 		view.update();
 	}

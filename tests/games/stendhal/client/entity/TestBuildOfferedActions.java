@@ -189,8 +189,10 @@ public class TestBuildOfferedActions {
 			return 0;
 		}
 
-		
-
+		@Override
+		protected Entity2DView createView() {
+			return null;
+		}
 	}
 
 	private class MockRPObject extends RPObject {

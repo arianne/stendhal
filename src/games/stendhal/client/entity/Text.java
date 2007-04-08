@@ -24,7 +24,7 @@ import java.util.List;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-public class Text extends Entity {
+public class Text extends InvisibleEntity {
 
 	private static final long STANDARD_PERSISTENCE_TIME = 5000;
 

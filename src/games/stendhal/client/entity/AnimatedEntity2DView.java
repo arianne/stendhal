@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of an animated entity.
  */
-public class AnimatedEntity2DView extends Entity2DView {
+public abstract class AnimatedEntity2DView extends Entity2DView {
 	/**
 	 * Logger.
 	 */

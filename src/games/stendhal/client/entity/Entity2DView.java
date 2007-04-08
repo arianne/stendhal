@@ -26,7 +26,7 @@ import games.stendhal.client.stendhal;
 /**
  * The 2D view of an entity.
  */
-public class Entity2DView { // implements EntityView {
+public abstract class Entity2DView { // implements EntityView {
 	/**
 	 * The entity this view is for
 	 */
@@ -69,10 +69,11 @@ public class Entity2DView { // implements EntityView {
 	 *
 	 * @return	The 2D area this draws in.
 	 */
-	public Rectangle2D getDrawnArea() {
-		// XXX - Eventually abstract, but for transition
-		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
-	}
+	public abstract Rectangle2D getDrawnArea();
+//	public Rectangle2D getDrawnArea() {
+//		// XXX - Eventually abstract, but for transition
+//		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
+//	}
 
 
 	/**

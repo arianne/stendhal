@@ -376,7 +376,6 @@ public class EntityTest {
 
 	
 		public MockEntity() {
-			super();
 		}
 
 		@Override
@@ -394,5 +393,9 @@ public class EntityTest {
 			return 0;
 		}
 
+		@Override
+		protected Entity2DView createView() {
+			return null;
+		}
 	}
 }
