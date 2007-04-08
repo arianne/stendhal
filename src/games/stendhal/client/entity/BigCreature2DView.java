@@ -32,29 +32,12 @@ public class BigCreature2DView extends Creature2DView {
 
 
 	//
-	// Entity2DView
+	// AnimatedEntity
 	//
 
 	@Override
 	protected void buildAnimations(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-		Sprite creature = getAnimationSprite(object);
-
-		animations.put("move_up", store.getAnimatedSprite(creature, 0, 4, 2, 2));
-		animations.put("move_right", store.getAnimatedSprite(creature, 1, 4, 2, 2));
-		animations.put("move_down", store.getAnimatedSprite(creature, 2, 4, 2, 2));
-		animations.put("move_left", store.getAnimatedSprite(creature, 3, 4, 2, 2));
-
-		animations.get("move_up")[3] = animations.get("move_up")[1];
-		animations.get("move_right")[3] = animations.get("move_right")[1];
-		animations.get("move_down")[3] = animations.get("move_down")[1];
-		animations.get("move_left")[3] = animations.get("move_left")[1];
-	}
-
-
-	@Override
-	protected Sprite getDefaultSprite() {
-		return getAnimation("move_up")[0];
+		buildAnimations(object, 2.0, 2.0);
 	}
 
 

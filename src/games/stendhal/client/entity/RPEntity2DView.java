@@ -87,17 +87,31 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// RPEntity2DView
 	//
 
-	@Override
-	protected void buildAnimations(final RPObject object) {
+	/**
+	 * Populate the named animations.
+	 *
+	 * @param	object		The entity to load animations for.
+	 */
+	protected void buildAnimations(final RPObject object, double width, double height) {
 		SpriteStore store = SpriteStore.get();
 
-		animations.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 4, 1.5, 2));
-		animations.put("move_right", store.getAnimatedSprite(translate(object.get("type")), 1, 4, 1.5, 2));
-		animations.put("move_down", store.getAnimatedSprite(translate(object.get("type")), 2, 4, 1.5, 2));
-		animations.put("move_left", store.getAnimatedSprite(translate(object.get("type")), 3, 4, 1.5, 2));
+
+		Sprite tiles = getAnimationSprite(object);
+
+		animations.put("move_up",
+			store.getAnimatedSprite(tiles, 0, 4, width, height));
+
+		animations.put("move_right",
+			store.getAnimatedSprite(tiles, 1, 4, width, height));
+
+		animations.put("move_down",
+			store.getAnimatedSprite(tiles, 2, 4, width, height));
+
+		animations.put("move_left",
+			store.getAnimatedSprite(tiles, 3, 4, width, height));
 
 		animations.get("move_up")[3] = animations.get("move_up")[1];
 		animations.get("move_right")[3] = animations.get("move_right")[1];
@@ -107,7 +121,36 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 
 
 	/**
+	 * Get the full directional animation tile set for this entity.
+	 *
+	 * @param	object		The object to get animations for.
+	 *
+	 * @return	A tile sprite containing all animation images.
+	 */
+	protected Sprite getAnimationSprite(final RPObject object) {
+		return SpriteStore.get().getSprite(translate(object.get("type")));
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate the named animations.
+	 *
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	protected void buildAnimations(final RPObject object) {
+		buildAnimations(object, 1.5, 2.0);
+	}
+
+
+	/**
 	 * This method gets the default image.
+	 * <strong>All sub-classes MUST provide a <code>move_up</code>
+	 * named animation, or override this method</strong>.
 	 *
 	 * @return	The default sprite, or <code>null</code>.
 	 */

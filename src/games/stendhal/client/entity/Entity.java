@@ -98,9 +98,8 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
-
-	void init(final RPObject object) {
-	    type = object.get("type");
+	public void init(final RPObject object) {
+		type = object.get("type");
 
 		if (object.has("name")) {
 			name = object.get("name");
@@ -112,7 +111,7 @@ public final byte[] ID_Token = new byte[0];
 	
 		loadSprite(object);
 		view = createView();
-    }
+	}
 
 	/** Returns the represented arianne object id */
 	public RPObject.ID getID() {
@@ -137,10 +136,9 @@ public final byte[] ID_Token = new byte[0];
 
 
 	public double distance(final User user) {
-	    
-	    return (user.getX() - x) * (user.getX() - x) + (user.getY() - y)
-        * (user.getY() - y);
-    }
+		return (user.getX() - x) * (user.getX() - x)
+			+ (user.getY() - y) * (user.getY() - y);
+	}
 	
 	protected static String translate(final String type) {
 		return "data/sprites/" + type + ".png";

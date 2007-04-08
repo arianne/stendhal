@@ -32,7 +32,7 @@ public class NPC extends RPEntity {
 	private int outfit;
 
 
-	void init(final RPObject object){
+	public void init(final RPObject object){
 		super.init(object);
 		String type = getType();
 

@@ -12,6 +12,11 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+
 /**
  * The 2D view of a big creature.
  */
@@ -23,6 +28,16 @@ public class SmallCreature2DView extends Creature2DView {
 	 */
 	public SmallCreature2DView(final SmallCreature creature) {
 		super(creature);
+	}
+
+
+	//
+	// AnimatedEntity
+	//
+
+	@Override
+	protected void buildAnimations(final RPObject object) {
+		buildAnimations(object, 1.0, 1.0);
 	}
 
 

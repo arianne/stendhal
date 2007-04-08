@@ -78,9 +78,9 @@ public class AnimatedEntity2DView extends Entity2DView {
 	//
 
 	/**
-	 * This method fills the animations map.
+	 * Populate the named animations.
 	 *
-	 * @param	object		The entity to base animations on.
+	 * @param	object		The entity to load animations for.
 	 */
 	protected void buildAnimations(RPObject object) {
 		// TEMP - eventually make abstract

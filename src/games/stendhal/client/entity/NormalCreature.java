@@ -22,16 +22,10 @@ import marauroa.common.game.RPObject;
 /** A Creature entity */
 public class NormalCreature extends Creature {
 
-	public NormalCreature() {
-	    super();
-	    
-    }
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y + 1, 1, 1);
 	}
-
-
 
 
 	@Override

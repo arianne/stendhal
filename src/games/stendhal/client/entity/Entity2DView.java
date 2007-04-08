@@ -72,7 +72,7 @@ public class Entity2DView { // implements EntityView {
 	public Rectangle2D getDrawnArea() {
 		// XXX - Eventually abstract, but for transition
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
-        }
+	}
 
 
 	/**
@@ -153,7 +153,7 @@ public class Entity2DView { // implements EntityView {
 			Point2D p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
 			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 
 			g2d = screen.expose();
 			rect = getDrawnArea();
@@ -161,7 +161,7 @@ public class Entity2DView { // implements EntityView {
 			p = new Point.Double(rect.getX(), rect.getY());
 			p = screen.invtranslate(p);
 			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 		}
 	}
 

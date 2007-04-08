@@ -233,7 +233,7 @@ public abstract class Creature extends RPEntity {
 	}
 
 	@Override
-    void init(final RPObject object) {
+	public void init(final RPObject object) {
 
 		super.init(object);
 		String type = getType();

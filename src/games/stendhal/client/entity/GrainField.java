@@ -50,7 +50,7 @@ public class GrainField extends AnimatedEntity {
 		return width;
 	}
 
-	void init(final RPObject object) {
+	public void init(final RPObject object) {
 
 		// default values are for compatibility to server <= 0.56
 
