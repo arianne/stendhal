@@ -14,15 +14,13 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
-import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
@@ -38,7 +36,6 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
-
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
 
@@ -56,9 +53,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
