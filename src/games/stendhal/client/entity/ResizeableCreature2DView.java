@@ -30,23 +30,34 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 * @param	creature	The entity to render.
 	 */
 	public ResizeableCreature2DView(final ResizeableCreature creature) {
-		super(creature, 1.5, 2.0);
+		super(creature, creature.getWidth(), creature.getHeight());
 
 		this.creature = creature;
 	}
 
 
 	//
-	// Entity2DView
+	// Creature2DView
 	//
 
 	/**
-	 * Get the 2D area that is drawn in.
+	 * Get the height.
 	 *
-	 * @return	The 2D area this draws in.
+	 * @return	The height in tile units.
 	 */
 	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), creature.getWidth(), creature.getHeight());
+	public double getHeight() {
+		return creature.getHeight();
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width in tile units.
+	 */
+	@Override
+	public double getWidth() {
+		return creature.getWidth();
 	}
 }

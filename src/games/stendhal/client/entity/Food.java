@@ -25,28 +25,14 @@ public class Food extends AnimatedEntity {
 	private int amount;
 
 
-	public int getAmount() {
-		return amount;
-	}
-
-
-	@Override
-	protected void buildAnimations(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
-		sprites.put("0", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
-		sprites.put("1", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
-		sprites.put("2", store.getAnimatedSprite(translate(object.get("type")), 2, 1, 1, 1));
-		sprites.put("3", store.getAnimatedSprite(translate(object.get("type")), 3, 1, 1, 1));
-		sprites.put("4", store.getAnimatedSprite(translate(object.get("type")), 4, 1, 1, 1));
-		sprites.put("5", store.getAnimatedSprite(translate(object.get("type")), 5, 1, 1, 1));
-	}
-
-	@Override
-	protected Sprite defaultAnimation() {
+	public Food() {
 		animation = "0";
-		return sprites.get("0")[0];
 	}
+
+
+	//
+	// Food
+	//
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {

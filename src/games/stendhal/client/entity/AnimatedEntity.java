@@ -47,7 +47,7 @@ public abstract class AnimatedEntity extends Entity {
 
 	/** This method sets the default animation */
 	protected Sprite defaultAnimation() {
-		return null;
+		return ((AnimatedEntity2DView) view).getDefaultSprite();
 	}
 
 	/**

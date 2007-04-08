@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -23,22 +20,20 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+
 public class GrainField extends AnimatedEntity {
 
 	private int width;
 
 	private int height;
 
-	private String clazz;
-
-	private int maxRipeness;
-
 
 	GrainField()  {
 		width = 1;
 		height = 2;
-		clazz = "grain_field";
-		maxRipeness = 5;
+		animation = "0";
 	}
 
 	public double getHeight() {
@@ -50,48 +45,21 @@ public class GrainField extends AnimatedEntity {
 		return width;
 	}
 
+
+
 	public void init(final RPObject object) {
+		super.init(object);
 
 		// default values are for compatibility to server <= 0.56
 
-
-		if (object.has("max_ripeness")) {
-			maxRipeness = object.getInt("max_ripeness");
-		}
 		if (object.has("width")) {
 			width = object.getInt("width");
 		}
 		if (object.has("height")) {
 			height = object.getInt("height");
 		}
-
-		// load sprites
-		if (object.has("class")) {
-			clazz = object.get("class");
-		}
-		super.init(object);
 	}
 
-	@Override
-	protected void buildAnimations(final RPObject object) {
-		// Note: This method is called from the parent constructor, so our
-		// own constructor was not able to do any initialisation, yet.
-		// So we have to load the object now. But after this method
-		// The values we loaded are overriden by the default values, so
-		// init has to be called again in our constructor.
-//		init(object);
-
-		SpriteStore store = SpriteStore.get();
-		for (int i = 0; i <= maxRipeness; i++) {
-			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate(clazz), i, 1, width, height));
-		}
-	}
-
-	@Override
-	protected Sprite defaultAnimation() {
-		animation = "0";
-		return sprites.get("0")[0];
-	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {

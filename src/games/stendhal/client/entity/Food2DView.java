@@ -11,6 +11,12 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
+
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of food.
@@ -23,6 +29,43 @@ public class Food2DView extends AnimatedEntity2DView {
 	 */
 	public Food2DView(final Food food) {
 		super(food);
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 * This assumes the food has 6 states.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		SpriteStore store = SpriteStore.get();
+
+		map.put("0", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
+		map.put("1", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
+		map.put("2", store.getAnimatedSprite(translate(object.get("type")), 2, 1, 1, 1));
+		map.put("3", store.getAnimatedSprite(translate(object.get("type")), 3, 1, 1, 1));
+		map.put("4", store.getAnimatedSprite(translate(object.get("type")), 4, 1, 1, 1));
+		map.put("5", store.getAnimatedSprite(translate(object.get("type")), 5, 1, 1, 1));
+	}
+
+
+	/**
+	 * This method gets the default image.
+	 * <strong>All sub-classes MUST provide a <code>0</code>
+	 * named animation, or override this method</strong>.
+	 *
+	 * @return	The default sprite, or <code>null</code>.
+	 */
+	@Override
+	protected Sprite getDefaultSprite() {
+		return getAnimation("0")[0];
 	}
 
 

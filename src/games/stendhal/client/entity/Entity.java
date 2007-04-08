@@ -109,8 +109,8 @@ public final byte[] ID_Token = new byte[0];
 
 		rpObject = object;
 	
-		loadSprite(object);
 		view = createView();
+		loadSprite(object);
 	}
 
 	/** Returns the represented arianne object id */

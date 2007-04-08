@@ -10,6 +10,12 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
+
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of a grain field.
@@ -27,6 +33,63 @@ public class GrainField2DView extends AnimatedEntity2DView {
 		super(grainField);
 
 		this.grainField = grainField;
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		double	height;
+		double	width;
+		int	maxRipeness;
+		String	clazz;
+
+
+		height = grainField.getHeight();
+		width = grainField.getWidth();
+
+		// default values are for compatibility to server <= 0.56
+
+		if (object.has("max_ripeness")) {
+			maxRipeness = object.getInt("max_ripeness");
+		} else {
+			maxRipeness = 5;
+		}
+
+		if (object.has("class")) {
+			clazz = object.get("class");
+		} else {
+			clazz = "grain_field";
+		}
+
+		SpriteStore store = SpriteStore.get();
+
+		for (int i = 0; i <= maxRipeness; i++) {
+			map.put(Integer.toString(i),
+				store.getAnimatedSprite(translate(clazz), i, 1, width, height));
+		}
+	}
+
+
+	/**
+	 * This method gets the default image.
+	 * <strong>All sub-classes MUST provide a <code>0</code>
+	 * named animation, or override this method</strong>.
+	 *
+	 * @return	The default sprite, or <code>null</code>.
+	 */
+	@Override
+	protected Sprite getDefaultSprite() {
+		return getAnimation("0")[0];
 	}
 
 

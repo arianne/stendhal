@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -22,21 +19,10 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Blood extends AnimatedEntity {
-	@Override
-	protected void buildAnimations(final RPObject base) {
-		SpriteStore store = SpriteStore.get();
-
-		sprites.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1));
-		sprites.put("1", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 1, 1, 1, 1));
-		sprites.put("2", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 2, 1, 1, 1));
-		sprites.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
-	}
-
-	@Override
-	protected Sprite defaultAnimation() {
+	public Blood() {
 		animation = "0";
-		return sprites.get("0")[0];
 	}
+
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
@@ -44,6 +30,7 @@ public class Blood extends AnimatedEntity {
 
 		if (diff.has("class")) {
 			animation = diff.get("class");
+			updateView();
 		}
 	}
 

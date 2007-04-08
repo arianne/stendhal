@@ -79,6 +79,26 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
+	/**
+	 * Get the height.
+	 *
+	 * @return	The height in tile units.
+	 */
+	public double getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width in tile units.
+	 */
+	public double getWidth() {
+		return width;
+	}
+
+
 	//
 	// RPEntity2DView
 	//
@@ -114,7 +134,7 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), width, height);
+		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
 

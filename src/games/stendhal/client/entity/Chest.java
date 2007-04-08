@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
@@ -40,22 +38,10 @@ public class Chest extends AnimatedEntity implements Inspectable {
 
 
 	Chest() {
+		animation = "close";
 		requestOpen = false;
 	}
 
-	@Override
-	protected void buildAnimations(final RPObject base) {
-		SpriteStore store = SpriteStore.get();
-
-		sprites.put("close", store.getAnimatedSprite(translate(base.get("type")), 0, 1, 1, 1));
-		sprites.put("open", store.getAnimatedSprite(translate(base.get("type")), 1, 1, 1, 1));
-	}
-
-	@Override
-	protected Sprite defaultAnimation() {
-		animation = "close";
-		return sprites.get("close")[0];
-	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {

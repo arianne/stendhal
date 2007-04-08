@@ -44,15 +44,14 @@ public class Item2DView extends Entity2DView {
 		String name;
 
 
-		SpriteStore store = SpriteStore.get();
-
 		name = object.get("class");
 
 		if (object.has("subclass")) {
 			name += "/" + object.get("subclass");
 		}
 
-		sprite = store.getSprite("data/sprites/items/" + name + ".png");
+		sprite = SpriteStore.get().getSprite(
+			"data/sprites/items/" + name + ".png");
 	}
 
 
@@ -64,6 +63,7 @@ public class Item2DView extends Entity2DView {
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
         }
+
 
 	/**
 	 * Determines on top of which other entities this entity should be

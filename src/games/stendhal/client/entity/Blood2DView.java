@@ -11,6 +11,12 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
+
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of blood.
@@ -23,6 +29,40 @@ public class Blood2DView extends AnimatedEntity2DView {
 	 */
 	public Blood2DView(final Blood blood) {
 		super(blood);
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		SpriteStore store = SpriteStore.get();
+
+		map.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1));
+		map.put("1", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 1, 1, 1, 1));
+		map.put("2", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 2, 1, 1, 1));
+		map.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
+	}
+
+
+	/**
+	 * This method gets the default image.
+	 * <strong>All sub-classes MUST provide a <code>0</code>
+	 * named animation, or override this method</strong>.
+	 *
+	 * @return	The default sprite, or <code>null</code>.
+	 */
+	@Override
+	protected Sprite getDefaultSprite() {
+		return getAnimation("0")[0];
 	}
 
 

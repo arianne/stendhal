@@ -11,9 +11,12 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
 
-//
-//
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of a chest.
@@ -22,10 +25,42 @@ public class Chest2DView extends AnimatedEntity2DView {
 	/**
 	 * Create a 2D view of a chest.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param	chest		The entity to render.
 	 */
-	public Chest2DView(final Chest entity) {
-		super(entity);
+	public Chest2DView(final Chest chest) {
+		super(chest);
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		SpriteStore store = SpriteStore.get();
+
+		map.put("close", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
+		map.put("open", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
+	}
+
+
+	/**
+	 * This method gets the default image.
+	 * <strong>All sub-classes MUST provide a <code>close</code>
+	 * named animation, or override this method</strong>.
+	 *
+	 * @return	The default sprite, or <code>null</code>.
+	 */
+	@Override
+	protected Sprite getDefaultSprite() {
+		return getAnimation("close")[0];
 	}
 
 
