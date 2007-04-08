@@ -125,7 +125,7 @@
      <parameter name="species">trout</parameter>
     </implementation>
   </entity>
-  <entity x="66" y="77">
+  <entity x="61" y="77">
     <implementation class-name="games.stendhal.server.entity.FishSource">
      <parameter name="species">trout</parameter>
     </implementation>
