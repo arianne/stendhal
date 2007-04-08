@@ -190,7 +190,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (text.equals(getCurrentSpecies())) {
 							if (currentSpeciesNo == speciesList.size() - 1) {
-								npc.say("Correct! Congratulations, you have passed the first part of the exam.");
+								npc.say("Correct! Congratulations, you have passed the first part of the #exam.");
 								cleanUpTable();
 								player.setQuest(QUEST_SLOT, "done");
 								player.addXP(500);

@@ -172,7 +172,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 										engine.say("This fish is looking very good! Do you have another one for me?");
 									} else {
 										player.addXP(500);
-										engine.say("You did a great job! Now you are a real fisherman and your chance to catch fish will increase!");
+										engine.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
 										player.setQuest(QUEST_SLOT, "done");
 										player.notifyWorldAboutChanges();
 									}
