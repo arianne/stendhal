@@ -9,17 +9,16 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-import games.stendhal.common.Direction;
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an animated entity.

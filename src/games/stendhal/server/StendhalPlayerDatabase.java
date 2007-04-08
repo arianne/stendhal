@@ -1,7 +1,5 @@
 package games.stendhal.server;
 
-import games.stendhal.server.entity.player.Player;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

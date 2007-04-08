@@ -9,34 +9,35 @@ package games.stendhal.server.config;
 //
 //
 
+import games.stendhal.common.ConfigurableFactory;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.EntityFactoryHelper;
+import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.maps.ZoneConfigurator;
+
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
-import javax.xml.parsers.SAXParserFactory;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-import org.apache.log4j.Logger;
+import javax.xml.parsers.SAXParserFactory;
 
 import marauroa.common.Log4J;
 import marauroa.server.game.RPWorld;
-import games.stendhal.common.ConfigurableFactory;
-import games.stendhal.common.ConfigurableFactoryHelper;
-import games.stendhal.common.ConfigurableFactoryContextImpl;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.EntityFactoryHelper;
-import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.maps.ZoneConfigurator;
+
+import org.apache.log4j.Logger;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Load and configure zones via an XML configuration file.

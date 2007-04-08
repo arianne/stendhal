@@ -16,14 +16,9 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.stendhal;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;

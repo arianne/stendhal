@@ -13,7 +13,6 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.LootableSlot;
 import games.stendhal.server.events.UseListener;
 

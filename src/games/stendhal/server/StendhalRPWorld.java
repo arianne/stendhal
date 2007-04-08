@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import java.net.URI;
-
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.config.ZoneXMLLoader;
 import games.stendhal.server.entity.Chest;
@@ -36,8 +34,8 @@ import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
 
+import java.net.URI;
 
-import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;

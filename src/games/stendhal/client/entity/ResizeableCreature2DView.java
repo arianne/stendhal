@@ -9,14 +9,11 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
+import games.stendhal.client.Sprite;
+
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
-
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of a resizable creature.

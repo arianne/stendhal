@@ -20,9 +20,6 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-
 public class GrainField extends AnimatedEntity {
 	private int width;
 

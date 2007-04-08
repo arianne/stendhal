@@ -12,23 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
-
 public class NPC extends RPEntity {
-
-	private static final Logger logger = Log4J.getLogger(NPC.class);
-
 
 	public void init(final RPObject object){
 		super.init(object);

@@ -8,13 +8,12 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
-
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of an item.

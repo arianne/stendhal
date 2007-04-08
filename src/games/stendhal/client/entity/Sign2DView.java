@@ -9,13 +9,12 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.Map;
 
 import marauroa.common.game.RPObject;
-
-import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of a sign.
