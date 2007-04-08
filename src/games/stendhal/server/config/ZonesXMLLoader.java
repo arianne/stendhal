@@ -12,6 +12,7 @@ package games.stendhal.server.config;
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.config.ZoneXMLLoader.XMLZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.EntityFactoryHelper;
 import games.stendhal.server.entity.portal.Portal;
@@ -196,21 +197,35 @@ public class ZonesXMLLoader extends DefaultHandler {
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalRPZone zone = load(world, zdesc);
-
-				/*
-				 * Setup Descriptors
-				 */
-				Iterator<ZoneSetupDesc> diter = zdesc.getDescriptors();
-
-				while (diter.hasNext()) {
-					diter.next().doSetup(zone);
+				ZoneXMLLoader.XMLZone zonedata = zoneLoader.load("data/maps/" + zdesc.getFile());
+				if (verifyMap(zdesc, zonedata)) {
+					StendhalRPZone zone = load(world, zdesc, zonedata);
+	
+					/*
+					 * Setup Descriptors
+					 */
+					Iterator<ZoneSetupDesc> diter = zdesc.getDescriptors();
+	
+					while (diter.hasNext()) {
+						diter.next().doSetup(zone);
+					}
 				}
 			} catch (Exception ex) {
 				logger.error("Error loading zone: " + name, ex);
 			}
 		}
 	}
+
+	private static final String[] REQUIRED_LAYERS = {"0_floor", "1_terrain", "2_object", "3_roof", "collision", "protection"};
+	private boolean verifyMap(ZoneDesc zdesc, XMLZone zonedata) {
+		for (String layer : REQUIRED_LAYERS) {
+			if (zonedata.getLayer(layer) == null) {
+				logger.error("Required layer " + layer + " missing in zone " + zdesc.getFile());
+				return false;
+			}
+		}
+		return true;
+    }
 
 	/**
 	 * Configure a zone.
@@ -349,31 +364,19 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 *
 	 */
-	protected StendhalRPZone load(RPWorld world, ZoneDesc desc) throws SAXException, IOException {
-		String name;
-
-		name = desc.getName();
-
+	protected StendhalRPZone load(RPWorld world, ZoneDesc desc, ZoneXMLLoader.XMLZone zonedata) throws SAXException, IOException {
+		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
-		ZoneXMLLoader.XMLZone zonedata = zoneLoader.load("data/maps/" + desc.getFile());
-
 		zone.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
-
 		zone.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
-
 		zone.addLayer(name + "_2_object", zonedata.getLayer("2_object"));
-
 		zone.addLayer(name + "_3_roof", zonedata.getLayer("3_roof"));
-
 		byte[] layer = zonedata.getLayer("4_roof_add");
-
 		if (layer != null) {
 			zone.addLayer(name + "_4_roof_add", layer);
 		}
-
 		zone.addCollisionLayer(name + "_collision", zonedata.getLayer("collision"));
-
 		zone.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
 
 
