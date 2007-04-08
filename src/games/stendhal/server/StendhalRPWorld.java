@@ -270,18 +270,6 @@ public class StendhalRPWorld extends RPWorld {
 		area.addCollisionLayer(name + "_collision", xmlzone.getLayer("collision"));
 		area.addProtectionLayer(name + "_protection", xmlzone.getLayer("protection"));
 
-		/*
-		 try {
-		 String filename = "/home/brummermann/workspace/HEAD/stendhal/tiled/world/" + content + ".png";
-		 InputStream is = new FileInputStream(filename);
-		 byte[] mapData = new byte[(int) new File(filename).length()];
-		 is.read(mapData);
-		 area.addMap(name + "_map", mapData);
-		 } catch (Exception e) {
-		 logger.error(e, e);
-		 }
-		 */
-
 		if (xmlzone.isInterior()) {
 			area.setPosition();
 		} else {
