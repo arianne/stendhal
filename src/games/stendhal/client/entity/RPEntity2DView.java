@@ -91,32 +91,35 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 	//
 
 	/**
-	 * Populate the named animations.
+	 * Populate named animations.
 	 *
+	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
+	 * @param	width		The image width in tile units.
+	 * @param	height		The image height in tile units.
 	 */
-	protected void buildAnimations(final RPObject object, double width, double height) {
+	public void buildAnimations(Map<String, Sprite []> map, final RPObject object, double width, double height) {
 		SpriteStore store = SpriteStore.get();
 
 
 		Sprite tiles = getAnimationSprite(object);
 
-		animations.put("move_up",
+		map.put("move_up",
 			store.getAnimatedSprite(tiles, 0, 4, width, height));
 
-		animations.put("move_right",
+		map.put("move_right",
 			store.getAnimatedSprite(tiles, 1, 4, width, height));
 
-		animations.put("move_down",
+		map.put("move_down",
 			store.getAnimatedSprite(tiles, 2, 4, width, height));
 
-		animations.put("move_left",
+		map.put("move_left",
 			store.getAnimatedSprite(tiles, 3, 4, width, height));
 
-		animations.get("move_up")[3] = animations.get("move_up")[1];
-		animations.get("move_right")[3] = animations.get("move_right")[1];
-		animations.get("move_down")[3] = animations.get("move_down")[1];
-		animations.get("move_left")[3] = animations.get("move_left")[1];
+		map.get("move_up")[3] = map.get("move_up")[1];
+		map.get("move_right")[3] = map.get("move_right")[1];
+		map.get("move_down")[3] = map.get("move_down")[1];
+		map.get("move_left")[3] = map.get("move_left")[1];
 	}
 
 
@@ -137,13 +140,14 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 	//
 
 	/**
-	 * Populate the named animations.
+	 * Populate named animations.
 	 *
+	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
 	 */
 	@Override
-	protected void buildAnimations(final RPObject object) {
-		buildAnimations(object, 1.5, 2.0);
+	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
+		buildAnimations(map, object, 1.5, 2.0);
 	}
 
 

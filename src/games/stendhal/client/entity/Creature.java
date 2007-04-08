@@ -288,6 +288,6 @@ public abstract class Creature extends RPEntity {
 	 * @return	The on-screen view of this entity.
 	 */
 	protected Entity2DView createView() {
-		return new Creature2DView(this);
+		return new Creature2DView(this, 1.5, 2.0);
 	}
 }

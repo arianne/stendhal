@@ -79,7 +79,7 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * The "view" portion of an entity.
 	 */
-	private Entity2DView	view;
+	protected Entity2DView	view;
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling
@@ -133,7 +133,6 @@ public final byte[] ID_Token = new byte[0];
 	public double getY() {
 		return y;
 	}
-
 
 	public double distance(final User user) {
 		return (user.getX() - x) * (user.getX() - x)

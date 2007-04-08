@@ -190,20 +190,6 @@ public abstract class RPEntity extends AnimatedEntity {
 		return sprite;
 	}
 
-	@Override
-	protected void buildAnimations(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
-		sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 4, 1.5, 2));
-		sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")), 1, 4, 1.5, 2));
-		sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")), 2, 4, 1.5, 2));
-		sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")), 3, 4, 1.5, 2));
-
-		sprites.get("move_up")[3] = sprites.get("move_up")[1];
-		sprites.get("move_right")[3] = sprites.get("move_right")[1];
-		sprites.get("move_down")[3] = sprites.get("move_down")[1];
-		sprites.get("move_left")[3] = sprites.get("move_left")[1];
-	}
 
 	@Override
 	protected Sprite defaultAnimation() {

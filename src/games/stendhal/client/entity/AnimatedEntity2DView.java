@@ -78,12 +78,14 @@ public class AnimatedEntity2DView extends Entity2DView {
 	//
 
 	/**
-	 * Populate the named animations.
+	 * Populate named animations.
 	 *
+	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
 	 */
-	protected void buildAnimations(RPObject object) {
+	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
 		// TEMP - eventually make abstract
+		// public for now for AnimatedEntity to use
 	}
 
 
@@ -142,7 +144,7 @@ public class AnimatedEntity2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final RPObject object) {
-		buildAnimations(object);
+		buildAnimations(animations, object);
 
 		sprite = getDefaultSprite();
 	}

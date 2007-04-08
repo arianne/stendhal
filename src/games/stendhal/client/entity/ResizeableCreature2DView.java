@@ -30,7 +30,7 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 * @param	creature	The entity to render.
 	 */
 	public ResizeableCreature2DView(final ResizeableCreature creature) {
-		super(creature);
+		super(creature, 1.5, 2.0);
 
 		this.creature = creature;
 	}

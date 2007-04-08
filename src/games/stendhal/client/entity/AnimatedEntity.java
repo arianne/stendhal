@@ -41,7 +41,9 @@ public abstract class AnimatedEntity extends Entity {
 	/** This method fills the sprites map 
 	 * @param object
 	 */
-	protected abstract void buildAnimations(RPObject object);
+	protected void buildAnimations(RPObject object) {
+		((AnimatedEntity2DView) view).buildAnimations(sprites, object);
+	}
 
 	/** This method sets the default animation */
 	protected Sprite defaultAnimation() {

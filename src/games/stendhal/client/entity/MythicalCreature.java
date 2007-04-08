@@ -61,6 +61,6 @@ public class MythicalCreature extends Creature {
 	 * @return	The on-screen view of this entity.
 	 */
 	protected Entity2DView createView() {
-		return new MythicalCreature2DView(this);
+		return new Creature2DView(this, 6.0, 8.0);
 	}
 }

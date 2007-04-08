@@ -33,16 +33,31 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	private Creature	creature;
 
+	/*
+	 * The drawn height.
+	 */
+	private double		height;
+
+	/*
+	 * The drawn width.
+	 */
+	private double		width;
+
+
 
 	/**
 	 * Create a 2D view of a creature.
 	 *
 	 * @param	creature	The entity to render.
+	 * @param	width		The drawn width in tile units.
+	 * @param	height		The drawn height in tile units.
 	 */
-	public Creature2DView(final Creature creature) {
+	public Creature2DView(final Creature creature, double width, double height) {
 		super(creature);
 
 		this.creature = creature;
+		this.width = width;
+		this.height = height;
 	}
 
 
@@ -64,32 +79,12 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
-	/**
-	 * Get the full tile set for this creature.
-	 *
-	 *
-	 */
-	protected Sprite getAnimationSprite(final RPObject object) {
-		String name;
-
-		name = object.get("class");
-
-		if (object.has("subclass")) {
-			name += "/" + object.get("subclass");
-		}
-
-		SpriteStore store = SpriteStore.get();
-
-		return store.getSprite(translate(name));
-	}
-
-
 	//
 	// RPEntity2DView
 	//
 
 	/**
-	 * Get the full tile set for this creature.
+	 * Get the full directional animation tile set for this entity.
 	 *
 	 * @param	object		The object to get animations for.
 	 *
@@ -104,9 +99,7 @@ public class Creature2DView extends RPEntity2DView {
 			name += "/" + object.get("subclass");
 		}
 
-		SpriteStore store = SpriteStore.get();
-
-		return store.getSprite(translate(name));
+		return SpriteStore.get().getSprite(translate(name));
 	}
 
 
@@ -121,7 +114,7 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
+		return new Rectangle.Double(getX(), getY(), width, height);
 	}
 
 

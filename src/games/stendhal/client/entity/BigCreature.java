@@ -61,6 +61,6 @@ public class BigCreature extends Creature {
 	 * @return	The on-screen view of this entity.
 	 */
 	protected Entity2DView createView() {
-		return new BigCreature2DView(this);
+		return new Creature2DView(this, 2.0, 2.0);
 	}
 }
