@@ -106,10 +106,12 @@ public class ChatAction implements ActionListener {
 
 		if (action.has("target") && action.has("text")) {
 			String text = action.get("text").trim();
-			String message = player.getName() + " tells you: " + text;
+			String message;
 
 			// find the target player
+			String senderName = player.getName();
 			String receiverName = action.get("target");
+
 			Player receiver = StendhalRPRuleProcessor.get().getPlayer(receiverName);
 			if (receiver == null) {
 				player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently active.");
@@ -117,8 +119,16 @@ public class ChatAction implements ActionListener {
 				return;
 			}
 
+			if(receiverName.equals("postman")) {
+				// HACK: Don't risk breaking postman messages
+				message = player.getName() + " tells you: " + text;
+			} else if(senderName.equals(receiverName)) {
+				message = "You mutter to yourself: " + text;
+			} else {
+				message = player.getName() + " tells " + receiverName + ": " + text;
+			}
+
 			// HACK: extract sender from postman messages
-			String senderName = player.getName();
 			StringTokenizer st = new StringTokenizer(text, " ");
 			if (senderName.equals("postman") && (st.countTokens() > 2)) {
 				String temp = st.nextToken();
@@ -147,7 +157,10 @@ public class ChatAction implements ActionListener {
 
 			// transmit the message
 			receiver.sendPrivateText(message);
-			player.sendPrivateText("You tell " + receiver.getName() + ": " + text);
+
+			if(!senderName.equals(receiverName)) {
+				player.sendPrivateText("You tell " + receiver.getName() + ": " + text);
+			}
 
 			/*
 			 * Handle /away messages
