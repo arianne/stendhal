@@ -11,6 +11,7 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -67,6 +68,22 @@ public class NPC2DView extends RPEntity2DView {
 			logger.error("Cannot build animations", e);
 			return store.getSprite(translate(clazz));
 		}
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
+		buildAnimations(map, object, 1.5, 2.0);
 	}
 
 

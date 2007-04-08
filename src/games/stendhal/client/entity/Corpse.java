@@ -91,11 +91,6 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	// return (entityContainer != null) && !contentWindow.isClosed();
 	// }
 
-	@Override
-	public int getZIndex() {
-		return 5500;
-	}
-
 	public void setInspector(final Inspector inspector) {
 		_inspector = inspector;
 

@@ -51,47 +51,45 @@ public class Player extends RPEntity {
 	}
 
 
-	@Override
-	protected void buildAnimations(final RPObject base) {
-		SpriteStore store = SpriteStore.get();
-
-		Sprite tempSprite;
-
-		try {
-			if (base.has("outfit_org")) {
-				outfitOrg = base.getInt("outfit_org");
-			} else {
-				outfitOrg = 0;
-			}
-			if ((outfit == base.getInt("outfit")) && (outfit != 0)) {
-				// We avoid creating again the outfit if it is already done.
-				// Save CPU cycles.
-				return;
-			}
-			outfit = base.getInt("outfit");
-			tempSprite = getOutfitSprite(store, base);
-		} catch (Exception e) {
-			logger.error("cannot build Animations", e);
-			// use default outfit
-			base.put("outfit", 0);
-			tempSprite = getOutfitSprite(store, base);
-		}
-
-		sprites.put("move_up", store.getAnimatedSprite(tempSprite, 0, 4, 1.5, 2));
-		sprites.put("move_right", store.getAnimatedSprite(tempSprite, 1, 4, 1.5, 2));
-		sprites.put("move_down", store.getAnimatedSprite(tempSprite, 2, 4, 1.5, 2));
-		sprites.put("move_left", store.getAnimatedSprite(tempSprite, 3, 4, 1.5, 2));
-
-		sprites.get("move_up")[3] = sprites.get("move_up")[1];
-		sprites.get("move_right")[3] = sprites.get("move_right")[1];
-		sprites.get("move_down")[3] = sprites.get("move_down")[1];
-		sprites.get("move_left")[3] = sprites.get("move_left")[1];
-	}
+//	@Override
+//	protected void buildAnimations(final RPObject base) {
+//		SpriteStore store = SpriteStore.get();
+//
+//		Sprite tempSprite;
+//
+//		try {
+//			if (base.has("outfit_org")) {
+//				outfitOrg = base.getInt("outfit_org");
+//			} else {
+//				outfitOrg = 0;
+//			}
+//			if ((outfit == base.getInt("outfit")) && (outfit != 0)) {
+//				// We avoid creating again the outfit if it is already done.
+//				// Save CPU cycles.
+//				return;
+//			}
+//			outfit = base.getInt("outfit");
+//			tempSprite = getOutfitSprite(store, base);
+//		} catch (Exception e) {
+//			logger.error("cannot build Animations", e);
+//			// use default outfit
+//			base.put("outfit", 0);
+//			tempSprite = getOutfitSprite(store, base);
+//		}
+//
+//		sprites.put("move_up", store.getAnimatedSprite(tempSprite, 0, 4, 1.5, 2));
+//		sprites.put("move_right", store.getAnimatedSprite(tempSprite, 1, 4, 1.5, 2));
+//		sprites.put("move_down", store.getAnimatedSprite(tempSprite, 2, 4, 1.5, 2));
+//		sprites.put("move_left", store.getAnimatedSprite(tempSprite, 3, 4, 1.5, 2));
+//
+//		sprites.get("move_up")[3] = sprites.get("move_up")[1];
+//		sprites.get("move_right")[3] = sprites.get("move_right")[1];
+//		sprites.get("move_down")[3] = sprites.get("move_down")[1];
+//		sprites.get("move_left")[3] = sprites.get("move_left")[1];
+//	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-
-
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("outfit")) {
@@ -131,7 +129,6 @@ public class Player extends RPEntity {
 	}
 
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-
 		super.onChangedRemoved(base, diff);
 
 		if (diff.has("away")) {
@@ -156,13 +153,12 @@ public class Player extends RPEntity {
 				rpaction.put("target", getName());
 				at.send(rpaction);
 				break;
+
 			default:
 				super.onAction(at, params);
 				break;
 		}
-
 	}
-
 
 
 	/*
@@ -174,17 +170,15 @@ public class Player extends RPEntity {
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 
-
-			list.add(ActionType.ADD_BUDDY.getRepresentation());
-
-
+		list.add(ActionType.ADD_BUDDY.getRepresentation());
 	}
 
-	@Override
-	public void onMove(final int x, final int y, final Direction direction, final double speed) {
-		super.onMove(x, y, direction, speed);
 
-	}
+//	@Override
+//	public void onMove(final int x, final int y, final Direction direction, final double speed) {
+//		super.onMove(x, y, direction, speed);
+//
+//	}
 
 
 	//

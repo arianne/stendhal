@@ -1008,12 +1008,12 @@ public abstract class RPEntity extends AnimatedEntity {
 	// Entity
 	//
 
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	protected Entity2DView createView() {
-		return new RPEntity2DView(this);
-	}
+//	/**
+//	 * Transition method. Create the screen view for this entity.
+//	 *
+//	 * @return	The on-screen view of this entity.
+//	 */
+//	protected Entity2DView createView() {
+//		return new RPEntity2DView(this);
+//	}
 }

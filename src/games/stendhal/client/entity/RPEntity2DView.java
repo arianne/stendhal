@@ -28,7 +28,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of an RP entity.
  */
-public class RPEntity2DView extends AnimatedEntity2DView {
+public abstract class RPEntity2DView extends AnimatedEntity2DView {
 	/**
 	 * Logger.
 	 */
@@ -176,19 +176,19 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
-	/**
-	 * Populate named animations.
-	 *
-	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
-	 */
-	@Override
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
-		buildAnimations(map, object, 1.5, 2.0);
-	}
+//	/**
+//	 * Populate named animations.
+//	 *
+//	 * @param	map		The map to populate.
+//	 * @param	object		The entity to load animations for.
+//	 */
+//	@Override
+//	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
+//		buildAnimations(map, object, 1.5, 2.0);
+//	}
 
 
 	/**
@@ -269,7 +269,7 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 			double sy = rect.getMaxY();
 
 			if (frameBladeStrike < 3) {
-				screen.draw(bladeStrikeSprites.get(entity.getAnimation())[frameBladeStrike], sx - 1.5, sy - 3.3);
+				screen.draw(bladeStrikeSprites.get(getState())[frameBladeStrike], sx - 1.5, sy - 3.3);
 			} else {
 				entity.doneStriking();
 				frameBladeStrike = 0;

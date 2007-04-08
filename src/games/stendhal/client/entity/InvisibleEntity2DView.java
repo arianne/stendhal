@@ -3,18 +3,18 @@
  *
  * $Id$
  */
+
 package games.stendhal.client.entity;
 
 //
 //
 
+import games.stendhal.client.GameScreen;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import games.stendhal.client.GameScreen;
-
-//
-//
+import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of a portal.
@@ -33,6 +33,16 @@ public class InvisibleEntity2DView extends Entity2DView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 *
+	 * @param	object		An entity object.
+	 */
+	@Override
+	protected void buildRepresentation(final RPObject object) {
+	}
+
 
 	/**
 	 * Get the 2D area that is drawn in.

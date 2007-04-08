@@ -8,11 +8,12 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-//
-//
+import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an item.
@@ -31,6 +32,27 @@ public class Spell2DView extends Entity2DView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 *
+	 * @param	object		An entity object.
+	 */
+	@Override
+	protected void buildRepresentation(final RPObject object) {
+		String name;
+
+
+		name = object.get("class");
+
+		if (object.has("subclass")) {
+			name += "/" + object.get("subclass");
+		}
+
+		sprite = SpriteStore.get().getSprite(
+			"data/sprites/spells/" + name + ".png");
+	}
+
 
 	/**
 	 * Get the 2D area that is drawn in.
