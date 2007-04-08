@@ -34,9 +34,9 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 	
 	private double getSuccessProbability(Player player) {
 		if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
-			return 0.4;
+			return 0.2;
 		} else {
-			return 0.04;
+			return 0.05;
 		}
 	}
 

@@ -369,10 +369,10 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone> 
    
-   <zone name="int_ados_fishermans_hut" file="int_ados_fishermans_hut.xstend">
+   <zone name="int_ados_fishermans_hut_west" file="int_ados_fishermans_hut_west.xstend">
     <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC"/>
-    <portal x="8" y="14" ref="entrance_fishermans_hut">
-     <destination zone="0_ados_city" ref="fishermans_hut_entrance"/>
+    <portal x="8" y="14" ref="entrance_fishermans_hut_west">
+     <destination zone="0_ados_city" ref="fishermans_hut_west_entrance"/>
     </portal>
    </zone>
    
@@ -403,8 +403,8 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
-    <portal x="67" y="65" ref="fishermans_hut_entrance">
-     	<destination zone="int_ados_fishermans_hut" ref="entrance_fishermans_hut"/>
+    <portal x="67" y="65" ref="fishermans_hut__west_entrance">
+     	<destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west"/>
     </portal>
    
    

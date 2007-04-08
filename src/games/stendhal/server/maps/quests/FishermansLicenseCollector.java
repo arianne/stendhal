@@ -20,7 +20,7 @@ import java.util.List;
  * - The player must bring all kinds of fishes to the fisherman 
  *
  * REWARD:
- * - 500 XP
+ * - 2000 XP
  * - The player gets a fisherman's license.  
  *
  * REPETITIONS:
@@ -173,7 +173,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 									if (missing.size() > 0) {
 										engine.say("This fish is looking very good! Do you have another one for me?");
 									} else {
-										player.addXP(500);
+										player.addXP(2000);
 										engine.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
 										player.setQuest(QUEST_SLOT, "done");
 										player.notifyWorldAboutChanges();
