@@ -93,6 +93,12 @@ Southeast: Farmhouse
   <portal x="86" y="26" ref="jail_entrance">
    <destination zone="-1_semos_jail" ref="entrance"/>
   </portal>
+  
+  <entity x="53" y="26">
+    <implementation class-name="games.stendhal.server.entity.FishSource">
+     <parameter name="species">roach</parameter>
+    </implementation>
+  </entity>
  </zone>
 
  <zone name="0_semos_village_w" level="0" x="500000" y="500000" file="0_semos_village_w.xstend">
