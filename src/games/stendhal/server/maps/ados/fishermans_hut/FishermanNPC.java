@@ -47,10 +47,10 @@ public class FishermanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello !");
-				addJob("I'm a teacher for fishermen. Poeple come to me to take their #exams.");
+				addGreeting("Hello greenhorn!");
+				addJob("I'm a teacher for fishermen. People come to me to take their #exams.");
 				addHelp("If you explore Faiumoni you will find several excellent fishing spots.");
-				addGoodbye("Bye");
+				addGoodbye("Goodbye.");
 			}
 		};
 		npcs.add(fisherman);

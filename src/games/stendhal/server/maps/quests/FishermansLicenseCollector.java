@@ -10,7 +10,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-/**QUEST: Fisherman's license Collector
+/**
+ * QUEST: Fisherman's license Collector
  * PARTICIPANTS:
  * - Santiago the fisherman
  *  
@@ -24,15 +25,21 @@ import java.util.List;
  *
  * REPETITIONS:
  * - No repetitions.
+ * 
+ * @author dine
  **/
+
 public class FishermansLicenseCollector extends AbstractQuest {
 
-	static final String QUEST_SLOT = "fishermans_license2";
+	public static final String QUEST_SLOT = "fishermans_license2";
 
 	private static final List<String> neededFish = Arrays.asList(
-		"trout", // fairly rare from glow_monster in haunted house
-		"perch",      // rare from monk on mountain
-		"mackerel" // rare from devil_queen on mountain
+		"trout", 	// 
+		"perch",    // 
+		"mackerel",	// 
+		"cod",      // 
+		"roach" 	// 
+	
 	);
 	
 	/**
@@ -95,10 +102,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_2_OFFERED,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"It's okay, then you can excercise some more.",
+				"It's okay, then you can excercise a bit more.",
 				null
 				);
 
@@ -141,7 +148,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.QUESTION_2,
-				"What did you find?",
+				"Which fish did you catch?",
 				null);
 		
 		for (String fish: neededFish) {
@@ -162,7 +169,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 									// check if the player has brought all fish
 									missing = missingFish(player, true);
 									if (missing.size() > 0) {
-										engine.say("Thank you very much! Do you have another fish for me?");
+										engine.say("This fish is looking very good! Do you have another one for me?");
 									} else {
 										player.addXP(500);
 										engine.say("You did a great job! Now you are a real fisherman and your chance to catch fish will increase!");
@@ -173,7 +180,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 									engine.say("Don't try to cheat! I know that you don't have " + Grammar.a_noun(text) + ". What do you really have for me?");
 								}
 							} else {
-								engine.say("I already have that one. Do you have other fish for me?");
+								engine.say("You cannot cheat in this exam! I know that you already gave this fish to me. Do you have other fish for me?");
 							}
 						}
 					});
@@ -198,7 +205,7 @@ public class FishermansLicenseCollector extends AbstractQuest {
 					}
 				},
 				ConversationStates.ATTENDING,
-				"Welcome back. I hope you were not lazy and bring me some other fish #species.",
+				"Welcome back. I hope you were not lazy and that you brought me some other fish #species.",
 				null);
 		
 		// player returns after finishing the quest

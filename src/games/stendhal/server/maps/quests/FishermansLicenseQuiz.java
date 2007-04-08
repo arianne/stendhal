@@ -33,11 +33,20 @@ import java.util.List;
  * REPETITIONS:
  * - If the player has failed the quiz, he can retry after 24 hours.
  * - After passing the quiz, no more repetitions are possible.
+ * 
+ * @author dine
  */
+
 public class FishermansLicenseQuiz extends AbstractQuest {
 	static final String QUEST_SLOT = "fishermans_license1";
 	
-	private List<String> speciesList = Arrays.asList("trout", "perch", "mackerel");
+	private List<String> speciesList = Arrays.asList(
+		"trout", 
+		"perch", 
+		"mackerel", 
+		"cod", 
+		"roach"
+	);
 	
 	private int currentSpeciesNo;
 
@@ -191,7 +200,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 								npc.setCurrentState(ConversationStates.QUESTION_1);
 							}
 						} else {
-							npc.say("No, it's a " + getCurrentSpecies() + ". Unfortunatelly you have failed, but you can try again tomorrow.");
+							npc.say("No, that's wrong. Unfortunatelly you have failed, but you can try again tomorrow.");
 							cleanUpTable();
 							// remember the current time, as you can't do the
 							// quiz twice a day.

@@ -8,6 +8,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.maps.quests.FishermansLicenseCollector;
 
 import java.awt.geom.Rectangle2D;
 
@@ -32,10 +33,10 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 	private String itemName;
 	
 	private double getSuccessProbability(Player player) {
-		if (player.isQuestCompleted("hat_monogenes")) {
+		if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 			return 0.4;
 		} else {
-			return 0.1;
+			return 0.04;
 		}
 	}
 
