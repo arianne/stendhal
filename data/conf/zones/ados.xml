@@ -369,6 +369,13 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone> 
    
+   <zone name="int_ados_fishermans_hut" file="int_ados_fishermans_hut.xstend">
+    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC"/>
+    <portal x="8" y="14" ref="entrance_fishermans_hut">
+     <destination zone="0_ados_city" ref="fishermans_hut_entrance"/>
+    </portal>
+   </zone>
+   
    <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="0_ados_forest_w2.xstend">
    </zone>
    
@@ -390,7 +397,11 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <implementation class-name="games.stendhal.server.entity.FishSource">
      <parameter name="species">trout</parameter>
     </implementation>
+    <portal x="67" y="65" ref="fishermans_hut_entrance">
+     <destination zone="int_ados_fishermans_hut" ref="entrance_fishermans_hut"/>
+    </portal>
    </entity>
+   
    </zone>
    
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
