@@ -45,7 +45,10 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		"perch", 
 		"mackerel", 
 		"cod", 
-		"roach"
+		"roach",
+		"char",
+		"clownfish"
+		//"surgeonfish"
 	);
 	
 	private int currentSpeciesNo;
