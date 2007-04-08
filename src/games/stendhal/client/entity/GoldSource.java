@@ -12,38 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /**
  * @author daniel
  *
  */
 public class GoldSource extends AnimatedEntity {
-	private static final int FRAME_COUNT = 32;
-
-	@Override
-	protected void buildAnimations(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
-		for (int i = 0; i < FRAME_COUNT; i++) {
-			sprites.put(Integer.toString(i), store.getAnimatedSprite(translate("gold_source"), i, 1, 1, 1));
-		}
-	}
-
-	@Override
-	protected Sprite defaultAnimation() {
-		animation = "0";
-		return sprites.get("0")[0];
-	}
-
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
@@ -75,15 +54,6 @@ public class GoldSource extends AnimatedEntity {
 				break;
 		}
 
-	}
-
-	@Override
-	protected String getAnimation() {
-		int i = Integer.parseInt(animation);
-		i = (i + 1) % FRAME_COUNT;
-		animation = Integer.toString(i);
-
-		return animation;
 	}
 
 

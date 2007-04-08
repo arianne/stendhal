@@ -31,11 +31,6 @@ public class AnimatedEntity2DView extends Entity2DView {
 	private static final Logger logger = Log4J.getLogger(AnimatedEntity2DView.class);
 
 	/**
-	 * The current named animation.
-	 */
-	protected String	animation;
-
-	/**
 	 * The animated entity this view is for.
 	 */
 	private AnimatedEntity	entity;
@@ -74,11 +69,11 @@ public class AnimatedEntity2DView extends Entity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// <AnimatedStateEntity2DView>
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state animations.
 	 *
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
@@ -101,6 +96,33 @@ public class AnimatedEntity2DView extends Entity2DView {
 	}
 
 
+	protected String getState() {
+		return entity.getState();
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Get the current animation set.
+	 *
+	 *
+	 */
+	public Sprite [] getAnimation() {
+		String state = getState();
+		Sprite[] anim = getAnimation(state);
+
+		if (anim == null) {
+			logger.error("getSprites() returned null for " + state);
+			return new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") };
+		}
+
+		return anim;
+	}
+
+
 	/**
 	 * This method gets the default image.
 	 *
@@ -111,14 +133,13 @@ public class AnimatedEntity2DView extends Entity2DView {
 	}
 
 
-	/** Returns the next Sprite we have to show */
+	/**
+	 * Get the next sprite we have to show.
+	 *
+	 *
+	 */
 	private Sprite nextFrame() {
-		Sprite[] anim = getAnimation(entity.getState());
-
-		if (anim == null) {
-			logger.error("getSprites() returned null for " + entity.getAnimation());
-			return SpriteStore.get().getSprite("data/sprites/failsafe.png");
-		}
+		Sprite[] anim = getAnimation();
 
 		if (frame >= anim.length) {
 			frame = 0;
