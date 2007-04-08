@@ -3,14 +3,11 @@
  *
  * $Id$
  */
+
 package games.stendhal.client.entity;
 
 //
 //
-
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.stendhal;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,8 +16,12 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-//
-//
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+import games.stendhal.client.stendhal;
 
 /**
  * The 2D view of an entity.
@@ -30,6 +31,12 @@ public class Entity2DView { // implements EntityView {
 	 * The entity this view is for
 	 */
 	private Entity	entity;
+
+
+	/**
+	 * The entity image (or current one at least).
+	 */
+	protected Sprite sprite;
 
 
 	/**
@@ -45,6 +52,17 @@ public class Entity2DView { // implements EntityView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 *
+	 * @param	object		An entity object.
+	 */
+	protected void buildRepresentation(final RPObject object) {
+		sprite = SpriteStore.get().getSprite(
+			translate(object.get("type")));
+	}
+
 
 	/**
 	 * Get the 2D area that is drawn in.
@@ -64,7 +82,9 @@ public class Entity2DView { // implements EntityView {
 	 */
 	protected Sprite getSprite() {
 		// XXX - Eventually manage own sprite, but for now
-		return entity.getSprite();
+		sprite = entity.getSprite();
+
+		return sprite;
 	}
 
 
@@ -100,6 +120,17 @@ public class Entity2DView { // implements EntityView {
 	public int getZIndex() {
 		// XXX - Eventually abstract, but for transition
 		return 10000;
+	}
+
+
+	/**
+	 * Get the resource path for a sprite type.
+	 *
+	 *
+	 *
+	 */
+	protected static String translate(final String type) {
+		return "data/sprites/" + type + ".png";
 	}
 
 

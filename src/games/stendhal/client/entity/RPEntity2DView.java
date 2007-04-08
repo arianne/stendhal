@@ -8,10 +8,6 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -20,12 +16,14 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-
 import org.apache.log4j.Logger;
 
-//
-//
+import marauroa.common.Log4J;
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of an RP entity.
@@ -85,6 +83,37 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 		super(entity);
 
 		this.entity = entity;
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	@Override
+	protected void buildAnimations(final RPObject object) {
+		SpriteStore store = SpriteStore.get();
+
+		animations.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 4, 1.5, 2));
+		animations.put("move_right", store.getAnimatedSprite(translate(object.get("type")), 1, 4, 1.5, 2));
+		animations.put("move_down", store.getAnimatedSprite(translate(object.get("type")), 2, 4, 1.5, 2));
+		animations.put("move_left", store.getAnimatedSprite(translate(object.get("type")), 3, 4, 1.5, 2));
+
+		animations.get("move_up")[3] = animations.get("move_up")[1];
+		animations.get("move_right")[3] = animations.get("move_right")[1];
+		animations.get("move_down")[3] = animations.get("move_down")[1];
+		animations.get("move_left")[3] = animations.get("move_left")[1];
+	}
+
+
+	/**
+	 * This method gets the default image.
+	 *
+	 * @return	The default sprite, or <code>null</code>.
+	 */
+	@Override
+	protected Sprite getDefaultSprite() {
+		return getAnimation("move_up")[0];
 	}
 
 

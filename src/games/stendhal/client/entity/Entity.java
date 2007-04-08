@@ -387,24 +387,6 @@ public final byte[] ID_Token = new byte[0];
 
 	public void draw(final GameScreen screen) {
 		view.draw(screen);
-
-		if (stendhal.SHOW_COLLISION_DETECTION) {
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = getArea();
-			g2d.setColor(Color.green);
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
-
-			g2d = screen.expose();
-			rect = getDrawedArea();
-			g2d.setColor(Color.blue);
-			p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-			        (int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
-		}
 	}
 
 	public void move(final long delta) {

@@ -17,6 +17,8 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
+import marauroa.common.game.RPObject;
+
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -62,6 +64,26 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
+	/**
+	 * Get the full tile set for this creature.
+	 *
+	 *
+	 */
+	protected Sprite getAnimationSprite(final RPObject object) {
+		String name;
+
+		name = object.get("class");
+
+		if (object.has("subclass")) {
+			name += "/" + object.get("subclass");
+		}
+
+		SpriteStore store = SpriteStore.get();
+
+		return store.getSprite(translate(name));
+	}
+
+
 	//
 	// Entity2DView
 	//
@@ -74,6 +96,11 @@ public class Creature2DView extends RPEntity2DView {
 	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
+	}
+
+
+	protected static String translate(final String type) {
+		return "data/sprites/monsters/" + type + ".png";
 	}
 
 

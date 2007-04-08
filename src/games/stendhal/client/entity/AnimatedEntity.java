@@ -32,10 +32,11 @@ public abstract class AnimatedEntity extends Entity {
 	/** actual animation */
 	protected String animation;
 
-
-	
-
-
+	/**
+	 * The current direction.
+	 * This (and other direction stuff) should be moved to sub-class.
+	 */
+	private Direction	direction;
 
 	/** This method fills the sprites map 
 	 * @param object
@@ -59,9 +60,17 @@ public abstract class AnimatedEntity extends Entity {
 		sprite = defaultAnimation();
 	}
 
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+
 	@Override
 	public void onMove(final int x, final int y, final Direction direction, final double speed) {
 		super.onMove(x, y, direction, speed);
+
+		this.direction = direction;
 
 		adjustAnimation(direction);
 	}
@@ -82,6 +91,13 @@ public abstract class AnimatedEntity extends Entity {
 				animation = "move_down";
 				break;
 		}
+	}
+
+	/**
+	 * Get the current entity state.
+	 */
+	public String getState() {
+		return getAnimation();
 	}
 
 	protected String getAnimation() {

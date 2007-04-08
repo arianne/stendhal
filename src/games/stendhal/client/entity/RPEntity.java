@@ -118,7 +118,6 @@ public abstract class RPEntity extends AnimatedEntity {
 	
 	/** Create a new game entity */
 	RPEntity()  {
-		super();
 		damageSprites = new LinkedList<Sprite>();
 		damageSpritesTimes = new LinkedList<Long>();
 		attackTarget = null;
