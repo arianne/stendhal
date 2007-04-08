@@ -35,9 +35,9 @@ import java.util.List;
  * - After passing the quiz, no more repetitions are possible.
  */
 public class FishermansLicenseQuiz extends AbstractQuest {
-	private static final String QUEST_SLOT = "fishermans_license1";
+	static final String QUEST_SLOT = "fishermans_license1";
 	
-	private List<String> speciesList = Arrays.asList("trout", "sword", "ham");
+	private List<String> speciesList = Arrays.asList("trout", "perch", "mackerel");
 	
 	private int currentSpeciesNo;
 
@@ -119,7 +119,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player.isQuestCompleted("fisherman_license2")) {
+						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("I don't have a task for you, and you already have a fisherman's license.");
 						} else {
 							npc.say("I don't need anything from you, but if you like, you can do an #exam to get a fisherman's license.");
@@ -135,7 +135,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						if (player.isQuestCompleted("fisherman_license2")) {
+						if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
 							npc.say("You have already got your fisherman's license.");
 						} else if (player.isQuestCompleted(QUEST_SLOT)) {
 							npc.say("Are you ready for the second part of your exam?");
