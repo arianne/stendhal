@@ -11,6 +11,11 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
+
+import marauroa.common.game.RPObject;
+
+import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of a sign.
@@ -29,6 +34,26 @@ public class Sign2DView extends Entity2DView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 *
+	 *
+	 */
+	@Override
+	protected void buildRepresentation(final RPObject object) {
+		String name;
+
+
+		if (object.has("class")) {
+			name = object.get("class");
+		} else {
+			name = "default";
+		}
+
+		sprite = SpriteStore.get().getSprite("data/sprites/signs/" + name + ".png");
+	}
+
 
 	/**
 	 * Get the 2D area that is drawn in.

@@ -11,6 +11,9 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
+
+import marauroa.common.game.RPObject;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
@@ -44,7 +47,7 @@ public class Sheep2DView extends RPEntity2DView {
 	/**
 	 * The entity this view is for.
 	 */
-	private Sheep	entity;
+	private Sheep	sheep;
 
 	private Sprite	ideaSprite;
 
@@ -62,12 +65,12 @@ public class Sheep2DView extends RPEntity2DView {
 	/**
 	 * Create a 2D view of a sheep.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param	sheep		The entity to render.
 	 */
-	public Sheep2DView(final Sheep entity) {
-		super(entity);
+	public Sheep2DView(final Sheep sheep) {
+		super(sheep);
 
-		this.entity = entity;
+		this.sheep = sheep;
 		ideaSprite = null;
 	}
 
@@ -82,7 +85,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 *
 	 */
 	protected Sprite getIdeaSprite() {
-		String idea= entity.getIdea();
+		String idea= sheep.getIdea();
 
 
 		if(idea == null) {
@@ -100,6 +103,67 @@ public class Sheep2DView extends RPEntity2DView {
 		} else {
 			return null;
 		}
+	}
+
+
+	//
+	// RPEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 * @param	width		The image width in tile units.
+	 * @param	height		The image height in tile units.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, final RPObject object, double width, double height) {
+		SpriteStore store = SpriteStore.get();
+
+
+		Sprite tiles = getAnimationSprite(object);
+
+		map.put("move_up",
+			store.getAnimatedSprite(tiles, 0, 3, width, height));
+
+		map.put("move_right",
+			store.getAnimatedSprite(tiles, 1, 3, width, height));
+
+		map.put("move_down",
+			store.getAnimatedSprite(tiles, 2, 3, width, height));
+
+		map.put("move_left",
+			store.getAnimatedSprite(tiles, 3, 3, width, height));
+
+		map.put("big_move_up",
+			store.getAnimatedSprite(tiles, 4, 3, width, height));
+
+		map.put("big_move_right",
+			store.getAnimatedSprite(tiles, 5, 3, width, height));
+
+		map.put("big_move_down",
+			store.getAnimatedSprite(tiles, 6, 3, width, height));
+
+		map.put("big_move_left",
+			store.getAnimatedSprite(tiles, 7, 3, width, height));
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
+
+	/**
+	 * Populate named animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
+		buildAnimations(map, object, 1.0, 1.0);
 	}
 
 
@@ -132,7 +196,7 @@ public class Sheep2DView extends RPEntity2DView {
 		super.draw(screen);
 
 		if (ideaSprite != null) {
-			Rectangle2D rect = entity.getArea();
+			Rectangle2D rect = sheep.getArea();
 			double sx = rect.getMaxX();
 			double sy = rect.getY();
 			screen.draw(ideaSprite, sx - 0.25, sy - 0.25);

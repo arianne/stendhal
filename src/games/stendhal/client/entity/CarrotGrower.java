@@ -5,9 +5,11 @@ import java.util.List;
 import marauroa.common.game.RPAction;
 
 public class CarrotGrower extends GrainField {
+	public CarrotGrower()  {
+		super(1, 1);
+	}
 
-	
-	
+
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 

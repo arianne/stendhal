@@ -135,6 +135,46 @@ public class RPEntity2DView extends AnimatedEntity2DView {
 	}
 
 
+	/**
+	 * Gets the outfit sprite for the given object.
+	 * 
+	 * The outfit is described by the object's "outfit" attribute.
+	 * It is an 8-digit integer of the form RRHHDDBB where RR is the
+	 * number of the hair graphics, HH for the head, DD for the dress,
+	 * and BB for the base.
+	 * 
+	 * @param	store		The sprite store
+	 * @param	object		The object. The outfit attribute needs
+	 *				to be set.
+	 *
+	 * @return	A sprite for the object
+	 */
+	protected Sprite getOutfitSprite(final SpriteStore store, final RPObject object) {
+		int outfit = object.getInt("outfit");
+
+		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
+		sprite = sprite.copy();
+		outfit /= 100;
+		if (outfit % 100 != 0) {
+			int dressIdx = outfit % 100;
+			Sprite dress = store.getSprite("data/sprites/outfit/dress_" + dressIdx + ".png");
+			dress.draw(sprite.getGraphics(), 0, 0);
+		}
+		outfit /= 100;
+
+		Sprite head = store.getSprite("data/sprites/outfit/head_" + outfit % 100 + ".png");
+		head.draw(sprite.getGraphics(), 0, 0);
+		outfit /= 100;
+
+		if (outfit % 100 != 0) {
+			Sprite hair = store.getSprite("data/sprites/outfit/hair_" + outfit % 100 + ".png");
+			hair.draw(sprite.getGraphics(), 0, 0);
+		}
+
+		return sprite;
+	}
+
+
 	//
 	// AnimatedEntity2DView
 	//

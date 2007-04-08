@@ -29,8 +29,6 @@ public class NPC extends RPEntity {
 
 	private static final Logger logger = Log4J.getLogger(NPC.class);
 
-	private int outfit;
-
 
 	public void init(final RPObject object){
 		super.init(object);
@@ -59,43 +57,6 @@ public class NPC extends RPEntity {
 		}
 	}
 
-	@Override
-	protected void buildAnimations(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
-		Sprite aspect;
-
-		try {
-			if (object.has("outfit")) {
-				// This NPC's outfit is built like a player's outfit,
-				// i.e. from separated graphic files for dress, hair, etc. 
-				if ((outfit == object.getInt("outfit")) && (outfit != 0)) {
-					// We avoid creating again the outfit if it is already
-					// done.
-					// Save CPU cycles.
-					return;
-				}
-				outfit = object.getInt("outfit");
-				aspect = getOutfitSprite(store, object);
-			} else {
-				// This NPC's outfit is read from a single file.
-				aspect = store.getSprite(translate("npc/" + object.get("class")));
-			}
-		} catch (Exception e) {
-			logger.error("cannot build Animations", e);
-			aspect = store.getSprite(translate(object.get("class")));
-		}
-
-		sprites.put("move_up", store.getAnimatedSprite(aspect, 0, 4, 1.5, 2));
-		sprites.put("move_right", store.getAnimatedSprite(aspect, 1, 4, 1.5, 2));
-		sprites.put("move_down", store.getAnimatedSprite(aspect, 2, 4, 1.5, 2));
-		sprites.put("move_left", store.getAnimatedSprite(aspect, 3, 4, 1.5, 2));
-
-		sprites.get("move_up")[3] = sprites.get("move_up")[1];
-		sprites.get("move_right")[3] = sprites.get("move_right")[1];
-		sprites.get("move_down")[3] = sprites.get("move_down")[1];
-		sprites.get("move_left")[3] = sprites.get("move_left")[1];
-	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {

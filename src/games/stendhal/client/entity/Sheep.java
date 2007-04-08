@@ -31,20 +31,6 @@ public class Sheep extends NPC {
 
 
 	@Override
-	protected void buildAnimations(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
-		sprites.put("move_up", store.getAnimatedSprite(translate(object.get("type")), 0, 3, 1, 1));
-		sprites.put("move_right", store.getAnimatedSprite(translate(object.get("type")), 1, 3, 1, 1));
-		sprites.put("move_down", store.getAnimatedSprite(translate(object.get("type")), 2, 3, 1, 1));
-		sprites.put("move_left", store.getAnimatedSprite(translate(object.get("type")), 3, 3, 1, 1));
-		sprites.put("big_move_up", store.getAnimatedSprite(translate(object.get("type")), 4, 3, 1, 1));
-		sprites.put("big_move_right", store.getAnimatedSprite(translate(object.get("type")), 5, 3, 1, 1));
-		sprites.put("big_move_down", store.getAnimatedSprite(translate(object.get("type")), 6, 3, 1, 1));
-		sprites.put("big_move_left", store.getAnimatedSprite(translate(object.get("type")), 7, 3, 1, 1));
-	}
-
-	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
 		super.onChangedAdded(base, diff);
 
@@ -101,11 +87,6 @@ public class Sheep extends NPC {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	@Override
-	protected Sprite defaultAnimation() {
-		animation = "move_up";
-		return sprites.get("move_up")[0];
-	}
 
 	@Override
 	public void onAction(final ActionType at, final String... params) {

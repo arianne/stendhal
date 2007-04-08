@@ -24,15 +24,19 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 public class GrainField extends AnimatedEntity {
-
 	private int width;
 
 	private int height;
 
 
-	GrainField()  {
-		width = 1;
-		height = 2;
+	public GrainField()  {
+		this(1, 2);
+	}
+
+
+	public GrainField(int width, int height)  {
+		this.width = width;
+		this.height = height;
 		animation = "0";
 	}
 
@@ -44,7 +48,6 @@ public class GrainField extends AnimatedEntity {
 	public double getWidth() {
 		return width;
 	}
-
 
 
 	public void init(final RPObject object) {

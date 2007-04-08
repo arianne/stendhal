@@ -38,7 +38,6 @@ import marauroa.common.game.RPObject;
  */
 public abstract class RPEntity extends AnimatedEntity {
 
-
 	private boolean showBladeStrike;
 	
 	public enum Resolution {
@@ -122,6 +121,7 @@ public abstract class RPEntity extends AnimatedEntity {
 		damageSpritesTimes = new LinkedList<Long>();
 		attackTarget = null;
 		lastAttacker = null;
+		animation = "move_up";
 	}
 
 	/**
@@ -190,12 +190,6 @@ public abstract class RPEntity extends AnimatedEntity {
 		return sprite;
 	}
 
-
-	@Override
-	protected Sprite defaultAnimation() {
-		animation = "move_up";
-		return sprites.get("move_up")[0];
-	}
 
 	// Called when entity says text
 	public void onTalk(final String text) {
