@@ -134,6 +134,9 @@ class PlayerRPClass {
                 
                 //The guild slot. Just one so player can't be in more than one (can be changed but thats what I'm going by)
                 player.add("guild", RPClass.STRING);
+		
+		// Does player have full ghostmode?
+		player.add("fullghostmode", RPClass.INT); // 0 for false, 1 for true
 
 	}
 
