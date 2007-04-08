@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="64" height="64" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="500064"/>
+  <property name="y" value="500000"/>
+ </properties>
+ <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
+  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
+  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
+  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
+  <image source="../../zelda_navigation_chipset.png"/>
+ </tileset>
+ <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
+  <image source="../../zelda_objects_chipset.png"/>
+ </tileset>
+ <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
+  <image source="../../zelda_collision_chipset.png"/>
+ </tileset>
+ <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
+  <image source="../../zelda_building_0_tileset.png"/>
+ </tileset>
+ <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
+  <image source="../../zelda_outside_2_chipset.png"/>
+ </tileset>
+ <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
+  <image source="../../zelda_interior_1_chipset.png"/>
+ </tileset>
+ <layer name="0_floor" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3azQkCMRBA4VzEGG3ABraW7dGTTViYFXhQCSxodsjkZ5InPPCgcb6MeNI757xi6yfNM7VmqjEXfvz425vx48ePHz9+/DpzrYK059YKf1/z1E5jL5Z2tp0JP/4a4cc/i/90iaX8x02a95Rzl9LH932P8O4Z4nOL/tTetNrjl37/JCZL/iWzHv17auXPOXcm/5I4Bz/+0f3/7uCXR+v10vDjx1/m7NL+6zldSb/kd3/E/Vvz30NsRn/v+78dbPlzP8/6/jX80vDjx1/HnzsrkeU8ERERERERUeNy/oMwQvjL+1/9tZ35AEAAAA==
+  </data>
+ </layer>
+ <layer name="1_terrain" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2aUWsUMRDHc62gbEtbW+G2FfwEvbMIreJHaGsVeh/BB/WjCFYf1AcRWxUEH8Q3FfELqK/SYvXZDyAtVZ+ccBtuOkySySZ7t21v4M/u3WWT/CaTSXb3lEpr86B24jpjTfeppeT9WopsS7czOxavVBbKH9vWkP9o8cfEO9dWav7Y/g3H/zD/Yrqq2bbqzl+l1Y1/UZ0sfi5XnCR+W5+G/P3lf5LFsZ+vIf+kQKadD8D/LUKfQBPCNiV9SsFv/OiTbmcb+v87QruZvD2pYvlXBDJtpRw3SbuSPlU9//XaU7cxU6r/+W/I3z9+yb3RINY/zLBayMa4XMjGvwm5cAv0HOkF6GXWbbMJa2VO1s85tIYOgh/HgeG35Scfv15L3jHaLfh9vw+a37T9FfSZ6AtTlov/TnHMPO2b3zvoOx9/mb2ajq3T40qdAe3D9R9BB1n389g4z78Buku04eFPsZa6con2ly1+XNKxZa7bKY7f0W82/iboQqGrFv7Y9T5k/afxZPacnN9DxoKLYwl/m+lTrPniP0NKuXZR/vugHHQZ6Z6y8083lJopqXMNOT/2g87DoXEl5X8D+kX02sG/gBi0tRtd0e/w0ZxfKsE/CddMeXS20YsVm68o+1Qh21yZKGTjp2wcP/1s499Ek8vsH9aLz61Gz8c2vSU+4ETzmeG3xYaEn3I+ONUV5sblbPw41++SRCPh17pI+oKN4w+dJ7b4x6zcOTYbf4eUw/vnqvhD8gjmX4N2rpfUjRLzX8pv5oCEX7LnHPT6Z2JAyu+KAR9/kxwVU75qfpo7jFXJj3mbhYzfBz3+xlaAaVWoa8co/lNaCL+JCY5fv7fS92VPBXrmcZiLH6/bnOE9kS3nGctV2vHfg5P3Av1JxM/5oSWY87Q+3/y39Y/yS98h6HcF5hkRjgvzjCiEX6nDPkjF7zIbv/QdAr4X5+7TQ/jpOK0Jcp6Enxt/1/zn6pXYelEW7+vo/n8rO/z8UB86yp0HpFZV/pf2q6l6PLR+bv+PY17Shu9ZLLf/DXlWEstvcrBt/Dnj5r22RabMQzh5xOhx1i3P8Ze9/+H66DMTx+voOxe/8ZfNB9ReNXrKyGfz3SD5Tfxz+2vp+hcrH/9NAX+sMN+8o+4U72l9zz5DVWV/Uvf1qCv1s/ajpjKW8v+ydTbXnh3b9ohSOyPyevNSvamH0eeHmn0PtB/AX2f7ARw/hSyavT2q1PSovP66j/1fYPon8IFhXwUtBPCntir8mQPPPKgFmgEdjPTULL437HeO0dgbWwKmZdCKQyHsHHdZX4Rel1vOfXYL2G47dBzHPbX5uEP8QscxpO6U8VfGYtuSXB/TRplr6TX9jvGYPJCifE6OvmvK+stWrmp/x8bTIHNeqM9C9+8hdUt/T9lWSLmY/XvVa3jeUGrWojnBs3iJSffvMfOwrJ+WHIxXSvLTvpTdv7vyXqpYT8Xv6s9/BfhhvgBAAAA=
+  </data>
+ </layer>
+ <layer name="2_object" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO1bzWsUMRTPdlosu7epeq9/gVs8Snvz6BdoWb2JR0XRv8DeVND1WFFbehTvtVYPfrT+Ab1U8GO1C54rqKCivrAT+jYkmTczySS0+cGPme2E5P2Sl7zkzZSx3Ye+bwN2GULrTxv25NWxZakel5hMhhkiPjTNrAJZf9U+MI25/Iw67ibdVfVzhO4DrvW7QJn+1PmDC/+3vebIvm3Tn0xjT9Xva42V+wDbQY0PNtFn+r7wGYdcth3a3qMIHjTL0wZC7LsV0PYMcdVTDKD0TdX+O9xirA2cag1+p3CdAG42d3gAfh9sqcv7QB0+00SsGxPA/R7atYFpTSwywVTOFE+o4DYJ+sR7aY/xUeNcQq+t+B2K/l+g9zfiH8Pk6mvuq8D1usFj4nfgD+BPTYzEzwVU43IJeNmZpQN0R+3Wh2MHjhnU5wKPgV8Rq0J3Vjha83wo4n+8rDz/8d5L9jOK720Tg9mRxoAXs/tQkGY+I/tRO2Oeb20W0H8P2AXO2ZVQOzpjjJ0bG9wL+YdyxpTrvw68BjxmKHcC2K7IKeDt4rKcQvi/oA4nLbTF67hDKDcPa9X9wHJndepfBu1PA9RfNf+k078Ik3VJsV6JGHLW0G5H88z2/gfrX5LanIE150LGvDpU+lO0hst2nymY8+yje5vIG/8ZpH1bU47q/9j2jWQw/r0Rxj4Dv6DrFvA8ausl8BVwJXGj30YdefpVdnONf0HrPyBLdq6NZHhufAL2CHao3tPk5Zj5Ob1q/OPn/CcE+1TgfjCLbJvNtJvWBh1Mfuz7nY3YBws/kGMhPz9hn99IhstT7C+j39V5sifNZxmqWKiyxbV+V+8X8Lzm8zlFz/CcO87KzTcVsEb5XOzb/3XgayePK3fHGbuxD84qwO54ubq4Rt2+IU9/KuWDU3Qm053xbUDovwXXBdC+CFwvWZfQqJp7lPkv3hnU+a6A6/+W2bZeMZczmcUNee51DPFP6Mfn8XfN4XN62RwQBVg/Fbo1W2h8CNdHwAUUR4vOf5G7eZONCc4zqb7RKJuHUu2/ysYksc9ZBT4HvkiG/26C3Cb//Ra0vx7N/yZFZ6/Kd2SY9p9yPqxOFPlGR1WW/22a0O9Cv6oPq8wznvebY3ZyX9TxlkHZW9j0f4xTwNPMnPvimG/APtRjfjTNL1IKV4BXLdTTgL4ZadB/R/iH73eEEe6xBrxpgWtSvdSyRduJoCHQT1UjIiJYuHmkuhDy/wBw1GVXiPpDHpeQsNf7aa/rj4iIiIioD/8BjyMoPwBAAAA=
+  </data>
+ </layer>
+ <layer name="3_roof" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2YOU7DQBSGR4E0DmfgIlAgsZ+DrUDhBEjsATp62kAqtgOwBajYWnZqtgOEReJH8ohRZMdjO/bY8f9JnywlUvx+wfO8ZyFIFPRYQhzAwwAewT7LdIJw3KP+B/gYwCf4zPypRuZfa28s8zM/8zN/q+bP6vO/hvo/4VcAv+FPyvMTQtKB310tafvZvkP9fzUea9bo96yK+3zqx70G4KDiEBy2/ut3QrfGpOefw73m4YLiIlyya6i51KJ7hgbNv1UQYhvuKO7CvUJzckfBJCzaTtmfBc1/jpwX8FLxCl7DzjZzGf3id1aT89kLcr7CN8V3+JHgv3/UWB2mK2iMfJaqz8+gdOWF6M43p664GEHmUTgOJxJ0hseF6fzFOuPGdH7TyFlCnR+cKOWEWIYrynU1F1+dpikj6wbcVK6VDOWvIusJPFWuZy7511M062SdUkb7WVJOUT877fX19tp7vteOLKlq9HNS0NnL5C4mz/UxxaSd8X57b1pjL5uBsynJH2Xv6eYPu//o9pkTYXqv7LFTe70jkoSdf9Pwf9aIVsvv9Z6p/nvd+d+NpOWPG90+I4QQQrJExcDvNOuehBCicoM9/VbxLuHvzAghhBBCCCHEjV8PmvGFAEAAAA==
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3ZzQ2CMBgG4JoYD3UL9aquoBz9uXlV2UOHcBYXcAMvhklcwDbYSEgLWH5Kv75P8iUaK/BiaaUwBm2JubmkiJuLgliT4zYs/x61/M9RcbvsObmPaOWfiDxTQ80M54VS/pXIuDZUlMuv+kFI+XXjQUj5dSjlP4mMZ0PF3/yqD1Ds/yHP/wAAvnjwX/lGzp1NzBsJT0ttU7cfF+R+s/Nm0XHUOcY3T6up7fmkLKfp86igvzTt1fG1WSWTaqNb7/DRfMzYQtRy7PpI3NiK3DtR+0DzUxfKeF4kITJW2crP8QAAAH2ju6/P3g+XtfWd6f7S9vlyCKqeh2w7+bpuuSb7ysFyHeOfNuo5TYj/o9VaY6RZK+vyGOr0N9u1Ll2bPvT7LuXHDKCnyu+6aXF97Dhg7DRob/t9dxHZrw7z47rut/z8V/YeAAAAAAAAAAAAwvMBfscUDQBAAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="64" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3aQQrCMBAF0G57UHWjN9S7uZBSkKJVZ3TqvAfZlZCEn4QkHQZgqy7jrdB3HKYMdO1/lq7jKUsAOfbjXAAggj2FCEs5epQtuYM8xxXza803W3J/B/Vv/Xum+x3cO/3vlhEAYpztHxT0yvm68ll8V7ht5IlYV6utzZXnGQCfqbbn8FsHeQCKmd5Kqr4ZVW3XNyz9T38KGo+oeqronhMAZs7gea79M843AEAAAA==
+  </data>
+ </layer>
+ <layer name="collision" width="64" height="64" visible="0" opacity="0.61">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2WSQ7DIAxFs+5Rev8DdhUpqgDPxib/SZXaMJhnDM11gQi+H/unM/CP93/2qZavLP+q9ZJV/9W8bzqff4/4nf2fDpaxJ/hr13GCvwX4wx/+tNep/lWR7kGH/bGusbo/tQb47/HPyg38576c3yvXKH9O7OxzNCNr/2c5yYS7/5K+nLq72znPIvGsvdEcqzkl/lG1uPPsSf094nH8s3JhvSu08VZrmPXbTaY/NX73WVk5UHOc4E+1U3eoNr7kLvUmqv6lYzn+2rmo+y/i/0+ybi9Wsai2bH9pbrj7r23z9veuje7+z/aIWvt3HMXc6e8ZezVXV//Zd43/qH8Hf+6aIv0l+RiNreAvbeNAjbf4z55r/Fe51GAZl+1fEWndPJ9zzll3ony4udqd093+0nmo3wCAeLzeWan3lllfSwyL81s58Z7l+pz87sN5PzzdP/MOseK5jm7uN9k5qEjVdQEa7B1yAPJ5c81V/i/LAP7v9v8BfpZ87gBAAAA=
+  </data>
+ </layer>
+ <layer name="navigation" width="64" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAIC3AYbSVKsAQAAA
+  </data>
+ </layer>
+ <layer name="protection" width="64" height="64" visible="0" opacity="0.24">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3DMQ0AAAwDoN6zUv/+KmMPJPSSqqqqqqqqqqqqqqqqqqqqqq8HEK8YyABAAAA=
+  </data>
+ </layer>
+</map>
