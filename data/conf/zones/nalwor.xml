@@ -336,7 +336,12 @@
  </zone>
 
  <zone name="0_nalwor_river_se" level="0" x="500384" y="500384" file="0_nalwor_river_se.xstend">
- </zone>
+ <entity x="185" y="64">
+    <implementation class-name="games.stendhal.server.entity.FishSource">
+     <parameter name="species">perch</parameter>
+    </implementation>
+  </entity>
+  </zone>
 
 
  <!--  Level -1 -->
