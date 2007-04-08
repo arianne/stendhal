@@ -120,6 +120,16 @@
 
   <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384" file="0_orril_river_s_w2.xstend">
   <configurator class-name="games.stendhal.server.maps.orril.bridge.GuardNPC"/>
+  <entity x="36" y="26">
+    <implementation class-name="games.stendhal.server.entity.FishSource">
+     <parameter name="species">trout</parameter>
+    </implementation>
+  </entity>
+  <entity x="66" y="77">
+    <implementation class-name="games.stendhal.server.entity.FishSource">
+     <parameter name="species">trout</parameter>
+    </implementation>
+  </entity>
  </zone>
 
  <zone name="0_orril_river_sw" level="0" x="499744" y="500384" file="0_orril_river_sw.xstend">
