@@ -31,6 +31,11 @@ public class Door extends AnimatedEntity {
 	private int orientation;
 
 
+	public Door() {
+		animation = "close";
+	}
+
+
 	public int getOrientation() {
 		return orientation;
 	}
@@ -39,62 +44,6 @@ public class Door extends AnimatedEntity {
 		return open;
 	}
 
-
-//	@Override
-//	protected void buildAnimations(final RPObject base) {
-//		SpriteStore store = SpriteStore.get();
-//
-//		String clazz = base.get("class");
-//		String direction = null;
-//
-//		orientation = base.getInt("dir");
-//		switch (orientation) {
-//			case 4:
-//				direction = "w";
-//				break;
-//			case 2:
-//				direction = "e";
-//				break;
-//			case 1:
-//				direction = "n";
-//				break;
-//			case 3:
-//				direction = "s";
-//				break;
-//		}
-//
-//		int width;
-//		int height;
-//		if (direction.equals("n") || direction.equals("s")) {
-//			width = 3;
-//			height = 2;
-//		} else {
-//			width = 2;
-//			height = 3;
-//		}
-//		sprites.put("open", store.getAnimatedSprite("data/sprites/doors/" + clazz + "_" + direction + ".png", 0, 1,
-//		        width, height));
-//		sprites.put("close", store.getAnimatedSprite("data/sprites/doors/" + clazz + "_" + direction + ".png", 1, 1,
-//		        width, height));
-//	}
-//
-//	@Override
-//	protected Sprite defaultAnimation() {
-//		animation = "close";
-//		return sprites.get("close")[0];
-//	}
-
-	// When rpentity moves, it will be called with the data.
-	@Override
-	public void onMove(final int x, final int y, final Direction direction, final double speed) {
-		if ((orientation == 1) || (orientation == 3)) {
-			this.x = x - 1;
-			this.y = y;
-		} else {
-			this.x = x;
-			this.y = y - 1;
-		}
-	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
@@ -118,6 +67,7 @@ public class Door extends AnimatedEntity {
 
 	@Override
 	public Rectangle2D getArea() {
+//		return getDrawedArea();
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 

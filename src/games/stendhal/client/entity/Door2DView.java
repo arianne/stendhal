@@ -22,6 +22,8 @@ import games.stendhal.client.SpriteStore;
  * The 2D view of a door.
  */
 public class Door2DView extends AnimatedEntity2DView {
+	protected double	xoffset;
+	protected double	yoffset;
 	protected double	width;
 	protected double	height;
 
@@ -34,13 +36,15 @@ public class Door2DView extends AnimatedEntity2DView {
 	public Door2DView(final Door door) {
 		super(door);
 
+		xoffset = 0.0;
+		yoffset = 0.0;
 		width = 1.0;
 		height = 1.0;
 	}
 
 
 	//
-	// <AnimatedStateEntity2DView>
+	// AnimatedStateEntity2DView
 	//
 
 	/**
@@ -52,35 +56,51 @@ public class Door2DView extends AnimatedEntity2DView {
 	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		String clazz = object.get("class");
-		String direction = null;
+		String name = object.get("class");
 
 		switch (object.getInt("dir")) {
 			case 4:
-				direction = "w";
+				name += "_w";
+				xoffset = 0.0;
+				yoffset = -1.0;
+				width = 2.0;
+				height = 3.0;
 				break;
+
 			case 2:
-				direction = "e";
+				name += "_e";
+				xoffset = -1.0;
+				yoffset = -1.0;
+				width = 2.0;
+				height = 3.0;
 				break;
+
 			case 1:
-				direction = "n";
+				name += "_n";
+				xoffset = -1.0;
+				yoffset = 0.0;
+				width = 3.0;
+				height = 2.0;
 				break;
+
 			case 3:
-				direction = "s";
+				name += "_s";
+				xoffset = -1.0;
+				yoffset = -1.0;
+				width = 3.0;
+				height = 2.0;
 				break;
+
+			default:
+				xoffset = 0.0;
+				yoffset = 0.0;
+				width = 1.0;
+				height = 1.0;
 		}
 
-		if (direction.equals("n") || direction.equals("s")) {
-			width = 3.0;
-			height = 2.0;
-		} else {
-			width = 2.0;
-			height = 3.0;
-		}
+		map.put("open", store.getAnimatedSprite("data/sprites/doors/" + name + ".png", 0, 1, width, height));
 
-		map.put("open", store.getAnimatedSprite("data/sprites/doors/" + clazz + "_" + direction + ".png", 0, 1, width, height));
-
-		map.put("close", store.getAnimatedSprite("data/sprites/doors/" + clazz + "_" + direction + ".png", 1, 1, width, height));
+		map.put("close", store.getAnimatedSprite("data/sprites/doors/" + name + ".png", 1, 1, width, height));
 	}
 
 
@@ -112,7 +132,7 @@ public class Door2DView extends AnimatedEntity2DView {
 	 */
 	@Override
 	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), width, height);
+		return new Rectangle.Double(getX() + xoffset, getY() + yoffset, width, height);
 	}
 
 
