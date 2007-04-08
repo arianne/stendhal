@@ -11,6 +11,7 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
@@ -59,5 +60,39 @@ public class ResizeableCreature2DView extends Creature2DView {
 	@Override
 	public double getWidth() {
 		return creature.getWidth();
+	}
+
+
+	//
+	// AnimatedStateEntity2DView
+	//
+
+	/**
+	 * Populate named state animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		double	width;
+		double	height;
+		double	drawWidth;
+		double	drawHeight;
+
+
+		width = getWidth();
+		height = getHeight();
+
+		// Hack for human like creatures
+
+		if ((Math.abs(width - 1.0) < 0.1) && (Math.abs(height - 2.0) < 0.1)) {
+			drawWidth = 1.5;
+			drawHeight = 2.0;
+		} else {
+			drawWidth = width;
+			drawHeight = height;
+		}
+
+		buildAnimations(map, object, drawWidth, drawHeight);
 	}
 }

@@ -19,7 +19,7 @@ public class SheepFood2DView extends Food2DView {
 	 * @param	food		The entity to render.
 	 */
 	public SheepFood2DView(final SheepFood food) {
-		super(food);
+		super(food, 6);
 	}
 
 

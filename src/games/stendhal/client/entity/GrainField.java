@@ -80,7 +80,7 @@ public class GrainField extends AnimatedEntity {
 
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y + height - 1, 1, 1);
+		return new Rectangle.Double(x, y + height - 1, width, 1);
 	}
 
 	@Override

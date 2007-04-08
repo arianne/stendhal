@@ -37,11 +37,25 @@ public class GrainField2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// GrainField2DView
+	//
+
+	public double getHeight() {
+		return grainField.getHeight();
+	}
+
+
+	public double getWidth() {
+		return grainField.getWidth();
+	}
+
+
+	//
+	// AnimatedStateEntity2DView
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state animations.
 	 *
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
@@ -54,8 +68,8 @@ public class GrainField2DView extends AnimatedEntity2DView {
 		String	clazz;
 
 
-		height = grainField.getHeight();
-		width = grainField.getWidth();
+		height = getHeight();
+		width = getWidth();
 
 		// default values are for compatibility to server <= 0.56
 
@@ -79,6 +93,10 @@ public class GrainField2DView extends AnimatedEntity2DView {
 		}
 	}
 
+
+	//
+	// AnimatedEntity2DView
+	//
 
 	/**
 	 * This method gets the default image.
@@ -104,9 +122,7 @@ public class GrainField2DView extends AnimatedEntity2DView {
 	 */
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(
-			getX() + grainField.getWidth() - 1.0,
-			getY() + grainField.getHeight() - 1.0,
-			1.0, 1.0);
+			getX(), getY() + getHeight() - 1.0, getWidth(), 1.0);
         }
 
 	/**

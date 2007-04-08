@@ -157,20 +157,33 @@ public abstract class RPEntity extends AnimatedEntity {
 	}
 
 	protected void adjustAnimation(final Direction direction) {
-	  
+		animation = getDirectionState(direction);
+	}
+
+
+	/**
+	 * Get the appropriete named state for a direction.
+	 *
+	 * @param	direction	The direction.
+	 *
+	 * @return	A named state.
+	 */
+	protected String getDirectionState(final Direction direction) {
 		switch (direction) {
 			case LEFT:
-				animation = "move_left";
-				break;
+				return "move_left";
+
 			case RIGHT:
-				animation = "move_right";
-				break;
+				return "move_right";
+
 			case UP:
-				animation = "move_up";
-				break;
+				return "move_up";
+
 			case DOWN:
-				animation = "move_down";
-				break;
+				return "move_down";
+
+			default:
+				return "move_up";
 		}
 	}
 

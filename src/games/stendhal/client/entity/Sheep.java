@@ -131,13 +131,27 @@ public class Sheep extends NPC {
 		}
 	}
 
-	@Override
-	protected void adjustAnimation(final Direction direction) {
-		super.adjustAnimation(direction);
 
-		if ((weight > 60) && !animation.startsWith("big_")) {
-			animation = "big_" + animation;
+	//
+	// RPEntity
+	//
+
+	/**
+	 * Get the appropriete named state for a direction.
+	 *
+	 * @param	direction	The direction.
+	 *
+	 * @return	A named state.
+	 */
+	@Override
+	protected String getDirectionState(final Direction direction) {
+		String state = super.getDirectionState(direction);
+
+		if (getWeight() >= 60) {
+			state = "big_" + state;
 		}
+
+		return state;
 	}
 
 

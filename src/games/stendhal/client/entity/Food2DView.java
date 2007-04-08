@@ -23,12 +23,21 @@ import games.stendhal.client.SpriteStore;
  */
 public class Food2DView extends AnimatedEntity2DView {
 	/**
+	 * The number of states.
+	 */
+	protected int	states;
+
+
+	/**
 	 * Create a 2D view of food.
 	 *
 	 * @param	entity		The entity to render.
+	 * @param	states		The number of states.
 	 */
-	public Food2DView(final Food food) {
+	public Food2DView(final Food food, int states) {
 		super(food);
+
+		this.states = states;
 	}
 
 
@@ -38,21 +47,20 @@ public class Food2DView extends AnimatedEntity2DView {
 
 	/**
 	 * Populate named animations.
-	 * This assumes the food has 6 states.
 	 *
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
 	 */
 	@Override
 	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		String resource = translate(object.get("type"));
+
 		SpriteStore store = SpriteStore.get();
 
-		map.put("0", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
-		map.put("1", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
-		map.put("2", store.getAnimatedSprite(translate(object.get("type")), 2, 1, 1, 1));
-		map.put("3", store.getAnimatedSprite(translate(object.get("type")), 3, 1, 1, 1));
-		map.put("4", store.getAnimatedSprite(translate(object.get("type")), 4, 1, 1, 1));
-		map.put("5", store.getAnimatedSprite(translate(object.get("type")), 5, 1, 1, 1));
+		for(int i = 0; i < states; i++) {
+			map.put(Integer.toString(i),
+				store.getAnimatedSprite(resource, i, 1, 1, 1));
+		}
 	}
 
 
