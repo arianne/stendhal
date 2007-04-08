@@ -1920,14 +1920,14 @@ Makes players more offensive
 		</equipable>
 	</item>	
 	
-	<item name="trout">
+	<item name="trout"><!-- lives in rivers -->
 		<type class="food" subclass="trout"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<quantity value="1"/>
-			<amount value="40"/>
-			<regen value="3"/>
-			<frequency value="20"/>
+			<amount value="45"/>
+			<regen value="4"/>
+			<frequency value="15"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -1937,13 +1937,13 @@ Makes players more offensive
 		</equipable>
 	</item>	
 	
-	<item name="perch">
+	<item name="perch"><!-- lives in rivers -->
 		<type class="food" subclass="perch"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<quantity value="1"/>
-			<amount value="40"/>
-			<regen value="3"/>
+			<amount value="35"/>
+			<regen value="2"/>
 			<frequency value="20"/>
 		</attributes>
 		<weight value="1"/>
@@ -1954,7 +1954,7 @@ Makes players more offensive
 		</equipable>
 	</item>	
 	
-	<item name="mackerel">
+	<item name="mackerel"><!-- lives in the sea -->
 		<type class="food" subclass="mackerel"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
@@ -1971,14 +1971,14 @@ Makes players more offensive
 		</equipable>
 	</item>	
 	
-	<item name="cod">
+	<item name="cod"><!-- lives in the sea -->
 		<type class="food" subclass="cod"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<quantity value="1"/>
 			<amount value="40"/>
-			<regen value="3"/>
-			<frequency value="20"/>
+			<regen value="4"/>
+			<frequency value="15"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -1988,14 +1988,14 @@ Makes players more offensive
 		</equipable>
 	</item>	
 	
-	<item name="roach">
+	<item name="roach"><!-- lives in lakes and slowly lotic water -->
 		<type class="food" subclass="roach"/>
 		<implementation class-name="games.stendhal.server.entity.item.Food"/>
 		<attributes>
 			<quantity value="1"/>
-			<amount value="40"/>
-			<regen value="3"/>
-			<frequency value="20"/>
+			<amount value="30"/>
+			<regen value="1"/>
+			<frequency value="25"/>
 		</attributes>
 		<weight value="1"/>
 		<equipable>
@@ -2004,6 +2004,60 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>	
+
+<!-- 
+	<item name="char"><!-- lives in lakes -->
+		<type class="food" subclass="char"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="30"/>
+			<regen value="2"/>
+			<frequency value="10"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>	
+	
+	<item name="clownfish"><!-- lives in the sea -->
+		<type class="food" subclass="clownfish"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="10"/>
+			<regen value="2"/>
+			<frequency value="30"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>	
+	
+	<item name="surgeonfish"><!-- lives in the sea -->
+		<type class="food" subclass="surgeonfish"/>
+		<implementation class-name="games.stendhal.server.entity.item.Food"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="15"/>
+			<regen value="2"/>
+			<frequency value="25"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>	
+ -->
+
 	
 <!-- Drinks_section -->
 <!-- Dunno if this is a good place or a good way to describe an alcoholic effect,
