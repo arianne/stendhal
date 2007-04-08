@@ -18,6 +18,7 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 
 import java.awt.Color;
@@ -53,6 +54,11 @@ public abstract class RPEntity extends AnimatedEntity {
 			return val;
 		}
 	};
+
+	/**
+	 * The current direction.
+	 */
+	private Direction	direction;
 
 	private int atk;
 
@@ -134,6 +140,38 @@ public abstract class RPEntity extends AnimatedEntity {
 		damageSprites.add(GameScreen.get().createString(text, color));
 
 		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+
+	@Override
+	public void onMove(final int x, final int y, final Direction direction, final double speed) {
+		super.onMove(x, y, direction, speed);
+
+		this.direction = direction;
+
+		adjustAnimation(direction);
+	}
+
+	protected void adjustAnimation(final Direction direction) {
+	  
+		switch (direction) {
+			case LEFT:
+				animation = "move_left";
+				break;
+			case RIGHT:
+				animation = "move_right";
+				break;
+			case UP:
+				animation = "move_up";
+				break;
+			case DOWN:
+				animation = "move_down";
+				break;
+		}
 	}
 
 	public boolean isAttacking() {

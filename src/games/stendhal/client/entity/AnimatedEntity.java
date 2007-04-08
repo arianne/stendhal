@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
-import games.stendhal.common.Direction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +30,6 @@ public abstract class AnimatedEntity extends Entity {
 
 	/** actual animation */
 	protected String animation;
-
-	/**
-	 * The current direction.
-	 * This (and other direction stuff) should be moved to sub-class.
-	 */
-	private Direction	direction;
 
 	/** This method fills the sprites map 
 	 * @param object
@@ -63,45 +56,16 @@ public abstract class AnimatedEntity extends Entity {
 	}
 
 
-	public Direction getDirection() {
-		return direction;
-	}
-
-
-	@Override
-	public void onMove(final int x, final int y, final Direction direction, final double speed) {
-		super.onMove(x, y, direction, speed);
-
-		this.direction = direction;
-
-		adjustAnimation(direction);
-	}
-
-	protected void adjustAnimation(final Direction direction) {
-	  
-		switch (direction) {
-			case LEFT:
-				animation = "move_left";
-				break;
-			case RIGHT:
-				animation = "move_right";
-				break;
-			case UP:
-				animation = "move_up";
-				break;
-			case DOWN:
-				animation = "move_down";
-				break;
-		}
-	}
-
 	/**
 	 * Get the current entity state.
 	 */
 	public String getState() {
-		return getAnimation();
+		return animation;
 	}
 
+	/**
+	 * @deprecated	Use more general getState().
+	 */
 	protected String getAnimation() {
 		return animation;
 	}
