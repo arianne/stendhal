@@ -136,7 +136,7 @@ class PlayerRPClass {
                 player.add("guild", RPClass.STRING);
 		
 		// Does player have full ghostmode?
-		player.add("fullghostmode", RPClass.INT); // 0 for false, 1 for true
+		player.add("fullghostmode", RPClass.FLAG); 
 
 	}
 
