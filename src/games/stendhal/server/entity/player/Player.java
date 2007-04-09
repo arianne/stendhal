@@ -103,7 +103,11 @@ public class Player extends RPEntity implements TurnListener {
 	 */
 	protected double karma;
 
-        
+	/**
+	 * A list of enabled client features.
+	 */
+	protected HashMap<String, String>	features;
+
         private String guild;
 	/**
 	 * A list of away replys sent to players.
@@ -217,6 +221,7 @@ public class Player extends RPEntity implements TurnListener {
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
+		features = new HashMap<String, String>();
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
@@ -604,6 +609,80 @@ public class Player extends RPEntity implements TurnListener {
 
 		return true;
 	}
+
+
+	/**
+	 * Decoded the features attribute and build the list.
+	 *
+	 * Values are in the form of:<br>
+	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
+	 */
+	protected void extractFeatures() {
+	}
+
+
+	/**
+	 * Build an encoded features list and set the attribute.
+	 *
+	 * Values are in the form of:<br>
+	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
+	 */
+	protected void storeFeatures() {
+		StringBuffer	sbuf;
+
+
+		sbuf = new StringBuffer();
+
+		for(String name : features.keySet()) {
+			String value = features.get(name);
+
+			if(sbuf.length() != 0) {
+				sbuf.append(':');
+			}
+
+			sbuf.append(name);
+
+			if(value.length() != 0) {
+				sbuf.append('=');
+				sbuf.append(value);
+			}
+		}
+
+
+		put("features", sbuf.toString());
+	}
+
+
+	/**
+	 * Enable/disable a client feature.
+	 *
+	 * @param	name		The feature mnemonic.
+	 * @param	enabled		Flag indicating if enabled.
+	 */
+	public void setFeature(String name, boolean enabled) {
+		setFeature(name, enabled ? "" : null);
+	}
+
+
+	/**
+	 * Set/remove a client feature.
+	 * <strong>NOTE: The names and values MUST NOT contain <code>=</code>
+	 * (equals), or <code>:</code> (colon).
+	 *
+	 * @param	name		The feature mnemonic.
+	 * @param	value		The feature value.
+	 */
+	public void setFeature(String name, String value) {
+		if(value != null) {
+			features.put(name, value);
+			storeFeatures();
+		} else {
+			if(features.remove(name) != null) {
+				storeFeatures();
+			}
+		}
+	}
+
 
 	public void sendPrivateText(String text) {
 		if (has("private_text")) {

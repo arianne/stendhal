@@ -136,6 +136,9 @@ class PlayerRPClass {
 
 		// Does player have full ghostmode?
 		player.add("fullghostmode", RPClass.INT); // 0 for off, 1 for on
+
+		// Client side features
+		player.add("features", RPClass.LONG_STRING, RPClass.PRIVATE);
 	}
 
 	/**
