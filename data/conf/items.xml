@@ -2629,6 +2629,7 @@ Makes players more offensive
 		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
+			<slot name="finger"/>
 		</equipable>
 	</item>
 	<item name="vampirette_entrails">
