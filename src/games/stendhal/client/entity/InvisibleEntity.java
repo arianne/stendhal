@@ -23,11 +23,6 @@ public class InvisibleEntity extends Entity {
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
-	@Override
-	protected void loadSprite(final RPObject object) {
-		sprite = null;
-	}
-
 
 	//
 	// Entity

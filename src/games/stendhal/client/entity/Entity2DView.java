@@ -59,8 +59,7 @@ public abstract class Entity2DView { // implements EntityView {
 	 * @param	object		An entity object.
 	 */
 	protected void buildRepresentation(final RPObject object) {
-		sprite = SpriteStore.get().getSprite(
-			translate(object.get("type")));
+		sprite = SpriteStore.get().getSprite(translate(object.get("type")));
 	}
 
 
@@ -70,10 +69,6 @@ public abstract class Entity2DView { // implements EntityView {
 	 * @return	The 2D area this draws in.
 	 */
 	public abstract Rectangle2D getDrawnArea();
-//	public Rectangle2D getDrawnArea() {
-//		// XXX - Eventually abstract, but for transition
-//		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
-//	}
 
 
 	/**
@@ -82,9 +77,6 @@ public abstract class Entity2DView { // implements EntityView {
 	 * @return	The image representation.
 	 */
 	protected Sprite getSprite() {
-		// XXX - Eventually manage own sprite, but for now
-		sprite = entity.getSprite();
-
 		return sprite;
 	}
 

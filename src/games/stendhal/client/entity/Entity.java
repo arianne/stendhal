@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
@@ -63,9 +62,6 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected String name;
 
-	/** The object sprite. Animationless, just one frame */
-	protected Sprite sprite;
-
 	/**
 	 * defines the distance in which the entity is heard by Player
 	 */
@@ -105,7 +101,7 @@ public final byte[] ID_Token = new byte[0];
 		rpObject = object;
 	
 		view = createView();
-		loadSprite(object);
+		view.buildRepresentation(object);
 	}
 
 	/** Returns the represented arianne object id */
@@ -134,13 +130,19 @@ public final byte[] ID_Token = new byte[0];
 			+ (user.getY() - y) * (user.getY() - y);
 	}
 	
-	protected static String translate(final String type) {
-		return "data/sprites/" + type + ".png";
+//	protected static String translate(final String type) {
+//		return "data/sprites/" + type + ".png";
+//	}
+
+
+	/**
+	 * This is used by old code.
+	 *
+	 */
+	public Sprite getSprite() {
+		return view.getSprite();
 	}
 
-	public Sprite getSprite() {
-		return sprite;
-	}
 
 	/**
 	 * Returns the absolute world area (coordinates) to which audibility of
@@ -169,11 +171,10 @@ public final byte[] ID_Token = new byte[0];
 		audibleRange = range;
 	}
 
-	/** Loads the sprite that represent this entity */
-	protected void loadSprite(final RPObject object) {
-
-		sprite = SpriteStore.get().getSprite(translate(object.get("type")));
-	}
+//	/** Loads the sprite that represent this entity */
+//	protected void loadSprite(final RPObject object) {
+//		view.buildRepresentation(object);
+//	}
 
 	/**
 	 * compares to floating point values

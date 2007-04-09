@@ -209,8 +209,8 @@ public abstract class Creature extends RPEntity {
 		}
 
 		SpriteStore store = SpriteStore.get();
-		Sprite sprite = store.getSprite("data/sprites/monsters/" + name + ".png");
-		return sprite;
+
+		return store.getSprite("data/sprites/monsters/" + name + ".png");
 	}
 
 	@Override

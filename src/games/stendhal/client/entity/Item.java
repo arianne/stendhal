@@ -23,20 +23,6 @@ import marauroa.common.game.RPObject;
 
 public class Item extends PassiveEntity {
 	@Override
-	protected void loadSprite(final RPObject object) {
-		SpriteStore store = SpriteStore.get();
-		String name = null;
-
-		if (object.has("subclass")) {
-			name = object.get("class") + "/" + object.get("subclass");
-		} else {
-			name = object.get("class");
-		}
-
-		sprite = store.getSprite("data/sprites/items/" + name + ".png");
-	}
-
-	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);
 	}

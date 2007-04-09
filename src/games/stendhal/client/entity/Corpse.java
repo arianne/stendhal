@@ -13,6 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.gui.wt.EntityContainer;
 
@@ -30,37 +31,22 @@ public class Corpse extends PassiveEntity implements Inspectable {
 
 	@Override
 	public Rectangle2D getArea() {
+		Sprite sprite = getSprite();
 
 		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
 		        .getHeight()
 		        / GameScreen.SIZE_UNIT_PIXELS);
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
-		        .getHeight()
-		        / GameScreen.SIZE_UNIT_PIXELS);
-	}
+//	@Override
+//	public Rectangle2D getDrawedArea() {
+//		Sprite sprite = getSprite();
+//
+//		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
+//		        .getHeight()
+//		        / GameScreen.SIZE_UNIT_PIXELS);
+//	}
 
-	@Override
-	protected void loadSprite(final RPObject object) {
-		String corpseType = object.get("type");
-		if (object.get("class")!=null) {
-			if (object.get("class").equals("player")) {
-				corpseType = corpseType + "_player";
-			} else if (object.get("class").equals("giant_animal")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (object.get("class").equals("huge_animal")) {
-				corpseType = corpseType + "_giantrat";
-			} else if (object.get("class").equals("mythical_animal")) {
-				corpseType = corpseType + "_giantrat";
-			}
-		}
-
-		SpriteStore store = SpriteStore.get();
-		sprite = store.getSprite(translate(corpseType));
-	}
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {

@@ -39,16 +39,6 @@ public abstract class AnimatedEntity extends Entity {
 		return ((AnimatedEntity2DView) view).getDefaultSprite();
 	}
 
-	/**
-	 * Redefined method to load all the animation and set a default frame to be
-	 * rendered
-	 */
-	@Override
-	protected void loadSprite(final RPObject object) {
-		buildAnimations(object);
-		sprite = defaultAnimation();
-	}
-
 
 	/**
 	 * Get the current entity state.
