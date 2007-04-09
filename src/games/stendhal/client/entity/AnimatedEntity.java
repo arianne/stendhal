@@ -13,10 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.Sprite;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.game.RPObject;
 
 /**

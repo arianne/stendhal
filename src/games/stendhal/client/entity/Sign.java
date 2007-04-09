@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;

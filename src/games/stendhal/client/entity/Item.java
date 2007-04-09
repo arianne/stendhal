@@ -12,14 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.SpriteStore;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 public class Item extends PassiveEntity {
 	@Override

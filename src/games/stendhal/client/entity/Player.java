@@ -12,29 +12,19 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.common.Direction;
 
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
-
 /** A Player entity */
 public class Player extends RPEntity {
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Player.class);
-
-
 	/**
 	 * An away message was set/cleared.
 	 *

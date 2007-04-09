@@ -12,8 +12,6 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
-
 /**
  * An generic entity that is not drawn.
  */

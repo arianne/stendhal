@@ -9,19 +9,18 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import marauroa.common.game.RPObject;
-
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.stendhal;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an entity.
