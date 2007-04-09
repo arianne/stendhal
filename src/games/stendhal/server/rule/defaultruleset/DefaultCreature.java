@@ -13,11 +13,15 @@
 package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.impl.DropItem;
+import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.List;
 import java.util.Map;
+
 import marauroa.common.Log4J;
+
 import org.apache.log4j.Logger;
 
 public class DefaultCreature {
@@ -62,9 +66,9 @@ public class DefaultCreature {
 	private int height;
 
 	/** Ths list of items this creature may drop */
-	private List<Creature.DropItem> dropsItems;
+	private List<DropItem> dropsItems;
 
-	private List<Creature.EquipItem> equipsItems;
+	private List<EquipItem> equipsItems;
 
 	private List<String> creatureSays;
 
@@ -138,15 +142,15 @@ public class DefaultCreature {
 		this.creatureSays = creatureSays;
 	}
 
-	public void setEquipedItems(List<Creature.EquipItem> equipsItems) {
+	public void setEquipedItems(List<EquipItem> equipsItems) {
 		this.equipsItems = equipsItems;
 	}
 
-	public void setDropItems(List<Creature.DropItem> dropsItems) {
+	public void setDropItems(List<DropItem> dropsItems) {
 		this.dropsItems = dropsItems;
 	}
 
-	public List<Creature.DropItem> getDropItems() {
+	public List<DropItem> getDropItems() {
 		return dropsItems;
 	}
 
@@ -177,14 +181,14 @@ public class DefaultCreature {
 	}
 
 	public boolean verifyItems(EntityManager manager) {
-		for (Creature.DropItem item : dropsItems) {
+		for (DropItem item : dropsItems) {
 			if (!manager.isItem(item.name)) {
 				logger.warn("Item " + item.name + " doesnt exists");
 				return false;
 			}
 		}
 
-		for (Creature.EquipItem item : equipsItems) {
+		for (EquipItem item : equipsItems) {
 			if (!manager.isItem(item.name)) {
 				logger.warn("Item " + item.name + " doesnt exists");
 				return false;

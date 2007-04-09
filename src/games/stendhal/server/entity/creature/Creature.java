@@ -21,6 +21,9 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.impl.AiState;
+import games.stendhal.server.entity.creature.impl.DropItem;
+import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -62,61 +65,8 @@ import org.apache.log4j.Logger;
  */
 public class Creature extends NPC {
 
-	public static class DropItem {
 
-		public String name;
 
-		public double probability;
-
-		public int min;
-
-		public int max;
-
-		public DropItem(String name, double probability, int min, int max) {
-			this.name = name;
-			this.probability = probability;
-			this.min = min;
-			this.max = max;
-		}
-
-		public DropItem(String name, double probability, int amount) {
-			this.name = name;
-			this.probability = probability;
-			this.min = amount;
-			this.max = amount;
-		}
-	}
-
-	public static class EquipItem {
-
-		public String slot;
-
-		public String name;
-
-		public int quantity;
-
-		public EquipItem(String slot, String name, int amount) {
-			this.slot = slot;
-			this.name = name;
-			this.quantity = amount;
-		}
-	}
-
-	/** Enum classifying the possible (AI) states a creature can be in */
-	private enum AiState {
-		/** sleeping as there is no enemy in sight */
-		SLEEP,
-		/** doin' nothing */
-		IDLE,
-		/** patroling, watching for an enemy */
-		PATROL,
-		/** moving towards a moving target */
-		APPROACHING_MOVING_TARGET,
-		/** moving towards a stopped target */
-		APPROACHING_STOPPED_TARGET,
-		/** attacking */
-		ATTACKING;
-	}
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Creature.class);
@@ -152,7 +102,7 @@ public class Creature extends NPC {
 	/** Ths list of item names this creature may drop 
 	 *  Note; per default this list is shared with all creatures
 	 *  of that class*/
-	protected List<Creature.DropItem> dropsItems;
+	protected List<DropItem> dropsItems;
 
 	/** Ths list of item instances this creature may drop for
 	 *  use in quests. This is always creature specific */
@@ -193,7 +143,7 @@ public class Creature extends NPC {
 		}
 		createPath();
 
-		dropsItems = new ArrayList<Creature.DropItem>();
+		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		aiProfiles = new HashMap<String, String>();
 		attackTurn = Rand.rand(5);
@@ -261,7 +211,7 @@ public class Creature extends NPC {
 
 		createPath();
 
-		dropsItems = new ArrayList<Creature.DropItem>();
+		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
 		aiProfiles = new HashMap<String, String>();
 		attackTurn = Rand.rand(5);
@@ -372,7 +322,7 @@ public class Creature extends NPC {
 	 *
 	 */
 	public void clearDropItemList() {
-		dropsItems = new ArrayList<Creature.DropItem>();
+		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances.clear();
 	}
 
@@ -1112,7 +1062,7 @@ public class Creature extends NPC {
 	}
 
 	public void equip(List<EquipItem> items) {
-		for (Creature.EquipItem equipedItem : items) {
+		for (EquipItem equipedItem : items) {
 			if (!hasSlot(equipedItem.slot)) {
 				addSlot(new EntitySlot(equipedItem.slot));
 			}
@@ -1134,7 +1084,7 @@ public class Creature extends NPC {
 	private List<Item> createDroppedItems(EntityManager manager) {
 		List<Item> list = new LinkedList<Item>();
 
-		for (Creature.DropItem dropped : dropsItems) {
+		for (DropItem dropped : dropsItems) {
 			int probability = Rand.roll1D100();
 			if (dropped.probability >= probability) {
 				Item item = manager.getItem(dropped.name);

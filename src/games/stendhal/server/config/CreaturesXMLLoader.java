@@ -1,16 +1,27 @@
 package games.stendhal.server.config;
 
-import java.io.*;
-import java.util.*;
-import org.xml.sax.*;
-import org.xml.sax.helpers.DefaultHandler;
-import javax.xml.parsers.SAXParserFactory;
+import games.stendhal.server.entity.creature.impl.DropItem;
+import games.stendhal.server.entity.creature.impl.EquipItem;
+import games.stendhal.server.rule.defaultruleset.DefaultCreature;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.rule.defaultruleset.DefaultCreature;
-import org.apache.log4j.Logger;
+import javax.xml.parsers.SAXParserFactory;
+
 import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 public class CreaturesXMLLoader extends DefaultHandler {
 
@@ -50,9 +61,9 @@ public class CreaturesXMLLoader extends DefaultHandler {
 
 	private int respawn;
 
-	private List<Creature.DropItem> dropsItems;
+	private List<DropItem> dropsItems;
 
-	private List<Creature.EquipItem> equipsItems;
+	private List<EquipItem> equipsItems;
 
 	private List<String> creatureSays;
 
@@ -134,8 +145,8 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			name = attrs.getValue("name");
 			drops = false;
 			ai = false;
-			dropsItems = new LinkedList<Creature.DropItem>();
-			equipsItems = new LinkedList<Creature.EquipItem>();
+			dropsItems = new LinkedList<DropItem>();
+			equipsItems = new LinkedList<EquipItem>();
 			creatureSays = new LinkedList<String>();
 			aiProfiles = new HashMap<String, String>();
 			description = null;
@@ -167,7 +178,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 				}
 			}
 			if ((item != null) && (slot != null)) {
-				equipsItems.add(new Creature.EquipItem(slot, item, quantity));
+				equipsItems.add(new EquipItem(slot, item, quantity));
 			}
 		} else if (qName.equals("respawn")) {
 			respawn = Integer.parseInt(attrs.getValue("value"));
@@ -195,10 +206,10 @@ public class CreaturesXMLLoader extends DefaultHandler {
 					range = range.replace("]", "");
 					String[] amount = range.split(",");
 
-					dropsItems.add(new Creature.DropItem(name, probability, Integer.parseInt(amount[0]), Integer
+					dropsItems.add(new DropItem(name, probability, Integer.parseInt(amount[0]), Integer
 					        .parseInt(amount[1])));
 				} else {
-					dropsItems.add(new Creature.DropItem(name, probability, Integer.parseInt(range)));
+					dropsItems.add(new DropItem(name, probability, Integer.parseInt(range)));
 				}
 			}
 		} else if (qName.equals("attributes")) {

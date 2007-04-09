@@ -2,7 +2,7 @@ package games.stendhal.tools;
 
 import games.stendhal.server.config.CreaturesXMLLoader;
 import games.stendhal.server.config.ItemsXMLLoader;
-import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
 
@@ -58,7 +58,7 @@ public class GenerateBestiaryAndItems {
 			System.out.println("|strategy = '''(TODO)'''.");
 			System.out.println("|loot = ");
 
-			for (Creature.DropItem item : creature.getDropItems()) {
+			for (DropItem item : creature.getDropItems()) {
 				System.out.println(item.min + "-" + item.max + " " + item.name + "<br>");
 			}
 
