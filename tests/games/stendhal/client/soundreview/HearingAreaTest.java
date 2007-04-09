@@ -15,7 +15,8 @@ public class HearingAreaTest {
 
 	@Before
 	public void setUp() throws Exception {
-		area = new HearingArea(0, 0);
+		area =  HearingArea.get();
+		area.set(0,0);
 	}
 
 	@Test

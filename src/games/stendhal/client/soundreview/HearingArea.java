@@ -26,7 +26,7 @@ public class HearingArea {
 		return instance;
 	}
 
-	public HearingArea(int x, int y) {
+	private HearingArea(int x, int y) {
 		instance = this;
 		set(x, y);
 
