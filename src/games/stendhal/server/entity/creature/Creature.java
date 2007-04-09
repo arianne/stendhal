@@ -1026,8 +1026,8 @@ public class Creature extends NPC {
 		if (isAttacked() && (target == null)) {
 			logicWeAreNotAttackingButGotAttacked();
 		} else if ((target == null) || (!target.get("zoneid").equals(get("zoneid")) && world.has(target.getID()))
-		        || !world.has(target.getID())) {
-			// no target or current target left the zone (or is dead)
+		        || !world.has(target.getID()) || target.has("invisible")) {
+			// no target or current target left the zone (or is dead) or target became invisible (admin)
 			logicForgetCurrentTarget();
 			logicFindNewTarget();
 		}
