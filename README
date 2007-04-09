@@ -76,6 +76,7 @@ Changelog
 - use zone level/coordinates from data/conf/zones/*.xml instead of tmx files
 - introduced scoring system in deathmatch instead of XP
 - server prevents putting items into useless slots (like a sword into the head-slot)
+- specific images for each empty slot in character window
 - the Easter Bunny is hopping around
 - added a quest to deliver pizza to several NPC's
 - added a sunny island and a new quest on it
@@ -83,11 +84,16 @@ Changelog
 - added blackjack gambling on the ferry
 - non semos city scrolls - nalwor, fado (when open), ados available for purchase
 - nalwor bank with nalwor and semos bank chests
+- quest to access nalwor bank (take gold bars to bank for lorithien)
 - added /away command (like in irc)
 - added /answer command
 - /ignore command now supports duration and reason message
 - all buildings have had a makeover
 - nalwor river can be crossed over the waterfall, to make travelling east<->west possible without going back to semos
+- daily items quest from the Ados mayor
+- a keyring to carry keys on
+- a finger slot for rings
+
 
 0.58
 - name/HPbar is now visible, alltime
