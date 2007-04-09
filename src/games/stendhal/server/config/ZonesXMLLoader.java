@@ -9,7 +9,6 @@ package games.stendhal.server.config;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.ZoneXMLLoader.XMLZone;
@@ -333,7 +332,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 */
 	protected static void configureEntity(StendhalRPZone zone, EntityDesc edesc) {
 		String className;
-		ConfigurableFactory factory;
 		Entity entity;
 		if ((className = edesc.getImplementation()) == null) {
 			logger.error("Entity without factory at " + zone.getID().getID() + "[" + edesc.getX() + "," + edesc.getY()
