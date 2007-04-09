@@ -251,21 +251,21 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     	<implementation class-name="games.stendhal.server.entity.Sign">
       		<parameter name="text">
 FISHING SPOTS IN FAIUMONI
-The best spot to fish for cods is in 
-Ados as this species lives in he sea.
-Trouts are living in rivers. There is 
+The best spot to fish for cod is in 
+Ados, as this species lives in the sea.
+Trout live in rivers. There is 
 an excellent fishing spot in Orril.
-Perches resident in rivers, too. Brave 
-fishermen told about big catches in the
+Perch reside in rivers and lakes, too. Brave 
+fishermen tell of big catches in the
 area where the elves dwell.
-Mackerels can only be fished at the 
+Mackerel can only be fished at the 
 open sea.
-More exotic fish can be found on the 
+More exotic fish are found on the 
 island Athor.
 In a mountain lake near Ados is a spot
-where chars are very easy to get.
+where char fish are very easy to find.
 In Semos there is a lake which is rich 
-of roaches.
+in roaches.
       		</parameter>
       		<parameter name="class">book_blue</parameter>
      	</implementation>
