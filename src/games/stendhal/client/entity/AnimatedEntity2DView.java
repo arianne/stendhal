@@ -127,6 +127,11 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	}
 
 
+	protected boolean isAnimating() {
+		return !entity.stopped();
+	}
+
+
 	/**
 	 * Get the next sprite we have to show.
 	 *
@@ -141,7 +146,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 
 		Sprite tempSprite = anim[frame];
 
-		if (!entity.stopped()) {
+		if (isAnimating()) {
 			frame++;
 		}
 

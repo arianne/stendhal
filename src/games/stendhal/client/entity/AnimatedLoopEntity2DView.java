@@ -47,11 +47,11 @@ public class AnimatedLoopEntity2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state animations.
 	 *
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
@@ -60,16 +60,28 @@ public class AnimatedLoopEntity2DView extends AnimatedEntity2DView {
 		String resource = translate(object.get("type"));
 		SpriteStore store = SpriteStore.get();
 
-// XXX - Switch to later (once getSptite() is used)
-//		map.put("default",
-//			store.getAnimatedSprite(resource, 0, frames, 1.0, 1.0));
+		/*
+		 * There has to be a better way than this.. ugg!
+		 */
+		Sprite [] animation = new Sprite[frames];
 
 		for (int i = 0; i < frames; i++) {
-			map.put(Integer.toString(i),
-				store.getAnimatedSprite(resource, i, 1, 1, 1));
+			animation[i] = store.getAnimatedSprite(resource, i, 1, 1, 1)[0];
 		}
+
+		map.put("default", animation);
 	}
 
+
+	@Override
+	protected String getState() {
+		return "default";
+	}
+
+
+	//
+	// AnimatedEntity2DView
+	//
 
 	/**
 	 * This method gets the default image.
@@ -80,23 +92,11 @@ public class AnimatedLoopEntity2DView extends AnimatedEntity2DView {
 	 */
 	@Override
 	protected Sprite getDefaultSprite() {
-// XXX - Switch to later (once getSptite() is used)
-//		return getAnimation("default")[0];
-		return getAnimation("0")[0];
+		return getAnimation("default")[0];
 	}
 
-
-	@Override
-	protected String getState() {
-// XXX - Switch to later (once getSptite() is used)
-//		return "default";
-		String state = Integer.toString(frame);
-
-		if(++frame >= frames) {
-			frame = 0;
-		}
-
-		return state;
+	protected boolean isAnimating() {
+		return true;
 	}
 
 
