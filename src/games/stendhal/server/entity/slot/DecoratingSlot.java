@@ -13,9 +13,22 @@ import marauroa.common.game.RPObject.ID;
 import marauroa.common.net.InputSerializer;
 import marauroa.common.net.OutputSerializer;
 
-
+/**
+ * Integrates another slot into the owning object
+ *
+ * @author hendrik
+ */
 public class DecoratingSlot extends EntitySlot {
 	private EntitySlot entitySlot = null;
+
+	/**
+	 * Sets the real slot
+	 *
+	 * @param slot real slot
+	 */
+	public void setEntitySlot(EntitySlot slot) {
+		this.entitySlot = slot;
+	}
 
 	@Override
     public void add(RPObject arg0) {
