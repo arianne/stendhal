@@ -127,17 +127,15 @@ class PlayerRPClass {
 		player.addRPSlot("!skills", 1, (byte) (RPClass.HIDDEN | RPClass.VOLATILE));
 
 		player.addRPSlot("!visited", 1, RPClass.HIDDEN);
-                
-                
-                // This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
-                player.addRPSlot("spells", 30, RPClass.PRIVATE);
-                
-                //The guild slot. Just one so player can't be in more than one (can be changed but thats what I'm going by)
-                player.add("guild", RPClass.STRING);
+
+		// This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
+		player.addRPSlot("spells", 9, RPClass.PRIVATE);
 		
+		//The guild slot. Just one so player can't be in more than one (can be changed but thats what I'm going by)
+		player.add("guild", RPClass.STRING);
+
 		// Does player have full ghostmode?
 		player.add("fullghostmode", RPClass.INT); // 0 for off, 1 for on
-
 	}
 
 	/**
