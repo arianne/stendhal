@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author dine
  */
-public class FishermanNPC implements ZoneConfigurator {
+public class TeacherNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -31,7 +31,7 @@ public class FishermanNPC implements ZoneConfigurator {
 	}
 
 	private void buildGoldsmith(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC fisherman = new SpeakerNPC("Pequod") {
+		SpeakerNPC fisherman = new SpeakerNPC("Santiago") {
 
 			@Override
 			protected void createPath() {
@@ -47,9 +47,9 @@ public class FishermanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello!");
-				addJob("I'm a fisher.");
-				addHelp("Nowadays you can read signposts, books and other things here in Faiumoni.");
+				addGreeting("Hello greenhorn!");
+				addJob("I'm a teacher for fishermen. People come to me to take their #exams.");
+				addHelp("If you explore Faiumoni you will find several excellent fishing spots.");
 				addGoodbye("Goodbye.");
 			}
 		};

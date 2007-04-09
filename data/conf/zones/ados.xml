@@ -370,9 +370,22 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone> 
    
    <zone name="int_ados_fishermans_hut_west" file="int_ados_fishermans_hut_west.xstend">
-    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC"/>
+    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.TeacherNPC"/>
     <portal x="8" y="14" ref="entrance_fishermans_hut_west">
      <destination zone="0_ados_city" ref="fishermans_hut_west_entrance"/>
+    </portal>
+   </zone>
+   
+   <zone name="int_ados_fishermans_hut_north" file="int_ados_fishermans_hut_north.xstend">
+    <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC"/>
+    <portal x="8" y="14" ref="entrance_fishermans_hut_north">
+     <destination zone="0_ados_city" ref="fishermans_hut_north_entrance"/>
+    </portal>
+   </zone>
+   
+   <zone name="int_ados_fishermans_hut_south" file="int_ados_fishermans_hut_south.xstend">
+    <portal x="8" y="14" ref="entrance_fishermans_hut_south">
+     <destination zone="0_ados_city" ref="fishermans_hut_south_entrance"/>
     </portal>
    </zone>
    
@@ -403,11 +416,15 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
-    <portal x="67" y="65" ref="fishermans_hut__west_entrance">
+    <portal x="67" y="65" ref="fishermans_hut_west_entrance">
      	<destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west"/>
     </portal>
-   
-   
+   <portal x="75" y="61" ref="fishermans_hut_north_entrance">
+     	<destination zone="int_ados_fishermans_hut_north" ref="entrance_fishermans_hut_north"/>
+    </portal>
+   <portal x="75" y="70" ref="fishermans_hut_south_entrance">
+     	<destination zone="int_ados_fishermans_hut_south" ref="entrance_fishermans_hut_south"/>
+    </portal>
    </zone>
    
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
