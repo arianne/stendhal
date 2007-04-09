@@ -47,8 +47,7 @@ public class FishermanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello!");
-				addJob("I'm a fisher.");
+				addJob("I'm a fisherman.");
 				addHelp("Nowadays you can read signposts, books and other things here in Faiumoni.");
 				addGoodbye("Goodbye.");
 			}
