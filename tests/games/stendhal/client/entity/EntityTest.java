@@ -190,12 +190,7 @@ public class EntityTest {
 	@Test
 	public final void testOnStop() {
 		Entity en;
-		RPObject rpo;
-		rpo = new RPObject();
-		rpo.put("type", "_hugo");
-
 		en = new MockEntity();
-		en.init(rpo);
 		assertTrue(en.stopped());
 		en.onStop(0, 0);
 		assertTrue(en.stopped());

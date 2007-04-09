@@ -45,14 +45,14 @@ public class TestBuildOfferedActions {
 	@Test
 	public final void testSheep() throws Exception {
 
-		RPObject rp = new MockRPObject("sheep", null);
-		Entity en = EntityFabric.createEntity(rp);
+		
+		Sheep sheep = new Sheep();
 
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Attack");
 		expected.add("Own");
-		en.buildOfferedActions(list);
+		sheep.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
 
