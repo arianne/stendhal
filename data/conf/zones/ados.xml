@@ -169,10 +169,6 @@ West: Semos
      <destination zone="int_ados_storage" ref="storage_inside_right"/>
    </portal>
    
-   <portal x="39" y="20" ref="town_hall_entrance">
-     <destination zone="int_ados_town_hall" ref="entrance"/>
-   </portal>
-   
  </zone>
  
  <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
@@ -334,7 +330,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    
    <zone name="int_ados_town_hall" file="int_ados_buraucrazy_0.xstend">
     <portal x="22" y="17" ref="entrance">
-     <destination zone="0_ados_city_n" ref="town_hall_entrance"/>
+     <destination zone="0_ados_city" ref="town_hall_entrance"/>
     </portal>
     
     <portal x="4" y="4" ref="upstairs">
@@ -425,6 +421,9 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    <portal x="75" y="70" ref="fishermans_hut_south_entrance">
      	<destination zone="int_ados_fishermans_hut_south" ref="entrance_fishermans_hut_south"/>
     </portal>
+   <portal x="42" y="93" ref="town_hall_entrance">
+     <destination zone="int_ados_town_hall" ref="entrance"/>
+   </portal>
    </zone>
    
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
