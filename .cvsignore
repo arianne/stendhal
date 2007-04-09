@@ -24,3 +24,4 @@ server.log.*
 jmp_dump-*.txt
 build.ant-private.properties
 keystore.ksX
+.byecycle
