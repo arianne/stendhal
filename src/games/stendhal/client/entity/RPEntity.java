@@ -746,8 +746,10 @@ public abstract class RPEntity extends AnimatedEntity {
 	/** Draws only the Name and hp bar **/
 	public void drawHPbar(final GameScreen screen) {
 		if (nameImage != null) {
-			screen.draw(nameImage, x, y - 0.5);
-
+			// we also check the name image to hide it
+			if (fullghostmode == 0) {
+			    screen.draw(nameImage, x, y - 0.5);
+			} else; //no nothing
 			Graphics g2d = screen.expose();
 
 			Point2D p = new Point.Double(x, y);
