@@ -55,13 +55,16 @@ public class StendhalQuestSystem {
 		loadQuest("DailyItemQuest");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
+		loadQuest("DiogenesCataclysm");
 		loadQuest("FishermansLicenseQuiz");
 		loadQuest("FishermansLicenseCollector");
 		loadQuest("HatForMonogenes");
+		loadQuest("HayunnCataclysm");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
 		loadQuest("LookBookforCeryl");
 		loadQuest("KanmararnSoldiers");
+		loadQuest("MonogenesCataclysm");
 		// loadQuest("MeetBunny");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
@@ -73,9 +76,11 @@ public class StendhalQuestSystem {
 		// loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
+		loadQuest("NomyrCataclysm");
 		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		loadQuest("ReverseArrow");
+		loadQuest("SatoCataclysm");
 		// loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");
 		loadQuest("Soup");
