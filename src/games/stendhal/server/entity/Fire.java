@@ -4,10 +4,19 @@ import games.stendhal.server.events.UseListener;
 
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.game.RPClass;
+
 
 public class Fire extends Entity implements UseListener {
 	private int width;
 	private int height;
+	
+	public static void generateRPClass() {
+		RPClass fire = new RPClass("fire");
+		fire.isA("entity");
+		fire.add("width", RPClass.SHORT);
+		fire.add("height", RPClass.SHORT);
+	}
 	
 	public Fire(int width, int height) {
 		super();

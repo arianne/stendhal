@@ -16,6 +16,7 @@ import games.stendhal.server.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.config.ZoneXMLLoader;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Fire;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.Creature;
@@ -157,6 +158,7 @@ public class StendhalRPWorld extends RPWorld {
 		Corpse.generateRPClass();
 		Item.generateRPClass();
 		Chest.generateRPClass();
+		Fire.generateRPClass();
 
 		RPEntity.generateRPClass();
 
