@@ -54,8 +54,7 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 						        // NPC_name quest doesn't exist anywhere else neither is
 						        // used for any other purpose
 						        if (!player.hasQuest("meet_hayunn")) {
-							        engine
-							                .say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
+							        engine.say("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?");
 							        player.setQuest("meet_hayunn", "start");
 						        } else {
 							        engine.say("Hi again, " + player.getName() + ". How can I #help you this time?");
@@ -71,7 +70,8 @@ public class RetiredAdventurerNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(npc);
 		npc.put("class", "oldheronpc");
 		npc.set(27, 37);
-		npc.initHP(100);
+		npc.setLevel(18);
+		npc.initHP(98);
 		zone.add(npc);
 
 	}
