@@ -278,16 +278,16 @@ public abstract class Creature extends RPEntity {
 	}
 
 
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	protected Entity2DView createView() {
-		return new Creature2DView(this, 1.5, 2.0);
-	}
+//	//
+//	// Entity
+//	//
+//
+//	/**
+//	 * Transition method. Create the screen view for this entity.
+//	 *
+//	 * @return	The on-screen view of this entity.
+//	 */
+//	protected Entity2DView createView() {
+//		return new Creature2DView(this, 1.5, 2.0);
+//	}
 }

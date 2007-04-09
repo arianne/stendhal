@@ -24,9 +24,6 @@ import marauroa.common.game.RPObject;
  * compound of multiple frames.
  */
 public abstract class AnimatedEntity extends Entity {
-	/** This map contains animation name, frames association */
-	protected Map < String, Sprite[] > sprites;
-
 	/** actual animation */
 	protected String animation;
 
@@ -34,8 +31,7 @@ public abstract class AnimatedEntity extends Entity {
 	 * @param object
 	 */
 	protected void buildAnimations(RPObject object) {
-		((AnimatedEntity2DView) view).buildAnimations(sprites, object);
-//		view.buildRepresentation(sprites, object);
+		view.buildRepresentation(object);
 	}
 
 	/** This method sets the default animation */
@@ -49,8 +45,6 @@ public abstract class AnimatedEntity extends Entity {
 	 */
 	@Override
 	protected void loadSprite(final RPObject object) {
-		sprites = new HashMap < String, Sprite[] >();
-
 		buildAnimations(object);
 		sprite = defaultAnimation();
 	}
@@ -61,13 +55,5 @@ public abstract class AnimatedEntity extends Entity {
 	 */
 	public String getState() {
 		return animation;
-	}
-
-
-	/**
-	 * Temp for AnimatedEntity2DView (till it gets full impl)
-	 */
-	public Sprite [] getSprites(final String animation) {
-		return sprites.get(animation);
 	}
 }

@@ -153,10 +153,6 @@ public abstract class RPEntity extends AnimatedEntity {
 
 		this.direction = direction;
 
-		adjustAnimation(direction);
-	}
-
-	protected void adjustAnimation(final Direction direction) {
 		animation = getDirectionState(direction);
 	}
 
@@ -1002,18 +998,4 @@ public abstract class RPEntity extends AnimatedEntity {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
 	}
-
-
-	//
-	// Entity
-	//
-
-//	/**
-//	 * Transition method. Create the screen view for this entity.
-//	 *
-//	 * @return	The on-screen view of this entity.
-//	 */
-//	protected Entity2DView createView() {
-//		return new RPEntity2DView(this);
-//	}
 }

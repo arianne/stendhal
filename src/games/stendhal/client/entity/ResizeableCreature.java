@@ -15,8 +15,6 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
@@ -24,10 +22,6 @@ import marauroa.common.game.RPObject;
 public class ResizeableCreature extends Creature {
 	private double width = 1.5;
 	private double height = 1.0f;
-	private String metamorphosis = null;
-	private double drawWidth;
-	private double drawHeight;
-
 
 	public double getHeight() {
 		return height;
@@ -39,85 +33,40 @@ public class ResizeableCreature extends Creature {
 
 
 	@Override
-	protected void buildAnimations(final RPObject object) {
-		// Hack for human like creatures
-		drawWidth = width;
-		drawHeight = height;
-
-		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
-			drawWidth = 1.5;
-			drawHeight = 2;
-		}
-
-		SpriteStore store = SpriteStore.get();
-		Sprite creature = loadAnimationSprite(object);
-
-		sprites.put("move_up", store.getAnimatedSprite(creature, 0, 4, drawWidth, drawHeight));
-		sprites.put("move_right", store.getAnimatedSprite(creature, 1, 4, drawWidth, drawHeight));
-		sprites.put("move_down", store.getAnimatedSprite(creature, 2, 4, drawWidth, drawHeight));
-		sprites.put("move_left", store.getAnimatedSprite(creature, 3, 4, drawWidth, drawHeight));
-
-		sprites.get("move_up")[3] = sprites.get("move_up")[1];
-		sprites.get("move_right")[3] = sprites.get("move_right")[1];
-		sprites.get("move_down")[3] = sprites.get("move_down")[1];
-		sprites.get("move_left")[3] = sprites.get("move_left")[1];
-	}
-
-
-
-	@Override
     public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-	    boolean rebuildAnimations = false;
+		boolean rebuildAnimations = false;
+
 		if (diff.has("width")) {
 			width = diff.getDouble("width");
 			rebuildAnimations = true;
 		}
+
 		if (diff.has("height")) {
 			height = diff.getDouble("height");
 			rebuildAnimations = true;
 		}
+
 		if (diff.has("metamorphosis")) {
-			metamorphosis = diff.get("metamorphosis");
 			rebuildAnimations = true;
-		} else if (base.has("metamorphosis")) {
-			if (metamorphosis != base.get("metamorphosis")) {
-				metamorphosis = base.get("metamorphosis");
-				rebuildAnimations = true;
-			}
 		}
 
-	    super.onChangedAdded(base, diff);
+		super.onChangedAdded(base, diff);
 
-	    if (rebuildAnimations) {
-			buildAnimations(super.rpObject);
+		if (rebuildAnimations) {
+			buildAnimations(rpObject);
+			updateView();
 		}
-    }
+	}
+
 
 	@Override
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		super.onChangedRemoved(base, diff);
 		if (diff.has("metamorphosis")) {
-			metamorphosis = null;
 			buildAnimations(base);
 		}
 	}
 
-	@Override
-	protected Sprite loadAnimationSprite(final RPObject object) {
-		if (metamorphosis == null) {
-			return super.loadAnimationSprite(object);
-		} else {
-			SpriteStore store = SpriteStore.get();
-			sprite = store.getSprite("data/sprites/monsters/" + metamorphosis + ".png");
-			return sprite;
-		}
-	}
-
-	@Override
-	protected Sprite defaultAnimation() {
-		animation = "move_up";
-		return sprites.get("move_up")[0];
-	}
 
 	@Override
 	public Rectangle2D getArea() {
@@ -128,16 +77,26 @@ public class ResizeableCreature extends Creature {
 		return new Rectangle.Double(x, y, width, height);
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(x, y, width, height);
-	}
 
 	@Override
 	public void init(final RPObject object) {
+		super.init(object);
+
 		width = object.getDouble("width");
 		height = object.getDouble("height");
+	}
 
-		super.init(object);
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new ResizeableCreature2DView(this);
 	}
 }

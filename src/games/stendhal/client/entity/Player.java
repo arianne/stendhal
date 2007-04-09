@@ -52,6 +52,7 @@ public class Player extends RPEntity {
 
 		if (diff.has("outfit")) {
 			buildAnimations(diff);
+			updateView();
 		}
 
 		// We redo here to mantain player whose name has an underscore

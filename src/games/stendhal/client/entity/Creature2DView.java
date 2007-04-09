@@ -16,6 +16,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
@@ -120,6 +121,22 @@ public class Creature2DView extends RPEntity2DView {
 		}
 
 		return SpriteStore.get().getSprite(translate(name));
+	}
+
+
+	//
+	// AnimatedStateEntity2DView
+	//
+
+	/**
+	 * Populate named state animations.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load animations for.
+	 */
+	@Override
+	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
+		buildAnimations(map, object, getWidth(), getHeight());
 	}
 
 

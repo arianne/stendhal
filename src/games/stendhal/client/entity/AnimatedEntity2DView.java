@@ -68,7 +68,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 
 
 	//
-	// <AnimatedStateEntity2DView>
+	// AnimatedStateEntity2DView
 	//
 
 	/**
@@ -77,10 +77,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
 	 */
-	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
-		// TEMP - eventually make abstract
-		// public for now for AnimatedEntity to use
-	}
+	public abstract void buildAnimations(Map<String, Sprite []> map, RPObject object);
 
 
 	/**
@@ -89,9 +86,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 *
 	 */
 	public Sprite [] getAnimation(final String state) {
-		// XXX - For now use entity
-		return entity.getSprites(state);
-//		return animations.get(state);
+		return animations.get(state);
 	}
 
 

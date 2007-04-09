@@ -10,7 +10,10 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
@@ -91,5 +94,30 @@ public class ResizeableCreature2DView extends Creature2DView {
 		}
 
 		buildAnimations(map, object, drawWidth, drawHeight);
+	}
+
+
+	@Override
+	protected Sprite getAnimationSprite(final RPObject object) {
+		if(!object.has("metamorphosis")) {
+			return super.getAnimationSprite(object);
+		}
+
+		return SpriteStore.get().getSprite("data/sprites/monsters/" + object.get("metamorphosis") + ".png");
+	}
+
+
+	//
+	// Entity2DView
+	//
+
+	/**
+	 * Get the 2D area that is drawn in.
+	 *
+	 * @return	The 2D area this draws in.
+	 */
+	@Override
+	public Rectangle2D getDrawnArea() {
+		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 }
