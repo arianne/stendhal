@@ -91,6 +91,8 @@ public abstract class RPEntity extends AnimatedEntity {
 	private int mana;
 
 	private int base_mana;
+	
+	private int fullghostmode;
 
 	/**
 	 * Entity we are attacking.
@@ -461,6 +463,9 @@ public abstract class RPEntity extends AnimatedEntity {
 		if (diff.has("base_mana")) {
 			base_mana = diff.getInt("base_mana");
 		}
+		if (diff.has("fullghostmode")) {
+		    fullghostmode = diff.getInt("fullghostmode");
+		}
 
 		Color nameColor = Color.white;
 
@@ -760,13 +765,18 @@ public abstract class RPEntity extends AnimatedEntity {
 			r *= 2.0;
 			float g = hp_base_hp;
 			g *= 2.0;
-
-			g2d.setColor(Color.gray);
-			g2d.fillRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
-			g2d.setColor(new Color(r > 1 ? 1 : r, g > 1 ? 1 : g, 0));
-			g2d.fillRect((int) p.getX(), (int) p.getY() - 3, (int) (hp_base_hp * 32.0), 3);
-			g2d.setColor(Color.black);
-			g2d.drawRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
+			
+			// assuming that this is the HP bar, we remove it
+			if (fullghostmode == 0) {
+			    g2d.setColor(Color.gray);
+			    g2d.fillRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
+			    g2d.setColor(new Color(r > 1 ? 1 : r, g > 1 ? 1 : g, 0));
+			    g2d.fillRect((int) p.getX(), (int) p.getY() - 3, (int) (hp_base_hp * 32.0), 3);
+			    g2d.setColor(Color.black);
+			    g2d.drawRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
+			} else {
+			    // nothing, and no hp bar!
+			}
 		}
 	}
 
@@ -924,6 +934,14 @@ public abstract class RPEntity extends AnimatedEntity {
 	 */
 	public int getBaseMana() {
 		return base_mana;
+	}
+	
+	/**
+	 *@return Returns the status of Fullghostmode (0 for off, 1 for on)
+	 */
+	
+	public int getFullGhostModeStatus() {
+	    return fullghostmode;
 	}
 
 	// When this entity attacks target.
