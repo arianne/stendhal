@@ -5,17 +5,23 @@ import games.stendhal.server.events.UseListener;
 import java.awt.geom.Rectangle2D;
 
 
-public class Fire extends Entity implements UseListener{
-
-	public Fire() {
+public class Fire extends Entity implements UseListener {
+	private int width;
+	private int height;
+	
+	public Fire(int width, int height) {
 		super();
 		setDescription("You see a flickering light. You are tented to touch it");
 		put("type", "fire");
+		put("width", width);
+		put("height", height);
+		this.width = width;
+		this.height = height;
 	}
 	
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
+		rect.setRect(x, y, width, height);
 
 	}
 
