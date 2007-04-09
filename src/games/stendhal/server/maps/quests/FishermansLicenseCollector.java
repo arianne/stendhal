@@ -40,8 +40,8 @@ public class FishermansLicenseCollector extends AbstractQuest {
 		"cod",      	// 
 		"roach",		//
 		"char",			//
-		"clownfish"		//
-	//  "surgeonfish"	//
+		"clownfish",	//
+		"surgeonfish"	//
 	);
 	
 	/**
