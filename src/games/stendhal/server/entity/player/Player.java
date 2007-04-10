@@ -1358,5 +1358,9 @@ public class Player extends RPEntity implements TurnListener {
 		return this.getName().equals(other.getName());
 	}
 
+	@Override
+	public String toString() {
+		return "Player [" + getName() + ", " + hashCode() + "]";
+	}
 	
 }
