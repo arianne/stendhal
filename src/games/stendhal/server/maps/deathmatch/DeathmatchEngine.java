@@ -205,7 +205,7 @@ class DeathmatchEngine implements TurnListener {
 		for (DeathMatchCreature creature : spawnedCreatures) {
 			sum += creature.getDMPoints();
 		}
-		return 0;
+		return sum;
 	}
 
 	
