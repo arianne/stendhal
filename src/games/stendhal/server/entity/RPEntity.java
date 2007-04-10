@@ -91,12 +91,12 @@ public abstract class RPEntity extends Entity {
 	 * Maps each attacker to the sum of hitpoint loss it has caused to this
 	 * RPEntity. 
 	 */
-	private Map<Entity, Integer> damageReceived;
+	protected Map<Entity, Integer> damageReceived;
 
 	/** list of players which are to reward with xp on killing this creature */
 	protected Set<Player> playersToReward;
 
-	private int totalDamageReceived;
+	protected int totalDamageReceived;
 
 	/** the path */
 	private List<Path.Node> path;
