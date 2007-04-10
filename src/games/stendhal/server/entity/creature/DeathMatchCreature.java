@@ -48,10 +48,10 @@ public class DeathMatchCreature extends Creature {
 	 * @return number of points to reward
 	 */
 	public int getDMPoints(Player player) {
-		Integer damageDone = damageReceived.get(player);
-		if (damageDone != null) {
+		Integer damageReceivedByPlayer = damageReceived.get(player);
+		if (damageReceivedByPlayer != null) {
 			int basePoints = player.getLevel();
-			return basePoints * (damageDone / totalDamageReceived);
+			return basePoints * (damageReceivedByPlayer / totalDamageReceived);
 		} else {
 			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
 			return 0;
