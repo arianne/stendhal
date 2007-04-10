@@ -2,8 +2,14 @@ package games.stendhal.tools.tiled;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.io.*;
-import java.lang.reflect.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ListIterator;
@@ -12,19 +18,45 @@ import java.util.Vector;
 import java.util.zip.GZIPInputStream;
 
 import javax.imageio.ImageIO;
-import javax.xml.parsers.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import tiled.core.*;
+import tiled.core.AnimatedTile;
+import tiled.core.Map;
+import tiled.core.MapLayer;
+import tiled.core.MapObject;
+import tiled.core.ObjectGroup;
+import tiled.core.Tile;
+import tiled.core.TileLayer;
+import tiled.core.TileSet;
 import tiled.io.ImageHelper;
 import tiled.io.MapReader;
 import tiled.io.PluginLogger;
 import tiled.mapeditor.util.cutter.BasicTileCutter;
-import tiled.util.*;
+import tiled.util.Base64;
+import tiled.util.Util;
 
 
+/**
+ * Loads a TMX file to server so it can understand:
+ * a) The objects layer
+ * b) The collision layer
+ * c) The protection layer.
+ * d) All the layers that are sent to client
+ * e) The tileset data that is also transfered to client
+ * f) A preview of the zone for the minimap.
+ * 
+ * Client would get the layers plus the tileset info.
+ * 
+ * @author miguel
+ *
+ */
 public class ServerTMXLoader implements MapReader {
 	private Map map;
 	private String xmlPath;
@@ -350,8 +382,8 @@ public class ServerTMXLoader implements MapReader {
 						}
 
 						set.setSource(imgSource);
-//						set.importTileBitmap(sourcePath, new BasicTileCutter(
-//								tileWidth, tileHeight, tileSpacing, 0));
+						set.importTileBitmap(sourcePath, new BasicTileCutter(
+								tileWidth, tileHeight, tileSpacing, 0));
 					} else {
 						Image image = unmarshalImage(child, tilesetBaseDir);
 						String idValue = getAttributeValue(child, "id");
@@ -775,8 +807,8 @@ public class ServerTMXLoader implements MapReader {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Test: loading map");
 		long start=System.currentTimeMillis();
-		Map map=new ServerTMXLoader().readMap("/home/miguel/Desarrollo/stendhal/tiled/ported/interiors/abstract/afterlife.tmx");
-		System.out.println("Last: "+(System.currentTimeMillis()-start));
+		Map map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
+		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));
 
 		System.out.printf("MAP W: %d H:%d\n", map.getWidth(), map.getHeight());
 		Vector<TileSet> tilesets=map.getTilesets();
@@ -793,8 +825,15 @@ public class ServerTMXLoader implements MapReader {
 			for(int i=0;i<w;i++) {
 				for(int j=0;j<h;j++) {
 					Tile tile=layer.getTileAt(i, j);
-					tile.getGid();
+					int gid = 0;
+
+					if (tile != null) {
+						gid = tile.getGid();
+					}
+
+					System.out.print(gid + ((j == layer.getWidth() - 1) ? "" : ","));
 				}
+			System.out.println();
 			}
 		}
 	}
