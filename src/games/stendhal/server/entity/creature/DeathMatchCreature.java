@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
  */
 public class DeathMatchCreature extends Creature {
 
+	private int points = 0;
+	private Player player = null;
+
 	/**
 	 * DeathCreature
 	 *
@@ -37,25 +40,27 @@ public class DeathMatchCreature extends Creature {
 	 * @param player Player to reward
 	 */
 	public void setPlayerToReward(Player player) {
-		playersToReward.clear();
-		playersToReward.add(player);
+		this.player = player;
+	}
+
+	@Override
+	protected void rewardKillers(int oldXP, int oldLevel) {
+		Integer damageReceivedByPlayer = damageReceived.get(player);
+		if (damageReceivedByPlayer != null) {
+			int basePoints = player.getLevel();
+			points = basePoints * (damageReceivedByPlayer / totalDamageReceived);
+		} else {
+			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
+		}
 	}
 
 	/**
 	 * Calculates the deathmatch points for this kill
 	 *
-	 * @param player Player doing the deathmatch
 	 * @return number of points to reward
 	 */
-	public int getDMPoints(Player player) {
-		Integer damageReceivedByPlayer = damageReceived.get(player);
-		if (damageReceivedByPlayer != null) {
-			int basePoints = player.getLevel();
-			return basePoints * (damageReceivedByPlayer / totalDamageReceived);
-		} else {
-			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
-			return 0;
-		}
+	public int getDMPoints() {
+		return points ;
 	}
 
 }
