@@ -432,11 +432,12 @@ public class Player extends RPEntity implements TurnListener {
 			karma = getDouble("karma");
 		}
 
-		if(has("features")) {
-			features.decode(get("features"));
-		} else {
-			features.clear();
-		}
+// BROKEN - Will fix tomorrow
+//		if(has("features")) {
+//			features.decode(get("features"));
+//		} else {
+//			features.clear();
+//		}
 	}
 
 	/**
