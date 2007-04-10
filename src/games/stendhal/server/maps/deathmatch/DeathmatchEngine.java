@@ -122,9 +122,9 @@ class DeathmatchEngine implements TurnListener {
 
 		// check wheter the deathmatch was completed
 		if (questLevel >= player.getLevel() + NUMBER_OF_CREATURES - 2 ) {
-			logger.info("May be done");
+			//logger.info("May be done");
 			if (areAllCreaturesDead()) {
-				logger.info("DONE");
+				logger.info("Player " + player.getName() + " completed deathmatch");
 				spawnDailyMonster();
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
 				deathmatchState.setQuestLevel(calculatePoints());
