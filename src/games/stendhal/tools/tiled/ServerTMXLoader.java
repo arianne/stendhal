@@ -158,14 +158,15 @@ public class ServerTMXLoader implements MapReader {
 	InvocationTargetException {
 		Constructor cons = null;
 		try {
-			cons = reflector.getConstructor(null);
+			cons = reflector.getConstructor();
 		} catch (SecurityException e1) {
 			e1.printStackTrace();
+			return null;
 		} catch (NoSuchMethodException e1) {
 			e1.printStackTrace();
 			return null;
 		}
-		Object o = cons.newInstance(null);
+		Object o = cons.newInstance();
 		Node n;
 
 		Method[] methods = reflector.getMethods();
