@@ -39,7 +39,8 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 	 */
 	private int updatePoints(Player player) {
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
-		rules.addHallOfFamePoints(player.getName(), "D", player.getLevel());
+		DeathmatchState deathmatchState = DeathmatchState.createFromQuestString(player.getQuest("deathmatch"));
+		rules.addHallOfFamePoints(player.getName(), "D", deathmatchState.getQuestLevel());
 		return rules.getHallOfFamePoints(player.getName(), "D");
 	}
 
@@ -68,8 +69,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 			int maxdefense = 5 + (player.getLevel() / 5);
 			if (defense > maxdefense) {
 				helmet.put("def", maxdefense);
-				engine
-				        .say("Congratulations, your score is now "
+				engine.say("Congratulations, your score is now "
 				                + points
 				                + "! However, I'm sorry to inform you, the maximum defense for your helmet at your current level is "
 				                + maxdefense);

@@ -48,7 +48,7 @@ class DeathmatchEngine implements TurnListener {
 
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();
 
-	private List<Creature> spawnedCreatures = new ArrayList<Creature>();
+	private List<DeathMatchCreature> spawnedCreatures = new ArrayList<DeathMatchCreature>();
 
 	private boolean keepRunning = true;
 
@@ -125,6 +125,7 @@ class DeathmatchEngine implements TurnListener {
 			if (areAllCreaturesDead()) {
 				spawnDailyMonster();
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
+				deathmatchState.setQuestLevel(calculatePoints());
 				player.setQuest("deathmatch", deathmatchState.toQuestString());
 				// remove this ScriptAction since we're done
 
@@ -197,6 +198,15 @@ class DeathmatchEngine implements TurnListener {
 		return true;
 	}
 
+	private int calculatePoints() {
+		int sum = 0;
+		for (DeathMatchCreature creature : spawnedCreatures) {
+			sum += creature.getDMPoints(player);
+		}
+		return 0;
+	}
+
+	
 	/**
 	 * be nice to the player and give him his daily quest creature
 	 * if he hasn't found it yet

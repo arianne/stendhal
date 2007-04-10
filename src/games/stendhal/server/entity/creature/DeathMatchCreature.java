@@ -39,4 +39,16 @@ public class DeathMatchCreature extends Creature {
 		playersToReward.add(player);
 	}
 
+	/**
+	 * Calculates the deathmatch points for this kill
+	 *
+	 * @param player Player doing the deathmatch
+	 * @return number of points to reward
+	 */
+	public int getDMPoints(Player player) {
+		Integer damageDone = damageReceived.get(player);
+		int basePoints = player.getLevel();
+		return basePoints * (damageDone / totalDamageReceived);  
+	}
+
 }
