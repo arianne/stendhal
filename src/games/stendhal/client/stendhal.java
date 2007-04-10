@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
 
@@ -136,6 +137,8 @@ public class stendhal extends Thread {
 	 * @param client StendhalClient
 	 */
 	private static void startGameGUI(StendhalClient client) {
+		
+		
 		new j2DClient(client);
 	}
 
@@ -150,6 +153,15 @@ public class stendhal extends Thread {
 		startSwingLookAndFeel();
 		StendhalClient client = startClient();
 		waitForLogin();
+		startSoundMaster();
 		startGameGUI(client);
+	}
+
+	private static void startSoundMaster() {
+		SoundMaster sm = new SoundMaster();
+		sm.init();
+		Thread th = new Thread(sm);
+		th.start();
+		
 	}
 }

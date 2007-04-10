@@ -25,10 +25,15 @@ public class Schnick {
 	/**
 	 * @param args
 	 */
+	
 	public static void main(String[] args) {
 		SoundMaster sm = new SoundMaster();
-		sm.run();
+		sm.init();
+		Thread th = new Thread(sm);
+		th.start();
 		SoundMaster.play("hammer-1.wav");
+		SoundMaster.play("evillaugh-3.wav");
+		System.out.print(true);
 	}
 
 	 static void loadFromPropertiesintoXML() {

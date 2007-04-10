@@ -6,6 +6,8 @@ import java.util.List;
 
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
+import games.stendhal.client.soundreview.HearingArea;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
@@ -45,7 +47,9 @@ public class User extends Player {
 	@Override
     public void onMove(final int x, final int y, final Direction direction, final double speed) {
 	   super.onMove(x, y, direction, speed);
-			WorldObjects.firePlayerMoved();
+	   
+	   HearingArea.set(x,y);
+	   WorldObjects.firePlayerMoved();
     }
 
 	@Override
@@ -79,7 +83,7 @@ public class User extends Player {
 				rpaction.put("type", at.toString());
 				rpaction.put("target", "-1");
 				at.send(rpaction);
-				playSound("sheep-chat-2", 15, 50);
+				SoundMaster.play("sheep-2.wav",x,y);
 				break;
 			default:
 				super.onAction(at, params);
@@ -213,6 +217,12 @@ public class User extends Player {
 	public boolean isModified(final long oldModificationCount) {
 		return oldModificationCount != modificationCount;
 	}
-    }
+
+	public static void setNull() {
+		_instance =null;
+		
+	}
+    
+}
 
 

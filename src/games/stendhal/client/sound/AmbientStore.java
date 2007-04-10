@@ -19,6 +19,10 @@ package games.stendhal.client.sound;
  */
 class AmbientStore {
 
+	private static final String BUSHBIRD_MIX_1 = "bushbird-mix-1";
+	private static final String BLACKBIRD_MIX = "blackbird-mix";
+	public static final String BLACKBIRD_1 = "blackbird-1";
+
 	/**
 	 * create an Ambient sound by its name
 	 * @param name the String representing the sound's name
@@ -56,14 +60,14 @@ class AmbientStore {
 
 		else if (name.equals("blackbirds-1")) {
 			ambient = new AmbientSound(name, 100);
-			ambient.addCycle("blackbird-1", 120000, 30, 80, 80);
-			ambient.addCycle("blackbird-mix", 120000, 40, 80, 80);
+			ambient.addCycle(AmbientStore.BLACKBIRD_1, 120000, 30, 80, 80);
+			ambient.addCycle(AmbientStore.BLACKBIRD_MIX, 120000, 40, 80, 80);
 		}
 
 		else if (name.equals("bushbirds-1")) {
 			ambient = new AmbientSound(name, 100);
-			ambient.addCycle("bushbird-mix-1", 45000, 50, 90, 75);
-			ambient.addCycle("bushbird-mix-1", 45000, 40, 80, 75);
+			ambient.addCycle(AmbientStore.BUSHBIRD_MIX_1, 45000, 50, 90, 75);
+			ambient.addCycle(AmbientStore.BUSHBIRD_MIX_1, 45000, 40, 80, 75);
 		}
 
 		else if (name.equals("chicken-1")) {

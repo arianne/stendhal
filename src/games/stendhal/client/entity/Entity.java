@@ -17,10 +17,12 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+//import java.util.Random;
 
 import javax.sound.sampled.DataLine;
 
@@ -31,6 +33,7 @@ import marauroa.common.game.RPSlot;
 
 public abstract class Entity implements Comparable<Entity> {
 
+	String[] moveSounds=null;
 	/** session wide instance identifier for this class
 	 * TODO: get rid of this only used by Soundsystem
 	 *  
@@ -433,7 +436,11 @@ public final byte[] ID_Token = new byte[0];
 	 *         <b>null</b> if not performing
 	 */
 	public DataLine playSound(final String token, final int volBot, final int volTop, final int chance) {
-		return SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
+		if (Rand.rand(100)<chance){
+   // 	SoundMaster.play("evillaugh-3.wav",x,y);
+     	System.out.println("chance " +token + " chance "+ chance);
+		}
+		return null;//SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
 	}
 
 	/**
@@ -450,9 +457,11 @@ public final byte[] ID_Token = new byte[0];
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> if not performing
 	 */
-	public final DataLine playSound(final String token, final int volBot, final int volTop) {
-		return SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, 100);
-	}
+//	private final DataLine playSound(final String token, final int volBot, final int volTop) {
+//		//SoundMaster.play("evillaugh-3.wav",x,y);
+//		System.out.println(token);
+//		return SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, 100);
+//	}
 
 	/** returns the number of slots this entity has */
 	public int getNumSlots() {

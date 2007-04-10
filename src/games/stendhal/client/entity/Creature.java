@@ -16,8 +16,12 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Debug;
+import games.stendhal.common.Direction;
+import games.stendhal.common.Rand;
 
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -245,35 +249,121 @@ public abstract class Creature extends RPEntity {
 				if (name.equals("wolf")) {
 					SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50, 100);
 				} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
-					SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30, 80);
+					moveSounds=new String[3];
+					moveSounds[0]="rats-2.wav";
+					moveSounds[1]="rats-3.wav";
+					moveSounds[2]="rats-41.wav";
+					//SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30, 80);
 				} else if (name.equals("razorrat")) {
-					SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10, 50, 75);
+					moveSounds=new String[1];
+					moveSounds[0]="rats-1.wav";
+					//SoundSystem.startSoundCycle(this, "razorrat-patrol", 60000, 10, 50, 75);
 				} else if (name.equals("gargoyle")) {
-					SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10, 50, 100);
+					moveSounds=new String[3];
+					moveSounds[0]="hyena-1.wav";
+					moveSounds[1]="hyena-2.aiff";
+					moveSounds[2]="hyena-3.wav";
+					
+					//SoundSystem.startSoundCycle(this, "gargoyle-patrol", 45000, 10, 50, 100);
 				} else if (name.equals("boar")) {
-					SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50, 100);
+					moveSounds=new String[2];
+					moveSounds[0]="pig-1.wav";
+					moveSounds[1]="pig-2.wav";
+					
+					//SoundSystem.startSoundCycle(this, "boar-patrol", 30000, 20, 50, 100);
 				} else if (name.equals("bear")) {
-					SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80, 75);
+					moveSounds=new String[3];
+					moveSounds[0]="bear-1.aiff";
+					moveSounds[1]="bear-2.wav";
+					moveSounds[2]="bear-3.wav";
+					//SoundSystem.startSoundCycle(this, "bear-patrol", 45000, 30, 80, 75);
 				} else if (name.equals("giantrat")) {
-					SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30, 60, 65);
+					moveSounds=new String[2];
+					moveSounds[0]="bobcat-1.wav";
+					moveSounds[1]="leopard-11.wav";
+
+					//SoundSystem.startSoundCycle(this, "giantrat-patrol", 30000, 30, 60, 65);
 				} else if (name.equals("cobra")) {
-					SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20, 60, 65);
+					moveSounds=new String[1];
+					moveSounds[0]="snake-1.wav";
+					//SoundSystem.startSoundCycle(this, "cobra-patrol", 60000, 20, 60, 65);
 				} else if (name.equals("kobold")) {
-					SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40, 70, 80);
+					moveSounds=new String[4];
+					moveSounds[0]="panda-1.wav";
+					moveSounds[1]="panda-2.aiff";
+					moveSounds[2]="racoon-1.aiff";
+					moveSounds[3]="lama-1.wav";
+					
+					//SoundSystem.startSoundCycle(this, "kobold-patrol", 30000, 40, 70, 80);
 				} else if (name.equals("goblin")) {
-					SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30, 85, 65);
+					moveSounds=new String[2];
+					moveSounds[0]="saur-3.au";
+					moveSounds[1]="saur-4.wav,x";
+					//SoundSystem.startSoundCycle(this, "goblin-patrol", 50000, 30, 85, 65);
 				} else if (name.equals("troll")) {
-					SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20, 60, 100);
+					moveSounds=new String[5];
+					moveSounds[0]="gorilla-1.wav";
+					moveSounds[1]="gorilla-2.wav";
+					moveSounds[2]="gorilla-3.wav";
+					moveSounds[3]="gorilla-4.au";
+					moveSounds[4]="gorilla-5.aiff";
+					//SoundSystem.startSoundCycle(this, "troll-patrol", 25000, 20, 60, 100);
 				} else if (name.equals("orc")) {
-					SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80, 50);
+					moveSounds=new String[2];
+					moveSounds[0]= "lion-11.wav";
+					moveSounds[1]= "lion-22.wav";
+					//SoundSystem.startSoundCycle(this, "orc-patrol", 45000, 30, 80, 50);
 				} else if (name.equals("ogre")) {
-					SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60, 80);
+					moveSounds=new String[4];
+					moveSounds[0]="yell-1.wav";
+					moveSounds[1]="groan-1.wav";
+					moveSounds[2]="moan-1.wav";
+					moveSounds[3]="fart-1.wav";
+					//SoundSystem.startSoundCycle(this, "ogre-patrol", 40000, 30, 60, 80);
 				} else if (name.equals("skeleton")) {
-					SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30, 60, 80);
+					moveSounds=new String[5];
+					moveSounds[0]="bones-1.aiff";
+					moveSounds[1]="evillaugh-3.wav";
+					moveSounds[2]="evillaugh-5.wav";
+					moveSounds[3]="ghost-1.wav";
+					moveSounds[4]="ghost-2.wav";
+					//SoundSystem.startSoundCycle(this, "skeleton-patrol", 60000, 30, 60, 80);
 				} else if (name.equals("cyclops")) {
-					SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30, 75, 100);
+					moveSounds=new String[4];
+					moveSounds[0]="laugh-33.wav";
+					moveSounds[1]="evillaugh-4.wav";
+					moveSounds[2]="grunt-1.wav";
+					moveSounds[3]="grunt-2.wav";
+					
+					//SoundSystem.startSoundCycle(this, "cyclops-patrol", 45000, 30, 75, 100);
 				}
 			}
 		}
+	}
+
+	@Override
+	public void onMove(int x, int y, Direction direction, double speed) {
+		super.onMove(x, y, direction, speed);
+         try{
+			
+			
+			if (Rand.rand(100)<5)
+		    SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
+		}
+		catch(NullPointerException e){
+			
+		}
+	}
+
+	@Override
+	protected Entity2DView createView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rectangle2D getArea() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

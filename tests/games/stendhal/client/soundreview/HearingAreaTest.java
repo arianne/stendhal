@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import games.stendhal.client.entity.User;
+
 import java.awt.geom.Rectangle2D;
 
 import org.junit.Before;
@@ -16,10 +18,12 @@ public class HearingAreaTest {
 	public void setUp() throws Exception {
 		
 		HearingArea.set(0,0);
+		User.setNull();
 	}
 
 	@Test
 	public void contains() {
+		HearingArea.getAsRect();
 		assertTrue("both in ", HearingArea.contains(0, 0));
 		assertFalse("both out", HearingArea.contains(100, 100));
 		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));

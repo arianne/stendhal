@@ -10,21 +10,12 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
-
-import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an animated entity.
  */
 public abstract class AnimatedEntity2DView extends Entity2DView {
-	/**
-	 * Logger.
-	 */
-	private static final Logger logger = Log4J.getLogger(AnimatedEntity2DView.class);
 
 	/**
 	 * The animated entity this view is for.

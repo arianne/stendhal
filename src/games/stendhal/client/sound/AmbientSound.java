@@ -390,7 +390,7 @@ class AmbientSound {
 		isPlaying = true;
 		String hstr = "- playing ambient: " + name;
 		logger.debug(hstr);
-		// System.out.println( hstr );
+		
 	} // play
 
 	/** (Temporarily) stops playing this ambient sound. */
@@ -414,7 +414,7 @@ class AmbientSound {
 		isPlaying = false;
 		String hstr = "- stopped ambient: " + name;
 		logger.debug(hstr);
-		// System.out.println( hstr );
+		
 	} // stop
 
 	/** Unrevokably terminates this ambient sound. */
@@ -435,7 +435,7 @@ class AmbientSound {
 
 		String hstr = "- terminated ambient: " + name;
 		logger.debug(hstr);
-		// System.out.println( hstr );
+		
 	} // terminate
 
 	/**
@@ -456,8 +456,6 @@ class AmbientSound {
 		} else {
 			// maximum fog if no player infos available
 			if ((User.isNull()) || (playerHearing == null)) {
-				// System.out.println( "ambient (" + name + ") fog volume: 0
-				// (player unavailable)" );
 				return DBValues.getDBValue(0);
 			}
 

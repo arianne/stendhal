@@ -1,5 +1,7 @@
 package games.stendhal.client.soundreview;
 
+import games.stendhal.client.entity.User;
+
 import java.io.IOException;
 
 import javax.sound.sampled.AudioSystem;
@@ -16,16 +18,28 @@ public class SoundMaster implements Runnable {
 	private static Cliplistener cliplisten=null;
 
 	public void run() {
-		init();
-	}
-
-	private void init() {
+}
+	public void init() {
 		sfm = new SoundFileMap();
 
 		cliplisten = new Cliplistener();
 	}
 
-	public static void play(String soundName) {
+	public static void play(String soundName,double x, double y){
+		play(soundName, x, y, false);
+	}
+	
+	
+	public static void play(String soundName,double x, double y,boolean loop){
+		if (HearingArea.contains(x, y)){
+			
+			play(soundName);
+		}else{
+			
+		}
+	}
+	
+	 public static void play(String soundName) {
 		if (soundName == null) {
 	        return;
         }
@@ -34,19 +48,22 @@ public class SoundMaster implements Runnable {
 
 		o = sfm.get(soundName);
 		if (o == null) {
+			System.out.println("sound " + soundName+" was not got from sfm");
 	        return;
         }
 		try {
-		AudioClip ac = new AudioClip(AudioSystem.getMixer(null), "hugo", o, 100);
+		AudioClip ac = new AudioClip(AudioSystem.getMixer(null),  o, 100);
 
 		Clip cl;
 		
 			cl = ac.openLine();
+			
+if (cl!=null){
 
 			cl.addLineListener(cliplisten);
 			cl.start();
-			cl.drain();
-			cl = null;
+			
+}
 		} catch (UnsupportedAudioFileException e) {
 			
 		} catch (IOException e) {
@@ -67,7 +84,8 @@ public class SoundMaster implements Runnable {
 	            
             }
 			if (event.getType().equals(LineEvent.Type.STOP)) {
-	            event.getLine().close();
+//				System.out.println("sound lineclosed");
+//	           // event.getLine().close();
             }
 			
 			if (event.getType().equals(LineEvent.Type.OPEN)) {

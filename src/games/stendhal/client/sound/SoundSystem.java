@@ -30,6 +30,8 @@ import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.AudioClip;
+
+
 import games.stendhal.common.MathHelper;
 import games.stendhal.common.Rand;
 
@@ -170,9 +172,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	public static DataLine playSound(String name, int volume) {
-		return get().playSoundIntern(name, volume, volume, (float) 0.0);
-	}
+//	public static DataLine playSound(String name, int volume) {
+//		return get().playSoundIntern(name, volume, volume, (float) 0.0);
+//	}
 
 	/**
 	 * Plays a sound of the given name from the library of this sound system by
@@ -187,9 +189,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	static DataLine playSound(String name, int volBot, int volTop) {
-		return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
-	}
+//	static DataLine playSound(String name, int volBot, int volTop) {
+//		return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
+//	}
 
 	/**
 	 * Plays a sound subject to a random performance chance.
@@ -205,12 +207,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error or if performance is bailed
 	 */
-	static DataLine probablePlaySound(int chance, String name, int volBot, int volTop) {
-		if (Rand.rand(100) < chance) {
-			return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
-		}
-		return null;
-	}
+//	static DataLine probablePlaySound(int chance, String name, int volBot, int volTop) {
+//		if (Rand.rand(100) < chance) {
+//			return get().playSoundIntern(name, volBot, volTop, (float) 0.0);
+//		}
+//		return null;
+//	}
 
 	/**
 	 * Plays a sound bound to a given map position, possibly restricted by an
@@ -233,44 +235,44 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return <code>javax.sound.sampled.DataLine</code> the sound line that
 	 *         is being performed or <b>null</b> if no performance takes place
 	 */
-	public static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop,
-	        int chance) {
-		
-		double distance;
-		double maxDist;
-		int fogVolume;
-
-		// broken cases
-		if ((where == null) || (chance < 0)) {
-			throw new IllegalArgumentException();
-		}
-
-		// lost chance cases (random)
-		if ((chance < 100) && (Rand.rand(100) >= chance)) {
-			return null;
-		}
-
-		
-		if (User.isNull()) {
-			return null;
-		}
-		
-		Rectangle2D playerHearing= User.get().getHearingArea();
-		// exclusion cases
-		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(User.get().getX(),User.get().getY()))) {
-			return null;
-		}
-
-		logger.debug("SoundSystem: playing map sound (" + name + ") at pos " + (int) where.getX() + ", "
-		        + (int) where.getY());
-
-		// determine sound volume cutoff due to distance (fog value)
-		distance = where.distance(User.get().getX(),User.get().getY());
-		maxDist = playerHearing.getWidth() / 2;
-		fogVolume = Math.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
-
-		return get().playSoundIntern(name, volBot, volTop, DBValues.getDBValue(fogVolume));
-	} // playMapSound
+//	 static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop,
+//	        int chance) {
+//		
+//		double distance;
+//		double maxDist;
+//		int fogVolume;
+//
+//		// broken cases
+//		if ((where == null) || (chance < 0)) {
+//			throw new IllegalArgumentException();
+//		}
+//
+//		// lost chance cases (random)
+//		if ((chance < 100) && (Rand.rand(100) >= chance)) {
+//			return null;
+//		}
+//
+//		
+//		if (User.isNull()) {
+//			return null;
+//		}
+//		
+//		Rectangle2D playerHearing= User.get().getHearingArea();
+//		// exclusion cases
+//		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(User.get().getX(),User.get().getY()))) {
+//			return null;
+//		}
+//
+//		logger.debug("SoundSystem: playing map sound (" + name + ") at pos " + (int) where.getX() + ", "
+//		        + (int) where.getY());
+//
+//		// determine sound volume cutoff due to distance (fog value)
+//		distance = where.distance(User.get().getX(),User.get().getY());
+//		maxDist = playerHearing.getWidth() / 2;
+//		fogVolume = Math.max(0, (int) (95 * (maxDist - distance) / maxDist + 5));
+//
+//		return get().playSoundIntern(name, volBot, volTop, DBValues.getDBValue(fogVolume));
+//	} // playMapSound
 
 	/** plays (?) and registers an ambient sound 
 	 * @param ambient the sound to be registered 
@@ -499,7 +501,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 						// sound = new ClipRunner(this, name + "@" + path,
 						// soundData, loudness);
-						sound = new AudioClip(mixer, name + "@" + filename, soundData, loudness);
+						sound = new AudioClip(mixer, soundData, loudness);
 						count++;
 					} catch (Exception e) {
 						// could not validate sound file content
@@ -762,7 +764,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		hstr = "-- SoundSys: ZONE ENTERED: " + zone;
 		logger.debug(hstr);
-		// System.out.println( hstr );
+		
 		actualZone = zone;
 
 		// 0_SEMOS_VILLAGE
@@ -961,9 +963,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		
 	}
 
-	public static DataLine playMapSound(double x, double y, Rectangle2D audibleArea, String token, int volBot, int volTop, int chance) {
-	  return  playMapSound(new Point2D.Double(x,y),audibleArea, token,  volBot,  volTop,  chance); 
-	    
-    }
+//	 static DataLine playMapSound(double x, double y, Rectangle2D audibleArea, String token, int volBot, int volTop, int chance) {
+//	  return  playMapSound(new Point2D.Double(x,y),audibleArea, token,  volBot,  volTop,  chance); 
+//	    
+//    }
 
 }

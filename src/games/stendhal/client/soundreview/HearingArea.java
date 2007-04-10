@@ -1,5 +1,7 @@
 package games.stendhal.client.soundreview;
 
+import games.stendhal.client.entity.User;
+
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -27,7 +29,10 @@ public abstract class HearingArea {
 		lower = y + HEARINGDIST;
 	}
 
-	public static  boolean contains(int x, int y) {
+	public static  boolean contains(double x, double y) {
+		if (!User.isNull()){
+		    set(User.get().getX(),User.get().getY());
+		}
 		if (left < x ? x < right : false) {
 			return (upper < y ? y < lower : false);
 		}
@@ -45,6 +50,9 @@ public abstract class HearingArea {
 	}
 
 	public static Rectangle2D getAsRect() {
+		if (!User.isNull()){
+		    set(User.get().getX(),User.get().getY());
+		}
 		return new Rectangle2D.Double(left, upper, 2 * HEARINGDIST, 2 * HEARINGDIST);
 	}
 

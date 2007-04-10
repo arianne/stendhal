@@ -35,6 +35,7 @@ import games.stendhal.client.gui.wt.core.WtMessageBox;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Direction;
@@ -186,7 +187,7 @@ public class j2DClient extends StendhalUI {
 
 	public j2DClient(StendhalClient client) {
 		super(client);
-
+		
 		setDefault(this);
 
 		pressed = new HashMap<Integer, Object>();
@@ -527,7 +528,7 @@ public class j2DClient extends StendhalUI {
 
 		screen.place(-100, -100);
 
-		SoundSystem.playSound("welcome", 100);
+		SoundMaster.play("harp-1.wav");
 
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();

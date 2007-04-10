@@ -13,6 +13,7 @@
 package games.stendhal.client.sound;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 import javax.sound.sampled.DataLine;
 import org.apache.log4j.Logger;
@@ -132,7 +133,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 		hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
 		logger.debug(hstr);
-		// System.out.println( hstr );
+		
 
 		if (dataline != null) {
 			dataline.stop();
@@ -159,7 +160,7 @@ class SoundCycle extends Thread implements Cloneable {
 		if (!isAlive()) {
 			hstr = "  ** starting cycle sound: " + token + " / entity=?";
 			logger.debug(hstr);
-			// System.out.println( hstr );
+			
 			executing = true;
 			try {
 				start();
@@ -204,7 +205,7 @@ class SoundCycle extends Thread implements Cloneable {
 					terminate();
 				}
 			} else {
-				SoundSystem.probablePlaySound(chance, token, volBot, volTop);
+				SoundMaster.play(token);
 			}
 		}
 	} // run

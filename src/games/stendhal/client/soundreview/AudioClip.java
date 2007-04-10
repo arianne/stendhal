@@ -38,9 +38,6 @@ public class AudioClip {
 	/** the logger */
 	private static final Logger logger = Log4J.getLogger(AudioClip.class);
 
-	/** */
-	private String name;
-
 	/** the data stream */
 	private byte[] audioData;
 
@@ -68,10 +65,10 @@ public class AudioClip {
 	 * @throws IOException 
 	 * @throws UnsupportedAudioFileException 
 	 */
-	public AudioClip(Mixer mixer, String name, byte[] audioData, int volume) throws UnsupportedAudioFileException, IOException {
+	public AudioClip(Mixer mixer,  byte[] audioData, int volume) throws UnsupportedAudioFileException, IOException {
 		this.volume = volume;
 		this.mixer = mixer;
-		this.name = name;
+		
 
 		
 			AudioInputStream audioInputStream;
@@ -81,7 +78,7 @@ public class AudioClip {
 			format = audioInputStream.getFormat();
 
 			if (!mixer.isLineSupported(new DataLine.Info(Clip.class, audioInputStream.getFormat()))) {
-				logger.error(name + " format is not supported(" + audioInputStream.getFormat() + ")");
+				logger.error("format is not supported(" + audioInputStream.getFormat() + ")");
 				supported = false;
 				return;
 			}
@@ -130,11 +127,12 @@ public class AudioClip {
 				return null;
 			}
 			Clip line = (Clip) mixer.getLine(info);
+			
 			try {
 				line.open(audioInputStream);
 				return line;
 			} catch (LineUnavailableException e) {
-				logger.info(name + " cannot be played, no free lines available");
+				logger.info("audioclip cannot be played, no free lines available");
 			}
 		}
 		return null;

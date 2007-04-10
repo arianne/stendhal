@@ -15,16 +15,18 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
+import games.stendhal.common.Rand;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,7 +42,10 @@ import marauroa.common.game.RPObject;
 public abstract class RPEntity extends AnimatedStateEntity {
 
 	private boolean showBladeStrike;
-	
+	String[] attackSounds={
+		"punch-1.wav","punch-2.wav","punch-3.wav"
+		,"punch-4.wav","punch-5.wav","punch-6.wav,50",
+		"swingaxe-1.wav","slap-1.wav","arrow-1.wav"};
 	public enum Resolution {
 		HIT(0), BLOCKED(1), MISSED(2);
 
@@ -380,6 +385,7 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		super.onChangedAdded(base, diff);
 
 		if (!inAdd) {
+			
 			fireTalkEvent(base, diff);
 			fireHPEvent(base, diff);
 			fireKillEvent(base, diff);
@@ -671,6 +677,7 @@ public abstract class RPEntity extends AnimatedStateEntity {
 	}
 
 	protected void fireHPEvent(final RPObject base, final RPObject diff) {
+		
 		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
@@ -682,13 +689,15 @@ public abstract class RPEntity extends AnimatedStateEntity {
 					onHealed(healing);
 				}
 			}
-
+			//only for player
 			if (diff.has("poisoned")) {
 				// To remove the - sign on poison.
 				onPoisoned(Math.abs(diff.getInt("poisoned")));
 			}
-
+		
+			// only for Players
 			if (diff.has("eating")) {
+				
 				onEat(0);
 			}
 		}
@@ -952,8 +961,15 @@ public abstract class RPEntity extends AnimatedStateEntity {
 	public void onDamaged(final Entity attacker, final int damage) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
-
-		playSound("punch-mix", 20, 60, 80);
+		 try{
+			
+			    SoundMaster.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
+			}
+			catch(NullPointerException e){
+				
+			}
+		
+		//playSound("punch-mix", 20, 60, 80);
 
 		addFloater("-" + damage, Color.red);
 
@@ -979,4 +995,18 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
 	}
+
+	@Override
+	protected Entity2DView createView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rectangle2D getArea() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

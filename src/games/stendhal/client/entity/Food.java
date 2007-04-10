@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.soundreview.SoundMaster;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -43,7 +45,7 @@ public abstract class Food extends AnimatedStateEntity {
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				playSound("fruit-regrow", 10, 25);
+				SoundMaster.play("pop-2.wav",x,y);
 			}
 		} else if (base.has("amount")) {
 			animation = base.get("amount");
