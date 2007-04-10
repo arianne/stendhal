@@ -649,7 +649,7 @@ public abstract class RPEntity extends Entity {
 	 * @param oldXP The XP that this RPEntity had before being killed.
 	 * @param oldLevel The level that this RPEntity had before being killed.
 	 */
-	private void rewardKillers(int oldXP, int oldLevel) {
+	protected void rewardKillers(int oldXP, int oldLevel) {
 		int xpReward = (int) (oldXP * 0.05);
 
 		for (Player killer: playersToReward) {
