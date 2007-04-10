@@ -59,7 +59,7 @@ public class NPC2DView extends RPEntity2DView {
 
 		try {
 			if (object.has("outfit")) {
-				return getOutfitSprite(store, object);
+				return getOutfitSprite(store, object.getInt("outfit"));
 			} else {
 				// This NPC's outfit is read from a single file.
 				return store.getSprite(translate("npc/" + clazz));

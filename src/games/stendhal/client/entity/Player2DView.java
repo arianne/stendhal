@@ -56,11 +56,11 @@ public class Player2DView extends RPEntity2DView {
 		SpriteStore store = SpriteStore.get();
 
 		try {
-			return getOutfitSprite(store, object);
+			return getOutfitSprite(store, object.getInt("outfit"));
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
 			object.put("outfit", 0);
-			return getOutfitSprite(store, object);
+			return getOutfitSprite(store, 0);
 		}
 	}
 
@@ -104,8 +104,8 @@ public class Player2DView extends RPEntity2DView {
 	 * Update representation.
 	 */
 	protected void update() {
-		super.update();
-
 		buildRepresentation();
+
+		super.update();
 	}
 }

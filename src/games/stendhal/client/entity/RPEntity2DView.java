@@ -136,22 +136,19 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 
 
 	/**
-	 * Gets the outfit sprite for the given object.
+	 * Gets the outfit sprite.
 	 * 
-	 * The outfit is described by the object's "outfit" attribute.
+	 * The outfit is described by an "outfit code".
 	 * It is an 8-digit integer of the form RRHHDDBB where RR is the
 	 * number of the hair graphics, HH for the head, DD for the dress,
 	 * and BB for the base.
 	 * 
 	 * @param	store		The sprite store
-	 * @param	object		The object. The outfit attribute needs
-	 *				to be set.
+	 * @param	outfit		The outfit code.
 	 *
 	 * @return	A sprite for the object
 	 */
-	protected Sprite getOutfitSprite(final SpriteStore store, final RPObject object) {
-		int outfit = object.getInt("outfit");
-
+	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {
 		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
 		sprite = sprite.copy();
 		outfit /= 100;
