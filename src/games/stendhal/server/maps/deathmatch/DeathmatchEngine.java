@@ -122,7 +122,9 @@ class DeathmatchEngine implements TurnListener {
 
 		// check wheter the deathmatch was completed
 		if (questLevel >= player.getLevel() + NUMBER_OF_CREATURES - 2 ) {
+			logger.info("May be done");
 			if (areAllCreaturesDead()) {
+				logger.info("DONE");
 				spawnDailyMonster();
 				deathmatchState.setLifecycleState(DeathmatchLifecycle.VICTORY);
 				deathmatchState.setQuestLevel(calculatePoints());
@@ -201,7 +203,7 @@ class DeathmatchEngine implements TurnListener {
 	private int calculatePoints() {
 		int sum = 0;
 		for (DeathMatchCreature creature : spawnedCreatures) {
-			sum += creature.getDMPoints(player);
+			sum += creature.getDMPoints();
 		}
 		return 0;
 	}
@@ -278,6 +280,7 @@ class DeathmatchEngine implements TurnListener {
 
 			creature.clearDropItemList();
 			creature.attack(player);
+			creature.setPlayerToReward(player);
 
 		} else {
 			logger.info(" could not add a creature: " + creature);
