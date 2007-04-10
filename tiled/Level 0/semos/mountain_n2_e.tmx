@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
- <property name="x" value="500128"/>
- <property name="y" value="499744"/>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="500128"/>
+  <property name="y" value="499744"/>
+ </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -47,7 +49,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3WwQnAIBBFwYUUZVKL/fehKSDkshjizoB34R3+RgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAnn58/QMAAFZx+9VzN9e9Dq0BYF9vO+8OAID/a3PPz4d32frt6V+b/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZBgaPvq2AAABAA==
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
