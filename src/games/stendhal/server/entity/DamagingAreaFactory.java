@@ -67,6 +67,49 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	}
 
 	/**
+	 * Extract the width from context
+	 *
+	 * @param	ctx		The configuration context.
+	 * @return	width (1 if unspecified)
+	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 */
+	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
+
+		if ((s = ctx.getAttribute("width")) == null) {
+			return 1;
+		}
+
+		try {
+			return Integer.parseInt(s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'width' attribute: " + s);
+		}
+	}
+
+	/**
+	 * Extract the height from context
+	 *
+	 * @param	ctx		The configuration context.
+	 * @return	height (1 if unspecified)
+	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 */
+	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String s;
+
+		if ((s = ctx.getAttribute("height")) == null) {
+			return 1;
+		}
+
+		try {
+			return Integer.parseInt(s);
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException("Invalid 'height' attribute: " + s);
+		}
+	}
+
+
+	/**
 	 * Extract the interval (in seconds) to inflict damage while
 	 * stationary.
 	 *
@@ -85,7 +128,7 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 		}
 
 		try {
-			return (int) StendhalRPWorld.get().getTurnsInSeconds(Integer.parseInt(s));
+			return StendhalRPWorld.get().getTurnsInSeconds(Integer.parseInt(s));
 		} catch (NumberFormatException ex) {
 			throw new IllegalArgumentException("Invalid 'interval' attribute: " + s);
 		}
@@ -165,7 +208,7 @@ public class DamagingAreaFactory implements ConfigurableFactory {
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		DamagingArea area;
 
-		area = new DamagingArea(getName(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
+		area = new DamagingArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
 
 		area.setPlayersOnly(getPlayersOnly(ctx));
 

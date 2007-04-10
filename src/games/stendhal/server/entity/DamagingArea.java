@@ -68,23 +68,33 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 	 */
 	protected Random rand;
 
+	private int width = 1;
+	private int height = 1;
+
 	/**
 	 * Create a damaging area.
 	 *
 	 * @param	damage		The amount of damage to inflict.
+	 * @param   width       Width of  this area
+	 * @param   height      Height of this area
 	 * @param	interval	How often damage is given while
 	 *				stationary (in turns).
 	 * @param	probability	The chance of damage while walking
 	 *				(0.0 - 1.0).
 	 */
-	public DamagingArea(String name, int damage, int interval, double probability) throws AttributeNotFoundException {
+	public DamagingArea(String name, int width, int height, int damage, int interval, double probability) throws AttributeNotFoundException {
 		put("name", name);
 		put("type", "damaging_area");
 
 		this.damage = damage;
 		this.interval = interval;
 		this.probability = probability;
+		this.height = height;
+		this.width = width;
 
+		put("width", width);
+		put("height", height);
+		
 		playersOnly = false;
 		rand = new Random();
 		targets = new LinkedList<RPEntity.ID>();
@@ -229,7 +239,7 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 	 */
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
+		rect.setRect(x, y, width, height);
 	}
 
 	/**
