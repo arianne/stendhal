@@ -314,6 +314,9 @@
  <tileset name="Sin nombre" firstgid="1505" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_drows_tunnel.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="1521" tilewidth="64" tileheight="64">
+  <image source="sub_1_nalwor_drows_tunnel_n.png"/>
+ </tileset>
  <layer name="Layer 7" width="52" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OMQ0AAAgDMJA0/wKwhQ1IevRvuioAAPDcHDgAAADAFQs4bXLxABoAAA==
@@ -346,7 +349,7 @@
  </layer>
  <layer name="Layer 1" width="52" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3X105UYRgFUBR5F7sxNooUpdh775Vir/SqgIAgYkeagpTnUKNGjfoM9l4ewTUXXkmCmRJmzFysq0m+b+85Jzn/P3tCQsLsuLhxVJSYkHCIwxzhKMc4zgmSSSGVtMTxzzuWkzKe4jRnOEsxJZSykHQyyIyBPmUyllNBJVVUU0MtWSxiMdkx0KdOxnOcp54GGrlAEznkkseSGOjTLGMLF2mljUu0cznQLUk38ilICt/eZLNSwjjvjw6Zr3CVa1znBje5FXhGdjZTSFEY96ealRaBPp0y36aLbnropY87gWdlZzstXIzA/nC7K3M/A9xjkCGGGQm8czp00EpbDPT5V3OYGwU5wmUe86MgR1xsW0AyKaRGQZ5QpbGQdDKiIE+oMsliEYujIE+osskhl7woyBOsyb6NU9jqm7mN7exgKctYzgrqJjqvThz/vGOZqss0dsq8i93sYSWrWM2awLlbl/oY6DNdlxnslXkf+znAWtaxng2B+4MujTHQZ6Yuszgocz4FFLKRTWxmS+AepEtTDPQJl9f+kze85V0Q59XOSc73dNE96e/fi80soZQy7vOAhxE6G7839wMf+RTEjh4deunjzih9ys2soJIqHvGYJxHq89ncL3zlWxA77urQzwD3RulTbWYNtdTxlGc8j1Cf7+b+4Ce/gtgxqMMQw4yM0uecmeepp4EXvOTVf3QXi4uLC91vqyQg3gAaAAA=
+   H4sIAAAAAAAAAO3X105UYRgF0BHFZ7EbY6Mrzd577wj2XhAVFLvYGwIqoMJzqFGjRn0Ge++9u+bCKxHNMJOZMXOxrk7yfXvnP8k5f7dWgUC3hIQoKmodCMxjPgtYyCIWs4QUUkkjvXX08/7NUhmXsZwVrGQVq1lDBplk0ScO+qyVsZh1lLCeDWyklL5kk0NuHPQpk3ETmylnC1vZxnbyyKcf/eOgzw4Zd7KL3VSwh73sC3ZL1o0C5iaHb2+KWalhnPfLfpkPcJBDHOYIRzkWPCM7d1BIURj3p5mVHoE+lTIfp4pqajjBSU4Fz8rOvexkVwT2h1utzHXUc5oznKWBxuA7p8N+dlMRB33+VXd6xECOcOlJrxjIkRDfepNCKmkxkKel0skgk6wYyNNSfehLNjkxkKelcskjn34xkCdU7Xwb2zPBN3Mik5jMAAYyiMGUJflfTfrznFdmvOYNb6P4ve1gd0emyDyVaUxnCEMZxvDgf7cu5c30eWfGez7wMYp9OtndmRkyz2QWsxnBSEYxOnh/0GVrM30+mfGZL3yNYp8udndljswFzKWQMYxlHOOD9yBdtjfT55sZ3/lBoG30+oTLLT1uc4e7IZxPZRv/91RR3eb356vMXM0a1nKO81yI0Ltwz9z7POBhCDtqdDjBSU410afYzHWUsJ6LXOJyhPo8MvcxT3gawo5aHeqo53QTfTaYuZFSyrjCVa5FqM8zc5/zgpch7Dijw1kaaGyizyYzN1POFq5zg5v/0V0sISGh5X4C/x+NwgAaAAA=
   </data>
  </layer>
  <layer name="Floor" width="60" height="32" opacity="0.19">
