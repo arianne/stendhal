@@ -64,7 +64,7 @@
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TW18BURQFcK8+rFuI5NJNVMr9kqgQij6kJy9+DDNnH7POmfX/AGfWXntPKERERER0XCTsdwJsUfbj2dqhu38PvV5wF5BW3Eug/Bm47yRQ5jhIltSBHGkf8yVAuiF3YtwbndE1702rS6B+c0BZTJHX2FlG+O0r7tdKWZC9FkByECEq8v+gPUq8C6Kzug/IP3fncs6HgPQi5VFTXzcnvnvLfWlTVui2wr3AqFm+ixdD5qsC5nwFzHTIM1DWumCWJ6C5tt4AM0noWjrXVsfH+RqWd2u7nqb9NR3ebZ34zbZCthHvkhT0Ae/nwyHTj4u8Y8XZBkLdDAE7lvBu6FyfBuWeHck6N2iWXVODs6NbCHT7pfjGBGy/S8E832CzefVryRxEEjZU2QnUAEAAAA==
+   H4sIAAAAAAAAAO3T21LCQBAEUF79WBTwAgqiIgiiAipXAeUioOgPQkkVT3mxIJDsbKV30+cDNj09k0iEiIiIaLfoQdAJsB2yH99+XLr79dFrgruANOdeQuXbwH0fA2WOgWQ52ZLjNMB8cZBuyJsj7o02WGm6izTvTaszoH4vgLKYIqOxs6Tw2+fcr5VSIHu9BMlBtMlfwPeZ1fD9ZQj+uYXlM15ZPh8RmtuQ/HM5j3PmQ9KLlDtNfV3v+e4N96VNQaHbIvcC49HyXTwYMl8JMOcTYKZtykBZq4JZ7oHmclQAM0loWDqXox7gfDXLu7VdU9P+nl3efdnzm68K2Xq8S1LQAryfrkumTw95+4qztYW6eQPsWELH0LneDco93pF1YtAs/40Mzo5uKtDth+IbQ7D9zgTzDMBm8+vLkjmIJKwBFgN6/gBAAAA=
   </data>
  </layer>
  <layer name="collision" width="64" height="64" visible="0" opacity="0.37">
