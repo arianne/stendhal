@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.AnimatedEntity;
 import games.stendhal.common.Debug;
 
 import java.awt.*;
@@ -155,7 +154,7 @@ public class TileStore extends SpriteStore {
 				for (RangeFilename range : rangesTiles) {
 					if (range.isInRange(i)) {
 						//TODO: decide which of them to be used astridemma 18.02.2007
-						Log4J.getLogger(AnimatedEntity.class).info("Loading tileset " + range.getFilename());
+						Log4J.getLogger(TileStore.class).info("Loading tileset " + range.getFilename());
 						//StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
 						range.load();
 
