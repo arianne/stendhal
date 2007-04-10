@@ -98,8 +98,53 @@ West: Semos
  </zone>
 
  <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="0_ados_wall_n.xstend">
-  <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
-    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
+   <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
+   <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
+   <entity x="88" y="78">
+     <implementation class-name="games.stendhal.server.entity.DamagingArea">
+      <parameter name="name">deathmatch spikes</parameter>
+      <parameter name="width">25</parameter>
+      <parameter name="height">2</parameter>
+      <parameter name="interval">2</parameter>
+      <parameter name="damage">50</parameter>
+      <parameter name="probability">100</parameter>
+      <parameter name="players-only">true</parameter>
+     </implementation>
+   </entity>
+   <entity x="88" y="93">
+     <implementation class-name="games.stendhal.server.entity.DamagingArea">
+      <parameter name="name">deathmatch spikes</parameter>
+      <parameter name="width">25</parameter>
+      <parameter name="height">2</parameter>
+      <parameter name="interval">2</parameter>
+      <parameter name="damage">50</parameter>
+      <parameter name="probability">100</parameter>
+      <parameter name="players-only">true</parameter>
+     </implementation>
+   </entity>
+   <entity x="88" y="80">
+     <implementation class-name="games.stendhal.server.entity.DamagingArea">
+      <parameter name="name">deathmatch spikes</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">13</parameter>
+      <parameter name="interval">2</parameter>
+      <parameter name="damage">50</parameter>
+      <parameter name="probability">100</parameter>
+      <parameter name="players-only">true</parameter>
+     </implementation>
+   </entity>
+   <entity x="111" y="80">
+     <implementation class-name="games.stendhal.server.entity.DamagingArea">
+      <parameter name="name">deathmatch spikes</parameter>
+      <parameter name="width">2</parameter>
+      <parameter name="height">13</parameter>
+      <parameter name="interval">2</parameter>
+      <parameter name="damage">50</parameter>
+      <parameter name="probability">100</parameter>
+      <parameter name="players-only">true</parameter>
+    </implementation>
+   </entity>
+   
  </zone>
 
  <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="0_ados_city_n.xstend">
