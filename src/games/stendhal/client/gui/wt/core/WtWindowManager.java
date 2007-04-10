@@ -15,7 +15,6 @@ package games.stendhal.client.gui.wt.core;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.gui.ManagedWindow;
 import games.stendhal.client.gui.wt.Character;
-import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
 
 import java.io.IOException;

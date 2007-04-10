@@ -1,7 +1,5 @@
 package games.stendhal.client.soundreview;
 
-import games.stendhal.client.entity.User;
-
 import java.io.IOException;
 
 import javax.sound.sampled.AudioSystem;
