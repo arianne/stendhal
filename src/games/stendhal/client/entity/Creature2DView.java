@@ -188,8 +188,6 @@ public class Creature2DView extends RPEntity2DView {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
-
-	@Override
 	protected static String translate(final String type) {
 		return "data/sprites/monsters/" + type + ".png";
 	}
