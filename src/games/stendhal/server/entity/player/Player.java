@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Direction;
+import games.stendhal.common.FeatureList;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
@@ -106,7 +107,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * A list of enabled client features.
 	 */
-	protected HashMap<String, String>	features;
+	protected FeatureList		features;
 
         private String guild;
 	/**
@@ -221,7 +222,7 @@ public class Player extends RPEntity implements TurnListener {
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
 		awayReplies = new HashMap<String, Long>();
-		features = new HashMap<String, String>();
+		features = new FeatureList();
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
@@ -430,6 +431,12 @@ public class Player extends RPEntity implements TurnListener {
 		if (has("karma")) {
 			karma = getDouble("karma");
 		}
+
+		if(has("features")) {
+			features.decode(get("features"));
+		} else {
+			features.clear();
+		}
 	}
 
 	/**
@@ -612,44 +619,26 @@ public class Player extends RPEntity implements TurnListener {
 
 
 	/**
-	 * Decoded the features attribute and build the list.
+	 * Get a client feature value.
 	 *
-	 * Values are in the form of:<br>
-	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
+	 * @param	name		The feature mnemonic.
+	 *
+	 * @return	The feature value, or <code>null</code> is not-enabled.
 	 */
-	protected void extractFeatures() {
+	public String getFeature(String name) {
+		return features.get(name);
 	}
 
 
 	/**
-	 * Build an encoded features list and set the attribute.
+	 * Determine if a client feature is enabled.
 	 *
-	 * Values are in the form of:<br>
-	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
+	 * @param	name		The feature mnemonic.
+	 *
+	 * @return	<code>true</code> if the feature is enabled.
 	 */
-	protected void storeFeatures() {
-		StringBuffer	sbuf;
-
-
-		sbuf = new StringBuffer();
-
-		for(String name : features.keySet()) {
-			String value = features.get(name);
-
-			if(sbuf.length() != 0) {
-				sbuf.append(':');
-			}
-
-			sbuf.append(name);
-
-			if(value.length() != 0) {
-				sbuf.append('=');
-				sbuf.append(value);
-			}
-		}
-
-
-		put("features", sbuf.toString());
+	public boolean hasFeature(String name) {
+		return features.has(name);
 	}
 
 
@@ -660,7 +649,9 @@ public class Player extends RPEntity implements TurnListener {
 	 * @param	enabled		Flag indicating if enabled.
 	 */
 	public void setFeature(String name, boolean enabled) {
-		setFeature(name, enabled ? "" : null);
+		if(features.set(name, enabled)) {
+			put("features", features.encode());
+		}
 	}
 
 
@@ -670,16 +661,12 @@ public class Player extends RPEntity implements TurnListener {
 	 * (equals), or <code>:</code> (colon).
 	 *
 	 * @param	name		The feature mnemonic.
-	 * @param	value		The feature value.
+	 * @param	value		The feature value,
+	 *				or <code>null</code> to disable.
 	 */
 	public void setFeature(String name, String value) {
-		if(value != null) {
-			features.put(name, value);
-			storeFeatures();
-		} else {
-			if(features.remove(name) != null) {
-				storeFeatures();
-			}
+		if(features.set(name, value)) {
+			put("features", features.encode());
 		}
 	}
 
