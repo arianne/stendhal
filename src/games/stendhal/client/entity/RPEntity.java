@@ -551,7 +551,6 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		} else {
 			// Modified case
 			if (diff.has("target") && base.has("target") && !base.get("target").equals(diff.get("target"))) {
-				System.out.println("Removing target: new target");
 				onStopAttack();
 
 				if (attackTarget != null) {
