@@ -46,12 +46,29 @@ public abstract class Entity extends RPObject {
 		 * If this is set, the client will discard/ignore entity
 		 */
 		entity.add("server-only", RPClass.FLAG, RPClass.VOLATILE);
+
+
+		/*
+		 * The current overlayed client effect.
+		 */
+		entity.add("effect", RPClass.STRING, RPClass.VOLATILE);
+
+		/*
+		 * The visibility of the entity drawn on client (0-100).
+		 * 0=Invisible, 100=Solid. Useful when mixed with effect.
+		 */
+		entity.add("visibility", RPClass.INT, RPClass.VOLATILE);
 	}
 
 	public Entity(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		direction = Direction.STOP;
 		speed = 0;
+
+		if(!has("visibility")) {
+			put("visibility", 100);
+		}
+
 		update();
 	}
 
