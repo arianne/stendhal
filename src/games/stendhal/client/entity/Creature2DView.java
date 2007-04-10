@@ -145,36 +145,16 @@ public class Creature2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
-	}
-
-
-	protected static String translate(final String type) {
-		return "data/sprites/monsters/" + type + ".png";
-	}
-
-
-	//
-	// <EntityView>
-	//
-
-	/**
 	 * Draw the entity.
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	public void draw(final GameScreen screen) {
+	protected void drawImpl(final GameScreen screen) {
 		List<Creature.Node>	path;
 
 
-		super.draw(screen);
+		super.drawImpl(screen);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !creature.isPathHidden()) {
 			Graphics g2d = screen.expose();
@@ -195,5 +175,22 @@ public class Creature2DView extends RPEntity2DView {
 				drawPath(screen, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
 			}
 		}
+	}
+
+
+	/**
+	 * Get the 2D area that is drawn in.
+	 *
+	 * @return	The 2D area this draws in.
+	 */
+	@Override
+	public Rectangle2D getDrawnArea() {
+		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
+	}
+
+
+	@Override
+	protected static String translate(final String type) {
+		return "data/sprites/monsters/" + type + ".png";
 	}
 }

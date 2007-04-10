@@ -49,7 +49,7 @@ public class StackableItem2DView extends Item2DView {
 	//
 
 	/**
-	 * Get the approriete quantity sprite.
+	 * Get the appropriete quantity sprite.
 	 *
 	 *
 	 */
@@ -73,6 +73,21 @@ public class StackableItem2DView extends Item2DView {
 	//
 
 	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	@Override
+	protected void drawImpl(final GameScreen screen) {
+		super.drawImpl(screen);
+
+		if (quantitySprite != null) {
+			screen.draw(quantitySprite, getX(), getY());
+		}
+	}
+
+
+	/**
 	 * Get the 2D area that is drawn in.
 	 *
 	 * @return	The 2D area this draws in.
@@ -88,25 +103,12 @@ public class StackableItem2DView extends Item2DView {
 	//
 
 	/**
-	 * Draw the entity.
-	 *
-	 * @param	screen		The screen to drawn on.
-	 */
-	@Override
-	public void draw(final GameScreen screen) {
-		super.draw(screen);
-
-		if (quantitySprite != null) {
-			screen.draw(quantitySprite, getX(), getY());
-		}
-	}
-
-
-	/**
 	 * Update representation.
 	 */
 	@Override
 	public void update() {
+		super.update();
+
 		quantitySprite = getQuantitySprite();
 	}
 }

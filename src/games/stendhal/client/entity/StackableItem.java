@@ -46,7 +46,7 @@ public class StackableItem extends Item {
 
 		if (diff.has("quantity")) {
 			quantity = diff.getInt("quantity");
-			updateView();
+			changed();
 		}
 	}
 

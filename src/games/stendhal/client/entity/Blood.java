@@ -30,7 +30,7 @@ public class Blood extends AnimatedEntity {
 
 		if (diff.has("class")) {
 			animation = diff.get("class");
-			updateView();
+			changed();
 		}
 	}
 

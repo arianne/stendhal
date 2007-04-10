@@ -94,4 +94,18 @@ public class Player2DView extends RPEntity2DView {
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 2.0);
 	}
+
+
+	//
+	// <EntityView>
+	//
+
+	/**
+	 * Update representation.
+	 */
+	protected void update() {
+		super.update();
+
+		buildRepresentation();
+	}
 }

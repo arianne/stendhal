@@ -43,8 +43,11 @@ public final byte[] ID_Token = new byte[0];
 	/** The current y location of this entity */
 	protected double y;
 
-	
-	
+	/**
+	 * The current change serial.
+	 */
+	protected int	changeSerial;
+
 
 	/** The current speed of this entity horizontally (pixels/sec) */
 	protected double dx;
@@ -79,13 +82,14 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected boolean inAdd = false;
 
+
 	Entity() {
 		x = 0.0;
 		y = 0.0;
 		dx = 0.0;
 		dy = 0.0;
-	
-		
+
+		changeSerial = 0;
 	}
 
 
@@ -103,6 +107,29 @@ public final byte[] ID_Token = new byte[0];
 		view = createView();
 		view.buildRepresentation(object);
 	}
+
+
+	/**
+	 * Mark this entity changed in some way that might effect it's
+	 * observed state .
+	 */
+	protected void changed() {
+		changeSerial++;
+	}
+
+
+	/**
+	 * Get an opaque value (using equality compare) to determine if
+	 * the entity has changed. This will do until real notification
+	 * can be implemented.
+	 *
+	 * @return	A value that should only be compared to other calls
+	 *		to this function (for this entity instance).
+	 */
+	public int getChangeSerial() {
+		return changeSerial;
+	}
+
 
 	/** Returns the represented arianne object id */
 	public RPObject.ID getID() {
@@ -125,15 +152,15 @@ public final byte[] ID_Token = new byte[0];
 		return y;
 	}
 
+	public RPObject getRPObject() {
+		return rpObject;
+	}
+
 	public double distance(final User user) {
 		return (user.getX() - x) * (user.getX() - x)
 			+ (user.getY() - y) * (user.getY() - y);
 	}
 	
-//	protected static String translate(final String type) {
-//		return "data/sprites/" + type + ".png";
-//	}
-
 
 	/**
 	 * This is used by old code.
@@ -171,10 +198,6 @@ public final byte[] ID_Token = new byte[0];
 		audibleRange = range;
 	}
 
-//	/** Loads the sprite that represent this entity */
-//	protected void loadSprite(final RPObject object) {
-//		view.buildRepresentation(object);
-//	}
 
 	/**
 	 * compares to floating point values
@@ -588,12 +611,4 @@ public final byte[] ID_Token = new byte[0];
 	 * @return	The on-screen view of this entity.
 	 */
 	protected abstract Entity2DView createView();
-
-
-	/**
-	 * Tell the view it may need to update it's representation.
-	 */
-	protected void updateView() {
-		view.update();
-	}
 }

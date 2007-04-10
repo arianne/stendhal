@@ -179,18 +179,6 @@ public abstract class RPEntity2DView extends AnimatedEntity2DView {
 	// AnimatedStateEntity2DView
 	//
 
-//	/**
-//	 * Populate named animations.
-//	 *
-//	 * @param	map		The map to populate.
-//	 * @param	object		The entity to load animations for.
-//	 */
-//	@Override
-//	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
-//		buildAnimations(map, object, 1.5, 2.0);
-//	}
-
-
 	/**
 	 * This method gets the default image.
 	 * <strong>All sub-classes MUST provide a <code>move_up</code>
@@ -209,30 +197,12 @@ public abstract class RPEntity2DView extends AnimatedEntity2DView {
 	//
 
 	/**
-	 * Determines on top of which other entities this entity should be
-	 * drawn. Entities with a high Z index will be drawn on top of ones
-	 * with a lower Z index.
-	 * 
-	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * @return	The drawing index.
-	 */
-	public int getZIndex() {
-		return 8000;
-	}
-
-
-	//
-	// <EntityView>
-	//
-
-	/**
 	 * Draw the entity.
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	public void draw(final GameScreen screen) {
+	protected void drawImpl(final GameScreen screen) {
 		if (entity.isBeingAttacked()) {
 			// Draw red box around
 			Graphics g2d = screen.expose();
@@ -278,7 +248,7 @@ public abstract class RPEntity2DView extends AnimatedEntity2DView {
 			frameBladeStrike++;
 		}
 
-		super.draw(screen);
+		super.drawImpl(screen);
 
 		if (entity.isEating()) {
 			Rectangle2D rect = entity.getArea();
@@ -312,5 +282,19 @@ public abstract class RPEntity2DView extends AnimatedEntity2DView {
 					break;
 			}
 		}
+	}
+
+
+	/**
+	 * Determines on top of which other entities this entity should be
+	 * drawn. Entities with a high Z index will be drawn on top of ones
+	 * with a lower Z index.
+	 * 
+	 * Also, players can only interact with the topmost entity.
+	 * 
+	 * @return	The drawing index.
+	 */
+	public int getZIndex() {
+		return 8000;
 	}
 }

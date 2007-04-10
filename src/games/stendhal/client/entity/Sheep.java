@@ -35,8 +35,10 @@ public class Sheep extends NPC {
 		if (diff.has("weight")) {
 			int oldWeight = weight;
 			weight = diff.getInt("weight");
+
 			if (weight > oldWeight) {
 				playSound("sheep-eat", 8, 15);
+				changed();
 			}
 		}
 
@@ -55,7 +57,7 @@ public class Sheep extends NPC {
 				idea = null;
 			}
 
-			updateView();
+			changed();
 		}
 	}
 

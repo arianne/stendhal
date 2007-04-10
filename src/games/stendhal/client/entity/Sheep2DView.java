@@ -85,7 +85,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 *
 	 */
 	protected Sprite getIdeaSprite() {
-		String idea= sheep.getIdea();
+		String idea = sheep.getIdea();
 
 
 		if(idea == null) {
@@ -152,7 +152,7 @@ public class Sheep2DView extends RPEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
 	/**
@@ -172,6 +172,24 @@ public class Sheep2DView extends RPEntity2DView {
 	//
 
 	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	@Override
+	protected void drawImpl(final GameScreen screen) {
+		super.drawImpl(screen);
+
+		if (ideaSprite != null) {
+			Rectangle2D rect = sheep.getArea();
+			double sx = rect.getMaxX();
+			double sy = rect.getY();
+			screen.draw(ideaSprite, sx - 0.25, sy - 0.25);
+		}
+	}
+
+
+	/**
 	 * Get the 2D area that is drawn in.
 	 *
 	 * @return	The 2D area this draws in.
@@ -187,28 +205,12 @@ public class Sheep2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Draw the entity.
-	 *
-	 * @param	screen		The screen to drawn on.
-	 */
-	@Override
-	public void draw(final GameScreen screen) {
-		super.draw(screen);
-
-		if (ideaSprite != null) {
-			Rectangle2D rect = sheep.getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getY();
-			screen.draw(ideaSprite, sx - 0.25, sy - 0.25);
-		}
-	}
-
-
-	/**
 	 * Update representation.
 	 */
 	@Override
 	public void update() {
+		super.update();
+
 		ideaSprite = getIdeaSprite();
 	}
 }

@@ -34,28 +34,21 @@ public class ResizeableCreature extends Creature {
 
 	@Override
     public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		boolean rebuildAnimations = false;
-
 		if (diff.has("width")) {
 			width = diff.getDouble("width");
-			rebuildAnimations = true;
+			changed();
 		}
 
 		if (diff.has("height")) {
 			height = diff.getDouble("height");
-			rebuildAnimations = true;
+			changed();
 		}
 
 		if (diff.has("metamorphosis")) {
-			rebuildAnimations = true;
+			changed();
 		}
 
 		super.onChangedAdded(base, diff);
-
-		if (rebuildAnimations) {
-			buildAnimations(rpObject);
-			updateView();
-		}
 	}
 
 
@@ -63,7 +56,7 @@ public class ResizeableCreature extends Creature {
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		super.onChangedRemoved(base, diff);
 		if (diff.has("metamorphosis")) {
-			buildAnimations(base);
+			changed();
 		}
 	}
 

@@ -120,4 +120,18 @@ public class ResizeableCreature2DView extends Creature2DView {
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
+
+
+	//
+	// <EntityView>
+	//
+
+	/**
+	 * Update representation.
+	 */
+	protected void update() {
+		super.update();
+
+		buildRepresentation();
+	}
 }

@@ -23,18 +23,6 @@ public abstract class AnimatedEntity extends Entity {
 	/** actual animation */
 	protected String animation;
 
-	/** This method fills the sprites map 
-	 * @param object
-	 */
-	protected void buildAnimations(RPObject object) {
-		view.buildRepresentation(object);
-	}
-
-	/** This method sets the default animation */
-	protected Sprite defaultAnimation() {
-		return ((AnimatedEntity2DView) view).getDefaultSprite();
-	}
-
 
 	/**
 	 * Get the current entity state.

@@ -45,6 +45,15 @@ public class InvisibleEntity2DView extends Entity2DView {
 
 
 	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	protected void drawImpl(final GameScreen screen) {
+	}
+
+
+	/**
 	 * Get the 2D area that is drawn in.
 	 *
 	 * @return	The 2D area this draws in.
@@ -52,6 +61,7 @@ public class InvisibleEntity2DView extends Entity2DView {
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
         }
+
 
 	/**
 	 * Determines on top of which other entities this entity should be
@@ -64,18 +74,5 @@ public class InvisibleEntity2DView extends Entity2DView {
 	 */
 	public int getZIndex() {
 		return 5000;
-	}
-
-
-	//
-	// <EntityView>
-	//
-
-	/**
-	 * Draw the entity.
-	 *
-	 * @param	screen		The screen to drawn on.
-	 */
-	public void draw(final GameScreen screen) {
 	}
 }

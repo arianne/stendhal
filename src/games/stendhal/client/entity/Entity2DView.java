@@ -31,6 +31,11 @@ public abstract class Entity2DView { // implements EntityView {
 	 */
 	private Entity	entity;
 
+	/**
+	 * The last entity change serial number.
+	 */
+	private int	changeSerial;
+
 
 	/**
 	 * The entity image (or current one at least).
@@ -45,6 +50,8 @@ public abstract class Entity2DView { // implements EntityView {
 	 */
 	public Entity2DView(final Entity entity) {
 		this.entity = entity;
+
+		changeSerial = entity.getChangeSerial();
 	}
 
 
@@ -53,12 +60,48 @@ public abstract class Entity2DView { // implements EntityView {
 	//
 
 	/**
+	 * Rebuild the representation using the base entity.
+	 */
+	protected void buildRepresentation() {
+		buildRepresentation(entity.getRPObject());
+	}
+
+
+	/**
 	 * Build the visual representation of this entity.
 	 *
 	 * @param	object		An entity object.
 	 */
 	protected void buildRepresentation(final RPObject object) {
 		sprite = SpriteStore.get().getSprite(translate(object.get("type")));
+	}
+
+
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	protected void drawImpl(final GameScreen screen) {
+		screen.draw(getSprite(), getX(), getY());
+
+		if (stendhal.SHOW_COLLISION_DETECTION) {
+			Graphics g2d = screen.expose();
+			Rectangle2D rect = entity.getArea();
+			g2d.setColor(Color.green);
+			Point2D p = new Point.Double(rect.getX(), rect.getY());
+			p = screen.invtranslate(p);
+			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+
+			g2d = screen.expose();
+			rect = getDrawnArea();
+			g2d.setColor(Color.blue);
+			p = new Point.Double(rect.getX(), rect.getY());
+			p = screen.invtranslate(p);
+			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
+				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+		}
 	}
 
 
@@ -135,32 +178,27 @@ public abstract class Entity2DView { // implements EntityView {
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
-	public void draw(final GameScreen screen) {
-		screen.draw(getSprite(), getX(), getY());
+	public final void draw(final GameScreen screen) {
+		int	serial;
 
-		if (stendhal.SHOW_COLLISION_DETECTION) {
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = entity.getArea();
-			g2d.setColor(Color.green);
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 
-			g2d = screen.expose();
-			rect = getDrawnArea();
-			g2d.setColor(Color.blue);
-			p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+		/*
+		 * Check for entity changes
+		 */
+		serial = entity.getChangeSerial();
+
+		if(serial != changeSerial) {
+			update();
+			changeSerial = serial;
 		}
+
+		drawImpl(screen);
 	}
 
 
 	/**
 	 * Update representation.
 	 */
-	public void update() {
+	protected void update() {
 	}
 }
