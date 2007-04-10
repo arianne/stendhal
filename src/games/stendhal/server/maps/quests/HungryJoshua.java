@@ -231,6 +231,7 @@ public class HungryJoshua extends AbstractQuest {
 							player.addXP(50);
 							engine.say("I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!");
 							// need to make it so that this slot being done means you get a keyring
+							player.setFeature("keyring", true);
 							player.notifyWorldAboutChanges();
 							player.setQuest(QUEST_SLOT, "done");
 					}
