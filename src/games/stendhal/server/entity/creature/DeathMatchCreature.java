@@ -3,6 +3,8 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
+import org.apache.log4j.Logger;
+
 /**
  * An creature that will only reward the specified player 
  *
@@ -47,8 +49,13 @@ public class DeathMatchCreature extends Creature {
 	 */
 	public int getDMPoints(Player player) {
 		Integer damageDone = damageReceived.get(player);
-		int basePoints = player.getLevel();
-		return basePoints * (damageDone / totalDamageReceived);  
+		if (damageDone != null) {
+			int basePoints = player.getLevel();
+			return basePoints * (damageDone / totalDamageReceived);
+		} else {
+			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
+			return 0;
+		}
 	}
 
 }
