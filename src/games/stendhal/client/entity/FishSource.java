@@ -22,7 +22,7 @@ import marauroa.common.game.RPAction;
  * @author dine
  *
  */
-public class FishSource extends AnimatedEntity {
+public class FishSource extends AnimatedStateEntity {
 	@Override
 	public Rectangle2D getArea() {
 		return new Rectangle.Double(x, y, 1, 1);

@@ -18,7 +18,7 @@ import java.awt.geom.Rectangle2D;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-public class Blood extends AnimatedEntity {
+public class Blood extends AnimatedStateEntity {
 	public Blood() {
 		animation = "0";
 	}

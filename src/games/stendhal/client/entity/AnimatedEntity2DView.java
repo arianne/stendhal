@@ -12,9 +12,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
@@ -32,7 +29,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	/**
 	 * The animated entity this view is for.
 	 */
-	private AnimatedEntity	entity;
+	private Entity		entity;
 
 	/**
 	 * The frame number.
@@ -45,53 +42,19 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 */
 	protected long		delta;
 
-	/**
-	 * Map of named animations.
-	 */
-	protected Map<String, Sprite []> animations;
-
 
 	/**
 	 * Create a 2D view of an entity.
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedEntity2DView(final AnimatedEntity entity) {
+	public AnimatedEntity2DView(final Entity entity) {
 		super(entity);
 
 		this.entity = entity;
 
-		animations = new HashMap<String, Sprite []>();
 		frame = 0;
 		delta = 0L;
-	}
-
-
-	//
-	// AnimatedStateEntity2DView
-	//
-
-	/**
-	 * Populate named state animations.
-	 *
-	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
-	 */
-	public abstract void buildAnimations(Map<String, Sprite []> map, RPObject object);
-
-
-	/**
-	 * Get a named animation set.
-	 *
-	 *
-	 */
-	public Sprite [] getAnimation(final String state) {
-		return animations.get(state);
-	}
-
-
-	protected String getState() {
-		return entity.getState();
 	}
 
 
@@ -100,21 +63,19 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	//
 
 	/**
+	 * Build animations.
+	 *
+	 * @param	object		The entity to load animations for.
+	 */
+	protected abstract void buildAnimations(RPObject object);
+
+
+	/**
 	 * Get the current animation set.
 	 *
 	 *
 	 */
-	public Sprite [] getAnimation() {
-		String state = getState();
-		Sprite[] anim = getAnimation(state);
-
-		if (anim == null) {
-			logger.error("getSprites() returned null for " + state);
-			return new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") };
-		}
-
-		return anim;
-	}
+	protected abstract Sprite [] getAnimation();
 
 
 	/**
@@ -123,7 +84,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 * @return	The default sprite, or <code>null</code>.
 	 */
 	protected Sprite getDefaultSprite() {
-		return null;
+		return getAnimation()[0];
 	}
 
 
@@ -164,7 +125,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final RPObject object) {
-		buildAnimations(animations, object);
+		buildAnimations(object);
 
 		sprite = getDefaultSprite();
 	}

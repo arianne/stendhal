@@ -21,7 +21,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of food.
  */
-public class Food2DView extends AnimatedEntity2DView {
+public class Food2DView extends AnimatedStateEntity2DView {
 	/**
 	 * The number of states.
 	 */
@@ -42,7 +42,7 @@ public class Food2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
 	/**
@@ -63,6 +63,10 @@ public class Food2DView extends AnimatedEntity2DView {
 		}
 	}
 
+
+	//
+	// AnimatedEntity2DView
+	//
 
 	/**
 	 * This method gets the default image.

@@ -21,7 +21,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of a chest.
  */
-public class Chest2DView extends AnimatedEntity2DView {
+public class Chest2DView extends AnimatedStateEntity2DView {
 	/**
 	 * Create a 2D view of a chest.
 	 *
@@ -33,11 +33,11 @@ public class Chest2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state animations.
 	 *
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load animations for.
@@ -50,6 +50,10 @@ public class Chest2DView extends AnimatedEntity2DView {
 		map.put("open", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
 	}
 
+
+	//
+	// AnimatedEntity2DView
+	//
 
 	/**
 	 * This method gets the default image.

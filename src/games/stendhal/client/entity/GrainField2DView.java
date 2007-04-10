@@ -20,7 +20,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of a grain field.
  */
-public class GrainField2DView extends AnimatedEntity2DView {
+public class GrainField2DView extends AnimatedStateEntity2DView {
 	private GrainField	grainField;
 
 

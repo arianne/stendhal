@@ -18,7 +18,7 @@ import java.awt.geom.Rectangle2D;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-public abstract class Food extends AnimatedEntity {
+public abstract class Food extends AnimatedStateEntity {
 	private int amount;
 
 

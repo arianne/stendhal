@@ -21,7 +21,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of a door.
  */
-public class Door2DView extends AnimatedEntity2DView {
+public class Door2DView extends AnimatedStateEntity2DView {
 	protected double	xoffset;
 	protected double	yoffset;
 	protected double	width;

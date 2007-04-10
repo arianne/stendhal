@@ -12,17 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import marauroa.common.game.RPObject;
-
 /**
- * This class is a special type of GameEntity that has animation, that is it is
- * compound of multiple frames.
+ * This animated entity supports multiple states.
  */
-public abstract class AnimatedEntity extends Entity {
+public abstract class AnimatedStateEntity extends Entity {
 	/** actual animation */
 	protected String animation;
 
+
+	//
+	// AnimatedStateEntity
+	//
 
 	/**
 	 * Get the current entity state.

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  *
  */
-public class Fire extends AnimatedEntity {
+public class Fire extends AnimatedStateEntity {
 
 	@Override
 	public Rectangle2D getArea() {

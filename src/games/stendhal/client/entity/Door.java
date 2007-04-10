@@ -20,7 +20,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-public class Door extends AnimatedEntity {
+public class Door extends AnimatedStateEntity {
 
 	private boolean open;
 

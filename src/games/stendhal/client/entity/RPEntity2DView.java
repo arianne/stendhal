@@ -28,7 +28,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of an RP entity.
  */
-public abstract class RPEntity2DView extends AnimatedEntity2DView {
+public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	/**
 	 * Logger.
 	 */
@@ -176,7 +176,7 @@ public abstract class RPEntity2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// AnimatedEntity2DView
 	//
 
 	/**

@@ -21,7 +21,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of blood.
  */
-public class Blood2DView extends AnimatedEntity2DView {
+public class Blood2DView extends AnimatedStateEntity2DView {
 	/**
 	 * Create a 2D view of blood.
 	 *
@@ -33,7 +33,7 @@ public class Blood2DView extends AnimatedEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
 	/**
@@ -52,6 +52,10 @@ public class Blood2DView extends AnimatedEntity2DView {
 		map.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
 	}
 
+
+	//
+	// AnimatedEntity2DView
+	//
 
 	/**
 	 * This method gets the default image.

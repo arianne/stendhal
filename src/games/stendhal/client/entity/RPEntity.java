@@ -37,7 +37,7 @@ import marauroa.common.game.RPObject;
  * objects.<br>
  * You need to extend this object in order to add new elements to the game.
  */
-public abstract class RPEntity extends AnimatedEntity {
+public abstract class RPEntity extends AnimatedStateEntity {
 
 	private boolean showBladeStrike;
 	

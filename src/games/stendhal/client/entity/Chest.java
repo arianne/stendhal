@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public class Chest extends AnimatedEntity implements Inspectable {
+public class Chest extends AnimatedStateEntity implements Inspectable {
 
 	private boolean open;
 

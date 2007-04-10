@@ -20,7 +20,7 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
-public class GrainField extends AnimatedEntity {
+public class GrainField extends AnimatedStateEntity {
 	private int width;
 
 	private int height;

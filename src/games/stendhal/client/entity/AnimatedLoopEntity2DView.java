@@ -21,7 +21,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of an entity that always loops images.
  */
-public class AnimatedLoopEntity2DView extends AnimatedEntity2DView {
+public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
 	/**
 	 * The current frame.
 	 */
@@ -38,7 +38,7 @@ public class AnimatedLoopEntity2DView extends AnimatedEntity2DView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedLoopEntity2DView(final AnimatedEntity entity, int frames) {
+	public AnimatedLoopEntity2DView(final AnimatedStateEntity entity, int frames) {
 		super(entity);
 
 		this.frames = frames;
