@@ -7,6 +7,7 @@ import java.util.List;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.common.Direction;
+import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
@@ -16,6 +17,12 @@ import marauroa.common.game.RPObject;
 public class User extends Player {
 
 	private static User _instance=null ;
+
+	/**
+	 * Client features.
+	 */
+	private FeatureList	features;
+
 	
 	public static boolean isNull(){
 		
@@ -32,7 +39,7 @@ public class User extends Player {
 		super();
 		_instance = this;
 		modificationCount = 0;
-		
+		features = new FeatureList();
 	}
 
 	@Override
@@ -52,7 +59,7 @@ public class User extends Player {
 				list.remove(ActionType.ATTACK.getRepresentation());
 			}
 		
-	   	if (this.rpObject.has("sheep")) {
+	   	if (rpObject.has("sheep")) {
 				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 			}
 		}
@@ -120,14 +127,14 @@ public class User extends Player {
 	}
 
 	public int getObjectID() {
-	    return this.rpObject.getID().getObjectID();
+	    return rpObject.getID().getObjectID();
     }
 
 	public  boolean hasSheep() {
 		if (rpObject== null) {
 	        return false;
         }
-		return this.rpObject.has("sheep");
+		return rpObject.has("sheep");
     }
 
 	@Override
@@ -151,16 +158,47 @@ public class User extends Player {
     	return new Rectangle2D.Double(getX() - HEARING_RANGE, getY() - HEARING_RANGE, width, width);
     }
 
+
+	public String getFeature(String name) {
+		return features.get(name);
+	}
+
+
+	public boolean hasFeature(String name) {
+		return features.has(name);
+	}
+
+
+	public void onAdded(final RPObject base) {
+		super.onAdded(base);
+
+		if(base.has("features")) {
+			features.decode(base.get("features"));
+			changed();
+		}
+        }
+
+
 	@Override
     public void onChangedAdded(final RPObject base, final  RPObject diff) throws AttributeNotFoundException {
 		modificationCount++;
-	    super.onChangedAdded(base, diff);
+		super.onChangedAdded(base, diff);
+
+		if(diff.has("features")) {
+			features.decode(diff.get("features"));
+			changed();
+		}
     }
 
 	@Override
     public void onChangedRemoved(final RPObject base, final RPObject diff) {
 		modificationCount++;
 	    super.onChangedRemoved(base, diff);
+
+		if(diff.has("features")) {
+			features.clear();
+			changed();
+		}
     }
 	
 	/**
