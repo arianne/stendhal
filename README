@@ -70,6 +70,7 @@ Changelog
 0.60
 - a woman in fado collects cloaks
 - the tavern maid in fado makes a special soup
+- get married at fado church
 
 0.59
 - zone xml now uses <parameter> values for factory arguments, and entity types may include <attribute> values to set instance attributes
@@ -77,7 +78,6 @@ Changelog
 - introduced scoring system in deathmatch instead of XP
 - server prevents putting items into useless slots (like a sword into the head-slot)
 - specific images for each empty slot in character window
-- the Easter Bunny is hopping around
 - added a quest to deliver pizza to several NPC's
 - added a sunny island and a new quest on it
 - created a ferry service to the island
@@ -92,11 +92,12 @@ Changelog
 - nalwor river can be crossed over the waterfall, to make travelling east<->west possible without going back to semos
 - daily items quest from the Ados mayor
 - a keyring to carry keys on
+- quest to get the keyring activated (joshua is hungry)
 - a finger slot for rings
 - Ados city is finished, although most houses are still closed
 - added fishing spots, 8 fish species, and a fishing rod
 - added the possibility to get a fisherman's license to increase the chance of getting fish (no item)
-- added gold sources, gold nuggets and gold bars which can be casted by the goldsmith in Ados
+- added gold sources, gold nuggets and gold bars which can be cast by the goldsmith in Ados
 
 
 0.58
