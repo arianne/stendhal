@@ -2571,7 +2571,7 @@
 ../../zelda_objects_chipset.png:154:2556:../../tileset/logic/creature/huge_animal.png:2
 ../../zelda_objects_chipset.png:155:2557:../../tileset/logic/creature/huge_animal.png:4
 ../../zelda_objects_chipset.png:156:2558:../../tileset/logic/creature/huge_animal.png:5
-../../zelda_objects_chipset.png:157:2559::
+../../zelda_objects_chipset.png:157:2559:../../tileset/logic/creature/huge_animal.png:6
 ../../zelda_objects_chipset.png:158:2560::
 ../../zelda_objects_chipset.png:159:2561::
 ../../zelda_objects_chipset.png:160:2562:../../tileset/logic/creature/dark_elf.png:0
