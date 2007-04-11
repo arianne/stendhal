@@ -78,7 +78,7 @@ public class GuardNPC implements ZoneConfigurator {
 	}
 
 	private void disabledMagicScrolls(StendhalRPZone zone) {
-		zone.setTeleportable(false);
+		zone.setTeleportAllowed(false);
 	}
 
 	/**

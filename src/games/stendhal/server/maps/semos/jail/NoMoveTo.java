@@ -1,17 +1,8 @@
 package games.stendhal.server.maps.semos.jail;
 
-import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,7 +20,7 @@ public class NoMoveTo implements ZoneConfigurator {
 	 * @param	attributes	Configuration attributes.
 	 */
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		zone.setTeleportable(false);
-		zone.setEnableMoveTo(false);
+		zone.setTeleportAllowed(false);
+		zone.setMoveToAllowed(false);
 	}
 }

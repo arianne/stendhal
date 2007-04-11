@@ -46,7 +46,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		this.zone = zone;
 		this.arena = arena;
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
-		zone.setTeleportable(false);
+		zone.setTeleportAllowed(false);
 		DeathmatchInfo.add(deathmatchInfo);
 		
 		LoginNotifier.get().addListener(this);

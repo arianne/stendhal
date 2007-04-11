@@ -79,7 +79,7 @@ public class MarkedScroll extends TeleportScroll {
 						        + "you cannot concentrate on it because you have never been there.");
 						return false;
 					} else {
-						if (!zone.isTeleportable()) {
+						if (!zone.isTeleportAllowed()) {
 							player
 							        .sendPrivateText("The strong anti magic aura in the destination area prevents the scroll from working!");
 							logger.warn("marked_scroll to zone " + infostring + " teleported " + player.getName()

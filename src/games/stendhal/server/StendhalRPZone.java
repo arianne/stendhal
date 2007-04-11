@@ -80,8 +80,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<Player> players;
 
-	private boolean teleportable = true;
-	private boolean moveToAble = true;
+	private boolean teleportAllowed = true;
+	
+	private boolean moveToAllowed = true;
 
 
 	/**
@@ -938,18 +939,18 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 * @return true, if teleportion is possible, false otherwise
 	 */
-	public boolean isTeleportable() {
-		return teleportable;
+	public boolean isTeleportAllowed() {
+		return teleportAllowed;
 	}
 
 	/**
 	 * Sets the flag whether magic scrolls for teleportation may
 	 * be uses in this zone.
 	 *
-	 * @param teleportable true, if teleportion is possible, false otherwise
+	 * @param teleportAllowed true, if teleportion is possible, false otherwise
 	 */
-	public void setTeleportable(boolean teleportable) {
-		this.teleportable = teleportable;
+	public void setTeleportAllowed(boolean teleportAllowed) {
+		this.teleportAllowed = teleportAllowed;
 	}
 
 	/**
@@ -957,23 +958,22 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 * @return true, if moveto is possible, false otherwise
 	 */
-	public boolean isMoveToAble() {
-		return moveToAble ;
+	public boolean isMoveToAllowed() {
+		return moveToAllowed;
 	}
 
 	/**
 	 * Sets the flag whether moveto (mouse movement using pathfinding) is possible
 	 * in this zone.
 	 *
-	 * @param moveToAble true, if it is possible, false otherwise
+	 * @param moveToAllowed true, if it is possible, false otherwise
 	 */
-	public void setEnableMoveTo(boolean moveToAble) {
-		this.moveToAble = moveToAble;
+	public void setMoveToAllowed(boolean moveToAllowed) {
+		this.moveToAllowed = moveToAllowed;
 		
 	}
 
 	public void addMap(String name, byte[] mapData) {
 		addToContent(name, mapData);
 	}
-
 }
