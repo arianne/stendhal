@@ -531,6 +531,15 @@ in roaches.
 
  <!--  Level -1 -->
 
+ <zone name="-1_ados_caves" level="0" x="500384" y="499872" file="sub_1_ados_caves.xstend">
+ </zone>
+
+<zone name="-1_ados_caves_s" level="0" x="500384" y="500000" file="sub_1_ados_caves_s.xstend">
+</zone>
+
+<zone name="-1_ados_caves_se" level="0" x="500512" y="500000" file="sub_1_ados_caves_se.xstend">
+</zone>
+
  <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="sub_1_ados_outside_nw.xstend">
   <portal x="4" y="23" ref="0">
    <destination zone="0_ados_outside_nw" ref="0"/>

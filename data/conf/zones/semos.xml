@@ -807,6 +807,9 @@ Mature sheep wanted: please speak to Sato
   </entity>
  </zone>
 
+ <zone name="-1_semos_caves" level="0" x="500256" y="499872" file="sub_1_semos_caves.xstend">
+ </zone>
+
  <zone name="-1_semos_dungeon" level="-1" x="500064" y="500000" file="sub_1_semos_dungeon.xstend">
  </zone>
 
