@@ -73,6 +73,9 @@ Changelog
 - get married at fado church
 
 0.59
+- Added a drow attack to nalwor ( for levels > 100 )
+- Added a kobold totem at the kobolds city. ( for level > 50 )
+- The mountains of Ados has a great cave under it, some of the brave who have return from it talk about giants and red dragons... perhaps it is the soo long journey that make them say that things.
 - zone xml now uses <parameter> values for factory arguments, and entity types may include <attribute> values to set instance attributes
 - use zone level/coordinates from data/conf/zones/*.xml instead of tmx files
 - introduced scoring system in deathmatch instead of XP
