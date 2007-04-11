@@ -677,6 +677,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * Sends a message that only this player can read.
 	 * @param text The message.
 	 */
+	@Override
 	public void sendPrivateText(String text) {
 		if (has("private_text")) {
 			text = get("private_text") + "\r\n" + text;

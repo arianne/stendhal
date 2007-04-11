@@ -1392,23 +1392,6 @@ public abstract class RPEntity extends Entity {
 		return getEquippedItemClass("cloak", "cloak");
 	}
 
-	/**
-	 * checks if the entity has at least one item of type <i>type</i> in one of
-	 * the given slots
-	 */
-	// Commented out because we already have equipment code for such stuff.
-	// Consider deletion.
-//	public boolean hasItem(String[] slots, String type) {
-//		boolean retVal;
-//		for (String slot : slots) {
-//			retVal = isEquippedItemClass(slot, type);
-//			if (retVal) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-
 	@Override
 	public String describe() {
 		String text = super.describe();
@@ -1416,6 +1399,16 @@ public abstract class RPEntity extends Entity {
 			text += " It is level " + getLevel() + ".";
 		}
 		return text;
+	}
+	
+	/**
+	 * Sends a message that only this RPEntity can read.
+	 * In this default implementation, this method does nothing; it can
+	 * be overridden in subclasses.
+	 * @param text The message.
+	 */
+	public void sendPrivateText(String text) {
+		// does nothing in this implementation.
 	}
 
 	public float getItemAtk() {

@@ -1,6 +1,5 @@
 package games.stendhal.server.entity;
 
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 
 import java.awt.geom.Rectangle2D;
@@ -41,11 +40,7 @@ public class Fire extends Entity implements UseListener {
     }
 
 	public void onUsed(RPEntity user) {
-		if (user instanceof Player) {
-			((Player) user).sendPrivateText("No good idea!");
-		}
-	   
-	    
+			user.sendPrivateText("No good idea!");
     }
 
 }
