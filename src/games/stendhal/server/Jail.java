@@ -137,15 +137,15 @@ public class Jail implements TurnListener, LoginListener {
 		// Only teleport the player to Semos if he is still in jail.
 		// It could be that an admin has teleported him out earlier.
 		if (isInJail(inmate)) {
-			IRPZone.ID zoneid = new IRPZone.ID("0_semos_city");
+			IRPZone.ID zoneid = new IRPZone.ID("-3_semos_jail");
 			if (!world.hasRPZone(zoneid)) {
 				String text = "Zone " + zoneid + " not found";
 				logger.debug(text);
 			}
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
 
-			inmate.teleport(semosCity, 30, 40, Direction.UP, null);
-			inmate.sendPrivateText("Your sentence is over.");
+			inmate.teleport(semosCity, 6, 3, Direction.RIGHT, null);
+			inmate.sendPrivateText("Your sentence is over. You can walk out now.");
 			logger.debug("Player " + inmateName + "released from jail.");
 		}
 		return true;
