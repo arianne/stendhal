@@ -20,14 +20,36 @@ import marauroa.common.net.OutputSerializer;
  */
 public class DecoratingSlot extends EntitySlot {
 	private EntitySlot entitySlot = null;
+	private String name = null;
+
+	/**
+	 * Creates a new DecoratingSlot
+	 *
+	 * @param name name
+	 */
+	public DecoratingSlot(String name) {
+		this.name = name;
+		this.entitySlot = null;
+	}
 
 	/**
 	 * Sets the real slot
 	 *
 	 * @param slot real slot
 	 */
-	public void setEntitySlot(EntitySlot slot) {
-		this.entitySlot = slot;
+	public void bindEntitySlot(EntitySlot slot) {
+		if (slot != null) {
+			this.entitySlot = slot;
+		} else {
+			this.entitySlot = null;
+		}
+	}
+
+	/**
+	 * removes the binding to a real slot
+	 */
+	public void unbindEntitySlot() {
+		this.entitySlot = this;
 	}
 
 	@Override
@@ -77,7 +99,7 @@ public class DecoratingSlot extends EntitySlot {
 
 	@Override
     public String getName() {
-	    return entitySlot.getName();
+	    return name;
     }
 
 	@Override
@@ -88,11 +110,6 @@ public class DecoratingSlot extends EntitySlot {
 	@Override
     public boolean has(ID arg0) {
 	    return entitySlot.has(arg0);
-    }
-
-	@Override
-    public boolean hasAsParent(ID arg0) {
-	    return entitySlot.hasAsParent(arg0);
     }
 
 	@Override

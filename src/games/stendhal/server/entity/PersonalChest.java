@@ -2,15 +2,17 @@ package games.stendhal.server.entity;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.entity.slot.BankAccessorManager;
+import games.stendhal.server.entity.slot.Banks;
+import games.stendhal.server.entity.slot.DecoratingSlot;
+import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.events.UseListener;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
-import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
@@ -24,81 +26,39 @@ import marauroa.common.game.RPSlot;
  * stealing while the owner is looking at his items.
  * TODO: fix this.
  */
-public class PersonalChest extends Chest {
-
-	/**
-	 * The default bank slot name.
-	 */
-	public static final String DEFAULT_BANK = "bank";
+public class PersonalChest extends Entity implements UseListener { 
+	private static final String SLOT_NAME = "content";
 
 	private Player attending;
-
 	private IRPZone zone;
-
 	private String bankName;
-
-	/**
-	 * Create a personal chest using the default bank slot.
-	 */
-	public PersonalChest() throws AttributeNotFoundException {
-		this(DEFAULT_BANK);
-	}
+	private boolean open;
+	private DecoratingSlot slot;
 
 	/**
 	 * Create a personal chest using a specific bank slot.
 	 *
-	 * @param	bankName	The name of the bank slot.
+	 * @param bank Bank
 	 */
-	public PersonalChest(String bankName) throws AttributeNotFoundException {
-		this.bankName = bankName;
+	public PersonalChest(Banks bank) {
+		super();
+		put("type", "chest");
+		open = false;
+		this.bankName = bank.getSlotName();
+		BankAccessorManager.get().add(bank, this);
 
 		attending = null;
+		
+		slot = new DecoratingSlot(SLOT_NAME);
+		addSlot(slot);
 
 		TurnListener turnListener = new TurnListener() {
-
 			public void onTurnReached(int currentTurn, String message) {
 				if (attending != null) {
-					/* Can be replaced when we add Equip event */
-					/* Mirror player objects */
-					RPSlot content = getBankSlot();
-					content.clear();
-
-					for (RPObject item : getSlot("content")) {
-						content.add(item);
-					}
-
-					// A hack to allow client update correctly the chest...
-					content = getSlot("content");
-					content.clear();
-
-					for (RPObject item : getBankSlot()) {
-						content.add(item);
-					}
-
 					/* If player is not next to depot clean it. */
 					if (!nextTo(attending) || !zone.has(attending.getID())) {
-						content = getSlot("content");
-
-						List<RPObject> itemsList = new LinkedList<RPObject>();
-
-						for (RPObject item : getSlot("content")) {
-							itemsList.add(item);
-						}
-
-						content.clear();
-
-						// NOTE: As content.clear() remove the contained flag of the object
-						// we need to do this hack.
-						RPSlot playerContent = getBankSlot();
-						playerContent.clear();
-
-						for (RPObject item : itemsList) {
-							playerContent.add(item);
-						}
-
 						close();
 						PersonalChest.this.notifyWorldAboutChanges();
-
 						attending = null;
 					}
 				}
@@ -108,19 +68,52 @@ public class PersonalChest extends Chest {
 		TurnNotifier.get().notifyInTurns(0, turnListener, null);
 	}
 
-	/**
-	 * Get the slot that holds items for this chest.
-	 *
-	 * @return	A per-player/per-bank slot.
-	 */
-	protected RPSlot getBankSlot() {
-		/*
-		 * It's assumed attending != null when called
-		 */
-		return attending.getSlot(bankName);
+	@Override
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, 1, 1);
 	}
 
 	@Override
+	public void update() {
+		super.update();
+		open = false;
+		if (has("open")) {
+			open = true;
+			slot.bindEntitySlot((EntitySlot) attending.getSlot(bankName));
+		}
+	}
+
+	public void open() {
+		this.open = true;
+		slot.bindEntitySlot((EntitySlot) attending.getSlot(bankName));
+		put("open", "");
+	}
+
+	public void close() {
+		this.open = false;
+		if (has("open")) {
+			remove("open");
+		}
+		slot.unbindEntitySlot();
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	@Override
+	public String describe() {
+		String text = "You see a chest.";
+		if (hasDescription()) {
+			text = getDescription();
+		}
+		text += " It is " + (isOpen() ? "open" : "closed") + ".";
+		if (isOpen()) {
+			text += " You can #inspect this item to see its contents.";
+		}
+		return (text);
+	}
+
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
@@ -131,14 +124,6 @@ public class PersonalChest extends Chest {
 				close();
 			} else {
 				attending = player;
-
-				RPSlot content = getSlot("content");
-				content.clear();
-
-				for (RPObject item : getBankSlot()) {
-					content.add(item);
-				}
-
 				open();
 			}
 			notifyWorldAboutChanges();
