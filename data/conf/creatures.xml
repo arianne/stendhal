@@ -3447,8 +3447,8 @@
 		</ai>
 	</creature>
 
-    <creature name="elder_giant">
-		<type class="giant_human" subclass="elder_giant" tileid="171"/>
+    <creature name="giant_elder">
+		<type class="giant_human" subclass="giant_elder" tileid="171"/>
 		<attributes>
 			<atk value="250"/>
 			<def value="32"/>
