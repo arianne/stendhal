@@ -21,7 +21,8 @@ import java.util.List;
  *
  * REWARD:
  * - 2000 XP
- * - The player gets a fisherman's license.  
+ * - The player gets a fisherman's license (i.e. fishing skills increased by
+ *   0.2).
  *
  * REPETITIONS:
  * - No repetitions.
@@ -176,6 +177,10 @@ public class FishermansLicenseCollector extends AbstractQuest {
 										player.addXP(2000);
 										engine.say("You did a great job! Now you are a real fisherman and you will be much more successful when you catch fish!");
 										player.setQuest(QUEST_SLOT, "done");
+										// once there are other ways to increase your
+										// fishing skills, increase the old skills
+										// instead of just setting to 0.2.
+										player.setSkill("fishing", Double.toString(0.2));
 										player.notifyWorldAboutChanges();
 									}
 								} else {

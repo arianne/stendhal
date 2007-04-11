@@ -8,7 +8,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.maps.quests.FishermansLicenseCollector;
 
 import java.awt.geom.Rectangle2D;
 
@@ -32,9 +31,17 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 
 	private String itemName;
 	
+	/**
+	 * Calculates the probability that the given player catches a fish.
+	 * This is based on the player's fishing skills, however even
+	 * players with no skills at all have a 5 % probability of success.
+	 * @param player
+	 * @return
+	 */
 	private double getSuccessProbability(Player player) {
-		if (player.isQuestCompleted(FishermansLicenseCollector.QUEST_SLOT)) {
-			return 0.2;
+		String skill = player.getSkill("fishing");
+		if (skill != null) {
+			return Math.max(0.05, Double.parseDouble(skill));
 		} else {
 			return 0.05;
 		}
