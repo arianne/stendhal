@@ -58,12 +58,12 @@ public class StendhalQuestSystem {
 		loadQuest("DiogenesCataclysm");
 		loadQuest("FishermansLicenseQuiz");
 		loadQuest("FishermansLicenseCollector");
-		loadQuest("GetFishingRod");
 		loadQuest("HatForMonogenes");
 		loadQuest("HayunnCataclysm");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
 		loadQuest("LookBookforCeryl");
+		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");
 		loadQuest("Marriage");
 		loadQuest("MonogenesCataclysm");

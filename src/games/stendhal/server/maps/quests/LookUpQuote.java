@@ -37,7 +37,7 @@ import java.util.Map;
  * @author dine
  */
 
-public class GetFishingRod extends AbstractQuest {
+public class LookUpQuote extends AbstractQuest {
 	static final String QUEST_SLOT = "get_fishing_rod";
 	
 	private static Map<String, String> quotes = new HashMap<String, String>();
