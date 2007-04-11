@@ -41,29 +41,18 @@ public class CreateGuildAction implements ActionListener {
 		Log4J.startMethod(logger, "joinguild");
                 String guild = null;
                 
-                if (action.get("guildname").equals("") || action.get("guildname") == null) {
-                    player.sendPrivateText("You did not enter a guild name. Use #/joinguild #none to remove yourself from a guild.");
-                    return;
-                } else if (action.get("guildname") == "none" || action.get("guildname").equals("none")) { // the or for the update
-                            player.put("guild", "");
-                            player.sendPrivateText("You have been removed from your old guild.");
-                    } else {
-                        if (action.has("description")) {
-                            if (player.get("guild") != null) {
-                                guild = player.getName() + " is in the guild " + action.get("guildname") + ". Their motto is: " + action.get("description");
-                            } else {
-                                player.sendPrivateText("You are already in a guild. Use #/joinguild #none to remove yourself from it, and then try again.");
-                            }
-
-                        } else {
-                            guild = player.getName() + " is in the " + action.get("guildname") + " guild.";
-			    player.sendPrivateText("You have joined the " + action.get("guildname") + " guild.");
-                        }
-                    
-                }
-		// now we set the guild (just uncluttering the above)
-		if (guild != null) player.put("guild", guild);
-		else; // no nothing
+                //now we see if the player is in a guild. If not, put them in the requested one.
+		if (player.get("guild") != null) {
+		    player.sendPrivateText("You are already in a guild! Please leave your old one and try again.");
+		} else {
+		    player.put("guild", action.get("value"));
+		    String description = "You see " + player.getName() + ".\n" + player.getName() + " is level " + player.getLevel() + " and is a member of the " + action.get("value") + " guild.";
+		    player.setDescription(description);
+		}
+		// done!
+		
+		//TODO: Add list of guilds and make them unique.
+		
                 
 		player.update();
 		player.notifyWorldAboutChanges();
