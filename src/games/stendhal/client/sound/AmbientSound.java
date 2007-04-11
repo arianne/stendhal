@@ -314,10 +314,14 @@ class AmbientSound {
 	 * @param chance
 	 */
 	public void addCycle(final String token, final int period, final int volBot, final int volTop, final int chance) {
-		SoundCycle cycle;
-
-		cycle = new SoundCycle(soundObject, token, period, volBot, volTop, chance);
-		cycleList.add(cycle);
+		try {
+			SoundCycle cycle;
+			cycle = new SoundCycle(soundObject, token, period, volBot, volTop,
+					chance);
+			cycleList.add(cycle);
+		} catch (Exception e) {
+			System.out.println("undefined Soundsample"+token);
+		}		
 	} // addCycle
 
 	private boolean canPlay() {

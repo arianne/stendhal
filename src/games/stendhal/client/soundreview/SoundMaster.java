@@ -29,6 +29,7 @@ public class SoundMaster implements Runnable {
 	
 	
 	public static void play(String soundName,double x, double y,boolean loop){
+		if (!(x==0&&y==0))
 		if (HearingArea.contains(x, y)){
 			
 			play(soundName);
@@ -38,6 +39,11 @@ public class SoundMaster implements Runnable {
 	}
 	
 	 public static void play(String soundName) {
+		boolean shallLoop=false; 
+		play(soundName, shallLoop);
+
+	}
+	public static void play(String soundName, boolean shallLoop) {
 		if (soundName == null) {
 	        return;
         }
@@ -57,9 +63,16 @@ public class SoundMaster implements Runnable {
 			cl = ac.openLine();
 			
 if (cl!=null){
-
+	
 			cl.addLineListener(cliplisten);
+			if (shallLoop){
+				cl.loop(Clip.LOOP_CONTINUOUSLY);
+			}else{
+				
+			
+
 			cl.start();
+			}
 			
 }
 		} catch (UnsupportedAudioFileException e) {
@@ -69,7 +82,6 @@ if (cl!=null){
 		} catch (LineUnavailableException e) {
 			
 		}
-
 	}
 
 	class Cliplistener implements LineListener {

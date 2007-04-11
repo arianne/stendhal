@@ -9,7 +9,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
+import java.util.Map;
 import java.util.Properties;
 //TODO: delete me when new soundsystem works
 public class Schnick {
@@ -27,12 +29,15 @@ public class Schnick {
 	 */
 	
 	public static void main(String[] args) {
+		Map<String, String[]> soundArray = new HashMap<String, String[]>();
+		String [] buh = {"bah","beh"};
+		soundArray.put("hüp", buh);
 		SoundMaster sm = new SoundMaster();
 		sm.init();
 		Thread th = new Thread(sm);
 		th.start();
 		SoundMaster.play("hammer-1.wav");
-		SoundMaster.play("evillaugh-3.wav");
+		SoundMaster.play("evillaugh-3.wav",true);
 		System.out.print(true);
 	}
 

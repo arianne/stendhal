@@ -839,7 +839,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		} else if (zone.equals("int_semos_blacksmith")) {
 			// global ambient
 			ambient = new AmbientSound("blacksmith-overall-1", 20);
-			ambient.addCycle("hammer-2", 45000, 20, 40, 65);
+			ambient.addCycle("hammer", 45000, 20, 40, 65);
 			playAmbientSound(ambient);
 
 			soundPos = new Point2D.Double(11, 3);

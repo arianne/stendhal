@@ -26,7 +26,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public abstract class RPEntity extends AnimatedStateEntity {
 	private boolean showBladeStrike;
 	String[] attackSounds={
 		"punch-1.wav","punch-2.wav","punch-3.wav"
-		,"punch-4.wav","punch-5.wav","punch-6.wav,50",
+		,"punch-4.wav","punch-5.wav","punch-6.wav",
 		"swingaxe-1.wav","slap-1.wav","arrow-1.wav"};
 	public enum Resolution {
 		HIT(0), BLOCKED(1), MISSED(2);

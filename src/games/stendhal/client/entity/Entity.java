@@ -17,14 +17,10 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.common.Direction;
-import games.stendhal.common.Rand;
-
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Random;
-
-import javax.sound.sampled.DataLine;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
@@ -435,13 +431,13 @@ public final byte[] ID_Token = new byte[0];
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> if not performing
 	 */
-	public DataLine playSound(final String token, final int volBot, final int volTop, final int chance) {
-		if (Rand.rand(100)<chance){
-   // 	SoundMaster.play("evillaugh-3.wav",x,y);
-     	System.out.println("chance " +token + " chance "+ chance);
-		}
-		return null;//SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
-	}
+//	public DataLine playSound(final String token, final int volBot, final int volTop, final int chance) {
+//		if (Rand.rand(100)<chance){
+//   // 	SoundMaster.play("evillaugh-3.wav",x,y);
+//     	System.out.println("chance " +token + " chance "+ chance);
+//		}
+//		return null;//SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
+//	}
 
 	/**
 	 * Makes this entity play a sound on the map, at its current location. The

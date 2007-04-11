@@ -13,6 +13,7 @@
 package games.stendhal.client.sound;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 import javax.sound.sampled.DataLine;
@@ -90,9 +91,10 @@ class SoundCycle extends Thread implements Cloneable {
 		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) || (volTop < volBot)) {
 			throw new IllegalArgumentException("bad volume setting");
 		}
-
-		if ((clip = SoundEffectMap.getInstance().getSoundClip(token)) == null) {
-			throw new IllegalStateException("undefined sound sample: " + token);
+		clip = SoundEffectMap.getInstance().getSoundClip(token);
+		if (clip == null) {
+			System.out.println("undefined sound sample: " + token);
+		//	throw new IllegalStateException("undefined sound sample: " + token);
 		}
 
 		if (entity != null) {
@@ -199,7 +201,7 @@ class SoundCycle extends Thread implements Cloneable {
 			if (entityRef != null) {
 				if ((o = entityRef) != null) {
 					logger.debug("- start cyclic sound for entity: " + o.getType());
-					dataline = o.playSound(token, volBot, volTop, chance);
+					dataline = ((SoundObject) o).playSound(token, volBot, volTop, chance);
 				} else {
 					SoundSystem.stopSoundCycle(ID_Token);
 					terminate();
