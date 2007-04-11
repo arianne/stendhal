@@ -9,14 +9,19 @@ import games.stendhal.server.maps.ZoneConfigurator;
 
 import java.util.Map;
 
+/**
+ * Creates the items on the table in the magician house.
+ *
+ * @author hendrik
+ */
 public class ItemsOnTable implements ZoneConfigurator {
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildMagicianHouseArea(zone, attributes);
+		buildMagicianHouseArea(zone);
 	}
 
-	private void buildMagicianHouseArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildMagicianHouseArea(StendhalRPZone zone) {
 		Item item = addPersistentItem("summon_scroll", zone, 7, 6);
-		item.put("infostring", "red_dragon");
+		item.put("infostring", "giant_red_dragon");
 
 		// Plant grower for poison
 		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("poison", 1500);
