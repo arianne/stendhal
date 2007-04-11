@@ -961,6 +961,10 @@ public class j2DClient extends StendhalUI {
 		OutfitDialog dialog = new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
 		dialog.setVisible(true);
 	}
+	public void ManageGuilds() {
+	    GuildManager gm = new GuildManager();
+	    gm.setVisible(true);
+	}
 
 
 	/**
