@@ -32,7 +32,7 @@ public enum ActionType {
 	DEBUG_ENABLE_WATCH("[enable watch]", "Enable Watch"), 
 	DEBUG_DISABLE_WATCH("[disable watch]", "Disable Watch"), 
 	SET_OUTFIT("outfit", "Set outfit"),
-	JOIN_GUILD("joinguild", "Manage Guilds");
+	JOIN_GUILD("guild", "Manage Guilds");
 
 	/**
 	 *  the String send to the server, if so.
