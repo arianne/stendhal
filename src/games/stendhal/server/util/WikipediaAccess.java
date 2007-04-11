@@ -16,6 +16,9 @@ import org.xml.sax.helpers.DefaultHandler;
  * You can invoke the parser either inline using the method parse() or start
  * it in a new thread. 
  *
+ * TODO: handle redirects (but take care, there might be two redirects that
+ * point to each other).
+ * 
  * @author hendrik
  */
 public class WikipediaAccess extends DefaultHandler implements Runnable {
@@ -81,24 +84,29 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 		if (content != null) {
 			// remove image links
 			content = content.replaceAll("\\[\\[[iI]mage:[^\\]]*\\]\\]", "");
-			// remove comments (note reg exp is incorret)
-			content = content.replaceAll("<!--[^>]*-->", "");
+			// remove comments
+			// (?s) means that . should also match newlines (DOTALL mode).
+			content = content.replaceAll("(?s)<!--.*?-->", "");
 			// remove ref
-			content = content.replaceAll("<ref>[^<]*</ref>", "");
-			// remove templates (note reg exp is incorret)
-			content = content.replaceAll("\\{\\{[^\\}]*\\}\\}", "");
+			content = content.replaceAll("(?s)<ref>.*?</ref>", "");
+			// remove templates
+			// This doesn't work with templates inside templates.
+			content = content.replaceAll("(?s)\\{\\{.*?\\}\\}", "");
+			// remove tables
+			// This doesn't work with templates inside templates.
+			content = content.replaceAll("(?s)\\{\\|.*?\\|\\}", "");
 			// remove complex links
 			content = content.replaceAll("\\[\\[[^\\]]*\\|", "");
 			// remove simple links
 			content = content.replaceAll("\\[\\[", "");
 			content = content.replaceAll("\\]\\]", "");
 			// remove tags
-			content = content.replaceAll("<[^>]*>", "");
+			content = content.replaceAll("(?s)<.*?>", "");
 
 			// ignore leading empty lines and spaces
 			content = content.trim();
 
-			// extract the first paragraph (ignoring very short once but oposing a max len)
+			// extract the first paragraph (ignoring very short ones but oposing a max len)
 			int size = content.length();
 			int endOfFirstParagraph = content.indexOf("\n", 50);
 			if (endOfFirstParagraph < 0) {
