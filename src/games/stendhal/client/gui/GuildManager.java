@@ -46,10 +46,14 @@ public class GuildManager extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
+        getContentPane().setLayout(null);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Guild Management");
-        jLabel1.setFont(new java.awt.Font("Dialog", 3, 14));
+        jLabel1.setFont(new java.awt.Font("Dialog", 3, 18));
         jLabel1.setText("Stendhal Guild Management");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(10, 10, 270, 22);
 
         guildTextBoxCreate.setText("Guild Name Here");
         guildTextBoxCreate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -58,6 +62,9 @@ public class GuildManager extends javax.swing.JFrame {
             }
         });
 
+        getContentPane().add(guildTextBoxCreate);
+        guildTextBoxCreate.setBounds(10, 40, 280, 19);
+
         jButton1.setText("Create");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +72,12 @@ public class GuildManager extends javax.swing.JFrame {
             }
         });
 
+        getContentPane().add(jButton1);
+        jButton1.setBounds(290, 40, 74, 25);
+
         jLabel2.setText("<html>If you would like to join a guild, please talk to a member<br>in the guild you wish to join.");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 70, 356, 30);
 
         jButton2.setText("Leave Guild");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -74,9 +86,22 @@ public class GuildManager extends javax.swing.JFrame {
             }
         });
 
+        getContentPane().add(jButton2);
+        jButton2.setBounds(10, 180, 106, 25);
+
+        getContentPane().add(jSeparator1);
+        jSeparator1.setBounds(0, 0, 50, 10);
+
         jLabel3.setText("<html>Click here to leave your current guild.");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(120, 180, 234, 15);
+
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(0, 0, 50, 10);
 
         invitePlayerName.setText("Player Name");
+        getContentPane().add(invitePlayerName);
+        invitePlayerName.setBounds(10, 110, 290, 19);
 
         jButton3.setText("Invite");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -85,72 +110,12 @@ public class GuildManager extends javax.swing.JFrame {
             }
         });
 
+        getContentPane().add(jButton3);
+        jButton3.setBounds(300, 110, 69, 25);
+
         jLabel4.setText("Invite a player to a guild you are in or have created.");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(guildTextBoxCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(invitePlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
-                .addContainerGap())
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {guildTextBoxCreate, invitePlayerName});
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guildTextBoxCreate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel3))
-                .addGap(11, 11, 11)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(invitePlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {guildTextBoxCreate, invitePlayerName});
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(10, 140, 320, 15);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
