@@ -327,14 +327,18 @@ public class AdministrationAction implements ActionListener {
 				} else {
 
 					// OK, do the change
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "adminlevel", target.getName(),
+					StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+							"adminlevel", target.getName(),
 					        "adminlevel", action.get("newlevel"));
 					target.put("adminlevel", newlevel);
 					target.update();
 					target.notifyWorldAboutChanges();
 
-					response = "Changed adminlevel of " + target.getName() + " from " + oldlevel + " to " + newlevel
-					        + ".";
+					response = "Changed adminlevel of " + target.getName()
+							+ " from " + oldlevel + " to " + newlevel + ".";
+					target.sendPrivateText(player.getName()
+							+ " changed your adminlevel from " +  + oldlevel
+							+ " to " + newlevel + ".");
 				}
 			}
 
