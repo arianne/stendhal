@@ -32,7 +32,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import marauroa.common.Log4J;
-import marauroa.server.game.RPWorld;
 
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
@@ -129,14 +128,12 @@ public class ZonesXMLLoader extends DefaultHandler {
 	/**
 	 * Load a group of zones into a world.
 	 *
-	 * @param	world		The world to load into.
-	 *
 	 * @throws	SAXException	If a SAX error occured.
 	 * @throws	IOException	If an I/O error occured.
 	 * @throws	FileNotFoundException
 	 *				If the resource was not found.
 	 */
-	public void load(RPWorld world) throws SAXException, IOException {
+	public void load() throws SAXException, IOException {
 		InputStream in = getClass().getResourceAsStream(uri.getPath());
 
 		if (in == null) {
@@ -144,7 +141,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 
 		try {
-			load(world, in);
+			load(in);
 		} finally {
 			in.close();
 		}
@@ -153,13 +150,12 @@ public class ZonesXMLLoader extends DefaultHandler {
 	/**
 	 * Load a group of zones into a world using a config file.
 	 *
-	 * @param	world		The world to load into.
 	 * @param	in		The config file stream.
 	 *
 	 * @throws	SAXException	If a SAX error occured.
 	 * @throws	IOException	If an I/O error occured.
 	 */
-	protected void load(RPWorld world, InputStream in) throws SAXException, IOException {
+	protected void load(InputStream in) throws SAXException, IOException {
 		SAXParser saxParser;
 
 		/*
@@ -198,7 +194,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			try {
 				ZoneXMLLoader.XMLZone zonedata = zoneLoader.load("data/maps/" + zdesc.getFile());
 				if (verifyMap(zdesc, zonedata)) {
-					StendhalRPZone zone = load(world, zdesc, zonedata);
+					StendhalRPZone zone = load(zdesc, zonedata);
 	
 					/*
 					 * Setup Descriptors
@@ -362,7 +358,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 *
 	 */
-	protected StendhalRPZone load(RPWorld world, ZoneDesc desc, ZoneXMLLoader.XMLZone zonedata) throws SAXException, IOException {
+	protected StendhalRPZone load(ZoneDesc desc, ZoneXMLLoader.XMLZone zonedata) throws SAXException, IOException {
 		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
@@ -414,7 +410,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 *-
 		 */
 
-		world.addRPZone(zone);
+		StendhalRPWorld.get().addRPZone(zone);
 
 		zone.populate(zonedata.getLayer("objects"));
 
@@ -708,7 +704,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		ZonesXMLLoader loader = new ZonesXMLLoader(new URI(args[0]));
 
 		try {
-			loader.load(StendhalRPWorld.get());
+			loader.load();
 		} catch (org.xml.sax.SAXParseException ex) {
 			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
 

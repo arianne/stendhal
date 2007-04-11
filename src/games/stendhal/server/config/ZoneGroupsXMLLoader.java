@@ -23,9 +23,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
-import marauroa.server.game.RPWorld;
-
-import games.stendhal.server.StendhalRPWorld;
 
 /**
  * Load and configure zones via an XML configuration file.
@@ -63,14 +60,12 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	/**
 	 * Load zones into a world.
 	 *
-	 * @param	world		The world to load into.
-	 *
 	 * @throws	SAXException	If a SAX error occured.
 	 * @throws	IOException	If an I/O error occured.
 	 * @throws	FileNotFoundException
 	 *				If the resource was not found.
 	 */
-	public void load(RPWorld world) throws SAXException, IOException {
+	public void load() throws SAXException, IOException {
 		InputStream in = getClass().getResourceAsStream(uri.getPath());
 
 		if (in == null) {
@@ -78,7 +73,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		}
 
 		try {
-			load(world, in);
+			load(in);
 		} finally {
 			in.close();
 		}
@@ -93,7 +88,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 	 * @throws	SAXException	If a SAX error occured.
 	 * @throws	IOException	If an I/O error occured.
 	 */
-	protected void load(RPWorld world, InputStream in) throws SAXException, IOException {
+	protected void load(InputStream in) throws SAXException, IOException {
 		SAXParser saxParser;
 		ZonesXMLLoader loader;
 
@@ -123,7 +118,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 			loader = new ZonesXMLLoader(uri);
 
 			try {
-				loader.load(world);
+				loader.load();
 			} catch (SAXException ex) {
 				logger.error("Error loading zone group: " + uri, ex);
 			} catch (IOException ex) {
@@ -173,7 +168,7 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(URI.create(args[0]));
 
 		try {
-			loader.load(StendhalRPWorld.get());
+			loader.load();
 		} catch (org.xml.sax.SAXParseException ex) {
 			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
 

@@ -189,7 +189,7 @@ public class StendhalRPWorld extends RPWorld {
 
 		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml"));
 
-		loader.load(this);
+		loader.load();
 
 		/**
 		 * After all the zones has been loaded, check how many portals are
