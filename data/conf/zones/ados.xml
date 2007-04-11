@@ -317,11 +317,11 @@ in roaches.
     </entity>
 
     <portal x="8" y="30" ref="entrance_left">
-     <destination zone="0_ados_city_n" ref="library_entrance_left"/>
+     <destination zone="0_ados_city" ref="library_entrance_left"/>
     </portal>
 
     <portal x="21" y="30" ref="entrance_right">
-     <destination zone="0_ados_city_n" ref="library_entrance_right"/>
+     <destination zone="0_ados_city" ref="library_entrance_right"/>
     </portal>
    </zone>
 
@@ -481,6 +481,12 @@ in roaches.
      	<parameter name="species">cod</parameter>
     	</implementation>
     </entity>
+    <portal x="43" y="21" ref="library_entrance_left">
+      <destination zone="int_ados_library" ref="entrance_left"/>
+    </portal>
+    <portal x="51" y="21" ref="library_entrance_right">
+      <destination zone="int_ados_library" ref="entrance_right"/>
+    </portal>
     <portal x="67" y="65" ref="fishermans_hut_west_entrance">
      	<destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west"/>
     </portal>
