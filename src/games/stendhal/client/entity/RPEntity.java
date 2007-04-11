@@ -995,18 +995,4 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
 	}
-
-	@Override
-	protected Entity2DView createView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
 }

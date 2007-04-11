@@ -354,16 +354,4 @@ public abstract class Creature extends RPEntity {
 			
 		}
 	}
-
-	@Override
-	protected Entity2DView createView() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
