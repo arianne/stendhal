@@ -22,7 +22,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityFabric;
+import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtDraggable;
@@ -188,7 +188,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		if (content != null) {
 			// create the context menu
 
-			Entity entity = EntityFabric.createEntity(content);
+			Entity entity = EntityFactory.createEntity(content);
 			CommandList list = new CommandList(getName(), entity.offeredActions(), entity);
 			list.setContext(parent.getID().getObjectID(), getName());
 			setContextMenu(list);
@@ -211,7 +211,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 		// moveto events are not the default for items in a bag
 		if (parent instanceof Player) {
-			Entity entity = EntityFabric.createEntity(content);
+			Entity entity = EntityFactory.createEntity(content);
 			if (entity != null) {
 
 				entity.onAction(entity.defaultAction(), Integer.toString(parent.getID().getObjectID()), getName());

@@ -14,7 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.EntityFabric;
+import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.GoldSource;
 import games.stendhal.client.entity.GrainField;
 import games.stendhal.client.entity.PassiveEntity;
@@ -112,7 +112,7 @@ public class GameObjects implements Iterable<Entity> {
 
 	public Sprite spriteType(RPObject object) {
 		try {
-			return EntityFabric.createEntity(object).getSprite();
+			return EntityFactory.createEntity(object).getSprite();
 		} catch (Exception e) {
 			logger.error("cannot create sprite for object " + object, e);
 			return null;
@@ -128,7 +128,7 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.startMethod(logger, "add");
 
 		if (!object.has("server-only")) {
-			Entity entity = EntityFabric.createEntity(object);
+			Entity entity = EntityFactory.createEntity(object);
 
 			entity.onAdded(object);
 

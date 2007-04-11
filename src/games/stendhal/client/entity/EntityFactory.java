@@ -23,8 +23,8 @@ import org.apache.log4j.Logger;
  * @author astridemma
  * 
  */
-public class EntityFabric {
-   protected EntityFabric(){
+public class EntityFactory {
+   protected EntityFactory(){
 	   
    }
 	/**
@@ -78,7 +78,7 @@ public class EntityFabric {
 			return en;
 		} catch (Exception e) {
 			
-			Logger logger = Log4J.getLogger(EntityFabric.class);
+			Logger logger = Log4J.getLogger(EntityFactory.class);
 			logger.error("cannot create entity for object " + object, e);
 			return null;
 		}
