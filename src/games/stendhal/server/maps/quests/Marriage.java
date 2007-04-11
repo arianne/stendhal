@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -50,6 +51,9 @@ public class Marriage extends AbstractQuest {
 	public void init(String name) {
 	super.init(name, QUEST_SLOT);
     }
+
+	// The spouse's name is stored in one of the player's quest slots.
+	// This is necessary to disallow polygamy.
     private String SPOUSE_QUEST_SLOT = "spouse";
     
     private NPCList npcs = NPCList.get();
@@ -59,6 +63,8 @@ public class Marriage extends AbstractQuest {
 	private Player bride;
 	
 	private SpeakerNPC nun;
+	
+	private SpeakerNPC priest;
     
     private void step_1() {
 	nun = npcs.get("Sister Benedicta");
@@ -75,7 +81,7 @@ public class Marriage extends AbstractQuest {
 			} else if (player.isQuestCompleted(QUEST_SLOT)) {
 			    engine.say("I hope you are enjoying married life.");	  
 			}
-			else { engine.say("something else");
+			else { engine.say("Haven't you organised your wedding yet?");
 			     }
 		    }
 		});
@@ -83,7 +89,7 @@ public class Marriage extends AbstractQuest {
 			"married",
 			null,
 			ConversationStates.ATTENDING,
-			"If you have a partner, you can marry them in a lovely #wedding. Once you have a wedding ring, you can be together whenever you want.",
+			"If you have a partner, you can marry them at a #wedding. Once you have a wedding ring, you can be together whenever you want.",
 			null
 			);
 			
@@ -91,7 +97,7 @@ public class Marriage extends AbstractQuest {
 		"wedding",
 		null,
 		ConversationStates.ATTENDING,
-		"You can be married here at this church. If you want to #engage someone just tell me who.",
+		"You may marry here at this church. If you want to #engage someone, just tell me who.",
 		null
 		);
 	
@@ -116,7 +122,7 @@ public class Marriage extends AbstractQuest {
 
 		        @Override
 		        public void fire(Player player, String text, SpeakerNPC npc) {
-			        askBride();
+			        askBrideE();
 		        }
 	        });
 
@@ -138,7 +144,7 @@ public class Marriage extends AbstractQuest {
     
 	private void startEngagement(SpeakerNPC nun, Player player, String partnerName) {
 		IRPZone outsideChurchZone = StendhalRPWorld.get().getRPZone(nun.getID());
-		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(52, 50, 4, 4));
+		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 50, 4, 4));
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
 	
@@ -153,29 +159,30 @@ public class Marriage extends AbstractQuest {
 		} else if (isMarried(bride)) {
 			nun.say("You are married already, " + bride.getName() + "! You can't marry again.");
 		} else {
-			askGroom();
+			askGroomE();
 		}
 		
 	}
-	private void askGroom() {
+	private void askGroomE() {
 		nun.say(groom.getName() + ", do you want to get engaged to " + bride.getName() + "?");
 		nun.setCurrentState(ConversationStates.QUESTION_1);
 	}
 	
-	private void askBride() {
+	private void askBrideE() {
 		nun.say(bride.getName() + ", do you want to get engaged to " + groom.getName() + "?");
 		nun.setCurrentState(ConversationStates.QUESTION_2);
 		nun.setAttending(bride);
 	}
 	private void giveInvite(Player player) {
-		Item invite = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("invitation_scroll");
+		StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("invitation_scroll");
+		invite.setQuantity(4);
 		invite.put("infostring", "int_fado_church 12 20"); /*location of church*/
 		player.equip(invite, true);
 	}
 	private void finishEngagement() {
 		giveInvite(groom);
 		giveInvite(bride);
-		nun.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now engaged! Please agree a time for your wedding and tell your guests, then use this invite to get to the church!");
+		nun.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now engaged! Please agree a time for your wedding, then use these invites to get you and your guests to the church!");
 		// Memorize that the two engaged so that the priest knows
 		groom.setQuest(QUEST_SLOT, "engaged");
 		bride.setQuest(QUEST_SLOT, "engaged");
@@ -190,8 +197,134 @@ public class Marriage extends AbstractQuest {
 	}
     
     private void step_2() {
-	/*go to the priest and get married, defined in PriestNPC for now */
+    	
+    	/**
+    	 * Creates a priest NPC who can celebrate marriages between two
+    	 * players.
+    	 * 
+    	 * Note: in this class, the Player variables are called groom
+    	 * and bride. However, the game doesn't know the concept of
+    	 * genders. The player who initiates the wedding is just called
+    	 * groom, the other bride.
+    	 *   
+    	 * @author daniel
+    	 *
+    	 */
+    	
+    	priest = npcs.get("Priest");
+    	priest.add(ConversationStates.ATTENDING, "marry", 
+				
+				new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return player.hasQuest(QUEST_SLOT)
+						&& player.getQuest(QUEST_SLOT).equals("engaged");
+			}
+		}	
+			, ConversationStates.ATTENDING, null,
+		        new SpeakerNPC.ChatAction() {
+
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+				        // find out whom the player wants to marry.
+				        String[] words = text.split(" ");
+
+				        if (words.length >= 2) {
+					        String brideName = words[1];
+					        startMarriage(npc, player, brideName);
+				        } else {
+					        npc.say("You have to tell me who you want to marry.");
+				        }
+			        }
+		        });
+
+    	priest.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
+		        ConversationStates.QUESTION_2, null, new SpeakerNPC.ChatAction() {
+
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+				        askBride();
+			        }
+		        });
+
+		priest.add(ConversationStates.QUESTION_1, ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
+		        "What a pity! Goodbye!", null);
+		priest.add(ConversationStates.QUESTION_2, ConversationPhrases.YES_MESSAGES, null,
+		        ConversationStates.ATTENDING, null, new SpeakerNPC.ChatAction() {
+
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+				        finishMarriage();
+			        }
+		        });
+
+		priest.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
+		        "What a pity! Goodbye!", null);
+    	
     }
+    
+    private void startMarriage(SpeakerNPC priest, Player player, String partnerName) {
+		IRPZone churchZone = StendhalRPWorld.get().getRPZone(priest.getID());
+		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 8, 4, 1));
+
+		groom = player;
+		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
+
+		if (!inFrontOfAltar.contains(groom)) {
+			priest.say("You must step in front of the altar if you want to marry.");
+		} else if (isMarried(groom)) {
+			priest.say("You are married already, " + groom.getName() + "! You can't marry again.");
+		} else if (bride == null || !inFrontOfAltar.contains(bride)) {
+			priest.say("You must bring your partner to the altar if you want to marry.");
+		} else if (bride.getName().equals(groom.getName())) {
+			priest.say("You can't marry yourself!");
+		} else if (isMarried(bride)) {
+			priest.say("You are married already, " + bride.getName() + "! You can't marry again.");
+		} else {
+			askGroom();
+		}
+	}
+    
+    private void askGroom() {
+		priest.say(groom.getName() + ", do you really want to marry " + bride.getName() + "?");
+		priest.setCurrentState(ConversationStates.QUESTION_1);
+	}
+
+	private void askBride() {
+		priest.say(bride.getName() + ", do you really want to marry " + groom.getName() + "?");
+		priest.setCurrentState(ConversationStates.QUESTION_2);
+		priest.setAttending(bride);
+	}
+
+	private void finishMarriage() {
+		exchangeRings();
+		priest.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now married!");
+		// Memorize that the two married so that they can't just marry other
+		// persons
+		groom.setQuest(SPOUSE_QUEST_SLOT, bride.getName());
+		bride.setQuest(SPOUSE_QUEST_SLOT, groom.getName());
+		// Clear the variables so that other players can become groom and bride
+		// later
+		groom = null;
+		bride = null;
+	}
+	
+
+	private void giveRing(Player player, Player partner) {
+		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wedding_ring");
+		ring.put("infostring", partner.getName());
+		ring.put("bound", player.getName());
+		player.equip(ring, true);
+	}
+
+	private void exchangeRings() {
+		// TODO: players should bring their own golden rings
+		giveRing(groom, bride);
+		giveRing(bride, groom);
+	}
+
+    
+    
     
     private void step_3() {
 	
