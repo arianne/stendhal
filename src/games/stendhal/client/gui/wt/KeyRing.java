@@ -10,6 +10,7 @@ package games.stendhal.client.gui.wt;
 //
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.entity.User;
 
 /**
  * A key ring.
@@ -28,6 +29,20 @@ public class KeyRing extends EntityContainer {
 	//
 
 	public void update() {
-		// Do 4 vs 6 size handling
+		User user = User.get();
+
+		if(user != null) {
+			if(user.hasFeature("keyring")) {
+				if(!isMinimizeable()) {
+					setMinimizeable(true);
+					setMinimized(false);
+				}
+			} else {
+				if(isMinimizeable()) {
+					setMinimizeable(false);
+					setMinimized(true);
+				}
+			}
+		}
 	}
 }
