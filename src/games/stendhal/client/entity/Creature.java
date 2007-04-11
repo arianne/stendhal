@@ -247,12 +247,14 @@ public abstract class Creature extends RPEntity {
 			// cyclic sound management
 			if (type.startsWith("creature")) {
 				if (name.equals("wolf")) {
-					SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50, 100);
+					moveSounds=new String[]{"bark-1.wav","howl-5.wav","howl-2.wav","howl-11.wav"};
+					
+	//SoundSystem.startSoundCycle(this, "wolf-patrol", 40000, 10, 50, 100);
 				} else if (name.equals("rat") || name.equals("caverat") || name.equals("venomrat")) {
-					moveSounds=new String[3];
+					moveSounds=new String[2];
 					moveSounds[0]="rats-2.wav";
-					moveSounds[1]="rats-3.wav";
-					moveSounds[2]="rats-41.wav";
+					moveSounds[1]="rats-41.wav";
+				//	moveSounds[2]="rats-3.wav";
 					//SoundSystem.startSoundCycle(this, "rats-patrol", 15000, 10, 30, 80);
 				} else if (name.equals("razorrat")) {
 					moveSounds=new String[1];
