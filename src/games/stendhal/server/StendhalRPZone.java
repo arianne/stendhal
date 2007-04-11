@@ -81,6 +81,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private List<Player> players;
 
 	private boolean teleportable = true;
+	private boolean moveToAble = true;
+
 
 	/**
 	 * Objects that implement MovementListener.
@@ -931,10 +933,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return playersAndFriends;
 	}
 
-//	public void removePlayerAndFriends(RPEntity player) {
-//		playersAndFriends.remove(player);
-//	}
-
 	/**
 	 * Can magic scrolls for teleportation be used in this zone?
 	 *
@@ -954,7 +952,28 @@ public class StendhalRPZone extends MarauroaRPZone {
 		this.teleportable = teleportable;
 	}
 
+	/**
+	 * Can moveto (mouse movement using pathfinding) be done on this map?
+	 *
+	 * @return true, if moveto is possible, false otherwise
+	 */
+	public boolean isMoveToAble() {
+		return moveToAble ;
+	}
+
+	/**
+	 * Sets the flag whether moveto (mouse movement using pathfinding) is possible
+	 * in this zone.
+	 *
+	 * @param moveToAble true, if it is possible, false otherwise
+	 */
+	public void setEnableMoveTo(boolean moveToAble) {
+		this.moveToAble = moveToAble;
+		
+	}
+
 	public void addMap(String name, byte[] mapData) {
 		addToContent(name, mapData);
 	}
+
 }
