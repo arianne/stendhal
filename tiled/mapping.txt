@@ -2581,11 +2581,11 @@
 ../../zelda_objects_chipset.png:164:2566:../../tileset/logic/creature/dark_elf.png:4
 ../../zelda_objects_chipset.png:165:2567:../../tileset/logic/creature/dark_elf.png:5
 ../../zelda_objects_chipset.png:166:2568:../../tileset/logic/creature/dark_elf.png:6
-../../zelda_objects_chipset.png:167:2569:../../tileset/logic/creature/giant_human.png:0
-../../zelda_objects_chipset.png:168:2570:../../tileset/logic/creature/giant_human.png:1
-../../zelda_objects_chipset.png:169:2571::
-../../zelda_objects_chipset.png:170:2572::
-../../zelda_objects_chipset.png:171:2573::
+../../zelda_objects_chipset.png:167:2569:../../tileset/logic/creature/dark_elf.png:7
+../../zelda_objects_chipset.png:168:2570:../../tileset/logic/creature/dark_elf.png:8
+../../zelda_objects_chipset.png:169:2571:../../tileset/logic/creature/dark_elf.png:9
+../../zelda_objects_chipset.png:170:2572:../../tileset/logic/creature/giant_human.png:0
+../../zelda_objects_chipset.png:171:2573:../../tileset/logic/creature/giant_human.png:1
 ../../zelda_objects_chipset.png:172:2574::
 ../../zelda_objects_chipset.png:173:2575::
 ../../zelda_objects_chipset.png:174:2576::
