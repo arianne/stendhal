@@ -2995,6 +2995,34 @@
 
 	<!-- Level 55 -->
 
+	<creature name="giant_kobold">
+		<type class="huge_animal" subclass="giant_kobold" tileid="158"/>
+		<attributes>
+			<atk value="140"/>
+			<def value="31"/>
+			<hp value="400"/>
+			<speed value="1"/>
+			<size value="3,4"/>
+		</attributes>
+		<level value="55"/>
+		<experience value="7300"/>
+		<respawn value="19000"/>
+		<drops>
+			<item value="money" quantity="[10,120]" probability="100"/>
+			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="plate_armor" quantity="1" probability="1"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="lifesteal" params="0.3"/>
+			<profile name="heal" params="5,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 	<creature name="bone_dragon">
 		<type class="huge_animal" subclass="bone_dragon" tileid="121"/>
 		<attributes>
