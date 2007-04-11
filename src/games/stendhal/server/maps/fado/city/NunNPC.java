@@ -52,13 +52,6 @@ public class NunNPC implements ZoneConfigurator {
 				addGreeting("Welcome to this place of worship.");
 				addHelp("I don't know what you need, dear child.");
 				addJob("I am a nun. But this is my life, not my work.");
-				addQuest("The great quest of all life is to be #married.");
-				addReply(
-				        "married",
-				        "When you have found your partner, and you are very sure that you want to be joined together in matrimony, tell a suitable #priest");
-				addReply(
-				        "priest",
-				        "There's a priest inside this very church.");
 				addGoodbye("Goodbye, may peace be with you.");
 			}
 		};
