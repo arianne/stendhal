@@ -54,7 +54,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	private int currentSpeciesNo;
 
 	private static StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-			.getRPZone("int_ados_fishermans_hut");
+			.getRPZone("int_ados_fishermans_hut_west");
 	
 	private Item fishOnTable;
 
