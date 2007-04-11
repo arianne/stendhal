@@ -1,12 +1,13 @@
 package games.stendhal.client.soundreview;
 
-import games.stendhal.client.sound.SoundSystem;
-
+import games.stendhal.client.SpriteStore;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.Properties;
 
 public class SoundFileReader {
@@ -36,7 +37,21 @@ public class SoundFileReader {
 	public void initWithXml(){
 		
 	}
-
+	/**
+	 * Obtains a resource input stream. Fetches currently from the main
+	 * program's classloader.
+	 * 
+	 * @param name
+	 * @return InputStream
+	 * @throws IOException
+	 */
+	public static InputStream getResourceStream(String name) throws IOException {
+		URL url = SpriteStore.get().getResourceURL(name);
+		if (url == null) {
+			throw new FileNotFoundException(name);
+		}
+		return url.openStream();
+	}
 	/**
 	 * @param prop
 	 *            the Property Object to load to
@@ -49,7 +64,7 @@ public class SoundFileReader {
 			prop = new Properties();
 		}
 		try {
-			in1 = SoundSystem.getResourceStream(url);
+			in1 =  getResourceStream(url);
 
 			prop.load(in1);
 			in1.close();
