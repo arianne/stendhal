@@ -80,9 +80,15 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private RPServerManager rpman;
 
-	private List<Player> playersObject;
+	/**
+	 * A list of all players who are currently logged in. 
+	 */
+	private List<Player> players;
 
-	private List<Player> playersObjectRmText;
+	/**
+	 * ??? 
+	 */
+	private List<Player> playersRmText;
 
 	private List<NPC> npcs;
 
@@ -90,6 +96,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<NPC> npcsToRemove;
 
+	/**
+	 * A list of RPEntities that were killed in the current turn, together with
+	 * the Entity that killed it.  
+	 */
 	private List<Pair<RPEntity, Entity>> entityToKill;
 
 	private List<CreatureRespawnPoint> respawnPoints;
@@ -129,8 +139,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private StendhalRPRuleProcessor() {
 		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
-		playersObject = new LinkedList<Player>();
-		playersObjectRmText = new LinkedList<Player>();
+		players = new LinkedList<Player>();
+		playersRmText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
 		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
@@ -265,6 +275,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		if (username.indexOf(' ') != -1) {
 			return false;
 		}
+		// TODO: Fix bug [ 1672627 ] 'admin' not allowed in username but GM_ and _GM are
 		if (username.toLowerCase().contains("admin")) {
 			return false;
 		}
@@ -287,7 +298,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		entityToKill.add(new Pair<RPEntity, Entity>(entity, killer));
 	}
 
-	public boolean isKilledRPEntity(RPEntity entity) {
+	/**
+	 * Checks whether the given RPEntity has been killed this turn.  
+	 * @param entity The entity to check.
+	 * @return true if the given entity has been killed this turn.
+	 */
+	private boolean wasKilled(RPEntity entity) {
 		for (Pair<RPEntity, Entity> entry : entityToKill) {
 			if (entity.equals(entry.first())) {
 				return true;
@@ -296,7 +312,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return false;
 	}
 
-	public Entity isKilledByRPEntity(RPEntity entity) {
+	/**
+	 * Returns the entity which has killed the given RPEntity this
+	 * turn.
+	 * @param entity The killed RPEntity. 
+	 * @return The killer, or null if the given RPEntity hasn't been
+	 *         killed this turn.
+	 */
+	private Entity killerOf(RPEntity entity) {
 		for (Pair<RPEntity, Entity> entry : entityToKill) {
 			if (entity.equals(entry.first())) {
 				return entry.second();
@@ -306,7 +329,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public void removePlayerText(Player player) {
-		playersObjectRmText.add(player);
+		playersRmText.add(player);
 	}
 
 	public void addBlood(Blood blood) {
@@ -331,7 +354,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * @return A list of all online players
 	 */
 	public List<Player> getPlayers() {
-		return playersObject;
+		return players;
 	}
 
 	/**
@@ -410,16 +433,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				objects += zone.size();
 			}
 
-			logger.debug("lists: G:" + plantGrowers.size() + ",NPC:" + npcs.size() + ",P:" + playersObject.size()
+			logger.debug("lists: G:" + plantGrowers.size() + ",NPC:" + npcs.size() + ",P:" + players.size()
 			        + ",CR:" + creatures + ",OB:" + objects);
 
 			logger.debug("lists: NPC:" + npcsToAdd.size() + ",NPC:" + npcsToRemove.size() + ",P:"
-			        + playersObjectRmText.size() + ",R:" + respawnPoints.size());
+			        + playersRmText.size() + ",R:" + respawnPoints.size());
 		}
 
 		try {
 			// We keep the number of players logged.
-			Statistics.getStatistics().set("Players logged", playersObject.size());
+			Statistics.getStatistics().set("Players logged", players.size());
 			// In order for the last hit to be visible dead happens at two
 			// steps.
 			for (Pair<RPEntity, Entity> entry : entityToKill) {
@@ -437,51 +460,51 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			npcsToAdd.clear();
 			npcsToRemove.clear();
 			bloodsToRemove.clear();
-			for (Player object : playersObject) {
-				if (object.has("risk")) {
-					object.remove("risk");
-					object.notifyWorldAboutChanges();
+			for (Player player : players) {
+				if (player.has("risk")) {
+					player.remove("risk");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.has("damage")) {
-					object.remove("damage");
-					object.notifyWorldAboutChanges();
+				if (player.has("damage")) {
+					player.remove("damage");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.has("heal")) {
-					object.remove("heal");
-					object.notifyWorldAboutChanges();
+				if (player.has("heal")) {
+					player.remove("heal");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.has("dead")) {
-					object.remove("dead");
-					object.notifyWorldAboutChanges();
+				if (player.has("dead")) {
+					player.remove("dead");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.has("online")) {
-					object.remove("online");
-					object.notifyWorldAboutChanges();
+				if (player.has("online")) {
+					player.remove("online");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.has("offline")) {
-					object.remove("offline");
-					object.notifyWorldAboutChanges();
+				if (player.has("offline")) {
+					player.remove("offline");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.hasPath()) {
-					if (Path.followPath(object, 1)) {
-						object.stop();
-						object.clearPath();
+				if (player.hasPath()) {
+					if (Path.followPath(player, 1)) {
+						player.stop();
+						player.clearPath();
 					}
-					object.notifyWorldAboutChanges();
+					player.notifyWorldAboutChanges();
 				}
-				if (!object.stopped()) {
-					StendhalRPAction.move(object);
+				if (!player.stopped()) {
+					StendhalRPAction.move(player);
 				}
-				if ((getTurn() % 5 == 0) && object.isAttacking()) // 1 round = 5
+				if ((getTurn() % 5 == 0) && player.isAttacking()) // 1 round = 5
 				// turns
 				{
-					StendhalRPAction.attack(object, object.getAttackTarget());
+					StendhalRPAction.attack(player, player.getAttackTarget());
 				}
 				if (getTurn() % 180 == 0) {
-					object.setAge(object.getAge() + 1);
-					object.notifyWorldAboutChanges();
+					player.setAge(player.getAge() + 1);
+					player.notifyWorldAboutChanges();
 				}
-				object.consume(getTurn());
+				player.consume(getTurn());
 			}
 			for (NPC npc : npcs) {
 				try {
@@ -490,17 +513,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					logger.error("error in beginTurn", e);
 				}
 			}
-			for (Player object : playersObjectRmText) {
-				if (object.has("text")) {
-					object.remove("text");
-					object.notifyWorldAboutChanges();
+			for (Player player : playersRmText) {
+				if (player.has("text")) {
+					player.remove("text");
+					player.notifyWorldAboutChanges();
 				}
-				if (object.has("private_text")) {
-					object.remove("private_text");
-					object.notifyWorldAboutChanges();
+				if (player.has("private_text")) {
+					player.remove("private_text");
+					player.notifyWorldAboutChanges();
 				}
 			}
-			playersObjectRmText.clear();
+			playersRmText.clear();
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
@@ -534,8 +557,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		Log4J.startMethod(logger, "onInit");
 		try {
 			Player player = Player.create(object);
-			playersObjectRmText.add(player);
-			playersObject.add(player);
+			playersRmText.add(player);
+			players.add(player);
 			// Notify other players about this event
 			for (Player p : getPlayers()) {
 				p.notifyOnline(player.getName());
@@ -555,21 +578,21 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	synchronized public boolean onExit(RPObject.ID id) {
 		Log4J.startMethod(logger, "onExit");
 		try {
-			for (Player object : playersObject) {
-				if (object.getID().equals(id)) {
-					if (isKilledRPEntity(object)) {
-						logger.info("Logout before dead: Killing it now :)");
-						object.onDead(isKilledByRPEntity(object));
+			for (Player player : players) {
+				if (player.getID().equals(id)) {
+					if (wasKilled(player)) {
+						logger.info("Logged out shortly before death: Killing it now :)");
+						player.onDead(killerOf(player));
 					}
 
 					// Notify other players about this event
 					for (Player p : getPlayers()) {
-						p.notifyOffline(object.getName());
+						p.notifyOffline(player.getName());
 					}
-					Player.destroy(object);
-					playersObject.remove(object);
-					addGameEvent(object.getName(), "logout");
-					logger.debug("removed player " + object);
+					Player.destroy(player);
+					players.remove(player);
+					addGameEvent(player.getName(), "logout");
+					logger.debug("removed player " + player);
 					break;
 				}
 			}

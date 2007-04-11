@@ -95,7 +95,7 @@ public class Player extends RPEntity implements TurnListener {
 	private String lastPrivateChatterName;
 
 	/**
-	 * Currently active client directions (in oldest-newest order)
+	 * Currently active client directions (in oldest-newest order).
 	 */
 	protected List<Direction> directions;
 
@@ -107,9 +107,10 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * A list of enabled client features.
 	 */
-	protected FeatureList		features;
+	protected FeatureList features;
 
-        private String guild;
+    private String guild;
+    
 	/**
 	 * A list of away replys sent to players.
 	 */
@@ -672,6 +673,10 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 
+	/**
+	 * Sends a message that only this player can read.
+	 * @param text The message.
+	 */
 	public void sendPrivateText(String text) {
 		if (has("private_text")) {
 			text = get("private_text") + "\r\n" + text;
@@ -717,7 +722,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	@Override
-	public void onDead(Entity who) {
+	public void onDead(Entity killer) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		put("dead", "");
 
@@ -741,7 +746,7 @@ public class Player extends RPEntity implements TurnListener {
 		setATKXP((int) (getATKXP() * 0.9));
 		setDEFXP((int) (getDEFXP() * 0.9));
 
-		super.onDead(who, false);
+		super.onDead(killer, false);
 
 		setHP(getBaseHP());
 
@@ -756,11 +761,13 @@ public class Player extends RPEntity implements TurnListener {
 
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
+		// drop at least 1 and at most 4 items
 		int maxItemsToDrop = Rand.rand(4);
 
 		for (String slotName : CARRYING_SLOTS) {
-			// XXX - If this check fails, something is BROKEN
-			if (hasSlot(slotName)) {
+			if (! hasSlot(slotName)) {
+				logger.error("CARRYING_SLOTS contains a slot that player " + getName() + " doesn't have.");
+			} else {
 				RPSlot slot = getSlot(slotName);
 
 				// a list that will contain the objects that will
@@ -876,6 +883,10 @@ public class Player extends RPEntity implements TurnListener {
 		put("age", age);
 	}
 
+	/**
+	 * Notifies this player that the given player has logged in.
+	 * @param who The name of the player who has logged in. 
+	 */
 	public void notifyOnline(String who) {
 		String playerOnline = "_" + who;
 
@@ -901,6 +912,10 @@ public class Player extends RPEntity implements TurnListener {
 		}
 	}
 
+	/**
+	 * Notifies this player that the given player has logged out.
+	 * @param who The name of the player who has logged out. 
+	 */
 	public void notifyOffline(String who) {
 		String playerOffline = "_" + who;
 
@@ -1017,32 +1032,58 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	/**
-	 * This probably checks if the player has killed a creature with the
-	 * given name without the help of any other player (?)
+	 * Checks if the player has ever killed a creature with the given name
+	 * without the help of any other player.
+	 * @param The name of the creature to check. 
+	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(String name) {
 		String	info;
 
-
 		if((info = getKeyedSlot("!kills", name)) == null) {
 			return false;
 		}
-
 		return info.equals("solo");
 	}
 
+	/**
+	 * Checks if the player has ever killed a creature, with or without the
+	 * help of any other player.
+	 * @param The name of the creature to check. 
+	 * @return true iff this player has ever killed this creature on his own.
+	 */
 	public boolean hasKilled(String name) {
 		return (getKeyedSlot("!kills", name) != null);
 	}
 
+	/**
+	 * Checks in which way this player has killed the creature with the given
+	 * name.
+	 * @param The name of the creature to check. 
+	 * @return either "solo", "shared", or null. 
+	 */
 	public String getKill(String name) {
 		return getKeyedSlot("!kills", name);
 	}
 
+	/**
+	 * Stores in which way the player has killed a creature with the given
+	 * name.
+	 * 
+	 * This should not be called with mode "shared" if this player has already
+	 * killed the creature solo.
+	 *   
+	 * @param The name of the killed creature. 
+	 * @param mode either "solo", "shared", or null.
+	 */
 	public void setKill(String name, String mode) {
 		setKeyedSlot("!kills", name, mode);
 	}
 
+	/**
+	 * ??? 
+	 * @return ???
+	 */
 	public List<String> getKills() {
 		RPSlot slot = getSlot("!kills");
 		RPObject kills = slot.iterator().next();
@@ -1055,6 +1096,12 @@ public class Player extends RPEntity implements TurnListener {
 		return killsList;
 	}
 
+	/**
+	 * Makes the game think that this player has never killed a creature
+	 * with the given name. Use this for quests where the player should
+	 * kill a creature of a specific type.
+	 * @param name The name of the creature.
+	 */
 	public void removeKill(String name) {
 		setKeyedSlot("!kills", name, null);
 	}
@@ -1147,6 +1194,9 @@ public class Player extends RPEntity implements TurnListener {
 		Collections.sort(itemsToConsume, new Comparator<ConsumableItem>() {
 
 			public int compare(ConsumableItem o1, ConsumableItem o2) {
+				// TODO: highest regen value doesn't have to mean it
+				// actually heals fastest; it also depends on the
+				// frequency.
 				return Math.abs(o2.getRegen()) - Math.abs(o1.getRegen());
 			}
 
@@ -1297,6 +1347,13 @@ public class Player extends RPEntity implements TurnListener {
 		setOutfit(outfit, false);
 	}
 
+	/**
+	 * Makes this player wear the given outfit. If the given outfit contains
+	 * null parts, the current outfit will be kept for these parts.
+	 * @param outfit The new outfit.
+	 * @param temporary If true, the original outfit will be stored so that
+	 *        it can be restored later.
+	 */
 	public void setOutfit(Outfit outfit, boolean temporary) {
 		// if the new outfit is temporary and the player is not wearing
 		// a temporary outfit already, store the current outfit in a 
@@ -1305,7 +1362,7 @@ public class Player extends RPEntity implements TurnListener {
 			put("outfit_org", get("outfit"));
 		}
 		// combine the old outfit with the new one, as the new one might
-		// contain Outfit.NONE parts.
+		// contain null parts.
 		Outfit newOutfit = outfit.putOver(getOutfit());
 		put("outfit", newOutfit.getCode());
 		notifyWorldAboutChanges();
@@ -1329,8 +1386,8 @@ public class Player extends RPEntity implements TurnListener {
 	public boolean returnToOriginalOutfit() {
 		Outfit originalOutfit = getOriginalOutfit();
 		if (originalOutfit != null) {
-			setOutfit(originalOutfit, false);
 			remove("outfit_org");
+			setOutfit(originalOutfit, false);
 			return true;
 		}
 		return false;
@@ -1347,6 +1404,7 @@ public class Player extends RPEntity implements TurnListener {
 
 	@Override
 	public int hashCode() {
+		// player names are unique, so we can use the name's hash code.
 		return getName().hashCode();
 	}
 
