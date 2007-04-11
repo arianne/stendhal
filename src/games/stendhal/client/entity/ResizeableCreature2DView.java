@@ -130,8 +130,8 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 * Update representation.
 	 */
 	protected void update() {
-		super.update();
-
 		buildRepresentation();
+
+		super.update();
 	}
 }
