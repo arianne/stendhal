@@ -108,8 +108,7 @@ Southeast: Farmhouse
     <parameter name="text">
 TO THE PLAINS
 
-Shepherds please note: keep watch for
-the wolves while searching for berries here
+Shepherds please note: keep watch for the wolves while searching for berries here.
     </parameter>
    </implementation>
   </entity>
@@ -171,7 +170,7 @@ South: Or'ril castle
     <parameter name="text">
 TO SEMOS
 
-Mature sheep wanted: please speak to Sato
+Mature sheep wanted: please speak to Sato.
     </parameter>
    </implementation>
   </entity>
@@ -181,9 +180,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="text">
 [CLOSED]
 
-The tavern has moved into a more central
-location in Semos. Please come join us at the
-social hub of the Semos area!
+The tavern has moved into a more central location in Semos. Please come join us at the social hub of the Semos area!
     </parameter>
    </implementation>
   </entity>
@@ -291,8 +288,7 @@ Shepherds wanted: please ask Nishiya
     <parameter name="text">
 DUNGEONS
 
-Caution: These dungeons contain many rats,
-and more dangerous creatures. Enter at own risk.
+Caution: These dungeons contain many rats, and more dangerous creatures. Enter at own risk.
     </parameter>
    </implementation>
   </entity>
@@ -327,8 +323,7 @@ and more dangerous creatures. Enter at own risk.
     <parameter name="text">
 TO THE PLAINS
 
-Shepherds please note: keep watch for
-the wolves while searching for berries here
+Shepherds please note: keep watch for the wolves while searching for berries here.
     </parameter>
    </implementation>
   </entity>
@@ -441,13 +436,7 @@ Holy mackerel! These chips are tasty.
     <entity x="26" y="5">
      <implementation class-name="games.stendhal.server.entity.Sign">
       <parameter name="text">
-The island of Athor is famous for its
-golden beaches. Having long been an
-untouched piece of nature, it has become
-a holiday paradise since a ferry service
-was installed. Little do the tourists
-know about the dangers that lurk under
-the surface...
+       The island of Athor is famous for its golden beaches. Having long been an untouched piece of nature, it has become a holiday paradise since a ferry service was installed. Little do the tourists know about the dangers that lurk under the surface...
       </parameter>
       <parameter name="class">book_red</parameter>
      </implementation>
@@ -455,12 +444,7 @@ the surface...
     <entity x="27" y="5">
      <implementation class-name="games.stendhal.server.entity.Sign">
       <parameter name="text">
-The dwarf mine west of Or'ril castle
-is one of the main iron ore resources
-of Faiumoni. Even rumors of a dragon
-living under the earth cannot stop
-the industrious dwarves from digging 
-further and further into the mountain.
+       The dwarf mine west of Or'ril castle is one of the main iron ore resources of Faiumoni. Even rumors of a dragon living under the earth cannot stop the industrious dwarves from digging further and further into the mountain.
       </parameter>
       <parameter name="class">book_blue</parameter>
      </implementation>
@@ -468,12 +452,7 @@ further and further into the mountain.
     <entity x="4" y="28">
      <implementation class-name="games.stendhal.server.entity.Sign">
       <parameter name="text">
-Adventurers have described the effects
-of poisonous creatures and mushrooms
-as not only unhealthy, but also as
-confusing for the orientation. They
-recommend always to take an antidote
-with you.	  
+       Adventurers have described the effects of poisonous creatures and mushrooms as not only unhealthy, but also as confusing for the orientation. They recommend always to take an antidote with you.
       </parameter>
       <parameter name="class">book_blue</parameter>
      </implementation>
