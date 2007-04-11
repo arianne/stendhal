@@ -68,6 +68,11 @@ public class MoveAction implements ActionListener {
 
 	private void moveTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "moveto");
+		
+		if (!player.getZone().isMoveToAble()) {
+			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
+			return;
+		}
 
 		if (player.hasPath()) {
 			player.clearPath();
