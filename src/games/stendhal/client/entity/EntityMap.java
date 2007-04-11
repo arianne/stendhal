@@ -47,6 +47,7 @@ public final class EntityMap {
 		register("creature", "small_animal", "SmallCreature");
 		register("creature", "giant_animal", "BigCreature");
 		register("creature", "huge_animal", "HugeCreature");
+		register("creature", "giant_human", "HugeCreature");
 		register("creature", "mythical_animal", "MythicalCreature");
 		register("creature", null, "NormalCreature");
 		// TODO: deactivate compatibility code in EntityFabric after release of 0.59
