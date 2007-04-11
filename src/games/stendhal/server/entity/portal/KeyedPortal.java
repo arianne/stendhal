@@ -10,6 +10,7 @@ package games.stendhal.server.entity.portal;
 //
 
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
@@ -105,7 +106,9 @@ public class KeyedPortal extends Portal {
 		 * @param	message		The string that was used.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
-			user.sendPrivateText(message);
+			if (user instanceof Player) {
+				((Player) user).sendPrivateText(message);
+			}
 		}
 	}
 }
