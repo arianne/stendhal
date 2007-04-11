@@ -87,7 +87,7 @@ public class TestBuildOfferedActions {
 		rp.add("max_ripeness", 1);
 		rp.add("width", 1);
 		rp.add("height", 1);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Pick");
@@ -101,7 +101,7 @@ public class TestBuildOfferedActions {
 		StendhalClient.get();
 		RPObject rp = new MockRPObject("plant_grower", null);
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		
@@ -118,7 +118,7 @@ public class TestBuildOfferedActions {
 		
 		rp.put("class","food");
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		

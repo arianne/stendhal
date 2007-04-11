@@ -10,7 +10,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class EntityFabricTest {
+public class EntityFactoryTest {
 
 	private class MockRPObject extends RPObject {
 
@@ -50,7 +50,7 @@ public class EntityFabricTest {
 		rp.put("max_ripeness", 1);
 		rp.put("width", 1);
 		rp.put("height", 1);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Carrotgrower now", CarrotGrower.class, en.getClass());
 
@@ -62,7 +62,7 @@ public class EntityFabricTest {
 		rp.put("max_ripeness", 1);
 		rp.put("width", 1);
 		rp.put("height", 1);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Grainfield now", GrainField.class, en.getClass());
 		
@@ -70,7 +70,7 @@ public class EntityFabricTest {
 		rp.put("max_ripeness", 1);
 		rp.put("width", 1);
 		rp.put("height", 1);
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Grainfield now", GrainField.class, en.getClass());
 
@@ -79,7 +79,7 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreateApple() {
 		RPObject rp = new MockRPObject("item", "food", "apple");
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created an item by now", "item", en.getType());
 
@@ -88,7 +88,7 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreateSign() {
 		RPObject rp = new MockRPObject("blackboard", null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a sign by now", Sign.class, en.getClass());
 
@@ -97,7 +97,7 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreateSheep() {
 		RPObject rp = new MockRPObject("sheep", null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a sheep by now", Sheep.class, en.getClass());
 
@@ -106,7 +106,7 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreateBox() {
 		RPObject rp = new MockRPObject("item", "box");
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a box by now", Box.class, en.getClass());
 
@@ -114,7 +114,7 @@ public class EntityFabricTest {
 	@Test
 	public final void testCreatePlayer() {
 		RPObject rp = new MockRPObject("player", null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a player by now", Player.class, en.getClass());
 
@@ -125,7 +125,7 @@ public class EntityFabricTest {
 		RPObject rp = new MockRPObject("creature","small_animal");
 	
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a SmallCreature by now", SmallCreature.class, en.getClass());
 
@@ -133,7 +133,7 @@ public class EntityFabricTest {
 	@Test
 	public final void BigCreature() {
 		RPObject rp = new MockRPObject("creature", "giant_animal");
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a BigCreature by now", BigCreature.class, en.getClass());
 
@@ -141,7 +141,7 @@ public class EntityFabricTest {
 	@Test
 	public final void HugeCreature() {
 		RPObject rp = new MockRPObject("creature", "huge_animal");
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a HugeCreature by now", HugeCreature.class, en.getClass());
 
@@ -149,7 +149,7 @@ public class EntityFabricTest {
 	@Test
 	public final void MythicalCreature() {
 		RPObject rp = new MockRPObject("creature", "mythical_animal");
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a MythicalCreature by now", MythicalCreature.class, en.getClass());
 
@@ -157,7 +157,7 @@ public class EntityFabricTest {
 	@Test
 	public final void NormalCreature() {
 		RPObject rp = new MockRPObject("creature", null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a NormalCreature by now", NormalCreature.class, en.getClass());
 
@@ -165,7 +165,7 @@ public class EntityFabricTest {
 	@Test
 	public final void ResizeableCreature() {
 		RPObject rp = new MockRPObject("creature",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertFalse("we should have created a ResizeableCreature by now", ResizeableCreature.class.equals(en.getClass()));
 
@@ -175,7 +175,7 @@ public class EntityFabricTest {
 	@Test
 	public final void Sheep() {
 		RPObject rp = new MockRPObject("sheep",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Sheep by now", Sheep.class, en.getClass());
 
@@ -184,7 +184,7 @@ public class EntityFabricTest {
 	@Test
 	public final void NPC() {
 		RPObject rp = new MockRPObject("npc",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a NPC by now", NPC.class, en.getClass());
 
@@ -193,7 +193,7 @@ public class EntityFabricTest {
 	@Test
 	public final void PlantGrower() {
 		RPObject rp = new MockRPObject("plant_grower",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a PlantGrower by now", PlantGrower.class, en.getClass());
 
@@ -202,7 +202,7 @@ public class EntityFabricTest {
 	@Test
 	public final void GoldSource() {
 		RPObject rp = new MockRPObject("gold_source",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a GoldSource by now", GoldSource.class, en.getClass());
 	}
@@ -210,25 +210,25 @@ public class EntityFabricTest {
 	@Test
 	public final void InvisibleEntity() {
 		RPObject rp = new MockRPObject("walk_blocker",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a InvisibleEntity by now", InvisibleEntity.class, en.getClass());
 		 rp = new MockRPObject("damaging_area",  null);
-		 en = EntityFabric.createEntity(rp);
+		 en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a InvisibleEntity by now", InvisibleEntity.class, en.getClass());
 	}
 	@Test
 	public final void SheepFood() {
 		RPObject rp = new MockRPObject("food",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a SheepFood by now", SheepFood.class, en.getClass());
 	}
 	@Test
 	public final void Chest() {
 		RPObject rp = new MockRPObject("chest",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Chest by now", Chest.class, en.getClass());
 	}
@@ -236,7 +236,7 @@ public class EntityFabricTest {
 	public final void Corpse() {
 		RPObject rp = new MockRPObject("corpse",  null);
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Corpse by now", Corpse.class, en.getClass());
 	}
@@ -244,7 +244,7 @@ public class EntityFabricTest {
 	public final void Blood() {
 		RPObject rp = new MockRPObject("blood",  null);
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Blood by now", Blood.class, en.getClass());
 	}
@@ -253,13 +253,13 @@ public class EntityFabricTest {
 	public final void Sign() {
 		RPObject rp = new MockRPObject("sign",  null);
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Sign by now", Sign.class, en.getClass());
 	
 		rp = new MockRPObject("blackboard",  null);
 		
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Sign by now", Sign.class, en.getClass());
 	}
@@ -269,7 +269,7 @@ public class EntityFabricTest {
 	public final void Item() {
 		RPObject rp = new MockRPObject("item",  null);
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Item by now", Item.class, en.getClass());
 	}
@@ -278,43 +278,43 @@ public class EntityFabricTest {
 	public final void StackableItem() {
 		RPObject rp = new MockRPObject("item",  "drink");
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "drink");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "food");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "herb");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "misc");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "money");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "ammunition");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "projectiles");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "resource");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "scroll");
-		en = EntityFabric.createEntity(rp);
+		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 
@@ -323,7 +323,7 @@ public class EntityFabricTest {
 	public final void Portal() {
 		RPObject rp = new MockRPObject("portal",  null);
 		
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Portal by now", Portal.class, en.getClass());
 	}
@@ -331,14 +331,14 @@ public class EntityFabricTest {
 	public final void Door() {
 		RPObject rp = new MockRPObject("door",  null);
 		rp.put("dir", 1);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Door by now", Door.class, en.getClass());
 	}
 	@Test
 	public final void Fire() {
 		RPObject rp = new MockRPObject("fire",  null);
-		Entity en = EntityFabric.createEntity(rp);
+		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Door by now", Fire.class, en.getClass());
 	}
