@@ -195,7 +195,8 @@ public abstract class ScriptingSandbox {
 	}
 
 
-	public void unload(Player player, String[] args) {
+	@SuppressWarnings("unchecked")
+    public void unload(Player player, String[] args) {
 		Log4J.startMethod(logger, "unload");
 
 		for (NPC npc : (List<NPC>) loadedNPCs.clone()) {
