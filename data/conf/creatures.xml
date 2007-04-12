@@ -3516,7 +3516,7 @@
 	<creature name="black_dragon">
 		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
-			<atk value="280"/>
+			<atk value="290"/>
 			<def value="42"/>
 			<hp value="2400"/>
 			<speed value="1"/>
@@ -3536,7 +3536,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="heal" params="5,50"/>
+			<profile name="heal" params="35,50"/>
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
