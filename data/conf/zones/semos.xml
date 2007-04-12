@@ -562,7 +562,14 @@ Holy mackerel! These chips are tasty.
    </zone>
 
    <zone name="int_semos_bank" file="int_semos_bank.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC" />
+    <entity x="9" y="22">
+      <implementation class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC">
+        <parameter name="name">Dagobert</parameter>
+        <parameter name="class">youngnpc</parameter>
+        <parameter name="hp">95</parameter>
+        <parameter name="direction">down</parameter>
+      </implementation>
+    </entity>
 
     <portal x="9" y="30" ref="entrance">
      <destination zone="0_semos_city" ref="bank_entrance"/>
@@ -713,7 +720,52 @@ Holy mackerel! These chips are tasty.
    </zone>
 
    <zone name="int_semos_bakery" file="int_semos_bakery.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.bakery.ChefNPC"/>
+     <entity x="15" y="2">
+       <implementation class-name="games.stendhal.server.maps.semos.bakery.ChefNPC">
+         <parameter name="name">Leander</parameter>
+         <parameter name="class">chefnpc</parameter>
+         <!-- to the well -->
+         <parameter name="node0">15,2</parameter>
+         <!-- to a barrel -->
+         <parameter name="node1">15,7</parameter>
+         <!-- to the baguette on the table -->
+         <parameter name="node2">13,7</parameter>
+         <!-- around the table -->
+         <parameter name="node3">13,9</parameter>
+         <parameter name="node4">10,9</parameter>
+         <!-- to the sink -->
+         <parameter name="node5">10,11</parameter>
+         <!-- to the pizza/cake/whatever -->
+         <parameter name="node6">7,11</parameter>
+         <parameter name="node7">7,9</parameter>
+         <!-- to the pot -->
+         <parameter name="node8">3,9</parameter>
+         <!-- towards the oven -->
+         <parameter name="node9">3,3</parameter>
+         <parameter name="node10">5,3</parameter>
+         <!--to the oven-->
+         <parameter name="node11">5,2</parameter>
+         <!-- one step back -->
+         <parameter name="node12">5,3</parameter>
+         <!-- towards the well-->
+         <parameter name="node13">15,3</parameter>
+       </implementation>
+     </entity>
+     <entity x="26" y="8">
+       <implementation class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC">
+         <parameter name="name">Erna</parameter>
+         <parameter name="class">housewifenpc</parameter>
+         <parameter name="node0">26,8</parameter>
+         <parameter name="node1">26,5</parameter>
+         <parameter name="node2">28,5</parameter>
+         <parameter name="node3">28,1</parameter>
+         <parameter name="node4">28,4</parameter>
+         <parameter name="node5">22,4</parameter>
+         <parameter name="node6">22,3</parameter>
+         <parameter name="node7">22,6</parameter>
+         <parameter name="node8">26,6</parameter>
+       </implementation>
+     </entity>
     <configurator class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC"/>
 
     <!-- This must be after the NPC configurator -->
