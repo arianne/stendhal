@@ -40,7 +40,27 @@
  </zone>
 
  <zone name="0_semos_plains_n" level="0" x="500000" y="499872" file="0_semos_plains_n.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC"/>
+  <entity x="36" y="108">
+    <implementation class-name="games.stendhal.server.maps.semos.plains.LittleBoyNPC">
+      <parameter name="name">Plink</parameter>
+      <parameter name="class">plinknpc</parameter>
+      <parameter name="node0">36,108</parameter>
+      <parameter name="node1">37,108</parameter>
+      <parameter name="node2">37,105</parameter>
+      <parameter name="node3">42,105</parameter>
+      <parameter name="node4">42,111</parameter>
+      <parameter name="node5">48,111</parameter>
+      <parameter name="node6">47,103</parameter>
+      <parameter name="node7">47,100</parameter>
+      <parameter name="node8">53,100</parameter>
+      <parameter name="node9">53,90</parameter>
+      <parameter name="node10">49,90</parameter>
+      <parameter name="node11">49,98</parameter>
+      <parameter name="node12">46,98</parameter>
+      <parameter name="node13">46,99</parameter>
+      <parameter name="node14">36,99</parameter>
+    </implementation>
+  </entity>
   <portal x="92" y="101" ref="catacombs_entrance">
    <destination zone="-1_semos_catacombs_se" ref="entrance"/>
    <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
