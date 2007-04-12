@@ -197,9 +197,9 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
-	<item name="magic_sword">
-		<type class="sword" subclass="magic_sword"/>
-		<description>This an elvish sword. It looks like done of tree leaves.</description>
+	<item name="elvish_sword">
+		<type class="sword" subclass="elvish_sword"/>
+		<description>This an elvish sword. It looks like done of tree leaves!.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="26"/>
