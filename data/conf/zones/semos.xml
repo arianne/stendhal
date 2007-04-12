@@ -874,6 +874,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-1_kotoch_entrance_n" level="-1" x="499744" y="500000" file="sub_-1_kotoch_entrance_n_w2.xstend">
+  <configurator class-name="games.stendhal.server.maps.kotoch.SmitherNPC"/>
  </zone>
 
  <zone name="-1_semos_dungeon" level="-1" x="500064" y="500000" file="sub_1_semos_dungeon.xstend">
