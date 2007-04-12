@@ -3361,7 +3361,6 @@
 		</ai>
 	</creature>
 
-
     <creature name="giant">
 		<type class="giant_human" subclass="giant" tileid="172"/>
 		<attributes>
