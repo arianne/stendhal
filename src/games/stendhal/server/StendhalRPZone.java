@@ -22,6 +22,7 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
+import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
@@ -610,6 +611,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			playersAndFriends.add((Sheep) object);
 		} else if (object instanceof SpeakerNPC) {
 			npcs.add((SpeakerNPC) object);
+			NPCList.get().add((SpeakerNPC) object);
 		} else if (object instanceof Portal) {
 			portals.add((Portal) object);
 		}
@@ -632,6 +634,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		 */
 		if (object instanceof NPC) {
 			npcs.remove(object);
+			NPCList.get().remove(((SpeakerNPC) object).getName());
 			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
 		}
 

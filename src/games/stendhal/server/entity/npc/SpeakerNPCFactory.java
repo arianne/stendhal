@@ -177,9 +177,6 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 */
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		SpeakerNPC npc = instantiate(getName(ctx));
-		// XXX - in fact, we could move this step to the constructor
-		// of SpeakerNPC.
-		NPCList.get().add(npc);
 
 		npc.put("class", getClass(ctx));
 		npc.initHP(getHP(ctx));
