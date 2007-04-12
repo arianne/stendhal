@@ -197,6 +197,20 @@ in the file.
 			<slot name="bag"/>
 		</equipable>
 	</item>
+	<item name="magic_sword">
+		<type class="sword" subclass="magic_sword"/>
+		<description>This an elvish sword. It looks like done of tree leaves.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="26"/>
+		</attributes>
+		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 	<item name="fire_sword">
 		<type class="sword" subclass="fire_sword"/>
 		<description>Flames race along this fire sword as you wield it.</description> 
@@ -222,6 +236,22 @@ in the file.
 			<atk value="29"/>
 		</attributes>
 		<weight value="4"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+    
+	<item name="magic_sword">
+		<type class="sword" subclass="magic_sword"/>
+		<description>This rare magic sword is heavy and of good
+		craftmanship.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="35"/>
+		</attributes>
+		<weight value="9"/>
 		<equipable>
 			<slot name="lhand"/>
 			<slot name="rhand"/>
@@ -707,6 +737,21 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="hunter_crossbow">
+		<type class="ranged" subclass="hunter_crossbow"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="21"/>
+			<range value="4"/>
+		</attributes>
+		<weight value="3"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Projectiles_section -->
 
@@ -996,12 +1041,57 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-	<item name="golden_shield">
+    <item name="elvish_shield">
+		<type class="shield" subclass="golden_shield"/>
+                <description>You see an elvish shield made of tree leaves.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="28"/>
+		</attributes>
+		<weight value="14"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="green_dragon_shield">
+		<type class="shield" subclass="green_dragon_shield"/>
+                <description>You see an green dragon shield.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="30"/>
+		</attributes>
+		<weight value="14"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="golden_shield">
 		<type class="shield" subclass="golden_shield"/>
                 <description>You see a golden shield, the ultimate in defence.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="34"/>
+		</attributes>
+		<weight value="34"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="shadow_shield">
+		<type class="shield" subclass="shadow_shield"/>
+                <description>You see a shadow shield</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="36"/>
 		</attributes>
 		<weight value="34"/>
 		<equipable>
