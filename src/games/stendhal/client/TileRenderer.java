@@ -398,6 +398,29 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(1567, new int[] { 1567, 1597, 1627, 1597 });
 		addAnimatedTile(1597, new int[] { 1567, 1597, 1627, 1597 });
 		addAnimatedTile(1527, new int[] { 1567, 1597, 1627, 1597 });
+		
+		// fire
+		addAnimatedTile(4044, new int[] { 4065 });
+		addAnimatedTile(4045, new int[] { 4066 });
+		addAnimatedTile(4046, new int[] { 4067 });
+		
+		addAnimatedTile(4047, new int[] { 4068 });
+		
+		addAnimatedTile(4048, new int[] { 4055 });
+		addAnimatedTile(4049, new int[] { 4056 });
+		addAnimatedTile(4050, new int[] { 4057 });
+
+		// fire 2
+		addAnimatedTile(4051, new int[] { 4072 });
+		addAnimatedTile(4052, new int[] { 4073 });
+		addAnimatedTile(4053, new int[] { 4074 });
+		addAnimatedTile(4054, new int[] { 4075 });
+		
+		addAnimatedTile(4058, new int[] { 4079 });
+		addAnimatedTile(4059, new int[] { 4080 });
+		addAnimatedTile(4060, new int[] { 4081 });
+		addAnimatedTile(4061, new int[] { 4082 });
+
 
 	}
 
