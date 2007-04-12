@@ -42,7 +42,7 @@ def do_label(fname):
 
     # label
     draw = ImageDraw(img, "RGBA")
-    font = ImageFont.truetype("/usr/share/fonts/truetype/freefont/FreeSans.ttf", 12)
+    font = ImageFont.truetype("arial.ttf", 12)
     draw.setfont(font)
     draw.text((6, 6), label, (0, 0, 0, 255))
     draw.text((5, 5), label, (255, 255, 255, 255))
