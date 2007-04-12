@@ -1506,7 +1506,9 @@ Mature sheep wanted: please speak to Sato
 
  <zone name="-3_semos_catacombs" level="-3" x="500064" y="499872" file="sub_3_semos_catacombs.xstend">
   <entity x="60" y="60">
-	  <implementation class-name="games.stendhal.server.maps.semos.catacombs.SickVampireNPC">
+	  <!-- all dialogs for this NPC are quest-related, so we don't need a
+		   special SpeakerNPC factory for him. -->
+	  <implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC">
 		  <parameter name="name">Markovich</parameter>
 		  <parameter name="class">sickvampirenpc</parameter>
 		  <parameter name="hp">10</parameter>
