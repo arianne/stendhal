@@ -183,6 +183,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 						StackableItem goldbars = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager()
 								.getItem("gold_bar");
 						goldbars.setQuantity(GOLD_AMOUNT);
+						goldbars.put("bound", player.getName()); 
 						player.equip(goldbars, true);
 					}
 				});
