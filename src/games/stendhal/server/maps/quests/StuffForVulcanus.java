@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.Grammar;
@@ -233,11 +234,23 @@ public class StuffForVulcanus extends AbstractQuest {
 		});
 
 		npc.add(ConversationStates.ATTENDING,
-				"forge",			
+				Arrays.asList("forge", "missing"),			
 				null, 
 				ConversationStates.ATTENDING,
-				"I will need "+REQUIRED_IRON+" #iron, "+REQUIRED_WOOD+" #wood logs, "+REQUIRED_GOLD_BAR+" #gold bars and "+REQUIRED_GIANT_HEART+" #giant hearts",
-				null);
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						
+						int neededIron=REQUIRED_IRON-Integer.parseInt(tokens[1]);
+						int neededWoodLogs=REQUIRED_WOOD-Integer.parseInt(tokens[2]);
+						int neededGoldBars=REQUIRED_GOLD_BAR-Integer.parseInt(tokens[3]);
+						int neededGiantHearts=REQUIRED_GIANT_HEART-Integer.parseInt(tokens[4]);
+
+						engine.say("I will need "+neededIron+" #iron, "+neededWoodLogs+" #wood logs, "+neededGoldBars+" #gold bars and "+neededGiantHearts+" #giant hearts.");
+					}
+				});
 
 		npc.add(ConversationStates.ANY,
 				"iron",			
