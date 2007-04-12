@@ -20,9 +20,7 @@ public class KTextEdit extends JPanel {
 
 	private JTextPane textPane;
 
-	private JScrollPane paneScrollPane;
-
-	private int lineNumber;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Basic Constructor
@@ -40,8 +38,8 @@ public class KTextEdit extends JPanel {
 		textPane.setAutoscrolls(true);
 		initStylesForTextPane(textPane);
 		setLayout(new BorderLayout());
-		paneScrollPane = new JScrollPane(textPane);
-		add(paneScrollPane, BorderLayout.CENTER);
+		scrollPane = new JScrollPane(textPane);
+		add(scrollPane, BorderLayout.CENTER);
 	}
 
 	/**
@@ -169,6 +167,15 @@ public class KTextEdit extends JPanel {
 	 *            the desired color
 	 */
 	public void addLine(String header, String line, Color color) {
+		// Determine whether the scrollbar is currently at the very bottom
+		// position. We will only auto-scroll down if the user is not currently
+		// reading old texts (like IRC clients do).
+		JScrollBar vbar = scrollPane.getVerticalScrollBar();
+		// The + 10 was determined by trial-and-error. I don't know
+		// why it doesn't work properly without it. It probably has
+		// to do with the newline at the end. 
+		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() + 10 >= vbar.getMaximum());
+
 		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
 		String dateString = formatter.format(new Date());
 
@@ -176,17 +183,9 @@ public class KTextEdit extends JPanel {
 		insertHeader(header);
 		insertText(line, color);
 
-		textPane.setCaretPosition(textPane.getDocument().getLength());
-		lineNumber++;
-	}
-
-	/**
-	 * give the number of inserted lines
-	 * 
-	 * @return the number of inserted lines
-	 */
-	public int getLineNumber() {
-		return lineNumber;
+		if (autoScroll) {
+			textPane.setCaretPosition(textPane.getDocument().getLength());
+		}
 	}
 
 	/**
