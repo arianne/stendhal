@@ -12,31 +12,30 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 /**
- * QUEST: The Vampire Sword
+ * QUEST: The Magic Sword forging
  * 
  * PARTICIPANTS:
- * - Hogart, a retired master dwarf smith, forgotten below the dwarf mines in Orril.
+ * - Vulcanus, son of Zeus itself, will forge for you the god's sword.
  * 
  * STEPS:
- * - Hogart tells you the story of the Vampire Lord.
- * - He offers to forge a Vampire Sword for you if you bring him what it needs.
- * - You get some items from the Catacombs and kill the Vampire Lord.
- * - You get the iron needed in the usual way by collecting iron ore and casting in Semos. 
- * - Hogart forges the Vampire Sword for you
+ * - Vulcanus tells you about the sword.
+ * - He offers to forge a magic sword for you if you bring him what it needs. 
+ * - You give him all what he ask you. 
+ * - Vulcanus forges the magic sword for you
  * 
  * REWARD:
- * - Vampire Sword
- * - 5000 XP
+ * - Magic Sword
+ * - 15000 XP
  * 
  *
  * REPETITIONS:
  * - None.
  */
 public class StuffForVulcanus extends AbstractQuest {
-	private static final int REQUIRED_IRON = 10;
-	private static final int REQUIRED_GOLD_BAR = 10;
-	private static final int REQUIRED_WOOD = 10;
-	private static final int REQUIRED_GIANT_HEART = 10;
+	private static final int REQUIRED_IRON = 15;
+	private static final int REQUIRED_GOLD_BAR = 12;
+	private static final int REQUIRED_WOOD = 26;
+	private static final int REQUIRED_GIANT_HEART = 6;
 	private static final int REQUIRED_TIME = 10;
 	private static final String QUEST_SLOT = "ms_quest";
 
