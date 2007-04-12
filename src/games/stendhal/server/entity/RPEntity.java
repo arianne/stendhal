@@ -661,7 +661,7 @@ public abstract class RPEntity extends Entity {
 				        + xpReward);
 			}
 	
-			int xpEarn = xpReward * (damageDone / totalDamageReceived);
+			int xpEarn = (int)(xpReward * ((float)damageDone / (float)totalDamageReceived));
 	
 			/** We limit xp gain for up to eight levels difference */
 			/** XXX: Disabled. 
