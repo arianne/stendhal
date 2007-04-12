@@ -30,19 +30,19 @@ public class FishSource extends AnimatedStateEntity {
 
 	@Override
 	public ActionType defaultAction() {
-		return ActionType.PROSPECT;
+		return ActionType.FISH;
 	}
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
-		list.add(ActionType.PROSPECT.getRepresentation());
+		list.add(ActionType.FISH.getRepresentation());
 	}
 
 	@Override
 	public void onAction(final ActionType at, final String... params) {
 		switch (at) {
-			case PROSPECT:
+			case FISH:
 				RPAction rpaction = new RPAction();
 				rpaction.put("type", at.toString());
 				int id = getID().getObjectID();
