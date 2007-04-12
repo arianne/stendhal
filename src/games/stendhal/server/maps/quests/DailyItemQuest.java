@@ -40,7 +40,7 @@ public class DailyItemQuest extends AbstractQuest {
 
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine)	{
-			String questInfo = player.getQuest("daily");
+			String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
@@ -69,7 +69,7 @@ public class DailyItemQuest extends AbstractQuest {
 			engine.say("Ados is in need of supplies. Go fetch " + Grammar.a_noun(itemName) + " and say #complete, once you've brought it.");
 			player.removeKill(itemName);
 			questLast = "" + (new Date()).getTime();
-			player.setQuest("daily", itemName + ";" + questLast + ";" + questCount);		
+			player.setQuest("daily_item", itemName + ";" + questLast + ";" + questCount);		
 		}
 	}
 
@@ -77,7 +77,7 @@ public class DailyItemQuest extends AbstractQuest {
 	class DailyQuestCompleteAction extends SpeakerNPC.ChatAction {
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine)	{
-			String questInfo = player.getQuest("daily");
+			String questInfo = player.getQuest("daily_item");
 			String questKill = null;
 			String questCount = null;
 			String questLast = null;
@@ -108,7 +108,7 @@ public class DailyItemQuest extends AbstractQuest {
 				player.addXP(reward);
 				questCount = "" + (new Integer(questCount) + 1 );
 				questLast = "" + (new Date()).getTime();
-				player.setQuest("daily","done" + ";" + questLast + ";" + questCount);
+				player.setQuest("daily_item","done" + ";" + questLast + ";" + questCount);
 			}
 			else {
 				engine.say("You didn't fetch a " + Grammar.a_noun(questKill) + " yet. Go and get it and say #complete only once you're done.");
