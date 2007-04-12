@@ -93,8 +93,7 @@ class SoundCycle extends Thread implements Cloneable {
 		}
 		clip = SoundEffectMap.getInstance().getSoundClip(token);
 		if (clip == null) {
-			System.out.println("undefined sound sample: " + token);
-		//	throw new IllegalStateException("undefined sound sample: " + token);
+			//		TODO: handle soundeffectMap failure
 		}
 
 		if (entity != null) {

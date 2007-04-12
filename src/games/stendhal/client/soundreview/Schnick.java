@@ -38,7 +38,7 @@ public class Schnick {
 		th.start();
 		SoundMaster.play("hammer-1.wav");
 		SoundMaster.play("evillaugh-3.wav",true);
-		System.out.print(true);
+	//	System.out.print(true);
 	}
 
 	 static void loadFromPropertiesintoXML() {

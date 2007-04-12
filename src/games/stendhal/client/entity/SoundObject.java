@@ -156,9 +156,6 @@ public class SoundObject extends InvisibleEntity {
 	public DataLine playSound(String token, int volBot, int volTop, int chance) {
 		if (soundArray==null) {
 			soundInit();
-		}else{
-			
-			
 		}
 		if (Rand.rand(100)<chance){
 			if (soundArray.containsKey(token)){
@@ -166,15 +163,9 @@ public class SoundObject extends InvisibleEntity {
 				SoundMaster.play(soundArray.get(token)[Rand.rand(soundArray.get(token).length)],x,y);
 
 				
-			}else{
-			   // 	SoundMaster.play("evillaugh-3.wav",x,y);
-				     this.soundInit();
-			        System.out.println("done");
-			     	System.out.println("chance " +token + " chance "+ chance);
-			     	
-					}
 			}
-		return null;//SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
+		}
+		return null;
 
 	}
 

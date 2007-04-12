@@ -33,8 +33,6 @@ import games.stendhal.client.soundreview.AudioClip;
 
 
 import games.stendhal.common.MathHelper;
-import games.stendhal.common.Rand;
-
 import java.awt.geom.Point2D;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -51,7 +49,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
@@ -95,6 +92,14 @@ import org.apache.log4j.Logger;
  * @author Jane Hunt
  */
 public class SoundSystem implements WorldObjects.WorldListener {
+
+	private static final String INT_SEMOS_BLACKSMITH = "int_semos_blacksmith";
+
+	private static final String _0_SEMOS_ROAD_E = "0_semos_road_e";
+
+	private static final String _0_SEMOS_CITY = "0_semos_city";
+
+	private static final String _0_SEMOS_VILLAGE_W = "0_semos_village_w";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SoundSystem.class);
@@ -141,25 +146,25 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the sound <code>DataLine</code> that is being played, or
 	 *         <b>null</b> on error
 	 */
-	protected DataLine playSoundIntern(String name, int volBot, int volTop, float correctionDB) {
-		// verify start conditions
-		if ((name == null) || (volBot == 0) || !operative || muteSetting) {
-			return null;
-		}
-
-		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) || (volTop < volBot)) {
-			throw new IllegalArgumentException("bad volume setting");
-		}
-
-		// check/fetch sound
-		ClipRunner clip = SoundEffectMap.getInstance().getSoundClip(name);
-		if (clip == null) {
-			return null;
-		}
-
-		int volume = volBot + Rand.rand(volTop - volBot + 1);
-		return clip.play(volume, correctionDB, SoundSystem.get().getVolumeDelta());
-	} // playSound
+//	protected DataLine playSoundIntern(String name, int volBot, int volTop, float correctionDB) {
+//		// verify start conditions
+//		if ((name == null) || (volBot == 0) || !operative || muteSetting) {
+//			return null;
+//		}
+//
+//		if ((volBot < 0) || (volBot > 100) || (volTop < 0) || (volTop > 100) || (volTop < volBot)) {
+//			throw new IllegalArgumentException("bad volume setting");
+//		}
+//
+//		// check/fetch sound
+//		ClipRunner clip = SoundEffectMap.getInstance().getSoundClip(name);
+//		if (clip == null) {
+//			return null;
+//		}
+//
+//		int volume = volBot + Rand.rand(volTop - volBot + 1);
+//		return clip.play(volume, correctionDB, SoundSystem.get().getVolumeDelta());
+//	} // playSound
 
 	/**
 	 * Plays a sound of the given name from the library of this sound system.
@@ -767,7 +772,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		actualZone = zone;
 
 		// 0_SEMOS_VILLAGE
-		if (zone.equals("0_semos_village_w")) {
+		if (zone.equals(SoundSystem._0_SEMOS_VILLAGE_W)) {
 			// global ambient
 			ambient = new AmbientSound("semos-village-overall-1", 10);
 			ambient.addLoop("wind-loop-1", 25, 0);
@@ -803,7 +808,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		}
 		// 0_SEMOS_CITY
-		else if (zone.equals("0_semos_city")) {
+		else if (zone.equals(SoundSystem._0_SEMOS_CITY)) {
 			// blackbirds
 			baseAmb = AmbientStore.getAmbient("blackbirds-1");
 
@@ -836,7 +841,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			ambient = new AmbientSound(baseAmb, "semos-city-tavern-1", soundPos, 10, 40);
 			playAmbientSound(ambient);
 
-		} else if (zone.equals("int_semos_blacksmith")) {
+		} else if (zone.equals(SoundSystem.INT_SEMOS_BLACKSMITH)) {
 			// global ambient
 			ambient = new AmbientSound("blacksmith-overall-1", 20);
 			ambient.addCycle("hammer", 45000, 20, 40, 65);
@@ -856,7 +861,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		}
 		// 0_SEMOS_ROAD_ADOS
-		else if (zone.equals("0_semos_road_e")) {
+		else if (zone.equals(SoundSystem._0_SEMOS_ROAD_E)) {
 			// creaking tree and wind
 			baseAmb = AmbientStore.getAmbient("wind-tree-1");
 
@@ -934,8 +939,6 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	public void zoneLeft(String zone) {
 		String hstr = "-- SoundSys: ZONE LEFT: " + zone;
 		logger.debug(hstr);
-		// System.out.println( hstr );
-
 		if (zone.equals(actualZone)) {
 			clearAmbientSounds();
 		}

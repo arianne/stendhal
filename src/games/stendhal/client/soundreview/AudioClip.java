@@ -56,6 +56,8 @@ public class AudioClip {
 	/** is the data supported */
 	private boolean supported;
 
+	private Clip line;
+
 	/**
 	 * creates the audio clip
 	 * @param mixer the Mixer instance to be used
@@ -126,8 +128,7 @@ public class AudioClip {
 			if (!mixer.isLineSupported(info)) {
 				return null;
 			}
-			Clip line = (Clip) mixer.getLine(info);
-			
+			line = (Clip) mixer.getLine(info);
 			try {
 				line.open(audioInputStream);
 				return line;
@@ -146,6 +147,9 @@ public class AudioClip {
 		return this.getClass().getName() + ": "
 		        + (!supported ? "(format not supported by " + mixer.getMixerInfo().getDescription() + ") " : "")
 		        + format;
+	}
+	public void stop(){
+		line.close();
 	}
 
 }

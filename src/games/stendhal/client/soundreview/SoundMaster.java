@@ -1,5 +1,8 @@
 package games.stendhal.client.soundreview;
 
+import games.stendhal.client.WorldObjects;
+import games.stendhal.client.WorldObjects.WorldListener;
+
 import java.io.IOException;
 
 import javax.sound.sampled.AudioSystem;
@@ -9,10 +12,8 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class SoundMaster implements Runnable {
-
-	
-	private static SoundFileMap sfm=null;
+public class SoundMaster implements Runnable,WorldListener {
+private static SoundFileMap sfm=null;
 	private static Cliplistener cliplisten=null;
 
 	public void run() {
@@ -21,39 +22,39 @@ public class SoundMaster implements Runnable {
 		sfm = new SoundFileMap();
 
 		cliplisten = new Cliplistener();
+		WorldObjects.addWorldListener(this);
 	}
 
-	public static void play(String soundName,double x, double y){
-		play(soundName, x, y, false);
+	public static AudioClip play(String soundName,double x, double y){
+		return play(soundName, x, y, false);
 	}
 	
 	
-	public static void play(String soundName,double x, double y,boolean loop){
+	public static AudioClip play(String soundName,double x, double y,boolean loop){
 		if (!(x==0&&y==0))
 		if (HearingArea.contains(x, y)){
 			
-			play(soundName);
-		}else{
-			
+			return play(soundName);
 		}
+		return null;
 	}
 	
-	 public static void play(String soundName) {
+	 public static AudioClip play(String soundName) {
 		boolean shallLoop=false; 
-		play(soundName, shallLoop);
+		return play(soundName, shallLoop);
 
 	}
-	public static void play(String soundName, boolean shallLoop) {
+	public static  AudioClip play(String soundName, boolean shallLoop) {
 		if (soundName == null) {
-	        return;
+	        return  null;
         }
 
 		byte[] o;
 
 		o = sfm.get(soundName);
 		if (o == null) {
-			System.out.println("sound " + soundName+" was not got from sfm");
-	        return;
+			//TODO: handle System.out.println("sound " + soundName+" was not got from sfm");
+	        return null;
         }
 		try {
 		AudioClip ac = new AudioClip(AudioSystem.getMixer(null),  o, 100);
@@ -73,6 +74,7 @@ if (cl!=null){
 
 			cl.start();
 			}
+			return ac;
 			
 }
 		} catch (UnsupportedAudioFileException e) {
@@ -82,10 +84,11 @@ if (cl!=null){
 		} catch (LineUnavailableException e) {
 			
 		}
+		return null;
 	}
 
 	class Cliplistener implements LineListener {
-
+		// dont remove this please astriddemma 12.04.2007
 		public void update(LineEvent event) {
 			if (event.getType().equals(LineEvent.Type.START)) {
 	          
@@ -94,8 +97,7 @@ if (cl!=null){
 	            
             }
 			if (event.getType().equals(LineEvent.Type.STOP)) {
-//				System.out.println("sound lineclosed");
-//	           // event.getLine().close();
+
             }
 			
 			if (event.getType().equals(LineEvent.Type.OPEN)) {
@@ -103,5 +105,24 @@ if (cl!=null){
             }
 		}
 
+	}
+
+	public void playerMoved() {
+		// TODO Auto-generated method stub
+		
+	}
+	//commented for release
+	public void zoneEntered(String zoneName) {
+//		System.out.println(zoneName);
+//		bg = new Background(zoneName);
+//		bg.run();
+		
+		
+	}
+	public void zoneLeft(String zoneName) {
+//		System.out.println(zoneName);
+//		bg.stop();
+//		bg=null;
+		
 	}
 }

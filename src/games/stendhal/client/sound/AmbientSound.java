@@ -320,7 +320,7 @@ class AmbientSound {
 					chance);
 			cycleList.add(cycle);
 		} catch (Exception e) {
-			System.out.println("undefined Soundsample"+token);
+			// TODO: handle undefined Soundsample
 		}		
 	} // addCycle
 
@@ -466,11 +466,7 @@ class AmbientSound {
 			// determine sound volume cutoff due to distance (fog value)
 			distance = soundPos.distance(User.get().getX(),User.get().getY());
 			maxDist = playerHearing.getWidth() / 2;
-			// System.out.println("ambient player hearing radius: " +
-			// maxDist );
 			fogVolume = (int) Math.max(0, (95 * (maxDist - distance) / maxDist + 5));
-			// System.out.println( "ambient (" + name + ") fog volume:
-			// dist=" + (int)distance + ", fog=" + fogVolume );
 			return DBValues.getDBValue(fogVolume);
 		}
 	} // getPlayerVolume

@@ -414,51 +414,6 @@ public final byte[] ID_Token = new byte[0];
 		return (dx == 0) && (dy == 0);
 	}
 
-	/**
-	 * Makes this entity play a sound on the map, at its current location. The
-	 * sound is audible to THE player in relation to distance and hearing or
-	 * audibility confines. Occurence of this soundplaying can be subject to
-	 * random (<code>chance</code>).
-	 * 
-	 * @param token
-	 *            sound library name of the sound to be played
-	 * @param volBot
-	 *            bottom volume (0..100)
-	 * @param volTop
-	 *            top volume (0..100)
-	 * @param chance
-	 *            chance of being performed (0..100)
-	 * @return the sound <code>DataLine</code> that is being played, or
-	 *         <b>null</b> if not performing
-	 */
-//	public DataLine playSound(final String token, final int volBot, final int volTop, final int chance) {
-//		if (Rand.rand(100)<chance){
-//   // 	SoundMaster.play("evillaugh-3.wav",x,y);
-//     	System.out.println("chance " +token + " chance "+ chance);
-//		}
-//		return null;//SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, chance);
-//	}
-
-	/**
-	 * Makes this entity play a sound on the map, at its current location. The
-	 * sound is audible to THE player in relation to distance and hearing or
-	 * audibility confines.
-	 * 
-	 * @param token
-	 *            sound library name of the sound to be played
-	 * @param volBot
-	 *            bottom volume (0..100)
-	 * @param volTop
-	 *            top volume (0..100)
-	 * @return the sound <code>DataLine</code> that is being played, or
-	 *         <b>null</b> if not performing
-	 */
-//	private final DataLine playSound(final String token, final int volBot, final int volTop) {
-//		//SoundMaster.play("evillaugh-3.wav",x,y);
-//		System.out.println(token);
-//		return SoundSystem.playMapSound(getX(),getY(), getAudibleArea(), token, volBot, volTop, 100);
-//	}
-
 	/** returns the number of slots this entity has */
 	public int getNumSlots() {
 		return rpObject.slots().size();
