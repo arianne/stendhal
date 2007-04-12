@@ -1125,6 +1125,35 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="ice_armor">
+		<type class="armor" subclass="ice_armor"/>
+                <description>You see a suit of
+                ice armor. It's made from the hardest materials with great
+                attention to detail.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="19"/>
+		</attributes>
+		<weight value="35"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="magic_plate_armor">
+		<type class="armor" subclass="magic_plate_armor"/>
+                <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. It has been magically enhanced</description> 
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="24"/>
+		</attributes>
+		<weight value="45"/>
+		<equipable>
+			<slot name="armor"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 <!-- Helmets_section-->
 
