@@ -89,14 +89,15 @@ public class KTextEdit extends JPanel {
 	/**
 	 * clear the text
 	 */
-	public void clearText() {
-		textPane.setText("");
-	}
+	// Not needed, consider deletion
+//	public void clearText() {
+//		textPane.setText("");
+//	}
 
 	/**
 	 * insert a header
 	 */
-	public void insertHeader(String header) {
+	private void insertHeader(String header) {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
@@ -107,7 +108,7 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	public void insertTimestamp(String header) {
+	private void insertTimestamp(String header) {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
@@ -118,7 +119,7 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	public void insertText(String text, Color color) {
+	private void insertText(String text, Color color) {
 		Document doc = textPane.getDocument();
 		try {
 			String[] parts = text.split("#");
@@ -138,8 +139,15 @@ public class KTextEdit extends JPanel {
 				doc.insertString(doc.getLength(), pieces, getColor(color));
 				i++;
 			}
-
-			doc.insertString(doc.getLength(), "\r\n", getColor(color));
+		} catch (BadLocationException ble) {
+			System.err.println("Couldn't insert initial text.");
+		}
+	}
+	
+	private void insertNewline() {
+		Document doc = textPane.getDocument();
+		try {
+			doc.insertString(doc.getLength(), "\r\n", getColor(Color.black));
 		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
 		}
@@ -170,21 +178,34 @@ public class KTextEdit extends JPanel {
 		// Determine whether the scrollbar is currently at the very bottom
 		// position. We will only auto-scroll down if the user is not currently
 		// reading old texts (like IRC clients do).
-		JScrollBar vbar = scrollPane.getVerticalScrollBar();
+		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
+		
+		System.out.println();
+		System.out.println("value:      " + vbar.getValue());
+		System.out.println("visible:    " + vbar.getVisibleAmount());
+		System.out.println("maximum:    " + vbar.getMaximum());
 		// The + 10 was determined by trial-and-error. I don't know
 		// why it doesn't work properly without it. It probably has
 		// to do with the newline at the end. 
-		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() + 10 >= vbar.getMaximum());
+		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
+		System.out.println("autoscroll: " + autoScroll);
 
 		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
 		String dateString = formatter.format(new Date());
 
+		insertNewline();
 		insertTimestamp(dateString);
 		insertHeader(header);
 		insertText(line, color);
 
 		if (autoScroll) {
-			textPane.setCaretPosition(textPane.getDocument().getLength());
+			// This didn't scroll all the way down.
+			// textPane.setCaretPosition(textPane.getDocument().getLength());
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					vbar.setValue(vbar.getMaximum());					
+				}
+			});
 		}
 	}
 
