@@ -82,7 +82,13 @@ South: Semos city
  </zone>
 
  <zone name="0_semos_plains_ne" level="0" x="500128" y="499872" file="0_semos_plains_ne.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.plains.MillerNPC"/>
+   <entity x="19" y="38">
+     <implementation class-name="games.stendhal.server.maps.semos.plains.MillerNPC">
+       <parameter name="name">Jenny</parameter>
+       <parameter name="class">woman_003_npc</parameter>
+       <parameter name="direction">down</parameter>
+     </implementation>
+   </entity>
   <entity x="25" y="46">
     <implementation class-name="games.stendhal.server.entity.Sign">
       <parameter name="text">
@@ -464,8 +470,36 @@ Shepherds please note: keep watch for the wolves while searching for berries her
    </zone>
 
    <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
-    <configurator class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC" />
-    <configurator class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC" />
+    <entity x="23" y="11">
+      <implementation class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithNPC">
+        <parameter name="name">Xoderos</parameter>
+        <parameter name="class">blacksmithnpc</parameter>
+        <parameter name="node0">23,11</parameter>
+        <parameter name="node1">29,11</parameter>
+        <parameter name="node2">29,4</parameter>
+        <parameter name="node3">17,4</parameter>
+        <parameter name="node4">17,8</parameter>
+        <parameter name="node5">28,8</parameter>
+        <parameter name="node6">28,11</parameter>
+      </implementation>
+    </entity>
+    <entity x="5" y="1">
+      <implementation class-name="games.stendhal.server.maps.semos.blacksmith.BlacksmithAssistantNPC">
+        <parameter name="name">Hackim Easso</parameter>
+        <parameter name="class">naughtyteennpc</parameter>
+        <parameter name="node0">5,1</parameter>
+        <parameter name="node1">8,1</parameter>
+        <parameter name="node2">7,1</parameter>
+        <parameter name="node3">7,6</parameter>
+        <parameter name="node4">16,6</parameter>
+        <parameter name="node5">16,1</parameter>
+        <parameter name="node6">15,1</parameter>
+        <parameter name="node7">16,1</parameter>
+        <parameter name="node8">16,6</parameter>
+        <parameter name="node9">7,6</parameter>
+        <parameter name="node10">7,1</parameter>
+      </implementation>
+    </entity>
 
     <portal x="15" y="14" ref="entrance">
      <destination zone="0_semos_city" ref="blacksmith_entrance"/>
@@ -766,9 +800,8 @@ Holy mackerel! These chips are tasty.
          <parameter name="node8">26,6</parameter>
        </implementation>
      </entity>
-    <configurator class-name="games.stendhal.server.maps.semos.bakery.ShopAssistantNPC"/>
 
-    <!-- This must be after the NPC configurator -->
+    <!-- This must be after the NPC -->
     <entity x="29" y="6">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
       <parameter name="npc">Erna</parameter>
