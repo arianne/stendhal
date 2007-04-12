@@ -181,7 +181,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				}
 
 				if(!missingSomething) {
-					engine.say("You've brought everything I need to make the vampire sword. Come back in "+
+					engine.say("You've brought everything I need to make the magic sword. Come back in "+
 							REQUIRED_TIME + " minutes and it will be ready");
 					player.setQuest(QUEST_SLOT,
 							"forging;" + System.currentTimeMillis());

@@ -2776,8 +2776,8 @@
 	</creature>
 	
 	<!-- Level 49 -->
-	<creature name="dark_elf_archer.png">
-		<type class="dark_elf" subclass="dark_elf_archer.png" tileid="161"/>
+	<creature name="dark_elf_archer">
+		<type class="dark_elf" subclass="dark_elf_archer" tileid="161"/>
 		<attributes>
 			<atk value="184"/>
 			<def value="20"/>
