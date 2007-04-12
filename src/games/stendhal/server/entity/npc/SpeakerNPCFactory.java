@@ -89,6 +89,24 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	}
 
 	/**
+	 * Extract the NPC level from a context.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The level of experience.
+	 */
+	protected int getLevel(ConfigurableFactoryContext ctx) {
+		String s;
+
+		s = ctx.getAttribute("level");
+		if (s == null) {
+			return 0;
+		} else {
+			return Integer.parseInt(s);
+		}
+	}
+
+	/**
 	 * Extract the direction in which the NPC faces from a context.
 	 *
 	 * @param	ctx		The configuration context.
@@ -165,6 +183,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 
 		npc.put("class", getClass(ctx));
 		npc.initHP(getHP(ctx));
+		npc.setLevel(getLevel(ctx));
 		
 		List<Path.Node> path = getPath(ctx);
 		npc.setPath(path, path.size() > 0);
