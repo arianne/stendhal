@@ -2319,36 +2319,36 @@
 		</ai>
 	</creature>
  
-        <creature name="rotten_zombie">
-                <type class="undead" subclass="rotten_zombie" tileid="117"/>
-                <attributes>
-                        <atk value="83"/>
-                        <def value="23"/>
-                        <hp value="100"/>
-                        <speed value="0.3"/>
-                        <size value="1,2"/>
-                </attributes>
-                <level value="27"/>
-                <experience value="400"/>
-                <respawn value="900"/>
-                <drops>
-                        <item value="money" quantity="[3,40]" probability="100"/>
+	<creature name="rotten_zombie">
+		<type class="undead" subclass="rotten_zombie" tileid="117"/>
+		<attributes>
+			<atk value="83"/>
+			<def value="23"/>
+			<hp value="100"/>
+			<speed value="0.3"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="27"/>
+		<experience value="400"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,40]" probability="100"/>
 			<item value="leather_cuirass_+1" quantity="1" probability="50"/>
 			<item value="plate_shield" quantity ="1" probability="30"/>			
 			<item value="studded_boots" quantity ="1" probability="10"/>
-                </drops>
-                <equips>
-                </equips>
-                <ai>
-                        <says>
-                                <noise value="bluuergghhhoooorrghhhhh"/>
-                        </says>
-                        <profile name="human"/>
-                        <profile name="offensive"/>
-                        <profile name="brave"/>
-                        <profile name="patrolling"/>
-                </ai>
-        </creature>
+		</drops>
+	<equips>
+	</equips>
+	<ai>
+		<says>
+			<noise value="bluuergghhhoooorrghhhhh"/>
+		</says>
+		<profile name="human"/>
+		<profile name="offensive"/>
+		<profile name="brave"/>
+		<profile name="patrolling"/>
+	</ai>
+	</creature>
 
     <!-- Level 30 -->
 	<creature name="death">
@@ -2529,6 +2529,7 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	
 	<creature name="dark_mutant">
 		<type class="mutant" subclass="blacky" tileid="113"/>
 		<attributes>
@@ -2556,6 +2557,7 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	
 	<creature name="elder_cannibal">
 		<type class="human" subclass="elder_cannibal" tileid="147"/>
 		<attributes>
@@ -2580,7 +2582,7 @@
 		</equips>
 		<ai>
 			<says>
-				<noise value="Yummie"/>
+				<noise value="Yummie!"/>
 			</says>
 			<profile name="human"/>
 			<profile name="offensive"/>
@@ -2589,36 +2591,8 @@
 		</ai>
 	</creature>
 	
-	<!-- Level 37 -->		
-	<creature name="demon_skeleton">
-		<type class="undead" subclass="demon_skeleton" tileid="74"/>
-		<attributes>
-			<atk value="170"/>
-			<def value="25"/>
-			<hp value="100"/>
-			<speed value="0.8"/>
-			<size value="1,2"/>
-		</attributes>
-		<level value="37"/>
-		<experience value="600"/>
-		<respawn value="900"/>
-		<drops>
-			<item value="money" quantity="[3,30]" probability="90"/>
-			<item value="broadsword" quantity="1" probability="1"/>
-		</drops>
-		<equips>
-		</equips>
-		<ai>
-			<says>
-				<noise value="Thou shall not rob!"/>
-			</says>
-			<profile name="human"/>
-			<profile name="offensive"/>
-			<profile name="brave"/>
-			<profile name="patrolling"/>
-		</ai>
-	</creature>
 	<!-- Level 39-->
+	
 	<creature name="darkmonk">
 		<type class="human" subclass="darkmonk" tileid="100"/>
 		<attributes>
@@ -2679,6 +2653,38 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	
+	<!-- Level 42 -->
+	
+	<creature name="demon_skeleton">
+		<type class="undead" subclass="demon_skeleton" tileid="74"/>
+		<attributes>
+			<atk value="170"/>
+			<def value="25"/>
+			<hp value="100"/>
+			<speed value="0.8"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="42"/>
+		<experience value="600"/>
+		<respawn value="900"/>
+		<drops>
+			<item value="money" quantity="[3,30]" probability="90"/>
+			<item value="broadsword" quantity="1" probability="1"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<says>
+				<noise value="Thou shall not rob!"/>
+			</says>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
+	
 	<!-- Level 45 -->
 		
 	<creature name="elf_sacerdotist">
