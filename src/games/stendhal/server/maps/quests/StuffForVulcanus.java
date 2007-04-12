@@ -111,14 +111,16 @@ public class StuffForVulcanus extends AbstractQuest {
 			@Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+				
+				System.out.println(player.getQuest(QUEST_SLOT));
 
 				int neededIron=REQUIRED_IRON-Integer.parseInt(tokens[1]);
 				int neededWoodLogs=REQUIRED_WOOD-Integer.parseInt(tokens[2]);
 				int neededGoldBars=REQUIRED_GOLD_BAR-Integer.parseInt(tokens[3]);
 				int neededGiantHearts=REQUIRED_GIANT_HEART-Integer.parseInt(tokens[4]);
-				boolean missingSomething=true;
+				boolean missingSomething=false;
 
-				if(neededIron>0) {
+				if(!missingSomething && neededIron>0) {
 					if(!player.isEquipped("iron",neededIron)) {
 						engine.say("How do you expect me to #forge it without #iron?");
 						missingSomething=true;
@@ -128,7 +130,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					}
 				}
 
-				if(neededWoodLogs>0) {
+				if(!missingSomething && neededWoodLogs>0) {
 					if(!player.isEquipped("wood",neededWoodLogs)) {
 						engine.say("How do you expect me to #forge it without #wood for the fire?");
 						missingSomething=true;
@@ -138,7 +140,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					}
 				}
 
-				if(neededGoldBars>0) {
+				if(!missingSomething && neededGoldBars>0) {
 					if(!player.isEquipped("gold_bar",neededGoldBars)) {
 						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need #gold bars.");
 						missingSomething=true;
@@ -148,7 +150,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					}
 				}
 
-				if(neededGiantHearts>0) {
+				if(!missingSomething && neededGiantHearts>0) {
 					if(!player.isEquipped("giant_heart",neededGiantHearts)) {
 						engine.say("It is the base element of the enchantment. I do really need some #giant hearts");
 						missingSomething=true;
@@ -167,8 +169,10 @@ public class StuffForVulcanus extends AbstractQuest {
 					player.setQuest(QUEST_SLOT, "start;"+
 							(REQUIRED_IRON-neededIron)+";"+
 							(REQUIRED_WOOD-neededWoodLogs)+";"+
-							(REQUIRED_GOLD_BAR+neededGoldBars)+";"+
-							(REQUIRED_GIANT_HEART+neededGiantHearts));
+							(REQUIRED_GOLD_BAR-neededGoldBars)+";"+
+							(REQUIRED_GIANT_HEART-neededGiantHearts));
+
+					//System.out.println(player.getQuest(QUEST_SLOT));
 				}
 			}
 		});	
