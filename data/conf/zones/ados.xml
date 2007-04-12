@@ -106,7 +106,7 @@ West: Semos
       <parameter name="width">25</parameter>
       <parameter name="height">2</parameter>
       <parameter name="interval">2</parameter>
-      <parameter name="damage">50</parameter>
+      <parameter name="maximum-damage">50</parameter>
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
      </implementation>
@@ -117,7 +117,7 @@ West: Semos
       <parameter name="width">25</parameter>
       <parameter name="height">2</parameter>
       <parameter name="interval">2</parameter>
-      <parameter name="damage">50</parameter>
+      <parameter name="maximum-damage">50</parameter>
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
      </implementation>
@@ -128,7 +128,7 @@ West: Semos
       <parameter name="width">2</parameter>
       <parameter name="height">13</parameter>
       <parameter name="interval">2</parameter>
-      <parameter name="damage">50</parameter>
+      <parameter name="maximum-damage">50</parameter>
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
      </implementation>
@@ -139,7 +139,7 @@ West: Semos
       <parameter name="width">2</parameter>
       <parameter name="height">13</parameter>
       <parameter name="interval">2</parameter>
-      <parameter name="damage">50</parameter>
+      <parameter name="maximum-damage">50</parameter>
       <parameter name="probability">100</parameter>
       <parameter name="players-only">true</parameter>
     </implementation>
