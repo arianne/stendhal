@@ -69,6 +69,7 @@ public class StaticGameLayers {
 		tilestore.add(folder + "/zelda_building_0_tileset.png", 30 * 16);
 		tilestore.add(folder + "/zelda_outside_2_chipset.png", 30 * 16);
 		tilestore.add(folder + "/zelda_interior_1_chipset.png", 30 * 16);
+		tilestore.add(folder + "/fire_chipset.png", 7 * 6);
 
 		// TODO: change init process to do the preloading after StendhalFirstScreen is displayed
 		// see https://sourceforge.net/tracker/index.php?func=detail&aid=1697133&group_id=1111&atid=101111 for details
