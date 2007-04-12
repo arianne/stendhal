@@ -3376,6 +3376,7 @@
 		<respawn value="15000"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="giant_heart" quantity="1" probability="80"/>
 			<item value="money" quantity="[30,450]" probability="100"/>
 		</drops>
 		<equips>

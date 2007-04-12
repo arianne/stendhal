@@ -2956,6 +2956,20 @@ Makes players more offensive
       </equipable>
     </item>
 
+	<item name="giant_heart">
+		<type class="misc" subclass="giant_heart"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.01"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
     <!-- a special item for the pizza delivery quest, thus not edible and not
          stackable, unlike other food items.. -->
     <item name="pizza">
