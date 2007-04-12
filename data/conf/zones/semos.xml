@@ -280,7 +280,6 @@ The tavern has moved into a more central location in Semos. Please come join us 
       <parameter name="node3">39,21</parameter>
       <parameter name="node4">39,14</parameter>
       <parameter name="node5">23,14</parameter>
-      <!--<parameter name="node6">23,21</parameter>-->
       <parameter name="node6">23,44</parameter>
     </implementation>
   </entity>
@@ -986,8 +985,24 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-1_semos_jail" level="-1" x="499872" y="500000" file="sub_1_semos_jail.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.jail.GuardNPC"/>
-  <configurator class-name="games.stendhal.server.maps.semos.jail.InmateNPC"/>
+  <entity x="9" y="6">
+	  <implementation class-name="games.stendhal.server.maps.semos.jail.GuardNPC">
+		  <parameter name="name">Marcus</parameter>
+		  <parameter name="class">youngsoldiernpc</parameter>
+		  <parameter name="node0">9,6</parameter>
+		  <parameter name="node1">21,6</parameter>
+		  <parameter name="node2">21,7</parameter>
+		  <parameter name="node3">9,7</parameter>
+	  </implementation>
+   </entity>
+   <entity x="13" y="2">
+	   <implementation class-name="games.stendhal.server.maps.semos.jail.InmateNPC">
+		   <parameter name="name">Conual</parameter>
+		   <parameter name="class">militiaelfnpc</parameter>
+		   <parameter name="direction">down</parameter>
+	   </implementation>
+   </entity>
+   <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
   
   <portal x="28" y="17" ref="entrance">
    <destination zone="0_semos_plains_w" ref="jail_entrance"/>
@@ -1509,7 +1524,16 @@ Mature sheep wanted: please speak to Sato
  <!--  Level -4 -->
 
  <zone name="-4_semos_dungeon" level="-4" x="500096" y="500064" file="sub_4_semos_dungeon.xstend">
-   <configurator class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC" />
+   <entity x="67" y="12">
+	   <implementation class-name="games.stendhal.server.maps.semos.dungeon.SheepBuyerNPC">
+		   <parameter name="name">Tor'Koom</parameter>
+		   <parameter name="class">orcbuyernpc</parameter>
+		   <parameter name="node0">67,12</parameter>
+		   <parameter name="node1">59,12</parameter>
+		   <parameter name="node2">59,16</parameter>
+		   <parameter name="node3">67,16</parameter>
+	   </implementation>
+   </entity>
  </zone>
 
 

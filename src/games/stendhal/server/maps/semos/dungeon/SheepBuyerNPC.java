@@ -2,109 +2,74 @@ package games.stendhal.server.maps.semos.dungeon;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.pathfinder.Path;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
  * An orcish NPC who buys sheep from players.
  * You get the weight of the sheep * 50 in gold coins.
  */
-public class SheepBuyerNPC implements ZoneConfigurator {
+public class SheepBuyerNPC extends SpeakerNPCFactory {
 
-	/**
-	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
-	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildSemosCityAreaCarmen(zone);
-	}
-
-	private void buildSemosCityAreaCarmen(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Tor'Koom") {
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(67, 12));
-				nodes.add(new Path.Node(59, 12));
-				nodes.add(new Path.Node(59, 16));
-				nodes.add(new Path.Node(67, 16));
-				setPath(nodes, true);
+	@Override
+	protected void createDialog(SpeakerNPC npc) {
+		// TODO: The code is similar to Sato's SheepBuyerBehaviour.
+		// Only the phrasing is different, and Sato doesn't buy
+		// skinny sheep. Get rid of the code duplication.
+		class SheepBuyerBehaviour extends BuyerBehaviour {
+			SheepBuyerBehaviour(Map<String, Integer> items) {
+				super(items);
 			}
 
 			@Override
-			protected void createDialog() {
-				// TODO: The code is identical to Sato's SheepBuyerBehaviour,
-				// except that the phrasing is different. Unite them.
-				class SheepBuyerBehaviour extends BuyerBehaviour {
-					SheepBuyerBehaviour(Map<String, Integer> items) {
-						super(items);
-					}
-
-					@Override
-					public int getCharge(Player player) {
-						if (player.hasSheep()) {
-							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-							return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
-						} else {
-							return 0;
-						}
-					}
-
-					@Override
-					public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
-						// amount is currently ignored.
-						if (player.hasSheep()) {
-							Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-							if (seller.squaredDistance(sheep) > 5 * 5) {
-								seller.say("*drool* Sheep flesh! Bring da sheep here!");
-							} else {
-								say("Mmm... Is look yummy! Here, you take dis gold!");
-								payPlayer(player);
-
-								StendhalRPRuleProcessor.get().removeNPC(sheep);
-								StendhalRPWorld.get().remove(sheep.getID());
-								player.removeSheep(sheep);
-
-								player.notifyWorldAboutChanges();
-								return true;
-							}
-						} else {
-							seller.say("Whut? Is not unnerstand... Maybe I hit you until you make sense!");
-						}
-						return false;
-					}
+			public int getCharge(Player player) {
+				if (player.hasSheep()) {
+					Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+					return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
+				} else {
+					return 0;
 				}
-
-				Map<String, Integer> buyitems = new HashMap<String, Integer>();
-				buyitems.put("sheep", 1500);
-
-				addGreeting();
-				addJob(getName() + " is buy real cheep from hoomans.");
-				addHelp(getName()
-						+ " buy sheep! Sell me sheep! " + getName()
-						+ " is hungry!");
-				addBuyer(new SheepBuyerBehaviour(buyitems));
-				addGoodbye();
 			}
-		};
-		NPCList.get().add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "orcbuyernpc");
-		npc.set(67, 12);
-		npc.initHP(100);
-		zone.add(npc);
+
+			@Override
+			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
+				// amount is currently ignored.
+				if (player.hasSheep()) {
+					Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+					if (seller.squaredDistance(sheep) > 5 * 5) {
+						seller.say("*drool* Sheep flesh! Bring da sheep here!");
+					} else {
+						seller.say("Mmm... Is look yummy! Here, you take dis gold!");
+						payPlayer(player);
+
+						StendhalRPRuleProcessor.get().removeNPC(sheep);
+						StendhalRPWorld.get().remove(sheep.getID());
+						player.removeSheep(sheep);
+
+						player.notifyWorldAboutChanges();
+						return true;
+					}
+				} else {
+					seller.say("Whut? Is not unnerstand... Maybe I hit you until you make sense!");
+				}
+				return false;
+			}
+		}
+
+		Map<String, Integer> buyitems = new HashMap<String, Integer>();
+		buyitems.put("sheep", 1500);
+
+		npc.addGreeting();
+		npc.addJob(npc.getName() + " is buy real cheep from hoomans.");
+		npc.addHelp(npc.getName() + " buy sheep! Sell me sheep! "
+				+ npc.getName()	+ " is hungry!");
+		npc.addBuyer(new SheepBuyerBehaviour(buyitems));
+		npc.addGoodbye();
 	}
 }
