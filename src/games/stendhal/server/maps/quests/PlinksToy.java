@@ -75,7 +75,7 @@ public class PlinksToy extends AbstractQuest {
 			ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
-				public boolean fire(Player player, String text, SpeakerNPC engine) {
+				public boolean fire(Player player, String text, SpeakerNPC npc) {
 					return !player.isEquipped("teddy") && !player.isQuestCompleted(QUEST_SLOT);
 				}
 			},
@@ -90,8 +90,8 @@ public class PlinksToy extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("*sniff* Thanks a lot! *smile*");
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						npc.say("*sniff* Thanks a lot! *smile*");
 						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
@@ -103,9 +103,8 @@ public class PlinksToy extends AbstractQuest {
 				"*sniff* But... but... PLEASE! *cries*",
 				null);
 
-		List<String> wolf = Arrays.asList("wolf", "wolves");
 		npc.add(ConversationStates.QUEST_OFFERED,
-				wolf,
+				Arrays.asList("wolf", "wolves"),
 				null,
 				ConversationStates.QUEST_OFFERED,
 				"They came in from the plains, and now they're hanging around the #park over to the east a little ways. I'm not allowed to go near them, they're dangerous.",
@@ -115,7 +114,7 @@ public class PlinksToy extends AbstractQuest {
 				"park",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them!",
+				"My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them! Can you bring my #teddy back?",
 				null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
@@ -128,15 +127,15 @@ public class PlinksToy extends AbstractQuest {
 	
 	private void step_2() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_plains_n"));
-		PassiveEntityRespawnPoint plantGrower = new PassiveEntityRespawnPoint("teddy", 1500);
-		zone.assignRPObjectID(plantGrower);
-		plantGrower.setX(107);
-		plantGrower.setY(84);
-		plantGrower.setDescription("There's a teddy-bear-shaped depression in the sand here.");
-		plantGrower.setToFullGrowth();
-		zone.add(plantGrower);
+		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint("teddy", 1500);
+		zone.assignRPObjectID(teddyRespawner);
+		teddyRespawner.setX(107);
+		teddyRespawner.setY(84);
+		teddyRespawner.setDescription("There's a teddy-bear-shaped depression in the sand here.");
+		teddyRespawner.setToFullGrowth();
+		zone.add(teddyRespawner);
 
-		StendhalRPRuleProcessor.get().getPlantGrowers().add(plantGrower);
+		StendhalRPRuleProcessor.get().getPlantGrowers().add(teddyRespawner);
 	}
 	
 	private void step_3() {
@@ -146,7 +145,7 @@ public class PlinksToy extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return !player.hasQuest(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},
@@ -154,9 +153,9 @@ public class PlinksToy extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("teddy");
-						engine.say("You found him! *hugs teddy* Thank you, thank you for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
+						npc.say("You found him! *hugs teddy* Thank you, thank you for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
 						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
@@ -166,7 +165,7 @@ public class PlinksToy extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},
@@ -174,9 +173,9 @@ public class PlinksToy extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("teddy");
-						engine.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
+						npc.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
 						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
@@ -186,7 +185,7 @@ public class PlinksToy extends AbstractQuest {
 				"teddy",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return !player.isQuestCompleted(QUEST_SLOT) && !player.isEquipped("teddy");
 					}
 				},
@@ -198,7 +197,7 @@ public class PlinksToy extends AbstractQuest {
 				"teddy",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
 					}
 				},
@@ -206,8 +205,8 @@ public class PlinksToy extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						engine.say("That's not my teddy, I've got him right here! Remember, you found him for me?");
+					public void fire(Player player, String text, SpeakerNPC npc) {
+						npc.say("That's not my teddy, I've got him right here! Remember, you found him for me!");
 					}
 				});
 	}
