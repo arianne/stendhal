@@ -41,13 +41,14 @@ public class SmitherNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+				addGreeting("Chairetismata! I am Vulcanus the smither.");
 				addGoodbye("Farewell");
-				addJob("I #forge very special items for only a few ones.");
-				addHelp("I #forge very special items for only a few ones.");
+				addJob("I used to forge weapons for the King of Faumoni, but this was long ago, since now the bridge is blocked.");
+				addHelp("I may #help you to get a very #special items for only a few ones.");
 				
 				add(
 				        ConversationStates.ATTENDING,
-				        Arrays.asList("quest"),
+				        Arrays.asList("quest","special"),
 				        null,
 				        ConversationStates.ATTENDING,
 				        "Who told you that!?! *cough* Anyway, yes, I can #forge an very special item for you.",
@@ -59,18 +60,6 @@ public class SmitherNPC implements ZoneConfigurator {
 				        ConversationStates.ATTENDING,
 				        "You can find it at the mountains at the north of Semos, but beware they are really strong.",
 				        null);
-
-				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-				requiredResources.put("iron", new Integer(10));
-				requiredResources.put("wood", new Integer(20));
-				requiredResources.put("gold_bar", new Integer(10));
-				requiredResources.put("giant_heart", new Integer(5));
-				ProducerBehaviour behaviour = new ProducerBehaviour("vulcanus_forge_sword", "forge", "magic_sword",
-				        requiredResources, 5 * 60, true);
-				addProducer(
-				        behaviour,
-				        "Chairetismata! I am Vulcanus the smither.");
-
 			}
 		};
 
