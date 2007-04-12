@@ -66,7 +66,7 @@ public class SmitherNPC implements ZoneConfigurator {
 				        requiredResources, 5 * 60, true);
 				addProducer(
 				        behaviour,
-				        "Hallo! I am Vulcanus the smither.");
+				        "Chairetismata! I am Vulcanus the smither.");
 
 			}
 		};
