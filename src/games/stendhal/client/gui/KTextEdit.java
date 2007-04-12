@@ -180,15 +180,15 @@ public class KTextEdit extends JPanel {
 		// reading old texts (like IRC clients do).
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 		
-		System.out.println();
-		System.out.println("value:      " + vbar.getValue());
-		System.out.println("visible:    " + vbar.getVisibleAmount());
-		System.out.println("maximum:    " + vbar.getMaximum());
+//		System.out.println();
+//		System.out.println("value:      " + vbar.getValue());
+//		System.out.println("visible:    " + vbar.getVisibleAmount());
+//		System.out.println("maximum:    " + vbar.getMaximum());
 		// The + 10 was determined by trial-and-error. I don't know
 		// why it doesn't work properly without it. It probably has
 		// to do with the newline at the end. 
 		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
-		System.out.println("autoscroll: " + autoScroll);
+//		System.out.println("autoscroll: " + autoScroll);
 
 		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
 		String dateString = formatter.format(new Date());
