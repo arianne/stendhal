@@ -458,6 +458,16 @@ in roaches.
    </zone>
    
    <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="0_ados_rock_w.xstend">
+	   <entity x="14" y="50">
+		   <implementation class-name="games.stendhal.server.entity.Sign">
+			   <parameter name="text">
+West: Semos
+Northeast: Ados
+Southeast: Docks
+			   </parameter>
+			   <parameter name="class">signpost</parameter>
+		   </implementation>
+	   </entity>
    </zone>
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
