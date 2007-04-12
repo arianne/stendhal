@@ -224,7 +224,7 @@ East: Nalwor, Semos
  </zone>
 
  <zone name="-2_orril_lich_palace" level="-2" x="499744" y="500256" file="sub_2_orril_lich_palace.xstend">
-  <configurator class-name="games.stendhal.server.maps.orril.castle.RoyalMummyCreature" />  
+  <configurator class-name="games.stendhal.server.maps.orril.castle.DemonSkeletonCreature" />  
 
   <portal x="70" y="38" ref="0">
    <destination zone="-1_orril_castle_w" ref="0"/>
