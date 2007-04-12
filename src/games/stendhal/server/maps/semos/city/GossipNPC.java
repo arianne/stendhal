@@ -1,81 +1,75 @@
 package games.stendhal.server.maps.semos.city;
 
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.pathfinder.Path;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+/**
+ * A guy (original name: Nomyr Ahba) who looks into the windows of the bakery
+ * and the house next to it.
+ * 
+ * Basically all he does is sending players to the retired adventurer at
+ * the dungeon entrance. 
+ */
+public class GossipNPC extends SpeakerNPCFactory {
 
-public class GossipNPC implements ZoneConfigurator {
+	@Override
+	protected void createDialog(SpeakerNPC npc) {
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+				null,
+		        ConversationStates.ATTENDING,
+		        null,
+		        new SpeakerNPC.ChatAction() {
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+				        // A little trick to make NPC remember if it has met
+				        // player before anc react accordingly
+				        // NPC_name quest doesn't exist anywhere else neither is
+				        // used for any other purpose
+				        if (!player.isQuestCompleted("Nomyr")) {
+					        npc.say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
+					        player.setQuest("Nomyr", "done");
+				        } else {
+					        npc.say("Hi again, " + player.getName()
+					                + ". How can I #help you this time?");
+				        }
+			        }
+		        });
 
-	private NPCList npcs = NPCList.get();
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.INFORMATION_1,
+				"The young people have joined the Imperial Deniran Army to fight in the south, so the city has been left almost unprotected against the hordes of monsters coming from the dungeons. Can you help us?",
+				null);
 
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Huh. Well, you could help me by taking a peek through that other window, if you're not busy... I'm trying to figure out what's going on inside.",
+				null);
 
-	/**
-	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
-	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildSemosCityAreaNomyrAhba(zone);
-	}
+		npc.add(ConversationStates.INFORMATION_1,
+				ConversationPhrases.YES_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"First of all, you should go talk to Hayunn Naratha. He's an great old hero, and he's also pretty much our only defender here... I'm sure he will gladly give you some advice! Good luck.",
+				null);
 
-	private void buildSemosCityAreaNomyrAhba(StendhalRPZone zone) {
-		SpeakerNPC npc = new SpeakerNPC("Nomyr Ahba") {
+		npc.add(ConversationStates.INFORMATION_1,
+				ConversationPhrases.NO_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Awww... so you're a coward, then? Huh.",
+				null);
 
-			@Override
-			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(46, 19));
-				nodes.add(new Path.Node(46, 20));
-				nodes.add(new Path.Node(50, 20));
-				nodes.add(new Path.Node(50, 19));
-				nodes.add(new Path.Node(50, 20));
-				nodes.add(new Path.Node(46, 20));
-				setPath(nodes, true);
-			}
-
-			@Override
-			protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, null, ConversationStates.ATTENDING,
-				        null, new SpeakerNPC.ChatAction() {
-
-					        @Override
-					        public void fire(Player player, String text, SpeakerNPC engine) {
-						        // A little trick to make NPC remember if it has met
-						        // player before anc react accordingly
-						        // NPC_name quest doesn't exist anywhere else neither is
-						        // used for any other purpose
-						        if (!player.isQuestCompleted("Nomyr")) {
-							        engine
-							                .say("Heh heh... Oh, hello stranger! You look a bit disoriented... d'you want to hear the latest gossip?");
-							        player.setQuest("Nomyr", "done");
-						        } else {
-							        engine.say("Hi again, " + player.getName() + ". How can I #help you this time?");
-						        }
-					        }
-				        });
-				addHelp("I'm a... let's call me an \"observer\". I can tell you about all the latest rumours. Do you want to hear?");
-				addJob("I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.");
-				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
-				        ConversationStates.ATTENDING, "Thanks for asking, but I don't need anything right now.", null);
-				addGoodbye();
-			}
-		};
-		npcs.add(npc);
-		zone.assignRPObjectID(npc);
-		npc.put("class", "thiefnpc");
-		npc.set(46, 19);
-		npc.initHP(100);
-		zone.add(npc);
-	
+		npc.addHelp("I'm a... let's call me an \"observer\". I can tell you about all the latest rumours. Do you want to hear?");
+		npc.addJob("I know every rumour that exists in Semos, and I invented most of them! The one about Hackim smuggling in weapons for wandering adventurers like you is true, though.");
+		npc.addQuest("Thanks for asking, but I don't need anything right now.");
+		npc.addGoodbye();
 	}
 }

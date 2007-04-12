@@ -189,12 +189,75 @@ The tavern has moved into a more central location in Semos. Please come join us 
  <zone name="0_semos_city" level="0" x="500064" y="500000" file="0_semos_city.xstend">
   <title>The City of Semos</title>
   <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
-  <configurator class-name="games.stendhal.server.maps.semos.city.GossipNPC" />
-  <configurator class-name="games.stendhal.server.maps.semos.city.GreeterNPC" />
-  <configurator class-name="games.stendhal.server.maps.semos.city.HealerNPC" />
-  <configurator class-name="games.stendhal.server.maps.semos.city.RetiredAdventurerNPC" />
-  <configurator class-name="games.stendhal.server.maps.semos.city.RetireeNPC" />
-  <configurator class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC" />
+  <entity x="46" y="19">
+    <implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
+      <parameter name="name">Nomyr Ahba</parameter>
+      <parameter name="class">thiefnpc</parameter>
+      <parameter name="node0">46,19</parameter>
+      <parameter name="node1">46,20</parameter>
+      <parameter name="node2">50,20</parameter>
+      <parameter name="node3">50,19</parameter>
+      <parameter name="node4">50,20</parameter>
+      <parameter name="node5">46,20</parameter>
+    </implementation>
+  </entity>
+  <entity x="26" y="21">
+    <implementation class-name="games.stendhal.server.maps.semos.city.GreeterNPC">
+      <parameter name="name">Monogenes</parameter>
+      <parameter name="class">oldmannpc</parameter>
+      <parameter name="direction">left</parameter>
+    </implementation>
+  </entity>
+  <entity x="5" y="45">
+    <implementation class-name="games.stendhal.server.maps.semos.city.HealerNPC">
+      <parameter name="name">Carmen</parameter>
+      <parameter name="class">welcomernpc</parameter>
+      <parameter name="node0">5,45</parameter>
+      <parameter name="node1">18,45</parameter>
+    </implementation>
+  </entity>
+  <entity x="27" y="37">
+    <implementation class-name="games.stendhal.server.maps.semos.city.RetiredAdventurerNPC">
+      <parameter name="name">Hayunn Naratha</parameter>
+      <parameter name="class">oldheronpc</parameter>
+      <parameter name="level">18</parameter>
+      <parameter name="hp">98</parameter>
+      <parameter name="node0">27,37</parameter>
+      <parameter name="node1">27,38</parameter>
+      <parameter name="node2">29,38</parameter>
+      <parameter name="node3">29,37</parameter>
+      <parameter name="node4">29,38</parameter>
+      <parameter name="node5">27,38</parameter>
+    </implementation>
+  </entity>
+  <entity x="24" y="42">
+    <implementation class-name="games.stendhal.server.maps.semos.city.RetireeNPC">
+      <parameter name="name">Diogenes</parameter>
+      <parameter name="class">beggarnpc</parameter>
+      <parameter name="node0">22,42</parameter>
+      <parameter name="node1">26,42</parameter>
+      <parameter name="node2">26,44</parameter>
+      <parameter name="node3">31,44</parameter>
+      <parameter name="node4">31,42</parameter>
+      <parameter name="node5">35,42</parameter>
+      <parameter name="node6">35,28</parameter>
+      <parameter name="node7">22,28</parameter>
+    </implementation>
+  </entity>
+  <entity x="40" y="44">
+    <implementation class-name="games.stendhal.server.maps.semos.city.SheepBuyerNPC">
+      <parameter name="name">Sato</parameter>
+      <parameter name="class">buyernpc</parameter>
+      <parameter name="node0">40,44</parameter>
+      <parameter name="node1">58,44</parameter>
+      <parameter name="node2">58,21</parameter>
+      <parameter name="node3">39,21</parameter>
+      <parameter name="node4">39,14</parameter>
+      <parameter name="node5">23,14</parameter>
+      <!--<parameter name="node6">23,21</parameter>-->
+      <parameter name="node6">23,44</parameter>
+    </implementation>
+  </entity>
 
 <!-- TEST
   <entity x="35" y="35">

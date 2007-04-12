@@ -74,7 +74,6 @@ public class StendhalQuestSystem {
 		loadQuest("MeetIo");
 		loadQuest("MeetKetteh");
 		loadQuest("MeetMonogenes");
-		loadQuest("MeetNomyr");
 		// loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
