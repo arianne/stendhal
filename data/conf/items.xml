@@ -438,6 +438,20 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="magic_twoside_axe">
+		<type class="axe" subclass="magic_twosided_poleaxe"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="29"/>
+		</attributes>
+		<weight value="3"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Clubs_section -->
 
 	<item name="club">
@@ -610,6 +624,21 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="ice_war_hammer">
+		<type class="club" subclass="ice_grand_warhammer"/>
+                <description>You see a huge ice war hammer. It is a fearsome weapon.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="31"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Ranged_section -->
 
 	<item name="wooden_bow">
@@ -733,6 +762,22 @@ Makes players more offensive
 		</equipable>
 	</item>
 
+	<item name="power_arrow">
+		<type class="ammunition" subclass="golden_arrow"/>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<atk value="6"/>
+			<range value="3"/>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 <!-- Projectiles_section -->
 
 	<item name="wooden_spear">
@@ -752,6 +797,58 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+
+	<item name="shuriken">
+		<type class="missile" subclass="shuriken"/>
+                <description>You see a shuriken.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<atk value="6"/>
+			<range value="1"/>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="dart">
+		<type class="missile" subclass="dart"/>
+                <description>You see a dart.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<atk value="2"/>
+			<range value="1"/>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="power_dart">
+		<type class="missile" subclass="dart"/>
+                <description>You see a power dart.</description>
+		<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+		<attributes>
+			<atk value="4"/>
+			<range value="1"/>
+			<quantity value="1"/>
+		</attributes>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 <!-- Shields_section -->
 
@@ -1286,11 +1383,38 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-	<item name="golden_helmet_+3">
+	<item name="shadow_helmet">
+		<type class="helmet" subclass="shadow_helmet"/>
+                <description>You see a heavy shadow helmet.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="10"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="golden_helmet_+3">
 		<type class="helmet" subclass="golden_horned_barbute"/>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="12"/>
+		</attributes>
+		<weight value="15"/>
+		<equipable>
+			<slot name="head"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+	<item name="magic_chain_helmet">
+		<type class="helmet" subclass="magic_chain_helmet"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="22"/>
 		</attributes>
 		<weight value="15"/>
 		<equipable>
@@ -1435,7 +1559,21 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-	<item name="golden_boots">
+	<item name="elvish_boots">
+		<type class="boots" subclass="elvish_boots"/>
+		<description>You see a pair of elvish boots.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="7"/>
+		</attributes>
+		<weight value="9"/>
+		<equipable>
+			<slot name="feet"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="golden_boots">
 		<type class="boots" subclass="golden_boots"/>
 		<description>You see a pair of golden boots. They will be
 		heavy to wear but well worth their weight.</description>
@@ -1444,6 +1582,34 @@ Makes players more offensive
 			<def value="8"/>
 		</attributes>
 		<weight value="17"/>
+		<equipable>
+			<slot name="feet"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="shadow_boots">
+		<type class="boots" subclass="shadow_boots"/>
+		<description>You see a pair of shadow boots. You can't found out what they are made of</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="9"/>
+		</attributes>
+		<weight value="17"/>
+		<equipable>
+			<slot name="feet"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="green_dragon_boots">
+		<type class="boots" subclass="green_dragon_boots"/>
+		<description>You see a pair of green dragon boots. </description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="12"/>
+		</attributes>
+		<weight value="19"/>
 		<equipable>
 			<slot name="feet"/>
 			<slot name="bag"/>
@@ -1496,7 +1662,22 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-	<item name="elf_cloak_+2">
+	<item name="elvish_cloak">
+		<type class="cloak" subclass="elvish_cloak"/>
+                <description>You see an elvish cloak. The material is
+                thick and warm.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="8"/>
+		</attributes>
+		<weight value="5"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
+    <item name="elf_cloak_+2">
 		<type class="cloak" subclass="lightblue_cloak"/>
                 <description>You see a blue elf cloak +2. The material is
                 thick and warm.</description>
@@ -1563,6 +1744,20 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="12"/>
+		</attributes>
+		<weight value="2"/>
+		<equipable>
+			<slot name="cloak"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+    
+    <item name="shadow_cloak">
+		<type class="cloak" subclass="shadow_cloak"/>
+		<description>You see a shadow cloak.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<def value="13"/>
 		</attributes>
 		<weight value="2"/>
 		<equipable>
