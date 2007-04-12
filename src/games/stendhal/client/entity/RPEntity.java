@@ -98,7 +98,7 @@ public abstract class RPEntity extends AnimatedStateEntity {
 	
 	private int fullghostmode;
 	
-	private String guildname;
+	private String guild;
 
 	/**
 	 * Entity we are attacking.
@@ -208,7 +208,7 @@ public abstract class RPEntity extends AnimatedStateEntity {
 	}
 
 	public String getGuild() {
-	    return guildname;
+	    return guild;
 	}
 
 	// Called when entity says text
@@ -439,7 +439,7 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		    fullghostmode = diff.getInt("fullghostmode");
 		}
 		if (diff.has("guild")) {
-		    guildname = diff.get("guild");
+		    guild = diff.get("guild");
 		}
 
 		Color nameColor = Color.white;
