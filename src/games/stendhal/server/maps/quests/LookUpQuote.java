@@ -100,23 +100,22 @@ public class LookUpQuote extends AbstractQuest {
 
 		fisherman.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
-						return !player.hasQuest(QUEST_SLOT);
-					}
-				},
+				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							npc.say("Well, I once had a book with quotes of famous fishermen, but I lost it. And now I cannot remember a certain Quote. Can you look it up for me?");
-						} else {
-							npc.say("No, thanks. I've all I need.");
+						if (player.isQuestCompleted(QUEST_SLOT)) {
+							npc.say("No, thanks. I have all I need.");
 							npc.setCurrentState(ConversationStates.ATTENDING);
+						} else if (player.hasQuest(QUEST_SLOT)) {
+							String name = player.getQuest(QUEST_SLOT);
+							npc.say("I already asked you for a favor already! Have you already looked up the famous quote by " + name + "?");
+							npc.setCurrentState(ConversationStates.QUESTION_1);
+						} else {
+							npc.say("Well, I once had a book with quotes of famous fishermen, but I lost it. And now I cannot remember a certain quote. Can you look it up for me?");
 						}
 					}
 				});
@@ -173,11 +172,13 @@ public class LookUpQuote extends AbstractQuest {
 						String name = player.getQuest(QUEST_SLOT);
 						String quote = quotes.get(name);
 						if (text.equalsIgnoreCase(quote)) {
-							npc.say("Oh right, that's it! How could I forget this? Take this handy fishing rod as a reward!");
+							npc.say("Oh right, that's it! How could I forget this? Here, take this handy fishing rod as an acknowledgement of my gratitude!");
 							Item fishingRod = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("fishing_rod");
 							fishingRod.put("bound", player.getName());
 							player.equip(fishingRod, true);
 							player.addXP(750);
+							player.setQuest(QUEST_SLOT, "done");
+							player.notifyWorldAboutChanges();
 						} else {
 							npc.say("I think you made a mistake. Come back if you can tell me the correct quote.");
 							npc.setCurrentState(ConversationStates.IDLE);
