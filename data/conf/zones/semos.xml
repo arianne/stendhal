@@ -1490,7 +1490,15 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-3_semos_catacombs" level="-3" x="500064" y="499872" file="sub_3_semos_catacombs.xstend">
-  <configurator class-name="games.stendhal.server.maps.semos.catacombs.SickVampireNPC"/>
+  <entity x="60" y="60">
+	  <implementation class-name="games.stendhal.server.maps.semos.catacombs.SickVampireNPC">
+		  <parameter name="name">Markovich</parameter>
+		  <parameter name="class">sickvampirenpc</parameter>
+		  <parameter name="hp">10</parameter>
+		  <parameter name="description">You see a sick vampire.</parameter>
+		  <parameter name="direction">left</parameter>
+	  </implementation>
+  </entity>
 
   <portal x="30" y="57" ref="upstairs" replacing="true">
    <destination zone="-2_semos_catacombs" ref="downstairs"/>

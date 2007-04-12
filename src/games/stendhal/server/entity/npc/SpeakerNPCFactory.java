@@ -107,6 +107,19 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	}
 
 	/**
+	 * Extract the NPC description from a context.
+	 *
+	 * @param	ctx		The configuration context.
+	 *
+	 * @return	The text that will be shown when a player looks at
+	 *          the NPC, or null if the default description should
+	 *          be used.
+	 */
+	protected String getDescription(ConfigurableFactoryContext ctx) {
+		return ctx.getAttribute("description");
+	}
+
+	/**
 	 * Extract the direction in which the NPC faces from a context.
 	 *
 	 * @param	ctx		The configuration context.
@@ -179,8 +192,14 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		SpeakerNPC npc = instantiate(getName(ctx));
 
 		npc.put("class", getClass(ctx));
-		npc.initHP(getHP(ctx));
+		npc.initHP(100);
+		npc.setHP(getHP(ctx));
 		npc.setLevel(getLevel(ctx));
+		
+		String description = getDescription(ctx);
+		if (description != null) {
+			npc.setDescription(description);
+		}
 		
 		List<Path.Node> path = getPath(ctx);
 		npc.setPath(path, path.size() > 0);
