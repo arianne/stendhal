@@ -105,7 +105,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				&& player.getQuest(QUEST_SLOT).startsWith("start");		    
 			}
 		},
-		ConversationStates.QUEST_ITEM_BROUGHT,
+		ConversationStates.ATTENDING,
 		null,
 		new SpeakerNPC.ChatAction() {
 			@Override
@@ -126,7 +126,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							neededIron-=amount;
 						}
 
-						engine.say("How do you expect me to #forge it without missing #"+Grammar.quantityplnoun(neededIron, "iron bar")+"?");
+						engine.say("How do you expect me to #forge it without missing "+Grammar.quantityplnoun(neededIron, "iron bar")+"?");
 						missingSomething=true;
 					} else {
 						player.drop("iron",neededIron);
@@ -142,7 +142,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							neededWoodLogs-=amount;
 						}
 						
-						engine.say("How do you expect me to #forge it without missing #"+Grammar.quantityplnoun(neededWoodLogs, "wood log")+" for the fire?");
+						engine.say("How do you expect me to #forge it without missing "+Grammar.quantityplnoun(neededWoodLogs, "wood log")+" for the fire?");
 						missingSomething=true;
 					} else {
 						player.drop("wood",neededWoodLogs);
@@ -157,7 +157,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							player.drop("gold_bar",amount);
 							neededGoldBars-=amount;
 						}
-						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need #"+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
+						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need "+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("gold_bar",neededGoldBars);
@@ -172,7 +172,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							player.drop("giant_heart",amount);
 							neededGiantHearts-=amount;
 						}
-						engine.say("It is the base element of the enchantment. I do really need some #"+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" more.");
+						engine.say("It is the base element of the enchantment. I do really need some "+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("giant_heart",neededGiantHearts);
@@ -232,35 +232,35 @@ public class StuffForVulcanus extends AbstractQuest {
 			}
 		});
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
+		npc.add(ConversationStates.ATTENDING,
 				"forge",			
 				null, 
-				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationStates.ATTENDING,
 				"I will need "+REQUIRED_IRON+" #iron, "+REQUIRED_WOOD+" #wood logs, "+REQUIRED_GOLD_BAR+" #gold bars and "+REQUIRED_GIANT_HEART+" #giant hearts",
 				null);
 
 		npc.add(ConversationStates.ANY,
 				"iron",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"You know, collect the iron ore lying around and get it cast! Bye!",
 				null);
 		npc.add(ConversationStates.ANY,
 				"wood",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"The forest is full of wood logs.",
 				null);
 		npc.add(ConversationStates.ANY,
 				"gold",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"Someone in Ados would forge the gold into gold bars for you.",
 				null);
 		npc.add(ConversationStates.ANY,
 				"giant",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"Long time ago forgotten histories talked about giants on the mountains at the north of Semos.",
 				null);
 }

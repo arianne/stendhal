@@ -3249,8 +3249,8 @@
     <creature name="blue_dragon">
 		<type class="huge_animal" subclass="blue_dragon" tileid="52"/>
 		<attributes>
-			<atk value="180"/>
-			<def value="25"/>
+			<atk value="210"/>
+			<def value="35"/>
 			<hp value="900"/>
 			<speed value="1"/>
 			<size value="3,4"/>
@@ -3279,7 +3279,7 @@
 	<creature name="dark_elf_wizard">
 		<type class="dark_elf" subclass="dark_elf_wizard" tileid="170"/>
 		<attributes>
-			<atk value="205"/>
+			<atk value="225"/>
 			<def value="35"/>
 			<hp value="700"/>
 			<speed value="1"/>
@@ -3310,7 +3310,7 @@
 	<creature name="dark_elf_viceroy">
 		<type class="dark_elf" subclass="dark_elf_viceroy" tileid="169"/>
 		<attributes>
-			<atk value="220"/>
+			<atk value="245"/>
 			<def value="35"/>
 			<hp value="700"/>
 			<speed value="1"/>
@@ -3341,7 +3341,7 @@
     <creature name="giant_spider">
 		<type class="huge_animal" subclass="giant_spider" tileid="155"/>
 		<attributes>
-			<atk value="220"/>
+			<atk value="255"/>
 			<def value="35"/>
 			<hp value="1200"/>
 			<speed value="1"/>
@@ -3370,7 +3370,7 @@
     <creature name="giant">
 		<type class="giant_human" subclass="giant" tileid="172"/>
 		<attributes>
-			<atk value="250"/>
+			<atk value="270"/>
 			<def value="30"/>
 			<hp value="1200"/>
 			<speed value="1"/>
@@ -3400,7 +3400,7 @@
     <creature name="dark_elf_sacerdotist">
 		<type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="168"/>
 		<attributes>
-			<atk value="210"/>
+			<atk value="260"/>
 			<def value="33"/>
 			<hp value="800"/>
 			<speed value="1"/>
@@ -3428,8 +3428,8 @@
 	<creature name="red_dragon">
 		<type class="huge_animal" subclass="red_dragon" tileid="156"/>
 		<attributes>
-			<atk value="230"/>
-			<def value="25"/>
+			<atk value="250"/>
+			<def value="35"/>
 			<hp value="1200"/>
 			<speed value="1"/>
 			<size value="3,4"/>
@@ -3456,8 +3456,8 @@
     <creature name="giant_elder">
 		<type class="giant_human" subclass="giant_elder" tileid="171"/>
 		<attributes>
-			<atk value="250"/>
-			<def value="32"/>
+			<atk value="270"/>
+			<def value="35"/>
 			<hp value="1800"/>
 			<speed value="1"/>
 			<size value="3,4"/>
@@ -3485,8 +3485,8 @@
     <creature name="dark_elf_matronmother">
 		<type class="dark_elf" subclass="dark_elf_matronmother" tileid="166"/>
 		<attributes>
-			<atk value="220"/>
-			<def value="35"/>
+			<atk value="265"/>
+			<def value="40"/>
 			<hp value="1200"/>
 			<speed value="1"/>
 			<size value="1,2"/>
@@ -3506,7 +3506,7 @@
 			<profile name="brave"/>
 			<profile name="lifesteal" params="0.6"/>
 			<profile name="poisonous" params="15,greater_poison"/>
-			<profile name="heal" params="10,50"/>
+			<profile name="heal" params="25,50"/>
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
@@ -3516,8 +3516,8 @@
 	<creature name="black_dragon">
 		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
-			<atk value="250"/>
-			<def value="35"/>
+			<atk value="280"/>
+			<def value="42"/>
 			<hp value="2400"/>
 			<speed value="1"/>
 			<size value="6,8"/>
