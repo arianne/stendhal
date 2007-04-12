@@ -15,7 +15,7 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
-public class SmitherNPC implements ZoneConfigurator {
+public class SmithNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
