@@ -2779,7 +2779,7 @@
 	<creature name="dark_elf_archer">
 		<type class="dark_elf" subclass="dark_elf_archer" tileid="161"/>
 		<attributes>
-			<atk value="184"/>
+			<atk value="134"/>
 			<def value="20"/>
 			<hp value="130"/>
 			<speed value="1"/>
@@ -2917,7 +2917,7 @@
 	<creature name="dark_elf_elite_archer">
 		<type class="dark_elf" subclass="dark_elf_elite_archer" tileid="163"/>
 		<attributes>
-			<atk value="184"/>
+			<atk value="164"/>
 			<def value="20"/>
 			<hp value="130"/>
 			<speed value="1"/>
