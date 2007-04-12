@@ -634,8 +634,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 		 */
 		if (object instanceof NPC) {
 			npcs.remove(object);
-			NPCList.get().remove(((SpeakerNPC) object).getName());
 			StendhalRPRuleProcessor.get().removeNPC((NPC) object);
+		}
+		if (object instanceof SpeakerNPC) {
+			NPCList.get().remove(((SpeakerNPC) object).getName());
 		}
 
 		/*
