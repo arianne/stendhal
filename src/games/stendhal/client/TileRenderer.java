@@ -400,28 +400,37 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(1527, new int[] { 1567, 1597, 1627, 1597 });
 		
 		// fire
-		addAnimatedTile(4044, new int[] { 4065 });
-		addAnimatedTile(4045, new int[] { 4066 });
-		addAnimatedTile(4046, new int[] { 4067 });
+		addAnimatedTile(4043, new int[] {4043, 4064 });
+		addAnimatedTile(4044, new int[] {4044, 4065 });
+		addAnimatedTile(4045, new int[] {4045, 4066 });
 		
-		addAnimatedTile(4047, new int[] { 4068 });
+		addAnimatedTile(4046, new int[] {4046, 4067 });
 		
-		addAnimatedTile(4048, new int[] { 4055 });
-		addAnimatedTile(4049, new int[] { 4056 });
-		addAnimatedTile(4050, new int[] { 4057 });
+		addAnimatedTile(4047, new int[] {4047, 4054 });
+		addAnimatedTile(4048, new int[] {4048, 4055 });
+		addAnimatedTile(4049, new int[] {4049, 4056 });
 
 		// fire 2
-		addAnimatedTile(4051, new int[] { 4072 });
-		addAnimatedTile(4052, new int[] { 4073 });
-		addAnimatedTile(4053, new int[] { 4074 });
-		addAnimatedTile(4054, new int[] { 4075 });
+		addAnimatedTile(4050, new int[] { 4050, 4071 });
+		addAnimatedTile(4051, new int[] { 4051, 4072 });
+		addAnimatedTile(4052, new int[] { 4052, 4073 });
+		addAnimatedTile(4053, new int[] { 4053, 4074 });
 		
-		addAnimatedTile(4058, new int[] { 4079 });
-		addAnimatedTile(4059, new int[] { 4080 });
-		addAnimatedTile(4060, new int[] { 4081 });
-		addAnimatedTile(4061, new int[] { 4082 });
+		addAnimatedTile(4057, new int[] { 4057, 4078 });
+		addAnimatedTile(4058, new int[] { 4058, 4079 });
+		addAnimatedTile(4059, new int[] { 4059, 4080 });
+		addAnimatedTile(4060, new int[] { 4060, 4081 });
 
-
+/**
+ 44 45 46 47 48 49 50
+ 51 52 53 54 55 56 57
+ 58 59 60 61 62 63 64
+ 65 66 67 68 69 70 71
+ 72 73 74 75 76 77 78
+ 79 80 81 82 83 84 85 
+ 
+ */
+		
 	}
 
 	/**
