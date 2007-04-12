@@ -66,7 +66,7 @@
  </layer>
  <layer name="4_roof_add" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2ZS07DMBRFXQl14A66B2AKbAEy5DNjSsk+YBGshQ2wgbZ82jAoZRXdAM9KIp4iOw5tg5Pne6QrNZIT5dhJ/OwqBdoi1e4YEu2OBFKLx+vYf540//mwvh3vk+ehLP9D8jly5NjRL5L8z8nxwpGk8J/S+M+KzMdx+Ztnf0FZFski8zdI9p+Q470jaeG/IuevImth/jHP/wAA0Bde9G/6xtPBfuaNTOfhNemsUp+GwPjxedMc17Xdlo3Ow2uyZaU+k8qUjfFf/Mvnbpd+b8qixXdzxWpQXpPyrC3+pbdtv6OPnIyUOqWcjULfSRiuyPuachOpv3T+4zvVdTIh36pt2UTuDwAAoPvY1vV8Pexr23dc60ubP2q7nKb9wNu90dr2fYd8dGBvxDwrtx73Jn3z6XEp/6eRWkfX+Zd7jYkOV0ebe9jlXfed6xt/fg2J3xzf+Nt+S6LJ+Eumif9li/tjdwOlJoP2ru8j9Pg/kPtjxP6h+e64f3X+8x0DAAAAAAAAAAAAAADi4wfkmcj2AEAAAA==
+   H4sIAAAAAAAAAO2ZzU3DMBiGXQn14B66Q+EKrAA58nPjSskeMASzsAALQKCUcIAyRRfgsyKDFdmxaZo6+fw+0qsmkhPlsZ34p0KArsilO4pMusOB3OLxMvVfx82/GDeXM+vkYczLf0Y++44cOOqFk/8JOZ46ksH/t+8/0e8zpZim5a9Zkvc7pWTmPyfHG0dyw/+TvL8oK2b+KY//AAAwFB7lX4bG/d52xo1SVtHzsXqKgPVbFyg/c9xU501lN2Utq+j5WD1lJP9dYM7B/+Ov+12beg9l2eG7ac5B9XE9K4u/9rbtdwyRw4kQR5TjSewnicM5eV9QLhP1584uvlN9p2TyrdqUdeL+AAAA+o9tXW+uh31lh45rfWnzx9yuIrQezHKvtLZdtMhbD/ZGVF+58riH1M2Hx0X/T8N1Ht3kr/caMxlvHq2eoc277rvW1/7mPTh+c3ztbzvmREj7cybE/6zD/bHrkRDzUXf39xG7/W/J/S5h/9h899y/Pv75zgEAAAAAAAAAAAAAAOnxA2zZ2WAAQAAA
   </data>
   <tileproperties/>
  </layer>
