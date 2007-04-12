@@ -54,8 +54,6 @@ return 0;
 	//
 
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		LifeDrainArea area;
-
 		return new LifeDrainArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx));
 	}
 }

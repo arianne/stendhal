@@ -122,7 +122,6 @@ public class GuildManager extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 	// creates the guild for the player
-	String guild = playerEntity.getGuild();
 	createGuild(guildTextBoxCreate.getText());
 	JOptionPane.showMessageDialog(null, "You have created the guild \"" + guildTextBoxCreate.getText() + "\".");
     }//GEN-LAST:event_jButton1ActionPerformed

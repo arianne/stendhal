@@ -117,8 +117,8 @@ public class LifeDrainArea extends OccupantArea {
 	 * @param	entity		The entity to damage.
 	 */
 	protected boolean doDamage(RPEntity entity) {
-		float attack;
-		float defense;
+//		float attack;
+//		float defense;
 		int actualDamage;
 
 		/*
@@ -131,8 +131,8 @@ public class LifeDrainArea extends OccupantArea {
 		/*
 		 * TEMP HACK - Emulate some of user's def.
 		 */
-		attack = damage;
-		defense = calculateDefense(entity);
+//		attack = damage;
+//		defense = calculateDefense(entity);
 //		actualDamage = Math.round(attack - defense);
 
 // XXX - Do better stuff later

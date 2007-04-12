@@ -39,8 +39,7 @@ public class CreateGuildAction implements ActionListener {
 	 */
 	protected void joinGuild(Player player, RPAction action) {
 		Log4J.startMethod(logger, "joinguild");
-                String guild = null;
-                
+
                 //now we see if the player is in a guild. If not, put them in the requested one.
 		if (player.get("guild") != null) {
 		    player.sendPrivateText("You are already in a guild! Please leave your old one and try again.");
