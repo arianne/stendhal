@@ -128,7 +128,15 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	private void checkQuantityImage(int quantity) {
 		if ((quantityImage == null) || (quantity != oldQuantity)) {
 			oldQuantity = quantity;
-			quantityImage = GameScreen.get().createString(Integer.toString(quantity), Color.white);
+			String quantityString;
+			if (quantity > 99999) {
+				// The client can't show more than 5 digits.
+				// This solution works for quantities up to 10 million - 1.
+				quantityString = (quantity / 1000) + "K";
+			} else {
+				quantityString = Integer.toString(quantity);
+			}
+			quantityImage = GameScreen.get().createString(quantityString, Color.white);
 		}
 	}
 
