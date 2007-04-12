@@ -42,12 +42,15 @@ public class SmitherNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGoodbye("Farewell");
+				addJob("I #forge very special items for only a few ones.");
+				addHelp("I #forge very special items for only a few ones.");
+				
 				add(
 				        ConversationStates.ATTENDING,
-				        Arrays.asList("iron", "wood", "gold","giant_heart"),
+				        Arrays.asList("quest"),
 				        null,
 				        ConversationStates.ATTENDING,
-				        "Who told you that!?! *cough* Anyway, yes, I can #forge an magical sword for you if you take me those things.",
+				        "Who told you that!?! *cough* Anyway, yes, I can #forge an very special item for you.",
 				        null);
 				add(
 				        ConversationStates.ATTENDING,
