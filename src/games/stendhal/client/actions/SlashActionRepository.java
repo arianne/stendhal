@@ -37,8 +37,6 @@ public class SlashActionRepository {
 		actions.put("help", new HelpAction());
 		actions.put("sound", new SoundAction());
 		actions.put("record", new RecordAction());
-                actions.put("joinguild", new CreateGuildAction());
-
 		actions.put("tellall", new TellAllAction());
 		actions.put("teleport", new TeleportAction());
 		actions.put("teleportto", new TeleportToAction());

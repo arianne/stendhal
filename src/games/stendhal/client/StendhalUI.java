@@ -75,11 +75,6 @@ public abstract class StendhalUI {
 	public abstract void chooseOutfit();
 
 	/**
-	 *Like chooseOutfit(), but for Guilds
-	 */
-	public abstract void ManageGuilds();
-	
-	/**
 	 * Get the default UI.
 	 *
 	 *

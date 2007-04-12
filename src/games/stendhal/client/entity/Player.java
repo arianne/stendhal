@@ -119,7 +119,6 @@ public class Player extends RPEntity {
 		super.buildOfferedActions(list);
 
 		list.add(ActionType.ADD_BUDDY.getRepresentation());
-		list.add(ActionType.JOIN_GUILD.getRepresentation());
 	}
 
 
