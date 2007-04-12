@@ -15,19 +15,27 @@ import java.util.List;
  * QUEST: Armor for Dagobert
  * 
  * PARTICIPANTS:
- * - Dagobert, the consultant at the bank of Semos
+ * <ul>
+ * 	<li>Dagobert, the consultant at the bank of Semos</li>
+ * </ul>
  * 
  * STEPS:
- * - Dagobert asks you to find a leather_cuirass.
- * - You get a leather_cuirass, e.g. by killing a cyclops.
- * - Dagobert sees your leather_cuirass and asks for it and then thanks you.
+ * <ul>
+ * 	<li>Dagobert asks you to find a leather_cuirass.</li>
+ * 	<li>You get a leather_cuirass, e.g. by killing a cyclops.</li>
+ * 	<li>Dagobert sees your leather_cuirass and asks for it and then thanks you.</li>
+ * </ul>
  * 
  * REWARD:
- * - 50 XP
- * - 80 gold
+ * <ul>
+ * 	<li>50 XP</li>
+ * 	<li>80 gold</li>
+ * </ul>
  * 
  * REPETITIONS:
- * - None.
+ * <ul>
+ * 	<li>None</li>
+ * </ul>
  */
 public class ArmorForDagobert extends AbstractQuest {
 	
@@ -61,7 +69,7 @@ public class ArmorForDagobert extends AbstractQuest {
 		return res;
 	}
 
-	private void step_1() {
+	private void prepareRequestingStep() {
 		SpeakerNPC npc = npcs.get("Dagobert");
 
 		npc.add(ConversationStates.ATTENDING,
@@ -71,13 +79,12 @@ public class ArmorForDagobert extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?");
+							npc.say("I'm so afraid of being robbed. I don't have any protection. Do you think you can help me?");
 						} else {
-							engine.say("Thank you very much for the armor, but I don't have any other task for you.");
-							engine.setCurrentState(ConversationStates.ATTENDING);
+							npc.say("Thank you very much for the armor, but I don't have any other task for you.");
+							npc.setCurrentState(ConversationStates.ATTENDING);
 						}
 					}
 				});
@@ -90,39 +97,34 @@ public class ArmorForDagobert extends AbstractQuest {
 				"Once I had a nice #leather_cuirass, but it was destroyed during the last robbery. If you find a new one, I'll give you a reward.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 		
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Well, then I guess I'll just duck and cover.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
 		
 		// player wants to know what a leather_cuirass is
-		List<String> lc = Arrays.asList("leather_cuirass", "leather_cuirass,");
 		npc.add(ConversationStates.ATTENDING,
-				lc,
+				Arrays.asList("leather_cuirass", "leather", "cuirass"),
 				null,
 				ConversationStates.ATTENDING,
 				"A leather_cuirass is the traditional cyclops armor. Some cyclopes are living in the dungeon deep under the city.",
 				null);
 	}
 
-	private void step_2() {
-		// Just find a leather_cuirass somewhere. It isn't a quest
-	}
-
-	private void step_3() {
+	private void prepareBringingStep() {
 		SpeakerNPC npc = npcs.get("Dagobert");
 
 		// player returns while quest is still active
@@ -130,7 +132,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
@@ -139,12 +141,12 @@ public class ArmorForDagobert extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (player.isEquipped("leather_cuirass")) {
-							engine.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
-							engine.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
+							npc.say("Excuse me, please! I have noticed the leather_cuirass you're carrying. Is it for me?");
+							npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
 						} else {
-							engine.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
+							npc.say("Luckily I haven't been robbed while you were away. I would be glad to receive a leather_cuirass. Anyway, how can I #help you?");
 						}
 					}
 				});
@@ -155,7 +157,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.isEquipped("leather_cuirass");
 					}
 				},
@@ -163,7 +165,7 @@ public class ArmorForDagobert extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("leather_cuirass");
 						
 						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("money");            
@@ -173,13 +175,13 @@ public class ArmorForDagobert extends AbstractQuest {
 						
 						player.notifyWorldAboutChanges();
 						player.setQuest(QUEST_SLOT, "done");
-						engine.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
+						npc.say("Oh, I am so thankful! Here is some gold I found ... ehm ... somewhere.");
 					}
 				});
 
 		npc.add(
 				ConversationStates.QUEST_ITEM_BROUGHT,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Well then, I hope you find another one which you can give to me before I get robbed again.",
@@ -190,8 +192,7 @@ public class ArmorForDagobert extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
-		step_2();
-		step_3();
+		prepareRequestingStep();
+		prepareBringingStep();
 	}
 }

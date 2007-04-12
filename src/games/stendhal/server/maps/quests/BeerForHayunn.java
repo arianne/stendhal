@@ -12,20 +12,29 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Beer For Hayunn
+ * 
  * PARTICIPANTS:
- * - Hayunn Naratha (the veteran warrior in Semos)
+ * <ul>
+ *  <li>Hayunn Naratha (the veteran warrior in Semos)</li>
+ * </ul>
  *
  * STEPS:
- * - Hayunn asks you to buy a beer from Margaret.
- * - Margaret sells you a beer.
- * - Hayunn sees your beer, asks for it and then thanks you.
+ * <ul>
+ *  <li>Hayunn asks you to buy a beer from Margaret.</li>
+ *  <li>Margaret sells you a beer.</li>
+ *  <li>Hayunn sees your beer, asks for it and then thanks you.</li>
+ * </ul>
  *
  * REWARD:
- * - 10 XP
- * - 20 gold coins
+ * <ul>
+ *  <li>10 XP</li>
+ *  <li>20 gold coins</li>
+ * </ul>
  *
  * REPETITIONS:
- * - None.
+ * <ul>
+ *  <li>None</li>
+ * </ul>
  */
 public class BeerForHayunn extends AbstractQuest {
 	
@@ -59,7 +68,7 @@ public class BeerForHayunn extends AbstractQuest {
 		return res;
 	}
 
-	private void step_1() {
+	private void prepareRequestingStep() {
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
 		npc.add(ConversationStates.ATTENDING,
@@ -69,12 +78,12 @@ public class BeerForHayunn extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?");
+							npc.say("My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?");
 						} else {
-							engine.say("Thanks all the same, but I don't want to get too heavily into drinking; I'm still on duty, you know! I'll need my wits about me if a monster shows up...");
-							engine.setCurrentState(1);
+							npc.say("Thanks all the same, but I don't want to get too heavily into drinking; I'm still on duty, you know! I'll need my wits about me if a monster shows up...");
+							npc.setCurrentState(1);
 						}
 					}
 				});
@@ -86,21 +95,20 @@ public class BeerForHayunn extends AbstractQuest {
 				"Thanks! I'll be right here, waiting. And guarding, of course.",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.setQuest(QUEST_SLOT, "start");
 					}
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Oh, well forget it then. I guess I'll just hope for it to start raining, and then stand with my mouth open.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
-							SpeakerNPC engine) {
+							SpeakerNPC npc) {
 						player.setQuest(QUEST_SLOT, "rejected");
 					}
 				});
@@ -127,11 +135,7 @@ public class BeerForHayunn extends AbstractQuest {
 				null);
 	}
 
-	private void step_2() {
-		// Just buy the beer from Margaret. It isn't a quest
-	}
-
-	private void step_3() {
+	private void prepareBringingStep() {
 
 		SpeakerNPC npc = npcs.get("Hayunn Naratha");
 
@@ -139,7 +143,7 @@ public class BeerForHayunn extends AbstractQuest {
 				ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.hasQuest(QUEST_SLOT)
 								&& player.getQuest(QUEST_SLOT).equals("start");
 					}
@@ -148,12 +152,12 @@ public class BeerForHayunn extends AbstractQuest {
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						if (player.isEquipped("beer")) {
-							engine.say("Hey! Is that beer for me?");
+							npc.say("Hey! Is that beer for me?");
 						} else {
-							engine.say("Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?");
-							engine.setCurrentState(1);
+							npc.say("Hey, I'm still waiting for that beer, remember? Anyway, what can I do for you?");
+							npc.setCurrentState(1);
 						}
 					}
 				});
@@ -164,7 +168,7 @@ public class BeerForHayunn extends AbstractQuest {
 				// away and then saying "yes"
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC engine) {
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
 						return player.isEquipped("beer");
 					}
 				}, 
@@ -172,7 +176,7 @@ public class BeerForHayunn extends AbstractQuest {
 				"*glug glug* Ah! That hit the spot. Let me know if you need anything, ok?",
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("beer");
 						StackableItem money = (StackableItem) StendhalRPWorld.get().getRuleManager()
 								.getEntityManager().getItem("money");
@@ -187,7 +191,7 @@ public class BeerForHayunn extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Drat! You remembered that I asked you for one, right? I could really use it right now.",
@@ -198,8 +202,7 @@ public class BeerForHayunn extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
-		step_2();
-		step_3();
+		prepareRequestingStep();
+		prepareBringingStep();
 	}
 }
