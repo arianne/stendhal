@@ -664,12 +664,15 @@ public abstract class RPEntity extends Entity {
 			int xpEarn = xpReward * (damageDone / totalDamageReceived);
 	
 			/** We limit xp gain for up to eight levels difference */
+			/** XXX: Disabled. 
 			double gainXpLimitation = 1 + ((oldLevel - killer.getLevel()) / (20.0));
 			if (gainXpLimitation < 0.0) {
 				gainXpLimitation = 0.0;
 			} else if (gainXpLimitation > 1.0) {
 				gainXpLimitation = 1.0;
-			}
+			}*/
+			
+			double gainXpLimitation = 1;
 	
 			logger.debug("OnDead: " + xpReward + "\t" + damageDone + "\t" + totalDamageReceived + "\t"
 			        + gainXpLimitation);
