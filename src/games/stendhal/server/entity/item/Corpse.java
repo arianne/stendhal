@@ -72,7 +72,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		stage = 0;
 		put("stage", stage);
 
-		RPSlot slot = new EntitySlot("content");
+		RPSlot slot = new LootableSlot(this);
 		slot.setCapacity(4);
 		addSlot(slot);
 	}
