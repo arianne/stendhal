@@ -256,10 +256,26 @@ public class KanmararnSoldiers extends AbstractQuest {
 	/**
 	 * We create NPC Henry who will get us on the quest
 	 */
-	private void step_1() {
+	private void prepareCowardSoldier() {
 		SpeakerNPC henry = npcs.get("Henry");
+
+		henry.addGreeting("Ssshh! Silence or you will attract more #dwarves.");
+		henry.addJob("I'm a soldier in the army.");
+		henry.addGoodbye("Bye and be careful with all those dwarves around!");
+		henry.addHelp("I need help myself. I got seperated from my #group. Now I'm all alone.");
+		henry.addReply(Arrays.asList("dwarf", "dwarves"),
+		        "They are everywhere! Their #kingdom must be close.");
+		henry.addReply(Arrays.asList("kingdom", "Kanmararn"),
+		        "Kanmararn, the legendary city of the #dwarves.");
+		henry.addReply("group",
+		        "The General sent five of us to explore this area in search for #treasure.");
+		henry.addReply("treasure",
+		        "A big treasure is rumored to be #somewhere in this dungeon.");
+		henry.addReply("somewhere",
+		        "If you #help me I might give you a clue.");
+
 		henry.add(ConversationStates.ATTENDING,
-				Arrays.asList("quest", "task"),
+				ConversationPhrases.QUEST_MESSAGES,
 				null,
 				ConversationStates.QUEST_OFFERED,
 				null,
@@ -276,7 +292,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				"group",
 				null,
 				ConversationStates.QUEST_OFFERED,
-				"The General sent five of us to explore this area in search for #treasure.",
+				"The General sent five of us to explore this area in search for #treasure. So, will you help me find them?",
 				null);
 
 		henry.add(ConversationStates.QUEST_OFFERED,
@@ -311,7 +327,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	/**
 	 * add corpses of ex-NPCs.
 	 */
-	private void step_2() {
+	private void prepareCorpses() {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
 
 		// Now we create the corpse of the second NPC
@@ -364,7 +380,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	/**
 	 * add James 
 	 */
-	private void step_3() {
+	private void prepareSergeant() {
 		SpeakerNPC james = npcs.get("Sergeant James");
 
 		// quest related stuff
@@ -404,9 +420,9 @@ public class KanmararnSoldiers extends AbstractQuest {
 	public void addToWorld() {
 		super.addToWorld();
 
-		step_1();
-		step_2();
-		step_3();
+		prepareCowardSoldier();
+		prepareCorpses();
+		prepareSergeant();
 	}
 
 
