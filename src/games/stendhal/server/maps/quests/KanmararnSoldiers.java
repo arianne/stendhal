@@ -331,7 +331,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
 
 		// Now we create the corpse of the second NPC
-		Corpse tom = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 5, 47);
+		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);
 		tom.setDegrading(false);
 		tom.setStage(4);	// he died first
 		tom.put("name", "Tom");
@@ -347,7 +347,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		tomRefiller.start();
 
 		// Now we create the corpse of the third NPC
-		Corpse charles = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 94, 5);
+		Corpse charles = new Corpse("youngsoldiernpc", 94, 5);
 		charles.setDegrading(false);
 		charles.setStage(3);	// he died second
 		charles.put("name", "Charles");
@@ -362,7 +362,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		charlesRefiller.start();
 
 		// Now we create the corpse of the fourth NPC
-		Corpse peter = new QuestKanmararn.QuestCorpse("youngsoldiernpc", 11, 63);
+		Corpse peter = new Corpse("youngsoldiernpc", 11, 63);
 		peter.setDegrading(false);
 		peter.setStage(2);	// he died recently
 		peter.put("name", "Peter");
