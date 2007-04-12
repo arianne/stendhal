@@ -2753,7 +2753,49 @@ Makes players more offensive
 		<slot name="bag"/>
       </equipable>
     </item>
-    
+
+    <item name="emerald">
+      <type class="jewellery" subclass="emerald"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="1"/>
+      <equipable>
+        <slot name="lhand"/>
+		<slot name="rhand"/>
+		<slot name="bag"/>
+      </equipable>
+    </item>
+
+    <item name="sapphire">
+      <type class="jewellery" subclass="sapphire"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="1"/>
+      <equipable>
+        <slot name="lhand"/>
+		<slot name="rhand"/>
+		<slot name="bag"/>
+      </equipable>
+    </item>
+
+    <item name="carbuncle">
+      <type class="jewellery" subclass="carbuncle"/>
+	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
+      <attributes>
+        <quantity value="1"/>
+      </attributes>
+      <weight value="1"/>
+      <equipable>
+        <slot name="lhand"/>
+		<slot name="rhand"/>
+		<slot name="bag"/>
+      </equipable>
+    </item>
+
     <item name="golden_gm_token">
       <type class="special" subclass="GM_tokend_gold2"/>
 	<implementation class-name="games.stendhal.server.entity.item.StackableItem"/>
