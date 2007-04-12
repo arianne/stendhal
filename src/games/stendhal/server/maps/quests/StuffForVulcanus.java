@@ -3,6 +3,7 @@ package games.stendhal.server.maps.quests;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -37,7 +38,7 @@ public class StuffForVulcanus extends AbstractQuest {
 	private static final int REQUIRED_WOOD = 26;
 	private static final int REQUIRED_GIANT_HEART = 6;
 	private static final int REQUIRED_TIME = 10;
-	private static final String QUEST_SLOT = "ms_quest";
+	private static final String QUEST_SLOT = "magicsword_quest";
 
 	@Override
 	public void init(String name) {
@@ -111,8 +112,6 @@ public class StuffForVulcanus extends AbstractQuest {
 			public void fire(Player player, String text, SpeakerNPC engine) {
 				String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 				
-				System.out.println(player.getQuest(QUEST_SLOT));
-
 				int neededIron=REQUIRED_IRON-Integer.parseInt(tokens[1]);
 				int neededWoodLogs=REQUIRED_WOOD-Integer.parseInt(tokens[2]);
 				int neededGoldBars=REQUIRED_GOLD_BAR-Integer.parseInt(tokens[3]);
@@ -121,7 +120,13 @@ public class StuffForVulcanus extends AbstractQuest {
 
 				if(!missingSomething && neededIron>0) {
 					if(!player.isEquipped("iron",neededIron)) {
-						engine.say("How do you expect me to #forge it without #iron?");
+						int amount=player.getNumberOfEquipped("iron");	
+						if(amount>0) {
+							player.drop("iron",amount);
+							neededIron-=amount;
+						}
+
+						engine.say("How do you expect me to #forge it without missing #"+Grammar.quantityplnoun(neededIron, "iron bar")+"?");
 						missingSomething=true;
 					} else {
 						player.drop("iron",neededIron);
@@ -131,7 +136,13 @@ public class StuffForVulcanus extends AbstractQuest {
 
 				if(!missingSomething && neededWoodLogs>0) {
 					if(!player.isEquipped("wood",neededWoodLogs)) {
-						engine.say("How do you expect me to #forge it without #wood for the fire?");
+						int amount=player.getNumberOfEquipped("wood");						
+						if(amount>0) {
+							player.drop("wood",amount);
+							neededWoodLogs-=amount;
+						}
+						
+						engine.say("How do you expect me to #forge it without missing #"+Grammar.quantityplnoun(neededWoodLogs, "wood log")+" for the fire?");
 						missingSomething=true;
 					} else {
 						player.drop("wood",neededWoodLogs);
@@ -141,7 +152,12 @@ public class StuffForVulcanus extends AbstractQuest {
 
 				if(!missingSomething && neededGoldBars>0) {
 					if(!player.isEquipped("gold_bar",neededGoldBars)) {
-						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need #gold bars.");
+						int amount=player.getNumberOfEquipped("gold_bar");						
+						if(amount>0) {
+							player.drop("gold_bar",amount);
+							neededGoldBars-=amount;
+						}
+						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need #"+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("gold_bar",neededGoldBars);
@@ -151,7 +167,12 @@ public class StuffForVulcanus extends AbstractQuest {
 
 				if(!missingSomething && neededGiantHearts>0) {
 					if(!player.isEquipped("giant_heart",neededGiantHearts)) {
-						engine.say("It is the base element of the enchantment. I do really need some #giant hearts");
+						int amount=player.getNumberOfEquipped("giant_heart");						
+						if(amount>0) {
+							player.drop("giant_heart",amount);
+							neededGiantHearts-=amount;
+						}
+						engine.say("It is the base element of the enchantment. I do really need some #"+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("giant_heart",neededGiantHearts);
@@ -170,8 +191,6 @@ public class StuffForVulcanus extends AbstractQuest {
 							(REQUIRED_WOOD-neededWoodLogs)+";"+
 							(REQUIRED_GOLD_BAR-neededGoldBars)+";"+
 							(REQUIRED_GIANT_HEART-neededGiantHearts));
-
-					//System.out.println(player.getQuest(QUEST_SLOT));
 				}
 			}
 		});	
