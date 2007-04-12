@@ -12,16 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.common.Debug;
-import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.creature.impl.AiState;
 import games.stendhal.server.entity.creature.impl.CreatureLogic;
 import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
