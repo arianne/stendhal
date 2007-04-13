@@ -1,3 +1,4 @@
+
 package games.stendhal.server;
 
 import games.stendhal.server.entity.player.Player;
@@ -48,25 +49,25 @@ public class StendhalQuestSystem {
 		loadQuest("BeerForHayunn");
 		loadQuest("Blackjack");
 		loadQuest("Campfire");
-		loadQuest("CarmenCataclysm");
+		//loadQuest("CarmenCataclysm");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
 		loadQuest("DailyItemQuest");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
-		loadQuest("DiogenesCataclysm");
+		//loadQuest("DiogenesCataclysm");
 		loadQuest("FishermansLicenseQuiz");
 		loadQuest("FishermansLicenseCollector");
 		loadQuest("HatForMonogenes");
-		loadQuest("HayunnCataclysm");
+		//loadQuest("HayunnCataclysm");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
 		loadQuest("LookBookforCeryl");
 		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");
 		loadQuest("Marriage");
-		loadQuest("MonogenesCataclysm");
+		//loadQuest("MonogenesCataclysm");
 		// loadQuest("MeetBunny");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
@@ -77,7 +78,7 @@ public class StendhalQuestSystem {
 		// loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
-		loadQuest("NomyrCataclysm");
+		//loadQuest("NomyrCataclysm");
 		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		loadQuest("ReverseArrow");
