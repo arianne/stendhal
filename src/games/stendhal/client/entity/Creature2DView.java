@@ -11,6 +11,7 @@ package games.stendhal.client.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
@@ -150,15 +151,13 @@ public class Creature2DView extends RPEntity2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void drawImpl(final GameScreen screen) {
+	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
 		List<Creature.Node>	path;
 
 
-		super.drawImpl(screen);
+		super.draw(screen, g2d, x, y, width, height);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !creature.isPathHidden()) {
-			Graphics g2d = screen.expose();
-
 			if ((path = creature.getTargetMovedPath()) != null) {
 				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);

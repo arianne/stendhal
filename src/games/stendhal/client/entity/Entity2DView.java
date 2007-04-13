@@ -16,7 +16,9 @@ import games.stendhal.client.stendhal;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
@@ -36,11 +38,15 @@ public abstract class Entity2DView { // implements EntityView {
 	 */
 	private int	changeSerial;
 
-
 	/**
 	 * The entity image (or current one at least).
 	 */
 	protected Sprite sprite;
+
+	/**
+	 * The entity visibility (0.0 - 1.0).
+	 */
+	protected double	visibility;
 
 
 	/**
@@ -52,6 +58,7 @@ public abstract class Entity2DView { // implements EntityView {
 		this.entity = entity;
 
 		changeSerial = entity.getChangeSerial();
+		visibility = 1.0;
 	}
 
 
@@ -78,29 +85,29 @@ public abstract class Entity2DView { // implements EntityView {
 
 
 	/**
+	 * Draw the base entity part.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	protected void drawEntity(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		getSprite().draw(g2d, x, y);
+	}
+
+
+	/**
 	 * Draw the entity.
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
-	protected void drawImpl(final GameScreen screen) {
-		screen.draw(getSprite(), getX(), getY());
+	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		drawEntity(screen, g2d, x, y, width, height);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = entity.getArea();
-			g2d.setColor(Color.green);
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
-
-			g2d = screen.expose();
-			rect = getDrawnArea();
 			g2d.setColor(Color.blue);
-			p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect(x, y, width, height);
+
+			g2d.setColor(Color.green);
+			g2d.draw(screen.convertWorldToScreen(entity.getArea()));
 		}
 	}
 
@@ -178,7 +185,7 @@ public abstract class Entity2DView { // implements EntityView {
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
-	public final void draw(final GameScreen screen) {
+	public void draw(final GameScreen screen) {
 		int	serial;
 
 
@@ -192,7 +199,12 @@ public abstract class Entity2DView { // implements EntityView {
 			changeSerial = serial;
 		}
 
-		drawImpl(screen);
+
+		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
+
+		if(screen.isInScreen(r)) {
+			draw(screen, screen.expose(), r.x, r.y, r.width, r.height);
+		}
 	}
 
 

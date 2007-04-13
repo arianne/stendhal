@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
@@ -177,8 +178,8 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void drawImpl(final GameScreen screen) {
-		super.drawImpl(screen);
+	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		super.draw(screen, g2d, x, y, width, height);
 
 		if (ideaSprite != null) {
 			Rectangle2D rect = sheep.getArea();

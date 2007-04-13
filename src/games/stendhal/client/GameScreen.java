@@ -26,10 +26,12 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
+import java.awt.Rectangle;
 import java.awt.Stroke;
 import java.awt.Transparency;
 import java.awt.font.TextAttribute;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
@@ -214,10 +216,97 @@ public class GameScreen {
 
 	/** Translate to screen coordinates the given world coordinate */
 	public Point2D invtranslate(Point2D point) {
-		double tx = (point.getX() - x) * GameScreen.SIZE_UNIT_PIXELS;
-		double ty = (point.getY() - y) * GameScreen.SIZE_UNIT_PIXELS;
-		return new Point.Double(tx, ty);
+		return convertWorldToScreen(point.getX(), point.getY());
 	}
+
+	/**
+	 * Convert world coordinates to screen coordinates.
+	 *
+	 * This does have some theorical range limits. Assuming a tile size
+	 * of 256x256 pixels (very high def), world coordinates are limited
+	 * to a little over +/-8 million, before the int (31-bit) values
+	 * returned from this are wrapped. So I see no issues, even if
+	 * absolute world coordinates are used.
+	 *
+	 * @param	wx		World X coordinate.
+	 * @param	wy		World Y coordinate.
+	 *
+	 * @return	Screen coordinates (in integer values).
+	 */
+	public Point convertWorldToScreen(double wx, double wy) {
+		return new Point(
+			(int) ((wx - x) * GameScreen.SIZE_UNIT_PIXELS),
+			(int) ((wy - y) * GameScreen.SIZE_UNIT_PIXELS));
+	}
+
+
+	/**
+	 * Convert world coordinates to screen coordinates.
+	 *
+	 * @param	wrect		World area.
+	 *
+	 * @return	Screen rectangle (in integer values).
+	 */
+	public Rectangle convertWorldToScreen(Rectangle2D wrect) {
+		return convertWorldToScreen(wrect.getX(), wrect.getY(), wrect.getWidth(), wrect.getHeight());
+	}
+
+
+	/**
+	 * Convert world coordinates to screen coordinates.
+	 *
+	 * @param	wx		World X coordinate.
+	 * @param	wy		World Y coordinate.
+	 * @param	wwidth		World area width.
+	 * @param	wheight		World area height.
+	 *
+	 * @return	Screen rectangle (in integer values).
+	 */
+	public Rectangle convertWorldToScreen(double wx, double wy, double wwidth, double wheight) {
+		return new Rectangle(
+			(int) ((wx - x) * GameScreen.SIZE_UNIT_PIXELS),
+			(int) ((wy - y) * GameScreen.SIZE_UNIT_PIXELS),
+			(int) (wwidth * GameScreen.SIZE_UNIT_PIXELS),
+			(int) (wheight * GameScreen.SIZE_UNIT_PIXELS));
+	}
+
+
+	/**
+	 * Determine if an area is in the screen view.
+	 *
+	 * @param	srect		Screen area.
+	 *
+	 * @return	<code>true</code> if some part of area in in the
+	 *		visible screen, otherwise <code>false</code>.
+	 */
+	public boolean isInScreen(Rectangle srect) {
+		return isInScreen(srect.x, srect.y, srect.width, srect.height);
+	}
+
+
+	/**
+	 * Determine if an area is in the screen view.
+	 *
+	 * @param	sx		Screen X coordinate.
+	 * @param	sy		Screen Y coordinate.
+	 * @param	swidth		Screen area width.
+	 * @param	sheight		Screen area height.
+	 *
+	 * @return	<code>true</code> if some part of area in in the
+	 *		visible screen, otherwise <code>false</code>.
+	 */
+	public boolean isInScreen(int sx, int sy, int swidth, int sheight) {
+		return (((sx >= -swidth) && (sx < sw)) && ((sy >= -sheight) && (sy < sh)));
+	}
+
+
+	/**
+	 * Determine if a sprite will draw in the screen.
+	 */
+	public boolean isSpriteInScreen(Sprite sprite, int sx, int sy) {
+		return isInScreen(sx, sy, sprite.getWidth() + 2, sprite.getHeight() + 2);
+	}
+
 
 	/** Draw a sprite in screen given its world coordinates */
 	public void draw(Sprite sprite, double wx, double wy) {

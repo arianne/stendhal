@@ -13,6 +13,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -78,11 +79,11 @@ public class StackableItem2DView extends Item2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void drawImpl(final GameScreen screen) {
-		super.drawImpl(screen);
+	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		super.draw(screen, g2d, x, y, width, height);
 
 		if (quantitySprite != null) {
-			screen.draw(quantitySprite, getX(), getY());
+			quantitySprite.draw(g2d, x, y);
 		}
 	}
 
