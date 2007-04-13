@@ -357,10 +357,6 @@ The tavern has moved into a more central location in Semos. Please come join us 
    <destination zone="int_semos_bakery" ref="entrance"/>
   </portal>
 
-  <portal x="12" y="49" ref="restart_life">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-  </portal>
-
   <entity x="4" y="41">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <parameter name="text">
@@ -466,6 +462,10 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <portal x="13" y="23" ref="entrance_right">
      <destination zone="0_semos_city" ref="temple_entrance"/>
     </portal>
+    
+    <portal x="11" y="10" ref="restart_life">
+   	 <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  	</portal>
    </zone>
 
    <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
