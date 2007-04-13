@@ -54,6 +54,8 @@
 		<javac srcdir="${compilesrc}" destdir="${build_server}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/server/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/maps/**, games/stendhal/server/script/**, games/stendhal/client/**, games/stendhal/tools/**">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
@@ -77,6 +79,8 @@
 		<javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines"  source="1.5" target="1.5"
            includes="**/*.java"
            excludes="games/stendhal/server/maps/quests/**">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<pathelement path="${build_server}"/>
@@ -111,6 +115,8 @@
 		<mkdir dir="${build_server_script}/"/>
 		<javac srcdir="${src}" destdir="${build_server_script}" debug="true" debuglevel="source,lines"  source="1.5" target="1.5"
            includes="games/stendhal/server/script/**">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
@@ -139,6 +145,8 @@
 		<javac srcdir="${compilesrc}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/update/Starter.java">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<pathelement path="${marauroa_jar}"/>
@@ -150,6 +158,8 @@
   		 display a dialogbox if running on an old Java Version -->
 		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.2" target="1.2"
            includes="games/stendhal/client/update/Starter.java">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
 		</javac>
 		<copy todir="${build_client}/games/stendhal/client/update">
 			<fileset file="${src}/games/stendhal/client/update/game*.properties"/>
@@ -448,6 +458,8 @@
 
 		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
            includes="games/stendhal/tools/MapConverter.java">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
 			<compilerarg value="-Xlint:unchecked"/>
 			<classpath>
 				<pathelement path="${build_tiled_convertmaps}"/>
