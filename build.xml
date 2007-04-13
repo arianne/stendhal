@@ -411,6 +411,8 @@
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
 			<fileset dir="data"/>
+                <!-- There is a 4MB OGG there! -->
+				<exclude name="music/**/*"/>
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/web">
@@ -418,7 +420,9 @@
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-${version}-src/tiled">
-			<fileset dir="${tiled}"/>
+			<fileset dir="${tiled}">
+				<exclude name="tileset/**/*"/>
+			</fileset>
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
