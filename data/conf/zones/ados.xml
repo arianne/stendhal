@@ -468,6 +468,9 @@ Southeast: Docks
 			   <parameter name="class">signpost</parameter>
 		   </implementation>
 	   </entity>
+	  <portal x="118" y="103" ref="caves_exit">
+	   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+	  </portal>
    </zone>
    
    <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
@@ -554,6 +557,9 @@ Southeast: Docks
 </zone>
 
 <zone name="-1_ados_caves_se" level="-1" x="500512" y="500000" file="sub_1_ados_caves_se.xstend">
+  <portal x="4" y="23" ref="0">
+   <destination zone="0_ados_rock" ref="caves_exit"/>
+  </portal>
 </zone>
 
  <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="sub_1_ados_outside_nw.xstend">
