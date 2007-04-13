@@ -55,12 +55,12 @@ public class LifeguardNPC implements ZoneConfigurator {
 
 				// stuff needed for the SuntanCreamForZara quest
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-				requiredResources.put("arandula", new Integer(1));
-				requiredResources.put("kokuda", new Integer(1));
-				requiredResources.put("minor_potion", new Integer(1));
+				requiredResources.put("arandula", 1);
+				requiredResources.put("kokuda", 1);
+				requiredResources.put("minor_potion", 1);
 
-				ProducerBehaviour behaviour_mix = new ProducerBehaviour("pamela_mix_cream", "mix", "suntan_cream",
-				        requiredResources, 10 * 60);
+				ProducerBehaviour behaviour_mix = new ProducerBehaviour("pamela_mix_cream",
+						"mix", "suntan_cream", requiredResources, 10 * 60);
 
 				addProducer(behaviour_mix, "Hallo!");
 
