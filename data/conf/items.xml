@@ -243,9 +243,9 @@ in the file.
 		</equipable>
 	</item>
     
-	<item name="inmortal_sword">
+	<item name="immortal_sword">
 		<type class="sword" subclass="magic_sword"/>
-		<description>This inmortal sword is a gift of gods to the choosen one. It is heavy and of excellent
+		<description>This immortal sword is a gift of gods to the choosen one. It is heavy and of excellent
 		craftmanship.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>

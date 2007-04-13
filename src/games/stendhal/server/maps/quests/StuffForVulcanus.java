@@ -14,19 +14,19 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 /**
- * QUEST: The inmortal sword forging
+ * QUEST: The immortal sword forging
  * 
  * PARTICIPANTS:
  * - Vulcanus, son of Zeus itself, will forge for you the god's sword.
  * 
  * STEPS:
  * - Vulcanus tells you about the sword.
- * - He offers to forge a inmortal sword for you if you bring him what it needs. 
+ * - He offers to forge a immortal sword for you if you bring him what it needs. 
  * - You give him all what he ask you. 
- * - Vulcanus forges the inmortal sword for you
+ * - Vulcanus forges the immortal sword for you
  * 
  * REWARD:
- * - inmortal sword
+ * - immortal sword
  * - 15000 XP
  * 
  *
@@ -39,7 +39,7 @@ public class StuffForVulcanus extends AbstractQuest {
 	private static final int REQUIRED_WOOD = 26;
 	private static final int REQUIRED_GIANT_HEART = 6;
 	private static final int REQUIRED_TIME = 10;
-	private static final String QUEST_SLOT = "inmortalsword_quest";
+	private static final String QUEST_SLOT = "immortalsword_quest";
 
 	@Override
 	public void init(String name) {
@@ -182,7 +182,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				}
 
 				if(!missingSomething) {
-					engine.say("You've brought everything I need to make the inmortal sword. Come back in "+
+					engine.say("You've brought everything I need to make the immortal sword. Come back in "+
 							REQUIRED_TIME + " minutes and it will be ready");
 					player.setQuest(QUEST_SLOT,
 							"forging;" + System.currentTimeMillis());
@@ -223,9 +223,9 @@ public class StuffForVulcanus extends AbstractQuest {
 					return;
 				}
 
-				engine.say("I have finished forging the mighty inmortal sword. You deserve this. Now i'm going back to work, goodbye!");
+				engine.say("I have finished forging the mighty immortal sword. You deserve this. Now i'm going back to work, goodbye!");
 				player.addXP(15000);
-				Item magicSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("inmortal_sword");
+				Item magicSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("immortal_sword");
 				magicSword.put("bound", player.getName());
 				player.equip(magicSword, true);
 				player.notifyWorldAboutChanges();			
