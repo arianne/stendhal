@@ -346,6 +346,12 @@
 
  <!--  Level -1 -->
 
+ <zone name="-1_nalwor_caves_w" level="-1" x="500128" y="500128" file="sub_1_nalwor_caves_w.xstend">
+ </zone>
+
+ <zone name="-1_nalwor_caves" level="-1" x="500256" y="500128" file="sub_1_nalwor_caves.xstend">
+ </zone>
+
  <zone name="-1_nalwor_caves_e" level="-1" x="500384" y="500128" file="sub_1_nalwor_caves_e.xstend">
  </zone>
 
