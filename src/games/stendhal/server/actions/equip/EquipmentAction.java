@@ -172,10 +172,7 @@ public class EquipmentAction implements ActionListener {
 		if (entity.has("bound")) {
 			player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in " + (Item.DEGRADATION_TIMEOUT / 60) + " minutes, as all items do. But in this case there is no way to restore it.");
 		}
-		int amount = 1;
-		if (entity instanceof StackableItem) {
-			amount = ((StackableItem) entity).getQuantity();
-		}
+		int amount = source.getQuantity();
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
 		player.updateItemAtkDef();
 

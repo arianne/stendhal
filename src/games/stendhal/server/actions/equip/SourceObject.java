@@ -186,5 +186,18 @@ class SourceObject extends MoveableObject {
 	public Entity getEntity() {
 		return base;
 	}
+
+	public int getQuantity() {
+		int temp = quantity;
+		if (quantity == 0) {
+			// everything
+			temp = 1;
+			if (base instanceof StackableItem) {
+				temp = ((StackableItem) base).getQuantity();
+			}
+
+		}
+		return temp;
+	}
 }
 
