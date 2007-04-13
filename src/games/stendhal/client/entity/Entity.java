@@ -47,6 +47,11 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected int	changeSerial;
 
+	/**
+	 * The entity visibility.
+	 */
+	protected int		visibility;
+
 
 	/** The current speed of this entity horizontally (pixels/sec) */
 	protected double dx;
@@ -114,6 +119,16 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected void changed() {
 		changeSerial++;
+	}
+
+
+	/**
+	 * Get the entity visibility.
+	 *
+	 * @return	The entity visibility (0 - 100).
+	 */
+	public int getVisibility() {
+		return visibility;
 	}
 
 
@@ -293,7 +308,14 @@ public final byte[] ID_Token = new byte[0];
 	public void onLeaveZone(final String zone) {
 	}
 
+
 	public void onAdded(final RPObject base) {
+		if(base.has("visibility")) {
+			visibility = base.getInt("visibility");
+		} else {
+			visibility = 100;
+		}
+
 		// BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), base);
@@ -303,16 +325,110 @@ public final byte[] ID_Token = new byte[0];
 		fireZoneChangeEvent(base, null);
 	}
 
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	base		The previous values.
+	 * @param	diff		The changes.
+	 */
 	public void onChangedAdded(final RPObject base, final RPObject diff) {
-		
 		if (!inAdd) {
+			if(diff.has("visibility")) {
+				visibility = diff.getInt("visibility");
+				changed();
+			}
+
 			fireMovementEvent(base, diff);
+
+			/*
+			 * Walk each changed slot
+			 */
+			for(RPSlot dslot : diff.slots()) {
+				if(dslot.size() == 0) {
+					continue;
+				}
+
+				String slotName = dslot.getName();
+				RPObject sbase;
+
+				/*
+				 * Find the original slot entry (if any)
+				 */
+				if(base.hasSlot(slotName)) {
+					RPSlot bslot = base.getSlot(dslot.getName());
+					RPObject.ID id = base.getID();
+
+					if(bslot.has(id)) {
+						sbase = bslot.get(id);
+					} else {
+						sbase = null;
+					}
+				} else {
+					sbase = null;
+				}
+
+
+				/*
+				 * Walk the entry changes
+				 */
+				for(RPObject sdiff : dslot) {
+					onChangedAdded(slotName, sbase, sdiff);
+				}
+			}
 		}
 	}
 
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	base		The previous values.
+	 * @param	diff		The changes.
+	 */
 	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-		
+		if(diff.has("visibility")) {
+			visibility = 100;
+			changed();
+		}
+
+		/*
+		 * Walk each changed slot
+		 */
+		for(RPSlot dslot : diff.slots()) {
+			if(dslot.size() == 0) {
+				continue;
+			}
+
+			String slotName = dslot.getName();
+			RPObject sbase;
+
+			/*
+			 * Find the original slot entry (if any)
+			 */
+			if(base.hasSlot(slotName)) {
+				RPSlot bslot = base.getSlot(dslot.getName());
+				RPObject.ID id = base.getID();
+
+				if(bslot.has(id)) {
+					sbase = bslot.get(id);
+				} else {
+					sbase = null;
+				}
+			} else {
+				sbase = null;
+			}
+
+
+			/*
+			 * Walk the entry changes
+			 */
+			for(RPObject sdiff : dslot) {
+				onChangedRemoved(slotName, sbase, sdiff);
+			}
+		}
 	}
+
 
 	public void onRemoved() {
 		SoundSystem.stopSoundCycle(ID_Token);
@@ -320,6 +436,31 @@ public final byte[] ID_Token = new byte[0];
 		fireMovementEvent(null, null);
 		fireZoneChangeEvent(null, null);
 	}
+
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	slot		The container slot.
+	 * @param	base		The previous values.
+	 * @param	diff		The changes.
+	 */
+	public void onChangedAdded(final String slotName, final RPObject base, final RPObject diff) {
+	}
+
+
+	/**
+	 * A slot object removed attribute(s).
+	 *
+	 * @param	slot		The container slot.
+	 * @param	base		The previous values.
+	 * @param	diff		The changes.
+	 */
+	public void onChangedRemoved(final String slotName, final RPObject base, final RPObject diff) {
+		
+	}
+	//
+
 
 	// Called when entity collides with another entity
 	public void onCollideWith(final Entity entity) {

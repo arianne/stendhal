@@ -10,7 +10,9 @@ package games.stendhal.client.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
@@ -199,35 +201,23 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void drawImpl(final GameScreen screen) {
+	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		Rectangle srect = screen.convertWorldToScreen(entity.getArea());
+
 		if (entity.isBeingAttacked()) {
 			// Draw red box around
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = entity.getArea();
 
 			g2d.setColor(Color.red);
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-			g2d.drawRect((int) p.getX(), (int) p.getY(), (int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS),
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
+			g2d.drawRect(srect.x, srect.y, srect.width, srect.height);
+
 			g2d.setColor(Color.black);
-			g2d.drawRect((int) p.getX() - 1, (int) p.getY() - 1,
-				(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) + 2,
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) + 2);
+			g2d.drawRect(srect.x - 1, srect.y - 1, srect.width + 2, srect.height + 2);
 		}
 
 		if (entity.isAttackingUser()) {
 			// Draw orange box around
-			Graphics g2d = screen.expose();
-			Rectangle2D rect = entity.getArea();
-
-			Point2D p = new Point.Double(rect.getX(), rect.getY());
-			p = screen.invtranslate(p);
-
 			g2d.setColor(Color.orange);
-			g2d.drawRect((int) p.getX() + 1, (int) p.getY() + 1,
-				(int) (rect.getWidth() * GameScreen.SIZE_UNIT_PIXELS) - 2,
-				(int) (rect.getHeight() * GameScreen.SIZE_UNIT_PIXELS) - 2);
+			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
 		}
 
 		if (entity.isAttacking() && entity.isBeingStruck()) {
@@ -245,7 +235,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 			frameBladeStrike++;
 		}
 
-		super.drawImpl(screen);
+		super.draw(screen, g2d, x, y, width, height);
 
 		if (entity.isEating()) {
 			Rectangle2D rect = entity.getArea();
