@@ -44,7 +44,7 @@ public class Character extends WtPanel {
 	private static final int PANEL_WIDTH = 144;
 
 	/** Panel height */
-	private static final int PANEL_HEIGHT = 280;
+	private static final int PANEL_HEIGHT = 265;
 
 	/** Height/width of slots */
 	private static final int SLOT_SIZE = 39; // estimate
@@ -121,7 +121,7 @@ public class Character extends WtPanel {
 		        ((SLOT_SIZE + SLOT_SPACING) * 4),
 		        170,
 		        100,
-		        "HP: ${hp}/${maxhp}\nMana: ${mana}/${basemana}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nMoney: $${money}");
+		        "HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nMoney: $${money}");
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
 		addChild(statsPanel);
@@ -194,8 +194,8 @@ public class Character extends WtPanel {
 		statsPanel.set("defxp", playerEntity.getDefXp());
 		statsPanel.set("xp", playerEntity.getXp());
 		statsPanel.set("money", money);
-		statsPanel.set("mana", Integer.toString(playerEntity.getMana()));
-		statsPanel.set("basemana", playerEntity.getBaseMana());
+	/*	statsPanel.set("mana", Integer.toString(playerEntity.getMana()));
+		statsPanel.set("basemana", playerEntity.getBaseMana());*/
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
 	}
