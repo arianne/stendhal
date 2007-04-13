@@ -288,10 +288,8 @@ public class LoginDialog extends JDialog {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this, "Unable to connect to server. Did you misspell the server name?");
-
 			Log4J.getLogger(LoginDialog.class).error("unable to connect to server", ex);
-
+			JOptionPane.showMessageDialog(this, "Unable to connect to server. Did you misspell the server name?");
 			return;
 		}
 
