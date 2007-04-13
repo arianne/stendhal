@@ -3568,6 +3568,7 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
+			<profile name="lifesteal" params="0.05"/>
 			<profile name="heal" params="35,50"/>
 			<profile name="patrolling"/>
 		</ai>
