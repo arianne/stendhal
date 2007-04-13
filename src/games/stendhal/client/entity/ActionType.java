@@ -22,6 +22,7 @@ public enum ActionType {
 	HARVEST("use", "Harvest"), 
 	PICK("use", "Pick"), 
 	PROSPECT("use", "Prospect"), 
+	FISH("use", "Fish"), 
 	LEAVE_SHEEP("own", "Leave sheep"), 
 	ADD_BUDDY("addbuddy", "Add to Buddies"), 
 	ADMIN_INSPECT("inspect", "(*)Inspect"), 
