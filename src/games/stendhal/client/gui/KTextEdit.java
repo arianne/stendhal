@@ -218,6 +218,13 @@ public class KTextEdit extends JPanel {
 	 *            the desired color
 	 */
 	public synchronized void addLine(String header, String line, Color color) {
+
+		// Goal of the new code is making it easier to read older messages:
+		// The client should only scroll down automatically if the scrollbar
+		// was at the bottom before.
+		// There were some bugs, so it is disabled until there is time to fix it.
+		boolean useNewCode = false;
+		
 		// Determine whether the scrollbar is currently at the very bottom
 		// position. We will only auto-scroll down if the user is not currently
 		// reading old texts (like IRC clients do).
@@ -240,9 +247,14 @@ public class KTextEdit extends JPanel {
 		insertHeader(header);
 		insertText(line, color);
 
-		if (autoScroll) {
-			scrollToBottom();
+		if (useNewCode) {
+			if (autoScroll) {
+				scrollToBottom();
+			}
+		} else {
+			textPane.setCaretPosition(textPane.getDocument().getLength());
 		}
+
 	}
 
 	/**
