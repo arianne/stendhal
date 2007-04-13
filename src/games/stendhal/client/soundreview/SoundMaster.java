@@ -15,6 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class SoundMaster implements Runnable,WorldListener {
 private static SoundFileMap sfm=null;
 	private static Cliplistener cliplisten=null;
+	private static boolean isMute;
 
 	public void run() {
 }
@@ -45,6 +46,7 @@ private static SoundFileMap sfm=null;
 
 	}
 	public static  AudioClip play(String soundName, boolean shallLoop) {
+		if(isMute) return null;
 		if (soundName == null) {
 	        return  null;
         }
@@ -123,6 +125,10 @@ if (cl!=null){
 //		System.out.println(zoneName);
 //		bg.stop();
 //		bg=null;
+		
+	}
+	public static void setMute(boolean on) {
+		isMute=on;
 		
 	}
 }
