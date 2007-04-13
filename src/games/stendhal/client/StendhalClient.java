@@ -454,6 +454,104 @@ public class StendhalClient extends ariannexp {
 		send(rpaction);
 	}
 
+
+	/**
+	 * Handle player changes
+	 */
+	protected void setPlayer(RPObject object) {
+		/*
+		 * Ignore no-changes
+		 */
+		if((object != null) && (player != null) && player.equals(object)) {
+			return;
+		}
+
+		player = object;
+
+		firePlayerAssignment(player);
+	}
+
+
+
+/*
+	public void addPlayerChangeListener(PlayerChangeListener l) {
+	}
+
+
+	public void removePlayerChangeListener(PlayerChangeListener l) {
+	}
+
+
+
+	public void addFeatureChangeListener(FeatureChangeListener l) {
+	}
+
+
+	public void removeFeatureChangeListener(FeatureChangeListener l) {
+	}
+
+
+
+	public void addBuddyChangeListener(BuddyChangeListener l) {
+	}
+
+
+	public void removeBuddyChangeListener(BuddyChangeListener l) {
+	}
+*/
+
+
+	protected void firePlayerAssignment(RPObject object) {
+	}
+
+
+
+	protected void fireAdd(RPObject object) {
+		try {
+			logger.debug("Object(" + object.getID() + ") added to Game Objects container");
+			gameObjects.add(object);
+		} catch (Exception e) {
+			logger.error("onAdded failed, object is " + object, e);
+		}
+	}
+
+
+	protected void fireRemove(RPObject object) {
+		try {
+			logger.debug("Object(" + object.getID() + ") removed from Static Objects container");
+			gameObjects.remove(object.getID());
+		} catch (Exception e) {
+			logger.error("onDeleted failed, object is " + object, e);
+		}
+	}
+
+
+	protected void fireModifyAdded(RPObject object, RPObject changes) {
+		try {
+			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
+			gameObjects.modifyAdded(object, changes);
+			object.applyDifferences(changes, null);
+		} catch (Exception e) {
+			logger.debug("onModifiedAdded failed, object is " + object + ", changes is " + changes, e);
+		}
+	}
+
+
+	protected void fireModifyRemoved(RPObject object, RPObject changes) {
+		try {
+			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
+			logger.debug("Original(" + object + ") modified in Game Objects container");
+
+			gameObjects.modifyRemoved(object, changes);
+			object.applyDifferences(null, changes);
+
+			logger.debug("Modified(" + object + ") modified in Game Objects container");
+			logger.debug("Changes(" + changes + ") modified in Game Objects container");
+		} catch (Exception e) {
+			logger.error("onModifiedDeleted failed, object is " + object + ", changes is " + changes, e);
+		}
+	}
+
 	//
 	//
 
@@ -461,54 +559,25 @@ public class StendhalClient extends ariannexp {
 
 		@Override
 		public boolean onAdded(RPObject object) {
-			try {
-				logger.debug("Object(" + object.getID() + ") added to Game Objects container");
-				gameObjects.add(object);
-			} catch (Exception e) {
-				logger.error("onAdded failed, object is " + object, e);
-			}
+			fireAdd(object);
 			return false;
 		}
 
 		@Override
 		public boolean onModifiedAdded(RPObject object, RPObject changes) {
-			// NOTE: We do handle the perception here ourselves. See that we
-			// return true
-			try {
-				logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
-				gameObjects.modifyAdded(object, changes);
-				object.applyDifferences(changes, null);
-			} catch (Exception e) {
-				logger.debug("onModifiedAdded failed, object is " + object + ", changes is " + changes, e);
-			}
+			fireModifyAdded(object, changes);
 			return true;
 		}
 
 		@Override
 		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
-			try {
-				logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
-				logger.debug("Original(" + object + ") modified in Game Objects container");
-
-				gameObjects.modifyRemoved(object, changes);
-				object.applyDifferences(null, changes);
-
-				logger.debug("Modified(" + object + ") modified in Game Objects container");
-				logger.debug("Changes(" + changes + ") modified in Game Objects container");
-			} catch (Exception e) {
-				logger.error("onModifiedDeleted failed, object is " + object + ", changes is " + changes, e);
-			}
+			fireModifyRemoved(object, changes);
 			return true;
 		}
 
 		@Override
 		public boolean onDeleted(RPObject object) {
-			try {
-				logger.debug("Object(" + object.getID() + ") removed from Static Objects container");
-				gameObjects.remove(object.getID());
-			} catch (Exception e) {
-				logger.error("onDeleted failed, object is " + object, e);
-			}
+			fireRemove(object);
 			return false;
 		}
 
@@ -533,13 +602,11 @@ public class StendhalClient extends ariannexp {
 				player = world_objects.get(id);
 
 				if (deleted != null) {
-					gameObjects.modifyRemoved(player, deleted);
-					player.applyDifferences(null, deleted);
+					fireModifyRemoved(player, deleted);
 				}
 
 				if (added != null) {
-					gameObjects.modifyAdded(player, added);
-					player.applyDifferences(added, null);
+					fireModifyAdded(player, added);
 				}
 			} catch (Exception e) {
 				logger.error("onMyRPObject failed, added=" + added + " deleted=" + deleted, e);
