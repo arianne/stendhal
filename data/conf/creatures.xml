@@ -3540,6 +3540,39 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+
+<!-- Level 300 -->
+    
+	<creature name="black_death">
+		<type class="huge_animal" subclass="black_death" tileid="159"/>
+		<attributes>
+			<atk value="390"/>
+			<def value="52"/>
+			<hp value="4800"/>
+			<speed value="1"/>
+			<size value="3,4"/>
+		</attributes>
+		<level value="300"/>
+		<experience value="90000"/>
+		<respawn value="100000"/>
+		<drops>
+			<item value="greater_potion" quantity="[3,20]" probability="50"/>
+			<item value="money" quantity="[3000,100000]" probability="100"/>
+			<item value="magic_plate_armor" quantity="1" probability="1"/>
+			<item value="shadow_shield" quantity="1" probability="5"/>
+			<item value="shadow_legs" quantity="1" probability="5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="35,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
+
 </creatures>
 <!-- To add
 -->
