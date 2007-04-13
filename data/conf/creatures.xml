@@ -3547,7 +3547,7 @@
 		<type class="huge_animal" subclass="black_death" tileid="159"/>
 		<attributes>
 			<atk value="390"/>
-			<def value="52"/>
+			<def value="53"/>
 			<hp value="4800"/>
 			<speed value="1"/>
 			<size value="3,4"/>
