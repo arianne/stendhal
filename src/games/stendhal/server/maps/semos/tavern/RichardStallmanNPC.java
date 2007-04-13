@@ -3,19 +3,16 @@ package games.stendhal.server.maps.semos.tavern;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
-public class RichardStallmanNPC {
+public class RichardStallmanNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
-
-	private ShopList shops = ShopList.get();
 
 	/**
 	 * Configure a zone.
@@ -30,6 +27,13 @@ public class RichardStallmanNPC {
 	private void buildStallman(StendhalRPZone zone) {
 		SpeakerNPC stallman = new SpeakerNPC("Richard Stallman") {
 
+			@Override
+			protected void say(String text, boolean turnToPlayer) {
+				setDirection(Direction.DOWN);
+				super.say(text);
+
+			}
+			
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();

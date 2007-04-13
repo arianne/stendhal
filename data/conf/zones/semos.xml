@@ -414,6 +414,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
  </zone>
 
    <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.RichardStallmanNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
