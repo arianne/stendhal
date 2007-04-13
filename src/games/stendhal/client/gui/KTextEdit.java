@@ -1,10 +1,21 @@
 package games.stendhal.client.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.Date;
 
-import javax.swing.*;
-import javax.swing.text.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 
 /**
  * User: lsoubrev122203 Date: May 9, 2005 Time: 10:02:40 AM
@@ -162,6 +173,38 @@ public class KTextEdit extends JPanel {
 	public void addLine(String line) {
 		addLine(line, Color.black);
 	}
+	
+	private void scrollToBottom() {
+		// This didn't scroll all the way down. :(
+		// textPane.setCaretPosition(textPane.getDocument().getLength());
+		
+		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
+
+		// Note that this is ugly code that has been mostly written using
+		// trial-and-error.
+		// TODO: It should be reviewed/rewritten by someone who knows about
+		// threads in Swing.
+		if (SwingUtilities.isEventDispatchThread()) {
+			// you can't call invokeAndWait from the event dispatch thread. 
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					vbar.setValue(vbar.getMaximum());
+				}
+			});
+		} else {
+			try {
+				// We need to wait because we must not print further lines
+				// before we have scrolled down.
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						vbar.setValue(vbar.getMaximum());					
+					}
+				});
+			} catch (Exception e) {
+				e.printStackTrace();					
+			}
+		}
+	}
 
 
 	/**
@@ -175,6 +218,13 @@ public class KTextEdit extends JPanel {
 	 *            the desired color
 	 */
 	public synchronized void addLine(String header, String line, Color color) {
+
+		// Goal of the new code is making it easier to read older messages:
+		// The client should only scroll down automatically if the scrollbar
+		// was at the bottom before.
+		// There were some bugs, so it is disabled until there is time to fix it.
+		boolean useNewCode = false;
+		
 		// Determine whether the scrollbar is currently at the very bottom
 		// position. We will only auto-scroll down if the user is not currently
 		// reading old texts (like IRC clients do).
@@ -197,24 +247,14 @@ public class KTextEdit extends JPanel {
 		insertHeader(header);
 		insertText(line, color);
 
-		if (autoScroll) {
-			// This didn't scroll all the way down.
-			// textPane.setCaretPosition(textPane.getDocument().getLength());
-			
-			// This works better, but needs some more testing on different
-			// platforms.
-			// We need to wait because we must not print further lines
-			// before we have scrolled down.
-			try {
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						vbar.setValue(vbar.getMaximum());					
-					}
-				});
-			} catch (Exception e) {
-				e.printStackTrace();
+		if (useNewCode) {
+			if (autoScroll) {
+				scrollToBottom();
 			}
+		} else {
+			textPane.setCaretPosition(textPane.getDocument().getLength());
 		}
+
 	}
 
 	/**
