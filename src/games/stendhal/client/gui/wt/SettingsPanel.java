@@ -105,7 +105,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		}
 
 		buddies.registerCloseListener(this);
-		buddies.setVisible(true);
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);

@@ -24,7 +24,8 @@ public class BuddyListDialog extends InternalManagedDialog {
 	public BuddyListDialog(StendhalUI ui) {
 		super("buddies", "Buddies");
 
-		setContent(new BuddyListPanel(ui));
+		content = new BuddyListPanel(ui);
+		setContent(content);
 	}
 
 	//
