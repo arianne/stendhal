@@ -180,29 +180,16 @@ public class KTextEdit extends JPanel {
 		
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 
-		// Note that this is ugly code that has been mostly written using
-		// trial-and-error.
-		// TODO: It should be reviewed/rewritten by someone who knows about
-		// threads in Swing.
-		if (SwingUtilities.isEventDispatchThread()) {
-			// you can't call invokeAndWait from the event dispatch thread. 
-			SwingUtilities.invokeLater(new Runnable() {
+		try {
+			// We need to wait because we must not print further lines
+			// before we have scrolled down.
+			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					vbar.setValue(vbar.getMaximum());
+					vbar.setValue(vbar.getMaximum());					
 				}
 			});
-		} else {
-			try {
-				// We need to wait because we must not print further lines
-				// before we have scrolled down.
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						vbar.setValue(vbar.getMaximum());					
-					}
-				});
-			} catch (Exception e) {
-				e.printStackTrace();					
-			}
+		} catch (Exception e) {
+			e.printStackTrace();					
 		}
 	}
 
@@ -249,7 +236,16 @@ public class KTextEdit extends JPanel {
 
 		if (useNewCode) {
 			if (autoScroll) {
-				scrollToBottom();
+				if (SwingUtilities.isEventDispatchThread()) {
+					// you can't call invokeAndWait from the event dispatch thread.
+					new Thread() {
+						public void run() {
+							scrollToBottom();
+						}
+					}.start();
+				} else {
+					scrollToBottom();
+				}
 			}
 		} else {
 			textPane.setCaretPosition(textPane.getDocument().getLength());
