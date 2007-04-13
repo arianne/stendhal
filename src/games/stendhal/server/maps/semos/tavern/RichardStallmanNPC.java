@@ -40,9 +40,12 @@ public class RichardStallmanNPC {
 			protected void createDialog() {
 				addGreeting("Welcome to Stendhal! True free software!.");
 				addJob("I am the #free software evangelizer! I am the founder of GNU.");
-				addHelp("Help Stendhal to be even better. Donate your time, tell your friends to play, create maps.");
+				addHelp("Help #Stendhal to be even better. Donate your time, tell your friends to play, create maps.");
 				addReply("free",
-						"''Free software'' is a matter of liberty, not price. To understand the concept, you should think of ''free'' as in ''free speech,'' not as in ''free beer''.");
+					"''Free software'' is a matter of liberty, not price. To understand the concept, you should think of ''free'' as in ''free speech,'' not as in ''free beer''.");
+				addReply("stendhal",
+					"Stendhal is free software. You can run, copy, distribute, study, change and improve this software.");
+				
 				addGoodbye();
 			}
 		};
