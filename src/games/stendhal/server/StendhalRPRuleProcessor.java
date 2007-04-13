@@ -112,7 +112,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public static void register(String action, ActionListener actionClass) {
 		if (actionsMap.get(action) != null) {
-			logger.error("Registering twice the same action handler: " + action);
+			logger.error("Registering twice (previous was "+actionsMap.get(action).getClass()+") the same action handler: " + action+ " with "+actionClass.getClass());
 		}
 		actionsMap.put(action, actionClass);
 	}
@@ -134,7 +134,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		QuestListAction.register();
 		StopAction.register();
 		UseAction.register();
-                CreateGuildAction.register();
+        CreateGuildAction.register();
 	}
 
 	private StendhalRPRuleProcessor() {
