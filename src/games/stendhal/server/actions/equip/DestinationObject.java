@@ -224,8 +224,8 @@ class DestinationObject extends MoveableObject {
 
 			StendhalRPWorld.get().modify(parent);
 		} else {
-			// drop the entity to the ground. Do this always in the players
-			// zone
+			// drop the entity to the ground. Do this always in the player's
+			// zone.
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 			logger.debug("adding " + entity.get("name") + " to " + zone);
 
@@ -241,7 +241,7 @@ class DestinationObject extends MoveableObject {
 			zone.assignRPObjectID(entity);
 			logger.debug("entity has valid id: " + entity.getID());
 
-			zone.add(entity);
+			zone.add(entity, player);
 		}
 		return true;
 	}
