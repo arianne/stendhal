@@ -9,15 +9,15 @@
 
  <zone name="int_afterlife" file="int_afterlife.xstend">
   <portal x="30" y="6" ref="exit_left">
-   <destination zone="0_semos_city" ref="restart_life"/>
+   <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
 
   <portal x="31" y="6" ref="exit_center">
-   <destination zone="0_semos_city" ref="restart_life"/>
+   <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
 
   <portal x="32" y="6" ref="exit_right">
-   <destination zone="0_semos_city" ref="restart_life"/>
+   <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
             
   <entity x="29" y="22">
@@ -25,7 +25,7 @@
     <parameter name="text">
 Sorry, you have died.
 You lost some of your items and 10% of your experience points.
-Be more careful in future!
+Be more careful in the future!
 
 Walk on, and you will be returned to the land of the living...
     </parameter>
@@ -37,7 +37,7 @@ Walk on, and you will be returned to the land of the living...
     <parameter name="text">
 Sorry, you have died.
 You lost some of your items and 10% of your experience points.
-Be more careful in future!
+Be more careful in the future!
 
 Walk on, and you will be returned to the land of the living...
     </parameter>

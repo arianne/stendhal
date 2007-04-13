@@ -1037,7 +1037,7 @@ Mature sheep wanted: please speak to Sato
  <zone name="-3_semos_jail" level="-3" x="499872" y="500000" file="sub_3_semos_jail_walk.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.jail.NoMoveTo"/>
   <portal x="59" y="67" ref="jail_entrance_left">
-   <destination zone="0_semos_city" ref="restart_life"/>
+   <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
  
  </zone>
