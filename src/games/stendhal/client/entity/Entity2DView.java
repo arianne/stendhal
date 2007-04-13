@@ -14,7 +14,9 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.stendhal;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -44,9 +46,9 @@ public abstract class Entity2DView { // implements EntityView {
 	protected Sprite sprite;
 
 	/**
-	 * The entity visibility (0.0 - 1.0).
+	 * The entity drawing composite.
 	 */
-	protected double	visibility;
+	protected Composite	entityComposite;
 
 
 	/**
@@ -58,7 +60,7 @@ public abstract class Entity2DView { // implements EntityView {
 		this.entity = entity;
 
 		changeSerial = entity.getChangeSerial();
-		visibility = 1.0;
+		entityComposite = AlphaComposite.SrcOver;
 	}
 
 
@@ -100,7 +102,13 @@ public abstract class Entity2DView { // implements EntityView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		Composite oldComposite;
+
+
+		oldComposite = g2d.getComposite();
+		g2d.setComposite(entityComposite);
 		drawEntity(screen, g2d, x, y, width, height);
+		g2d.setComposite(oldComposite);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
 			g2d.setColor(Color.blue);
@@ -212,5 +220,6 @@ public abstract class Entity2DView { // implements EntityView {
 	 * Update representation.
 	 */
 	protected void update() {
+		entityComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, entity.getVisibility() / 100.0f);
 	}
 }
