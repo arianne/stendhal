@@ -58,7 +58,7 @@
 		</description>
 		<attributes>
 			<atk value="11"/>
-			<def value="9"/>
+			<def value="6"/>
 			<hp value="20"/>
 			<speed value="0.5"/>
 			<size value="1,1"/>
