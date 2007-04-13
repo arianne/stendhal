@@ -1,21 +1,10 @@
 package games.stendhal.client.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.Date;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
+import javax.swing.*;
+import javax.swing.text.*;
+import java.awt.*;
 
 /**
  * User: lsoubrev122203 Date: May 9, 2005 Time: 10:02:40 AM
@@ -31,7 +20,9 @@ public class KTextEdit extends JPanel {
 
 	private JTextPane textPane;
 
-	private JScrollPane scrollPane;
+	private JScrollPane paneScrollPane;
+
+	private int lineNumber;
 
 	/**
 	 * Basic Constructor
@@ -49,8 +40,8 @@ public class KTextEdit extends JPanel {
 		textPane.setAutoscrolls(true);
 		initStylesForTextPane(textPane);
 		setLayout(new BorderLayout());
-		scrollPane = new JScrollPane(textPane);
-		add(scrollPane, BorderLayout.CENTER);
+		paneScrollPane = new JScrollPane(textPane);
+		add(paneScrollPane, BorderLayout.CENTER);
 	}
 
 	/**
@@ -100,15 +91,14 @@ public class KTextEdit extends JPanel {
 	/**
 	 * clear the text
 	 */
-	// Not needed, consider deletion
-//	public void clearText() {
-//		textPane.setText("");
-//	}
+	public void clearText() {
+		textPane.setText("");
+	}
 
 	/**
 	 * insert a header
 	 */
-	private void insertHeader(String header) {
+	public void insertHeader(String header) {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
@@ -119,7 +109,7 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	private void insertTimestamp(String header) {
+	public void insertTimestamp(String header) {
 		Document doc = textPane.getDocument();
 		try {
 			if (header.length() > 0) {
@@ -130,7 +120,7 @@ public class KTextEdit extends JPanel {
 		}
 	}
 
-	private void insertText(String text, Color color) {
+	public void insertText(String text, Color color) {
 		Document doc = textPane.getDocument();
 		try {
 			String[] parts = text.split("#");
@@ -150,15 +140,8 @@ public class KTextEdit extends JPanel {
 				doc.insertString(doc.getLength(), pieces, getColor(color));
 				i++;
 			}
-		} catch (BadLocationException ble) {
-			System.err.println("Couldn't insert initial text.");
-		}
-	}
-	
-	private void insertNewline() {
-		Document doc = textPane.getDocument();
-		try {
-			doc.insertString(doc.getLength(), "\r\n", getColor(Color.black));
+
+			doc.insertString(doc.getLength(), "\r\n", getColor(color));
 		} catch (BadLocationException ble) {
 			System.err.println("Couldn't insert initial text.");
 		}
@@ -173,38 +156,6 @@ public class KTextEdit extends JPanel {
 	public void addLine(String line) {
 		addLine(line, Color.black);
 	}
-	
-	private void scrollToBottom() {
-		// This didn't scroll all the way down. :(
-		// textPane.setCaretPosition(textPane.getDocument().getLength());
-		
-		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-
-		// Note that this is ugly code that has been mostly written using
-		// trial-and-error.
-		// TODO: It should be reviewed/rewritten by someone who knows about
-		// threads in Swing.
-		if (SwingUtilities.isEventDispatchThread()) {
-			// you can't call invokeAndWait from the event dispatch thread. 
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					vbar.setValue(vbar.getMaximum());
-				}
-			});
-		} else {
-			try {
-				// We need to wait because we must not print further lines
-				// before we have scrolled down.
-				SwingUtilities.invokeAndWait(new Runnable() {
-					public void run() {
-						vbar.setValue(vbar.getMaximum());					
-					}
-				});
-			} catch (Exception e) {
-				e.printStackTrace();					
-			}
-		}
-	}
 
 
 	/**
@@ -217,44 +168,25 @@ public class KTextEdit extends JPanel {
 	 * @param color
 	 *            the desired color
 	 */
-	public synchronized void addLine(String header, String line, Color color) {
-
-		// Goal of the new code is making it easier to read older messages:
-		// The client should only scroll down automatically if the scrollbar
-		// was at the bottom before.
-		// There were some bugs, so it is disabled until there is time to fix it.
-		boolean useNewCode = false;
-		
-		// Determine whether the scrollbar is currently at the very bottom
-		// position. We will only auto-scroll down if the user is not currently
-		// reading old texts (like IRC clients do).
-		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-		
-		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
-//		System.out.println();
-//		System.out.println(line);
-//		System.out.println("value:      " + vbar.getValue());
-//		System.out.println("visible:    " + vbar.getVisibleAmount());
-//		System.out.println("maximum:    " + vbar.getMaximum());
-//		System.out.println("autoscroll: " + autoScroll);
-
-		insertNewline();
-
+	public void addLine(String header, String line, Color color) {
 		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
 		String dateString = formatter.format(new Date());
-		insertTimestamp(dateString);
 
+		insertTimestamp(dateString);
 		insertHeader(header);
 		insertText(line, color);
 
-		if (useNewCode) {
-			if (autoScroll) {
-				scrollToBottom();
-			}
-		} else {
-			textPane.setCaretPosition(textPane.getDocument().getLength());
-		}
+		textPane.setCaretPosition(textPane.getDocument().getLength());
+		lineNumber++;
+	}
 
+	/**
+	 * give the number of inserted lines
+	 * 
+	 * @return the number of inserted lines
+	 */
+	public int getLineNumber() {
+		return lineNumber;
 	}
 
 	/**
