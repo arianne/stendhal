@@ -24,14 +24,12 @@ import marauroa.common.game.IRPZone;
  * - Old Mother Helena tells you the ingredients of a special soup
  * - You collect the ingredients 
  * - You bring the ingredients to the tavern 
- * - Collecting them all gives you a base mana bonus
  * - The soup is served at table
  * - Eating the soup heals you fully
  *  
  *  
  * REWARD:
  * - heal
- * - base mana bonus of 10
  * - 100 XP
  * 
  * REPETITIONS:
@@ -244,11 +242,9 @@ public class Soup extends AbstractQuest {
 								npc.say("Thank you very much! What else did you bring?");
 							} else {
 								placeSoupFor(player);
-
-								player.addBaseMana(10); // i don't know what number to choose here as i don't know about mana.
 								player.addXP(100);
 								player.healPoison();
-								npc.say("The soup's on the table for you. It will heal you. My magical method in making the soup has increased your base mana.");
+								npc.say("The soup's on the table for you. It will heal you.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.ATTENDING);
