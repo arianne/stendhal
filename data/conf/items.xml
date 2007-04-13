@@ -199,7 +199,7 @@ in the file.
 	</item>
 	<item name="elvish_sword">
 		<type class="sword" subclass="elvish_sword"/>
-		<description>This an elvish sword. It looks like done of tree leaves!.</description>
+		<description>This an elvish sword. It looks like it is made from tree leaves!</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<atk value="26"/>
@@ -245,7 +245,7 @@ in the file.
     
 	<item name="immortal_sword">
 		<type class="sword" subclass="magic_sword"/>
-		<description>This immortal sword is a gift of gods to the choosen one. It is heavy and of excellent
+		<description>This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite
 		craftmanship.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
@@ -1058,7 +1058,7 @@ Makes players more offensive
 
     <item name="green_dragon_shield">
 		<type class="shield" subclass="green_dragon_shield"/>
-                <description>You see an green dragon shield.</description>
+                <description>You see an green dragon shield, scaly and strong.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="30"/>
@@ -1073,7 +1073,8 @@ Makes players more offensive
 
     <item name="golden_shield">
 		<type class="shield" subclass="golden_shield"/>
-                <description>You see a golden shield, the ultimate in defence.</description>
+                <description>You see a golden shield, it could be the ultimate
+                in defence.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="34"/>
@@ -1088,7 +1089,8 @@ Makes players more offensive
 
     <item name="shadow_shield">
 		<type class="shield" subclass="shadow_shield"/>
-                <description>You see a shadow shield</description>
+                <description>You see a shadow shield. Rather than reflecting
+                light, it seems to absorb it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="36"/>
@@ -1210,7 +1212,7 @@ Makes players more offensive
 	<item name="chain_armor_+1">
 		<type class="armor" subclass="enhanced_chainmail"/>
                 <description>You see a robust suit of chain armor +1. The
-                links are closely spaces so even the sharpest point shoudl not
+                links are closely spaced so even the sharpest point should not
                 pierce it.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
@@ -1330,7 +1332,7 @@ Makes players more offensive
 	<item name="shadow_armor">
 		<type class="armor" subclass="shadow_armor"/>
                 <description>You see a suit of
-                shadow armor. It's hard to decide with what it is done, it is so dark.</description>
+                shadow armor. It's hard to decide with what it is made, it is so dark.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="17"/>
@@ -1360,7 +1362,7 @@ Makes players more offensive
 
 	<item name="magic_plate_armor">
 		<type class="armor" subclass="magic_plate_armor"/>
-                <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. It has been magically enhanced</description> 
+                <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. It has been magically enhanced.</description> 
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="24"/>
@@ -1475,7 +1477,8 @@ Makes players more offensive
 
 	<item name="shadow_helmet">
 		<type class="helmet" subclass="shadow_helmet"/>
-                <description>You see a heavy shadow helmet.</description>
+                <description>You see a heavy shadow helmet. Instead of
+                shining, it darkly gleams.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="10"/>
@@ -1604,7 +1607,8 @@ Makes players more offensive
 
     <item name="shadow_legs">
 		<type class="legs" subclass="shadow_legs"/>
-                <description>You see a pair of shadow legs.</description>
+                <description>You see a pair of shadow legs. The weight of them
+                is incredible.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="9"/>
@@ -1708,7 +1712,7 @@ Makes players more offensive
 
     <item name="shadow_boots">
 		<type class="boots" subclass="shadow_boots"/>
-		<description>You see a pair of shadow boots. You can't found out what they are made of</description>
+		<description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="9"/>
@@ -1782,7 +1786,7 @@ Makes players more offensive
 
 	<item name="elvish_cloak">
 		<type class="cloak" subclass="elvish_cloak"/>
-                <description>You see an elvish cloak. The material is
+                <description>You see an elvish cloak. The material is dark, but
                 thick and warm.</description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
@@ -3111,6 +3115,15 @@ Makes players more offensive
 		</equipable>
 	</item>
 	
+	<item name="engagement_ring">
+		<type class="ring" subclass="engagement_ring"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="bag"/>
+			<slot name="finger"/>
+		</equipable>
+	</item>
 	
 	
 <!-- Scrolls_section -->
