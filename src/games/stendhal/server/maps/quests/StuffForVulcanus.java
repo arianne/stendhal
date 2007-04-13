@@ -1,6 +1,7 @@
 package games.stendhal.server.maps.quests;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import games.stendhal.common.Grammar;
@@ -13,19 +14,19 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
 /**
- * QUEST: The Magic Sword forging
+ * QUEST: The immortal sword forging
  * 
  * PARTICIPANTS:
  * - Vulcanus, son of Zeus itself, will forge for you the god's sword.
  * 
  * STEPS:
  * - Vulcanus tells you about the sword.
- * - He offers to forge a magic sword for you if you bring him what it needs. 
+ * - He offers to forge a immortal sword for you if you bring him what it needs. 
  * - You give him all what he ask you. 
- * - Vulcanus forges the magic sword for you
+ * - Vulcanus forges the immortal sword for you
  * 
  * REWARD:
- * - Magic Sword
+ * - immortal sword
  * - 15000 XP
  * 
  *
@@ -38,7 +39,7 @@ public class StuffForVulcanus extends AbstractQuest {
 	private static final int REQUIRED_WOOD = 26;
 	private static final int REQUIRED_GIANT_HEART = 6;
 	private static final int REQUIRED_TIME = 10;
-	private static final String QUEST_SLOT = "magicsword_quest";
+	private static final String QUEST_SLOT = "immortalsword_quest";
 
 	@Override
 	public void init(String name) {
@@ -105,7 +106,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				&& player.getQuest(QUEST_SLOT).startsWith("start");		    
 			}
 		},
-		ConversationStates.QUEST_ITEM_BROUGHT,
+		ConversationStates.ATTENDING,
 		null,
 		new SpeakerNPC.ChatAction() {
 			@Override
@@ -126,7 +127,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							neededIron-=amount;
 						}
 
-						engine.say("How do you expect me to #forge it without missing #"+Grammar.quantityplnoun(neededIron, "iron bar")+"?");
+						engine.say("How do you expect me to #forge it without missing "+Grammar.quantityplnoun(neededIron, "iron bar")+"?");
 						missingSomething=true;
 					} else {
 						player.drop("iron",neededIron);
@@ -142,7 +143,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							neededWoodLogs-=amount;
 						}
 						
-						engine.say("How do you expect me to #forge it without missing #"+Grammar.quantityplnoun(neededWoodLogs, "wood log")+" for the fire?");
+						engine.say("How do you expect me to #forge it without missing "+Grammar.quantityplnoun(neededWoodLogs, "wood log")+" for the fire?");
 						missingSomething=true;
 					} else {
 						player.drop("wood",neededWoodLogs);
@@ -157,7 +158,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							player.drop("gold_bar",amount);
 							neededGoldBars-=amount;
 						}
-						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need #"+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
+						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need "+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("gold_bar",neededGoldBars);
@@ -172,7 +173,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							player.drop("giant_heart",amount);
 							neededGiantHearts-=amount;
 						}
-						engine.say("It is the base element of the enchantment. I do really need some #"+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" more.");
+						engine.say("It is the base element of the enchantment. I do really need some "+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("giant_heart",neededGiantHearts);
@@ -181,7 +182,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				}
 
 				if(!missingSomething) {
-					engine.say("You've brought everything I need to make the vampire sword. Come back in "+
+					engine.say("You've brought everything I need to make the immortal sword. Come back in "+
 							REQUIRED_TIME + " minutes and it will be ready");
 					player.setQuest(QUEST_SLOT,
 							"forging;" + System.currentTimeMillis());
@@ -222,9 +223,9 @@ public class StuffForVulcanus extends AbstractQuest {
 					return;
 				}
 
-				engine.say("I have finished forging the mighty magic sword. You deserve this. Now i'm going back to work, goodbye!");
+				engine.say("I have finished forging the mighty immortal sword. You deserve this. Now i'm going back to work, goodbye!");
 				player.addXP(15000);
-				Item magicSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("magic_sword");
+				Item magicSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("immortal_sword");
 				magicSword.put("bound", player.getName());
 				player.equip(magicSword, true);
 				player.notifyWorldAboutChanges();			
@@ -232,35 +233,47 @@ public class StuffForVulcanus extends AbstractQuest {
 			}
 		});
 
-		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
-				"forge",			
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("forge", "missing"),			
 				null, 
-				ConversationStates.QUEST_ITEM_BROUGHT,
-				"I will need "+REQUIRED_IRON+" #iron, "+REQUIRED_WOOD+" #wood logs, "+REQUIRED_GOLD_BAR+" #gold bars and "+REQUIRED_GIANT_HEART+" #giant hearts",
-				null);
+				ConversationStates.ATTENDING,
+				null,
+				new SpeakerNPC.ChatAction() {
+					@Override
+					public void fire(Player player, String text, SpeakerNPC engine) {
+						String[] tokens = player.getQuest(QUEST_SLOT).split(";");
+						
+						int neededIron=REQUIRED_IRON-Integer.parseInt(tokens[1]);
+						int neededWoodLogs=REQUIRED_WOOD-Integer.parseInt(tokens[2]);
+						int neededGoldBars=REQUIRED_GOLD_BAR-Integer.parseInt(tokens[3]);
+						int neededGiantHearts=REQUIRED_GIANT_HEART-Integer.parseInt(tokens[4]);
+
+						engine.say("I will need "+neededIron+" #iron, "+neededWoodLogs+" #wood logs, "+neededGoldBars+" #gold bars and "+neededGiantHearts+" #giant hearts.");
+					}
+				});
 
 		npc.add(ConversationStates.ANY,
 				"iron",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"You know, collect the iron ore lying around and get it cast! Bye!",
 				null);
 		npc.add(ConversationStates.ANY,
 				"wood",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"The forest is full of wood logs.",
 				null);
 		npc.add(ConversationStates.ANY,
 				"gold",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"Someone in Ados would forge the gold into gold bars for you.",
 				null);
 		npc.add(ConversationStates.ANY,
 				"giant",			
 				null, 
-				ConversationStates.IDLE,
+				ConversationStates.ATTENDING,
 				"Long time ago forgotten histories talked about giants on the mountains at the north of Semos.",
 				null);
 }
