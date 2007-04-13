@@ -174,38 +174,46 @@ public class KTextEdit extends JPanel {
 	 * @param color
 	 *            the desired color
 	 */
-	public void addLine(String header, String line, Color color) {
+	public synchronized void addLine(String header, String line, Color color) {
 		// Determine whether the scrollbar is currently at the very bottom
 		// position. We will only auto-scroll down if the user is not currently
 		// reading old texts (like IRC clients do).
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 		
+		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
 //		System.out.println();
+//		System.out.println(line);
 //		System.out.println("value:      " + vbar.getValue());
 //		System.out.println("visible:    " + vbar.getVisibleAmount());
 //		System.out.println("maximum:    " + vbar.getMaximum());
-		// The + 10 was determined by trial-and-error. I don't know
-		// why it doesn't work properly without it. It probably has
-		// to do with the newline at the end. 
-		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
 //		System.out.println("autoscroll: " + autoScroll);
+
+		insertNewline();
 
 		java.text.Format formatter = new java.text.SimpleDateFormat("[HH:mm] ");
 		String dateString = formatter.format(new Date());
-
-		insertNewline();
 		insertTimestamp(dateString);
+
 		insertHeader(header);
 		insertText(line, color);
 
 		if (autoScroll) {
 			// This didn't scroll all the way down.
 			// textPane.setCaretPosition(textPane.getDocument().getLength());
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					vbar.setValue(vbar.getMaximum());					
-				}
-			});
+			
+			// This works better, but needs some more testing on different
+			// platforms.
+			// We need to wait because we must not print further lines
+			// before we have scrolled down.
+			try {
+				SwingUtilities.invokeAndWait(new Runnable() {
+					public void run() {
+						vbar.setValue(vbar.getMaximum());					
+					}
+				});
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
