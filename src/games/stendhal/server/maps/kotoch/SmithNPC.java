@@ -41,20 +41,20 @@ public class SmithNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Chairetismata! I am Vulcanus the smither.");
 				addGoodbye("Farewell");
-				addHelp("I may help you to get a very #special items for only a few ones.");
-				addJob("I used to forge weapons for the King of Faumoni, but this was long ago, since now the bridge is blocked.");
+				addHelp("I may help you to get a very #special item for only a few others...");
+				addJob("I used to forge weapons for the King of Faiumoni, but this was long ago, since now the way is blocked.");
 				
 				add(
 				        ConversationStates.ATTENDING,
 				        Arrays.asList("special"),
 				        null,
 				        ConversationStates.ATTENDING,
-				        "Who told you that!?! *cough* Anyway, yes, I can forge an very special item for you. But you will need to run the #quest",
+				        "Who told you that!?! *cough* Anyway, yes, I can forge a very special item for you. But you will need to complete a #quest",
 				        null);
 			}
 		};
 
-		smith.setDescription("You see vulcanus. You feel a strange sensation near him.");
+		smith.setDescription("You see Vulcanus. You feel a strange sensation near him.");
 		zone.assignRPObjectID(smith);
 		smith.put("class", "smithnpc");
 		smith.set(62, 114);
