@@ -19,7 +19,9 @@ import games.stendhal.server.actions.AttackAction;
 import games.stendhal.server.actions.AwayAction;
 import games.stendhal.server.actions.BuddyAction;
 import games.stendhal.server.actions.ChatAction;
+import games.stendhal.server.actions.CreateGuildAction;
 import games.stendhal.server.actions.DisplaceAction;
+import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.FaceAction;
 import games.stendhal.server.actions.LookAction;
 import games.stendhal.server.actions.MoveAction;
@@ -29,7 +31,6 @@ import games.stendhal.server.actions.PlayersQuery;
 import games.stendhal.server.actions.QuestListAction;
 import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
-import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -111,7 +112,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public static void register(String action, ActionListener actionClass) {
 		if (actionsMap.get(action) != null) {
-			logger.error("Registering twice the same action handler: " + action);
+			logger.error("Registering twice (previous was "+actionsMap.get(action).getClass()+") the same action handler: " + action+ " with "+actionClass.getClass());
 		}
 		actionsMap.put(action, actionClass);
 	}
@@ -133,6 +134,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		QuestListAction.register();
 		StopAction.register();
 		UseAction.register();
+        CreateGuildAction.register();
 	}
 
 	private StendhalRPRuleProcessor() {
