@@ -410,7 +410,10 @@
 			<fileset dir="src"/>
 		</copy>
 		<copy todir="${buildroot}/stendhal-${version}-src/data">
-			<fileset dir="data"/>
+			<fileset dir="data">
+                <!-- There is a 4MB OGG there! -->
+				<exclude name="music/**/*"/>
+            </fileset>
 		</copy>
 
 		<copy todir="${buildroot}/stendhal-server-${version}/web">
