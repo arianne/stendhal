@@ -41,7 +41,7 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Welcome to Stendhal! True #free software!.");
+				addGreeting("Welcome to Stendhal! True #free software!");
 				addJob("I am the #free software evangelizer! I am the founder of GNU.");
 				addHelp("Help #Stendhal to be even better. Donate your time, tell your friends to play, create maps.");
 				addReply("free",
