@@ -58,7 +58,7 @@
 		</description>
 		<attributes>
 			<atk value="11"/>
-			<def value="9"/>
+			<def value="6"/>
 			<hp value="20"/>
 			<speed value="0.5"/>
 			<size value="1,1"/>
@@ -2776,10 +2776,10 @@
 	</creature>
 	
 	<!-- Level 49 -->
-	<creature name="dark_elf_archer.png">
-		<type class="dark_elf" subclass="dark_elf_archer.png" tileid="161"/>
+	<creature name="dark_elf_archer">
+		<type class="dark_elf" subclass="dark_elf_archer" tileid="161"/>
 		<attributes>
-			<atk value="184"/>
+			<atk value="134"/>
 			<def value="20"/>
 			<hp value="130"/>
 			<speed value="1"/>
@@ -2787,7 +2787,7 @@
 		</attributes>
 		<level value="49"/>
 		<experience value="700"/>
-		<respawn value="900"/>
+		<respawn value="1500"/>
 		<drops>
 			<item value="money" quantity="[15,80]" probability="100"/>
 			<item value="steel_arrow" quantity="[10,20]" probability="40"/>
@@ -2917,7 +2917,7 @@
 	<creature name="dark_elf_elite_archer">
 		<type class="dark_elf" subclass="dark_elf_elite_archer" tileid="163"/>
 		<attributes>
-			<atk value="184"/>
+			<atk value="164"/>
 			<def value="20"/>
 			<hp value="130"/>
 			<speed value="1"/>
@@ -2925,7 +2925,7 @@
 		</attributes>
 		<level value="49"/>
 		<experience value="700"/>
-		<respawn value="900"/>
+		<respawn value="15000"/>
 		<drops>
 			<item value="money" quantity="[15,80]" probability="100"/>
 			<item value="golden_arrow" quantity="[10,20]" probability="40"/>
@@ -2956,7 +2956,7 @@
 		</attributes>
 		<level value="52"/>
 		<experience value="7000"/>
-		<respawn value="25000"/>
+		<respawn value="9000"/>
 		<drops>
 			<item value="money" quantity="[4,60]" probability="100"/>
 			<item value="biting_sword" quantity="1" probability="5"/>
@@ -3012,7 +3012,7 @@
 			<size value="3,4"/>
 		</attributes>
 		<level value="55"/>
-		<experience value="7300"/>
+		<experience value="4000"/>
 		<respawn value="19000"/>
 		<drops>
 			<item value="money" quantity="[10,120]" probability="100"/>
@@ -3071,7 +3071,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="60"/>
-		<experience value="8900"/>
+		<experience value="3500"/>
 		<respawn value="2700"/>
 		<drops>
 			<item value="money" quantity="[5,90]" probability="100"/>
@@ -3099,7 +3099,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="60"/>
-		<experience value="9300"/>
+		<experience value="3900"/>
 		<respawn value="45000"/>
 		<drops>
 			<item value="greater_potion" quantity="1" probability="40"/>
@@ -3169,7 +3169,7 @@
 		</attributes>
 		<level value="65"/>
 		<experience value="10000"/>
-		<respawn value="6000"/>
+		<respawn value="14800"/>
 		<drops>
 			<item value="money" quantity="[50,100]" probability="100"/>
 			<item value="golden_shield" quantity="1" probability="1"/>
@@ -3228,7 +3228,7 @@
 		</attributes>
 		<level value="70"/>
 		<experience value="12000"/>
-		<respawn value="60000"/>
+		<respawn value="17000"/>
 		<drops>
 			<item value="money" quantity="[50,300]" probability="100"/>
 			<item value="golden_shield" quantity="1" probability="1"/>
@@ -3249,15 +3249,15 @@
     <creature name="blue_dragon">
 		<type class="huge_animal" subclass="blue_dragon" tileid="52"/>
 		<attributes>
-			<atk value="180"/>
-			<def value="25"/>
+			<atk value="210"/>
+			<def value="35"/>
 			<hp value="900"/>
 			<speed value="1"/>
 			<size value="3,4"/>
 		</attributes>
 		<level value="70"/>
 		<experience value="12500"/>
-		<respawn value="65000"/>
+		<respawn value="22000"/>
 		<drops>
 			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
 			<item value="greater_potion" quantity="[1,2]" probability="80"/>
@@ -3279,7 +3279,7 @@
 	<creature name="dark_elf_wizard">
 		<type class="dark_elf" subclass="dark_elf_wizard" tileid="170"/>
 		<attributes>
-			<atk value="205"/>
+			<atk value="225"/>
 			<def value="35"/>
 			<hp value="700"/>
 			<speed value="1"/>
@@ -3287,7 +3287,7 @@
 		</attributes>
 		<level value="90"/>
 		<experience value="14000"/>
-		<respawn value="60000"/>
+		<respawn value="25200"/>
 		<drops>
 			<item value="money" quantity="[50,900]" probability="100"/>
 			<item value="greater_potion" quantity="[1,6]" probability="20"/>
@@ -3310,7 +3310,7 @@
 	<creature name="dark_elf_viceroy">
 		<type class="dark_elf" subclass="dark_elf_viceroy" tileid="169"/>
 		<attributes>
-			<atk value="220"/>
+			<atk value="245"/>
 			<def value="35"/>
 			<hp value="700"/>
 			<speed value="1"/>
@@ -3318,7 +3318,7 @@
 		</attributes>
 		<level value="100"/>
 		<experience value="16000"/>
-		<respawn value="60000"/>
+		<respawn value="28000"/>
 		<drops>
 			<item value="money" quantity="[50,900]" probability="100"/>
 			<item value="golden_shield" quantity="1" probability="10"/>
@@ -3341,7 +3341,7 @@
     <creature name="giant_spider">
 		<type class="huge_animal" subclass="giant_spider" tileid="155"/>
 		<attributes>
-			<atk value="220"/>
+			<atk value="255"/>
 			<def value="35"/>
 			<hp value="1200"/>
 			<speed value="1"/>
@@ -3349,7 +3349,7 @@
 		</attributes>
 		<level value="110"/>
 		<experience value="17000"/>
-		<respawn value="15000"/>
+		<respawn value="30000"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
 			<item value="money" quantity="[30,150]" probability="100"/>
@@ -3370,7 +3370,7 @@
     <creature name="giant">
 		<type class="giant_human" subclass="giant" tileid="172"/>
 		<attributes>
-			<atk value="250"/>
+			<atk value="270"/>
 			<def value="30"/>
 			<hp value="1200"/>
 			<speed value="1"/>
@@ -3378,7 +3378,7 @@
 		</attributes>
 		<level value="110"/>
 		<experience value="17700"/>
-		<respawn value="15000"/>
+		<respawn value="25900"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
 			<item value="giant_heart" quantity="1" probability="80"/>
@@ -3400,7 +3400,7 @@
     <creature name="dark_elf_sacerdotist">
 		<type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="168"/>
 		<attributes>
-			<atk value="210"/>
+			<atk value="260"/>
 			<def value="33"/>
 			<hp value="800"/>
 			<speed value="1"/>
@@ -3408,7 +3408,7 @@
 		</attributes>
 		<level value="125"/>
 		<experience value="18500"/>
-		<respawn value="30000"/>
+		<respawn value="36000"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
 			<item value="money" quantity="[30,850]" probability="100"/>
@@ -3428,15 +3428,15 @@
 	<creature name="red_dragon">
 		<type class="huge_animal" subclass="red_dragon" tileid="156"/>
 		<attributes>
-			<atk value="230"/>
-			<def value="25"/>
+			<atk value="250"/>
+			<def value="35"/>
 			<hp value="1200"/>
 			<speed value="1"/>
 			<size value="3,4"/>
 		</attributes>
 		<level value="125"/>
 		<experience value="19000"/>
-		<respawn value="65000"/>
+		<respawn value="36100"/>
 		<drops>
 			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
 			<item value="greater_potion" quantity="[2,4]" probability="80"/>
@@ -3456,15 +3456,15 @@
     <creature name="giant_elder">
 		<type class="giant_human" subclass="giant_elder" tileid="171"/>
 		<attributes>
-			<atk value="250"/>
-			<def value="32"/>
+			<atk value="270"/>
+			<def value="35"/>
 			<hp value="1800"/>
 			<speed value="1"/>
 			<size value="3,4"/>
 		</attributes>
 		<level value="135"/>
 		<experience value="20000"/>
-		<respawn value="45000"/>
+		<respawn value="36100"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
 			<item value="money" quantity="[30,900]" probability="100"/>
@@ -3485,15 +3485,15 @@
     <creature name="dark_elf_matronmother">
 		<type class="dark_elf" subclass="dark_elf_matronmother" tileid="166"/>
 		<attributes>
-			<atk value="220"/>
-			<def value="35"/>
+			<atk value="265"/>
+			<def value="40"/>
 			<hp value="1200"/>
 			<speed value="1"/>
 			<size value="1,2"/>
 		</attributes>
 		<level value="150"/>
 		<experience value="22000"/>
-		<respawn value="30000"/>
+		<respawn value="46500"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
 			<item value="money" quantity="[30,1500]" probability="100"/>
@@ -3506,7 +3506,7 @@
 			<profile name="brave"/>
 			<profile name="lifesteal" params="0.6"/>
 			<profile name="poisonous" params="15,greater_poison"/>
-			<profile name="heal" params="10,50"/>
+			<profile name="heal" params="25,50"/>
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
@@ -3516,15 +3516,15 @@
 	<creature name="black_dragon">
 		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
 		<attributes>
-			<atk value="250"/>
-			<def value="35"/>
+			<atk value="290"/>
+			<def value="42"/>
 			<hp value="2400"/>
 			<speed value="1"/>
 			<size value="6,8"/>
 		</attributes>
 		<level value="200"/>
 		<experience value="24000"/>
-		<respawn value="100000"/>
+		<respawn value="57200"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
 			<item value="money" quantity="[300,10000]" probability="100"/>
@@ -3536,10 +3536,44 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="heal" params="5,50"/>
+			<profile name="heal" params="35,50"/>
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+
+<!-- Level 300 -->
+    
+	<creature name="black_death">
+		<type class="huge_animal" subclass="black_death" tileid="159"/>
+		<attributes>
+			<atk value="390"/>
+			<def value="53"/>
+			<hp value="4800"/>
+			<speed value="1"/>
+			<size value="3,4"/>
+		</attributes>
+		<level value="300"/>
+		<experience value="90000"/>
+		<respawn value="94400"/>
+		<drops>
+			<item value="greater_potion" quantity="[3,20]" probability="50"/>
+			<item value="money" quantity="[3000,100000]" probability="100"/>
+			<item value="magic_plate_armor" quantity="1" probability="1"/>
+			<item value="shadow_shield" quantity="1" probability="5"/>
+			<item value="shadow_legs" quantity="1" probability="5"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="lifesteal" params="0.05"/>
+			<profile name="heal" params="35,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
+
 </creatures>
 <!-- To add
 -->

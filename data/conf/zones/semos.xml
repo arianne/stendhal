@@ -357,10 +357,6 @@ The tavern has moved into a more central location in Semos. Please come join us 
    <destination zone="int_semos_bakery" ref="entrance"/>
   </portal>
 
-  <portal x="12" y="49" ref="restart_life">
-   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
-  </portal>
-
   <entity x="4" y="41">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <parameter name="text">
@@ -418,6 +414,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
  </zone>
 
    <zone name="int_semos_tavern_0" file="int_semos_tavern_0.xstend">
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.RichardStallmanNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
@@ -466,6 +463,10 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <portal x="13" y="23" ref="entrance_right">
      <destination zone="0_semos_city" ref="temple_entrance"/>
     </portal>
+    
+    <portal x="11" y="10" ref="restart_life">
+   	 <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  	</portal>
    </zone>
 
    <zone name="int_semos_blacksmith" file="int_semos_blacksmith.xstend">
@@ -1037,7 +1038,7 @@ Mature sheep wanted: please speak to Sato
  <zone name="-3_semos_jail" level="-3" x="499872" y="500000" file="sub_3_semos_jail_walk.xstend">
   <configurator class-name="games.stendhal.server.maps.semos.jail.NoMoveTo"/>
   <portal x="59" y="67" ref="jail_entrance_left">
-   <destination zone="0_semos_city" ref="restart_life"/>
+   <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
  
  </zone>
@@ -1506,7 +1507,9 @@ Mature sheep wanted: please speak to Sato
 
  <zone name="-3_semos_catacombs" level="-3" x="500064" y="499872" file="sub_3_semos_catacombs.xstend">
   <entity x="60" y="60">
-	  <implementation class-name="games.stendhal.server.maps.semos.catacombs.SickVampireNPC">
+	  <!-- all dialogs for this NPC are quest-related, so we don't need a
+		   special SpeakerNPC factory for him. -->
+	  <implementation class-name="games.stendhal.server.entity.npc.SpeakerNPC">
 		  <parameter name="name">Markovich</parameter>
 		  <parameter name="class">sickvampirenpc</parameter>
 		  <parameter name="hp">10</parameter>
