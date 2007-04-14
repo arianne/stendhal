@@ -122,6 +122,18 @@ public class StendhalFirstScreen extends JFrame {
 		//
 		// creaditButton
 		//
+		JButton helpButton = new JButton();
+		helpButton.setText("Help");
+		helpButton.setMnemonic(KeyEvent.VK_H);
+		helpButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				showHelp();
+			}
+		});
+		//
+		// creaditButton
+		//
 		JButton creditButton = new JButton();
 		creditButton.setText("Credits");
 		creditButton.setMnemonic(KeyEvent.VK_C);
@@ -165,8 +177,9 @@ public class StendhalFirstScreen extends JFrame {
 			contentPane.add(X11KeyConfig.get());
 		}
 
-		addComponent(contentPane, loginButton, 220, 300, 200, 32);
-		addComponent(contentPane, createAccountButton, 220, 340, 200, 32);
+		addComponent(contentPane, loginButton, 220, 260, 200, 32);
+		addComponent(contentPane, createAccountButton, 220, 300, 200, 32);
+		addComponent(contentPane, helpButton, 220, 340, 200, 32);
 		addComponent(contentPane, creditButton, 220, 380, 200, 32);
 		addComponent(contentPane, exitButton, 220, 420, 200, 32);
 
@@ -190,8 +203,11 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void showCredits() {
-		checkVersion();
 		new CreditsDialog(StendhalFirstScreen.this);
+	}
+
+	private void showHelp() {
+		new HelpDialog();
 	}
 
 	private void checkVersion() {
