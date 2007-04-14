@@ -289,7 +289,11 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		zone.add(ramon);		
 
 		cardValues = new HashMap<String,Integer>();
-		String[] colors = {"♣", "♦", "♥", "♠"};
+		String[] colors = {
+						"\u2663",  // clubs ♣
+						"\u2666",  // diamonds ♦
+						"\u2665",  // hearts ♥
+						"\u2660"}; // spades ♠};
 		String[] pictures = {"J", "Q", "K"};
 		for (String color: colors) {
 			for (int i = 2; i <= 10; i++) {
