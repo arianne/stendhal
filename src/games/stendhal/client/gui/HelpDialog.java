@@ -62,11 +62,11 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 		splitPane.setTopComponent(treeView);
 		splitPane.setBottomComponent(htmlView);
 
-		Dimension minimumSize = new Dimension(200, 50);
+		Dimension minimumSize = new Dimension(50, 50);
 		htmlView.setMinimumSize(minimumSize);
 		treeView.setMinimumSize(minimumSize);
-		splitPane.setDividerLocation(200);
-		splitPane.setPreferredSize(new Dimension(500, 300));
+		splitPane.setDividerLocation(250);
+		splitPane.setPreferredSize(new Dimension(790, 580));
 
 		// Add the split pane to this panel.
 		add(splitPane);
@@ -132,12 +132,7 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 
 	private void createNodes(DefaultMutableTreeNode top) {
 		DefaultMutableTreeNode category = null;
-
-		category = new DefaultMutableTreeNode("Introduction");
-		top.add(category);
-
-		category.add(new DefaultMutableTreeNode(new BookInfo("1", "introduction.html")));
-
+		top.add(new DefaultMutableTreeNode(new BookInfo("Introduction", "introduction.html")));
 
 		category = new DefaultMutableTreeNode("Setting up the game");
 		top.add(category);
