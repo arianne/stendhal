@@ -36,114 +36,113 @@ public class HelpDialog extends JFrame {
 	 * Creates a new help dialog
 	 */
 	class HelpDialogPanel extends JPanel implements TreeSelectionListener {
-	public HelpDialogPanel() {
-		super(new GridLayout(1, 0));
+		public HelpDialogPanel() {
+			super(new GridLayout(1, 0));
 
-		// Create the nodes.
-		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Stendhal Manual");
-		createNodes(top);
+			// Create the nodes.
+			DefaultMutableTreeNode top = new DefaultMutableTreeNode(
+					"Stendhal Manual");
+			createNodes(top);
 
-		// Create a tree that allows one selection at a time.
-		tree = new JTree(top);
-		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+			// Create a tree that allows one selection at a time.
+			tree = new JTree(top);
+			tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-		// Listen for when the selection changes.
-		tree.addTreeSelectionListener(this);
+			// Listen for when the selection changes.
+			tree.addTreeSelectionListener(this);
 
-		// Create the scroll pane and add the tree to it.
-		JScrollPane treeView = new JScrollPane(tree);
+			// Create the scroll pane and add the tree to it.
+			JScrollPane treeView = new JScrollPane(tree);
 
-		// Create the HTML viewing pane.
-		htmlPane = new JEditorPane();
-		htmlPane.setEditable(false);
-		initHelp();
-		JScrollPane htmlView = new JScrollPane(htmlPane);
+			// Create the HTML viewing pane.
+			htmlPane = new JEditorPane();
+			htmlPane.setEditable(false);
+			initHelp();
+			JScrollPane htmlView = new JScrollPane(htmlPane);
 
-		// Add the scroll panes to a split pane.
-		JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
-		splitPane.setTopComponent(treeView);
-		splitPane.setBottomComponent(htmlView);
+			// Add the scroll panes to a split pane.
+			JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+			splitPane.setTopComponent(treeView);
+			splitPane.setBottomComponent(htmlView);
 
-		Dimension minimumSize = new Dimension(50, 50);
-		htmlView.setMinimumSize(minimumSize);
-		treeView.setMinimumSize(minimumSize);
-		splitPane.setDividerLocation(250);
-		splitPane.setPreferredSize(new Dimension(790, 580));
+			Dimension minimumSize = new Dimension(50, 50);
+			htmlView.setMinimumSize(minimumSize);
+			treeView.setMinimumSize(minimumSize);
+			splitPane.setDividerLocation(250);
+			splitPane.setPreferredSize(new Dimension(790, 580));
 
-		// Add the split pane to this panel.
-		add(splitPane);
-	}
-
-	/**
-	 * Update the browser window on selection change in the tree
-	 */
-	public void valueChanged(TreeSelectionEvent e) {
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-
-		if (node == null) {
-			return;
+			// Add the split pane to this panel.
+			add(splitPane);
 		}
 
-		Object nodeInfo = node.getUserObject();
-		if (node.isLeaf()) {
-			BookInfo book = (BookInfo) nodeInfo;
-			displayURL(book.bookURL);
-		} else {
+		/**
+		 * Update the browser window on selection change in the tree
+		 */
+		public void valueChanged(TreeSelectionEvent e) {
+			DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+
+			if (node == null) {
+				return;
+			}
+
+			Object nodeInfo = node.getUserObject();
+			if (node.isLeaf()) {
+				BookInfo book = (BookInfo) nodeInfo;
+				displayURL(book.bookURL);
+			} else {
+				displayURL(helpURL);
+			}
+		}
+
+		private class BookInfo {
+			private String bookName;
+			private URL bookURL;
+			private BookInfo(String book, String filename) {
+				bookName = book;
+				bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
+				if (bookURL == null) {
+					System.err.println("Couldn't find file: " + filename);
+				}
+			}
+
+			@Override
+			public String toString() {
+				return bookName;
+			}
+		}
+
+		private void initHelp() {
+			String filename = "introduction.html";
+			helpURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
+			if (helpURL == null) {
+				System.err.println("Couldn't open help file: " + filename);
+			}
 			displayURL(helpURL);
 		}
-	}
 
-	private class BookInfo {
-		private String bookName;
-		private URL bookURL;
-
-		private BookInfo(String book, String filename) {
-			bookName = book;
-			bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
-			if (bookURL == null) {
-				System.err.println("Couldn't find file: " + filename);
+		private void displayURL(URL url) {
+			try {
+				if (url != null) {
+					htmlPane.setPage(url);
+				} else { // null url
+					htmlPane.setText("File Not Found");
+				}
+			} catch (IOException e) {
+				System.err.println("Attempted to read a bad URL: " + url);
 			}
 		}
 
-		@Override
-		public String toString() {
-			return bookName;
+		private void createNodes(DefaultMutableTreeNode top) {
+			top.add(new DefaultMutableTreeNode(new BookInfo("Introduction",	"introduction.html")));
+			top.add(new DefaultMutableTreeNode(new BookInfo("Setting up the game", "setting.html")));
+			top.add(new DefaultMutableTreeNode(new BookInfo("Controls and Game settings", "controls.html")));
+			top.add(new DefaultMutableTreeNode(new BookInfo("Gameplay",	"gameplay.html")));
 		}
 	}
 
-	private void initHelp() {
-		String filename = "introduction.html";
-		helpURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
-		if (helpURL == null) {
-			System.err.println("Couldn't open help file: " + filename);
-		}
-		displayURL(helpURL);
-	}
-
-	private void displayURL(URL url) {
-		try {
-			if (url != null) {
-				htmlPane.setPage(url);
-			} else { // null url
-				htmlPane.setText("File Not Found");
-			}
-		} catch (IOException e) {
-			System.err.println("Attempted to read a bad URL: " + url);
-		}
-	}
-
-	private void createNodes(DefaultMutableTreeNode top) {
-		top.add(new DefaultMutableTreeNode(new BookInfo("Introduction", "introduction.html")));
-		top.add(new DefaultMutableTreeNode(new BookInfo("Setting up the game", "setting.html")));
-		top.add(new DefaultMutableTreeNode(new BookInfo("Controls and Game settings", "controls.html")));
-		top.add(new DefaultMutableTreeNode(new BookInfo("Gameplay", "gameplay.html")));
-	}
-	}
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be
 	 * invoked from the event-dispatching thread.
-	 *
-	 * @param parent 
 	 */
 	public HelpDialog() {
 		// Create and set up the window.
