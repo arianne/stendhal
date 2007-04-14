@@ -143,18 +143,6 @@ public class StendhalFirstScreen extends JFrame {
 				showCredits();
 			}
 		});
-		//
-		// exitButton
-		//
-		JButton exitButton = new JButton();
-		exitButton.setText("Exit");
-		exitButton.setMnemonic(KeyEvent.VK_X);
-		exitButton.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
 
 		addWindowListener(new WindowAdapter() {
 
@@ -177,11 +165,10 @@ public class StendhalFirstScreen extends JFrame {
 			contentPane.add(X11KeyConfig.get());
 		}
 
-		addComponent(contentPane, loginButton, 220, 260, 200, 32);
-		addComponent(contentPane, createAccountButton, 220, 300, 200, 32);
-		addComponent(contentPane, helpButton, 220, 340, 200, 32);
-		addComponent(contentPane, creditButton, 220, 380, 200, 32);
-		addComponent(contentPane, exitButton, 220, 420, 200, 32);
+		addComponent(contentPane, loginButton, 220, 300, 200, 32);
+		addComponent(contentPane, createAccountButton, 220, 340, 200, 32);
+		addComponent(contentPane, helpButton, 220, 380, 200, 32);
+		addComponent(contentPane, creditButton, 220, 420, 200, 32);
 
 		getRootPane().setDefaultButton(loginButton);
 
