@@ -207,7 +207,7 @@ public class StendhalFirstScreen extends JFrame {
 	}
 
 	private void showHelp() {
-		new HelpDialog();
+		new HelpDialog().display();
 	}
 
 	private void checkVersion() {
