@@ -79,6 +79,7 @@ public class SoundFileReader {
 		
 
 		String url = putTogetherSoundUrl(soundname);
+		System.out.println(url);
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
@@ -88,7 +89,7 @@ public class SoundFileReader {
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
-			
+			e.printStackTrace();
 			return null;
 		}
 		data = bout.toByteArray();
