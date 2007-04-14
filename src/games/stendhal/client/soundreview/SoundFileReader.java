@@ -78,7 +78,7 @@ public class SoundFileReader {
 		byte[] data;
 		
 
-		String url = SoundFileReader.soundprops.getProperty("soundbase")  + soundname;
+		String url = putTogetherSoundUrl(soundname);
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
@@ -88,11 +88,17 @@ public class SoundFileReader {
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
+			
 			return null;
 		}
 		data = bout.toByteArray();
 		
 		return data;
+	}
+
+	String putTogetherSoundUrl(String soundname) {
+		String url = SoundFileReader.soundprops.getProperty("soundbase")  + soundname;
+		return url;
 	}
 
 	/**
