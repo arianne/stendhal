@@ -38,7 +38,7 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 		super(new GridLayout(1, 0));
 
 		// Create the nodes.
-		DefaultMutableTreeNode top = new DefaultMutableTreeNode("The Java Series");
+		DefaultMutableTreeNode top = new DefaultMutableTreeNode("Stendhal Manual");
 		createNodes(top);
 
 		// Create a tree that allows one selection at a time.
@@ -110,10 +110,10 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 	}
 
 	private void initHelp() {
-		String s = "TreeDemoHelp.html";
-		helpURL = HelpDialog.class.getResource(s);
+		String filename = "introduction.html";
+		helpURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
 		if (helpURL == null) {
-			System.err.println("Couldn't open help file: " + s);
+			System.err.println("Couldn't open help file: " + filename);
 		}
 		displayURL(helpURL);
 	}
@@ -132,45 +132,29 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 
 	private void createNodes(DefaultMutableTreeNode top) {
 		DefaultMutableTreeNode category = null;
-		DefaultMutableTreeNode book = null;
 
-		category = new DefaultMutableTreeNode("Books for Java Programmers");
+		category = new DefaultMutableTreeNode("Introduction");
 		top.add(category);
 
-		// original Tutorial
-		book = new DefaultMutableTreeNode(new BookInfo("The Java Tutorial: A Short Course on the Basics", "gameplay.html"));
-		category.add(book);
+		category.add(new DefaultMutableTreeNode(new BookInfo("1", "introduction.html")));
 
-		// Tutorial Continued
-		book = new DefaultMutableTreeNode(new BookInfo("The Java Tutorial Continued: The Rest of the JDK", "tutorialcont.html"));
-		category.add(book);
 
-		// JFC Swing Tutorial
-		book = new DefaultMutableTreeNode(new BookInfo("The JFC Swing Tutorial: A Guide to Constructing GUIs", "swingtutorial.html"));
-		category.add(book);
-
-		// Bloch
-		book = new DefaultMutableTreeNode(new BookInfo("Effective Java Programming Language Guide", "bloch.html"));
-		category.add(book);
-
-		// Arnold/Gosling
-		book = new DefaultMutableTreeNode(new BookInfo("The Java Programming Language", "arnold.html"));
-		category.add(book);
-
-		// Chan
-		book = new DefaultMutableTreeNode(new BookInfo("The Java Developers Almanac", "chan.html"));
-		category.add(book);
-
-		category = new DefaultMutableTreeNode("Books for Java Implementers");
+		category = new DefaultMutableTreeNode("Setting up the game");
 		top.add(category);
 
-		// VM
-		book = new DefaultMutableTreeNode(new BookInfo("The Java Virtual Machine Specification", "vm.html"));
-		category.add(book);
+		category.add(new DefaultMutableTreeNode(new BookInfo("1", "setting.html")));
 
-		// Language Spec
-		book = new DefaultMutableTreeNode(new BookInfo("The Java Language Specification", "jls.html"));
-		category.add(book);
+		
+		category = new DefaultMutableTreeNode("Controls and Game settings");
+		top.add(category);
+
+		category.add(new DefaultMutableTreeNode(new BookInfo("1", "controls.html")));
+
+		
+		category = new DefaultMutableTreeNode("Gameplay");
+		top.add(category);
+
+		category.add(new DefaultMutableTreeNode(new BookInfo("1", "gameplay.html")));
 	}
 
 	/**
