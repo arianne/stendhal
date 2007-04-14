@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
+import javax.swing.WindowConstants;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -24,7 +25,7 @@ import javax.swing.tree.TreeSelectionModel;
  * @author hendrik (mostly based on "How to Use Trees"
  *         http://java.sun.com/docs/books/tutorial/uiswing/components/tree.html)
  */
-public class HelpDialog extends JPanel implements TreeSelectionListener {
+public class HelpDialog extends JFrame {
 	private static final long serialVersionUID = 41013220176906825L;
 
 	private JEditorPane htmlPane;
@@ -34,7 +35,8 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 	/**
 	 * Creates a new help dialog
 	 */
-	public HelpDialog() {
+	class HelpDialogPanel extends JPanel implements TreeSelectionListener {
+	public HelpDialogPanel() {
 		super(new GridLayout(1, 0));
 
 		// Create the nodes.
@@ -136,24 +138,26 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 		top.add(new DefaultMutableTreeNode(new BookInfo("Controls and Game settings", "controls.html")));
 		top.add(new DefaultMutableTreeNode(new BookInfo("Gameplay", "gameplay.html")));
 	}
-
+	}
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be
 	 * invoked from the event-dispatching thread.
+	 *
+	 * @param parent 
 	 */
-	private static void createAndShowGUI() {
+	public HelpDialog() {
 		// Create and set up the window.
-		JFrame frame = new JFrame("TreeDemo");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		super("Stendhal - Help");
+		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		// Create and set up the content pane.
-		HelpDialog newContentPane = new HelpDialog();
+		HelpDialogPanel newContentPane = new HelpDialogPanel();
 		newContentPane.setOpaque(true); // content panes must be opaque
-		frame.setContentPane(newContentPane);
+		super.setContentPane(newContentPane);
 
 		// Display the window.
-		frame.pack();
-		frame.setVisible(true);
+		super.pack();
+		super.setVisible(true);
 	}
 
 	/**
@@ -165,11 +169,7 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 	public static void main(String[] args) {
 		// Schedule a job for the event-dispatching thread:
 		// creating and showing this application's GUI.
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				createAndShowGUI();
-			}
-		});
+		new HelpDialog();
 	}
 
 }
