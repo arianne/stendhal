@@ -131,25 +131,10 @@ public class HelpDialog extends JPanel implements TreeSelectionListener {
 	}
 
 	private void createNodes(DefaultMutableTreeNode top) {
-		DefaultMutableTreeNode category = null;
 		top.add(new DefaultMutableTreeNode(new BookInfo("Introduction", "introduction.html")));
-
-		category = new DefaultMutableTreeNode("Setting up the game");
-		top.add(category);
-
-		category.add(new DefaultMutableTreeNode(new BookInfo("1", "setting.html")));
-
-		
-		category = new DefaultMutableTreeNode("Controls and Game settings");
-		top.add(category);
-
-		category.add(new DefaultMutableTreeNode(new BookInfo("1", "controls.html")));
-
-		
-		category = new DefaultMutableTreeNode("Gameplay");
-		top.add(category);
-
-		category.add(new DefaultMutableTreeNode(new BookInfo("1", "gameplay.html")));
+		top.add(new DefaultMutableTreeNode(new BookInfo("Setting up the game", "setting.html")));
+		top.add(new DefaultMutableTreeNode(new BookInfo("Controls and Game settings", "controls.html")));
+		top.add(new DefaultMutableTreeNode(new BookInfo("Gameplay", "gameplay.html")));
 	}
 
 	/**
