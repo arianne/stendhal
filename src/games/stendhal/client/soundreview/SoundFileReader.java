@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import marauroa.common.Log4J;
+
 public class SoundFileReader {
 
 	/** expected location of the sound definition file (classloader). */
@@ -88,6 +90,7 @@ public class SoundFileReader {
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
+			Log4J.getLogger(SoundFileReader.class).error("could not open soundfile " + url);
 			return null;
 		}
 		data = bout.toByteArray();
