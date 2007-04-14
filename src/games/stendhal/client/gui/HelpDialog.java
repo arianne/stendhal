@@ -24,23 +24,56 @@ import org.apache.log4j.Logger;
 /**
  * A help system that displays the manual
  * 
- * @author hendrik (mostly based on "How to Use Trees"
+ * @author hendrik (based on "How to Use Trees"
  *         http://java.sun.com/docs/books/tutorial/uiswing/components/tree.html)
  */
 public class HelpDialog extends JFrame {
 	private static final long serialVersionUID = 41013220176906825L;
 	private static Logger logger = Logger.getLogger(HelpDialog.class);
 
-	private JEditorPane htmlPane;
-	private JTree tree;
-	private URL helpURL;
 	private HelpDialogPanel panel;
+
+	/**
+	 * Create the GUI and show it. For thread safety, this method should be
+	 * invoked from the event-dispatching thread.
+	 */
+	public HelpDialog() {
+		// Create and set up the window.
+		super("Stendhal - Help");
+		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+		// Create and set up the content pane.
+		panel = new HelpDialogPanel();
+		panel.setOpaque(true); // content panes must be opaque
+		super.setContentPane(panel);
+
+	}
+
+	/**
+	 * displays the help system
+	 */
+	public void display() {
+		display(HelpDocument.Introduction);
+	}
+
+	/**
+	 * displays the help system
+	 *
+	 * @param bookInfo page to display
+	 */
+	public void display(HelpDocument bookInfo) {
+		panel.displayNode(bookInfo);
+		super.pack();
+		super.setVisible(true);
+	}
 
 	/**
 	 * Creates a new help dialog
 	 */
-	class HelpDialogPanel extends JPanel implements TreeSelectionListener {
+	private static class HelpDialogPanel extends JPanel implements TreeSelectionListener {
 		private static final long serialVersionUID = -290672385299793246L;
+		private JTree tree;
+		private JEditorPane htmlPane;
 
 		/**
 		 * Creates a new HelpDialogPanel
@@ -94,41 +127,17 @@ public class HelpDialog extends JFrame {
 
 			Object nodeInfo = node.getUserObject();
 			if (node.isLeaf()) {
-				BookInfo book = (BookInfo) nodeInfo;
-				displayURL(book.bookURL);
-			} else {
-				displayURL(helpURL);
+				HelpDocument book = (HelpDocument) nodeInfo;
+				displayNode(book);
 			}
 		}
 
-		private class BookInfo {
-			private String bookName;
-			private URL bookURL;
-			private BookInfo(String book, String filename) {
-				bookName = book;
-				bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
-				if (bookURL == null) {
-					logger.error("Couldn't find file: " + filename);
-				}
-			}
-
-			@Override
-			public String toString() {
-				return bookName;
-			}
-		}
-
-		private void initHelp() {
-			String filename = "introduction.html";
-			helpURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
-			if (helpURL == null) {
-				logger.error("Couldn't open help file: " + filename);
-			}
-			displayURL(helpURL);
-		}
-
-		private void displayURL(URL url) {
+		private void displayNode(HelpDocument bookInfo) {
+			URL url = null;
 			try {
+				if (bookInfo != null) {
+					url = bookInfo.bookURL;
+				}
 				if (url != null) {
 					htmlPane.setPage(url);
 				} else { // null url
@@ -140,47 +149,36 @@ public class HelpDialog extends JFrame {
 		}
 
 		private void createNodes(DefaultMutableTreeNode top) {
-			top.add(new DefaultMutableTreeNode(new BookInfo("Introduction",	"introduction.html")));
-			top.add(new DefaultMutableTreeNode(new BookInfo("Setting up the game", "setting.html")));
-			top.add(new DefaultMutableTreeNode(new BookInfo("Controls and Game settings", "controls.html")));
-			top.add(new DefaultMutableTreeNode(new BookInfo("Gameplay",	"gameplay.html")));
+			top.add(new DefaultMutableTreeNode(HelpDocument.Introduction));
+			top.add(new DefaultMutableTreeNode(HelpDocument.Setting));
+			top.add(new DefaultMutableTreeNode(HelpDocument.Controls));
+			top.add(new DefaultMutableTreeNode(HelpDocument.Gameplay));
 		}
 	}
 
 	/**
-	 * Create the GUI and show it. For thread safety, this method should be
-	 * invoked from the event-dispatching thread.
+	 * a help document
 	 */
-	public HelpDialog() {
-		// Create and set up the window.
-		super("Stendhal - Help");
-		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	public static enum HelpDocument {
+		Introduction("Introduction",	"introduction.html"),
+		Setting("Setting up the game", "setting.html"),
+		Controls("Controls and Game settings", "controls.html"),
+		Gameplay("Gameplay",	"gameplay.html");
+		
+		private String bookName;
+		private URL bookURL;
+		private HelpDocument(String title, String filename) {
+			bookName = title;
+			bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
+			if (bookURL == null) {
+				logger.error("Couldn't find file: " + filename);
+			}
+		}
 
-		// Create and set up the content pane.
-		panel = new HelpDialogPanel();
-		panel.setOpaque(true); // content panes must be opaque
-		super.setContentPane(panel);
-
-	}
-
-	/**
-	 * displays the help system
-	 */
-	public void display() {
-		panel.initHelp();
-		super.pack();
-		super.setVisible(true);
-	}
-
-	/**
-	 * debug method
-	 * 
-	 * @param args ignores
-	 */
-	public static void main(String[] args) {
-		// Schedule a job for the event-dispatching thread:
-		// creating and showing this application's GUI.
-		new HelpDialog();
+		@Override
+		public String toString() {
+			return bookName;
+		}
 	}
 
 }
