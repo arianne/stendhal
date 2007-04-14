@@ -1,17 +1,5 @@
 package games.stendhal.client.gui;
 
-/**
- * A 1.4 application that requires the following additional files:
- *   TreeDemoHelp.html
- *    arnold.html
- *    bloch.html
- *    chan.html
- *    jls.html
- *    swingtutorial.html
- *    tutorial.html
- *    tutorialcont.html
- *    vm.html
- */
 import games.stendhal.client.SpriteStore;
 
 import java.awt.Dimension;
@@ -25,21 +13,26 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
-import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-public class HelpDialog extends JPanel
-                      implements TreeSelectionListener {
-    private JEditorPane htmlPane;
+/**
+ * A help system that displays the manual
+ *
+ * @author hendrik (mostly based on "How to Use Trees" http://java.sun.com/docs/books/tutorial/uiswing/components/tree.html)
+ */
+public class HelpDialog extends JPanel implements TreeSelectionListener {
+	private static final long serialVersionUID = 41013220176906825L;
+
+	private JEditorPane htmlPane;
     private JTree tree;
     private URL helpURL;
-    
-    //Optionally set the look and feel.
-    private static boolean useSystemLookAndFeel = true;
 
+    /**
+     * Creates a new help dialog
+     */
     public HelpDialog() {
         super(new GridLayout(1,0));
 
@@ -73,16 +66,16 @@ public class HelpDialog extends JPanel
         Dimension minimumSize = new Dimension(200, 50);
         htmlView.setMinimumSize(minimumSize);
         treeView.setMinimumSize(minimumSize);
-        splitPane.setDividerLocation(200); //XXX: ignored in some releases
-                                           //of Swing. bug 4101306
-
+        splitPane.setDividerLocation(200);
         splitPane.setPreferredSize(new Dimension(500, 300));
 
         //Add the split pane to this panel.
         add(splitPane);
     }
 
-    /** Required by TreeSelectionListener interface. */
+    /** 
+     * Update the browser window on selection change in the tree 
+     */
     public void valueChanged(TreeSelectionEvent e) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode)
                            tree.getLastSelectedPathComponent();
@@ -201,15 +194,6 @@ public class HelpDialog extends JPanel
      * event-dispatching thread.
      */
     private static void createAndShowGUI() {
-        if (useSystemLookAndFeel) {
-            try {
-                UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
-            } catch (Exception e) {
-                System.err.println("Couldn't use system look and feel.");
-            }
-        }
-
         //Create and set up the window.
         JFrame frame = new JFrame("TreeDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -224,6 +208,12 @@ public class HelpDialog extends JPanel
         frame.setVisible(true);
     }
 
+    
+    /**
+     * debug method
+     *
+     * @param args ignores
+     */
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
@@ -233,6 +223,5 @@ public class HelpDialog extends JPanel
             }
         });
     }
-    
  
 }
