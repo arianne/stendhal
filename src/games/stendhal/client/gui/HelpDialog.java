@@ -19,6 +19,8 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.apache.log4j.Logger;
+
 /**
  * A help system that displays the manual
  * 
@@ -27,21 +29,27 @@ import javax.swing.tree.TreeSelectionModel;
  */
 public class HelpDialog extends JFrame {
 	private static final long serialVersionUID = 41013220176906825L;
+	private static Logger logger = Logger.getLogger(HelpDialog.class);
 
 	private JEditorPane htmlPane;
 	private JTree tree;
 	private URL helpURL;
+	private HelpDialogPanel panel;
 
 	/**
 	 * Creates a new help dialog
 	 */
 	class HelpDialogPanel extends JPanel implements TreeSelectionListener {
+		private static final long serialVersionUID = -290672385299793246L;
+
+		/**
+		 * Creates a new HelpDialogPanel
+		 */
 		public HelpDialogPanel() {
 			super(new GridLayout(1, 0));
 
 			// Create the nodes.
-			DefaultMutableTreeNode top = new DefaultMutableTreeNode(
-					"Stendhal Manual");
+			DefaultMutableTreeNode top = new DefaultMutableTreeNode("Stendhal Manual");
 			createNodes(top);
 
 			// Create a tree that allows one selection at a time.
@@ -57,7 +65,6 @@ public class HelpDialog extends JFrame {
 			// Create the HTML viewing pane.
 			htmlPane = new JEditorPane();
 			htmlPane.setEditable(false);
-			initHelp();
 			JScrollPane htmlView = new JScrollPane(htmlPane);
 
 			// Add the scroll panes to a split pane.
@@ -101,7 +108,7 @@ public class HelpDialog extends JFrame {
 				bookName = book;
 				bookURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
 				if (bookURL == null) {
-					System.err.println("Couldn't find file: " + filename);
+					logger.error("Couldn't find file: " + filename);
 				}
 			}
 
@@ -115,7 +122,7 @@ public class HelpDialog extends JFrame {
 			String filename = "introduction.html";
 			helpURL = SpriteStore.get().getResourceURL("data/docu/" + filename);
 			if (helpURL == null) {
-				System.err.println("Couldn't open help file: " + filename);
+				logger.error("Couldn't open help file: " + filename);
 			}
 			displayURL(helpURL);
 		}
@@ -128,7 +135,7 @@ public class HelpDialog extends JFrame {
 					htmlPane.setText("File Not Found");
 				}
 			} catch (IOException e) {
-				System.err.println("Attempted to read a bad URL: " + url);
+				logger.error("Attempted to read a bad URL: " + url, e);
 			}
 		}
 
@@ -150,11 +157,17 @@ public class HelpDialog extends JFrame {
 		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		// Create and set up the content pane.
-		HelpDialogPanel newContentPane = new HelpDialogPanel();
-		newContentPane.setOpaque(true); // content panes must be opaque
-		super.setContentPane(newContentPane);
+		panel = new HelpDialogPanel();
+		panel.setOpaque(true); // content panes must be opaque
+		super.setContentPane(panel);
 
-		// Display the window.
+	}
+
+	/**
+	 * displays the help system
+	 */
+	public void display() {
+		panel.initHelp();
 		super.pack();
 		super.setVisible(true);
 	}
@@ -162,8 +175,7 @@ public class HelpDialog extends JFrame {
 	/**
 	 * debug method
 	 * 
-	 * @param args
-	 *            ignores
+	 * @param args ignores
 	 */
 	public static void main(String[] args) {
 		// Schedule a job for the event-dispatching thread:
