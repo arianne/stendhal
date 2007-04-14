@@ -77,14 +77,14 @@ public class SoundFileReader {
 	byte[] getData(String soundname) {
 		byte[] data;
 		
-
+		String filename = SoundFileReader.soundprops.getProperty("soundbase") + soundname;
 		String url = putTogetherSoundUrl(soundname);
 		System.out.println(url);
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
 		try {
-			in = new FileInputStream(url);
+			in = getResourceStream(filename);
 
 			transferData(in, bout, 4096);
 			in.close();
