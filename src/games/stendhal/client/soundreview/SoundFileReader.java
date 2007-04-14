@@ -66,7 +66,7 @@ public class SoundFileReader {
 			prop = new Properties();
 		}
 		try {
-			in1 =  getResourceStream(url);
+			in1 = getResourceStream(url);
 
 			prop.load(in1);
 			in1.close();
@@ -80,17 +80,17 @@ public class SoundFileReader {
 		byte[] data;
 		
 
-		String url = SoundFileReader.soundprops.getProperty("soundbase") + soundname;
+		String filename = SoundFileReader.soundprops.getProperty("soundbase") + soundname;
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
 		try {
-			in = new FileInputStream(url);
+			in = getResourceStream(filename);
 
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
-			Log4J.getLogger(SoundFileReader.class).error("could not open soundfile " + url);
+			Log4J.getLogger(SoundFileReader.class).error("could not open soundfile " + filename);
 			return null;
 		}
 		data = bout.toByteArray();
