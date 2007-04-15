@@ -531,7 +531,7 @@ public abstract class RPEntity extends Entity {
 			return false;
 		}
 		int currentTurn = StendhalRPRuleProcessor.get().getTurn();
-		if (currentTurn - turnWhenLastDamaged < TURNS_WHILE_FIGHT_XP_INCREASES) {
+		if (currentTurn - turnWhenLastDamaged > TURNS_WHILE_FIGHT_XP_INCREASES) {
 			enemiesThatGiveFightXP.remove(enemy);
 			return false;
 		}
