@@ -79,8 +79,11 @@ public class SoundFileReader {
 	byte[] getData(String soundname) {
 		byte[] data;
 		
-
-		String filename = SoundFileReader.soundprops.getProperty("soundbase") +"/"+ soundname;
+		String soundbase = SoundFileReader.soundprops.getProperty("soundbase");
+		if (!soundbase.endsWith("/")) {
+			soundbase = soundbase + "/";
+		}
+		String filename = soundbase + soundname;
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
