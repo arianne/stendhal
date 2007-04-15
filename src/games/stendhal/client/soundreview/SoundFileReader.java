@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.Properties;
 
+import marauroa.common.Log4J;
+
 public class SoundFileReader {
 
 	/** expected location of the sound definition file (classloader). */
@@ -64,7 +66,7 @@ public class SoundFileReader {
 			prop = new Properties();
 		}
 		try {
-			in1 =  getResourceStream(url);
+			in1 = getResourceStream(url);
 
 			prop.load(in1);
 			in1.close();
@@ -77,9 +79,11 @@ public class SoundFileReader {
 	byte[] getData(String soundname) {
 		byte[] data;
 		
-		String filename = SoundFileReader.soundprops.getProperty("soundbase") + soundname;
-		String url = putTogetherSoundUrl(soundname);
-		System.out.println(url);
+		String soundbase = SoundFileReader.soundprops.getProperty("soundbase");
+		if (!soundbase.endsWith("/")) {
+			soundbase = soundbase + "/";
+		}
+		String filename = soundbase + soundname;
 		InputStream in;
 		ByteArrayOutputStream bout;
 		bout = new ByteArrayOutputStream();
@@ -89,17 +93,12 @@ public class SoundFileReader {
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log4J.getLogger(SoundFileReader.class).error("could not open soundfile " + filename);
 			return null;
 		}
 		data = bout.toByteArray();
 		
 		return data;
-	}
-
-	String putTogetherSoundUrl(String soundname) {
-		String url = SoundFileReader.soundprops.getProperty("soundbase")  + soundname;
-		return url;
 	}
 
 	/**
