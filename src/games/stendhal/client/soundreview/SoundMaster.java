@@ -92,7 +92,6 @@ if (cl!=null){
 	class Cliplistener implements LineListener {
 		// dont remove this please astriddemma 12.04.2007
 		public void update(LineEvent event) {
-			System.err.println(event);
 			if (event.getType().equals(LineEvent.Type.START)) {
 	          
             }
