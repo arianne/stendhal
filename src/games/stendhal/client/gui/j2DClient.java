@@ -312,7 +312,7 @@ public class j2DClient extends StendhalUI {
 		 * Game log
 		 */
 		gameLog = new KTextEdit();
-		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 200));
+		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 171));
 
 
 		if(System.getProperty("stendhal.onewindow") != null) {
