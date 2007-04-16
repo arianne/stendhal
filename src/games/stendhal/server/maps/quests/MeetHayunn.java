@@ -83,7 +83,7 @@ public class MeetHayunn extends AbstractQuest {
 	    		ConversationPhrases.YES_MESSAGES,
 	    		null,
 	    		ConversationStates.INFORMATION_5,
-	    		"Once you've earned enough money, you should visit one of the local healers - Carmen or Ilisa - and buy a potion. Potions are very handy when you're alone in the deep dungeons. Did I tell you were the dungeon is yet?",
+	    		"Once you've earned enough money, you should visit one of the local healers - Carmen or Ilisa - and buy a potion. Potions are very handy when you're alone in the deep dungeons. Did I tell you where the dungeon is yet?",
 	    		null);
 	
 	    npc.add(ConversationStates.INFORMATION_5,
