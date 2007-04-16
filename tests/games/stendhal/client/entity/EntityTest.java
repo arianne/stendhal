@@ -154,7 +154,7 @@ public class EntityTest {
 	@Test
 	@Ignore
 	public final void testLoadSprite() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
@@ -199,133 +199,133 @@ public class EntityTest {
 	@Test
 	@Ignore
 	public final void testOnEnter() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnLeave() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnEnterZone() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnLeaveZone() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnAdded() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Test
 	@Ignore
 	public final void testOnChangedAdded() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnChangedRemoved() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnRemoved() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnCollideWith() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnCollide() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testDraw() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Test
 	@Ignore
 	public final void testMove() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Test
 	@Ignore
 	public final void testStopped() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testPlaySoundStringIntIntInt() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testPlaySoundStringIntInt() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testGetNumSlots() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testGetSlot() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testGetSlots() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Test
 	@Ignore
 	public final void testGetModificationCount() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testIsModified() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testGetArea() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testGetDrawedArea() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
@@ -347,25 +347,25 @@ public class EntityTest {
 	@Test
 	@Ignore
 	public final void testBuildOfferedActions() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testOnAction() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testCompareTo() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
 	@Ignore
 	public final void testGetZIndex() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	private class MockEntity extends Entity {
