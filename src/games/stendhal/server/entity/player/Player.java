@@ -987,8 +987,11 @@ public class Player extends RPEntity implements TurnListener {
 	 *        completely reset the player's status for the quest.
 	 */
 	public void setQuest(String name, String status) {
+		String oldStatus = getKeyedSlot("!quests", name); 
 		setKeyedSlot("!quests", name, status);
-		StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest", name, status);
+		if (status == null || !status.equals(oldStatus)) {
+			StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest", name, status);
+		}
 	}
 
 	public List<String> getQuests() {
