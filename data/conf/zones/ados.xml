@@ -557,7 +557,7 @@ Southeast: Docks
 </zone>
 
 <zone name="-1_ados_caves_se" level="-1" x="500512" y="500000" file="sub_1_ados_caves_se.xstend">
-  <portal x="4" y="23" ref="0">
+  <portal x="123" y="107" ref="0">
    <destination zone="0_ados_rock" ref="caves_exit"/>
   </portal>
 </zone>
