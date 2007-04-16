@@ -31,57 +31,57 @@ public class SoundSystemTest {
 
 	@Ignore
 	public final void testPlaySoundIntern() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testPlaySoundStringInt() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testPlaySoundStringIntInt() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testProbablePlaySound() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testPlayMapSound() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testPlayAmbientSound() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testStopAmbientSound() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testClearAmbientSounds() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testGetSoundClip() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testStartSoundCycle() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testStopSoundCycle() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Test
@@ -146,27 +146,27 @@ public class SoundSystemTest {
 
 	@Ignore
 	public final void testTransferData() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testZoneEntered() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testGetVolumeDelta() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testZoneLeft() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented"); 
 	}
 
 	@Ignore
 	public final void testPlayerMoved() {
-		fail("Not yet implemented"); // TODO
+		fail("Not yet implemented");
 	}
 
 }
