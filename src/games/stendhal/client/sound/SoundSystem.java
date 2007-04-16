@@ -426,7 +426,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	public static InputStream getResourceStream(String name) throws IOException {
 		URL url = SpriteStore.get().getResourceURL(name);
 		if (url == null) {
-			throw new FileNotFoundException(name);
+	
+			return null;
 		}
 		return url.openStream();
 	}
@@ -459,7 +460,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			// get sound library filepath
 			String soundBase = prop.getProperty("soundbase", "data/sounds/");
 		
-		
+		if (prop.isEmpty()) return;
 			Enumeration<Object> maps = prop.keys();
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
@@ -600,6 +601,12 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		InputStream in1;
 
 		in1 = getResourceStream(STORE_PROPERTYFILE);
+		if (in1==null){
+			logger.info("Soundproperties not found deactivating Soundsystem");
+			prop=null;
+			this.operative = false;
+			return;
+		}
 		prop.load(in1);
 		in1.close();
 	}

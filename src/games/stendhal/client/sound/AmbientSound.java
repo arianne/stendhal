@@ -475,9 +475,6 @@ class AmbientSound {
 	 * Informs this ambient sound about the actual player's position and hearing
 	 * parameters. Does nothing if player is <b>null</b> or the sound is not
 	 * map-localized. (Otherwise this will adjust sound fog loudness.)
-	 * 
-	 * @param isOperative 
-	 * @param isMute TODO
 	 */
 	public void performPlayerMoved() {
 		//SoundSystem sys;

@@ -50,7 +50,7 @@ public class SoundFileReader {
 	public static InputStream getResourceStream(String name) throws IOException {
 		URL url = SpriteStore.get().getResourceURL(name);
 		if (url == null) {
-			throw new FileNotFoundException(name);
+			return null;
 		}
 		return url.openStream();
 	}
@@ -70,8 +70,8 @@ public class SoundFileReader {
 
 			prop.load(in1);
 			in1.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			//e.printStackTrace();
 		}
 		return prop;
 	}
@@ -80,6 +80,7 @@ public class SoundFileReader {
 		byte[] data;
 		
 		String soundbase = SoundFileReader.soundprops.getProperty("soundbase");
+		if (soundbase == null) return null;
 		if (!soundbase.endsWith("/")) {
 			soundbase = soundbase + "/";
 		}
