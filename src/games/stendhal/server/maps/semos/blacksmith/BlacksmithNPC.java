@@ -30,7 +30,7 @@ public class BlacksmithNPC extends SpeakerNPCFactory {
 				"You can find iron ore up in the mountains west of Or'ril, near the dwarf mines. Be careful up there!");
 
 		npc.addReply("gold_pan",
-		        "With this tool you are able to prospect for gold. In the south there is a lake near a waterfall where I once found a #gold_nugget. Maybe you are lucky as well.");
+		        "With this tool you are able to prospect for gold. Along Or'ril river, south of the castle, is a lake near a waterfall. I once found a #gold_nugget there. Maybe you would be lucky too.");
 
 		npc.addReply("gold_nugget",
 		        "My brother Joshua lives in Ados. He can cast gold nuggets to bars of pure gold.");
