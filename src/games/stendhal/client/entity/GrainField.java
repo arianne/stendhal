@@ -27,7 +27,7 @@ public class GrainField extends AnimatedStateEntity {
 
 
 	public GrainField()  {
-		this(1, 2);
+		this(1, 1);
 	}
 
 
