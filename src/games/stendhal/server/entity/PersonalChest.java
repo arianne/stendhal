@@ -6,6 +6,8 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +15,8 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+
+import org.apache.log4j.Logger;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows
@@ -26,6 +30,7 @@ import marauroa.common.game.RPSlot;
  * TODO: fix this.
  */
 public class PersonalChest extends Chest {
+	private static Logger logger = Logger.getLogger(PersonalChest.class);
 
 	/**
 	 * The default bank slot name.
@@ -73,7 +78,11 @@ public class PersonalChest extends Chest {
 					content.clear();
 
 					for (RPObject item : getBankSlot()) {
-						content.add(new Item((Item) item));
+						try {
+							content.add(cloneItem(item));
+						} catch (Exception e) {
+							logger.error("Cannot clone item " + item, e);
+						}
 					}
 
 					/* If player is not next to depot clean it. */
@@ -97,6 +106,27 @@ public class PersonalChest extends Chest {
 			}
 		};
 		TurnNotifier.get().notifyInTurns(0, turnListener, null);
+	}
+
+
+	/**
+	 * Copies an item
+	 * 
+	 * 
+	 * @param item item to copy
+	 * @return copy
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	private RPObject cloneItem(RPObject item) throws SecurityException, NoSuchMethodException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		Class clazz = item.getClass();
+		Constructor ctor = clazz.getConstructor(clazz);
+		Item clone = (Item) ctor.newInstance(item);
+		return clone;
 	}
 
 	/**
