@@ -87,7 +87,7 @@ class ClipRunner implements LineListener {
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
 	 *            decibel correction value from outward sources
-	 * @param volumeDelta TODO
+	 * @param volumeDelta
 	 * @return the AudioSystem <code>DataLine</code> object that is being
 	 *         played, or <b>null</b> on error
 	 */
@@ -105,7 +105,7 @@ class ClipRunner implements LineListener {
 	 * 
 	 * @param volume
 	 *            loudness in 0 .. 100
-	 * @param volumeDelta TODO
+	 * @param volumeDelta 
 	 * @return the AudioSystem <code>Clip</code> object that is being played,
 	 *         or <b>null</b> on error
 	 */
@@ -124,7 +124,7 @@ class ClipRunner implements LineListener {
 	 *            loudness in 0 .. 100
 	 * @param correctionDB
 	 *            decibel correction value from outward sources
-	 * @param volumeDelta TODO
+	 * @param volumeDelta 
 	 * @return an AudioSystem sound <code>Clip</code> that represents this
 	 *         sound, or <b>null</b> on error
 	 */
