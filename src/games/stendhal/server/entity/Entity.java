@@ -364,7 +364,7 @@ public abstract class Entity extends RPObject {
 	 * @return true iff the point is at most <i>step</i> steps away
 	 */
 	public boolean nextTo(int x, int y, double step) {
-		Rectangle2D thisArea = getArea(this.x, this.y);
+		Rectangle2D thisArea = getArea();
 		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, 
 				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
 		return thisArea.contains(x, y);
@@ -390,14 +390,15 @@ public abstract class Entity extends RPObject {
 	 * @return true iff the entity is at most <i>step</i> steps away
 	 */
 	public boolean nextTo(Entity entity, double step) {
-		Rectangle2D thisArea = getArea(x, y);
-		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
+		Rectangle2D thisArea = getArea();
+		Rectangle2D otherArea = entity.getArea();
 		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, thisArea.getWidth() + step, thisArea
 		        .getHeight()
 		        + step);
 		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step, otherArea.getWidth() + step, otherArea
 		        .getHeight()
 		        + step);
+		
 		return thisArea.intersects(otherArea);
 	}
 
