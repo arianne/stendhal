@@ -96,19 +96,25 @@ public class NPC extends RPEntity {
 		return new NPC2DView(this);
 	}
 
+	private long soundWait = 0L;
 
+	/**
+	 * When the entity's position changed.
+	 *
+	 * @param	x		The new X coordinate.
+	 * @param	y		The new Y coordinate.
+	 */
 	@Override
-	public void onMove(int x, int y, Direction direction, double speed) {
-		// TODO Auto-generated method stub
-		super.onMove(x, y, direction, speed);
-		try{
-			
-			
-			if (Rand.rand(100)<5)
-		    SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
-		}
-		catch(NullPointerException e){
-			//runcondition
+	protected void onPosition(double x, double y) {
+		super.onPosition(x, y);
+
+		if((soundWait > System.currentTimeMillis()) && (Rand.rand(100) < 5)) {
+			try {
+				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
+			} catch(NullPointerException e){
+			}
+
+			soundWait = System.currentTimeMillis() + 1000L;
 		}
 	}
 }

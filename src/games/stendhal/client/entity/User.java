@@ -44,13 +44,19 @@ public class User extends Player {
 		features = new FeatureList();
 	}
 
+	/**
+	 * When the entity's position changed.
+	 *
+	 * @param	x		The new X coordinate.
+	 * @param	y		The new Y coordinate.
+	 */
 	@Override
-    public void onMove(final int x, final int y, final Direction direction, final double speed) {
-	   super.onMove(x, y, direction, speed);
-	   
-	   HearingArea.set(x,y);
-	   WorldObjects.firePlayerMoved();
-    }
+	protected void onPosition(double x, double y) {
+		super.onPosition(x, y);
+
+		WorldObjects.firePlayerMoved();
+		HearingArea.set(x, y);
+	}
 
 	@Override
     protected void buildOfferedActions(List<String> list) {
@@ -116,10 +122,6 @@ public class User extends Player {
 		                : "You are no longer marked as being away.", Color.orange);
     }
 
-	@Override
-    public void onEnter(final int _x, final int _y) {
-		WorldObjects.firePlayerMoved();
-    }
 	public static  boolean isAdmin() {
 		
 		if (isNull()) {
@@ -226,7 +228,4 @@ public class User extends Player {
 		_instance =null;
 		
 	}
-    
 }
-
-

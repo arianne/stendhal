@@ -20,7 +20,6 @@ import games.stendhal.common.Direction;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Random;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
@@ -53,12 +52,6 @@ public final byte[] ID_Token = new byte[0];
 	protected int		visibility;
 
 
-	/** The current speed of this entity horizontally (pixels/sec) */
-	protected double dx;
-
-	/** The current speed of this entity vertically (pixels/sec) */
-	protected double dy;
-
 	/** The arianne object associated with this game entity */
 	protected RPObject rpObject;
 
@@ -90,8 +83,6 @@ public final byte[] ID_Token = new byte[0];
 	Entity() {
 		x = 0.0;
 		y = 0.0;
-		dx = 0.0;
-		dy = 0.0;
 
 		changeSerial = 0;
 	}
@@ -158,21 +149,34 @@ public final byte[] ID_Token = new byte[0];
 		return type;
 	}
 
+
+	/**
+	 * Get the X coordinate.
+	 *
+	 * @return	The X coordinate.
+	 */
 	public double getX() {
 		return x;
 	}
 
+
+	/**
+	 * Get the Y coordinate.
+	 *
+	 * @return	The Y coordinate.
+	 */
 	public double getY() {
 		return y;
 	}
+
 
 	public RPObject getRPObject() {
 		return rpObject;
 	}
 
 	public double distance(final User user) {
-		return (user.getX() - x) * (user.getX() - x)
-			+ (user.getY() - y) * (user.getY() - y);
+		return (user.getX() - getX()) * (user.getX() - getX())
+			+ (user.getY() - getY()) * (user.getY() - getY());
 	}
 	
 
@@ -212,93 +216,58 @@ public final byte[] ID_Token = new byte[0];
 		audibleRange = range;
 	}
 
-
 	/**
-	 * compares to floating point values
-	 * 
-	 * @param d1
-	 *            first value
-	 * @param d2
-	 *            second value
-	 * @param diff
-	 *            acceptable diff
-	 * @return true if they are within diff
+	 * Process attribute changes that may affect positioning. This is
+	 * needed because different entities may want to process coordinate
+	 * changes more gracefully.
+	 *
+	 * @param	base		The previous values.
+	 * @param	diff		The changes.
 	 */
-	private static boolean compareDouble(final double d1, final double d2, final double diff) {
-		return Math.abs(d1 - d2) < diff;
-	}
+	protected void processPositioning(final RPObject base, final RPObject diff) {
+		boolean moved = false;
 
-	/**
-	 * calculates the movement if the server an client are out of sync. for some
-	 * miliseconds. (server turns are not exactly 300 ms) Most times this will
-	 * slow down the client movement
-	 * 
-	 * @param clientPos
-	 *            the postion the client has calculated
-	 * @param serverPos
-	 *            the postion the server has reported
-	 * @param delta
-	 *            the movement based on direction
-	 * @return the new delta to correct the movement error
-	 */
-	public static double calcDeltaMovement(final double clientPos, final double serverPos, final double delta) {
-		double moveErr = clientPos - serverPos;
-		double moveCorrection = (delta - moveErr) / delta;
-		return (delta + delta * moveCorrection) / 2;
-	}
+		if (diff.has("x")) {
+			int nx = diff.getInt("x");
 
-	// When rpentity moves, it will be called with the data.
-	public void onMove(final int x,final  int y,final  Direction direction,final  double speed) {
-
-		this.dx = direction.getdx() * speed;
-		this.dy = direction.getdy() * speed;
-		
-
-		if ((Direction.LEFT.equals(direction)) || (Direction.RIGHT.equals(direction))) {
-			this.y = y;
-			if (compareDouble(this.x, x, 1.0)) {
-				// make the movement look more nicely: + this.dx * 0.1
-				this.dx = calcDeltaMovement(this.x + this.dx * 0.1, x, direction.getdx()) * speed;
-			} else {
-				this.x = x;
+			if(nx != x) {
+				x = nx;
+				moved = true;
 			}
-			this.dy = 0;
-		} else if ((Direction.UP.equals(direction)) || (Direction.DOWN.equals(direction))) {
-			this.x = x;
-			this.dx = 0;
-			if (compareDouble(this.y, y, 1.0)) {
-				// make the movement look more nicely: + this.dy * 0.1
-				this.dy = calcDeltaMovement(this.y + this.dy * 0.1, y, direction.getdy()) * speed;
-			} else {
-				this.y = y;
+		}
+
+		if (diff.has("y")) {
+			int ny = diff.getInt("y");
+
+			if(ny != y) {
+				y = ny;
+				moved = true;
 			}
-		} else {
-			// placing entities
-			this.x = x;
-			this.y = y;
+		}
+
+		if (moved) {
+			onPosition(x, y);
 		}
 	}
 
-	// When rpentity stops
-	public void onStop(final int x,final  int y) {
-	
-		
-		this.dx = 0;
-		this.dy = 0;
-
-		// set postion to the one reported by server
-		this.x = x;
-		this.y = y;
+	/**
+	 * When the entity's position changed.
+	 *
+	 * @param	x		The new X coordinate.
+	 * @param	y		The new Y coordinate.
+	 */
+	protected void onPosition(double x, double y) {
 	}
 
-	// When rpentity reachs the [x,y,1,1] area.
-	public void onEnter(final int x, final int y) {
 
-	}
+//	// When rpentity reachs the [x,y,1,1] area.
+//	public void onEnter(final int x, final int y) {
+//
+//	}
 
-	// When rpentity leaves the [x,y,1,1] area.
-	public void onLeave(final int x,final  int y) {
-	}
+//	// When rpentity leaves the [x,y,1,1] area.
+//	public void onLeave(final int x,final  int y) {
+//	}
 
 	// Called when entity enters a new zone
 	public void onEnterZone(final String zone) {
@@ -316,13 +285,21 @@ public final byte[] ID_Token = new byte[0];
 			visibility = 100;
 		}
 
+		if (base.has("x")) {
+			x = base.getInt("x");
+		}
+
+		if (base.has("y")) {
+			y = base.getInt("y");
+		}
+
+		onEnterZone(base.getID().getZoneID());
+		onPosition(x, y);
+
 		// BUG: Work around for Bugs at 0.45
 		inAdd = true;
 		onChangedAdded(new RPObject(), base);
 		inAdd = false;
-
-		fireMovementEvent(base, null);
-		fireZoneChangeEvent(base, null);
 	}
 
 
@@ -333,48 +310,59 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	diff		The changes.
 	 */
 	public void onChangedAdded(final RPObject base, final RPObject diff) {
-		if (!inAdd) {
-			if(diff.has("visibility")) {
-				visibility = diff.getInt("visibility");
-				changed();
+		if (inAdd) {
+			return;
+		}
+
+
+		/*
+		 * Entity visibility
+		 */
+		if(diff.has("visibility")) {
+			visibility = diff.getInt("visibility");
+			changed();
+		}
+
+
+		/*
+		 * Position changes
+		 */
+		processPositioning(base, diff);
+
+
+		/*
+		 * Walk each changed slot
+		 */
+		for(RPSlot dslot : diff.slots()) {
+			if(dslot.size() == 0) {
+				continue;
 			}
 
-			fireMovementEvent(base, diff);
+			String slotName = dslot.getName();
+			RPObject sbase;
 
 			/*
-			 * Walk each changed slot
+			 * Find the original slot entry (if any)
 			 */
-			for(RPSlot dslot : diff.slots()) {
-				if(dslot.size() == 0) {
-					continue;
-				}
+			if(base.hasSlot(slotName)) {
+				RPSlot bslot = base.getSlot(dslot.getName());
+				RPObject.ID id = base.getID();
 
-				String slotName = dslot.getName();
-				RPObject sbase;
-
-				/*
-				 * Find the original slot entry (if any)
-				 */
-				if(base.hasSlot(slotName)) {
-					RPSlot bslot = base.getSlot(dslot.getName());
-					RPObject.ID id = base.getID();
-
-					if(bslot.has(id)) {
-						sbase = bslot.get(id);
-					} else {
-						sbase = null;
-					}
+				if(bslot.has(id)) {
+					sbase = bslot.get(id);
 				} else {
 					sbase = null;
 				}
+			} else {
+				sbase = null;
+			}
 
 
-				/*
-				 * Walk the entry changes
-				 */
-				for(RPObject sdiff : dslot) {
-					onChangedAdded(slotName, sbase, sdiff);
-				}
+			/*
+			 * Walk the entry changes
+			 */
+			for(RPObject sdiff : dslot) {
+				onChangedAdded(slotName, sbase, sdiff);
 			}
 		}
 	}
@@ -391,6 +379,7 @@ public final byte[] ID_Token = new byte[0];
 			visibility = 100;
 			changed();
 		}
+
 
 		/*
 		 * Walk each changed slot
@@ -433,8 +422,7 @@ public final byte[] ID_Token = new byte[0];
 	public void onRemoved() {
 		SoundSystem.stopSoundCycle(ID_Token);
 
-		fireMovementEvent(null, null);
-		fireZoneChangeEvent(null, null);
+		onLeaveZone(getID().getZoneID());
 	}
 
 
@@ -470,90 +458,19 @@ public final byte[] ID_Token = new byte[0];
 	public void onCollide(final int x,final  int y) {
 	}
 
-	protected void fireZoneChangeEvent(final RPObject base, final RPObject diff) {
-		final RPObject.ID id = getID();
-		if ((diff == null) && (base == null)) {
-			// Remove case
-			onLeaveZone(id.getZoneID());
-		} else if (diff == null) {
-			// First time case.
-			onEnterZone(id.getZoneID());
-		}
-	}
-
-	protected final void fireMovementEvent(final RPObject base, final RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-			Direction direction = Direction.STOP;
-			if (base.has("dir")) {
-				direction = Direction.build(base.getInt("dir"));
-			}
-
-			double speed = 0;
-			if (base.has("speed")) {
-				speed = base.getDouble("speed");
-			}
-
-			onMove(base.getInt("x"), base.getInt("y"), direction, speed);
-		} else {
-			// Real movement case
-			int oldx = base.getInt("x");
-			int oldy = base.getInt("y");
-
-			int newX=oldx;
-			int newY=oldy;
-
-			if (diff.has("x")) {
-				newX = diff.getInt("x");
-			}
-			if (diff.has("y")) {
-				newY = diff.getInt("y");
-			}
-
-			Direction direction = Direction.STOP;
-			if (base.has("dir")) {
-				direction = Direction.build(base.getInt("dir"));
-			}
-			if (diff.has("dir")) {
-				direction = Direction.build(diff.getInt("dir"));
-			}
-
-			double speed = 0;
-			if (base.has("speed")) {
-				speed = base.getDouble("speed");
-			}
-			if (diff.has("speed")) {
-				speed = diff.getDouble("speed");
-			}
-
-			onMove(newX, newY, direction, speed);
-
-			if ((Direction.STOP.equals(direction)) || (speed == 0)) {
-				onStop(newX, newY);
-			}
-
-			if ((oldx != newX) && (oldy != newY)) {
-				onLeave(oldx, oldy);
-				onEnter(newX, newY);
-			}
-		}
-	}
 
 	public void draw(final GameScreen screen) {
 		view.draw(screen);
 	}
 
+
 	public void move(final long delta) {
-		// update the location of the entity based on move speeds
-		x += (delta * dx) / 300;
-		y += (delta * dy) / 300;
 	}
 
 	public boolean stopped() {
-		return (dx == 0) && (dy == 0);
+		return true;
 	}
+
 
 	/** returns the number of slots this entity has */
 	public int getNumSlots() {
@@ -578,8 +495,6 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 	
-	
-
 	public abstract Rectangle2D getArea();
 
 	public Rectangle2D getDrawedArea() {

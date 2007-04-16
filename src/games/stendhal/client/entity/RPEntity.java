@@ -38,7 +38,7 @@ import marauroa.common.game.RPObject;
  * objects.<br>
  * You need to extend this object in order to add new elements to the game.
  */
-public abstract class RPEntity extends AnimatedStateEntity {
+public abstract class RPEntity extends ActiveEntity {
 
 	private boolean showBladeStrike;
 	String[] attackSounds={
@@ -58,11 +58,6 @@ public abstract class RPEntity extends AnimatedStateEntity {
 			return val;
 		}
 	};
-
-	/**
-	 * The current direction.
-	 */
-	private Direction	direction;
 
 	private int atk;
 
@@ -135,7 +130,6 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		damageSpritesTimes = new LinkedList<Long>();
 		attackTarget = null;
 		lastAttacker = null;
-		animation = "move_up";
 	}
 
 	/**
@@ -150,46 +144,6 @@ public abstract class RPEntity extends AnimatedStateEntity {
 		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 	}
 
-	public Direction getDirection() {
-		return direction;
-	}
-
-
-	@Override
-	public void onMove(final int x, final int y, final Direction direction, final double speed) {
-		super.onMove(x, y, direction, speed);
-
-		this.direction = direction;
-
-		animation = getDirectionState(direction);
-	}
-
-
-	/**
-	 * Get the appropriete named state for a direction.
-	 *
-	 * @param	direction	The direction.
-	 *
-	 * @return	A named state.
-	 */
-	protected String getDirectionState(final Direction direction) {
-		switch (direction) {
-			case LEFT:
-				return "move_left";
-
-			case RIGHT:
-				return "move_right";
-
-			case UP:
-				return "move_up";
-
-			case DOWN:
-				return "move_down";
-
-			default:
-				return "move_up";
-		}
-	}
 
 	public boolean isAttacking() {
 		return (attacking != null);
