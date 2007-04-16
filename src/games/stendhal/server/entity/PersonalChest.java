@@ -1,6 +1,7 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -60,19 +61,19 @@ public class PersonalChest extends Chest {
 				if (attending != null) {
 					/* Can be replaced when we add Equip event */
 					/* Mirror player objects */
-					RPSlot content = getBankSlot();
-					content.clear();
+					RPSlot bank = getBankSlot();
+					bank.clear();
 
 					for (RPObject item : getSlot("content")) {
-						content.add(item);
+						bank.add(item);
 					}
 
 					// A hack to allow client update correctly the chest...
-					content = getSlot("content");
+					RPSlot content = getSlot("content");
 					content.clear();
 
 					for (RPObject item : getBankSlot()) {
-						content.add(item);
+						content.add(new Item((Item) item));
 					}
 
 					/* If player is not next to depot clean it. */
@@ -86,16 +87,6 @@ public class PersonalChest extends Chest {
 						}
 
 						content.clear();
-
-						// NOTE: As content.clear() remove the contained flag of the object
-						// we need to do this hack.
-						RPSlot playerContent = getBankSlot();
-						playerContent.clear();
-
-						for (RPObject item : itemsList) {
-							playerContent.add(item);
-						}
-
 						close();
 						PersonalChest.this.notifyWorldAboutChanges();
 
