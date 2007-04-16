@@ -286,7 +286,7 @@ class PlayerRPClass {
 				firstVisit = true;
 			}
 
-			boolean newReleaseHappened = !object.get("release").equals(Debug.VERSION);
+			boolean newReleaseHappened = !object.get("release").startsWith("0.59");
 			if (newReleaseHappened) {
 				firstVisit = true;
 				player.put("release", Debug.VERSION);
