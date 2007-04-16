@@ -202,6 +202,8 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 			 * A context menu was added
 			 */
 			if (jcontextMenu != null) {
+				jcontextMenu.setLightWeightPopupEnabled(false);
+
 				jcontextMenu.show(e.getComponent(), e.getX() - 10, e.getY() - 10);
 			}
 
