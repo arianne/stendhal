@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.server.entity.item.scroll.EmptyScroll;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
@@ -38,6 +39,17 @@ public class Dice extends Item {
 	public Dice() {
 		super("dice", "misc", "dice", null);
 		randomize(null);
+	}
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Dice(Dice item) {
+		super(item);
+		topFaces = item.topFaces;
+		croupierNPC = item.croupierNPC;
 	}
 
 	public void setCroupierNPC(CroupierNPC croupierNPC) {

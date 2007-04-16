@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
+import games.stendhal.server.entity.item.WeddingRing;
 
 import java.util.Map;
 
@@ -32,6 +33,15 @@ public class InfoStringScroll extends Scroll {
 	 */
 	public InfoStringScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+	}
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public InfoStringScroll(InfoStringScroll item) {
+		super(item);
 	}
 
 	@Override

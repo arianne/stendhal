@@ -36,6 +36,15 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	}
 
 	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public TeleportScroll(TeleportScroll item) {
+		super(item);
+	}
+
+	/**
 	 * Is invoked when a teleporting scroll is actually used.
 	 *
 	 * @param player The player who used the scroll and who will be

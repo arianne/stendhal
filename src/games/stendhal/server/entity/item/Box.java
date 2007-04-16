@@ -42,6 +42,10 @@ public class Box extends Item implements UseListener {
 	public Box(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
+	
+	public Box(Box box) {
+		super(box);
+	}
 
 	public void onUsed(RPEntity user) {
 		// TODO: clean up duplicated code with other Item subclasses.

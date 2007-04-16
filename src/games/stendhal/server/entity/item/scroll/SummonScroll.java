@@ -50,6 +50,15 @@ public class SummonScroll extends InfoStringScroll {
 	}
 
 	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public SummonScroll(SummonScroll item) {
+		super(item);
+	}
+
+	/**
 	 * Is invoked when a summon scroll is used.
 	 * @param player The player who used the scroll
 	 * @return true iff summoning was successful

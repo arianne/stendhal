@@ -30,6 +30,15 @@ public class Money extends StackableItem {
 		super("money", "money", "gold", attributes);
 	}
 
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Money(Money item) {
+		super(item);
+	}
+
 	public Money(int quantity) {
 		super("money", "money", "gold", null);
 		setQuantity(quantity);

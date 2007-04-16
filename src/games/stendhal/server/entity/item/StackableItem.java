@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item;
 
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.entity.item.scroll.EmptyScroll;
 
 import java.util.Map;
 
@@ -30,6 +31,16 @@ public class StackableItem extends Item implements Stackable {
 	public StackableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		update();
+	}
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public StackableItem(StackableItem item) {
+		super(item);
+		quantity = item.quantity;
 	}
 
 	@Override

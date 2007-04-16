@@ -42,6 +42,17 @@ public class MarkedScroll extends TeleportScroll {
 		super(name, clazz, subclass, attributes);
 	}
 
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public MarkedScroll(MarkedScroll item) {
+		super(item);
+	}
+
+	
 	/**
 	 * Is invoked when a teleporting scroll is used. Tries to put the
 	 * player on the scroll's destination, or near it. 

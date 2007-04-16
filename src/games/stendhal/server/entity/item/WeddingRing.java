@@ -19,6 +19,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.scroll.Scroll;
+import games.stendhal.server.entity.item.scroll.TeleportScroll;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 
@@ -52,6 +53,16 @@ public class WeddingRing extends Item implements UseListener {
 	public WeddingRing(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public WeddingRing(WeddingRing item) {
+		super(item);
+	}
+
 
 	public void onUsed(RPEntity user) {
 		RPObject base = this;

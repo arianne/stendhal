@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.server.entity.item.scroll.TeleportScroll;
 import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
@@ -49,6 +50,16 @@ public class Token extends Item {
 	public Token(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Token(Token item) {
+		super(item);
+	}
+
 
 	@Override
 	public void onPutOnGround(Player player) {

@@ -36,6 +36,17 @@ public class InvitationScroll extends TeleportScroll {
 	public InvitationScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 	}
+	
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public InvitationScroll(InvitationScroll item) {
+		super(item);
+	}
+
 
 	/**
 	 * Try to teleport to a marked scroll infostring style place.

@@ -33,6 +33,17 @@ public class MapScroll extends Scroll {
 		super(name, clazz, subclass, attributes);
 	}
 
+
+	/**
+	 * Copy Constructor
+	 *
+	 * @param item item to copy
+	 */
+	public MapScroll(MapScroll item) {
+		super(item);
+	}
+
+
 	@Override
 	public void onUsed(RPEntity user) {
 		// maps are scrolls without any special actions
