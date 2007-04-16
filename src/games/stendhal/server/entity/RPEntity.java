@@ -79,7 +79,8 @@ public abstract class RPEntity extends Entity {
 	 * You only get ATK and DEF experience by fighting against a creature that
 	 * is in this list.
 	 */
-	private Map<RPEntity, Integer> enemiesThatGiveFightXP;
+	//private Map<RPEntity, Integer> enemiesThatGiveFightXP;
+	private int lastTurnDamaged;
 
 	/** List of all enemies that are currently attacking of this entity. */
 	private List<Entity> attackSources;
@@ -170,7 +171,7 @@ public abstract class RPEntity extends Entity {
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
-		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
+		//enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
 
@@ -179,7 +180,7 @@ public abstract class RPEntity extends Entity {
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
 		playersToReward = new HashSet<Player>();
-		enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
+		//enemiesThatGiveFightXP = new HashMap<RPEntity, Integer>();
 		totalDamageReceived = 0;
 	}
 
@@ -519,22 +520,18 @@ public abstract class RPEntity extends Entity {
 			// XXX - Opponent could attack again, really remove?
 			// Yes, because otherwise we would have a memory leak. When else
 			// should dead creatures be removed from the hash map? --mort
-			enemiesThatGiveFightXP.remove(attackTarget);
+			//enemiesThatGiveFightXP.remove(attackTarget);
 
 			attackTarget = null;
 		}
 	}
 
 	public boolean getsFightXpFrom(RPEntity enemy) {
-		Integer turnWhenLastDamaged = enemiesThatGiveFightXP.get(enemy);
-		if (turnWhenLastDamaged == null) {
-			return false;
-		}
 		int currentTurn = StendhalRPRuleProcessor.get().getTurn();
-		if (currentTurn - turnWhenLastDamaged > TURNS_WHILE_FIGHT_XP_INCREASES) {
-			enemiesThatGiveFightXP.remove(enemy);
+		if ((currentTurn - lastTurnDamaged) > TURNS_WHILE_FIGHT_XP_INCREASES) {
 			return false;
 		}
+
 		return true;
 	}
 	
@@ -584,8 +581,7 @@ public abstract class RPEntity extends Entity {
 
 		bleedOnGround();
 		if (attacker instanceof RPEntity) {
-			int currentTurn = StendhalRPRuleProcessor.get().getTurn();
-			enemiesThatGiveFightXP.put((RPEntity) attacker, currentTurn);
+			lastTurnDamaged = StendhalRPRuleProcessor.get().getTurn();
 		}
 		
 		int leftHP = getHP() - damage;
