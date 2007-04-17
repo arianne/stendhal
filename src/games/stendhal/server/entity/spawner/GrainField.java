@@ -33,12 +33,12 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 	public static final int RIPE = 5;
 
 	public GrainField(RPObject object) throws AttributeNotFoundException {
-		super(object, "grain_field", "Harvest", RIPE, 1, 1);
+		super(object, "grain_field", "Harvest", RIPE, 1, 2);
 		update();
 	}
 
 	public GrainField() throws AttributeNotFoundException {
-		super("grain_field", "Harvest", RIPE, 1, 1);
+		super("grain_field", "Harvest", RIPE, 1, 2);
 	}
 
 	@Override
