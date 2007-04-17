@@ -27,7 +27,7 @@ public class GrainField extends AnimatedStateEntity {
 
 
 	public GrainField()  {
-		this(1, 1);
+		this(1, 2);
 	}
 
 
@@ -46,7 +46,7 @@ public class GrainField extends AnimatedStateEntity {
 		return width;
 	}
 
-	@Override
+
 	public void init(final RPObject object) {
 		super.init(object);
 
@@ -59,6 +59,7 @@ public class GrainField extends AnimatedStateEntity {
 			height = object.getInt("height");
 		}
 	}
+
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
@@ -76,9 +77,9 @@ public class GrainField extends AnimatedStateEntity {
 
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, width, 1);
+		return new Rectangle.Double(x, y + height - 1, width, 1);
 	}
-	
+
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.HARVEST;

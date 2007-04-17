@@ -62,8 +62,14 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 */
 	@Override
 	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+		double	height;
+		double	width;
 		int	maxRipeness;
 		String	clazz;
+
+
+		height = getHeight();
+		width = getWidth();
 
 		// default values are for compatibility to server <= 0.56
 
@@ -83,7 +89,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 
 		for (int i = 0; i <= maxRipeness; i++) {
 			map.put(Integer.toString(i),
-				store.getAnimatedSprite(translate(clazz), i, 1, 1, 2));
+				store.getAnimatedSprite(translate(clazz), i, 1, width, height));
 		}
 	}
 
@@ -116,7 +122,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 */
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(
-			getX(), getY() - 1.0, getWidth(), 2.0);
+			getX(), getY(), getWidth(), getHeight());
         }
 
 	/**
