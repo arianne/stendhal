@@ -67,6 +67,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private int hp;
 
+	private int adminlevel;
+
 	private int base_hp;
 
 	private float hp_base_hp;
@@ -81,18 +83,18 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private long combatIconTime;
 
-	private java.util.List<Sprite> damageSprites;
+	private java.util.List<Sprite> floaterSprites;
 
-	private java.util.List<Long> damageSpritesTimes;
+	private java.util.List<Long> floaterSpritesTimes;
 
 	private RPObject.ID attacking;
 
 	private int mana;
 
 	private int base_mana;
-	
-	private int fullghostmode;
-	
+
+	private boolean fullghostmode;
+
 	private String guild;
 
 	/**
@@ -122,14 +124,15 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private int defItem = -1;
 
-	
-	
+
+
 	/** Create a new game entity */
 	RPEntity()  {
-		damageSprites = new LinkedList<Sprite>();
-		damageSpritesTimes = new LinkedList<Long>();
+		floaterSprites = new LinkedList<Sprite>();
+		floaterSpritesTimes = new LinkedList<Long>();
 		attackTarget = null;
 		lastAttacker = null;
+		adminlevel = 0;
 	}
 
 	/**
@@ -139,9 +142,9 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	color		The color of the text.
 	 */
 	protected  void addFloater(final String text, final Color color) {
-		damageSprites.add(GameScreen.get().createString(text, color));
+		floaterSprites.add(GameScreen.get().createString(text, color));
 
-		damageSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+		floaterSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
 	}
 
 
@@ -200,7 +203,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	
+
 
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
@@ -223,8 +226,6 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onHealed(final int amount) {
 		if (distance(User.get()) < 15 * 15) {
 			addFloater("+" + amount, Color.green);
-
-			
 		}
 	}
 
@@ -262,7 +263,6 @@ public abstract class RPEntity extends ActiveEntity {
 	public boolean isAttackingUser() {
 		return ((attacking != null)
 			&& attacking.equals(User.get().getID()));
-
 	}
 
 	public boolean isBeingAttacked() {
@@ -343,7 +343,7 @@ public abstract class RPEntity extends ActiveEntity {
 		super.onChangedAdded(base, diff);
 
 		if (!inAdd) {
-			
+
 			fireTalkEvent(base, diff);
 			fireHPEvent(base, diff);
 			fireKillEvent(base, diff);
@@ -358,6 +358,12 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 		if (diff.has("hp/base_hp")) {
 			hp_base_hp = (float) diff.getDouble("hp/base_hp");
+
+			if (hp_base_hp > 1.0f) {
+				hp_base_hp = 1.0f;
+			} else if (hp_base_hp < 0.0f) {
+				hp_base_hp = 0.0f;
+			}
 		}
 		if (diff.has("atk")) {
 			atk = diff.getInt("atk");
@@ -390,7 +396,7 @@ public abstract class RPEntity extends ActiveEntity {
 			base_mana = diff.getInt("base_mana");
 		}
 		if (diff.has("fullghostmode")) {
-		    fullghostmode = diff.getInt("fullghostmode");
+		    fullghostmode = (diff.getInt("fullghostmode") != 0);
 		}
 		if (diff.has("guild")) {
 		    guild = diff.get("guild");
@@ -399,7 +405,8 @@ public abstract class RPEntity extends ActiveEntity {
 		Color nameColor = Color.white;
 
 		if (diff.has("adminlevel")) {
-			int adminlevel = diff.getInt("adminlevel");
+			adminlevel = diff.getInt("adminlevel");
+
 			if (adminlevel >= 800) {
 				nameColor = new Color(200, 200, 0);
 			} else if (adminlevel >= 400) {
@@ -410,12 +417,13 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		String titleType = null;
-		if (base.has("title_type")) {
-			titleType = base.get("title_type");
-		}
+
 		if (diff.has("title_type")) {
 			titleType = diff.get("title_type");
+		} else if (base.has("title_type")) {
+			titleType = base.get("title_type");
 		}
+
 		if (titleType != null) {
 			if (titleType.equals("npc")) {
 				nameColor = new Color(200, 200, 255);
@@ -638,7 +646,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	protected void fireHPEvent(final RPObject base, final RPObject diff) {
-		
+
 		if ((diff == null) && (base == null)) {
 			// Remove case
 		} else if (diff == null) {
@@ -655,10 +663,9 @@ public abstract class RPEntity extends ActiveEntity {
 				// To remove the - sign on poison.
 				onPoisoned(Math.abs(diff.getInt("poisoned")));
 			}
-		
+
 			// only for Players
 			if (diff.has("eating")) {
-				
 				onEat(0);
 			}
 		}
@@ -674,42 +681,65 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
+
+	/**
+	 * Get the ratio of HP to base HP.
+	 *
+	 * @return	The HP ratio (0.0 - 1.0).
+	 */
+	public float getHPRatio() {
+		return hp_base_hp;
+	}
+
+
+	/**
+	 * Determine if in full ghostmode.
+	 *
+	 * @return	<code>true</code> is in full ghostmode.
+	 */
+	public boolean isFullGhostMode() {
+		return fullghostmode;
+	}
+
+
+	/**
+	 * Get the admin level.
+	 *
+	 * @return	The admin level.
+	 */
+	public int getAdminLevel() {
+		return adminlevel;
+	}
+
+
 	/** Draws only the Name and hp bar **/
 	public void drawHPbar(final GameScreen screen) {
+		/*
+		 * Don't draw if full ghostmode
+		 */
+		if(isFullGhostMode()) {
+			return;
+		}
+
 		if (nameImage != null) {
-			// we also check the name image to hide it
-			if (fullghostmode == 0) {
-			    screen.draw(nameImage, x, y - 0.5);
-			} else; //no nothing
+			screen.draw(nameImage, x, y - 0.5);
+
+			float hpRatio = getHPRatio();
+
+			float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
+			float g = Math.min(hpRatio * 2.0f, 1.0f);
+
 			Graphics g2d = screen.expose();
+			Point p = screen.convertWorldToScreen(x, y);
 
-			Point2D p = new Point.Double(x, y);
-			p = screen.invtranslate(p);
+			g2d.setColor(Color.gray);
+			g2d.fillRect(p.x, p.y - 3, 32, 3);
 
-			if (hp_base_hp > 1) {
-				hp_base_hp = 1;
-			}
+			g2d.setColor(new Color(r, g, 0.0f));
+			g2d.fillRect(p.x, p.y - 3, (int) (hpRatio * 32.0), 3);
 
-			if (hp_base_hp < 0) {
-				hp_base_hp = 0;
-			}
-
-			float r = 1 - hp_base_hp;
-			r *= 2.0;
-			float g = hp_base_hp;
-			g *= 2.0;
-			
-			// assuming that this is the HP bar, we remove it
-			if (fullghostmode == 0) {
-			    g2d.setColor(Color.gray);
-			    g2d.fillRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
-			    g2d.setColor(new Color(r > 1 ? 1 : r, g > 1 ? 1 : g, 0));
-			    g2d.fillRect((int) p.getX(), (int) p.getY() - 3, (int) (hp_base_hp * 32.0), 3);
-			    g2d.setColor(Color.black);
-			    g2d.drawRect((int) p.getX(), (int) p.getY() - 3, 32, 3);
-			} else {
-			    // nothing, and no hp bar!
-			}
+			g2d.setColor(Color.black);
+			g2d.drawRect(p.x, p.y - 3, 32, 3);
 		}
 	}
 
@@ -718,21 +748,21 @@ public abstract class RPEntity extends ActiveEntity {
 	public void draw(final GameScreen screen) {
 		super.draw(screen);
 
-		if ((damageSprites != null) && (damageSprites.size() > 0)) 	{
-			//			 Draw the damage done
+		if (!floaterSprites.isEmpty()) {
+			// Draw the floaters
 			long current = System.currentTimeMillis();
 
 			int i = 0;
-			for (Sprite damageImage : damageSprites) {
-				double tx = x + 0.6 - (damageImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
-				double ty = y - ((current - damageSpritesTimes.get(i)) / (6.0 * 300.0));
-				screen.draw(damageImage, tx, ty);
+			for (Sprite floater : floaterSprites) {
+				double tx = x + 0.6 - (floater.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
+				double ty = y - ((current - floaterSpritesTimes.get(i)) / (6.0 * 300.0));
+				screen.draw(floater, tx, ty);
 				i++;
 			}
 
-			if ((damageSpritesTimes.size() > 0) && (current - damageSpritesTimes.get(0) > 6 * 300)) {
-				damageSprites.remove(0);
-				damageSpritesTimes.remove(0);
+			if ((floaterSpritesTimes.size() > 0) && (current - floaterSpritesTimes.get(0) > 6 * 300)) {
+				floaterSprites.remove(0);
+				floaterSpritesTimes.remove(0);
 			}
 		}
 	}
@@ -868,15 +898,7 @@ public abstract class RPEntity extends ActiveEntity {
 	public int getBaseMana() {
 		return base_mana;
 	}
-	
-	/**
-	 *@return Returns the status of Fullghostmode (0 for off, 1 for on)
-	 */
-	
-	public int getFullGhostModeStatus() {
-	    return fullghostmode;
-	}
-	
+
 	// When this entity attacks target.
 	public void onAttack(final Entity target) {
 		attacking = target.getID();
@@ -923,13 +945,13 @@ public abstract class RPEntity extends ActiveEntity {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.HIT;
 		 try{
-			
+
 			    SoundMaster.play(attackSounds[Rand.rand(attackSounds.length)], x, y);
 			}
 			catch(NullPointerException e){
-				
+
 			}
-		
+
 		//playSound("punch-mix", 20, 60, 80);
 
 		addFloater("-" + damage, Color.red);
