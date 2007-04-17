@@ -337,7 +337,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 							if (stake < MIN_STAKE) {
 								npc.say("You must stake at least " + MIN_STAKE + " pieces of gold.");
 							} else if (stake > MAX_STAKE) { 
-								npc.say("You can't stake more than " + MIN_STAKE + " pieces of gold.");
+								npc.say("You can't stake more than " + MAX_STAKE + " pieces of gold.");
 							} else {
 								if (player.drop("money", stake)) {
 									startNewGame(player);
