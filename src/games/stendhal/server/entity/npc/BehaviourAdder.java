@@ -258,6 +258,10 @@ class BehaviourAdder {
 				        // we ignore any amounts
 				        if (words.length > 1) {
 					        item = words[words.length - 1].trim();
+				        } else if (behaviour.dealtItems().size() == 1) {
+				        	// The NPC only offers one type of outfit, so
+				        	// it's clear what the player wants.
+				        	item = behaviour.dealtItems().iterator().next();
 				        }
 
 				        // find out if the NPC sells this item, and if so,
