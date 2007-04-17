@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import marauroa.common.game.RPObjectNotFoundException;
+
 /**
  * QUEST: Fisherman's license Quiz
  * PARTICIPANTS:
@@ -79,9 +81,15 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		return res;
 	}
 	
+	// TODO: run this when the NPC says goodbye
 	public void cleanUpTable() {
 		if (fishOnTable != null) {
-			zone.remove(fishOnTable);
+			try {
+				zone.remove(fishOnTable);
+			} catch (RPObjectNotFoundException e) {
+				// The item timed out, or an admin destroyed it.
+				// So no need to clean up the table. 
+			}
 			fishOnTable = null;
 		}
 	}
