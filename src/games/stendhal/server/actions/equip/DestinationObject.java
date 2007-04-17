@@ -82,7 +82,7 @@ class DestinationObject extends MoveableObject {
 
 	/** checks if it is possible to add the entity to the world */
 	public boolean preCheck(Entity entity, Player player) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
+		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
