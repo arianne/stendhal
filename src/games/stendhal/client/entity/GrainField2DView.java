@@ -122,7 +122,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 */
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(
-			getX(), getY() + getHeight() - 1.0, getWidth(), 1.0);
+			getX(), getY() - getHeight() + 1.0, getWidth(), getHeight());
         }
 
 	/**
