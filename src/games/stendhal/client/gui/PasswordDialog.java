@@ -30,13 +30,8 @@ public class PasswordDialog extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         newPassRepeat = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        passLabel = new javax.swing.JLabel();
         acceptButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
-        menuBar = new javax.swing.JMenuBar();
-        menu = new javax.swing.JMenu();
-        menu_exit = new javax.swing.JMenuItem();
 
         getContentPane().setLayout(null);
 
@@ -48,7 +43,6 @@ public class PasswordDialog extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(10, 10, 166, 17);
 
-        currrentPass.setText("Password");
         currrentPass.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 currrentPassMouseClicked(evt);
@@ -56,7 +50,7 @@ public class PasswordDialog extends javax.swing.JFrame {
         });
 
         getContentPane().add(currrentPass);
-        currrentPass.setBounds(20, 70, 240, 30);
+        currrentPass.setBounds(140, 70, 240, 30);
 
         jLabel2.setText("Change Password");
         getContentPane().add(jLabel2);
@@ -67,9 +61,8 @@ public class PasswordDialog extends javax.swing.JFrame {
 
         jLabel3.setText("Current Password");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(270, 75, 111, 20);
+        jLabel3.setBounds(10, 70, 111, 30);
 
-        newPass.setText("Password");
         newPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 newPassKeyTyped(evt);
@@ -77,13 +70,12 @@ public class PasswordDialog extends javax.swing.JFrame {
         });
 
         getContentPane().add(newPass);
-        newPass.setBounds(20, 110, 240, 30);
+        newPass.setBounds(120, 110, 240, 30);
 
         jLabel4.setText("New Password");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(270, 115, 100, 20);
+        jLabel4.setBounds(10, 110, 100, 30);
 
-        newPassRepeat.setText("Password");
         newPassRepeat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 newPassRepeatKeyTyped(evt);
@@ -91,19 +83,11 @@ public class PasswordDialog extends javax.swing.JFrame {
         });
 
         getContentPane().add(newPassRepeat);
-        newPassRepeat.setBounds(20, 150, 240, 30);
+        newPassRepeat.setBounds(160, 150, 240, 30);
 
         jLabel5.setText("Repeat New Password");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(270, 155, 137, 20);
-
-        jLabel6.setText("Passwords:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(210, 200, 70, 20);
-
-        passLabel.setText("Do not match.");
-        getContentPane().add(passLabel);
-        passLabel.setBounds(290, 200, 90, 20);
+        jLabel5.setBounds(10, 150, 137, 30);
 
         acceptButton.setText("Accept");
         acceptButton.addActionListener(new java.awt.event.ActionListener() {
@@ -113,37 +97,18 @@ public class PasswordDialog extends javax.swing.JFrame {
         });
 
         getContentPane().add(acceptButton);
-        acceptButton.setBounds(10, 240, 75, 25);
+        acceptButton.setBounds(10, 210, 75, 25);
 
         cancelButton.setText("Cancel");
         getContentPane().add(cancelButton);
-        cancelButton.setBounds(110, 240, 75, 25);
-
-        menu.setText("Menu");
-        menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose(evt);
-            }
-        });
-
-        menu_exit.setText("Close");
-        menu_exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_exitActionPerformed(evt);
-            }
-        });
-
-        menu.add(menu_exit);
-
-        menuBar.add(menu);
-
-        setJMenuBar(menuBar);
+        cancelButton.setBounds(100, 210, 75, 25);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-	if (passCorrect) {
+	checkPass();
+	if (newPass.getText().equals(newPassRepeat.getText())) { //looks like we can't compare char arrays to easily... oh well.
 	    //check for server password and see if that is accepted
 	    JOptionPane.showMessageDialog(null, "Passwords Match"); // remove this- just for testing.
 	} else {
@@ -152,11 +117,11 @@ public class PasswordDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPassRepeatKeyTyped
-	checkPass();
+	checkPass();//not used
     }//GEN-LAST:event_newPassRepeatKeyTyped
 
     private void newPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPassKeyTyped
-	checkPass();
+	checkPass();//not used
     }//GEN-LAST:event_newPassKeyTyped
 
     private boolean clear = false;
@@ -166,16 +131,6 @@ public class PasswordDialog extends javax.swing.JFrame {
 	    clear = true;
 	}
     }//GEN-LAST:event_currrentPassMouseClicked
-
-    private void menu_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_exitActionPerformed
-	//  |
-	//  |
-	// \/
-    }//GEN-LAST:event_menu_exitActionPerformed
-
-    private void dispose(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dispose
-	dispose();
-    }//GEN-LAST:event_dispose
     
     
     /**
@@ -183,12 +138,10 @@ public class PasswordDialog extends javax.swing.JFrame {
      */
     private boolean passCorrect = false;
     private void checkPass() {
-	if (newPass.getPassword() == newPassRepeat.getPassword()) {
+	if (newPass.getPassword().equals(newPassRepeat.getPassword())) {
 	    passCorrect = true;
-	    passLabel.setText("Match");
 	}
 	else {
-	    passLabel.setText("Do not match.");
 	    passCorrect = false;
 	}
     }
@@ -213,14 +166,9 @@ public class PasswordDialog extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JMenu menu;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem menu_exit;
     private javax.swing.JPasswordField newPass;
     private javax.swing.JPasswordField newPassRepeat;
-    private javax.swing.JLabel passLabel;
     // End of variables declaration//GEN-END:variables
     
 }
