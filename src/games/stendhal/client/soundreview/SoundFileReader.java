@@ -90,6 +90,9 @@ public class SoundFileReader {
 		bout = new ByteArrayOutputStream();
 		try {
 			in = getResourceStream(filename);
+			if (in == null) {
+				return null;
+			}
 
 			transferData(in, bout, 4096);
 			in.close();
