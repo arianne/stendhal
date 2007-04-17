@@ -399,6 +399,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		ByteArrayOutputStream bout;
 
 		in = getResourceStream(name);
+		if (in == null) {
+			return null;
+		}
 		bout = new ByteArrayOutputStream();
 		transferData(in, bout, 4096);
 		in.close();
@@ -486,6 +489,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						filename = value;
 					}
 					soundData = getData(soundBase + filename);
+					if (soundData == null) {
+						continue;
+					}
 
 					// construct sound clip from sample data
 					// (we always do that to verify sound sample format)
