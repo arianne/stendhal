@@ -142,8 +142,8 @@ Shepherds please note: keep watch for the wolves while searching for berries her
   <entity x="23" y="48">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <parameter name="text">
-West: Semos city
-East: Jail
+West: Jail
+East: Semos city
 South: Or'ril castle
     </parameter>
     <parameter name="class">signpost</parameter>
