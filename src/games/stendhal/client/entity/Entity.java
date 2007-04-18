@@ -467,7 +467,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	object		The object.
 	 */
-	public void onAdded(RPObject object) {
+	public void onAdded(final RPObject object) {
 		if(object.has("visibility")) {
 			visibility = object.getInt("visibility");
 		} else {
@@ -498,7 +498,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	object		The base object.
 	 * @param	changes		The changes.
 	 */
-	public void onChangedAdded(RPObject object, RPObject changes) {
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		if (inAdd) {
 			return;
 		}
@@ -565,7 +565,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	object		The base slot object.
 	 * @param	changes		The slot changes.
 	 */
-	public void onChangedAdded(RPObject container, String slotName, RPObject object, RPObject changes) {
+	public void onChangedAdded(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
 
 	}
 
@@ -576,7 +576,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	object		The base object.
 	 * @param	changes		The changes.
 	 */
-	public void onChangedRemoved(RPObject object, RPObject changes) {
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		if(changes.has("visibility")) {
 			visibility = 100;
 			changed();
@@ -629,8 +629,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	object		The base slot object.
 	 * @param	changes		The slot changes.
 	 */
-	public void onChangedRemoved(RPObject container, String slotName, RPObject object, RPObject changes) {
-
+	public void onChangedRemoved(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
 	}
 
 
@@ -639,7 +638,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	object		The object.
 	 */
-	public void onRemoved(RPObject object) {
+	public void onRemoved(final RPObject object) {
 		SoundSystem.stopSoundCycle(ID_Token);
 
 		onLeaveZone(getID().getZoneID());

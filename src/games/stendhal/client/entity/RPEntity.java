@@ -826,6 +826,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 *
 	 * @param	object		The object.
 	 */
+	@Override
 	public void onAdded(final RPObject object) {
 		super.onAdded(object);
 
@@ -843,7 +844,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	changes		The changes.
 	 */
 	@Override
-	public void onChangedAdded(RPObject object, RPObject changes) {
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
 		if (!inAdd) {
@@ -978,7 +979,8 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	object		The base object.
 	 * @param	changes		The changes.
 	 */
-	public void onChangedRemoved(RPObject object, RPObject changes) {
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		super.onChangedRemoved(object, changes);
 
 		fireHPEventChangedRemoved(object, changes);
@@ -992,7 +994,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	object		The object.
 	 */
 	@Override
-	public void onRemoved(RPObject object) {
+	public void onRemoved(final RPObject object) {
 		super.onRemoved(object);
 
 		fireTalkEvent(null, null);
