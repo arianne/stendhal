@@ -45,7 +45,7 @@ public class LookUpQuote extends AbstractQuest {
 		quotes.put("fisherman Bully", "Clownfish are always good for a laugh.");
 		quotes.put("fisherman Jacky", "Don't mistake your trout for your old trout, she wouldn't taste so good.");
 		quotes.put("fisherman Tommy", "I wouldn't trust a surgeonfish in a hospital, there's something fishy about them.");
-		quotes.put("fisherman Sody", "Devout Crustaceans belive in the One True Cod.");
+		quotes.put("fisherman Sody", "Devout Crustaceans believe in the One True Cod.");
 		quotes.put("fisherman Humphrey", "I don't understand why noone buys my fish. The sign says 'Biggest Roaches in town'.");
 		quotes.put("fisherman Monty", "My parrot doesn't like to sit on a perch. He says it smells fishy.");
 		quotes.put("fisherman Charby", "That fish restaurant really overcooks everything. It even advertises char fish.");
