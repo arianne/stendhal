@@ -2666,7 +2666,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="42"/>
-		<experience value="600"/>
+		<experience value="630"/>
 		<respawn value="900"/>
 		<drops>
 			<item value="money" quantity="[3,30]" probability="90"/>
@@ -2995,7 +2995,7 @@
 		</equips>
 		<ai>
 			<profile name="human"/>
-			<profile name="non_offensive"/>
+			<profile name="offensive"/>
 			<profile name="heal" params="5,50"/>
 		</ai>
 	</creature>
@@ -3291,6 +3291,7 @@
 		<drops>
 			<item value="money" quantity="[50,900]" probability="100"/>
 			<item value="greater_potion" quantity="[1,6]" probability="20"/>
+			<item value="greater_poison" quantity="[1,2]" probability="50"/>
 		</drops>
 		<equips>
 		</equips>
@@ -3351,6 +3352,7 @@
 		<respawn value="30000"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="greater_poison" quantity="[1,2]" probability="80"/>
 			<item value="money" quantity="[30,150]" probability="100"/>
 		</drops>
 		<equips>
@@ -3408,7 +3410,8 @@
 		<experience value="18500"/>
 		<respawn value="36000"/>
 		<drops>
-			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="greater_potion" quantity="[1,4]" probability="80"/>
+			<item value="greater_poison" quantity="1" probability="50"/>
 			<item value="money" quantity="[30,850]" probability="100"/>
 		</drops>
 		<equips>
@@ -3463,6 +3466,7 @@
 		<respawn value="36100"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="giant_heart" quantity="1" probability="85"/>
 			<item value="money" quantity="[30,900]" probability="100"/>
 		</drops>
 		<equips>
@@ -3492,6 +3496,7 @@
 		<respawn value="46500"/>
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="deadly_poison" quantity="[1,3]" probability="40"/>
 			<item value="money" quantity="[30,1500]" probability="100"/>
 		</drops>
 		<equips>
