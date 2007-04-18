@@ -13,6 +13,8 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.User;
+import games.stendhal.client.events.BuddyChangeListener;
+import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
@@ -480,7 +482,7 @@ public class StendhalClient extends ariannexp {
 
 	public void removePlayerChangeListener(PlayerChangeListener l) {
 	}
-
+*/
 
 
 	public void addFeatureChangeListener(FeatureChangeListener l) {
@@ -491,14 +493,12 @@ public class StendhalClient extends ariannexp {
 	}
 
 
-
 	public void addBuddyChangeListener(BuddyChangeListener l) {
 	}
 
 
 	public void removeBuddyChangeListener(BuddyChangeListener l) {
 	}
-*/
 
 
 	protected void firePlayerAssignment(RPObject object) {

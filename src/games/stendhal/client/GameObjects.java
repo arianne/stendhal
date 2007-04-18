@@ -181,7 +181,7 @@ public class GameObjects implements Iterable<Entity> {
 
 		Entity entity = objects.get(id);
 		if (entity != null) {
-			entity.onRemoved();
+			entity.onRemoved(entity.getRPObject());
 
 		}
 
@@ -195,8 +195,11 @@ public class GameObjects implements Iterable<Entity> {
 		Log4J.startMethod(logger, "clear");
 
 		// invalidate all entity objects
-		for (Iterator it = iterator(); it.hasNext();) {
-			((Entity) it.next()).onRemoved();
+		Iterator<Entity> it = iterator();
+
+		while(it.hasNext()) {
+			Entity entity = it.next();
+			entity.onRemoved(entity.getRPObject());
 		}
 
 		objects.clear();

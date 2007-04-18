@@ -141,7 +141,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	text		The text message.
 	 * @param	color		The color of the text.
 	 */
-	protected  void addFloater(final String text, final Color color) {
+	protected void addFloater(final String text, final Color color) {
 		floaterSprites.add(GameScreen.get().createString(text, color));
 
 		floaterSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
@@ -310,169 +310,6 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 	}
 
-	/**
-	 * Called when object is added.
-	 *
-	 *
-	 */
-	@Override
-	public void onAdded(final RPObject base) {
-		super.onAdded(base);
-
-		fireTalkEvent(base, null);
-		fireHPEvent(base, null);
-		fireKillEvent(base, null);
-		fireAttackEvent(base, null);
-	}
-
-	/**
-	 * Called when object is removed.
-	 */
-	@Override
-	public void onRemoved() {
-		super.onRemoved();
-
-		fireTalkEvent(null, null);
-		fireHPEvent(null, null);
-		fireKillEvent(null, null);
-		fireAttackEvent(null, null);
-	}
-
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-		if (!inAdd) {
-
-			fireTalkEvent(base, diff);
-			fireHPEvent(base, diff);
-			fireKillEvent(base, diff);
-			fireAttackEvent(base, diff);
-		}
-
-		if (diff.has("base_hp")) {
-			base_hp = diff.getInt("base_hp");
-		}
-		if (diff.has("hp")) {
-			hp = diff.getInt("hp");
-		}
-		if (diff.has("hp/base_hp")) {
-			hp_base_hp = (float) diff.getDouble("hp/base_hp");
-
-			if (hp_base_hp > 1.0f) {
-				hp_base_hp = 1.0f;
-			} else if (hp_base_hp < 0.0f) {
-				hp_base_hp = 0.0f;
-			}
-		}
-		if (diff.has("atk")) {
-			atk = diff.getInt("atk");
-		}
-		if (diff.has("def")) {
-			def = diff.getInt("def");
-		}
-		if (diff.has("xp")) {
-			xp = diff.getInt("xp");
-		}
-		if (diff.has("level")) {
-			level = diff.getInt("level");
-		}
-		if (diff.has("atk_xp")) {
-			atkXp = diff.getInt("atk_xp");
-		}
-		if (diff.has("def_xp")) {
-			defXp = diff.getInt("def_xp");
-		}
-		if (diff.has("atk_item")) {
-			atkItem = diff.getInt("atk_item");
-		}
-		if (diff.has("def_item")) {
-			defItem = diff.getInt("def_item");
-		}
-		if (diff.has("mana")) {
-			mana = diff.getInt("mana");
-		}
-		if (diff.has("base_mana")) {
-			base_mana = diff.getInt("base_mana");
-		}
-		if (diff.has("fullghostmode")) {
-		    fullghostmode = (diff.getInt("fullghostmode") != 0);
-		}
-		if (diff.has("guild")) {
-		    guild = diff.get("guild");
-		}
-
-		Color nameColor = Color.white;
-
-		if (diff.has("adminlevel")) {
-			adminlevel = diff.getInt("adminlevel");
-
-			if (adminlevel >= 800) {
-				nameColor = new Color(200, 200, 0);
-			} else if (adminlevel >= 400) {
-				nameColor = new Color(255, 255, 0);
-			} else if (adminlevel > 0) {
-				nameColor = new Color(255, 255, 172);
-			}
-		}
-
-		String titleType = null;
-
-		if (diff.has("title_type")) {
-			titleType = diff.get("title_type");
-		} else if (base.has("title_type")) {
-			titleType = base.get("title_type");
-		}
-
-		if (titleType != null) {
-			if (titleType.equals("npc")) {
-				nameColor = new Color(200, 200, 255);
-			} else if (titleType.equals("enemy")) {
-				nameColor = new Color(255, 200, 200);
-			}
-		}
-
-		if (diff.has("name")) {
-			name = diff.get("name");
-			name = name.replace("_", " ");
-			nameImage = GameScreen.get().createString(getName(), nameColor);
-		} else if ((name == null) && diff.has("class")) {
-			name = diff.get("class");
-			name = name.replace("_", " ");
-			nameImage = GameScreen.get().createString(getName(), nameColor);
-		} else if ((name == null) && diff.has("type")) {
-			name = diff.get("type");
-			name = name.replace("_", " ");
-			nameImage = GameScreen.get().createString(getName(), nameColor);
-		}
-
-		if (diff.has("xp") && base.has("xp")) {
-			if (distance(User.get()) < 15 * 15) {
-				addFloater("+" + (diff.getInt("xp") - base.getInt("xp")), Color.cyan);
-
-				StendhalUI.get().addEventLine(
-				        getName() + " earns "
-				                + Grammar.quantityplnoun(diff.getInt("xp") - base.getInt("xp"), "experience point")
-				                + ".", Color.blue);
-			}
-		}
-
-		if (diff.has("level") && base.has("level")) {
-			if (distance(User.get()) < 15 * 15) {
-				String text = getName() + " reaches Level " + getLevel();
-
-				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
-				StendhalUI.get().addEventLine(text, Color.green);
-			}
-		}
-	}
-
-	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-		super.onChangedRemoved(base, diff);
-
-		fireHPEventChangedRemoved(base, diff);
-		fireAttackEventChangedRemoved(base, diff);
-	}
 
 	protected void fireAttackEvent(final RPObject base, final RPObject diff) {
 		if ((diff == null) && (base == null)) {
@@ -977,5 +814,190 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onMissed(final Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * An object was added.
+	 *
+	 * @param	object		The object.
+	 */
+	public void onAdded(final RPObject object) {
+		super.onAdded(object);
+
+		fireTalkEvent(object, null);
+		fireHPEvent(object, null);
+		fireKillEvent(object, null);
+		fireAttackEvent(object, null);
+	}
+
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(RPObject object, RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (!inAdd) {
+
+			fireTalkEvent(object, changes);
+			fireHPEvent(object, changes);
+			fireKillEvent(object, changes);
+			fireAttackEvent(object, changes);
+		}
+
+		if (changes.has("base_hp")) {
+			base_hp = changes.getInt("base_hp");
+		}
+		if (changes.has("hp")) {
+			hp = changes.getInt("hp");
+		}
+		if (changes.has("hp/base_hp")) {
+			hp_base_hp = (float) changes.getDouble("hp/base_hp");
+
+			if (hp_base_hp > 1.0f) {
+				hp_base_hp = 1.0f;
+			} else if (hp_base_hp < 0.0f) {
+				hp_base_hp = 0.0f;
+			}
+		}
+		if (changes.has("atk")) {
+			atk = changes.getInt("atk");
+		}
+		if (changes.has("def")) {
+			def = changes.getInt("def");
+		}
+		if (changes.has("xp")) {
+			xp = changes.getInt("xp");
+		}
+		if (changes.has("level")) {
+			level = changes.getInt("level");
+		}
+		if (changes.has("atk_xp")) {
+			atkXp = changes.getInt("atk_xp");
+		}
+		if (changes.has("def_xp")) {
+			defXp = changes.getInt("def_xp");
+		}
+		if (changes.has("atk_item")) {
+			atkItem = changes.getInt("atk_item");
+		}
+		if (changes.has("def_item")) {
+			defItem = changes.getInt("def_item");
+		}
+		if (changes.has("mana")) {
+			mana = changes.getInt("mana");
+		}
+		if (changes.has("base_mana")) {
+			base_mana = changes.getInt("base_mana");
+		}
+		if (changes.has("fullghostmode")) {
+		    fullghostmode = (changes.getInt("fullghostmode") != 0);
+		}
+		if (changes.has("guild")) {
+		    guild = changes.get("guild");
+		}
+
+		Color nameColor = Color.white;
+
+		if (changes.has("adminlevel")) {
+			adminlevel = changes.getInt("adminlevel");
+
+			if (adminlevel >= 800) {
+				nameColor = new Color(200, 200, 0);
+			} else if (adminlevel >= 400) {
+				nameColor = new Color(255, 255, 0);
+			} else if (adminlevel > 0) {
+				nameColor = new Color(255, 255, 172);
+			}
+		}
+
+		String titleType = null;
+
+		if (changes.has("title_type")) {
+			titleType = changes.get("title_type");
+		} else if (object.has("title_type")) {
+			titleType = object.get("title_type");
+		}
+
+		if (titleType != null) {
+			if (titleType.equals("npc")) {
+				nameColor = new Color(200, 200, 255);
+			} else if (titleType.equals("enemy")) {
+				nameColor = new Color(255, 200, 200);
+			}
+		}
+
+		if (changes.has("name")) {
+			name = changes.get("name");
+			name = name.replace("_", " ");
+			nameImage = GameScreen.get().createString(getName(), nameColor);
+		} else if ((name == null) && changes.has("class")) {
+			name = changes.get("class");
+			name = name.replace("_", " ");
+			nameImage = GameScreen.get().createString(getName(), nameColor);
+		} else if ((name == null) && changes.has("type")) {
+			name = changes.get("type");
+			name = name.replace("_", " ");
+			nameImage = GameScreen.get().createString(getName(), nameColor);
+		}
+
+		if (changes.has("xp") && object.has("xp")) {
+			if (distance(User.get()) < 15 * 15) {
+				addFloater("+" + (changes.getInt("xp") - object.getInt("xp")), Color.cyan);
+
+				StendhalUI.get().addEventLine(
+				        getName() + " earns "
+				                + Grammar.quantityplnoun(changes.getInt("xp") - object.getInt("xp"), "experience point")
+				                + ".", Color.blue);
+			}
+		}
+
+		if (changes.has("level") && object.has("level")) {
+			if (distance(User.get()) < 15 * 15) {
+				String text = getName() + " reaches Level " + getLevel();
+
+				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
+				StendhalUI.get().addEventLine(text, Color.green);
+			}
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	public void onChangedRemoved(RPObject object, RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		fireHPEventChangedRemoved(object, changes);
+		fireAttackEventChangedRemoved(object, changes);
+	}
+
+
+	/**
+	 * An object was removed.
+	 *
+	 * @param	object		The object.
+	 */
+	@Override
+	public void onRemoved(RPObject object) {
+		super.onRemoved(object);
+
+		fireTalkEvent(null, null);
+		fireHPEvent(null, null);
+		fireKillEvent(null, null);
+		fireAttackEvent(null, null);
 	}
 }
