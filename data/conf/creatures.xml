@@ -2779,7 +2779,7 @@
 	<creature name="dark_elf_archer">
 		<type class="dark_elf" subclass="dark_elf_archer" tileid="161"/>
 		<attributes>
-			<atk value="134"/>
+			<atk value="120"/>
 			<def value="20"/>
 			<hp value="130"/>
 			<speed value="1"/>
@@ -2917,7 +2917,7 @@
 	<creature name="dark_elf_elite_archer">
 		<type class="dark_elf" subclass="dark_elf_elite_archer" tileid="163"/>
 		<attributes>
-			<atk value="164"/>
+			<atk value="100"/>
 			<def value="20"/>
 			<hp value="130"/>
 			<speed value="1"/>
@@ -3071,7 +3071,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="60"/>
-		<experience value="3500"/>
+		<experience value="7500"/>
 		<respawn value="2700"/>
 		<drops>
 			<item value="money" quantity="[5,90]" probability="100"/>
@@ -3099,7 +3099,7 @@
 			<size value="1,2"/>
 		</attributes>
 		<level value="60"/>
-		<experience value="3900"/>
+		<experience value="9000"/>
 		<respawn value="45000"/>
 		<drops>
 			<item value="greater_potion" quantity="1" probability="40"/>
@@ -3299,7 +3299,6 @@
 			<profile name="offensive"/>
 			<profile name="brave"/>
 			<profile name="poisonous" params="5,greater_poison"/>
-			<profile name="lifesteal" params="0.4"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="patrolling"/>
 		</ai>
@@ -3321,10 +3320,10 @@
 		<respawn value="28000"/>
 		<drops>
 			<item value="money" quantity="[50,900]" probability="100"/>
-			<item value="golden_shield" quantity="1" probability="10"/>
+			<item value="golden_shield" quantity="1" probability="5"/>
 			<item value="fire_sword" quantity="1" probability="10"/>
-			<item value="ice_sword" quantity="1" probability="10"/>
-			<item value="golden_armor" quantity="1" probability="10"/>
+			<item value="ice_sword" quantity="1" probability="5"/>
+			<item value="golden_armor" quantity="1" probability="5"/>
 		</drops>
 		<equips>
 		</equips>
@@ -3342,7 +3341,7 @@
 		<type class="huge_animal" subclass="giant_spider" tileid="155"/>
 		<attributes>
 			<atk value="255"/>
-			<def value="35"/>
+			<def value="32"/>
 			<hp value="1200"/>
 			<speed value="1"/>
 			<size value="3,4"/>
@@ -3360,7 +3359,6 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="lifesteal" params="0.6"/>
 			<profile name="poisonous" params="5,greater_poison"/>
 			<profile name="heal" params="5,50"/>
 			<profile name="patrolling"/>
@@ -3419,7 +3417,6 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="lifesteal" params="0.2"/>
 			<profile name="poisonous" params="15,greater_poison"/>
 			<profile name="heal" params="10,50"/>
 			<profile name="patrolling"/>
@@ -3438,7 +3435,6 @@
 		<experience value="19000"/>
 		<respawn value="36100"/>
 		<drops>
-			<item value="blue_dragon_cloak" quantity="1" probability="5"/>
 			<item value="greater_potion" quantity="[2,4]" probability="80"/>
 			<item value="money" quantity="[60,400]" probability="100"/>
 		</drops>
@@ -3504,9 +3500,9 @@
 			<profile name="animal"/>
 			<profile name="offensive"/>
 			<profile name="brave"/>
-			<profile name="lifesteal" params="0.6"/>
+			<profile name="lifesteal" params="0.1"/>
 			<profile name="poisonous" params="15,greater_poison"/>
-			<profile name="heal" params="25,50"/>
+			<profile name="heal" params="15,50"/>
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
@@ -3557,7 +3553,7 @@
 		<respawn value="94400"/>
 		<drops>
 			<item value="greater_potion" quantity="[3,20]" probability="50"/>
-			<item value="money" quantity="[3000,100000]" probability="100"/>
+			<item value="money" quantity="[3000,50000]" probability="100"/>
 			<item value="magic_plate_armor" quantity="1" probability="1"/>
 			<item value="shadow_shield" quantity="1" probability="5"/>
 			<item value="shadow_legs" quantity="1" probability="5"/>
