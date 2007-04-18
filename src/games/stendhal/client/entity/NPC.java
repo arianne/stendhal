@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.soundreview.SoundMaster;
-import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 
 import java.awt.Rectangle;

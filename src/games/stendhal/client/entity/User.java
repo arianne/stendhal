@@ -8,7 +8,6 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.soundreview.SoundMaster;
-import games.stendhal.common.Direction;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
 import marauroa.common.game.AttributeNotFoundException;

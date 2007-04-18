@@ -9,9 +9,7 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
-import games.stendhal.server.StendhalRPWorld;
 
 /**
  * A base factory for <code>LifeDrainArea</code> objects.

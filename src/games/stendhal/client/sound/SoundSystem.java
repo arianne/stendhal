@@ -35,7 +35,6 @@ import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.common.MathHelper;
 import java.awt.geom.Point2D;
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

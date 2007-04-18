@@ -20,7 +20,6 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;

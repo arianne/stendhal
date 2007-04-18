@@ -16,9 +16,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPObject;
-
 import org.apache.log4j.Logger;
 
 public class CreatureLogic {

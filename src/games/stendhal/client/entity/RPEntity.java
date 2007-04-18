@@ -18,18 +18,15 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.SoundMaster;
-import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 

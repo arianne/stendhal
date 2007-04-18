@@ -8,24 +8,21 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
+
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an RP entity.

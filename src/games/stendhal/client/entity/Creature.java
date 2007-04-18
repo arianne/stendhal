@@ -17,7 +17,6 @@ import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Debug;
-import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
 
 import java.util.ArrayList;

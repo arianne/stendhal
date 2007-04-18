@@ -17,7 +17,6 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.sound.SoundSystem;
-import games.stendhal.common.Direction;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
