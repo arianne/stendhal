@@ -60,6 +60,8 @@ public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
 		String resource = translate(object.get("type"));
 		SpriteStore store = SpriteStore.get();
 
+// When tile sprites using this class get rotated,
+// Change all of:
 		/*
 		 * There has to be a better way than this.. ugg!
 		 */
@@ -70,6 +72,9 @@ public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
 		}
 
 		map.put("default", animation);
+
+// To This:
+//		map.put("default", store.getAnimatedSprite(resource, 0, frames, 1, 1));
 	}
 
 
