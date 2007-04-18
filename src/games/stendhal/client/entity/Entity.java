@@ -174,8 +174,16 @@ public final byte[] ID_Token = new byte[0];
 	public RPObject getRPObject() {
 		return rpObject;
 	}
-
+	
+	
+	
+	/**
+	 * @param user the current player's character
+	 * @return a double value representing the square of the distance in tiles
+	 *  or Double.Positiveinfinity if User is null
+	 */
 	public double distance(final User user) {
+		if (User.isNull()) return Double.POSITIVE_INFINITY;
 		return (user.getX() - getX()) * (user.getX() - getX())
 			+ (user.getY() - getY()) * (user.getY() - getY());
 	}

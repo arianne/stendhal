@@ -92,10 +92,6 @@ public class EntityTest {
 
 		assertEquals(0.0, en.getX());
 		assertEquals(0.0, en.getY());
-//		en.onMove(3, 4, Direction.STOP, 0);
-		assertEquals(3.0, en.getX());
-		assertEquals(4.0, en.getY());
-
 	}
 
 
@@ -104,14 +100,18 @@ public class EntityTest {
 
 	@Test
 	public final void testDistance() {
-		
-		User to = new User();
 		Entity en = new MockEntity();
-//		en.onMove(3, 4, Direction.STOP, 0);
+		User to=null; 
+		assertEquals(Double.POSITIVE_INFINITY, en.distance(to));
+		to = new User();
+		
+ 		en.x=3;
+ 		en.y=4;
 		assertEquals(3.0, en.getX());
 		assertEquals(4.0, en.getY());
 		assertEquals(25.0, en.distance(to));
 		assertEquals(0.0, to.distance(to));
+		
 	}
 
 	@Test
@@ -172,29 +172,8 @@ public class EntityTest {
 			
 	}
 
-	@Test
+	
 
-	public final void testOnMove() {
-//		TODO: try to find out why this behaves as weird as it does astridemma
-		Entity en = new MockEntity();
-//		en.onMove(1,2, Direction.DOWN, 1);
-		assertEquals(1.0,en.getX());
-		assertEquals(2.0,en.getY());
-//		assertEquals(0.0,en.dx);
-//		assertEquals(1.0,en.dy);
-		
-		
- 		
-	}
-
-	@Test
-	public final void testOnStop() {
-		Entity en;
-		en = new MockEntity();
-		assertTrue(en.stopped());
-//		en.onStop(0, 0);
-		assertTrue(en.stopped());
-	}
 
 	@Test
 	@Ignore
