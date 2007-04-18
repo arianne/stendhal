@@ -20,37 +20,36 @@ public class SlashActionRepository {
 		SlashAction supporta = new SupportAnswerAction();
 
 		actions.put("/", new RemessageAction());
-		actions.put("away", new AwayAction());
-		actions.put("tell", msg);
-		actions.put("answer", new AnswerAction());
-		actions.put("msg", msg);
-		actions.put("support", new SupportAction());
-		actions.put("supporta", supporta);
-		actions.put("supportanswer", supporta);
-		actions.put("where", new WhereAction());
-		actions.put("who", new WhoAction());
-		actions.put("drop", new DropAction());
 		actions.put("add", new AddBuddyAction());
-		actions.put("remove", new RemoveBuddyAction());
-		actions.put("ignore", new IgnoreAction());
-		actions.put("quit", new QuitAction());
-		actions.put("help", new HelpAction());
-		actions.put("sound", new SoundAction());
-		actions.put("record", new RecordAction());
-                actions.put("joinguild", new CreateGuildAction());
-
-		actions.put("tellall", new TellAllAction());
-		actions.put("teleport", new TeleportAction());
-		actions.put("teleportto", new TeleportToAction());
 		actions.put("adminlevel", new AdminLevelAction());
 		actions.put("alter", new AlterAction());
-		actions.put("summon", new SummonAction());
-		actions.put("summonat", new SummonAtAction());
-		actions.put("inspect", new InspectAction());
-		actions.put("jail", new JailAction());
-		actions.put("invisible", new InvisibleAction());
-		actions.put("gmhelp", new GMHelpAction());
+		actions.put("answer", new AnswerAction());
+		actions.put("away", new AwayAction());
+		actions.put("drop", new DropAction());
 		actions.put("gmhelp_alter", new GMHelpAlterAction());
+		actions.put("gmhelp", new GMHelpAction());
+		actions.put("help", new HelpAction());
+		actions.put("ignore", new IgnoreAction());
+		actions.put("inspect", new InspectAction());
+		actions.put("invisible", new InvisibleAction());
+		actions.put("jail", new JailAction());
+		actions.put("joinguild", new CreateGuildAction());
+		actions.put("msg", msg);
+		actions.put("quit", new QuitAction());
+		actions.put("record", new RecordAction());
+		actions.put("remove", new RemoveBuddyAction());
+		actions.put("sound", new SoundAction());
+		actions.put("summonat", new SummonAtAction());
+		actions.put("summon", new SummonAction());
+		actions.put("supportanswer", supporta);
+		actions.put("supporta", supporta);
+		actions.put("support", new SupportAction());
+		actions.put("teleport", new TeleportAction());
+		actions.put("teleportto", new TeleportToAction());
+		actions.put("tellall", new TellAllAction());
+		actions.put("tell", msg);
+		actions.put("where", new WhereAction());
+		actions.put("who", new WhoAction());
 	}
 
 	/**
