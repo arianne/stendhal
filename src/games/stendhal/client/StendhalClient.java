@@ -505,8 +505,13 @@ public class StendhalClient extends ariannexp {
 	}
 
 
-
-	protected void fireAdd(RPObject object) {
+	/**
+	 * Notity listeners that an object was added.
+	 *
+	 * @param	object		The object.
+	 * @param	userObject	If this is the private user object.
+	 */
+	protected void fireAdded(RPObject object, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") added to Game Objects container");
 			gameObjects.add(object);
@@ -516,7 +521,13 @@ public class StendhalClient extends ariannexp {
 	}
 
 
-	protected void fireRemove(RPObject object) {
+	/**
+	 * Notity listeners that an object was removed.
+	 *
+	 * @param	object		The object.
+	 * @param	userObject	If this is the private user object.
+	 */
+	protected void fireRemoved(RPObject object, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") removed from Static Objects container");
 			gameObjects.remove(object.getID());
@@ -526,7 +537,14 @@ public class StendhalClient extends ariannexp {
 	}
 
 
-	protected void fireModifyAdded(RPObject object, RPObject changes) {
+	/**
+	 * Notity listeners that an object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 * @param	userObject	If this is the private user object.
+	 */
+	protected void fireModifyAdded(RPObject object, RPObject changes, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
 			gameObjects.modifyAdded(object, changes);
@@ -537,7 +555,14 @@ public class StendhalClient extends ariannexp {
 	}
 
 
-	protected void fireModifyRemoved(RPObject object, RPObject changes) {
+	/**
+	 * Notity listeners that an object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 * @param	userObject	If this is the private user object.
+	 */
+	protected void fireModifyRemoved(RPObject object, RPObject changes, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
 			logger.debug("Original(" + object + ") modified in Game Objects container");
@@ -559,25 +584,25 @@ public class StendhalClient extends ariannexp {
 
 		@Override
 		public boolean onAdded(RPObject object) {
-			fireAdd(object);
+			fireAdded(object, false);
 			return false;
 		}
 
 		@Override
 		public boolean onModifiedAdded(RPObject object, RPObject changes) {
-			fireModifyAdded(object, changes);
+			fireModifyAdded(object, changes, false);
 			return true;
 		}
 
 		@Override
 		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
-			fireModifyRemoved(object, changes);
+			fireModifyRemoved(object, changes, false);
 			return true;
 		}
 
 		@Override
 		public boolean onDeleted(RPObject object) {
-			fireRemove(object);
+			fireRemoved(object, false);
 			return false;
 		}
 
@@ -602,11 +627,11 @@ public class StendhalClient extends ariannexp {
 				player = world_objects.get(id);
 
 				if (deleted != null) {
-					fireModifyRemoved(player, deleted);
+					fireModifyRemoved(player, deleted, true);
 				}
 
 				if (added != null) {
-					fireModifyAdded(player, added);
+					fireModifyAdded(player, added, true);
 				}
 			} catch (Exception e) {
 				logger.error("onMyRPObject failed, added=" + added + " deleted=" + deleted, e);
