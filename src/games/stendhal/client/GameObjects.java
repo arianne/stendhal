@@ -22,6 +22,7 @@ import games.stendhal.client.entity.PlantGrower;
 import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.Text;
+import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
@@ -41,7 +42,7 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 /** This class stores the objects that exists on the World right now */
-public class GameObjects implements Iterable<Entity> {
+public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
@@ -149,7 +150,6 @@ public class GameObjects implements Iterable<Entity> {
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
-
 		}
 
 		Log4J.finishMethod(logger, "modifyAdded");
@@ -160,7 +160,6 @@ public class GameObjects implements Iterable<Entity> {
 		Entity entity = objects.get(object.getID());
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
-
 		}
 
 		Log4J.finishMethod(logger, "modifyRemoved");
@@ -384,4 +383,83 @@ public class GameObjects implements Iterable<Entity> {
 		}
 	}
 
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * An object was added.
+	 *
+	 * @param	object		The object.
+	 */
+	public void onAdded(final RPObject object) {
+		add(object);
+	}
+
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		modifyAdded(object, changes);
+	}
+
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	container	The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	object		The base slot object.
+	 * @param	changes		The slot changes.
+	 */
+	public void onChangedAdded(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
+		Entity entity = objects.get(container.getID());
+
+		if (entity != null) {
+			entity.onChangedAdded(container, slotName, object, changes);
+		}
+	}
+
+
+	/**
+	 * An object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		modifyRemoved(object, changes);
+	}
+
+
+	/**
+	 * A slot object removed attribute(s).
+	 *
+	 * @param	container	The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	object		The base slot object.
+	 * @param	changes		The slot changes.
+	 */
+	public void onChangedRemoved(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
+		Entity entity = objects.get(container.getID());
+
+		if (entity != null) {
+			entity.onChangedRemoved(container, slotName, object, changes);
+		}
+	}
+
+
+	/**
+	 * An object was removed.
+	 *
+	 * @param	object		The object.
+	 */
+	public void onRemoved(final RPObject object) {
+		remove(object);
+	}
 }
