@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zones>
+ <zone name="zoneNo1" level="0" x="499872" y="500256" file="0_orril_castle.xstend">
+  <portal x="60" y="96" ref="portalOne">
+   <destination zone="zoneNo1" ref="portal_2"/>
+  </portal>
+
+  <portal x="61" y="96" ref="portal_2">
+   <destination zone="zoneNo1" ref="portalOne"/>
+  </portal>
+
+  
+  </zone>
+  
+  <zone name="zoneNo2" level="0" x="499872" y="500256" file="0_orril_castle.xstend">
+  <portal x="60" y="96" ref="portalOne">
+   <destination zone="zoneNo3" ref="portal_2"/>
+  </portal>
+
+
+  
+  </zone>
+    <zone name="zoneNo3" level="0" x="499872" y="500256" file="0_orril_castle.xstend">
+  <portal x="60" y="96" ref="portal_2">
+   <destination zone="zoneNo2" ref="portalOne"/>
+  </portal>
+
+
+  
+  </zone>
+  </zones>
