@@ -22,11 +22,12 @@ public class TestPortalTest {
 		
 	}
 	
+	@Test
 	public void testHasdestinationTest(){
 
 		assertFalse(new TestPortal().hasDestination());		
-		assertFalse(new TestPortal("1","target","any","").hasDestination());
-		assertFalse(new TestPortal("1","target","","any").hasDestination());
+		assertTrue(new TestPortal("1","target","any","").hasDestination());
+		assertTrue(new TestPortal("1","target","","any").hasDestination());
 		assertFalse(new TestPortal("1","target","","").hasDestination());
 		assertTrue(new TestPortal("1","source","1","target").hasDestination());
 		
