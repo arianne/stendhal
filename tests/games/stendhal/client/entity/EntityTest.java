@@ -3,6 +3,7 @@ package games.stendhal.client.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.awt.geom.Rectangle2D;
 
@@ -14,15 +15,28 @@ import org.junit.Test;
 
 public class EntityTest {
 
+	public class MockEntity2DView extends Entity2DView {
+
+		public MockEntity2DView(Entity entity) {
+			super(entity);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public Rectangle2D getDrawnArea() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+	}
+
 	@Test
 	public final void testEntity() {
 		Entity en = new MockEntity();
 		
 		assertEquals(0.0,en.getX());
 		assertEquals(0.0,en.getY());
-//		assertEquals(0.0,en.dx);
-//		assertEquals(0.0,en.dy);
-
+	
 		
 	}
 
@@ -98,16 +112,17 @@ public class EntityTest {
 	@Test
 	public final void testDistance() {
 		Entity en = new MockEntity();
-		User to=null; 
-		assertEquals(Double.POSITIVE_INFINITY, en.distance(to));
+		User.setNull(); 
+		User to=null;
+		assertEquals(Double.POSITIVE_INFINITY, en.distanceToUser());
 		to = new User();
 		
  		en.x=3;
  		en.y=4;
 		assertEquals(3.0, en.getX());
 		assertEquals(4.0, en.getY());
-		assertEquals(25.0, en.distance(to));
-		assertEquals(0.0, to.distance(to));
+		assertEquals(25.0, en.distanceToUser());
+		assertEquals(0.0, to.distanceToUser());
 		
 	}
 
@@ -154,20 +169,7 @@ public class EntityTest {
 		fail("Not yet implemented"); 
 	}
 
-	@Test
-	public final void testCalcDeltaMovement() {
-//		assertEquals(1.0,Entity.calcDeltaMovement(1, 1, 1));
-//		assertEquals(0.5,Entity.calcDeltaMovement(1, 1, 0.5));
-//		assertEquals(0.0,Entity.calcDeltaMovement(2, 1, 0.5));
-//		assertEquals(1.0,Entity.calcDeltaMovement(1, 2, 0.5));
-//		assertEquals(0.1,Entity.calcDeltaMovement(1, 1, 0.1));
-//		assertEquals(-0.4,Entity.calcDeltaMovement(2, 1, 0.1));
-//		assertEquals(1.1,Entity.calcDeltaMovement(1, 3, 0.1));
 
-//		assertEquals(0.5,Entity.calcDeltaMovement(2, 1, 1));
-//		assertEquals(1.5,Entity.calcDeltaMovement(1, 2, 1));
-			
-	}
 
 	
 
@@ -238,16 +240,14 @@ public class EntityTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	@Ignore
-	public final void testMove() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	@Ignore
 	public final void testStopped() {
-		fail("Not yet implemented"); 
+		Entity en = new MockEntity();
+		assertTrue(en.stopped());
+		
 	}
 
 	@Test
@@ -367,7 +367,8 @@ public class EntityTest {
 
 		@Override
 		protected Entity2DView createView() {
-			return null;
+			return new MockEntity2DView(new MockEntity());
 		}
+		
 	}
 }

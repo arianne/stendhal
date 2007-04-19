@@ -181,10 +181,10 @@ public final byte[] ID_Token = new byte[0];
 	 * @return a double value representing the square of the distance in tiles
 	 *  or Double.Positiveinfinity if User is null
 	 */
-	public double distance(final User user) {
+	public double distanceToUser() {
 		if (User.isNull()) return Double.POSITIVE_INFINITY;
-		return (user.getX() - getX()) * (user.getX() - getX())
-			+ (user.getY() - getY()) * (user.getY() - getY());
+		return (User.get().getX() - getX()) * (User.get().getX() - getX())
+			+ (User.get().getY() - getY()) * (User.get().getY() - getY());
 	}
 	
 

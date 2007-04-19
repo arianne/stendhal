@@ -167,7 +167,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// Called when entity says text
 	public void onTalk(final String text) {
-		if (!User.isNull() && (distance(User.get()) < 15 * 15)) {
+		if (distanceToUser() < 15 * 15) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
 
@@ -221,7 +221,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity gets healed
 	public void onHealed(final int amount) {
-		if (distance(User.get()) < 15 * 15) {
+		if (distanceToUser() < 15 * 15) {
 			addFloater("+" + amount, Color.green);
 		}
 	}
@@ -273,7 +273,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity is poisoned
 	public final void onPoisoned(final int amount) {
-		if ((distance(User.get()) < 15 * 15)) {
+		if ((distanceToUser() < 15 * 15)) {
 			poisoned = true;
 
 			addFloater("-" + amount, Color.red);
@@ -949,7 +949,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("xp") && object.has("xp")) {
-			if (distance(User.get()) < 15 * 15) {
+			if (distanceToUser() < 15 * 15) {
 				addFloater("+" + (changes.getInt("xp") - object.getInt("xp")), Color.cyan);
 
 				StendhalUI.get().addEventLine(
@@ -960,7 +960,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("level") && object.has("level")) {
-			if (distance(User.get()) < 15 * 15) {
+			if (distanceToUser() < 15 * 15) {
 				String text = getName() + " reaches Level " + getLevel();
 
 				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);

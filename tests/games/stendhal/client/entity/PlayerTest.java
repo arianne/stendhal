@@ -61,6 +61,7 @@ public class PlayerTest {
 		expected.add("Look");
 		expected.add("Attack");
 		expected.add("Add to Buddies");
+		expected.add("Manage Guilds");
 		ArrayList<String> list = new ArrayList<String>();
 		pl.buildOfferedActions(list);
 		Assert.assertNotNull(list);
