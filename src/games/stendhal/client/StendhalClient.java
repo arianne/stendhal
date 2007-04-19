@@ -514,7 +514,7 @@ public class StendhalClient extends ariannexp {
 	protected void fireAdded(RPObject object, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") added to Game Objects container");
-			gameObjects.add(object);
+			gameObjects.onAdded(object);
 		} catch (Exception e) {
 			logger.error("onAdded failed, object is " + object, e);
 		}
@@ -530,7 +530,7 @@ public class StendhalClient extends ariannexp {
 	protected void fireRemoved(RPObject object, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") removed from Static Objects container");
-			gameObjects.remove(object);
+			gameObjects.onRemoved(object);
 		} catch (Exception e) {
 			logger.error("onDeleted failed, object is " + object, e);
 		}
@@ -547,7 +547,7 @@ public class StendhalClient extends ariannexp {
 	protected void fireModifyAdded(RPObject object, RPObject changes, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
-			gameObjects.modifyAdded(object, changes);
+			gameObjects.onChangedAdded(object, changes);
 			object.applyDifferences(changes, null);
 		} catch (Exception e) {
 			logger.debug("onModifiedAdded failed, object is " + object + ", changes is " + changes, e);
@@ -567,7 +567,7 @@ public class StendhalClient extends ariannexp {
 			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
 			logger.debug("Original(" + object + ") modified in Game Objects container");
 
-			gameObjects.modifyRemoved(object, changes);
+			gameObjects.onChangedRemoved(object, changes);
 			object.applyDifferences(null, changes);
 
 			logger.debug("Modified(" + object + ") modified in Game Objects container");

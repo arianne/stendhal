@@ -124,71 +124,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Collections.sort(sortedObjects);
 	}
 
-	/** Add a new Entity to the game */
-	public void add(RPObject object) throws AttributeNotFoundException {
-		Log4J.startMethod(logger, "add");
-
-		if (!object.has("server-only")) {
-			Entity entity = EntityFactory.createEntity(object);
-
-			entity.onAdded(object);
-
-			objects.put(entity.getID(), entity);
-			sortedObjects.add(entity);
-
-			logger.debug("added " + entity);
-		} else {
-			logger.debug("Discarding object: " + object);
-		}
-
-		Log4J.finishMethod(logger, "add");
-	}
-
-	/** Modify a existing Entity so its propierties change */
-	public void modifyAdded(RPObject object, RPObject changes) throws AttributeNotFoundException {
-		Log4J.startMethod(logger, "modifyAdded");
-		Entity entity = objects.get(object.getID());
-		if (entity != null) {
-			entity.onChangedAdded(object, changes);
-		}
-
-		Log4J.finishMethod(logger, "modifyAdded");
-	}
-
-	public void modifyRemoved(RPObject object, RPObject changes) throws AttributeNotFoundException {
-		Log4J.startMethod(logger, "modifyRemoved");
-		Entity entity = objects.get(object.getID());
-		if (entity != null) {
-			entity.onChangedRemoved(object, changes);
-		}
-
-		Log4J.finishMethod(logger, "modifyRemoved");
-	}
-
 	public boolean has(Entity entity) {
 		return objects.containsKey(entity.getID());
 	}
 
 	public Entity get(RPObject.ID id) {
 		return objects.get(id);
-	}
-
-	/** Removes a Entity from game */
-	public void remove(RPObject object) {
-		Log4J.startMethod(logger, "remove");
-
-		RPObject.ID id = object.getID();
-
-		logger.debug("removed " + id);
-
-		Entity entity = objects.remove(id);
-
-		if (entity != null) {
-			entity.onRemoved(object);
-			sortedObjects.remove(entity);
-		}
-
-		Log4J.finishMethod(logger, "remove");
 	}
 
 	/** Removes all the object entities */
@@ -354,20 +295,16 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		for (Entity entity : sortedObjects) {
 			entity.draw(screen);
 		}
-		// System.err.println(temp);
 	}
 
 	/** Draw the creature's Name/HP Bar */
 	public void drawHPbar(GameScreen screen) {
-		//sort();
-
 		for (Entity entity : sortedObjects) {
 			if (entity instanceof RPEntity) {
 				RPEntity rpentity = (RPEntity) entity;
 				rpentity.drawHPbar(screen);
 			}
 		}
-		// System.err.println(temp);
 	}
 
 	public void drawText(GameScreen screen) {
@@ -394,7 +331,22 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	object		The object.
 	 */
 	public void onAdded(final RPObject object) {
-		add(object);
+		Log4J.startMethod(logger, "onAdded");
+
+		if (!object.has("server-only")) {
+			Entity entity = EntityFactory.createEntity(object);
+
+			entity.onAdded(object);
+
+			objects.put(entity.getID(), entity);
+			sortedObjects.add(entity);
+
+			logger.debug("added " + entity);
+		} else {
+			logger.debug("Discarding object: " + object);
+		}
+
+		Log4J.finishMethod(logger, "onAdded");
 	}
 
 
@@ -405,7 +357,15 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	changes		The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		modifyAdded(object, changes);
+		Log4J.startMethod(logger, "onChangedAdded");
+
+		Entity entity = objects.get(object.getID());
+
+		if (entity != null) {
+			entity.onChangedAdded(object, changes);
+		}
+
+		Log4J.finishMethod(logger, "onChangedAdded");
 	}
 
 
@@ -433,7 +393,15 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	changes		The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		modifyRemoved(object, changes);
+		Log4J.startMethod(logger, "onChangedRemoved");
+
+		Entity entity = objects.get(object.getID());
+
+		if (entity != null) {
+			entity.onChangedRemoved(object, changes);
+		}
+
+		Log4J.finishMethod(logger, "onChangedRemoved");
 	}
 
 
@@ -460,6 +428,19 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	object		The object.
 	 */
 	public void onRemoved(final RPObject object) {
-		remove(object);
+		Log4J.startMethod(logger, "onRemoved");
+
+		RPObject.ID id = object.getID();
+
+		logger.debug("removed " + id);
+
+		Entity entity = objects.remove(id);
+
+		if (entity != null) {
+			entity.onRemoved(object);
+			sortedObjects.remove(entity);
+		}
+
+		Log4J.finishMethod(logger, "onRemoved");
 	}
 }
