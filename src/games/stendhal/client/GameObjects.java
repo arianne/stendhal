@@ -175,18 +175,20 @@ public class GameObjects implements Iterable<Entity> {
 	}
 
 	/** Removes a Entity from game */
-	public void remove(RPObject.ID id) {
+	public void remove(RPObject object) {
 		Log4J.startMethod(logger, "remove");
+
+		RPObject.ID id = object.getID();
+
 		logger.debug("removed " + id);
 
-		Entity entity = objects.get(id);
-		if (entity != null) {
-			entity.onRemoved(entity.getRPObject());
+		Entity entity = objects.remove(id);
 
+		if (entity != null) {
+			entity.onRemoved(object);
+			sortedObjects.remove(entity);
 		}
 
-		Entity object = objects.remove(id);
-		sortedObjects.remove(object);
 		Log4J.finishMethod(logger, "remove");
 	}
 

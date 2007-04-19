@@ -530,7 +530,7 @@ public class StendhalClient extends ariannexp {
 	protected void fireRemoved(RPObject object, boolean userObject) {
 		try {
 			logger.debug("Object(" + object.getID() + ") removed from Static Objects container");
-			gameObjects.remove(object.getID());
+			gameObjects.remove(object);
 		} catch (Exception e) {
 			logger.error("onDeleted failed, object is " + object, e);
 		}
