@@ -1,5 +1,7 @@
 package games.stendhal.client.entity;
 
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertNull;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.geom.Rectangle2D;
@@ -170,6 +172,36 @@ public class TestBuildOfferedActions {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
 
+	}
+	@Test
+	public void testMockEntity() throws Exception {
+		MockEntity mo = new MockEntity();
+		assertNull(mo.getArea());
+		
+		assertNull(mo.getDrawedArea() );
+		
+		assertEquals(0,mo.getZIndex()); 
+		
+		assertNull(mo.createView() );
+		
+	}
+	
+	@Test
+	public void testMockRPObject() throws Exception {
+		MockRPObject mo = new MockRPObject();
+		
+		assertTrue(mo.has(""));
+		mo = new MockRPObject("typ","class");
+		assertEquals("typ",mo.get("type"));
+		assertEquals("class",mo.get(""));
+		assertEquals(1,mo.getInt(""));
+		assertEquals(0.0,mo.getDouble(""));
+			
+
+
+	
+		
+		
 	}
 
 	class MockEntity extends Entity {
