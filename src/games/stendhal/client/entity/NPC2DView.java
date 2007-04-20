@@ -30,6 +30,16 @@ public class NPC2DView extends RPEntity2DView {
 	 */
 	private static final Logger logger = Log4J.getLogger(NPC2DView.class);
 
+	/**
+	 * The current outfit.
+	 */
+	private Sprite	outfit;
+
+	/**
+	 * The current outfit code.
+	 */
+	private int	outfitCode;
+
 
 	/**
 	 * Create a 2D view of an NPC.
@@ -38,6 +48,9 @@ public class NPC2DView extends RPEntity2DView {
 	 */
 	public NPC2DView(final RPEntity entity) {
 		super(entity);
+
+		outfit = null;
+		outfitCode = -1;
 	}
 
 
@@ -59,15 +72,28 @@ public class NPC2DView extends RPEntity2DView {
 
 		try {
 			if (object.has("outfit")) {
-				return getOutfitSprite(store, object.getInt("outfit"));
+				int code = object.getInt("outfit");
+
+				/*
+				 * Don't rebuild the same outfit
+				 */
+				if(outfitCode != code) {
+					outfitCode = code;
+					outfit = getOutfitSprite(store, code);
+				}
+
 			} else {
 				// This NPC's outfit is read from a single file.
-				return store.getSprite(translate("npc/" + clazz));
+				outfitCode = -1;
+				outfit = store.getSprite(translate("npc/" + clazz));
 			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
-			return store.getSprite(translate(clazz));
+			outfitCode = -1;
+			outfit = store.getSprite(translate(clazz));
 		}
+
+		return outfit;
 	}
 
 

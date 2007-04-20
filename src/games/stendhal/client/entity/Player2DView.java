@@ -30,6 +30,16 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	private static final Logger logger = Log4J.getLogger(Player2DView.class);
 
+	/**
+	 * The current outfit.
+	 */
+	private Sprite	outfit;
+
+	/**
+	 * The current outfit code.
+	 */
+	private int	outfitCode;
+
 
 	/**
 	 * Create a 2D view of an player.
@@ -38,6 +48,9 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	public Player2DView(final Player player) {
 		super(player);
+
+		outfit = null;
+		outfitCode = -1;
 	}
 
 
@@ -56,12 +69,23 @@ public class Player2DView extends RPEntity2DView {
 		SpriteStore store = SpriteStore.get();
 
 		try {
-			return getOutfitSprite(store, object.getInt("outfit"));
+			int code = object.getInt("outfit");
+
+			/*
+			 * Don't rebuild the same outfit
+			 */
+			if(outfitCode != code) {
+				outfitCode = code;
+				outfit = getOutfitSprite(store, code);
+			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
 			object.put("outfit", 0);
-			return getOutfitSprite(store, 0);
+			outfitCode = 0;
+			outfit = getOutfitSprite(store, 0);
 		}
+
+		return outfit;
 	}
 
 
