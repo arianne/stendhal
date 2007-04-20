@@ -24,12 +24,11 @@ public class ImageRenderer extends LayerRenderer {
 	Sprite mySprite = null;
 
 	public ImageRenderer(URL url) {
-		super();
 		try {
 			BufferedImage myImage = ImageIO.read(url);
 			width = myImage.getWidth();
 			height = myImage.getHeight();
-			mySprite = new Sprite(myImage);
+			mySprite = new ImageSprite(myImage);
 		} catch (Exception e) {
 			System.err.println(e);
 		}

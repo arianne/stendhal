@@ -95,7 +95,7 @@ public class SpriteStore {
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
 		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
 
-		Sprite[] animatedSprite = new Sprite[frameCount];
+		Sprite[] animatedSprite = new ImageSprite[frameCount];
 
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 		        .getDefaultConfiguration();
@@ -107,7 +107,7 @@ public class SpriteStore {
 			// animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
 			// intensifly @ gmx.com, April 20th, 2006
 			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation * pixelHeight, pixelWidth, pixelHeight);
-			animatedSprite[i] = new Sprite(image);
+			animatedSprite[i] = new ImageSprite(image);
 		}
 
 		return animatedSprite;
@@ -173,7 +173,7 @@ public class SpriteStore {
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);
 
 		// create a sprite, add it the cache then return it
-		Sprite sprite = new Sprite(image);
+		Sprite sprite = new ImageSprite(image);
 		sprites.put(ref, sprite);
 
 		return sprite;

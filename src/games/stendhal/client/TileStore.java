@@ -85,7 +85,7 @@ public class TileStore extends SpriteStore {
 					        GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
 
 					// create a sprite, add it the cache then return it
-					tileset.set(base + i + j * tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS, new Sprite(image));
+					tileset.set(base + i + j * tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS, new ImageSprite(image));
 				}
 			}
 

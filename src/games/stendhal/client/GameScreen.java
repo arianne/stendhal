@@ -339,7 +339,7 @@ public class GameScreen {
 
 		g2d.setColor(textColor);
 		g2d.drawString(text, 1, 10);
-		return new Sprite(image);
+		return new ImageSprite(image);
 	}
 
 	private int positionStringOfSize(String text, int width) {
@@ -525,7 +525,7 @@ public class GameScreen {
 			i++;
 		}
 
-		return new Sprite(image);
+		return new ImageSprite(image);
 	}
 
 }

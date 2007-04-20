@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.ImageSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -148,8 +149,8 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	 * @return	A sprite for the object
 	 */
 	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {
-		Sprite sprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
-		sprite = sprite.copy();
+		Sprite base = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
+		ImageSprite sprite = new ImageSprite(base);
 		outfit /= 100;
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
