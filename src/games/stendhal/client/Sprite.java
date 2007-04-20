@@ -19,6 +19,11 @@ import java.awt.Graphics2D;
  * multiple copies of the image.
  */
 public interface Sprite {
+	/**
+	 * Copy the sprite.
+	 *
+	 * @return	A new copy of the sprite.
+	 */
 	public Sprite copy();
 
 	/**

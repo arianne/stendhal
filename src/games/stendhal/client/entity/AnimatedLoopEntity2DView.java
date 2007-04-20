@@ -11,22 +11,17 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of an entity that always loops images.
  */
-public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
-	/**
-	 * The current frame.
-	 */
-	protected int	frame;
-
+public class AnimatedLoopEntity2DView extends Entity2DView {
 	/**
 	 * The number of frames.
 	 */
@@ -34,7 +29,7 @@ public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
 
 
 	/**
-	 * Create a 2D view of a animated loop visual.
+	 * Create a 2D view of an animated loop visual.
 	 *
 	 * @param	entity		The entity to render.
 	 */
@@ -42,21 +37,19 @@ public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
 		super(entity);
 
 		this.frames = frames;
-		frame = 0;
 	}
 
 
 	//
-	// AnimatedStateEntity2DView
+	// AnimatedLoopEntity2DView
 	//
 
 	/**
-	 * Populate named state animations.
+	 * Populate animation.
 	 *
-	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load animation for.
 	 */
-	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+	protected Sprite getAnimatedSprite(RPObject object) {
 		String resource = translate(object.get("type"));
 		SpriteStore store = SpriteStore.get();
 
@@ -71,43 +64,26 @@ public class AnimatedLoopEntity2DView extends AnimatedStateEntity2DView {
 			animation[i] = store.getAnimatedSprite(resource, i, 1, 1, 1)[0];
 		}
 
-		map.put("default", animation);
+		return new AnimatedSprite(animation, 100L);
 
 // To This:
-//		map.put("default", store.getAnimatedSprite(resource, 0, frames, 1, 1));
-	}
-
-
-	@Override
-	protected String getState() {
-		return "default";
-	}
-
-
-	//
-	// AnimatedEntity2DView
-	//
-
-	/**
-	 * This method gets the default image.
-	 * <strong>All sub-classes MUST provide a <code>0</code>
-	 * named animation, or override this method</strong>.
-	 *
-	 * @return	The default sprite, or <code>null</code>.
-	 */
-	@Override
-	protected Sprite getDefaultSprite() {
-		return getAnimation("default")[0];
-	}
-
-	protected boolean isAnimating() {
-		return true;
+//		return new AnimatedSprite(store.getAnimatedSprite(resource, 0, frames, 1, 1), 100L);
 	}
 
 
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 * This the animation sprite.
+	 */
+	@Override
+	protected void buildRepresentation(final RPObject object) {
+		sprite = getAnimatedSprite(object);
+	}
+
 
 	/**
 	 * Get the 2D area that is drawn in.

@@ -101,6 +101,11 @@ public class ImageSprite implements Sprite {
 	// Sprite
 	//
 
+	/**
+	 * Copy the sprite.
+	 *
+	 * @return	A new copy of the sprite.
+	 */
 	public Sprite copy() {
 		return new ImageSprite(this);
 	}

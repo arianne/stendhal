@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import marauroa.common.game.RPObject;
 
@@ -22,17 +23,6 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 */
 	private Entity		entity;
 
-	/**
-	 * The frame number.
-	 */
-	protected int		frame;
-
-	/**
-	 * We need to measure time to have a coherent frame rendering,
-	 * that is what delta is for.
-	 */
-	protected long		delta;
-
 
 	/**
 	 * Create a 2D view of an entity.
@@ -43,9 +33,6 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 		super(entity);
 
 		this.entity = entity;
-
-		frame = 0;
-		delta = 0L;
 	}
 
 
@@ -84,28 +71,6 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	}
 
 
-	/**
-	 * Get the next sprite we have to show.
-	 *
-	 *
-	 */
-	private Sprite nextFrame() {
-		Sprite[] anim = getAnimation();
-
-		if (frame >= anim.length) {
-			frame = 0;
-		}
-
-		Sprite tempSprite = anim[frame];
-
-		if (isAnimating()) {
-			frame++;
-		}
-
-		return tempSprite;
-	}
-
-
 	//
 	// Entity2DView
 	//
@@ -123,16 +88,17 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 
 
 	/**
-	 * Get the sprite image for this entity.
-	 *
-	 * @return	The image representation.
+	 * Update representation.
 	 */
-	protected Sprite getSprite() {
-		if ((System.currentTimeMillis() - delta) > 100L) {
-			sprite = nextFrame();
-			delta = System.currentTimeMillis();
+	protected void update() {
+		super.update();
+
+		AnimatedSprite sprite = new AnimatedSprite(getAnimation(), 100L);
+
+		if(!isAnimating()) {
+			sprite.stop();
 		}
 
-		return sprite;
+		this.sprite = sprite;
 	}
 }

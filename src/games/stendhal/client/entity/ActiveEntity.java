@@ -257,8 +257,10 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 		if (diff.has("dir")) {
 			direction = Direction.build(diff.getInt("dir"));
 			setDirection(direction);
+			changed();
 		} else if (base.has("dir")) {
 			direction = Direction.build(base.getInt("dir"));
+			setDirection(direction);
 		} else {
 			direction = Direction.STOP;
 		}
@@ -267,6 +269,7 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 
 		if (diff.has("speed")) {
 			speed = diff.getDouble("speed");
+			changed();
 		} else if (base.has("speed")) {
 			speed = base.getDouble("speed");
 		} else {

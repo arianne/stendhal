@@ -15,15 +15,56 @@ import java.awt.Graphics;
  * This is a sprite that transparently animates itself when drawn.
  */
 public class AnimatedSprite implements Sprite {
+	/**
+	 * Whether the sprite is currently animating.
+	 */
 	protected boolean	animating;
+
+	/**
+	 * The minimum delay between frames.
+	 */
 	protected long		delay;
-	protected long		nextFrame;
+
+	/**
+	 * The current frame index.
+	 */
 	protected int		frameidx;
+
+	/**
+	 * The frame sprites.
+	 */
 	protected Sprite []	frames;
+
+	/**
+	 * The sprite height.
+	 */
 	protected int		height;
+
+	/**
+	 * The time of the next frame change.
+	 */
+	protected long		nextFrame;
+
+	/**
+	 * The sprite width.
+	 */
 	protected int		width;
 
 
+	/**
+	 * Create an animated sprite from a set of frame sprites.
+	 *
+	 * <strong>NOTE: The array of frames passed is not copied, and must
+	 * not be modified while this instance exists (unless you are sure
+	 * you know what you are doing).</strong>
+	 *
+	 * @param	frames		The frames to animate.
+	 * @param	delay		The minimum delay between frames (in ms).
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If less than one frame is given, or
+	 *				the delay is <= 0.
+	 */
 	public AnimatedSprite(final Sprite [] frames, final long delay) throws IllegalArgumentException {
 		if(frames.length == 0) {
 			throw new IllegalArgumentException("Must have at least one frame");
@@ -54,11 +95,21 @@ public class AnimatedSprite implements Sprite {
 	// AnimatedSprite
 	//
 
+	/**
+	 * Get the minimum delay between frames.
+	 *
+	 * @return	The delay between frames (in ms).
+	 */
 	public long getDelay() {
 		return delay;
 	}
 
 
+	/**
+	 * Get the current frame sprite.
+	 *
+	 * @return	The current frame.
+	 */
 	protected Sprite getFrame() {
 		if(animating) {
 			long now = System.currentTimeMillis();
@@ -76,29 +127,59 @@ public class AnimatedSprite implements Sprite {
 	}
 
 
+	/**
+	 * Get the frames that make up this animation.
+	 *
+	 * <strong>NOTE: The array of frames returned is not copied, and must
+	 * not be modified.</strong>
+	 *
+	 * @return	The frames.
+	 */
 	public Sprite [] getFrames() {
 		return frames;
 	}
 
 
+	/**
+	 * Determine if the sprite is currently animated, or paused.
+	 *
+	 * @return	<code>true</code> if animating.
+	 *
+	 * @see-also	#start()
+	 * @see-also	#stop()
+	 */
 	public boolean isAnimating() {
 		return animating;
 	}
 
 
+	/**
+	 * Reset the animation back to it's initial frame, and reset the
+	 * next frame time.
+	 */
 	public void reset() {
 		frameidx = 0;
 		nextFrame = System.currentTimeMillis() + delay;
 	}
 
 
+	/**
+	 * Start the sprite animating.
+	 *
+	 * @see-also	#stop()
+	 */
 	public void start() {
 		animating = true;
 	}
 
 
+	/**
+	 * Stop the sprite animating. This does not change the current frame.
+	 *
+	 * @see-also	#start()
+	 */
 	public void stop() {
-		animating = true;
+		animating = false;
 	}
 
 
@@ -106,6 +187,12 @@ public class AnimatedSprite implements Sprite {
 	// Sprite
 	//
 
+	/**
+	 * Copy the sprite. This does not do a deep copy, so the frames
+	 * it is made of are shared.
+	 *
+	 * @return	A new copy of the sprite.
+	 */
 	public Sprite copy() {
 		return new AnimatedSprite(getFrames(), getDelay());
 	}
