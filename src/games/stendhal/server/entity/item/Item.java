@@ -33,7 +33,7 @@ import marauroa.common.game.RPSlot;
 /**
  * This is an item.
  */
-public class Item extends PassiveEntity implements TurnListener, EquipListener {
+public abstract class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
@@ -226,11 +226,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/** returns the list of possible slots for this item */
 	public List<String> getPossibleSlots() {
 		return possibleSlots;
-	}
-
-	/** creates a copy */
-	public Object copy() {
-		return new Item(this);
 	}
 
 	@Override
