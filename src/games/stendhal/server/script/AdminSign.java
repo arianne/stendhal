@@ -143,7 +143,7 @@ public class AdminSign extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 		if (args.size() == 0) {
 			admin
-			        .sendPrivateText("/script AdminSign.class add zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
+			        .sendPrivateText("/script AdminSign.class zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
 			return;
 		}
 
