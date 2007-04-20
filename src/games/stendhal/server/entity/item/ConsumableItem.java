@@ -16,6 +16,7 @@ import java.util.Map;
 
 import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.scroll.MarkedScroll;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -38,11 +39,20 @@ public class ConsumableItem extends StackableItem implements UseListener {
 	private int left;
 
 	public ConsumableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
-
 		super(name, clazz, subclass, attributes);
-
 		left = getAmount();
 	}
+
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public ConsumableItem(ConsumableItem item) {
+		super(item);
+		this.left = item.left;
+	}
+
 
 	public int getAmount() {
 		return getInt("amount");

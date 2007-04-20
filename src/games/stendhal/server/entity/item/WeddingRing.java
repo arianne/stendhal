@@ -53,6 +53,15 @@ public class WeddingRing extends Item implements UseListener {
 		super(name, clazz, subclass, attributes);
 	}
 
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public WeddingRing(WeddingRing item) {
+		super(item);
+	}
+
 	public void onUsed(RPEntity user) {
 		RPObject base = this;
 		// Find the top container

@@ -43,6 +43,15 @@ public class Box extends Item implements UseListener {
 		super(name, clazz, subclass, attributes);
 	}
 
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Box(Box item) {
+		super(item);
+	}
+
 	public void onUsed(RPEntity user) {
 		// TODO: clean up duplicated code with other Item subclasses.
 		if (this.isContained()) {

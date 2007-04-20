@@ -38,6 +38,15 @@ public class EmptyScroll extends Scroll {
 	}
 
 	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public EmptyScroll(EmptyScroll item) {
+		super(item);
+	}
+
+	/**
 	 * Use a [empty] scroll.
 	 *
 	 * @param player

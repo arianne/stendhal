@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Box;
 
 import java.util.Map;
 
@@ -31,6 +32,15 @@ public class MapScroll extends Scroll {
 	 */
 	public MapScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+	}
+
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public MapScroll(MapScroll item) {
+		super(item);
 	}
 
 	@Override

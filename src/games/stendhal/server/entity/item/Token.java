@@ -50,6 +50,16 @@ public class Token extends Item {
 		super(name, clazz, subclass, attributes);
 	}
 
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Token(Token item) {
+		super(item);
+	}
+
+
 	@Override
 	public void onPutOnGround(Player player) {
 		super.onPutOnGround(player);

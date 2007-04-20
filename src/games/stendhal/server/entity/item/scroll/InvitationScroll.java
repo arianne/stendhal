@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.item.Box;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
 
@@ -35,6 +36,15 @@ public class InvitationScroll extends TeleportScroll {
 	 */
 	public InvitationScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+	}
+
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public InvitationScroll(InvitationScroll item) {
+		super(item);
 	}
 
 	/**

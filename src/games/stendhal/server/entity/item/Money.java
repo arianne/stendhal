@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
+import games.stendhal.server.entity.item.scroll.MarkedScroll;
+
 import java.util.Map;
 
 public class Money extends StackableItem {
@@ -34,6 +36,15 @@ public class Money extends StackableItem {
 		super("money", "money", "gold", null);
 		setQuantity(quantity);
 	}
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Money(Money item) {
+		super(item);
+	}
+
 
 	@Override
 	public boolean isStackable(Stackable other) {

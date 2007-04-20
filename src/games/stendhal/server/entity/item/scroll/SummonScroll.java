@@ -18,6 +18,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 
@@ -47,6 +48,15 @@ public class SummonScroll extends InfoStringScroll {
 	 */
 	public SummonScroll(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
+	}
+
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public SummonScroll(SummonScroll item) {
+		super(item);
 	}
 
 	/**

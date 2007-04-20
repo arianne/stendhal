@@ -34,6 +34,15 @@ public class InfoStringScroll extends Scroll {
 		super(name, clazz, subclass, attributes);
 	}
 
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public InfoStringScroll(InfoStringScroll item) {
+		super(item);
+	}
+
 	@Override
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;

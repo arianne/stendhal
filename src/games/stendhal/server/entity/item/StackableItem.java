@@ -32,6 +32,17 @@ public class StackableItem extends Item implements Stackable {
 		update();
 	}
 
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public StackableItem(StackableItem item) {
+		super(item);
+		this.quantity = item.quantity;
+		update();
+	}
+
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();

@@ -40,6 +40,16 @@ public class Dice extends Item {
 		randomize(null);
 	}
 
+	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Dice(Dice item) {
+		super(item);
+		randomize(null);
+	}
+
 	public void setCroupierNPC(CroupierNPC croupierNPC) {
 		this.croupierNPC = croupierNPC;
 		put("infostring", croupierNPC.getName());

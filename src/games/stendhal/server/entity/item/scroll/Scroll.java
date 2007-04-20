@@ -44,6 +44,15 @@ public class Scroll extends StackableItem implements UseListener {
 	}
 
 	/**
+	 * copy constructor
+	 *
+	 * @param item item to copy
+	 */
+	public Scroll(Scroll item) {
+		super(item);
+	}
+
+	/**
 	 * Make sure that both are scrolls of the same kind.
 	 *
 	 * @return	<code>true</code> if the items have the same class and subclass.
