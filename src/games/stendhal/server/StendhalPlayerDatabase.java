@@ -160,7 +160,9 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		}
 
 		String outfit = "0";
-		if (object.has("outfit")) {
+		if (object.has("outfit_org")) {
+			outfit = object.get("outfit_org");
+		} else if (object.has("outfit")) {
 			outfit = object.get("outfit");
 		}
 
