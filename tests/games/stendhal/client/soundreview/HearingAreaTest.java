@@ -23,7 +23,6 @@ public class HearingAreaTest {
 
 	@Test
 	public void contains() {
-		HearingArea.getAsRect();
 		assertTrue("both in ", HearingArea.contains(0, 0));
 		assertFalse("both out", HearingArea.contains(100, 100));
 		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
@@ -36,6 +35,20 @@ public class HearingAreaTest {
 		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
 		assertFalse("x in , y out", HearingArea.contains(0, 100));
 		assertFalse("x out y in", HearingArea.contains(100, 10));
+		new User();
+		assertTrue("both in ", HearingArea.contains(0, 0));
+		assertFalse("both out", HearingArea.contains(100, 100));
+		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", HearingArea.contains(HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", HearingArea.contains(HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
+		assertTrue("inner edge belongs", HearingArea.contains(-(HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", HearingArea.contains(-(HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
+		assertFalse("x in , y out", HearingArea.contains(0, 100));
+		assertFalse("x out y in", HearingArea.contains(100, 10));
+		
 	}
 
 	@Test
@@ -53,7 +66,7 @@ public class HearingAreaTest {
 	
 
 	@Test
-	public void getAsArea() {
+	public void getAsRect() {
 		int centerX = 1;
 		int centerY = 5;
 		HearingArea.set(centerX, centerY);
@@ -62,5 +75,25 @@ public class HearingAreaTest {
 		assertEquals(-HearingArea.HEARINGDIST + centerY, (int) rect.getMinY());
 		assertEquals(HearingArea.HEARINGDIST + centerX, (int) rect.getMaxX());
 		assertEquals(HearingArea.HEARINGDIST + centerY, (int) rect.getMaxY());
+new User();
+		rect = HearingArea.getAsRect();
+		assertEquals(-HearingArea.HEARINGDIST + User.get().getX(), rect.getMinX());
+		assertEquals(-HearingArea.HEARINGDIST + User.get().getY(),  rect.getMinY());
+		assertEquals(HearingArea.HEARINGDIST + User.get().getX(), rect.getMaxX());
+		assertEquals(HearingArea.HEARINGDIST + User.get().getY(),  rect.getMaxY());
+		
+	}
+	
+	@Test
+	public void getAsRectSetDouble() {
+		double centerX = 1;
+		double centerY = 5;
+		HearingArea.set(centerX, centerY);
+		
+		Rectangle2D rect = HearingArea.getAsRect();
+		assertEquals(-HearingArea.HEARINGDIST + centerX,  rect.getMinX());
+		assertEquals(-HearingArea.HEARINGDIST + centerY,  rect.getMinY());
+		assertEquals(HearingArea.HEARINGDIST + centerX,  rect.getMaxX());
+		assertEquals(HearingArea.HEARINGDIST + centerY,  rect.getMaxY());
 	}
 }
