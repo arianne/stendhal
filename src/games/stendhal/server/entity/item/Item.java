@@ -22,8 +22,9 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -90,6 +91,24 @@ public abstract class Item extends PassiveEntity implements TurnListener, EquipL
 		}
 	}
 
+	/** no public 'default' item */
+	private Item() {
+		super();
+		put("type", "item");
+		update();
+	}
+
+	/** 
+	 * copy constuctor
+	 *
+	 * @param item item to copy
+	 */
+	public Item(Item item) {
+		this();
+		possibleSlots = new ArrayList(item.possibleSlots);
+	}
+
+
 	/**
 	 * on which slots may this item be equiped
 	 *
@@ -118,18 +137,6 @@ public abstract class Item extends PassiveEntity implements TurnListener, EquipL
 	 */
 	public PassiveEntityRespawnPoint getPlantGrower() {
 		return plantGrower;
-	}
-
-	/** no public 'default' item */
-	private Item() throws AttributeNotFoundException {
-		super();
-		put("type", "item");
-		update();
-	}
-
-	/** copy constuctor */
-	private Item(Item other) throws AttributeNotFoundException {
-		super(other);
 	}
 
 	@Override
