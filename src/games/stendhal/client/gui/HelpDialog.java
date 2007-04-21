@@ -1,12 +1,14 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -41,7 +43,10 @@ public class HelpDialog extends JFrame {
 	 */
 	public HelpDialog() {
 		// Create and set up the window.
-		super("Stendhal - Help");
+		super(ClientGameConfiguration.get("GAME_NAME") + " - Help");
+		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
+		this.setIconImage(new ImageIcon(url).getImage());
+
 		super.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		// Create and set up the content pane.
