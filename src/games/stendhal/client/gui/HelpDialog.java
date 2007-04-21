@@ -91,6 +91,11 @@ public class HelpDialog extends JFrame {
 			tree = new JTree(top);
 			tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
+			// Expand tree
+			for (int i = 0; i < tree.getRowCount(); i++) {
+			    tree.expandRow(i); 
+			}
+
 			// Listen for when the selection changes.
 			tree.addTreeSelectionListener(this);
 
@@ -170,12 +175,14 @@ public class HelpDialog extends JFrame {
 	 */
 	public static enum HelpDocument {
 		Introduction("Introduction",	"introduction.html"),
+
 		Setting("Setting up the game", "setting.html"),
 		Download("Downloading Stendhal", "setting-download.html"),
 		AccountCreation("Creating an account", "setting-accountcreation.html"),
 		Startup("Starting the Game", "setting-start.html"),
+
 		Controls("Controls and Game settings", "controls.html"),
-		Gameplay("Gameplay",	"gameplay.html");
+		Gameplay("Gameplay", "gameplay.html");
 		
 		private String bookName;
 		private URL bookURL;
