@@ -25,6 +25,58 @@ import marauroa.common.game.RPObject;
 
 /** A Player entity */
 public class Player extends RPEntity {
+
+	/**
+	 * The away message of this player.
+	 */
+	private String	away;
+
+	/**
+	 * The player outfit code.
+	 */
+	private int	outfit;
+
+
+	public Player() {
+		away = null;
+		outfit = 0;
+	}
+
+
+	//
+	// Player
+	//
+
+	/**
+	 * Determine if the player is away.
+	 *
+	 * @return	<code>true</code> if the player is away.
+	 */
+	public boolean isAway() {
+		return (getAway() != null);
+	}
+
+
+	/**
+	 * Get the away message.
+	 *
+	 * @return	The away text, or <code>null</code> if not away.
+	 */
+	public String getAway() {
+		return away;
+	}
+
+
+	/**
+	 * Get the outfit code.
+	 *
+	 * @return	The outfit code.
+	 */
+	public int getOutfit() {
+		return outfit;
+	}
+
+
 	/**
 	 * An away message was set/cleared.
 	 *
@@ -35,54 +87,6 @@ public class Player extends RPEntity {
 		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
 	}
 
-
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-		if (diff.has("outfit")) {
-			changed();
-		}
-
-		// We redo here to mantain player whose name has an underscore
-		if (diff.has("name")) {
-			setName(diff.get("name"));
-		}
-
-		if (diff.has("away")) {
-			/*
-			 * Filter out a player "changing" to the same message
-			 */
-			if (!base.has("away") || !base.get("away").equals(diff.get("away"))) {
-				onAway(diff.get("away"));
-			}
-		}
-
-		// The first time we ignore it.
-		if (base != null) {
-			if (diff.has("online")) {
-				String[] players = diff.get("online").split(",");
-				for (String playerName : players) {
-					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
-				}
-			}
-
-			if (diff.has("offline")) {
-				String[] players = diff.get("offline").split(",");
-				for (String playername : players) {
-					StendhalUI.get().addEventLine(playername + " has left Stendhal.", Color.orange);
-				}
-			}
-		}
-	}
-
-	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-		super.onChangedRemoved(base, diff);
-
-		if (diff.has("away")) {
-			onAway(null);
-		}
-	}
 
 	@Override
 	public Rectangle2D getArea() {
@@ -134,5 +138,68 @@ public class Player extends RPEntity {
 	 */
 	protected Entity2DView createView() {
 		return new Player2DView(this);
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	@Override
+	public void onChangedAdded(final RPObject base, final RPObject diff) {
+		super.onChangedAdded(base, diff);
+
+		if (diff.has("outfit")) {
+			outfit = diff.getInt("outfit");
+			changed();
+		}
+
+		// We redo here to mantain player whose name has an underscore
+		if (diff.has("name")) {
+			setName(diff.get("name"));
+		}
+
+		if (diff.has("away")) {
+			/*
+			 * Filter out a player "changing" to the same message
+			 */
+			if (!base.has("away") || !base.get("away").equals(diff.get("away"))) {
+				away = diff.get("away");;
+				changed();
+				onAway(away);
+			}
+		}
+
+		// The first time we ignore it.
+		if (base != null) {
+			if (diff.has("online")) {
+				String[] players = diff.get("online").split(",");
+				for (String playerName : players) {
+					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
+				}
+			}
+
+			if (diff.has("offline")) {
+				String[] players = diff.get("offline").split(",");
+				for (String playername : players) {
+					StendhalUI.get().addEventLine(playername + " has left Stendhal.", Color.orange);
+				}
+			}
+		}
+	}
+
+	public void onChangedRemoved(final RPObject base, final RPObject diff) {
+		super.onChangedRemoved(base, diff);
+
+		if (diff.has("away")) {
+			away = null;
+			changed();
+			onAway(null);
+		}
+
+		if (diff.has("outfit")) {
+			outfit = 0;
+			changed();
+		}
 	}
 }

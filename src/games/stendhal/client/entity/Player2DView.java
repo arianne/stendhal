@@ -40,6 +40,11 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	private int	outfitCode;
 
+	/**
+	 * The player entity.
+	 */
+	private Player	player;
+
 
 	/**
 	 * Create a 2D view of an player.
@@ -48,6 +53,8 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	public Player2DView(final Player player) {
 		super(player);
+
+		this.player = player;
 
 		outfit = null;
 		outfitCode = -1;
@@ -69,7 +76,7 @@ public class Player2DView extends RPEntity2DView {
 		SpriteStore store = SpriteStore.get();
 
 		try {
-			int code = object.getInt("outfit");
+			int code = player.getOutfit();
 
 			/*
 			 * Don't rebuild the same outfit
