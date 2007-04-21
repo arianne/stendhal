@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -34,7 +33,7 @@ import marauroa.common.game.RPSlot;
 /**
  * This is an item.
  */
-public abstract class Item extends PassiveEntity implements TurnListener, EquipListener {
+public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/** list of possible slots for this item */
 	private List<String> possibleSlots;
@@ -105,7 +104,7 @@ public abstract class Item extends PassiveEntity implements TurnListener, EquipL
 	 */
 	public Item(Item item) {
 		this();
-		possibleSlots = new ArrayList(item.possibleSlots);
+		possibleSlots = new ArrayList<String>(item.possibleSlots);
 	}
 
 
