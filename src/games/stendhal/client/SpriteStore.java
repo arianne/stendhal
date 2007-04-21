@@ -36,7 +36,7 @@ import org.apache.log4j.Logger;
  * <p>
  * [singleton]
  * <p>
- * 
+ *
  * @author Kevin Glass
  */
 public class SpriteStore {
@@ -54,7 +54,7 @@ public class SpriteStore {
 
 	/**
 	 * Get the single instance of this class
-	 * 
+	 *
 	 * @return The single instance of this class
 	 */
 	public static SpriteStore get() {
@@ -64,32 +64,55 @@ public class SpriteStore {
 	/** The cached sprite map, from reference to sprite instance */
 	private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 
+
+	/**
+	 * Create an animated sprite from a tile sprite.
+	 *
+	 * @param	sprite		The image which contains the different
+	 *				frames.
+	 * @param	row		The vertical position of these
+	 *				frames inside the image.
+	 * @param	frameCount	The number of frames in this animation.
+	 * @param	width		The width of one sprite frame,
+	 *				in tiles.
+	 * @param	height		The height of one sprite frame,
+	 *				in tiles.
+	 * @param	delay		The minimum delay between frames.
+	 *
+	 * @return	An animated sprite.
+	 */
+	public AnimatedSprite getAnimatedSprite(Sprite sprite, int row, int frameCount, double width, double height, long delay) {
+		return new AnimatedSprite(getSprites(sprite, row, frameCount, width, height), delay);
+	}
+
+
 	/**
 	 * Retrieve a collection of sprites from the store.
-	 * 
+	 *
 	 * @param ref
 	 *            the sprite name
-	 * @param animation
-	 *            the position of the animation starting in 0.
+	 * @param row
+	 *            The row position of the frames starting at 0.
 	 * @param width
 	 *            of the frame
 	 * @param height
 	 *            of the frame
+	 *
+	 * @return	An array of sprites.
 	 */
-	public Sprite[] getAnimatedSprite(String ref, int animation, int frames, double width, double height) {
-		return getAnimatedSprite(getSprite(ref), animation, frames, width, height);
+	public Sprite[] getSprites(String ref, int row, int frames, double width, double height) {
+		return getSprites(getSprite(ref), row, frames, width, height);
 	}
 
 	/**
-	 * @param animImage The image which contains the different animation frames
-	 * @param animation The vertical position of this animation's frames inside
-	 *                  the image  
-	 * @param frameCount The number of frames in this animation
-	 * @param width The width of one animation frame, in tiles
-	 * @param height The height of one animation frame, in tiles
+	 * @param animImage The image which contains the different frames
+	 * @param row The vertical position of the frames inside the image
+	 * @param frameCount The number of frames in this row
+	 * @param width The width of each sprite, in tiles
+	 * @param height The height of each sprite, in tiles
 	 * @return array of sprites
 	 */
-	public Sprite[] getAnimatedSprite(Sprite animImage, int animation, int frameCount, double width, double height) {
+	public Sprite[] getSprites(Sprite animImage, int row, int frameCount, double width, double height) {
 		// calculate width and height in pixels from width and height
 		// in tiles
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
@@ -104,9 +127,9 @@ public class SpriteStore {
 			Image image = gc.createCompatibleImage(pixelWidth, pixelHeight, Transparency.BITMASK);
 			// Bugfixs: parameters width and height added, see comment in
 			// Sprite.java
-			// animImage.draw(image.getGraphics(),0,0,i*iwidth,animation*iheight);
+			// animImage.draw(image.getGraphics(),0,0,i*iwidth,row*iheight);
 			// intensifly @ gmx.com, April 20th, 2006
-			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, animation * pixelHeight, pixelWidth, pixelHeight);
+			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
 			animatedSprite[i] = new ImageSprite(image);
 		}
 
@@ -120,7 +143,7 @@ public class SpriteStore {
 
 	/**
 	 * Retrieve a sprite from the store
-	 * 
+	 *
 	 * @param ref
 	 *            The reference to the image to use for the sprite
 	 * @return A sprite instance containing an accelerate image of the request
@@ -184,7 +207,7 @@ public class SpriteStore {
 	 * because there are still clients around with a broken classloader
 	 * prefering old resources. This method ensures we get the sprite
 	 * from the appropriate place, this helps with deploying the game
-	 * with things like webstart and updates. 
+	 * with things like webstart and updates.
 	 *
 	 * @param ref name of resource
 	 * @return URL to this resouce

@@ -196,7 +196,7 @@ public class OutfitDialog extends JDialog {
 	 */
 	private void drawSinglePart(Sprite sprite, Graphics g) {
 		clean(g);
-		SpriteStore.get().getAnimatedSprite(sprite, animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+		SpriteStore.get().getSprites(sprite, animation, 3, 1.5, 2)[1].draw(g, 2, 2);
 	}
 
 	/**
@@ -204,10 +204,10 @@ public class OutfitDialog extends JDialog {
 	 */
 	private void drawFinalPlayer(Graphics g) {
 		clean(g);
-		SpriteStore.get().getAnimatedSprite(bodies[bodies_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-		SpriteStore.get().getAnimatedSprite(clothes[clothes_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-		SpriteStore.get().getAnimatedSprite(heads[heads_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-		SpriteStore.get().getAnimatedSprite(hairs[hairs_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+		SpriteStore.get().getSprites(bodies[bodies_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+		SpriteStore.get().getSprites(clothes[clothes_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+		SpriteStore.get().getSprites(heads[heads_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+		SpriteStore.get().getSprites(hairs[hairs_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
 	}
 
 	/** This method is called from within the constructor to

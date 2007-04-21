@@ -127,28 +127,28 @@ public class Sheep2DView extends RPEntity2DView {
 		Sprite tiles = getAnimationSprite(object);
 
 		map.put("move_up",
-			store.getAnimatedSprite(tiles, 0, 3, width, height));
+			store.getSprites(tiles, 0, 3, width, height));
 
 		map.put("move_right",
-			store.getAnimatedSprite(tiles, 1, 3, width, height));
+			store.getSprites(tiles, 1, 3, width, height));
 
 		map.put("move_down",
-			store.getAnimatedSprite(tiles, 2, 3, width, height));
+			store.getSprites(tiles, 2, 3, width, height));
 
 		map.put("move_left",
-			store.getAnimatedSprite(tiles, 3, 3, width, height));
+			store.getSprites(tiles, 3, 3, width, height));
 
 		map.put("big_move_up",
-			store.getAnimatedSprite(tiles, 4, 3, width, height));
+			store.getSprites(tiles, 4, 3, width, height));
 
 		map.put("big_move_right",
-			store.getAnimatedSprite(tiles, 5, 3, width, height));
+			store.getSprites(tiles, 5, 3, width, height));
 
 		map.put("big_move_down",
-			store.getAnimatedSprite(tiles, 6, 3, width, height));
+			store.getSprites(tiles, 6, 3, width, height));
 
 		map.put("big_move_left",
-			store.getAnimatedSprite(tiles, 7, 3, width, height));
+			store.getSprites(tiles, 7, 3, width, height));
 	}
 
 

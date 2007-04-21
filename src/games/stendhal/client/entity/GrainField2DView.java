@@ -89,7 +89,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 
 		for (int i = 0; i <= maxRipeness; i++) {
 			map.put(Integer.toString(i),
-				store.getAnimatedSprite(translate(clazz), i, 1, width, height));
+				store.getSprites(translate(clazz), i, 1, width, height));
 		}
 	}
 

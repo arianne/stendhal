@@ -98,9 +98,9 @@ public class Door2DView extends AnimatedStateEntity2DView {
 				height = 1.0;
 		}
 
-		map.put("open", store.getAnimatedSprite("data/sprites/doors/" + name + ".png", 0, 1, width, height));
+		map.put("open", store.getSprites("data/sprites/doors/" + name + ".png", 0, 1, width, height));
 
-		map.put("close", store.getAnimatedSprite("data/sprites/doors/" + name + ".png", 1, 1, width, height));
+		map.put("close", store.getSprites("data/sprites/doors/" + name + ".png", 1, 1, width, height));
 	}
 
 

@@ -59,7 +59,7 @@ public class Food2DView extends AnimatedStateEntity2DView {
 
 		for(int i = 0; i < states; i++) {
 			map.put(Integer.toString(i),
-				store.getAnimatedSprite(resource, i, 1, 1, 1));
+				store.getSprites(resource, i, 1, 1, 1));
 		}
 	}
 

@@ -61,13 +61,13 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 		Sprite [] animation = new Sprite[frames];
 
 		for (int i = 0; i < frames; i++) {
-			animation[i] = store.getAnimatedSprite(resource, i, 1, 1, 1)[0];
+			animation[i] = store.getSprites(resource, i, 1, 1, 1)[0];
 		}
 
 		return new AnimatedSprite(animation, 100L);
 
 // To This:
-//		return new AnimatedSprite(store.getAnimatedSprite(resource, 0, frames, 1, 1), 100L);
+//		return new AnimatedSprite(store.getSprites(resource, 0, frames, 1, 1), 100L);
 	}
 
 

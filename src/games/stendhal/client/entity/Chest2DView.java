@@ -46,8 +46,8 @@ public class Chest2DView extends AnimatedStateEntity2DView {
 	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		map.put("close", store.getAnimatedSprite(translate(object.get("type")), 0, 1, 1, 1));
-		map.put("open", store.getAnimatedSprite(translate(object.get("type")), 1, 1, 1, 1));
+		map.put("close", store.getSprites(translate(object.get("type")), 0, 1, 1, 1));
+		map.put("open", store.getSprites(translate(object.get("type")), 1, 1, 1, 1));
 	}
 
 

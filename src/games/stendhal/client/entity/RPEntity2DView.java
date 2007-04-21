@@ -61,10 +61,10 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 		SpriteStore st = SpriteStore.get();
 
 		bladeStrikeSprites = new HashMap<String, Sprite[]>();
-		bladeStrikeSprites.put("move_up", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
-		bladeStrikeSprites.put("move_right", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
-		bladeStrikeSprites.put("move_down", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
-		bladeStrikeSprites.put("move_left", st.getAnimatedSprite("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
+		bladeStrikeSprites.put("move_up", st.getSprites("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
+		bladeStrikeSprites.put("move_right", st.getSprites("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
+		bladeStrikeSprites.put("move_down", st.getSprites("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
+		bladeStrikeSprites.put("move_left", st.getSprites("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
@@ -104,17 +104,13 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 
 		Sprite tiles = getAnimationSprite(object);
 
-		map.put("move_up",
-			store.getAnimatedSprite(tiles, 0, 4, width, height));
+		map.put("move_up", store.getSprites(tiles, 0, 4, width, height));
 
-		map.put("move_right",
-			store.getAnimatedSprite(tiles, 1, 4, width, height));
+		map.put("move_right", store.getSprites(tiles, 1, 4, width, height));
 
-		map.put("move_down",
-			store.getAnimatedSprite(tiles, 2, 4, width, height));
+		map.put("move_down", store.getSprites(tiles, 2, 4, width, height));
 
-		map.put("move_left",
-			store.getAnimatedSprite(tiles, 3, 4, width, height));
+		map.put("move_left", store.getSprites(tiles, 3, 4, width, height));
 
 		map.get("move_up")[3] = map.get("move_up")[1];
 		map.get("move_right")[3] = map.get("move_right")[1];

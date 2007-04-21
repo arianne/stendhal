@@ -46,10 +46,10 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		map.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1));
-		map.put("1", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 1, 1, 1, 1));
-		map.put("2", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 2, 1, 1, 1));
-		map.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
+		map.put("0", store.getSprites("data/sprites/combat/blood_red.png", 0, 1, 1, 1));
+		map.put("1", store.getSprites("data/sprites/combat/blood_red.png", 1, 1, 1, 1));
+		map.put("2", store.getSprites("data/sprites/combat/blood_red.png", 2, 1, 1, 1));
+		map.put("3", store.getSprites("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
 	}
 
 
