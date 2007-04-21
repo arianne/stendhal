@@ -123,9 +123,11 @@ public class EntityFactoryTest {
 	@Test
 	public final void ResizeableCreature() {
 		RPObject rp = new MockRPObject("creature",  null);
+		rp.put("height", 1);
+		rp.put("width", 1);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertFalse("we should have created a ResizeableCreature by now", ResizeableCreature.class.equals(en.getClass()));
+		assertEquals("we should have created a ResizeableCreature by now", ResizeableCreature.class, en.getClass());
 
 	}
 
