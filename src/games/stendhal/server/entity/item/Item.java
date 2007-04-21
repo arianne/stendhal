@@ -61,6 +61,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.add("frequency", RPClass.INT); // Some items(food) have regeneration speed
 		entity.add("quantity", RPClass.INT); // Some items(Stackable) have quantity
 		entity.add("max_quantity", RPClass.INT); // Some items (Stackable) have maximum quantity
+		entity.add("min_level", RPClass.INT); // Some items have minimum level to prevent spoiling the fun for new players
 		entity.add("infostring", RPClass.STRING); // To store additional info with an item
 		entity.add("persistent", RPClass.SHORT); // Some items have individual values
 		entity.add("lifesteal", RPClass.FLOAT); // Some items have lifesteal values

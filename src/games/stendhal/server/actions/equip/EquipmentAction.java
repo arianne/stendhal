@@ -114,6 +114,13 @@ public class EquipmentAction implements ActionListener {
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
+
+		// check minimum level
+		if (entity.has("min_level") && player.getLevel() < entity.getInt("min_level")) {
+			player.sendPrivateText("You are not experienced enough to use this " + itemName);
+			return;
+		}
+
 		if (entity.has("bound") && !player.getName().equals(entity.get("bound"))) {
 			player.sendPrivateText("This " + itemName + " is a special reward for " + entity.get("bound")
 			        + ". You do not deserve to use it.");
