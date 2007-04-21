@@ -6,6 +6,8 @@
   
 
 	<target name="init">
+		<property name="build_tests" value="${buildroot}/build_tests"/>
+
 		<mkdir dir="${lib}"/>
 
 		<!-- We update the version number -->
@@ -25,7 +27,6 @@
 			match="-0\..*\.jar&quot;"
 			replace="-${version}.jar&quot;"
 			byline="true"/>
-		
 	</target>
 
 	<target name="clean">
@@ -36,6 +37,7 @@
 		<delete dir="${buildroot}/build_server_maps/"/>
 		<delete dir="${buildroot}/build_server_quests/"/>
 		<delete dir="${buildroot}/build_server_xmlconf/"/>
+		<delete dir="${build_tests}"/>
 		<delete dir="${buildroot}/build_tiled_convertmaps"/>
 	</target>
 
@@ -51,7 +53,7 @@
 		<copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
 		<copy todir="${build_server}/games/stendhal/server/" file="${src}/games/stendhal/server/stendhal_init.sql"/>
 
-		<javac srcdir="${compilesrc}" destdir="${build_server}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
+		<javac srcdir="${src}" destdir="${build_server}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/server/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/maps/**, games/stendhal/server/script/**, games/stendhal/client/**, games/stendhal/tools/**">
 			<compilerarg value="-encoding"/>
@@ -142,7 +144,7 @@
 		<property name="build_client" value="${buildroot}/build_client/"/>
 		<mkdir dir="${build_client}/"/>
 
-		<javac srcdir="${compilesrc}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
+		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/update/Starter.java">
 			<compilerarg value="-encoding"/>
@@ -483,6 +485,43 @@
 				<include name="interiors/**/*.tmx"/>
 			</fileset>
 		</mapconverter>
+	</target>
+
+	<target name="compile_tests" description="Compile all tests" depends="init">
+		<mkdir dir="${build_tests}"/>
+
+		<javac destdir="${build_tests}" debug="true" debuglevel="source,lines" source="1.5" target="1.5">
+			<!--
+			  ** All of this would be cleaner if everything was moved to a single test directory
+			  -->
+			<src path="tests"/>
+			<include name="**/Test*.java"/>
+			<include name="**/*Test.java"/>
+
+			<src path="${src}"/>
+			<include name="games/stendhal/test/**/*.java"/>
+
+			<src path="tiled/src"/>
+			<include name="tiled/view/test/*.java"/>
+
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf8"/>
+
+			<compilerarg value="-Xlint:unchecked"/>
+
+			<classpath>
+				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${junit_jar}"/>
+				<pathelement path="${groovy_jar}"/>
+				<pathelement path="${simple_jar}"/>
+				<pathelement path="${velocity_jar}"/>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="tests" description="Compile and run tests" depends="compile_tests">
+		<!-- Run tests here -->
 	</target>
 
 	<target name="checkxml" description="Verify XML files are well-formed">
