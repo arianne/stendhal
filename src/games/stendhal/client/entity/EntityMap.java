@@ -44,14 +44,7 @@ public final class EntityMap {
 	private static void register() throws ClassNotFoundException {
 		register("player", null, "Player");
 
-		register("creature", "small_animal", "SmallCreature");
-		register("creature", "giant_animal", "BigCreature");
-		register("creature", "huge_animal", "HugeCreature");
-		register("creature", "huge_animal", "HugeCreature");
-		register("creature", "mythical_animal", "MythicalCreature");
-		register("creature", null, "NormalCreature");
-		// TODO: deactivate compatibility code in EntityFactory after release of 0.59
-		// and use this: register("creature", null, "ResizeableCreature");
+		register("creature", null, "ResizeableCreature");
 
 		register("sheep", null, "Sheep");
 

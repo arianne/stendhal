@@ -121,48 +121,6 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void smallCreature() {
-		RPObject rp = new MockRPObject("creature","small_animal");
-	
-		
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a SmallCreature by now", SmallCreature.class, en.getClass());
-
-	}
-	@Test
-	public final void BigCreature() {
-		RPObject rp = new MockRPObject("creature", "giant_animal");
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a BigCreature by now", BigCreature.class, en.getClass());
-
-	}
-	@Test
-	public final void HugeCreature() {
-		RPObject rp = new MockRPObject("creature", "huge_animal");
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a HugeCreature by now", HugeCreature.class, en.getClass());
-
-	}
-	@Test
-	public final void MythicalCreature() {
-		RPObject rp = new MockRPObject("creature", "mythical_animal");
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a MythicalCreature by now", MythicalCreature.class, en.getClass());
-
-	}
-	@Test
-	public final void NormalCreature() {
-		RPObject rp = new MockRPObject("creature", null);
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a NormalCreature by now", NormalCreature.class, en.getClass());
-
-	}
-	@Test
 	public final void ResizeableCreature() {
 		RPObject rp = new MockRPObject("creature",  null);
 		Entity en = EntityFactory.createEntity(rp);
