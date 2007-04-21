@@ -155,7 +155,10 @@ public class HelpDialog extends JFrame {
 
 		private void createNodes(DefaultMutableTreeNode top) {
 			top.add(new DefaultMutableTreeNode(HelpDocument.Introduction));
-			top.add(new DefaultMutableTreeNode(HelpDocument.Setting));
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode(HelpDocument.Setting);
+			top.add(node);
+			node.add(new DefaultMutableTreeNode(HelpDocument.Download));
+			node.add(new DefaultMutableTreeNode(HelpDocument.AccountCreation));
 			top.add(new DefaultMutableTreeNode(HelpDocument.Controls));
 			top.add(new DefaultMutableTreeNode(HelpDocument.Gameplay));
 		}
@@ -167,6 +170,8 @@ public class HelpDialog extends JFrame {
 	public static enum HelpDocument {
 		Introduction("Introduction",	"introduction.html"),
 		Setting("Setting up the game", "setting.html"),
+		Download("Downloading Stendhal", "setting-download.html"),
+		AccountCreation("Creating an account", "setting-accountcreation.html"),
 		Controls("Controls and Game settings", "controls.html"),
 		Gameplay("Gameplay",	"gameplay.html");
 		
