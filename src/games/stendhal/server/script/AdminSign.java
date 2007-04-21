@@ -36,7 +36,10 @@ public class AdminSign extends ScriptImpl {
 			if (myZone.equals("-")) {
 				sandbox.setZone(sandbox.getZone(player));
 			} else {
-				sandbox.setZone(myZone);
+				if(!sandbox.setZone(myZone)) {
+					sandbox.privateText(player, "Zone not found.");
+					return;
+				}
 			}
 			int x = 0;
 			if (args.get(1).equals("-")) {
