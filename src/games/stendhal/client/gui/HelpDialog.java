@@ -16,6 +16,8 @@ import javax.swing.JTree;
 import javax.swing.WindowConstants;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
@@ -98,6 +100,9 @@ public class HelpDialog extends JFrame {
 			// Create the HTML viewing pane.
 			htmlPane = new JEditorPane();
 			htmlPane.setEditable(false);
+			htmlPane.setContentType("text/html");
+			StyleSheet css = ((HTMLEditorKit) htmlPane.getEditorKit()).getStyleSheet();
+			css.addRule("body { font-family: arial, helvetica, sans-serif; }");
 			JScrollPane htmlView = new JScrollPane(htmlPane);
 
 			// Add the scroll panes to a split pane.
