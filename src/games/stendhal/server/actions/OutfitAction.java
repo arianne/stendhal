@@ -34,7 +34,9 @@ public class OutfitAction implements ActionListener {
 		if (action.has("value")) {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
 			Outfit outfit = new Outfit(action.getInt("value"));
-			player.setOutfit(outfit, false);
+			if (outfit.isChoosableByPlayers()) {
+				player.setOutfit(outfit, false);
+			}
 		}
 
 		Log4J.finishMethod(logger, "outfit");

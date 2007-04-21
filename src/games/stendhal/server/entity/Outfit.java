@@ -192,4 +192,14 @@ public class Outfit {
 		return (hair == null || hair.equals(other.hair)) && (head == null || head.equals(other.head))
 		        && (dress == null || dress.equals(other.dress)) && (base == null || base.equals(other.base));
 	}
+
+	/**
+	 * Checks whether this outfit may be selected by a normal player as normal
+	 * outfit. It returns false for special event and GM outfits.
+	 *
+	 * @return true if it is a normal outfit
+	 */
+	public boolean isChoosableByPlayers() {
+		return (hair < 50) && (head < 50) && (dress < 50) && (base < 50);
+	}
 }
