@@ -171,7 +171,7 @@ assertEquals("name1", mo.getName());
 	@Test
 	public void testGetPossibleSlots() {
 		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
-		assertNull(mo.getPossibleSlots());
+		assertTrue(mo.getPossibleSlots().isEmpty());
 	}
 
 	@Test

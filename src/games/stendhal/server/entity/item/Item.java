@@ -23,6 +23,7 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +96,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	private Item() {
 		super();
 		put("type", "item");
+		possibleSlots = new LinkedList<String>();
 		update();
 	}
 
