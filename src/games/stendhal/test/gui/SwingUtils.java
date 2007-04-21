@@ -16,7 +16,7 @@ public class SwingUtils {
 	private static final String BACKGROUND_IMAGE = "data/gui/paneldrock009.jpg";
 
 	/** the normal sprite */
-	private Sprite normalSprite;
+	private ImageSprite normalSprite;
 
 	/** the dark wood sprite */
 	private Sprite darkSprite;
