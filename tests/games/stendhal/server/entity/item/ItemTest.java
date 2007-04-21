@@ -1,0 +1,233 @@
+package games.stendhal.server.entity.item;
+
+import static org.junit.Assert.*;
+
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.player.Player;
+
+import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.RPObject;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class ItemTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testGenerateRPClass() {
+				Entity.generateRPClass();
+		        Item.generateRPClass();
+		
+	}
+
+	@Test
+	public void testGetName() {
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+assertEquals("name1", mo.getName());
+	}
+
+	@Test
+	public void testGetAreaRectangle2DDoubleDouble() {
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+         mo.getArea(new Rectangle2D.Double(), 0.0, 0.0);
+         fail("this getter is a setter, purpose unknown");
+	}
+
+	@Test
+	public void testDescribe() {
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+        assertEquals("", mo.getDescription());
+	}
+
+	@Test (expected = AttributeNotFoundException.class)
+	public void testItemStringStringStringMapOfStringString() {
+		Map<String,String> attribs = new HashMap<String, String>();
+		attribs.put("att_1", "val_1");
+		attribs.put("att_2", "val_2");
+		Item mo = new Item("name1","class","subclass",attribs);
+		assertEquals("val_1",mo.get("att_1"));
+		assertEquals("val_2",mo.get("att_2"));
+		mo.get("Noexistant"); // throws AttributeNotFoundException
+	}
+
+	@Test
+	public void testItemItem() {
+		Map<String,String> attribs = new HashMap<String, String>();
+		
+		attribs.put("att_1", "val_1");
+		attribs.put("att_2", "val_2");
+		Item mo = new Item("name1","class","subclass",attribs);
+		assertEquals("val_1",mo.get("att_1"));
+		assertEquals("val_2",mo.get("att_2"));
+		Item itemcopy = new Item(mo);
+		assertEquals("val_1",itemcopy.get("att_1"));
+		assertEquals("val_2",itemcopy.get("att_2"));
+		
+		
+	}
+
+	@Test
+	public void testSetEquipableSlots() {
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+		LinkedList<String> slots= new LinkedList<String>();
+		slots.add("one");
+		slots.add("two");
+		slots.add("three");
+		mo.setEquipableSlots(slots);
+		assertEquals(slots, mo.getPossibleSlots());
+		slots.add("one");
+		slots.add("one");
+		slots.add("one");
+		mo.setEquipableSlots(slots);
+		assertEquals(slots, mo.getPossibleSlots());
+		// TODO: should there be several slots of the same name?
+	}
+
+	
+
+	@Test
+	public void testGetAttack() {
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+		assertEquals(0, mo.getAttack());
+		mo.put("atk", 3);
+		assertEquals(3, mo.getAttack());
+		mo.put("atk", 2);
+		assertEquals(2, mo.getAttack());
+		
+	}
+
+	@Test
+	public void testGetDefense() {
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+		assertEquals(0, mo.getDefense());
+		mo.put("def", 3);
+		assertEquals(3, mo.getDefense());
+		mo.put("def", 2);
+		assertEquals(2, mo.getDefense());
+	}
+
+	@Test
+	public void testIsPersistent() {
+		Item mo = new Item("name1","myClass","subclass",new HashMap<String, String>());
+		assertFalse(mo.isPersistent());
+		mo.put("persistent", 1);
+		assertTrue(mo.isPersistent());
+		mo.put("persistent", 2);
+		assertFalse(mo.isPersistent());
+	}
+
+	@Test
+	public void testIsOfClass() {
+		Item mo = new Item("name1","myClass","subclass",new HashMap<String, String>());
+		assertTrue(mo.isOfClass("myClass"));
+	}
+
+	@Test
+	public void testGetItemClass() {
+		Item mo = new Item("name1","myClass","subclass",new HashMap<String, String>());
+		assertEquals("myClass",mo.getItemClass());
+		Item moNullClass = new Item("name1",null,"subclass",new HashMap<String, String>());
+		assertEquals(null,moNullClass.getItemClass());
+	}
+
+	@Test
+	public void testGetItemSubclass() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		assertEquals("mySubclass",mo.getItemSubclass());
+		Item moNullSubclass = new Item("name1","myClass",null,new HashMap<String, String>());
+		assertEquals(null,moNullSubclass.getItemSubclass());
+	}
+
+	@Test
+	public void testGetQuantity() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		assertEquals("defaultquantity",1,mo.getQuantity());
+	}
+
+	@Test
+	public void testGetPossibleSlots() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		assertNull(mo.getPossibleSlots());
+	}
+
+	@Test
+	public void testToString() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		assertEquals("Item, RPObject with Attributes of Class(item): [type=item][class=myClass][name=name1][subclass=mySubclass] and RPSlots ",mo.toString());
+	}
+
+	@Test
+	public void testOnPutOnGround() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		mo.onPutOnGround(new Player(new RPObject()));
+
+	}
+
+	@Test
+	public void testOnRemoveFromGround() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		mo.onRemoveFromGround();
+
+	}
+
+	@Test
+	public void testOnTurnReached() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		mo.onTurnReached(1, "");
+	}
+
+	@Test
+	public void testRemoveOne() {
+	     Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+	     mo.removeOne(); 
+	}
+
+	@Test
+	public void testCanBeEquippedIn() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+        assertTrue(mo.canBeEquippedIn(null)); // ground is null
+        LinkedList<String> slots= new LinkedList<String>();
+		slots.add("one");
+		slots.add("two");
+		slots.add("three");
+		
+        mo.setEquipableSlots(slots);
+        assertTrue(mo.canBeEquippedIn("one"));
+        assertTrue(mo.canBeEquippedIn("two"));
+        assertTrue(mo.canBeEquippedIn("three"));
+        assertFalse(mo.canBeEquippedIn("four"));
+        
+        
+	}
+
+	@Test
+	public void testRemoveFromWorld() {
+		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+	     mo.removeFromWorld(); 
+	}
+
+}
