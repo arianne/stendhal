@@ -9,9 +9,12 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.AnimatedSprite;
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
@@ -22,13 +25,18 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 /**
- * The 2D view of an player.
+ * The 2D view of a player.
  */
 public class Player2DView extends RPEntity2DView {
 	/**
 	 * The logger.
 	 */
 	private static final Logger logger = Log4J.getLogger(Player2DView.class);
+
+	/**
+	 * Sprite representing away.
+	 */
+	private static Sprite	awaySprite;
 
 	/**
 	 * The current outfit.
@@ -46,8 +54,15 @@ public class Player2DView extends RPEntity2DView {
 	private Player	player;
 
 
+	static {
+		SpriteStore st = SpriteStore.get();
+
+		awaySprite = new AnimatedSprite(st.getSprites("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0), 2000L);
+	}
+
+
 	/**
-	 * Create a 2D view of an player.
+	 * Create a 2D view of a player.
 	 *
 	 * @param	player		The entity to render.
 	 */
@@ -115,6 +130,21 @@ public class Player2DView extends RPEntity2DView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	@Override
+	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		super.draw(screen, g2d, x, y, width, height);
+
+		if(player.isAway()) {
+			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
+		}
+	}
+
 
 	/**
 	 * Get the 2D area that is drawn in.
