@@ -3,6 +3,7 @@
  */
 package games.stendhal.test.gui;
 
+import games.stendhal.client.ImageSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -27,7 +28,7 @@ public class SwingUtils {
 
 	/** no public constructor */
 	private SwingUtils() {
-		normalSprite = SpriteStore.get().getSprite(BACKGROUND_IMAGE);
+		normalSprite = (ImageSprite) SpriteStore.get().getSprite(BACKGROUND_IMAGE);
 		darkSprite = normalSprite.darker();
 		brightSprite = normalSprite.brighter();
 	}
