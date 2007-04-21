@@ -43,6 +43,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
@@ -548,6 +549,43 @@ public class StendhalClient extends ariannexp {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
 			gameObjects.onChangedAdded(object, changes);
+
+			/*
+			 * Walk each changed slot
+			 */
+			for(RPSlot dslot : changes.slots()) {
+				if(dslot.size() == 0) {
+					continue;
+				}
+
+				String slotName = dslot.getName();
+				RPObject sbase;
+
+				/*
+				 * Find the original slot entry (if any)
+				 */
+				if(object.hasSlot(slotName)) {
+					RPSlot bslot = object.getSlot(dslot.getName());
+					RPObject.ID id = object.getID();
+
+					if(bslot.has(id)) {
+						sbase = bslot.get(id);
+					} else {
+						sbase = null;
+					}
+				} else {
+					sbase = null;
+				}
+
+
+				/*
+				 * Walk the entry changes
+				 */
+				for(RPObject schanges : dslot) {
+					gameObjects.onChangedAdded(object, slotName, sbase, schanges);
+				}
+			}
+
 			object.applyDifferences(changes, null);
 		} catch (Exception e) {
 			logger.debug("onModifiedAdded failed, object is " + object + ", changes is " + changes, e);
@@ -568,6 +606,43 @@ public class StendhalClient extends ariannexp {
 			logger.debug("Original(" + object + ") modified in Game Objects container");
 
 			gameObjects.onChangedRemoved(object, changes);
+
+			/*
+			 * Walk each changed slot
+			 */
+			for(RPSlot dslot : changes.slots()) {
+				if(dslot.size() == 0) {
+					continue;
+				}
+
+				String slotName = dslot.getName();
+				RPObject sbase;
+
+				/*
+				 * Find the original slot entry (if any)
+				 */
+				if(object.hasSlot(slotName)) {
+					RPSlot bslot = object.getSlot(dslot.getName());
+					RPObject.ID id = object.getID();
+
+					if(bslot.has(id)) {
+						sbase = bslot.get(id);
+					} else {
+						sbase = null;
+					}
+				} else {
+					sbase = null;
+				}
+
+
+				/*
+				 * Walk the entry changes
+				 */
+				for(RPObject schanges : dslot) {
+					gameObjects.onChangedRemoved(object, slotName, sbase, schanges);
+				}
+			}
+
 			object.applyDifferences(null, changes);
 
 			logger.debug("Modified(" + object + ") modified in Game Objects container");

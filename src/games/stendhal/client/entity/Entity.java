@@ -524,43 +524,6 @@ public final byte[] ID_Token = new byte[0];
 		 * Position changes
 		 */
 		processPositioning(object, changes);
-
-
-		/*
-		 * Walk each changed slot
-		 */
-		for(RPSlot dslot : changes.slots()) {
-			if(dslot.size() == 0) {
-				continue;
-			}
-
-			String slotName = dslot.getName();
-			RPObject sbase;
-
-			/*
-			 * Find the original slot entry (if any)
-			 */
-			if(object.hasSlot(slotName)) {
-				RPSlot bslot = object.getSlot(dslot.getName());
-				RPObject.ID id = object.getID();
-
-				if(bslot.has(id)) {
-					sbase = bslot.get(id);
-				} else {
-					sbase = null;
-				}
-			} else {
-				sbase = null;
-			}
-
-
-			/*
-			 * Walk the entry changes
-			 */
-			for(RPObject schanges : dslot) {
-				onChangedAdded(object, slotName, sbase, schanges);
-			}
-		}
 	}
 
 
@@ -573,7 +536,6 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	changes		The slot changes.
 	 */
 	public void onChangedAdded(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
-
 	}
 
 
@@ -587,43 +549,6 @@ public final byte[] ID_Token = new byte[0];
 		if(changes.has("visibility")) {
 			visibility = 100;
 			changed();
-		}
-
-
-		/*
-		 * Walk each changed slot
-		 */
-		for(RPSlot dslot : changes.slots()) {
-			if(dslot.size() == 0) {
-				continue;
-			}
-
-			String slotName = dslot.getName();
-			RPObject sbase;
-
-			/*
-			 * Find the original slot entry (if any)
-			 */
-			if(object.hasSlot(slotName)) {
-				RPSlot bslot = object.getSlot(dslot.getName());
-				RPObject.ID id = object.getID();
-
-				if(bslot.has(id)) {
-					sbase = bslot.get(id);
-				} else {
-					sbase = null;
-				}
-			} else {
-				sbase = null;
-			}
-
-
-			/*
-			 * Walk the entry changes
-			 */
-			for(RPObject schanges : dslot) {
-				onChangedRemoved(object, slotName, sbase, schanges);
-			}
 		}
 	}
 
