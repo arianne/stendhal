@@ -23,10 +23,10 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -95,6 +95,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	private Item() {
 		super();
 		put("type", "item");
+		possibleSlots = new LinkedList<String>();
 		update();
 	}
 
@@ -105,7 +106,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	public Item(Item other) {
 		super(other);
-		this.possibleSlots = new ArrayList(other.possibleSlots);
+		this.possibleSlots = new ArrayList<String>(other.possibleSlots);
 	}
 
 
