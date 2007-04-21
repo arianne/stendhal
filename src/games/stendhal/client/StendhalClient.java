@@ -85,6 +85,9 @@ public class StendhalClient extends ariannexp {
 
 	private String userName="";
 
+	private UserContext	userContext;
+
+
 	public static StendhalClient get() {
 		if (client == null) {
 			client = new StendhalClient(LOG4J_PROPERTIES);
@@ -110,6 +113,7 @@ public class StendhalClient extends ariannexp {
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 		staticLayers = new StaticGameLayers();
 		gameObjects = GameObjects.createInstance(staticLayers);
+		userContext = new UserContext();
 
 		listeners = new PerceptionListenerMulticaster();
 		listeners.addListener(new StendhalPerceptionListener());
@@ -487,18 +491,22 @@ public class StendhalClient extends ariannexp {
 
 
 	public void addFeatureChangeListener(FeatureChangeListener l) {
+		userContext.addFeatureChangeListener(l);
 	}
 
 
 	public void removeFeatureChangeListener(FeatureChangeListener l) {
+		userContext.removeFeatureChangeListener(l);
 	}
 
 
 	public void addBuddyChangeListener(BuddyChangeListener l) {
+		userContext.addBuddyChangeListener(l);
 	}
 
 
 	public void removeBuddyChangeListener(BuddyChangeListener l) {
+		userContext.removeBuddyChangeListener(l);
 	}
 
 
@@ -550,6 +558,10 @@ public class StendhalClient extends ariannexp {
 			logger.debug("Object(" + object.getID() + ") modified in Game Objects container");
 			gameObjects.onChangedAdded(object, changes);
 
+			if(userObject) {
+				userContext.onChangedAdded(object, changes);
+			}
+
 			/*
 			 * Walk each changed slot
 			 */
@@ -583,6 +595,10 @@ public class StendhalClient extends ariannexp {
 				 */
 				for(RPObject schanges : dslot) {
 					gameObjects.onChangedAdded(object, slotName, sbase, schanges);
+
+					if(userObject) {
+						userContext.onChangedAdded(object, slotName, sbase, schanges);
+					}
 				}
 			}
 
@@ -606,6 +622,10 @@ public class StendhalClient extends ariannexp {
 			logger.debug("Original(" + object + ") modified in Game Objects container");
 
 			gameObjects.onChangedRemoved(object, changes);
+
+			if(userObject) {
+				userContext.onChangedRemoved(object, changes);
+			}
 
 			/*
 			 * Walk each changed slot
@@ -640,6 +660,10 @@ public class StendhalClient extends ariannexp {
 				 */
 				for(RPObject schanges : dslot) {
 					gameObjects.onChangedRemoved(object, slotName, sbase, schanges);
+
+					if(userObject) {
+						userContext.onChangedRemoved(object, slotName, sbase, schanges);
+					}
 				}
 			}
 
