@@ -421,6 +421,11 @@ public class Player extends RPEntity implements TurnListener {
 		return score;
 	}
 
+	/**
+	 * Process changes that to the object attributes. This may be called
+	 * several times (unfortunetly) due to the requirements of the class's
+	 * contructor, sometimes before prereqs are initialized.
+	 */
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
@@ -433,12 +438,13 @@ public class Player extends RPEntity implements TurnListener {
 			karma = getDouble("karma");
 		}
 
-// BROKEN - Will fix tomorrow
-//		if(has("features")) {
-//			features.decode(get("features"));
-//		} else {
-//			features.clear();
-//		}
+		if(features != null) {
+			if(has("features")) {
+				features.decode(get("features"));
+			} else {
+				features.clear();
+			}
+		}
 	}
 
 	/**
