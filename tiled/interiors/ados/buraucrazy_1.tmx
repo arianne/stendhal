@@ -1,94 +1,94 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="40" height="19" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/item/furniture/carpet/carpets_2.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
+  <image source="../../tileset/item/furniture/carpet/carpets_2.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/carpet/carpets.png" firstgid="13" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/carpet/carpets.png"/>
+  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="../../tileset/ground/indoor/brown_hole.png" firstgid="21" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/indoor/brown_hole.png" trans="ff00ff"/>
+  <image source="../../tileset/ground/indoor/brown_hole.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/int_wall_pale.png" firstgid="33" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
+  <image source="../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/int_wall_purple.png" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
+  <image source="../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/pot/barrel_flat.png" firstgid="69" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/pot/barrel_flat.png" trans="ff00ff"/>
+  <image source="../../tileset/item/pot/barrel_flat.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/int_ew.png" firstgid="70" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/stairs/int_ew.png" trans="ff00ff"/>
+  <image source="../../tileset/building/stairs/int_ew.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/tree_stump_table.png" firstgid="79" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/table/tree_stump_table.png" trans="ff00ff"/>
+  <image source="../../tileset/item/furniture/table/tree_stump_table.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/pot_plant.png" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/indoor/pot_plant.png"/>
+  <image source="../../tileset/plant/indoor/pot_plant.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/wooden_rectangular.png" firstgid="86" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/table/wooden_rectangular.png" trans="ff00ff"/>
+  <image source="../../tileset/item/furniture/table/wooden_rectangular.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="92" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="96" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
+  <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/shelve/bright_bookshelf.png" firstgid="132" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
+  <image source="../../tileset/item/furniture/shelve/bright_bookshelf.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="141" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/indoor/flower_vase.png"/>
+  <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
  <tileset name="../../tileset/item/brush.png" firstgid="142" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/brush.png"/>
+  <image source="../../tileset/item/brush.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/other/warmer.png" firstgid="145" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/other/warmer.png"/>
+  <image source="../../tileset/item/furniture/other/warmer.png"/>
  </tileset>
  <tileset name="../../tileset/plant/indoor/flowering_plant.png" firstgid="147" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/indoor/flowering_plant.png"/>
+  <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/carpet/rug_border.png" firstgid="148" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/carpet/rug_border.png"/>
+  <image source="../../tileset/item/furniture/carpet/rug_border.png"/>
  </tileset>
  <tileset name="../../tileset/ground/eye.png" firstgid="157" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/eye.png" trans="ffffff"/>
+  <image source="../../tileset/ground/eye.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/stairs/stairs.png" firstgid="166" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/stairs/stairs.png"/>
+  <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
  <tileset name="../../tileset/building/wall/bricked_edges.png" firstgid="170" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/wall/bricked_edges.png" trans="ff00ff"/>
+  <image source="../../tileset/building/wall/bricked_edges.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/food/rustic_meals.png" firstgid="185" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/food/rustic_meals.png" trans="ff00ff"/>
+  <image source="../../tileset/item/food/rustic_meals.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/picture/large_island.png" firstgid="187" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/picture/large_island.png"/>
+  <image source="../../tileset/item/furniture/picture/large_island.png"/>
  </tileset>
  <tileset name="../../tileset/item/book.png" firstgid="189" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/book.png"/>
+  <image source="../../tileset/item/book.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/picture/small.png" firstgid="193" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/picture/small.png"/>
+  <image source="../../tileset/item/furniture/picture/small.png"/>
  </tileset>
  <tileset name="../../tileset/item/candle/lamp.png" firstgid="196" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/candle/lamp.png"/>
+  <image source="../../tileset/item/candle/lamp.png"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/detail_ns.png" firstgid="197" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/entrance/detail_ns.png" trans="ff00ff"/>
+  <image source="../../tileset/building/entrance/detail_ns.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/logic/item/portal.png" firstgid="203" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/logic/item/portal.png"/>
+  <image source="../../tileset/logic/item/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="210" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/logic/collision.png"/>
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="../../tileset/logic/protection.png" firstgid="211" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/logic/protection.png"/>
+  <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="40" height="19">
   <data encoding="base64" compression="gzip">

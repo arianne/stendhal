@@ -1,178 +1,178 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
  <tileset name="../../tileset/ground/green_paving.png" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/green_paving.png" trans="ffffff"/>
+  <image source="../../tileset/ground/green_paving.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/indoor/tiles.png" firstgid="10" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/indoor/tiles.png" trans="ff00ff"/>
+  <image source="../../tileset/ground/indoor/tiles.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/object/castle.png" firstgid="18" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/object/castle.png"/>
+  <image source="../../tileset/object/castle.png"/>
  </tileset>
  <tileset name="../../tileset/ground/ground.png" firstgid="338" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/ground.png" trans="ffffff"/>
+  <image source="../../tileset/ground/ground.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/ground_2.png" firstgid="350" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/ground_2.png" trans="ffffff"/>
+  <image source="../../tileset/ground/ground_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/wall/wall_brown.png" firstgid="354" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/wall/wall_brown.png"/>
+  <image source="../../tileset/building/wall/wall_brown.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/banner.png" firstgid="360" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/banner.png"/>
+  <image source="../../tileset/building/decoration/banner.png"/>
  </tileset>
  <tileset name="../../tileset/ground/brown_paving.png" firstgid="369" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/brown_paving.png" trans="ffffff"/>
+  <image source="../../tileset/ground/brown_paving.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/water/dungeon_water.png" firstgid="371" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/water/dungeon_water.png" trans="ff00ff"/>
+  <image source="../../tileset/ground/water/dungeon_water.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/ground/water/pool.png" firstgid="395" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/water/pool.png" trans="ffffff"/>
+  <image source="../../tileset/ground/water/pool.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/roof/blue.png" firstgid="404" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/roof/blue.png"/>
+  <image source="../../tileset/building/roof/blue.png"/>
  </tileset>
  <tileset name="../../tileset/building/roof/yellow.png" firstgid="424" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/roof/yellow.png"/>
+  <image source="../../tileset/building/roof/yellow.png"/>
  </tileset>
  <tileset name="../../tileset/building/wall/stone.png" firstgid="444" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/wall/stone.png"/>
+  <image source="../../tileset/building/wall/stone.png"/>
  </tileset>
  <tileset name="../../tileset/building/roof/green.png" firstgid="456" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/roof/green.png"/>
+  <image source="../../tileset/building/roof/green.png"/>
  </tileset>
  <tileset name="../../tileset/building/wall/wood.png" firstgid="476" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/wall/wood.png"/>
+  <image source="../../tileset/building/wall/wood.png"/>
  </tileset>
  <tileset name="../../tileset/building/roof/red.png" firstgid="492" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/roof/red.png"/>
+  <image source="../../tileset/building/roof/red.png"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_white.png" firstgid="512" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
+  <image source="../../tileset/plant/flower/daisy_white.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/green_paving_2.png" firstgid="520" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/green_paving_2.png" trans="ffffff"/>
+  <image source="../../tileset/ground/green_paving_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/statue/green_stone.png" firstgid="524" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
+  <image source="../../tileset/item/furniture/statue/green_stone.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/green_paving_3.png" firstgid="536" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/green_paving_3.png" trans="ffffff"/>
+  <image source="../../tileset/ground/green_paving_3.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/cobbled_paving.png" firstgid="537" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/cobbled_paving.png" trans="ffffff"/>
+  <image source="../../tileset/ground/cobbled_paving.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/statue/bird.png" firstgid="538" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/statue/bird.png" trans="ffffff"/>
+  <image source="../../tileset/item/furniture/statue/bird.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/fence/fence_chunky.png" firstgid="546" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/fence/fence_chunky.png" trans="ffffff"/>
+  <image source="../../tileset/building/fence/fence_chunky.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/grasses.png" firstgid="555" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/grasses.png" trans="ffffff"/>
+  <image source="../../tileset/plant/grasses.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/hedge.png" firstgid="558" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/bush/hedge.png" trans="ffffff"/>
+  <image source="../../tileset/plant/bush/hedge.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_blue.png" firstgid="578" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/flower/daisy_blue.png" trans="ffffff"/>
+  <image source="../../tileset/plant/flower/daisy_blue.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/hedge_2.png" firstgid="586" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/bush/hedge_2.png" trans="ffffff"/>
+  <image source="../../tileset/plant/bush/hedge_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_red.png" firstgid="592" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/flower/daisy_red.png" trans="ffffff"/>
+  <image source="../../tileset/plant/flower/daisy_red.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/flower/daisy_yellow.png" firstgid="600" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/flower/daisy_yellow.png" trans="ffffff"/>
+  <image source="../../tileset/plant/flower/daisy_yellow.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/bush/bushes.png" firstgid="608" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/bush/bushes.png" trans="ffffff"/>
+  <image source="../../tileset/plant/bush/bushes.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/tree/tree_green.png" firstgid="618" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/tree/tree_green.png" trans="ffffff"/>
+  <image source="../../tileset/plant/tree/tree_green.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/window/window_long.png" firstgid="698" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/window/window_long.png"/>
+  <image source="../../tileset/building/window/window_long.png"/>
  </tileset>
  <tileset name="../../tileset/building/window/window_left.png" firstgid="701" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/window/window_left.png"/>
+  <image source="../../tileset/building/window/window_left.png"/>
  </tileset>
  <tileset name="../../tileset/building/door/closed_with_key.png" firstgid="703" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/door/closed_with_key.png"/>
+  <image source="../../tileset/building/door/closed_with_key.png"/>
  </tileset>
  <tileset name="../../tileset/building/window/window_right.png" firstgid="704" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/window/window_right.png"/>
+  <image source="../../tileset/building/window/window_right.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="706" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/chair/wooden_pale.png"/>
+  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/table/wooden_pale.png" firstgid="710" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/table/wooden_pale.png"/>
+  <image source="../../tileset/item/furniture/table/wooden_pale.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="711" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
+  <image source="../../tileset/item/furniture/statue/grey_stone.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/fairypool.png" firstgid="715" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/fairypool.png" trans="ff00ff"/>
+  <image source="../../tileset/building/decoration/fairypool.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/ground/eye.png" firstgid="719" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/eye.png" trans="ffffff"/>
+  <image source="../../tileset/ground/eye.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/object/witch_hut.png" firstgid="728" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/object/witch_hut.png"/>
+  <image source="../../tileset/object/witch_hut.png"/>
  </tileset>
  <tileset name="../../tileset/item/sign_large.png" firstgid="763" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/sign_large.png" trans="ffffff"/>
+  <image source="../../tileset/item/sign_large.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/ground/water/pool_straight_edges.png" firstgid="778" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/ground/water/pool_straight_edges.png" trans="ffffff"/>
+  <image source="../../tileset/ground/water/pool_straight_edges.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/plant/stump/small_stump.png" firstgid="782" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/plant/stump/small_stump.png" trans="ffffff"/>
+  <image source="../../tileset/plant/stump/small_stump.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/object/suspension_bridge.png" firstgid="786" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/object/suspension_bridge.png" trans="ffffff"/>
+  <image source="../../tileset/object/suspension_bridge.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/door/door_s.png" firstgid="790" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/door/door_s.png"/>
+  <image source="../../tileset/building/door/door_s.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/chimney.png" firstgid="796" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/chimney.png"/>
+  <image source="../../tileset/building/decoration/chimney.png"/>
  </tileset>
  <tileset name="../../tileset/building/door/closed.png" firstgid="798" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/door/closed.png"/>
+  <image source="../../tileset/building/door/closed.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/orbpedestal.png" firstgid="799" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/orbpedestal.png" trans="ff00ff"/>
+  <image source="../../tileset/building/decoration/orbpedestal.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/longhorn_skull.png" firstgid="801" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/longhorn_skull.png"/>
+  <image source="../../tileset/building/decoration/longhorn_skull.png"/>
  </tileset>
  <tileset name="../../tileset/object/church.png" firstgid="807" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/object/church.png"/>
+  <image source="../../tileset/object/church.png"/>
  </tileset>
  <tileset name="../../tileset/building/entrance/int_iron_bars.png" firstgid="863" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/entrance/int_iron_bars.png" trans="ff00ff"/>
+  <image source="../../tileset/building/entrance/int_iron_bars.png" trans="ff00ff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/chimney_big.png" firstgid="869" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/chimney_big.png"/>
+  <image source="../../tileset/building/decoration/chimney_big.png"/>
  </tileset>
  <tileset name="../../tileset/item/furniture/statue/green_stone_2.png" firstgid="871" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/item/furniture/statue/green_stone_2.png" trans="ffffff"/>
+  <image source="../../tileset/item/furniture/statue/green_stone_2.png" trans="ffffff"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/library_banner.png" firstgid="877" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/decoration/library_banner.png"/>
+  <image source="../../tileset/building/decoration/library_banner.png"/>
  </tileset>
  <tileset name="../../tileset/building/door/door_e.png" firstgid="883" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/door/door_e.png"/>
+  <image source="../../tileset/building/door/door_e.png"/>
  </tileset>
  <tileset name="../../tileset/building/door/door_w.png" firstgid="889" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/building/door/door_w.png"/>
+  <image source="../../tileset/building/door/door_w.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="895" tilewidth="32" tileheight="32">
-  <image source="../../../tileset/logic/collision.png"/>
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
