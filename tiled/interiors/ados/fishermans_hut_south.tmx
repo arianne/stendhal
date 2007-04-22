@@ -1,60 +1,86 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="16" height="16" tilewidth="32" tileheight="32">
- <properties>
-  <property name="x" value="500000"/>
-  <property name="y" value="500000"/>
- </properties>
- <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
+ <tileset name="../../tileset/building/wall/int_wall_pale.png" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/building/wall/int_wall_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Outside 1" firstgid="481" tilewidth="32" tileheight="32">
-  <image source="../../zelda_outside_1_chipset.png" trans="ffffff"/>
+ <tileset name="../../tileset/building/wall/int_wall_purple.png" firstgid="17" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/building/wall/int_wall_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Dungeon 0" firstgid="961" tilewidth="32" tileheight="32">
-  <image source="../../zelda_dungeon_0_chipset.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/furniture/table/wooden_rectangular.png" firstgid="37" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/table/wooden_rectangular.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Dungeon 1" firstgid="1441" tilewidth="32" tileheight="32">
-  <image source="../../zelda_dungeon_1_chipset.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/furniture/table/rectangular_with_meals.png" firstgid="43" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/table/rectangular_with_meals.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Interior 0" firstgid="1921" tilewidth="32" tileheight="32">
-  <image source="../../zelda_interior_0_chipset.png" trans="ff00ff"/>
+ <tileset name="../../tileset/item/brush.png" firstgid="52" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/brush.png"/>
  </tileset>
- <tileset name="Navigation" firstgid="2401" tilewidth="32" tileheight="32">
-  <image source="../../zelda_navigation_chipset.png"/>
+ <tileset name="../../tileset/item/furniture/table/table_with_hob_pale.png" firstgid="55" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/table/table_with_hob_pale.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Objects" firstgid="2402" tilewidth="32" tileheight="32">
-  <image source="../../zelda_objects_chipset.png"/>
+ <tileset name="../../tileset/item/furniture/table/table_with_beer.png" firstgid="58" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/table/table_with_beer.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Collision" firstgid="2602" tilewidth="32" tileheight="32">
-  <image source="../../zelda_collision_chipset.png"/>
+ <tileset name="../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png" firstgid="66" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/shelve/bright_bookshelf_and_cupboard.png"/>
  </tileset>
- <tileset name="Buildings 0" firstgid="2604" tilewidth="32" tileheight="32">
-  <image source="../../zelda_building_0_tileset.png"/>
+ <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="72" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/armor/weapons_rack.png"/>
  </tileset>
- <tileset name="Outside 2" firstgid="3084" tilewidth="32" tileheight="32">
-  <image source="../../zelda_outside_2_chipset.png"/>
+ <tileset name="../../tileset/building/decoration/pale_red.png" firstgid="90" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/building/decoration/pale_red.png" trans="ff00ff"/>
  </tileset>
- <tileset name="Interior 1" firstgid="3564" tilewidth="32" tileheight="32">
-  <image source="../../zelda_interior_1_chipset.png"/>
+ <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="94" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/chair/wooden_pale.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/table/grey_plain.png" firstgid="98" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/table/grey_plain.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/other/warmer.png" firstgid="107" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/other/warmer.png"/>
+ </tileset>
+ <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="109" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="../../tileset/item/pot/barrel.png" firstgid="145" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/pot/barrel.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/chair/stool.png" firstgid="147" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/chair/stool.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/bed/large_front_on.png" firstgid="148" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/furniture/bed/large_front_on.png" trans="ff00ff"/>
+ </tileset>
+ <tileset name="../../tileset/building/decoration/pool.png" firstgid="154" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/building/decoration/pool.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/pot/pot_burgundy.png" firstgid="163" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/item/pot/pot_burgundy.png" trans="ffffff"/>
+ </tileset>
+ <tileset name="../../tileset/logic/item/portal.png" firstgid="164" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/logic/item/portal.png"/>
+ </tileset>
+ <tileset name="../../tileset/logic/collision.png" firstgid="171" tilewidth="32" tileheight="32">
+  <image source="../../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAEvjYGD4wE4eTgXqfQekM4A0H4k4HYjfskP08wDZk/HgueyYmHuY6cemBh8e1T989HsB2bwkYk+ofg8g/Z6dPOwO1AsAYmYf2wAEAAA=
+   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYDQ82woJFh5l+bGrw4VH9w0e/FBCLk4glofq5gJiRTMwJxAABzXvfAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggICXfAxwMJGdgWESEPPxMxAN2JHUrgfq3QDEOiToVyVCLRdQzVEOBoZjHITVevBDMDp4DNT7BIt+I6CYMRCbQOWMgOFhwoepjpGTgYGJE1NcBKhPFIjFoPrzgHoL0PS7A93TAxTrw2IuseAEUO8pCvTD3EEOIBT+H/ggGB/AFf7EAlzhTw0QCXR7FBAnUhi+hIASI3HqWIHhxAbE7GSGlzJQnwoQq+LRDwBw+r2fAAQAAA==
+   H4sIAAAAAAAAAGNggAATBgSIAuJoIM5mIB6YIrFjgDgWiHNI0G9GhJqJQDwFiKcSoTYOitHBNCCejkXcHIgtgNgSyk8C4hQs6mYA8Uws4vZA7ADEjlB+BhBnoamZDMSzgHgOHncTAguAeBEF+mHuIAcQCn93KMYHcIU/sQBX+FMDBAJxEBBH0sh8GFhMpLpcIM4D4nwy7SkD4nIgrsCjBgD010hbAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBzAjX+gXTAKRsHIAwDmh/+1AAQAAA==
+   H4sIAAAAAAAAAGNgGBxg0kA7YBSMghEIABOlw6gABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjAAIu8UHwUAXWQLfbALHzEPYDvQEAdsAfngAEAAA=
+   H4sIAAAAAAAAAGNgGAWjAAJcoHioAg8g9gTigIF2yBACAN0wNbEABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -64,17 +90,12 @@
  </layer>
  <layer name="objects" width="16" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBQMVpDGOdAuGAWjYBQMBKBH3gcANHaI4wAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBQMVrBioB0wCkbBKBgQQI+8DwDndsLbAAgAAA==
   </data>
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANPiYmDQGiSYEKBELzFmIJtFyFxq208v/fjcT8gcWoY/NdxPqX5K0iIldhObFmmBAZLQtXYABAAA
-  </data>
- </layer>
- <layer name="navigation" width="32" height="32">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAFvNwMCwepBgQoASvcSYgWwWIXOpbT+99OMyh4GBsDm0DH9SAa38T25apMRuYtMiLTAAN4KVLAAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16" opacity="0.69">
