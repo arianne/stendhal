@@ -53,8 +53,17 @@ assertEquals("name1", mo.getName());
 	@Test
 	public void testGetAreaRectangle2DDoubleDouble() {
 		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
-         mo.getArea(new Rectangle2D.Double(), 0.0, 0.0);
-         fail("this getter is a setter, purpose unknown");
+		Rectangle2D rect = new Rectangle2D.Double();
+		assertEquals(rect.getCenterX(), 0.0);
+        assertEquals(rect.getCenterY(), 0.0);
+        
+		mo.getArea(rect, 0.0, 0.0);
+        assertEquals(rect.getMinX(), 0.0);
+        assertEquals(rect.getMinY(), 0.0);
+        assertEquals(rect.getMaxX(), 1.0);
+        assertEquals(rect.getMaxY(), 1.0);
+        
+         
 	}
 
 	@Test
@@ -74,8 +83,8 @@ assertEquals("name1", mo.getName());
 		mo.get("Noexistant"); // throws AttributeNotFoundException
 	}
 
-	@Test
-	public void testItemItem() {
+	@Test (expected = AttributeNotFoundException.class) //the attributes are not copied
+	public void testItemItemDoesnotCopyAttributes() {
 		Map<String,String> attribs = new HashMap<String, String>();
 		
 		attribs.put("att_1", "val_1");
@@ -85,9 +94,19 @@ assertEquals("name1", mo.getName());
 		assertEquals("val_2",mo.get("att_2"));
 		Item itemcopy = new Item(mo);
 		assertEquals("val_1",itemcopy.get("att_1"));
-		assertEquals("val_2",itemcopy.get("att_2"));
+		assertEquals("val_2",itemcopy.get("att_2")); 
 		
 		
+	}
+	
+	@Test // slots are copied by copyconstructor
+	public void testItemItem(){
+		LinkedList<String> slots = new LinkedList<String>();
+		slots.add("slot_1");
+		slots.add("slot_2");
+		Item mo = new Item("name1","class","subclass",new HashMap<String, String>());
+		mo.setEquipableSlots(slots);
+		assertEquals(slots, mo.getPossibleSlots());
 	}
 
 	@Test
