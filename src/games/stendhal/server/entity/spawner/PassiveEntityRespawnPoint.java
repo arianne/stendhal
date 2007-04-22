@@ -87,10 +87,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		grower.add("class", RPClass.STRING);
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
+	
 
 	/**
 	 * Is called when a fruit has been picked from this plant grower.

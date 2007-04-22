@@ -70,11 +70,6 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 		return false;
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
-
 	/**
 	 * Decides randomly if a prospecting action should be
 	 * successful.

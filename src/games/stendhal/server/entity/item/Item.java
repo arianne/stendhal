@@ -141,10 +141,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return plantGrower;
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
 
 	/**
 	 * Returns the attack points of this item. Positive and negative values are

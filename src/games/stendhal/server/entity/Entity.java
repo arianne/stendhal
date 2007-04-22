@@ -463,8 +463,10 @@ public abstract class Entity extends RPObject {
 		return rect;
 	}
 
-	abstract public void getArea(Rectangle2D rect, double x, double y);
-
+	public void getArea(Rectangle2D rect, double x, double y){
+		rect.setRect(x, y, 1,1);
+	}
+		
 	/**
 	 * Called when this object is added to a zone.
 	 *

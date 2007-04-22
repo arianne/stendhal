@@ -52,11 +52,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 		set((int) rect.getX(), (int) rect.getY());
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
-
+	
 	@Override
 	public String describe() {
 		return ("You see a pool of blood.");

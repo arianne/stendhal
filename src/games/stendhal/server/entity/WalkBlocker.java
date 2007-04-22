@@ -24,15 +24,7 @@ public class WalkBlocker extends Entity {
 		put("type", "walk_blocker");
 	}
 
-	//
-	// Entity
-	//
-
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
-
+	
 	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
