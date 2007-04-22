@@ -32,6 +32,7 @@ class SourceObject extends MoveableObject {
 	private int quantity = 0;
 
 	/** interprets the given action */
+	// TODO: split this method into parts (and move the checks out of the constructor)
 	public SourceObject(RPAction action, Player player) {
 		// base item must be there
 		if (!action.has(EquipActionConsts.BASE_ITEM)) {
@@ -62,6 +63,12 @@ class SourceObject extends MoveableObject {
 			}
 
 			slot = action.get(EquipActionConsts.BASE_SLOT);
+
+			// check that this slots exists
+			if (!parent.has(slot)) {
+				player.sendPrivateText("You don't have a slot called " + slot);
+				return;
+			}
 
 			RPSlot baseSlot = parent.getSlot(slot);
 
