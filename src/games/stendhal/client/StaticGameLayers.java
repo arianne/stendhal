@@ -55,7 +55,7 @@ public class StaticGameLayers {
 		URL url = SpriteStore.get().getResourceURL(folder + "/zelda_outside_0_chipset.png");
 		if (url == null) {
 			logger.warn("Using development environement to load tilesets");
-			folder = "tiled";
+			folder = "tiled/zelda3tilesets";
 		}
 
 		tilestore.add(folder + "/zelda_outside_0_chipset.png", 30 * 16);
