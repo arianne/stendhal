@@ -371,19 +371,19 @@ in roaches.
 
    <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <portal x="10" y="23" ref="entrance_left">
-     <destination zone="0_ados_city_n" ref="temple_entrance"/>
+     <destination zone="0_ados_wall" ref="temple_entrance_left"/>
     </portal>
 
     <portal x="11" y="23" ref="entrance_center_left">
-     <destination zone="0_ados_city_n" ref="temple_entrance"/>
+     <destination zone="0_ados_wall" ref="temple_entrance_left"/>
     </portal>
 
     <portal x="12" y="23" ref="entrance_center_right">
-     <destination zone="0_ados_city_n" ref="temple_entrance"/>
+     <destination zone="0_ados_wall" ref="temple_entrance_center"/>
     </portal>
 
     <portal x="13" y="23" ref="entrance_right">
-     <destination zone="0_ados_city_n" ref="temple_entrance"/>
+     <destination zone="0_ados_wall" ref="temple_entrance_right"/>
     </portal>
    </zone>
    
@@ -480,12 +480,24 @@ Southeast: Docks
      	<parameter name="species">char</parameter>
     	</implementation>
   	 </entity>
+  <portal x="118" y="103" ref="caves_exit">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
    </zone>
    
    <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
    </zone>
    
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
+     <portal x="100" y="52" ref="temple_entrance_left">
+      <destination zone="int_ados_temple" ref="entrance_center_left"/>
+    </portal>
+    <portal x="101" y="52" ref="temple_entrance_center">
+      <destination zone="int_ados_temple" ref="entrance_center_right"/>
+    </portal>
+    <portal x="102" y="52" ref="temple_entrance_right">
+      <destination zone="int_ados_temple" ref="entrance_right"/>
+    </portal>
    </zone>
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="0_ados_city.xstend">
@@ -557,7 +569,7 @@ Southeast: Docks
 </zone>
 
 <zone name="-1_ados_caves_se" level="-1" x="500512" y="500000" file="sub_1_ados_caves_se.xstend">
-  <portal x="4" y="23" ref="0">
+  <portal x="123" y="107" ref="0">
    <destination zone="0_ados_rock" ref="caves_exit"/>
   </portal>
 </zone>

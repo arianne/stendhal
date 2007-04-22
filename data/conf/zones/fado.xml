@@ -317,7 +317,7 @@
 	 
 	 <zone name="int_fado_battle_arena" file="int_fado_battle_arena.xstend">
            <portal x="31" y="63" ref="entrance">
-             <destination zone="0_fado_city" ref="battle_arena_enterance"/>
+             <destination zone="0_fado_city" ref="battle_arena_entrance"/>
            </portal>
          </zone>
 	 
