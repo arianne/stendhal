@@ -23,17 +23,9 @@ public class ZoneXMLLoader extends DefaultHandler {
 
 		public String name;
 
-		public int x;
-
-		public int y;
-
 		public int width;
 
 		public int height;
-
-		public boolean interior;
-
-		public int level;
 
 		public Map<String, byte[]> layers;
 
@@ -43,22 +35,6 @@ public class ZoneXMLLoader extends DefaultHandler {
 
 		public byte[] getLayer(String key) {
 			return layers.get(key);
-		}
-
-		public int getX() {
-			return x;
-		}
-
-		public int getY() {
-			return y;
-		}
-
-		public int getLevel() {
-			return level;
-		}
-
-		public boolean isInterior() {
-			return interior;
 		}
 	}
 
@@ -134,21 +110,6 @@ public class ZoneXMLLoader extends DefaultHandler {
 	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		if (qName.equals("map")) {
 			currentZone.name = attrs.getValue("name");
-		} else if (qName.equals("location")) {
-			String level = attrs.getValue("level");
-
-			if (level.equals("int") == false) {
-				currentZone.interior = false;
-				currentZone.level = Integer.parseInt(level);
-				if ((attrs.getValue("x") == null) || (attrs.getValue("y") == null)
-				        || attrs.getValue("x").equals("null") || attrs.getValue("y").equals("null")) {
-					throw new RuntimeException("x or y propertied undefined for non \"int\" zone.");
-				}
-				currentZone.x = Integer.parseInt(attrs.getValue("x"));
-				currentZone.y = Integer.parseInt(attrs.getValue("y"));
-			} else {
-				currentZone.interior = true;
-			}
 		} else if (qName.equals("size")) {
 			currentZone.width = Integer.parseInt(attrs.getValue("width"));
 			currentZone.height = Integer.parseInt(attrs.getValue("height"));

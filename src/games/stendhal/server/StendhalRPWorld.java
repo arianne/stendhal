@@ -272,11 +272,10 @@ public class StendhalRPWorld extends RPWorld {
 		area.addCollisionLayer(name + "_collision", xmlzone.getLayer("collision"));
 		area.addProtectionLayer(name + "_protection", xmlzone.getLayer("protection"));
 
-		if (xmlzone.isInterior()) {
-			area.setPosition();
-		} else {
-			area.setPosition(xmlzone.getLevel(), xmlzone.getX(), xmlzone.getY());
-		}
+		/*
+		 * NOTE: This is only used for int_house_000 now, so assume int
+		 */
+		area.setPosition();
 
 		addRPZone(area);
 		area.populate(xmlzone.getLayer("objects"));

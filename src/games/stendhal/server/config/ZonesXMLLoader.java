@@ -373,42 +373,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 		zone.addCollisionLayer(name + "_collision", zonedata.getLayer("collision"));
 		zone.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
 
-
-
-		/*
-		 * Sanity check
-		 */
-		if(desc.isInterior()) {
-			if(!zonedata.isInterior()) {
-				logger.error("XML <-> XSTEND interior mismatch for: " + name);
-			}
-		} else {
-			if(zonedata.isInterior()) {
-				logger.error("XML <-> XSTEND interior mismatch for: " + name);
-			} else if(desc.getLevel() != zonedata.getLevel()) {
-				logger.error("XML <-> XSTEND level mismatch for: " + name);
-			} else if((desc.getX() != zonedata.getX()) || (desc.getY() != zonedata.getY())) {
-				logger.error("XML <-> XSTEND coorinate mismatch for: " + name);
-			}
-		}
-
-
 		if(desc.isInterior()) {
 			zone.setPosition();
 		} else {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
 		}
-
-		/*-
-		 *- OLD CODE
-		 *-
-		if (zonedata.isInterior()) {
-			zone.setPosition();
-		} else {
-			zone.setPosition(zonedata.getLevel(), zonedata.getX(), zonedata.getY());
-		}
-		 *-
-		 */
 
 		StendhalRPWorld.get().addRPZone(zone);
 
