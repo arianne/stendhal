@@ -207,10 +207,18 @@ public abstract class Entity extends RPObject {
 		return false;
 	}
 
+	/**
+	 * stops the walking of this entity
+	 */
 	public void stop() {
 		setSpeed(0);
 	}
 
+	/**
+	 * is this entity not moving
+	 *
+	 * @return true, if it stopped, false if it is moving
+	 */
 	public boolean stopped() {
 		return speed == 0;
 	}
@@ -457,12 +465,28 @@ public abstract class Entity extends RPObject {
 		return getArea(getX(), getY());
 	}
 
+	/**
+	 * returns the area used by this entity
+	 *
+	 * @param ex x
+	 * @param ey y
+	 * @return rectangle for the used area
+	 */
 	public Rectangle2D getArea(double ex, double ey) {
 		Rectangle2D rect = new Rectangle.Double();
 		getArea(rect, ex, ey);
 		return rect;
 	}
 
+	/**
+	 * returns the area used by this entity. Note for performance reasons
+	 * the Rectangle is not returned as new object but the one supplied as
+	 * first parameter is modified.
+	 *
+	 * @param rect the area is stored into this paramter
+	 * @param x x 
+	 * @param y y
+	 */
 	public void getArea(Rectangle2D rect, double x, double y){
 		rect.setRect(x, y, 1,1);
 	}
@@ -493,6 +517,11 @@ public abstract class Entity extends RPObject {
 		StendhalRPWorld.get().modify(this);
 	}
 
+	/**
+	 * describes the entity (if a players looks at it)
+	 *
+	 * @return description from the players point of view
+	 */
 	public String describe() {
 		String name;
 
