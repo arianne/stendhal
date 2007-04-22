@@ -1264,7 +1264,7 @@
 ../../zelda_dungeon_0_chipset.png:287:1248:../../tileset/building/entrance/blue_green_face_2.png:3
 ../../zelda_dungeon_0_chipset.png:288:1249:../../tileset/ground/ladder/vertical_pale.png:0
 ../../zelda_dungeon_0_chipset.png:289:1250:../../tileset/ground/ladder/vertical_pale.png:1
-../../zelda_dungeon_0_chipset.png:290:1251::
+../../zelda_dungeon_0_chipset.png:290:1251:../../tileset/ground/indoor/brown.png:0
 ../../zelda_dungeon_0_chipset.png:291:1252:../../tileset/object/letters.png:4
 ../../zelda_dungeon_0_chipset.png:292:1253:../../tileset/object/letters.png:3
 ../../zelda_dungeon_0_chipset.png:293:1254:../../tileset/building/decoration/skullpedestal.png:1
@@ -1445,7 +1445,7 @@
 ../../zelda_dungeon_0_chipset.png:468:1429:../../tileset/item/gothic/large_gravestone.png:3
 ../../zelda_dungeon_0_chipset.png:469:1430:../../tileset/item/gothic/large_gravestone.png:4
 ../../zelda_dungeon_0_chipset.png:470:1431:../../tileset/item/gothic/large_gravestone.png:5
-../../zelda_dungeon_0_chipset.png:471:1432:../../tileset/item/decoration/button.png:0
+../../zelda_dungeon_0_chipset.png:471:1432:../../tileset/item/button.png:0
 ../../zelda_dungeon_0_chipset.png:472:1433:../../tileset/building/decoration/blue_circle.png:2
 ../../zelda_dungeon_0_chipset.png:473:1434:../../tileset/building/decoration/blue_circle.png:3
 ../../zelda_dungeon_0_chipset.png:474:1435:../../tileset/building/stairs/stairs.png:2
@@ -2614,8 +2614,8 @@
 ../../zelda_objects_chipset.png:197:2599::
 ../../zelda_objects_chipset.png:198:2600::
 ../../zelda_objects_chipset.png:199:2601::
-../../zelda_collision_chipset.png:0:2602:../../tileset/collision.png:0
-../../zelda_collision_chipset.png:1:2603:../../tileset/protection.png:0
+../../zelda_collision_chipset.png:0:2602:../../tileset/logic/collision.png:0
+../../zelda_collision_chipset.png:1:2603:../../tileset/logic/protection.png:0
 ../../zelda_building_0_tileset.png:0:2604:../../tileset/object/castle.png:0
 ../../zelda_building_0_tileset.png:1:2605:../../tileset/object/castle.png:1
 ../../zelda_building_0_tileset.png:2:2606:../../tileset/object/castle.png:2
@@ -2817,9 +2817,9 @@
 ../../zelda_building_0_tileset.png:198:2802:../../tileset/building/wall/wall_brown.png:4
 ../../zelda_building_0_tileset.png:199:2803:../../tileset/building/decoration/chimney_big.png:1
 ../../zelda_building_0_tileset.png:200:2804:../../tileset/building/wall/wall_brown.png:0
-../../zelda_building_0_tileset.png:201:2805::
-../../zelda_building_0_tileset.png:202:2806::
-../../zelda_building_0_tileset.png:203:2807::
+../../zelda_building_0_tileset.png:201:2805:../../tileset/building/door/door_s.png:0
+../../zelda_building_0_tileset.png:202:2806:../../tileset/building/door/door_s.png:1
+../../zelda_building_0_tileset.png:203:2807:../../tileset/building/door/door_s.png:2
 ../../zelda_building_0_tileset.png:204:2808:../../tileset/building/wall/wall_brown.png:2
 ../../zelda_building_0_tileset.png:205:2809:../../tileset/building/roof/red.png:10
 ../../zelda_building_0_tileset.png:206:2810:../../tileset/building/roof/red.png:11
