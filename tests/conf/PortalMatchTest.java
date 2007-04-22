@@ -50,7 +50,7 @@ String[] zonesxml={"ados.xml","athor.xml","fado.xml","kikareukin.xml",
       t.printStackTrace ();
       }
      
-      assertTrue(isValid(portals));
+      assertTrue("All portals are valid", isValid(portals));
  
 }
 
