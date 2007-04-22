@@ -52,7 +52,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dv2pTUQDH8RvilHRKamsTBB8hLUgsbg4ODrXgIO4OrkLBvUMHn8LBQdAXULHg4iuodHDQF3BQcRA8oQncHu5t7t/z5/6+HziU/L/xm5Pk3tzEJHFvIzWgh/66jnsX+5/0PC8QnHph9X9JfymnVv9T+svh9V8b/bXRXxv943dvWP2y9I/b20GSvDPj/aDa5ekft8+m+xczvtIfFdBfG/210V/DL/P+4LcZf6z3CZf1f1JyvaLs+dG+mWmya8Z4eP4+8ar5u5XqZPcfLU/PWq9YXddi7Fmt666HwI+8+V92vaLuegjW23AwEK4Y+z9u4TpVxdi/qpCWRZWvuRvi47FrQn5epr82+mujv3/HHm+b/tqq9M/bvo34lO0/Wm7fXrC3b+Min8/rRfH8r43+2uivjf7a6K+N/tror43+cfnZ8DY3+sej6H6fZfYPpX88iu73WWb/UPprimG/NLSH/rpi2S8V7tBfW5X+fA+tO6r053to3dGV77KgGvpro39cXuf8o6+Of5Nzet7xqmYZ+7DaxzVxOOt3HOq4rP/WBv27jvnfjFjnP4D6fM7/VxkDgDu8/sO3Ex4X3sQ4/x+acd2MqRlzM26acXt52k4/SSZmTPvnx09S590xY7uZRUCg5qb7LTP2+76XJA5F5v9K3ufddef/lQa3ydC/PTF83k1/bfTXRn+4doPHmpxF8/SAFtrrYu4343lS7PM/+zyfnCzderQHAD9GvSQZZ4zNnu8lgwuznM579JdAf230764ivx1O/+45XHM47cB0vp8xDukfrTL90T3010Z/bfTX5qM/n+OFI937QeK2P48B/1zPf7qHZdX7yDqMZu0GOjat5Ry3dDsHNS5T5bKhDQDsywfah+a749ujfZge+V4AC48TbfR3466D2/hQ4zvsHwP+/juKORtUX3f+Rv/WHa0/Sy1nNRrSP355/e8UaFumP+uWYXIx/9m2VM+PFq/7b43+/5j/0dseJsmk4pjye5Wdxf/p5l+bz/vrxPAbdypcfw4AIAzPfC8AAG947QcAAAB08P4fADQ99b0AAADnri3/dnUdQHl/QPX7rr4/MPef+17k/u+3vzheqLZfUb//MaOdtqz+yq9nauz3r7TXQ39tdvO2HgPz5q8SQCS6uu03FP8BBSAylQAAAQA=
+   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
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
@@ -75,12 +75,12 @@
    H4sIAAAAAAAAAO3a7WrjMBBG4f7upfT+L7CYEDBCsqzvmXnPA6Hb3Xgj6Vh2Avn5AQBgvb/f598RG/0Bf659WnsgLvpro7+2Vf3f/L8tD6xBfz339cytM/0xiv6xtPahfyz010b/WFrXNdfDcn/OmWer91XtfHnTm/0PAABm4jPJO6fmuboH/e25r2lPz9bn09+u0vqW1p/+sTytb+7f6B8L139tp/u/fY5X1sdfG1/awPp80Gb1/t8lwrVip/u1t+c4a+jfJ0p/9OH9OBCLlT0647M/16N5aus3e83pbwv9tdFfW7pmb/o//X3L69FfD/210V8b/fewugYq/XfNc8bcv8fM/nlyXU7z1n/XOFqPp//auVsaSyRe+q8cqzIr/WsdZjfjHPiw0r91rDPHrsxL/9yxJ8/FKLz0T8c6c+zKvPQv7f9Zc1blpX861u/vM+as7GT/lnOD/b/G6c4t14ZS/zcN0+No/3G6M/v/rNOdR/d/7dje11JxunOpZ22cs+etykr33M/esbYeo8xC/9yYRsbZc5yqkT274hyonRfs/3Ny/Xe//pufrcfhWWm9cudC659hH63qWCM9Ku8jIs9thEL7y4z7fLT7v8reX23kM5wFVsYxwtq6lj5nYA36w0r7C/210V9bb39L9zD0G+nf8nzEwv6Pgfu/Nvpro782+mujv7YT/fncYMfJ/pwD5+3uT3dbuP/vUfpehYWHl3F6fqgbWQPWz79vw559QX//7g1br4n09y/t33ssfOppeL9nwDf6a+P9vzY+P2ujv7Zd/TlfbNrRn2uGXex/bdz/tdFfW60t/QEAAAAAAAAAAAAAAFCi/P0R9bmrf4eI+TN31flflOd+UZ+/Z7TTluuvfj1XwnfhQX9taXPOAQDw5R8NL6i9AAABAA==
   </data>
  </layer>
- <layer name="navigation" width="128" height="128" visible="0">
+ <layer name="navigation" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="protection" width="128" height="128" visible="0" opacity="0.12">
+ <layer name="protection" width="128" height="128" opacity="0.12">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OsQ0AMAgEsafNKuy/H2MQCVu6/volLUmSJEmSJEmSzlbZf5AkSZIkSZIkSZIkSZIkSQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgC8MckqpJQAAAQA=
   </data>

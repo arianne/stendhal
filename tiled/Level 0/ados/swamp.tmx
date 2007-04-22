@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<map version="0.99a" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
-<properties> 	 
- <property name="x" value="500640"/> 	 
- <property name="y" value="500128"/> 	 
-</properties>
+<map version="0.99b" orientation="orthogonal" width="128" height="128" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="x" value="500640"/>
+  <property name="y" value="500128"/>
+ </properties>
  <tileset name="Outside 0" firstgid="1" tilewidth="32" tileheight="32">
   <image source="../../zelda_outside_0_chipset.png" trans="ffffff"/>
  </tileset>
@@ -69,15 +69,15 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3cSU7DQBAFUNhyFO5/QMQKZ8B2nHa7hvckJMQioetXV2wn8ccHAAAAAABAT99ffz/0pAd6k39M8uhtuS/1Aq/SMz2ZGb3JHyAH8xqYYW3GvDp/zKs4trKQVUyjXvu3HsPxRSz313aPZrP3cWRf0+xzB3ME+T/qtC9cr7g1qg5Z6in/W/JnFHVF/vWcsa/Nilyy9oA+G+OsOp7RU8/+pgcgN3s4l5F5zX6fgDhcswFmMm96k39uI7KTf04j9645AACPvDb25vgIPUBU3ju43pUZjHzuTj2U4bM+s5+7yxyJss6IszvS/1JdxPx/Rft/Rqu+vjV71h69Pu69ekyVekXM3+f35oqU/+x+jLT2q6nBeHqLZQ/ohX5kXsM79y4jPzn2JftY5FFbtfPyKuuYpWL+VdbCMfLvq9o829JlnXt1yr/TWoE5zJO+ZM+79FBdn4vf1449fb4ohtE1iVpj+T/XpS4d1nhEpLqc9f21SGvkf3KKyXcAepNLb+YyAJCFY5a+HLPWtDdX2de1lm2Hfe+a9rrqtZH/uup1iXivIK6hBwAAyM592mpaZvos1/vzWuc2tWzlujd7fZHXiH1tNiB/AAAAAAAAAAAAAN7xA/ZpjpoAAAEA
+   H4sIAAAAAAAAAO3cS3aCQBAFUMdZSva/wJyMgp8AYtPU595zMslA7XrVJaByuwEAAAAAAPT0/fX3R096oDf5xySP3pb7Ui/wLj3Tk5nRm/wBcjCvgRnWZsy788e8imMrC1nFNOq9f+sxHF/E8nht92g2ex9H9jXNPncwR5D/s077wvWKe6PqkKWe8r8nf0ZRV+Rfzxn72qzIJWsP6LMxzqrjGT316n96AHKzh3MZmdfszwmIwzUbYCbzpjf55zYiO/nnNHLvmgMA8Mx7Y2+Oj9ADROWzg+tdmcHI5+7UQxm+6zP7ubvMkSjrjDi7I72W6iLm/yva6xmt+vrW7Fl79Pq49+oxVeoVMX/f35srUv6z+zHS2q+mBuPpLZY9oBf6kXkNn9y7jPzk2JfsY5FHbdXOy6usY5aK+VdZC8fIv69q82xLl3Xu1Sn/TmsF5jBP+pI9n9JDdS2zXTv29P2iGEbXJGqN5f9al7p0WOMRkepy1u/XIq2R/8kpJr8B6E0uvZnLAEAWjln6csxa095cZV/XWrYd9r1r2uuq10b+66rXJeK9griGHgAAIDv3aatpmemrXB/Pa53b1LKV697s9UVeI/a12YD8AQAAAAAAAAAAAPjED4u6bakAAAEA
   </data>
  </layer>
- <layer name="navigation" width="128" height="128">
+ <layer name="navigation" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
  </layer>
- <layer name="protection" width="128" height="128">
+ <layer name="protection" width="128" height="128" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
   </data>
