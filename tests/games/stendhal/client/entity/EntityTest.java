@@ -6,8 +6,10 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import java.awt.geom.Rectangle2D;
+import java.util.LinkedList;
 
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.Ignore;
@@ -126,15 +128,7 @@ public class EntityTest {
 		
 	}
 
-	@Test
 	
-	public final void testTranslate() {
-// BROKEN - Moved to Entity2DView [also *.translate() shouldn't be public]
-//		assertEquals("data/sprites/hugo.png", Entity.translate("hugo"));
-//		assertEquals("data/sprites/fire.png", Entity.translate("fire"));
-		
-	}
-
 	@Test
 	public final void testGetSprite() {
 		Entity en;
@@ -164,146 +158,37 @@ public class EntityTest {
 	}
 
 	@Test
-	@Ignore
-	public final void testLoadSprite() {
-		fail("Not yet implemented"); 
-	}
 
-
-
-	
-
-
-	@Test
-	@Ignore
-	public final void testOnEnter() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnLeave() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnEnterZone() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnLeaveZone() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnAdded() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public final void testOnChangedAdded() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnChangedRemoved() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnRemoved() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnCollideWith() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testOnCollide() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testDraw() {
-		fail("Not yet implemented");
-	}
-
-	
-
-	@Test
-	@Ignore
 	public final void testStopped() {
 		Entity en = new MockEntity();
 		assertTrue(en.stopped());
 		
 	}
 
-	@Test
-	@Ignore
-	public final void testPlaySoundStringIntIntInt() {
-		fail("Not yet implemented"); 
-	}
 
 	@Test
-	@Ignore
-	public final void testPlaySoundStringIntInt() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
+	
 	public final void testGetNumSlots() {
-		fail("Not yet implemented"); 
+		Entity en = new MockEntity();
+		assertEquals(0,en.getNumSlots());
 	}
 
 	@Test
-	@Ignore
+
 	public final void testGetSlot() {
-		fail("Not yet implemented"); 
+		Entity en = new MockEntity();
+		assertEquals(null,en.getSlot(""));
+		
 	}
 
 	@Test
-	@Ignore
+
 	public final void testGetSlots() {
-		fail("Not yet implemented");
+		Entity en = new MockEntity();
+		assertEquals(new LinkedList<RPSlot>(),en.getSlots());
 	}
 
-	@Test
-	@Ignore
-	public final void testGetModificationCount() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testIsModified() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testGetArea() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testGetDrawedArea() {
-		fail("Not yet implemented"); 
-	}
-
+	
 	@Test
 	
 	public final void testDefaultAction() {
@@ -321,33 +206,20 @@ public class EntityTest {
 	}
 
 	@Test
-	@Ignore
 	public final void testBuildOfferedActions() {
-		fail("Not yet implemented"); 
+		Entity en = new MockEntity();
+		String [] expected = {"Look"};
+		assertEquals(expected, en.offeredActions());
 	}
 
-	@Test
-	@Ignore
-	public final void testOnAction() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testCompareTo() {
-		fail("Not yet implemented"); 
-	}
-
-	@Test
-	@Ignore
-	public final void testGetZIndex() {
-		fail("Not yet implemented");
-	}
-
+	
 	private class MockEntity extends Entity {
 
 	
 		public MockEntity() {
+			RPObject object = new RPObject();
+			object.put("type", "entity");
+			this.init(object);
 		}
 
 		@Override
@@ -367,7 +239,7 @@ public class EntityTest {
 
 		@Override
 		protected Entity2DView createView() {
-			return new MockEntity2DView(new MockEntity());
+			return new MockEntity2DView(this);
 		}
 		
 	}
