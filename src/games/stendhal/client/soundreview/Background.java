@@ -15,15 +15,13 @@ public class Background {
 
 	private static final String _0_SEMOS_VILLAGE_W = "0_semos_village_w";
 	
-	private String _name;
 	private LinkedList<Sound> sounds;
 
 	
 	public Background(String name) {
 	this.clips= new   LinkedList<AudioClip>();
 	this.sounds= new   LinkedList<Sound>();
-	_name=name;
-	 if (INT_SEMOS_BLACKSMITH.equals(name)){
+	if (INT_SEMOS_BLACKSMITH.equals(name)){
 		 initSemosBlacksmith();
 	 } else if (_0_SEMOS_ROAD_E.equals(name)){
 		 initSemosRoad();
