@@ -52,6 +52,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	/** the buddy list panel */
 	private BuddyListDialog nbuddies;
 	private ManagedWindow buddies;
+	
+	public BuyWindow buywindow;
+	
+	private GameButtonHelper gbh;
 
 	/** the minimap panel */
 	private Minimap minimap;
@@ -103,6 +107,14 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			frame.addChild(obuddies);
 			buddies = obuddies;
 		}
+		
+		buywindow = new BuyWindow(StendhalUI.get());
+		((j2DClient) StendhalUI.get()).addDialog(buywindow.getDialog()); //isn't visable, set visable by other component (below)
+		buywindow.setVisible(false);
+		
+		gbh = new GameButtonHelper(this, StendhalUI.get());
+		((j2DClient) StendhalUI.get()).addDialog(gbh.getDialog());
+		gbh.setVisible(true);
 
 		buddies.registerCloseListener(this);
 
