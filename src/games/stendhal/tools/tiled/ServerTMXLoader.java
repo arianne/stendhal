@@ -279,9 +279,10 @@ public class ServerTMXLoader {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Test: loading map");
 		long start=System.currentTimeMillis();
-		StendhalMapStructure map=null;
 		
+		StendhalMapStructure map=null;
 		for(int i=0;i<90;i++) {
+			
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/city.tmx");
