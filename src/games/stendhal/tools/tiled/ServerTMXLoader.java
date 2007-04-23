@@ -59,6 +59,10 @@ public class ServerTMXLoader {
 	        height=layerHeight;
         }
 		
+		public int[] expose() {
+			return data;
+		}
+		
 		public void set(int x, int y, int tileId) {
 			data[y*width+x]=tileId;
         }
@@ -245,15 +249,20 @@ public class ServerTMXLoader {
 							is = bais;
 						}
 
+						byte[] raw=new byte[4];
+						int[] data=layer.expose();
+
 						for (int y = 0; y < layer.height; y++) {
 							for (int x = 0; x < layer.width; x++) {
-								int tileId = 0;
-								tileId |= is.read();
-								tileId |= is.read() <<  8;
-								tileId |= is.read() << 16;
-								tileId |= is.read() << 24;
+								is.read(raw);								
 								
-								layer.set(x,y, tileId);
+								int tileId = 0;
+								tileId |= ((int)raw[0]& 0xFF);
+								tileId |= ((int)raw[1]& 0xFF) <<  8;
+								tileId |= ((int)raw[2]& 0xFF) << 16;
+								tileId |= ((int)raw[3]& 0xFF) << 24;
+								
+								data[x+y*layer.width]=tileId;
 							}
 						}
 					}
@@ -348,8 +357,10 @@ public class ServerTMXLoader {
 		System.out.println("Test: loading map");
 		long start=System.currentTimeMillis();
 		StendhalMapFormat map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
-		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));		
-
+		map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
+		map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/swamp.tmx");
+		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));
+/*		
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
 		List<TileSetDef> tilesets=map.getTilesets();
 		for(TileSetDef set: tilesets) {
@@ -370,6 +381,7 @@ public class ServerTMXLoader {
 			System.out.println();
 			}
 		}
+*/
 	}
 }
 
