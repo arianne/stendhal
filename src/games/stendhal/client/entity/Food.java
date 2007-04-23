@@ -47,6 +47,8 @@ public abstract class Food extends AnimatedStateEntity {
 			if (amount > oldAmount) {
 				SoundMaster.play("pop-2.wav",x,y);
 			}
+
+			changed();
 		} else if (base.has("amount")) {
 			animation = base.get("amount");
 			amount = base.getInt("amount");
