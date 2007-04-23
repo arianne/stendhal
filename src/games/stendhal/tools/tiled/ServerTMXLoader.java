@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
@@ -39,80 +37,8 @@ import tiled.util.Base64;
  *
  */
 public class ServerTMXLoader {
-	static class TileSetDef {
-		String name;
-		String source;
-		int gid;			
-	}
-	
-	static class LayerDef {
-		int width;
-		int height;
-		
-		String name;
-		int[] data;
 
-		public LayerDef(int layerWidth, int layerHeight) {
-	        data=new int[layerWidth*layerHeight];
-	        width=layerWidth;
-	        height=layerHeight;
-        }
-		
-		public int[] expose() {
-			return data;
-		}
-		
-		public void set(int x, int y, int tileId) {
-			data[y*width+x]=tileId;
-        }
-
-		public int getTileAt(int x, int y) {
-			return data[y*width+x];
-        }
-	}
-	
-	/**
-	 * This is the format that our client uses.
-	 * 
-	 * @author miguel
-	 *
-	 */
-	static class StendhalMapFormat {
-		String filename;
-		int width;
-		int height;
-		List<TileSetDef> tilesets;
-		List<LayerDef> layers;		
-		
-		public StendhalMapFormat(int w, int h){
-			width=w;
-			height=h;
-			tilesets=new LinkedList<TileSetDef>();
-			layers=new LinkedList<LayerDef>();
-		}
-
-		public void addTileset(TileSetDef set) {
-			tilesets.add(set);	        
-        }
-
-		public void addLayer(LayerDef layer) {
-			layers.add(layer);
-        }
-
-		public void setFilename(String filename) {
-	        this.filename=filename;	        
-        }
-
-		public List<TileSetDef> getTilesets() {
-	        return tilesets;
-        }
-
-		public List<LayerDef> getLayers() {
-	        return layers;
-        }
-	}
-	
-	private StendhalMapFormat stendhalMap;
+	private StendhalMapStructure stendhalMap;
 	
 	private String xmlPath;
 	private PluginLogger logger;
@@ -153,13 +79,11 @@ public class ServerTMXLoader {
 		}
 	}
 
-	private TileSetDef unmarshalTileset(Node t) throws Exception {
+	private TileSetDefinition unmarshalTileset(Node t) throws Exception {
+		String name=getAttributeValue(t, "name");
 		int firstGid = getAttribute(t, "firstgid", 1);
 
-		TileSetDef set = new TileSetDef();
-
-		set.name=getAttributeValue(t, "name");
-		set.gid=firstGid;
+		TileSetDefinition set = new TileSetDefinition(name,firstGid);
 
 		boolean hasTilesetImage = false;
 		NodeList children = t.getChildNodes();
@@ -173,7 +97,7 @@ public class ServerTMXLoader {
 					continue;
 				}
 
-				set.source = getAttributeValue(child, "source");
+				set.setSource(getAttributeValue(child, "source"));
 			}
 		}
 
@@ -206,11 +130,11 @@ public class ServerTMXLoader {
 	/**
 	 * Loads a map layer from a layer node.
 	 */
-	private LayerDef readLayer(Node t) throws Exception {
+	private LayerDefinition readLayer(Node t) throws Exception {
 		int layerWidth = getAttribute(t, "width", stendhalMap.width);
 		int layerHeight = getAttribute(t, "height", stendhalMap.height);
 
-		LayerDef layer=new LayerDef(layerWidth, layerHeight);
+		LayerDefinition layer=new LayerDefinition(layerWidth, layerHeight);
 
 		int offsetX = getAttribute(t, "x", 0);
 		int offsetY = getAttribute(t, "y", 0);
@@ -286,7 +210,7 @@ public class ServerTMXLoader {
 		int mapHeight = getAttribute(mapNode, "height", 0);
 
 		if (mapWidth > 0 && mapHeight > 0) {
-			stendhalMap= new StendhalMapFormat(mapWidth, mapHeight);
+			stendhalMap= new StendhalMapStructure(mapWidth, mapHeight);
 		}
 		
 		if (stendhalMap == null) {
@@ -305,7 +229,7 @@ public class ServerTMXLoader {
 		}
 	}
 
-	private StendhalMapFormat unmarshal(InputStream in) throws IOException, Exception {
+	private StendhalMapStructure unmarshal(InputStream in) throws IOException, Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		Document doc;
 		try {
@@ -327,7 +251,7 @@ public class ServerTMXLoader {
 
 	// MapReader interface
 
-	public StendhalMapFormat readMap(String filename) throws Exception {
+	public StendhalMapStructure readMap(String filename) throws Exception {
 		xmlPath = filename.substring(0,
 				filename.lastIndexOf(File.separatorChar) + 1);
 
@@ -342,7 +266,7 @@ public class ServerTMXLoader {
 			is = new GZIPInputStream(is);
 		}
 
-		StendhalMapFormat unmarshalledMap = unmarshal(is);
+		StendhalMapStructure unmarshalledMap = unmarshal(is);
 		unmarshalledMap.setFilename(filename);
 
 		return unmarshalledMap;
@@ -355,9 +279,16 @@ public class ServerTMXLoader {
 	public static void main(String[] args) throws Exception {
 		System.out.println("Test: loading map");
 		long start=System.currentTimeMillis();
-		StendhalMapFormat map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
-		map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
-		map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/swamp.tmx");
+		StendhalMapStructure map=null;
+		
+		for(int i=0;i<90;i++) {
+			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
+			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
+			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/city.tmx");
+			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/nalwor/city.tmx");
+			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/orril/castle.tmx");
+		}
+		
 		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));
 /*		
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
