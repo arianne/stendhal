@@ -22,6 +22,7 @@ import marauroa.common.game.IRPZone;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.area.OccupantArea;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.events.TurnListener;
@@ -31,7 +32,7 @@ import games.stendhal.server.events.TurnNotifier;
  * An area that damages an RPEntity while over it.
  *
  */
-public class DamagingArea extends PassiveEntity implements MovementListener, TurnListener {
+public class DamagingArea extends OccupantArea {
 
 	/**
 	 * The logger instance.
@@ -44,32 +45,14 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 	protected int damage;
 
 	/**
-	 * How often damage is given while stationary (in turns).
-	 */
-	protected int interval;
-
-	/**
-	 * The inflict damage only on players.
-	 */
-	protected boolean playersOnly;
-
-	/**
 	 * The chance of damage while walking (0.0 - 1.0).
 	 */
 	protected double probability;
 
 	/**
-	 * A list of entities [potentially] in range.
-	 */
-	protected List<RPEntity.ID> targets;
-
-	/**
 	 * Random number generator.
 	 */
 	protected Random rand;
-
-	private int width = 1;
-	private int height = 1;
 
 	/**
 	 * Create a damaging area.
@@ -83,40 +66,17 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 	 *				(0.0 - 1.0).
 	 */
 	public DamagingArea(String name, int width, int height, int damage, int interval, double probability) throws AttributeNotFoundException {
-		put("name", name);
-		put("type", "damaging_area");
+		super("damaging_area", name, width, height, interval);
 
 		this.damage = damage;
-		this.interval = interval;
 		this.probability = probability;
-		this.height = height;
-		this.width = width;
 
-		put("width", width);
-		put("height", height);
-		
-		playersOnly = false;
 		rand = new Random();
-		targets = new LinkedList<RPEntity.ID>();
 	}
 
 	//
 	// DamagingArea
 	//
-
-	/**
-	 * Add an entity to the target list.
-	 *
-	 * @param	entity		The RPEntity to add.
-	 */
-	protected void addTarget(RPEntity entity) {
-		targets.add(entity.getID());
-		entity.onAttacked(this, true);
-
-		if (targets.size() == 1) {
-			TurnNotifier.get().notifyInTurns(interval, this, null);
-		}
-	}
 
 	/**
 	 * Calculate the entity's final defense value.
@@ -194,203 +154,67 @@ public class DamagingArea extends PassiveEntity implements MovementListener, Tur
 		return true;
 	}
 
+
+	//
+	// OccupantArea
+	//
+
 	/**
-	 * Apply any damage done while moving.
+	 * An entity has entered the area. This should not apply any actions
+	 * that <code>handleMovement()</code> does.
 	 *
-	 * @param	entity		The RPEntity to [possibly] damage.
+	 * @param	entity		The RPEntity that was added.
+	 *
+	 * @return	<code>false</code> if this entity should not be
+	 *		processed, <code>true</code> otherwise.
 	 */
-	protected void handleMovement(RPEntity entity) {
+	protected boolean handleAdded(RPEntity entity) {
+		if(!super.handleAdded(entity)) {
+			return false;
+		}
+
+		entity.onAttacked(this, true);
+		doDamage(entity);
+		return true;
+	}
+
+	/**
+	 * Apply actions done at regular intervals.
+	 *
+	 * @param	entity		The RPEntity occupant.
+	 *
+	 * @return	<code>false</code> if this entity should be removed
+	 *		from further processing, <code>true</code> otherwise.
+	 */
+	protected boolean handleInterval(RPEntity entity) {
+		doDamage(entity);
+		return true;
+	}
+
+	/**
+	 * Apply actions done while moving.
+	 *
+	 * @param	entity		The RPEntity that moved.
+	 *
+	 * @return	<code>false</code> if this entity should be removed
+	 *		from further processing, <code>true</code> otherwise.
+	 */
+	protected boolean handleMovement(RPEntity entity) {
 		if (rand.nextDouble() < probability) {
 			doDamage(entity);
 		}
+
+		return true;
 	}
 
 	/**
-	 * Remove an entity from the target list.
+	 * An entity has left the area. This should not apply any actions
+	 * that <code>handleMovement()</code> does.
 	 *
-	 * @param	entity		The RPEntity to remove.
+	 * @param	entity		The RPEntity that was added.
 	 */
-	protected void removeTarget(RPEntity entity) {
+	protected void handleRemoved(RPEntity entity) {
 		entity.onAttacked(this, false);
-		targets.remove(entity.getID());
-
-		if (targets.isEmpty()) {
-			TurnNotifier.get().dontNotify(this, null);
-		}
-	}
-
-	/**
-	 * Set whether only players get damage.
-	 *
-	 * @param	playersOnly	Whether to only attack players.
-	 */
-	public void setPlayersOnly(boolean playersOnly) {
-		this.playersOnly = playersOnly;
-	}
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Get the damage area.
-	 *
-	 *
-	 */
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, width, height);
-	}
-
-	/**
-	 * Called when this object is added to a zone.
-	 *
-	 * @param	zone		The zone this was added to.
-	 */
-	@Override
-	public void onAdded(StendhalRPZone zone) {
-		super.onAdded(zone);
-		zone.addMovementListener(this);
-	}
-
-	/**
-	 * Called when this object is being removed from a zone.
-	 *
-	 * @param	zone		The zone this will be removed from.
-	 */
-	@Override
-	public void onRemoved(StendhalRPZone zone) {
-		zone.removeMovementListener(this);
-		super.onRemoved(zone);
-	}
-
-	/**
-	 * Handle object attribute change(s).
-	 */
-	@Override
-	public void update() throws AttributeNotFoundException {
-		StendhalRPZone zone;
-
-		super.update();
-
-		/*
-		 * Reregister incase coordinates changed (could be smarter)
-		 */
-		zone = getZone();
-		zone.removeMovementListener(this);
-		zone.addMovementListener(this);
-	}
-
-	//
-	// MovementListener
-	//
-
-	/**
-	 * Invoked when an entity enters the object area.
-	 *
-	 * @param	entity		The RPEntity who moved.
-	 * @param	zone		The new zone.
-	 * @param	newX		The new X coordinate.
-	 * @param	newY		The new Y coordinate.
-	 */
-	public void onEntered(RPEntity entity, StendhalRPZone zone, int newX, int newY) {
-		/*
-		 * Only effect players?
-		 */
-		if (playersOnly && !(entity instanceof Player)) {
-			return;
-		}
-
-		handleMovement(entity);
-		addTarget(entity);
-	}
-
-	/**
-	 * Invoked when an entity leaves the object area.
-	 *
-	 * @param	entity		The RPEntity who entered.
-	 * @param	zone		The old zone.
-	 * @param	oldX		The old X coordinate.
-	 * @param	oldY		The old Y coordinate.
-	 *
-	 */
-	public void onExited(RPEntity entity, StendhalRPZone zone, int oldX, int oldY) {
-		/*
-		 * Only effect players?
-		 */
-		if (playersOnly && !(entity instanceof Player)) {
-			return;
-		}
-
-		handleMovement(entity);
-		removeTarget(entity);
-	}
-
-	/**
-	 * Invoked when an entity moves while over the object area.
-	 *
-	 * @param	entity		The RPEntity who left.
-	 * @param	zone		The zone.
-	 * @param	oldX		The old X coordinate.
-	 * @param	oldY		The old Y coordinate.
-	 * @param	newX		The new X coordinate.
-	 * @param	newY		The new Y coordinate.
-	 */
-	public void onMoved(RPEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
-		/*
-		 * Only effect players?
-		 */
-		if (playersOnly && !(entity instanceof Player)) {
-			return;
-		}
-
-		handleMovement(entity);
-	}
-
-	//
-	// TurnListener
-	//
-
-	/**
-	 * This method is called when the turn number is reached.
-	 *
-	 * @param	currentTurn	Current turn number.
-	 * @param	message		The string that was used.
-	 */
-	public void onTurnReached(int currentTurn, String message) {
-		IRPZone zone;
-		Rectangle2D area;
-
-		zone = getZone();
-		area = getArea();
-
-		/*
-		 * Damage entities still in the area, remove those not here
-		 */
-		Iterator<RPEntity.ID> iter = targets.iterator();
-
-		while (iter.hasNext()) {
-			RPEntity.ID id = iter.next();
-
-			if (!zone.has(id)) {
-				iter.remove();
-			} else {
-				RPEntity entity = (RPEntity) zone.get(id);
-
-				if (area.intersects(entity.getArea())) {
-					if (!doDamage(entity)) {
-						entity.onAttacked(this, false);
-						iter.remove();
-					}
-				} else {
-					entity.onAttacked(this, false);
-					iter.remove();
-				}
-			}
-		}
-
-		if (!targets.isEmpty()) {
-			TurnNotifier.get().notifyInTurns(interval, this, null);
-		}
+		super.handleRemoved(entity);
 	}
 }
