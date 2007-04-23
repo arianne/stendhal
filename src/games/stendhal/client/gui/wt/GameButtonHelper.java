@@ -1,5 +1,5 @@
 /*
- * @(#) src/games/stendhal/client/gui/wt/BuddyListDialog.java
+ * @(#) src/games/stendhal/client/gui/wt/GameButtonHelper.java
  *
  * $Id$
  */
@@ -12,7 +12,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.StendhalUI;
 
 /**
- * The player's buddy list dialog.
+ * The GameButtonHelper
  */
 public class GameButtonHelper extends InternalManagedDialog {
 	/**

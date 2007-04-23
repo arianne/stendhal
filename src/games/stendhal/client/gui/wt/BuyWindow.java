@@ -1,5 +1,5 @@
 /*
- * @(#) src/games/stendhal/client/gui/wt/BuddyListDialog.java
+ * @(#) src/games/stendhal/client/gui/wt/BuyWindow.java
  *
  * $Id$
  */
@@ -12,7 +12,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.StendhalUI;
 
 /**
- * The player's buddy list dialog.
+ * The player buy window.
  */
 public class BuyWindow extends InternalManagedDialog {
 	/**
