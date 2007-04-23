@@ -249,18 +249,18 @@ public class ServerTMXLoader {
 							is = bais;
 						}
 
-						byte[] raw=new byte[4];
+						byte[] raw=new byte[4*layer.width];
 						int[] data=layer.expose();
 
 						for (int y = 0; y < layer.height; y++) {
-							for (int x = 0; x < layer.width; x++) {
-								is.read(raw);								
-								
+							is.read(raw);
+							
+							for (int x = 0; x < layer.width; x++) {								
 								int tileId = 0;
-								tileId |= ((int)raw[0]& 0xFF);
-								tileId |= ((int)raw[1]& 0xFF) <<  8;
-								tileId |= ((int)raw[2]& 0xFF) << 16;
-								tileId |= ((int)raw[3]& 0xFF) << 24;
+								tileId |= ((int)raw[x*4+0]& 0xFF);
+								tileId |= ((int)raw[x*4+1]& 0xFF) <<  8;
+								tileId |= ((int)raw[x*4+2]& 0xFF) << 16;
+								tileId |= ((int)raw[x*4+3]& 0xFF) << 24;
 								
 								data[x+y*layer.width]=tileId;
 							}
