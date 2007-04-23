@@ -2,27 +2,35 @@ package games.stendhal.server.entity.item;
 
 import static org.junit.Assert.*;
 
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.xml.sax.SAXException;
 
 public class ItemTest {
+	private static final String ZONE_NAME = "0_semos_village_w"; 
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		StendhalRPWorld world = StendhalRPWorld.get();
+		world.addArea(ZONE_NAME);
+
 	}
 
 	@AfterClass
@@ -214,15 +222,20 @@ assertEquals("name1", mo.getName());
 	}
 
 	@Test
-	public void testOnTurnReached() {
+	public void testOnTurnReached() throws SAXException, IOException {
 		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
-		mo.onTurnReached(1, "");
+		
+		mo.put("id",1);
+		mo.put("zoneid",ZONE_NAME);
+	   	mo.onTurnReached(1, "");
 	}
 
 	@Test
-	public void testRemoveOne() {
-	     Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
-	     mo.removeOne(); 
+	public void testRemoveOne() throws SAXException, IOException {
+			Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		mo.put("id",2);
+		mo.put("zoneid",ZONE_NAME);
+     mo.removeOne(); 
 	}
 
 	@Test
@@ -244,8 +257,10 @@ assertEquals("name1", mo.getName());
 	}
 
 	@Test
-	public void testRemoveFromWorld() {
-		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+	public void testRemoveFromWorld() throws SAXException, IOException {
+			Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
+		mo.put("id",3);
+		mo.put("zoneid",ZONE_NAME);
 	     mo.removeFromWorld(); 
 	}
 
