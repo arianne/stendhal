@@ -62,32 +62,22 @@ String[] zonesxml={"ados.xml","athor.xml","fado.xml","kikareukin.xml",
 		  String destName="";
 		  String name="";
           xmldoc.getDocumentElement ().normalize ();
-          System.out.println ("Root element of the doc is " + 
-               xmldoc.getDocumentElement().getNodeName());
+         
 
 
           NodeList listOfPortals = xmldoc.getElementsByTagName("portal");
           if (listOfPortals.getLength()>0){
           listOfPortals.item(0).getAttributes().item(0).toString();
-          int totalPortals = listOfPortals.getLength();
-          System.out.println("Total no of portals : " + totalPortals);
-          
-          
           for(int s=0; s<listOfPortals.getLength() ; s++){
         	  zone = listOfPortals.item(s).getParentNode().getAttributes().getNamedItem("name").getNodeValue();
-        	  //System.out.println();
-        	  //System.out.println("Zone: "+ zone);
-        	  name = listOfPortals.item(s).getAttributes().getNamedItem("ref").getNodeValue();
-			//System.out.println("Portal name: " +  name);
-           	  listOfPortals.item(s).getNodeName();
+        	 name = listOfPortals.item(s).getAttributes().getNamedItem("ref").getNodeValue();
+			listOfPortals.item(s).getNodeName();
            	  NodeList listofChildren =listOfPortals.item(s).getChildNodes();
           	  for (int i = 0; i<listofChildren.getLength();i++){
            		  if ("destination".equals(listofChildren.item(i).getNodeName())){
            			destName = listofChildren.item(i).getAttributes().getNamedItem("ref").getNodeValue();
-					//System.out.println( "destination portalname: "+ destName);
            			destZone = listofChildren.item(i).getAttributes().getNamedItem("zone").getNodeValue();
-					//System.out.println( "destination zone: "+destZone);
-           			  
+          			  
            		  }
            	  }
           	tempList.add(new TestPortal(zone,name,destZone,destName));
