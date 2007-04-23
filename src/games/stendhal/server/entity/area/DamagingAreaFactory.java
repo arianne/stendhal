@@ -1,17 +1,15 @@
 /*
- * @(#) src/games/stendhal/server/entity/DamagingAreaFactory.java
+ * @(#) src/games/stendhal/server/entity/area/DamagingAreaFactory.java
  *
  * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.area;
 
 //
 //
 
 import games.stendhal.common.ConfigurableFactoryContext;
-import games.stendhal.server.entity.area.OccupantArea;
-import games.stendhal.server.entity.area.OccupantAreaFactory;
 
 /**
  * A base factory for <code>DamagingArea</code> objects.

@@ -1,10 +1,10 @@
 /*
- * @(#) src/games/stendhal/server/entity/DamagingArea.java
+ * @(#) src/games/stendhal/server/entity/area/DamagingArea.java
  *
- *$Id$
+ * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.area;
 
 //
 //
@@ -22,7 +22,7 @@ import marauroa.common.game.IRPZone;
 
 import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.area.OccupantArea;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.events.TurnListener;

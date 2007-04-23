@@ -286,7 +286,7 @@ The tavern has moved into a more central location in Semos. Please come join us 
 
 <!-- TEST
   <entity x="35" y="35">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">purple kryptonite</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -295,7 +295,7 @@ The tavern has moved into a more central location in Semos. Please come join us 
   </entity>
 
   <entity x="35" y="36">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">purple kryptonite</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -304,7 +304,7 @@ The tavern has moved into a more central location in Semos. Please come join us 
   </entity>
 
   <entity x="35" y="37">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">purple kryptonite</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -875,7 +875,7 @@ Mature sheep wanted: please speak to Sato
  <zone name="-1_semos_mine_nw" level="-1" x="499744" y="499872" file="sub_1_semos_mine_nw.xstend">
   <!-- Spikes -->
   <entity x="205" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -884,7 +884,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
     <entity x="206" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -893,7 +893,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
   <entity x="205" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -902,7 +902,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
  <entity x="206" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -911,7 +911,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity> 
   <entity x="205" y="22">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -920,7 +920,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
     <entity x="206" y="22">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -929,7 +929,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
    <entity x="205" y="26">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -938,7 +938,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
   <entity x="206" y="26">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -947,7 +947,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
    <entity x="205" y="27">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -956,7 +956,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
   <entity x="206" y="27">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -965,7 +965,7 @@ Mature sheep wanted: please speak to Sato
    </implementation>
   </entity>
    <entity x="206" y="28">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">50</parameter>
@@ -1129,7 +1129,7 @@ Mature sheep wanted: please speak to Sato
 
   <!-- Spikes -->
   <entity x="4" y="57">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1139,7 +1139,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="5" y="57">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1149,7 +1149,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="6" y="57">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1159,7 +1159,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="4" y="58">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1169,7 +1169,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="5" y="58">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1179,7 +1179,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="6" y="58">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1189,7 +1189,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="4" y="59">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1199,7 +1199,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="5" y="59">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1209,7 +1209,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="6" y="59">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1219,7 +1219,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="4" y="60">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1229,7 +1229,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="5" y="60">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1239,7 +1239,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="6" y="60">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1249,7 +1249,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="4" y="61">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
     <parameter name="damage">100</parameter>
@@ -1259,7 +1259,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="65" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1269,7 +1269,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="66" y="18">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1279,7 +1279,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="61" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1289,7 +1289,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="62" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1299,7 +1299,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="63" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1309,7 +1309,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="64" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1319,7 +1319,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="65" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1329,7 +1329,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="66" y="19">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1339,7 +1339,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="55" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1349,7 +1349,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="56" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1359,7 +1359,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="57" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1369,7 +1369,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="58" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1379,7 +1379,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="59" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1389,7 +1389,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="60" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1399,7 +1399,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="61" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1409,7 +1409,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="62" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1419,7 +1419,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="63" y="20">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1429,7 +1429,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="55" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1439,7 +1439,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="56" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1449,7 +1449,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="57" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1459,7 +1459,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="58" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1469,7 +1469,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="59" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1479,7 +1479,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="60" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
@@ -1489,7 +1489,7 @@ Mature sheep wanted: please speak to Sato
   </entity>
 
   <entity x="61" y="21">
-   <implementation class-name="games.stendhal.server.entity.DamagingArea">
+   <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">3</parameter>
     <parameter name="damage">50</parameter>
