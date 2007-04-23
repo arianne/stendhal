@@ -46,7 +46,7 @@ public class WtList extends WtPanel implements WtClickListener {
 		setFrame(true);
 		setCloseable(true);
 		setMinimizeable(false);
-		setMoveable(false);
+		setMovable(false);
 
 		this.resizeToFitClientArea(width, (items.length * BUTTON_HEIGHT < maxHeight) ? (items.length * BUTTON_HEIGHT)
 		        : maxHeight);

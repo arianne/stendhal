@@ -507,6 +507,8 @@ public class j2DClient extends StendhalUI {
 
 		imd = new InternalManagedDialog("quit", "Quit");
 		imd.setContent(panel);
+		imd.setMinimizable(false);
+		imd.setMovable(false);
 
 		return imd.getDialog();
 	}

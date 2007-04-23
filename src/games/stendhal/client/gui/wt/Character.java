@@ -75,7 +75,7 @@ public class Character extends WtPanel {
 
 		setTitleBar(true);
 		setFrame(true);
-		setMoveable(true);
+		setMovable(true);
 		setMinimizeable(true);
 
 		slotPanels = new HashMap<String, EntitySlot>();

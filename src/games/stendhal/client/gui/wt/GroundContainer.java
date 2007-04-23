@@ -59,7 +59,7 @@ public class GroundContainer extends WtPanel implements Inspector {
 
 		this.ui = ui;
 
-		setMoveable(false);
+		setMovable(false);
 		setCloseable(false);
 		setFrame(false);
 		setTitleBar(false);

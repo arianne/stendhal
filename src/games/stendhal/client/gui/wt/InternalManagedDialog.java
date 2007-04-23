@@ -95,6 +95,11 @@ public class InternalManagedDialog implements ManagedWindow {
 	protected JButton		minimizeButton;
 
 	/**
+	 * If the window can be moved.
+	 */
+	protected boolean		movable;
+
+	/**
 	 * The window name.
 	 */
 	protected String		name;
@@ -129,6 +134,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		style = WoodStyle.getInstance();
 
 		minimized = false;
+		movable = true;
 		closeListeners = new LinkedList<WtCloseListener>();
 
 		/*
@@ -289,8 +295,10 @@ public class InternalManagedDialog implements ManagedWindow {
 	 * @param	y		The Y coordinate.
 	 */
 	protected void tbDragBegin(int x, int y) {
-		dragStart = SwingUtilities.convertPoint(
-			titlebar, x, y, dialog);
+		if(isMovable()) {
+			dragStart = SwingUtilities.convertPoint(
+				titlebar, x, y, dialog);
+		}
 	}
 
 
@@ -453,6 +461,16 @@ public class InternalManagedDialog implements ManagedWindow {
 
 
 	/**
+	 * Determine if the window is movable.
+	 *
+	 * @return	<code>true</code> if the window is movable.
+	 */
+	public boolean isMovable() {
+		return movable;
+	}
+
+
+	/**
 	 * Determine if the window is visible.
 	 *
 	 * @return	<code>true</code> if the window is visible.
@@ -499,6 +517,16 @@ public class InternalManagedDialog implements ManagedWindow {
 
 
 	/**
+	 * Set whether the window is minimizable.
+	 *
+	 * @param	minimizable	<code>true</code> if minimizable.
+	 */
+	public void setMinimizable(boolean minimizable) {
+		minimizeButton.setEnabled(minimizable);
+	}
+
+
+	/**
 	 * Set the window as minimized.
 	 *
 	 * @param	minimized	Whether the window should be minimized.
@@ -537,6 +565,16 @@ public class InternalManagedDialog implements ManagedWindow {
 				titlebar.getWidth(),
 				titlebar.getHeight() + cheight);
 		}
+	}
+
+
+	/**
+	 * Set whether the window is movable.
+	 *
+	 * @param	movable		<code>true</code> if movable.
+	 */
+	public void setMovable(boolean movable) {
+		this.movable = movable;
 	}
 
 

@@ -63,7 +63,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		setTitleBar(false);
 		setMinimizeable(false);
 		setCloseable(false);
-		setMoveable(false);
+		setMovable(false);
 	}
 
 	/** resizing is disabled */

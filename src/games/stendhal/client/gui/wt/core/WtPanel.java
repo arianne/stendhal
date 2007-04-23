@@ -77,8 +77,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** is the frame embossed? */
 	private boolean frameEmbossed;
 
-	/** panel is moveable */
-	private boolean moveable;
+	/** panel is movable */
+	private boolean movable;
 
 	/** panel can be resized */
 	private boolean resizeable;
@@ -139,7 +139,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	private List<Sprite> textureSprites;
 
 	/**
-	 * Creates a new panel. The panel is not moveable or resizeable and has no
+	 * Creates a new panel. The panel is not movable or resizeable and has no
 	 * title bar or frame;
 	 */
 	public WtPanel(String name, int x, int y, int width, int height) {
@@ -152,7 +152,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		this.children = new LinkedList<WtPanel>();
 		this.titleBar = false;
 		this.frame = false;
-		this.moveable = false;
+		this.movable = false;
 		this.resizeable = false;
 		this.closeable = true;
 		this.closed = false;
@@ -392,9 +392,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		cachedImage = null;
 	}
 
-	/** returns wether the panel is moveable */
-	public boolean isMoveable() {
-		return moveable;
+	/** returns wether the panel is movable */
+	public boolean isMovable() {
+		return movable;
 	}
 
 	/** sets the embossed-state of then frame */
@@ -410,10 +410,10 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 
 	/**
 	 * enables/disables moving the panel. Note: the panel must have a title bar
-	 * to be moveable
+	 * to be movable
 	 */
-	public void setMoveable(boolean moveable) {
-		this.moveable = moveable;
+	public void setMovable(boolean movable) {
+		this.movable = movable;
 	}
 
 	/** returns wether the panel is resizeable */

@@ -59,7 +59,7 @@ public class Buddies extends WtPanel {
 
 		setTitleBar(true);
 		setFrame(true);
-		setMoveable(true);
+		setMovable(true);
 		setMinimizeable(true);
 		SpriteStore st = SpriteStore.get();
 		online = st.getSprite("data/gui/buddy_online.png");

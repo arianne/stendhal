@@ -133,7 +133,7 @@ public class Minimap extends WtPanel {
 
 		setTitleBar(true);
 		setFrame(true);
-		setMoveable(true);
+		setMovable(true);
 		setMinimizeable(true);
 		// now resize the panel to match the size of the map
 		resizeToFitClientArea(width, height);
