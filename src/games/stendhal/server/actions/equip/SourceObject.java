@@ -65,7 +65,7 @@ class SourceObject extends MoveableObject {
 			slot = action.get(EquipActionConsts.BASE_SLOT);
 
 			// check that this slots exists
-			if (!parent.has(slot)) {
+			if (!parent.hasSlot(slot)) {
 				player.sendPrivateText("You don't have a slot called " + slot);
 				return;
 			}
