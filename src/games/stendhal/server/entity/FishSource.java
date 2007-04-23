@@ -9,8 +9,6 @@ import games.stendhal.server.events.UseListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
-import java.awt.geom.Rectangle2D;
-
 import marauroa.common.game.RPClass;
 
 /**

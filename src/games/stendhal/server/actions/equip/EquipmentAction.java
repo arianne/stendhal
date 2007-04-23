@@ -13,7 +13,6 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;

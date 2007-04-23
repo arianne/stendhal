@@ -20,7 +20,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import tiled.core.Map;
 import tiled.io.PluginLogger;
 import tiled.util.Base64;
 

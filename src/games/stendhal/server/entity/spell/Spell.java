@@ -16,7 +16,6 @@ import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.events.EquipListener;
 
-import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

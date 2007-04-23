@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.portal;
 
-import java.awt.geom.Rectangle2D;
 import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;

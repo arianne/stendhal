@@ -1,7 +1,6 @@
 package games.stendhal.client.entity;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import games.stendhal.client.GameObjects;
 import marauroa.common.game.RPObject;

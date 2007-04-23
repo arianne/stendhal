@@ -10,8 +10,6 @@ package games.stendhal.client;
 //
 
 import java.util.HashMap;
-import java.util.Iterator;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 

@@ -16,7 +16,6 @@ import java.util.Map;
 
 import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.scroll.MarkedScroll;
 import games.stendhal.server.entity.player.Player;
 
 /**

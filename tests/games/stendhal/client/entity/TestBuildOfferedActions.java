@@ -1,7 +1,6 @@
 package games.stendhal.client.entity;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNull;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.geom.Rectangle2D;

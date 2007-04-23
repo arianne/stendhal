@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import java.awt.geom.Rectangle2D;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;

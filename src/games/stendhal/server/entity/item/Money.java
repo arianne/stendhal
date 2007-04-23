@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.item;
 
-import games.stendhal.server.entity.item.scroll.MarkedScroll;
-
 import java.util.Map;
 
 public class Money extends StackableItem {

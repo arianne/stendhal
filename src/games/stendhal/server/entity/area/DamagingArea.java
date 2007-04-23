@@ -9,24 +9,13 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.IRPZone;
-
 import games.stendhal.common.Level;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.MovementListener;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 
 /**
  * An area that damages an RPEntity while over it.

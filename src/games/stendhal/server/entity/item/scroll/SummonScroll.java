@@ -18,7 +18,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.rule.EntityManager;
 

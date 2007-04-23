@@ -16,7 +16,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.LootableSlot;
 import games.stendhal.server.events.UseListener;
 
-import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 import marauroa.common.game.AttributeNotFoundException;
