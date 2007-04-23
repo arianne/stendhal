@@ -2,6 +2,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
@@ -38,7 +39,8 @@ public class EquipmentActionTest {
 			super(new RPObject());
 			setX(10);
 			setY(5);
-			setID(new ID(1, ZONE_NAME));
+			StendhalRPWorld.get().getRPZone(ZONE_NAME).assignRPObjectID(this);
+			StendhalRPWorld.get().getRPZone(ZONE_NAME).add(this);
 		}
 
 		@Override
