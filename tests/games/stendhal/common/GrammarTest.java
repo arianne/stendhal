@@ -97,46 +97,4 @@ public class GrammarTest {
 		assertEquals("a's", Grammar.suffix_s("a"));
 	}
 
-	@Test
-	@Ignore
-	public void testPlural() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testPlnoun() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testQuantityplnoun() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testVowel_p() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testConsonant_p() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testOrdered() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testEnumerateCollection() {
-		fail("Not yet implemented");
-	}
-
 }

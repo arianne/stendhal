@@ -17,38 +17,6 @@ import org.junit.Test;
 
 public class PlayerTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
-	@Ignore
-	public final void testOnEnter() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	@Ignore
-	public final void testOnChangedAdded() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	@Ignore
-	public final void testGetArea() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	@Ignore
-	public final void testGetDrawedArea() {
-		fail("Not yet implemented"); // TODO
-	}
-
 	@Test
 
 	public final void testBuildOfferedActions() {
@@ -67,24 +35,6 @@ public class PlayerTest {
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
 	}
-
-	@Test
-	@Ignore
-	public final void testOnAction() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Test
-	@Ignore
-	public final void testBuildAnimations() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	
-
-
-
-
 
 	@Test
 	public final void testGetHearingArea() {
