@@ -49,11 +49,11 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 
 
 	/**
-	 * Get the current animation set.
+	 * Get the current animated sprite.
 	 *
 	 *
 	 */
-	protected abstract Sprite [] getAnimation();
+	protected abstract AnimatedSprite getAnimatedSprite();
 
 
 	/**
@@ -61,9 +61,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 *
 	 * @return	The default sprite, or <code>null</code>.
 	 */
-	protected Sprite getDefaultSprite() {
-		return getAnimation()[0];
-	}
+	protected abstract Sprite getDefaultSprite();
 
 
 	protected boolean isAnimating() {
@@ -93,9 +91,11 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	protected void update() {
 		super.update();
 
-		AnimatedSprite sprite = new AnimatedSprite(getAnimation(), 100L);
+		AnimatedSprite sprite = getAnimatedSprite();
 
-		if(!isAnimating()) {
+		if(isAnimating()) {
+			sprite.start();
+		} else {
 			sprite.stop();
 		}
 

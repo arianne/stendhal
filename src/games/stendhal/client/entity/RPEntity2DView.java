@@ -173,15 +173,14 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	//
 
 	/**
-	 * This method gets the default image.
-	 * <strong>All sub-classes MUST provide a <code>move_up</code>
-	 * named animation, or override this method</strong>.
-	 *
-	 * @return	The default sprite, or <code>null</code>.
+	 * Get the default state name.
+	 * <strong>All sub-classes MUST provide a
+	 * <code><strong>STATE_UP</strong></code> named sprite,
+	 * or override this method</strong>.
 	 */
 	@Override
-	protected Sprite getDefaultSprite() {
-		return getAnimation("move_up")[0];
+	protected String getDefaultState() {
+		return ActiveEntity.STATE_UP;
 	}
 
 

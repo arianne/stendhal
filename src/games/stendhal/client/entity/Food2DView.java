@@ -69,15 +69,13 @@ public class Food2DView extends AnimatedStateEntity2DView {
 	//
 
 	/**
-	 * This method gets the default image.
+	 * Get the default state name.
 	 * <strong>All sub-classes MUST provide a <code>0</code>
 	 * named animation, or override this method</strong>.
-	 *
-	 * @return	The default sprite, or <code>null</code>.
 	 */
 	@Override
-	protected Sprite getDefaultSprite() {
-		return getAnimation("0")[0];
+	protected String getDefaultState() {
+		return "0";
 	}
 
 

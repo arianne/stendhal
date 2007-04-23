@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -35,9 +36,9 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	private AnimatedStateEntity	entity;
 
 	/**
-	 * Map of named animations.
+	 * Map of named sprites.
 	 */
-	protected Map<String, Sprite []> animations;
+	protected Map<String, AnimatedSprite>	sprites;
 
 
 	/**
@@ -50,7 +51,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 
 		this.entity = entity;
 
-		animations = new HashMap<String, Sprite []>();
+		sprites = new HashMap<String, AnimatedSprite>();
 	}
 
 
@@ -68,13 +69,39 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 
 
 	/**
-	 * Get a named animation set.
+	 * Populate named state sprites.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	object		The entity to load sprites for.
+	 */
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+		Map<String, Sprite []> animations = new HashMap<String, Sprite []>();
+
+		buildAnimations(animations, object);
+
+		/*
+		 * Just map the other list for now
+		 */
+		for(String name : animations.keySet()) {
+			sprites.put(name, new AnimatedSprite(animations.get(name), 100L));
+		}
+	}
+
+
+	/**
+	 * Get a named animated sprite.
 	 *
 	 *
 	 */
-	protected Sprite [] getAnimation(final String state) {
-		return animations.get(state);
+	protected AnimatedSprite getAnimatedSprite(final String state) {
+		return sprites.get(state);
 	}
+
+
+	/**
+	 * Get the default state name.
+	 */
+	protected abstract String getDefaultState();
 
 
 	protected String getState() {
@@ -92,25 +119,27 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 * @param	object		The entity to load animations for.
 	 */
 	protected void buildAnimations(RPObject object) {
-		buildAnimations(animations, object);
+		buildSprites(sprites, object);
 	}
 
 
 	/**
-	 * Get the current animation set.
+	 * Get the current animated sprite.
 	 *
 	 *
 	 */
-	protected Sprite [] getAnimation() {
+	protected AnimatedSprite getAnimatedSprite() {
 		String state = getState();
-		Sprite[] anim = getAnimation(state);
+		AnimatedSprite sprite = getAnimatedSprite(state);
 
-		if (anim == null) {
-			logger.error("getSprites() returned null for " + state);
-			return new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") };
+		if (sprite == null) {
+			logger.error("No sprite found for: " + state);
+			return new AnimatedSprite(new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") }, 1000000L);
 		}
 
-		return anim;
+		sprite.reset();
+
+		return sprite;
 	}
 
 
@@ -120,6 +149,11 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 * @return	The default sprite, or <code>null</code>.
 	 */
 	protected Sprite getDefaultSprite() {
-		return getAnimation()[0];
+		AnimatedSprite sprite = getAnimatedSprite(getDefaultState());
+
+		sprite.stop();
+		sprite.reset();
+
+		return sprite;
 	}
 }
