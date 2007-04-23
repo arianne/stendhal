@@ -67,7 +67,6 @@ public class NPC2DView extends RPEntity2DView {
 	 */
 	protected Sprite getAnimationSprite(final RPObject object) {
 		SpriteStore store = SpriteStore.get();
-		String clazz = object.get("class");
 
 
 		try {
@@ -85,12 +84,12 @@ public class NPC2DView extends RPEntity2DView {
 			} else {
 				// This NPC's outfit is read from a single file.
 				outfitCode = -1;
-				outfit = store.getSprite(translate("npc/" + clazz));
+				outfit = store.getSprite(translate("npc/" + object.get("class")));
 			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
 			outfitCode = -1;
-			outfit = store.getSprite(translate(clazz));
+			outfit = store.getSprite(translate(object.get("class")));
 		}
 
 		return outfit;
