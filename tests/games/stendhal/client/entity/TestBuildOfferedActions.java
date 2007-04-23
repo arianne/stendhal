@@ -47,17 +47,31 @@ public class TestBuildOfferedActions {
 	@Test
 	public final void testSheep() throws Exception {
 
-		
+		//user exists and has no sheep
 		Sheep sheep = new Sheep();
-
 		List<String> expected = new ArrayList<String>();
+		User user = new User();
 		expected.add("Look");
 		expected.add("Attack");
 		expected.add("Own");
 		sheep.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-
+	   
+		
+		// User already has sheep
+		list = new ArrayList<String>();
+		expected = new ArrayList<String>();
+		expected.add("Look");
+		expected.add("Attack");
+		RPObject object = new RPObject();
+		object.put("type",1);
+		object.put("sheep", 1);
+		user.init(object );
+		sheep.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+		User.setNull();
 	}
 
 	@Test
