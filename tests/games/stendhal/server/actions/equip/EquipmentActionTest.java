@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -29,7 +30,7 @@ public class EquipmentActionTest {
 	 *
 	 * @author hendrik
 	 */
-	private class MockPlayer extends Player {
+	private static class MockPlayer extends Player {
 		private String privateText = null;
 
 		/**
@@ -45,7 +46,6 @@ public class EquipmentActionTest {
 
 		@Override
 		public void sendPrivateText(String text) {
-			super.sendPrivateText(text);
 			this.privateText = text;
 		}
 
@@ -58,31 +58,35 @@ public class EquipmentActionTest {
 			return privateText;
 		}
 	}
-	
+
+	/**
+	 * initialize the world
+	 *
+	 * @throws SAXException on an invalid zones.xml configuration file
+	 * @throws IOException on an input / output error
+	 */
 	@BeforeClass
 	public static void buildWorld() throws SAXException, IOException {
 		// TODO: Check what happens if this has already been done by some other test. 
 		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addArea(ZONE_NAME);
+		Player.generateRPClass();
 	}
 
 	@Test
 	public void testDropInvalidSourceSlot() {
-		
+
 		MockPlayer player = new MockPlayer();
-		
+
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "nonExistingSlotXXXXXX");
-		drop.put("x", player.getX());
-		drop.put("y", player.getY() + 1);
-		drop.put("quantity", "1");
 		drop.put("baseitem", -1);
-		
 		
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
 		Assert.assertTrue("error message on invalid slot", player.getPrivateText() != null);
 	}
+
 }
