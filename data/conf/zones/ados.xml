@@ -369,7 +369,8 @@ in roaches.
     </portal>
    </zone>
 
-   <zone name="int_ados_temple" file="int_ados_temple.xstend">
+<!-- I will add the temple again when I've found an appropriate building 
+  <zone name="int_ados_temple" file="int_ados_temple.xstend">
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_ados_wall" ref="temple_entrance_left"/>
     </portal>
@@ -386,7 +387,7 @@ in roaches.
      <destination zone="0_ados_wall" ref="temple_entrance_right"/>
     </portal>
    </zone>
-   
+-->   
    <zone name="int_ados_storage" file="int_ados_storage.xstend">
     <portal x="14" y="30" ref="storage_inside_left">
      <destination zone="0_ados_city_n" ref="storage_outside_1"/>
@@ -486,6 +487,7 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
+<!-- this building is going to be barracks
      <portal x="100" y="52" ref="temple_entrance_left">
       <destination zone="int_ados_temple" ref="entrance_center_left"/>
     </portal>
@@ -495,6 +497,7 @@ Southeast: Docks
     <portal x="102" y="52" ref="temple_entrance_right">
       <destination zone="int_ados_temple" ref="entrance_right"/>
     </portal>
+-->
    </zone>
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="0_ados_city.xstend">
