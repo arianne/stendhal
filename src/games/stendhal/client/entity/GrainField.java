@@ -67,7 +67,7 @@ public class GrainField extends AnimatedStateEntity {
 
 		if (diff.has("ripeness")) {
 			animation = diff.get("ripeness");
-
+			changed();
 		} else if (base.has("ripeness")) {
 			animation = base.get("ripeness");
 		}

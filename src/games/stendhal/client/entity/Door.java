@@ -48,6 +48,7 @@ public class Door extends AnimatedStateEntity {
 		if (diff.has("open")) {
 			open = true;
 			animation = "open";
+			changed();
 		}
 	}
 
@@ -58,12 +59,12 @@ public class Door extends AnimatedStateEntity {
 		if (diff.has("open")) {
 			open = false;
 			animation = "close";
+			changed();
 		}
 	}
 
 	@Override
 	public Rectangle2D getArea() {
-//		return getDrawedArea();
 		return new Rectangle.Double(x, y, 1, 1);
 	}
 
