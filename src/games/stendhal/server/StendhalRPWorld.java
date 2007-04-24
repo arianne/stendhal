@@ -307,6 +307,30 @@ public class StendhalRPWorld extends RPWorld {
 		portal.setReference(new Integer(0));
 		house.assignRPObjectID(portal);
 		house.add(portal);
+
+		/*
+		 * Change to false to disable xml emit code
+		 */
+		if(true) {
+			StringBuffer sbuf = new StringBuffer();
+
+			sbuf.append("zones/*.xml:\n\n");
+			sbuf.append(" <zone name=\"" + name + "\" file=\"int_house_000.xstend\">\n");
+			sbuf.append("  <portal x=\"7\" y=\"1\" ref=\"entrance\">\n");
+			sbuf.append("   <destination zone=\"" + zone.getID().getID() + "\" ref=\"house_" + dest + "_entrance\"/>\n");
+			sbuf.append("  </portal>\n");
+			sbuf.append(" </zone>\n");
+
+			sbuf.append("\n");
+			sbuf.append(" <!-- Zone: " + zone.getID().getID() + " -->\n");
+			sbuf.append("  <portal x=\"" + x + "\" y=\"" + y + "\" ref=\"house_" + dest + "_entrance\">\n");
+			sbuf.append("   <destination zone=\"" + name + "\" ref=\"entrance\"/>\n");
+			sbuf.append("  </portal>\n");
+
+			sbuf.append("\n\n");
+
+			logger.info(sbuf.toString());
+		}
 	}
 
 	@Override
