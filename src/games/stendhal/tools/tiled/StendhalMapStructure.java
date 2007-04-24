@@ -97,4 +97,13 @@ public class StendhalMapStructure {
 		
 		return null;
     }
+
+	/**
+	 * Build all layers data.
+	 */
+	public void build() {
+		for(LayerDefinition layer: layers) {
+			layer.build();			
+		}	    
+    }
 }

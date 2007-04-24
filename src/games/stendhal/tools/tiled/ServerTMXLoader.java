@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
@@ -172,22 +173,9 @@ public class ServerTMXLoader {
 							is = bais;
 						}
 
-						byte[] raw=new byte[4*layer.width];
-						int[] data=layer.expose();
+						byte[] raw=layer.exposeRaw();
 
-						for (int y = 0; y < layer.height; y++) {
-							is.read(raw);
-							
-							for (int x = 0; x < layer.width; x++) {								
-								int tileId = 0;
-								tileId |= ((int)raw[x*4+0]& 0xFF);
-								tileId |= ((int)raw[x*4+1]& 0xFF) <<  8;
-								tileId |= ((int)raw[x*4+2]& 0xFF) << 16;
-								tileId |= ((int)raw[x*4+3]& 0xFF) << 24;
-								
-								data[x+y*layer.width]=tileId;
-							}
-						}
+						is.read(raw);
 					}
 				}
 			}
@@ -281,8 +269,7 @@ public class ServerTMXLoader {
 		long start=System.currentTimeMillis();
 		
 		StendhalMapStructure map=null;
-		for(int i=0;i<90;i++) {
-			
+		for(int i=0;i<90;i++) {			
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/city.tmx");
@@ -291,15 +278,16 @@ public class ServerTMXLoader {
 		}
 		
 		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));
-/*		
+		/*
+		map.build();
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
-		List<TileSetDef> tilesets=map.getTilesets();
-		for(TileSetDef set: tilesets) {
-			System.out.printf("TILESET firstGID: %d name: %s\n", set.gid, set.source);
+		List<TileSetDefinition> tilesets=map.getTilesets();
+		for(TileSetDefinition set: tilesets) {
+			System.out.printf("TILESET firstGID: %d name: %s\n", set.getFirstGid(), set.getSource());
 		}
 
-		List<LayerDef> layers=map.getLayers();
-		for(LayerDef layer: layers) {			
+		List<LayerDefinition> layers=map.getLayers();
+		for(LayerDefinition layer: layers) {			
 			System.out.printf("LAYER name: %s\n", layer.name);
 			int w=layer.width;
 			int h=layer.height;
@@ -312,7 +300,13 @@ public class ServerTMXLoader {
 			System.out.println();
 			}
 		}
-*/
+		*/
+
 	}
+
+
+	public static StendhalMapStructure load(String filename) throws Exception {
+	    return new ServerTMXLoader().readMap(filename);
+    }
 }
 
