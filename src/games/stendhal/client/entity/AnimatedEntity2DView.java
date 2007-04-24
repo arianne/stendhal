@@ -97,6 +97,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 			sprite.start();
 		} else {
 			sprite.stop();
+			sprite.reset();
 		}
 
 		this.sprite = sprite;

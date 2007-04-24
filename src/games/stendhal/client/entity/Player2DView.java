@@ -112,18 +112,18 @@ public class Player2DView extends RPEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
+	// AnimatedStateEntity2DView
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
-		buildAnimations(map, object, 1.5, 2.0);
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+		buildSprites(map, object, 1.5, 2.0);
 	}
 
 

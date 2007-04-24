@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -68,12 +69,13 @@ public class ResizeableCreature2DView extends Creature2DView {
 	//
 
 	/**
-	 * Populate named state animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
-	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+	@Override
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
 		double	width;
 		double	height;
 		double	drawWidth;
@@ -93,7 +95,7 @@ public class ResizeableCreature2DView extends Creature2DView {
 			drawHeight = height;
 		}
 
-		buildAnimations(map, object, drawWidth, drawHeight);
+		buildSprites(map, object, drawWidth, drawHeight);
 	}
 
 

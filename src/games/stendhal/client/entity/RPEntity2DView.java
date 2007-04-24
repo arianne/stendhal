@@ -8,6 +8,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.ImageSprite;
 import games.stendhal.client.Sprite;
@@ -91,31 +92,37 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object, double width, double height) {
-		SpriteStore store = SpriteStore.get();
-
-
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object, double width, double height) {
 		Sprite tiles = getAnimationSprite(object);
 
-		map.put("move_up", store.getSprites(tiles, 0, 4, width, height));
+		map.put(RPEntity.STATE_UP, getAnimatedWalk(tiles, 0, width, height));
+		map.put(RPEntity.STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
+		map.put(RPEntity.STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
+		map.put(RPEntity.STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
+	}
 
-		map.put("move_right", store.getSprites(tiles, 1, 4, width, height));
 
-		map.put("move_down", store.getSprites(tiles, 2, 4, width, height));
+	/**
+	 * Extract a walking animation for a specific row. The source sprite
+	 * contains 3 animation tiles, but this is converted to 4 frames.
+	 *
+	 *
+	 *
+	 * @return	An animated sprite.
+	 */
+	protected AnimatedSprite getAnimatedWalk(Sprite tiles, int row, double width, double height) {
+		Sprite [] frames = SpriteStore.get().getSprites(tiles, row, 4, width, height);
 
-		map.put("move_left", store.getSprites(tiles, 3, 4, width, height));
+		frames[3] = frames[1];
 
-		map.get("move_up")[3] = map.get("move_up")[1];
-		map.get("move_right")[3] = map.get("move_right")[1];
-		map.get("move_down")[3] = map.get("move_down")[1];
-		map.get("move_left")[3] = map.get("move_left")[1];
+		return new AnimatedSprite(frames, 100L, false);
 	}
 
 
@@ -175,7 +182,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	/**
 	 * Get the default state name.
 	 * <strong>All sub-classes MUST provide a
-	 * <code><strong>STATE_UP</strong></code> named sprite,
+	 * <code><strong>ActiveEntity.STATE_UP</strong></code> named sprite,
 	 * or override this method</strong>.
 	 */
 	@Override

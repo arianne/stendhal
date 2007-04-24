@@ -26,6 +26,11 @@ import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC {
+	public static final String	STATE_BIG_DOWN	= "big_" + STATE_DOWN;
+	public static final String	STATE_BIG_UP	= "big_" + STATE_UP;
+	public static final String	STATE_BIG_LEFT	= "big_" + STATE_LEFT;
+	public static final String	STATE_BIG_RIGHT	= "big_" + STATE_RIGHT;
+
 	private int weight;
 	private String	idea;
 

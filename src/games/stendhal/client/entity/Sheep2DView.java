@@ -16,6 +16,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -112,43 +113,42 @@ public class Sheep2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
 	@Override
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object, double width, double height) {
-		SpriteStore store = SpriteStore.get();
-
-
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object, double width, double height) {
 		Sprite tiles = getAnimationSprite(object);
 
-		map.put("move_up",
-			store.getSprites(tiles, 0, 3, width, height));
+		SpriteStore store = SpriteStore.get();
 
-		map.put("move_right",
-			store.getSprites(tiles, 1, 3, width, height));
+		map.put(Sheep.STATE_UP,
+			store.getAnimatedSprite(tiles, 0, 3, width, height, 100L, false));
 
-		map.put("move_down",
-			store.getSprites(tiles, 2, 3, width, height));
+		map.put(Sheep.STATE_RIGHT,
+			store.getAnimatedSprite(tiles, 1, 3, width, height, 100L, false));
 
-		map.put("move_left",
-			store.getSprites(tiles, 3, 3, width, height));
+		map.put(Sheep.STATE_DOWN,
+			store.getAnimatedSprite(tiles, 2, 3, width, height, 100L, false));
 
-		map.put("big_move_up",
-			store.getSprites(tiles, 4, 3, width, height));
+		map.put(Sheep.STATE_LEFT,
+			store.getAnimatedSprite(tiles, 3, 3, width, height, 100L, false));
 
-		map.put("big_move_right",
-			store.getSprites(tiles, 5, 3, width, height));
+		map.put(Sheep.STATE_BIG_UP,
+			store.getAnimatedSprite(tiles, 4, 3, width, height, 100L, false));
 
-		map.put("big_move_down",
-			store.getSprites(tiles, 6, 3, width, height));
+		map.put(Sheep.STATE_BIG_RIGHT,
+			store.getAnimatedSprite(tiles, 5, 3, width, height, 100L, false));
 
-		map.put("big_move_left",
-			store.getSprites(tiles, 7, 3, width, height));
+		map.put(Sheep.STATE_BIG_DOWN,
+			store.getAnimatedSprite(tiles, 6, 3, width, height, 100L, false));
+
+		map.put(Sheep.STATE_BIG_LEFT,
+			store.getAnimatedSprite(tiles, 7, 3, width, height, 100L, false));
 	}
 
 
@@ -157,14 +157,14 @@ public class Sheep2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
-		buildAnimations(map, object, 1.0, 1.0);
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+		buildSprites(map, object, 1.0, 1.0);
 	}
 
 

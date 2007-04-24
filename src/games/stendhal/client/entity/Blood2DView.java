@@ -15,6 +15,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -37,25 +38,20 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
-	@Override
-	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
 		SpriteStore store = SpriteStore.get();
 
-		map.put("0", store.getSprites("data/sprites/combat/blood_red.png", 0, 1, 1, 1));
-		map.put("1", store.getSprites("data/sprites/combat/blood_red.png", 1, 1, 1, 1));
-		map.put("2", store.getSprites("data/sprites/combat/blood_red.png", 2, 1, 1, 1));
-		map.put("3", store.getSprites("data/sprites/combat/blood_red.png", 3, 1, 1, 1));
+		map.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1, 0L, false));
+		map.put("1", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 1, 1, 1, 1, 0L, false));
+		map.put("2", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 2, 1, 1, 1, 0L, false));
+		map.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1, 0L, false));
 	}
 
-
-	//
-	// AnimatedEntity2DView
-	//
 
 	/**
 	 * Get the default state name.

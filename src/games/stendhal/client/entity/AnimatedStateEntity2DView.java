@@ -60,40 +60,20 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	//
 
 	/**
-	 * Populate named state animations.
-	 *
-	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
-	 */
-	protected abstract void buildAnimations(Map<String, Sprite []> map, RPObject object);
-
-
-	/**
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load sprites for.
 	 */
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
-		Map<String, Sprite []> animations = new HashMap<String, Sprite []>();
-
-		buildAnimations(animations, object);
-
-		/*
-		 * Just map the other list for now
-		 */
-		for(String name : animations.keySet()) {
-			sprites.put(name, new AnimatedSprite(animations.get(name), 100L));
-		}
-	}
+	protected abstract void buildSprites(Map<String, AnimatedSprite> map, RPObject object);
 
 
 	/**
-	 * Get a named animated sprite.
+	 * Get a named state sprite.
 	 *
 	 *
 	 */
-	protected AnimatedSprite getAnimatedSprite(final String state) {
+	protected AnimatedSprite getSprite(final String state) {
 		return sprites.get(state);
 	}
 
@@ -130,11 +110,11 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 */
 	protected AnimatedSprite getAnimatedSprite() {
 		String state = getState();
-		AnimatedSprite sprite = getAnimatedSprite(state);
+		AnimatedSprite sprite = getSprite(state);
 
 		if (sprite == null) {
 			logger.error("No sprite found for: " + state);
-			return new AnimatedSprite(new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") }, 1000000L);
+			return new AnimatedSprite(new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") }, 0L, false);
 		}
 
 		sprite.reset();
@@ -149,7 +129,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 * @return	The default sprite, or <code>null</code>.
 	 */
 	protected Sprite getDefaultSprite() {
-		AnimatedSprite sprite = getAnimatedSprite(getDefaultState());
+		AnimatedSprite sprite = getSprite(getDefaultState());
 
 		sprite.stop();
 		sprite.reset();

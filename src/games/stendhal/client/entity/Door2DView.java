@@ -15,6 +15,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -22,9 +23,24 @@ import games.stendhal.client.SpriteStore;
  * The 2D view of a door.
  */
 public class Door2DView extends AnimatedStateEntity2DView {
+	/*
+	 * The drawing X offset from the entity position.
+	 */
 	protected double	xoffset;
+
+	/*
+	 * The drawing Y offset from the entity position.
+	 */
 	protected double	yoffset;
+
+	/*
+	 * The drawn width.
+	 */
 	protected double	width;
+
+	/*
+	 * The drawn height.
+	 */
 	protected double	height;
 
 
@@ -48,14 +64,12 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	//
 
 	/**
-	 * Populate named state animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
-	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
-		SpriteStore store = SpriteStore.get();
-
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
 		String name = object.get("class");
 
 		switch (object.getInt("dir")) {
@@ -98,15 +112,13 @@ public class Door2DView extends AnimatedStateEntity2DView {
 				height = 1.0;
 		}
 
-		map.put("open", store.getSprites("data/sprites/doors/" + name + ".png", 0, 1, width, height));
+		String resource = "data/sprites/doors/" + name + ".png";
+		SpriteStore store = SpriteStore.get();
 
-		map.put("close", store.getSprites("data/sprites/doors/" + name + ".png", 1, 1, width, height));
+		map.put("open", store.getAnimatedSprite(resource, 0, 1, width, height, 0L, false));
+		map.put("close", store.getAnimatedSprite(resource, 1, 1, width, height, 0L, false));
 	}
 
-
-	//
-	// AnimatedEntity2DView
-	//
 
 	/**
 	 * Get the default state name.

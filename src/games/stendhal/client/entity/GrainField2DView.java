@@ -14,6 +14,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -55,13 +56,12 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	//
 
 	/**
-	 * Populate named state animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
-	@Override
-	public void buildAnimations(Map<String, Sprite []> map, RPObject object) {
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
 		double	height;
 		double	width;
 		int	maxRipeness;
@@ -85,18 +85,16 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 			clazz = "grain_field";
 		}
 
+		String resource = translate(clazz);
+
 		SpriteStore store = SpriteStore.get();
 
-		for (int i = 0; i <= maxRipeness; i++) {
+		for(int i = 0; i <= maxRipeness; i++) {
 			map.put(Integer.toString(i),
-				store.getSprites(translate(clazz), i, 1, width, height));
+				store.getAnimatedSprite(resource, i, 1, width, height, 0L, false));
 		}
 	}
 
-
-	//
-	// AnimatedEntity2DView
-	//
 
 	/**
 	 * Get the default state name.

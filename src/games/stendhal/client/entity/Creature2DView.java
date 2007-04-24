@@ -21,6 +21,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -69,13 +70,12 @@ public class Creature2DView extends RPEntity2DView {
 
 	protected void drawPath(final GameScreen screen, final List<Creature.Node> path, final int delta) {
 		Graphics g2d = screen.expose();
-		Point2D p1 = screen.invtranslate(new Point.Double(getX(), getY()));
+		Point p1 = screen.convertWorldToScreen(getX(), getY());
 
 		for (Creature.Node node : path) {
-			Point2D p2 = screen.invtranslate(new Point.Double(node.nodeX, node.nodeY));
+			Point p2 = screen.convertWorldToScreen(node.nodeX, node.nodeY);
 
-			g2d.drawLine((int) p1.getX() + delta, (int) p1.getY() + delta, (int) p2.getX() + delta, (int) p2.getY()
-			        + delta);
+			g2d.drawLine(p1.x + delta, p1.y + delta, p2.x + delta, p2.y + delta);
 			p1 = p2;
 		}
 	}
@@ -130,14 +130,14 @@ public class Creature2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Populate named state animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
-		buildAnimations(map, object, getWidth(), getHeight());
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+		buildSprites(map, object, getWidth(), getHeight());
 	}
 
 

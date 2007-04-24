@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -101,14 +102,14 @@ public class NPC2DView extends RPEntity2DView {
 	//
 
 	/**
-	 * Populate named animations.
+	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load animations for.
+	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	public void buildAnimations(Map<String, Sprite []> map, final RPObject object) {
-		buildAnimations(map, object, 1.5, 2.0);
+	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+		buildSprites(map, object, 1.5, 2.0);
 	}
 
 

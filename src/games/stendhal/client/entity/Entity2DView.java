@@ -56,7 +56,7 @@ public abstract class Entity2DView { // implements EntityView {
 	public Entity2DView(final Entity entity) {
 		this.entity = entity;
 
-		changeSerial = entity.getChangeSerial();
+		changeSerial = entity.getChangeSerial() - 1;
 		entityComposite = AlphaComposite.SrcOver;
 	}
 

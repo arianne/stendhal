@@ -63,19 +63,40 @@ public class AnimatedSprite implements Sprite {
 	 *
 	 * @throws	IllegalArgumentException
 	 *				If less than one frame is given, or
-	 *				the delay is <= 0.
+	 *				the delay is < 0.
 	 */
 	public AnimatedSprite(final Sprite [] frames, final long delay) throws IllegalArgumentException {
+		this(frames, delay, true);
+	}
+
+
+	/**
+	 * Create an animated sprite from a set of frame sprites.
+	 *
+	 * <strong>NOTE: The array of frames passed is not copied, and must
+	 * not be modified while this instance exists (unless you are sure
+	 * you know what you are doing).</strong>
+	 *
+	 * @param	frames		The frames to animate.
+	 * @param	delay		The minimum delay between frames (in ms).
+	 * @param	animating	If animation is enabled.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If less than one frame is given, or
+	 *				the delay is < 0.
+	 */
+	public AnimatedSprite(final Sprite [] frames, final long delay, boolean animating) throws IllegalArgumentException {
 		if(frames.length == 0) {
 			throw new IllegalArgumentException("Must have at least one frame");
 		}
 
-		if(delay <= 0L) {
-			throw new IllegalArgumentException("Delay must be greater than 0");
+		if(delay < 0L) {
+			throw new IllegalArgumentException("Delay < 0");
 		}
 
 		this.frames = frames;
 		this.delay = delay;
+		this.animating = animating;
 
 		height = 0;
 		width = 0;
@@ -85,7 +106,6 @@ public class AnimatedSprite implements Sprite {
 			width = Math.max(width, frame.getWidth());
 		}
 
-		animating = true;
 		frameidx = 0;
 		nextFrame = System.currentTimeMillis() + delay;
 	}
@@ -147,6 +167,7 @@ public class AnimatedSprite implements Sprite {
 	 *
 	 * @see-also	#start()
 	 * @see-also	#stop()
+	 * @see-also	#setAnimating(boolean)
 	 */
 	public boolean isAnimating() {
 		return animating;
@@ -160,6 +181,16 @@ public class AnimatedSprite implements Sprite {
 	public void reset() {
 		frameidx = 0;
 		nextFrame = System.currentTimeMillis() + delay;
+	}
+
+
+	/**
+	 * Set the sprite animating state.
+	 *
+	 * @param	animating	<code>true</code> if animating.
+	 */
+	public void setAnimating(boolean animating) {
+		this.animating = animating;
 	}
 
 

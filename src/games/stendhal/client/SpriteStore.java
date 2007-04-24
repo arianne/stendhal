@@ -66,6 +66,27 @@ public class SpriteStore {
 
 
 	/**
+	 * Create an animated sprite from a tile resource.
+	 *
+	 * @param	ref		The image resource name.
+	 * @param	row		The vertical position of these
+	 *				frames inside the image.
+	 * @param	frameCount	The number of frames in this animation.
+	 * @param	width		The width of one sprite frame,
+	 *				in tiles.
+	 * @param	height		The height of one sprite frame,
+	 *				in tiles.
+	 * @param	delay		The minimum delay between frames.
+	 * @param	animating	The animating state.
+	 *
+	 * @return	An animated sprite.
+	 */
+	public AnimatedSprite getAnimatedSprite(String ref, int row, int frameCount, double width, double height, long delay, boolean animating) {
+		return getAnimatedSprite(getSprite(ref), row, frameCount, width, height, delay, animating);
+	}
+
+
+	/**
 	 * Create an animated sprite from a tile sprite.
 	 *
 	 * @param	sprite		The image which contains the different
@@ -78,11 +99,12 @@ public class SpriteStore {
 	 * @param	height		The height of one sprite frame,
 	 *				in tiles.
 	 * @param	delay		The minimum delay between frames.
+	 * @param	animating	The animating state.
 	 *
 	 * @return	An animated sprite.
 	 */
-	public AnimatedSprite getAnimatedSprite(Sprite sprite, int row, int frameCount, double width, double height, long delay) {
-		return new AnimatedSprite(getSprites(sprite, row, frameCount, width, height), delay);
+	public AnimatedSprite getAnimatedSprite(Sprite sprite, int row, int frameCount, double width, double height, long delay, boolean animating) {
+		return new AnimatedSprite(getSprites(sprite, row, frameCount, width, height), delay, animating);
 	}
 
 

@@ -55,6 +55,8 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 				wtEntityContainer = _inspector.inspectMe(this, content, wtEntityContainer);
 				requestOpen = false;
 			}
+
+			changed();
 		}
 
 		if (diff.hasSlot("content")) {
@@ -79,6 +81,8 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 				wtEntityContainer.destroy();
 				wtEntityContainer = null;
 			}
+
+			changed();
 		}
 	}
 
