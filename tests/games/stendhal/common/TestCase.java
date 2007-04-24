@@ -1,4 +1,4 @@
-package games.stendhal.test.common;
+package games.stendhal.common;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

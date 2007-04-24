@@ -1,4 +1,4 @@
-package games.stendhal.test.common;
+package games.stendhal.common;
 
 import games.stendhal.client.update.ClasspathEntry;
 
