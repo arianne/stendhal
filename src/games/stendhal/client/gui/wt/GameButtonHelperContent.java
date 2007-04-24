@@ -70,7 +70,10 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
     }//GEN-LAST:event_phActionPerformed
 
     private void ghActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghActionPerformed
-	JOptionPane.showMessageDialog(null, "Not implemented.");
+	GameHelpDialog ghw = new GameHelpDialog();
+	ghw.setBounds(15, 15, 500, 800); //maybe this will help...
+	ghw.setMinimumSize(new java.awt.Dimension(500, 800));
+	ghw.setVisible(true);
     }//GEN-LAST:event_ghActionPerformed
     
     
