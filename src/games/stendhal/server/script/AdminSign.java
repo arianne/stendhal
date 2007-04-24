@@ -36,7 +36,10 @@ public class AdminSign extends ScriptImpl {
 			if (myZone.equals("-")) {
 				sandbox.setZone(sandbox.getZone(player));
 			} else {
-				sandbox.setZone(myZone);
+				if(!sandbox.setZone(myZone)) {
+					sandbox.privateText(player, "Zone not found.");
+					return;
+				}
 			}
 			int x = 0;
 			if (args.get(1).equals("-")) {
@@ -143,7 +146,7 @@ public class AdminSign extends ScriptImpl {
 	public void execute(Player admin, List<String> args) {
 		if (args.size() == 0) {
 			admin
-			        .sendPrivateText("/script AdminSign.class add zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
+			        .sendPrivateText("/script AdminSign.class zone x y text (the first three parameters may be \"-\"\n/script AdminSign.class list\n/script AdminSign.class del <n>");
 			return;
 		}
 

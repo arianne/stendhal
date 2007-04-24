@@ -17,10 +17,7 @@ public class ListNPCs extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-		if (args.size() < 1) {
-			admin.sendPrivateText("/script ListNPCs.class");
-			return;
-		}
+		super.execute(admin, args);
 
 		StringBuilder res = new StringBuilder();
 		NPCList npcs = NPCList.get();
