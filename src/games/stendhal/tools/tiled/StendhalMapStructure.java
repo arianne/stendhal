@@ -73,4 +73,28 @@ public class StendhalMapStructure {
 	public List<LayerDefinition> getLayers() {
         return layers;
     }
+
+	/**
+	 * Return true if the layer with given name exists.
+	 * @param layername the layer name
+	 * @return true if it exists.
+	 */
+	public boolean hasLayer(String layername) {
+		return getLayer(layername)!=null;
+    }
+
+	/**
+	 * Returns the layer whose name is layer name or null
+	 * @param layername the layer name
+	 * @return the layer object or null if it doesnt' exists
+	 */
+	public LayerDefinition getLayer(String layername) {
+		for(LayerDefinition layer: layers) {
+			if(layer.name.equals(layername)) {
+				return layer;
+			}	
+		}
+		
+		return null;
+    }
 }
