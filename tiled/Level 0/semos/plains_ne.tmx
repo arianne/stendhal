@@ -45,8 +45,8 @@
  <tileset name="../../tileset/ground/rock/pebbles.png" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/pebbles.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/building/door/door_s.png" firstgid="208" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/door/door_s.png"/>
+ <tileset name="../../tileset/building/door/door_n.png" firstgid="208" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/door_n.png"/>
  </tileset>
  <tileset name="../../tileset/item/postbox_2.png" firstgid="214" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/postbox_2.png" trans="ff00ff"/>

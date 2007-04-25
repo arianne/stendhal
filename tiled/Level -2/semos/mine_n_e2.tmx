@@ -30,8 +30,8 @@
  <tileset name="../../tileset/object/castle.png" firstgid="133" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/castle.png"/>
  </tileset>
- <tileset name="../../tileset/building/door/door_s.png" firstgid="453" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/door/door_s.png"/>
+ <tileset name="../../tileset/building/door/door_n.png" firstgid="453" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/door_n.png"/>
  </tileset>
  <tileset name="../../tileset/object/mine_rails.png" firstgid="459" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/mine_rails.png" trans="ff00ff"/>

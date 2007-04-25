@@ -135,8 +135,8 @@
  <tileset name="../../tileset/object/suspension_bridge.png" firstgid="786" tilewidth="32" tileheight="32">
   <image source="../../tileset/object/suspension_bridge.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/building/door/door_s.png" firstgid="790" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/door/door_s.png"/>
+ <tileset name="../../tileset/building/door/door_n.png" firstgid="790" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/door_n.png"/>
  </tileset>
  <tileset name="../../tileset/building/decoration/chimney.png" firstgid="796" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/chimney.png"/>

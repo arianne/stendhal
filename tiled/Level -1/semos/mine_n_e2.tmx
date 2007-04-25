@@ -15,8 +15,8 @@
  <tileset name="../../tileset/item/furniture/light/torch_top.png" firstgid="74" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/torch_top.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/door/door_s.png" firstgid="78" tilewidth="32" tileheight="32">
-  <image source="../../tileset/building/door/door_s.png"/>
+ <tileset name="../../tileset/building/door/door_n.png" firstgid="78" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/door/door_n.png"/>
  </tileset>
  <tileset name="../../tileset/building/roof/yellow.png" firstgid="84" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/roof/yellow.png"/>
