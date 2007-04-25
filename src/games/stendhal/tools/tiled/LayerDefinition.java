@@ -2,9 +2,11 @@ package games.stendhal.tools.tiled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import marauroa.common.net.InputSerializer;
 import marauroa.common.net.OutputSerializer;
 
 /**
@@ -132,6 +134,25 @@ public class LayerDefinition {
 		out.write(raw);
 		
 		return array.toByteArray();
+    }
+
+	/**
+	 * Deserialize a layer definition
+	 * 
+	 * @param in input serializer
+	 * @return an instance of a layer definition
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static LayerDefinition decode(InputSerializer in) throws IOException, ClassNotFoundException {
+		LayerDefinition layer=new LayerDefinition(0,0);
+		
+		layer.name=in.readString();
+		layer.width=in.readInt();
+		layer.height=in.readInt();
+		layer.raw=in.readByteArray();
+		
+		return layer;
     }
 
 	/**
