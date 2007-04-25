@@ -156,6 +156,10 @@ public class LayerDefinition {
 	 * @return the name of the tileset
 	 */
 	public String getTilesetFor(int value) {
+		if(value==0) {
+			return null;
+		}
+		
 		List<TileSetDefinition> tilesets=map.getTilesets();
 
 		int pos=0;
