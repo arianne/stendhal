@@ -3,7 +3,7 @@ package games.stendhal.tools.tiled;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.zip.DeflaterOutputStream;
+import java.util.List;
 
 import marauroa.common.net.OutputSerializer;
 
@@ -143,9 +143,22 @@ public class LayerDefinition {
 	    return height;
     }
 
+	/**
+	 * Returns the name of the tileset a tile belongs to.
+	 * @param value the tile id
+	 * @return the name of the tileset
+	 */
 	public String getTilesetFor(int value) {
-	    // TODO Auto-generated method stub
-	    return null;
+		List<TileSetDefinition> tilesets=map.getTilesets();
+
+		int pos=0;
+		for(pos=0;pos<tilesets.size();pos++) {
+			if(value<tilesets.get(pos).getFirstGid()) {
+				break;
+			}
+		}
+		
+		return tilesets.get(pos-1).getSource();
     }
 
 	/** 
