@@ -1,5 +1,11 @@
 package games.stendhal.tools.tiled;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import marauroa.common.net.OutputSerializer;
+
 /**
  * Stores a definition of a tileset.
  * Mainly its name, the source image used and the starting global id.
@@ -48,4 +54,15 @@ public class TileSetDefinition {
 	public String getSource() {
 		return source;		
 	}
+
+	public byte[] encode() throws IOException {
+		ByteArrayOutputStream array = new ByteArrayOutputStream();
+		OutputSerializer out = new OutputSerializer(array);
+		
+		out.write(name);
+		out.write(source);
+		out.write(gid);
+		
+		return array.toByteArray();
+    }
 }

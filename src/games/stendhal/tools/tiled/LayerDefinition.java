@@ -122,4 +122,20 @@ public class LayerDefinition {
 		
 		return array.toByteArray();
     }
+
+	/**
+	 * Returns the width of the layer
+	 * @return
+	 */
+	public int getWidth() {
+	    return width;
+    }
+
+	/**
+	 * Returns the height of the layer
+	 * @return
+	 */
+	public int getHeight() {
+	    return height;
+    }
 }
