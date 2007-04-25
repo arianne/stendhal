@@ -19,10 +19,13 @@ import marauroa.common.net.OutputSerializer;
  *
  */
 public class LayerDefinition {
+	/** To which map this layer belong */
+	private StendhalMapStructure map;
+	
 	/** Width of the layer that SHOULD be the same that the width of the map. */
-	int width;
+	private int width;
 	/** Height of the layer that SHOULD be the same that the height of the map. */
-	int height;
+	private int height;
 
 	/** Name of the layer that MUST be one of the available:<ul>
 	 * <li>0_floor
@@ -35,19 +38,20 @@ public class LayerDefinition {
 	 * <li>protection
 	 * </ul>
 	 */
-	String name;
+	private String name;
 	
 	/** The data encoded as int in a array of size width*height */
-	int[] data;
+	private int[] data;
 	/** The same data in a raw byte array, so we save reencoding it again for serialization */
-	byte[] raw;
+	private byte[] raw;
 
 	/**
 	 * Constructor
 	 * @param layerWidth the width of the layer.
 	 * @param layerHeight the height of the layer
 	 */ 
-	public LayerDefinition(int layerWidth, int layerHeight) {
+	public LayerDefinition(StendhalMapStructure map, int layerWidth, int layerHeight) {
+		this.map=map;
 		raw=new byte[4*layerWidth*layerHeight];
 		width=layerWidth;
 		height=layerHeight;
@@ -137,5 +141,26 @@ public class LayerDefinition {
 	 */
 	public int getHeight() {
 	    return height;
+    }
+
+	public String getTilesetFor(int value) {
+	    // TODO Auto-generated method stub
+	    return null;
+    }
+
+	/** 
+	 * Sets the name of the layer 
+	 * @param layerName the name of the layer
+	 */
+	public void setName(String layerName) {
+	    name=layerName;
+    }
+
+	/**
+	 * Returns the name of the layer
+	 * @return
+	 */
+	public String getName() {
+		return name;
     }
 }
