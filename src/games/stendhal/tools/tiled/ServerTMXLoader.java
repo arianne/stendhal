@@ -135,7 +135,7 @@ public class ServerTMXLoader {
 		int layerWidth = getAttribute(t, "width", stendhalMap.width);
 		int layerHeight = getAttribute(t, "height", stendhalMap.height);
 
-		LayerDefinition layer=new LayerDefinition(layerWidth, layerHeight);
+		LayerDefinition layer=new LayerDefinition(stendhalMap, layerWidth, layerHeight);
 
 		int offsetX = getAttribute(t, "x", 0);
 		int offsetY = getAttribute(t, "y", 0);
@@ -144,7 +144,7 @@ public class ServerTMXLoader {
 			System.err.println("Severe error: maps has offset displacement");
 		}
 		
-		layer.name=getAttributeValue(t, "name");
+		layer.setName(getAttributeValue(t, "name"));
 
 		// XXX: Ignored by now.
 		//readProperties(t.getChildNodes(), ml.getProperties());
