@@ -112,7 +112,19 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	public Sprite spriteType(RPObject object) {
 		try {
-			return EntityFactory.createEntity(object).getSprite();
+			/*
+			 * TEMP (I hope) - Messy work-around to get Sprite.
+			 */
+			Entity entity = EntityFactory.createEntity(object);
+
+			// Discard view for now - Just force it's creation
+			entity.getView();
+
+			Sprite sprite = entity.getSprite();
+
+			entity.release();
+
+			return sprite;
 		} catch (Exception e) {
 			logger.error("cannot create sprite for object " + object, e);
 			return null;
@@ -125,6 +137,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	public boolean has(Entity entity) {
 		return objects.containsKey(entity.getID());
+	}
+
+	public Entity get(RPObject object) {
+		return get(object.getID());
 	}
 
 	public Entity get(RPObject.ID id) {
@@ -140,7 +156,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		while(it.hasNext()) {
 			Entity entity = it.next();
-			entity.onRemoved(entity.getRPObject());
+			entity.release();
 		}
 
 		objects.clear();
@@ -320,6 +336,25 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 
+	/**
+	 * Create an add an Entity. This does not add to the screen list.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @return	An entity.
+	 */
+	protected Entity add(final RPObject object) {
+		Entity entity = EntityFactory.createEntity(object);
+
+		// Discard view for now - Just force it's creation
+		entity.getView();
+
+		objects.put(object.getID(), entity);
+
+		return entity;
+	}
+
+
 	//
 	// RPObjectChangeListener
 	//
@@ -333,11 +368,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Log4J.startMethod(logger, "onAdded");
 
 		if (!object.has("server-only")) {
-			Entity entity = EntityFactory.createEntity(object);
-
-			entity.onAdded(object);
-
-			objects.put(entity.getID(), entity);
+			Entity entity = add(object);
 			sortedObjects.add(entity);
 
 			logger.debug("added " + entity);
@@ -436,7 +467,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Entity entity = objects.remove(id);
 
 		if (entity != null) {
-			entity.onRemoved(object);
+			entity.release();
 			sortedObjects.remove(entity);
 		}
 

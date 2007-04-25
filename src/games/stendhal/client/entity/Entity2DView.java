@@ -68,7 +68,7 @@ public abstract class Entity2DView { // implements EntityView {
 	/**
 	 * Rebuild the representation using the base entity.
 	 */
-	protected void buildRepresentation() {
+	public void buildRepresentation() {
 		buildRepresentation(entity.getRPObject());
 	}
 

@@ -68,10 +68,18 @@ public class Portal extends InvisibleEntity {
 		}
 	}
 
-	@Override
-	public void init(final RPObject object) {
-		super.init(object);
 
-		this.hidden = object.has("hidden");
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		hidden = object.has("hidden");
 	}
 }

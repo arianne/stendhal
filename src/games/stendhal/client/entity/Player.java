@@ -153,17 +153,12 @@ public class Player extends RPEntity {
 			changed();
 		}
 
-		// We redo here to mantain player whose name has an underscore
-		if (diff.has("name")) {
-			setName(diff.get("name"));
-		}
-
 		if (diff.has("away")) {
 			/*
 			 * Filter out a player "changing" to the same message
 			 */
 			if (!base.has("away") || !base.get("away").equals(diff.get("away"))) {
-				away = diff.get("away");;
+				away = diff.get("away");
 				changed();
 				onAway(away);
 			}

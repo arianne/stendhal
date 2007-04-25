@@ -46,20 +46,32 @@ public class GrainField extends AnimatedStateEntity {
 		return width;
 	}
 
-
-	public void init(final RPObject object) {
-		super.init(object);
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
 
 		// default values are for compatibility to server <= 0.56
 
 		if (object.has("width")) {
 			width = object.getInt("width");
 		}
+
 		if (object.has("height")) {
 			height = object.getInt("height");
 		}
 	}
 
+
+	//
+	// RPObjectChangeListener
+	//
 
 	@Override
 	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {

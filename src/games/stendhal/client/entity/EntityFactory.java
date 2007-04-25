@@ -41,7 +41,7 @@ public class EntityFactory {
 			if (type.equals("player") && object.has("name")){
 				if (StendhalClient.get().getUserName().equalsIgnoreCase(object.get("name"))){
 					User me = new User();
-					me.init(object);
+					me.initialize(object);
 					return me;	
 				}
 			}
@@ -58,7 +58,7 @@ public class EntityFactory {
 			}
 
 			Entity en = (Entity) entityClass.newInstance();
-			en.init(object);
+			en.initialize(object);
 
 			if (en instanceof Inspectable) {
 				if (StendhalUI.get()!=null) {

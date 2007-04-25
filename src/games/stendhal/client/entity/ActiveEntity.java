@@ -208,11 +208,19 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	// Entity
 	//
 
-	public void onAdded(final RPObject base) {
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject base) {
 		double speed;
 
 
-		super.onAdded(base);
+		super.initialize(base);
 
 		if (base.has("dir")) {
 			setDirection(Direction.build(base.getInt("dir")));

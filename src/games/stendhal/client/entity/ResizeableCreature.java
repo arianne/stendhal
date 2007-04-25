@@ -31,6 +31,25 @@ public class ResizeableCreature extends Creature {
 		return width;
 	}
 
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		width = object.getDouble("width");
+		height = object.getDouble("height");
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
 
 	@Override
     public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
@@ -68,15 +87,6 @@ public class ResizeableCreature extends Creature {
 			return new Rectangle.Double(x, y + 1, 1, 1);
 		}
 		return new Rectangle.Double(x, y, width, height);
-	}
-
-
-	@Override
-	public void init(final RPObject object) {
-		super.init(object);
-
-		width = object.getDouble("width");
-		height = object.getDouble("height");
 	}
 
 

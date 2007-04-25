@@ -51,7 +51,7 @@ public class EntityTest {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		Entity en = new MockEntity();
-		en.init(rpo);
+		en.initialize(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("hugo", en.getName());
 
@@ -71,7 +71,7 @@ public class EntityTest {
 		rpo.put("type", "hugo");
 		rpo.setID(new ID(1, "woohoo"));
 		Entity en = new MockEntity();
-		en.init(rpo);
+		en.initialize(rpo);
 		assertNotNull("id must not be null",en.getID());
 		assertEquals(1, en.getID().getObjectID());
 		assertEquals("woohoo", en.getID().getZoneID());
@@ -84,14 +84,14 @@ public class EntityTest {
 		rpo = new RPObject();
 		rpo.put("type", "_hugo");
 		en = new MockEntity();
-		en.init(rpo);
+		en.initialize(rpo);
 		assertEquals("_hugo", en.getType());
 		assertEquals(" hugo", en.getName());
 		rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "ragnarok");
 		en = new MockEntity();
-		en.init(rpo);
+		en.initialize(rpo);
 		assertEquals("hugo", en.getType());
 		assertEquals("ragnarok", en.getName());
 	}
@@ -135,7 +135,7 @@ public class EntityTest {
 		rpo.put("type", "_hugo");
 
 		en = new MockEntity();
-		en.init(rpo);
+		en.initialize(rpo);
 		
 		assertNotNull(en.getSprite());
 
@@ -217,7 +217,7 @@ public class EntityTest {
 		public MockEntity() {
 			RPObject object = new RPObject();
 			object.put("type", "entity");
-			this.init(object);
+			this.initialize(object);
 		}
 
 		@Override

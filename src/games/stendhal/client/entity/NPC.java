@@ -22,17 +22,18 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class NPC extends RPEntity {
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
 
-	public void init(final RPObject object){
-		super.init(object);
 		String type = getType();
-
-		//String name = null;
-		if (object.has("name")) {
-			name = object.get("name");
-		} else {
-			name = object.get("type");
-		}
 
 		if (type.startsWith("npc")) {
 			setAudibleRange(3);
@@ -69,19 +70,6 @@ public class NPC extends RPEntity {
 	}
 
 
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y + 1, 1, 1);
-	}
-
-
 	//
 	// Entity
 	//
@@ -93,6 +81,16 @@ public class NPC extends RPEntity {
 	 */
 	protected Entity2DView createView() {
 		return new NPC2DView(this);
+	}
+
+	/**
+	 * Get the ground area this entity occupies.
+	 *
+	 * @return	The physical area.
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y + 1, 1, 1);
 	}
 
 	private long soundWait = 0L;

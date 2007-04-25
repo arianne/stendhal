@@ -233,15 +233,23 @@ public abstract class Creature extends RPEntity {
 
 	}
 
-	@Override
-	public void init(final RPObject object) {
 
-		super.init(object);
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
 		String type = getType();
+
 		if (object.has("name")){
 			String name = object.get("name");
 
-	
 			if (type.startsWith("creature")) {
 				if (name.equals("wolf")) {
 					moveSounds=new String[]{"bark-1.wav","howl-5.wav","howl-2.wav","howl-11.wav"};

@@ -19,7 +19,7 @@ public class PlayerTest {
 		rpo.put("type", "player");
 		rpo.put("outfit",0);
 		Player pl =new Player();
-		pl.init(rpo);
+		pl.initialize(rpo);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Attack");
@@ -37,7 +37,7 @@ public class PlayerTest {
 		rpo.put("type", "player");
 		rpo.put("outfit",0);
 		User pl = new User();
-		pl.init(rpo);
+		pl.initialize(rpo);
 		Rectangle2D rect = pl.getHearingArea();
 		assertEquals(new Rectangle2D.Double(-20.0, -20.0, 40, 40), rect);
 		pl.setAudibleRange(4);

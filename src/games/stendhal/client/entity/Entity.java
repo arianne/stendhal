@@ -55,12 +55,20 @@ public final byte[] ID_Token = new byte[0];
 	/** The arianne object associated with this game entity */
 	protected RPObject rpObject;
 
-	private String type;
-
 	/**
 	 * The entity name.
 	 */
 	protected String name;
+
+	/**
+	 * The entity title.
+	 */
+	protected String title;
+
+	/**
+	 * The entity type.
+	 */
+	protected String type;
 
 	/**
 	 * defines the distance in which the entity is heard by Player
@@ -74,13 +82,16 @@ public final byte[] ID_Token = new byte[0];
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling
-	 * in onChangedAdded() from other onAdded() hack.
+	 * in onChangedAdded() from other initialize() hack.
 	 * TODO: Need to fix it all to work right, but not now.
 	 */
 	protected boolean inAdd = false;
 
 
 	Entity() {
+		name = null;
+		title = null;
+		type = null;
 		x = 0.0;
 		y = 0.0;
 
@@ -88,19 +99,19 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
-	public void init(final RPObject object) {
-		type = object.get("type");
-
-		if (object.has("name")) {
-			name = object.get("name");
-		} else {
-			name = type.replace("_", " ");
+	/**
+	 * Get the on-screen view representation.
+	 * This will create the view if needed.
+	 *
+	 * @return	The view.
+	 */
+	public Entity2DView getView() {
+		if(view == null) {
+			view = createView();
+			view.buildRepresentation();
 		}
 
-		rpObject = object;
-	
-		view = createView();
-		view.buildRepresentation(object);
+		return view;
 	}
 
 
@@ -141,10 +152,43 @@ public final byte[] ID_Token = new byte[0];
 		return rpObject != null ? rpObject.getID() : null;
 	}
 
+
+	/**
+	 * Get the name.
+	 *
+	 * @return	The name.
+	 */
 	public String getName() {
 		return name;
 	}
 
+
+	/**
+	 * Get the nicely formatted entity title.
+	 *
+	 * This searches the follow attribute order:
+	 *	title, name (w/o underscore), type (w/o underscore).
+	 *
+	 * @return	The title, or <code>null</code> if unknown.
+	 */
+	public String getTitle() {
+		if(title != null) {
+			return title;
+		} else if(name != null) {
+			return name.replace('_', ' ');
+		} else if(type != null) {
+			return type.replace('_', ' ');
+		} else {
+			return null;
+		}
+	}
+
+
+	/**
+	 * Get the type.
+	 *
+	 * @return	The name.
+	 */
 	public String getType() {
 		return type;
 	}
@@ -465,6 +509,95 @@ public final byte[] ID_Token = new byte[0];
 	protected abstract Entity2DView createView();
 
 
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	public void initialize(final RPObject object) {
+		rpObject = object;
+
+		/*
+		 * Name
+		 */
+		if (object.has("name")) {
+			name = object.get("name");
+		} else {
+			name = null;
+		}
+
+		/*
+		 * Title
+		 */
+		if (object.has("title")) {
+			title = object.get("title");
+		} else {
+			title = null;
+		}
+
+		/*
+		 * Type
+		 */
+		if (object.has("type")) {
+			type = object.get("type");
+		} else {
+			type = null;
+		}
+
+		/*
+		 * Visibility
+		 */
+		if(object.has("visibility")) {
+			visibility = object.getInt("visibility");
+		} else {
+			visibility = 100;
+		}
+
+		/*
+		 * Coordinates
+		 */
+		if (object.has("x")) {
+			x = object.getInt("x");
+		} else {
+			x = 0.0;
+		}
+
+		if (object.has("y")) {
+			y = object.getInt("y");
+		} else {
+			y = 0.0;
+		}
+
+
+		/*
+		 * Notify placement
+		 */
+		onEnterZone(object.getID().getZoneID());
+		onPosition(x, y);
+
+		// BUG: Work around for Bugs at 0.45
+		inAdd = true;
+		onChangedAdded(new RPObject(), object);
+		inAdd = false;
+	}
+
+
+	/**
+	 * Release this entity. This should clean anything that isn't
+	 * automatically released (such as unregister callbacks, cancel
+	 * external operations, etc).
+	 *
+	 * @see-also	#initialize(RPObject)
+	 */
+	public void release() {
+		SoundSystem.stopSoundCycle(ID_Token);
+
+		onLeaveZone(getID().getZoneID());
+	}
+
+
 	//
 	// RPObjectChangeListener
 	//
@@ -474,28 +607,8 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	object		The object.
 	 */
-	public void onAdded(final RPObject object) {
-		if(object.has("visibility")) {
-			visibility = object.getInt("visibility");
-		} else {
-			visibility = 100;
-		}
-
-		if (object.has("x")) {
-			x = object.getInt("x");
-		}
-
-		if (object.has("y")) {
-			y = object.getInt("y");
-		}
-
-		onEnterZone(object.getID().getZoneID());
-		onPosition(x, y);
-
-		// BUG: Work around for Bugs at 0.45
-		inAdd = true;
-		onChangedAdded(new RPObject(), object);
-		inAdd = false;
+	public final void onAdded(final RPObject object) {
+		// DEPRECATED - Moving to different listener. Use initialize().
 	}
 
 
@@ -510,6 +623,30 @@ public final byte[] ID_Token = new byte[0];
 			return;
 		}
 
+
+		/*
+		 * Name
+		 */
+		if (changes.has("name")) {
+			name = changes.get("name");
+			changed();
+		}
+
+		/*
+		 * Title
+		 */
+		if (changes.has("title")) {
+			title = changes.get("title");
+			changed();
+		}
+
+		/*
+		 * Type
+		 */
+		if (changes.has("type")) {
+			type = changes.get("type");
+			changed();
+		}
 
 		/*
 		 * Entity visibility
@@ -546,6 +683,33 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	changes		The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		/*
+		 * Name
+		 */
+		if (changes.has("name")) {
+			name = null;
+			changed();
+		}
+
+		/*
+		 * Title
+		 */
+		if (changes.has("title")) {
+			title = null;
+			changed();
+		}
+
+		/*
+		 * Type
+		 */
+		if (changes.has("type")) {
+			type = null;
+			changed();
+		}
+
+		/*
+		 * Visibility
+		 */
 		if(changes.has("visibility")) {
 			visibility = 100;
 			changed();
@@ -570,9 +734,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	object		The object.
 	 */
-	public void onRemoved(final RPObject object) {
-		SoundSystem.stopSoundCycle(ID_Token);
-
-		onLeaveZone(getID().getZoneID());
+	public final void onRemoved(final RPObject object) {
+		// DEPRECATED - Moving to different listener. Use release().
 	}
 }

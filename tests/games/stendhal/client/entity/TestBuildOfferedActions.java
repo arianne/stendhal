@@ -66,7 +66,7 @@ public class TestBuildOfferedActions {
 		RPObject object = new RPObject();
 		object.put("type",1);
 		object.put("sheep", 1);
-		user.init(object );
+		user.initialize(object );
 		sheep.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
@@ -78,7 +78,7 @@ public class TestBuildOfferedActions {
 		StendhalClient.get();
 		RPObject rpo =new MockRPObject("chest", null);
 		Chest sh = new Chest();
-		sh.init(rpo);
+		sh.initialize(rpo);
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Open");

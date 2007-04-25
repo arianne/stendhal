@@ -94,6 +94,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private String guild;
 
+	private String clazz;
+
 	/**
 	 * Entity we are attacking.
 	 * (need to reconsile this with 'attacking')
@@ -129,6 +131,7 @@ public abstract class RPEntity extends ActiveEntity {
 		floaterSpritesTimes = new LinkedList<Long>();
 		attackTarget = null;
 		lastAttacker = null;
+		clazz = null;
 		adminlevel = 0;
 	}
 
@@ -149,10 +152,6 @@ public abstract class RPEntity extends ActiveEntity {
 		return (attacking != null);
 	}
 
-	protected void setName(final String name) {
-		this.name = name;
-	}
-
 	public int getLevel() {
 		return level;
 	}
@@ -164,6 +163,30 @@ public abstract class RPEntity extends ActiveEntity {
 	public String getGuild() {
 	    return guild;
 	}
+
+
+	/**
+	 * Get the nicely formatted entity title.
+	 *
+	 * This searches the follow attribute order:
+	 *	title, name (w/o underscore), class (w/o underscore), type (w/o underscore).
+	 *
+	 * @return	The title, or <code>null</code> if unknown.
+	 */
+	public String getTitle() {
+		if(title != null) {
+			return title;
+		} else if(name != null) {
+			return name.replace('_', ' ');
+		} else if(clazz != null) {
+			return clazz.replace('_', ' ');
+		} else if(type != null) {
+			return type.replace('_', ' ');
+		} else {
+			return null;
+		}
+	}
+
 
 	// Called when entity says text
 	public void onTalk(final String text) {
@@ -195,7 +218,7 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 				line = line + " ...";
 			}
-			GameObjects.getInstance().addText(this, /* getName()+" says: "+ */
+			GameObjects.getInstance().addText(this, /* getTitle()+" says: "+ */
 			line, Color.black, true);
 		}
 	}
@@ -205,7 +228,7 @@ public abstract class RPEntity extends ActiveEntity {
 	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
 	// Creature
 	protected void nonCreatureClientAddEventLine(final String text) {
-		StendhalUI.get().addEventLine(getName(), text);
+		StendhalUI.get().addEventLine(getTitle(), text);
 	}
 
 	// Called when entity listen to text from talker
@@ -279,7 +302,7 @@ public abstract class RPEntity extends ActiveEntity {
 			addFloater("-" + amount, Color.red);
 
 			StendhalUI.get().addEventLine(
-			        getName() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
+			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
 			        Color.red);
 		}
 	}
@@ -295,15 +318,15 @@ public abstract class RPEntity extends ActiveEntity {
 	// Called when entity is killed by killer
 	public void onDeath(final Entity killer) {
 		if (killer != null) {
-			StendhalUI.get().addEventLine(getName() + " has been killed by " + killer.getName());
+			StendhalUI.get().addEventLine(getTitle() + " has been killed by " + killer.getTitle());
 		}
 
 		/*
 		 * see
 		 * http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
 		 * if (getID().equals(client.getPlayer().getID())) {
-		 * client.addEventLine(getName() + " has died. " +
-		 * Grammar.suffix_s(getName()) + " new level is " + getLevel()); }
+		 * client.addEventLine(getTitle() + " has died. " +
+		 * Grammar.suffix_s(getTitle()) + " new level is " + getLevel()); }
 		 */
 	}
 
@@ -796,8 +819,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
 			StendhalUI.get().addEventLine(
-			        getName() + " suffers " + Grammar.quantityplnoun(damage, "point") + " of damage from "
-			                + attacker.getName(), Color.RED);
+			        getTitle() + " suffers " + Grammar.quantityplnoun(damage, "point") + " of damage from "
+			                + attacker.getTitle(), Color.RED);
 		}
 	}
 
@@ -813,19 +836,16 @@ public abstract class RPEntity extends ActiveEntity {
 		resolution = Resolution.MISSED;
 	}
 
-
-	//
-	// RPObjectChangeListener
-	//
-
 	/**
-	 * An object was added.
+	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
 	 */
 	@Override
-	public void onAdded(final RPObject object) {
-		super.onAdded(object);
+	public void initialize(final RPObject object) {
+		super.initialize(object);
 
 		fireTalkEvent(object, null);
 		fireHPEvent(object, null);
@@ -833,6 +853,27 @@ public abstract class RPEntity extends ActiveEntity {
 		fireAttackEvent(object, null);
 	}
 
+	/**
+	 * Release this entity. This should clean anything that isn't
+	 * automatically released (such as unregister callbacks, cancel
+	 * external operations, etc).
+	 *
+	 * @see-also	#initialize(RPObject)
+	 */
+	@Override
+	public void release() {
+		super.release();
+
+		fireTalkEvent(null, null);
+		fireHPEvent(null, null);
+		fireKillEvent(null, null);
+		fireAttackEvent(null, null);
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
 
 	/**
 	 * The object added/changed attribute(s).
@@ -934,18 +975,19 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 		}
 
-		if (changes.has("name")) {
-			name = changes.get("name");
-			name = name.replace("_", " ");
-			nameImage = GameScreen.get().createString(getName(), nameColor);
-		} else if ((name == null) && changes.has("class")) {
-			name = changes.get("class");
-			name = name.replace("_", " ");
-			nameImage = GameScreen.get().createString(getName(), nameColor);
-		} else if ((name == null) && changes.has("type")) {
-			name = changes.get("type");
-			name = name.replace("_", " ");
-			nameImage = GameScreen.get().createString(getName(), nameColor);
+		boolean titleChange = false;
+
+		if (changes.has("clazz")) {
+			clazz = changes.get("class");
+			titleChange = true;
+		}
+
+		if (changes.has("name") || changes.has("title") || changes.has("type")) {
+			titleChange = true;
+		}
+
+		if(titleChange) {
+			nameImage = GameScreen.get().createString(getTitle(), nameColor);
 		}
 
 		if (changes.has("xp") && object.has("xp")) {
@@ -953,7 +995,7 @@ public abstract class RPEntity extends ActiveEntity {
 				addFloater("+" + (changes.getInt("xp") - object.getInt("xp")), Color.cyan);
 
 				StendhalUI.get().addEventLine(
-				        getName() + " earns "
+				        getTitle() + " earns "
 				                + Grammar.quantityplnoun(changes.getInt("xp") - object.getInt("xp"), "experience point")
 				                + ".", Color.blue);
 			}
@@ -961,7 +1003,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (changes.has("level") && object.has("level")) {
 			if (distanceToUser() < 15 * 15) {
-				String text = getName() + " reaches Level " + getLevel();
+				String text = getTitle() + " reaches Level " + getLevel();
 
 				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
 				StendhalUI.get().addEventLine(text, Color.green);
@@ -982,21 +1024,5 @@ public abstract class RPEntity extends ActiveEntity {
 
 		fireHPEventChangedRemoved(object, changes);
 		fireAttackEventChangedRemoved(object, changes);
-	}
-
-
-	/**
-	 * An object was removed.
-	 *
-	 * @param	object		The object.
-	 */
-	@Override
-	public void onRemoved(final RPObject object) {
-		super.onRemoved(object);
-
-		fireTalkEvent(null, null);
-		fireHPEvent(null, null);
-		fireKillEvent(null, null);
-		fireAttackEvent(null, null);
 	}
 }

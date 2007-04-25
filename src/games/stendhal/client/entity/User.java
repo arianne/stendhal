@@ -178,8 +178,16 @@ public class User extends Player {
 	}
 
 
-	public void onAdded(final RPObject base) {
-		super.onAdded(base);
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject base) {
+		super.initialize(base);
 
 		if(base.has("features")) {
 			features.decode(base.get("features"));
