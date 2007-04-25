@@ -47,6 +47,7 @@ public class StendhalMapStructure {
 	  * @param layer new layer
 	  */
 	public void addLayer(LayerDefinition layer) {
+		layer.setMap(this);
 		layers.add(layer);
     }
 
