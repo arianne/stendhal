@@ -90,7 +90,7 @@ public class StendhalMapStructure {
 	 */
 	public LayerDefinition getLayer(String layername) {
 		for(LayerDefinition layer: layers) {
-			if(layer.name.equals(layername)) {
+			if(layername.equals(layer.getName())) {
 				return layer;
 			}	
 		}
