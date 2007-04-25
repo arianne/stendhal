@@ -2,9 +2,10 @@ package games.stendhal.tools.tiled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
+import marauroa.common.net.InputSerializer;
 import marauroa.common.net.OutputSerializer;
+import marauroa.common.net.Serializable;
 
 /**
  * Stores a definition of a tileset.
@@ -13,7 +14,7 @@ import marauroa.common.net.OutputSerializer;
  * @author miguel
  *
  */
-public class TileSetDefinition {
+public class TileSetDefinition implements Serializable {
 	/** The name of the tileset. Useless */
 	private String name;
 	/** The source image of this tileset */
@@ -54,15 +55,25 @@ public class TileSetDefinition {
 	public String getSource() {
 		return source;		
 	}
-
+	
 	public byte[] encode() throws IOException {
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
 		OutputSerializer out = new OutputSerializer(array);
 		
-		out.write(name);
-		out.write(source);
-		out.write(gid);
+		out.write(this);
 		
 		return array.toByteArray();
+    }
+
+	public void readObject(InputSerializer in) throws IOException, ClassNotFoundException {
+		name=in.readString();
+		source=in.readString();
+		gid=in.readInt();
+    }
+
+	public void writeObject(OutputSerializer out) throws IOException {
+		out.write(name);
+		out.write(source);
+		out.write(gid);		
     }
 }

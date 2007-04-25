@@ -2,12 +2,12 @@ package games.stendhal.tools.tiled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import marauroa.common.net.InputSerializer;
 import marauroa.common.net.OutputSerializer;
+import marauroa.common.net.Serializable;
 
 /**
  * The class that stores the definition of a layer.
@@ -20,7 +20,7 @@ import marauroa.common.net.OutputSerializer;
  * @author miguel
  *
  */
-public class LayerDefinition {
+public class LayerDefinition implements Serializable {
 	/** To which map this layer belong */
 	private StendhalMapStructure map;
 	
@@ -127,11 +127,7 @@ public class LayerDefinition {
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
 		OutputSerializer out = new OutputSerializer(array);
 		
-		out.write(name);
-		out.write(width);
-		out.write(height);
-		
-		out.write(raw);
+		out.write(this);		
 		
 		return array.toByteArray();
     }
@@ -146,12 +142,7 @@ public class LayerDefinition {
 	 */
 	public static LayerDefinition decode(InputSerializer in) throws IOException, ClassNotFoundException {
 		LayerDefinition layer=new LayerDefinition(0,0);
-		
-		layer.name=in.readString();
-		layer.width=in.readInt();
-		layer.height=in.readInt();
-		layer.raw=in.readByteArray();
-		
+		layer=(LayerDefinition) in.readObject(layer);	
 		return layer;
     }
 
@@ -207,5 +198,19 @@ public class LayerDefinition {
 	 */
 	public String getName() {
 		return name;
+    }
+
+	public void readObject(InputSerializer in) throws IOException, ClassNotFoundException {
+		name=in.readString();
+		width=in.readInt();
+		height=in.readInt();
+		raw=in.readByteArray();
+    }
+
+	public void writeObject(OutputSerializer out) throws IOException {
+		out.write(name);
+		out.write(width);
+		out.write(height);
+		out.write(raw);
     }
 }
