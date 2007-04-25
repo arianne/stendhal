@@ -153,9 +153,7 @@ public class TileStore extends SpriteStore {
 			synchronized (locker) {
 				for (RangeFilename range : rangesTiles) {
 					if (range.isInRange(i)) {
-						//TODO: decide which of them to be used astridemma 18.02.2007
 						Log4J.getLogger(TileStore.class).info("Loading tileset " + range.getFilename());
-						//StendhalClient.get().addEventLine("Loading tileset " + range.getFilename(),	Color.pink);
 						range.load();
 
 						sprite = tileset.get(i);
