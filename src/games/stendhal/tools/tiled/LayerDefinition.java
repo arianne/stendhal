@@ -50,11 +50,18 @@ public class LayerDefinition {
 	 * @param layerWidth the width of the layer.
 	 * @param layerHeight the height of the layer
 	 */ 
-	public LayerDefinition(StendhalMapStructure map, int layerWidth, int layerHeight) {
-		this.map=map;
+	public LayerDefinition(int layerWidth, int layerHeight) {
 		raw=new byte[4*layerWidth*layerHeight];
 		width=layerWidth;
 		height=layerHeight;
+	}
+	
+	/**
+	 * Sets the map to which this layer belong to.
+	 * @param map the map
+	 */
+	void setMap(StendhalMapStructure map) {
+		this.map=map;
 	}
 
 	/**
