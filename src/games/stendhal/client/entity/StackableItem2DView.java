@@ -52,20 +52,25 @@ public class StackableItem2DView extends Item2DView {
 	/**
 	 * Get the appropriete quantity sprite.
 	 *
-	 *
+	 * @return	A sprite representing the quantity,
+	 *		or <code>null</code> for none.
 	 */
 	protected Sprite getQuantitySprite() {
 		int	quantity;
+		String	label;
 
 
 		quantity = item.getQuantity();
 
 		if (quantity <= 1) {
 			return null;
+		} else if(item.getRPObject().isContained() && (quantity > 99999)) {
+			label = (quantity / 1000) + "K";
 		} else {
-			return GameScreen.get().createString(
-				Integer.toString(quantity), Color.white);
+			label = Integer.toString(quantity);
 		}
+
+		return GameScreen.get().createString(label, Color.white);
 	}
 
 

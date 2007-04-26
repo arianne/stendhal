@@ -110,26 +110,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		return sortedObjects.iterator();
 	}
 
-	public Sprite spriteType(RPObject object) {
-		try {
-			/*
-			 * TEMP (I hope) - Messy work-around to get Sprite.
-			 */
-			Entity entity = EntityFactory.createEntity(object);
-
-			// Discard view for now - Just force it's creation
-			entity.getView();
-
-			Sprite sprite = entity.getSprite();
-
-			entity.release();
-
-			return sprite;
-		} catch (Exception e) {
-			logger.error("cannot create sprite for object " + object, e);
-			return null;
-		}
-	}
 
 	private void sort() {
 		Collections.sort(sortedObjects);

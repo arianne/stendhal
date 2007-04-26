@@ -119,7 +119,17 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** adds an object to this slot, this replaces any previous content */
 	public void add(RPObject object) {
 		content = object;
-		sprite = client.getGameObjects().spriteType(content);
+
+		Entity entity = EntityFactory.createEntity(object);
+
+		if(entity != null) {
+			// Force view creation
+			entity.getView();
+			sprite = entity.getSprite();
+			entity.release();
+		} else {
+			sprite = null;
+		}
 	}
 
 	/**

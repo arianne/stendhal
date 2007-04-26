@@ -214,6 +214,11 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
+	/**
+	 * Get the RPObject this represents.
+	 *
+	 * @return	The RPObject.
+	 */
 	public RPObject getRPObject() {
 		return rpObject;
 	}
