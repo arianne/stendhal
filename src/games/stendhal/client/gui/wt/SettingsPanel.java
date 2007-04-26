@@ -121,12 +121,17 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);
 		frame.addChild(inventory);
-
-                //the spells list
-                spells = new EntityContainer(client, "spells", 3, 4);
-                spells.registerCloseListener(this);
-                frame.addChild(spells);
-                spells.setSlot(player, "spells");
+		    
+		//the spells list
+		spells = new EntityContainer(client, "spells", 3, 4);
+		spells.registerCloseListener(this);
+		frame.addChild(spells);
+		spells.setSlot(player, "spells");
+		spells.setVisible(false);
+		
+		if (player.getSlot("spells") != null) {
+		    spells.setVisible(true);
+		} else; //just do nothing if the RPSlot is empty, keep setVisible(false)
                 
 		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
@@ -171,12 +176,17 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		addChild(button);
 		buttonMap.put("buddies", button);
                 
-                button = new WtButton("spells", 150, 30, "Enable Spells Window");
-		button.moveTo(10, 210);
-		button.setPressed(spells.isVisible());
-		button.registerClickListener(this);
-		addChild(button);
-		buttonMap.put("spells", button);
+		WtButton spellsButton;
+		spellsButton = new WtButton("spells", 150, 30, "Enable Spells Window");
+		spellsButton.moveTo(10, 210);
+		spellsButton.setPressed(spells.isVisible());
+		spellsButton.registerClickListener(this);
+		addChild(spellsButton);
+		buttonMap.put("spells", spellsButton);
+		spellsButton.setVisible(false);
+		if (player.getSlot("spells") != null) { //we init vars now to enable them a bit easier to enable later 
+		    spellsButton.setVisible(true);
+		}
 	}
 
 	/** we're using the window manager */
