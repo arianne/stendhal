@@ -42,8 +42,8 @@
  <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="110" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="110" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="117" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>

@@ -36,8 +36,8 @@
  <tileset name="../../tileset/item/furniture/statue/metal_and_stone.png" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="197" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="197" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

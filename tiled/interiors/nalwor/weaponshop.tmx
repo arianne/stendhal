@@ -51,8 +51,8 @@
  <tileset name="../../tileset/item/armor/armor.png" firstgid="222" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/armor/armor.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="226" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="226" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="233" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>

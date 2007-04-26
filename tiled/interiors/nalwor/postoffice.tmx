@@ -63,8 +63,8 @@
  <tileset name="../../tileset/ground/rock/rocks.png" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/rocks.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="182" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="182" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

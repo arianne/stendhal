@@ -48,8 +48,8 @@
  <tileset name="../../tileset/item/furniture/bed/large_front_on.png" firstgid="157" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/large_front_on.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="163" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="163" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="170" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

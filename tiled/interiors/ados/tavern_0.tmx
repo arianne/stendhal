@@ -75,8 +75,8 @@
  <tileset name="../../tileset/item/furniture/picture/small.png" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/picture/small.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="194" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="194" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="201" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

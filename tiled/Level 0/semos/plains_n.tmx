@@ -177,8 +177,8 @@
  <tileset name="../../tileset/logic/creature/sheep.png" firstgid="978" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/sheep.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="979" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="979" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/item/arandula.png" firstgid="986" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/arandula.png"/>

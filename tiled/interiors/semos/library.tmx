@@ -78,8 +78,8 @@
  <tileset name="../../tileset/plant/tree/tree_golden_small.png" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/tree/tree_golden_small.png" trans="ffffff"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="202" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="202" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="209" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

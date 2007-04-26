@@ -51,8 +51,8 @@
  <tileset name="../../tileset/item/furniture/light/flames.png" firstgid="377" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/flames.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="379" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="379" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="386" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>

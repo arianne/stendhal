@@ -81,8 +81,8 @@
  <tileset name="../../tileset/logic/creature/orc.png" firstgid="456" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="460" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="460" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="467" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>

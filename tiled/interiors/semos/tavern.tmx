@@ -66,8 +66,8 @@
  <tileset name="../../tileset/item/pot/pot_purple.png" firstgid="179" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/pot_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/item/portal.png" firstgid="180" tilewidth="32" tileheight="32">
-  <image source="../../tileset/logic/item/portal.png"/>
+ <tileset name="../../tileset/logic/portal.png" firstgid="180" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
  </tileset>
  <tileset name="../../tileset/logic/collision.png" firstgid="187" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
