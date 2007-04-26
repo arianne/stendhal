@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
@@ -19,8 +18,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import tiled.io.PluginLogger;
-import tiled.util.Base64;
+import games.stendhal.common.Base64;
 
 
 /**
@@ -39,13 +37,10 @@ import tiled.util.Base64;
  */
 public class ServerTMXLoader {
 
-	private StendhalMapStructure stendhalMap;
-	
+	private StendhalMapStructure stendhalMap;	
 	private String xmlPath;
-	private PluginLogger logger;
-
+	
 	public ServerTMXLoader() {
-		logger = new PluginLogger();
 	}
 
   
@@ -94,7 +89,6 @@ public class ServerTMXLoader {
 
 			if (child.getNodeName().equalsIgnoreCase("image")) {
 				if (hasTilesetImage) {
-					logger.warn("Ignoring illegal image element after tileset image.");
 					continue;
 				}
 
@@ -157,9 +151,7 @@ public class ServerTMXLoader {
 
 				if (encoding != null && "base64".equalsIgnoreCase(encoding)) {
 					Node cdata = child.getFirstChild();
-					if (cdata == null) {
-						logger.warn("layer <data> tag enclosed no data. (empty data tag)");
-					} else {
+					if (cdata != null) {
 						char[] enc = cdata.getNodeValue().trim().toCharArray();
 						byte[] dec = Base64.decode(enc);
 						ByteArrayInputStream bais = new ByteArrayInputStream(dec);
@@ -240,14 +232,17 @@ public class ServerTMXLoader {
 	// MapReader interface
 
 	public StendhalMapStructure readMap(String filename) throws Exception {
-		xmlPath = filename.substring(0,
-				filename.lastIndexOf(File.separatorChar) + 1);
+		xmlPath = filename.substring(0,filename.lastIndexOf(File.separatorChar) + 1);
 
-		String xmlFile = makeUrl(filename);
-		//xmlPath = makeUrl(xmlPath);
+		InputStream is = getClass().getClassLoader().getResourceAsStream(filename);
 
-		URL url = new URL(xmlFile);
-		InputStream is = url.openStream();
+		if(is==null) {
+			String xmlFile = makeUrl(filename);
+			//xmlPath = makeUrl(xmlPath);
+
+			URL url = new URL(xmlFile);
+			is = url.openStream();
+		}
 
 		// Wrap with GZIP decoder for .tmx.gz files
 		if (filename.endsWith(".gz")) {
@@ -258,10 +253,6 @@ public class ServerTMXLoader {
 		unmarshalledMap.setFilename(filename);
 
 		return unmarshalledMap;
-	}
-
-	public void setLogger(PluginLogger logger) {
-		this.logger = logger;
 	}
 
 	public static void main(String[] args) throws Exception {
