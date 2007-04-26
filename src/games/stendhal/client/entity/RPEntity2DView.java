@@ -102,10 +102,10 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object, double width, double height) {
 		Sprite tiles = getAnimationSprite(object);
 
-		map.put(RPEntity.STATE_UP, getAnimatedWalk(tiles, 0, width, height));
-		map.put(RPEntity.STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
-		map.put(RPEntity.STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
-		map.put(RPEntity.STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
+		map.put(ActiveEntity.STATE_UP, getAnimatedWalk(tiles, 0, width, height));
+		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
+		map.put(ActiveEntity.STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
+		map.put(ActiveEntity.STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
 	}
 
 

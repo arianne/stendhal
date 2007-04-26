@@ -126,16 +126,16 @@ public class Sheep2DView extends RPEntity2DView {
 
 		SpriteStore store = SpriteStore.get();
 
-		map.put(Sheep.STATE_UP,
+		map.put(ActiveEntity.STATE_UP,
 			store.getAnimatedSprite(tiles, 0, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_RIGHT,
+		map.put(ActiveEntity.STATE_RIGHT,
 			store.getAnimatedSprite(tiles, 1, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_DOWN,
+		map.put(ActiveEntity.STATE_DOWN,
 			store.getAnimatedSprite(tiles, 2, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_LEFT,
+		map.put(ActiveEntity.STATE_LEFT,
 			store.getAnimatedSprite(tiles, 3, 3, width, height, 100L, false));
 
 		map.put(Sheep.STATE_BIG_UP,
