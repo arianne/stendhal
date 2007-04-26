@@ -213,4 +213,8 @@ public class LayerDefinition implements Serializable {
 		out.write(height);
 		out.write(raw);
     }
+
+	public int[] expose() {
+	    return data;
+    }
 }

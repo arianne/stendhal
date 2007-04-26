@@ -60,7 +60,7 @@ public class TileSetDefinition implements Serializable {
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
 		OutputSerializer out = new OutputSerializer(array);
 		
-		out.write(this);
+		writeObject(out);
 		
 		return array.toByteArray();
     }
@@ -76,4 +76,14 @@ public class TileSetDefinition implements Serializable {
 		out.write(source);
 		out.write(gid);		
     }
+	
+	@Override
+	public boolean equals(Object object) {
+		if(!(object instanceof TileSetDefinition)) {
+			return false;
+		}
+		
+		TileSetDefinition set=(TileSetDefinition) object;
+		return set.name.equals(name) && set.source.equals(source) && set.gid==gid;
+	}
 }
