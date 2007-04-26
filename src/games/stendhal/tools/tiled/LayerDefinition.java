@@ -127,7 +127,7 @@ public class LayerDefinition implements Serializable {
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
 		OutputSerializer out = new OutputSerializer(array);
 		
-		out.write(this);		
+		writeObject(out);
 		
 		return array.toByteArray();
     }
@@ -142,7 +142,8 @@ public class LayerDefinition implements Serializable {
 	 */
 	public static LayerDefinition decode(InputSerializer in) throws IOException, ClassNotFoundException {
 		LayerDefinition layer=new LayerDefinition(0,0);
-		layer=(LayerDefinition) in.readObject(layer);	
+		layer=(LayerDefinition) in.readObject(layer);
+		layer.build();
 		return layer;
     }
 
@@ -167,7 +168,7 @@ public class LayerDefinition implements Serializable {
 	 * @param value the tile id
 	 * @return the name of the tileset
 	 */
-	public String getTilesetFor(int value) {
+	public TileSetDefinition getTilesetFor(int value) {
 		if(value==0) {
 			return null;
 		}
@@ -181,7 +182,7 @@ public class LayerDefinition implements Serializable {
 			}
 		}
 		
-		return tilesets.get(pos-1).getSource();
+		return tilesets.get(pos-1);
     }
 
 	/** 

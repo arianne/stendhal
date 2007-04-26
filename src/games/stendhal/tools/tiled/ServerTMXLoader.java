@@ -1,11 +1,14 @@
 package games.stendhal.tools.tiled;
 
+import games.stendhal.common.Base64;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 
@@ -17,8 +20,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import games.stendhal.common.Base64;
 
 
 /**
@@ -166,8 +167,23 @@ public class ServerTMXLoader {
 						}
 
 						byte[] raw=layer.exposeRaw();
+						int offset=0;
 
-						is.read(raw);
+                        for (int y = 0; y < layer.getHeight(); y++) {
+                        	is.read(raw,offset,4*layer.getWidth());
+                        	offset+=4*layer.getWidth();
+                        }
+                        /*
+                         * NOTE: Old optimized version! :)
+                         
+						int expected=raw.length;
+						int read=is.read(raw);
+						*/
+						if(offset!=4*layer.getWidth()*layer.getHeight()) {
+							System.out.println("ERROR: Read less bytes ("+offset+") than expected("+(layer.getWidth()*layer.getHeight())+") - layer "+layer.getName());
+						}
+						
+						
 					}
 				}
 			}
@@ -260,6 +276,7 @@ public class ServerTMXLoader {
 		long start=System.currentTimeMillis();
 		
 		StendhalMapStructure map=null;
+		
 		for(int i=0;i<90;i++) {			
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
@@ -270,29 +287,29 @@ public class ServerTMXLoader {
 		
 		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));
 		/*
+		map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/village_w.tmx");
 		map.build();
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
 		List<TileSetDefinition> tilesets=map.getTilesets();
 		for(TileSetDefinition set: tilesets) {
-			System.out.printf("TILESET firstGID: %d name: %s\n", set.getFirstGid(), set.getSource());
+			System.out.printf("TILESET firstGID: '%d' name: '%s'\n", set.getFirstGid(), set.getSource());
 		}
 
 		List<LayerDefinition> layers=map.getLayers();
 		for(LayerDefinition layer: layers) {			
-			System.out.printf("LAYER name: %s\n", layer.name);
-			int w=layer.width;
-			int h=layer.height;
+			System.out.printf("LAYER name: %s\n", layer.getName());
+			int w=layer.getWidth();
+			int h=layer.getHeight();
 			
 			for(int y=0;y<h;y++) {
 				for(int x=0;x<w;x++) {
 					int gid=layer.getTileAt(x, y);
-					System.out.print(gid + ((x == layer.width - 1) ? "" : ","));
+					System.out.print(gid + ((x == w - 1) ? "" : ","));
 				}
 			System.out.println();
 			}
 		}
 		*/
-
 	}
 
 
