@@ -4,10 +4,9 @@
 	<property file="build.ant.properties"/>
 	<property file="build.ant-private.properties"/>
   
+	<property name="build_tests" value="${buildroot}/build_tests"/>
 
 	<target name="init">
-		<property name="build_tests" value="${buildroot}/build_tests"/>
-
 		<mkdir dir="${lib}"/>
 
 		<!-- We update the version number -->
