@@ -23,6 +23,52 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 public abstract class Entity extends RPObject {
+	//
+	// Some general multi-level collision value
+	// Will move these somewhere more general later
+	//
+
+	/**
+	 * On the ground.
+	 */
+	public static final int	COLLISION_GROUND	= 0x01;
+
+	/**
+	 * Just above the ground.
+	 */
+	public static final int	COLLISION_LOWER		= 0x02;
+
+	/**
+	 * Table top level.
+	 */
+	public static final int	COLLISION_TABLETOP	= 0x04;
+
+	/**
+	 * About the middle of a single level interior.
+	 */
+	public static final int	COLLISION_MIDDLE	= 0x08;
+
+	/**
+	 * Just below a single level interior ceiling.
+	 */
+	public static final int	COLLISION_UPPER		= 0x10;
+
+	/**
+	 * Anything above first level interior.
+	 */
+	public static final int	COLLISION_MULTISTORY	= 0x20;
+
+	/**
+	 * Sky.
+	 */
+	public static final int	COLLISION_SKY		= 0x40;
+
+	/**
+	 * The area a player [normally] occupies.
+	 */
+	public static final int	COLLISION_PLAYER	=
+		(COLLISION_LOWER|COLLISION_TABLETOP|COLLISION_MIDDLE);
+
 
 	private int x;
 
@@ -33,6 +79,11 @@ public abstract class Entity extends RPObject {
 	private double speed;
 
 	private boolean collides;
+
+	/**
+	 * The collisions mask.
+	 */
+	private int collisions;
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
@@ -159,6 +210,32 @@ public abstract class Entity extends RPObject {
 		return y;
 	}
 
+
+	/**
+	 * Get the collision areas for this entity.
+	 *
+	 * @return	A collision mask.
+	 */
+	public int getCollisions() {
+		return collisions;
+	}
+
+
+	/**
+	 * Set the collision areas for this entity.
+	 *
+	 * @param	collisions	A collision mask.
+	 */
+	public void setCollisions(int collisions) {
+		this.collisions = collisions;
+	}
+
+
+	/**
+	 * Set the current facing direction.
+	 *
+	 *
+	 */
 	public void setDirection(Direction dir) {
 		if (dir == this.direction) {
 			return;
@@ -167,6 +244,12 @@ public abstract class Entity extends RPObject {
 		put("dir", direction.get());
 	}
 
+
+	/**
+	 * Get the current facing direction.
+	 *
+	 *
+	 */
 	public Direction getDirection() {
 		return direction;
 	}
