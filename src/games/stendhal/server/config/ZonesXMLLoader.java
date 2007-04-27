@@ -19,6 +19,7 @@ import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -188,7 +189,14 @@ public class ZonesXMLLoader extends DefaultHandler {
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalMapStructure zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
+				StendhalMapStructure zonedata=null;
+				try {
+					zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
+				} catch(FileNotFoundException e) {
+					logger.info("File not found "+e.getMessage()+". Trying Development enviroment.");
+					zonedata=ServerTMXLoader.load(StendhalRPWorld.DEVELOPMENT_MAPS_FOLDER + zdesc.getFile());
+				}
+
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
 	
