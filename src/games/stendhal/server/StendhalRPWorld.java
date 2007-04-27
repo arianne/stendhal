@@ -49,7 +49,9 @@ import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
 
-	public static final String MAPS_FOLDER = "tiled/";
+	public static final String MAPS_FOLDER = "data/maps/";
+	
+	public static final String DEVELOPMENT_MAPS_FOLDER = "tiled/";
 
 	/**
 	 * A common place for milliseconds per turn.
