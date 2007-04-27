@@ -34,14 +34,14 @@ import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.rule.EntityManager;
+import games.stendhal.tools.tiled.LayerDefinition;
+import games.stendhal.tools.tiled.TileSetDefinition;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -55,6 +55,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.common.game.RPSlot;
+import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.TransferContent;
 import marauroa.server.game.MarauroaRPZone;
 
@@ -212,11 +213,31 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 	}
 
-	public void addLayer(String name, byte[] byteContents) {
+	public void addLayer(String name, LayerDefinition layer) throws IOException {
 		Log4J.startMethod(logger, "addLayer");
+		
+		byte[] byteContents=layer.encode();
 		addToContent(name, byteContents);
 		Log4J.finishMethod(logger, "addLayer");
 	}
+
+	public void addTilesets(String name, List<TileSetDefinition> tilesets) throws IOException {
+		Log4J.startMethod(logger, "addLayer");
+		
+		/*
+		 * Serialize the tileset data to send it to client.
+		 */
+		ByteArrayOutputStream array = new ByteArrayOutputStream();
+		OutputSerializer out=new OutputSerializer(array);
+		
+		out.write(tilesets.size());
+		for(TileSetDefinition set: tilesets) {
+			set.writeObject(out);
+		}
+		
+		addToContent(name, array.toByteArray());
+		Log4J.finishMethod(logger, "addLayer");
+    }
 
 	/**
 	 * Creates a new TransferContent for the specified data and adds it
@@ -233,18 +254,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		contents.add(content);
 	}
 
-	public void addCollisionLayer(String name, byte[] byteContents) throws IOException {
+	public void addCollisionLayer(String name, LayerDefinition collisionLayer) throws IOException {
 		Log4J.startMethod(logger, "addCollisionLayer");
-		addToContent(name, byteContents);
-		collisionMap.setCollisionData(new InputStreamReader(new ByteArrayInputStream(byteContents)));
+		addToContent(name, collisionLayer.encode());
+		collisionMap.setCollisionData(collisionLayer);
 
 		Log4J.finishMethod(logger, "addCollisionLayer");
 	}
 
-	public void addProtectionLayer(String name, byte[] byteContents) throws IOException {
+	public void addProtectionLayer(String name, LayerDefinition protectionLayer) throws IOException {
 		Log4J.startMethod(logger, "addProtectionLayer");
-		addToContent(name, byteContents);
-		protectionMap.setCollisionData(new InputStreamReader(new ByteArrayInputStream(byteContents)));
+		protectionMap.setCollisionData(protectionLayer);
 		Log4J.finishMethod(logger, "addProtectionLayer");
 	}
 
@@ -294,31 +314,22 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 * XXX - This should be moved to the zone loader or something.
 	 */
-	public void populate(byte[] byteContents) throws IOException, RPObjectInvalidException {
+	public void populate(LayerDefinition objectsLayer) throws IOException, RPObjectInvalidException {
 		Log4J.startMethod(logger, "populate");
-
-		BufferedReader file = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(byteContents)));
-
-		String text = file.readLine();
-		String[] size = text.split(" ");
-		int width = Integer.parseInt(size[0]);
-
-		int j = 0;
-
-		while ((text = file.readLine()) != null) {
-			if (text.trim().equals("")) {
-				break;
-			}
-
-			String[] items = text.split(",");
-			for (String item : items) {
-				int value = Integer.parseInt(item) - (2401) /*
-				 * Number of tiles
-				 * at
-				 * zelda_outside_chipset
-				 */;
-				createEntityAt(value, j % width, j / width);
-				j++;
+		
+		/* We build the layer data */
+		objectsLayer.build();
+		
+		for(int y=0;y<objectsLayer.getHeight();y++) {
+			for(int x=0;x<objectsLayer.getWidth();x++) {
+				int value = objectsLayer.getTileAt(x, y);
+				if(value>0) {
+					/*
+					 * When the value is 0, it means that there is no tile at that point.
+					 */
+					TileSetDefinition tileset=objectsLayer.getTilesetFor(value);					
+					createEntityAt(tileset.getSource(),value-tileset.getFirstGid(),x,y);
+				}
 			}
 		}
 
@@ -327,25 +338,29 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Create a map entity as a given coordinate.
+	 * @param clazz the clazz of entity we are loading.<br>
+	 *        It is related to the way entities are stored in tilesets now.
 	 *
 	 *
 	 */
-	protected void createEntityAt(int type, int x, int y) {
-		try {
+	protected void createEntityAt(String clazz, int type, int x, int y) {
+		logger.debug("creating "+clazz+":"+type+" at "+x+","+y);
+		
+		if(clazz.contains("logic/portal.png")) {
 			switch (type) {
-				case 1: /* Entry point */
-				case 2: /* Zone change */
+				case 0: /* Entry point */
+				case 1: /* Zone change */
 					setEntryPoint(x, y);
 					break;
 
-				case 6: /* one way portal destination */
-				case 3: /* portal stairs up */
-				case 4: /* portal stairs down */
+				case 5: /* one way portal destination */
+				case 2: /* portal stairs up */
+				case 3: /* portal stairs down */
 					createLevelPortalAt(type, x, y);
 					break;
-				case 5: /* portal */
+				case 4: /* portal */
 					break;
-				case 7: /* door */
+				case 6: /* door */
 					try {
 						StendhalRPWorld.get().createHouse(this, x, y);
 						numHouses++;
@@ -353,103 +368,110 @@ public class StendhalRPZone extends MarauroaRPZone {
 						logger.error("Error adding house to " + this, e);
 					}
 					break;
-				case 11: /* sheep */{
-					/*RespawnPoint point = new RespawnPoint(x, y, 2);
-					 Creature creature = new Sheep();
-					 assignRPObjectID(creature);
-					 point.set(this, creature, 1);
-					 //point.setRespawnTime(creature.getRespawnTime());
-					 respawnPoints.add(point);*/
-
-					Sheep sheep = new Sheep();
-					assignRPObjectID(sheep);
-					sheep.setX(x);
-					sheep.setY(y);
-					add(sheep);
-					break;
-				}
-				case 91: /* sign */
-					break;
-				case 92: /* SheepFood */
-				case 93: /* corn field */
-				case 102: /* button mushroom */
-				case 103: /* porcini */
-				case 104: /* toadstool */
-				case 108: /* apple */
-				case 109: /* carrot */
-				case 110: /* salad */
-				case 131: /* arandula */
-				case 132: /* wood */
-				case 133: /* iron ore */
-					PassiveEntityRespawnPoint plantGrower = null;
-					if (type == 92) {
-						plantGrower = new SheepFood();
-					} else if (type == 93) {
-						plantGrower = new GrainField();
-					} else if (type == 102) {
-						plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
-					} else if (type == 103) {
-						plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
-					} else if (type == 104) {
-						plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
-					} else if (type == 108) {
-						plantGrower = new PassiveEntityRespawnPoint("apple", 750);
-					} else if (type == 109) {
-						plantGrower = new CarrotGrower();
-					} else if (type == 110) {
-						plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
-					} else if (type == 131) {
-						plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
-					} else if (type == 132) {
-						plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
-					} else if (type == 133) {
-						plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
-						// TODO: This is only a workaround. We should find a better name
-						// than "plant grower", as we're also using them for resources,
-						// teddies and whatever. We should also consider making them
-						// non-clickable.
-						plantGrower.setDescription("You see a small vein of iron ore.");
-					}
-					assignRPObjectID(plantGrower);
-					plantGrower.setX(x);
-					plantGrower.setY(y);
-					add(plantGrower);
-					// full fruits on server restart
-					plantGrower.setToFullGrowth();
-
-					plantGrowers.add(plantGrower);
-
-					/*
-					 * XXX - TEMP!!
-					 * Until all maps are fixed, set all sheep food
-					 * as a collision.
-					 */
-					if (type == 92) {
-						collisionMap.setCollide(plantGrower.getArea(x, y), true);
-					}
-
-					break;
-				default: {
-					if (type >= 0) {
-						// get the default EntityManager
-						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-
-						// Is the entity a creature
-						if (manager.isCreature(type)) {
-							Creature creature = manager.getCreature(type);
-							CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
-							respawnPoints.add(point);
-						} else {
-							logger.warn("Unknown Entity (type: " + type + ") at (" + x + "," + y + ") of " + getID()
-							        + " found");
-						}
-					}
-					break;
-				}
 			}
-		} catch (AttributeNotFoundException e) {
-			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
+			return; 
 		}
+		
+//		// TODO: broken
+//		try {
+//			switch (type) {
+//				case 11: /* sheep */{
+//					/*RespawnPoint point = new RespawnPoint(x, y, 2);
+//					 Creature creature = new Sheep();
+//					 assignRPObjectID(creature);
+//					 point.set(this, creature, 1);
+//					 //point.setRespawnTime(creature.getRespawnTime());
+//					 respawnPoints.add(point);*/
+//
+//					Sheep sheep = new Sheep();
+//					assignRPObjectID(sheep);
+//					sheep.setX(x);
+//					sheep.setY(y);
+//					add(sheep);
+//					break;
+//				}
+//				case 91: /* sign */
+//					break;
+//				case 92: /* SheepFood */
+//				case 93: /* corn field */
+//				case 102: /* button mushroom */
+//				case 103: /* porcini */
+//				case 104: /* toadstool */
+//				case 108: /* apple */
+//				case 109: /* carrot */
+//				case 110: /* salad */
+//				case 131: /* arandula */
+//				case 132: /* wood */
+//				case 133: /* iron ore */
+//					PassiveEntityRespawnPoint plantGrower = null;
+//					if (type == 92) {
+//						plantGrower = new SheepFood();
+//					} else if (type == 93) {
+//						plantGrower = new GrainField();
+//					} else if (type == 102) {
+//						plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
+//					} else if (type == 103) {
+//						plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
+//					} else if (type == 104) {
+//						plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
+//					} else if (type == 108) {
+//						plantGrower = new PassiveEntityRespawnPoint("apple", 750);
+//					} else if (type == 109) {
+//						plantGrower = new CarrotGrower();
+//					} else if (type == 110) {
+//						plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
+//					} else if (type == 131) {
+//						plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
+//					} else if (type == 132) {
+//						plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
+//					} else if (type == 133) {
+//						plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
+//						// TODO: This is only a workaround. We should find a better name
+//						// than "plant grower", as we're also using them for resources,
+//						// teddies and whatever. We should also consider making them
+//						// non-clickable.
+//						plantGrower.setDescription("You see a small vein of iron ore.");
+//					}
+//					assignRPObjectID(plantGrower);
+//					plantGrower.setX(x);
+//					plantGrower.setY(y);
+//					add(plantGrower);
+//					// full fruits on server restart
+//					plantGrower.setToFullGrowth();
+//
+//					plantGrowers.add(plantGrower);
+//
+//					/*
+//					 * XXX - TEMP!!
+//					 * Until all maps are fixed, set all sheep food
+//					 * as a collision.
+//					 */
+//					if (type == 92) {
+//						collisionMap.setCollide(plantGrower.getArea(x, y), true);
+//					}
+//
+//					break;
+//				default: {
+//					if (type >= 0) {
+//						// get the default EntityManager
+//						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+//
+//						// Is the entity a creature
+//						if (manager.isCreature(type)) {
+//							Creature creature = manager.getCreature(type);
+//							CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
+//							respawnPoints.add(point);
+//						} else {
+//							logger.warn("Unknown Entity (type: " + type + ") at (" + x + "," + y + ") of " + getID()
+//							        + " found");
+//						}
+//					}
+//					break;
+//				}
+//			}
+//		} catch (AttributeNotFoundException e) {
+//			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
+//		}
 	}
 
 	/*
@@ -464,7 +486,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		Portal portal;
 
-		if (type != 6) {
+		if (type != 5) {
 			portal = new Portal();
 		} else {
 			portal = new OneWayPortalDestination();
@@ -493,12 +515,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 			/*
 			 * Portals in the correct direction?
 			 */
-			if (type == 3) {
+			if (type == 2) {
 				/* portal stairs up */
 				if ((zone.getLevel() - getLevel()) != 1) {
 					continue;
 				}
-			} else if (type == 4) {
+			} else if (type == 3) {
 				/* portal stairs down */
 				if ((zone.getLevel() - getLevel()) != -1) {
 					continue;
@@ -528,7 +550,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				continue;
 			}
 
-			if (type != 6) {
+			if (type != 5) {
 				portal.setDestination(zone.getID().getID(), zone.assignPortalID(target));
 			}
 
