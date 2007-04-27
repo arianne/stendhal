@@ -370,6 +370,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 						}
 						break;
 				}
+			} else if(clazz.contains("logic/creature/sheep")) {
+				Sheep sheep = new Sheep();
+				assignRPObjectID(sheep);
+				sheep.setX(x);
+				sheep.setY(y);
+				add(sheep);
 			} else if(clazz.contains("logic/creature")) {
 				// get the default EntityManager
 				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
@@ -382,12 +388,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				} else {
 					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
 				}
-			} else if(clazz.contains("logic/creature/sheep")) {
-				Sheep sheep = new Sheep();
-				assignRPObjectID(sheep);
-				sheep.setX(x);
-				sheep.setY(y);
-				add(sheep);
 			} else if(clazz.contains("logic/item")) {
 				PassiveEntityRespawnPoint plantGrower = null;
 
@@ -433,6 +433,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 							break;
 					}
 
+				} else if(clazz.contains("sign")) {
+					/*
+					 * Ignore signs.
+					 * The way to go is XML.
+					 */
+					return;					
+				}
+				
+				if(plantGrower==null) {
+					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
+					return;
 				}
 
 				assignRPObjectID(plantGrower);
