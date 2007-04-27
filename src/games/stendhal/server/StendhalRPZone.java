@@ -343,7 +343,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	protected void createEntityAt(String clazz, int type, int x, int y) {
 		logger.debug("creating "+clazz+":"+type+" at "+x+","+y);
 		
-		if(clazz.contains("logic/portal.png")) {
+		if(clazz.contains("logic/portal")) {
 			switch (type) {
 				case 0: /* Entry point */
 				case 1: /* Zone change */
@@ -366,10 +366,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					}
 					break;
 			}
-			return; 
-		}
-
-		if(clazz.contains("logic/creature")) {
+		} else if(clazz.contains("logic/creature")) {
 			// get the default EntityManager
 			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
 
@@ -381,28 +378,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 			} else {
 				logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
 			}
+		} else if(clazz.contains("logic/creature/sheep")) {
+			Sheep sheep = new Sheep();
+			assignRPObjectID(sheep);
+			sheep.setX(x);
+			sheep.setY(y);
+			add(sheep);
 		}
 		
 //		// TODO: broken
 //		try {
 //			switch (type) {
-//				case 11: /* sheep */{
-//					/*RespawnPoint point = new RespawnPoint(x, y, 2);
-//					 Creature creature = new Sheep();
-//					 assignRPObjectID(creature);
-//					 point.set(this, creature, 1);
-//					 //point.setRespawnTime(creature.getRespawnTime());
-//					 respawnPoints.add(point);*/
-//
-//					Sheep sheep = new Sheep();
-//					assignRPObjectID(sheep);
-//					sheep.setX(x);
-//					sheep.setY(y);
-//					add(sheep);
-//					break;
-//				}
-//				case 91: /* sign */
-//					break;
 //				case 92: /* SheepFood */
 //				case 93: /* corn field */
 //				case 102: /* button mushroom */
