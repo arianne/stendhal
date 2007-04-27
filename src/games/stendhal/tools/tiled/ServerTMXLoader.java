@@ -167,7 +167,6 @@ public class ServerTMXLoader {
 						}
 
 						byte[] raw=layer.exposeRaw();
-						int read=0;
 						int offset=0;
 						
 						while(offset!=raw.length) {
