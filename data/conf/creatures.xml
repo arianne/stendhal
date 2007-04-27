@@ -2,7 +2,7 @@
 <creatures>
 	<!-- Level 0 -->
 	<creature name="deer">
-		<type class="animal" subclass="deer" tileid="36"/>
+		<type class="animal" subclass="deer" tileid="animal.png:9"/>
 		<attributes>
 			<atk value="5"/>
 			<def value="9"/>
@@ -27,7 +27,7 @@
 		</ai>
 	</creature>
 	<creature name="crab">
-		<type class="animal" subclass="crab" tileid="79"/>
+		<type class="animal" subclass="crab" tileid="animal.png:8"/>
 		<attributes>
 			<atk value="10"/>
 			<def value="5"/>
@@ -53,7 +53,7 @@
 		</ai>
 	</creature>
 	<creature name="rat">
-		<type class="small_animal" subclass="rat" tileid="12"/>
+		<type class="small_animal" subclass="rat" tileid="small_animal.png:1"/>
 		<description>You see a small rat that seems to be extremely hungry.
 		</description>
 		<attributes>
@@ -81,7 +81,7 @@
 	</creature>
 	<!-- Level 1 -->
 	<creature name="bat">
-		<type class="animal" subclass="bat" tileid="77"/>
+		<type class="animal" subclass="bat" tileid="animal.png:0"/>
 		<attributes>
 			<atk value="19"/>
 			<def value="13"/>
@@ -104,7 +104,7 @@
 		</ai>
 	</creature>
 	<creature name="caverat">
-		<type class="small_animal" subclass="caverat" tileid="13"/>
+		<type class="small_animal" subclass="caverat" tileid="small_animal.png:0"/>
 		<attributes>
 			<atk value="16"/>
 			<def value="10"/>
@@ -129,7 +129,7 @@
 		</ai>
 	</creature>
 	<creature name="penguin">
-		<type class="animal" subclass="penguin" tileid="78"/>
+		<type class="animal" subclass="penguin" tileid="animal.png:16"/>
 		<attributes>
 			<atk value="27"/>
 			<def value="13"/>
@@ -157,7 +157,7 @@
 	</creature>
 	<!-- Level 2 -->
 	<creature name="monkey">
-		<type class="animal" subclass="monkey" tileid="76"/>
+		<type class="animal" subclass="monkey" tileid="animal.png:15"/>
 		<attributes>
 			<atk value="27"/>
 			<def value="13"/>
@@ -184,7 +184,7 @@
 		</ai>
 	</creature>
 	<creature name="boar">
-		<type class="animal" subclass="boar" tileid="20"/>
+		<type class="animal" subclass="boar" tileid="animal.png:4"/>
 		<attributes>
 			<atk value="27"/>
 			<def value="14"/>
@@ -211,7 +211,7 @@
 		</ai>
 	</creature>
 	<creature name="wolf">
-		<type class="animal" subclass="wolf" tileid="14"/>
+		<type class="animal" subclass="wolf" tileid="animal.png:20"/>
 		<attributes>
 			<atk value="27"/>
 			<def value="13"/>
@@ -238,7 +238,7 @@
 		</ai>
 	</creature>
 	<creature name="gnome">
-		<type class="gnome" subclass="gnome" tileid="50"/>
+		<type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
 		<attributes>
 			<atk value="35"/>
 			<def value="12"/>
@@ -268,7 +268,7 @@
 		</ai>
 	</creature>
 	<creature name="mage_gnome">
-		<type class="gnome" subclass="woman_gnome" tileid="87"/>
+		<type class="gnome" subclass="woman_gnome" tileid="gnome.png:1"/>
 		<attributes>
 			<atk value="35"/>
 			<def value="12"/>
@@ -299,7 +299,7 @@
 		</ai>
 	</creature>
 	<creature name="caiman">
-		<type class="animal" subclass="caiman" tileid="151"/>
+		<type class="animal" subclass="caiman" tileid="animal.png:6"/>
 		<attributes>
 			<atk value="27"/>
 			<def value="13"/>
@@ -327,8 +327,8 @@
 	</creature>
 	
 <!-- Level 3 -->
-	<creature name="cobra">
-		<type class="animal" subclass="cobra" tileid="15"/>
+	<creature name="snake">
+		<type class="animal" subclass="cobra" tileid="animal.png:7"/>
 		<attributes>
 			<atk value="16"/>
 			<def value="10"/>
@@ -357,7 +357,7 @@
 	</creature>
 	<!-- Level 4 -->
 	<creature name="bear">
-		<type class="animal" subclass="bear" tileid="28"/>
+		<type class="animal" subclass="bear" tileid="animal.png:1"/>
 		<attributes>
 			<atk value="45"/>
 			<def value="16"/>
@@ -384,7 +384,7 @@
 		</ai>
 	</creature>
 	<creature name="lion">
-		<type class="animal" subclass="lion" tileid="70"/>
+		<type class="animal" subclass="lion" tileid="animal.png:14"/>
 		<attributes>
 			<atk value="44"/>
 			<def value="16"/>
@@ -412,7 +412,7 @@
 	</creature>
 	<!-- Level 5 -->
 	 <creature name="goblin">
-		<type class="goblin" subclass="goblin" tileid="22"/>
+		<type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
 		<attributes>
 			<atk value="48"/>
 			<def value="14"/>
@@ -441,7 +441,7 @@
 		</ai>
 	</creature>
 	<creature name="kobold">
-		<type class="kobold" subclass="kobold" tileid="19"/>
+		<type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
 		<attributes>
 			<atk value="48"/>
 			<def value="17"/>
@@ -471,7 +471,7 @@
 		</ai>
 	</creature>
 	<creature name="elephant">
-		<type class="animal" subclass="elephant" tileid="71"/>
+		<type class="animal" subclass="elephant" tileid="animal.png:11"/>
 		<attributes>
 			<atk value="46"/>
 			<def value="11"/>
@@ -499,7 +499,7 @@
 		</ai>
 	</creature>
 	<creature name="venomrat">
-		<type class="small_animal" subclass="venomrat" tileid="29"/>
+		<type class="small_animal" subclass="venomrat" tileid="small_animal.png:3"/>
 		<attributes>
 			<atk value="33"/>
 			<def value="15"/>
@@ -526,7 +526,7 @@
 		</ai>
 	</creature>
 	<creature name="tiger">
-		<type class="animal" subclass="tiger" tileid="69"/>
+		<type class="animal" subclass="tiger" tileid="animal.png:19"/>
 		<attributes>
 			<atk value="47"/>
 			<def value="16"/>
@@ -556,7 +556,7 @@
 	</creature>
 	<!-- Level 6 -->
 	<creature name="skeleton">
-		<type class="undead" subclass="skeleton" tileid="24"/>
+		<type class="undead" subclass="skeleton" tileid="undead.png:9"/>
 		<attributes>
 			<atk value="51"/>
 			<def value="13"/>
@@ -585,7 +585,7 @@
 		</ai>
 	</creature>
 	<creature name="gargoyle">
-		<type class="gargoyle" subclass="gargoyle" tileid="17"/>
+		<type class="gargoyle" subclass="gargoyle" tileid="gargoyle.png:2"/>
 		<attributes>
 			<atk value="42"/>
 			<def value="17"/>
@@ -611,7 +611,7 @@
 		</ai>
 	</creature>
 	<creature name="young_beholder">
-		<type class="beholder" subclass="young_beholder" tileid="66"/>
+		<type class="beholder" subclass="young_beholder" tileid="beholder.png:2"/>
 		<attributes>
 			<atk value="47"/>
 			<def value="17"/>
@@ -638,7 +638,7 @@
 	</creature>
 	<!-- Level 7 -->
 	 <creature name="zombie_rat">
-		<type class="small_animal" subclass="zombierat" tileid="95"/>
+		<type class="small_animal" subclass="zombierat" tileid="small_animal.png:4"/>
 		<attributes>
 			<atk value="50"/>
 			<def value="12"/>
@@ -669,7 +669,7 @@
 		</ai>
 	</creature>
 	 <creature name="veteran_goblin">
-		<type class="goblin" subclass="veteran_goblin" tileid="48"/>
+		<type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
 		<attributes>
 			<atk value="53"/>
 			<def value="14"/>
@@ -698,7 +698,7 @@
 		</ai>
 	</creature>
 	<creature name="soldier_kobold">
-		<type class="kobold" subclass="soldier_kobold" tileid="43"/>
+		<type class="kobold" subclass="soldier_kobold" tileid="kobold.png:3"/>
 		<attributes>
 			<atk value="48"/>
 			<def value="18"/>
@@ -728,7 +728,7 @@
 		</ai>
 	</creature>
 	<creature name="killer_bat">
-		<type class="animal" subclass="killer_bat" tileid="122"/>
+		<type class="animal" subclass="killer_bat" tileid="animal.png:13"/>
 		<attributes>
 			<atk value="50"/>
 			<def value="16"/>
@@ -753,7 +753,7 @@
 	</creature>
 	<!-- Level 8 -->
 	<creature name="green_slime">
-		<type class="animal" subclass="green_slime" tileid="81"/>
+		<type class="animal" subclass="green_slime" tileid="animal.png:12"/>
 		<attributes>
 			<atk value="51"/>
 			<def value="17"/>
@@ -777,7 +777,7 @@
 		</ai>
 	</creature>
 	<creature name="archer_kobold">
-		<type class="kobold" subclass="archer_kobold" tileid="44"/>
+		<type class="kobold" subclass="archer_kobold" tileid="kobold.png:0"/>
 		<attributes>
 			<atk value="53"/>
 			<def value="16"/>
@@ -809,7 +809,7 @@
 		</ai>
 	</creature>
 	<creature name="black_bear">
-		<type class="animal" subclass="black_bear" tileid="37"/>
+		<type class="animal" subclass="black_bear" tileid="animal.png:2"/>
 		<attributes>
 			<atk value="49"/>
 			<def value="15"/>
@@ -836,7 +836,7 @@
 		</ai>
 	</creature>
 	<creature name="elder_gargoyle">
-		<type class="gargoyle" subclass="elder_gargoyle" tileid="56"/>
+		<type class="gargoyle" subclass="elder_gargoyle" tileid="gargoyle.png:1"/>
 		<attributes>
 			<atk value="52"/>
 			<def value="16"/>
@@ -862,7 +862,7 @@
 		</ai>
 	</creature>
 	<creature name="razorrat">
-		<type class="small_animal" subclass="razorrat" tileid="30"/>
+		<type class="small_animal" subclass="razorrat" tileid="small_animal.png:2"/>
 		<attributes>
 			<atk value="56"/>
 			<def value="20"/>
@@ -888,7 +888,7 @@
 	</creature>
 	<!-- Level 9 -->
 	<creature name="cyclops">
-		<type class="giant" subclass="cyclops" tileid="25"/>
+		<type class="giant" subclass="cyclops" tileid="giant.png:0"/>
 		<attributes>
 			<atk value="56"/>
 			<def value="17"/>
@@ -917,7 +917,7 @@
 		</ai>
 	</creature>
 	<creature name="beholder">
-		<type class="beholder" subclass="beholder" tileid="68"/>
+		<type class="beholder" subclass="beholder" tileid="beholder.png:0"/>
 		<attributes>
 			<atk value="53"/>
 			<def value="17"/>
@@ -940,7 +940,7 @@
 		</ai>
 	</creature>
 	 <creature name="soldier_goblin">
-		<type class="goblin" subclass="soldier_goblin" tileid="49"/>
+		<type class="goblin" subclass="soldier_goblin" tileid="goblin.png:1"/>
 		<attributes>
 			<atk value="59"/>
 			<def value="20"/>
@@ -967,7 +967,7 @@
 		</ai>
 	</creature>
 	<creature name="veteran_kobold">
-		<type class="kobold" subclass="veteran_kobold" tileid="42"/>
+		<type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
 		<attributes>
 			<atk value="57"/>
 			<def value="21"/>
@@ -996,7 +996,7 @@
 	</creature>
 	<!-- Level 10 -->
 	<creature name="troll">
-		<type class="troll" subclass="troll" tileid="21"/>
+		<type class="troll" subclass="troll" tileid="troll.png:0"/>
 		<attributes>
 			<atk value="59"/>
 			<def value="18"/>
@@ -1025,7 +1025,7 @@
 		</ai>
 	</creature>
 	<creature name="orc">
-		<type class="orc" subclass="orc" tileid="16"/>
+		<type class="orc" subclass="orc" tileid="orc.png:2"/>
 		<attributes>
 			<atk value="54"/>
 			<def value="20"/>
@@ -1051,7 +1051,7 @@
 		</ai>
 	</creature>
 	<creature name="dark_gargoyle">
-		<type class="gargoyle" subclass="dark_gargoyle" tileid="57"/>
+		<type class="gargoyle" subclass="dark_gargoyle" tileid="gargoyle.png:0"/>
 		<attributes>
 			<atk value="54"/>
 			<def value="17"/>
@@ -1082,7 +1082,7 @@
 	
 	<!-- Level 12 -->
 	<creature name="ogre">
-		<type class="giant" subclass="ogre" tileid="18"/>
+		<type class="giant" subclass="ogre" tileid="giant.png:2"/>
 		<attributes>
 			<atk value="59"/>
 			<def value="16"/>
@@ -1110,7 +1110,7 @@
 		</ai>
 	</creature>
 	<creature name="mummy">
-		<type class="mummy" subclass="mummy" tileid="41"/>
+		<type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
 		<attributes>
 			<atk value="58"/>
 			<def value="22"/>
@@ -1140,7 +1140,7 @@
 		</ai>
 	</creature>
 	<creature name="risecia_thug">
-		<type class="human" subclass="risecia_thug" tileid="141"/>
+		<type class="human" subclass="risecia_thug" tileid="human.png:17"/>
 		<attributes>
 			<atk value="55"/>
 			<def value="25"/>
@@ -1173,7 +1173,7 @@
 	</creature>
 	<!-- Level 13 -->
 	<creature name="leader_kobold">
-		<type class="kobold" subclass="leader_kobold" tileid="45"/>
+		<type class="kobold" subclass="leader_kobold" tileid="kobold.png:2"/>
 		<attributes>
 			<atk value="68"/>
 			<def value="18"/>
@@ -1205,7 +1205,7 @@
 	</creature>
 	<!-- Level 14 -->
 	<creature name="orc_warrior">
-		<type class="orc" subclass="orc_warrior" tileid="34"/>
+		<type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
 		<attributes>
 			<atk value="58"/>
 			<def value="18"/>
@@ -1236,7 +1236,7 @@
 		</ai>
 	</creature>
 	<creature name="orc_hunter">
-		<type class="orc" subclass="orc_hunter" tileid="40"/>
+		<type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
 		<attributes>
 			<atk value="65"/>
 			<def value="21"/>
@@ -1263,7 +1263,7 @@
 		</ai>
 	</creature>
 	  <creature name="risecia_archer">
-                <type class="human" subclass="risecia_archer" tileid="142"/>
+                <type class="human" subclass="risecia_archer" tileid="human.png:14"/>
                 <attributes>
                         <atk value="60"/>
                         <def value="20"/>
@@ -1294,7 +1294,7 @@
 
 	<!-- Level 15 -->
 	<creature name="ghost">
-		<type class="undead" subclass="ghost" tileid="90"/>
+		<type class="undead" subclass="ghost" tileid="undead.png:5"/>
 		<attributes>
 			<atk value="59"/>
 			<def value="20"/>
@@ -1321,7 +1321,7 @@
 		</ai>
 	</creature>
 	<creature name="giantrat">
-		<type class="giant_animal" subclass="giantrat" tileid="23"/>
+		<type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="18"/>
@@ -1348,7 +1348,7 @@
 		</ai>
 	</creature>
 	<creature name="elf">
-		<type class="elf" subclass="elf" tileid="26"/>
+		<type class="elf" subclass="elf" tileid="elf.png:3"/>
 		<attributes>
 			<atk value="63"/>
 			<def value="18"/>
@@ -1377,7 +1377,7 @@
 		</ai>
 	</creature>
 	<creature name="dwarf">
-		<type class="dwarf" subclass="dwarf" tileid="27"/>
+		<type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
 		<attributes>
 			<atk value="59"/>
 			<def value="17"/>
@@ -1407,7 +1407,7 @@
 		</ai>
 	</creature>
 	<creature name="ratman">
-		<type class="ratfolk" subclass="ratman" tileid="31"/>
+		<type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
 		<attributes>
 			<atk value="58"/>
 			<def value="14"/>
@@ -1439,7 +1439,7 @@
 		</ai>
 	</creature>
 	<creature name="ratwoman">
-		<type class="ratfolk" subclass="ratwoman" tileid="96"/>
+		<type class="ratfolk" subclass="ratwoman" tileid="ratfolk.png:2"/>
 		<attributes>
 			<atk value="58"/>
 			<def value="14"/>
@@ -1470,7 +1470,7 @@
 		</ai>
 	</creature>
 	<creature name="elder_beholder">
-		<type class="beholder" subclass="elder_beholder" tileid="67"/>
+		<type class="beholder" subclass="elder_beholder" tileid="beholder.png:1"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="21"/>
@@ -1494,7 +1494,7 @@
 		</ai>
 	</creature>
 	<creature name="crocodile">
-		<type class="giant_animal" subclass="crocodile" tileid="154"/>
+		<type class="giant_animal" subclass="crocodile" tileid="giant_animal.png:0"/>
 		<attributes>
 			<atk value="80"/>
 			<def value="18"/>
@@ -1528,7 +1528,7 @@
 	
 <!-- Level 16 -->
 	<creature name="brown_slime">
-		<type class="animal" subclass="brown_slime" tileid="82"/>
+		<type class="animal" subclass="brown_slime" tileid="animal.png:5"/>
 		<attributes>
 			<atk value="66"/>
 			<def value="17"/>
@@ -1552,7 +1552,7 @@
 		</ai>
 	</creature>
 	<creature name="venom_gargoyle">
-		<type class="gargoyle" subclass="venom_gargoyle" tileid="55"/>
+		<type class="gargoyle" subclass="venom_gargoyle" tileid="gargoyle.png:3"/>
 		<attributes>
 			<atk value="65"/>
 			<def value="20"/>
@@ -1582,7 +1582,7 @@
 		</ai>
 	</creature>
 	<creature name="bloody_zombie">
-                <type class="undead" subclass="bloody_zombie" tileid="115"/>
+                <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
                 <attributes>
                         <atk value="63"/>
                         <def value="22"/>
@@ -1613,7 +1613,7 @@
 
 	<!-- Level 17 -->
 	<creature name="elder_ogre">
-		<type class="giant" subclass="elder_ogre" tileid="54"/>
+		<type class="giant" subclass="elder_ogre" tileid="giant.png:1"/>
 		<attributes>
 			<atk value="68"/>
 			<def value="12"/>
@@ -1641,7 +1641,7 @@
 		</ai>
 	</creature>
       <creature name="risecia_swordsman">
-                <type class="human" subclass="risecia_swordsman" tileid="143"/>
+                <type class="human" subclass="risecia_swordsman" tileid="human.png:16"/>
                 <attributes>
                         <atk value="63"/>
                         <def value="19"/>
@@ -1673,7 +1673,7 @@
 	</creature>
 	<!-- Level 18 -->
 	<creature name="dwarf_guardian">
-		<type class="dwarf" subclass="dwarf_guardian" tileid="32"/>
+		<type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
 		<attributes>
 			<atk value="65"/>
 			<def value="18"/>
@@ -1703,7 +1703,7 @@
 		</ai>
 	</creature>
 	<creature name="orc_chief">
-		<type class="orc" subclass="orc_chief" tileid="35"/>
+		<type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="24"/>
@@ -1732,7 +1732,7 @@
 		</ai>
 	</creature>
 	<creature name="militia_elf">
-		<type class="elf" subclass="militia_elf" tileid="59"/>
+		<type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
 		<attributes>
 			<atk value="65"/>
 			<def value="21"/>
@@ -1762,7 +1762,7 @@
 	</creature>
 	<!-- Level 19 -->
 	<creature name="archer_elf">
-		<type class="elf" subclass="archer_elf" tileid="63"/>
+		<type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
 		<attributes>
 			<atk value="64"/>
 			<def value="18"/>
@@ -1793,7 +1793,7 @@
 		</ai>
 	</creature>
 	<creature name="zombie">
-		<type class="undead" subclass="zombie" tileid="75"/>
+		<type class="undead" subclass="zombie" tileid="undead.png:11"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="23"/>
@@ -1822,7 +1822,7 @@
 	</creature>
 	<!-- Level 20 -->
 	<creature name="elder_dwarf">
-		<type class="dwarf" subclass="elder_dwarf" tileid="33"/>
+		<type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
 		<attributes>
 			<atk value="68"/>
 			<def value="17"/>
@@ -1854,7 +1854,7 @@
 	</creature>
 
 	<creature name="vampire_bride">
-		<type class="vampire" subclass="vampire_lord_bride_evil" tileid="119"/>
+		<type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:1"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="20"/>
@@ -1880,7 +1880,7 @@
 		</ai>
 	</creature>
       <creature name="Chief_Falatheen_of_the_Risecia">
-                <type class="human" subclass="risecia_leader" tileid="144"/>
+                <type class="human" subclass="risecia_leader" tileid="human.png:15"/>
                 <attributes>
                         <atk value="70"/>
                         <def value="19"/>
@@ -1911,7 +1911,7 @@
                 </ai>
         </creature>
 	<creature name="spider">
-		<type class="animal" subclass="spider" tileid="153"/>
+		<type class="animal" subclass="spider" tileid="animal.png:18"/>
 		<attributes>
 			<atk value="80"/>
 			<def value="16"/>
@@ -1935,7 +1935,7 @@
 
     <!-- Level 21 -->
 	<creature name="soldier_elf">
-		<type class="elf" subclass="soldier_elf" tileid="58"/>
+		<type class="elf" subclass="soldier_elf" tileid="elf.png:7"/>
 		<attributes>
 			<atk value="75"/>
 			<def value="19"/>
@@ -1966,7 +1966,7 @@
 	</creature>
 
 	 <creature name="headless_monster">
-                <type class="undead" subclass="headless_monster" tileid="116"/>
+                <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
                 <attributes>
                         <atk value="75"/>
                         <def value="23"/>
@@ -1995,7 +1995,7 @@
 	<!-- Level 23 -->
 		
 	<creature name="warrior_skeleton">
-		<type class="undead" subclass="warrior_skeleton" tileid="73"/>
+		<type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
 		<attributes>
 			<atk value="74"/>
 			<def value="24"/>
@@ -2030,7 +2030,7 @@
 	
     <!-- Level 24 -->
 	<creature name="black_slime">
-		<type class="animal" subclass="black_slime" tileid="83"/>
+		<type class="animal" subclass="black_slime" tileid="animal.png:3"/>
 		<attributes>
 			<atk value="77"/>
 			<def value="17"/>
@@ -2054,7 +2054,7 @@
 		</ai>
 	</creature>
     <creature name="wooden_golem">
-		<type class="golem" subclass="wooden_golem" tileid="46"/>
+		<type class="golem" subclass="wooden_golem" tileid="golem.png:1"/>
 		<attributes>
 			<atk value="80"/>
 			<def value="17"/>
@@ -2080,7 +2080,7 @@
 		</ai>
 	</creature>
 	<creature name="royal_mummy">
-		<type class="mummy" subclass="royal_mummy" tileid="72"/>
+		<type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
 		<attributes>
 			<atk value="90"/>
 			<def value="25"/>
@@ -2108,7 +2108,7 @@
 		</ai>
 	</creature>
 	<creature name="cannibal_woman">
-		<type class="human" subclass="cannibalwoman" tileid="146"/>
+		<type class="human" subclass="cannibalwoman" tileid="human.png:9"/>
 		<attributes>
 			<atk value="90"/>
 			<def value="25"/>
@@ -2141,7 +2141,7 @@
 <!-- Level 25 -->
 		
 	<creature name="archrat">
-		<type class="ratfolk" subclass="archrat" tileid="39"/>
+		<type class="ratfolk" subclass="archrat" tileid="ratfolk.png:0"/>
 		<attributes>
 			<atk value="82"/>
 			<def value="27"/>
@@ -2174,7 +2174,7 @@
 		</ai>
 	</creature>
 	<creature name="hero_dwarf">
-		<type class="dwarf" subclass="hero_dwarf" tileid="65"/>
+		<type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
 		<attributes>
 			<atk value="79"/>
 			<def value="20"/>
@@ -2205,7 +2205,7 @@
 		</ai>
 	</creature>
 	<creature name="mage_elf">
-		<type class="elf" subclass="mage_elf" tileid="60"/>
+		<type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
 		<attributes>
 			<atk value="79"/>
 			<def value="24"/>
@@ -2231,7 +2231,7 @@
 		</ai>
 	</creature>
 	<creature name="glow_monster">
-		<type class="mutant" subclass="glow_monster" tileid="112"/>
+		<type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
 		<attributes>
 			<atk value="75"/>
 			<def value="26"/>
@@ -2258,7 +2258,7 @@
 	</creature>
 	
 	<creature name="poisonous_spider">
-		<type class="animal" subclass="poisonous_spider" tileid="152"/>
+		<type class="animal" subclass="poisonous_spider" tileid="animal.png:17"/>
 		<attributes>
 			<atk value="82"/>
 			<def value="25"/>
@@ -2289,7 +2289,7 @@
 	
     <!-- Level 27 -->
 	<creature name="monk">
-		<type class="human" subclass="monk" tileid="99"/>
+		<type class="human" subclass="monk" tileid="human.png:13"/>
 		<attributes>
 			<atk value="85"/>
 			<def value="20"/>
@@ -2320,7 +2320,7 @@
 	</creature>
  
 	<creature name="rotten_zombie">
-		<type class="undead" subclass="rotten_zombie" tileid="117"/>
+		<type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
 		<attributes>
 			<atk value="83"/>
 			<def value="23"/>
@@ -2352,7 +2352,7 @@
 
     <!-- Level 30 -->
 	<creature name="death">
-		<type class="undead" subclass="death" tileid="89"/>
+		<type class="undead" subclass="death" tileid="undead.png:2"/>
 		<attributes>
 			<atk value="84"/>
 			<def value="23"/>
@@ -2382,7 +2382,7 @@
 		</ai>
 	</creature>
 	<creature name="commander_elf">
-		<type class="elf" subclass="commander_elf" tileid="61"/>
+		<type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
 		<attributes>
 			<atk value="86"/>
 			<def value="28"/>
@@ -2412,7 +2412,7 @@
 		</ai>
 	</creature>
 	<creature name="cannibal">
-		<type class="human" subclass="cannibal" tileid="145"/>
+		<type class="human" subclass="cannibal" tileid="human.png:8"/>
 		<attributes>
 			<atk value="88"/>
 			<def value="27"/>
@@ -2445,7 +2445,7 @@
 	
     <!-- Level 32 -->
 	<creature name="stone_golem">
-		<type class="golem" subclass="stone_golem" tileid="47"/>
+		<type class="golem" subclass="stone_golem" tileid="golem.png:0"/>
 		<attributes>
 			<atk value="88"/>
 			<def value="27"/>
@@ -2472,7 +2472,7 @@
     <!-- Level 35 -->
     
 	<creature name="archmage_elf">
-		<type class="elf" subclass="archmage_elf" tileid="62"/>
+		<type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
 		<attributes>
 			<atk value="95"/>
 			<def value="25"/>
@@ -2499,7 +2499,7 @@
 		</ai>
 	</creature>
 	<creature name="leader_dwarf">
-		<type class="dwarf" subclass="leader_dwarf" tileid="64"/>
+		<type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
 		<attributes>
 			<atk value="95"/>
 			<def value="29"/>
@@ -2531,7 +2531,7 @@
 	</creature>
 	
 	<creature name="dark_mutant">
-		<type class="mutant" subclass="blacky" tileid="113"/>
+		<type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
 		<attributes>
 			<atk value="100"/>
 			<def value="27"/>
@@ -2559,7 +2559,7 @@
 	</creature>
 	
 	<creature name="elder_cannibal">
-		<type class="human" subclass="elder_cannibal" tileid="147"/>
+		<type class="human" subclass="elder_cannibal" tileid="human.png:11"/>
 		<attributes>
 			<atk value="97"/>
 			<def value="30"/>
@@ -2594,7 +2594,7 @@
 	<!-- Level 39-->
 	
 	<creature name="darkmonk">
-		<type class="human" subclass="darkmonk" tileid="100"/>
+		<type class="human" subclass="darkmonk" tileid="human.png:10"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="20"/>
@@ -2627,7 +2627,7 @@
 	<!-- Level 40 -->
 
 	<creature name="vampirette">
-		<type class="vampire" subclass="vampirette_evil" tileid="118"/>
+		<type class="vampire" subclass="vampirette_evil" tileid="vampire.png:4"/>
 		<attributes>
 			<atk value="130"/>
 			<def value="22"/>
@@ -2657,7 +2657,7 @@
 	<!-- Level 42 -->
 	
 	<creature name="demon_skeleton">
-		<type class="undead" subclass="demon_skeleton" tileid="74"/>
+		<type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
 		<attributes>
 			<atk value="170"/>
 			<def value="25"/>
@@ -2688,7 +2688,7 @@
 	<!-- Level 45 -->
 		
 	<creature name="elf_sacerdotist">
-		<type class="elf" subclass="elf_sacerdotist" tileid="80"/>
+		<type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
 		<attributes>
 			<atk value="121"/>
 			<def value="25"/>
@@ -2719,7 +2719,7 @@
 	<!-- Level 45 -->
 	
 	<creature name="minotaur">
-		<type class="minotaur" subclass="minotaur" tileid="97"/>
+		<type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
 		<attributes>
 			<atk value="160"/>
 			<def value="25"/>
@@ -2748,7 +2748,7 @@
 		</ai>
 	</creature>
 	<creature name="dark_elf">
-		<type class="dark_elf" subclass="dark_elf" tileid="167"/>
+		<type class="dark_elf" subclass="dark_elf" tileid="dark_elf.png:6"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="30"/>
@@ -2777,7 +2777,7 @@
 	
 	<!-- Level 49 -->
 	<creature name="dark_elf_archer">
-		<type class="dark_elf" subclass="dark_elf_archer" tileid="161"/>
+		<type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
 		<attributes>
 			<atk value="110"/>
 			<def value="20"/>
@@ -2811,7 +2811,7 @@
 	<!-- Level 50 -->
     
 	<creature name="earth_elemental">
-		<type class="elemental" subclass="earth_elemental" tileid="85"/>
+		<type class="elemental" subclass="earth_elemental" tileid="elemental.png:1"/>
 		<attributes>
 			<atk value="110"/>
 			<def value="21"/>
@@ -2835,7 +2835,7 @@
 		</ai>
 	</creature>
 	<creature name="fire_elemental">
-		<type class="elemental" subclass="fire_elemental" tileid="84"/>
+		<type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
 		<attributes>
 			<atk value="110"/>
 			<def value="21"/>
@@ -2859,7 +2859,7 @@
 		</ai>
 	</creature>
 	<creature name="water_elemental">
-		<type class="elemental" subclass="water_elemental" tileid="86"/>
+		<type class="elemental" subclass="water_elemental" tileid="elemental.png:3"/>
 		<attributes>
 			<atk value="110"/>
 			<def value="21"/>
@@ -2883,7 +2883,7 @@
 		</ai>
 	</creature>
 	<creature name="green_dragon">
-		<type class="huge_animal" subclass="green_dragon" tileid="51"/>
+		<type class="huge_animal" subclass="green_dragon" tileid="huge_animal.png:5"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="27"/>
@@ -2915,7 +2915,7 @@
 	<!-- Level 52 -->
 		
 	<creature name="dark_elf_elite_archer">
-		<type class="dark_elf" subclass="dark_elf_elite_archer" tileid="163"/>
+		<type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
 		<attributes>
 			<atk value="120"/>
 			<def value="20"/>
@@ -2946,7 +2946,7 @@
 		</ai>
 	</creature>
 	<creature name="death_knight">
-		<type class="undead" subclass="death_knight" tileid="88"/>
+		<type class="undead" subclass="death_knight" tileid="undead.png:1"/>
 		<attributes>
 			<atk value="150"/>
 			<def value="27"/>
@@ -2976,7 +2976,7 @@
 		</ai>
 	</creature>
 	<creature name="devil_queen">
-		<type class="undead" subclass="devil_queen" tileid="111"/>
+		<type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="28"/>
@@ -3003,7 +3003,7 @@
 	<!-- Level 55 -->
 
 	<creature name="giant_kobold">
-		<type class="huge_animal" subclass="giant_kobold" tileid="158"/>
+		<type class="huge_animal" subclass="giant_kobold" tileid="huge_animal.png:3"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="31"/>
@@ -3031,7 +3031,7 @@
 		</ai>
 	</creature>
 	<creature name="bone_dragon">
-		<type class="huge_animal" subclass="bone_dragon" tileid="121"/>
+		<type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
 		<attributes>
 			<atk value="145"/>
 			<def value="27"/>
@@ -3061,8 +3061,32 @@
 	</creature>
 	<!-- Level 60 -->
     
+	<creature name="djinn">
+		<type class="elemental" subclass="djinn" tileid="elemental.png:0"/>
+		<attributes>
+			<atk value="190"/>
+			<def value="30"/>
+			<hp value="400"/>
+			<speed value="1"/>
+			<size value="1,2"/>
+		</attributes>
+		<level value="60"/>
+		<experience value="6900"/>
+		<respawn value="1500"/>
+		<drops>
+			<item value="money" quantity="[5,40]" probability="100"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 	<creature name="dark_elf_captain">
-		<type class="dark_elf" subclass="dark_elf_captain" tileid="162"/>
+		<type class="dark_elf" subclass="dark_elf_captain" tileid="dark_elf.png:1"/>
 		<attributes>
 			<atk value="190"/>
 			<def value="35"/>
@@ -3090,7 +3114,7 @@
 	</creature>
 
     <creature name="lich">
-		<type class="undead" subclass="lich" tileid="38"/>
+		<type class="undead" subclass="lich" tileid="undead.png:7"/>
 		<attributes>
 			<atk value="160"/>
 			<def value="30"/>
@@ -3125,7 +3149,7 @@
 	<!-- Level 60 -->
 	
 	<creature name="minotaur_king">
-		<type class="minotaur" subclass="mino_king" tileid="98"/>
+		<type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
 		<attributes>
 			<atk value="160"/>
 			<def value="32"/>
@@ -3159,7 +3183,7 @@
 	<!-- Level 65 -->
 
 	<creature name="dark_elf_knight">
-		<type class="dark_elf" subclass="dark_elf_knight" tileid="165"/>
+		<type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
 		<attributes>
 			<atk value="180"/>
 			<def value="32"/>
@@ -3187,7 +3211,7 @@
 		</ai>
 	</creature>
 	<creature name="vampire_lord">
-		<type class="vampire" subclass="vampire_lord_evil" tileid="120"/>
+		<type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:3"/>
 		<attributes>
 			<atk value="170"/>
 			<def value="27"/>
@@ -3218,7 +3242,7 @@
 	<!-- Level 70 -->
     
 	<creature name="dark_elf_general">
-		<type class="dark_elf" subclass="dark_elf_general" tileid="164"/>
+		<type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
 		<attributes>
 			<atk value="200"/>
 			<def value="35"/>
@@ -3247,7 +3271,7 @@
 	</creature>
 
     <creature name="blue_dragon">
-		<type class="huge_animal" subclass="blue_dragon" tileid="52"/>
+		<type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
 		<attributes>
 			<atk value="210"/>
 			<def value="35"/>
@@ -3277,7 +3301,7 @@
 	<!-- Level 90 -->
     
 	<creature name="dark_elf_wizard">
-		<type class="dark_elf" subclass="dark_elf_wizard" tileid="170"/>
+		<type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
 		<attributes>
 			<atk value="225"/>
 			<def value="35"/>
@@ -3308,7 +3332,7 @@
 <!-- Level 100 -->
     
 	<creature name="dark_elf_viceroy">
-		<type class="dark_elf" subclass="dark_elf_viceroy" tileid="169"/>
+		<type class="dark_elf" subclass="dark_elf_viceroy" tileid="dark_elf.png:8"/>
 		<attributes>
 			<atk value="245"/>
 			<def value="35"/>
@@ -3339,7 +3363,7 @@
 
     <!-- Level 110 -->
     <creature name="giant_spider">
-		<type class="huge_animal" subclass="giant_spider" tileid="155"/>
+		<type class="huge_animal" subclass="giant_spider" tileid="huge_animal.png:4"/>
 		<attributes>
 			<atk value="255"/>
 			<def value="32"/>
@@ -3368,7 +3392,7 @@
 	</creature>
 
     <creature name="giant">
-		<type class="giant_human" subclass="giant" tileid="172"/>
+		<type class="giant_human" subclass="giant" tileid="giant_human.png:1"/>
 		<attributes>
 			<atk value="270"/>
 			<def value="30"/>
@@ -3398,7 +3422,7 @@
 	<!-- Level 125 -->
     
     <creature name="dark_elf_sacerdotist">
-		<type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="168"/>
+		<type class="dark_elf" subclass="dark_elf_sacerdotist" tileid="dark_elf.png:5"/>
 		<attributes>
 			<atk value="260"/>
 			<def value="33"/>
@@ -3426,7 +3450,7 @@
 		</ai>
 	</creature>
 	<creature name="red_dragon">
-		<type class="huge_animal" subclass="red_dragon" tileid="156"/>
+		<type class="huge_animal" subclass="red_dragon" tileid="huge_animal.png:6"/>
 		<attributes>
 			<atk value="250"/>
 			<def value="35"/>
@@ -3453,7 +3477,7 @@
 	</creature>
 
     <creature name="giant_elder">
-		<type class="giant_human" subclass="giant_elder" tileid="171"/>
+		<type class="giant_human" subclass="giant_elder" tileid="giant_human.png:0"/>
 		<attributes>
 			<atk value="270"/>
 			<def value="35"/>
@@ -3483,7 +3507,7 @@
 
     <!-- Level 150 -->
     <creature name="dark_elf_matronmother">
-		<type class="dark_elf" subclass="dark_elf_matronmother" tileid="166"/>
+		<type class="dark_elf" subclass="dark_elf_matronmother" tileid="dark_elf.png:7"/>
 		<attributes>
 			<atk value="265"/>
 			<def value="40"/>
@@ -3515,7 +3539,7 @@
 <!-- Level 200 -->
     
 	<creature name="black_dragon">
-		<type class="mythical_animal" subclass="black_dragon" tileid="53"/>
+		<type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
 		<attributes>
 			<atk value="290"/>
 			<def value="42"/>
@@ -3545,7 +3569,7 @@
 <!-- Level 300 -->
     
 	<creature name="black_death">
-		<type class="huge_animal" subclass="black_death" tileid="159"/>
+		<type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
 		<attributes>
 			<atk value="390"/>
 			<def value="53"/>
