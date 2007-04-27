@@ -272,6 +272,8 @@ class PlayerRPClass {
 			}
 		}
 	}
+	
+	final static public String DEFAULT_ENTRY_ZONE="int_semos_townhall";
 
 	/**
 	 * Places the player (and his/her sheep if there is one) into the world on login
@@ -301,7 +303,7 @@ class PlayerRPClass {
 			}
 
 			if (firstVisit) {
-				player.put("zoneid", "int_semos_townhall");
+				player.put("zoneid", DEFAULT_ENTRY_ZONE);
 			}
 
 			world.add(player);
@@ -310,7 +312,7 @@ class PlayerRPClass {
 			logger.warn("cannot place player at its last position. reseting to semos city entry point", e);
 
 			firstVisit = true;
-			player.put("zoneid", "int_semos_townhall");
+			player.put("zoneid", DEFAULT_ENTRY_ZONE);
 
 			player.notifyWorldAboutChanges();
 		}
