@@ -97,7 +97,7 @@ public class ItemDumper {
 	 */
 	public static void main(String[] args) throws Exception {
 		StendhalRPWorld.get();
-		Configuration.setConfigurationFile("marauroa.ini");
+		Configuration.setConfigurationFile("marauroa-prod.ini");
 		JDBCPlayerDatabase db = (JDBCPlayerDatabase) StendhalPlayerDatabase.resetDatabaseConnection();
 		ItemDumper itemDumper = new ItemDumper(db);
 		itemDumper.dump();
