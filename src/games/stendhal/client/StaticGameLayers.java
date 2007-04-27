@@ -14,14 +14,19 @@ package games.stendhal.client;
 
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Pair;
+import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import marauroa.common.Log4J;
+import marauroa.common.net.InputSerializer;
 
 import org.apache.log4j.Logger;
 
@@ -32,14 +37,13 @@ public class StaticGameLayers {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
 
+	private TileStore nextTilesets;
+	
 	/** List of pair name, layer */
 	private LinkedList<Pair<String, LayerRenderer>> layers;
 
 	/** List of pair name, layer */
 	private LinkedList<Pair<String, CollisionDetection>> collisions;
-
-	/** Tilestore contains the tiles to draw */
-	private TileStore tilestore;
 
 	/** Name of the layers set that we are rendering right now */
 	private String area;
@@ -50,32 +54,7 @@ public class StaticGameLayers {
 	public StaticGameLayers() {
 		layers = new LinkedList<Pair<String, LayerRenderer>>();
 		collisions = new LinkedList<Pair<String, CollisionDetection>>();
-		tilestore = TileStore.get();
-		String folder = "data/tilesets";
-		URL url = SpriteStore.get().getResourceURL(folder + "/zelda_outside_0_chipset.png");
-		if (url == null) {
-			logger.warn("Using development environement to load tilesets");
-			folder = "tiled/zelda3tilesets";
-		}
 
-		tilestore.add(folder + "/zelda_outside_0_chipset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_outside_1_chipset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_dungeon_0_chipset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_dungeon_1_chipset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_interior_0_chipset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_navigation_chipset.png", 1);
-		tilestore.add(folder + "/zelda_objects_chipset.png", 2 * 10 * 10);
-		tilestore.add(folder + "/zelda_collision_chipset.png", 2);
-		tilestore.add(folder + "/zelda_building_0_tileset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_outside_2_chipset.png", 30 * 16);
-		tilestore.add(folder + "/zelda_interior_1_chipset.png", 30 * 16);
-		tilestore.add(folder + "/fire_chipset.png", 7 * 6);
-
-		// TODO: change init process to do the preloading after StendhalFirstScreen is displayed
-		// see https://sourceforge.net/tracker/index.php?func=detail&aid=1697133&group_id=1111&atid=101111 for details
-		if (!System.getProperty("os.name", "").toLowerCase().startsWith("mac os")) {
-			tilestore.preload();
-		}
 		area = null;
 		areaChanged = true;
 	}
@@ -106,8 +85,9 @@ public class StaticGameLayers {
 		return height;
 	}
 
-	/** Add a new Layer to the set */
-	public void addLayer(Reader reader, String name) throws IOException {
+	/** Add a new Layer to the set 
+	 * @throws ClassNotFoundException */
+	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
 		Log4J.startMethod(logger, "addLayer");
 		try {
 			if (name.endsWith("_collision")) {
@@ -118,8 +98,11 @@ public class StaticGameLayers {
 					}
 				}
 				CollisionDetection collision = new CollisionDetection();
-				collision.setCollisionData(reader);
+				collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
 				collisions.add(new Pair<String, CollisionDetection>(name, collision));
+			} else if (name.endsWith("_tilesets")) {
+				nextTilesets=new TileStore();
+				nextTilesets.addTilesets(new InputSerializer(in));
 			} else if (name.endsWith("_map")) {
 
 			} else {
@@ -139,8 +122,9 @@ public class StaticGameLayers {
 					content = new ImageRenderer(url);
 				}
 				if (content == null) {
-					content = new TileRenderer(tilestore);
-					((TileRenderer) content).setMapData(reader);
+					//TODO: XXX
+					content = new TileRenderer(nextTilesets);
+					((TileRenderer) content).setMapData(new InputSerializer(in));
 				}
 				layers.add(i, new Pair<String, LayerRenderer>(name, content));
 			}
@@ -181,6 +165,7 @@ public class StaticGameLayers {
 				collisions.remove(i);
 			}
 		}
+		
 		this.area = area;
 		this.areaChanged = true;
 		Log4J.finishMethod(logger, "setRPZoneLayersSet");
