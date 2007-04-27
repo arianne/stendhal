@@ -60,7 +60,7 @@ class PlayerRPClass {
 
 	/** these items should be bound */
 	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key",
-	        "golden_armor", "golden_boots", "golden_helmet", "golden_legs", "golden_shield", "steel_boots",
+	        "golden_armor", "golden_boots", "golden_helmet", "golden_legs", "golden_shield",
 	        "trophy_helmet", "marked_scroll");
 
 	private static final List<String> itemNamesOld = Arrays.asList("flail_+2");
