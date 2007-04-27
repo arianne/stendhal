@@ -41,8 +41,8 @@ public class DefaultCreature {
 	/** optional creature description * */
 	private String description;
 
-	/** Map Tile Id */
-	private int tileid;
+	/** Map Tile Id in the way tileset.png:pos */
+	private String tileid;
 
 	/** hitpoints */
 	private int hp;
@@ -77,7 +77,7 @@ public class DefaultCreature {
 	/** speed relative to player [0.0 ... 1.0] */
 	private double speed;
 
-	public DefaultCreature(String clazz, String subclass, String name, int tileid) {
+	public DefaultCreature(String clazz, String subclass, String name, String tileid) {
 		this.clazz = clazz;
 		this.subclass = subclass;
 		this.name = name;
@@ -165,9 +165,9 @@ public class DefaultCreature {
 		creature.equip(equipsItems);
 		return creature;
 	}
-
+	
 	/** returns the tileid */
-	public int getTileId() {
+	public String getTileId() {
 		return tileid;
 	}
 

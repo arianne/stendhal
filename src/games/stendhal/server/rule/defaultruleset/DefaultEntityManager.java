@@ -40,7 +40,7 @@ public class DefaultEntityManager implements EntityManager {
 	private static DefaultEntityManager manager;
 
 	/** maps the tile ids to the classes */
-	private Map<Integer, String> idToClass;
+	private Map<String, String> idToClass;
 
 	/** maps the creature tile-ids to the actual creature enums */
 	private Map<String, DefaultCreature> classToCreature;
@@ -56,7 +56,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** no public constructor */
 	private DefaultEntityManager() {
-		idToClass = new HashMap<Integer, String>();
+		idToClass = new HashMap<String, String>();
 
 		// Build the items tables
 		classToItem = new HashMap<String, DefaultItem>();
@@ -67,7 +67,6 @@ public class DefaultEntityManager implements EntityManager {
 			List<DefaultItem> items = loader.load("data/conf/items.xml");
 
 			for (DefaultItem item : items) {
-				int id = item.getTileId();
 				String clazz = item.getItemName();
 
 				if (classToItem.containsKey(clazz)) {
@@ -75,9 +74,6 @@ public class DefaultEntityManager implements EntityManager {
 				}
 
 				classToItem.put(clazz, item);
-				if (id > 0) {
-					idToClass.put(id, clazz);
-				}
 			}
 		} catch (org.xml.sax.SAXException e) {
 			logger.error("items.xml could not be loaded",e);
@@ -92,7 +88,7 @@ public class DefaultEntityManager implements EntityManager {
 			List<DefaultCreature> creatures = loader.load("data/conf/creatures.xml");
 
 			for (DefaultCreature creature : creatures) {
-				int id = creature.getTileId();
+				String id = creature.getTileId();
 				String clazz = creature.getCreatureName();
 
 				if (classToCreature.containsKey(clazz)) {
@@ -104,9 +100,7 @@ public class DefaultEntityManager implements EntityManager {
 				}
 
 				classToCreature.put(clazz, creature);
-				if (id > 0) {
-					idToClass.put(id, clazz);
-				}
+				idToClass.put(id, clazz);
 			}
 		} catch (org.xml.sax.SAXException e) {
 			e.printStackTrace();
@@ -114,7 +108,6 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	public boolean addItem(DefaultItem item) {
-		int id = item.getTileId();
 		String clazz = item.getItemName();
 
 		if (classToItem.containsKey(clazz)) {
@@ -123,15 +116,12 @@ public class DefaultEntityManager implements EntityManager {
 		}
 
 		classToItem.put(clazz, item);
-		if (id > 0) {
-			idToClass.put(id, clazz);
-		}
 
 		return true;
 	}
 
 	public boolean addCreature(DefaultCreature creature) {
-		int id = creature.getTileId();
+		String id = creature.getTileId();
 		String clazz = creature.getCreatureName();
 
 		if (classToCreature.containsKey(clazz)) {
@@ -143,9 +133,7 @@ public class DefaultEntityManager implements EntityManager {
 		}
 
 		classToCreature.put(clazz, creature);
-		if (id > 0) {
-			idToClass.put(id, clazz);
-		}
+		idToClass.put(id, clazz);
 
 		return true;
 	}
@@ -172,20 +160,6 @@ public class DefaultEntityManager implements EntityManager {
 			manager = new DefaultEntityManager();
 		}
 		return manager;
-	}
-
-	/** returns the entity or <code>null</code> if the id is unknown */
-	public Entity getEntity(int id) {
-		if (id < 0) {
-			return null;
-		}
-
-		String clazz = idToClass.get(id);
-		if (clazz == null) {
-			return null;
-		}
-
-		return getEntity(clazz);
 	}
 
 	/**
@@ -218,12 +192,8 @@ public class DefaultEntityManager implements EntityManager {
 	/**
 	 * returns the creature or <code>null</code> if the id is unknown
 	 */
-	public Creature getCreature(int id) {
-		if (id < 0) {
-			return null;
-		}
-
-		String clazz = idToClass.get(id);
+	public Creature getCreature(String tileset, int id) {
+		String clazz = idToClass.get(tileset+":"+id);
 		if (clazz == null) {
 			return null;
 		}
@@ -255,12 +225,8 @@ public class DefaultEntityManager implements EntityManager {
 	}
 
 	/** return true if the Entity is a creature */
-	public boolean isCreature(int id) {
-		if (id < 0) {
-			return false;
-		}
-
-		String clazz = idToClass.get(id);
+	public boolean isCreature(String tileset, int id) {
+		String clazz = idToClass.get(tileset+":"+id);
 		if (clazz == null) {
 			return false;
 		}
@@ -276,41 +242,12 @@ public class DefaultEntityManager implements EntityManager {
 		return classToCreature.containsKey(clazz);
 	}
 
-	public boolean isItem(int id) {
-		if (id < 0) {
-			return false;
-		}
-
-		String clazz = idToClass.get(id);
-		if (clazz == null) {
-			return false;
-		}
-
-		return isItem(clazz);
-	}
-
 	/** return true if the Entity is a creature */
 	public boolean isItem(String clazz) {
 		if (clazz == null) {
 			throw new NullPointerException("entity class is null");
 		}
 		return classToItem.containsKey(clazz);
-	}
-
-	/**
-	 * returns the item or <code>null</code> if the id is unknown
-	 */
-	public Item getItem(int id) {
-		if (id < 0) {
-			return null;
-		}
-
-		String clazz = idToClass.get(id);
-		if (clazz == null) {
-			return null;
-		}
-
-		return getItem(clazz);
 	}
 
 	/**
