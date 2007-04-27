@@ -24,12 +24,13 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 public class ItemTest {
-	private static final String ZONE_NAME = "0_semos_village_w"; 
+	private static final String ZONE_NAME = "0_semos_village_w";
+	private static final String ZONE_CONTENT = "Level 0/semos/village_w.tmx"; 
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addArea(ZONE_NAME);
+		world.addArea(ZONE_NAME, ZONE_CONTENT);
 
 	}
 

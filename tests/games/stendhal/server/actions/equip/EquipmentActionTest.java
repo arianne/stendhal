@@ -23,7 +23,8 @@ import org.xml.sax.SAXException;
  * @author hendrik
  */
 public class EquipmentActionTest {
-	private static final String ZONE_NAME = "0_semos_city"; 
+	private static final String ZONE_NAME = "0_semos_city";
+	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx"; 
 
 	/**
 	 * A mock player used for testing.
@@ -61,15 +62,13 @@ public class EquipmentActionTest {
 
 	/**
 	 * initialize the world
-	 *
-	 * @throws SAXException on an invalid zones.xml configuration file
-	 * @throws IOException on an input / output error
+	 * @throws Exception 
 	 */
 	@BeforeClass
-	public static void buildWorld() throws SAXException, IOException {
+	public static void buildWorld() throws Exception {
 		// TODO: Check what happens if this has already been done by some other test. 
 		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addArea(ZONE_NAME);
+		world.addArea(ZONE_NAME, ZONE_CONTENT);
 		Player.generateRPClass();
 	}
 
