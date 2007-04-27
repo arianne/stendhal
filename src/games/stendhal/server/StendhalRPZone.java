@@ -27,8 +27,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.entity.spawner.CarrotGrower;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.entity.spawner.GrainField;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
+import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.rule.EntityManager;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -343,132 +346,117 @@ public class StendhalRPZone extends MarauroaRPZone {
 	protected void createEntityAt(String clazz, int type, int x, int y) {
 		logger.debug("creating "+clazz+":"+type+" at "+x+","+y);
 		
-		if(clazz.contains("logic/portal")) {
-			switch (type) {
-				case 0: /* Entry point */
-				case 1: /* Zone change */
-					setEntryPoint(x, y);
-					break;
+		try {		
+			if(clazz.contains("logic/portal")) {
+				switch (type) {
+					case 0: /* Entry point */
+					case 1: /* Zone change */
+						setEntryPoint(x, y);
+						break;
 
-				case 5: /* one way portal destination */
-				case 2: /* portal stairs up */
-				case 3: /* portal stairs down */
-					createLevelPortalAt(type, x, y);
-					break;
-				case 4: /* portal */
-					break;
-				case 6: /* door */
-					try {
-						StendhalRPWorld.get().createHouse(this, x, y);
-						numHouses++;
-					} catch (Exception e) {
-						logger.error("Error adding house to " + this, e);
+					case 5: /* one way portal destination */
+					case 2: /* portal stairs up */
+					case 3: /* portal stairs down */
+						createLevelPortalAt(type, x, y);
+						break;
+					case 4: /* portal */
+						break;
+					case 6: /* door */
+						try {
+							StendhalRPWorld.get().createHouse(this, x, y);
+							numHouses++;
+						} catch (Exception e) {
+							logger.error("Error adding house to " + this, e);
+						}
+						break;
+				}
+			} else if(clazz.contains("logic/creature")) {
+				// get the default EntityManager
+				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+
+				// Is the entity a creature
+				if (manager.isCreature(clazz, type)) {
+					Creature creature = manager.getCreature(clazz, type);
+					CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
+					respawnPoints.add(point);
+				} else {
+					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
+				}
+			} else if(clazz.contains("logic/creature/sheep")) {
+				Sheep sheep = new Sheep();
+				assignRPObjectID(sheep);
+				sheep.setX(x);
+				sheep.setY(y);
+				add(sheep);
+			} else if(clazz.contains("logic/item")) {
+				PassiveEntityRespawnPoint plantGrower = null;
+
+				if(clazz.contains("arandula")) {
+					plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
+				} else if(clazz.contains("corn")) {
+					plantGrower = new GrainField();
+				} else if(clazz.contains("mushroom")) {
+					switch(type) {
+						case 0:
+							plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
+							break;
+						case 1:
+							plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
+							break;
+						case 2:
+							plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
+							break;
 					}
-					break;
-			}
-		} else if(clazz.contains("logic/creature")) {
-			// get the default EntityManager
-			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+				} else if(clazz.contains("resources")) {
+					switch(type) {
+						case 0:
+							plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
+							break;
+						case 1:
+							plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
+							// TODO: This is only a workaround. We should find a better name
+							// than "plant grower", as we're also using them for resources,
+							// teddies and whatever. We should also consider making them
+							// non-clickable.
+							plantGrower.setDescription("You see a small vein of iron ore.");
+							break;
+					}
+				} else if(clazz.contains("sheepfood")) {
+					plantGrower = new SheepFood();
+				} else if(clazz.contains("vegetable")) {
+					switch(type) {
+						case 1:
+							plantGrower = new CarrotGrower();
+							break;
+						case 2:
+							plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
+							break;
+					}
 
-			// Is the entity a creature
-			if (manager.isCreature(clazz, type)) {
-				Creature creature = manager.getCreature(clazz, type);
-				CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
-				respawnPoints.add(point);
-			} else {
-				logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
-			}
-		} else if(clazz.contains("logic/creature/sheep")) {
-			Sheep sheep = new Sheep();
-			assignRPObjectID(sheep);
-			sheep.setX(x);
-			sheep.setY(y);
-			add(sheep);
+				}
+
+				assignRPObjectID(plantGrower);
+				plantGrower.setX(x);
+				plantGrower.setY(y);
+				add(plantGrower);
+
+				// full fruits on server restart
+				plantGrower.setToFullGrowth();
+
+				plantGrowers.add(plantGrower);
+
+				/*
+				 * XXX - TEMP!!
+				 * Until all maps are fixed, set all sheep food
+				 * as a collision.
+				 */
+				if(clazz.contains("sheepfood")) {
+					collisionMap.setCollide(plantGrower.getArea(x, y), true);
+				}			
+			}		
+		} catch (AttributeNotFoundException e) {
+			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
 		}
-		
-//		// TODO: broken
-//		try {
-//			switch (type) {
-//				case 92: /* SheepFood */
-//				case 93: /* corn field */
-//				case 102: /* button mushroom */
-//				case 103: /* porcini */
-//				case 104: /* toadstool */
-//				case 108: /* apple */
-//				case 109: /* carrot */
-//				case 110: /* salad */
-//				case 131: /* arandula */
-//				case 132: /* wood */
-//				case 133: /* iron ore */
-//					PassiveEntityRespawnPoint plantGrower = null;
-//					if (type == 92) {
-//						plantGrower = new SheepFood();
-//					} else if (type == 93) {
-//						plantGrower = new GrainField();
-//					} else if (type == 102) {
-//						plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
-//					} else if (type == 103) {
-//						plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
-//					} else if (type == 104) {
-//						plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
-//					} else if (type == 108) {
-//						plantGrower = new PassiveEntityRespawnPoint("apple", 750);
-//					} else if (type == 109) {
-//						plantGrower = new CarrotGrower();
-//					} else if (type == 110) {
-//						plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
-//					} else if (type == 131) {
-//						plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
-//					} else if (type == 132) {
-//						plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
-//					} else if (type == 133) {
-//						plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
-//						// TODO: This is only a workaround. We should find a better name
-//						// than "plant grower", as we're also using them for resources,
-//						// teddies and whatever. We should also consider making them
-//						// non-clickable.
-//						plantGrower.setDescription("You see a small vein of iron ore.");
-//					}
-//					assignRPObjectID(plantGrower);
-//					plantGrower.setX(x);
-//					plantGrower.setY(y);
-//					add(plantGrower);
-//					// full fruits on server restart
-//					plantGrower.setToFullGrowth();
-//
-//					plantGrowers.add(plantGrower);
-//
-//					/*
-//					 * XXX - TEMP!!
-//					 * Until all maps are fixed, set all sheep food
-//					 * as a collision.
-//					 */
-//					if (type == 92) {
-//						collisionMap.setCollide(plantGrower.getArea(x, y), true);
-//					}
-//
-//					break;
-//				default: {
-//					if (type >= 0) {
-//						// get the default EntityManager
-//						EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
-//
-//						// Is the entity a creature
-//						if (manager.isCreature(type)) {
-//							Creature creature = manager.getCreature(type);
-//							CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
-//							respawnPoints.add(point);
-//						} else {
-//							logger.warn("Unknown Entity (type: " + type + ") at (" + x + "," + y + ") of " + getID()
-//							        + " found");
-//						}
-//					}
-//					break;
-//				}
-//			}
-//		} catch (AttributeNotFoundException e) {
-//			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
-//		}
 	}
 
 	/*
