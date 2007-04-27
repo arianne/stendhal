@@ -14,13 +14,12 @@ package games.stendhal.client;
 
 import games.stendhal.tools.tiled.LayerDefinition;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
 import marauroa.common.Log4J;
 import marauroa.common.net.InputSerializer;
 
