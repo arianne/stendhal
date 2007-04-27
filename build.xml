@@ -270,7 +270,7 @@
 	<target name="distworking" description="use dist instead">
 		<echo>Deprecated: Please use ant dist</echo>
 	</target>
-	<target name="dist" depends="rendermaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
+	<target name="dist" depends="sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
