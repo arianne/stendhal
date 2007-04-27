@@ -15,10 +15,6 @@ package games.stendhal.common;
 import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.geom.Rectangle2D;
-import java.io.IOException;
-import java.io.InputStream;
-
-import marauroa.common.net.InputSerializer;
 
 /**
  * This class loads the map and allow you to determine if a player collides or
@@ -90,8 +86,6 @@ public class CollisionDetection {
 		
 		width=collisionLayer.getWidth();
 		height=collisionLayer.getHeight();
-
-		System.out.println("Collision: " +width+"x"+height);
 				
 		blocked = new boolean[width * height];
 		for(int y=0;y<height;y++) {
