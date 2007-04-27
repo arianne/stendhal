@@ -33,7 +33,7 @@ import java.util.Map;
 
 /**
  * The panel where you can adjust your settings
- * 
+ *
  * @author mtotz
  */
 public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseListener {
@@ -45,16 +45,16 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** the Character panel */
 	private Character character;
-	
+
 	/** the Key ring panel */
 	private KeyRing keyring;
 
 	/** the buddy list panel */
 	private BuddyListDialog nbuddies;
 	private ManagedWindow buddies;
-	
+
 	public BuyWindow buywindow;
-	
+
 	private GameButtonHelper gbh;
 
 	/** the minimap panel */
@@ -62,13 +62,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** the inventory */
 	private EntityContainer inventory;
-        
+
         /** the spells list */
         private EntityContainer spells;
 
 	/** the player */
 	private User player;
-	
+
 	/**spells button*/
 	private WtButton spellsButton;
 
@@ -81,10 +81,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(StendhalUI ui, WtPanel frame) {
 		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 280);
-                
+
 		this.client = ui.getClient();
-		
-		
+
+
 		setTitletext("Settings");
 
 		setFrame(true);
@@ -96,7 +96,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		character = new Character(ui);
 		character.registerCloseListener(this);
 		frame.addChild(character);
-		
+
 		keyring = new KeyRing(client);
 		keyring.registerCloseListener(this);
 		frame.addChild(keyring);
@@ -110,11 +110,11 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			frame.addChild(obuddies);
 			buddies = obuddies;
 		}
-		
+
 		buywindow = new BuyWindow(StendhalUI.get());
 		((j2DClient) StendhalUI.get()).addDialog(buywindow.getDialog()); //isn't visible, set visible by other component (below)
 		buywindow.setVisible(false);
-		
+
 		gbh = new GameButtonHelper(this, StendhalUI.get());
 		((j2DClient) StendhalUI.get()).addDialog(gbh.getDialog());
 		gbh.setVisible(true);
@@ -124,15 +124,15 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);
 		frame.addChild(inventory);
-		
+
 		//the spells list
 		spells = new EntityContainer(client, "spells", 3, 4);
-		spells.registerCloseListener(this);
 		frame.addChild(spells);
-		spells.setSlot(player, "spells");
 		spells.setVisible(false);
+//		spells.setSlot(player, "spells");
+		spells.registerCloseListener(this);
 
-                
+
 		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
 		frame.addChild(minimap);
@@ -161,7 +161,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("bag", button);
-		
+
 		button = new WtButton("keyring", 150, 30, "Enable Key Ring");
 		button.moveTo(10, 130);
 		button.setPressed(keyring.isVisible());
@@ -175,7 +175,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("buddies", button);
-                
+
 		spellsButton = new WtButton("spells", 150, 30, "Enable Spells Window");
 		spellsButton.moveTo(10, 210);
 		spellsButton.setPressed(spells.isVisible());
@@ -199,10 +199,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** updates the minimap */
 	public void setPlayer(User user) {
-		
-	    this.player = player;
-	    
-	    if (User.isNull()) {
+		if(user == null) {
 			return;
 		}
 
@@ -214,24 +211,20 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 				nbuddies.update();
 		}
 
-		GameObjects gameObjects = client.getGameObjects();
-		User newPlayer = (User) gameObjects.get(user.getID());
-
-		// check if the player object has changed. Note: this is an exact object
-		// reference check
-		if (newPlayer != player) {
-			this.player = newPlayer;
+		// check if the player object has changed.
+		// Note: this is an exact object reference check
+		if (user != player) {
+			this.player = user;
 
 			character.setPlayer(player);
 			keyring.setSlot(player, "keyring");
 			inventory.setSlot(player, "bag");
 			minimap.setPlayer(player);
+
                         spells.setSlot(player, "spells");
+
 			if (player.getSlot("spells") != null) {
-			    spells.setVisible(true);
-			} else; //just do nothing if the RPSlot is empty, keep setVisible(false)
-			if (player.getSlot("spells") != null) { //we init vars now to enable them a bit easier to enable later
-			    spellsButton.setVisible(true);
+				spellsButton.setVisible(true);
 			}
 		}
 
