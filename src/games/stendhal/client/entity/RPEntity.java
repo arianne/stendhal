@@ -330,15 +330,8 @@ public abstract class RPEntity extends ActiveEntity {
 	protected void fireAttackEvent(final RPObject base, final RPObject diff) {
 		if ((diff == null) && (base == null)) {
 			// Remove case
-
-			onStopAttack();
-
-			if (attackTarget != null) {
-				attackTarget.onStopAttacked(this);
-				attackTarget = null;
-			}
 		} else if (diff == null) {
-			// Modified case
+			// First time case
 			if (base.has("target")) {
 				int risk = (base.has("risk") ? base.getInt("risk") : 0);
 				int damage = (base.has("damage") ? base.getInt("damage") : 0);
@@ -452,85 +445,11 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	protected void fireAttackEventChangedRemoved(final RPObject base, final RPObject diff) {
-		if (diff.has("target")) {
-			onStopAttack();
-
-			if (attackTarget != null) {
-				attackTarget.onStopAttacked(this);
-				attackTarget = null;
-			}
-		}
-	}
-
 	protected void fireKillEvent(final RPObject base,final  RPObject diff) {
 		if (diff!=null){
 				if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
 					onDeath(lastAttacker);
 				}
-		}
-	}
-
-	protected void fireTalkEvent(final RPObject base,final  RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-			if (base.has("text")) {
-				String text = base.get("text");
-				onTalk(text);
-			}
-
-			if (base.has("private_text")) {
-				String text = base.get("private_text");
-				onPrivateListen(text);
-			}
-		} else {
-			if (diff.has("text")) {
-				String text = diff.get("text");
-				onTalk(text);
-			}
-
-			if (diff.has("private_text")) {
-				String text = diff.get("private_text");
-				onPrivateListen(text);
-			}
-		}
-	}
-
-	protected void fireHPEvent(final RPObject base, final RPObject diff) {
-
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case.
-		} else {
-			if (diff.has("hp") && base.has("hp")) {
-				int healing = diff.getInt("hp") - base.getInt("hp");
-				if (healing > 0) {
-					onHealed(healing);
-				}
-			}
-			//only for player
-			if (diff.has("poisoned")) {
-				// To remove the - sign on poison.
-				onPoisoned(Math.abs(diff.getInt("poisoned")));
-			}
-
-			// only for Players
-			if (diff.has("eating")) {
-				onEat(0);
-			}
-		}
-	}
-
-	private void fireHPEventChangedRemoved(final RPObject base, final RPObject diff) {
-		if (diff.has("poisoned")) {
-			onPoisonEnd();
-		}
-
-		if (diff.has("eating")) {
-			onEatEnd();
 		}
 	}
 
@@ -849,9 +768,14 @@ public abstract class RPEntity extends ActiveEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		fireTalkEvent(object, null);
-		fireHPEvent(object, null);
-		fireKillEvent(object, null);
+		if (object.has("text")) {
+			onTalk(object.get("text"));
+		}
+
+		if (object.has("private_text")) {
+			onPrivateListen(object.get("private_text"));
+		}
+
 		fireAttackEvent(object, null);
 	}
 
@@ -864,12 +788,14 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	@Override
 	public void release() {
-		super.release();
+		onStopAttack();
 
-		fireTalkEvent(null, null);
-		fireHPEvent(null, null);
-		fireKillEvent(null, null);
-		fireAttackEvent(null, null);
+		if (attackTarget != null) {
+			attackTarget.onStopAttacked(this);
+			attackTarget = null;
+		}
+
+		super.release();
 	}
 
 
@@ -888,9 +814,45 @@ public abstract class RPEntity extends ActiveEntity {
 		super.onChangedAdded(object, changes);
 
 		if (!inAdd) {
+			/*
+			 * Public chat
+			 */
+			if (changes.has("text")) {
+				onTalk(changes.get("text"));
+			}
 
-			fireTalkEvent(object, changes);
-			fireHPEvent(object, changes);
+			/*
+			 * Private message
+			 */
+			if (changes.has("private_text")) {
+				onPrivateListen(changes.get("private_text"));
+			}
+
+			/*
+			 * HP change
+			 */
+			if (changes.has("hp") && object.has("hp")) {
+				int healing = changes.getInt("hp") - object.getInt("hp");
+				if (healing > 0) {
+					onHealed(healing);
+				}
+			}
+
+			/*
+			 * Eating
+			 */
+			if (changes.has("eating")) {
+				onEat(0);
+			}
+
+			/*
+			 * Poisoned
+			 */
+			if (changes.has("poisoned")) {
+				// To remove the - sign on poison.
+				onPoisoned(Math.abs(changes.getInt("poisoned")));
+			}
+
 			fireKillEvent(object, changes);
 			fireAttackEvent(object, changes);
 		}
@@ -1024,8 +986,31 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		super.onChangedRemoved(object, changes);
 
-		fireHPEventChangedRemoved(object, changes);
-		fireAttackEventChangedRemoved(object, changes);
+		/*
+		 * No longer poisoned?
+		 */
+		if (changes.has("poisoned")) {
+			onPoisonEnd();
+		}
+
+		/*
+		 * No longer eating?
+		 */
+		if (changes.has("eating")) {
+			onEatEnd();
+		}
+
+		/*
+		 * Attack target gone?
+		 */
+		if (changes.has("target")) {
+			onStopAttack();
+
+			if (attackTarget != null) {
+				attackTarget.onStopAttacked(this);
+				attackTarget = null;
+			}
+		}
 	}
 
 	//
