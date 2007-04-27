@@ -1140,7 +1140,7 @@
 		</ai>
 	</creature>
 	<creature name="risecia_thug">
-		<type class="human" subclass="risecia_thug" tileid="human.png:17"/>
+		<type class="human" subclass="risecia_thug" tileid="human.png:8"/>
 		<attributes>
 			<atk value="55"/>
 			<def value="25"/>
@@ -1263,7 +1263,7 @@
 		</ai>
 	</creature>
 	  <creature name="risecia_archer">
-                <type class="human" subclass="risecia_archer" tileid="human.png:14"/>
+                <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
                 <attributes>
                         <atk value="60"/>
                         <def value="20"/>
@@ -1641,7 +1641,7 @@
 		</ai>
 	</creature>
       <creature name="risecia_swordsman">
-                <type class="human" subclass="risecia_swordsman" tileid="human.png:16"/>
+                <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
                 <attributes>
                         <atk value="63"/>
                         <def value="19"/>
@@ -1880,7 +1880,7 @@
 		</ai>
 	</creature>
       <creature name="Chief_Falatheen_of_the_Risecia">
-                <type class="human" subclass="risecia_leader" tileid="human.png:15"/>
+                <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
                 <attributes>
                         <atk value="70"/>
                         <def value="19"/>
@@ -2108,7 +2108,7 @@
 		</ai>
 	</creature>
 	<creature name="cannibal_woman">
-		<type class="human" subclass="cannibalwoman" tileid="human.png:9"/>
+		<type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
 		<attributes>
 			<atk value="90"/>
 			<def value="25"/>
@@ -2289,7 +2289,7 @@
 	
     <!-- Level 27 -->
 	<creature name="monk">
-		<type class="human" subclass="monk" tileid="human.png:13"/>
+		<type class="human" subclass="monk" tileid="human.png:4"/>
 		<attributes>
 			<atk value="85"/>
 			<def value="20"/>
@@ -2412,7 +2412,7 @@
 		</ai>
 	</creature>
 	<creature name="cannibal">
-		<type class="human" subclass="cannibal" tileid="human.png:8"/>
+		<type class="human" subclass="cannibal" tileid="human.png:0"/>
 		<attributes>
 			<atk value="88"/>
 			<def value="27"/>
@@ -2559,7 +2559,7 @@
 	</creature>
 	
 	<creature name="elder_cannibal">
-		<type class="human" subclass="elder_cannibal" tileid="human.png:11"/>
+		<type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
 		<attributes>
 			<atk value="97"/>
 			<def value="30"/>
@@ -2594,7 +2594,7 @@
 	<!-- Level 39-->
 	
 	<creature name="darkmonk">
-		<type class="human" subclass="darkmonk" tileid="human.png:10"/>
+		<type class="human" subclass="darkmonk" tileid="human.png:2"/>
 		<attributes>
 			<atk value="140"/>
 			<def value="20"/>
