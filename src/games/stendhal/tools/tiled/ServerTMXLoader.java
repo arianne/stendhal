@@ -167,23 +167,12 @@ public class ServerTMXLoader {
 						}
 
 						byte[] raw=layer.exposeRaw();
+						int read=0;
 						int offset=0;
-
-                        for (int y = 0; y < layer.getHeight(); y++) {
-                        	is.read(raw,offset,4*layer.getWidth());
-                        	offset+=4*layer.getWidth();
-                        }
-                        /*
-                         * NOTE: Old optimized version! :)
-                         
-						int expected=raw.length;
-						int read=is.read(raw);
-						*/
-						if(offset!=4*layer.getWidth()*layer.getHeight()) {
-							System.out.println("ERROR: Read less bytes ("+offset+") than expected("+(layer.getWidth()*layer.getHeight())+") - layer "+layer.getName());
+						
+						while(offset!=raw.length) {
+							offset+=is.read(raw,offset,raw.length-offset);							 
 						}
-						
-						
 					}
 				}
 			}
@@ -276,7 +265,7 @@ public class ServerTMXLoader {
 		long start=System.currentTimeMillis();
 		
 		StendhalMapStructure map=null;
-		
+		/*
 		for(int i=0;i<90;i++) {			
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
@@ -286,7 +275,7 @@ public class ServerTMXLoader {
 		}
 		
 		System.out.println("Time ellapsed (ms): "+(System.currentTimeMillis()-start));
-		/*
+		/*/
 		map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/semos/village_w.tmx");
 		map.build();
 		System.out.printf("MAP W: %d H:%d\n", map.width, map.height);
@@ -309,7 +298,7 @@ public class ServerTMXLoader {
 			System.out.println();
 			}
 		}
-		*/
+
 	}
 
 
