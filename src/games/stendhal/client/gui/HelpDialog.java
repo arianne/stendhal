@@ -166,11 +166,17 @@ public class HelpDialog extends JFrame {
 		private void createNodes(DefaultMutableTreeNode top) {
 			top.add(new DefaultMutableTreeNode(HelpDocument.Introduction));
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(HelpDocument.Setting);
-			top.add(node);
 			node.add(new DefaultMutableTreeNode(HelpDocument.Download));
 			node.add(new DefaultMutableTreeNode(HelpDocument.AccountCreation));
 			node.add(new DefaultMutableTreeNode(HelpDocument.Startup));
-			top.add(new DefaultMutableTreeNode(HelpDocument.Controls));
+			top.add(node);
+
+			node = new DefaultMutableTreeNode(HelpDocument.Controls);
+			node.add(new DefaultMutableTreeNode(HelpDocument.GameScreen));
+			node.add(new DefaultMutableTreeNode(HelpDocument.BasicControls));
+			node.add(new DefaultMutableTreeNode(HelpDocument.Communication));
+			top.add(node);
+
 			top.add(new DefaultMutableTreeNode(HelpDocument.Gameplay));
 		}
 	}
@@ -187,6 +193,10 @@ public class HelpDialog extends JFrame {
 		Startup("Starting the Game", "setting-start.html"),
 
 		Controls("Controls and Game settings", "controls.html"),
+		GameScreen("Game Screen", "controls-gamescreen.html"),
+		BasicControls("Basic Controls", "controls-basic.html"),
+		Communication("Communication", "controls-communication.html"),
+
 		Gameplay("Gameplay", "gameplay.html");
 		
 		private String bookName;
