@@ -425,6 +425,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 					plantGrower = new SheepFood();
 				} else if(clazz.contains("vegetable")) {
 					switch(type) {
+						case 0:
+							plantGrower = new PassiveEntityRespawnPoint("apple", 500);
+							break;
 						case 1:
 							plantGrower = new CarrotGrower();
 							break;
