@@ -44,7 +44,7 @@ public class AgeDumper {
 	 */
 	private void dump() throws Exception {
 		JDBCPlayerDatabase.RPObjectIterator it = db.iterator(trans);
-		String query = "insert into ages(datewhen, charname, age, release) values(?, ?, ?, ?)";
+		String query = "insert into age(datewhen, charname, age, version) values(?, ?, ?, ?)";
 	    date = new java.sql.Date(new java.util.Date().getTime());
 		Connection connection = ((JDBCTransaction) trans).getConnection();
 		ps = connection.prepareStatement(query);
@@ -53,7 +53,7 @@ public class AgeDumper {
 			int id = it.next();
 			RPObject object = db.loadRPObject(trans, id);
 			String name = object.get("name");
-			System.out.println(id + " " + name);
+			//System.out.println(id + " " + name);
 			logPlayer(name, object);
 		}
 		ps.close();
