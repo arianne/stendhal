@@ -38,6 +38,7 @@ import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
+import java.io.FileNotFoundException;
 import java.net.URI;
 
 import marauroa.common.Log4J;
@@ -264,7 +265,13 @@ public class StendhalRPWorld extends RPWorld {
 		logger.info("Loading area: " + name);
 		StendhalRPZone area = new StendhalRPZone(name);
 
-		StendhalMapStructure zonedata=ServerTMXLoader.load(MAPS_FOLDER+content);
+		StendhalMapStructure zonedata=null;
+		try {
+			zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + content);
+		} catch(FileNotFoundException e) {
+			logger.info("File not found "+e.getMessage()+". Trying Development enviroment.");
+			zonedata=ServerTMXLoader.load(StendhalRPWorld.DEVELOPMENT_MAPS_FOLDER + content);
+		}
 
 		area.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
 		area.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
