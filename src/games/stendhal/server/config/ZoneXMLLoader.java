@@ -14,6 +14,12 @@ import javax.xml.parsers.SAXParser;
 import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 
+/**
+ * This class is ruled deprecated by StendhalMapStructure.
+ * @author miguel
+ *
+ */
+@Deprecated
 public class ZoneXMLLoader extends DefaultHandler {
 
 	/** the logger instance. */

@@ -11,11 +11,13 @@ package games.stendhal.server.config;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.config.ZoneXMLLoader.XMLZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.EntityFactoryHelper;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.tools.tiled.LayerDefinition;
+import games.stendhal.tools.tiled.ServerTMXLoader;
+import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,11 +57,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 * Logger
 	 */
 	private static final Logger logger = Log4J.getLogger(ZonesXMLLoader.class);
-
-	/**
-	 * The zone [data] loader.
-	 */
-	protected ZoneXMLLoader zoneLoader;
 
 	/**
 	 * A list of zone descriptors.
@@ -118,7 +115,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 		this.uri = uri;
 
 		content = new StringBuffer();
-		zoneLoader = ZoneXMLLoader.get();
 	}
 
 	//
@@ -192,7 +188,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			logger.info("Loading zone: " + name);
 
 			try {
-				ZoneXMLLoader.XMLZone zonedata = zoneLoader.load("data/maps/" + zdesc.getFile());
+				StendhalMapStructure zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
 	
@@ -211,10 +207,10 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 	}
 
-	private static final String[] REQUIRED_LAYERS = {"0_floor", "1_terrain", "2_object", "3_roof", "collision", "protection"};
-	private boolean verifyMap(ZoneDesc zdesc, XMLZone zonedata) {
+	private static final String[] REQUIRED_LAYERS = {"0_floor", "1_terrain", "2_object", "3_roof", "objects", "collision", "protection"};
+	private boolean verifyMap(ZoneDesc zdesc, StendhalMapStructure zonedata) {
 		for (String layer : REQUIRED_LAYERS) {
-			if (zonedata.getLayer(layer) == null) {
+			if (!zonedata.hasLayer(layer)) {
 				logger.error("Required layer " + layer + " missing in zone " + zdesc.getFile());
 				return false;
 			}
@@ -358,15 +354,17 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 *
 	 */
-	protected StendhalRPZone load(ZoneDesc desc, ZoneXMLLoader.XMLZone zonedata) throws SAXException, IOException {
+	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata) throws SAXException, IOException {
 		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
+		zone.addTilesets(name+"_tilesets", zonedata.getTilesets());
 		zone.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
 		zone.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
 		zone.addLayer(name + "_2_object", zonedata.getLayer("2_object"));
 		zone.addLayer(name + "_3_roof", zonedata.getLayer("3_roof"));
-		byte[] layer = zonedata.getLayer("4_roof_add");
+
+		LayerDefinition layer = zonedata.getLayer("4_roof_add");
 		if (layer != null) {
 			zone.addLayer(name + "_4_roof_add", layer);
 		}
@@ -411,13 +409,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 			if ((file = attrs.getValue("file")) == null) {
 				logger.warn("Zone [" + zone + "] without 'file' attribute");
 				return;
-			}
-
-			/*
-			 * Consistency check
-			 */
-			if (!file.equals(zone.replace("-", "sub_") + ".xstend")) {
-				logger.warn("Not the expected filename for zone " + zone + ": " + file);
 			}
 
 			/**
