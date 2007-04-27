@@ -77,15 +77,14 @@ public class LayerDefinition implements Serializable {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {								
 				int tileId = 0;
-				tileId |= ((int)raw[x*4+0+offset]& 0xFF);
-				tileId |= ((int)raw[x*4+1+offset]& 0xFF) <<  8;
-				tileId |= ((int)raw[x*4+2+offset]& 0xFF) << 16;
-				tileId |= ((int)raw[x*4+3+offset]& 0xFF) << 24;
+				tileId |= ((int)raw[0+offset]& 0xFF);
+				tileId |= ((int)raw[1+offset]& 0xFF) <<  8;
+				tileId |= ((int)raw[2+offset]& 0xFF) << 16;
+				tileId |= ((int)raw[3+offset]& 0xFF) << 24;
 				
 				data[x+y*width]=tileId;
+				offset+=4;
 			}
-		
-		offset+=4*width;
 		}
 	}
 
