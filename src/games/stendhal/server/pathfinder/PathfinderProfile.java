@@ -39,7 +39,7 @@ public class PathfinderProfile {
 	public static void main(String[] args) throws Exception {
 		startLogSystem();
 		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addArea(pathfinderZone);
+		world.addArea(pathfinderZone, "interiors/abstract/pathfinding.tmx");
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(pathfinderZone);
 
 		// read profile data

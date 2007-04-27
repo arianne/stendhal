@@ -28,7 +28,7 @@ public class PathfinderTest {
 	public static void main(String[] args) throws Exception {
 
 		StendhalRPWorld world = StendhalRPWorld.get();
-		world.addArea("int_pathfinding");
+		world.addArea("int_pathfinding", "interiors/abstract/pathfinding.tmx");
 
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_pathfinding");
 
