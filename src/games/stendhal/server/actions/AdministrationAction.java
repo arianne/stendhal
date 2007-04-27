@@ -463,6 +463,13 @@ public class AdministrationAction implements ActionListener {
 					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
 					entity = manager.getItem(type);
 				}
+				
+				if(entity==null) {
+					logger.info("onSummon: Entity \"" + type + "\" not found.");
+					player.sendPrivateText("onSummon: Entity \"" + type + "\" not found.");
+					return;
+				}
+				
 				zone.assignRPObjectID(entity);
 				StendhalRPAction.placeat(zone, entity, x, y);
 				zone.add(entity);
