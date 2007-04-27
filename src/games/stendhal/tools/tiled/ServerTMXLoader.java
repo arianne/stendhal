@@ -233,9 +233,6 @@ public class ServerTMXLoader {
 		return stendhalMap;
 	}
 
-
-	// MapReader interface
-
 	public StendhalMapStructure readMap(String filename) throws Exception {
 		xmlPath = filename.substring(0,filename.lastIndexOf(File.separatorChar) + 1);
 
@@ -247,6 +244,10 @@ public class ServerTMXLoader {
 
 			URL url = new URL(xmlFile);
 			is = url.openStream();
+		}
+		
+		if(is==null) {
+			return null;
 		}
 
 		// Wrap with GZIP decoder for .tmx.gz files
