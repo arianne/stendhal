@@ -157,6 +157,7 @@
 				<pathelement path="${junit_jar}"/>
 			</classpath>
 		</javac>
+		
 		<!-- compile Starter.java for Java 1.2. So we will be able to 
   		 display a dialogbox if running on an old Java Version -->
 		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.2" target="1.2"
