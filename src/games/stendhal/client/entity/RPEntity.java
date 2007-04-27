@@ -23,6 +23,7 @@ import games.stendhal.common.Rand;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,9 +81,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private long combatIconTime;
 
-	private java.util.List<Sprite> floaterSprites;
-
-	private java.util.List<Long> floaterSpritesTimes;
+	private List<FloatingMessage> floaters;
 
 	private RPObject.ID attacking;
 
@@ -127,8 +126,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/** Create a new game entity */
 	RPEntity()  {
-		floaterSprites = new LinkedList<Sprite>();
-		floaterSpritesTimes = new LinkedList<Long>();
+		floaters = new LinkedList<FloatingMessage>();
 		attackTarget = null;
 		lastAttacker = null;
 		clazz = null;
@@ -142,9 +140,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	color		The color of the text.
 	 */
 	protected void addFloater(final String text, final Color color) {
-		floaterSprites.add(GameScreen.get().createString(text, color));
-
-		floaterSpritesTimes.add(Long.valueOf(System.currentTimeMillis()));
+		floaters.add(new FloatingMessage(text, color));
 	}
 
 
@@ -571,6 +567,19 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/** Draws only the Name and hp bar **/
 	public void drawHPbar(final GameScreen screen) {
+		Point p = screen.convertWorldToScreen(x, y);
+		drawHPbar(screen.expose(), p.x, p.y);
+	}
+
+
+	/**
+	 * Draw the entity title and HP bar.
+	 *
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 */
+	protected void drawHPbar(final Graphics2D g2d, int x, int y) {
 		/*
 		 * Don't draw if full ghostmode
 		 */
@@ -579,7 +588,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (nameImage != null) {
-			screen.draw(nameImage, x, y - 0.5);
+			nameImage.draw(g2d, x, y - 3 - nameImage.getHeight());
 		}
 
 		float hpRatio = getHPRatio();
@@ -587,17 +596,14 @@ public abstract class RPEntity extends ActiveEntity {
 		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
 		float g = Math.min(hpRatio * 2.0f, 1.0f);
 
-		Graphics g2d = screen.expose();
-		Point p = screen.convertWorldToScreen(x, y);
-
 		g2d.setColor(Color.gray);
-		g2d.fillRect(p.x, p.y - 3, 32, 3);
+		g2d.fillRect(x, y - 3, 32, 3);
 
 		g2d.setColor(new Color(r, g, 0.0f));
-		g2d.fillRect(p.x, p.y - 3, (int) (hpRatio * 32.0), 3);
+		g2d.fillRect(x, y - 3, (int) (hpRatio * 32.0), 3);
 
 		g2d.setColor(Color.black);
-		g2d.drawRect(p.x, p.y - 3, 32, 3);
+		g2d.drawRect(x, y - 3, 32, 3);
 	}
 
 	/** Draws this entity in the screen */
@@ -605,21 +611,17 @@ public abstract class RPEntity extends ActiveEntity {
 	public void draw(final GameScreen screen) {
 		super.draw(screen);
 
-		if (!floaterSprites.isEmpty()) {
+		if (!floaters.isEmpty()) {
 			// Draw the floaters
-			long current = System.currentTimeMillis();
+			Graphics g = screen.expose();
+			Point p = screen.convertWorldToScreen(getX(), getY());
 
-			int i = 0;
-			for (Sprite floater : floaterSprites) {
-				double tx = x + 0.6 - (floater.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
-				double ty = y - ((current - floaterSpritesTimes.get(i)) / (6.0 * 300.0));
-				screen.draw(floater, tx, ty);
-				i++;
+			for(FloatingMessage floater : floaters) {
+				floater.draw(g, p.x, p.y);
 			}
 
-			if ((floaterSpritesTimes.size() > 0) && (current - floaterSpritesTimes.get(0) > 6 * 300)) {
-				floaterSprites.remove(0);
-				floaterSpritesTimes.remove(0);
+			if(floaters.get(0).getAge() > 2000L) {
+				floaters.remove(0);
 			}
 		}
 	}
@@ -1024,5 +1026,63 @@ public abstract class RPEntity extends ActiveEntity {
 
 		fireHPEventChangedRemoved(object, changes);
 		fireAttackEventChangedRemoved(object, changes);
+	}
+
+	//
+	//
+
+	public static class FloatingMessage {
+		/**
+		 * The text sprite.
+		 */
+		protected Sprite	sprite;
+
+		/**
+		 * The start time of the message.
+		 */
+		protected long		start;
+
+
+		/**
+		 * Create a floating message.
+		 *
+		 * @param	text		The text to drawn.
+		 * @param	color		The text color.
+		 */
+		public FloatingMessage(String text, Color color) {
+			sprite = GameScreen.get().createString(text, color);
+			start = System.currentTimeMillis();
+		}
+
+
+		//
+		// FloatingMessage
+		//
+
+		/**
+		 * Draw this floating message.
+		 *
+		 * @param	g		The graphics context.
+		 * @param	x		The drawn X coordinate.
+		 * @param	y		The drawn Y coordinate.
+		 */
+		public void draw(Graphics g, int x, int y) {
+			long age = getAge();
+
+			int tx = x + 20 - (sprite.getWidth() / 2);
+			int ty = y - (int) (age * 5L / 300L);
+
+			sprite.draw(g, tx, ty);
+		}
+
+
+		/**
+		 * Get the age of this message.
+		 *
+		 * @return	The age (in milliseconds).
+		 */
+		public long getAge() {
+			return System.currentTimeMillis() - start;
+		}
 	}
 }
