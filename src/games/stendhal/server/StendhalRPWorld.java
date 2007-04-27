@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server;
 
+import games.stendhal.client.SpriteStore;
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
 import games.stendhal.server.config.ZoneXMLLoader;
 import games.stendhal.server.entity.Chest;
@@ -49,18 +50,22 @@ import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
 
-	public static final String MAPS_FOLDER = "data/maps/";
+	static {
+		if (StendhalRPWorld.class.getClassLoader().getResource("tiled/tileset/README") != null) {
+			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+			MAPS_FOLDER = "tiled/";
+		}
+	}
 	
-	public static final String DEVELOPMENT_MAPS_FOLDER = "tiled/";
+	public static String MAPS_FOLDER = "data/maps/";
 
 	/**
 	 * A common place for milliseconds per turn.
 	 */
 	public static final int MILLISECONDS_PER_TURN = 300;
-
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
 
 	/** The Singleton instance */
 	private static StendhalRPWorld instance;
@@ -266,12 +271,7 @@ public class StendhalRPWorld extends RPWorld {
 		StendhalRPZone area = new StendhalRPZone(name);
 
 		StendhalMapStructure zonedata=null;
-		try {
-			zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + content);
-		} catch(FileNotFoundException e) {
-			logger.info("File not found "+e.getMessage()+". Trying Development enviroment.");
-			zonedata=ServerTMXLoader.load(StendhalRPWorld.DEVELOPMENT_MAPS_FOLDER + content);
-		}
+		zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + content);
 
 		area.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
 		area.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));

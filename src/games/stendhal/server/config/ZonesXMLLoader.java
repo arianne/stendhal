@@ -190,12 +190,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			try {
 				StendhalMapStructure zonedata=null;
-				try {
-					zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
-				} catch(FileNotFoundException e) {
-					logger.debug("File not found "+e.getMessage()+". Trying Development enviroment.");
-					zonedata=ServerTMXLoader.load(StendhalRPWorld.DEVELOPMENT_MAPS_FOLDER + zdesc.getFile());
-				}
+				zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
