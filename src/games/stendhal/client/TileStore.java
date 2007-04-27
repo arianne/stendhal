@@ -34,16 +34,24 @@ public class TileStore extends SpriteStore {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileStore.class);
 
-	private static final String BASE_FOLDER="data";
+	private static class RangeFilename {
+		private static String BASE_FOLDER="data";
 
-	private class RangeFilename {
+		// Hack: Read the tileset directly from tiled/tileset if started from an IDE.
+		static {
+			if (SpriteStore.get().getResourceURL("tiled/tileset/README") != null) {
+				logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+				BASE_FOLDER = "tiled";
+			}
+		}
+
 		int amount;
 
 		String filename;
 
 		private Vector<Sprite> tileset;
 		boolean loaded;
-
+		
 		RangeFilename(String filename) {
 			this.amount = 0;
 			this.filename = filename;
