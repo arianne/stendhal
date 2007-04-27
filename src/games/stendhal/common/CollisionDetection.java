@@ -12,10 +12,13 @@
  ***************************************************************************/
 package games.stendhal.common;
 
+import games.stendhal.tools.tiled.LayerDefinition;
+
 import java.awt.geom.Rectangle2D;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
+
+import marauroa.common.net.InputSerializer;
 
 /**
  * This class loads the map and allow you to determine if a player collides or
@@ -81,33 +84,27 @@ public class CollisionDetection {
 		}
 	}
 
-	public void setCollisionData(Reader reader) throws IOException {
-		BufferedReader file = new BufferedReader(reader);
-		String text;
+	public void setCollisionData(LayerDefinition collisionLayer) {
+		/* First we build the int array. */
+		collisionLayer.build();
+		
+		width=collisionLayer.getWidth();
+		height=collisionLayer.getHeight();
 
-		text = file.readLine();
-		String[] size = text.split(" ");
-		width = Integer.parseInt(size[0]);
-		height = Integer.parseInt(size[1]);
-
+		System.out.println("Collision: " +width+"x"+height);
+				
 		blocked = new boolean[width * height];
-
-		int j = 0;
-
-		while ((text = file.readLine()) != null) {
-			text = text.trim();
-			if (text.equals("")) {
-				break;
-			}
-
-			String[] items = text.split(",");
-			for (String item : items) {
-				blocked[j] = Integer.parseInt(item) != 0;// (Integer.parseInt(item)-(2502-1))==1;
-				j++;
+		for(int y=0;y<height;y++) {
+			for(int x=0;x<width;x++) {
+				/* NOTE:
+				 * Right now our collision detection system is binary, so
+				 * something or is blocked or is not.
+				 */
+				blocked[x+y*width]=(collisionLayer.getTileAt(x, y)!=0);
 			}
 		}
-	}
-
+    }
+	
 	/** Print the area around the (x,y) useful for debugging */
 	public void printaround(int x, int y, int size) {
 		for (int j = y - size; j < y + size; j++) {
