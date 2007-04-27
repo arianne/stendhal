@@ -18,16 +18,6 @@ import java.util.Collection;
  * @author Matthias Totz
  */
 public interface EntityManager {
-
-	/**
-	 * returns the entity or <code>null</code> if the id is unknown
-	 * 
-	 * @param id
-	 *            the tile id
-	 * @return the entity or <code>null</code>
-	 */
-	Entity getEntity(int id);
-
 	/**
 	 * returns the entity or <code>null</code> if the class is unknown
 	 * 
@@ -46,7 +36,7 @@ public interface EntityManager {
 	 *            the tile id
 	 * @return true if it is a creature, false otherwise
 	 */
-	boolean isCreature(int id);
+	boolean isCreature(String tileset, int id);
 
 	/**
 	 * return true if the Entity is a creature
@@ -58,15 +48,6 @@ public interface EntityManager {
 	 *             if clazz is <code>null</code>
 	 */
 	boolean isCreature(String clazz) throws NullPointerException;
-
-	/**
-	 * return true if the Entity is a Item
-	 * 
-	 * @param id
-	 *            the tile id
-	 * @return true if it is a Item, false otherwise
-	 */
-	boolean isItem(int id);
 
 	/**
 	 * return true if the Entity is a Item
@@ -91,7 +72,7 @@ public interface EntityManager {
 	 *            the tile id
 	 * @return the creature or <code>null</code>
 	 */
-	Creature getCreature(int id);
+	Creature getCreature(String tileset, int id);
 
 	/**
 	 * returns the creature or <code>null</code> if the clazz is unknown
@@ -108,15 +89,6 @@ public interface EntityManager {
 	 * returns a list of all Items that are being used at least once
 	 */
 	public Collection<Item> getItems();
-
-	/**
-	 * returns the item or <code>null</code> if the id is unknown.
-	 * 
-	 * @param id
-	 *            the tile id
-	 * @return the item or <code>null</code>
-	 */
-	Item getItem(int id);
 
 	/**
 	 * returns the item or <code>null</code> if the clazz is unknown
