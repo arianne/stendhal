@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.tools.tiled.LayerDefinition;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -20,6 +22,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import marauroa.common.Log4J;
+import marauroa.common.net.InputSerializer;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -49,49 +53,25 @@ public class TileRenderer extends LayerRenderer {
 		map = null;
 		frame = 0;
 		animatedTiles = new HashMap<Integer, List<Integer>>();
-		createAnimateTiles();
 		delta = System.currentTimeMillis();
+
+		//createAnimateTiles();
 	}
 
-	/** Sets the data that will be rendered */
-	public void setMapData(Reader reader) throws IOException {
+	/** Sets the data that will be rendered 
+	 * @throws ClassNotFoundException */
+	public void setMapData(InputSerializer in) throws IOException, ClassNotFoundException {
 		Log4J.startMethod(logger, "setMapData");
+		LayerDefinition layer=LayerDefinition.decode(in);
+		width=layer.getWidth();
+		height=layer.getHeight();
 
-		BufferedReader file = new BufferedReader(reader);
-		String text;
-
-		text = file.readLine();
-		String[] size = text.split(" ");
-		width = Integer.parseInt(size[0]);
-		height = Integer.parseInt(size[1]);
-
-		map = new int[width * height];
-
-		int j = 0;
-
-		while ((text = file.readLine()) != null) {
-			if (text.trim().equals("")) {
-				break;
-			}
-
-			String[] items = text.split(",");
-			for (String item : items) {
-				map[j] = Integer.parseInt(item);
-				j++;
-			}
-		}
-
+		System.out.println("Layer("+layer.getName()+"): " +width+"x"+height);
+		
+		map=layer.expose();
 		Log4J.finishMethod(logger, "setMapData");
 	}
 
-	/** Returns the widht in world units */
-	//	public int getWidth() {
-	//		return width;
-	//	}
-	/** Returns the height in world units */
-	//	public int getHeight() {
-	//		return height;
-	//	}
 	private int get(int x, int y) {
 		return map[y * width + x];
 	}
@@ -108,6 +88,7 @@ public class TileRenderer extends LayerRenderer {
 	}
 
 	private void createAnimateTiles() {
+		// TODO: Broken. Animated tiles don't work now in this way.
 		// Outside_0 = 0 - 479
 		// Outside_1 = 480 - 959
 		// Dungeon_0 = 960 - 1439
@@ -420,17 +401,6 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(4058, new int[] { 4058, 4079 });
 		addAnimatedTile(4059, new int[] { 4059, 4080 });
 		addAnimatedTile(4060, new int[] { 4060, 4081 });
-
-/**
- 44 45 46 47 48 49 50
- 51 52 53 54 55 56 57
- 58 59 60 61 62 63 64
- 65 66 67 68 69 70 71
- 72 73 74 75 76 77 78
- 79 80 81 82 83 84 85 
- 
- */
-		
 	}
 
 	/**
@@ -452,14 +422,14 @@ public class TileRenderer extends LayerRenderer {
 		for (int j = y - 1; j < y + h + 1; j++) {
 			for (int i = x - 1; i < x + w + 1; i++) {
 				if ((j >= 0) && (j < getHeight()) && (i >= 0) && (i < getWidth())) {
-					int value = get(i, j) - 1;
+					int value = get(i, j);
 
 					if (animatedTiles.containsKey(value)) {
 						List<Integer> list = (animatedTiles.get(value));
 						value = list.get(frame % list.size());
 					}
 
-					if (value >= 0) {
+					if (value > 0) {
 						screen.draw(tiles.getTile(value), i, j);
 					}
 				}
