@@ -268,7 +268,7 @@ public class StendhalClient extends ariannexp {
 			handler.apply(message, world_objects);
 		} catch (Exception e) {
 			logger.debug("error processing message " + message, e);
-			System.exit(-1);
+			System.exit(1);
 		} finally {
 			Log4J.finishMethod(logger, "onPerception");
 		}
@@ -284,12 +284,11 @@ public class StendhalClient extends ariannexp {
 			if (is != null) {
 				item.ack = false;
 				try {
-					Reader reader = new InputStreamReader(is);
-					contentHandling(item.name, reader);
-					reader.close();
-				} catch (java.io.IOException e) {
+					contentHandling(item.name, is);
+					is.close();
+				} catch (Exception e) {
 					e.printStackTrace();
-					System.exit(0);
+					System.exit(1);
 				}
 			} else {
 				logger.debug("Content " + item.name + " is NOT on cache. We have to transfer");
@@ -301,8 +300,8 @@ public class StendhalClient extends ariannexp {
 		return items;
 	}
 
-	private void contentHandling(String name, Reader reader) throws IOException {
-		staticLayers.addLayer(reader, name);
+	private void contentHandling(String name, InputStream in) throws IOException, ClassNotFoundException {
+		staticLayers.addLayer(name, in);
 		screen.setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
 	}
 
@@ -312,8 +311,8 @@ public class StendhalClient extends ariannexp {
 		for (TransferContent item : items) {
 			try {
 				cache.store(item, item.data);
-				contentHandling(item.name, new InputStreamReader(new ByteArrayInputStream(item.data)));
-			} catch (java.io.IOException e) {
+				contentHandling(item.name, new ByteArrayInputStream(item.data));
+			} catch (Exception e) {
 				logger.error("onTransfer", e);
 				System.exit(2);
 			}
