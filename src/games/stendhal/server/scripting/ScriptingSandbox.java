@@ -51,9 +51,9 @@ public abstract class ScriptingSandbox {
 		return (zone != null);
 	}
 
-	public StendhalRPZone addZone(String name) {
+	public StendhalRPZone addZone(String name, String content) {
 		try {
-			zone = StendhalRPWorld.get().addArea(name);
+			zone = StendhalRPWorld.get().addArea(name,content);
 			logger.info(filename + " added area: " + name);
 		} catch (Exception e) {
 			logger.error("Exception while tyring to add area: " + e);
