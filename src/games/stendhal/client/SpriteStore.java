@@ -188,6 +188,7 @@ public class SpriteStore {
 
 		try {
 			URL url = getResourceURL(ref);
+			
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 				return getSprite("data/sprites/failsafe.png");
@@ -197,7 +198,7 @@ public class SpriteStore {
 			sourceImage = ImageIO.read(url);
 		} catch (IOException e) {
 			logger.error("Failed to load: " + ref,e);
-			return getSprite("data/sprites/failsafe.png");
+			return null;
 		}
 
 		// create an accelerated image of the right size to store our sprite in
