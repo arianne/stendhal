@@ -1854,7 +1854,7 @@
 	</creature>
 
 	<creature name="vampire_bride">
-		<type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:1"/>
+		<type class="vampire" subclass="vampire_lord_bride_evil" tileid="vampire.png:0"/>
 		<attributes>
 			<atk value="70"/>
 			<def value="20"/>
@@ -3211,7 +3211,7 @@
 		</ai>
 	</creature>
 	<creature name="vampire_lord">
-		<type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:3"/>
+		<type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
 		<attributes>
 			<atk value="170"/>
 			<def value="27"/>
