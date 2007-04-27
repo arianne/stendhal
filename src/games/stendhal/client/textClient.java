@@ -74,7 +74,7 @@ public class textClient extends Thread {
 			@Override
 			protected void onPerception(MessageS2CPerception message) {
 				try {
-					System.out.println("Received messge: " + message);
+					System.out.println("Received perception "+message.getPerceptionTimestamp());
 
 					handler.apply(message, world_objects);
 					int i = message.getPerceptionTimestamp();
@@ -117,9 +117,6 @@ public class textClient extends Thread {
 				System.out.println("Transfering ----");
 				for (TransferContent item : items) {
 					System.out.println(item);
-					for (byte ele : item.data) {
-						System.out.print((char) ele);
-					}
 				}
 			}
 
