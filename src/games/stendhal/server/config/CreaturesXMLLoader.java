@@ -41,7 +41,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 
 	private String text;
 
-	private int tileid;
+	private String tileid;
 
 	private int atk;
 
@@ -154,8 +154,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
 
-			String tileid_value = attrs.getValue("tileid");
-			tileid = (tileid_value != null ? Integer.parseInt(tileid_value) : -1);
+			tileid = "../../tileset/logic/creature/"+attrs.getValue("tileid");
 		} else if (qName.equals("level")) {
 			level = Integer.parseInt(attrs.getValue("value"));
 		} else if (qName.equals("experience")) {
@@ -241,6 +240,11 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	@Override
 	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("creature")) {
+			if(!tileid.contains(":")) {
+				logger.error("Corrupt XML file: Bad tileid for creature("+name+")");
+				return;
+			}
+			
 			DefaultCreature creature = new DefaultCreature(clazz, subclass, name, tileid);
 			creature.setRPStats(hp, atk, def, speed);
 			creature.setLevel(level, xp);
