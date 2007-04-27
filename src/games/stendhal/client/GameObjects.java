@@ -156,17 +156,17 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	}
 
-	private boolean collides(Entity entity) {
-		// TODO: Ugly, use similar method that server uses
+	public boolean collides(Entity entity) {
 		Rectangle2D area = entity.getArea();
 
+		// TODO: Ugly, use similar method that server uses
+		if (collisionMap.collides(area)) {
+			return true;
+		}
+
 		for (Entity other : sortedObjects) {
-			if (!(other instanceof PassiveEntity || other instanceof Blood || other instanceof PlantGrower
-			        || other instanceof GrainField || other instanceof Portal || other instanceof GoldSource)) {
-				if (area.intersects(other.getArea()) && !entity.getID().equals(other.getID())) {
-					entity.onCollideWith(other);
-					return true;
-				}
+			if(other.isObstacle(entity) && area.intersects(other.getArea())) {
+				return true;
 			}
 		}
 
@@ -176,15 +176,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/** Move objects based on the lapsus of time ellapsed since the last call. */
 	public void move(long delta) {
 		for (Entity entity : sortedObjects) {
-			if (!entity.stopped()) {
-				entity.move(delta);
-				if (collisionMap.collides(entity.getArea())) {
-					entity.onCollide((int) entity.getX(), (int) entity.getY());
-					entity.move(-delta); // Undo move
-				} else if (collides(entity)) {
-					entity.move(-delta); // Undo move
-				}
-			}
+			entity.update(delta);
 		}
 	}
 

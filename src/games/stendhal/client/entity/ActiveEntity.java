@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameObjects;
 import games.stendhal.common.Direction;
 import marauroa.common.game.RPObject;
 
@@ -83,23 +84,6 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 				return STATE_DOWN;
 		}
 	}
-
-
-	/**
-	 * Apply any motion.
-	 *
-	 * @param	delta		The time (in ms) since last call.
-	 */
-	public void move(final long delta) {
-		double step = (delta / 300.0);
-
-		// update the location of the entity based on move speeds
-		x += (dx * step);
-		y += (dy * step);
-
-		onPosition(x, y);
-	}
-
 
 	/**
 	 * The entity has started motion.
@@ -240,6 +224,34 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 		 */
 		changed();
 	}
+
+
+	/**
+	 * Update cycle.
+	 *
+	 * @param	delta		The time (in ms) since last call.
+	 */
+	@Override
+	public void update(final long delta) {
+		if(!stopped()) {
+			double step = (delta / 300.0);
+
+			double oldX = x;
+			double oldY = y;
+
+			// update the location of the entity based on speeds
+			x += (dx * step);
+			y += (dy * step);
+
+			if (GameObjects.getInstance().collides(this)) {
+				x = oldX;
+				y = oldY;
+			} else {
+				onPosition(x, y);
+			}
+		}
+	}
+
 
 
 	/**

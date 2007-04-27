@@ -335,22 +335,10 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
-	// Called when entity collides with another entity
-	public void onCollideWith(final Entity entity) {
-	}
-
-	// Called when entity collides with collision layer object.
-	public void onCollide(final int x,final  int y) {
-	}
-
-
 	public void draw(final GameScreen screen) {
 		view.draw(screen);
 	}
 
-
-	public void move(final long delta) {
-	}
 
 	public boolean stopped() {
 		return true;
@@ -590,6 +578,19 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
+	 * Determine if this is an obstacle for another entity.
+	 *
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	<code>true</code> the entity can not enter this
+	 *		entity's area.
+	 */
+	public boolean isObstacle(Entity entity) {
+		return (entity != this);
+	}
+
+
+	/**
 	 * Release this entity. This should clean anything that isn't
 	 * automatically released (such as unregister callbacks, cancel
 	 * external operations, etc).
@@ -600,6 +601,15 @@ public final byte[] ID_Token = new byte[0];
 		SoundSystem.stopSoundCycle(ID_Token);
 
 		onLeaveZone(getID().getZoneID());
+	}
+
+
+	/**
+	 * Update cycle.
+	 *
+	 * @param	delta		The time (in ms) since last call.
+	 */
+	public void update(final long delta) {
 	}
 
 
