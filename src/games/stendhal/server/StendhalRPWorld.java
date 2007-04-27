@@ -54,13 +54,15 @@ public class StendhalRPWorld extends RPWorld {
 	private static final Logger logger = Log4J.getLogger(StendhalRPWorld.class);
 
 	static {
+		MAPS_FOLDER = "data/maps/";
+		
 		if (StendhalRPWorld.class.getClassLoader().getResource("tiled/tileset/README") != null) {
-			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+			logger.warn("Developing mode, loading maps from tiled/ instead of data/maps");
 			MAPS_FOLDER = "tiled/";
 		}
 	}
 	
-	public static String MAPS_FOLDER = "data/maps/";
+	public static String MAPS_FOLDER;
 
 	/**
 	 * A common place for milliseconds per turn.
