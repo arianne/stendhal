@@ -26,16 +26,16 @@
 
  <!--  Level 0 (Ground) -->
 
- <zone name="0_nalwor_forest_nw" level="0" x="500128" y="500128" file="0_nalwor_forest_nw.xstend">
+ <zone name="0_nalwor_forest_nw" level="0" x="500128" y="500128" file="Level 0/nalwor/forest_nw.tmx">
  </zone>
 
- <zone name="0_nalwor_forest_n" level="0" x="500256" y="500128" file="0_nalwor_forest_n.xstend">
+ <zone name="0_nalwor_forest_n" level="0" x="500256" y="500128" file="Level 0/nalwor/forest_n.tmx">
  </zone>
 
- <zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128" file="0_nalwor_forest_ne.xstend">
+ <zone name="0_nalwor_forest_ne" level="0" x="500384" y="500128" file="Level 0/nalwor/forest_ne.tmx">
  </zone>
 
- <zone name="0_nalwor_forest_w" level="0" x="500128" y="500256" file="0_nalwor_forest_w.xstend">
+ <zone name="0_nalwor_forest_w" level="0" x="500128" y="500256" file="Level 0/nalwor/forest_w.tmx">
 <!--
 ** Alternative configuration **
   <portal x="84" y="92" ref="entrance">
@@ -65,7 +65,7 @@
   </portal>
  </zone>
  
-<zone name="int_nalwor_pottery" file="int_nalwor_pottery.xstend">
+<zone name="int_nalwor_pottery" file="interiors/nalwor/pottery.tmx">
   <portal x="10" y="18" ref="entrance_left">
   <destination zone="0_nalwor_city" ref="pottery_entrance"/>
   </portal>
@@ -74,7 +74,7 @@
   </portal>
  </zone>
  
- <zone name="int_nalwor_library" file="int_nalwor_library.xstend">
+ <zone name="int_nalwor_library" file="interiors/nalwor/library.tmx">
   <portal x="14" y="28" ref="entrance_left">
    <destination zone="0_nalwor_city" ref="library_entrance"/>
   </portal>
@@ -86,32 +86,32 @@
   </portal>
  </zone>
  
- <zone name="int_nalwor_library_1" file="int_nalwor_library_1.xstend">
+ <zone name="int_nalwor_library_1" file="interiors/nalwor/library_1.tmx">
    <portal x="21" y="2" ref="downstairs">
     <destination zone="int_nalwor_library" ref="upstairs"/>
    </portal>
  </zone> 
   
- <zone name="int_nalwor_weaponshop" file="int_nalwor_weaponshop.xstend">
+ <zone name="int_nalwor_weaponshop" file="interiors/nalwor/weaponshop.tmx">
   <configurator class-name="games.stendhal.server.maps.nalwor.weaponshop.IL0_BuyerNPC"/>
    <portal x="3" y="11" ref="entrance">
     <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
    </portal>
  </zone> 
  
-  <zone name="int_nalwor_flowershop" file="int_nalwor_flowershop.xstend">
+  <zone name="int_nalwor_flowershop" file="interiors/nalwor/flowershop.tmx">
    <portal x="7" y="23" ref="entrance">
     <destination zone="0_nalwor_city" ref="flowershop_entrance"/>
    </portal>
  </zone> 
  
- <zone name="int_nalwor_jail" file="int_nalwor_jail.xstend">
+ <zone name="int_nalwor_jail" file="interiors/nalwor/jail.tmx">
    <portal x="6" y="18" ref="entrance">
     <destination zone="0_nalwor_city" ref="jail_entrance"/>
    </portal>
  </zone> 
  
- <zone name="int_nalwor_inn" file="int_nalwor_inn.xstend">
+ <zone name="int_nalwor_inn" file="interiors/nalwor/inn.tmx">
    <portal x="3" y="15" ref="entrance_left">
     <destination zone="0_nalwor_city" ref="inn_entrance_left"/>
    </portal>
@@ -126,26 +126,26 @@
    </portal> 
  </zone> 
  
- <zone name="int_nalwor_inn_1" file="int_nalwor_inn_1.xstend">
+ <zone name="int_nalwor_inn_1" file="interiors/nalwor/inn_1.tmx">
    <portal x="2" y="2" ref="downstairs">
     <destination zone="int_nalwor_inn" ref="upstairs"/>
    </portal> 
   </zone> 
   
- <zone name="int_nalwor_inn_basement" file="int_nalwor_inn_basement.xstend">
+ <zone name="int_nalwor_inn_basement" file="interiors/nalwor/inn_basement.tmx">
    <portal x="5" y="2" ref="upstairs">
     <destination zone="int_nalwor_inn" ref="downstairs"/>
    </portal> 
  </zone> 
  
- <zone name="int_nalwor_postoffice" file="int_nalwor_postoffice.xstend">
+ <zone name="int_nalwor_postoffice" file="interiors/nalwor/postoffice.tmx">
   <configurator class-name="games.stendhal.server.maps.nalwor.postoffice.IL0_PostNPC"/>
    <portal x="3" y="10" ref="entrance">
     <destination zone="0_nalwor_city" ref="postoffice_entrance"/>
    </portal>
  </zone> 
 
- <zone name="int_nalwor_royal_hall" file="int_nalwor_royal.xstend">
+ <zone name="int_nalwor_royal_hall" file="interiors/nalwor/royal.tmx">
    <portal x="7" y="29" ref="entrance">
     <destination zone="0_nalwor_city" ref="royal_entrance"/>
    </portal>
@@ -160,14 +160,14 @@
    </portal> 
  </zone> 
 
- <zone name="int_nalwor_royal_hall_1" file="int_nalwor_royal_2ndfloor.xstend">
+ <zone name="int_nalwor_royal_hall_1" file="interiors/nalwor/royal_2ndfloor.tmx">
 <configurator class-name="games.stendhal.server.maps.nalwor.royal.IL0_MayorNPC"/>
    <portal x="43" y="2" ref="downstairs">
     <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
    </portal>
  </zone> 
 
-<zone name="int_nalwor_house1" file="int_nalwor_house1.xstend">
+<zone name="int_nalwor_house1" file="interiors/nalwor/house1.tmx">
   <portal x="7" y="14" ref="entrance">
     <destination zone="0_nalwor_city" ref="house1_entrance"/>
    </portal>
@@ -176,26 +176,26 @@
    </portal>
  </zone> 
 
-<zone name="int_nalwor_house1_basement" file="int_nalwor_house1_basement.xstend">
+<zone name="int_nalwor_house1_basement" file="interiors/nalwor/house1_basement.tmx">
    <portal x="3" y="1" ref="upstairs">
     <destination zone="int_nalwor_house1" ref="downstairs"/>
    </portal>
  </zone>
 
-<zone name="int_nalwor_house2" file="int_nalwor_house2.xstend">
+<zone name="int_nalwor_house2" file="interiors/nalwor/house2.tmx">
   <portal x="8" y="18" ref="entrance">
     <destination zone="0_nalwor_city" ref="house2_entrance"/>
    </portal>
  </zone>
 
  
-<zone name="int_nalwor_house3" file="int_nalwor_house3.xstend">
+<zone name="int_nalwor_house3" file="interiors/nalwor/house3.tmx">
   <portal x="14" y="18" ref="entrance">
     <destination zone="0_nalwor_city" ref="house3_entrance"/>
    </portal>
  </zone>
 
-<zone name="int_nalwor_house4" file="int_nalwor_house4.xstend">
+<zone name="int_nalwor_house4" file="interiors/nalwor/house4.tmx">
   <portal x="12" y="18" ref="entrance">
     <destination zone="0_nalwor_city" ref="house4_entrance"/>
    </portal>
@@ -204,7 +204,7 @@
    </portal>
  </zone> 
 
-<zone name="int_nalwor_house4_1" file="int_nalwor_house4_1.xstend">
+<zone name="int_nalwor_house4_1" file="interiors/nalwor/house4_1.tmx">
   <portal x="2" y="3" ref="downstairs">
     <destination zone="int_nalwor_house4" ref="upstairs"/>
    </portal>
@@ -213,13 +213,13 @@
    </portal>
  </zone> 
 
- <zone name="int_nalwor_house4_2" file="int_nalwor_house4_2.xstend">
+ <zone name="int_nalwor_house4_2" file="interiors/nalwor/house4_2.tmx">
    <portal x="2" y="2" ref="downstairs">
     <destination zone="int_nalwor_house4_1" ref="upstairs"/>
    </portal>
  </zone>
  
- <zone name="int_nalwor_bank" file="int_nalwor_bank.xstend">
+ <zone name="int_nalwor_bank" file="interiors/nalwor/bank.tmx">
  <configurator class-name="games.stendhal.server.maps.nalwor.bank.IL0_BankNPC"/>
    <portal x="6" y="38" ref="entrance_left">
     <destination zone="0_nalwor_city" ref="bank_entrance_left"/>
@@ -272,13 +272,13 @@
   </entity>
  </zone> 
 
- <zone name="int_nalwor_bank_1" file="int_nalwor_bank_1.xstend">
+ <zone name="int_nalwor_bank_1" file="interiors/nalwor/bank_1.tmx">
    <portal x="11" y="11" ref="downstairs">
     <destination zone="int_nalwor_bank" ref="upstairs"/>
    </portal>
  </zone> 
  
- <zone name="0_nalwor_city" level="0" x="500256" y="500256" file="0_nalwor_city.xstend">
+ <zone name="0_nalwor_city" level="0" x="500256" y="500256" file="Level 0/nalwor/city.tmx">
   <portal x="73" y="93" ref="pottery_entrance">
    <destination zone="int_nalwor_pottery" ref="entrance_left"/>
   </portal>
@@ -326,16 +326,16 @@
   </portal>
  </zone>
 
- <zone name="0_nalwor_forest_e" level="0" x="500384" y="500256" file="0_nalwor_forest_e.xstend">
+ <zone name="0_nalwor_forest_e" level="0" x="500384" y="500256" file="Level 0/nalwor/forest_e.tmx">
  </zone>
 
- <zone name="0_nalwor_river_sw" level="0" x="500128" y="500384" file="0_nalwor_river_sw.xstend">
+ <zone name="0_nalwor_river_sw" level="0" x="500128" y="500384" file="Level 0/nalwor/river_sw.tmx">
  </zone>
 
- <zone name="0_nalwor_river_s" level="0" x="500256" y="500384" file="0_nalwor_river_s.xstend">
+ <zone name="0_nalwor_river_s" level="0" x="500256" y="500384" file="Level 0/nalwor/river_s.tmx">
  </zone>
 
- <zone name="0_nalwor_river_se" level="0" x="500384" y="500384" file="0_nalwor_river_se.xstend">
+ <zone name="0_nalwor_river_se" level="0" x="500384" y="500384" file="Level 0/nalwor/river_se.tmx">
  <entity x="185" y="64">
     <implementation class-name="games.stendhal.server.entity.FishSource">
      <parameter name="species">perch</parameter>
@@ -346,19 +346,19 @@
 
  <!--  Level -1 -->
 
- <zone name="-1_nalwor_caves_w" level="-1" x="500128" y="500128" file="sub_1_nalwor_caves_w.xstend">
+ <zone name="-1_nalwor_caves_w" level="-1" x="500128" y="500128" file="Level -1/nalwor/caves_w.tmx">
  </zone>
 
- <zone name="-1_nalwor_caves" level="-1" x="500256" y="500128" file="sub_1_nalwor_caves.xstend">
+ <zone name="-1_nalwor_caves" level="-1" x="500256" y="500128" file="Level -1/nalwor/caves.tmx">
  </zone>
 
- <zone name="-1_nalwor_caves_e" level="-1" x="500384" y="500128" file="sub_1_nalwor_caves_e.xstend">
+ <zone name="-1_nalwor_caves_e" level="-1" x="500384" y="500128" file="Level -1/nalwor/caves_e.tmx">
  </zone>
 
- <zone name="-1_nalwor_drows_tunnel_n" level="-1" x="500256" y="500256" file="sub_1_nalwor_drows_tunnel_n.xstend">
+ <zone name="-1_nalwor_drows_tunnel_n" level="-1" x="500256" y="500256" file="Level -1/nalwor/drows_tunnel_n.tmx">
  </zone>
 
- <zone name="-1_nalwor_drows_tunnel" level="-1" x="500256" y="500384" file="sub_1_nalwor_drows_tunnel.xstend">
+ <zone name="-1_nalwor_drows_tunnel" level="-1" x="500256" y="500384" file="Level -1/nalwor/drows_tunnel.tmx">
  </zone>
 
  <!--  Level -2 -->

@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <!DOCTYPE zones SYSTEM "zones.dtd"> -->
 <zones>
-
- <!-- XXX - Does this belong with a major area??? -->
- <zone name="-2_kotoch_entrance" level="-2" x="500160" y="500032" file="sub_2_kotoch_entrance.xstend">
- </zone>
-
-
- <zone name="int_afterlife" file="int_afterlife.xstend">
+ <zone name="int_afterlife" file="interiors/abstract/afterlife.tmx">
   <portal x="30" y="6" ref="exit_left">
    <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
@@ -45,10 +39,10 @@ Walk on, and you will be returned to the land of the living...
   </entity>
  </zone>
 
- <zone name="int_admin_playground" file="int_admin_playground.xstend">
+ <zone name="int_admin_playground" file="interiors/abstract/admin_playground.tmx">
  </zone>
 
- <zone name="int_pathfinding" file="int_pathfinding.xstend">
+ <zone name="int_pathfinding" file="interiors/abstract/pathfinding.tmx">
   <configurator class-name="games.stendhal.server.maps.FeaturesTestArea" />
 
   <portal x="50" y="10" ref="locked_outside">

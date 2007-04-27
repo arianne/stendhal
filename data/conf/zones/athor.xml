@@ -26,7 +26,7 @@
 
  <!-- Level 0 (Ground) -->
 
-     <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="0_athor_ship_w2.xstend">
+     <zone name="0_athor_ship_w2" level="0" x="500768" y="500384" file="Level 0/athor/ship_w2.tmx">
        <entity x="22" y="37">
          <implementation class-name="games.stendhal.server.maps.athor.ship.CaptainNPC">
            <parameter name="name">Captain</parameter>
@@ -48,7 +48,7 @@
   	   </entity>
      </zone>
 
-     <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="0_athor_island_w.xstend">
+     <zone name="0_athor_island_w" level="0" x="500896" y="500384" file="Level 0/athor/island_w.tmx">
      	<entity x="90" y="45">
     		<implementation class-name="games.stendhal.server.entity.FishSource">
      		<parameter name="species">clownfish</parameter>
@@ -56,7 +56,7 @@
   		</entity>
      </zone>
      
-     <zone name="0_athor_island" level="0" x="501024" y="500384" file="0_athor_island.xstend">
+     <zone name="0_athor_island" level="0" x="501024" y="500384" file="Level 0/athor/island.tmx">
        <portal x="57" y="57" ref="apartment_1_entrance">
          <destination zone="int_athor_holiday_apartment_1" ref="out"/>
        </portal>
@@ -314,55 +314,55 @@
   		</entity>
      </zone>
      
-     <zone name="int_athor_holiday_apartment_1" file="int_athor_holiday_apartment_1.xstend">
+     <zone name="int_athor_holiday_apartment_1" file="interiors/athor/holiday_apartment_1.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_1_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_2" file="int_athor_holiday_apartment_2.xstend">
+     <zone name="int_athor_holiday_apartment_2" file="interiors/athor/holiday_apartment_2.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_2_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_3" file="int_athor_holiday_apartment_3.xstend">
+     <zone name="int_athor_holiday_apartment_3" file="interiors/athor/holiday_apartment_3.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_3_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_4" file="int_athor_holiday_apartment_4.xstend">
+     <zone name="int_athor_holiday_apartment_4" file="interiors/athor/holiday_apartment_4.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_4_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_5" file="int_athor_holiday_apartment_5.xstend">
+     <zone name="int_athor_holiday_apartment_5" file="interiors/athor/holiday_apartment_5.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_5_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_6" file="int_athor_holiday_apartment_6.xstend">
+     <zone name="int_athor_holiday_apartment_6" file="interiors/athor/holiday_apartment_6.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_6_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_7" file="int_athor_holiday_apartment_7.xstend">
+     <zone name="int_athor_holiday_apartment_7" file="interiors/athor/holiday_apartment_7.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_7_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_holiday_apartment_8" file="int_athor_holiday_apartment_8.xstend">
+     <zone name="int_athor_holiday_apartment_8" file="interiors/athor/holiday_apartment_8.tmx">
        <portal x="4" y="14" ref="out">
          <destination zone="0_athor_island" ref="apartment_8_entrance"/>
        </portal>
      </zone>
 
-     <zone name="int_athor_dressing_room_m" file="int_athor_dressing_room_m.xstend">
+     <zone name="int_athor_dressing_room_m" file="interiors/athor/dressing_room_m.tmx">
        <portal x="6" y="14" ref="out">
          <destination zone="0_athor_island" ref="dressing_room_m_entrance"/>
        </portal>
@@ -382,7 +382,7 @@
         </entity>
      </zone>
 
-     <zone name="int_athor_dressing_room_f" file="int_athor_dressing_room_f.xstend">
+     <zone name="int_athor_dressing_room_f" file="interiors/athor/dressing_room_f.tmx">
        <portal x="9" y="14" ref="out">
          <destination zone="0_athor_island" ref="dressing_room_f_entrance"/>
        </portal>
@@ -394,18 +394,18 @@
        </entity>
      </zone>
      
-     <zone name="int_athor_labyrinth_entrance" file="int_athor_small_hut.xstend">
+     <zone name="int_athor_labyrinth_entrance" file="interiors/athor/small_hut.tmx">
        <portal x="8" y="14" ref="out">
          <destination zone="0_athor_island" ref="labyrinth_hut_entrance"/>
        </portal>
      </zone>
 
-    <zone name="0_athor_island_e" level="0" x="501152" y="500384" file="0_athor_island_e.xstend">
+    <zone name="0_athor_island_e" level="0" x="501152" y="500384" file="Level 0/athor/island_e.tmx">
 	</zone>
 
  <!-- Level -1 -->
 
-     <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="sub_1_athor_ship_w2.xstend">
+     <zone name="-1_athor_ship_w2" level="-1" x="500768" y="500384" file="Level -1/athor/ship_w2.tmx">
        <entity x="27" y="27">
          <implementation class-name="games.stendhal.server.maps.athor.ship.CookNPC">
            <parameter name="name">Laura</parameter>
@@ -437,7 +437,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
      </zone>
 
 
-  <zone name="-1_athor_island" level="-1" x="501024" y="500384" file="sub_1_athor_island.xstend">
+  <zone name="-1_athor_island" level="-1" x="501024" y="500384" file="Level -1/athor/island.tmx">
     <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature"/>
     <portal x="118" y="96" ref="quicksand_out">
       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
@@ -455,7 +455,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
     </portal>
   </zone>
 
-  <zone name="-1_athor_island_e" level="-1" x="501152" y="500384" file="sub_1_athor_island_e.xstend">
+  <zone name="-1_athor_island_e" level="-1" x="501152" y="500384" file="Level -1/athor/island_e.tmx">
     <configurator class-name="games.stendhal.server.maps.athor.labyrinth.MinotaurKingCreature"/>
     <portal x="1" y="118" ref="labyrinth1">
       <destination zone="-1_athor_island" ref="labyrinth_locked_door"/>
@@ -468,7 +468,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
 
  <!-- Level -2 -->
 
- <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="sub_2_athor_ship_w2.xstend">
+ <zone name="-2_athor_ship_w2" level="-2" x="500768" y="500384" file="Level -2/athor/ship_w2.tmx">
    <entity x="24" y="41">
      <implementation class-name="games.stendhal.server.maps.athor.ship.CargoWorkerNPC">
        <parameter name="name">Klaas</parameter>

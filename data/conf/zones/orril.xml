@@ -26,22 +26,22 @@
 
  <!-- Level 0 (Ground) -->
 
- <zone name="0_orril_mountain_n2_w2" level="0" x="499616" y="500000" file="0_orril_mountain_n2_w2.xstend">
+ <zone name="0_orril_mountain_n2_w2" level="0" x="499616" y="500000" file="Level 0/orril/mountain_n2_w2.tmx">
  </zone>
 
- <zone name="0_orril_mountain_nw" level="0" x="499744" y="500128" file="0_orril_mountain_nw.xstend">
+ <zone name="0_orril_mountain_nw" level="0" x="499744" y="500128" file="Level 0/orril/mountain_nw.tmx">
  </zone>
 
- <zone name="0_orril_forest_n" level="0" x="499872" y="500128" file="0_orril_forest_n.xstend">
+ <zone name="0_orril_forest_n" level="0" x="499872" y="500128" file="Level 0/orril/forest_n.tmx">
  </zone>
 
- <zone name="0_orril_mountain_w2" level="0" x="499616" y="500256" file="0_orril_mountain_w2.xstend">
+ <zone name="0_orril_mountain_w2" level="0" x="499616" y="500256" file="Level 0/orril/mountain_w2.tmx">
  </zone>
 
- <zone name="0_orril_mountain_w" level="0" x="499744" y="500256" file="0_orril_mountain_w.xstend">
+ <zone name="0_orril_mountain_w" level="0" x="499744" y="500256" file="Level 0/orril/mountain_w.tmx">
  </zone>
 
- <zone name="0_orril_castle" level="0" x="499872" y="500256" file="0_orril_castle.xstend">
+ <zone name="0_orril_castle" level="0" x="499872" y="500256" file="Level 0/orril/castle.tmx">
   <portal x="60" y="96" ref="outside_gate_left2">
    <destination zone="0_orril_castle" ref="inside_gate_left2"/>
   </portal>
@@ -97,7 +97,7 @@
   </portal>
  </zone>
 
- <zone name="int_orril_castle_0" file="int_orril_castle_0.xstend">
+ <zone name="int_orril_castle_0" file="interiors/orril/castle_0.tmx">
   <portal x="26" y="62" ref="entrance_left">
    <destination zone="0_orril_castle" ref="castle_entrance_left"/>
   </portal>
@@ -115,10 +115,10 @@
   </portal>
  </zone>
 
- <zone name="0_orril_forest_e" level="0" x="500000" y="500256" file="0_orril_forest_e.xstend">
+ <zone name="0_orril_forest_e" level="0" x="500000" y="500256" file="Level 0/orril/forest_e.tmx">
  </zone>
 
-  <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384" file="0_orril_river_s_w2.xstend">
+  <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384" file="Level 0/orril/river_s_w2.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.bridge.GuardNPC"/>
   <entity x="36" y="26">
     <implementation class-name="games.stendhal.server.entity.FishSource">
@@ -132,10 +132,10 @@
   </entity>
  </zone>
 
- <zone name="0_orril_river_sw" level="0" x="499744" y="500384" file="0_orril_river_sw.xstend">
+ <zone name="0_orril_river_sw" level="0" x="499744" y="500384" file="Level 0/orril/river_sw.tmx">
  </zone>
 
- <zone name="0_orril_river_s" level="0" x="499872" y="500384" file="0_orril_river_s.xstend">
+ <zone name="0_orril_river_s" level="0" x="499872" y="500384" file="Level 0/orril/river_s.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.river.CampingGirlNPC" />
   <configurator class-name="games.stendhal.server.maps.orril.river.GoldProspectorNPC" />  
   <!-- This must be after the NPC configurator -->
@@ -169,7 +169,7 @@ East: Nalwor, Semos
   </entity>
  </zone>
 
- <zone name="int_orril_jynath_house" file="int_orril_jynath_house.xstend">
+ <zone name="int_orril_jynath_house" file="interiors/orril/jynath_house.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.magician_house.WitchNPC" />
 
   <portal x="16" y="30" ref="entrance">
@@ -177,22 +177,22 @@ East: Nalwor, Semos
   </portal>
  </zone>
 
- <zone name="0_orril_river_se" level="0" x="500000" y="500384" file="0_orril_river_se.xstend">
+ <zone name="0_orril_river_se" level="0" x="500000" y="500384" file="Level 0/orril/river_se.tmx">
  </zone>
 
 
  <!-- Level -1 -->
 
- <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128" file="sub_1_kotoch_entrance.xstend">
+ <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128" file="Level -1/kotoch/entrance.tmx">
  </zone>
 
- <zone name="-1_orril_mountain_w2" level="-1" x="499680" y="500256" file="sub_1_orril_mountain_w2.xstend">
+ <zone name="-1_orril_mountain_w2" level="-1" x="499680" y="500256" file="Level -1/orril/mountain_w2.tmx">
  </zone>
 
- <zone name="-1_orril_dungeon" level="-1" x="500000" y="500256" file="sub_1_orril_dungeon.xstend">
+ <zone name="-1_orril_dungeon" level="-1" x="500000" y="500256" file="Level -1/orril/dungeon.tmx">
  </zone>
 
- <zone name="-1_orril_castle_w" level="-1" x="499744" y="500256" file="sub_1_orril_castle_w.xstend">
+ <zone name="-1_orril_castle_w" level="-1" x="499744" y="500256" file="Level -1/orril/castle_w.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.castle.GreenDragonCreature" />
 
   <portal x="69" y="37" ref="0">
@@ -206,7 +206,7 @@ East: Nalwor, Semos
 
  </zone>
 
- <zone name="-1_orril_castle" level="-1" x="499872" y="500256" file="sub_1_orril_castle.xstend">
+ <zone name="-1_orril_castle" level="-1" x="499872" y="500256" file="Level -1/orril/castle.tmx">
   <portal x="19" y="22" ref="0">
    <destination zone="int_orril_castle_0" ref="4"/>
   </portal>
@@ -219,11 +219,14 @@ East: Nalwor, Semos
 
  <!-- Level -2 -->
 
- <zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256" file="sub_2_orril_dwarf_mine.xstend">
+ <zone name="-2_kotoch_entrance" level="-2" x="500160" y="500032" file="Level -2/kotoch/entrance.tmx">
+ </zone>
+
+ <zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256" file="Level -2/orril/dwarf_mine.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.dwarfmine.IronBuyerNPC"/>
  </zone>
 
- <zone name="-2_orril_lich_palace" level="-2" x="499744" y="500256" file="sub_2_orril_lich_palace.xstend">
+ <zone name="-2_orril_lich_palace" level="-2" x="499744" y="500256" file="Level -2/orril/lich_palace.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.castle.DemonSkeletonCreature" />  
 
   <portal x="70" y="38" ref="0">
@@ -248,17 +251,17 @@ East: Nalwor, Semos
   </portal>
  </zone>
 
- <zone name="-2_orril_dungeon" level="-2" x="499936" y="500224" file="sub_2_orril_dungeon.xstend">
+ <zone name="-2_orril_dungeon" level="-2" x="499936" y="500224" file="Level -2/orril/dungeon.tmx">
  </zone>
 
 
  <!-- Level -3 -->
 
- <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352" file="sub_3_orril_dwarf_blacksmith.xstend">
+ <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352" file="Level -3/orril/dwarf_blacksmith.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC"/>
  </zone>
 
- <zone name="-3_orril_dungeon" level="-3" x="499936" y="500224" file="sub_3_orril_dungeon.xstend">
+ <zone name="-3_orril_dungeon" level="-3" x="499936" y="500224" file="Level -3/orril/dungeon.tmx">
  </zone>
 
 

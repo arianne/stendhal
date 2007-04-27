@@ -8,37 +8,37 @@
 
  <!-- Level 6 -->
 
- <zone name="6_kikareukin_islands" file="6_kikareukin_islands.xstend">
+ <zone name="6_kikareukin_islands" file="Level 6/kikareukin/islands.tmx">
  </zone>
 
 
  <!-- Level 5 -->
 
- <zone name="5_kikareukin_cave" file="5_kikareukin_cave.xstend">
+ <zone name="5_kikareukin_cave" file="Level 5/kikareukin/cave.tmx">
  </zone>
 
 
  <!-- Level 4 -->
 
- <zone name="4_kikareukin_cave" file="4_kikareukin_cave.xstend">
+ <zone name="4_kikareukin_cave" file="Level 4/kikareukin/cave.tmx">
  </zone>
 
 
  <!-- Level 3 -->
 
- <zone name="3_kikareukin_cave" file="3_kikareukin_cave.xstend">
+ <zone name="3_kikareukin_cave" file="Level 3/kikareukin/cave.tmx">
  </zone>
 
 
  <!-- Level 2 -->
 
- <zone name="2_kikareukin_cave" file="2_kikareukin_cave.xstend">
+ <zone name="2_kikareukin_cave" file="Level 2/kikareukin/cave.tmx">
  </zone>
 
 
  <!-- Level 1 -->
 
- <zone name="1_kikareukin_cave" file="1_kikareukin_cave.xstend">
+ <zone name="1_kikareukin_cave" file="Level 1/kikareukin/cave.tmx">
  </zone>
 
 

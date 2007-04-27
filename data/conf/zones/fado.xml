@@ -27,7 +27,7 @@
 
  <!--  Ground level -->
 
- <zone name="0_fado_city" level="0" x="499616" y="500512" file="0_fado_city.xstend">
+ <zone name="0_fado_city" level="0" x="499616" y="500512" file="Level 0/fado/city.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.city.GreeterNPC"/>
            <configurator class-name="games.stendhal.server.maps.fado.city.NunNPC"/>
            <portal x="36" y="16" ref="tavern_entrance_left">
@@ -66,7 +66,7 @@
            </portal>
    	</zone>
          
-         <zone name="int_fado_bank" file="int_fado_bank.xstend">
+         <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
            
            <portal x="12" y="19" ref="entrance">
@@ -113,14 +113,14 @@
            </entity>
          </zone>
          
-         <zone name="int_fado_bakery" file="int_fado_bakery.xstend">
+         <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bakery.BakerNPC"/>
            <portal x="26" y="14" ref="entrance">
              <destination zone="0_fado_city" ref="bakery_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_tavern" file="int_fado_tavern.xstend">
+         <zone name="int_fado_tavern" file="interiors/fado/tavern.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.tavern.MaidNPC"/>
            
            <portal x="16" y="30" ref="entrance_left">
@@ -156,7 +156,7 @@
   		   </entity>		    		   	   
          </zone>
          
-   		<zone name="int_fado_house" file="int_fado_house.xstend">
+   		<zone name="int_fado_house" file="interiors/fado/house.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.house.WomanNPC"/>
            
            <portal x="6" y="10" ref="entrance_left">
@@ -169,7 +169,7 @@
            
          </zone>
          
-         <zone name="int_fado_church" file="int_fado_church.xstend">
+         <zone name="int_fado_church" file="interiors/fado/church.tmx">
           <configurator class-name="games.stendhal.server.maps.fado.church.VergerNPC"/>
           <configurator class-name="games.stendhal.server.maps.fado.church.PriestNPC"/>
            <portal x="10" y="23" ref="entrance_left2">
@@ -189,13 +189,13 @@
            </portal>
          </zone>
          
-         <zone name="int_fado_shepherd_house" file="int_fado_shepherd_house.xstend">
+         <zone name="int_fado_shepherd_house" file="interiors/fado/shepherd_house.tmx">
            <portal x="10" y="31" ref="entrance">
              <destination zone="0_fado_city" ref="shepherd_house_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_0" file="int_fado_hotel_0.xstend">
+         <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC"/>
            
            <portal x="8" y="63" ref="entrance">
@@ -267,55 +267,55 @@
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_001" file="int_fado_room_001.xstend">
+         <zone name="int_fado_hotel_room_001" file="interiors/fado/room_001.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_001_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_002" file="int_fado_room_002.xstend">
+         <zone name="int_fado_hotel_room_002" file="interiors/fado/room_002.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_002_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_003" file="int_fado_room_003.xstend">
+         <zone name="int_fado_hotel_room_003" file="interiors/fado/room_003.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_003_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_004" file="int_fado_room_004.xstend">
+         <zone name="int_fado_hotel_room_004" file="interiors/fado/room_004.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_004_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_005" file="int_fado_room_005.xstend">
+         <zone name="int_fado_hotel_room_005" file="interiors/fado/room_005.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_005_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_006" file="int_fado_room_006.xstend">
+         <zone name="int_fado_hotel_room_006" file="interiors/fado/room_006.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_006_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_007" file="int_fado_room_007.xstend">
+         <zone name="int_fado_hotel_room_007" file="interiors/fado/room_007.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_007_entrance"/>
            </portal>
          </zone>
          
-         <zone name="int_fado_hotel_room_008" file="int_fado_room_008.xstend">
+         <zone name="int_fado_hotel_room_008" file="interiors/fado/room_008.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
            </portal>
          </zone>
 	 
-	 <zone name="int_fado_battle_arena" file="int_fado_battle_arena.xstend">
+	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
            <portal x="31" y="63" ref="entrance">
              <destination zone="0_fado_city" ref="battle_arena_entrance"/>
            </portal>

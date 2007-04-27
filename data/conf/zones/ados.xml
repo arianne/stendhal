@@ -7,19 +7,19 @@
    -->
 
  <!--  Ground level -->
- <zone name="0_ados_mountain_n2_w2" level="0" x="500256" y="499744" file="0_ados_mountain_n2_w2.xstend">
+ <zone name="0_ados_mountain_n2_w2" level="0" x="500256" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
  </zone>
 
- <zone name="0_ados_wall_n2" level="0" x="500768" y="499744" file="0_ados_wall_n2.xstend">
+ <zone name="0_ados_wall_n2" level="0" x="500768" y="499744" file="Level 0/ados/wall_n2.tmx">
  </zone>
 
- <zone name="0_ados_city_n2" level="0" x="500896" y="499744" file="0_ados_city_n2.xstend">
+ <zone name="0_ados_city_n2" level="0" x="500896" y="499744" file="Level 0/ados/city_n2.tmx">
  </zone>
 
- <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="0_ados_mountain_n_w2.xstend">
+ <zone name="0_ados_mountain_n_w2" level="0" x="500384" y="499872" file="Level 0/ados/mountain_n_w2.tmx">
  </zone>
 
- <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="0_ados_mountain_nw.xstend">
+ <zone name="0_ados_mountain_nw" level="0" x="500512" y="499872" file="Level 0/ados/mountain_nw.tmx">
   <entity x="126" y="107">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <parameter name="text">
@@ -51,7 +51,7 @@ West: Semos
   </portal>
  </zone>
 
- <zone name="int_ados_magician_house" file="int_ados_magician_house.xstend">
+ <zone name="int_ados_magician_house" file="interiors/ados/magician_house.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.magician_house.WizardNPC" />
   <configurator class-name="games.stendhal.server.maps.ados.magician_house.ItemsOnTable" />
 
@@ -75,7 +75,7 @@ areas.
   </entity>
  </zone>
 
- <zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="0_ados_outside_nw.xstend">
+ <zone name="0_ados_outside_nw" level="0" x="500640" y="499872" file="Level 0/ados/outside_nw.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.outside.AnimalKeeperNPC" />
   <configurator class-name="games.stendhal.server.maps.ados.outside.VeterinarianNPC" />
 
@@ -103,7 +103,7 @@ West: Semos
   </entity>
  </zone>
 
- <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="0_ados_wall_n.xstend">
+ <zone name="0_ados_wall_n" level="0" x="500768" y="499872" file="Level 0/ados/wall_n.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.wall.Deathmatch"/>
    <configurator class-name="games.stendhal.server.maps.ados.wall.SoldierNPC"/>
    <entity x="88" y="78">
@@ -153,7 +153,7 @@ West: Semos
    
  </zone>
 
- <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="0_ados_city_n.xstend">
+ <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="Level 0/ados/city_n.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
    <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
    
@@ -222,10 +222,10 @@ West: Semos
    
  </zone>
  
- <zone name="int_ados_reverse_arrow" file="int_ados_reverse_arrow.xstend">
+ <zone name="int_ados_reverse_arrow" file="interiors/ados/reverse_arrow.tmx">
  </zone>
  
-   <zone name="int_ados_bank" file="int_ados_bank.xstend">
+   <zone name="int_ados_bank" file="interiors/ados/bank.tmx">
     <portal x="22" y="17" ref="0">
      <destination zone="0_ados_city_n" ref="6"/>
     </portal>
@@ -281,13 +281,13 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </entity>
    </zone>
 
-   <zone name="int_ados_haunted_house" file="int_ados_haunted_house.xstend">
+   <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.tmx">
     <portal x="7" y="1" ref="0">
      <destination zone="0_ados_city_n" ref="11"/>
     </portal>
    </zone>
 
-   <zone name="int_ados_bakery" file="int_ados_bakery.xstend">
+   <zone name="int_ados_bakery" file="interiors/ados/bakery.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.bakery.BakerNPC" />
 
     <portal x="26" y="14" ref="0">
@@ -295,7 +295,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     </portal>
    </zone>
 
-   <zone name="int_ados_library" file="int_ados_library.xstend">
+   <zone name="int_ados_library" file="interiors/ados/library.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.library.LibrarianNPC" />
 
 	<entity x="4" y="27">
@@ -331,7 +331,7 @@ in roaches.
     </portal>
    </zone>
 
-   <zone name="int_ados_tavern_0" file="int_ados_tavern_0.xstend">
+   <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
 
     <portal x="12" y="17" ref="entrance_left">
@@ -343,7 +343,7 @@ in roaches.
     </portal>
    </zone>
    
-   <zone name="int_ados_zaras_house_0" file="int_ados_zaras_house_0.xstend">
+   <zone name="int_ados_zaras_house_0" file="interiors/ados/zaras_house_0.tmx">
     <portal x="8" y="14" ref="entrance_zaras_house">
      <destination zone="0_ados_city_n" ref="zaras_house_entrance"/>
      <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
@@ -356,7 +356,7 @@ in roaches.
     </portal>
    </zone>   
    
-   <zone name="int_ados_zaras_house_1" file="int_ados_zaras_house_1.xstend">
+   <zone name="int_ados_zaras_house_1" file="interiors/ados/zaras_house_1.tmx">
     <portal x="11" y="4" ref="down_zaras_house">
      <destination zone="int_ados_zaras_house_0" ref="up_zaras_house"/>
     </portal>
@@ -368,7 +368,7 @@ in roaches.
    </zone>   
    
    
-   <zone name="int_ados_goldsmith" file="int_ados_goldsmith.xstend">
+   <zone name="int_ados_goldsmith" file="interiors/ados/goldsmith.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.goldsmith.GoldsmithNPC" />
     <portal x="4" y="14" ref="entrance_goldsmith">
      <destination zone="0_ados_city_n" ref="goldsmith_entrance"/>
@@ -376,7 +376,7 @@ in roaches.
    </zone>
 
 <!-- I will add the temple again when I've found an appropriate building 
-  <zone name="int_ados_temple" file="int_ados_temple.xstend">
+  <zone name="int_ados_temple" file="interiors/ados/temple.tmx">
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_ados_wall" ref="temple_entrance_left"/>
     </portal>
@@ -394,7 +394,7 @@ in roaches.
     </portal>
    </zone>
 -->   
-   <zone name="int_ados_storage" file="int_ados_storage.xstend">
+   <zone name="int_ados_storage" file="interiors/ados/storage.tmx">
     <portal x="14" y="30" ref="storage_inside_left">
      <destination zone="0_ados_city_n" ref="storage_outside_1"/>
     </portal>
@@ -404,7 +404,7 @@ in roaches.
     </portal>
    </zone> 
    
-   <zone name="int_ados_town_hall" file="int_ados_buraucrazy_0.xstend">
+   <zone name="int_ados_town_hall" file="interiors/ados/buraucrazy_0.tmx">
     <portal x="22" y="17" ref="entrance">
      <destination zone="0_ados_city" ref="town_hall_entrance"/>
     </portal>
@@ -414,7 +414,7 @@ in roaches.
     </portal>
    </zone> 
    
-   <zone name="int_ados_town_hall_1" file="int_ados_buraucrazy_1.xstend">
+   <zone name="int_ados_town_hall_1" file="interiors/ados/buraucrazy_1.tmx">
     <portal x="36" y="3" ref="upstairs">
      <destination zone="int_ados_town_hall_2" ref="downstairs"/>
     </portal>
@@ -424,7 +424,7 @@ in roaches.
     </portal>
    </zone> 
    
-   <zone name="int_ados_town_hall_2" file="int_ados_buraucrazy_2.xstend">
+   <zone name="int_ados_town_hall_2" file="interiors/ados/buraucrazy_2.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.townhall.MayorNPC" />
     <portal x="36" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_1" ref="upstairs"/>
@@ -435,36 +435,36 @@ in roaches.
     </portal>
    </zone> 
    
-   <zone name="int_ados_town_hall_3" file="int_ados_buraucrazy_3.xstend">
+   <zone name="int_ados_town_hall_3" file="interiors/ados/buraucrazy_3.tmx">
     <portal x="3" y="3" ref="downstairs">
      <destination zone="int_ados_town_hall_2" ref="upstairs"/>
     </portal>
    </zone> 
    
-   <zone name="int_ados_fishermans_hut_west" file="int_ados_fishermans_hut_west.xstend">
+   <zone name="int_ados_fishermans_hut_west" file="interiors/ados/fishermans_hut_west.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.TeacherNPC"/>
     <portal x="8" y="14" ref="entrance_fishermans_hut_west">
      <destination zone="0_ados_city" ref="fishermans_hut_west_entrance"/>
     </portal>
    </zone>
    
-   <zone name="int_ados_fishermans_hut_north" file="int_ados_fishermans_hut_north.xstend">
+   <zone name="int_ados_fishermans_hut_north" file="interiors/ados/fishermans_hut_north.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.fishermans_hut.FishermanNPC"/>
     <portal x="8" y="14" ref="entrance_fishermans_hut_north">
      <destination zone="0_ados_city" ref="fishermans_hut_north_entrance"/>
     </portal>
    </zone>
    
-   <zone name="int_ados_fishermans_hut_south" file="int_ados_fishermans_hut_south.xstend">
+   <zone name="int_ados_fishermans_hut_south" file="interiors/ados/fishermans_hut_south.tmx">
     <portal x="8" y="14" ref="entrance_fishermans_hut_south">
      <destination zone="0_ados_city" ref="fishermans_hut_south_entrance"/>
     </portal>
    </zone>
    
-   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="0_ados_forest_w2.xstend">
+   <zone name="0_ados_forest_w2" level="0" x="500256" y="500000" file="Level 0/ados/forest_w2.tmx">
    </zone>
    
-   <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="0_ados_rock_w.xstend">
+   <zone name="0_ados_rock_w" level="0" x="500384" y="500000" file="Level 0/ados/rock_w.tmx">
 	   <entity x="14" y="50">
 		   <implementation class-name="games.stendhal.server.entity.Sign">
 			   <parameter name="text">
@@ -477,7 +477,7 @@ Southeast: Docks
 	   </entity>
    </zone>
    
-   <zone name="0_ados_rock" level="0" x="500512" y="500000" file="0_ados_rock.xstend">
+   <zone name="0_ados_rock" level="0" x="500512" y="500000" file="Level 0/ados/rock.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.rock.WeaponsCollectorNPC"/>
      <entity x="61" y="36">
     	<implementation class-name="games.stendhal.server.entity.FishSource">
@@ -489,10 +489,10 @@ Southeast: Docks
   </portal>
    </zone>
    
-   <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="0_ados_outside_w.xstend">
+   <zone name="0_ados_outside_w" level="0" x="500640" y="500000" file="Level 0/ados/outside_w.tmx">
    </zone>
    
-   <zone name="0_ados_wall" level="0" x="500768" y="500000" file="0_ados_wall.xstend">
+   <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
 <!-- this building is going to be barracks
      <portal x="100" y="52" ref="temple_entrance_left">
       <destination zone="int_ados_temple" ref="entrance_center_left"/>
@@ -506,7 +506,7 @@ Southeast: Docks
 -->
    </zone>
    
-   <zone name="0_ados_city" level="0" x="500896" y="500000" file="0_ados_city.xstend">
+   <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">
    <entity x="89" y="63">
     	<implementation class-name="games.stendhal.server.entity.FishSource">
      	<parameter name="species">cod</parameter>
@@ -532,17 +532,17 @@ Southeast: Docks
    </portal>
    </zone>
    
-   <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="0_ados_swamp.xstend">
+   <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
      <configurator class-name="games.stendhal.server.maps.ados.swamp.DeathmatchRecruiterNPC"/>
    </zone>
    
- <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="0_ados_wall_s.xstend">
+ <zone name="0_ados_wall_s" level="0" x="500768" y="500128" file="Level 0/ados/wall_s.tmx">
  </zone>
 
- <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="0_ados_city_s.xstend">
+ <zone name="0_ados_city_s" level="0" x="500896" y="500128" file="Level 0/ados/city_s.tmx">
  </zone>
  
- <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="0_ados_coast_s_w2.xstend">
+ <zone name="0_ados_coast_s_w2" level="0" x="500640" y="500256" file="Level 0/ados/coast_s_w2.tmx">
    <entity x="101" y="102">
      <implementation class-name="games.stendhal.server.maps.ados.coast.FerryConveyerNPC">
        <parameter name="name">Eliza</parameter>
@@ -553,34 +553,34 @@ Southeast: Docks
  </zone>
  
  <!--
-     <zone name="0_ados_coast_sw" file="0_ados_coast_sw.xstend">
+     <zone name="0_ados_coast_sw" file="Level 0/ados/coast_sw.tmx">
      </zone>
 
-     <zone name="0_ados_coast_s" file="0_ados_coast_s.xstend">
+     <zone name="0_ados_coast_s" file="Level 0/ados/coast_s.tmx">
      </zone>
  -->
 
 
 
- <zone name="0_ados_river_s2_w2" level="0" x="500640" y="500384" file="0_ados_river_s2_w2.xstend">
+ <zone name="0_ados_river_s2_w2" level="0" x="500640" y="500384" file="Level 0/ados/river_s2_w2.tmx">
  </zone>
 
 
  <!--  Level -1 -->
 
- <zone name="-1_ados_caves" level="-1" x="500384" y="499872" file="sub_1_ados_caves.xstend">
+ <zone name="-1_ados_caves" level="-1" x="500384" y="499872" file="Level -1/ados/caves.tmx">
  </zone>
 
-<zone name="-1_ados_caves_s" level="-1" x="500384" y="500000" file="sub_1_ados_caves_s.xstend">
+<zone name="-1_ados_caves_s" level="-1" x="500384" y="500000" file="Level -1/ados/caves_s.tmx">
 </zone>
 
-<zone name="-1_ados_caves_se" level="-1" x="500512" y="500000" file="sub_1_ados_caves_se.xstend">
+<zone name="-1_ados_caves_se" level="-1" x="500512" y="500000" file="Level -1/ados/caves_se.tmx">
   <portal x="123" y="107" ref="0">
    <destination zone="0_ados_rock" ref="caves_exit"/>
   </portal>
 </zone>
 
- <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="sub_1_ados_outside_nw.xstend">
+ <zone name="-1_ados_outside_nw" level="-1" x="500640" y="499872" file="Level -1/ados/outside_nw.tmx">
   <portal x="4" y="23" ref="0">
    <destination zone="0_ados_outside_nw" ref="0"/>
   </portal>
@@ -590,13 +590,13 @@ Southeast: Docks
 
  <!--  Level -2 -->
 
- <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="sub_2_ados_outside_nw.xstend">
+ <zone name="-2_ados_outside_nw" level="-2" x="500640" y="499872" file="Level -2/ados/outside_nw.tmx">
  </zone>
 
 
  <!--  Level -3 -->
 
- <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="sub_3_ados_outside_nw.xstend">
+ <zone name="-3_ados_outside_nw" level="-3" x="500640" y="499872" file="Level -3/ados/outside_nw.tmx">
   <configurator class-name="games.stendhal.server.maps.ados.outside.CloaksCollectorNPC" />
   <!-- This must be after the NPC configurator -->
   <entity x="17" y="23">
