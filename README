@@ -73,8 +73,12 @@ Changelog
 
 0.60/0.59.1?
 - a sleeping cow now indicates that a player is away
+- Ported maps to a new format that is a lot of less memory intensive.
+- Optimized TMX loader. Loads up to 100x faster.
+- Make client use less memory.
+- Maps can now have its own tilesets.
 
-0.59
+0.59 Apr 14, 2007
 World:
 - introduced scoring system in deathmatch instead of XP
 - Added a kobold totem at the kobolds city. ( for level > 50 )
@@ -109,7 +113,7 @@ Technical:
 - zone xml now uses <parameter> values for factory arguments, and entity types may include <attribute> values to set instance attributes
 - use zone level/coordinates from data/conf/zones/*.xml instead of tmx files
 
-0.58
+0.58 Mar 10, 2007
 - name/HPbar is now visible, alltime
 - When client is minimised, stop stendhal drawing.
 - we only allow one support message per minute.
