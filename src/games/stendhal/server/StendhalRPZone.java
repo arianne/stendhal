@@ -27,11 +27,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.entity.spawner.CarrotGrower;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
-import games.stendhal.server.entity.spawner.GrainField;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
-import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.rule.EntityManager;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -370,6 +367,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 					break;
 			}
 			return; 
+		}
+
+		if(clazz.contains("logic/creature")) {
+			// get the default EntityManager
+			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+
+			// Is the entity a creature
+			if (manager.isCreature(clazz, type)) {
+				Creature creature = manager.getCreature(clazz, type);
+				CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
+				respawnPoints.add(point);
+			} else {
+				logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
+			}
 		}
 		
 //		// TODO: broken
