@@ -270,7 +270,7 @@
 	<target name="distworking" description="use dist instead">
 		<echo>Deprecated: Please use ant dist</echo>
 	</target>
-	<target name="dist" depends="convertmaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
+	<target name="dist" depends="rendermaps, sign_jars, dist_binary, dist_source" description="Creates all the packages needed for a Stendhal release"/>
 	<target name="dist_binary" depends="dist_server_binary,dist_client_binary,dist_client_no_sound_binary,dist_client_starter"/>
 
 	<target name="dist_server_binary" depends="server_build">
@@ -397,7 +397,7 @@
 	</target>
 
 
-	<target name="convertmaps" description="Converts the *.tmx files to *.xstend">
+	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16">
 		<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
 		<mkdir dir="${build_tiled_convertmaps}/"/>
 
@@ -422,7 +422,7 @@
 		</taskdef>
 
 		<mkdir dir="tiled/world/"/>
-		<mapconverter stendPath="${maps}" imagePath="${tiled}/world/">
+		<mapconverter imagePath="${tiled}/world/">
 			<fileset dir="tiled/">
 				<include name="Level */**/*.tmx"/>
 				<include name="interiors/**/*.tmx"/>
