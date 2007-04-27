@@ -17,9 +17,24 @@ import marauroa.common.game.RPObject;
  * An entity that has movement.
  */
 public abstract class ActiveEntity extends AnimatedStateEntity {
+	/**
+	 * The down facing state.
+	 */
 	public static final String	STATE_DOWN	= "move_down";
+
+	/**
+	 * The up facing state.
+	 */
 	public static final String	STATE_UP	= "move_up";
+
+	/**
+	 * The left facing state.
+	 */
 	public static final String	STATE_LEFT	= "move_left";
+
+	/**
+	 * The right facing state.
+	 */
 	public static final String	STATE_RIGHT	= "move_right";
 
 	/**
@@ -113,6 +128,11 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	}
 
 
+	/**
+	 * Determine if this entity is not moving.
+	 *
+	 * @return	<code>true</code> if not moving.
+	 */
 	public boolean stopped() {
 		return (dx == 0.0) && (dy == 0.0);
 	}
@@ -233,6 +253,8 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	 */
 	@Override
 	public void update(final long delta) {
+		super.update(delta);
+
 		if(!stopped()) {
 			double step = (delta / 300.0);
 
@@ -313,6 +335,9 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 			onStop();
 		}
 
+		/*
+		 * Change in position?
+		 */
 		if ((oldx != newX) && (oldy != newY)) {
 			onPosition(newX, newY);
 		}
