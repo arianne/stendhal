@@ -287,6 +287,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (hasDescription()) {
 			text = getDescription();
 		}
+		if (has("bound")) {
+			text = text + " It is a special quest reward for " + get("bound") + " and cannot be used by others.";
+		}
 		if (has("atk")) {
 			atk = get("atk");
 		}
