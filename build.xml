@@ -425,7 +425,6 @@
 		<mapconverter imagePath="${tiled}/world/">
 			<fileset dir="tiled/">
 				<include name="Level */**/*.tmx"/>
-				<include name="interiors/**/*.tmx"/>
 			</fileset>
 		</mapconverter>
 	</target>
