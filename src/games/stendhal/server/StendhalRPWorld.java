@@ -34,6 +34,9 @@ import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
+import games.stendhal.tools.tiled.LayerDefinition;
+import games.stendhal.tools.tiled.ServerTMXLoader;
+import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.net.URI;
 
@@ -45,6 +48,8 @@ import marauroa.server.game.RPWorld;
 import org.apache.log4j.Logger;
 
 public class StendhalRPWorld extends RPWorld {
+
+	public static final String MAPS_FOLDER = "tiled/";
 
 	/**
 	 * A common place for milliseconds per turn.
@@ -242,35 +247,35 @@ public class StendhalRPWorld extends RPWorld {
 		return getRPZone(new IRPZone.ID(zone));
 	}
 
+//	public StendhalRPZone addArea(String name) throws Exception {
+//		return addArea(name, name.replace("-", "sub_"));
+//	}
+
 	/**
 	 * Add zone area.
 	 *
 	 * Pathfinding code still uses this, but should use it's own XML
 	 * file for testing.
+	 * @throws Exception 
 	 */
-	public StendhalRPZone addArea(String name) throws org.xml.sax.SAXException, java.io.IOException {
-		return addArea(name, name.replace("-", "sub_"));
-	}
-
-	public StendhalRPZone addArea(String name, String content) throws org.xml.sax.SAXException, java.io.IOException {
+	public StendhalRPZone addArea(String name, String content) throws Exception {
 		logger.info("Loading area: " + name);
 		StendhalRPZone area = new StendhalRPZone(name);
 
-		ZoneXMLLoader instance = ZoneXMLLoader.get();
-		ZoneXMLLoader.XMLZone xmlzone = instance.load("data/maps/" + content + ".xstend");
+		StendhalMapStructure zonedata=ServerTMXLoader.load(MAPS_FOLDER+content);
 
-		area.addLayer(name + "_0_floor", xmlzone.getLayer("0_floor"));
-		area.addLayer(name + "_1_terrain", xmlzone.getLayer("1_terrain"));
-		area.addLayer(name + "_2_object", xmlzone.getLayer("2_object"));
-		area.addLayer(name + "_3_roof", xmlzone.getLayer("3_roof"));
+		area.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
+		area.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
+		area.addLayer(name + "_2_object", zonedata.getLayer("2_object"));
+		area.addLayer(name + "_3_roof", zonedata.getLayer("3_roof"));
 
-		byte[] layer = xmlzone.getLayer("4_roof_add");
+		LayerDefinition layer = zonedata.getLayer("4_roof_add");
 		if (layer != null) {
 			area.addLayer(name + "_4_roof_add", layer);
 		}
 
-		area.addCollisionLayer(name + "_collision", xmlzone.getLayer("collision"));
-		area.addProtectionLayer(name + "_protection", xmlzone.getLayer("protection"));
+		area.addCollisionLayer(name + "_collision", zonedata.getLayer("collision"));
+		area.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
 
 		/*
 		 * NOTE: This is only used for int_house_000 now, so assume int
@@ -278,7 +283,7 @@ public class StendhalRPWorld extends RPWorld {
 		area.setPosition();
 
 		addRPZone(area);
-		area.populate(xmlzone.getLayer("objects"));
+		area.populate(zonedata.getLayer("objects"));
 
 		return area;
 	}
@@ -286,8 +291,9 @@ public class StendhalRPWorld extends RPWorld {
 	/**
 	 * Creates a new house and add it to the zone. num is the unique idenfier
 	 * for portals x and y are the position of the door of the house.
+	 * @throws Exception 
 	 */
-	public void createHouse(StendhalRPZone zone, int x, int y) throws org.xml.sax.SAXException, java.io.IOException {
+	public void createHouse(StendhalRPZone zone, int x, int y) throws Exception {
 		Portal door = new Portal();
 		door.setX(x);
 		door.setY(y);
@@ -299,7 +305,7 @@ public class StendhalRPWorld extends RPWorld {
 		zone.assignRPObjectID(door);
 		zone.add(door);
 
-		StendhalRPZone house = addArea(name, "int_house_000");
+		StendhalRPZone house = addArea(name, "interiors/abstract/house_000.tmx");
 		Portal portal = new Portal();
 		portal.setDestination(zone.getID().getID(), dest);
 		portal.setX(7);
@@ -315,7 +321,7 @@ public class StendhalRPWorld extends RPWorld {
 			StringBuffer sbuf = new StringBuffer();
 
 			sbuf.append("zones/*.xml:\n\n");
-			sbuf.append(" <zone name=\"" + name + "\" file=\"int_house_000.xstend\">\n");
+			sbuf.append(" <zone name=\"" + name + "\" file=\"interiors/abstract/house_000.tmx\">\n");
 			sbuf.append("  <portal x=\"7\" y=\"1\" ref=\"entrance\">\n");
 			sbuf.append("   <destination zone=\"" + zone.getID().getID() + "\" ref=\"house_" + dest + "_entrance\"/>\n");
 			sbuf.append("  </portal>\n");
