@@ -51,10 +51,10 @@ k/building/decoration/wooden_banisters.png
 k*/building/door/closed.png
 k*/building/door/closed_with_key.png
 k*/building/door/closed_with_notice.png
-k/building/door/door.png
+k*/building/door/door.png
 k/building/door/door_e.png
 k*/building/door/door_n.png
-k/building/door/door_s.png
+k*/building/door/door_s.png
 k/building/door/door_w.png
 K/building/entrance/blue_green.png
 K/building/entrance/blue_green_2.png
@@ -118,7 +118,7 @@ K*/building/wall/int_green_blue_2.png
 k*/building/wall/stone.png
 ./building/wall/stone_grey.png
 k*/building/wall/wall_brown.png
-k/building/wall/wood.png
+k*/building/wall/wood.png
 z*/building/wall/bamboo.png
 ./building/wall/int_wall_pale.png
 ./building/wall/int_wall_purple.png
@@ -130,8 +130,8 @@ z*/building/wall/bamboo.png
 ./building/window/broken_window.png
 ./building/window/int_windows_dark_red.png
 ./building/window/painted.png
-k/building/window/window_left.png
-k/building/window/window_right.png
+k*/building/window/window_left.png
+k*/building/window/window_right.png
 k*/building/window/window_long.png
 ./building/window/int_windows_purple.png
 k/ground/blue_paving.png
