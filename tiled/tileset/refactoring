@@ -22,7 +22,7 @@ k*/building/decoration/chimney.png
 k*/building/decoration/chimney_big.png
 ./building/decoration/dark_red.png
 ./building/decoration/eaglehead.png
-./building/decoration/fairypool.png
+k*/building/decoration/fairypool.png
 k/building/decoration/fancy_gate.png
 ./building/decoration/fireplace.png
 ./building/decoration/fireplace_2.png
@@ -209,7 +209,7 @@ k/ground/water/waterfall.png
 k/ground/water/waterfall_2.png
 ./ground/water/whirlpool.png
 ./item/book.png
-b/item/brush.png
+b*/item/brush.png
 ./item/button.png
 ./item/button_gold.png
 ./item/button_grey.png
