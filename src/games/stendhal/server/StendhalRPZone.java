@@ -83,7 +83,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private List<Player> players;
 
 	private boolean teleportAllowed = true;
-	
+
 	private boolean moveToAllowed = true;
 
 
@@ -215,7 +215,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public void addLayer(String name, LayerDefinition layer) throws IOException {
 		Log4J.startMethod(logger, "addLayer");
-		
+
 		byte[] byteContents=layer.encode();
 		addToContent(name, byteContents);
 		Log4J.finishMethod(logger, "addLayer");
@@ -223,25 +223,36 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public void addTilesets(String name, List<TileSetDefinition> tilesets) throws IOException {
 		Log4J.startMethod(logger, "addLayer");
-		
+
 		/*
 		 * Serialize the tileset data to send it to client.
 		 */
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
 		OutputSerializer out=new OutputSerializer(array);
-		
-		out.write(tilesets.size());
+
+		int amount=0;
+
 		for(TileSetDefinition set: tilesets) {
-			set.writeObject(out);
+			if(!set.getSource().contains("logic/")) {
+				amount++;
+			}
+
 		}
-		
+
+		out.write(amount);
+		for(TileSetDefinition set: tilesets) {
+			if(!set.getSource().contains("logic/")) {
+				set.writeObject(out);
+			}
+		}
+
 		addToContent(name, array.toByteArray());
 		Log4J.finishMethod(logger, "addLayer");
     }
 
 	/**
 	 * Creates a new TransferContent for the specified data and adds it
-	 * to the contents list. 
+	 * to the contents list.
 	 */
 	private void addToContent(String name, byte[] byteContents) {
 		TransferContent content = new TransferContent();
@@ -316,10 +327,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public void populate(LayerDefinition objectsLayer) throws IOException, RPObjectInvalidException {
 		Log4J.startMethod(logger, "populate");
-		
+
 		/* We build the layer data */
 		objectsLayer.build();
-		
+
 		for(int y=0;y<objectsLayer.getHeight();y++) {
 			for(int x=0;x<objectsLayer.getWidth();x++) {
 				int value = objectsLayer.getTileAt(x, y);
@@ -327,7 +338,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					/*
 					 * When the value is 0, it means that there is no tile at that point.
 					 */
-					TileSetDefinition tileset=objectsLayer.getTilesetFor(value);					
+					TileSetDefinition tileset=objectsLayer.getTilesetFor(value);
 					createEntityAt(tileset.getSource(),value-tileset.getFirstGid(),x,y);
 				}
 			}
@@ -345,8 +356,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	protected void createEntityAt(String clazz, int type, int x, int y) {
 		logger.debug("creating "+clazz+":"+type+" at "+x+","+y);
-		
-		try {		
+
+		try {
 			if(clazz.contains("logic/portal")) {
 				switch (type) {
 					case 0: /* Entry point */
@@ -441,9 +452,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 					 * Ignore signs.
 					 * The way to go is XML.
 					 */
-					return;					
+					return;
 				}
-				
+
 				if(plantGrower==null) {
 					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
 					return;
@@ -466,8 +477,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 				 */
 				if(clazz.contains("sheepfood")) {
 					collisionMap.setCollide(plantGrower.getArea(x, y), true);
-				}			
-			}		
+				}
+			}
 		} catch (AttributeNotFoundException e) {
 			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
 		}
@@ -601,10 +612,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Adds an object to the ground.
-	 * 
+	 *
 	 * The player parameter can be used to create special items that react
 	 * when they are dropped on the ground by a player.
-	 * 
+	 *
 	 * @param object The object that should be added to the zone
 	 * @param player The player who put the object on the ground, or null
 	 *               if the object wasn't carried by a player before
@@ -724,9 +735,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Checks if there is a collision on the airline between 2 positions. 
+	 * Checks if there is a collision on the airline between 2 positions.
 	 * Only the collision map will be used.
-	 * 
+	 *
 	 * @param x1 x value of position 1
 	 * @param y1 y value of position 1
 	 * @param x2 x value of position 2
@@ -751,7 +762,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Checks whether the given entity would be able to stand at the given
 	 * position, or if it would collide with the collision map or with another
-	 * entity. 
+	 * entity.
 	 * @param entity The entity that would stand on the given position
 	 * @param x The x coordinate of the position where the entity would stand
 	 * @param y The y coordinate of the position where the entity would stand
@@ -765,11 +776,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Checks whether the given entity would be able to stand at the given
 	 * position, or if it would collide with the collision map or
-	 * (if <i>checkObjects</i> is enabled) with another entity. 
+	 * (if <i>checkObjects</i> is enabled) with another entity.
 	 * @param entity The entity that would stand on the given position
 	 * @param x The x coordinate of the position where the entity would stand
 	 * @param y The y coordinate of the position where the entity would stand
-	 * @param checkObjects If false, only the collision map will be used. 
+	 * @param checkObjects If false, only the collision map will be used.
 	 * @return true iff the entity could stand on the given position
 	 * @throws AttributeNotFoundException
 	 */
@@ -790,7 +801,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 				if (otherEntity.isObstacle(entity)) {
 					// There is something the entity couldn't stand upon.
-					// Check if it's in the way. 
+					// Check if it's in the way.
 					otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
 					if (area.intersects(otherArea) && !entity.getID().equals(otherEntity.getID())) {
 						return true;
@@ -802,7 +813,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the entity at x,y or null if there is none
 	 */
 	public synchronized Entity getEntityAt(double x, double y) throws AttributeNotFoundException {
@@ -996,7 +1007,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 */
 	public void setMoveToAllowed(boolean moveToAllowed) {
 		this.moveToAllowed = moveToAllowed;
-		
+
 	}
 
 	public void addMap(String name, byte[] mapData) {
