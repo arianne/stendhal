@@ -15,28 +15,17 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
+/**
+ * A blood entity.
+ */
 public class Blood extends AnimatedStateEntity {
+	/**
+	 * Create a blood entity.
+	 */
 	public Blood() {
-		animation = "0";
-	}
-
-
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-		if (diff.has("class")) {
-			animation = diff.get("class");
-			changed();
-		}
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
+		state = "0";
 	}
 
 
@@ -55,6 +44,17 @@ public class Blood extends AnimatedStateEntity {
 
 
 	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y, 1, 1);
+	}
+
+
+	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
 	 * @param	entity		The entity to check against.
@@ -65,5 +65,26 @@ public class Blood extends AnimatedStateEntity {
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return false;
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("class")) {
+			state = changes.get("class");
+			changed();
+		}
 	}
 }

@@ -17,46 +17,89 @@ import games.stendhal.client.soundreview.SoundMaster;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
+/**
+ * A food entity.
+ */
 public abstract class Food extends AnimatedStateEntity {
+	/**
+	 * The current amount of food.
+	 */
 	private int amount;
 
 
+	/**
+	 * Create a food entity.
+	 */
 	public Food() {
-		animation = "0";
 	}
 
 
 	//
-	// Food
+	// Entity
 	//
 
+	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
 	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y, 1, 1);
+	}
 
-		if (diff.has("amount")) {
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		if (object.has("amount")) {
+			state = object.get("amount");
+			amount = object.getInt("amount");
+		} else {
+			state = "0";
+			amount = 0;
+		}
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * A slot object added/changed attribute(s).
+	 *
+	 * @param	container	The base container object.
+	 * @param	slotName	The container's slot name.
+	 * @param	object		The base slot object.
+	 * @param	changes		The slot changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("amount")) {
 			int oldAmount = amount;
-			animation = diff.get("amount");
-			amount = diff.getInt("amount");
+			state = changes.get("amount");
+			amount = changes.getInt("amount");
 
 			// TODO this causes problems because of unidentified content refresh
 			// events (e.g. synchronizing)
 			if (amount > oldAmount) {
-				SoundMaster.play("pop-2.wav",x,y);
+				SoundMaster.play("pop-2.wav", getX(), getY());
 			}
 
 			changed();
-		} else if (base.has("amount")) {
-			animation = base.get("amount");
-			amount = base.getInt("amount");
 		}
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
 	}
 }

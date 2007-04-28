@@ -54,7 +54,7 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	 */
 	ActiveEntity()  {
 		direction = Direction.DOWN;
-		animation = STATE_DOWN;
+		state = STATE_DOWN;
 		dx = 0.0;
 		dy = 0.0;
 	}
@@ -103,7 +103,8 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	/**
 	 * The entity has started motion.
 	 *
-	 *
+	 * @param	dx		The X axis speed/delta.
+	 * @param	dy		The Y axis speed/delta.
 	 */
 	protected void onMotion(double dx, double dy) {
 	}
@@ -119,12 +120,12 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	/**
 	 * Set the direction.
 	 *
-	 *
+	 * @param	direction	The direction.
 	 */
 	protected void setDirection(Direction direction) {
 		this.direction = direction;
 
-		animation = getDirectionState(direction);
+		state = getDirectionState(direction);
 	}
 
 

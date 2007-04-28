@@ -20,31 +20,89 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
+/**
+ * A grain field entity.
+ */
 public class GrainField extends AnimatedStateEntity {
+	/**
+	 * The entity width.
+	 */
 	private int width;
 
+	/**
+	 * The entity height.
+	 */
 	private int height;
 
 
+	/**
+	 * Create a grain field.
+	 */
 	public GrainField()  {
 		this(1, 2);
 	}
 
 
+	/**
+	 * Create a grain field.
+	 *
+	 * @param	width		The entity width.
+	 * @param	height		The entity height.
+	 */
 	public GrainField(int width, int height)  {
 		this.width = width;
 		this.height = height;
-		animation = "0";
 	}
 
+
+	//
+	// GrainField
+	//
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The entity height.
+	 */
 	public double getHeight() {
 		return height;
 	}
 
 
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The entity width.
+	 */
 	public double getWidth() {
 		return width;
 	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new GrainField2DView(this);
+	}
+
+
+	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y + height - 1, width, 1);
+	}
+
 
 	/**
 	 * Initialize this entity for an object.
@@ -66,6 +124,12 @@ public class GrainField extends AnimatedStateEntity {
 		if (object.has("height")) {
 			height = object.getInt("height");
 		}
+
+		if (object.has("ripeness")) {
+			state = object.get("ripeness");
+		} else {
+			state = "0";
+		}
 	}
 
 
@@ -73,24 +137,24 @@ public class GrainField extends AnimatedStateEntity {
 	// RPObjectChangeListener
 	//
 
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
 	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
 
-		if (diff.has("ripeness")) {
-			animation = diff.get("ripeness");
+		if (changes.has("ripeness")) {
+			state = changes.get("ripeness");
 			changed();
-		} else if (base.has("ripeness")) {
-			animation = base.get("ripeness");
 		}
 	}
 
 	//
-
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y + height - 1, width, 1);
-	}
+	//
 
 	@Override
 	public ActionType defaultAction() {
@@ -120,19 +184,5 @@ public class GrainField extends AnimatedStateEntity {
 				super.onAction(at, params);
 				break;
 		}
-	}
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	protected Entity2DView createView() {
-		return new GrainField2DView(this);
 	}
 }

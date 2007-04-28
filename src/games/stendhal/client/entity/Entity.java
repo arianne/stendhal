@@ -367,7 +367,12 @@ public final byte[] ID_Token = new byte[0];
 		return new ArrayList<RPSlot>(rpObject.slots());
 	}
 
-	
+
+	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
 	public abstract Rectangle2D getArea();
 
 	public Rectangle2D getDrawedArea() {

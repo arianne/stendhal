@@ -13,11 +13,13 @@
 package games.stendhal.client.entity;
 
 /**
- * This animated entity supports multiple states.
+ * This entity supports multiple states.
  */
 public abstract class AnimatedStateEntity extends Entity {
-	/** actual animation */
-	protected String animation;
+	/**
+	 * The current state.
+	 */
+	protected String	state;
 
 
 	//
@@ -26,8 +28,10 @@ public abstract class AnimatedStateEntity extends Entity {
 
 	/**
 	 * Get the current entity state.
+	 *
+	 * @return	The current state.
 	 */
 	public String getState() {
-		return animation;
+		return state;
 	}
 }

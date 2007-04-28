@@ -18,63 +18,173 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
+/**
+ * A chest entity.
+ */
 public class Chest extends AnimatedStateEntity implements Inspectable {
-
+	/**
+	 * Whether the chest is currently open.
+	 */
 	private boolean open;
 
-	private Inspector _inspector = null;
+	/**
+	 * The slot content inspector.
+	 */
+	private Inspector inspector;
 
+	/**
+	 * The current content slot.
+	 */
 	private RPSlot content;
 
+	/**
+	 * The current content inspector.
+	 */
 	private EntityContainer wtEntityContainer;
 
 	/** true means the user requested to open this chest */
 	private boolean requestOpen;
 
 
+	/**
+	 * Create a chest entity.
+	 */
 	Chest() {
-		animation = "close";
+	}
+
+
+	//
+	// Inspectable
+	//
+
+	/**
+	 * Set the content inspector for this entity.
+	 *
+	 * @param	inspector	The inspector.
+	 */
+	public void setInspector(final Inspector inspector) {
+		this.inspector = inspector;
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Chest2DView(this);
+	}
+
+
+	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(x, y, 1, 1);
+	}
+
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		if (object.hasSlot("content")) {
+			content = object.getSlot("content");
+		}
+
+		if (object.has("open")) {
+			open = true;
+			state = "open";
+		} else {
+			open = false;
+			state = "close";
+		}
+
 		requestOpen = false;
 	}
 
 
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
+	/**
+	 * Release this entity. This should clean anything that isn't
+	 * automatically released (such as unregister callbacks, cancel
+	 * external operations, etc).
+	 *
+	 * @see-also	#initialize(RPObject)
+	 */
+	public void release() {
+		if (wtEntityContainer != null) {
+			wtEntityContainer.destroy();
+			wtEntityContainer = null;
+		}
 
-		if (diff.has("open")) {
+		super.release();
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("open")) {
 			open = true;
-			animation = "open";
+			state = "open";
+
 			// we're wanted to open this?
 			if (requestOpen) {
-				wtEntityContainer = _inspector.inspectMe(this, content, wtEntityContainer);
+				wtEntityContainer = inspector.inspectMe(this, content, wtEntityContainer);
 				requestOpen = false;
 			}
 
 			changed();
 		}
 
-		if (diff.hasSlot("content")) {
-			content = diff.getSlot("content");
-		}
-
-		if (base.hasSlot("content")) {
-			content = base.getSlot("content");
+		if (changes.hasSlot("content")) {
+			content = changes.getSlot("content");
 		}
 	}
 
-	@Override
-	public void onChangedRemoved(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedRemoved(base, diff);
 
-		if (diff.has("open")) {
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("open")) {
 			open = false;
-			animation = "close";
+			state = "close";
 			requestOpen = false;
 
 			if (wtEntityContainer != null) {
@@ -86,10 +196,8 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 		}
 	}
 
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
+	//
+	//
 
 	@Override
 	public ActionType defaultAction() {
@@ -113,7 +221,7 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 		// ActionType at =handleAction(action);
 		switch (at) {
 			case INSPECT:
-				wtEntityContainer = _inspector.inspectMe(this, content, wtEntityContainer);// inspect(this, content, 4, 5);
+				wtEntityContainer = inspector.inspectMe(this, content, wtEntityContainer);// inspect(this, content, 4, 5);
 				break;
 			case OPEN:
 			case CLOSE:
@@ -132,24 +240,5 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 				super.onAction(at, params);
 				break;
 		}
-	}
-
-	public void setInspector(final Inspector inspector) {
-		_inspector = inspector;
-
-	}
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	protected Entity2DView createView() {
-		return new Chest2DView(this);
 	}
 }
