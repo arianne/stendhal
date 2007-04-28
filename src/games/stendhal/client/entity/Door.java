@@ -119,7 +119,7 @@ public class Door extends AnimatedStateEntity {
 		if (object.has("dir")) {
 			orientation = Direction.build(object.getInt("dir"));
 		} else {
-			orientation = null;
+			orientation = Direction.STOP;
 		}
 	}
 
@@ -179,7 +179,7 @@ public class Door extends AnimatedStateEntity {
 		 * Orientation direction
 		 */
 		if (object.has("dir")) {
-			orientation = null;
+			orientation = Direction.STOP;
 			changed();
 		}
 	}

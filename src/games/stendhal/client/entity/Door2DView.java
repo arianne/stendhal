@@ -15,6 +15,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
+import games.stendhal.common.Direction;
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -43,6 +44,11 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 */
 	protected double	height;
 
+	/**
+	 * The door entity.
+	 */
+	private Door		door;
+
 
 	/**
 	 * Create a 2D view of a door.
@@ -51,6 +57,8 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 */
 	public Door2DView(final Door door) {
 		super(door);
+
+		this.door = door;
 
 		xoffset = 0.0;
 		yoffset = 0.0;
@@ -72,8 +80,8 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
 		String name = object.get("class");
 
-		switch (object.getInt("dir")) {
-			case 4:
+		switch(door.getOrientation()) {
+			case LEFT:
 				name += "_w";
 				xoffset = 0.0;
 				yoffset = -1.0;
@@ -81,7 +89,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 				height = 3.0;
 				break;
 
-			case 2:
+			case RIGHT:
 				name += "_e";
 				xoffset = -1.0;
 				yoffset = -1.0;
@@ -89,7 +97,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 				height = 3.0;
 				break;
 
-			case 1:
+			case UP:
 				name += "_n";
 				xoffset = -1.0;
 				yoffset = 0.0;
@@ -97,7 +105,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 				height = 2.0;
 				break;
 
-			case 3:
+			case DOWN:
 				name += "_s";
 				xoffset = -1.0;
 				yoffset = -1.0;
