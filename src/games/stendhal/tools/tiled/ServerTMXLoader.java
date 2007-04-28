@@ -41,10 +41,6 @@ public class ServerTMXLoader {
 	private StendhalMapStructure stendhalMap;	
 	private String xmlPath;
 	
-	public ServerTMXLoader() {
-	}
-
-  
  	private static String makeUrl(String filename) throws MalformedURLException {
 		final String url;
 		if (filename.indexOf("://") > 0 || filename.startsWith("file:")) {
@@ -262,10 +258,10 @@ public class ServerTMXLoader {
 
 	public static void main(String[] args) throws Exception {
 		System.out.println("Test: loading map");
-		long start=System.currentTimeMillis();
 		
 		StendhalMapStructure map=null;
 		/*
+		long start=System.currentTimeMillis();
 		for(int i=0;i<90;i++) {			
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/interiors/abstract/afterlife.tmx");
 			map=new ServerTMXLoader().readMap("D:/Desarrollo/stendhal/tiled/Level 0/ados/city_n.tmx");
