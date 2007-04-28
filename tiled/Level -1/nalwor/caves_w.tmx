@@ -27,6 +27,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="88" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="89" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/huge_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3SwQ3EMAzEQCNI/zVfE4dQhuYxBUjc55zzAAAAAAAAAAAAAMCl3j+ob+Db3vYxX9HZDjS3Ad1tQGsb0N4GtNdfe/21twHtbUB7G9Bef/31190G9Ndfexvo/z5F3UF7/fW3Ae31119//fXX3gb0twHt7UD/u9Xdtde//sFmdXv99a9/sFndXv/d/ev7t9N/N/130343/XfTfzf971R20197/TXXX3v99ddff/31119//fW3Af31115//fXX3wa0119//fW3Ae31119//W1Ae/2111/77f3r309Rd9C9VzfRvle30b9X99G/VzfSf4a6le69upv2c9Qd9Z+h7qn/HHVbnXt1d/1n0J5iD/WdAAAAAAAAAAAAAAAAAAAAANzlB3evL64AAAEA
@@ -49,7 +52,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3OMQEAAAgDoNW0fxEL7NYHEpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHTzHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg1AJ7FELmAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.33">
