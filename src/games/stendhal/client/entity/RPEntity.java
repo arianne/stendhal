@@ -39,10 +39,12 @@ import marauroa.common.game.RPObject;
 public abstract class RPEntity extends ActiveEntity {
 
 	private boolean showBladeStrike;
+
 	String[] attackSounds={
 		"punch-1.wav","punch-2.wav","punch-3.wav"
 		,"punch-4.wav","punch-5.wav","punch-6.wav",
 		"swingaxe-1.wav","slap-1.wav","arrow-1.wav"};
+
 	public enum Resolution {
 		HIT(0), BLOCKED(1), MISSED(2);
 
@@ -133,6 +135,11 @@ public abstract class RPEntity extends ActiveEntity {
 		adminlevel = 0;
 	}
 
+
+	//
+	// RPEntity
+	//
+
 	/**
 	 * Create/add a "floater" message.
 	 *
@@ -141,346 +148,6 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	protected void addFloater(final String text, final Color color) {
 		floaters.add(new FloatingMessage(text, color));
-	}
-
-
-	public boolean isAttacking() {
-		return (attacking != null);
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public int getHP() {
-		return hp;
-	}
-
-	public String getGuild() {
-	    return guild;
-	}
-
-
-	/**
-	 * Get the nicely formatted entity title.
-	 *
-	 * This searches the follow attribute order:
-	 *	title, name (w/o underscore), class (w/o underscore), type (w/o underscore).
-	 *
-	 * @return	The title, or <code>null</code> if unknown.
-	 */
-	public String getTitle() {
-		if(title != null) {
-			return title;
-		} else if(name != null) {
-			return name.replace('_', ' ');
-		} else if(clazz != null) {
-			return clazz.replace('_', ' ');
-		} else if(type != null) {
-			return type.replace('_', ' ');
-		} else {
-			return null;
-		}
-	}
-
-
-	// Called when entity says text
-	public void onTalk(final String text) {
-		if (distanceToUser() < 15 * 15) {
-			// TODO: Creature circle reference
-			nonCreatureClientAddEventLine(text);
-
-			String line = text.replace("|", "");
-
-			// Allow for more characters and cut the text if possible at the
-			// nearest space etc. intensifly@gmx.com
-			if (line.length() > 84) {
-				line = line.substring(0, 84);
-				int l = line.lastIndexOf(" ");
-				int ln = line.lastIndexOf("-");
-				if (ln > l) {
-					l = ln;
-				}
-				ln = line.lastIndexOf(".");
-				if (ln > l) {
-					l = ln;
-				}
-				ln = line.lastIndexOf(",");
-				if (ln > l) {
-					l = ln;
-				}
-				if (l > 0) {
-					line = line.substring(0, l);
-				}
-				line = line + " ...";
-			}
-			GameObjects.getInstance().addText(this, /* getTitle()+" says: "+ */
-			line, Color.black, true);
-		}
-	}
-
-
-
-	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
-	// Creature
-	protected void nonCreatureClientAddEventLine(final String text) {
-		StendhalUI.get().addEventLine(getTitle(), text);
-	}
-
-	// Called when entity listen to text from talker
-	public  void onPrivateListen(final String text) {
-		Color color = Color.darkGray;
-		// TODO: replace this with its own RPEvent type after port to Marauroa 2.0
-		if (text.startsWith("Tutorial: ")) {
-			color = new Color(172, 0, 172);
-		}
-		StendhalUI.get().addEventLine(text, color);
-		GameObjects.getInstance().addText(this, text.replace("|", ""), color, false);
-	}
-
-	// When entity gets healed
-	public void onHealed(final int amount) {
-		if (distanceToUser() < 15 * 15) {
-			addFloater("+" + amount, Color.green);
-		}
-	}
-
-	// When entity eats food
-	public void onEat(final int amount) {
-		eating = true;
-	}
-
-	public void onEatEnd() {
-		eating = false;
-	}
-
-
-	public boolean isBeingStruck() {
-		return showBladeStrike;
-	}
-
-	public void doneStriking() {
-		showBladeStrike = false;
-	}
-
-	public boolean isDefending() {
-                return (isBeingAttacked()
-			&& (System.currentTimeMillis() - combatIconTime < 4 * 300));
-	}
-
-	public boolean isEating() {
-		return eating;
-	}
-
-	public boolean isPoisoned() {
-		return poisoned;
-	}
-
-	public boolean isAttackingUser() {
-		return ((attacking != null)
-			&& attacking.equals(User.get().getID()));
-	}
-
-	public boolean isBeingAttacked() {
-		return (lastAttacker != null);
-	}
-
-	public Resolution getResolution() {
-		return resolution;
-	}
-
-
-	// When entity is poisoned
-	public final void onPoisoned(final int amount) {
-		if ((distanceToUser() < 15 * 15)) {
-			poisoned = true;
-
-			addFloater("-" + amount, Color.red);
-
-			StendhalUI.get().addEventLine(
-			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
-			        Color.red);
-		}
-	}
-
-	public void onPoisonEnd() {
-		poisoned = false;
-	}
-
-	// Called when entity kills another entity
-	public void onKill(final Entity killed) {
-	}
-
-	// Called when entity is killed by killer
-	public void onDeath(final Entity killer) {
-		if (killer != null) {
-			StendhalUI.get().addEventLine(getTitle() + " has been killed by " + killer.getTitle());
-		}
-
-		/*
-		 * see
-		 * http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
-		 * if (getID().equals(client.getPlayer().getID())) {
-		 * client.addEventLine(getTitle() + " has died. " +
-		 * Grammar.suffix_s(getTitle()) + " new level is " + getLevel()); }
-		 */
-	}
-
-
-	protected void fireAttackEvent(final RPObject base, final RPObject diff) {
-		if ((diff == null) && (base == null)) {
-			// Remove case
-		} else if (diff == null) {
-			// First time case
-			if (base.has("target")) {
-				int risk = (base.has("risk") ? base.getInt("risk") : 0);
-				int damage = (base.has("damage") ? base.getInt("damage") : 0);
-				int target = base.getInt("target");
-
-				RPObject.ID targetEntityID = new RPObject.ID(target, base.get("zoneid"));
-
-				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(targetEntityID);
-
-				if (targetEntity != null) {
-					if (targetEntity != attackTarget) {
-						onAttack(targetEntity);
-						targetEntity.onAttacked(this);
-					}
-
-					if (risk == 0) {
-						onAttackMissed(targetEntity);
-						targetEntity.onMissed(this);
-					}
-
-					if ((risk > 0) && (damage == 0)) {
-						onAttackBlocked(targetEntity);
-						targetEntity.onBlocked(this);
-					}
-
-					if ((risk > 0) && (damage > 0)) {
-						onAttackDamage(targetEntity, damage);
-						targetEntity.onDamaged(this, damage);
-					}
-
-					// targetEntity.onAttack(this,risk,damage);
-					attackTarget = targetEntity;
-				}
-				if (base.has("heal")) {
-					onHealed(base.getInt("heal"));
-				}
-			}
-		} else {
-			// Modified case
-			if (diff.has("target") && base.has("target") && !base.get("target").equals(diff.get("target"))) {
-				onStopAttack();
-
-				if (attackTarget != null) {
-					attackTarget.onStopAttacked(this);
-					attackTarget = null;
-				}
-
-			}
-
-			if (diff.has("target") || base.has("target")) {
-				boolean thereIsEvent = false;
-
-				int risk = 0;
-				if (diff.has("risk")) {
-					thereIsEvent = true;
-					risk = diff.getInt("risk");
-				} else if (base.has("risk")) {
-					risk = base.getInt("risk");
-				} else {
-					risk = 0;
-				}
-
-				int damage = 0;
-				if (diff.has("damage")) {
-					thereIsEvent = true;
-					damage = diff.getInt("damage");
-				} else if (base.has("damage")) {
-					damage = base.getInt("damage");
-				} else {
-					damage = 0;
-				}
-
-				int target = -1;
-				if (diff.has("target")) {
-					target = diff.getInt("target");
-				} else if (base.has("target")) {
-					target = base.getInt("target");
-				}
-
-				RPObject.ID targetEntityID = new RPObject.ID(target, diff.get("zoneid"));
-
-				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(targetEntityID);
-
-				if (targetEntity != null) {
-					onAttack(targetEntity);
-					targetEntity.onAttacked(this);
-
-					if (thereIsEvent) {
-						if (risk == 0) {
-							onAttackMissed(targetEntity);
-							targetEntity.onMissed(this);
-						}
-
-						if ((risk > 0) && (damage == 0)) {
-							onAttackBlocked(targetEntity);
-							targetEntity.onBlocked(this);
-						}
-
-						if ((risk > 0) && (damage > 0)) {
-							onAttackDamage(targetEntity, damage);
-							targetEntity.onDamaged(this, damage);
-						}
-					}
-
-					attackTarget = targetEntity;
-				}
-			}
-			if (diff.has("heal")) {
-				onHealed(diff.getInt("heal"));
-			}
-		}
-	}
-
-	protected void fireKillEvent(final RPObject base,final  RPObject diff) {
-		if (diff!=null){
-				if (diff.has("hp/base_hp") && (diff.getDouble("hp/base_hp") == 0)) {
-					onDeath(lastAttacker);
-				}
-		}
-	}
-
-
-	/**
-	 * Get the ratio of HP to base HP.
-	 *
-	 * @return	The HP ratio (0.0 - 1.0).
-	 */
-	public float getHPRatio() {
-		return hp_base_hp;
-	}
-
-
-	/**
-	 * Determine if in full ghostmode.
-	 *
-	 * @return	<code>true</code> is in full ghostmode.
-	 */
-	public boolean isFullGhostMode() {
-		return fullghostmode;
-	}
-
-
-	/**
-	 * Get the admin level.
-	 *
-	 * @return	The admin level.
-	 */
-	public int getAdminLevel() {
-		return adminlevel;
 	}
 
 
@@ -525,86 +192,14 @@ public abstract class RPEntity extends ActiveEntity {
 		g2d.drawRect(x, y - 3, 32, 3);
 	}
 
-	/** Draws this entity in the screen */
-	@Override
-	public void draw(final GameScreen screen) {
-		super.draw(screen);
 
-		if (!floaters.isEmpty()) {
-			// Draw the floaters
-			Graphics g = screen.expose();
-			Point p = screen.convertWorldToScreen(getX(), getY());
-
-			for(FloatingMessage floater : floaters) {
-				floater.draw(g, p.x, p.y);
-			}
-
-			if(floaters.get(0).getAge() > 2000L) {
-				floaters.remove(0);
-			}
-		}
-	}
-
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.LOOK;
-	}
-
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-		list.add(ActionType.ATTACK.getRepresentation());
-
-		if (!User.isNull()) {
-	        if (User.get().isAttacking()) {
-				list.add(ActionType.STOP_ATTACK.getRepresentation());
-			}
-        }
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at = handleAction(action);
-		RPAction rpaction;
-		switch (at) {
-			case ATTACK:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-			case STOP_ATTACK:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				rpaction.put("attack", "");
-				at.send(rpaction);
-				break;
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
-	}
-
-	@Override
-	public int compareTo(final Entity entity) {
-		if (!(entity instanceof RPEntity)) {
-			return super.compareTo(entity);
-		}
-
-		double dx = getArea().getX() - entity.getArea().getX();
-		double dy = getArea().getY() - entity.getArea().getY();
-
-		if (dy < 0) {
-			return -1;
-		} else if (dy > 0) {
-			return 1;
-		} else if (dx != 0) {
-			return (int) Math.signum(dx);
-		} else {
-			// Same tile...
-			return 0;
-		}
+	/**
+	 * Get the admin level.
+	 *
+	 * @return	The admin level.
+	 */
+	public int getAdminLevel() {
+		return adminlevel;
 	}
 
 	/**
@@ -615,24 +210,10 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	/**
-	 * @return Returns the def.
+	 * @return Returns the atk of items
 	 */
-	public int getDef() {
-		return def;
-	}
-
-	/**
-	 * @return Returns the xp.
-	 */
-	public int getXp() {
-		return xp;
-	}
-
-	/**
-	 * @return Returns the base_hp.
-	 */
-	public int getBase_hp() {
-		return base_hp;
+	public int getAtkItem() {
+		return atkItem;
 	}
 
 	/**
@@ -643,17 +224,24 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	/**
-	 * @return the defence xp
+	 * @return Returns the base_hp.
 	 */
-	public int getDefXp() {
-		return defXp;
+	public int getBase_hp() {
+		return base_hp;
 	}
 
 	/**
-	 * @return Returns the atk of items
+	 * @return Returns the base mana value
 	 */
-	public int getAtkItem() {
-		return atkItem;
+	public int getBaseMana() {
+		return base_mana;
+	}
+
+	/**
+	 * @return Returns the def.
+	 */
+	public int getDef() {
+		return def;
 	}
 
 	/**
@@ -664,22 +252,144 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	/**
-	 *@return Returns the total mana of a player
+	 * @return the defence xp
+	 */
+	public int getDefXp() {
+		return defXp;
+	}
+
+	public String getGuild() {
+	    return guild;
+	}
+
+	public int getHP() {
+		return hp;
+	}
+
+	/**
+	 * Get the ratio of HP to base HP.
+	 *
+	 * @return	The HP ratio (0.0 - 1.0).
+	 */
+	public float getHPRatio() {
+		return hp_base_hp;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	/**
+	 * @return Returns the total mana of a player
 	 */
 	public int getMana() {
 		return mana;
 	}
 
-	/**
-	 *@return Returns the base mana value
-	 */
-	public int getBaseMana() {
-		return base_mana;
+	public Resolution getResolution() {
+		return resolution;
 	}
+
+	/**
+	 * Get the nicely formatted entity title.
+	 *
+	 * This searches the follow attribute order:
+	 *	title, name (w/o underscore), class (w/o underscore), type (w/o underscore).
+	 *
+	 * @return	The title, or <code>null</code> if unknown.
+	 */
+	public String getTitle() {
+		if(title != null) {
+			return title;
+		} else if(name != null) {
+			return name.replace('_', ' ');
+		} else if(clazz != null) {
+			return clazz.replace('_', ' ');
+		} else if(type != null) {
+			return type.replace('_', ' ');
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @return Returns the xp.
+	 */
+	public int getXp() {
+		return xp;
+	}
+
+
+	public boolean isAttacking() {
+		return (attacking != null);
+	}
+
+	public boolean isAttackingUser() {
+		return ((attacking != null)
+			&& attacking.equals(User.get().getID()));
+	}
+
+	public boolean isBeingAttacked() {
+		return (lastAttacker != null);
+	}
+
+	public boolean isBeingStruck() {
+		return showBladeStrike;
+	}
+
+	public void doneStriking() {
+		showBladeStrike = false;
+	}
+
+	public boolean isDefending() {
+                return (isBeingAttacked()
+			&& (System.currentTimeMillis() - combatIconTime < 4 * 300));
+	}
+
+	public boolean isEating() {
+		return eating;
+	}
+
+	/**
+	 * Determine if in full ghostmode.
+	 *
+	 * @return	<code>true</code> is in full ghostmode.
+	 */
+	public boolean isFullGhostMode() {
+		return fullghostmode;
+	}
+
+	public boolean isPoisoned() {
+		return poisoned;
+	}
+
+
+
+	// TODO: this is just an ugly workaround to avoid cyclic dependencies with
+	// Creature
+	protected void nonCreatureClientAddEventLine(final String text) {
+		StendhalUI.get().addEventLine(getTitle(), text);
+	}
+
 
 	// When this entity attacks target.
 	public void onAttack(final Entity target) {
 		attacking = target.getID();
+	}
+
+	// When this entity's attack is blocked by the adversary
+	public void onAttackBlocked(final Entity target) {
+		showBladeStrike = true;
+	}
+
+	// When this entity causes damaged to adversary, with damage amount
+	public void onAttackDamage(final Entity target, final int damage) {
+		showBladeStrike = true;
+	}
+
+	// When this entity's attack is missing the adversary
+	public void onAttackMissed(final Entity target) {
+		showBladeStrike = true;
 	}
 
 	// When attacker attacks this entity.
@@ -691,31 +401,10 @@ public abstract class RPEntity extends ActiveEntity {
 		lastAttacker = attacker;
 	}
 
-	// When this entity stops attacking
-	public void onStopAttack() {
-		attacking = null;
-	}
-
-	// When attacket stop attacking us
-	public void onStopAttacked(final Entity attacker) {
-		if (attacker == lastAttacker) {
-			lastAttacker = null;
-		}
-	}
-
-	// When this entity causes damaged to adversary, with damage amount
-	public void onAttackDamage(final Entity target, final int damage) {
-		showBladeStrike = true;
-	}
-
-	// When this entity's attack is blocked by the adversary
-	public void onAttackBlocked(final Entity target) {
-		showBladeStrike = true;
-	}
-
-	// When this entity's attack is missing the adversary
-	public void onAttackMissed(final Entity target) {
-		showBladeStrike = true;
+	// When this entity blocks the attack by attacker
+	public void onBlocked(final Entity attacker) {
+		combatIconTime = System.currentTimeMillis();
+		resolution = Resolution.BLOCKED;
 	}
 
 	// When this entity is damaged by attacker with damage amount
@@ -745,16 +434,155 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	// When this entity blocks the attack by attacker
-	public void onBlocked(final Entity attacker) {
-		combatIconTime = System.currentTimeMillis();
-		resolution = Resolution.BLOCKED;
+	// Called when entity is killed by killer
+	public void onDeath(final Entity killer) {
+		if (killer != null) {
+			StendhalUI.get().addEventLine(getTitle() + " has been killed by " + killer.getTitle());
+		}
+
+		/*
+		 * see
+		 * http://sourceforge.net/tracker/index.php?func=detail&aid=1554077&group_id=1111&atid=101111
+		 * if (getID().equals(client.getPlayer().getID())) {
+		 * client.addEventLine(getTitle() + " has died. " +
+		 * Grammar.suffix_s(getTitle()) + " new level is " + getLevel()); }
+		 */
+	}
+
+	// When entity eats food
+	public void onEat(final int amount) {
+		eating = true;
+	}
+
+	public void onEatEnd() {
+		eating = false;
+	}
+
+	// When entity gets healed
+	public void onHealed(final int amount) {
+		if (distanceToUser() < 15 * 15) {
+			addFloater("+" + amount, Color.green);
+		}
+	}
+
+	// Called when entity kills another entity
+	public void onKill(final Entity killed) {
 	}
 
 	// When this entity skip attacker's attack.
 	public void onMissed(final Entity attacker) {
 		combatIconTime = System.currentTimeMillis();
 		resolution = Resolution.MISSED;
+	}
+
+	// When entity is poisoned
+	public final void onPoisoned(final int amount) {
+		if ((distanceToUser() < 15 * 15)) {
+			poisoned = true;
+
+			addFloater("-" + amount, Color.red);
+
+			StendhalUI.get().addEventLine(
+			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
+			        Color.red);
+		}
+	}
+
+	public void onPoisonEnd() {
+		poisoned = false;
+	}
+
+	// Called when entity listen to text from talker
+	public void onPrivateListen(final String text) {
+		Color color = Color.darkGray;
+
+		// TODO: replace this with its own RPEvent type after port to Marauroa 2.0
+		if (text.startsWith("Tutorial: ")) {
+			color = new Color(172, 0, 172);
+		}
+
+		StendhalUI.get().addEventLine(text, color);
+		GameObjects.getInstance().addText(this, text.replace("|", ""), color, false);
+	}
+
+	// When this entity stops attacking
+	public void onStopAttack() {
+		attacking = null;
+	}
+
+	// When attacket stop attacking us
+	public void onStopAttacked(final Entity attacker) {
+		if (attacker == lastAttacker) {
+			lastAttacker = null;
+		}
+	}
+
+	// Called when entity says text
+	public void onTalk(final String text) {
+		if (distanceToUser() < 15 * 15) {
+			// TODO: Creature circle reference
+			nonCreatureClientAddEventLine(text);
+
+			String line = text.replace("|", "");
+
+			// Allow for more characters and cut the text if possible at the
+			// nearest space etc. intensifly@gmx.com
+			if (line.length() > 84) {
+				line = line.substring(0, 84);
+				int l = line.lastIndexOf(" ");
+				int ln = line.lastIndexOf("-");
+
+				if (ln > l) {
+					l = ln;
+				}
+
+				ln = line.lastIndexOf(".");
+
+				if (ln > l) {
+					l = ln;
+				}
+
+				ln = line.lastIndexOf(",");
+
+				if (ln > l) {
+					l = ln;
+				}
+
+				if (l > 0) {
+					line = line.substring(0, l);
+				}
+
+				line = line + " ...";
+			}
+
+			GameObjects.getInstance().addText(
+				this, /* getTitle()+" says: "+ */ line, Color.black, true);
+		}
+	}
+
+
+	//
+	// Entity
+	//
+
+	/** Draws this entity in the screen */
+	@Override
+	public void draw(final GameScreen screen) {
+		super.draw(screen);
+
+		if (!floaters.isEmpty()) {
+			// Draw the floaters
+			Graphics g = screen.expose();
+			Point p = screen.convertWorldToScreen(getX(), getY());
+
+			for(FloatingMessage floater : floaters) {
+				floater.draw(g, p.x, p.y);
+			}
+
+			if(floaters.get(0).getAge() > 2000L) {
+				floaters.remove(0);
+			}
+		}
 	}
 
 	/**
@@ -768,16 +596,95 @@ public abstract class RPEntity extends ActiveEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
+		/*
+		 * Public chat
+		 */
 		if (object.has("text")) {
 			onTalk(object.get("text"));
 		}
 
+		/*
+		 * Private message
+		 */
 		if (object.has("private_text")) {
 			onPrivateListen(object.get("private_text"));
 		}
 
-		fireAttackEvent(object, null);
+		/*
+		 * Eating
+		 */
+		if (object.has("eating")) {
+			onEat(0);
+		}
+
+		/*
+		 * Poisoned
+		 */
+		if (object.has("poisoned")) {
+			// To remove the - sign on poison.
+			onPoisoned(Math.abs(object.getInt("poisoned")));
+		}
+
+		/*
+		 * Healed
+		 */
+		if (object.has("heal")) {
+			onHealed(object.getInt("heal"));
+		}
+
+		/*
+		 * Attack Target
+		 */
+		if (object.has("target")) {
+			int target = object.getInt("target");
+
+			RPObject.ID targetEntityID = new RPObject.ID(target, object.get("zoneid"));
+
+			/*
+			 * XXX - This is probably meaningless, as create order
+			 * is unpredictable, and the target entity may not
+			 * have been added yet
+			 */
+			attackTarget = (RPEntity) GameObjects.getInstance().get(targetEntityID);
+
+			if (attackTarget != null) {
+				onAttack(attackTarget);
+				attackTarget.onAttacked(this);
+				//attackTarget.onAttacked(this,risk,damage);
+			}
+		} else {
+			attackTarget = null;
+		}
+
+		if(attackTarget != null) {
+			int risk;
+			int damage;
+
+			if(object.has("risk")) {
+				risk = object.getInt("risk");
+			} else {
+				risk = 0;
+			}
+
+			if(object.has("damage")) {
+				damage = object.getInt("damage");
+			} else {
+				damage = 0;
+			}
+
+			if (risk == 0) {
+				onAttackMissed(attackTarget);
+				attackTarget.onMissed(this);
+			} else if ((risk > 0) && (damage == 0)) {
+				onAttackBlocked(attackTarget);
+				attackTarget.onBlocked(this);
+			} else if ((risk > 0) && (damage > 0)) {
+				onAttackDamage(attackTarget, damage);
+				attackTarget.onDamaged(this, damage);
+			}
+		}
 	}
+
 
 	/**
 	 * Release this entity. This should clean anything that isn't
@@ -796,6 +703,50 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		super.release();
+	}
+
+	//
+	//
+
+	@Override
+	public ActionType defaultAction() {
+		return ActionType.LOOK;
+	}
+
+	protected void buildOfferedActions(List<String> list) {
+		super.buildOfferedActions(list);
+		list.add(ActionType.ATTACK.getRepresentation());
+
+		if (!User.isNull()) {
+	        if (User.get().isAttacking()) {
+				list.add(ActionType.STOP_ATTACK.getRepresentation());
+			}
+		}
+	}
+
+	@Override
+	public void onAction(final ActionType at, final String... params) {
+		// ActionType at = handleAction(action);
+		RPAction rpaction;
+		switch (at) {
+			case ATTACK:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int id = getID().getObjectID();
+				rpaction.put("target", id);
+				at.send(rpaction);
+				break;
+			case STOP_ATTACK:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				rpaction.put("attack", "");
+				at.send(rpaction);
+				break;
+			default:
+				super.onAction(at, params);
+				break;
+		}
+
 	}
 
 
@@ -829,16 +780,6 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 
 			/*
-			 * HP change
-			 */
-			if (changes.has("hp") && object.has("hp")) {
-				int healing = changes.getInt("hp") - object.getInt("hp");
-				if (healing > 0) {
-					onHealed(healing);
-				}
-			}
-
-			/*
 			 * Eating
 			 */
 			if (changes.has("eating")) {
@@ -853,16 +794,98 @@ public abstract class RPEntity extends ActiveEntity {
 				onPoisoned(Math.abs(changes.getInt("poisoned")));
 			}
 
-			fireKillEvent(object, changes);
-			fireAttackEvent(object, changes);
+			/*
+			 * Healed
+			 */
+			if (changes.has("heal")) {
+				onHealed(changes.getInt("heal"));
+			}
+
+			/*
+			 * HP change
+			 */
+			if (changes.has("hp") && object.has("hp")) {
+				int healing = changes.getInt("hp") - object.getInt("hp");
+				if (healing > 0) {
+					onHealed(healing);
+				}
+			}
+
+
+			/*
+			 * Attack Target
+			 */
+			if (changes.has("target")) {
+				int target = changes.getInt("target");
+
+				RPObject.ID targetEntityID = new RPObject.ID(target, changes.get("zoneid"));
+
+				RPEntity targetEntity = (RPEntity) GameObjects.getInstance().get(targetEntityID);
+
+				if (targetEntity != attackTarget) {
+					onStopAttack();
+
+					if (attackTarget != null) {
+						attackTarget.onStopAttacked(this);
+					}
+
+					attackTarget = targetEntity;
+
+					if(attackTarget != null) {
+						onAttack(attackTarget);
+						attackTarget.onAttacked(this);
+						//attackTarget.onAttacked(this,risk,damage);
+					}
+				}
+			}
+
+			if(attackTarget != null) {
+				int risk;
+				int damage;
+
+				boolean thereIsEvent = false;
+
+				if(changes.has("risk")) {
+					risk = changes.getInt("risk");
+					thereIsEvent = true;
+				} else if (object.has("risk")) {
+					risk = object.getInt("risk");
+				} else {
+					risk = 0;
+				}
+
+				if(changes.has("damage")) {
+					damage = changes.getInt("damage");
+					thereIsEvent = true;
+				} else if (object.has("damage")) {
+					damage = object.getInt("damage");
+				} else {
+					damage = 0;
+				}
+
+				if(thereIsEvent) {
+					if (risk == 0) {
+						onAttackMissed(attackTarget);
+						attackTarget.onMissed(this);
+					} else if ((risk > 0) && (damage == 0)) {
+						onAttackBlocked(attackTarget);
+						attackTarget.onBlocked(this);
+					} else if ((risk > 0) && (damage > 0)) {
+						onAttackDamage(attackTarget, damage);
+						attackTarget.onDamaged(this, damage);
+					}
+				}
+			}
 		}
 
 		if (changes.has("base_hp")) {
 			base_hp = changes.getInt("base_hp");
 		}
+
 		if (changes.has("hp")) {
 			hp = changes.getInt("hp");
 		}
+
 		if (changes.has("hp/base_hp")) {
 			hp_base_hp = (float) changes.getDouble("hp/base_hp");
 
@@ -871,40 +894,58 @@ public abstract class RPEntity extends ActiveEntity {
 			} else if (hp_base_hp < 0.0f) {
 				hp_base_hp = 0.0f;
 			}
+
+			if (!inAdd) {
+				if(hp_base_hp == 0.0f) {
+					onDeath(lastAttacker);
+				}
+			}
 		}
+
 		if (changes.has("atk")) {
 			atk = changes.getInt("atk");
 		}
+
 		if (changes.has("def")) {
 			def = changes.getInt("def");
 		}
+
 		if (changes.has("xp")) {
 			xp = changes.getInt("xp");
 		}
+
 		if (changes.has("level")) {
 			level = changes.getInt("level");
 		}
+
 		if (changes.has("atk_xp")) {
 			atkXp = changes.getInt("atk_xp");
 		}
+
 		if (changes.has("def_xp")) {
 			defXp = changes.getInt("def_xp");
 		}
+
 		if (changes.has("atk_item")) {
 			atkItem = changes.getInt("atk_item");
 		}
+
 		if (changes.has("def_item")) {
 			defItem = changes.getInt("def_item");
 		}
+
 		if (changes.has("mana")) {
 			mana = changes.getInt("mana");
 		}
+
 		if (changes.has("base_mana")) {
 			base_mana = changes.getInt("base_mana");
 		}
+
 		if (changes.has("fullghostmode")) {
 		    fullghostmode = (changes.getInt("fullghostmode") != 0);
 		}
+
 		if (changes.has("guild")) {
 		    guild = changes.get("guild");
 		}
