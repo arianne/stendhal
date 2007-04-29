@@ -10,7 +10,6 @@ package games.stendhal.client;
 //
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 /**
  * A sprite to be displayed on the screen. Note that a sprite contains no state

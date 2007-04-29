@@ -14,8 +14,6 @@ import java.util.Map;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObject.ID;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

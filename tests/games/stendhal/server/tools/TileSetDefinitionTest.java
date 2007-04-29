@@ -1,7 +1,6 @@
 package games.stendhal.server.tools;
 
 import static org.junit.Assert.assertEquals;
-import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 import games.stendhal.tools.tiled.TileSetDefinition;
 

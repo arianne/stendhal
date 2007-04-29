@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.server.game.GenericDatabaseException;
 import marauroa.server.game.JDBCPlayerDatabase;
 import marauroa.server.game.JDBCTransaction;

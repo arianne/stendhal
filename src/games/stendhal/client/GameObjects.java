@@ -12,14 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
-import games.stendhal.client.entity.GoldSource;
-import games.stendhal.client.entity.GrainField;
-import games.stendhal.client.entity.PassiveEntity;
-import games.stendhal.client.entity.PlantGrower;
-import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.events.RPObjectChangeListener;

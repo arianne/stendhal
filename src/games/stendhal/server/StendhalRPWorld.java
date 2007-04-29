@@ -12,9 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import games.stendhal.client.SpriteStore;
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
-import games.stendhal.server.config.ZoneXMLLoader;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Fire;
@@ -39,7 +37,6 @@ import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
-import java.io.FileNotFoundException;
 import java.net.URI;
 
 import marauroa.common.Log4J;

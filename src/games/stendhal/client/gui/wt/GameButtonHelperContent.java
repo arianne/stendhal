@@ -9,8 +9,6 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.HelpDialog;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author  timothyb89

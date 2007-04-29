@@ -19,12 +19,8 @@ import games.stendhal.tools.tiled.LayerDefinition;
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Reader;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
-
 import marauroa.common.Log4J;
 import marauroa.common.net.InputSerializer;
 

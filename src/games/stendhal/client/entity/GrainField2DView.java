@@ -15,7 +15,6 @@ import java.util.Map;
 import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**

@@ -18,7 +18,6 @@ import games.stendhal.common.Rand;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class NPC extends RPEntity {
