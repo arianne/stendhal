@@ -21,19 +21,12 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * The 2D view of an RP entity.
  */
 public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
-	/**
-	 * Logger.
-	 */
-	private static final Logger logger = Log4J.getLogger(RPEntity2DView.class);
 
 	private static Map<String, Sprite[]> bladeStrikeSprites;
 
