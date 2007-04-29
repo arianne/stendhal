@@ -108,8 +108,7 @@ public class PasswordDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-	checkPass();
-	if (newPass.getText().equals(newPassRepeat.getText())) { //looks like we can't compare char arrays to easily... oh well.
+	if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) { 
 	    //check for server password and see if that is accepted
 	    JOptionPane.showMessageDialog(null, "Passwords Match"); // remove this- just for testing.
 	} else {
@@ -118,11 +117,11 @@ public class PasswordDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_acceptButtonActionPerformed
 
     private void newPassRepeatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPassRepeatKeyTyped
-	checkPass();//not used
+	checkPass(newPass.getPassword(), newPassRepeat.getPassword());//not used
     }//GEN-LAST:event_newPassRepeatKeyTyped
 
     private void newPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_newPassKeyTyped
-	checkPass();//not used
+	checkPass(newPass.getPassword(), newPassRepeat.getPassword());//not used
     }//GEN-LAST:event_newPassKeyTyped
 
     private boolean clear = false;
@@ -137,14 +136,8 @@ public class PasswordDialog extends javax.swing.JFrame {
     /**
      * Checks to see if the two new passwords match
      */
-    private boolean passCorrect = false;
-    private void checkPass() {
-	if (newPass.getPassword().equals(newPassRepeat.getPassword())) {
-	    passCorrect = true;
-	}
-	else {
-	    passCorrect = false;
-	}
+    boolean checkPass(char[] pwField_One, char[] pwField_Two) {
+	return new String(pwField_One).equals(new String(pwField_Two));
     }
     
     /**
