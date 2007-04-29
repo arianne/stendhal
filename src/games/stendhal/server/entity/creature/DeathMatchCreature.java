@@ -49,6 +49,18 @@ public class DeathMatchCreature extends Creature {
 		if (damageReceivedByPlayer != null) {
 			int basePoints = player.getLevel();
 			points = basePoints * (damageReceivedByPlayer / totalDamageReceived);
+
+			// For some quests etc., it is required that the player kills a
+			// certain creature without the help of others.
+			// Find out if the player killed this RPEntity on his own, but
+			// don't overwrite solo with shared.
+			if (damageReceivedByPlayer == totalDamageReceived) {
+				player.setKill(getName(), "solo");
+			} else if (!player.hasKilledSolo(getName())) {
+				player.setKill(getName(), "shared");
+			}
+			player.notifyWorldAboutChanges();
+			
 		} else {
 			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
 		}
