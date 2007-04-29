@@ -42,10 +42,20 @@ public class LoginNotifier {
 		return instance;
 	}
 
+	/**
+	 * adds a LoginListener
+	 *
+	 * @param listener LoginListener
+	 */
 	public void addListener(LoginListener listener) {
 		listeners.add(listener);
 	}
 	
+	/**
+	 * removes a LoginListener
+	 *
+	 * @param listener LoginListener
+	 */
 	public void removeListener(LoginListener listener) {
 		listeners.remove(listener);
 	}
