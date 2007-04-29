@@ -46,7 +46,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
 
-	private Map<RPObject.ID, Entity> objects;
+	private Map<FQID, Entity> objects;
 
 	private LinkedList<Text> texts;
 
@@ -97,7 +97,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 *            =layers that make floor and building
 	 */
 	private GameObjects(StaticGameLayers collisionMap) {
-		objects = new HashMap<RPObject.ID, Entity>();
+		objects = new HashMap<FQID, Entity>();
 
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
@@ -115,16 +115,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Collections.sort(sortedObjects);
 	}
 
-	public boolean has(Entity entity) {
-		return objects.containsKey(entity.getID());
-	}
-
 	public Entity get(RPObject object) {
-		return get(object.getID());
+		return objects.get(FQID.create(object));
 	}
 
 	public Entity get(RPObject.ID id) {
-		return objects.get(id);
+		return objects.get(new FQID(new RPObject.ID[] { id }));
 	}
 
 	/** Removes all the object entities */
@@ -321,7 +317,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		// Discard view for now - Just force it's creation
 		entity.getView();
 
-		objects.put(object.getID(), entity);
+		objects.put(FQID.create(object), entity);
 
 		return entity;
 	}
@@ -339,13 +335,21 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onAdded(final RPObject object) {
 		Log4J.startMethod(logger, "onAdded");
 
-		if (!object.has("server-only")) {
-			Entity entity = add(object);
-			sortedObjects.add(entity);
+		if(object.getRPClass().subclassOf("entity")) {
+			if (!object.has("server-only")) {
+				Entity entity = add(object);
 
-			logger.debug("added " + entity);
-		} else {
-			logger.debug("Discarding object: " + object);
+				/*
+				 * Only non-contained objects are on screen
+				 */
+				if(!object.isContained()) {
+					sortedObjects.add(entity);
+				}
+
+				logger.debug("added " + entity);
+			} else {
+				logger.debug("Discarding object: " + object);
+			}
 		}
 
 		Log4J.finishMethod(logger, "onAdded");
@@ -361,7 +365,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		Log4J.startMethod(logger, "onChangedAdded");
 
-		Entity entity = objects.get(object.getID());
+		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
@@ -380,7 +384,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	changes		The slot changes.
 	 */
 	public void onChangedAdded(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(container.getID());
+		Entity entity = objects.get(FQID.create(container));
 
 		if (entity != null) {
 			entity.onChangedAdded(container, slotName, object, changes);
@@ -397,7 +401,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		Log4J.startMethod(logger, "onChangedRemoved");
 
-		Entity entity = objects.get(object.getID());
+		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
@@ -416,7 +420,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	changes		The slot changes.
 	 */
 	public void onChangedRemoved(final RPObject container, final String slotName, final RPObject object, final RPObject changes) {
-		Entity entity = objects.get(container.getID());
+		Entity entity = objects.get(FQID.create(container));
 
 		if (entity != null) {
 			entity.onChangedRemoved(container, slotName, object, changes);
@@ -436,7 +440,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		logger.debug("removed " + id);
 
-		Entity entity = objects.remove(id);
+		Entity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
 			entity.release();
@@ -444,5 +448,123 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 
 		Log4J.finishMethod(logger, "onRemoved");
+	}
+
+	//
+	//
+
+	/**
+	 * A fully qualified ID. This will make an nested ID unique, even
+	 * when in a slot tree.
+	 */
+	protected static class FQID {
+		/**
+		 * The ID path.
+		 */
+		protected RPObject.ID []	path;
+
+
+		/**
+		 * Create a fully qualified ID.
+		 *
+		 * @param	path		An ID path.
+		 */
+		public FQID(final RPObject.ID [] path) {
+			this.path = path;
+		}
+
+
+		//
+		// FQID
+		//
+
+		/**
+		 * Create a FQID from an object tree.
+		 *
+		 * @param	object		The leaf object.
+		 *
+		 * @return	A FQID.
+		 */
+		public static FQID create(final RPObject object) {
+			RPObject node;
+
+			int len = 0;
+
+			node = object;
+
+			while(node != null) {
+				len++;
+				node = node.getContainer();
+			}
+
+			RPObject.ID [] path = new RPObject.ID[len];
+
+			node = object;
+
+			while(node != null) {
+				path[--len] = node.getID();
+				node = node.getContainer();
+			}
+
+			return new FQID(path);
+		}
+
+
+		/**
+		 * Get the tree path of IDs.
+		 *
+		 * @return	The ID path.
+		 */
+		public RPObject.ID [] getPath() {
+			return path;
+		}
+
+
+		//
+		// Object
+		//
+
+		/**
+		 * Check if this equals another object.
+		 *
+		 * @param	obj		The object to compare to.
+		 */
+		public boolean equals(final Object obj) {
+			if(!(obj instanceof FQID)) {
+				return false;
+			}
+
+			RPObject.ID [] opath = ((FQID) obj).getPath();
+
+			if(path.length != opath.length) {
+				return false;
+			}
+
+			int i = path.length;
+
+			while(i-- != 0) {
+				if(!path[i].equals(opath[i])) {
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+
+		/**
+		 * Get the hash code.
+		 *
+		 * @return	The hash code.
+		 */
+		public int hashCode() {
+			int value = 0;
+
+			for(RPObject.ID id : path) {
+				value ^= id.hashCode();
+			}
+
+			return value;
+		}
 	}
 }
