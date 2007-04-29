@@ -199,6 +199,10 @@
 			<fileset dir="${sprites}"/>
 		</copy>
 
+		<copy todir="${build_client_data}/docu">
+			<fileset dir="${docu}"/>
+		</copy>
+
 		<copy todir="${build_client_data}/layers">
 			<fileset dir="${layers}"/>
 		</copy>
