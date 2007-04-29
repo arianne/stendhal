@@ -40,6 +40,7 @@ import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptRunner;
 
@@ -565,6 +566,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 			addGameEvent(player.getName(), "login");
 			LoginNotifier.get().onPlayerLoggedIn(player);
+			TutorialNotifier.login(player);
 
 			return true;
 		} catch (Exception e) {
