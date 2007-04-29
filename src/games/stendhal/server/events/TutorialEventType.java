@@ -9,7 +9,7 @@ public enum TutorialEventType {
 	
 	FIRST_LOGIN   ("Hi, welcome to Stendhal. You can move arround using the arrow keys."),
 	FIRST_MOVE    ("Please walk south (down) to go out of this building into the city."),
-	VISIT_SEMOS_CITY ("You should talk to Monogeneses by saying \"hi\". He has a white beard and is south west (down left) of here."),
+	VISIT_SEMOS_CITY ("You can talk to Monogeneses a little south west (down left) by saying \"hi\". Or you can walk a bit more south to fight some creatures in the dungeons"),
 	VISIT_SEMOS_DUNGEON ("You can attack creatures by right clicking on them and choosing \"Attack\""),
 	VISIT_SEMOS_DUNGEON_2 ("Be careful. If you walk deeper and deeper, the creatures will get more powerful."),
 	FIRST_ATTACKED ("Did you notice that creature walking towards you with the yellow square? It is attacking you."),
