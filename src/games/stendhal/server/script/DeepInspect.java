@@ -41,6 +41,6 @@ public class DeepInspect extends ScriptImpl {
 			}
 		}
 
-		player.sendPrivateText(sb.toString());
+		admin.sendPrivateText(sb.toString());
 	}
 }
