@@ -29,6 +29,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.events.TutorialNotifier;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
@@ -726,6 +727,14 @@ public class Player extends RPEntity implements TurnListener {
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y + 1, 1, 1);
+	}
+
+	@Override
+	public void onAttacked(Entity attacker, boolean keepAttacking) {
+		super.onAttacked(attacker, keepAttacking);
+		if (keepAttacking) {
+			TutorialNotifier.attacked(this);
+		}
 	}
 
 	@Override

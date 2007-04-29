@@ -88,6 +88,17 @@ public class TutorialNotifier {
 			process(player, TutorialEventType.VISIT_SEMOS_DUNGEON);
 		} else if (destinationZone.equals("-2_semos_dungeon")) {
 			process(player, TutorialEventType.VISIT_SEMOS_DUNGEON_2);
+		} else if (destinationZone.equals("int_afterlife")) {
+			process(player, TutorialEventType.FIRST_DEATH);
 		}
+	}
+
+	/**
+	 * player got attacked
+	 *
+	 * @param player Player
+	 */
+	public static void attacked(Player player) {
+		process(player, TutorialEventType.FIRST_ATTACKED);
 	}
 }
