@@ -16,6 +16,7 @@ import javax.swing.JProgressBar;
  * a progress bar for the download progress
  */
 public class UpdateProgressBar extends JFrame implements HttpClient.ProgressListener {
+	private static final long serialVersionUID = -1607102841664745919L;
 
 	private int max = 100;
 

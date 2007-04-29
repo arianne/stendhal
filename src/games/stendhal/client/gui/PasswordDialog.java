@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
  * @author  timothyb89
  */
 public class PasswordDialog extends javax.swing.JFrame {
-    
+	private static final long serialVersionUID = -1607102841664745919L;
+
     /** Creates new form PasswordDialog */
     public PasswordDialog() {
 	initComponents();

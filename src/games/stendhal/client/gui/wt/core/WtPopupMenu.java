@@ -86,6 +86,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 	//
 
 	protected class RedirectingMenuItem extends JMenuItem {
+		private static final long serialVersionUID = -1607102841664745919L;
 
 		public RedirectingMenuItem(String label, Icon icon) {
 			super(label, icon);

@@ -36,6 +36,8 @@ import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
  * A panel representing a buddy list.
  */
 public class BuddyListPanel extends JPanel {
+	private static final long serialVersionUID = -1607102841664745919L;
+
 	/**
 	 * The UI.
 	 */

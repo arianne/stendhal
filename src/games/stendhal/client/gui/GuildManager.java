@@ -16,7 +16,8 @@ import marauroa.common.game.RPAction;
  * @author  timothyb89
  */
 public class GuildManager extends javax.swing.JFrame {
-    
+	private static final long serialVersionUID = -1607102841664745919L;
+
     /** Creates new form GuildManager */
     public GuildManager() {
 	initComponents();

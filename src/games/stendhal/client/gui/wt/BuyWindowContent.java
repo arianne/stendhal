@@ -18,6 +18,11 @@ import javax.swing.JOptionPane;
 public class BuyWindowContent extends javax.swing.JPanel {
     
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1607102841664745919L;
+
+	/**
      * The UI.
      */
     protected StendhalUI ui;
@@ -115,6 +120,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jLabel5.setBounds(0, 10, 224, 15);
 
         npc_chooser.setModel(new javax.swing.AbstractListModel() {
+        	private static final long serialVersionUID = -1607102841664745919L;
+
             String[] strings = { "Xin Blanca", "Food and Drink Selling" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -137,6 +144,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
         food_drink.setMaximumSize(new java.awt.Dimension(350, 225));
         food_drink.setOpaque(false);
         foodList.setModel(new javax.swing.AbstractListModel() {
+        	private static final long serialVersionUID = -1607102841664745919L;
+
             String[] strings = { "beer ($10)", "wine ($15)", "flask ($5)", "cheese ($20)", "apple ($10)", "carrot ($10)", "meat ($40)", "ham ($80)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -156,6 +165,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
         xin_weapons.setOpaque(false);
         xinSell.setModel(new javax.swing.AbstractListModel() {
+        	private static final long serialVersionUID = -1607102841664745919L;
+
             String[] strings = { "knife ($15)", "club ($10)", "dagger ($25)", "wooden_shield ($25)", "dress ($25)", "leather_helmet ($25)", "cloak ($30)", "leather_legs ($35)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -176,6 +187,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jLabel2.setBounds(40, 10, 45, 15);
 
         xinBuy.setModel(new javax.swing.AbstractListModel() {
+        	private static final long serialVersionUID = -1607102841664745919L;
+
             String[] strings = { "short_sword ($15)", "sword ($60)", "studded_shield ($20)", "studded_armor ($22)", "studded_legs ($20)", "chain_armor ($29)", "chain_helmet ($25)", "chain_legs ($27)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }

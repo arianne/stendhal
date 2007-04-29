@@ -25,6 +25,7 @@ import games.stendhal.client.gui.styled.Style;
  * A styled JPopupMenu.
  */
 public class StyledJPopupMenu extends JPopupMenu {
+	private static final long serialVersionUID = -1607102841664745919L;
 
 	/*
 	 * Style used.

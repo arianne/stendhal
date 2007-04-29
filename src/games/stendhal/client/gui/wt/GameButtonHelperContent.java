@@ -14,7 +14,8 @@ import games.stendhal.client.gui.HelpDialog;
  * @author  timothyb89
  */
 public class GameButtonHelperContent extends javax.swing.JPanel {
-    
+	private static final long serialVersionUID = -1607102841664745919L;
+
     SettingsPanel sp;
     
     StendhalUI ui;

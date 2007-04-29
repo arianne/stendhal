@@ -21,6 +21,7 @@ import games.stendhal.client.gui.styled.Style;
  * A styled JPanel.
  */
 public class StyledJPanel extends JPanel {
+	private static final long serialVersionUID = -1607102841664745919L;
 
 	/*
 	 * Style used.

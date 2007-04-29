@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
  * @author mtotz
  */
 public class CommandList extends WtPopupMenu {
+	private static final long serialVersionUID = -1607102841664745919L;
 
 	/** the entity associated with the command list */
 	private Entity entity;

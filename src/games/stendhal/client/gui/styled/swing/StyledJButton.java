@@ -26,6 +26,7 @@ public class StyledJButton extends JButton {
 	 * Style used.
 	 */
 	private Style style;
+	private static final long serialVersionUID = -1607102841664745919L;
 
 	/**
 	 * Create a styled JButton.
