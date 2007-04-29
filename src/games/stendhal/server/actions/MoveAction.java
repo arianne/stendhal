@@ -18,6 +18,7 @@ import marauroa.common.game.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
@@ -61,6 +62,7 @@ public class MoveAction implements ActionListener {
 			player.applyClientDirection(true);
 		}
 
+		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
 
 		Log4J.finishMethod(logger, "move");
