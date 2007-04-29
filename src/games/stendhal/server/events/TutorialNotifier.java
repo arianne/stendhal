@@ -20,8 +20,38 @@ public class TutorialNotifier {
 		String key = type.name().toLowerCase();
 		if (player.getKeyedSlot("!tutorial", key) == null) {
 			player.setKeyedSlot("!tutorial", key, "1");
-			player.sendPrivateText("Tutorial: " + type.getMessage());
+
+			// we must delay this for 2 turn for technical reasons (like zone change)
+			// but we delay it for 2 seconds so that the player has some time to
+			// recognize the event 
+			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage());
+			TurnNotifier.get().notifyInSeconds(1, dpts, null);
 		}
+	}
+
+	/**
+	 * Delays the sending of text (until the next turn for instance to work
+	 * around problems like zone changes)
+	 */
+	private static class DelayedPlayerTextSender implements TurnListener {
+		private Player player;
+		private String message;
+
+		/**
+		 * Creates a new DelayedPlayerTextSender
+		 *
+		 * @param player  Player to send this message to
+		 * @param message message
+		 */
+		DelayedPlayerTextSender(Player player, String message) {
+			this.player = player;
+			this.message = message;
+		}
+
+		public void onTurnReached(int currentTurn, String ignoreMe) {
+			player.sendPrivateText(message);
+		}
+		
 	}
 
 	/**
@@ -50,8 +80,12 @@ public class TutorialNotifier {
 	 * @param destinationZone destination zone
 	 */
 	public static void zoneChange(Player player, String sourceZone, String destinationZone) {
-		if (sourceZone.equals("int_semos_townhall")) {
+		if (sourceZone.equals("int_semos_townhall") && destinationZone.equals("0_semos_city")) {
 			process(player, TutorialEventType.VISIT_SEMOS_CITY);
+		} else if (destinationZone.equals("-1_semos_dungeon")) {
+			process(player, TutorialEventType.VISIT_SEMOS_DUNGEON);
+		} else if (destinationZone.equals("-2_semos_dungeon")) {
+			process(player, TutorialEventType.VISIT_SEMOS_DUNGEON_2);
 		}
 	}
 }
