@@ -18,8 +18,7 @@ public interface LoginListener {
 	/**
 	 * This method is called when the turn number is reached
 	 *
-	 * @param playerName the name of the player who has logged in
-	 * @param message the string that was used 
+	 * @param player the player who has logged in
 	 */
 	public void onLoggedIn(Player player);
 }
