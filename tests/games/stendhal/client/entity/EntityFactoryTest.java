@@ -44,7 +44,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void testCreateCarrot() {
+	public final void carrot() {
 		RPObject rp = new MockRPObject("growing_entity_spawner", "items/grower/carrot_grower", "carrot");
 		rp.put("max_ripeness", 1);
 		rp.put("width", 1);
@@ -56,7 +56,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void testCreateGrainfield() {
+	public final void grainfield() {
 		RPObject rp = new MockRPObject("grain_field", null, null);
 		rp.put("max_ripeness", 1);
 		rp.put("width", 1);
@@ -76,7 +76,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void testCreateApple() {
+	public final void apple() {
 		RPObject rp = new MockRPObject("item", "food", "apple");
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -85,25 +85,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void testCreateSign() {
-		RPObject rp = new MockRPObject("blackboard", null);
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a sign by now", Sign.class, en.getClass());
-
-	}
-
-	@Test
-	public final void testCreateSheep() {
-		RPObject rp = new MockRPObject("sheep", null);
-		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a sheep by now", Sheep.class, en.getClass());
-
-	}
-
-	@Test
-	public final void testCreateBox() {
+	public final void box() {
 		RPObject rp = new MockRPObject("item", "box");
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -111,7 +93,7 @@ public class EntityFactoryTest {
 
 	}
 	@Test
-	public final void testCreatePlayer() {
+	public final void player() {
 		RPObject rp = new MockRPObject("player", null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -120,7 +102,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void ResizeableCreature() {
+	public final void creature() {
 		RPObject rp = new MockRPObject("creature",  null);
 		rp.put("height", 1);
 		rp.put("width", 1);
@@ -132,7 +114,7 @@ public class EntityFactoryTest {
 
 
 	@Test
-	public final void Sheep() {
+	public final void sheep() {
 		RPObject rp = new MockRPObject("sheep",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -141,7 +123,7 @@ public class EntityFactoryTest {
 
 	}
 	@Test
-	public final void NPC() {
+	public final void nPC() {
 		RPObject rp = new MockRPObject("npc",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -150,7 +132,7 @@ public class EntityFactoryTest {
 
 	}
 	@Test
-	public final void PlantGrower() {
+	public final void plantGrower() {
 		RPObject rp = new MockRPObject("plant_grower",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -159,7 +141,7 @@ public class EntityFactoryTest {
 
 	}
 	@Test
-	public final void GoldSource() {
+	public final void goldSource() {
 		RPObject rp = new MockRPObject("gold_source",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -167,7 +149,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void InvisibleEntity() {
+	public final void invisibleEntity() {
 		RPObject rp = new MockRPObject("walk_blocker",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -178,21 +160,21 @@ public class EntityFactoryTest {
 		assertEquals("we should have created a InvisibleEntity by now", InvisibleEntity.class, en.getClass());
 	}
 	@Test
-	public final void SheepFood() {
+	public final void sheepFood() {
 		RPObject rp = new MockRPObject("food",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a SheepFood by now", SheepFood.class, en.getClass());
 	}
 	@Test
-	public final void Chest() {
+	public final void chest() {
 		RPObject rp = new MockRPObject("chest",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Chest by now", Chest.class, en.getClass());
 	}
 	@Test
-	public final void Corpse() {
+	public final void corpse() {
 		RPObject rp = new MockRPObject("corpse",  null);
 		
 		Entity en = EntityFactory.createEntity(rp);
@@ -200,7 +182,7 @@ public class EntityFactoryTest {
 		assertEquals("we should have created a Corpse by now", Corpse.class, en.getClass());
 	}
 	@Test
-	public final void Blood() {
+	public final void blood() {
 		RPObject rp = new MockRPObject("blood",  null);
 		
 		Entity en = EntityFactory.createEntity(rp);
@@ -209,7 +191,7 @@ public class EntityFactoryTest {
 	}
 
 	@Test
-	public final void Sign() {
+	public final void sign() {
 		RPObject rp = new MockRPObject("sign",  null);
 		
 		Entity en = EntityFactory.createEntity(rp);
@@ -225,7 +207,7 @@ public class EntityFactoryTest {
 
 	
 	@Test
-	public final void Item() {
+	public final void item() {
 		RPObject rp = new MockRPObject("item",  null);
 		
 		Entity en = EntityFactory.createEntity(rp);
@@ -234,7 +216,7 @@ public class EntityFactoryTest {
 	}
 	
 	@Test
-	public final void StackableItem() {
+	public final void stackableItem() {
 		RPObject rp = new MockRPObject("item",  "drink");
 		
 		Entity en = EntityFactory.createEntity(rp);
@@ -279,7 +261,7 @@ public class EntityFactoryTest {
 
 	}
 	@Test
-	public final void Portal() {
+	public final void portal() {
 		RPObject rp = new MockRPObject("portal",  null);
 		
 		Entity en = EntityFactory.createEntity(rp);
@@ -287,7 +269,7 @@ public class EntityFactoryTest {
 		assertEquals("we should have created a Portal by now", Portal.class, en.getClass());
 	}
 	@Test
-	public final void Door() {
+	public final void door() {
 		RPObject rp = new MockRPObject("door",  null);
 		rp.put("dir", 1);
 		Entity en = EntityFactory.createEntity(rp);
@@ -295,7 +277,7 @@ public class EntityFactoryTest {
 		assertEquals("we should have created a Door by now", Door.class, en.getClass());
 	}
 	@Test
-	public final void Fire() {
+	public final void fire() {
 		RPObject rp = new MockRPObject("fire",  null);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
