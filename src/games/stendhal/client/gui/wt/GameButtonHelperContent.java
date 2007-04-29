@@ -7,6 +7,8 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.HelpDialog;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -70,10 +72,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
     }//GEN-LAST:event_phActionPerformed
 
     private void ghActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghActionPerformed
-	GameHelpDialog ghw = new GameHelpDialog();
-	ghw.setBounds(15, 15, 500, 800); //maybe this will help...
-	ghw.setMinimumSize(new java.awt.Dimension(500, 800));
-	ghw.setVisible(true);
+    	new HelpDialog().display();
     }//GEN-LAST:event_ghActionPerformed
     
     
