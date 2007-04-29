@@ -118,6 +118,7 @@ class PlayerRPClass {
 		player.add("offline", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
 
 		player.addRPSlot("!quests", 1, RPClass.HIDDEN);
+		player.addRPSlot("!tutorial", 1, RPClass.HIDDEN);
 
 		player.add("karma", RPClass.FLOAT, RPClass.PRIVATE);
 
@@ -131,7 +132,7 @@ class PlayerRPClass {
 		// This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
 		player.addRPSlot("spells", 9, RPClass.PRIVATE);
 		
-		//The guild slot. Just one so player can't be in more than one (can be changed but thats what I'm going by)
+		// The guild name
 		player.add("guild", RPClass.STRING);
 
 		// Does player have full ghostmode?
@@ -150,7 +151,7 @@ class PlayerRPClass {
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank",
 		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
 
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills" };
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills", "!tutorial" };
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
