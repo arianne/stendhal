@@ -65,7 +65,7 @@ public class TileRenderer extends LayerRenderer {
 		width=layer.getWidth();
 		height=layer.getHeight();
 
-		System.out.println("Layer("+layer.getName()+"): " +width+"x"+height);
+		logger.debug("Layer("+layer.getName()+"): " +width+"x"+height);
 		
 		map=layer.expose();
 		Log4J.finishMethod(logger, "setMapData");
