@@ -9,7 +9,7 @@ public class Sound {
 	private int x;
 	private int y;
 	private String name;
-	private boolean loop=false;
+//	private boolean loop=false;
 	Sound(String name,int x, int y) {
 		super();
 		this.x = x;
@@ -19,7 +19,7 @@ public class Sound {
 	
 	public Sound(String name, int x, int y, boolean shallLoop) {
 		this(name, x, y);
-		loop = shallLoop;
+	//	loop = shallLoop;
 	}
 
 	public AudioClip play(){
