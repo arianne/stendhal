@@ -6,19 +6,6 @@
 
 package games.stendhal.server.entity.area;
 
-//
-//
-
-import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.IRPZone;
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
@@ -27,16 +14,20 @@ import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
+
 /**
  * An base area that performs actions on RPEntity's that are entering, leaving,
  * moving in, or standing in it's space.
  */
 public class OccupantArea extends PassiveEntity implements MovementListener, TurnListener {
-	/**
-	 * The logger instance.
-	 */
-	private static final Logger logger = Log4J.getLogger(OccupantArea.class);
-
+	
 	/**
 	 * How often an action is done while stationary (in turns).
 	 */
