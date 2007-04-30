@@ -564,7 +564,7 @@ Southeast: Docks
   <entity x="26" y="5">
     <implementation class-name="games.stendhal.server.maps.ados.church.HealerNPC">
       <parameter name="name">Valo</parameter>
-      <parameter name="class">granmanpc</parameter>
+      <parameter name="class">grandadnpc</parameter>
       <parameter name="node0">26,5</parameter>
       <parameter name="node1">33,5</parameter>
       <parameter name="node2">33,16</parameter>
