@@ -2553,13 +2553,29 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+	<item name="mega_potion">
+		<type class="drink" subclass="mega_potion"/>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="600"/>
+			<regen value="600"/>
+			<frequency value="1"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
        <item name="soup">
                 <type class="drink" subclass="soup"/>
                 <implementation
 		class-name="games.stendhal.server.entity.item.Drink"/>
                 <attributes>
                         <quantity value="1"/>
-                        <amount value="2500"/>
+                        <amount value="2500"/> <!--set to player HP in soup quest-->
                         <regen value="2500"/>
                         <frequency value="1"/>
                  </attributes>
