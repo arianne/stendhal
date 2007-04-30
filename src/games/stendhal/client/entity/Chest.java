@@ -86,17 +86,6 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 
 
 	/**
-	 * Get the area the entity occupies.
-	 *
-	 * @return	A rectange (in world coordinate units).
-	 */
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.

@@ -9,40 +9,21 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-
 import marauroa.common.game.RPObject;
 
 /**
  * An generic entity that is not drawn.
  */
 public class InvisibleEntity extends Entity {
-	int height = 1;
-	int width = 1;
-	
-	
-	
-	@Override
-	public void onChangedAdded(RPObject base, RPObject diff) {
-		super.onChangedAdded(base, diff);
-		if (diff.has("width")) {
-			width = diff.getInt("width");
-		} else if (base.has("width")) {
-			width = base.getInt("width");
-		}
-		if (diff.has("height")) {
-			height = diff.getInt("height");
-		} else if (base.has("height")) {
-			height = base.getInt("height");
-		}
-	}
+	/*
+	 * The entity height.
+	 */
+	protected double	height;
 
-
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, width, height);
-	}
+	/*
+	 * The entity width.
+	 */
+	protected double	width;
 
 
 	//
@@ -54,7 +35,93 @@ public class InvisibleEntity extends Entity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new InvisibleEntity2DView(this);
+	}
+
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height.
+	 */
+	@Override
+	protected double getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width.
+	 */
+	@Override
+	protected double getWidth() {
+		return width;
+	}
+
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		if (object.has("height")) {
+			height = object.getDouble("height");
+		} else {
+			height = 1.0;
+		}
+
+		if (object.has("width")) {
+			width = object.getDouble("width");
+		} else {
+			width = 1.0;
+		}
+	}
+
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(RPObject object, RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("height")) {
+			height = changes.getDouble("height");
+		}
+
+		if (changes.has("width")) {
+			width = changes.getDouble("width");
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("height")) {
+			height = 1.0;
+		}
+
+		if (changes.has("width")) {
+			width = 1.0;
+		}
 	}
 }

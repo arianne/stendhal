@@ -28,23 +28,6 @@ public class Corpse extends PassiveEntity implements Inspectable {
 
 	private EntityContainer contentWindow;
 
-	@Override
-	public Rectangle2D getArea() {
-		Sprite sprite = getSprite();
-
-		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
-		        .getHeight()
-		        / GameScreen.SIZE_UNIT_PIXELS);
-	}
-
-//	@Override
-//	public Rectangle2D getDrawedArea() {
-//		Sprite sprite = getSprite();
-//
-//		return new Rectangle.Double(x, y, (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS, (double) sprite
-//		        .getHeight()
-//		        / GameScreen.SIZE_UNIT_PIXELS);
-//	}
 
 
 	@Override
@@ -93,5 +76,29 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	 */
 	protected Entity2DView createView() {
 		return new Corpse2DView(this);
+	}
+
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height.
+	 */
+	@Override
+	protected double getHeight() {
+		// Ugg - Don't couple visual size with logical size
+		return (double) getSprite().getHeight() / GameScreen.SIZE_UNIT_PIXELS;
+	}
+
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width.
+	 */
+	@Override
+	protected double getWidth() {
+		// Ugg - Don't couple visual size with logical size
+		return (double) getSprite().getWidth() / GameScreen.SIZE_UNIT_PIXELS;
 	}
 }

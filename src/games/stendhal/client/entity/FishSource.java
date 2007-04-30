@@ -24,11 +24,6 @@ import marauroa.common.game.RPAction;
  */
 public class FishSource extends AnimatedStateEntity {
 	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
 	public ActionType defaultAction() {
 		return ActionType.FISH;
 	}

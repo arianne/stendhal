@@ -10,11 +10,6 @@ import java.util.List;
 public class Fire extends AnimatedStateEntity {
 
 	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-	@Override
 	protected void buildOfferedActions(List<String> list) {
 		list.clear();
 	}

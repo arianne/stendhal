@@ -20,7 +20,35 @@ import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPObject;
 
+/**
+ * An NPC entity.
+ */
 public class NPC extends RPEntity {
+	//
+	// Entity
+	//
+
+	/** 
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	@Override
+	protected Entity2DView createView() {
+		return new NPC2DView(this);
+	}
+
+	/**
+	 * Get the ground area this entity occupies.
+	 *
+	 * @return	The physical area.
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(getX(), getY() + 1, getWidth(), getHeight());
+	}
+
+
 	/**
 	 * Initialize this entity for an object.
 	 *
@@ -66,30 +94,6 @@ public class NPC extends RPEntity {
 				//SoundSystem.startSoundCycle(this, "Sato-patrol", 60000, 30, 50, 70);
 			}
 		}
-	}
-
-
-	//
-	// Entity
-	//
-
-	/** 
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	protected Entity2DView createView() {
-		return new NPC2DView(this);
-	}
-
-	/**
-	 * Get the ground area this entity occupies.
-	 *
-	 * @return	The physical area.
-	 */
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y + 1, 1, 1);
 	}
 
 	private long soundWait = 0L;

@@ -17,6 +17,7 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.sound.SoundSystem;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +126,16 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
+	public Rectangle2D getArea() {
+		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
+	}
+
+
+	/**
 	 * Get the entity visibility.
 	 *
 	 * @return	The entity visibility (0 - 100).
@@ -144,6 +155,16 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	public int getChangeSerial() {
 		return changeSerial;
+	}
+
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height.
+	 */
+	protected double getHeight() {
+		return 1.0;
 	}
 
 
@@ -222,7 +243,16 @@ public final byte[] ID_Token = new byte[0];
 	public RPObject getRPObject() {
 		return rpObject;
 	}
-	
+
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width.
+	 */
+	protected double getWidth() {
+		return 1.0;
+	}
 	
 	
 	/**
@@ -347,12 +377,6 @@ public final byte[] ID_Token = new byte[0];
 		return null;
 	}
 
-	/**
-	 * Get the area the entity occupies.
-	 *
-	 * @return	A rectange (in world coordinate units).
-	 */
-	public abstract Rectangle2D getArea();
 
 	/**
 	 * DEPRECATED - Eventually will go away (when view used directly),

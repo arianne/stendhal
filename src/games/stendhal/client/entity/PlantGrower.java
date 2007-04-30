@@ -4,12 +4,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 public class PlantGrower extends Entity {
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-
 	//
 	// Entity
 	//

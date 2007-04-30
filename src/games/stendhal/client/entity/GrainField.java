@@ -55,30 +55,6 @@ public class GrainField extends AnimatedStateEntity {
 
 
 	//
-	// GrainField
-	//
-
-	/**
-	 * Get the entity height.
-	 *
-	 * @return	The entity height.
-	 */
-	public double getHeight() {
-		return height;
-	}
-
-
-	/**
-	 * Get the entity width.
-	 *
-	 * @return	The entity width.
-	 */
-	public double getWidth() {
-		return width;
-	}
-
-
-	//
 	// Entity
 	//
 
@@ -87,6 +63,7 @@ public class GrainField extends AnimatedStateEntity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new GrainField2DView(this);
 	}
@@ -99,7 +76,29 @@ public class GrainField extends AnimatedStateEntity {
 	 */
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y + height - 1, width, 1);
+		return new Rectangle.Double(getX(), getY() + getHeight() - 1, getWidth(), 1);
+	}
+
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The entity height.
+	 */
+	@Override
+	public double getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The entity width.
+	 */
+	@Override
+	public double getWidth() {
+		return width;
 	}
 
 

@@ -90,12 +90,6 @@ public class Sheep extends NPC {
 
 
 	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-
-	@Override
 	public void onAction(final ActionType at, final String... params) {
 		// ActionType at = handleAction(action);
 		switch (at) {

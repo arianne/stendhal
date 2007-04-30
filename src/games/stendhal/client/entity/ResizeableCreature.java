@@ -20,13 +20,56 @@ import marauroa.common.game.RPObject;
 
 /** A Creature which a server adjustable size */
 public class ResizeableCreature extends Creature {
-	private double width = 1.5;
-	private double height = 1.0f;
+	private double width;
+	private double height;
 
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	@Override
+	protected Entity2DView createView() {
+		return new ResizeableCreature2DView(this);
+	}
+
+
+	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		// Hack for human like creatures
+		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
+			return new Rectangle.Double(getX(), getY() + 1, 1, 1);
+		}
+
+		return super.getArea();
+	}
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height.
+	 */
+	@Override
 	public double getHeight() {
 		return height;
 	}
 
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width.
+	 */
+	@Override
 	public double getWidth() {
 		return width;
 	}
@@ -42,8 +85,17 @@ public class ResizeableCreature extends Creature {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		width = object.getDouble("width");
-		height = object.getDouble("height");
+		if(object.has("height")) {
+			height = object.getDouble("height");
+		} else {
+			height = 1.0;
+		}
+
+		if(object.has("width")) {
+			width = object.getDouble("width");
+		} else {
+			width = 1.5;
+		}
 	}
 
 
@@ -51,55 +103,44 @@ public class ResizeableCreature extends Creature {
 	// RPObjectChangeListener
 	//
 
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
 	@Override
-    public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		if (diff.has("width")) {
-			width = diff.getDouble("width");
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("width")) {
+			width = changes.getDouble("width");
 			changed();
 		}
 
-		if (diff.has("height")) {
-			height = diff.getDouble("height");
+		if (changes.has("height")) {
+			height = changes.getDouble("height");
 			changed();
 		}
 
-		if (diff.has("metamorphosis")) {
-			changed();
-		}
-
-		super.onChangedAdded(base, diff);
-	}
-
-
-	@Override
-	public void onChangedRemoved(final RPObject base, final RPObject diff) {
-		super.onChangedRemoved(base, diff);
-		if (diff.has("metamorphosis")) {
+		if (changes.has("metamorphosis")) {
 			changed();
 		}
 	}
 
-
-	@Override
-	public Rectangle2D getArea() {
-		// Hack for human like creatures
-		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
-			return new Rectangle.Double(x, y + 1, 1, 1);
-		}
-		return new Rectangle.Double(x, y, width, height);
-	}
-
-
-	//
-	// Entity
-	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
+	 * The object removed attribute(s).
 	 *
-	 * @return	The on-screen view of this entity.
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
 	 */
-	protected Entity2DView createView() {
-		return new ResizeableCreature2DView(this);
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("metamorphosis")) {
+			changed();
+		}
 	}
 }

@@ -44,17 +44,6 @@ public class Blood extends AnimatedStateEntity {
 
 
 	/**
-	 * Get the area the entity occupies.
-	 *
-	 * @return	A rectange (in world coordinate units).
-	 */
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(x, y, 1, 1);
-	}
-
-
-	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
 	 * @param	entity		The entity to check against.
