@@ -92,7 +92,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 					start=current;					
 				}
 				if(creature.getLevel() > level + 5) {
-					current--;
 					break;
 				}
 				current++;
