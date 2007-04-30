@@ -185,9 +185,9 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
-	 * Get the type.
+	 * Get the entity type.
 	 *
-	 * @return	The name.
+	 * @return	The type.
 	 */
 	public String getType() {
 		return type;
@@ -238,8 +238,8 @@ public final byte[] ID_Token = new byte[0];
 	
 
 	/**
-	 * This is used by old code.
-	 *
+	 * DEPRECATED - Eventually will go away (when view used directly),
+	 * but still needed for now.
 	 */
 	public Sprite getSprite() {
 		return view.getSprite();
@@ -317,38 +317,23 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
-//	// When rpentity reachs the [x,y,1,1] area.
-//	public void onEnter(final int x, final int y) {
-//
-//	}
-
-//	// When rpentity leaves the [x,y,1,1] area.
-//	public void onLeave(final int x,final  int y) {
-//	}
-
-	// Called when entity enters a new zone
-	public void onEnterZone(final String zone) {
-	}
-
-	// Called when entity leaves a zone
-	public void onLeaveZone(final String zone) {
-	}
-
-
+	/**
+	 * DEPRECATED - Eventually will go away (when view used directly),
+	 * but still needed for now.
+	 */
 	public void draw(final GameScreen screen) {
 		view.draw(screen);
 	}
 
 
+	/**
+	 * DEPRECATED - Eventually will go away (when moved to sub-class).
+	 * but still needed for now.
+	 */
 	public boolean stopped() {
 		return true;
 	}
 
-
-	/** returns the number of slots this entity has */
-	public int getNumSlots() {
-		return rpObject.slots().size();
-	}
 
 	/**
 	 * returns the slot with the specified name or null if the entity does not
@@ -362,12 +347,6 @@ public final byte[] ID_Token = new byte[0];
 		return null;
 	}
 
-	/** returns a list of slots */
-	public List<RPSlot> getSlots() {
-		return new ArrayList<RPSlot>(rpObject.slots());
-	}
-
-
 	/**
 	 * Get the area the entity occupies.
 	 *
@@ -375,6 +354,10 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	public abstract Rectangle2D getArea();
 
+	/**
+	 * DEPRECATED - Eventually will go away (when view used directly),
+	 * but still needed for now.
+	 */
 	public Rectangle2D getDrawedArea() {
 		return view.getDrawnArea();
 	}
@@ -492,6 +475,10 @@ public final byte[] ID_Token = new byte[0];
 	 * 
 	 * Also, players can only interact with the topmost entity.
 	 * 
+	 * <p>
+	 * DEPRECATED - Eventually will go away (when view used directly),
+	 * but still needed for now.
+	 * 
 	 * @return drawing index
 	 */
 	public int getZIndex() {
@@ -572,7 +559,6 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Notify placement
 		 */
-		onEnterZone(object.getID().getZoneID());
 		onPosition(x, y);
 
 		// BUG: Work around for Bugs at 0.45
@@ -604,8 +590,6 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	public void release() {
 		SoundSystem.stopSoundCycle(ID_Token);
-
-		onLeaveZone(getID().getZoneID());
 	}
 
 

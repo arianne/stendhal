@@ -165,25 +165,11 @@ public class EntityTest {
 
 
 	@Test
-	
-	public final void testGetNumSlots() {
-		Entity en = new MockEntity();
-		assertEquals(0,en.getNumSlots());
-	}
-
-	@Test
 
 	public final void testGetSlot() {
 		Entity en = new MockEntity();
 		assertEquals(null,en.getSlot(""));
 		
-	}
-
-	@Test
-
-	public final void testGetSlots() {
-		Entity en = new MockEntity();
-		assertEquals(new LinkedList<RPSlot>(),en.getSlots());
 	}
 
 	
