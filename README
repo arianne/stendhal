@@ -70,13 +70,13 @@ Changelog
 - a woman in fado collects cloaks
 - the tavern maid in fado makes a special soup
 - get married at fado church
-
-0.60/0.59.1?
 - a sleeping cow now indicates that a player is away
-- Ported maps to a new format that is a lot of less memory intensive.
-- Optimized TMX loader. Loads up to 100x faster.
-- Make client use less memory.
-- Maps can now have its own tilesets.
+- Ported maps to a new format that is a lot less memory intensive
+- Optimized TMX loader. Loads up to 100x faster
+- Make client use less memory
+- Maps can now have its own tilesets
+- Buildings and many outsides and interiors redrawn
+- mega potions are made with giant hearts by a healer in Ados church
 
 0.59 Apr 14, 2007
 World:
@@ -109,7 +109,6 @@ Gameplay:
 - a keyring to carry keys on
 
 Technical:
-- all buildings have had a makeover
 - zone xml now uses <parameter> values for factory arguments, and entity types may include <attribute> values to set instance attributes
 - use zone level/coordinates from data/conf/zones/*.xml instead of tmx files
 
