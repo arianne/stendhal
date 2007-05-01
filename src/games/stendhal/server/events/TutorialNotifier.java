@@ -101,4 +101,13 @@ public class TutorialNotifier {
 	public static void attacked(Player player) {
 		process(player, TutorialEventType.FIRST_ATTACKED);
 	}
+
+	/**
+	 * player killed something
+	 *
+	 * @param player Player
+	 */
+	public static void killedSomething(Player player) {
+		process(player, TutorialEventType.FIRST_KILL);
+	}
 }

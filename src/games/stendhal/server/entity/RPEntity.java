@@ -20,6 +20,7 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.ActionManager;
 
@@ -649,6 +650,9 @@ public abstract class RPEntity extends Entity {
 		int xpReward = (int) (oldXP * 0.05);
 
 		for (Player killer: playersToReward) {
+
+			TutorialNotifier.killedSomething(killer);
+			
 			Integer damageDone = damageReceived.get(killer);
 			if (damageDone == null) {
 				return;
