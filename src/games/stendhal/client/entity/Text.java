@@ -20,8 +20,6 @@ import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
-
 public class Text {
 	private static final long STANDARD_PERSISTENCE_TIME = 5000;
 

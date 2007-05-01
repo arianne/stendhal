@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;

@@ -14,8 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.gui.wt.EntityContainer;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 import marauroa.common.game.RPAction;

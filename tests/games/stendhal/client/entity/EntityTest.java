@@ -5,10 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import java.awt.geom.Rectangle2D;
-import java.util.LinkedList;
-
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.Test;

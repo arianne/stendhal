@@ -13,11 +13,7 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.gui.wt.EntityContainer;
-
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;

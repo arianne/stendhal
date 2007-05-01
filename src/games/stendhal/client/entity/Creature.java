@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Debug;

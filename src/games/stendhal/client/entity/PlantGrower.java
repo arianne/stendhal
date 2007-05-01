@@ -1,8 +1,5 @@
 package games.stendhal.client.entity;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-
 public class PlantGrower extends Entity {
 	//
 	// Entity
