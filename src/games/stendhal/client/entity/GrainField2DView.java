@@ -78,9 +78,9 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 			maxRipeness = 5;
 		}
 
-		if (object.has("class")) {
-			clazz = object.get("class");
-		} else {
+		clazz = grainField.getEntityClass();
+
+		if(clazz == null)  {
 			clazz = "grain_field";
 		}
 

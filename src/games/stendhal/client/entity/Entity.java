@@ -57,9 +57,19 @@ public final byte[] ID_Token = new byte[0];
 	protected RPObject rpObject;
 
 	/**
+	 * The entity class.
+	 */
+	private String clazz;
+
+	/**
 	 * The entity name.
 	 */
 	protected String name;
+
+	/**
+	 * The entity sub-class.
+	 */
+	private String subclazz;
 
 	/**
 	 * The entity title.
@@ -90,7 +100,9 @@ public final byte[] ID_Token = new byte[0];
 
 
 	Entity() {
+		clazz = null;
 		name = null;
+		subclazz = null;
 		title = null;
 		type = null;
 		x = 0.0;
@@ -175,12 +187,32 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
+	 * Get the entity class.
+	 *
+	 * @return	The entity class.
+	 */
+	public String getEntityClass() {
+		return clazz;
+	}
+
+
+	/**
 	 * Get the name.
 	 *
 	 * @return	The name.
 	 */
 	public String getName() {
 		return name;
+	}
+
+
+	/**
+	 * Get the entity sub-class.
+	 *
+	 * @return	The entity sub-class.
+	 */
+	public String getEntitySubClass() {
+		return subclazz;
 	}
 
 
@@ -495,12 +527,30 @@ public final byte[] ID_Token = new byte[0];
 		rpObject = object;
 
 		/*
+		 * Class
+		 */
+		if (object.has("class")) {
+			clazz = object.get("class");
+		} else {
+			clazz = null;
+		}
+
+		/*
 		 * Name
 		 */
 		if (object.has("name")) {
 			name = object.get("name");
 		} else {
 			name = null;
+		}
+
+		/*
+		 * Sub-Class
+		 */
+		if (object.has("subclass")) {
+			subclazz = object.get("subclass");
+		} else {
+			subclazz = null;
 		}
 
 		/*
@@ -619,10 +669,26 @@ public final byte[] ID_Token = new byte[0];
 
 
 		/*
+		 * Class
+		 */
+		if (changes.has("class")) {
+			clazz = changes.get("class");
+			changed();
+		}
+
+		/*
 		 * Name
 		 */
 		if (changes.has("name")) {
 			name = changes.get("name");
+			changed();
+		}
+
+		/*
+		 * Sub-Class
+		 */
+		if (changes.has("subclass")) {
+			subclazz = changes.get("subclass");
 			changed();
 		}
 
@@ -678,10 +744,26 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		/*
+		 * Class
+		 */
+		if (changes.has("class")) {
+			clazz = null;
+			changed();
+		}
+
+		/*
 		 * Name
 		 */
 		if (changes.has("name")) {
 			name = null;
+			changed();
+		}
+
+		/*
+		 * Sub-Class
+		 */
+		if (changes.has("subclass")) {
+			subclazz = null;
 			changed();
 		}
 

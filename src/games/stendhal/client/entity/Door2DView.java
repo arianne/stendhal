@@ -76,7 +76,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 * @param	object		The entity to load sprites for.
 	 */
 	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
-		String name = object.get("class");
+		String name = door.getEntityClass();
 
 		switch(door.getOrientation()) {
 			case LEFT:

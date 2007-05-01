@@ -97,6 +97,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private String clazz;
 
+	private String titleType;
+
 	/**
 	 * Entity we are attacking.
 	 * (need to reconsile this with 'attacking')
@@ -683,6 +685,15 @@ public abstract class RPEntity extends ActiveEntity {
 				attackTarget.onDamaged(this, damage);
 			}
 		}
+
+		/*
+		 * Title type
+		 */
+		if (object.has("title_type")) {
+			titleType = object.get("title_type");
+		} else {
+			titleType = null;
+		}
 	}
 
 
@@ -763,6 +774,8 @@ public abstract class RPEntity extends ActiveEntity {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
+
+		boolean titleChange = false;
 
 		if (!inAdd) {
 			/*
@@ -876,6 +889,14 @@ public abstract class RPEntity extends ActiveEntity {
 					}
 				}
 			}
+
+			/*
+			 * Title type
+			 */
+			if (changes.has("title_type")) {
+				titleType = changes.get("title_type");
+				titleChange = true;
+			}
 		}
 
 		if (changes.has("base_hp")) {
@@ -950,39 +971,12 @@ public abstract class RPEntity extends ActiveEntity {
 		    guild = changes.get("guild");
 		}
 
-		Color nameColor = Color.white;
-
 		if (changes.has("adminlevel")) {
 			adminlevel = changes.getInt("adminlevel");
-
-			if (adminlevel >= 800) {
-				nameColor = new Color(200, 200, 0);
-			} else if (adminlevel >= 400) {
-				nameColor = new Color(255, 255, 0);
-			} else if (adminlevel > 0) {
-				nameColor = new Color(255, 255, 172);
-			}
+			changed();
 		}
 
-		String titleType = null;
-
-		if (changes.has("title_type")) {
-			titleType = changes.get("title_type");
-		} else if (object.has("title_type")) {
-			titleType = object.get("title_type");
-		}
-
-		if (titleType != null) {
-			if (titleType.equals("npc")) {
-				nameColor = new Color(200, 200, 255);
-			} else if (titleType.equals("enemy")) {
-				nameColor = new Color(255, 200, 200);
-			}
-		}
-
-		boolean titleChange = false;
-
-		if (changes.has("clazz")) {
+		if (changes.has("class")) {
 			clazz = changes.get("class");
 			titleChange = true;
 		}
@@ -992,6 +986,28 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if(titleChange) {
+			Color nameColor = null;
+
+			if (titleType != null) {
+				if (titleType.equals("npc")) {
+					nameColor = new Color(200, 200, 255);
+				} else if (titleType.equals("enemy")) {
+					nameColor = new Color(255, 200, 200);
+				}
+			}
+
+			if(nameColor == null) {
+				if (adminlevel >= 800) {
+					nameColor = new Color(200, 200, 0);
+				} else if (adminlevel >= 400) {
+					nameColor = new Color(255, 255, 0);
+				} else if (adminlevel > 0) {
+					nameColor = new Color(255, 255, 172);
+				} else {
+					nameColor = Color.white;
+				}
+			}
+
 			nameImage = GameScreen.get().createString(getTitle(), nameColor);
 		}
 

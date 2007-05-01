@@ -112,12 +112,11 @@ public class Creature2DView extends RPEntity2DView {
 	 * @return	A tile sprite containing all animation images.
 	 */
 	protected Sprite getAnimationSprite(final RPObject object) {
-		String name;
+		String name = creature.getEntityClass();
+		String subclass = creature.getEntitySubClass();
 
-		name = object.get("class");
-
-		if (object.has("subclass")) {
-			name += "/" + object.get("subclass");
+		if(subclass != null) {
+			name += "/" + subclass;
 		}
 
 		return SpriteStore.get().getSprite(translate(name));

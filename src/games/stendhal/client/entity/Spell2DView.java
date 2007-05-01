@@ -40,13 +40,11 @@ public class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final RPObject object) {
-		String name;
+		String name = getEntity().getEntityClass();
+		String subclass = getEntity().getEntitySubClass();
 
-
-		name = object.get("class");
-
-		if (object.has("subclass")) {
-			name += "/" + object.get("subclass");
+		if(subclass != null) {
+			name += "/" + subclass;
 		}
 
 		sprite = SpriteStore.get().getSprite(

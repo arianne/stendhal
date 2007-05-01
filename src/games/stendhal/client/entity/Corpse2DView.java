@@ -69,8 +69,8 @@ public class Corpse2DView extends Entity2DView {
 	 * @param	object		An entity object.
 	 */
 	protected void buildRepresentation(final RPObject object) {
-		String clazz = object.get("class");
-		String corpseType = object.get("type");
+		String clazz = corpse.getEntityClass();
+		String corpseType = corpse.getType();
 
 		if (clazz != null) {
 			if (clazz.equals("player")) {

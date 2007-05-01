@@ -40,13 +40,12 @@ public class Item2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final RPObject object) {
-		String name;
+		Entity entity = getEntity();
+		String name = entity.getEntityClass();
+		String subclass = entity.getEntitySubClass();
 
-
-		name = object.get("class");
-
-		if (object.has("subclass")) {
-			name += "/" + object.get("subclass");
+		if (subclass != null) {
+			name += "/" + subclass;
 		}
 
 		sprite = SpriteStore.get().getSprite(

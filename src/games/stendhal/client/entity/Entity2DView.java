@@ -214,6 +214,16 @@ public abstract class Entity2DView { // implements EntityView {
 
 
 	/**
+	 * Get the entity this view represents.
+	 *
+	 * @return	The represented entity.
+	 */
+	protected Entity getEntity() {
+		return entity;
+	}
+
+
+	/**
 	 * Update representation.
 	 */
 	protected void update() {

@@ -41,12 +41,9 @@ public class Sign2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation(final RPObject object) {
-		String name;
+		String name = getEntity().getEntityClass();
 
-
-		if (object.has("class")) {
-			name = object.get("class");
-		} else {
+		if (name == null) {
 			name = "default";
 		}
 
