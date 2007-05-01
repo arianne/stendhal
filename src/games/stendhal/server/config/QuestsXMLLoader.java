@@ -124,7 +124,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 
 		} else if (qName.equals("repeatable")) {
 
-			// TODO
+			// TODO handle name.equals("repeatable")
 
 		} else if (qName.equals("history") || qName.equals("hints")) {
 			currentList = new HashMap<String, String>();
