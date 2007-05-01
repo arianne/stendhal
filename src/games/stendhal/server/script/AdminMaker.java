@@ -35,19 +35,25 @@ public class AdminMaker extends ScriptImpl {
 
 	protected class UpgradeAction extends SpeakerNPC.ChatAction {
 
-		//increase level by 10
-		//todo: check potential bug, lvl 400-500
 		private void xpGain(Player player) {
+			final int level = player.getLevel();
+			
+			//increase level by xlevel per execution 
 			int xlevel = 10;
-			int level = player.getLevel();
+			
+			//Player should at least be min_level after one execution
+			final int min_level = 20;
+			if (level + xlevel < min_level) {
+				xlevel = min_level - level;
+			}
+			
+			//Don't give more XP than needed when near/at max
 			if(level + xlevel > Level.maxLevel())
 			{
 				xlevel = Level.maxLevel() - level;
 			}
-			if (level < xlevel) {
-				level = xlevel;
-			}
-			player.addXP(Level.getXP(level + xlevel) - Level.getXP(player.getLevel()));
+			
+			player.addXP(Level.getXP(level + xlevel) - Level.getXP(level));
 		}
 
 		private final List<String> itemsSingle = Arrays.asList("rod_of_the_gm", "golden_shield", "golden_armor", "golden_cloak", "golden_helmet", "golden_legs", "golden_boots");
@@ -56,6 +62,7 @@ public class AdminMaker extends ScriptImpl {
 
 		private void equip(Player player) {
 			
+			//Give player all single items from list he/she doesn't have
 			for (String itemName : itemsSingle) {
 				if (!player.isEquipped(itemName)) {
 					Item itemObj = sandbox.getItem(itemName);
@@ -63,6 +70,7 @@ public class AdminMaker extends ScriptImpl {
 				}
 			}
 			
+			//Give 5000 of each stack in list, regardless of how many are already there
 			for (String itemName : itemsStack) {
 		   		Item item = sandbox.getItem(itemName);
 				if (item instanceof StackableItem) {
@@ -75,7 +83,7 @@ public class AdminMaker extends ScriptImpl {
 
 		private void admin(Player player) {
 			if (player.getAdminLevel() == 0) {
-				//lower than destroy/summon/alter/script
+				//can't use destroy/summon/alter/script
 				player.put("adminlevel", 600);
 				player.update();
 				player.notifyWorldAboutChanges();
@@ -93,41 +101,43 @@ public class AdminMaker extends ScriptImpl {
 
 	protected class TeleportAction extends SpeakerNPC.ChatAction {
 		
-		private final Destination [] dest = {
-				new Destination("0_nalwor_city",88,85),
-				new Destination("-2_orril_dungeon",106,21),
-				new Destination("-1_semos_mine_nw",122,91),
-				new Destination("-6_kanmararn_city",33,52),
-				new Destination("-2_ados_outside_nw",28,4)};
+		private final List<Destination> DESTINATIONS = Arrays.asList(
+			new Destination("0_nalwor_city",88,85),
+			new Destination("-2_orril_dungeon",106,21),
+			new Destination("-1_semos_mine_nw",122,91),
+			new Destination("-6_kanmararn_city",33,52),
+			new Destination("-2_ados_outside_nw",28,4)
+		);
 		
 		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
 		
 		private boolean RandomTeleport(Player player) {
+			//Destination selection: random for first, then go in order
 			//todo: maybe mix in a second kind of random like bunny/santa?
-			//random for first, then go in order
 
 			//pick a Destination
 			int i;
 			if(player.hasQuest(TELE_QUEST_SLOT)) {
 				i = Integer.parseInt(player.getQuest(TELE_QUEST_SLOT));
 			} else {
-				i = new Random().nextInt(dest.length);
+				i = new Random().nextInt(DESTINATIONS.size());
 			}
 			i++;
-			if(i >= dest.length)
+			if(i >= DESTINATIONS.size())
 				i = 0;
 			player.setQuest(TELE_QUEST_SLOT, "" + i);
+			Destination picked = DESTINATIONS.get(i);
 			
 			//Teleport
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(dest[i].zone);
-			if(!player.teleport(zone, dest[i].x, dest[i].y, null, player)) {
-				logger.error("AdminMaker random teleport failed, " + dest[i].zone + " " + dest[i].x + " " + dest[i].y);
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(picked.zone);
+			if(!player.teleport(zone, picked.x, picked.y, null, player)) {
+				logger.error("AdminMaker random teleport failed, " + picked.zone + " " + picked.x + " " + picked.y);
 				return false;
 			}
 			return true;
 		}
 		
-		//not a good idea?
+		//todo: a better way?
 		private class Destination {
 			public String zone;
 			public int x;
