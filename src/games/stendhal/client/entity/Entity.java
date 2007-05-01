@@ -59,7 +59,7 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * The entity class.
 	 */
-	private String clazz;
+	protected String clazz;
 
 	/**
 	 * The entity name.
@@ -69,7 +69,7 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * The entity sub-class.
 	 */
-	private String subclazz;
+	protected String subclazz;
 
 	/**
 	 * The entity title.

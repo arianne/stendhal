@@ -200,20 +200,6 @@ public abstract class Creature extends RPEntity {
 		}
 	}
 
-//	protected Sprite loadAnimationSprite(final RPObject object) {
-//		String name = null;
-//
-//		if (object.has("subclass")) {
-//			name = object.get("class") + "/" + object.get("subclass");
-//		} else {
-//			name = object.get("class");
-//		}
-//
-//		SpriteStore store = SpriteStore.get();
-//
-//		return store.getSprite("data/sprites/monsters/" + name + ".png");
-//	}
-
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);

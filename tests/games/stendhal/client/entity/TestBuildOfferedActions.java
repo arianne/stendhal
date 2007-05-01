@@ -191,10 +191,6 @@ public class TestBuildOfferedActions {
 		MockEntity mo = new MockEntity();
 		assertNull(mo.getArea());
 		
-		assertNull(mo.getDrawedArea() );
-		
-		assertEquals(0,mo.getZIndex()); 
-		
 		assertNull(mo.createView() );
 		
 	}
@@ -222,16 +218,6 @@ public class TestBuildOfferedActions {
 		@Override
 		public Rectangle2D getArea() {
 			return null;
-		}
-
-		@Override
-		public Rectangle2D getDrawedArea() {
-			return null;
-		}
-
-		@Override
-		public int getZIndex() {
-			return 0;
 		}
 
 		@Override

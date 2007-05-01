@@ -69,6 +69,11 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private int adminlevel;
 
+	/**
+	 * The outfit code.
+	 */
+	private int	outfit;
+
 	private int base_hp;
 
 	private float hp_base_hp;
@@ -94,8 +99,6 @@ public abstract class RPEntity extends ActiveEntity {
 	private boolean fullghostmode;
 
 	private String guild;
-
-	private String clazz;
 
 	private String titleType;
 
@@ -133,7 +136,6 @@ public abstract class RPEntity extends ActiveEntity {
 		floaters = new LinkedList<FloatingMessage>();
 		attackTarget = null;
 		lastAttacker = null;
-		clazz = null;
 		adminlevel = 0;
 	}
 
@@ -286,6 +288,15 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	public int getMana() {
 		return mana;
+	}
+
+	/**
+	 * Get the outfit code.
+	 *
+	 * @return	The outfit code.
+	 */
+	public int getOutfit() {
+		return outfit;
 	}
 
 	public Resolution getResolution() {
@@ -613,6 +624,15 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		/*
+		 * Outfit
+		 */
+		if (object.has("outfit")) {
+			outfit = object.getInt("outfit");
+		} else {
+			outfit = 0;
+		}
+
+		/*
 		 * Eating
 		 */
 		if (object.has("eating")) {
@@ -790,6 +810,14 @@ public abstract class RPEntity extends ActiveEntity {
 			 */
 			if (changes.has("private_text")) {
 				onPrivateListen(changes.get("private_text"));
+			}
+
+			/*
+			 * Outfit
+			 */
+			if (changes.has("outfit")) {
+				outfit = changes.getInt("outfit");
+				changed();
 			}
 
 			/*
@@ -976,12 +1004,7 @@ public abstract class RPEntity extends ActiveEntity {
 			changed();
 		}
 
-		if (changes.has("class")) {
-			clazz = changes.get("class");
-			titleChange = true;
-		}
-
-		if (changes.has("name") || changes.has("title") || changes.has("type")) {
+		if (changes.has("class") || changes.has("name") || changes.has("title") || changes.has("type")) {
 			titleChange = true;
 		}
 
@@ -1042,6 +1065,14 @@ public abstract class RPEntity extends ActiveEntity {
 	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		super.onChangedRemoved(object, changes);
+
+		/*
+		 * Outfit
+		 */
+		if (changes.has("outfit")) {
+			outfit = 0;
+			changed();
+		}
 
 		/*
 		 * No longer poisoned?

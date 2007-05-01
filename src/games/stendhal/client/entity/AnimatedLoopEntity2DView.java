@@ -50,7 +50,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 * @param	object		The entity to load animation for.
 	 */
 	protected Sprite getAnimatedSprite(RPObject object) {
-		String resource = translate(object.get("type"));
+		String resource = translate(getEntity().getType());
 		SpriteStore store = SpriteStore.get();
 
 // When tile sprites using this class get rotated,

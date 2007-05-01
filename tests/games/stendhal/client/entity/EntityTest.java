@@ -137,7 +137,7 @@ public class EntityTest {
 		en = new MockEntity();
 		en.initialize(rpo);
 		
-		assertNotNull(en.getSprite());
+		assertNotNull(en.getView().getSprite());
 
 	}
 
@@ -209,16 +209,6 @@ public class EntityTest {
 		@Override
 		public Rectangle2D getArea() {
 			return null;
-		}
-
-		@Override
-		public Rectangle2D getDrawedArea() {
-			return null;
-		}
-
-		@Override
-		public int getZIndex() {
-			return 0;
 		}
 
 		@Override

@@ -24,21 +24,17 @@ import marauroa.common.game.RPObject;
 
 /** A Player entity */
 public class Player extends RPEntity {
-
 	/**
 	 * The away message of this player.
 	 */
 	private String	away;
 
+
 	/**
-	 * The player outfit code.
+	 * Create a player entity.
 	 */
-	private int	outfit;
-
-
 	public Player() {
 		away = null;
-		outfit = 0;
 	}
 
 
@@ -63,16 +59,6 @@ public class Player extends RPEntity {
 	 */
 	public String getAway() {
 		return away;
-	}
-
-
-	/**
-	 * Get the outfit code.
-	 *
-	 * @return	The outfit code.
-	 */
-	public int getOutfit() {
-		return outfit;
 	}
 
 
@@ -160,11 +146,6 @@ public class Player extends RPEntity {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
-		if (changes.has("outfit")) {
-			outfit = changes.getInt("outfit");
-			changed();
-		}
-
 		if (changes.has("away")) {
 			/*
 			 * Filter out a player "changing" to the same message
@@ -208,11 +189,6 @@ public class Player extends RPEntity {
 			away = null;
 			changed();
 			onAway(null);
-		}
-
-		if (changes.has("outfit")) {
-			outfit = 0;
-			changed();
 		}
 	}
 }

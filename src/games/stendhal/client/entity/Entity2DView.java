@@ -79,7 +79,7 @@ public abstract class Entity2DView { // implements EntityView {
 	 * @param	object		An entity object.
 	 */
 	protected void buildRepresentation(final RPObject object) {
-		sprite = SpriteStore.get().getSprite(translate(object.get("type")));
+		sprite = SpriteStore.get().getSprite(translate(getEntity().getType()));
 	}
 
 

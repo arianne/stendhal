@@ -127,7 +127,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	 * @return	A tile sprite containing all animation images.
 	 */
 	protected Sprite getAnimationSprite(final RPObject object) {
-		return SpriteStore.get().getSprite(translate(object.get("type")));
+		return SpriteStore.get().getSprite(translate(getEntity().getType()));
 	}
 
 
