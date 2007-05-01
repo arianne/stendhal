@@ -181,6 +181,7 @@ public class LookBookforCeryl extends AbstractQuest {
 
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager()
 								.getItem("book_black");
+						item.put("bound", player.getName());
 						player.equip(item, true);
 					}
 				});
@@ -256,6 +257,9 @@ public class LookBookforCeryl extends AbstractQuest {
 							player.setQuest(QUEST_SLOT, "done");
 						} else {
 							engine.say("Haven't you got that #book back from #Jynath? Please go look for it, quickly!");
+							// There is no other way to get the book.
+							// Remove that quest slot so that the player can get it again from Jynath
+							// As the book is both bound and useless outside the quest, this is not a problem
 							player.removeQuest(QUEST_SLOT);
 						}
 					}
