@@ -16,12 +16,12 @@ public class EntityTest {
 
 		public MockEntity2DView(Entity entity) {
 			super(entity);
-			// TODO Auto-generated constructor stub
+			
 		}
 
 		@Override
 		public Rectangle2D getDrawnArea() {
-			// TODO Auto-generated method stub
+			
 			return null;
 		}
 
@@ -36,7 +36,19 @@ public class EntityTest {
 	
 		
 	}
+	
+	@Test
+	public final void testInitialize() {
+     MockEntity en;
+	 RPObject rpo;
+	 rpo = new RPObject();
+	 rpo.put("type", "_hugo");
 
+	 en = new MockEntity();
+assertEquals(0,en.count);
+	 en.initialize(rpo);
+	 assertEquals("onPosition should only be called once ",1,en.count);
+	}
 	
 	@Test // throws ounnoticed Attribute not found exception
 	public final void testEntityInvalidRPObject() {
@@ -133,7 +145,6 @@ public class EntityTest {
 
 		en = new MockEntity();
 		en.initialize(rpo);
-		
 		assertNotNull(en.getView().getSprite());
 
 	}
@@ -195,12 +206,11 @@ public class EntityTest {
 
 	
 	private class MockEntity extends Entity {
-
+ int count=0;
 	
 		public MockEntity() {
 			RPObject object = new RPObject();
 			object.put("type", "entity");
-			this.initialize(object);
 		}
 
 		@Override
@@ -211,6 +221,13 @@ public class EntityTest {
 		@Override
 		protected Entity2DView createView() {
 			return new MockEntity2DView(this);
+		}
+
+		@Override
+		protected void onPosition(double x, double y) {
+			count++;
+			super.onPosition(x, y);
+			
 		}
 		
 	}
