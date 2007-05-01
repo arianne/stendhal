@@ -277,7 +277,7 @@ b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/light/torch.png
 ./item/furniture/light/torch_top.png
 ./item/furniture/other/drawer.png
-./item/furniture/other/drawer_with_mirror.png
+b*/item/furniture/other/drawer_with_mirror.png
 ./item/furniture/other/piano.png
 ./item/furniture/other/stick.png
 ./item/furniture/other/warmer.png
@@ -321,7 +321,7 @@ b/item/furniture/table/square_pale.png
 ./item/furniture/table/table_with_hob_pale.png
 ./item/furniture/table/tree_stump_table.png
 b/item/furniture/table/wooden.png
-b/item/furniture/table/wooden_pale.png
+b*/item/furniture/table/wooden_pale.png
 ./item/furniture/table/wooden_rectangular.png
 ./item/furniture/table/brick_base.png
 ./item/gothic/coffin.png
