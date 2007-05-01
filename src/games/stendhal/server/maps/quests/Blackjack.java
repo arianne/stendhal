@@ -265,7 +265,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 				addGreeting("Welcome to the #blackjack table! You can #play here to kill time until the ferry arrives.");
 				addJob("I was a card dealer in the Semos tavern, but I lost my gambling license. But my brother Ricardo is still working in the tavern.");
 				addReply("blackjack", "Blackjack is a simple card game. You can read the rules at the blackboard at the wall.");
-				// TODO
+				// TODO add help description string
 				addHelp("...");
 				addGoodbye("Goodbye!");
 			}
