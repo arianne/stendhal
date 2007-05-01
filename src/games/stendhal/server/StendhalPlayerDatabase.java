@@ -358,7 +358,8 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 		try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
-			// stmt.executeUpdate("DELETE FROM gameEvents WHERE event='chat' AND timedate < DATE_SUB(CURDATE(), INTERVAL 2 DAY);");
+			logger.info("cleaning chat log");
+			stmt.executeUpdate("UPDATE gameEvents SET param1=null, param2=null WHERE param2 IS NOT NULL AND event='chat' AND timedate < DATE_SUB(CURDATE(), INTERVAL 2 DAY);");
 			stmt.close();
 		} catch (SQLException e) {
 			logger.error(e, e);
