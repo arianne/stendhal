@@ -82,8 +82,8 @@ K*./building/entrance/pale_red_ew.png
 K*./building/entrance/pale_red_ns.png
 ./building/entrance/shadow.png
 K*/building/entrance/yellow_green.png
-./building/entrance/bricks_ns.png
-./building/entrance/bricks_ew.png
+K*./building/entrance/bricks_ns.png
+K*./building/entrance/bricks_ew.png
 K*./building/entrance/detail_ew.png
 K*./building/entrance/detail_ns.png
 k*/building/fence/fence_chunky.png
@@ -98,9 +98,9 @@ z*/building/roof/straw3.png
 ./building/stairs/blue_stone.png
 ./building/stairs/dark_stairs.png
 d*/building/stairs/int_earthen.png
-./building/stairs/int_ew.png
+K*./building/stairs/int_ew.png
 K*/building/stairs/int_green.png
-./building/stairs/int_ns.png
+K*./building/stairs/int_ns.png
 ./building/stairs/stairs.png
 d*/building/stairs/winding.png
 d*/building/stairs/winding_2.png
@@ -122,10 +122,10 @@ k*/building/wall/wood.png
 z*/building/wall/bamboo.png
 K*./building/wall/int_wall_pale.png
 K./building/wall/int_wall_purple.png
-./building/wall/int_wall_bricks.png
-./building/wall/int_wall_thin_bricks.png
-./building/wall/int_wall_fancy_purple.png
-./building/wall/int_wall_brick_wood.png
+K*./building/wall/int_wall_bricks.png
+K*./building/wall/int_wall_thin_bricks.png
+K*./building/wall/int_wall_fancy_purple.png
+K*./building/wall/int_wall_brick_wood.png
 ./building/wall/bricked_edges.png
 ./building/window/broken_window.png
 ./building/window/int_windows_dark_red.png
