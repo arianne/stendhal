@@ -215,7 +215,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		while (it.hasPrevious()) {
 			Entity entity = it.previous();
 
-			if (entity.getDrawedArea().contains(x, y)) {
+			if (entity.getView().getDrawnArea().contains(x, y)) {
 				return entity;
 			}
 		}
@@ -229,7 +229,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			Entity entity = it.previous();
 
 			if (entity.getArea().contains(x, y)) {
-				if (entity.getType().compareTo("creature") == 0) {
+				if (entity.getType().equals("creature")) {
 					continue;
 				}
 				return entity;
@@ -241,8 +241,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		while (it.hasPrevious()) {
 			Entity entity = it.previous();
 
-			if (entity.getDrawedArea().contains(x, y)) {
-				if (entity.getType().compareTo("creature") == 0) {
+			if (entity.getView().getDrawnArea().contains(x, y)) {
+				if (entity.getType().equals("creature")) {
 					continue;
 				}
 				return entity;
@@ -330,6 +330,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Log4J.startMethod(logger, "onAdded");
 
 		if(object.getRPClass().subclassOf("entity")) {
+			if(!object.has("type")) {
+				logger.error("Entity without type: " + object);
+				return;
+			}
+
 			if (!object.has("server-only")) {
 				Entity entity = add(object);
 

@@ -268,15 +268,6 @@ public final byte[] ID_Token = new byte[0];
 	
 
 	/**
-	 * DEPRECATED - Eventually will go away (when view used directly),
-	 * but still needed for now.
-	 */
-	public Sprite getSprite() {
-		return view.getSprite();
-	}
-
-
-	/**
 	 * Returns the absolute world area (coordinates) to which audibility of
 	 * entity sounds is confined. Returns <b>null</b> if confines do not exist
 	 * (audible everywhere).
@@ -377,14 +368,6 @@ public final byte[] ID_Token = new byte[0];
 		return null;
 	}
 
-
-	/**
-	 * DEPRECATED - Eventually will go away (when view used directly),
-	 * but still needed for now.
-	 */
-	public Rectangle2D getDrawedArea() {
-		return view.getDrawnArea();
-	}
 
 	public ActionType defaultAction() {
 		return ActionType.LOOK;
@@ -488,25 +471,8 @@ public final byte[] ID_Token = new byte[0];
 		// } else {
 		// one of the two entities is standing on top of the other.
 		// find out which one.
-		return this.getZIndex() - other.getZIndex();
+		return getView().getZIndex() - other.getView().getZIndex();
 		// }
-	}
-
-	/**
-	 * Determines on top of which other entities this entity should be drawn.
-	 * Entities with a high Z index will be drawn on top of ones with a lower Z
-	 * index.
-	 * 
-	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * <p>
-	 * DEPRECATED - Eventually will go away (when view used directly),
-	 * but still needed for now.
-	 * 
-	 * @return drawing index
-	 */
-	public int getZIndex() {
-		return view.getZIndex();
 	}
 
 

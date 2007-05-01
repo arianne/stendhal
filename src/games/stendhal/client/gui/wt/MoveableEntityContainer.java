@@ -67,7 +67,7 @@ public class MoveableEntityContainer implements WtDraggable {
 		this.objectx = x;
 		this.objecty = y;
 		this.parent = null;
-		this.sprite = content.getSprite();
+		this.sprite = content.getView().getSprite();
 	}
 
 	/** returns true when the item represented by this container is inside a slot */

@@ -90,11 +90,6 @@ public class SoundObject extends InvisibleEntity {
 		return null;
 	}
 
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return null;
-	}
-
 	// TODO: remove Soundobject from hierarchie
 	@Override
 	public ActionType defaultAction() {
@@ -136,10 +131,6 @@ public class SoundObject extends InvisibleEntity {
 		this.volume = volume;
 	}
 
-	@Override
-	public int getZIndex() {
-		return 1000;
-	}
 
 	/*
 	 * (non-Javadoc)

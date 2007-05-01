@@ -19,14 +19,15 @@ import games.stendhal.client.Sprite;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-public class Text extends InvisibleEntity {
-
+public class Text {
 	private static final long STANDARD_PERSISTENCE_TIME = 5000;
+
+	private double x;
+
+	private double y;
 
 	private double tx;
 
@@ -40,9 +41,7 @@ public class Text extends InvisibleEntity {
 
 	private String text;
 
-	public Text(final GameObjects gameObjects, final Sprite textSprite, final double x, final double y, final long persistTime)
-	        throws AttributeNotFoundException {
-
+	public Text(final GameObjects gameObjects, final Sprite textSprite, final double x, final double y, final long persistTime) {
 		textImage = textSprite;
 		textImageTime = System.currentTimeMillis();
 			 
@@ -62,13 +61,7 @@ public class Text extends InvisibleEntity {
 		this.y = y;
 	}
 
-	@Override
-	public String toString() {
-		return text;
-	}
-
-	public Text(final GameObjects gameObjects, final String text, final double x, final double y, final Color color, final boolean isTalking)
-	        throws AttributeNotFoundException {
+	public Text(final GameObjects gameObjects, final String text, final double x, final double y, final Color color, final boolean isTalking) {
 
 		// Speech bubbles will only be drawn if there's a background color
 		// intensifly@gmx.com
@@ -91,31 +84,6 @@ public class Text extends InvisibleEntity {
 		this.text = text;
 	}
 
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-	}
-
-	@Override
-	public void onChangedRemoved(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-	}
-
-	@Override
-	public ActionType defaultAction() {
-		return null;
-	}
-
-	@Override
-	public Rectangle2D getArea() {
-		return null;
-	}
-
-	@Override
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(tx, ty, (double) textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS,
-		        (double) textImage.getHeight() / GameScreen.SIZE_UNIT_PIXELS);
-	}
-
-	@Override
 	public void draw(final GameScreen screen) {
 		screen.draw(textImage, tx, ty);
 
@@ -124,19 +92,28 @@ public class Text extends InvisibleEntity {
 		}
 	}
 
-	@Override
-	public int getZIndex() {
-		return 9000;
+
+	public Rectangle2D getDrawedArea() {
+		return new Rectangle.Double(tx, ty, (double) textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS,
+		        (double) textImage.getHeight() / GameScreen.SIZE_UNIT_PIXELS);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
-	 */
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		list.clear();
+	public double getX() {
+		return x;
 	}
 
+
+	public double getY() {
+		return y;
+	}
+
+
+	//
+	// Object
+	//
+
+	@Override
+	public String toString() {
+		return text;
+	}
 }

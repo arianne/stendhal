@@ -130,7 +130,7 @@ public abstract class Entity2DView { // implements EntityView {
 	 *
 	 * @return	The image representation.
 	 */
-	protected Sprite getSprite() {
+	public Sprite getSprite() {
 		return sprite;
 	}
 

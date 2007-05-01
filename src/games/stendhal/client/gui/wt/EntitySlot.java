@@ -123,9 +123,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		Entity entity = EntityFactory.createEntity(object);
 
 		if(entity != null) {
-			// Force view creation
-			entity.getView();
-			sprite = entity.getSprite();
+			sprite = entity.getView().getSprite();
 			entity.release();
 		} else {
 			sprite = null;
