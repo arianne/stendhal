@@ -668,6 +668,22 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+	
+	<item name="club_of_thorns">
+		<type class="club" subclass="club_of_thorns"/>
+                <description>You see the club of thorns, The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<attributes>
+			<atk value="38"/>
+			<lifesteal value="-0.1"/>
+		</attributes>
+		<weight value="8"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 
 <!-- Ranged_section -->
 
@@ -2519,6 +2535,26 @@ Makes players more offensive
 			<slot name="bag"/>
 		</equipable>
 	</item>
+
+        <item name="greater_antidote">
+		<type class="drink" subclass="greater_antidote"/>
+		<description>You see a greater_antidote, to cure you of poison and
+		protect you for a long while.</description>
+		<implementation class-name="games.stendhal.server.entity.item.Drink"/>
+		<attributes>
+			<quantity value="1"/>
+			<amount value="800"/>
+			<regen value="0"/>
+			<frequency value="1"/>
+		</attributes>
+		<weight value="1"/>
+		<equipable>
+			<slot name="lhand"/>
+			<slot name="rhand"/>
+			<slot name="bag"/>
+		</equipable>
+	</item>
+
 
 	<item name="potion">
 		<type class="drink" subclass="potion"/>

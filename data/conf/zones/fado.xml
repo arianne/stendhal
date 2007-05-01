@@ -64,6 +64,11 @@
            <portal x="24" y="16" ref="house_entrance">
              <destination zone="int_fado_house" ref="entrance_right"/>
            </portal>
+
+	   <portal x="35" y="57" ref="hut_entrance">
+             <destination zone="int_fado_hut" ref="entrance"/>
+           </portal>
+
    	</zone>
          
          <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
@@ -156,18 +161,28 @@
   		   </entity>		    		   	   
          </zone>
          
-   		<zone name="int_fado_house" file="interiors/fado/house.tmx">
+   	<zone name="int_fado_house" file="interiors/fado/house.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.house.WomanNPC"/>
-           
-           <portal x="6" y="10" ref="entrance_left">
+	   <portal x="6" y="10" ref="entrance_left">
              <destination zone="0_fado_city" ref="house_entrance"/>
            </portal>
-           
-		   <portal x="7" y="10" ref="entrance_right">
+           <portal x="7" y="10" ref="entrance_right">
              <destination zone="0_fado_city" ref="house_entrance"/>
            </portal>
-           
          </zone>
+	 
+	 <zone name="int_fado_hut" file="interiors/fado/hut.tmx">
+	 <entity x="3" y="4">
+	  <implementation class-name="games.stendhal.server.maps.fado.hut.SellerNPC">
+	   <parameter name="name">Sarzina</parameter>
+	   <parameter name="class">wizardwomannpc</parameter>
+	   <parameter name="direction">down</parameter>
+	   </implementation>
+	  </entity>
+	   <portal x="3" y="10" ref="entrance">
+             <destination zone="0_fado_city" ref="hut_entrance"/>
+       </portal>
+      </zone>
          
          <zone name="int_fado_church" file="interiors/fado/church.tmx">
           <configurator class-name="games.stendhal.server.maps.fado.church.VergerNPC"/>
