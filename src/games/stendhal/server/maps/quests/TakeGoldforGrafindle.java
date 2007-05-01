@@ -114,7 +114,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,
-				ConversationStates.ATTENDING,
+				ConversationStates.IDLE,
 				"Thank you. I hope to see you soon with the gold bars ... unless you are tempted to keep them.",
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -258,7 +258,6 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 							player.setQuest(QUEST_SLOT, "done");
 						} else {
 							engine.say("Haven't you got the gold bars from #Lorithien yet? Please go get them, quickly!");
-							player.removeQuest(QUEST_SLOT);
 						}
 					}
 				});
