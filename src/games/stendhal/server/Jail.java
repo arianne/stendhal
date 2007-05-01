@@ -2,6 +2,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.Direction;
 import games.stendhal.common.Rand;
+import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
@@ -105,9 +106,13 @@ public class Jail implements TurnListener, LoginListener {
 			Point cell = Rand.rand(cellEntryPoints);
 			successful = criminal.teleport(jail, cell.x, cell.y, Direction.DOWN, policeman);
 		}
-		policeman.sendPrivateText("You have jailed " + criminal.getName() + " for " + minutes + " minutes. Reason: "
-		        + reason + ".");
-		criminal.sendPrivateText("You have been jailed by " + policeman.getName() + ". Reason: " + reason + ".");
+		policeman.sendPrivateText("You have jailed " + criminal.getName() 
+						+ " for " + minutes + " minutes. Reason: " + reason + ".");
+		criminal.sendPrivateText("You have been jailed by " + policeman.getName()
+						+ " for " + minutes + " minutes. Reason: " + reason + ".");
+		ChatAction.sendMessageToSupporters("JailKeeper", policeman.getName()
+						+ " jailed " + criminal.getName() 
+						+ " for " + minutes + " minutes. Reason: " + reason + ".");
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use

@@ -257,4 +257,23 @@ public class ChatAction implements ActionListener {
 			}
 		}
 	}
+
+	/**
+	 * sends a message to all supporters
+	 *
+	 * @param source a player or script name
+	 * @param message Support message
+	 */
+	// TODO: try to clean up the dependencies, having other places in
+	//       the code call directly into an action does not seem to be a
+	//       good idea
+	public static void sendMessageToSupporters(String source, String message) {
+		String text = source + " asks for support to ADMIN: " + message; 
+		for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
+			if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
+				p.sendPrivateText(text);
+				p.notifyWorldAboutChanges();
+			}
+		}
+	}
 }
