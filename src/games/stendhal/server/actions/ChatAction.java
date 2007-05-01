@@ -210,23 +210,37 @@ public class ChatAction implements ActionListener {
 				last_msg.put(player.getName(), System.currentTimeMillis());
 			}
 
-			String message = player.getName() + " asks for support to ADMIN: " + action.get("text")
+			String message = action.get("text")
 			        + "\r\nPlease use #/supportanswer #" + player.getName() + " to answer.";
 
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "support", action.get("text"));
 
-			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
-				if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
-					p.sendPrivateText(message);
-					p.notifyWorldAboutChanges();
-				}
-			}
+			sendMessageToSupporters(player.getName(), message);
 
 			player.sendPrivateText("You ask for support: " + action.get("text") + "\nIt may take a little time until your question is answered.");
 			player.notifyWorldAboutChanges();
 		}
 
 		Log4J.finishMethod(logger, "tell");
+	}
+
+	/**
+	 * sends a message to all supporters
+	 *
+	 * @param source a player or script name
+	 * @param message Support message
+	 */
+	// TODO: try to clean up the dependencies, having other places in
+	//       the code call directly into an action does not seem to be a
+	//       good idea
+	public static void sendMessageToSupporters(String source, String message) {
+		String text = source + " asks for support to ADMIN: " + message; 
+		for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
+			if (p.getAdminLevel() >= AdministrationAction.REQUIRED_ADMIN_LEVEL_FOR_SUPPORT) {
+				p.sendPrivateText(text);
+				p.notifyWorldAboutChanges();
+			}
+		}
 	}
 
 	/**
