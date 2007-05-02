@@ -119,7 +119,6 @@
  </zone>
 
   <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384" file="Level 0/orril/river_s_w2.tmx">
-  <configurator class-name="games.stendhal.server.maps.orril.bridge.GuardNPC"/>
   <entity x="36" y="26">
     <implementation class-name="games.stendhal.server.entity.FishSource">
      <parameter name="species">trout</parameter>
@@ -161,7 +160,7 @@
     <implementation class-name="games.stendhal.server.entity.Sign">
       <parameter name="text">
 North: Or'ril castle
-West: Fado (bridge blocked)
+West: Fado
 East: Nalwor, Semos
       </parameter>
       <parameter name="class">signpost</parameter>

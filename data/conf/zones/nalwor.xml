@@ -158,28 +158,38 @@
   <portal x="43" y="2" ref="upstairs">
     <destination zone="int_nalwor_royal_hall_1" ref="downstairs"/>
    </portal> 
-  <portal x="34" y="23" ref="tunnel_entrance_1">
-  	<destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs"/>
+  <portal x="34" y="23" ref="secret_entrance_1">
+  	<destination zone="int_nalwor_secret_room" ref="exit_1"/>
   	<implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
      <parameter name="quest">kill_dark_elves</parameter>
-     <parameter name="rejected">You find it hard to enter. Perhaps you're not
-  prepared for what is below.</parameter>
+     <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
    </implementation>
   </portal> 
-  <portal x="34" y="24" ref="tunnel_entrance_1">
-  	<destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs"/>
+  <portal x="34" y="24" ref="secret_entrance_2">
+  	<destination zone="int_nalwor_secret_room" ref="exit_2"/>
   	<implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
      <parameter name="quest">kill_dark_elves</parameter>
-     <parameter name="rejected">You find it hard to enter. Perhaps you're not
-  prepared for what is below.</parameter>
+     <parameter name="rejected">You find it hard to enter. Perhaps you're not prepared for what is below.</parameter>
    </implementation>
   </portal> 
  </zone> 
 
  <zone name="int_nalwor_royal_hall_1" file="interiors/nalwor/royal_2ndfloor.tmx">
-<configurator class-name="games.stendhal.server.maps.nalwor.royal.MayorNPC"/>
+  <configurator class-name="games.stendhal.server.maps.nalwor.royal.MayorNPC"/>
    <portal x="43" y="2" ref="downstairs">
     <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
+   </portal>
+ </zone> 
+ 
+ <zone name="int_nalwor_secret_room" file="interiors/nalwor/secret_torture_room.tmx">
+   <portal x="38" y="7" ref="exit_1">
+    <destination zone="int_nalwor_royal_hall" ref="secret_entrance_1"/>
+   </portal>
+   <portal x="38" y="8" ref="exit_2">
+    <destination zone="int_nalwor_royal_hall" ref="secret_entrance_2"/>
+   </portal>
+   <portal x="3" y="5" ref="downstairs">
+    <destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs"/>
    </portal>
  </zone> 
 
@@ -374,7 +384,7 @@
  <zone name="-1_nalwor_drows_tunnel_n" level="-1" x="500256" y="500256" file="Level -1/nalwor/drows_tunnel_n.tmx">
   <configurator class-name="games.stendhal.server.maps.nalwor.tunnel.ThingCreature" />
   <portal x="40" y="68" ref="upstairs">
-  	<destination zone="int_nalwor_royal_hall" ref="tunnel_entrance_1"/>
+  	<destination zone="int_nalwor_secret_room" ref="downstairs"/>
    </portal>
  </zone>
 
