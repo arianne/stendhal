@@ -402,6 +402,12 @@ public class AdministrationAction implements ActionListener {
 						        + Grammar.suffix_s(action.get("target")) + " HP over its Base HP");
 						return;
 					}
+					
+					if (stat.equals("hp") && numberValue==0) {
+						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
+						        + Grammar.suffix_s(action.get("target")) + " HP to 0, making it so unkillable.");
+						return;
+					}
 
 					switch (type) {
 						case RPClass.BYTE:
