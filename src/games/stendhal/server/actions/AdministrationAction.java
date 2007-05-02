@@ -363,9 +363,8 @@ public class AdministrationAction implements ActionListener {
 
 			String stat = action.get("stat");
 
-			if (stat.equals("name")) {
-				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get("target")
-				        + "'s name");
+			if (stat.equals("name") && (changed instanceof Player)) {
+				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get("target") + "'s name");
 				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;
 			}
