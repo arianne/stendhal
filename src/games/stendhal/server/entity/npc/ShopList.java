@@ -36,7 +36,7 @@ public class ShopList {
 		shops.add("scrolls", "summon_scroll", 200);
 		shops.add("scrolls", "empty_scroll", 1200);
 
-		shops.add("fadoscrolls", "fado_city_scroll", 400);
+		shops.add("fadoscrolls", "fado_city_scroll", 600);
 		shops.add("fadoscrolls", "empty_scroll", 1200);
 
 		shops.add("nalworscrolls", "nalwor_city_scroll", 400);
@@ -104,6 +104,23 @@ public class ShopList {
 		shops.add("elfbuyrare", "staff", 75);
 		shops.add("elfbuyrare", "lion_shield_+1", 52);
 		shops.add("elfbuyrare", "crown_shield", 80);
+
+		// more rare weapons shop (fado)
+		shops.add("buyrare2", "war_hammer", 90);
+		shops.add("buyrare2", "biting_sword", 100);
+		shops.add("buyrare2", "crossbow", 125);
+		shops.add("buyrare2", "great_sword", 150);
+		shops.add("buyrare2", "fire_sword", 2000);
+		shops.add("buyrare2", "ice_sword", 5000);
+
+		// more rare armor shop (ados?)
+		shops.add("buyrare3", "studded_boots", 75);
+		shops.add("buyrare3", "chain_boots", 90);
+		shops.add("buyrare3", "skull_shield", 100);
+		shops.add("buyrare3", "unicorn_shield", 125);
+		shops.add("buyrare3", "viking_helmet", 250);
+		shops.add("buyrare3", "golden_legs", 3000);
+		shops.add("buyrare3", "golden_shield", 5000);
 
 	}
 

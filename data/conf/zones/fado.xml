@@ -65,6 +65,10 @@
              <destination zone="int_fado_house" ref="entrance_right"/>
            </portal>
 
+	   <portal x="14" y="11" ref="weaponshop_entrance">
+             <destination zone="int_fado_weaponshop" ref="entrance"/>
+           </portal>
+
 	   <portal x="35" y="57" ref="hut_entrance">
              <destination zone="int_fado_hut" ref="entrance"/>
            </portal>
@@ -168,6 +172,13 @@
            </portal>
            <portal x="7" y="10" ref="entrance_right">
              <destination zone="0_fado_city" ref="house_entrance"/>
+           </portal>
+         </zone>
+
+  	<zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
+           <configurator class-name="games.stendhal.server.maps.fado.weaponshop.BuyerNPC"/>
+	   <portal x="6" y="11" ref="entrance">
+             <destination zone="0_fado_city" ref="weaponshop_entrance"/>
            </portal>
          </zone>
 	 
