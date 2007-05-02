@@ -198,11 +198,7 @@ public class StaticGameLayers {
 	public void draw(GameScreen screen, String layer) {
 		for (Pair<String, LayerRenderer> p : layers) {
 			if (p.first().equals(layer)) {
-				try {
-					p.second().draw(screen);
-				} catch(Exception e) {
-					logger.error(p.first()+" and using area "+area,e);
-				}
+				p.second().draw(screen);
 			}
 		}
 	}
