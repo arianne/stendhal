@@ -135,7 +135,12 @@ public class StaticGameLayers {
 					//TODO: XXX
 					content = new TileRenderer();
 					((TileRenderer) content).setMapData(new InputSerializer(in));
-					content.setTileset(nextTilesets.second());
+					TileStore store=null;
+					
+					if(nextTilesets != null) {
+						store=nextTilesets.second();
+					}
+					content.setTileset(store);
 				}
 				layers.add(i, new Pair<String, LayerRenderer>(name, content));
 			}
