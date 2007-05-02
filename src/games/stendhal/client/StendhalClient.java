@@ -265,7 +265,7 @@ public class StendhalClient extends ariannexp {
 
 			handler.apply(message, world_objects);
 		} catch (Exception e) {
-			logger.debug("error processing message " + message, e);
+			logger.fatal("error processing message " + message, e);
 			System.exit(1);
 		} finally {
 			Log4J.finishMethod(logger, "onPerception");
@@ -286,6 +286,7 @@ public class StendhalClient extends ariannexp {
 					is.close();
 				} catch (Exception e) {
 					e.printStackTrace();
+					logger.fatal(e,e);
 					System.exit(1);
 				}
 			} else {
@@ -311,7 +312,7 @@ public class StendhalClient extends ariannexp {
 				cache.store(item, item.data);
 				contentHandling(item.name, new ByteArrayInputStream(item.data));
 			} catch (Exception e) {
-				logger.error("onTransfer", e);
+				logger.fatal("onTransfer", e);
 				System.exit(2);
 			}
 		}

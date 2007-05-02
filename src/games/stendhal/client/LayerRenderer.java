@@ -41,4 +41,5 @@ public abstract class LayerRenderer {
 
 	public abstract void draw(GameScreen screen);
 
+	public abstract void setTileset(TileStore store);
 }

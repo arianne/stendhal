@@ -46,9 +46,9 @@ public class TileRenderer extends LayerRenderer {
 
 	private long delta;
 
-	public TileRenderer(TileStore tiles) {
+	public TileRenderer() {
 		super();
-		this.tiles = tiles;
+		tiles = null;
 		map = null;
 		frame = 0;
 		animatedTiles = new HashMap<Integer, List<Integer>>();
@@ -69,6 +69,10 @@ public class TileRenderer extends LayerRenderer {
 		
 		map=layer.expose();
 		Log4J.finishMethod(logger, "setMapData");
+	}
+	
+	public void setTileset(TileStore tileset) {
+		tiles=tileset;
 	}
 
 	private int get(int x, int y) {
@@ -408,6 +412,10 @@ public class TileRenderer extends LayerRenderer {
 	 */
 	@Override
 	public void draw(GameScreen screen) {
+		if(tiles==null) {
+			return;			
+		}
+		
 		if (System.currentTimeMillis() - delta > 200) {
 			delta = System.currentTimeMillis();
 			frame++;

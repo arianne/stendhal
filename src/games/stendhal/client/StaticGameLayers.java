@@ -33,7 +33,7 @@ public class StaticGameLayers {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
 
-	private TileStore nextTilesets;
+	private Pair<String, TileStore> nextTilesets;
 	
 	/** List of pair name, layer */
 	private LinkedList<Pair<String, LayerRenderer>> layers;
@@ -85,8 +85,12 @@ public class StaticGameLayers {
 	 * @throws ClassNotFoundException */
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
 		Log4J.startMethod(logger, "addLayer");
+		logger.info("Layer: "+name);
 		try {
 			if (name.endsWith("_collision")) {
+				/*
+				 * Add a collision layer.
+				 */
 				for (int i = 0; i < collisions.size(); i++) {
 					if (collisions.get(i).first().compareTo(name) == 0) {
 						/** Repeated layers should be ignored. */
@@ -97,11 +101,21 @@ public class StaticGameLayers {
 				collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
 				collisions.add(new Pair<String, CollisionDetection>(name, collision));
 			} else if (name.endsWith("_tilesets")) {
-				nextTilesets=new TileStore();
-				nextTilesets.addTilesets(new InputSerializer(in));
+				/*
+				 * Add tileset
+				 */
+				nextTilesets=new Pair<String,TileStore>(name, new TileStore());
+				
+				TileStore tileset=nextTilesets.second();
+				tileset.addTilesets(new InputSerializer(in));				
 			} else if (name.endsWith("_map")) {
-
+				/*
+				 * It is the minimap image for this zone.
+				 */
 			} else {
+				/*
+				 * It is a tile layer.
+				 */
 				int i;
 				for (i = 0; i < layers.size(); i++) {
 					if (layers.get(i).first().compareTo(name) == 0) {
@@ -119,8 +133,9 @@ public class StaticGameLayers {
 				}
 				if (content == null) {
 					//TODO: XXX
-					content = new TileRenderer(nextTilesets);
+					content = new TileRenderer();
 					((TileRenderer) content).setMapData(new InputSerializer(in));
+					content.setTileset(nextTilesets.second());
 				}
 				layers.add(i, new Pair<String, LayerRenderer>(name, content));
 			}
@@ -150,15 +165,24 @@ public class StaticGameLayers {
 	/** Set the set of layers that is going to be rendered */
 	public void setRPZoneLayersSet(String area) {
 		Log4J.startMethod(logger, "setRPZoneLayersSet");
+		logger.info("Area: "+area);
 		// keep only the actual zone
 		for (int i = 0; i < layers.size(); i++) {
 			if (!layers.get(i).first().contains(area)) {
 				layers.remove(i);
 			}
-		}
+		}		
+		
 		for (int i = 0; i < collisions.size(); i++) {
 			if (!collisions.get(i).first().equals(area + "_collision")) {
 				collisions.remove(i);
+			}
+		}
+		
+		for (int i = 0; i < layers.size(); i++) {
+			Pair<String, LayerRenderer> pair=layers.get(i);
+			if (pair.first().contains(area)) {
+				pair.second().setTileset(nextTilesets.second());
 			}
 		}
 		
@@ -174,16 +198,11 @@ public class StaticGameLayers {
 	public void draw(GameScreen screen, String layer) {
 		for (Pair<String, LayerRenderer> p : layers) {
 			if (p.first().equals(layer)) {
-				p.second().draw(screen);
-			}
-		}
-	}
-
-	/** Render the choosen set of layers */
-	public void draw(GameScreen screen) {
-		for (Pair<String, LayerRenderer> p : layers) {
-			if ((area != null) && p.first().contains(area)) {
-				p.second().draw(screen);
+				try {
+					p.second().draw(screen);
+				} catch(Exception e) {
+					logger.error(p.first()+" and using area "+area,e);
+				}
 			}
 		}
 	}

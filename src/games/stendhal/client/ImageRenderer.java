@@ -45,4 +45,8 @@ public class ImageRenderer extends LayerRenderer {
 		}
 	}
 
+	@Override
+    public void setTileset(TileStore store) {
+    }
+
 }
