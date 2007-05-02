@@ -254,6 +254,7 @@
 			<item value="buckler" quantity="1" probability="20"/>
 			<item value="knife" quantity="1" probability="10"/>
 			<item value="minor_potion" quantity="1" probability="5"/>
+			<item value="button_mushroom" quantity="[3,10]" probability="10"/>
 		</drops>
 		<equips>
 		</equips>
@@ -285,6 +286,7 @@
 			<item value="knife" quantity="1" probability="10"/>
 			<item value="cloak" quantity="1" probability="1"/>
 			<item value="minor_potion" quantity="1" probability="5"/>
+			<item value="porcini" quantity="[1,10]" probability="10"/>
 		</drops>
 		<equips>
 		</equips>
@@ -428,6 +430,7 @@
 			<item value="wooden_shield" quantity="1" probability="20"/>
 			<item value="knife" quantity="1" probability="10"/>
 			<item value="dress" quantity="1" probability="5"/>
+			<item value="pie" quantity="1" probability="1"/>
 		</drops>
 		<equips>
 		</equips>
@@ -1868,6 +1871,7 @@
 		<drops>
 			<item value="money" quantity="[10,100]" probability="75"/>
 			<item value="potion" quantity="[1,2]" probability="30"/>
+			<item value="greater_antidote" quantity="[1,2]" probability="50"/>
 		</drops>
 		<equips>
 		</equips>
@@ -1892,9 +1896,9 @@
                 <experience value="300"/>
                 <respawn value="1200"/>
                 <drops>
-                        <item value="money" quantity="[10,40]" probability="70"/>
-			<item value="pie" quantity="1" probability="5"/>
-                        <item value="cloak" quantity="1" probability="10"/>
+                	<item value="money" quantity="[10,40]" probability="70"/>
+					<item value="pie" quantity="1" probability="5"/>
+                    <item value="cloak" quantity="1" probability="10"/>
 			<item value="chain_boots" quantity="1" probability="1"/>
                 </drops>
 		<says>
@@ -1978,9 +1982,9 @@
                 <experience value="350"/>
                 <respawn value="900"/>
                 <drops>
-                        <item value="money" quantity="[3,40]"	probability="90"/>
-                        <item value="leather_armor_+1" quantity="1" probability="10"/>
-			<item value="sword" quantity="1" probability="30"/>
+                   <item value="money" quantity="[3,40]"	probability="90"/>
+                   <item value="leather_armor_+1" quantity="1" probability="10"/>
+			       <item value="sword" quantity="1" probability="30"/>
                 </drops>
                 <equips>
                 </equips>
@@ -2511,7 +2515,7 @@
 		<experience value="540"/>
 		<respawn value="1500"/>
 		<drops>
-			<item value="money" quantity="[5,50]" probability="100"/>
+			<item value="money" quantity="[5,40]" probability="100"/>
 			<item value="crown_shield" quantity="1" probability="8"/>
 			<item value="war_hammer" quantity="1" probability="8"/>
 			<item value="chain_armor_+3" quantity="1" probability="20"/>
@@ -2608,6 +2612,7 @@
 		<drops>
 			<item value="money" quantity="[5,20]" probability="100"/>
 			<item value="greater_potion" quantity="1" probability="10"/>
+			<item value="antidote" quantity="[1,3]" probability="10"/>
 			<item value="staff" quantity="1" probability="3"/>
 		</drops>
 		<equips>
@@ -2760,7 +2765,7 @@
 		<experience value="670"/>
 		<respawn value="900"/>
 		<drops>
-			<item value="money" quantity="[5,90]" probability="100"/>
+			<item value="money" quantity="[5,50]" probability="100"/>
 			<item value="plate_shield" quantity="1" probability="40"/>
 			<item value="katana" quantity="1" probability="10"/>
 			<item value="studded_armor" quantity="1" probability="25"/>
@@ -2789,7 +2794,7 @@
 		<experience value="700"/>
 		<respawn value="1500"/>
 		<drops>
-			<item value="money" quantity="[15,80]" probability="100"/>
+			<item value="money" quantity="[15,50]" probability="100"/>
 			<item value="steel_arrow" quantity="[10,20]" probability="40"/>
 			<item value="crossbow" quantity="1" probability="10"/>
 			<item value="sword" quantity="1" probability="10"/>
@@ -2824,6 +2829,8 @@
 		<respawn value="1500"/>
 		<drops>
 			<item value="money" quantity="[5,40]" probability="100"/>
+			<item value="greater_antidote" quantity="[1,3]" probability="50"/>
+			<item value="grain" quantity="[10,50]" probability="30"/>
 		</drops>
 		<equips>
 		</equips>
@@ -2848,6 +2855,8 @@
 		<respawn value="1500"/>
 		<drops>
 			<item value="money" quantity="[5,40]" probability="100"/>
+			<item value="greater_antidote" quantity="[1,3]" probability="50"/>
+			<item value="fire_sword" quantity="1" probability="1"/>
 		</drops>
 		<equips>
 		</equips>
@@ -2872,6 +2881,9 @@
 		<respawn value="1500"/>
 		<drops>
 			<item value="money" quantity="[5,40]" probability="100"/>
+			<item value="greater_antidote" quantity="[1,3]" probability="50"/>
+			<item value="perch" quantity="[1,3]" probability="25"/>
+			<item value="roach" quantity="[1,4]" probability="25"/>
 		</drops>
 		<equips>
 		</equips>
@@ -3075,6 +3087,7 @@
 		<respawn value="1500"/>
 		<drops>
 			<item value="money" quantity="[5,40]" probability="100"/>
+			<item value="antidote" quantity="[2,5]" probability="10"/>
 		</drops>
 		<equips>
 		</equips>
@@ -3195,7 +3208,7 @@
 		<experience value="10000"/>
 		<respawn value="14800"/>
 		<drops>
-			<item value="money" quantity="[50,100]" probability="100"/>
+			<item value="money" quantity="[50,80]" probability="100"/>
 			<item value="golden_shield" quantity="1" probability="1"/>
 			<item value="great_sword" quantity="1" probability="10"/>
 			<item value="plate_armor" quantity="1" probability="25"/>
@@ -3224,7 +3237,7 @@
 		<respawn value="55000"/>
 		<drops>
 			<item value="money" quantity="[15,100]" probability="100"/>
-			<item value="greater_potion" quantity="[1,2]" probability="75"/>
+			<item value="mega_potion" quantity="[1,2]" probability="55"/>
 			<item value="vampire_cloak" quantity="1" probability="10"/>
 			<item value="vampire_sword" quantity="1" probability="1"/>
 			<item value="skull_ring" quantity="1" probability="100"/>
@@ -3254,7 +3267,7 @@
 		<experience value="12000"/>
 		<respawn value="17000"/>
 		<drops>
-			<item value="money" quantity="[50,300]" probability="100"/>
+			<item value="money" quantity="[50,150]" probability="100"/>
 			<item value="golden_shield" quantity="1" probability="1"/>
 			<item value="ice_sword" quantity="1" probability="10"/>
 			<item value="plate_armor" quantity="1" probability="25"/>
@@ -3313,9 +3326,10 @@
 		<experience value="14000"/>
 		<respawn value="25200"/>
 		<drops>
-			<item value="money" quantity="[50,900]" probability="100"/>
+			<item value="money" quantity="[50,500]" probability="100"/>
 			<item value="greater_potion" quantity="[1,6]" probability="20"/>
 			<item value="greater_poison" quantity="[1,2]" probability="50"/>
+			<item value="nalwor_city_scroll" quantity="[1,2]" probability="25"/>
 		</drops>
 		<equips>
 		</equips>
@@ -3344,7 +3358,7 @@
 		<experience value="16000"/>
 		<respawn value="28000"/>
 		<drops>
-			<item value="money" quantity="[50,900]" probability="100"/>
+			<item value="money" quantity="[50,700]" probability="100"/>
 			<item value="golden_shield" quantity="1" probability="5"/>
 			<item value="fire_sword" quantity="1" probability="10"/>
 			<item value="ice_sword" quantity="1" probability="5"/>
@@ -3375,7 +3389,7 @@
 		<experience value="17000"/>
 		<respawn value="30000"/>
 		<drops>
-			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="greater_potion" quantity="[1,4]" probability="70"/>
 			<item value="greater_poison" quantity="[1,2]" probability="80"/>
 			<item value="money" quantity="[30,150]" probability="100"/>
 		</drops>
@@ -3436,7 +3450,8 @@
 		<drops>
 			<item value="greater_potion" quantity="[1,4]" probability="80"/>
 			<item value="greater_poison" quantity="1" probability="50"/>
-			<item value="money" quantity="[30,850]" probability="100"/>
+			<item value="money" quantity="[30,700]" probability="100"/>
+			<item value="empty_scroll" quantity="[1,2]" probability="25"/>
 		</drops>
 		<equips>
 		</equips>
@@ -3519,7 +3534,7 @@
 		<experience value="22000"/>
 		<respawn value="46500"/>
 		<drops>
-			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="mega_potion" quantity="[1,4]" probability="50"/>
 			<item value="deadly_poison" quantity="[1,3]" probability="40"/>
 			<item value="money" quantity="[30,1500]" probability="100"/>
 		</drops>
@@ -3581,7 +3596,7 @@
 		<experience value="24000"/>
 		<respawn value="57200"/>
 		<drops>
-			<item value="greater_potion" quantity="[1,4]" probability="50"/>
+			<item value="mega_potion" quantity="[1,3]" probability="50"/>
 			<item value="money" quantity="[300,10000]" probability="100"/>
 			<item value="black_dragon_cloak" quantity="1" probability="5"/>
 		</drops>
@@ -3611,7 +3626,7 @@
 		<experience value="90000"/>
 		<respawn value="94400"/>
 		<drops>
-			<item value="greater_potion" quantity="[3,20]" probability="50"/>
+			<item value="mega_potion" quantity="[5,15]" probability="50"/>
 			<item value="money" quantity="[3000,50000]" probability="100"/>
 			<item value="magic_plate_armor" quantity="1" probability="1"/>
 			<item value="shadow_shield" quantity="1" probability="5"/>
