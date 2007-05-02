@@ -757,18 +757,26 @@ public class Player extends RPEntity implements TurnListener {
 		itemsToConsume.clear();
 		poisonToConsume.clear();
 
-		// Penalize: Respawn on afterlive zone and 10% less experience
-		setXP((int) (getXP() * 0.9));
-		setATKXP((int) (getATKXP() * 0.9));
-		setDEFXP((int) (getDEFXP() * 0.9));
-
+		if(isEquipped("emerald_ring")){
+		 // Penalize: 2% less experience if wearing that ring
+		 setXP((int) (getXP() * 0.98));
+		 setATKXP((int) (getATKXP() * 0.98));
+	   	 setDEFXP((int) (getDEFXP() * 0.98));			
+		}
+		else{
+		 // Penalize: 10% less experience
+		 setXP((int) (getXP() * 0.9));
+		 setATKXP((int) (getATKXP() * 0.9));
+		 setDEFXP((int) (getDEFXP() * 0.9));
+		}
+		
 		super.onDead(killer, false);
 
 		setHP(getBaseHP());
 
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
-
+        //		 Penalize: Respawn on afterlive zone and
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_afterlife");
 
 		zone.placeObjectAtEntryPoint(this);
@@ -857,7 +865,7 @@ public class Player extends RPEntity implements TurnListener {
 	public boolean hasSheep() {
 		return has("sheep");
 	}
-
+	
 	public void setSheep(Sheep sheep) {
 		Log4J.startMethod(logger, "setSheep");
 		put("sheep", sheep.getID().getObjectID());

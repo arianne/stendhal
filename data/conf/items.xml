@@ -1740,9 +1740,9 @@ Makes players more offensive
 		</equipable>
 	</item>
 
-    <item name="green_dragon_boots">
+    <item name="green_thing_boots">
 		<type class="boots" subclass="green_dragon_boots"/>
-		<description>You see a pair of green dragon boots. </description>
+		<description>You see a pair of green thing boots. </description>
 		<implementation class-name="games.stendhal.server.entity.item.Item"/>
 		<attributes>
 			<def value="12"/>
@@ -3191,6 +3191,25 @@ Makes players more offensive
 		</equipable>
 	</item>
 	
+	<item name="emerald_ring">
+	    <description>You see ring of life. Wear it, and you risk less from death.</description>
+		<type class="ring" subclass="emerald-ring"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="0.1"/>
+		<equipable>
+			<slot name="bag"/>
+			<slot name="finger"/>
+		</equipable>
+	</item>
+	
+	<item name="amulet">
+		<type class="misc" subclass="amulet"/>
+		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<weight value="1"/>
+		<equipable>
+			<slot name="bag"/>
+		</equipable>
+	</item>
 	
 <!-- Scrolls_section -->
 	

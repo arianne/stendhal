@@ -66,6 +66,7 @@ public class StendhalQuestSystem {
 		loadQuest("LookBookforCeryl");
 		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");
+		loadQuest("KillDarkElves");
 		loadQuest("Marriage");
 		//loadQuest("MonogenesCataclysm");
 		// loadQuest("MeetBunny");

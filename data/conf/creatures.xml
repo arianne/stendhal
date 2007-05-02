@@ -3535,6 +3535,36 @@
 			<profile name="patrolling"/>
 		</ai>
 	</creature>
+	
+	<!-- Level 175 -->
+    <creature name="thing">
+		<type class="huge_animal" subclass="thing" tileid="huge_animal.png:7"/>
+		<attributes>
+			<atk value="280"/>
+			<def value="41"/>
+			<hp value="1700"/>
+			<speed value="1"/>
+			<size value="3,4"/>
+		</attributes>
+		<level value="175"/>
+		<experience value="23000"/>
+		<respawn value="30000"/>
+		<drops>
+			<item value="mega_potion" quantity="[1,4]" probability="100"/>
+			<item value="greater_antidote" quantity="[1,6]" probability="80"/>
+			<item value="money" quantity="[100,1000]" probability="100"/>
+			<item value="green_thing_boots" quantity="1" probability="1"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="animal"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="20,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
 
 <!-- Level 200 -->
     

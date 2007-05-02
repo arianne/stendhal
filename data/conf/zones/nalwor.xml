@@ -158,10 +158,26 @@
   <portal x="43" y="2" ref="upstairs">
     <destination zone="int_nalwor_royal_hall_1" ref="downstairs"/>
    </portal> 
+  <portal x="34" y="23" ref="tunnel_entrance_1">
+  	<destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs"/>
+  	<implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+     <parameter name="quest">kill_dark_elves</parameter>
+     <parameter name="rejected">You find it hard to enter. Perhaps you're not
+  prepared for what is below.</parameter>
+   </implementation>
+  </portal> 
+  <portal x="34" y="24" ref="tunnel_entrance_1">
+  	<destination zone="-1_nalwor_drows_tunnel_n" ref="upstairs"/>
+  	<implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+     <parameter name="quest">kill_dark_elves</parameter>
+     <parameter name="rejected">You find it hard to enter. Perhaps you're not
+  prepared for what is below.</parameter>
+   </implementation>
+  </portal> 
  </zone> 
 
  <zone name="int_nalwor_royal_hall_1" file="interiors/nalwor/royal_2ndfloor.tmx">
-<configurator class-name="games.stendhal.server.maps.nalwor.royal.IL0_MayorNPC"/>
+<configurator class-name="games.stendhal.server.maps.nalwor.royal.MayorNPC"/>
    <portal x="43" y="2" ref="downstairs">
     <destination zone="int_nalwor_royal_hall" ref="upstairs"/>
    </portal>
@@ -356,6 +372,10 @@
  </zone>
 
  <zone name="-1_nalwor_drows_tunnel_n" level="-1" x="500256" y="500256" file="Level -1/nalwor/drows_tunnel_n.tmx">
+  <configurator class-name="games.stendhal.server.maps.nalwor.tunnel.ThingCreature" />
+  <portal x="40" y="68" ref="upstairs">
+  	<destination zone="int_nalwor_royal_hall" ref="tunnel_entrance_1"/>
+   </portal>
  </zone>
 
  <zone name="-1_nalwor_drows_tunnel" level="-1" x="500256" y="500384" file="Level -1/nalwor/drows_tunnel.tmx">

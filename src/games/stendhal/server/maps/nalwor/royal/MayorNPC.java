@@ -16,7 +16,7 @@ import java.util.Map;
  *
  * @author kymara
  */
-public class IL0_MayorNPC implements ZoneConfigurator {
+public class MayorNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
@@ -54,8 +54,7 @@ public class IL0_MayorNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting("Hello. You are brave, to stand before me.");
 				addJob("You dare ask, little human?!");
-				addHelp("Well, perhaps you can help me with a #problem I see brewing. But not yet, not yet...");
-				addQuest("Thanks, one day, I will remember that you offered. I may need you.");
+				addHelp("Well, perhaps you can help me with a #problem I see brewing.");
 				add(ConversationStates.ATTENDING, "problem", null, ConversationStates.ATTENDING,
 				        "Here are no dark elves, believe me! Me?! no, no, no, I'm just well tanned...", null);
 				addGoodbye("Farewell, human.");
