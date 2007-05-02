@@ -628,6 +628,28 @@ public class j2DClient extends StendhalUI {
 			double screeny = screen.getY();
 			double screenw = screen.getWidth();
 			double screenh = screen.getHeight();
+			
+			if(Math.abs(screenx-x)>10 || Math.abs(screeny-y)>10) {
+				 x = x - screenw / 2;
+				 y = y - screenh / 2;
+				 
+				 StaticGameLayers layers=StendhalClient.get().getStaticGameLayers();
+				if (x < 0) {
+					x = 0;
+				} else if ((layers.getWidth() != 0) && (x + screen.getWidth() > layers.getWidth())) {
+					x = layers.getWidth() - screen.getWidth();
+				}
+
+				if (y < 0) {
+					y = 0;
+				} else if ((layers.getHeight() != 0) && (y + screen.getHeight() > layers.getHeight())) {
+					y = layers.getHeight() - screen.getHeight();
+				}
+				
+				screen.place(x, y);
+				return;
+			}
+			
 			double sdx = screen.getdx();
 			double sdy = screen.getdy();
 
