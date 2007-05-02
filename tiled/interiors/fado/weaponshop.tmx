@@ -54,16 +54,16 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="231" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="/home/katie/workspace/stendhal/tiled/tileset/building/wall/int_wall_dark_red.png" firstgid="232" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/wall/int_wall_dark_red.png" firstgid="232" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red.png"/>
  </tileset>
- <tileset name="/home/katie/workspace/stendhal/tiled/tileset/building/wall/int_wall_dark_red_corners.png" firstgid="248" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/wall/int_wall_dark_red_corners.png" firstgid="248" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_dark_red_corners.png"/>
  </tileset>
- <tileset name="/home/katie/workspace/stendhal/tiled/tileset/building/entrance/dark_red_ns.png" firstgid="264" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/entrance/dark_red_ns.png" firstgid="264" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/dark_red_ns.png"/>
  </tileset>
- <tileset name="/home/katie/workspace/stendhal/tiled/tileset/building/window/int_windows_dark_red.png" firstgid="276" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/window/int_windows_dark_red.png" firstgid="276" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/int_windows_dark_red.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="13">
