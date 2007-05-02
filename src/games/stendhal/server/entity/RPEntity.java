@@ -492,6 +492,13 @@ public abstract class RPEntity extends Entity {
 	/***************************************************************************
 	 * * Attack handling code. * *
 	 **************************************************************************/
+	
+	/**
+	 * Returns true if this RPEntity is attackable
+	 */
+	public boolean isAttackable() {
+		return true;
+	}
 
 	/** Modify the entity to order to attack the target entity */
 	public void attack(RPEntity target) {

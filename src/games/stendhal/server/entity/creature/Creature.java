@@ -317,6 +317,14 @@ public class Creature extends NPC {
 		dropItemInstances.add(item);
 	}
 
+	/**
+	 * Returns true if this RPEntity is attackable
+	 */
+	@Override
+	public boolean isAttackable() {
+		return true;
+	}
+	
 	@Override
 	public void onDead(Entity killer) {
 		if (point != null) {

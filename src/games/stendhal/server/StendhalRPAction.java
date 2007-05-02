@@ -194,9 +194,8 @@ public class StendhalRPAction {
 			return;
 		}
 
-		// Disable attacking NPCS.
-		// Just make sure no creature is instanceof SpeakerNPC...
-		if (entity instanceof SpeakerNPC) {
+		// Disable attacking NPCS that are created as not attackable.
+		if (!entity.isAttackable()) {
 			logger.info("REJECTED. " + player.getName() + " is attacking " + entity.getName());
 			return;
 		}
