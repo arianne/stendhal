@@ -57,7 +57,7 @@
 		<description>You see a small rat that seems to be extremely hungry.
 		</description>
 		<attributes>
-			<atk value="11"/>
+			<atk value="13"/>
 			<def value="6"/>
 			<hp value="20"/>
 			<speed value="0.5"/>
