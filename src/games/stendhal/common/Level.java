@@ -21,7 +21,7 @@ public class Level {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Level.class);
 
-	private static int LEVELS = 1000;
+	private static int LEVELS = 480;
 
 	private static int[] xp;
 
