@@ -17,8 +17,6 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 /**
  * This is a common ring.
  * Other rings can extend this one and implement onUsed.
