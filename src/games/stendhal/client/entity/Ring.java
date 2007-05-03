@@ -53,7 +53,10 @@ public class Ring extends Item {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		working=((object.has("amount") && object.getInt("amount")>0));
+		/*
+		 * A ring works either by not having amount of having amount>0
+		 */
+		working=(((!object.has("amount")) || object.has("amount") && object.getInt("amount")>0));
 		changed();
 	}
 
@@ -71,7 +74,10 @@ public class Ring extends Item {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
-		working=((object.has("amount") && object.getInt("amount")>0));
+		/*
+		 * A ring works either by not having amount of having amount>0
+		 */
+		working=(((!object.has("amount")) || object.has("amount") && object.getInt("amount")>0));
 		changed();
 	}
 
