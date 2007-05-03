@@ -553,6 +553,20 @@ public class j2DClient extends StendhalUI {
 			logger.debug("Move objects");
 			gameObjects.move(delta);
 
+
+			StaticGameLayers gameLayers = client.getStaticGameLayers();
+
+			// create the map if there is none yet
+			if (gameLayers.changedArea()) {
+				CollisionDetection cd = gameLayers.getCollisionDetection();
+				if (cd != null) {
+					gameLayers.resetChangedArea();
+					settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
+				}
+			}
+
+			settings.setPlayer(User.get());
+
 			if (frame.getState() != Frame.ICONIFIED) {
 				logger.debug("Draw screen");
 				draw();
@@ -851,19 +865,6 @@ public class j2DClient extends StendhalUI {
 		gameLayers.draw(screen, set + "_4_roof_add");
 		gameObjects.drawHPbar(screen);
 		gameObjects.drawText(screen);
-
-
-		// create the map if there is none yet
-		if (gameLayers.changedArea()) {
-			CollisionDetection cd = gameLayers.getCollisionDetection();
-			if (cd != null) {
-				gameLayers.resetChangedArea();
-				settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
-			}
-		}
-
-	//	RPObject player = client.getPlayer();
-		settings.setPlayer(User.get());
 
 		baseframe.draw(screen.expose());
 
