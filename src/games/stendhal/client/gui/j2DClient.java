@@ -629,7 +629,7 @@ public class j2DClient extends StendhalUI {
 			double screenw = screen.getWidth();
 			double screenh = screen.getHeight();
 			
-			if(Math.abs(screenx-x)>10 || Math.abs(screeny-y)>10) {
+			if(Math.abs(screenx-x)>15 || Math.abs(screeny-y)>15) {
 				 x = x - screenw / 2;
 				 y = y - screenh / 2;
 				 
