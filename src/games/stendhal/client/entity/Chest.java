@@ -23,7 +23,17 @@ import marauroa.common.game.RPSlot;
 /**
  * A chest entity.
  */
-public class Chest extends AnimatedStateEntity implements Inspectable {
+public class Chest extends Entity implements Inspectable {
+	/*
+	 * The closed state.
+	 */
+	public final static String	STATE_CLOSED	= "close";
+
+	/*
+	 * The open state.
+	 */
+	public final static String	STATE_OPEN	= "open";
+
 	/**
 	 * Whether the chest is currently open.
 	 */
@@ -84,6 +94,17 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 
 
 	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public String getState() {
+		return open ? STATE_OPEN : STATE_CLOSED;
+	}
+
+
+	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -97,14 +118,7 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 			content = object.getSlot("content");
 		}
 
-		if (object.has("open")) {
-			open = true;
-			state = "open";
-		} else {
-			open = false;
-			state = "close";
-		}
-
+		open = object.has("open");
 		requestOpen = false;
 	}
 
@@ -142,7 +156,6 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 
 		if (changes.has("open")) {
 			open = true;
-			state = "open";
 
 			// we're wanted to open this?
 			if (requestOpen) {
@@ -171,7 +184,6 @@ public class Chest extends AnimatedStateEntity implements Inspectable {
 
 		if (changes.has("open")) {
 			open = false;
-			state = "close";
 			requestOpen = false;
 
 			if (wtEntityContainer != null) {

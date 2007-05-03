@@ -12,17 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.RPObject;
-
 /**
  * A blood entity.
  */
-public class Blood extends AnimatedStateEntity {
+public class Blood extends Entity {
 	/**
 	 * Create a blood entity.
 	 */
 	public Blood() {
-		state = "0";
+		clazz = "0";
 	}
 
 
@@ -41,6 +39,17 @@ public class Blood extends AnimatedStateEntity {
 
 
 	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public String getState() {
+		return getEntityClass();
+	}
+
+
+	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
 	 * @param	entity		The entity to check against.
@@ -51,26 +60,5 @@ public class Blood extends AnimatedStateEntity {
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return false;
-	}
-
-
-	//
-	// RPObjectChangeListener
-	//
-
-	/**
-	 * The object added/changed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
-	 */
-	@Override
-	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		super.onChangedAdded(object, changes);
-
-		if (changes.has("class")) {
-			state = changes.get("class");
-			changed();
-		}
 	}
 }

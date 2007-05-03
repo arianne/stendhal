@@ -20,7 +20,7 @@ import marauroa.common.game.RPAction;
  * @author dine
  *
  */
-public class FishSource extends AnimatedStateEntity {
+public class FishSource extends Entity {
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.FISH;

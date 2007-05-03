@@ -22,7 +22,17 @@ import games.stendhal.common.Direction;
 /**
  * A door entity.
  */
-public class Door extends AnimatedStateEntity {
+public class Door extends Entity {
+	/*
+	 * The closed state.
+	 */
+	public final static String	STATE_CLOSED	= "close";
+
+	/*
+	 * The open state.
+	 */
+	public final static String	STATE_OPEN	= "open";
+
 	/**
 	 * Whether the door is open.
 	 */
@@ -80,6 +90,17 @@ public class Door extends AnimatedStateEntity {
 
 
 	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public String getState() {
+		return open ? STATE_OPEN : STATE_CLOSED;
+	}
+
+
+	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -92,13 +113,7 @@ public class Door extends AnimatedStateEntity {
 		/*
 		 * Open state
 		 */
-		if (object.has("open")) {
-			open = true;
-			state = "open";
-		} else {
-			open = false;
-			state = "close";
-		}
+		open = object.has("open");
 
 		/*
 		 * Orientation direction
@@ -129,7 +144,6 @@ public class Door extends AnimatedStateEntity {
 		 */
 		if (changes.has("open")) {
 			open = true;
-			state = "open";
 			changed();
 		}
 
@@ -158,7 +172,6 @@ public class Door extends AnimatedStateEntity {
 		 */
 		if (changes.has("open")) {
 			open = false;
-			state = "close";
 			changed();
 		}
 

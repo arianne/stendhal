@@ -16,7 +16,7 @@ import marauroa.common.game.RPObject;
 /**
  * An entity that has movement.
  */
-public abstract class ActiveEntity extends AnimatedStateEntity {
+public abstract class ActiveEntity extends Entity {
 	/**
 	 * The down facing state.
 	 */
@@ -54,7 +54,6 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	 */
 	ActiveEntity()  {
 		direction = Direction.DOWN;
-		state = STATE_DOWN;
 		dx = 0.0;
 		dy = 0.0;
 	}
@@ -124,8 +123,6 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	 */
 	protected void setDirection(Direction direction) {
 		this.direction = direction;
-
-		state = getDirectionState(direction);
 	}
 
 
@@ -212,6 +209,16 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 	//
 	// Entity
 	//
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public String getState() {
+		return getDirectionState(getDirection());
+	}
 
 	/**
 	 * Initialize this entity for an object.

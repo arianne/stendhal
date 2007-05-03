@@ -5,7 +5,7 @@ import java.util.List;
 /**
  *
  */
-public class Fire extends AnimatedStateEntity {
+public class Fire extends Entity {
 
 	@Override
 	protected void buildOfferedActions(List<String> list) {

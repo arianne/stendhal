@@ -19,11 +19,16 @@ import marauroa.common.game.RPObject;
 /**
  * A food entity.
  */
-public abstract class Food extends AnimatedStateEntity {
+public abstract class Food extends Entity {
 	/**
 	 * The current amount of food.
 	 */
 	private int amount;
+
+	/**
+	 * The current state.
+	 */
+	private String state;
 
 
 	/**
@@ -36,6 +41,17 @@ public abstract class Food extends AnimatedStateEntity {
 	//
 	// Entity
 	//
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public String getState() {
+		return state;
+	}
+
 
 	/**
 	 * Initialize this entity for an object.

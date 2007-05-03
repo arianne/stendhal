@@ -22,7 +22,7 @@ import marauroa.common.game.RPObject;
 /**
  * A grain field entity.
  */
-public class GrainField extends AnimatedStateEntity {
+public class GrainField extends Entity {
 	/**
 	 * The entity width.
 	 */
@@ -32,6 +32,11 @@ public class GrainField extends AnimatedStateEntity {
 	 * The entity height.
 	 */
 	private int height;
+
+	/**
+	 * Current ripness.
+	 */
+	private String ripeness;
 
 
 	/**
@@ -92,6 +97,17 @@ public class GrainField extends AnimatedStateEntity {
 
 
 	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public String getState() {
+		return ripeness;
+	}
+
+
+	/**
 	 * Get the entity width.
 	 *
 	 * @return	The entity width.
@@ -124,9 +140,9 @@ public class GrainField extends AnimatedStateEntity {
 		}
 
 		if (object.has("ripeness")) {
-			state = object.get("ripeness");
+			ripeness = object.get("ripeness");
 		} else {
-			state = "0";
+			ripeness = "0";
 		}
 	}
 
@@ -146,7 +162,7 @@ public class GrainField extends AnimatedStateEntity {
 		super.onChangedAdded(object, changes);
 
 		if (changes.has("ripeness")) {
-			state = changes.get("ripeness");
+			ripeness = changes.get("ripeness");
 			changed();
 		}
 	}

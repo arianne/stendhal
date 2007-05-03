@@ -20,7 +20,7 @@ import marauroa.common.game.RPAction;
  * @author daniel
  *
  */
-public class GoldSource extends AnimatedStateEntity {
+public class GoldSource extends Entity {
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.PROSPECT;
