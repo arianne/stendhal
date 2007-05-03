@@ -26,6 +26,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
@@ -766,11 +767,18 @@ public class Player extends RPEntity implements TurnListener {
 		itemsToConsume.clear();
 		poisonToConsume.clear();
 
-		if(isEquipped("emerald_ring")){
+		Item emeraldRing=getFirstEquipped("emerald_ring");
+		
+		if(emeraldRing!=null && emeraldRing.getInt("amount")>0){
 			// Penalize: 2% less experience if wearing that ring
 			setXP((int) (getXP() * 0.98));
 			setATKXP((int) (getATKXP() * 0.98));
-			setDEFXP((int) (getDEFXP() * 0.98));			
+			setDEFXP((int) (getDEFXP() * 0.98));
+			
+			/* 
+			 * We broke now the emerald ring.
+			 */
+			emeraldRing.put("amount", 0);
 		}
 		else{
 			// Penalize: 10% less experience
