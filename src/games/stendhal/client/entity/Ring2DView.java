@@ -9,16 +9,13 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.util.HashMap;
-import java.util.Map;
-
-import marauroa.common.game.RPObject;
-
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
+import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of a chest.
