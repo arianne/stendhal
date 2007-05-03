@@ -349,6 +349,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			} else {
 				logger.debug("Discarding object: " + object);
 			}
+		} else {
+			logger.warn("Non-entity object added: " + object);
 		}
 
 		Log4J.finishMethod(logger, "onAdded");
