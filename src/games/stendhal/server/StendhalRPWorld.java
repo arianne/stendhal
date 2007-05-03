@@ -13,9 +13,12 @@
 package games.stendhal.server;
 
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Fire;
+import games.stendhal.server.entity.FishSource;
+import games.stendhal.server.entity.GoldSource;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.creature.Creature;
@@ -30,6 +33,7 @@ import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.entity.spawner.GrowingPassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
+import games.stendhal.server.entity.spell.Spell;
 import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
@@ -161,25 +165,35 @@ public class StendhalRPWorld extends RPWorld {
 
 		Entity.generateRPClass();
 
-		Sign.generateRPClass();
-		Portal.generateRPClass();
-		Door.generateRPClass();
-		PassiveEntityRespawnPoint.generateRPClass();
-		GrowingPassiveEntityRespawnPoint.generateRPClass();
-		SheepFood.generateRPClass();
-		Corpse.generateRPClass();
-		Item.generateRPClass();
+		// Entity sub-classes
+		Blood.generateRPClass();
 		Chest.generateRPClass();
+		Corpse.generateRPClass();
+		Door.generateRPClass();
 		Fire.generateRPClass();
-
+		FishSource.generateRPClass();
+		GoldSource.generateRPClass();
+		Item.generateRPClass();
+		PassiveEntityRespawnPoint.generateRPClass();
+		Portal.generateRPClass();
 		RPEntity.generateRPClass();
+		Sign.generateRPClass();
+		Spell.generateRPClass();
 
+		// RPEntity sub-classes
 		NPC.generateRPClass();
+		Player.generateRPClass();
 
+		// NPC sub-classes
 		Creature.generateRPClass();
+
+		// Creature sub-classes
 		Sheep.generateRPClass();
 
-		Player.generateRPClass();
+		// PassiveEntityRespawnPoint sub-class
+		GrowingPassiveEntityRespawnPoint.generateRPClass();
+		SheepFood.generateRPClass();
+
 
 		// Chat action class
 		RPClass chatAction = new RPClass("chat");
