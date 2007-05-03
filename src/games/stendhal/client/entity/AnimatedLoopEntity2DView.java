@@ -33,7 +33,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedLoopEntity2DView(final AnimatedStateEntity entity, int frames) {
+	public AnimatedLoopEntity2DView(final Entity entity, int frames) {
 		super(entity);
 
 		this.frames = frames;

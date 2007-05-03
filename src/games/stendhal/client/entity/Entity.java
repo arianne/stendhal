@@ -145,6 +145,15 @@ public final byte[] ID_Token = new byte[0];
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	public String getState() {
+		return null;
+	}
+
 
 	/**
 	 * Get the entity visibility.

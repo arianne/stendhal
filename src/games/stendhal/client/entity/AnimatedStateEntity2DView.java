@@ -31,11 +31,6 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	private static final Logger logger = Log4J.getLogger(AnimatedEntity2DView.class);
 
 	/**
-	 * The animated entity this view is for.
-	 */
-	private AnimatedStateEntity	entity;
-
-	/**
 	 * Map of named sprites.
 	 */
 	protected Map<String, AnimatedSprite>	sprites;
@@ -46,10 +41,8 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedStateEntity2DView(final AnimatedStateEntity entity) {
+	public AnimatedStateEntity2DView(final Entity entity) {
 		super(entity);
-
-		this.entity = entity;
 
 		sprites = new HashMap<String, AnimatedSprite>();
 	}
@@ -85,7 +78,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 
 
 	protected String getState() {
-		return entity.getState();
+		return getEntity().getState();
 	}
 
 
