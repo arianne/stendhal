@@ -491,19 +491,17 @@ public final byte[] ID_Token = new byte[0];
 	 *         less than, equal to, or greater than the specified object.
 	 */
 	public int compareTo(final Entity other) {
-		// commented out until someone fixes bug [ 1401435 ] Stendhal: Fix
-		// positions system
-		// if (this.getY() < other.getY()) {
-		// // this entity is standing behind the other entity
-		// return -1;
-		// } else if (this.getY() > other.getY()) {
-		// // this entity is standing in front of the other entity
-		// return 1;
-		// } else {
-		// one of the two entities is standing on top of the other.
-		// find out which one.
-		return getView().getZIndex() - other.getView().getZIndex();
-		// }
+		if (this.getY() < other.getY()) {
+			// this entity is standing behind the other entity
+			return -1;
+		} else if (this.getY() > other.getY()) {
+			// this entity is standing in front of the other entity
+			return 1;
+		} else {
+			// one of the two entities is standing on top of the other.
+			// find out which one.
+			return getView().getZIndex() - other.getView().getZIndex();
+		}
 	}
 
 
