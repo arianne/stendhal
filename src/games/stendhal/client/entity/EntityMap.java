@@ -71,6 +71,7 @@ public final class EntityMap {
 
 		register("item", null, "Item");
 		register("item", "box", "Box");
+		register("item", "ring", "Ring");
 		register("item", "drink", "StackableItem");
 		register("item", "food", "StackableItem");
 		register("item", "herb", "StackableItem");
