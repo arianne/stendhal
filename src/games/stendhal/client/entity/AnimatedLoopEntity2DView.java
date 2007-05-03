@@ -53,21 +53,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 		String resource = translate(getEntity().getType());
 		SpriteStore store = SpriteStore.get();
 
-// When tile sprites using this class get rotated,
-// Change all of:
-		/*
-		 * TODO: There has to be a better way than this.. ugg!
-		 */
-		Sprite [] animation = new Sprite[frames];
-
-		for (int i = 0; i < frames; i++) {
-			animation[i] = store.getSprites(resource, i, 1, 1, 1)[0];
-		}
-
-		return new AnimatedSprite(animation, 100L);
-
-// To This:
-//		return new AnimatedSprite(store.getSprites(resource, 0, frames, 1, 1), 100L);
+		return new AnimatedSprite(store.getSprites(resource, 0, frames, 1, 1), 100L);
 	}
 
 
