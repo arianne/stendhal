@@ -11,24 +11,31 @@ package games.stendhal.client.entity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
  * The 2D view of a chest.
  */
-public class Ring2DView extends AnimatedStateEntity2DView {
+public class Ring2DView extends Item2DView {
+	private Ring ring;
+	private Sprite working;
+	private Sprite broken;
+	
 	/**
 	 * Create a 2D view of a chest.
 	 *
-	 * @param	chest		The entity to render.
+	 * @param	ring		The entity to render.
 	 */
-	public Ring2DView(final Ring chest) {
-		super(chest);
+	public Ring2DView(final Ring ring) {
+		super(ring);
+		this.ring=ring;
 	}
 
 
@@ -42,7 +49,7 @@ public class Ring2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 * @param	object		The entity to load sprites for.
 	 */
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+	protected void buildRepresentation(final RPObject object) {
 		Entity entity = getEntity();
 		String name = entity.getEntityClass();
 		String subclass = entity.getEntitySubClass();
@@ -54,20 +61,17 @@ public class Ring2DView extends AnimatedStateEntity2DView {
 		String resource = "data/sprites/items/" + name + ".png";
 		SpriteStore store = SpriteStore.get();
 
-		map.put("working", store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false));
-		map.put("broken", store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false));
+		working=store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false);
+		broken=store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false);
 	}
 
-
-	/**
-	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a <code>close</code>
-	 * named animation, or override this method</strong>.
-	 */
-	protected String getDefaultState() {
-		return "working";
+	public Sprite getSprite() {
+		if(ring.isWorking()) {
+			return working;
+		} else {
+			return broken;			
+		}
 	}
-
 
 	//
 	// Entity2DView

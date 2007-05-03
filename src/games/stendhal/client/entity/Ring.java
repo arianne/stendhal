@@ -12,18 +12,12 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.gui.wt.EntityContainer;
-
-import java.util.List;
-
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 
 /**
  * A chest entity.
  */
-public class Ring extends AnimatedStateEntity {
+public class Ring extends Item {
 	/**
 	 * Whether the chest is currently open.
 	 */
@@ -59,13 +53,8 @@ public class Ring extends AnimatedStateEntity {
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
-		if (object.has("amount") && object.getInt("amount")>0) {
-			working = true;
-			state = "working";
-		} else {
-			working = false;
-			state = "broken";
-		}
+		working=((object.has("amount") && object.getInt("amount")>0));
+		changed();
 	}
 
 	//
@@ -82,14 +71,7 @@ public class Ring extends AnimatedStateEntity {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
-		if (changes.has("amount") && changes.getInt("amount")>0) {
-			working = true;
-			state = "working";
-		} else {
-			working = false;
-			state = "broken";
-		}
-		
+		working=((object.has("amount") && object.getInt("amount")>0));
 		changed();
 	}
 
@@ -97,5 +79,9 @@ public class Ring extends AnimatedStateEntity {
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.LOOK;
+	}
+	
+	public boolean isWorking() {
+		return working;
 	}
 }
