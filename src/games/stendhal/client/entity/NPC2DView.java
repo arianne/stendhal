@@ -71,9 +71,9 @@ public class NPC2DView extends RPEntity2DView {
 
 
 		try {
-			if (object.has("outfit")) {
-				int code = object.getInt("outfit");
+			int code = ((RPEntity) getEntity()).getOutfit();
 
+			if (code != RPEntity.OUTFIT_UNSET) {
 				/*
 				 * Don't rebuild the same outfit
 				 */

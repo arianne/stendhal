@@ -37,6 +37,10 @@ import marauroa.common.game.RPObject;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends ActiveEntity {
+	/**
+	 * The value of an outfit that isn't set.
+	 */
+	public static final int	OUTFIT_UNSET	= -1;
 
 	private boolean showBladeStrike;
 
@@ -629,7 +633,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if (object.has("outfit")) {
 			outfit = object.getInt("outfit");
 		} else {
-			outfit = 0;
+			outfit = OUTFIT_UNSET;
 		}
 
 		/*
@@ -1070,7 +1074,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * Outfit
 		 */
 		if (changes.has("outfit")) {
-			outfit = 0;
+			outfit = OUTFIT_UNSET;
 			changed();
 		}
 
