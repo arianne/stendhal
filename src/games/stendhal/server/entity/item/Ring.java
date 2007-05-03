@@ -53,9 +53,9 @@ public class Ring extends Item implements UseListener {
 	@Override
 	public String describe() {
 		if(getInt("amount")==0) {
-			return "You see ring of life. Unfortunatelly it is broken.";
+			return "You see the ring of life. The gleam is lost from the stone and it has no powers.";
 		} else {
-			return "You see ring of life. Wear it, and you risk less from death.";
+			return "You see the ring of life. Wear it, and you risk less from death.";
 		}
 	}
 }
