@@ -34,7 +34,8 @@ public class QuestCheckingPortal extends Portal implements UseListener {
 		if (player.hasQuest(questslot)) {
 			StendhalRPAction.usePortal(player, this);
 		} else {
-			player.sendPrivateText("Why should i go down there. It looks very dangerous.");
+			player.sendPrivateText("Why should i go down there?. It looks very dangerous.");
+			player.notifyWorldAboutChanges();
 		}
 
 	}
