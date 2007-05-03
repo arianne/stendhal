@@ -272,6 +272,7 @@ public class StendhalRPWorld extends RPWorld {
 		StendhalMapStructure zonedata=null;
 		zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + content);
 
+		area.addTilesets(name+"_tilesets", zonedata.getTilesets());
 		area.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
 		area.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
 		area.addLayer(name + "_2_object", zonedata.getLayer("2_object"));
