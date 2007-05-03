@@ -225,10 +225,6 @@ public class StendhalClient extends ariannexp {
 					}
 				}
 
-				/** We clean the game object container */
-				logger.debug("CLEANING static object list");
-				gameObjects.clear();
-
 				String zoneid = message.getRPZoneID().getID();
 				staticLayers.setRPZoneLayersSet(zoneid);
 				screen.setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
@@ -275,6 +271,11 @@ public class StendhalClient extends ariannexp {
 	@Override
 	protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
 		Log4J.startMethod(logger, "onTransferREQ");
+
+		/** We clean the game object container */
+		logger.debug("CLEANING static object list");
+		gameObjects.clear();
+
 		for (TransferContent item : items) {
 
 			InputStream is = cache.getItem(item);

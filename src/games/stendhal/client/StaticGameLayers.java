@@ -71,6 +71,11 @@ public class StaticGameLayers {
 	/** true when the area has been changed */
 	private boolean areaChanged;
 
+	/**
+	 * Whether the internal state is valid
+	 */
+	private boolean valid;
+
 	public StaticGameLayers() {
 		collisions = new HashMap<String, CollisionDetection>();
 		layers = new HashMap<String, LayerRenderer>();
@@ -80,15 +85,20 @@ public class StaticGameLayers {
 		width = 0.0;
 		area = null;
 		areaChanged = true;
+		valid = true;
 	}
 
 	/** Returns width in world units */
 	public double getWidth() {
+		validate();
+
 		return width;
 	}
 
 	/** Returns the height in world units */
 	public double getHeight() {
+		validate();
+
 		return height;
 	}
 
@@ -152,12 +162,16 @@ public class StaticGameLayers {
 
 				layers.put(name, content);
 			}
+
+			valid = false;
 		} finally {
 			Log4J.finishMethod(logger, "addLayer");
 		}
 	}
 
 	public boolean collides(Rectangle2D shape) {
+		validate();
+
 		if(collision != null) {
 			return collision.collides(shape);
 		}
@@ -178,13 +192,35 @@ public class StaticGameLayers {
 	/** Set the set of layers that is going to be rendered */
 	public void setRPZoneLayersSet(String area) {
 		Log4J.startMethod(logger, "setRPZoneLayersSet");
+
 		logger.info("Area: "+area);
+
+		this.area = area;
+		this.areaChanged = true;
+		valid = false;
+
+		Log4J.finishMethod(logger, "setRPZoneLayersSet");
+	}
+
+
+	protected void validate() {
+		if(valid == true) {
+			return;
+		}
+
+		if(area == null) {
+			height = 0.0;
+			width = 0.0;
+			collision = null;
+
+			valid = true;
+			return;
+		}
 
 		/*
 		 * Set collision map
 		 */
 		collision = collisions.get(area);
-		collisions.clear();
 
 		if(collision != null) {
 			collisions.put(area, collision);
@@ -192,7 +228,6 @@ public class StaticGameLayers {
 
 
 		/*
-		 * Remove non-related layers.
 		 * Get maximum layer size.
 		 * Assign tileset to layers.
 		 */
@@ -200,16 +235,8 @@ public class StaticGameLayers {
 		height = 0.0;
 		width = 0.0;
 
-		Iterator<Map.Entry<String, LayerRenderer>> iter =
-			layers.entrySet().iterator();
-
-		while(iter.hasNext()) {
-			Map.Entry<String, LayerRenderer> entry = iter.next();
-
-			// keep only the actual zone
-			if(!entry.getKey().startsWith(area)) {
-				iter.remove();
-			} else {
+		for(Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
+			if(entry.getKey().startsWith(area)) {
 				LayerRenderer lr = entry.getValue();
 
 				lr.setTileset(tileset);
@@ -218,16 +245,17 @@ public class StaticGameLayers {
 			}
 		}
 
-		this.area = area;
-		this.areaChanged = true;
-		Log4J.finishMethod(logger, "setRPZoneLayersSet");
+		valid = true;
 	}
+
 
 	public String getRPZoneLayerSet() {
 		return area;
 	}
 
 	public void draw(GameScreen screen, String layer) {
+		validate();
+
 		LayerRenderer lr = layers.get(layer);
 
 		if(lr != null) {
@@ -241,6 +269,8 @@ public class StaticGameLayers {
 	 * 
 	 */
 	public CollisionDetection getCollisionDetection() {
+		validate();
+
 		return collision;
 	}
 
