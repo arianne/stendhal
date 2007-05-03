@@ -3122,7 +3122,7 @@ Makes players more offensive
 	</item>
 	<item name="skull_ring">
 		<type class="misc" subclass="skull_ring"/>
-		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<implementation class-name="games.stendhal.server.entity.item.Ring"/>
 		<weight value="1"/>
 		<equipable>
 			<slot name="bag"/>
@@ -3183,7 +3183,7 @@ Makes players more offensive
 	
 	<item name="engagement_ring">
 		<type class="ring" subclass="engagement_ring"/>
-		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<implementation class-name="games.stendhal.server.entity.item.Ring"/>
 		<weight value="0.1"/>
 		<equipable>
 			<slot name="bag"/>
@@ -3194,7 +3194,10 @@ Makes players more offensive
 	<item name="emerald_ring">
 	    <description>You see ring of life. Wear it, and you risk less from death.</description>
 		<type class="ring" subclass="emerald-ring"/>
-		<implementation class-name="games.stendhal.server.entity.item.Item"/>
+		<implementation class-name="games.stendhal.server.entity.item.Ring"/>
+		<attributes>
+			<amount value="1"/>
+		</attributes>
 		<weight value="0.1"/>
 		<equipable>
 			<slot name="bag"/>
