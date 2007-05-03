@@ -20,9 +20,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.LinkedList;
 import marauroa.common.Log4J;
 import marauroa.common.net.InputSerializer;
 
@@ -35,35 +33,13 @@ public class StaticGameLayers {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StaticGameLayers.class);
 
-	/**
-	 * Area collision maps.
-	 */
-	private Map<String, CollisionDetection> collisions;
+	private Pair<String, TileStore> nextTilesets;
+	
+	/** List of pair name, layer */
+	private LinkedList<Pair<String, LayerRenderer>> layers;
 
-	/**
-	 * The current collision map.
-	 */
-	private CollisionDetection collision;
-
-	/**
-	 * Named layers.
-	 */
-	private Map<String, LayerRenderer> layers;
-
-	/**
-	 * Area tilesets.
-	 */
-	private Map<String, TileStore> tilesets;
-
-	/**
-	 * The current area height.
-	 */
-	private double	height;
-
-	/**
-	 * The current area width.
-	 */
-	private double	width;
+	/** List of pair name, layer */
+	private LinkedList<Pair<String, CollisionDetection>> collisions;
 
 	/** Name of the layers set that we are rendering right now */
 	private String area;
@@ -71,34 +47,37 @@ public class StaticGameLayers {
 	/** true when the area has been changed */
 	private boolean areaChanged;
 
-	/**
-	 * Whether the internal state is valid
-	 */
-	private boolean valid;
-
 	public StaticGameLayers() {
-		collisions = new HashMap<String, CollisionDetection>();
-		layers = new HashMap<String, LayerRenderer>();
-		tilesets = new HashMap<String, TileStore>();
+		layers = new LinkedList<Pair<String, LayerRenderer>>();
+		collisions = new LinkedList<Pair<String, CollisionDetection>>();
 
-		height = 0.0;
-		width = 0.0;
 		area = null;
 		areaChanged = true;
-		valid = true;
 	}
 
 	/** Returns width in world units */
 	public double getWidth() {
-		validate();
-
+		double width = 0;
+		for (Pair<String, LayerRenderer> p : layers) {
+			if ((area != null) && p.first().contains(area)) {
+				if (width < p.second().getWidth()) {
+					width = p.second().getWidth();
+				}
+			}
+		}
 		return width;
 	}
 
 	/** Returns the height in world units */
 	public double getHeight() {
-		validate();
-
+		double height = 0;
+		for (Pair<String, LayerRenderer> p : layers) {
+			if ((area != null) && p.first().contains(area)) {
+				if (height < p.second().getHeight()) {
+					height = p.second().getHeight();
+				}
+			}
+		}
 		return height;
 	}
 
@@ -109,30 +88,26 @@ public class StaticGameLayers {
 		logger.info("Layer: "+name);
 		try {
 			if (name.endsWith("_collision")) {
-				String area = name.substring(0, name.length() - 10);
-
 				/*
 				 * Add a collision layer.
 				 */
-				if(collisions.containsKey(area)) {
-					// Repeated layers should be ignored.
-					return;
+				for (int i = 0; i < collisions.size(); i++) {
+					if (collisions.get(i).first().compareTo(name) == 0) {
+						/** Repeated layers should be ignored. */
+						return;
+					}
 				}
-
 				CollisionDetection collision = new CollisionDetection();
 				collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
-
-				collisions.put(area, collision);
+				collisions.add(new Pair<String, CollisionDetection>(name, collision));
 			} else if (name.endsWith("_tilesets")) {
-				String area = name.substring(0, name.length() - 9);
-
 				/*
 				 * Add tileset
 				 */
-				TileStore tileset = new TileStore();
-				tileset.addTilesets(new InputSerializer(in));
-
-				tilesets.put(area, tileset);
+				nextTilesets=new Pair<String,TileStore>(name, new TileStore());
+				
+				TileStore tileset=nextTilesets.second();
+				tileset.addTilesets(new InputSerializer(in));				
 			} else if (name.endsWith("_map")) {
 				/*
 				 * It is the minimap image for this zone.
@@ -141,41 +116,48 @@ public class StaticGameLayers {
 				/*
 				 * It is a tile layer.
 				 */
-				if(layers.containsKey(name)) {
-					// Repeated layers should be ignored.
-					return;
+				int i;
+				for (i = 0; i < layers.size(); i++) {
+					if (layers.get(i).first().compareTo(name) == 0) {
+						/** Repeated layers should be ignored. */
+						return;
+					}
+					if (layers.get(i).first().compareTo(name) >= 0) {
+						break;
+					}
 				}
-
 				LayerRenderer content = null;
-
 				URL url = getClass().getClassLoader().getResource("data/layers/" + name + ".jpg");
-
 				if (url != null) {
 					content = new ImageRenderer(url);
 				}
-
 				if (content == null) {
 					//TODO: XXX
 					content = new TileRenderer();
 					((TileRenderer) content).setMapData(new InputSerializer(in));
+					TileStore store=null;
+					
+					if(nextTilesets != null) {
+						store=nextTilesets.second();
+					}
+					
+					content.setTileset(store);
 				}
-
-				layers.put(name, content);
+				layers.add(i, new Pair<String, LayerRenderer>(name, content));
 			}
-
-			valid = false;
 		} finally {
 			Log4J.finishMethod(logger, "addLayer");
 		}
 	}
 
 	public boolean collides(Rectangle2D shape) {
-		validate();
-
-		if(collision != null) {
-			return collision.collides(shape);
+		for (Pair<String, CollisionDetection> p : collisions) {
+			if ((area != null) && p.first().equals(area + "_collision")) {
+				if (p.second().collides(shape)) {
+					return true;
+				}
+			}
 		}
-
 		return false;
 	}
 
@@ -183,83 +165,49 @@ public class StaticGameLayers {
 	public void clear() {
 		Log4J.startMethod(logger, "clear");
 		layers.clear();
-		tilesets.clear();
-		collision = null;
-		area = null;
 		Log4J.finishMethod(logger, "clear");
 	}
 
 	/** Set the set of layers that is going to be rendered */
 	public void setRPZoneLayersSet(String area) {
 		Log4J.startMethod(logger, "setRPZoneLayersSet");
-
 		logger.info("Area: "+area);
-
-		this.area = area;
-		this.areaChanged = true;
-		valid = false;
-
-		Log4J.finishMethod(logger, "setRPZoneLayersSet");
-	}
-
-
-	protected void validate() {
-		if(valid == true) {
-			return;
-		}
-
-		if(area == null) {
-			height = 0.0;
-			width = 0.0;
-			collision = null;
-
-			valid = true;
-			return;
-		}
-
-		/*
-		 * Set collision map
-		 */
-		collision = collisions.get(area);
-
-		if(collision != null) {
-			collisions.put(area, collision);
-		}
-
-
-		/*
-		 * Get maximum layer size.
-		 * Assign tileset to layers.
-		 */
-		TileStore tileset = tilesets.get(area);
-		height = 0.0;
-		width = 0.0;
-
-		for(Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
-			if(entry.getKey().startsWith(area)) {
-				LayerRenderer lr = entry.getValue();
-
-				lr.setTileset(tileset);
-				height = Math.max(height, lr.getHeight());
-				width = Math.max(width, lr.getWidth());
+		// keep only the actual zone
+		for (int i = 0; i < layers.size(); i++) {
+			if (!layers.get(i).first().contains(area)) {
+				layers.remove(i);
+			}
+		}		
+		
+		for (int i = 0; i < collisions.size(); i++) {
+			if (!collisions.get(i).first().equals(area + "_collision")) {
+				collisions.remove(i);
 			}
 		}
-
-		valid = true;
+				
+		if(nextTilesets!=null) {
+			for (int i = 0; i < layers.size(); i++) {
+				Pair<String, LayerRenderer> pair=layers.get(i);
+				if (pair.first().contains(area)) {
+					pair.second().setTileset(nextTilesets.second());
+				}
+			}
+		}
+		
+		this.area = area;
+		this.areaChanged = true;
+		Log4J.finishMethod(logger, "setRPZoneLayersSet");
 	}
-
 
 	public String getRPZoneLayerSet() {
 		return area;
 	}
 
 	public void draw(GameScreen screen, String layer) {
-		validate();
-
-		LayerRenderer lr = layers.get(layer);
-
-		if(lr != null) {
-			lr.draw(screen);
+		for (Pair<String, LayerRenderer> p : layers) {
+			if (p.first().equals(layer)) {
+				p.second().draw(screen);
+			}
 		}
 	}
 
@@ -269,9 +217,12 @@ public class StaticGameLayers {
 	 * 
 	 */
 	public CollisionDetection getCollisionDetection() {
-		validate();
-
-		return collision;
+		for (Pair<String, CollisionDetection> cdp : collisions) {
+			if ((area != null) && cdp.first().equals(area + "_collision")) {
+				return cdp.second();
+			}
+		}
+		return null;
 	}
 
 	/**
