@@ -18,15 +18,13 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.item.scroll.Scroll;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.game.RPObject;
+
+import org.apache.log4j.Logger;
 
 /**
  * A special ring that allows the owner to teleport to his or her spouse.
@@ -37,9 +35,9 @@ import marauroa.common.game.RPObject;
  * 
  * @author daniel
  */
-public class WeddingRing extends Item implements UseListener {
+public class WeddingRing extends Ring {
 
-	private static final Logger logger = Logger.getLogger(Scroll.class);
+	private static final Logger logger = Logger.getLogger(WeddingRing.class);
 
 	/**
 	 * Creates a new wedding ring.
