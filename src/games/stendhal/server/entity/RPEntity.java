@@ -250,6 +250,7 @@ public abstract class RPEntity extends Entity {
 		}
 		if (has("atk_xp")) {
 			atk_xp = getInt("atk_xp");
+			setATKXP(atk_xp);
 		}
 
 		if (has("def")) {
@@ -257,6 +258,7 @@ public abstract class RPEntity extends Entity {
 		}
 		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
+			setDEFXP(atk_xp);
 		}
 
 		if (has("base_hp")) {
@@ -266,11 +268,13 @@ public abstract class RPEntity extends Entity {
 			hp = getInt("hp");
 		}
 
-		if (has("xp")) {
-			xp = getInt("xp");
-		}
 		if (has("level")) {
 			level = getInt("level");
+		}
+		if (has("xp")) {
+			xp = getInt("xp");
+			// I want to force level to be updated.
+			addXP(0);
 		}
 		if (has("mana")) {
 			mana = getInt("mana");

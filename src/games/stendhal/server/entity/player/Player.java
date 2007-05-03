@@ -758,25 +758,27 @@ public class Player extends RPEntity implements TurnListener {
 		poisonToConsume.clear();
 
 		if(isEquipped("emerald_ring")){
-		 // Penalize: 2% less experience if wearing that ring
-		 setXP((int) (getXP() * 0.98));
-		 setATKXP((int) (getATKXP() * 0.98));
-	   	 setDEFXP((int) (getDEFXP() * 0.98));			
+			// Penalize: 2% less experience if wearing that ring
+			setXP((int) (getXP() * 0.98));
+			setATKXP((int) (getATKXP() * 0.98));
+			setDEFXP((int) (getDEFXP() * 0.98));			
 		}
 		else{
-		 // Penalize: 10% less experience
-		 setXP((int) (getXP() * 0.9));
-		 setATKXP((int) (getATKXP() * 0.9));
-		 setDEFXP((int) (getDEFXP() * 0.9));
+			// Penalize: 10% less experience
+			setXP((int) (getXP() * 0.9));
+			setATKXP((int) (getATKXP() * 0.9));
+			setDEFXP((int) (getDEFXP() * 0.9));
 		}
 		
+		update();		
+
 		super.onDead(killer, false);
 
 		setHP(getBaseHP());
 
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
-        //		 Penalize: Respawn on afterlive zone and
+        // Penalize: Respawn on afterlive zone and
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_afterlife");
 
 		zone.placeObjectAtEntryPoint(this);
