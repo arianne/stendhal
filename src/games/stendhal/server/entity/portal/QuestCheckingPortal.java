@@ -31,11 +31,12 @@ public class QuestCheckingPortal extends Portal implements UseListener {
 	@Override
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
+		
 		if (player.hasQuest(questslot)) {
 			StendhalRPAction.usePortal(player, this);
 		} else {
 			player.sendPrivateText("Why should i go down there?. It looks very dangerous.");
-			player.notifyWorldAboutChanges();
+			player.stop();
 		}
 
 	}
