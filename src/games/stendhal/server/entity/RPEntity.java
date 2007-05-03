@@ -258,7 +258,7 @@ public abstract class RPEntity extends Entity {
 		}
 		if (has("def_xp")) {
 			def_xp = getInt("def_xp");
-			setDEFXP(atk_xp);
+			setDEFXP(def_xp);
 		}
 
 		if (has("base_hp")) {
