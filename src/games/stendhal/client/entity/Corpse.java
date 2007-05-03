@@ -82,7 +82,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	 */
 	@Override
 	protected double getHeight() {
-		// Ugg - Don't couple visual size with logical size
+		//TODO: Ugg - Don't couple visual size with logical size
 		return (double) getView().getSprite().getHeight() / GameScreen.SIZE_UNIT_PIXELS;
 	}
 

@@ -240,9 +240,7 @@ public abstract class ActiveEntity extends AnimatedStateEntity {
 		dx = direction.getdx() * speed;
 		dy = direction.getdy() * speed;
 
-		/*
-		 * KLUDGE - Ensure that view animation is set right
-		 */
+		// TODO: KLUDGE - Ensure that view animation is set right
 		changed();
 	}
 

@@ -56,7 +56,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 // When tile sprites using this class get rotated,
 // Change all of:
 		/*
-		 * There has to be a better way than this.. ugg!
+		 * TODO: There has to be a better way than this.. ugg!
 		 */
 		Sprite [] animation = new Sprite[frames];
 
