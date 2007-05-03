@@ -1063,12 +1063,20 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (changes.has("xp") && object.has("xp")) {
 			if (distanceToUser() < 15 * 15) {
-				addFloater("+" + (changes.getInt("xp") - object.getInt("xp")), Color.cyan);
+				int amount=(changes.getInt("xp") - object.getInt("xp"));
+				if(amount>0) {
+					addFloater("+" + amount, Color.cyan);
 
-				StendhalUI.get().addEventLine(
-				        getTitle() + " earns "
-				                + Grammar.quantityplnoun(changes.getInt("xp") - object.getInt("xp"), "experience point")
-				                + ".", Color.blue);
+					StendhalUI.get().addEventLine( getTitle() + " earns "
+							+ Grammar.quantityplnoun(amount, "experience point")
+							+ ".", Color.blue);
+				} else {
+					addFloater(""+amount, Color.pink);
+
+					StendhalUI.get().addEventLine( getTitle() + " loses "
+							+ Grammar.quantityplnoun(amount, "experience point")
+							+ ".", Color.red);
+				}
 			}
 		}
 
