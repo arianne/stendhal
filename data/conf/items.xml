@@ -3197,6 +3197,7 @@ Makes players more offensive
 		<implementation class-name="games.stendhal.server.entity.item.Ring"/>
 		<attributes>
 			<amount value="1"/>
+			<persistent value="1"/>
 		</attributes>
 		<weight value="0.1"/>
 		<equipable>
