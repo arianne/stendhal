@@ -287,6 +287,15 @@ public class Player extends RPEntity implements TurnListener {
 		}
 	}
 
+	@Override
+	public boolean isObstacle(Entity entity) {
+		if(get("zoneid").equals("int_afterlife") && entity instanceof Player) {
+			return false;
+		}
+		
+		return super.isObstacle(entity);
+	}
+	
 	/**
 	 * Stop and clear any active directions.
 	 */

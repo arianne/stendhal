@@ -724,6 +724,22 @@ public class StendhalRPAction {
 		player.clearPath();
 
 		String source = player.getID().getZoneID();
+		
+		/*
+		 * TODO: HACK: We should create an interface for this like onEnter and onLeave
+		 */ 
+		/*
+		 * If player enters afterlife, make it partially transparent
+		 */
+		if(destination.equals("int_afterlife")) {
+			player.put("visibility",50);
+		}
+		/*
+		 * Of course remove the effect once it leave
+		 */
+		if(source.equals("int_afterlife") && player.has("visibility")) {
+			player.remove("visibility");
+		}
 
 //		StendhalRPZone oldzone = player.getZone();
 
