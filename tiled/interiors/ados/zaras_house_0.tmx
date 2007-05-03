@@ -45,17 +45,20 @@
  <tileset name="../../tileset/plant/indoor/flower_vase.png" firstgid="161" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/table/grey_plain.png" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/furniture/table/grey_plain.png" firstgid="164" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/table/grey_plain.png"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/sink/dark_front_on.png" firstgid="171" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/furniture/sink/dark_front_on.png" firstgid="173" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/sink/dark_front_on.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/plant/indoor/pot_plant.png" firstgid="177" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/plant/indoor/pot_plant.png" firstgid="179" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/pot_plant.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="182" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="../../tileset/logic/item/vegetable.png" firstgid="183" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
@@ -64,17 +67,17 @@
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXOyw7BQBSA4XkL13oBl2qpDVoWaN13SryJeAWJhaSP61/MojloppJykm9zTv7M2EqploEDYhxTuy466MF/I0SEJU644axvfbR1P0IDVWGFNTa44I4rLAxFX1avs8UOe7EvGfafpqg+wESY5uhnmAuLH/6/6P6B5I/vZ/V1VAzVRO9hnNNA9w6aX3LxBEAbSioABAAA
+   H4sIAAAAAAAAAMXOSw7BUBSA4buL0mID9X5NvAeoPjBDYydiCxIDiY3Yn39wB81Bc4ukJ/km5+bPuQ2lVNXADnscErsm6uhg/IaHFXzEuOCo37qo6X6ICmwhQIgIJ1xxRhkD0RfU66yxwVbsLcP+0/zSP1L6CabCLMP9ORbC8s//z7O/4Z7j/bS+hKIhR/Q9jDLq674F90ttPAHDo+v4AAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB6YCcSzqGgeqWA2EM8hoGYzHrm5QDyPAvvnA/ECCvQPB7AIiJdQoH8FEK+iklvQwWogXoNHfiEB/euBeAP1nDMoAACERYc8AAQAAA==
+   H4sIAAAAAAAAAGNgoB6YCcSzqGgeqWA2EM8hoGYrHrm5QDyPAvvnA/ECCvQPB7AEiJdRoH8VEK+hklvQwVogXodHfiEB/RuBeBP1nDMoAAAU/dXdAAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC/YSKH+TVRxxSgYKDB9oB0wClAAAHWRdk8ABAAA
+   H4sIAAAAAAAAAGNgoC/YTKH+LVRxxSgYKDB9oB0wClAAANMDAnQABAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
@@ -84,12 +87,12 @@
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
+   H4sIAAAAAAAAAGNgGAWkgIMD7YBRMAqoCAAAdN9CAAQAAA==
   </data>
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvCwMCwZYhgBhLUoatlwCGOTz8uQK6+kaCfkFmUhDsx9pOjj1Q3DHQ+oCYGAC28m4MABAAA
+   H4sIAAAAAAAAANvGwMCwbYhgBhLUoatlwCGOTz8uQK4+QnYTCwazfkJmDaT/SUk7lJozVDAAw8ylSwAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16">

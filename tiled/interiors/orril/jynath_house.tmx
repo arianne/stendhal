@@ -63,6 +63,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="291" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="../../tileset/plant/indoor/pot_plant.pn" firstgid="292" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant.png"/>
+ </tileset>
+ <tileset name="../../tileset/logic/item/vegetable.png" firstgid="295" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/vegetable.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3TvQ6CMBRA4SIuChsmqIlMLPwILDKxqpvy/k/DGboKpIlto3f4ptKeALexUmrjSIQtOtSWtQh1v8RgWeFJ/4Szg36CAy7IHPRTHD34/tKX+Zf5n3+2n1m7Weh/8/3zBWvPWzrnE5l//+df+r/bl/v33/9f+u77DSoDdzzwNNh71f09AkMvvDEa7t9hAv8qts8AEAAA
@@ -70,7 +76,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSU/DMBCFTcuFpcD/YP1blOUKLVwLXBFLKdwR+47YKYU/1hfhSI41tscT0gPwpO+SzJvnRbGj1LdmQRXMKVqh93k1DxbAovD9v8J6BE+BmgZYA+sRfSlPjah7Bi8RfVMta1YiPDViDK/gLTK7buT3QtRahrIleybRBbgEV+C64CxKN+AW3IF7Rn2ybvVCRxTON0n0DtoeT+xePng8VP4H6DB7p1qNrPfpE3xZz6bAuIeQfF4Xk9o7CPo8jIAjcOjgBFQCPVwMMObWr/OPHST5ZUYfl4ZBSWXv95LBGCN/1PJwGdLzm1HZ+33C4hScOTgn6jlMB9Ztg7+EGQ/1rUh6mXKd/0WfbVtgOwc7ug91F1Oy79ld0ASbQvaMXtx88x/jJ/KpPVpijCXNl2bb85eo1/lF7r8kvwX2c3AQmf+bFPvPYH8TrjPTd5ZKPH9dXYHGT5IAEAAA
+   H4sIAAAAAAAAAO2WR1PDMBCFlcAFEsqv4EIJf4t6hQSulCtDhztD7wyElgB/jOdBnpHFSlqtcQ7Am/ku9r59KmPJSn1pAkyCKUUr9D6vpsEMmBW+/1dYD6AZqFkCy2Aloi/lqRN1j+Apom+qec1ChKdOjOEZvERmN4z8Tohay1C2ZM8kOgcX4BJcFZxF6RrcgFtwx6hP1q1R6IjC+SaJXkHL44ndy3uPh8pvgzdm71SLkfU+vYMP69kYGPYQks/rYlR7e0HJQz84BAcOjkFfoIeLHsbcunX+kYMkv4vRx6UqKKvs/V42GGTkD1geLhU9v3GVvd9HLE7AqYMzop5DLbBuq/wlzHiob0XSy5Tr/C/6bFsHGznY1H2ou5iSfc9ugW2wJmTH6MXNN/8xfiKf2qM5xljSfGm2PX+JOp1f5P5L8nfBXg72I/N/k3z/DEOl78/sb8J1ZvrOUonnr+sT3KscYQAQAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -90,12 +96,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OIQEAAAgDsNOE/imJgEBgtgRLAAAAgE3X9+BmAIIH4u4AEAAA
+   H4sIAAAAAAAAAO3QAQ0AAAQAQZqooH85MYzdJfh9BAAAAF91bhf8UcdfDkTERSQAEAAA
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VQRKAIAwD8S38/49ePRRMYkqZkcxwg2xasfSrtX7WclXwn6wRX8k08lH4qD+aCfFE9znF9D+zP8w5551dwZ/tc9XC3rG3+eP6/1Q+W6Mq13x2vwOH/09+5MuK8ULrm2VRMir8r4oYET8zSxUf+fbZ/R/l2o2flSWqc0d+lir4yEybZVBmHnPG+W64vCrWDdoQ1woAEAAA
+   H4sIAAAAAAAAAO2VwQ3AIAwD6Szsv2O/fSTguA5BAkt8KvA5gUJ/Wut3LFcF/8vy+Ewmz4fho/5oJsQTnadUpP+Z/YmsU57ZFfzRPFUt0TM2u39U/x/Lj9bISnU/q9+Byz+Tb/lGFfFC6xtlYTIy/L+yGBY/M0sVH9n77P57uXbjZ2Wx6tyRn6UKPnNnI+tnvuh35buh8qoYLxG852QAEAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="32">

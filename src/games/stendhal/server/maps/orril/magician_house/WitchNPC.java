@@ -58,7 +58,8 @@ public class WitchNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting();
-				addJob("I'm a witch, since you ask.");
+				addJob("I'm a witch, since you ask. I grow #collard as a hobby.");
+				addReply("collard","That cabbage in the pot. Be careful of it!");
 				/* addHelp("You may want to buy some potions or do some #task for me."); */
 				addHelp("I can #heal you");
 				addHealer(200);

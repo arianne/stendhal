@@ -26,7 +26,7 @@ import marauroa.common.game.IRPZone;
  * - You bring the ingredients to the tavern 
  * - Collecting them all gives you a base mana bonus
  * - The soup is served at table
- * - Eating the soup heals you fully
+ * - Eating the soup heals you fully and adds karma
  *  
  *  
  * REWARD:
@@ -36,12 +36,13 @@ import marauroa.common.game.IRPZone;
  * 
  * REPETITIONS:
  * - as many as desired
+ * - TODO: Make only possible to repeat once every ten minutes say
  * 
  * @author kymara
  */
 public class Soup extends AbstractQuest {
 
-    private static final List<String> NEEDED_FOOD = Arrays.asList("carrot", "spinach", "courgette", "cabbage", "salad", "onion", "cauliflower", "broccoli", "leek");
+    private static final List<String> NEEDED_FOOD = Arrays.asList("carrot", "spinach", "courgette", "collard", "salad", "onion", "cauliflower", "broccoli", "leek");
 
 	/**
 	 * Returns a list of the names of all food that the given player
@@ -172,12 +173,22 @@ public class Soup extends AbstractQuest {
 			);
 			// players asks about the vegetables individually
 			npc.add(ConversationStates.QUEST_OFFERED,
-					Arrays.asList("spinach", "courgette", "cabbage", "onion", "cauliflower", "broccoli", "leek"),
+					Arrays.asList("spinach", "courgette", "onion", "cauliflower", "broccoli", "leek"),
 					null,
 					ConversationStates.QUEST_OFFERED,
-					"You will find that in allotments close to Fado. So will you fetch the ingredients?",
+					"You will find that in allotments in Fado. So will you fetch the ingredients?",
 					null
 			);
+			
+			//	players asks about the vegetables individually
+			npc.add(ConversationStates.QUEST_OFFERED,
+					"collard",
+					null,
+					ConversationStates.QUEST_OFFERED,
+					"That grows indoors in pots. Someone like a witch or an elf might grow it. So will you fetch the ingredients?",
+					null
+			);
+			
 			// players asks about the vegetables individually
 			npc.add(ConversationStates.QUEST_OFFERED,
 					Arrays.asList("salad", "carrot"),
@@ -244,11 +255,12 @@ public class Soup extends AbstractQuest {
 								npc.say("Thank you very much! What else did you bring?");
 							} else {
 								placeSoupFor(player);
-
-								player.addBaseMana(10); // i don't know what number to choose here as i don't know about mana.
+								// had to comment out mana as not sure it's in game - added karma instead
+								player.addKarma(5.0);
+								//player.addBaseMana(10); // i don't know what number to choose here as i don't know about mana.
 								player.addXP(100);
 								player.healPoison();
-								npc.say("The soup's on the table for you. It will heal you. My magical method in making the soup has increased your base mana.");
+								npc.say("The soup's on the table for you. It will heal you. My magical method in making the soup had given you a little karma too.");
 								player.setQuest("soup_maker", "done");
 								player.notifyWorldAboutChanges();
 								npc.setCurrentState(ConversationStates.ATTENDING);

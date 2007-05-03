@@ -147,6 +147,12 @@
  <tileset name="../../tileset/logic/item/corn.png" firstgid="901" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/corn.png"/>
  </tileset>
+ <tileset name="../../tileset/logic/item/vegetable.png" firstgid="902" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/vegetable.png"/>
+ </tileset>
+ <tileset name="../../tileset/logic/item/mushroom.png" firstgid="913" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/mushroom.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3awU4CMRRA0YbEDa5YsfL/f1NdECfYdgrDZPp4Z3FiCdTY3HlBRk+llBMAAAAAAAAAAAAAAAAABPS1wdE/OwAAAAAAAADM5vLjc6evlwnOx1j/Peg/v73a3xx9PvrMf261bucV9681/3HV5v+36XXRe7le9r421uY/jtb8t/qX8ncNXO/W5j+eR+e/lPH+5n9+rZmtve/X9p3v9pn/WGrzP9K/9dj8x9Kb/2Xbtf7mP6be/G/tb/7n9+z7f+1zf+37HX0++lrz/4rryfzPr3Xfrjf7p8rzrXuBR5+PvtH7/5fy/2+7I3uOPh99a/1u6zLY3PzH0mu6tb/5n9+j/89TW/def/T5AAAAAAAAAAAAAAAAYM1Hw7P7RvYyh17DXse1fa6BGPTPTf/c9M9N//ewx+/w+sewpYP+8emfm/656Z+b/rlt7fDqfdrH6k9s+uemf27656Y/2gMAAMD78/k/L/f/ctM/N/1z0z83/XPTPzf9c9M/N/1z0z83/dEegDXfe7ABfQAAAQA=
@@ -174,7 +180,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dUWoCMRAGYME7iqeoe4neuyylNEhaFnXdTP7vg33yQeLMZCcmrqcTAAAAAAAAAAAAAADAMW7n34scSxNvsWe1yIMYYk1LD5DHHJBHzAEAAAAAAAAAAAAAAAAAAADwnJk8njOY7Sfu4p9J/SP2AAAAAAAAY7KPhxzIJO4AkKc9x9frA/y/4Pza2Pfivfzz2hYfBXLo89y/ZnPpjEn/z7221peAs/4p9f+XLXP7zPEn27vqv3f/pa9C3/iM6+TjqyT9/r+XxP2F2eetrdq4j54DVet/9H5i9LjDqmr9U9foczd16UFJI+dhP+oLAPblu4Hj2JeFx1knAAAV6WFIdHTeH/3+7C/5TKCxv17FOUMe5Ekdd8tnQFVylx55kaHS79kgxbvXf/e1by74VnEdDuT5AkW4WOsAAAEA
+   H4sIAAAAAAAAAO3da2qDQBAA4MDesfQUba7R0ge9cQlFuoQ1EY3uY74PwgTyI5FZx9lV4+kEAAAAAAAAAAAAAABQx2v6fxHHOcu33HNxNg7CkGtyeoB41IB45BwAAAAAAAAAAAAAAAAAAAAA/zMTj5wDAAAAAAAAQFucy4eY7PsAEE/+vPBSL+D5guPLc1/K9/nGZ0u8dDCG3lI53vOebsfWPBV+lzkA1/J9fXo/+jj5TuV4z1cqx54sqe2j55+4PlI5Uk8PfeMWz4Nv39HW9vCTtcd/5kXsGUavW0vluW99HGypHTXn/qX5fEtq5D3v3fRxLLVmDjA39+9xDYBjtV67e7O1/x+JHpRojHku9P/7sH8BwL6sDdTjvCysZ54AABzlkdfv6WGIqPa43/r9n6kcaUfr14LuybY/3lQzfmYi0Ia9658awF4iH7t7oPeH2NzDG8/Ra1bXfYC+4E/ttUOAJX4BtknMewAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.2">
