@@ -44,6 +44,7 @@ public final class EntityMap {
 	private static void register() throws ClassNotFoundException {
 		register("player", null, "Player");
 
+		register("creature", "boss", "BossCreature");
 		register("creature", null, "ResizeableCreature");
 
 		register("sheep", null, "Sheep");
