@@ -3343,6 +3343,33 @@
 		</ai>
 	</creature>
 
+	<creature name="giant_dwarf">
+		<type class="boss" subclass="giant_dwarf" tileid="boss.png:0"/>
+		<attributes>
+			<atk value="225"/>
+			<def value="35"/>
+			<hp value="700"/>
+			<speed value="1"/>
+			<size value="5,5"/>
+		</attributes>
+		<level value="90"/>
+		<experience value="14000"/>
+		<respawn value="25200"/>
+		<drops>
+			<item value="money" quantity="[50,500]" probability="100"/>
+			<item value="greater_potion" quantity="[1,6]" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="15,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
+
 <!-- Level 100 -->
     
 	<creature name="dark_elf_viceroy">
