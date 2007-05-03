@@ -34,6 +34,7 @@ import tiled.io.PluginLogger;
  * Writer Plugin for tiled. Saves maps as *.stend files. This plugin ignores the
  * filename.
  */
+@Deprecated
 public class StendhalMapWriter implements MapWriter {
 
 	private PluginLogger pluginLogger;
