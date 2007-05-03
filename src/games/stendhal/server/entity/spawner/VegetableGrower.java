@@ -25,15 +25,18 @@ import marauroa.common.game.RPObject;
  * 
  * @author hendrik
  */
-public class CarrotGrower extends GrowingPassiveEntityRespawnPoint implements UseListener {
+public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements UseListener {
+	private String vegetableName;
 
-	public CarrotGrower(RPObject object) throws AttributeNotFoundException {
-		super(object, "items/grower/carrot_grower", "Pick", 1, 1, 1);
+	public VegetableGrower(RPObject object, String name) throws AttributeNotFoundException {
+		super(object, "items/grower/"+name+"_grower", "Pick", 1, 1, 1);
+		vegetableName=name;
 		update();
 	}
 
-	public CarrotGrower() throws AttributeNotFoundException {
-		super("items/grower/carrot_grower", "Pick", 1, 1, 1);
+	public VegetableGrower(String name) throws AttributeNotFoundException {
+		super("items/grower/"+name+"_grower", "Pick", 1, 1, 1);
+		vegetableName=name;
 	}
 
 	@Override
@@ -41,13 +44,13 @@ public class CarrotGrower extends GrowingPassiveEntityRespawnPoint implements Us
 		String text;
 		switch (getRipeness()) {
 			case 0:
-				text = "You see a planted carrot seed.";
+				text = "You see a planted "+vegetableName+" seed.";
 				break;
 			case 1:
-				text = "You see a ripe carrot.";
+				text = "You see a ripe "+vegetableName+".";
 				break;
 			default:
-				text = "You see an unripe carrot.";
+				text = "You see an unripe "+vegetableName+".";
 				break;
 		}
 		return text;
@@ -60,10 +63,10 @@ public class CarrotGrower extends GrowingPassiveEntityRespawnPoint implements Us
 		if (entity.nextTo(this)) {
 			if (getRipeness() == 1) {
 				onFruitPicked(null);
-				Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("carrot");
+				Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(vegetableName);
 				entity.equip(grain, true);
 			} else if (entity instanceof Player) {
-				((Player) entity).sendPrivateText("This carrot is not yet ripe enough to pick.");
+				((Player) entity).sendPrivateText("This "+vegetableName+" is not yet ripe enough to pick.");
 			}
 		}
 	}

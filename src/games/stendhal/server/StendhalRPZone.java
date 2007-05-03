@@ -27,7 +27,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.entity.spawner.CarrotGrower;
+import games.stendhal.server.entity.spawner.VegetableGrower;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.spawner.GrainField;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
@@ -440,10 +440,31 @@ public class StendhalRPZone extends MarauroaRPZone {
 							plantGrower = new PassiveEntityRespawnPoint("apple", 500);
 							break;
 						case 1:
-							plantGrower = new CarrotGrower();
+							plantGrower = new VegetableGrower("carrot");
 							break;
 						case 2:
 							plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
+							break;
+						case 3:
+							plantGrower = new VegetableGrower("broccoli");
+							break;
+						case 4:
+							plantGrower = new VegetableGrower("cauliflower");
+							break;
+						case 5:
+							plantGrower = new VegetableGrower("chinese_cabbage");
+							break;
+						case 6:
+							plantGrower = new VegetableGrower("leek");
+							break;
+						case 7:
+							plantGrower = new VegetableGrower("onion");
+							break;
+						case 8:
+							plantGrower = new VegetableGrower("zucchini");
+							break;
+						case 9:
+							plantGrower = new PassiveEntityRespawnPoint("spinach", 1500);
 							break;
 					}
 
