@@ -44,7 +44,8 @@ public class CheckSounds {
 		return s;
 	}
 
-	public static void main(String[] args) throws Exception {
+	@SuppressWarnings("unchecked")
+    public static void main(String[] args) throws Exception {
 		Properties prop = new Properties();
 		loadSoundProperties(prop);
 

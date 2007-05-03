@@ -105,7 +105,8 @@ public class ServerTMXLoader {
 	 * @param children the children amongst which to find properties
 	 * @param props    the properties object to set the properties of
 	 */
-	private static void readProperties(NodeList children, Properties props) {
+	@SuppressWarnings("unused")
+    private static void readProperties(NodeList children, Properties props) {
 		for (int i = 0; i < children.getLength(); i++) {
 			Node child = children.item(i);
 			if ("property".equalsIgnoreCase(child.getNodeName())) {
