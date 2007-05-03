@@ -771,9 +771,9 @@ public class Player extends RPEntity implements TurnListener {
 		
 		if(emeraldRing!=null && emeraldRing.getInt("amount")>0){
 			// Penalize: 2% less experience if wearing that ring
-			setXP((int) (getXP() * 0.98));
-			setATKXP((int) (getATKXP() * 0.98));
-			setDEFXP((int) (getDEFXP() * 0.98));
+			setXP((int) (getXP() * 0.99));
+			setATKXP((int) (getATKXP() * 0.99));
+			setDEFXP((int) (getDEFXP() * 0.99));
 			
 			/* 
 			 * We broke now the emerald ring.
