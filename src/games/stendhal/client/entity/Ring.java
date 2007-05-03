@@ -1,0 +1,101 @@
+/* $Id$ */
+/***************************************************************************
+ *                      (C) Copyright 2003 - Marauroa                      *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+package games.stendhal.client.entity;
+
+import games.stendhal.client.gui.wt.EntityContainer;
+
+import java.util.List;
+
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+
+/**
+ * A chest entity.
+ */
+public class Ring extends AnimatedStateEntity {
+	/**
+	 * Whether the chest is currently open.
+	 */
+	private boolean working;
+
+	/**
+	 * Create a chest entity.
+	 */
+	Ring() {
+	}
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	protected Entity2DView createView() {
+		return new Ring2DView(this);
+	}
+
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		if (object.has("amount") && object.getInt("amount")>0) {
+			working = true;
+			state = "working";
+		} else {
+			working = false;
+			state = "broken";
+		}
+	}
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("amount") && changes.getInt("amount")>0) {
+			working = true;
+			state = "working";
+		} else {
+			working = false;
+			state = "broken";
+		}
+		
+		changed();
+	}
+
+
+	@Override
+	public ActionType defaultAction() {
+		return ActionType.LOOK;
+	}
+}
