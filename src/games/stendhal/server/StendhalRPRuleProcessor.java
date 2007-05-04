@@ -463,16 +463,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			bloodsToRemove.clear();
 
 			for (Player player : playersRmText) {
-				if (player.has("text")) {
-					player.remove("text");
-					player.notifyWorldAboutChanges();
-				}
 				if (player.has("private_text")) {
 					player.remove("private_text");
 					player.notifyWorldAboutChanges();
 				}
 			}
-			playersRmText.clear();
 			
 			for (Player player : players) {
 				if (player.has("risk")) {
@@ -520,6 +515,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 				player.consume(getTurn());
 			}
+			
 			for (NPC npc : npcs) {
 				try {
 					npc.logic();
@@ -527,6 +523,14 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					logger.error("error in beginTurn", e);
 				}
 			}
+
+			for (Player player : playersRmText) {
+				if (player.has("text")) {
+					player.remove("text");
+					player.notifyWorldAboutChanges();
+				}
+			}
+			playersRmText.clear();
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {
