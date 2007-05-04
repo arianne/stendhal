@@ -227,30 +227,12 @@ public class StendhalClient extends ariannexp {
 
 				String zoneid = message.getRPZoneID().getID();
 				staticLayers.setRPZoneLayersSet(zoneid);
-				screen.setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
+				screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
 
 				/** And finally place player in screen */
 				Graphics2D g = screen.expose();
 				g.setColor(Color.BLACK);
 				g.fill(new Rectangle(0, 0, j2DClient.SCREEN_WIDTH, j2DClient.SCREEN_HEIGHT));
-
-				double x = object.getDouble("x") - screen.getWidth() / 2;
-				double y = object.getDouble("y") - screen.getHeight() / 2;
-
-				if (x < 0) {
-					x = 0;
-				} else if ((staticLayers.getWidth() != 0) && (x + screen.getWidth() > staticLayers.getWidth())) {
-					x = staticLayers.getWidth() - screen.getWidth();
-				}
-
-				if (y < 0) {
-					y = 0;
-				} else if ((staticLayers.getHeight() != 0) && (y + screen.getHeight() > staticLayers.getHeight())) {
-					y = staticLayers.getHeight() - screen.getHeight();
-				}
-
-				screen.place(x, y);
-				screen.move(0, 0);
 			}
 
 			/** This code emulate a perception loss. */
@@ -302,7 +284,7 @@ public class StendhalClient extends ariannexp {
 
 	private void contentHandling(String name, InputStream in) throws IOException, ClassNotFoundException {
 		staticLayers.addLayer(name, in);
-		screen.setMaxWorldSize((int) staticLayers.getWidth(), (int) staticLayers.getHeight());
+		screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
 	}
 
 	@Override

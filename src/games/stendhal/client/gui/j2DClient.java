@@ -528,7 +528,7 @@ public class j2DClient extends StendhalUI {
 		// Clear the first screen
 		screen.clear();
 
-		screen.place(-100, -100);
+//		screen.place(-100, -100);
 
 		SoundMaster.play("harp-1.wav");
 
@@ -581,9 +581,6 @@ public class j2DClient extends StendhalUI {
 				lastMessageHandle = System.currentTimeMillis();
 			}
 
-			logger.debug("Move screen");
-			moveScreen( staticLayers);
-
 			if (System.nanoTime() - oldTime > 1000000000) {
 				oldTime = System.nanoTime();
 				logger.debug("FPS: " + Integer.toString(fps));
@@ -627,69 +624,6 @@ public class j2DClient extends StendhalUI {
 		logger.info("Request logout");
 		client.logout();
 		SoundSystem.get().exit();
-	}
-
-	private void moveScreen(StaticGameLayers gameLayers) {
-		try {
-			if (User.isNull()) {
-				return;
-			}
-
-			double x = User.get().getX();
-			double y = User.get().getY();
-
-			double screenx = screen.getX();
-			double screeny = screen.getY();
-			double screenw = screen.getWidth();
-			double screenh = screen.getHeight();
-			
-			if(Math.abs(screenx-x)>15 || Math.abs(screeny-y)>15) {
-				 x = x - screenw / 2;
-				 y = y - screenh / 2;
-				 
-				 StaticGameLayers layers=StendhalClient.get().getStaticGameLayers();
-				if (x < 0) {
-					x = 0;
-				} else if ((layers.getWidth() != 0) && (x + screen.getWidth() > layers.getWidth())) {
-					x = layers.getWidth() - screen.getWidth();
-				}
-
-				if (y < 0) {
-					y = 0;
-				} else if ((layers.getHeight() != 0) && (y + screen.getHeight() > layers.getHeight())) {
-					y = layers.getHeight() - screen.getHeight();
-				}
-				
-				screen.place(x, y);
-				return;
-			}
-			
-			double sdx = screen.getdx();
-			double sdy = screen.getdy();
-
-			double dsx = screenx + screenw / 2;
-			double dsy = screeny + screenh / 2;
-
-			if (dsx - x < -2) {
-				sdx += 0.6;
-			} else if ((dsx - x > -0.5) && (dsx - x < 0.5)) {
-				sdx /= 1.6;
-			} else if (dsx - x > 2) {
-				sdx -= 0.6;
-			}
-
-			if (dsy - y < -2) {
-				sdy += 0.6;
-			} else if ((dsy - y > -0.5) && (dsy - y < 0.5)) {
-				sdy /= 1.6;
-			} else if (dsy - y > 2) {
-				sdy -= 0.6;
-			}
-
-			screen.move(sdx, sdy);
-		} catch (AttributeNotFoundException e) {
-			// Logger.thrown("j2DClient::moveScreen","X",e);
-		}
 	}
 
 

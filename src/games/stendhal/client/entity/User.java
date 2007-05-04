@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.soundreview.HearingArea;
@@ -55,6 +56,8 @@ public class User extends Player {
 
 		WorldObjects.firePlayerMoved();
 		HearingArea.set(x, y);
+
+		GameScreen.get().place(x, y, false);
 	}
 
 	@Override

@@ -421,8 +421,8 @@ public class TileRenderer extends LayerRenderer {
 			frame++;
 		}
 
-		int x = (int) screen.getX();
-		int y = (int) screen.getY();
+		int x = (int) screen.getViewX();
+		int y = (int) screen.getViewY();
 		int w = (int) screen.getWidth();
 		int h = (int) screen.getHeight();
 

@@ -58,23 +58,38 @@ public class GameScreen {
 
 	private Graphics2D g;
 
-	/** Actual rendering position of the leftmost top corner in world units */
-	private double x, y;
+	/**
+	 * The targeted center of view X coordinate.
+	 */
+	private double	x;
 
-	/** Actual speed of the screen */
-	private double dx, dy;
+	/**
+	 * The targeted center of view Y coordinate.
+	 */
+	private double	y;
 
 	/** Actual size of the screen in pixels */
 	private int sw, sh;
 
 	/** Actual size of the world in world units */
-	private int ww, wh;
+	protected double ww, wh;
 
 	/** the singleton instance */
 	private static GameScreen screen;
 
 	/** the awt-component which this screen belongs to */
 	private Component component;
+
+	/**
+	 * The screen view X.
+	 */
+	private int	svx;
+
+	/**
+	 * The screen view Y.
+	 */
+	private int	svy;
+
 
 	/**
 	 * Set the default [singleton] screen.
@@ -124,8 +139,12 @@ public class GameScreen {
 		this.strategy = strategy;
 		this.sw = sw;
 		this.sh = sh;
-		x = y = 0;
-		dx = dy = 0;
+
+		x = 0.0;
+		y = 0.0;
+		svx = sw / -2;
+		svy = sh / -2;
+
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
 
@@ -136,19 +155,9 @@ public class GameScreen {
 		g.dispose();
 		strategy.show();
 
+		adjustView(false);
+
 		g = (Graphics2D) strategy.getDrawGraphics();
-
-		if (((x + dx / 60.0 >= 0) && (dx < 0)) || ((x + dx / 60.0 + getWidth() < ww) && (dx > 0))) {
-			x += dx / 60.0;
-		} else {
-			dx = 0;
-		}
-
-		if (((y + dy / 60.0 >= 0) && (dy < 0)) || ((y + dy / 60.0 + getHeight() < wh) && (dy > 0))) {
-			y += dy / 60.0;
-		} else {
-			dy = 0;
-		}
 
 		Log4J.finishMethod(logger, "nextFrame");
 	}
@@ -161,40 +170,106 @@ public class GameScreen {
 		return g;
 	}
 
-	/** Indicate the screen windows to move at a dx,dy speed. */
-	public void move(double dx, double dy) {
-		this.dx = dx;
-		this.dy = dy;
+
+	/**
+	 * Update the view position to center the target position.
+	 *
+	 * @param	immediate	Center on the coodinates immediately.
+	 */
+	protected void adjustView(boolean immediate) {
+		int cvx = (((int) x) * SIZE_UNIT_PIXELS) - (sw / 2) + (SIZE_UNIT_PIXELS / 2);
+		int cvy = (((int) y) * SIZE_UNIT_PIXELS) - (sh / 2) + (SIZE_UNIT_PIXELS / 2);
+
+		// TODO: Constrain cvx/cvy to keep end-of-zone on edges
+
+
+		if(immediate) {
+			svx = cvx;
+			svy = cvy;
+		} else {
+			int dx = cvx - svx;
+			int dy = cvy - svy;
+
+			int adx = Math.abs(dx);
+			int ady = Math.abs(dy);
+
+			/*
+			 * If too far away, then jump
+			 */
+			if((adx > sw) || (ady > sh)) {
+				svx = cvx;
+				svy = cvy;
+			} else if((adx > (sw / 4)) || (ady > (sh / 4))) {
+				/*
+				 * Pan when > 1/4 screen away.
+				 * Snap if < 2 px, else use log as shift speed.
+				 */
+				if(dx > 2) {
+					svx += (int) Math.log(dx + 10);
+				} else if(dx < -2) {
+					svx -= (int) Math.log(-dx + 10);
+				} else {
+					svx = cvx;
+				}
+
+				if(dy > 2) {
+					svy += (int) Math.log(dy + 10);
+				} else if(dy < -2) {
+					svy -= (int) Math.log(-dy + 10);
+				} else {
+					svy = cvy;
+				}
+			}
+		}
 	}
 
-	/** Returns the x rendering coordinate in world units */
-	public double getX() {
-		return x;
+
+	/**
+	 * Get the view X world coordinate.
+	 *
+	 * @return	The X coordinate of the left side.
+	 */
+	public double getViewX() {
+		return (double) svx / SIZE_UNIT_PIXELS;
 	}
 
-	/** Returns the y rendering coordinate in world units */
-	public double getY() {
-		return y;
-	}
-
-	/** Returns the x speed of the movement */
-	public double getdx() {
-		return dx;
-	}
-
-	/** Returns the y speed of the movement */
-	public double getdy() {
-		return dy;
+	/**
+	 * Get the view Y world coordinate.
+	 *
+	 * @return	The Y coordinate of the left side.
+	 */
+	public double getViewY() {
+		return (double) svy / SIZE_UNIT_PIXELS;
 	}
 
 	/** Place the screen at the x,y position of world in world units. */
 	public void place(double x, double y) {
-		this.x = x;
-		this.y = y;
+		place(x, y, true);
 	}
 
-	/** Sets the world size */
-	public void setMaxWorldSize(int width, int height) {
+	/**
+	 * Set the target coordinates that the screen centers on.
+	 *
+	 * @param	x		The world X coordinate.
+	 * @param	y		The world Y coordinate.
+	 * @param	immediate	Center immediately, or gradually.
+	 */
+	public void place(double x, double y, boolean immediate) {
+		this.x = x;
+		this.y = y;
+
+		if(immediate) {
+			adjustView(true);
+		}
+	}
+
+	/**
+	 * Sets the world size.
+	 *
+	 * @param	width		The world width.
+	 * @param	height		The height width.
+	 */
+	public void setMaxWorldSize(double width, double height) {
 		ww = width;
 		wh = height;
 	}
@@ -209,8 +284,8 @@ public class GameScreen {
 
 	/** Translate to world coordinates the given screen coordinate */
 	public Point2D translate(Point2D point) {
-		double tx = point.getX() / GameScreen.SIZE_UNIT_PIXELS + x;
-		double ty = point.getY() / GameScreen.SIZE_UNIT_PIXELS + y;
+		double tx = (point.getX() + svx) / SIZE_UNIT_PIXELS;
+		double ty = (point.getY() + svy) / SIZE_UNIT_PIXELS;
 		return new Point.Double(tx, ty);
 	}
 
@@ -235,8 +310,8 @@ public class GameScreen {
 	 */
 	public Point convertWorldToScreen(double wx, double wy) {
 		return new Point(
-			(int) ((wx - x) * GameScreen.SIZE_UNIT_PIXELS),
-			(int) ((wy - y) * GameScreen.SIZE_UNIT_PIXELS));
+			(int) (wx * SIZE_UNIT_PIXELS) - svx,
+			(int) (wy * SIZE_UNIT_PIXELS) - svy);
 	}
 
 
@@ -264,10 +339,10 @@ public class GameScreen {
 	 */
 	public Rectangle convertWorldToScreen(double wx, double wy, double wwidth, double wheight) {
 		return new Rectangle(
-			(int) ((wx - x) * GameScreen.SIZE_UNIT_PIXELS),
-			(int) ((wy - y) * GameScreen.SIZE_UNIT_PIXELS),
-			(int) (wwidth * GameScreen.SIZE_UNIT_PIXELS),
-			(int) (wheight * GameScreen.SIZE_UNIT_PIXELS));
+			(int) (wx * SIZE_UNIT_PIXELS) - svx,
+			(int) (wy * SIZE_UNIT_PIXELS) - svy,
+			(int) (wwidth * SIZE_UNIT_PIXELS),
+			(int) (wheight * SIZE_UNIT_PIXELS));
 	}
 
 
@@ -310,14 +385,13 @@ public class GameScreen {
 
 	/** Draw a sprite in screen given its world coordinates */
 	public void draw(Sprite sprite, double wx, double wy) {
-		int sx = (int) ((wx - x) * GameScreen.SIZE_UNIT_PIXELS);
-		int sy = (int) ((wy - y) * GameScreen.SIZE_UNIT_PIXELS);
+		Point p = convertWorldToScreen(wx, wy);
 
-		float spritew = sprite.getWidth() + 2;
-		float spriteh = sprite.getHeight() + 2;
+		int spritew = sprite.getWidth() + 2;
+		int spriteh = sprite.getHeight() + 2;
 
-		if (((sx >= -spritew) && (sx < sw)) && ((sy >= -spriteh) && (sy < sh))) {
-			sprite.draw(g, sx, sy);
+		if (((p.x >= -spritew) && (p.x < sw)) && ((p.y >= -spriteh) && (p.y < sh))) {
+			sprite.draw(g, p.x, p.y);
 		}
 	}
 
