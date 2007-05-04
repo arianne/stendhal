@@ -49,8 +49,8 @@ public class ChatAction implements ActionListener {
 		StendhalRPRuleProcessor.register("support", chat);
 
 		// start the logcleaner
-		LogCleaner logCleaner = new LogCleaner();
-		logCleaner.start();
+		/*LogCleaner logCleaner = new LogCleaner();
+		logCleaner.start();*/
 	}
 
 	public void onAction(Player player, RPAction action) {
@@ -250,7 +250,7 @@ public class ChatAction implements ActionListener {
 					Transaction transaction = database.getTransaction();
 					database.cleanChatLog(transaction);
 					transaction.commit();
-					Thread.sleep(3600 * 1000);
+					Thread.sleep(24 * 3600 * 1000);
 				} catch (Exception e) {
 					logger.error(e, e);
 				}
