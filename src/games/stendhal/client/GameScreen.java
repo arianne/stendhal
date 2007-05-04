@@ -59,20 +59,20 @@ public class GameScreen {
 	private Graphics2D g;
 
 	/**
-	 * The targeted center of view X coordinate.
+	 * The targeted center of view X coordinate (truncated).
 	 */
-	private double	x;
+	private int	x;
 
 	/**
-	 * The targeted center of view Y coordinate.
+	 * The targeted center of view Y coordinate (truncated).
 	 */
-	private double	y;
+	private int	y;
 
 	/** Actual size of the screen in pixels */
 	private int sw, sh;
 
 	/** Actual size of the world in world units */
-	protected double ww, wh;
+	protected int ww, wh;
 
 	/** the singleton instance */
 	private static GameScreen screen;
@@ -140,8 +140,8 @@ public class GameScreen {
 		this.sw = sw;
 		this.sh = sh;
 
-		x = 0.0;
-		y = 0.0;
+		x = 0;
+		y = 0;
 		svx = sw / -2;
 		svy = sh / -2;
 
@@ -177,12 +177,42 @@ public class GameScreen {
 	 * @param	immediate	Center on the coodinates immediately.
 	 */
 	protected void adjustView(boolean immediate) {
-		int cvx = (((int) x) * SIZE_UNIT_PIXELS) - (sw / 2) + (SIZE_UNIT_PIXELS / 2);
-		int cvy = (((int) y) * SIZE_UNIT_PIXELS) - (sh / 2) + (SIZE_UNIT_PIXELS / 2);
+		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
+		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
 
-		// TODO: Constrain cvx/cvy to keep end-of-zone on edges
+		boolean force = false;
+
+		/*
+		 * Keep the world with-in the screen view
+		 */
+		if(cvx < 0) {
+			cvx = 0;
+			force = true;
+		} else {
+			int max = (ww * SIZE_UNIT_PIXELS) - sw;
+
+			if(cvx > max) {
+				cvx = max;
+				force = true;
+			}
+		}
+
+		if(cvy < 0) {
+			cvy = 0;
+			force = true;
+		} else {
+			int max = (wh * SIZE_UNIT_PIXELS) - sh;
+
+			if(cvy > max) {
+				cvy = max;
+				force = true;
+			}
+		}
 
 
+		/*
+		 * Adjust the actual view offset
+		 */
 		if(immediate) {
 			svx = cvx;
 			svy = cvy;
@@ -199,7 +229,7 @@ public class GameScreen {
 			if((adx > sw) || (ady > sh)) {
 				svx = cvx;
 				svy = cvy;
-			} else if((adx > (sw / 4)) || (ady > (sh / 4))) {
+			} else if(force || (adx > (sw / 4)) || (ady > (sh / 4))) {
 				/*
 				 * Pan when > 1/4 screen away.
 				 * Snap if < 2 px, else use log as shift speed.
@@ -255,8 +285,8 @@ public class GameScreen {
 	 * @param	immediate	Center immediately, or gradually.
 	 */
 	public void place(double x, double y, boolean immediate) {
-		this.x = x;
-		this.y = y;
+		this.x = (int) x;
+		this.y = (int) y;
 
 		if(immediate) {
 			adjustView(true);
@@ -270,8 +300,8 @@ public class GameScreen {
 	 * @param	height		The height width.
 	 */
 	public void setMaxWorldSize(double width, double height) {
-		ww = width;
-		wh = height;
+		ww = (int) width;
+		wh = (int) height;
 	}
 
 	/**
