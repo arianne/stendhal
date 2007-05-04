@@ -52,10 +52,10 @@ k*/building/door/closed.png
 k*/building/door/closed_with_key.png
 k*/building/door/closed_with_notice.png
 k*/building/door/door.png
-k/building/door/door_e.png
+k*/building/door/door_e.png
 k*/building/door/door_n.png
 k*/building/door/door_s.png
-k/building/door/door_w.png
+k*/building/door/door_w.png
 K*/building/entrance/blue_green.png
 K*/building/entrance/blue_green_2.png
 K*/building/entrance/blue_green_face.png
@@ -298,7 +298,7 @@ b/item/furniture/shelve/pale_book_bottle_shelf.png
 ./item/furniture/sink/pale_grassy.png
 k*/item/furniture/statue/bird.png
 ./item/furniture/statue/cross.png
-k/item/furniture/statue/green_stone.png
+k*/item/furniture/statue/green_stone.png
 k/item/furniture/statue/green_stone_2.png
 k*/item/furniture/statue/green_stone_3.png
 ./item/furniture/statue/grey_stone.png
