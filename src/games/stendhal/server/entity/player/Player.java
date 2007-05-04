@@ -700,7 +700,7 @@ public class Player extends RPEntity implements TurnListener {
 			text = get("private_text") + "\r\n" + text;
 		}
 		put("private_text", text);
-		StendhalRPRuleProcessor.get().removePlayerText(this);
+		StendhalRPRuleProcessor.get().removePlayerPrivateText(this);
 	}
 
 	/**

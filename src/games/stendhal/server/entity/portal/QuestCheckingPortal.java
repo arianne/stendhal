@@ -37,6 +37,7 @@ public class QuestCheckingPortal extends Portal implements UseListener {
 		} else {
 			player.sendPrivateText("Why should i go down there?. It looks very dangerous.");
 			player.stop();
+			player.notifyWorldAboutChanges();
 		}
 
 	}

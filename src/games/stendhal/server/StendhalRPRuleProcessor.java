@@ -90,6 +90,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 * ??? 
 	 */
 	private List<Player> playersRmText;
+	private List<Player> playersRmPrivateText;
 
 	private List<NPC> npcs;
 
@@ -142,6 +143,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 		players = new LinkedList<Player>();
 		playersRmText = new LinkedList<Player>();
+		playersRmPrivateText = new LinkedList<Player>();
 		npcs = new LinkedList<NPC>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
 		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
@@ -333,6 +335,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersRmText.add(player);
 	}
 
+	public void removePlayerPrivateText(Player player) {
+		playersRmText.add(player);
+	}
+
 	public void addBlood(Blood blood) {
 		bloods.add(blood);
 	}
@@ -462,7 +468,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			npcsToRemove.clear();
 			bloodsToRemove.clear();
 
-			for (Player player : playersRmText) {
+			for (Player player : playersRmPrivateText) {
 				if (player.has("private_text")) {
 					player.remove("private_text");
 					player.notifyWorldAboutChanges();
@@ -565,6 +571,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		try {
 			Player player = Player.create(object);
 			playersRmText.add(player);
+			playersRmPrivateText.add(player);
 			players.add(player);
 			// Notify other players about this event
 			for (Player p : getPlayers()) {
