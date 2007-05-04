@@ -674,6 +674,6 @@ public class OutfitDialog extends JDialog {
 	//  public OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
 	public static void main(String args[]) {
 		//TODO: the outfit is hardcoded because I was not able to find a way of iterating the jar resources to find the existing outfits. :(
-		new OutfitDialog(null, "Stendhal - Choose outfit", 0, 23, 16, 11, 24).generateAllOutfits();
+		new OutfitDialog(null, "Stendhal - Choose outfit", 0, 28, 16, 13, 29).generateAllOutfits();
 	}
 }
