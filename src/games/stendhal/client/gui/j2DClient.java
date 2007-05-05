@@ -871,7 +871,7 @@ public class j2DClient extends StendhalUI {
 		}
 
 		// Should really keep only one instance of this around
-		OutfitDialog dialog = new OutfitDialog(frame, "Set outfit", outfit, 23, 16, 11, 24);
+		OutfitDialog dialog = new OutfitDialog(frame, "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
 	public void ManageGuilds() {

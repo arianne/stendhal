@@ -47,6 +47,17 @@ public class OutfitDialog extends JDialog {
 	//  private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
 	private static final long serialVersionUID = 4628210176721975735L;
 
+	/*
+	 * Edit these fields to add new outfits. 
+	 */
+	private static final int HEAD_OUTFITS = 16;
+
+	private static final int CLOTHES_OUTFIT = 29;
+
+	private static final int HAIR_OUTFITS = 28;
+
+	private static final int BODY_OUTFITS = 13;
+
 	// to keep the sprites to show
 	private Sprite[] hairs = null;
 
@@ -73,6 +84,10 @@ public class OutfitDialog extends JDialog {
 
 	private StendhalClient client;
 
+	public OutfitDialog(Frame parent, String title, int outfit) {
+		this(parent,title,outfit, HAIR_OUTFITS, HEAD_OUTFITS, BODY_OUTFITS, CLOTHES_OUTFIT);
+	}
+			
 	/** Creates new form SetOutfitGameDialog
 	 *
 	 * @param title a String with the title for the dialog
@@ -82,7 +97,7 @@ public class OutfitDialog extends JDialog {
 	 * @param total_bodies an integer with the total of sprites with bodies
 	 * @param total_clothes an integer with the total of sprites with clothes
 	 */
-	public OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads,
+	private OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads,
 	        int total_bodies, int total_clothes) {
 		super(parent, false);
 		initComponents();
@@ -674,6 +689,6 @@ public class OutfitDialog extends JDialog {
 	//  public OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
 	public static void main(String args[]) {
 		//TODO: the outfit is hardcoded because I was not able to find a way of iterating the jar resources to find the existing outfits. :(
-		new OutfitDialog(null, "Stendhal - Choose outfit", 0, 28, 16, 13, 29).generateAllOutfits();
+		new OutfitDialog(null, "Stendhal - Choose outfit", 0).generateAllOutfits();
 	}
 }
