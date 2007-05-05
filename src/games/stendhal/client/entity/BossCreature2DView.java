@@ -5,7 +5,6 @@ import games.stendhal.client.Sprite;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;

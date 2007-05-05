@@ -13,4 +13,11 @@ public class EntityMapTest {
 		assertEquals(null, entClass);
 	}
 
+	@Test
+	public final void testGetClassGoldsource() {
+		Class entClass = EntityMap.getClass("gold_source", null);
+		assertEquals(GoldSource.class, entClass);
+		entClass = EntityMap.getClass(null, null);
+		assertEquals(null, entClass);
+	}
 }

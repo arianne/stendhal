@@ -14,7 +14,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
@@ -30,9 +29,6 @@ import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
-import games.stendhal.client.gui.wt.core.WtClickListener;
-import games.stendhal.client.gui.wt.core.WtMessageBox;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
@@ -76,7 +72,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
