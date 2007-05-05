@@ -14,7 +14,9 @@ package games.stendhal.client;
 
 import games.stendhal.tools.tiled.LayerDefinition;
 
+import java.awt.Graphics;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,22 +36,22 @@ public class TileRenderer extends LayerRenderer {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileRenderer.class);
 
+	private static final Sprite	emptySprite = new EmptySprite();
+
 	private TileStore tiles;
 
 	private int[] map;
 
-	//	private int width;
-
-	//	private int height;
+	private Sprite [] spriteMap;
 
 	private int frame;
 
 	private long delta;
 
 	public TileRenderer() {
-		super();
 		tiles = null;
 		map = null;
+		spriteMap = null;
 		frame = 0;
 		animatedTiles = new HashMap<Integer, List<Integer>>();
 		delta = System.currentTimeMillis();
@@ -73,10 +75,35 @@ public class TileRenderer extends LayerRenderer {
 	
 	public void setTileset(TileStore tileset) {
 		tiles=tileset;
+
+		/*
+		 * Cache normal sprites
+		 */
+		spriteMap = new Sprite[map.length];
+
+		if(tileset != null) {
+			int i = spriteMap.length;
+
+			while(i-- != 0) {
+				int value = map[i];
+
+				if(value > 0) {
+					spriteMap[i] = tileset.getTile(value);
+				} else {
+					spriteMap[i] = emptySprite;
+				}
+			}
+		} else {
+			Arrays.fill(spriteMap, emptySprite);
+		}
 	}
 
 	private int get(int x, int y) {
 		return map[y * width + x];
+	}
+
+	private Sprite getTile(int x, int y) {
+		return spriteMap[(y * width) + x];
 	}
 
 	private Map<Integer, List<Integer>> animatedTiles;
@@ -430,18 +457,87 @@ public class TileRenderer extends LayerRenderer {
 		for (int j = y - 1; j < y + h + 1; j++) {
 			for (int i = x - 1; i < x + w + 1; i++) {
 				if ((j >= 0) && (j < getHeight()) && (i >= 0) && (i < getWidth())) {
-					int value = get(i, j);
+					Sprite sprite = getTile(i, j);
 
-					if (animatedTiles.containsKey(value)) {
-						List<Integer> list = (animatedTiles.get(value));
-						value = list.get(frame % list.size());
-					}
+// Apparently Broken [ 1708820 ], so safe to comment out until fixed:
+//
+//					if (animatedTiles.containsKey(value)) {
+//						List<Integer> list = (animatedTiles.get(value));
+//						value = list.get(frame % list.size());
+//					}
 
-					if (value > 0) {
-						screen.draw(tiles.getTile(value), i, j);
-					}
+					screen.draw(sprite, i, j);
 				}
 			}
+		}
+	}
+
+	//
+	//
+
+	/**
+	 * An empty (non-drawing) sprite. Worth making non-inner?
+	 */
+	protected static class EmptySprite implements Sprite {
+		/**
+		 * Copy the sprite.
+		 *
+		 * @return	A new copy of the sprite.
+		 */
+		public Sprite copy() {
+			return this;
+		}
+
+		/**
+		 * Draw the sprite onto the graphics context provided
+		 * 
+		 * @param g
+		 *            The graphics context on which to draw the sprite
+		 * @param x
+		 *            The x location at which to draw the sprite
+		 * @param y
+		 *            The y location at which to draw the sprite
+		 */
+		public void draw(Graphics g, int x, int y) {
+		}
+
+		/**
+		 * Draws the image
+		 * 
+		 * @param g
+		 *            the graphics context where to draw to
+		 * @param destx
+		 *            destination x
+		 * @param desty
+		 *            destination y
+		 * @param x
+		 *            the source x
+		 * @param y
+		 *            the source y
+		 * @param w
+		 *            the width
+		 * @param h
+		 *            the height
+		 */
+		public void draw(Graphics g, int destx, int desty, int x, int y, int w, int h) {
+		}
+
+		/**
+		 * Get the height of the drawn sprite
+		 * 
+		 * @return The height in pixels of this sprite
+		 */
+		public int getHeight() {
+			return GameScreen.SIZE_UNIT_PIXELS;
+		}
+
+		/**
+		 * Get the width of the drawn sprite
+		 * 
+		 * @return The width in pixels of this sprite
+		 */
+		public int getWidth() {
+			return GameScreen.SIZE_UNIT_PIXELS;
 		}
 	}
 }
