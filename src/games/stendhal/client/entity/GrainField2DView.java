@@ -69,14 +69,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 
 		height = getHeight();
 		width = getWidth();
-
-		// default values are for compatibility to server <= 0.56
-
-		if (object.has("max_ripeness")) {
-			maxRipeness = object.getInt("max_ripeness");
-		} else {
-			maxRipeness = 5;
-		}
+		maxRipeness = grainField.getMaximumRipeness();
 
 		clazz = grainField.getEntityClass();
 

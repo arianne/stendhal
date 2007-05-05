@@ -19,8 +19,34 @@ import marauroa.common.game.RPObject;
 
 /** A Creature which a server adjustable size */
 public class ResizeableCreature extends Creature {
+	/**
+	 * The entity width.
+	 */
 	private double width;
+
+	/**
+	 * The entity height.
+	 */
 	private double height;
+
+	/**
+	 * The current metamorphosis.
+	 */
+	private String	metamorphosis;
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Get the metamorphosis in effect.
+	 *
+	 * @return	The metamorphosis, or <code>null</code>.
+	 */
+	public String getMetamorphosis() {
+		return metamorphosis;
+	}
 
 
 	//
@@ -95,6 +121,12 @@ public class ResizeableCreature extends Creature {
 		} else {
 			width = 1.5;
 		}
+
+		if(object.has("metamorphosis")) {
+			metamorphosis = object.get("metamorphosis");
+		} else {
+			metamorphosis = null;
+		}
 	}
 
 
@@ -123,6 +155,7 @@ public class ResizeableCreature extends Creature {
 		}
 
 		if (changes.has("metamorphosis")) {
+			metamorphosis = object.get("metamorphosis");
 			changed();
 		}
 	}
@@ -139,6 +172,7 @@ public class ResizeableCreature extends Creature {
 		super.onChangedRemoved(object, changes);
 
 		if (changes.has("metamorphosis")) {
+			metamorphosis = null;
 			changed();
 		}
 	}

@@ -101,11 +101,13 @@ public class ResizeableCreature2DView extends Creature2DView {
 
 	@Override
 	protected Sprite getAnimationSprite(final RPObject object) {
-		if(!object.has("metamorphosis")) {
+		String metamorphosis = creature.getMetamorphosis();
+
+		if(metamorphosis == null) {
 			return super.getAnimationSprite(object);
 		}
 
-		return SpriteStore.get().getSprite("data/sprites/monsters/" + object.get("metamorphosis") + ".png");
+		return SpriteStore.get().getSprite("data/sprites/monsters/" + metamorphosis + ".png");
 	}
 
 

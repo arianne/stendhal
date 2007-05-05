@@ -34,9 +34,14 @@ public class GrainField extends Entity {
 	private int height;
 
 	/**
-	 * Current ripness.
+	 * Current ripeness.
 	 */
 	private String ripeness;
+
+	/**
+	 * The maximum ripeness.
+	 */
+	protected int	maxRipeness;
 
 
 	/**
@@ -56,6 +61,20 @@ public class GrainField extends Entity {
 	public GrainField(int width, int height)  {
 		this.width = width;
 		this.height = height;
+	}
+
+
+	//
+	// GrainField
+	//
+
+	/**
+	 * Get the maximum ripeness.
+	 *
+	 * @return	The maximum ripeness.
+	 */
+	public int getMaximumRipeness() {
+		return maxRipeness;
 	}
 
 
@@ -144,6 +163,13 @@ public class GrainField extends Entity {
 		} else {
 			ripeness = "0";
 		}
+
+		// default values are for compatibility to server <= 0.56
+		if (object.has("max_ripeness")) {
+			maxRipeness = object.getInt("max_ripeness");
+		} else {
+			maxRipeness = 5;
+		}
 	}
 
 
@@ -163,6 +189,11 @@ public class GrainField extends Entity {
 
 		if (changes.has("ripeness")) {
 			ripeness = changes.get("ripeness");
+			changed();
+		}
+
+		if (object.has("max_ripeness")) {
+			maxRipeness = object.getInt("max_ripeness");
 			changed();
 		}
 	}
