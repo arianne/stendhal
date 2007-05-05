@@ -81,12 +81,32 @@ public class GameScreen {
 	private Component component;
 
 	/**
-	 * The screen view X.
+	 * The difference between current and target screen view X.
+	 */
+	private int	dvx;
+
+	/**
+	 * The difference between current and target screen view Y.
+	 */
+	private int	dvy;
+
+	/**
+	 * The screen pan X movement.
+	 */
+	private int	dx;
+
+	/**
+	 * The screen pan Y movement.
+	 */
+	private int	dy;
+
+	/**
+	 * The current screen view X.
 	 */
 	private int	svx;
 
 	/**
-	 * The screen view Y.
+	 * The current screen view Y.
 	 */
 	private int	svy;
 
@@ -144,6 +164,10 @@ public class GameScreen {
 		y = 0;
 		svx = sw / -2;
 		svy = sh / -2;
+		dvx = 0;
+		dvy = 0;
+		dx = 0;
+		dy = 0;
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
@@ -155,7 +179,7 @@ public class GameScreen {
 		g.dispose();
 		strategy.show();
 
-		adjustView(false);
+		adjustView();
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 
@@ -176,81 +200,193 @@ public class GameScreen {
 	 *
 	 * @param	immediate	Center on the coodinates immediately.
 	 */
-	protected void adjustView(boolean immediate) {
+	protected void adjustView() {
+		/*
+		 * If too far away, just center
+		 */
+		if((Math.abs(dvx) > sw) || (Math.abs(dvy) > sh)) {
+			center();
+		} else {
+			if(dvx == 0) {
+				dx = 0;
+			} else if(dvx > 0) {
+				if(dvx > (sw / 4)) {
+					// Accelerate (max 16)
+					if(dx < 16) {
+						dx++;
+					}
+				} else if(dvx > (sw / 8)) {
+					// No change
+				} else if(dvx > (sw / 16)) {
+					// Slow down slowly
+					dx = (dx * 7) / 8;
+
+					if(dx == 0) {
+						dx = 1;
+					}
+				} else {
+					// Slow down quickly
+					dx = (dx * 3) / 4;
+
+					if(dx == 0) {
+						dx = 1;
+					}
+				}
+			} else {
+				if(dvx < (sw / -4)) {
+					// Accelerate (max 16)
+					if(dx > -16) {
+						dx--;
+					}
+				} else if(dvx < (sw / -8)) {
+					// No change
+				} else if(dvy < (sh / -16)) {
+					// Slow down slowly
+					dy = (dy * 7) / 8;
+
+					if(dy == 0) {
+						dy = 1;
+					}
+				} else {
+					// Slow down quickly
+					dy = (dy * 3) / 4;
+
+					if(dy == 0) {
+						dy = 1;
+					}
+				}
+			}
+
+
+			if(dvy == 0) {
+				dy = 0;
+			} else if(dvy > 0) {
+				if(dvy > (sh / 4)) {
+					// Accelerate (max 20)
+					if(dy < 20) {
+						dy++;
+					}
+				} else if(dvy > (sh / 8)) {
+					// No change
+				} else {
+					// Slow down
+					if(dy > 1) {
+						dy /= 2;
+					}
+				}
+			} else {
+				if(dvy < (sh / -4)) {
+					// Accelerate (max 20)
+					if(dy > -20) {
+						dy--;
+					}
+				} else if(dvy < (sh / -8)) {
+					// No change
+				} else {
+					// Slow down
+					if(dy < -1) {
+						dy /= 2;
+					}
+				}
+			}
+
+
+			/*
+			 * Adjust view
+			 */
+			svx += dx;
+			dvx -= dx;
+
+			svy += dy;
+			dvy -= dy;
+
+			throttleViewPan();
+		}
+	}
+
+
+	/**
+	 * Update the view position to center the target position.
+	 *
+	 * @param	immediate	Center on the coodinates immediately.
+	 */
+	protected void calculateView() {
 		int cvx = (x * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sw / 2);
 		int cvy = (y * SIZE_UNIT_PIXELS) + (SIZE_UNIT_PIXELS / 2) - (sh / 2);
-
-		boolean force = false;
 
 		/*
 		 * Keep the world with-in the screen view
 		 */
 		if(cvx < 0) {
 			cvx = 0;
-			force = true;
+			svx = 0;
 		} else {
 			int max = (ww * SIZE_UNIT_PIXELS) - sw;
 
 			if(cvx > max) {
 				cvx = max;
-				force = true;
+				svx = max;
 			}
 		}
 
 		if(cvy < 0) {
 			cvy = 0;
-			force = true;
+			svy = 0;
 		} else {
 			int max = (wh * SIZE_UNIT_PIXELS) - sh;
 
 			if(cvy > max) {
 				cvy = max;
-				force = true;
+				svy = max;
 			}
 		}
 
+		dvx = cvx - svx;
+		dvy = cvy - svy;
 
-		/*
-		 * Adjust the actual view offset
-		 */
-		if(immediate) {
-			svx = cvx;
-			svy = cvy;
-		} else {
-			int dx = cvx - svx;
-			int dy = cvy - svy;
+		throttleViewPan();
+	}
 
-			int adx = Math.abs(dx);
-			int ady = Math.abs(dy);
 
-			/*
-			 * If too far away, then jump
-			 */
-			if((adx > sw) || (ady > sh)) {
-				svx = cvx;
-				svy = cvy;
-			} else if(force || (adx > (sw / 4)) || (ady > (sh / 4))) {
-				/*
-				 * Pan when > 1/4 screen away.
-				 * Snap if < 2 px, else use log as shift speed.
-				 */
-				if(dx > 2) {
-					svx += (int) Math.log(dx + 10);
-				} else if(dx < -2) {
-					svx -= (int) Math.log(-dx + 10);
-				} else {
-					svx = cvx;
-				}
-
-				if(dy > 2) {
-					svy += (int) Math.log(dy + 10);
-				} else if(dy < -2) {
-					svy -= (int) Math.log(-dy + 10);
-				} else {
-					svy = cvy;
-				}
+	/**
+	 * Limit the pan speed to no more than the distances to the goal.
+	 * The will prevent overshoots (also stops on target hit).
+	 */
+	protected void throttleViewPan() {
+		if(dx > 0) {
+			if(dx > dvx) {
+				dx = dvx;
+			}
+		} else if(dx < 0) {
+			if(dx < dvx) {
+				dx = dvx;
 			}
 		}
+
+		if(dy > 0) {
+			if(dy > dvy) {
+				dy = dvy;
+			}
+		} else if(dy < 0) {
+			if(dy < dvy) {
+				dy = dvy;
+			}
+		}
+	}
+
+
+	/**
+	 * Center the view.
+	 */
+	public void center() {
+		svx += dvx;
+		svy += dvy;
+
+		dvx = 0;
+		dvy = 0;
+
+		dx = 0;
+		dy = 0;
 	}
 
 
@@ -272,25 +408,17 @@ public class GameScreen {
 		return (double) svy / SIZE_UNIT_PIXELS;
 	}
 
-	/** Place the screen at the x,y position of world in world units. */
-	public void place(double x, double y) {
-		place(x, y, true);
-	}
-
 	/**
 	 * Set the target coordinates that the screen centers on.
 	 *
 	 * @param	x		The world X coordinate.
 	 * @param	y		The world Y coordinate.
-	 * @param	immediate	Center immediately, or gradually.
 	 */
-	public void place(double x, double y, boolean immediate) {
+	public void place(double x, double y) {
 		this.x = (int) x;
 		this.y = (int) y;
 
-		if(immediate) {
-			adjustView(true);
-		}
+		calculateView();
 	}
 
 	/**
@@ -302,6 +430,8 @@ public class GameScreen {
 	public void setMaxWorldSize(double width, double height) {
 		ww = (int) width;
 		wh = (int) height;
+
+		calculateView();
 	}
 
 	/**
