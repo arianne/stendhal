@@ -102,7 +102,6 @@ public class Player2DView extends RPEntity2DView {
 			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
-			object.put("outfit", 0);
 			outfitCode = 0;
 			outfit = getOutfitSprite(store, 0);
 		}
