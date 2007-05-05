@@ -500,15 +500,16 @@ public final byte[] ID_Token = new byte[0];
 	 *         less than, equal to, or greater than the specified object.
 	 */
 	public int compareTo(final Entity other) {
-		if (this.getY() < other.getY()) {
-			// this entity is standing behind the other entity
-			return -1;
-		} else if (this.getY() > other.getY()) {
-			// this entity is standing in front of the other entity
-			return 1;
+		if(getView().getZIndex() == other.getView().getZIndex()){
+			if (this.getY() < other.getY()) {
+				// this entity is standing behind the other entity
+				return -1;
+			} else if (this.getY() > other.getY()) {
+				// this entity is standing in front of the other entity
+				return 1;
+			}
+				else return 0;
 		} else {
-			// one of the two entities is standing on top of the other.
-			// find out which one.
 			return getView().getZIndex() - other.getView().getZIndex();
 		}
 	}
