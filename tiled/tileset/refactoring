@@ -6,6 +6,7 @@
 # b means bleutailfly
 # s means sshk5
 # d means danter
+# D means durkham
 # z means other who i don't know but i know was done 
 # letter then * means it's done and committed
 ## Please help keep up to date and refer to this if you want to know what you can do
@@ -242,7 +243,7 @@ k*/item/drink/cognac.png
 k*/item/drink/red_wine.png
 k*/item/drink/white_wine.png
 k*/item/food/fruit_basket.png
-./item/food/meals_1.png
+D*/item/food/meals_1.png
 K*/item/food/meals_2.png
 ./item/food/rustic_meals.png
 b*./item/furniture/bed/front_on.png
