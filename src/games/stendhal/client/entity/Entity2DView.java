@@ -47,6 +47,11 @@ public abstract class Entity2DView { // implements EntityView {
 	 */
 	protected Composite	entityComposite;
 
+	/**
+	 * Whether this view is contained.
+	 */
+	protected boolean	contained;
+
 
 	/**
 	 * Create a 2D view of an entity.
@@ -58,6 +63,7 @@ public abstract class Entity2DView { // implements EntityView {
 
 		changeSerial = entity.getChangeSerial() - 1;
 		entityComposite = AlphaComposite.SrcOver;
+		contained = false;
 	}
 
 
@@ -167,6 +173,28 @@ public abstract class Entity2DView { // implements EntityView {
 	public int getZIndex() {
 		// XXX - Eventually abstract, but for transition
 		return 10000;
+	}
+
+
+	/**
+	 * Determine if this view is contained, and should render in a
+	 * compressed (it's defined) area without clipping anything important.
+	 *
+	 * @return	<code>true</code> if contained.
+	 */
+	public boolean isContained() {
+		return contained;
+	}
+
+
+	/**
+	 * Set whether this view is contained, and should render in a
+	 * compressed (it's defined) area without clipping anything important.
+	 *
+	 * @param	contained	<code>true</code> if contained.
+	 */
+	public void setContained(boolean contained) {
+		this.contained = contained;
 	}
 
 

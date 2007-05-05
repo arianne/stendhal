@@ -64,7 +64,9 @@ public class StackableItem2DView extends Item2DView {
 
 		if (quantity <= 1) {
 			return null;
-		} else if(item.getRPObject().isContained() && (quantity > 99999)) {
+		} else if(isContained() && (quantity > 99999999)) {
+			label = (quantity / 1000000) + "M";
+		} else if(isContained() && (quantity > 99999)) {
 			label = (quantity / 1000) + "K";
 		} else {
 			label = Integer.toString(quantity);
