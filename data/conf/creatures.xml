@@ -3310,6 +3310,36 @@
 		</ai>
 	</creature>
 	
+	<!-- Level 80 -->
+	
+	<creature name="ent">
+		<type class="boss" subclass="treant" tileid="boss.png:2"/>
+		<attributes>
+			<atk value="180"/>
+			<def value="45"/>
+			<hp value="100"/>
+			<speed value="0.1"/>
+			<size value="5,5"/>
+		</attributes>
+		<level value="80"/>
+		<experience value="13000"/>
+		<respawn value="23000"/>
+		<drops>
+			<item value="money" quantity="[50,500]" probability="100"/>
+			<item value="greater_potion" quantity="[1,6]" probability="20"/>
+		</drops>
+		<equips>
+		</equips>
+		<ai>
+			<profile name="human"/>
+			<profile name="offensive"/>
+			<profile name="brave"/>
+			<profile name="heal" params="15,50"/>
+			<profile name="patrolling"/>
+		</ai>
+	</creature>
+	
+	
 	<!-- Level 90 -->
     
 	<creature name="dark_elf_wizard">
@@ -3348,7 +3378,7 @@
 			<atk value="225"/>
 			<def value="35"/>
 			<hp value="700"/>
-			<speed value="1"/>
+			<speed value="0.4"/>
 			<size value="5,5"/>
 		</attributes>
 		<level value="90"/>
@@ -3677,7 +3707,7 @@
 			<atk value="420"/>
 			<def value="55"/>
 			<hp value="7000"/>
-			<speed value="1"/>
+			<speed value="0.6"/>
 			<size value="13,10"/>
 		</attributes>
 		<level value="350"/>
