@@ -146,11 +146,11 @@ public class j2DClient extends StendhalUI {
 	/** settings panel */
 	private SettingsPanel settings;
 
-	/** the dialog "really quit?" */
-	private WtPanel quitDialog;
+	private Component	quitDialog;
 
-	private Component	xquitDialog;
-
+	/**
+	 * Not currently used - but will likely be later
+	 */
 	private static final boolean newCode =
 			(System.getProperty("stendhal.newgui") != null);
 
@@ -294,12 +294,10 @@ public class j2DClient extends StendhalUI {
 		/*
 		 * Quit dialog
 		 */
-		if(newCode) {
-			xquitDialog = buildQuitDialog();
-			xquitDialog.setVisible(false);
+		quitDialog = buildQuitDialog();
+		quitDialog.setVisible(false);
 
-			pane.add(xquitDialog, JLayeredPane.MODAL_LAYER);
-		}
+		pane.add(quitDialog, JLayeredPane.MODAL_LAYER);
 
 
 		/*
@@ -721,7 +719,7 @@ public class j2DClient extends StendhalUI {
 
 
 	protected void quitCancelCB() {
-		xquitDialog.setVisible(false);
+		quitDialog.setVisible(false);
 	}
 
 
@@ -940,38 +938,19 @@ public class j2DClient extends StendhalUI {
 		 */
 		client.stop();
 
-		if(newCode) {
-			Dimension psize = xquitDialog.getPreferredSize();
+		/*
+		 * Center dialog
+		 */
+		Dimension psize = quitDialog.getPreferredSize();
 
-			xquitDialog.setBounds(
-				(getWidth() - psize.width) / 2,
-				(getHeight() - psize.height) / 2,
-				psize.width,
-				psize.height);
+		quitDialog.setBounds(
+			(getWidth() - psize.width) / 2,
+			(getHeight() - psize.height) / 2,
+			psize.width,
+			psize.height);
 
-			xquitDialog.validate();
-			xquitDialog.setVisible(true);
-
-		} else {
-		// quit messagebox already showing?
-		if (quitDialog == null) {
-			// no, so show it
-			quitDialog = new WtMessageBox("quit", 220, 220, 200, "Quit Stendhal?",
-			        WtMessageBox.ButtonCombination.YES_NO);
-			quitDialog.registerClickListener(new WtClickListener() {
-
-				public void onClick(String name, Point point) {
-					quitDialog = null; // remove field as the messagebox is
-					// closed now
-					if (name.equals(WtMessageBox.ButtonEnum.YES.getName())) {
-						// Yes-Button clicked...logut and quit.
-						shutdown();
-					}
-				};
-			});
-			baseframe.addChild(quitDialog);
-		}
-		}
+		quitDialog.validate();
+		quitDialog.setVisible(true);
 	}
 
 
