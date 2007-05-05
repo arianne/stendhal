@@ -151,12 +151,6 @@ public class j2DClient extends StendhalUI {
 
 	private Component	xquitDialog;
 
-	private Sprite offlineIcon;
-
-	private boolean offline;
-
-	private int blinkOffline;
-
 	private static final boolean newCode =
 			(System.getProperty("stendhal.newgui") != null);
 
@@ -419,7 +413,7 @@ public class j2DClient extends StendhalUI {
 		canvas.createBufferStrategy(2);
 		strategy = canvas.getBufferStrategy();
 
-		screen = new GameScreen(strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
+		screen = new GameScreen(client, strategy, SCREEN_WIDTH, SCREEN_HEIGHT);
 		screen.setComponent(canvas);
 
 		GameScreen.setDefaultScreen(screen);
@@ -428,8 +422,6 @@ public class j2DClient extends StendhalUI {
 // Not currently used (maybe later?)
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-
-		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
 
 		// create the baseframe
 		baseframe = new WtBaseframe(screen);
@@ -569,7 +561,7 @@ public class j2DClient extends StendhalUI {
 
 			if (frame.getState() != Frame.ICONIFIED) {
 				logger.debug("Draw screen");
-				draw();
+				screen.draw(baseframe);
 				rotateKeyEventCounters();
 			}
 
@@ -775,42 +767,6 @@ public class j2DClient extends StendhalUI {
 		// try to save the window configuration
 		WtWindowManager.getInstance().save();
 		Log4J.finishMethod(logger, "shutdown");
-	}
-
-
-	/*
-	 * Draw the screen.
-	 */
-	protected void draw() {
-		/*
-		 * Draw the GameLayers from bootom to top, relies on exact
-		 * naming of the layers
-		 */
-		StaticGameLayers gameLayers = client.getStaticGameLayers();
-		String set = gameLayers.getRPZoneLayerSet();
-
-		GameObjects gameObjects = client.getGameObjects();
-
-		gameLayers.draw(screen, set + "_0_floor");
-		gameLayers.draw(screen, set + "_1_terrain");
-		gameLayers.draw(screen, set + "_2_object");
-		gameObjects.draw(screen);
-		gameLayers.draw(screen, set + "_3_roof");
-		gameLayers.draw(screen, set + "_4_roof_add");
-		gameObjects.drawHPbar(screen);
-		gameObjects.drawText(screen);
-
-		baseframe.draw(screen.expose());
-
-		if (offline && (blinkOffline > 0)) {
-			offlineIcon.draw(screen.expose(), 560, 420);
-		}
-
-		if (blinkOffline < -10) {
-			blinkOffline = 20;
-		} else {
-			blinkOffline--;
-		}
 	}
 
 
@@ -1036,7 +992,7 @@ public class j2DClient extends StendhalUI {
 	 * @param	offline		<code>true</code> if offline.
 	 */
 	public void setOffline(boolean offline) {
-		this.offline = offline;
+		screen.setOffline(offline);
 	}
 
 	//

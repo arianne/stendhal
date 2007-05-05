@@ -36,6 +36,7 @@ import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
 import java.util.List;
+import games.stendhal.client.gui.wt.core.WtBaseframe;
 
 import marauroa.common.Log4J;
 
@@ -57,6 +58,17 @@ public class GameScreen {
 	private BufferStrategy strategy;
 
 	private Graphics2D g;
+
+	/**
+	 * Client.
+	 */
+	protected StendhalClient	client;
+
+	private static Sprite offlineIcon;
+
+	private boolean offline;
+
+	private int blinkOffline;
 
 	/**
 	 * The targeted center of view X coordinate (truncated).
@@ -111,6 +123,11 @@ public class GameScreen {
 	private int	svy;
 
 
+	static {
+		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
+	}
+
+
 	/**
 	 * Set the default [singleton] screen.
 	 *
@@ -155,7 +172,8 @@ public class GameScreen {
 		return sh;
 	}
 
-	public GameScreen(BufferStrategy strategy, int sw, int sh) {
+	public GameScreen(StendhalClient client, BufferStrategy strategy, int sw, int sh) {
+		this.client = client;
 		this.strategy = strategy;
 		this.sw = sw;
 		this.sh = sh;
@@ -390,6 +408,42 @@ public class GameScreen {
 	}
 
 
+	/*
+	 * Draw the screen.
+	 */
+	public void draw(WtBaseframe baseframe) {
+		/*
+		 * Draw the GameLayers from bootom to top, relies on exact
+		 * naming of the layers
+		 */
+		StaticGameLayers gameLayers = client.getStaticGameLayers();
+		String set = gameLayers.getRPZoneLayerSet();
+
+		GameObjects gameObjects = client.getGameObjects();
+
+		gameLayers.draw(this, set + "_0_floor");
+		gameLayers.draw(this, set + "_1_terrain");
+		gameLayers.draw(this, set + "_2_object");
+		gameObjects.draw(this);
+		gameLayers.draw(this, set + "_3_roof");
+		gameLayers.draw(this, set + "_4_roof_add");
+		gameObjects.drawHPbar(this);
+		gameObjects.drawText(this);
+
+		baseframe.draw(expose());
+
+		if (offline && (blinkOffline > 0)) {
+			offlineIcon.draw(screen.expose(), 560, 420);
+		}
+
+		if (blinkOffline < -10) {
+			blinkOffline = 20;
+		} else {
+			blinkOffline--;
+		}
+	}
+
+
 	/**
 	 * Get the view X world coordinate.
 	 *
@@ -432,6 +486,15 @@ public class GameScreen {
 		wh = (int) height;
 
 		calculateView();
+	}
+
+	/**
+	 * Set the offline indication state.
+	 *
+	 * @param	offline		<code>true</code> if offline.
+	 */
+	public void setOffline(boolean offline) {
+		this.offline = offline;
 	}
 
 	/**
