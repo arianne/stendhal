@@ -17,7 +17,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.HearingArea;
 
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -328,16 +327,7 @@ class AmbientSound {
 		        || (HearingArea.contains(soundPos.getX(),soundPos.getY()) && soundObject.getAudibleArea().contains(User.get().getX(),User.get().getY()));
 	}
 
-	/**
-	 * Starts playing this ambient sound. This will take required actions, if
-	 * this ambient sound is not yet playing, to make it audible, global or
-	 * relative to the player's position depending on this sound's initializer.
-	 * This does nothing if this sound is already playing. Playing is suppressed
-	 * if sound position is outside the hearing range of the player.
-	 */
-	protected void play() {
-		play(User.get());
-	}
+	
 
 	/**
 	 * Starts playing this ambient sound with the given player's hearing
@@ -346,11 +336,8 @@ class AmbientSound {
 	 * position depending on this sound's initializer. This does nothing if this
 	 * sound is already playing. Playing is suppressed if sound position is
 	 * outside the hearing range of the player.
-	 * 
-	 * @param player
-	 *            the client player object
 	 */
-	protected void play(User player) {
+	protected void play() {
 		float fogDB;
 
 		if (isPlaying) {
@@ -454,7 +441,8 @@ class AmbientSound {
 		// if the sound is global (no position)
 		if (soundPos == null) {
 			return 0;
-		} else {
+		} 
+		
 			// maximum fog if no player infos available
 			if ((User.isNull())) {
 				return DBValues.getDBValue(0);
@@ -465,7 +453,7 @@ class AmbientSound {
 			maxDist = HearingArea.HEARINGDIST;
 			fogVolume = (int) Math.max(0, (95 * (maxDist - distance) / maxDist + 5));
 			return DBValues.getDBValue(fogVolume);
-		}
+		
 	} // getPlayerVolume
 
 	/**
