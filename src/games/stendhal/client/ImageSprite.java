@@ -66,6 +66,19 @@ public class ImageSprite implements Sprite {
 	public Graphics getGraphics() {
 		return image.getGraphics();
 	}
+	
+	/**
+	 * Flip the image horizontally.
+	 * @return an horizontal flipped sprite.
+	 */
+	public ImageSprite flip() {
+		Image empty = getGC().createCompatibleImage(getWidth(), getHeight(), Transparency.BITMASK);
+		ImageSprite spr=new ImageSprite(empty);
+		
+		spr.getGraphics().drawImage(image, getWidth(), 0, 0, getHeight(), 0, 0, getWidth(), getHeight(), null);
+		
+		return spr;
+	}
 
 	/** overlays the image with the given color and returns a new image. */
 	private Image getModifiedImage(Color color, float alpha) {

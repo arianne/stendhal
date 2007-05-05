@@ -227,6 +227,20 @@ public class AnimatedSprite implements Sprite {
 	public Sprite copy() {
 		return new AnimatedSprite(getFrames(), getDelay());
 	}
+	
+	/**
+	 * Flip each of the sprites of the animated sprite horizontally
+	 * @return a horizontally flipped animated sprite.
+	 */
+	public AnimatedSprite flip() {
+		AnimatedSprite copy=(AnimatedSprite)copy();
+		
+		for(int i=0;i<frames.length;i++) {
+			copy.frames[i]=((ImageSprite)frames[i]).flip();
+		}
+		
+		return copy;
+	}
 
 	/**
 	 * Draw the sprite onto the graphics context provided.
