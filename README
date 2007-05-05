@@ -66,7 +66,7 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
-0.60
+0.60 May XX, 2007
 - a woman in fado collects cloaks
 - the tavern maid in fado makes a special soup
 - get married at fado church
@@ -77,6 +77,13 @@ Changelog
 - Maps can now have its own tilesets
 - Buildings and many outsides and interiors redrawn
 - mega potions are made with giant hearts by a healer in Ados church
+- Emerald ring of life. You lose only 1% of your stats on death.
+- Added new type of monsters.
+- Quest portal shows text when it can't be used.
+- Players are now ghost at afterlife.
+- Some NPC can choose to be attackable.
+- On teleport screen change inmediately to your position.
+- fixed a problem with invisible creatures.
 
 0.59 Apr 14, 2007
 World:
