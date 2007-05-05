@@ -252,13 +252,14 @@ public class StaticGameLayers {
 		return area;
 	}
 
-	public void draw(GameScreen screen, String layer) {
+
+	public void draw(GameScreen screen, String layer, int x, int y, int width, int height) {
 		validate();
 
 		LayerRenderer lr = layers.get(layer);
 
 		if(lr != null) {
-			lr.draw(screen);
+			lr.draw(screen, x, y, width, height);
 		}
 	}
 
@@ -281,6 +282,17 @@ public class StaticGameLayers {
 	public String getArea() {
 		return area;
 	}
+
+
+	/**
+	 * Get a layer renderer.
+	 *
+	 * @return	A layer renderer, or <code>null</code>,
+	 */
+	public LayerRenderer getLayer(String name) {
+		return layers.get(name);
+	}
+
 
 	/**
 	 * @return true if the area has changed since the last

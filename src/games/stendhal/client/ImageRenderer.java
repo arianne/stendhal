@@ -35,9 +35,10 @@ public class ImageRenderer extends LayerRenderer {
 	}
 
 	/**
-	 * Render the data to screen.
+	 * Render the layer to screen. We assume that game screen will clip.
+	 *
+	 * @param	screen		The screen to draw on.
 	 */
-
 	@Override
 	public void draw(GameScreen screen) {
 		if (mySprite != null) {
@@ -45,8 +46,22 @@ public class ImageRenderer extends LayerRenderer {
 		}
 	}
 
+	/**
+	 * Render the layer to screen. We assume that game screen will clip.
+	 *
+	 * @param	screen		The screen to draw on.
+	 * @param	x		The view X world coordinate.
+	 * @param	y		The view Y world coordinate.
+	 * @param	w		The view world width.
+	 * @param	h		The view world height.
+	 */
 	@Override
-    public void setTileset(TileStore store) {
-    }
+	public void draw(GameScreen screen, int x, int y, int w, int h) {
+		draw(screen);
+	}
 
+
+	@Override
+	public void setTileset(TileStore store) {
+	}
 }

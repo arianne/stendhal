@@ -406,12 +406,18 @@ public class TileRenderer extends LayerRenderer {
 		addAnimatedTile(4060, new int[] { 4060, 4081 });
 	}
 
+
 	/**
-	 * Render the data to screen. We assume that Gamescreen will clip. The data
-	 * doesnt change, so we could cache it and get a boost in performance
+	 * Render the layer to screen. We assume that game screen will clip.
+	 *
+	 * @param	screen		The screen to draw on.
+	 * @param	x		The view X world coordinate.
+	 * @param	y		The view Y world coordinate.
+	 * @param	w		The view world width.
+	 * @param	h		The view world height.
 	 */
 	@Override
-	public void draw(GameScreen screen) {
+	public void draw(GameScreen screen, int x, int y, int w, int h) {
 		if(tiles==null) {
 			return;			
 		}
@@ -420,11 +426,6 @@ public class TileRenderer extends LayerRenderer {
 			delta = System.currentTimeMillis();
 			frame++;
 		}
-
-		int x = (int) screen.getViewX();
-		int y = (int) screen.getViewY();
-		int w = (int) screen.getWidth();
-		int h = (int) screen.getHeight();
 
 		for (int j = y - 1; j < y + h + 1; j++) {
 			for (int i = x - 1; i < x + w + 1; i++) {

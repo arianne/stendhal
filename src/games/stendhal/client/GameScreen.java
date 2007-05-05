@@ -421,12 +421,17 @@ public class GameScreen {
 
 		GameObjects gameObjects = client.getGameObjects();
 
-		gameLayers.draw(this, set + "_0_floor");
-		gameLayers.draw(this, set + "_1_terrain");
-		gameLayers.draw(this, set + "_2_object");
+		int x = (int) getViewX();
+		int y = (int) getViewY();
+		int w = (int) getWidth();
+		int h = (int) getHeight();
+
+		gameLayers.draw(this, set + "_0_floor", x, y, w, h);
+		gameLayers.draw(this, set + "_1_terrain", x, y, w, h);
+		gameLayers.draw(this, set + "_2_object", x, y, w, h);
 		gameObjects.draw(this);
-		gameLayers.draw(this, set + "_3_roof");
-		gameLayers.draw(this, set + "_4_roof_add");
+		gameLayers.draw(this, set + "_3_roof", x, y, w, h);
+		gameLayers.draw(this, set + "_4_roof_add", x, y, w, h);
 		gameObjects.drawHPbar(this);
 		gameObjects.drawText(this);
 
