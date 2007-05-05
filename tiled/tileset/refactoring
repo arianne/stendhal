@@ -208,7 +208,7 @@ k/ground/water/water_bubbles.png
 k/ground/water/waterfall.png
 k/ground/water/waterfall_2.png
 ./ground/water/whirlpool.png
-./item/book.png
+./item/book.png // big one is by kiheru
 b*/item/brush.png
 ./item/button.png
 ./item/button_gold.png
@@ -245,7 +245,7 @@ k*/item/food/fruit_basket.png
 ./item/food/meals_1.png
 K*/item/food/meals_2.png
 ./item/food/rustic_meals.png
-./item/furniture/bed/front_on.png
+b*./item/furniture/bed/front_on.png
 ./item/furniture/bed/large_front_on.png
 ./item/furniture/bed/large_front_on_darker.png
 ./item/furniture/bed/side_on.png
@@ -259,11 +259,11 @@ K*/item/food/meals_2.png
 ./item/furniture/carpet/rug_border.png
 ./item/furniture/carpet/black_grey.png
 ./item/furniture/carpet/stripey.png
-b/item/furniture/chair/stool.png
+b*/item/furniture/chair/stool.png
 ./item/furniture/chair/throne.png
 ./item/furniture/chair/throne_small.png
-b/item/furniture/chair/wooden.png
-b/item/furniture/chair/wooden_pale.png
+b*/item/furniture/chair/wooden.png
+b*/item/furniture/chair/wooden_pale.png
 ./item/furniture/clock/wooden_clock.png
 b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/curtain/dark_red.png
@@ -279,7 +279,7 @@ b*/item/furniture/crockery/knife_spoon.png
 ./item/furniture/other/drawer.png
 b*/item/furniture/other/drawer_with_mirror.png
 ./item/furniture/other/piano.png
-./item/furniture/other/stick.png
+z*./item/furniture/other/stick.png
 ./item/furniture/other/warmer.png
 ./item/furniture/other/green.png
 ./item/furniture/other/tools_rack.png
@@ -374,11 +374,11 @@ z*/plant/flower/daisy_red.png
 z*/plant/flower/daisy_white.png
 z*/plant/flower/daisy_yellow.png
 ./plant/flower/purple.png
-./plant/indoor/flower_baskets.png
-./plant/indoor/flower_vase.png
-./plant/indoor/flowering_plant.png
-./plant/indoor/pot_plant.png
-./plant/indoor/small_tree.png
+k*/plant/indoor/flower_baskets.png
+b*/plant/indoor/flower_vase.png
+b./plant/indoor/flowering_plant.png
+b./plant/indoor/pot_plant.png
+b./plant/indoor/small_tree.png
 ./plant/stump/int_small_stump.png
 ./plant/stump/int_small_stump_2.png
 k/plant/stump/rectangular.png
