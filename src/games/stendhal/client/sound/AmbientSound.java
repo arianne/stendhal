@@ -14,6 +14,7 @@ package games.stendhal.client.sound;
 
 import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.entity.User;
+import games.stendhal.client.soundreview.HearingArea;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -49,8 +50,6 @@ class AmbientSound {
 	private SoundObject soundObject;
 
 	private Point2D soundPos;
-
-	private Rectangle2D playerHearing;
 
 	private float loudnessDB;
 
@@ -326,7 +325,7 @@ class AmbientSound {
 
 	private boolean canPlay() {
 		return (soundPos == null)
-		        || (playerHearing.contains(soundPos) && soundObject.getAudibleArea().contains(User.get().getX(),User.get().getY()));
+		        || (HearingArea.contains(soundPos.getX(),soundPos.getY()) && soundObject.getAudibleArea().contains(User.get().getX(),User.get().getY()));
 	}
 
 	/**
@@ -363,10 +362,8 @@ class AmbientSound {
 		// if map-localized
 		if (soundPos != null) {
 			// adjust to player settings
-			if (player != null) {
+			if (!User.isNull()) {
 				
-				playerHearing = player.getHearingArea();
-
 				// return if sound object is out of range
 				if (!canPlay()) {
 					return;
@@ -459,13 +456,13 @@ class AmbientSound {
 			return 0;
 		} else {
 			// maximum fog if no player infos available
-			if ((User.isNull()) || (playerHearing == null)) {
+			if ((User.isNull())) {
 				return DBValues.getDBValue(0);
 			}
 
 			// determine sound volume cutoff due to distance (fog value)
 			distance = soundPos.distance(User.get().getX(),User.get().getY());
-			maxDist = playerHearing.getWidth() / 2;
+			maxDist = HearingArea.HEARINGDIST;
 			fogVolume = (int) Math.max(0, (95 * (maxDist - distance) / maxDist + 5));
 			return DBValues.getDBValue(fogVolume);
 		}
@@ -487,10 +484,6 @@ class AmbientSound {
 
 		// if not yet playing, start playing
 		if (isPlaying) {
-			// set new player parameters
-			
-			playerHearing = User.get().getHearingArea();
-
 			// decide on stopping to play (when sound object has moved out
 			// of range)
 			if (canPlay()) {
