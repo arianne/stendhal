@@ -12,6 +12,7 @@ package games.stendhal.client;
 import java.awt.Color;
 import javax.swing.JPopupMenu;
 import games.stendhal.client.entity.Inspector;
+import games.stendhal.client.gui.ManagedWindow;
 
 /**
  * A base class for the stendhal client UI (not GUI).
@@ -170,6 +171,13 @@ public abstract class StendhalUI {
 	// specific. But for now this will allow more code refactoring,
 	// until this can be pushed into a sub-class.
 	//
+
+	/**
+	 * Add a new window.
+	 *
+	 * @param	mw		A managed window.
+	 */
+	public abstract void addWindow(ManagedWindow mw);
 
 	/**
 	 * @return Returns the altDown.

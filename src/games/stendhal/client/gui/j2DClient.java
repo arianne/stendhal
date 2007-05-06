@@ -29,6 +29,7 @@ import games.stendhal.client.gui.wt.GroundContainer;
 import games.stendhal.client.gui.wt.InternalManagedDialog;
 import games.stendhal.client.gui.wt.SettingsPanel;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtWindowManager;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.soundreview.SoundMaster;
@@ -766,6 +767,27 @@ public class j2DClient extends StendhalUI {
 	//
 	// <StendhalGUI>
 	//
+
+	/**
+	 * Add a new window.
+	 *
+	 * @param	mw		A managed window.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If an unsupported ManagedWindow is given.
+	 */
+	public void addWindow(ManagedWindow mw) {
+		if(mw instanceof InternalManagedDialog) {
+			addDialog(((InternalManagedDialog) mw).getDialog());
+		} else if(mw instanceof WtPanel) {
+			ground.addChild((WtPanel) mw);
+		} else {
+			throw new IllegalArgumentException(
+				"Unsupport ManagedWindow type: "
+				+ mw.getClass().getName());
+		}
+	}
+
 
 	/**
 	 * Determine if the Alt key is held down.

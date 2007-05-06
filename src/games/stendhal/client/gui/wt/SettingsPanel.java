@@ -83,7 +83,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		this.client = ui.getClient();
 
-
 		setTitletext("Settings");
 
 		setFrame(true);
@@ -94,46 +93,42 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		character = new Character(ui);
 		character.registerCloseListener(this);
-		frame.addChild(character);
+		ui.addWindow(character);
 
 		keyring = new KeyRing(client);
 		keyring.registerCloseListener(this);
-		frame.addChild(keyring);
+		ui.addWindow(keyring);
 
 		if(newCode) {
 			nbuddies = new BuddyListDialog(StendhalUI.get());
-			((j2DClient) StendhalUI.get()).addDialog(nbuddies.getDialog());
 			buddies = nbuddies;
 		} else {
 			Buddies obuddies = new Buddies(StendhalUI.get());
-			frame.addChild(obuddies);
 			buddies = obuddies;
 		}
 
+		buddies.registerCloseListener(this);
+		ui.addWindow(buddies);
+
 		buywindow = new BuyWindow(StendhalUI.get());
-		((j2DClient) StendhalUI.get()).addDialog(buywindow.getDialog()); //isn't visible, set visible by other component (below)
-		buywindow.setVisible(false);
+		buywindow.registerCloseListener(this);
+		ui.addWindow(buywindow);
 
 		gbh = new GameButtonHelper(this, StendhalUI.get());
-		((j2DClient) StendhalUI.get()).addDialog(gbh.getDialog());
-	
-		buddies.registerCloseListener(this);
+		gbh.registerCloseListener(this);
+		ui.addWindow(gbh);
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);
-		frame.addChild(inventory);
+		ui.addWindow(inventory);
 
-		//the spells list
 		spells = new EntityContainer(client, "spells", 3, 4);
-		frame.addChild(spells);
-		spells.setVisible(false);
-//		spells.setSlot(player, "spells");
 		spells.registerCloseListener(this);
-
+		ui.addWindow(spells);
 
 		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
-		frame.addChild(minimap);
+		ui.addWindow(minimap);
 
 		buttonMap = new HashMap<String, WtButton>();
 
@@ -180,7 +175,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("gametools", button);
-		
+
 		spellsButton = new WtButton("spells", 150, 30, "Enable Spells Window");
 		spellsButton.moveTo(10, 210);
 		spellsButton.setPressed(spells.isVisible());
@@ -253,12 +248,15 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		} else if (name.equals("bag")) {
 			// check inventory panel
 			inventory.setVisible(state);
-		}	else if (name.equals("keyring")) {
-				// check keyring panel
-				keyring.setVisible(state);
+		} else if (name.equals("keyring")) {
+			// check keyring panel
+			keyring.setVisible(state);
 		} else if (name.equals("buddies")) {
 			// check buddy panel
 			buddies.setVisible(state);
+		} else if (name.equals("gametools")) {
+			// check gametools panel
+			gbh.setVisible(state);
 		} else if (name.equals("spells")) {
                         spells.setVisible(state);
                 }
@@ -271,5 +269,4 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		 */
 		buttonMap.get(name).setPressed(false);
 	}
-
 }
