@@ -11,6 +11,9 @@ import java.awt.CardLayout;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
+import games.stendhal.client.gui.styled.swing.StyledJButton;
+import games.stendhal.client.gui.styled.WoodStyle;
+
 /**
  *
  * @author  timothyb89
@@ -71,7 +74,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        nextButton = new javax.swing.JButton();
+        WoodStyle style = new WoodStyle();
+	nextButton = new StyledJButton(style);
         mainPanel = new javax.swing.JPanel();
         intro_panel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -95,7 +99,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
         amountChooser = new javax.swing.JPanel();
         itemAmount = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
-        resetButton = new javax.swing.JButton();
+        resetButton = new StyledJButton(style);
 
         setLayout(null);
 
@@ -409,11 +413,11 @@ public class BuyWindowContent extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JButton nextButton;
+    private StyledJButton nextButton;
     private javax.swing.JList npc_chooser;
     private javax.swing.JList potionList;
     private javax.swing.JPanel potions;
-    private javax.swing.JButton resetButton;
+    private StyledJButton resetButton;
     private javax.swing.JList xinBuy;
     private javax.swing.JList xinSell;
     private javax.swing.JPanel xin_weapons;
