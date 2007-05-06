@@ -120,8 +120,8 @@ public class Door2DView extends AnimatedStateEntity2DView {
 		String resource = "data/sprites/doors/" + name + ".png";
 		SpriteStore store = SpriteStore.get();
 
-		map.put("open", store.getAnimatedSprite(resource, 0, 1, width, height, 0L, false));
-		map.put("close", store.getAnimatedSprite(resource, 1, 1, width, height, 0L, false));
+		map.put(Door.STATE_OPEN, store.getAnimatedSprite(resource, 0, 1, width, height, 0L, false));
+		map.put(Door.STATE_CLOSED, store.getAnimatedSprite(resource, 1, 1, width, height, 0L, false));
 	}
 
 
@@ -132,7 +132,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 */
 	@Override
 	protected String getDefaultState() {
-		return "close";
+		return Door.STATE_CLOSED;
 	}
 
 
