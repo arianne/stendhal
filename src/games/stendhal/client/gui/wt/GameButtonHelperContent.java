@@ -35,8 +35,8 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 
 	WoodStyle style = new WoodStyle();
 
-        gh = new StyledJButton();
-        ph = new javax.swing.JToggleButton();
+        gh = new StyledJButton(style);
+        ph = new javax.swing.JToggleButton(style);
 
         setLayout(null);
 
