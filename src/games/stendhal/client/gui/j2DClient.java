@@ -67,6 +67,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -304,6 +305,10 @@ public class j2DClient extends StendhalUI {
 
 
 		if(System.getProperty("stendhal.onewindow") != null) {
+			JLabel header = new JLabel();	
+			header.setText("Game Chat and Events Log");
+			header.setFont(new java.awt.Font("Dialog", 3, 14));
+			content.add(header);
 			content.add(gameLog);
 			frame.pack();
 		} else {
@@ -327,7 +332,7 @@ public class j2DClient extends StendhalUI {
 
 			dialog.pack();
 
-
+			
 			/*
 			 * Move tracker
 			 */
