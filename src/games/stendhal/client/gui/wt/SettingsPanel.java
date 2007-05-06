@@ -116,8 +116,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		gbh = new GameButtonHelper(this, StendhalUI.get());
 		((j2DClient) StendhalUI.get()).addDialog(gbh.getDialog());
-		gbh.setVisible(true);
-
+	
 		buddies.registerCloseListener(this);
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
@@ -175,6 +174,13 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		addChild(button);
 		buttonMap.put("buddies", button);
 
+		button = new WtButton("gametools", 150, 30, "Enable Game Tools");
+		button.moveTo(10, 170);
+		button.setPressed(gbh.isVisible());
+		button.registerClickListener(this);
+		addChild(button);
+		buttonMap.put("gametools", button);
+		
 		spellsButton = new WtButton("spells", 150, 30, "Enable Spells Window");
 		spellsButton.moveTo(10, 210);
 		spellsButton.setPressed(spells.isVisible());
