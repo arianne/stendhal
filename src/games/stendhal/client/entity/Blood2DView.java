@@ -44,10 +44,21 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	protected void buildSprites(Map<String, AnimatedSprite> map) {
 		SpriteStore store = SpriteStore.get();
 
-		map.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1, 0L, false));
-		map.put("1", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 1, 1, 1, 1, 0L, false));
-		map.put("2", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 2, 1, 1, 1, 0L, false));
-		map.put("3", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 3, 1, 1, 1, 0L, false));
+		String clazz = entity.getEntityClass();
+
+		/*
+		 * If no class (or looks like a number), fallback to red
+		 */
+		if((clazz == null) || Character.isDigit(clazz.charAt(0))) {
+			clazz = "red";
+		}
+
+		String resource = "data/sprites/combat/blood_" + clazz + ".png";
+
+		map.put("0", store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false));
+		map.put("1", store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false));
+		map.put("2", store.getAnimatedSprite(resource, 2, 1, 1, 1, 0L, false));
+		map.put("3", store.getAnimatedSprite(resource, 3, 1, 1, 1, 0L, false));
 	}
 
 

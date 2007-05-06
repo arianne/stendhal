@@ -24,11 +24,10 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 
 /**
- * Represents a blood puddle that is left on the ground after a Creature
+ * Represents a blood puddle that is left on the ground after an entity
  * was injured or killed.
  */
 public class Blood extends PassiveEntity implements TurnListener {
-
 	/**
 	 * Blood will disappear after so many seconds.
 	 */
@@ -37,13 +36,14 @@ public class Blood extends PassiveEntity implements TurnListener {
 	public static void generateRPClass() {
 		RPClass blood = new RPClass("blood");
 		blood.isA("entity");
-		blood.add("class", RPClass.BYTE);
+		blood.add("class", RPClass.STRING);
+		blood.add("amount", RPClass.BYTE);
 	}
 
 	public Blood(RPEntity entity) throws AttributeNotFoundException {
-		super();
 		put("type", "blood");
-		put("class", Rand.rand(4));
+		put("clazz", "red");
+		put("amount", Rand.rand(4));
 
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
 
@@ -52,7 +52,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 		set((int) rect.getX(), (int) rect.getY());
 	}
 
-	
+
 	@Override
 	public String describe() {
 		return ("You see a pool of blood.");

@@ -12,15 +12,25 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+//
+//
+
+import marauroa.common.game.RPObject;
+
 /**
  * A blood entity.
  */
 public class Blood extends Entity {
 	/**
+	 * The amount of blood.
+	 */
+	private String	amount;
+
+
+	/**
 	 * Create a blood entity.
 	 */
 	public Blood() {
-		clazz = "0";
 	}
 
 
@@ -46,7 +56,29 @@ public class Blood extends Entity {
 	 */
 	@Override
 	public String getState() {
-		return getEntityClass();
+		return amount;
+	}
+
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		/*
+		 * Amount
+		 */
+		if (object.has("amount")) {
+			amount = object.get("amount");
+		} else {
+			amount = "0";
+		}
 	}
 
 
@@ -61,5 +93,47 @@ public class Blood extends Entity {
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return false;
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		/*
+		 * Amount
+		 */
+		if (changes.has("amount")) {
+			amount = changes.get("amount");
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		/*
+		 * Amount
+		 */
+		if (changes.has("amount")) {
+			amount = "0";
+		}
 	}
 }
