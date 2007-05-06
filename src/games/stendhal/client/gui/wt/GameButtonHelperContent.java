@@ -9,6 +9,9 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.HelpDialog;
 
+import games.stendhal.client.gui.styled.swing.StyledJButton;
+import games.stendhal.client.gui.styled.WoodStyle;
+
 /**
  *
  * @author  timothyb89
@@ -29,7 +32,10 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
     
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-        gh = new javax.swing.JButton();
+
+	WoodStyle style = new WoodStyle();
+
+        gh = new StyledJButton();
         ph = new javax.swing.JToggleButton();
 
         setLayout(null);
@@ -76,7 +82,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton gh;
+    private StyledJButton gh;
     private javax.swing.JToggleButton ph;
     // End of variables declaration//GEN-END:variables
     
