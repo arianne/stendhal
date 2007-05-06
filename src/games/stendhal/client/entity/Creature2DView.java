@@ -18,7 +18,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
@@ -107,11 +106,10 @@ public class Creature2DView extends RPEntity2DView {
 	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
-	 * @param	object		The object to get animations for.
-	 *
 	 * @return	A tile sprite containing all animation images.
 	 */
-	protected Sprite getAnimationSprite(final RPObject object) {
+	@Override
+	protected Sprite getAnimationSprite() {
 		String name = creature.getEntityClass();
 		String subclass = creature.getEntitySubClass();
 
@@ -131,11 +129,10 @@ public class Creature2DView extends RPEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
-		buildSprites(map, object, getWidth(), getHeight());
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
+		buildSprites(map, getWidth(), getHeight());
 	}
 
 

@@ -13,7 +13,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.SpriteStore;
@@ -40,9 +39,9 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+	@Override
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
 		SpriteStore store = SpriteStore.get();
 
 		map.put("0", store.getAnimatedSprite("data/sprites/combat/blood_red.png", 0, 1, 1, 1, 0L, false));
@@ -57,6 +56,7 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	 * <strong>All sub-classes MUST provide a <code>0</code>
 	 * named animation, or override this method</strong>.
 	 */
+	@Override
 	protected String getDefaultState() {
 		return "0";
 	}
@@ -86,6 +86,7 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 2000;
 	}

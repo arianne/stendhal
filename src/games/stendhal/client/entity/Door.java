@@ -84,6 +84,7 @@ public class Door extends Entity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Door2DView(this);
 	}
@@ -107,6 +108,7 @@ public class Door extends Entity {
 	 *
 	 * @see-also	#release()
 	 */
+	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
@@ -136,6 +138,7 @@ public class Door extends Entity {
 	 * @param	object		The base object.
 	 * @param	changes		The changes.
 	 */
+	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 

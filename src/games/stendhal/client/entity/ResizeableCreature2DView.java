@@ -17,7 +17,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of a resizable creature.
@@ -72,10 +71,9 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
 		double	width;
 		double	height;
 		double	drawWidth;
@@ -95,16 +93,16 @@ public class ResizeableCreature2DView extends Creature2DView {
 			drawHeight = height;
 		}
 
-		buildSprites(map, object, drawWidth, drawHeight);
+		buildSprites(map, drawWidth, drawHeight);
 	}
 
 
 	@Override
-	protected Sprite getAnimationSprite(final RPObject object) {
+	protected Sprite getAnimationSprite() {
 		String metamorphosis = creature.getMetamorphosis();
 
 		if(metamorphosis == null) {
-			return super.getAnimationSprite(object);
+			return super.getAnimationSprite();
 		}
 
 		return SpriteStore.get().getSprite("data/sprites/monsters/" + metamorphosis + ".png");
@@ -133,6 +131,7 @@ public class ResizeableCreature2DView extends Creature2DView {
 	/**
 	 * Update representation.
 	 */
+	@Override
 	protected void update() {
 		buildRepresentation();
 

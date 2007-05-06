@@ -65,6 +65,7 @@ public class Spell extends PassiveEntity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Spell2DView(this);
 	}

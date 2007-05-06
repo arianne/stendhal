@@ -21,7 +21,6 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an entity.
@@ -74,18 +73,8 @@ public abstract class Entity2DView { // implements EntityView {
 	/**
 	 * Rebuild the representation using the base entity.
 	 */
-	public void buildRepresentation() {
-		buildRepresentation(entity.getRPObject());
-	}
-
-
-	/**
-	 * Build the visual representation of this entity.
-	 *
-	 * @param	object		An entity object.
-	 */
-	protected void buildRepresentation(final RPObject object) {
-		sprite = SpriteStore.get().getSprite(translate(getEntity().getType()));
+	protected void buildRepresentation() {
+			sprite = SpriteStore.get().getSprite(translate(getEntity().getType()));
 	}
 
 

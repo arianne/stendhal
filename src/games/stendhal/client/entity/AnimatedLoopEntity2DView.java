@@ -12,7 +12,6 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
@@ -46,10 +45,8 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 
 	/**
 	 * Populate animation.
-	 *
-	 * @param	object		The entity to load animation for.
 	 */
-	protected Sprite getAnimatedSprite(RPObject object) {
+	protected Sprite getAnimatedSprite() {
 		String resource = translate(getEntity().getType());
 		SpriteStore store = SpriteStore.get();
 
@@ -66,8 +63,8 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 * This the animation sprite.
 	 */
 	@Override
-	protected void buildRepresentation(final RPObject object) {
-		sprite = getAnimatedSprite(object);
+	protected void buildRepresentation() {
+		sprite = getAnimatedSprite();
 	}
 
 
@@ -91,6 +88,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 3000;
 	}

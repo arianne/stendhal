@@ -344,6 +344,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 *
 	 * @return	The title, or <code>null</code> if unknown.
 	 */
+	@Override
 	public String getTitle() {
 		if(title != null) {
 			return title;
@@ -788,6 +789,7 @@ public abstract class RPEntity extends ActiveEntity {
 		return ActionType.LOOK;
 	}
 
+	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 		list.add(ActionType.ATTACK.getRepresentation());

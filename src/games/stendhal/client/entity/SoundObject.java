@@ -104,6 +104,7 @@ public class SoundObject extends InvisibleEntity {
 	/**
 	 * @return returns the name.
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}

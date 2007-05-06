@@ -60,6 +60,7 @@ public class StackableItem extends Item {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new StackableItem2DView(this);
 	}

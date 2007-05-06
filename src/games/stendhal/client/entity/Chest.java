@@ -88,6 +88,7 @@ public class Chest extends Entity implements Inspectable {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Chest2DView(this);
 	}
@@ -111,6 +112,7 @@ public class Chest extends Entity implements Inspectable {
 	 *
 	 * @see-also	#release()
 	 */
+	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
@@ -130,6 +132,7 @@ public class Chest extends Entity implements Inspectable {
 	 *
 	 * @see-also	#initialize(RPObject)
 	 */
+	@Override
 	public void release() {
 		if (wtEntityContainer != null) {
 			wtEntityContainer.destroy();

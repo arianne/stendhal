@@ -36,6 +36,7 @@ public class SheepFood2DView extends Food2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 5000;
 	}

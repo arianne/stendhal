@@ -131,6 +131,7 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @return	<code>true</code> if not moving.
 	 */
+	@Override
 	public boolean stopped() {
 		return (dx == 0.0) && (dy == 0.0);
 	}
@@ -290,6 +291,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param	base		The previous values.
 	 * @param	diff		The changes.
 	 */
+	@Override
 	protected void processPositioning(final RPObject base, final RPObject diff) {
 		// Real movement case
 		int oldx = base.getInt("x");

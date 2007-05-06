@@ -14,7 +14,6 @@ import games.stendhal.client.GameScreen;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of a portal.
@@ -36,11 +35,9 @@ public class InvisibleEntity2DView extends Entity2DView {
 
 	/**
 	 * Build the visual representation of this entity.
-	 *
-	 * @param	object		An entity object.
 	 */
 	@Override
-	protected void buildRepresentation(final RPObject object) {
+	protected void buildRepresentation() {
 	}
 
 
@@ -49,6 +46,7 @@ public class InvisibleEntity2DView extends Entity2DView {
 	 *
 	 * @return	The 2D area this draws in.
 	 */
+	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
         }
@@ -63,6 +61,7 @@ public class InvisibleEntity2DView extends Entity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 5000;
 	}
@@ -77,6 +76,7 @@ public class InvisibleEntity2DView extends Entity2DView {
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
+	@Override
 	public void draw(final GameScreen screen) {
 	}
 }

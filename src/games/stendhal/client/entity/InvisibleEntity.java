@@ -70,6 +70,7 @@ public class InvisibleEntity extends Entity {
 	 *
 	 * @see-also	#release()
 	 */
+	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 
@@ -113,6 +114,7 @@ public class InvisibleEntity extends Entity {
 	 * @param	object		The base object.
 	 * @param	changes		The changes.
 	 */
+	@Override
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
 		super.onChangedRemoved(object, changes);
 

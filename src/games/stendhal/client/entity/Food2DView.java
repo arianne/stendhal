@@ -13,7 +13,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.SpriteStore;
@@ -49,9 +48,9 @@ public class Food2DView extends AnimatedStateEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+	@Override
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
 		String resource = translate(getEntity().getType());
 
 		SpriteStore store = SpriteStore.get();
@@ -98,6 +97,7 @@ public class Food2DView extends AnimatedStateEntity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 6000;
 	}

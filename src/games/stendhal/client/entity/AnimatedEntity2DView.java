@@ -11,7 +11,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an animated entity.
@@ -42,10 +41,8 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 
 	/**
 	 * Build animations.
-	 *
-	 * @param	object		The entity to load animations for.
 	 */
-	protected abstract void buildAnimations(RPObject object);
+	protected abstract void buildAnimations();
 
 
 	/**
@@ -78,8 +75,8 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 * This builds all the animation sprites and sets the default frame.
 	 */
 	@Override
-	protected void buildRepresentation(final RPObject object) {
-		buildAnimations(object);
+	protected void buildRepresentation() {
+		buildAnimations();
 
 		sprite = getDefaultSprite();
 	}
@@ -88,6 +85,7 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	/**
 	 * Update representation.
 	 */
+	@Override
 	protected void update() {
 		super.update();
 

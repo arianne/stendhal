@@ -178,6 +178,7 @@ public class Sheep extends NPC {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Sheep2DView(this);
 	}

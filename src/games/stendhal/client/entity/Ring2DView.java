@@ -15,7 +15,6 @@ import games.stendhal.client.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of a chest.
@@ -42,11 +41,10 @@ public class Ring2DView extends Item2DView {
 
 	/**
 	 * Populate named state sprites.
-	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
-	protected void buildRepresentation(final RPObject object) {
+	@Override
+	protected void buildRepresentation() {
 		Entity entity = getEntity();
 		String name = entity.getEntityClass();
 		String subclass = entity.getEntitySubClass();
@@ -62,6 +60,7 @@ public class Ring2DView extends Item2DView {
 		broken=store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false);
 	}
 
+	@Override
 	public Sprite getSprite() {
 		if(ring.isWorking()) {
 			return working;
@@ -94,6 +93,7 @@ public class Ring2DView extends Item2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 5000;
 	}

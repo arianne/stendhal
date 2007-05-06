@@ -13,7 +13,6 @@ import games.stendhal.client.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an item.
@@ -35,11 +34,9 @@ public class Item2DView extends Entity2DView {
 
 	/**
 	 * Build the visual representation of this entity.
-	 *
-	 * @param	object		An entity object.
 	 */
 	@Override
-	protected void buildRepresentation(final RPObject object) {
+	protected void buildRepresentation() {
 		Entity entity = getEntity();
 		String name = entity.getEntityClass();
 		String subclass = entity.getEntitySubClass();
@@ -58,6 +55,7 @@ public class Item2DView extends Entity2DView {
 	 *
 	 * @return	The 2D area this draws in.
 	 */
+	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
         }
@@ -72,6 +70,7 @@ public class Item2DView extends Entity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 7000;
 	}

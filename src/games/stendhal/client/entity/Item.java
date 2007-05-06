@@ -65,6 +65,7 @@ public class Item extends PassiveEntity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Item2DView(this);
 	}

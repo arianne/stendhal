@@ -16,7 +16,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
@@ -62,11 +61,10 @@ public class NPC2DView extends RPEntity2DView {
 	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
-	 * @param	object		The object to get animations for.
-	 *
 	 * @return	A tile sprite containing all animation images.
 	 */
-	protected Sprite getAnimationSprite(final RPObject object) {
+	@Override
+	protected Sprite getAnimationSprite() {
 		SpriteStore store = SpriteStore.get();
 
 
@@ -105,11 +103,10 @@ public class NPC2DView extends RPEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
-		buildSprites(map, object, 1.5, 2.0);
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
+		buildSprites(map, 1.5, 2.0);
 	}
 
 

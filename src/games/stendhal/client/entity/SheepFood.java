@@ -22,6 +22,7 @@ public class SheepFood extends Food {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new SheepFood2DView(this);
 	}

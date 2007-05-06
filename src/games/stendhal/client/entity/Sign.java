@@ -84,6 +84,7 @@ public class Sign extends Entity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Sign2DView(this);
 	}

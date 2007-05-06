@@ -10,6 +10,7 @@ public class PlantGrower extends Entity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new PlantGrower2DView(this);
 	}

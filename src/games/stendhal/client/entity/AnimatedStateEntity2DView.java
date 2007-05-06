@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
@@ -56,9 +55,8 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
-	protected abstract void buildSprites(Map<String, AnimatedSprite> map, RPObject object);
+	protected abstract void buildSprites(Map<String, AnimatedSprite> map);
 
 
 	/**
@@ -88,11 +86,10 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 
 	/**
 	 * Build animations.
-	 *
-	 * @param	object		The entity to load animations for.
 	 */
-	protected void buildAnimations(RPObject object) {
-		buildSprites(sprites, object);
+	@Override
+	protected void buildAnimations() {
+		buildSprites(sprites);
 	}
 
 
@@ -101,6 +98,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 *
 	 */
+	@Override
 	protected AnimatedSprite getAnimatedSprite() {
 		String state = getState();
 		AnimatedSprite sprite = getSprite(state);
@@ -121,6 +119,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 * @return	The default sprite, or <code>null</code>.
 	 */
+	@Override
 	protected Sprite getDefaultSprite() {
 		AnimatedSprite sprite = getSprite(getDefaultState());
 

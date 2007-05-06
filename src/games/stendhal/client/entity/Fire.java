@@ -27,6 +27,7 @@ public class Fire extends Entity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Fire2DView(this);
 	}

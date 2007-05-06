@@ -12,7 +12,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.SpriteStore;
@@ -58,9 +57,9 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 */
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
+	@Override
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
 		double	height;
 		double	width;
 		int	maxRipeness;
@@ -108,6 +107,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 *
 	 * @return	The 2D area this draws in.
 	 */
+	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(
 			getX(), getY(), getWidth(), getHeight());
@@ -122,6 +122,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 3000;
 	}

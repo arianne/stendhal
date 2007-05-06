@@ -14,7 +14,6 @@ import games.stendhal.client.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of a sign.
@@ -40,7 +39,7 @@ public class Sign2DView extends Entity2DView {
 	 *
 	 */
 	@Override
-	protected void buildRepresentation(final RPObject object) {
+	protected void buildRepresentation() {
 		String name = getEntity().getEntityClass();
 
 		if (name == null) {
@@ -71,6 +70,7 @@ public class Sign2DView extends Entity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 5000;
 	}

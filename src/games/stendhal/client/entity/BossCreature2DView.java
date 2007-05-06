@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 
 public class BossCreature2DView extends Creature2DView {
@@ -16,8 +15,8 @@ public class BossCreature2DView extends Creature2DView {
     }
 
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object) {
-		Sprite tiles=getAnimationSprite(object);
+	protected void buildSprites(Map<String, AnimatedSprite> map) {
+		Sprite tiles=getAnimationSprite();
 		
 		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 0, getWidth(), getHeight()));
 		map.put(ActiveEntity.STATE_LEFT, getAnimatedWalk(tiles, 0, getWidth(), getHeight()).flip());
@@ -33,6 +32,7 @@ public class BossCreature2DView extends Creature2DView {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
+	@Override
 	protected AnimatedSprite getSprite(final String state) {
 		if(state.equals(ActiveEntity.STATE_UP)) {
 			return sprites.get(ActiveEntity.STATE_RIGHT);

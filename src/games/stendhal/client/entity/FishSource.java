@@ -59,6 +59,7 @@ public class FishSource extends Entity {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new FishSource2DView(this);
 	}

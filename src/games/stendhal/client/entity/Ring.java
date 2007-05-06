@@ -38,6 +38,7 @@ public class Ring extends Item {
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
+	@Override
 	protected Entity2DView createView() {
 		return new Ring2DView(this);
 	}
@@ -50,6 +51,7 @@ public class Ring extends Item {
 	 *
 	 * @see-also	#release()
 	 */
+	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
 

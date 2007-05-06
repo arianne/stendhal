@@ -11,7 +11,6 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.game.RPObject;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.SpriteStore;
@@ -65,10 +64,9 @@ public class Corpse2DView extends Entity2DView {
 
 	/**
 	 * Build the visual representation of this entity.
-	 *
-	 * @param	object		An entity object.
 	 */
-	protected void buildRepresentation(final RPObject object) {
+	@Override
+	protected void buildRepresentation() {
 		String clazz = corpse.getEntityClass();
 		String corpseType = corpse.getType();
 
@@ -98,6 +96,7 @@ public class Corpse2DView extends Entity2DView {
 	 *
 	 * @return	The 2D area this draws in.
 	 */
+	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
@@ -112,6 +111,7 @@ public class Corpse2DView extends Entity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 5500;
 	}

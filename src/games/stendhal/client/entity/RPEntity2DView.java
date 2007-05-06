@@ -21,7 +21,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
 
 /**
  * The 2D view of an RP entity.
@@ -88,12 +87,11 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
-	 * @param	object		The entity to load sprites for.
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
-	protected void buildSprites(Map<String, AnimatedSprite> map, RPObject object, double width, double height) {
-		Sprite tiles = getAnimationSprite(object);
+	protected void buildSprites(Map<String, AnimatedSprite> map, double width, double height) {
+		Sprite tiles = getAnimationSprite();
 
 		map.put(ActiveEntity.STATE_UP, getAnimatedWalk(tiles, 0, width, height));
 		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
@@ -122,11 +120,9 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
-	 * @param	object		The object to get animations for.
-	 *
 	 * @return	A tile sprite containing all animation images.
 	 */
-	protected Sprite getAnimationSprite(final RPObject object) {
+	protected Sprite getAnimationSprite() {
 		return SpriteStore.get().getSprite(translate(getEntity().getType()));
 	}
 
@@ -274,6 +270,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	 * 
 	 * @return	The drawing index.
 	 */
+	@Override
 	public int getZIndex() {
 		return 8000;
 	}
