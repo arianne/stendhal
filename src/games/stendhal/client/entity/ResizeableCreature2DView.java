@@ -31,7 +31,7 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 * @param	creature	The entity to render.
 	 */
 	public ResizeableCreature2DView(final ResizeableCreature creature) {
-		super(creature, creature.getWidth(), creature.getHeight());
+		super(creature);
 
 		this.creature = creature;
 	}
@@ -42,24 +42,19 @@ public class ResizeableCreature2DView extends Creature2DView {
 	//
 
 	/**
-	 * Get the height.
-	 *
-	 * @return	The height in tile units.
+	 * Set the appropriete drawn size based on the creature.
+	 * <strong>NOTE: This is called from the constructor.</strong>
 	 */
 	@Override
-	public double getHeight() {
-		return creature.getHeight();
-	}
+	protected void updateSize() {
+		width = entity.getWidth();
+		height = entity.getHeight();
 
-
-	/**
-	 * Get the width.
-	 *
-	 * @return	The width in tile units.
-	 */
-	@Override
-	public double getWidth() {
-		return creature.getWidth();
+		// Hack for human like creatures
+		if ((Math.abs(width - 1.0) < 0.1) && (Math.abs(height - 2.0) < 0.1)) {
+			width = 1.5;
+			height = 2.0;
+		}
 	}
 
 
@@ -74,26 +69,7 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 */
 	@Override
 	protected void buildSprites(Map<String, AnimatedSprite> map) {
-		double	width;
-		double	height;
-		double	drawWidth;
-		double	drawHeight;
-
-
-		width = getWidth();
-		height = getHeight();
-
-		// Hack for human like creatures
-
-		if ((Math.abs(width - 1.0) < 0.1) && (Math.abs(height - 2.0) < 0.1)) {
-			drawWidth = 1.5;
-			drawHeight = 2.0;
-		} else {
-			drawWidth = width;
-			drawHeight = height;
-		}
-
-		buildSprites(map, drawWidth, drawHeight);
+		buildSprites(map, width, height);
 	}
 
 
@@ -106,21 +82,6 @@ public class ResizeableCreature2DView extends Creature2DView {
 		}
 
 		return SpriteStore.get().getSprite("data/sprites/monsters/" + metamorphosis + ".png");
-	}
-
-
-	//
-	// Entity2DView
-	//
-
-	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
 

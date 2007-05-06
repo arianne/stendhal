@@ -37,28 +37,25 @@ public class Creature2DView extends RPEntity2DView {
 	/*
 	 * The drawn height.
 	 */
-	private double		height;
+	protected double	height;
 
 	/*
 	 * The drawn width.
 	 */
-	private double		width;
-
+	protected double	width;
 
 
 	/**
 	 * Create a 2D view of a creature.
 	 *
 	 * @param	creature	The entity to render.
-	 * @param	width		The drawn width in tile units.
-	 * @param	height		The drawn height in tile units.
 	 */
-	public Creature2DView(final Creature creature, double width, double height) {
+	public Creature2DView(final Creature creature) {
 		super(creature);
 
 		this.creature = creature;
-		this.width = width;
-		this.height = height;
+
+		updateSize();
 	}
 
 
@@ -99,6 +96,16 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
+	/**
+	 * Set the appropriete drawn size based on the creature.
+	 * <strong>NOTE: This is called from the constructor.</strong>
+	 */
+	protected void updateSize() {
+		width = entity.getWidth();
+		height = entity.getHeight();
+	}
+
+
 	//
 	// RPEntity2DView
 	//
@@ -110,8 +117,8 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		String name = creature.getEntityClass();
-		String subclass = creature.getEntitySubClass();
+		String name = entity.getEntityClass();
+		String subclass = entity.getEntitySubClass();
 
 		if(subclass != null) {
 			name += "/" + subclass;
@@ -139,6 +146,17 @@ public class Creature2DView extends RPEntity2DView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 * This builds all the animation sprites and sets the default frame.
+	 */
+	@Override
+	protected void buildRepresentation() {
+		updateSize();
+		super.buildRepresentation();
+	}
+
 
 	/**
 	 * Draw the entity.
