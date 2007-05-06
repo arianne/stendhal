@@ -91,6 +91,8 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		setMinimized(true);
 		setCloseable(false);
 
+		buttonMap = new HashMap<String, WtButton>();
+
 		character = new Character(ui);
 		character.registerCloseListener(this);
 		ui.addWindow(character);
@@ -129,8 +131,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
 		ui.addWindow(minimap);
-
-		buttonMap = new HashMap<String, WtButton>();
 
 		WtButton button;
 
@@ -267,6 +267,10 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		/*
 		 * Unset button
 		 */
-		buttonMap.get(name).setPressed(false);
+		WtButton button = buttonMap.get(name);
+
+		if(button != null) {
+			button.setPressed(false);
+		}
 	}
 }
