@@ -32,7 +32,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	/**
 	 * Map of named sprites.
 	 */
-	protected Map<String, AnimatedSprite>	sprites;
+	protected Map<Object, AnimatedSprite>	sprites;
 
 
 	/**
@@ -43,7 +43,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	public AnimatedStateEntity2DView(final Entity entity) {
 		super(entity);
 
-		sprites = new HashMap<String, AnimatedSprite>();
+		sprites = new HashMap<Object, AnimatedSprite>();
 	}
 
 
@@ -56,7 +56,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 * @param	map		The map to populate.
 	 */
-	protected abstract void buildSprites(Map<String, AnimatedSprite> map);
+	protected abstract void buildSprites(Map<Object, AnimatedSprite> map);
 
 
 	/**
@@ -64,7 +64,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 *
 	 */
-	protected AnimatedSprite getSprite(final String state) {
+	protected AnimatedSprite getSprite(final Object state) {
 		return sprites.get(state);
 	}
 
@@ -72,10 +72,10 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	/**
 	 * Get the default state name.
 	 */
-	protected abstract String getDefaultState();
+	protected abstract Object getDefaultState();
 
 
-	protected String getState() {
+	protected Object getState() {
 		return entity.getState();
 	}
 
@@ -100,7 +100,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 */
 	@Override
 	protected AnimatedSprite getAnimatedSprite() {
-		String state = getState();
+		Object state = getState();
 		AnimatedSprite sprite = getSprite(state);
 
 		if (sprite == null) {

@@ -105,7 +105,7 @@ public class NPC2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, AnimatedSprite> map) {
 		buildSprites(map, 1.5, 2.0);
 	}
 

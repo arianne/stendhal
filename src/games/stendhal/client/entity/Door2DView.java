@@ -74,7 +74,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, AnimatedSprite> map) {
 		String name = door.getEntityClass();
 
 		switch(door.getOrientation()) {
@@ -131,7 +131,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 * named animation, or override this method</strong>.
 	 */
 	@Override
-	protected String getDefaultState() {
+	protected Object getDefaultState() {
 		return Door.STATE_CLOSED;
 	}
 

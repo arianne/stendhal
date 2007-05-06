@@ -119,7 +119,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	height		The image height in tile units.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map, double width, double height) {
+	protected void buildSprites(Map<Object, AnimatedSprite> map, double width, double height) {
 		Sprite tiles = getAnimationSprite();
 
 		SpriteStore store = SpriteStore.get();
@@ -160,7 +160,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, AnimatedSprite> map) {
 		buildSprites(map, 1.0, 1.0);
 	}
 

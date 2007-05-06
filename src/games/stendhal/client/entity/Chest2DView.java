@@ -41,7 +41,7 @@ public class Chest2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, AnimatedSprite> map) {
 		String resource = translate(entity.getType());
 		SpriteStore store = SpriteStore.get();
 
@@ -52,12 +52,13 @@ public class Chest2DView extends AnimatedStateEntity2DView {
 
 	/**
 	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a <code>close</code>
-	 * named animation, or override this method</strong>.
+	 * <strong>All sub-classes MUST provide a
+	 * <strong>Chest.STATE_CLOSED</strong> named animation,
+	 * or override this method</strong>.
 	 */
 	@Override
-	protected String getDefaultState() {
-		return "close";
+	protected Object getDefaultState() {
+		return Chest.STATE_CLOSED;
 	}
 
 

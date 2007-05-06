@@ -15,7 +15,7 @@ public class BossCreature2DView extends Creature2DView {
     }
 
 	@Override
-	protected void buildSprites(Map<String, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, AnimatedSprite> map) {
 		Sprite tiles=getAnimationSprite();
 		
 		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 0, getWidth(), getHeight()));
