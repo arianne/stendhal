@@ -89,6 +89,10 @@ public class DefaultCreature {
 		this.description = text;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
 	public void setRPStats(int hp, int atk, int def, double speed) {
 		this.hp = hp;
 		this.atk = atk;
@@ -146,6 +150,10 @@ public class DefaultCreature {
 		this.equipsItems = equipsItems;
 	}
 
+	public List<EquipItem> getEquipedItems() {
+		return equipsItems;
+	}
+
 	public void setDropItems(List<DropItem> dropsItems) {
 		this.dropsItems = dropsItems;
 	}
@@ -174,6 +182,10 @@ public class DefaultCreature {
 	/** returns the class */
 	public String getCreatureClass() {
 		return clazz;
+	}
+
+	public String getCreatureSubClass() {
+		return subclass;
 	}
 
 	public String getCreatureName() {
