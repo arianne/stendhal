@@ -24,7 +24,7 @@ class SourceObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(SourceObject.class);
 
 	/** the item */
-	private Item base;
+	private Item item;
 
 	/** optional, parent item */
 	private Entity parent;
@@ -34,6 +34,8 @@ class SourceObject extends MoveableObject {
 	/** interprets the given action */
 	// TODO: split this method into parts (and move the checks out of the constructor)
 	public SourceObject(RPAction action, Player player) {
+		super(player);
+
 		// base item must be there
 		if (!action.has(EquipActionConsts.BASE_ITEM)) {
 			logger.warn("action does not have a base item. action: " + action);
@@ -56,6 +58,7 @@ class SourceObject extends MoveableObject {
 				return;
 			}
 
+			// TODO: Check that this code is not required because this check is done in PlayerSlot
 			// is the container a player and not the current one?
 			if ((parent instanceof Player) && !parent.getID().equals(player.getID())) {
 				// trying to remove an item from another player
@@ -66,7 +69,8 @@ class SourceObject extends MoveableObject {
 
 			// check that this slots exists
 			if (!parent.hasSlot(slot)) {
-				player.sendPrivateText("You don't have a slot called " + slot);
+				player.sendPrivateText("Source " + slot + " does not exist");
+				logger.error("Trying to use non existing slot " + slot + " as source");
 				return;
 			}
 
@@ -75,19 +79,22 @@ class SourceObject extends MoveableObject {
 			if (!baseSlot.has(baseItemId)) {
 				logger.warn("Base item(" + parent + ") doesn't containt item(" + baseItemId + ") on given slot("
 				        + slot + ")");
+				player.sendPrivateText("There is no such item in the " + slot + " of " + parent.getName());
 				return;
 			}
 			
-			if (!(baseSlot instanceof EntitySlot) || (!((EntitySlot) baseSlot).isReachableBy(player))) {
+			if (!(baseSlot instanceof EntitySlot) || (!((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
+				player.sendPrivateText("That " + slot + " of " + parent.getName() + " is too far away.");
 				return;
 			}
 
 			Entity entity = (Entity) baseSlot.get(baseItemId);
 			if (!(entity instanceof Item)) {
+				player.sendPrivateText("Oh, that " + entity.getName() + " is not an item and can therefor not be equiped");
 				return;
 			}
-			base = (Item) entity;
+			item = (Item) entity;
 		} else {
 			// item is not contained
 			if (StendhalRPWorld.get().has(baseItemId)) {
@@ -95,12 +102,12 @@ class SourceObject extends MoveableObject {
 				if (!(entity instanceof Item)) {
 					return;
 				}
-				base = (Item) entity;
+				item = (Item) entity;
 			}
 		}
-		
-		if ((base instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
-			int entityQuantity = ((Stackable) base).getQuantity();
+
+		if ((item instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
+			int entityQuantity = ((Stackable) item).getQuantity();
 
 			quantity = action.getInt(EquipActionConsts.QUANTITY);
 			if ((entityQuantity < 1) || (quantity < 1) || (quantity >= entityQuantity)) {
@@ -112,15 +119,15 @@ class SourceObject extends MoveableObject {
 	
 	/** moves this entity to the destination */
 	public boolean moveTo(DestinationObject dest, Player player) {
-		if ((!(base instanceof EquipListener)) || (!((EquipListener) base).canBeEquippedIn(dest.slot))) {
+		if ((!(item instanceof EquipListener)) || (!((EquipListener) item).canBeEquippedIn(dest.slot))) {
 			// give some feedback
-			player.sendPrivateText("You can't carry this " + base.getName() + " on your " + dest.slot);
-			logger.warn("tried to equip an entity into disallowed slot: " + base.getClass() + "; equip rejected");
+			player.sendPrivateText("You can't carry this " + item.getName() + " on your " + dest.slot);
+			logger.warn("tried to equip an entity into disallowed slot: " + item.getClass() + "; equip rejected");
 			return false;
 		}
 
-		if (!dest.isValid() || !dest.preCheck(base, player)) {
-			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(base, player));
+		if (!dest.isValid() || !dest.preCheck(item, player)) {
+			logger.warn("moveto not possible: " + dest.isValid() + "\t" + dest.preCheck(item, player));
 			return false;
 		}
 
@@ -134,11 +141,7 @@ class SourceObject extends MoveableObject {
 
 	/** returns true when this SourceObject is valid */
 	public boolean isValid() {
-		if (base != null) {
-			return true;
-		}
-		logger.debug("source is not valid, base == null");
-		return false;
+		return (item != null);
 	}
 
 	/**
@@ -146,11 +149,12 @@ class SourceObject extends MoveableObject {
 	 * distance
 	 */
 	public boolean checkDistance(Entity other, double distance) {
-		Entity checker = (parent != null) ? parent : base;
+		Entity checker = (parent != null) ? parent : item;
 		if (other.nextTo(checker, distance)) {
 			return true;
 		}
 		logger.debug("distance check failed " + other.squaredDistance(checker));
+		player.sendPrivateText("You cannot reach that far");
 		return false;
 	}
 
@@ -163,11 +167,11 @@ class SourceObject extends MoveableObject {
 	 */
 	public Entity removeFromWorld() {
 		if (quantity != 0) {
-			StackableItem newItem = ((StackableItem) base).splitOff(quantity);
+			StackableItem newItem = ((StackableItem) item).splitOff(quantity);
 			return newItem;
 		} else {
-			base.removeFromWorld();
-			return base;
+			item.removeFromWorld();
+			return item;
 		}
 	}
 
@@ -191,7 +195,7 @@ class SourceObject extends MoveableObject {
 	 * @return entity
 	 */
 	public Entity getEntity() {
-		return base;
+		return item;
 	}
 
 	public int getQuantity() {
@@ -199,8 +203,8 @@ class SourceObject extends MoveableObject {
 		if (quantity == 0) {
 			// everything
 			temp = 1;
-			if (base instanceof StackableItem) {
-				temp = ((StackableItem) base).getQuantity();
+			if (item instanceof StackableItem) {
+				temp = ((StackableItem) item).getQuantity();
 			}
 
 		}
