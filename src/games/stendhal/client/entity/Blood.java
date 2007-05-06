@@ -20,7 +20,7 @@ import marauroa.common.game.RPObject;
 /**
  * A blood entity.
  */
-public class Blood extends Entity {
+public class Blood extends PassiveEntity {
 	/**
 	 * The amount of blood.
 	 */
@@ -82,20 +82,6 @@ public class Blood extends Entity {
 	}
 
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>true</code> the entity can not enter this
-	 *		entity's area.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return false;
-	}
-
-
 	//
 	// RPObjectChangeListener
 	//
@@ -115,6 +101,7 @@ public class Blood extends Entity {
 		 */
 		if (changes.has("amount")) {
 			amount = changes.get("amount");
+			changed();
 		}
 	}
 
@@ -134,6 +121,7 @@ public class Blood extends Entity {
 		 */
 		if (changes.has("amount")) {
 			amount = "0";
+			changed();
 		}
 	}
 }

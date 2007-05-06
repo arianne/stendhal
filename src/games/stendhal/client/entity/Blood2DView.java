@@ -47,9 +47,9 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 		String clazz = entity.getEntityClass();
 
 		/*
-		 * If no class (or looks like a number), fallback to red
+		 * If no class (or a single character), fallback to red
 		 */
-		if((clazz == null) || Character.isDigit(clazz.charAt(0))) {
+		if((clazz == null) || (clazz.length() == 1)) {
 			clazz = "red";
 		}
 

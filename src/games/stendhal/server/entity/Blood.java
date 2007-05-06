@@ -42,7 +42,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 
 	public Blood(RPEntity entity) throws AttributeNotFoundException {
 		put("type", "blood");
-		put("clazz", "red");
+		put("class", "red");
 		put("amount", Rand.rand(4));
 
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
