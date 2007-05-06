@@ -27,7 +27,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(AnimatedEntity2DView.class);
+	private static final Logger logger = Log4J.getLogger(AnimatedStateEntity2DView.class);
 
 	/**
 	 * Map of named sprites.

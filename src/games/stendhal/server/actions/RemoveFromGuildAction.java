@@ -22,7 +22,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(CreateGuildAction.class);
+	private static final Logger logger = Log4J.getLogger(RemoveFromGuildAction.class);
 
 	/**
 	 * Registers action.

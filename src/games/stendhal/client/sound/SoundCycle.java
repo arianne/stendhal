@@ -34,7 +34,7 @@ import marauroa.common.game.RPObject.ID;
 class SoundCycle extends Thread implements Cloneable {
 
 	/** the logger */
-	private static final Logger logger = Log4J.getLogger(ClipRunner.class);
+	private static final Logger logger = Log4J.getLogger(SoundCycle.class);
 
 	private byte[] ID_Token;
 
