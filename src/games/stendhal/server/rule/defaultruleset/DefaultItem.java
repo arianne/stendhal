@@ -71,6 +71,10 @@ public class DefaultItem {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
+	
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
 
 	public void setAttributes(Pair<String, String> attribute) {
 		this.attributes = new HashMap<String, String>();

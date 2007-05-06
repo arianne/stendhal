@@ -17,6 +17,8 @@ import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.rule.EntityManager;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -83,6 +85,10 @@ public class DefaultCreature {
 		this.name = name;
 
 		this.tileid = tileid;
+		dropsItems=new LinkedList<DropItem>();
+		equipsItems=new LinkedList<EquipItem>();
+		creatureSays=new LinkedList<String>();
+		aiProfiles=new HashMap<String,String>();
 	}
 
 	public void setDescription(String text) {
@@ -141,9 +147,21 @@ public class DefaultCreature {
 		this.width = width;
 		this.height = height;
 	}
+	
+	public double getWidth() {
+		return width;
+	}
+	
+	public double getHeight() {
+		return height;		
+	}
 
 	public void setNoiseLines(List<String> creatureSays) {
 		this.creatureSays = creatureSays;
+	}
+
+	public List<String>  getNoiseLines() {
+		return creatureSays;
 	}
 
 	public void setEquipedItems(List<EquipItem> equipsItems) {
@@ -179,6 +197,10 @@ public class DefaultCreature {
 		return tileid;
 	}
 
+	public void setTileId(String val) {
+		tileid=val;;
+	}
+
 	/** returns the class */
 	public String getCreatureClass() {
 		return clazz;
@@ -190,6 +212,18 @@ public class DefaultCreature {
 
 	public String getCreatureName() {
 		return name;
+	}
+	
+	public void setCreatureClass(String val) {
+		clazz=val;
+	}
+
+	public void setCreatureSubClass(String val) {
+		subclass=val;
+	}
+
+	public void setCreatureName(String val) {
+		name=val;
 	}
 
 	public boolean verifyItems(EntityManager manager) {
@@ -209,4 +243,84 @@ public class DefaultCreature {
 
 		return true;
 	}
+/*
+      <creature name="risecia_swordsman">
+                <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
+                <attributes>
+                        <atk value="63"/>
+                        <def value="19"/>
+                        <hp value="150"/>
+                        <speed value="0.8"/>
+                        <size value="1,2"/>
+                </attributes>
+                <level value="17"/>
+                <experience value="280"/>
+                <respawn value="900"/>
+                <drops>
+                        <item value="money" quantity="[3,25]" probability="100"/>
+                        <item value="sword" quantity="1" probability="30"/>
+                        <item value="claymore" quantity="1" probability="5"/>
+                        <item value="katana" quantity="1" probability="15"/>
+                        <item value="chain_armor_+3" quantity="1" probability="1"/>
+                </drops>
+                <equips>
+                </equips>
+		<says>
+			<noise value="Stick 'em up!"/>
+		</says>
+                <ai>
+                        <profile name="human"/>
+                        <profile name="offensive"/>
+                        <profile name="brave"/>
+                        <profile name="patrolling"/>
+                </ai>
+	</creature>
+ */	
+	public String toXML() {
+		StringBuffer os=new StringBuffer();
+		os.append("  <creature name=\""+name+"\">\n");
+		os.append("    <type class=\""+clazz+"\" subclass=\""+subclass+"\" tileid=\""+tileid.replace("../../tileset/logic/creature/", "")+"\"/>\n");
+		os.append("    <attributes>\n");
+		os.append("      <atk value=\""+atk+"\"/>\n");
+		os.append("      <def value=\""+def+"\"/>\n");
+		os.append("      <hp value=\""+hp+"\"/>\n");
+		os.append("      <speed value=\""+speed+"\"/>\n");
+		os.append("      <size value=\""+width+","+height+"\"/>\n");
+		os.append("    </attributes>\n");
+		os.append("    <level value=\""+level+"\"/>\n");
+		os.append("    <experience value=\""+xp+"\"/>\n");
+		os.append("    <respawn value=\""+respawn+"\"/>\n");
+		os.append("    <drops>\n");
+		for(DropItem item: dropsItems) {
+			os.append("      <item value=\""+item.name+"\" quantity=\"["+item.min+","+item.max+"]\" probability=\""+item.probability+"\"/>\n");
+		}
+		os.append("    </drops>\n");
+		os.append("    <equips>\n");
+		for(EquipItem item: equipsItems) {
+			os.append("      <slot name=\""+item.slot+"\" item=\""+item.name+"\" quantity=\""+item.quantity+"\"/>\n");
+		}
+		os.append("    </equips>\n");
+		os.append("    <ai>\n");
+		if(!creatureSays.isEmpty()) {
+			os.append("      <says>\n");
+			for(String say: creatureSays) {
+				os.append("        <noise value=\""+say+"\"/>\n");
+			}
+			os.append("      </says>\n");
+		}		
+		for(Map.Entry<String, String> entry: aiProfiles.entrySet()) {
+    		os.append("      <profile name=\""+entry.getKey()+"\"");
+    		if(entry.getValue()!=null) {
+    			os.append(" params=\""+entry.getValue()+"\"");
+    		}
+    		os.append("/>\n");
+		}
+		os.append("    </ai>\n");
+		os.append("  </creature>\n");
+		return os.toString();
+	}
+
+	public Map<String,String> getAIProfiles() {
+	    return aiProfiles;
+    }
 }
