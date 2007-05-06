@@ -22,7 +22,7 @@ public class GameButtonHelper extends InternalManagedDialog {
 
 	/** Creates a new instance of Buddies */
 	public GameButtonHelper(SettingsPanel sp, StendhalUI ui) {
-		super("buywindow", "Purchase Items");
+		super("buywindow", "Game Tools");
 
 		content = new GameButtonHelperContent(sp, this, ui);
 		setContent(content);
