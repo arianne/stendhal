@@ -89,6 +89,9 @@ public class BuyWindowContent extends javax.swing.JPanel {
         xinBuy = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        potions = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        potionList = new javax.swing.JList();
         amountChooser = new javax.swing.JPanel();
         itemAmount = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
@@ -120,9 +123,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jLabel5.setBounds(0, 10, 224, 15);
 
         npc_chooser.setModel(new javax.swing.AbstractListModel() {
-        	private static final long serialVersionUID = -1607102841664745919L;
-
-            String[] strings = { "Xin Blanca", "Food and Drink Selling" };
+            String[] strings = { "Xin Blanca", "Food and Drink Selling", "Potions" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -135,7 +136,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jScrollPane4.setViewportView(npc_chooser);
 
         intro_panel.add(jScrollPane4);
-        jScrollPane4.setBounds(20, 40, 148, 139);
+        jScrollPane4.setBounds(20, 40, 125, 131);
 
         mainPanel.add(intro_panel, "intro");
 
@@ -144,8 +145,6 @@ public class BuyWindowContent extends javax.swing.JPanel {
         food_drink.setMaximumSize(new java.awt.Dimension(350, 225));
         food_drink.setOpaque(false);
         foodList.setModel(new javax.swing.AbstractListModel() {
-        	private static final long serialVersionUID = -1607102841664745919L;
-
             String[] strings = { "beer ($10)", "wine ($15)", "flask ($5)", "cheese ($20)", "apple ($10)", "carrot ($10)", "meat ($40)", "ham ($80)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -165,8 +164,6 @@ public class BuyWindowContent extends javax.swing.JPanel {
 
         xin_weapons.setOpaque(false);
         xinSell.setModel(new javax.swing.AbstractListModel() {
-        	private static final long serialVersionUID = -1607102841664745919L;
-
             String[] strings = { "knife ($15)", "club ($10)", "dagger ($25)", "wooden_shield ($25)", "dress ($25)", "leather_helmet ($25)", "cloak ($30)", "leather_legs ($35)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -180,15 +177,13 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jScrollPane2.setViewportView(xinSell);
 
         xin_weapons.add(jScrollPane2);
-        jScrollPane2.setBounds(0, 30, 117, 131);
+        jScrollPane2.setBounds(0, 30, 135, 139);
 
         jLabel2.setText("Selling:");
         xin_weapons.add(jLabel2);
         jLabel2.setBounds(40, 10, 45, 15);
 
         xinBuy.setModel(new javax.swing.AbstractListModel() {
-        	private static final long serialVersionUID = -1607102841664745919L;
-
             String[] strings = { "short_sword ($15)", "sword ($60)", "studded_shield ($20)", "studded_armor ($22)", "studded_legs ($20)", "chain_armor ($29)", "chain_helmet ($25)", "chain_legs ($27)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
@@ -202,7 +197,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jScrollPane3.setViewportView(xinBuy);
 
         xin_weapons.add(jScrollPane3);
-        jScrollPane3.setBounds(150, 30, 120, 131);
+        jScrollPane3.setBounds(150, 30, 136, 139);
 
         jLabel3.setText("Buying:");
         xin_weapons.add(jLabel3);
@@ -213,6 +208,21 @@ public class BuyWindowContent extends javax.swing.JPanel {
         jLabel4.setBounds(290, 40, 112, 60);
 
         mainPanel.add(xin_weapons, "xin");
+
+        potions.setLayout(null);
+
+        potions.setOpaque(false);
+        potionList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "minor_potion ($100)", "potion ($250)", "greater_potion ($500)", "mega_potion", "antidote ($40)", "greater_antidote ($40)" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(potionList);
+
+        potions.add(jScrollPane5);
+        jScrollPane5.setBounds(0, 0, 170, 190);
+
+        mainPanel.add(potions, "potions");
 
         amountChooser.setLayout(null);
 
@@ -259,6 +269,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	if (xinSell.getSelectedValue() != null) {
 	    JOptionPane.showMessageDialog(null, "You can only choose one item from 1 category at a time!");
 	    xinBuy.setSelectedValue(null, true);
+	    xinSell.setSelectedValue(null, true);
 	}
     }//GEN-LAST:event_xinBuyValueChanged
 
@@ -266,6 +277,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	if (xinBuy.getSelectedValue() != null) {
 	    JOptionPane.showMessageDialog(null, "You can only choose one item from 1 category at a time!");
 	    xinBuy.setSelectedValue(null, true);
+	    xinSell.setSelectedValue(null, true);
 	}
     }//GEN-LAST:event_xinSellValueChanged
 
@@ -309,6 +321,11 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	} else if (card.contains("food")) {
 	    buildMe = String.valueOf(foodList.getSelectedValue());
 	    card = "amountChooser";
+	    cl.show(mainPanel, card);
+	    
+	} else if (card.contains("potions")) {
+	    buildMe = String.valueOf(potionList.getSelectedValue());
+	    card = "amontChooser";
 	    cl.show(mainPanel, card);
 	} else if (card.contains("amount")) {
 	    amount = Integer.parseInt(String.valueOf(itemAmount.getValue()));
@@ -390,9 +407,12 @@ public class BuyWindowContent extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton nextButton;
     private javax.swing.JList npc_chooser;
+    private javax.swing.JList potionList;
+    private javax.swing.JPanel potions;
     private javax.swing.JButton resetButton;
     private javax.swing.JList xinBuy;
     private javax.swing.JList xinSell;
