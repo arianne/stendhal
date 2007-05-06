@@ -103,6 +103,12 @@ public class Creature2DView extends RPEntity2DView {
 	protected void updateSize() {
 		width = entity.getWidth();
 		height = entity.getHeight();
+
+		// Hack for human like creatures
+		if ((Math.abs(width - 1.0) < 0.1) && (Math.abs(height - 2.0) < 0.1)) {
+			width = 1.5;
+			height = 2.0;
+		}
 	}
 
 
@@ -210,5 +216,16 @@ public class Creature2DView extends RPEntity2DView {
 
 	protected static String translate(final String type) {
 		return "data/sprites/monsters/" + type + ".png";
+	}
+
+
+	/**
+	 * Update representation.
+	 */
+	@Override
+	protected void update() {
+		buildRepresentation();
+
+		super.update();
 	}
 }

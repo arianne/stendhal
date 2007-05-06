@@ -17,6 +17,9 @@ import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
 
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +31,7 @@ import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
-public abstract class Creature extends RPEntity {
+public class Creature extends RPEntity {
 
 	@Override
 	protected void nonCreatureClientAddEventLine(final String text) {
@@ -42,6 +45,17 @@ public abstract class Creature extends RPEntity {
 	 * The current metamorphosis.
 	 */
 	private String	metamorphosis;
+
+	/**
+	 * The entity width.
+	 */
+	private double width;
+
+	/**
+	 * The entity height.
+	 */
+	private double height;
+
 
 	// some debug props
 	/** should the path be hidden for this creature? */
@@ -239,6 +253,53 @@ public abstract class Creature extends RPEntity {
 	//
 
 	/**
+	 * Transition method. Create the screen view for this entity.
+	 *
+	 * @return	The on-screen view of this entity.
+	 */
+	@Override
+	protected Entity2DView createView() {
+		return new Creature2DView(this);
+	}
+
+	/**
+	 * Get the area the entity occupies.
+	 *
+	 * @return	A rectange (in world coordinate units).
+	 */
+	@Override
+	public Rectangle2D getArea() {
+		// Hack for human like creatures
+		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
+			return new Rectangle.Double(getX(), getY() + 1, 1, 1);
+		}
+
+		return super.getArea();
+	}
+
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height.
+	 */
+	@Override
+	public double getHeight() {
+		return height;
+	}
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width.
+	 */
+	@Override
+	public double getWidth() {
+		return width;
+	}
+
+
+	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -248,6 +309,18 @@ public abstract class Creature extends RPEntity {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
+
+		if(object.has("height")) {
+			height = object.getDouble("height");
+		} else {
+			height = 1.0;
+		}
+
+		if(object.has("width")) {
+			width = object.getDouble("width");
+		} else {
+			width = 1.5;
+		}
 
 		String type = getType();
 
@@ -394,6 +467,16 @@ public abstract class Creature extends RPEntity {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) throws AttributeNotFoundException {
 		super.onChangedAdded(object, changes);
+
+		if (changes.has("width")) {
+			width = changes.getDouble("width");
+			changed();
+		}
+
+		if (changes.has("height")) {
+			height = changes.getDouble("height");
+			changed();
+		}
 
 		/*
 		 * Debuging?

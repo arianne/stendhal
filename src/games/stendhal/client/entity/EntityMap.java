@@ -45,7 +45,7 @@ public final class EntityMap {
 		register("player", null, "Player");
 
 		register("creature", "boss", "BossCreature");
-		register("creature", null, "ResizeableCreature");
+		register("creature", null, "Creature");
 
 		register("sheep", null, "Sheep");
 
