@@ -117,6 +117,14 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
+		SpriteStore store = SpriteStore.get();
+
+		String metamorphosis = creature.getMetamorphosis();
+
+		if(metamorphosis != null) {
+			return store.getSprite("data/sprites/monsters/" + metamorphosis + ".png");
+		}
+
 		String name = entity.getEntityClass();
 		String subclass = entity.getEntitySubClass();
 
@@ -124,7 +132,7 @@ public class Creature2DView extends RPEntity2DView {
 			name += "/" + subclass;
 		}
 
-		return SpriteStore.get().getSprite(translate(name));
+		return store.getSprite(translate(name));
 	}
 
 

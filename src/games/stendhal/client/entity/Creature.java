@@ -38,6 +38,11 @@ public abstract class Creature extends RPEntity {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Creature.class);
 
+	/**
+	 * The current metamorphosis.
+	 */
+	private String	metamorphosis;
+
 	// some debug props
 	/** should the path be hidden for this creature? */
 	public boolean hidePath = false;
@@ -99,67 +104,65 @@ public abstract class Creature extends RPEntity {
 		return list;
 	}
 
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
 
-		// Check if debug is enabled
-		if (diff.has("debug") && Debug.CREATURES_DEBUG_CLIENT) {
-			patrolPath = null;
-			targetMovedPath = null;
-			moveToTargetPath = null;
+	protected void onDebug(String debug) {
+		if (!Debug.CREATURES_DEBUG_CLIENT) {
+			return;
+		}
 
-			String debug = diff.get("debug");
+		patrolPath = null;
+		targetMovedPath = null;
+		moveToTargetPath = null;
 
-			if (watch) {
-				StendhalUI.get().addEventLine(getID() + " - " + debug);
-			}
+		if (watch) {
+			StendhalUI.get().addEventLine(getID() + " - " + debug);
+		}
 
-			String[] actions = debug.split("\\|");
-			// parse all actions
-			for (String action : actions) {
-				if (action.length() > 0) {
-					StringTokenizer tokenizer = new StringTokenizer(action, ";");
+		String[] actions = debug.split("\\|");
+		// parse all actions
+		for (String action : actions) {
+			if (action.length() > 0) {
+				StringTokenizer tokenizer = new StringTokenizer(action, ";");
 
-					try {
-						String token = tokenizer.nextToken();
-						logger.debug("- creature action: " + token);
-						if (token.equals("sleep")) {
-							break;
-						} else if (token.equals("patrol")) {
-							patrolPath = getPath(tokenizer.nextToken());
-						} else if (token.equals("targetmoved")) {
-							targetMovedPath = getPath(tokenizer.nextToken());
-						} else if (token.equals("movetotarget")) {
+				try {
+					String token = tokenizer.nextToken();
+					logger.debug("- creature action: " + token);
+					if (token.equals("sleep")) {
+						break;
+					} else if (token.equals("patrol")) {
+						patrolPath = getPath(tokenizer.nextToken());
+					} else if (token.equals("targetmoved")) {
+						targetMovedPath = getPath(tokenizer.nextToken());
+					} else if (token.equals("movetotarget")) {
+						moveToTargetPath = null;
+						String nextToken = tokenizer.nextToken();
+
+						if (nextToken.equals("blocked")) {
+							nextToken = tokenizer.nextToken();
+						}
+
+						if (nextToken.equals("waiting")) {
+							nextToken = tokenizer.nextToken();
+						}
+
+						if (nextToken.equals("newpath")) {
 							moveToTargetPath = null;
-							String nextToken = tokenizer.nextToken();
-
+							nextToken = tokenizer.nextToken();
 							if (nextToken.equals("blocked")) {
-								nextToken = tokenizer.nextToken();
-							}
-
-							if (nextToken.equals("waiting")) {
-								nextToken = tokenizer.nextToken();
-							}
-
-							if (nextToken.equals("newpath")) {
 								moveToTargetPath = null;
-								nextToken = tokenizer.nextToken();
-								if (nextToken.equals("blocked")) {
-									moveToTargetPath = null;
-								} else {
-									moveToTargetPath = getPath(nextToken);
-								}
+							} else {
+								moveToTargetPath = getPath(nextToken);
 							}
 						}
-					} catch (Exception e) {
-						logger.warn("error parsing debug string '" + debug + "' actions [" + Arrays.asList(actions)
-						        + "] action '" + action + "'", e);
 					}
+				} catch (Exception e) {
+					logger.warn("error parsing debug string '" + debug + "' actions [" + Arrays.asList(actions)
+					        + "] action '" + action + "'", e);
 				}
 			}
 		}
 	}
+
 
 	@Override
 	public ActionType defaultAction() {
@@ -189,7 +192,6 @@ public abstract class Creature extends RPEntity {
 	}
 
 	public class Node {
-
 		public int nodeX, nodeY;
 
 		public Node(final int x, final int y) {
@@ -217,6 +219,24 @@ public abstract class Creature extends RPEntity {
 
 	}
 
+
+	//
+	// Creature
+	//
+
+	/**
+	 * Get the metamorphosis in effect.
+	 *
+	 * @return	The metamorphosis, or <code>null</code>.
+	 */
+	public String getMetamorphosis() {
+		return metamorphosis;
+	}
+
+
+	//
+	// Entity
+	//
 
 	/**
 	 * Initialize this entity for an object.
@@ -330,6 +350,12 @@ public abstract class Creature extends RPEntity {
 				}
 			}
 		}
+
+		if(object.has("metamorphosis")) {
+			metamorphosis = object.get("metamorphosis");
+		} else {
+			metamorphosis = null;
+		}
 	}
 
 	private long soundWait = 0L;
@@ -351,6 +377,51 @@ public abstract class Creature extends RPEntity {
 			}
 
 			soundWait = System.currentTimeMillis() + 1000L;
+		}
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) throws AttributeNotFoundException {
+		super.onChangedAdded(object, changes);
+
+		/*
+		 * Debuging?
+		 */
+		if (changes.has("debug")) {
+			onDebug(changes.get("debug"));
+		}
+
+		if (changes.has("metamorphosis")) {
+			metamorphosis = object.get("metamorphosis");
+			changed();
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("metamorphosis")) {
+			metamorphosis = null;
+			changed();
 		}
 	}
 }

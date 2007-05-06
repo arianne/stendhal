@@ -29,25 +29,6 @@ public class ResizeableCreature extends Creature {
 	 */
 	private double height;
 
-	/**
-	 * The current metamorphosis.
-	 */
-	private String	metamorphosis;
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Get the metamorphosis in effect.
-	 *
-	 * @return	The metamorphosis, or <code>null</code>.
-	 */
-	public String getMetamorphosis() {
-		return metamorphosis;
-	}
-
 
 	//
 	// Entity
@@ -121,12 +102,6 @@ public class ResizeableCreature extends Creature {
 		} else {
 			width = 1.5;
 		}
-
-		if(object.has("metamorphosis")) {
-			metamorphosis = object.get("metamorphosis");
-		} else {
-			metamorphosis = null;
-		}
 	}
 
 
@@ -151,28 +126,6 @@ public class ResizeableCreature extends Creature {
 
 		if (changes.has("height")) {
 			height = changes.getDouble("height");
-			changed();
-		}
-
-		if (changes.has("metamorphosis")) {
-			metamorphosis = object.get("metamorphosis");
-			changed();
-		}
-	}
-
-
-	/**
-	 * The object removed attribute(s).
-	 *
-	 * @param	object		The base object.
-	 * @param	changes		The changes.
-	 */
-	@Override
-	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		super.onChangedRemoved(object, changes);
-
-		if (changes.has("metamorphosis")) {
-			metamorphosis = null;
 			changed();
 		}
 	}

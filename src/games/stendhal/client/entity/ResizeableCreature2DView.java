@@ -22,9 +22,6 @@ import java.util.Map;
  * The 2D view of a resizable creature.
  */
 public class ResizeableCreature2DView extends Creature2DView {
-	private ResizeableCreature	creature;
-
-
 	/**
 	 * Create a 2D view of a resizable creature.
 	 *
@@ -32,8 +29,6 @@ public class ResizeableCreature2DView extends Creature2DView {
 	 */
 	public ResizeableCreature2DView(final ResizeableCreature creature) {
 		super(creature);
-
-		this.creature = creature;
 	}
 
 
@@ -70,18 +65,6 @@ public class ResizeableCreature2DView extends Creature2DView {
 	@Override
 	protected void buildSprites(Map<String, AnimatedSprite> map) {
 		buildSprites(map, width, height);
-	}
-
-
-	@Override
-	protected Sprite getAnimationSprite() {
-		String metamorphosis = creature.getMetamorphosis();
-
-		if(metamorphosis == null) {
-			return super.getAnimationSprite();
-		}
-
-		return SpriteStore.get().getSprite("data/sprites/monsters/" + metamorphosis + ".png");
 	}
 
 
