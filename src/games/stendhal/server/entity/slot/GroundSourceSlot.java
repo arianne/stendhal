@@ -26,8 +26,7 @@ public class GroundSourceSlot implements Slot {
 	}
 
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
-		// TODO: Check distance
-		return false;
+		return item.nextTo(entity);
 	}
 
 	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {

@@ -39,8 +39,7 @@ public class GroundTargetSlot implements Slot {
 	}
 
 	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
-		// TODO: Check distance
-		return false;
+		return entity.getZone().equals(zone) && entity.nextTo(x, y, 5.0);
 	}
 
 }
