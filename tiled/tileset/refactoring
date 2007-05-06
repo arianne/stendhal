@@ -7,6 +7,7 @@
 # s means sshk5
 # d means danter
 # D means durkham
+# F means DeusFigendi
 # z means other who i don't know but i know was done 
 # letter then * means it's done and committed
 ## Please help keep up to date and refer to this if you want to know what you can do
@@ -137,8 +138,8 @@ k*/building/window/window_long.png
 K*./building/window/int_windows_purple.png
 k/ground/blue_paving.png
 ./ground/blue_paving_2.png
-./ground/brown.png
-./ground/brown_2.png
+F*/ground/brown.png
+F+D*/ground/brown_2.png
 k/ground/brown_paving.png
 k*/ground/cobbled_paving.png
 k/ground/earth_edges.png
@@ -172,16 +173,16 @@ K/ground/indoor/grey_hole.png
 s/ground/indoor/grey_skull.png
 K/ground/indoor/taupe_hole.png
 s/ground/indoor/tiles.png
-./ground/ladder/horizontal_dark.png
-./ground/ladder/horizontal_pale.png
-./ground/ladder/small.png
-./ground/ladder/steps.png
-./ground/ladder/vertical_dark.png
-./ground/ladder/vertical_pale.png
-./ground/ridge/earth_dark.png
-./ground/ridge/earth_pale.png
-./ground/ridge/ice.png
-./ground/ridge/ice_2.png
+F/ground/ladder/horizontal_dark.png
+F/ground/ladder/horizontal_pale.png
+F*/ground/ladder/small.png
+F*/ground/ladder/steps.png
+F/ground/ladder/vertical_dark.png
+F/ground/ladder/vertical_pale.png
+F/ground/ridge/earth_dark.png
+F/ground/ridge/earth_pale.png
+K*/ground/ridge/ice.png
+K*/ground/ridge/ice_2.png
 ./ground/rock/green_crystal.png
 ./ground/rock/large_pebble.png
 ./ground/rock/misc_black.png
@@ -251,15 +252,15 @@ b*./item/furniture/bed/front_on.png
 ./item/furniture/bed/large_front_on_darker.png
 ./item/furniture/bed/side_on.png
 ./item/furniture/bed/side_on_bluer.png
-./item/furniture/carpet/border.png
-./item/furniture/carpet/brown_rug.png
-./item/furniture/carpet/carpets.png
-./item/furniture/carpet/carpets_2.png
-./item/furniture/carpet/plain_colours.png
-./item/furniture/carpet/purple_rug.png
-./item/furniture/carpet/rug_border.png
-./item/furniture/carpet/black_grey.png
-./item/furniture/carpet/stripey.png
+D/item/furniture/carpet/border.png
+D/item/furniture/carpet/brown_rug.png
+D/item/furniture/carpet/carpets.png
+D/item/furniture/carpet/carpets_2.png
+D/item/furniture/carpet/plain_colours.png
+D/item/furniture/carpet/purple_rug.png
+D/item/furniture/carpet/rug_border.png
+D/item/furniture/carpet/black_grey.png
+D/item/furniture/carpet/stripey.png
 b*/item/furniture/chair/stool.png
 ./item/furniture/chair/throne.png
 ./item/furniture/chair/throne_small.png
@@ -338,8 +339,8 @@ b*/item/pot/pot_burgundy.png
 K*/item/pot/pot_golden.png
 k*/item/pot/pot_golden_centred.png
 b*/item/pot/pot_grey.png
-b/item/pot/pot_on_metal.png
-b/item/pot/pot_on_stone.png
+F/item/pot/pot_on_metal.png
+F/item/pot/pot_on_stone.png
 b*/item/pot/pot_purple.png
 K*/item/pot/pot_tall.png
 b/item/pot/small_barrel.png
