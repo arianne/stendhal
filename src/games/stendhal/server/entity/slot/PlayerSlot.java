@@ -19,7 +19,7 @@ public class PlayerSlot extends EntitySlot {
 	}
 
 	@Override
-	public boolean isReachableBy(Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 		return super.hasAsParent(entity.getID());
 	}
 }

@@ -23,7 +23,7 @@ public class BankSlot extends PlayerSlot {
 	}
 
 	@Override
-	public boolean isReachableBy(Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 		// Check if we are next to a chest which acts as an interface
 		// to this bank slot
 		List<Entity> accessors = BankAccessorManager.get().get(bank);
@@ -41,7 +41,7 @@ public class BankSlot extends PlayerSlot {
 		}
 
 		// now check that it is the slot of the right player
-		return super.isReachableBy(entity);
+		return super.isReachableForTakingThingsOutOfBy(entity);
 	}
 
 	

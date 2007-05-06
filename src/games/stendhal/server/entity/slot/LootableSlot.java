@@ -21,7 +21,7 @@ public class LootableSlot extends PlayerSlot {
 	}
 
 	@Override
-	public boolean isReachableBy(Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 		return entity.nextTo(owner);
 	}
 	
