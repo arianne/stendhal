@@ -42,6 +42,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
@@ -291,6 +292,31 @@ public class InternalManagedDialog implements ManagedWindow {
 	//
 
 	/**
+	 * Handle titlebar clicks.
+	 *
+	 * @param	count		The click count.
+	 */
+	protected void tbClicked(int count) {
+		if(count == 1) {
+			/*
+			 * Raise the window if possible.
+			 */
+			Container parent = dialog.getParent();
+
+			if(parent instanceof JLayeredPane) {
+				((JLayeredPane) parent).moveToFront(dialog);
+			}
+		} else if(count == 2) {
+			/*
+			 * Toggle minimization
+			 */
+			if(isMinimizable()) {
+				setMinimized(!isMinimized());
+			}
+		}
+	}
+
+	/**
 	 * Handle begining of titlebar drag.
 	 *
 	 * @param	x		The X coordinate.
@@ -449,6 +475,16 @@ public class InternalManagedDialog implements ManagedWindow {
 	 */
 	public int getY() {
 		return dialog.getY();
+	}
+
+
+	/**
+	 * Determine if the window is minimizable.
+	 *
+	 * @return	<code>true</code> if minimizable.
+	 */
+	public boolean isMinimizable() {
+		return minimizeButton.isEnabled();
 	}
 
 
@@ -815,6 +851,18 @@ public class InternalManagedDialog implements ManagedWindow {
 		public void mouseReleased(MouseEvent ev) {
 			if(ev.getButton() == MouseEvent.BUTTON1) {
 				tbDragEnd(ev.getX(), ev.getY());
+			}
+		}
+
+
+		/**
+		 * Handle mouse click event.
+		 *
+		 * @param	ev		The mouse event.
+		 */
+		public void mouseClicked(MouseEvent ev) {
+			if(ev.getButton() == MouseEvent.BUTTON1) {
+				tbClicked(ev.getClickCount());
 			}
 		}
 	}
