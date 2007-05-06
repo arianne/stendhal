@@ -8,7 +8,7 @@ import marauroa.common.game.RPSlot;
  *
  * @author hendrik 
  */
-public class EntitySlot extends RPSlot {
+public class EntitySlot extends RPSlot implements Slot {
 
 	/**
 	 * creates an uninitialized EntitySlot
@@ -27,21 +27,14 @@ public class EntitySlot extends RPSlot {
 		super(name);
 	}
 
-	/**
-	 * Is this slot reachable?
-	 *
-	 * @param entity Entity which may be able to reach this slot
-	 * @return true, if it is reachable, false otherwise
-	 */
-	public boolean isReachableBy(@SuppressWarnings("unused") Entity entity) {
+	public boolean isReachableForTakingThingsOutOfBy(@SuppressWarnings("unused") Entity entity) {
 		return false;
 	}
 
-	/**
-	 * Can this slot contain items?
-	 *
-	 * @return true, if it can contains items, false otherwise 
-	 */
+	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
+		return isReachableForTakingThingsOutOfBy(entity);
+	}
+
 	public boolean isItemSlot() {
 		return true;
 	}
