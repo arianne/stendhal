@@ -4,12 +4,12 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 
 /**
- * A pseudo slot representing the ground
+ * A pseudo slot representing the ground as source for an item 
  * (so that the ground has not to be treated special in equipment code).
  *
- * @author brummermann
+ * @author hendrik
  */
-public class GroundSlot implements Slot {
+public class GroundSourceSlot implements Slot {
 	private Item item;
 
 	/**
@@ -17,7 +17,7 @@ public class GroundSlot implements Slot {
 	 *
 	 * @param item item
 	 */
-	public GroundSlot(Item item) {
+	public GroundSourceSlot(Item item) {
 		this.item = item;
 	}
 
@@ -26,30 +26,13 @@ public class GroundSlot implements Slot {
 	}
 
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
-		// Is this a target slot?
-		if (isDestinationSlot()) {
-			return false;
-		}
-
 		// TODO: Check distance
 		return false;
 	}
 
 	public boolean isReachableForThrowingThingsIntoBy(Entity entity) {
-		// Is this a source slot?
-		if (isSourceSlot()) {
-			return false;
-		}
 
-		// TODO: Check distance
+		// this is a source slot
 		return false;
-	}
-
-	private boolean isSourceSlot() {
-		return item != null;
-	}
-
-	private boolean isDestinationSlot() {
-		return item == null;
 	}
 }
