@@ -1,6 +1,7 @@
 package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * source or destination object
@@ -13,6 +14,18 @@ public abstract class MoveableObject {
 	 * the slot this item is in or should be placed into
 	 */
 	protected String slot;
+	/** Player to notify about problems */
+	protected final Player player;
+	
+	/**
+	 * Creates a new MoveableObject
+	 *
+	 * @param player Player to notify about problems
+	 */
+
+	public MoveableObject(Player player) {
+		this.player = player;
+	}
 
 	/**
 	 * is this object valid?

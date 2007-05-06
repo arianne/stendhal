@@ -37,6 +37,7 @@ class DestinationObject extends MoveableObject {
 
 	/** interprets the given action */
 	public DestinationObject(RPAction action, Player player) {
+		super(player);
 		valid = false;
 		// droppped into another item
 		if (action.has(EquipActionConsts.TARGET_OBJECT) && action.has(EquipActionConsts.TARGET_SLOT)) {
@@ -86,7 +87,7 @@ class DestinationObject extends MoveableObject {
 
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
-			if (!(rpslot instanceof EntitySlot) || (!((EntitySlot) rpslot).isReachableBy(player))) {
+			if (!(rpslot instanceof EntitySlot) || (!((EntitySlot) rpslot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
 				return false;
 			}
