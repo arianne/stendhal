@@ -51,7 +51,7 @@ public class Food2DView extends AnimatedStateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(Map<String, AnimatedSprite> map) {
-		String resource = translate(getEntity().getType());
+		String resource = translate(entity.getType());
 
 		SpriteStore store = SpriteStore.get();
 

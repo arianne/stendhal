@@ -37,7 +37,6 @@ public class Item2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		Entity entity = getEntity();
 		String name = entity.getEntityClass();
 		String subclass = entity.getEntitySubClass();
 

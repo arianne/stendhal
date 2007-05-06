@@ -42,7 +42,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	/**
 	 * The RP entity this view is for.
 	 */
-	private RPEntity	entity;
+	protected RPEntity	rpentity;
 
 	/**
 	 * Blade strike frame.
@@ -70,12 +70,12 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	/**
 	 * Create a 2D view of an entity.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param	rpentity	The entity to render.
 	 */
-	public RPEntity2DView(final RPEntity entity) {
-		super(entity);
+	public RPEntity2DView(final RPEntity rpentity) {
+		super(rpentity);
 
-		this.entity = entity;
+		this.rpentity = rpentity;
 	}
 
 
@@ -123,7 +123,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	 * @return	A tile sprite containing all animation images.
 	 */
 	protected Sprite getAnimationSprite() {
-		return SpriteStore.get().getSprite(translate(getEntity().getType()));
+		return SpriteStore.get().getSprite(translate(entity.getType()));
 	}
 
 
@@ -193,7 +193,7 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
 		Rectangle srect = screen.convertWorldToScreen(entity.getArea());
 
-		if (entity.isBeingAttacked()) {
+		if (rpentity.isBeingAttacked()) {
 			// Draw red box around
 
 			g2d.setColor(Color.red);
@@ -203,21 +203,21 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 			g2d.drawRect(srect.x - 1, srect.y - 1, srect.width + 2, srect.height + 2);
 		}
 
-		if (entity.isAttackingUser()) {
+		if (rpentity.isAttackingUser()) {
 			// Draw orange box around
 			g2d.setColor(Color.orange);
 			g2d.drawRect(srect.x + 1, srect.y + 1, srect.width - 2, srect.height - 2);
 		}
 
-		if (entity.isAttacking() && entity.isBeingStruck()) {
-			Rectangle2D rect = entity.getArea();
+		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
+			Rectangle2D rect = rpentity.getArea();
 			double sx = rect.getMaxX();
 			double sy = rect.getMaxY();
 
 			if (frameBladeStrike < 3) {
 				screen.draw(bladeStrikeSprites.get(getState())[frameBladeStrike], sx - 1.5, sy - 3.3);
 			} else {
-				entity.doneStriking();
+				rpentity.doneStriking();
 				frameBladeStrike = 0;
 			}
 
@@ -226,27 +226,27 @@ public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
 
 		super.draw(screen, g2d, x, y, width, height);
 
-		if (entity.isEating()) {
-			Rectangle2D rect = entity.getArea();
+		if (rpentity.isEating()) {
+			Rectangle2D rect = rpentity.getArea();
 			double sx = rect.getMaxX();
 			double sy = rect.getMaxY();
 			screen.draw(eatingSprite, sx - 0.75, sy - 0.25);
 		}
 
-		if (entity.isPoisoned()) {
-			Rectangle2D rect = entity.getArea();
+		if (rpentity.isPoisoned()) {
+			Rectangle2D rect = rpentity.getArea();
 			double sx = rect.getMaxX();
 			double sy = rect.getMaxY();
 			screen.draw(poisonedSprite, sx - 1.25, sy - 0.25);
 		}
 
-		if (entity.isDefending()) {
+		if (rpentity.isDefending()) {
 			// Draw bottom right combat icon
-			Rectangle2D rect = entity.getArea();
+			Rectangle2D rect = rpentity.getArea();
 			double sx = rect.getMaxX();
 			double sy = rect.getMaxY();
 
-			switch (entity.getResolution()) {
+			switch (rpentity.getResolution()) {
 				case BLOCKED:
 					screen.draw(blockedSprite, sx - 0.25, sy - 0.25);
 					break;

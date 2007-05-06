@@ -47,7 +47,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 * Populate animation.
 	 */
 	protected Sprite getAnimatedSprite() {
-		String resource = translate(getEntity().getType());
+		String resource = translate(entity.getType());
 		SpriteStore store = SpriteStore.get();
 
 		return new AnimatedSprite(store.getSprites(resource, 0, frames, 1, 1), 100L);

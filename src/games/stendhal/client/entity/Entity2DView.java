@@ -29,7 +29,7 @@ public abstract class Entity2DView { // implements EntityView {
 	/**
 	 * The entity this view is for
 	 */
-	private Entity	entity;
+	protected Entity	entity;
 
 	/**
 	 * The last entity change serial number.
@@ -74,7 +74,7 @@ public abstract class Entity2DView { // implements EntityView {
 	 * Rebuild the representation using the base entity.
 	 */
 	protected void buildRepresentation() {
-			sprite = SpriteStore.get().getSprite(translate(getEntity().getType()));
+			sprite = SpriteStore.get().getSprite(translate(entity.getType()));
 	}
 
 
@@ -228,17 +228,6 @@ public abstract class Entity2DView { // implements EntityView {
 			draw(screen, screen.expose(), r.x, r.y, r.width, r.height);
 		}
 	}
-
-
-	/**
-	 * Get the entity this view represents.
-	 *
-	 * @return	The represented entity.
-	 */
-	protected Entity getEntity() {
-		return entity;
-	}
-
 
 	/**
 	 * Update representation.

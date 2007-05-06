@@ -69,7 +69,7 @@ public class NPC2DView extends RPEntity2DView {
 
 
 		try {
-			int code = ((RPEntity) getEntity()).getOutfit();
+			int code = rpentity.getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
 				/*
@@ -83,12 +83,12 @@ public class NPC2DView extends RPEntity2DView {
 			} else {
 				// This NPC's outfit is read from a single file.
 				outfitCode = -1;
-				outfit = store.getSprite(translate("npc/" + getEntity().getEntityClass()));
+				outfit = store.getSprite(translate("npc/" + entity.getEntityClass()));
 			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
 			outfitCode = -1;
-			outfit = store.getSprite(translate(getEntity().getEntityClass()));
+			outfit = store.getSprite(translate(entity.getEntityClass()));
 		}
 
 		return outfit;

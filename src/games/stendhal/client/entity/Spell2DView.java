@@ -37,8 +37,8 @@ public class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		String name = getEntity().getEntityClass();
-		String subclass = getEntity().getEntitySubClass();
+		String name = entity.getEntityClass();
+		String subclass = entity.getEntitySubClass();
 
 		if(subclass != null) {
 			name += "/" + subclass;

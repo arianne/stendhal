@@ -45,7 +45,6 @@ public class Ring2DView extends Item2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		Entity entity = getEntity();
 		String name = entity.getEntityClass();
 		String subclass = entity.getEntitySubClass();
 

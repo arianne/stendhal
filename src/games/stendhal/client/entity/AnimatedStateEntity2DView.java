@@ -76,7 +76,7 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 
 
 	protected String getState() {
-		return getEntity().getState();
+		return entity.getState();
 	}
 
 

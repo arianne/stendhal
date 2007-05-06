@@ -16,13 +16,6 @@ import games.stendhal.client.Sprite;
  * The 2D view of an animated entity.
  */
 public abstract class AnimatedEntity2DView extends Entity2DView {
-
-	/**
-	 * The animated entity this view is for.
-	 */
-	private Entity		entity;
-
-
 	/**
 	 * Create a 2D view of an entity.
 	 *
@@ -30,8 +23,6 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	 */
 	public AnimatedEntity2DView(final Entity entity) {
 		super(entity);
-
-		this.entity = entity;
 	}
 
 
