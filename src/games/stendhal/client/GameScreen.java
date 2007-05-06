@@ -55,6 +55,11 @@ public class GameScreen {
 	/** The width / height of one tile. */
 	public final static int SIZE_UNIT_PIXELS = 32;
 
+	/**
+	 * A scale factor for panning delta (to allow non-float precision).
+	 */
+	protected static final int	PAN_SCALE	= 8;
+
 	private BufferStrategy strategy;
 
 	private Graphics2D g;
@@ -103,12 +108,12 @@ public class GameScreen {
 	private int	dvy;
 
 	/**
-	 * The screen pan X movement.
+	 * The screen pan X movement (scaled).
 	 */
 	private int	dx;
 
 	/**
-	 * The screen pan Y movement.
+	 * The screen pan Y movement (scaled).
 	 */
 	private int	dy;
 
@@ -214,9 +219,70 @@ public class GameScreen {
 
 
 	/**
-	 * Update the view position to center the target position.
+	 * Re-calculate the pan speed.
 	 *
-	 * @param	immediate	Center on the coodinates immediately.
+	 * @param	dist		The distance to goal.
+	 * @param	speed		The current speed (PAN_SCALE scaled).
+	 *
+	 * @return	The new speed.
+	 */
+	protected int adjustSpeed(int dist, int speed) {
+		if(dist == 0) {
+			speed = 0;
+		} else if(dist > 0) {
+			if(dist > 64) {
+				// Accelerate (max 16)
+				if(speed < (16 * PAN_SCALE)) {
+					speed++;
+				}
+			} else if(dist > 16) {
+				// No change
+			} else if(dist > 8) {
+				// Slow down slowly
+				speed = (speed * 3) / 4;
+
+				if(speed < PAN_SCALE) {
+					speed = PAN_SCALE;
+				}
+			} else {
+				// Slow down quickly
+				speed /= 2;
+
+				if(speed < PAN_SCALE) {
+					speed = PAN_SCALE;
+				}
+			}
+		} else {
+			if(dist < -64) {
+				// Accelerate (max 16)
+				if(speed > (-16 * PAN_SCALE)) {
+					speed--;
+				}
+			} else if(dist < -16) {
+				// No change
+			} else if(dist < -8) {
+				// Slow down slowly
+				speed = (speed * 3) / 4;
+
+				if(speed > -PAN_SCALE) {
+					speed = -PAN_SCALE;
+				}
+			} else {
+				// Slow down quickly
+				speed /= 2;
+
+				if(speed > -PAN_SCALE) {
+					speed = -PAN_SCALE;
+				}
+			}
+		}
+
+		return speed;
+	}
+
+
+	/**
+	 * Update the view position to center the target position.
 	 */
 	protected void adjustView() {
 		/*
@@ -225,98 +291,17 @@ public class GameScreen {
 		if((Math.abs(dvx) > sw) || (Math.abs(dvy) > sh)) {
 			center();
 		} else {
-			if(dvx == 0) {
-				dx = 0;
-			} else if(dvx > 0) {
-				if(dvx > (sw / 4)) {
-					// Accelerate (max 16)
-					if(dx < 16) {
-						dx++;
-					}
-				} else if(dvx > (sw / 8)) {
-					// No change
-				} else if(dvx > (sw / 16)) {
-					// Slow down slowly
-					dx = (dx * 7) / 8;
-
-					if(dx == 0) {
-						dx = 1;
-					}
-				} else {
-					// Slow down quickly
-					dx = (dx * 3) / 4;
-
-					if(dx == 0) {
-						dx = 1;
-					}
-				}
-			} else {
-				if(dvx < (sw / -4)) {
-					// Accelerate (max 16)
-					if(dx > -16) {
-						dx--;
-					}
-				} else if(dvx < (sw / -8)) {
-					// No change
-				} else if(dvy < (sh / -16)) {
-					// Slow down slowly
-					dy = (dy * 7) / 8;
-
-					if(dy == 0) {
-						dy = 1;
-					}
-				} else {
-					// Slow down quickly
-					dy = (dy * 3) / 4;
-
-					if(dy == 0) {
-						dy = 1;
-					}
-				}
-			}
-
-
-			if(dvy == 0) {
-				dy = 0;
-			} else if(dvy > 0) {
-				if(dvy > (sh / 4)) {
-					// Accelerate (max 20)
-					if(dy < 20) {
-						dy++;
-					}
-				} else if(dvy > (sh / 8)) {
-					// No change
-				} else {
-					// Slow down
-					if(dy > 1) {
-						dy /= 2;
-					}
-				}
-			} else {
-				if(dvy < (sh / -4)) {
-					// Accelerate (max 20)
-					if(dy > -20) {
-						dy--;
-					}
-				} else if(dvy < (sh / -8)) {
-					// No change
-				} else {
-					// Slow down
-					if(dy < -1) {
-						dy /= 2;
-					}
-				}
-			}
-
+			dx = adjustSpeed(dvx, dx);
+			dy = adjustSpeed(dvy, dy);
 
 			/*
 			 * Adjust view
 			 */
-			svx += dx;
-			dvx -= dx;
+			svx += (dx / PAN_SCALE);
+			dvx -= (dx / PAN_SCALE);
 
-			svy += dy;
-			dvy -= dy;
+			svy += (dy / PAN_SCALE);
+			dvy -= (dy / PAN_SCALE);
 
 			throttleViewPan();
 		}
@@ -372,22 +357,22 @@ public class GameScreen {
 	 */
 	protected void throttleViewPan() {
 		if(dx > 0) {
-			if(dx > dvx) {
-				dx = dvx;
+			if((dx / PAN_SCALE) > dvx) {
+				dx = dvx * PAN_SCALE;
 			}
 		} else if(dx < 0) {
-			if(dx < dvx) {
-				dx = dvx;
+			if((dx / PAN_SCALE) < dvx) {
+				dx = dvx * PAN_SCALE;
 			}
 		}
 
 		if(dy > 0) {
-			if(dy > dvy) {
-				dy = dvy;
+			if((dy / PAN_SCALE) > dvy) {
+				dy = dvy * PAN_SCALE;
 			}
 		} else if(dy < 0) {
-			if(dy < dvy) {
-				dy = dvy;
+			if((dy / PAN_SCALE) < dvy) {
+				dy = dvy * PAN_SCALE;
 			}
 		}
 	}
