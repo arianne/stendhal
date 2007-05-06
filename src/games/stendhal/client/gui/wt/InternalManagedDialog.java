@@ -187,6 +187,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 * Minimize button
 		 */
 		minimizeButton = new JButton(new MinimizeIcon());
+		minimizeButton.setDisabledIcon(new DisabledIcon());
 		minimizeButton.setFocusable(false);
 		minimizeButton.setMargin(new Insets(0, 0, 0, 0));
 		minimizeButton.setBorder(BorderFactory.createEmptyBorder());
@@ -203,6 +204,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 * Close button
 		 */
 		closeButton = new JButton(new CloseIcon());
+		closeButton.setDisabledIcon(new DisabledIcon());
 		closeButton.setFocusable(false);
 		closeButton.setMargin(new Insets(0, 0, 0, 0));
 		closeButton.setBorder(BorderFactory.createEmptyBorder());
@@ -632,6 +634,29 @@ public class InternalManagedDialog implements ManagedWindow {
 	protected class MinimizeCB implements ActionListener {
 		public void actionPerformed(ActionEvent ev) {
 			minimizeCB();
+		}
+	}
+
+
+	/**
+	 * Disabled button icon.
+	 */
+	protected static class DisabledIcon implements Icon {
+		//
+		// Icon
+		//
+
+		public int getIconHeight() {
+			return TITLEBAR_HEIGHT;
+		}
+
+
+		public int getIconWidth() {
+			return TITLEBAR_HEIGHT;
+		}
+
+
+		public void paintIcon(Component c, Graphics g, int x, int y) {
 		}
 	}
 
