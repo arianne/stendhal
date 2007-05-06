@@ -304,8 +304,11 @@ public class j2DClient extends StendhalUI {
 		gameLog.setPreferredSize(new Dimension(SCREEN_WIDTH, 171));
 
 
-		if(System.getProperty("stendhal.onewindow") != null) {
-			JLabel header = new JLabel();	
+		if (System.getProperty("stendhal.onewindow") != null) {
+			content.add(gameLog);
+			frame.pack();
+		} else if (System.getProperty("stendhal.onewindowtitle") != null) {
+		    	JLabel header = new JLabel();	
 			header.setText("Game Chat and Events Log");
 			header.setFont(new java.awt.Font("Dialog", 3, 14));
 			content.add(header);
