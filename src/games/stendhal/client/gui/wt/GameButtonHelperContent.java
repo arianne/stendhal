@@ -28,15 +28,14 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
 	initComponents();
 	this.sp = sp;
 	this.ui = ui;
+	
     }
     
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
-
 	WoodStyle style = new WoodStyle();
-
-        gh = new StyledJButton(style);
-        ph = new javax.swing.JToggleButton();
+	gh = new StyledJButton(style);
+        jButton1 = new StyledJButton(style);
 
         setLayout(null);
 
@@ -53,28 +52,27 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
         });
 
         add(gh);
-        gh.setBounds(-10, 0, 160, 25);
+        gh.setBounds(0, 0, 150, 25);
 
-        ph.setText("Purchase Helper");
-        ph.setOpaque(false);
-        ph.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Purchase Helper");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        add(ph);
-        ph.setBounds(-20, 30, 170, 25);
+        add(jButton1);
+        jButton1.setBounds(0, 30, 150, 25);
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void phActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 	if (sp.buywindow.isVisible()) {
 	    sp.buywindow.setVisible(false); //so very useful...
 	} else {
 	    sp.buywindow.setVisible(true);
 	}
-    }//GEN-LAST:event_phActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ghActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ghActionPerformed
     	new HelpDialog().display();
@@ -83,7 +81,7 @@ public class GameButtonHelperContent extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private StyledJButton gh;
-    private javax.swing.JToggleButton ph;
+    private StyledJButton jButton1;
     // End of variables declaration//GEN-END:variables
     
 }
