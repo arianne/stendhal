@@ -33,7 +33,7 @@ public class TestBuildOfferedActions {
 		MockEntity me = new MockEntity();
 		me.buildOfferedActions(list);
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
+		expected.add(ActionType.LOOK.getRepresentation());
 		Assert.assertEquals(expected, list);
 		Assert.assertEquals(expected.toArray(), me.offeredActions());
 	}
@@ -50,9 +50,9 @@ public class TestBuildOfferedActions {
 		Sheep sheep = new Sheep();
 		List<String> expected = new ArrayList<String>();
 		User user = new User();
-		expected.add("Look");
-		expected.add("Attack");
-		expected.add("Own");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.ATTACK.getRepresentation());
+		expected.add(ActionType.OWN.getRepresentation());
 		sheep.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
@@ -61,8 +61,8 @@ public class TestBuildOfferedActions {
 		// User already has sheep
 		list = new ArrayList<String>();
 		expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Attack");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.ATTACK.getRepresentation());
 		RPObject object = new RPObject();
 		object.put("type",1);
 		object.put("sheep", 1);
@@ -80,17 +80,17 @@ public class TestBuildOfferedActions {
 		Chest sh = new Chest();
 		sh.initialize(rpo);
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Open");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.OPEN.getRepresentation());
 		sh.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
 		sh.onChangedAdded(new MockRPObject(), new MockRPObject());
 		list.clear();
 		expected.clear();
-		expected.add("Look");
-		expected.add("Inspect");
-		expected.add("Close");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.INSPECT.getRepresentation());
+		expected.add(ActionType.CLOSE.getRepresentation());
 		sh.buildOfferedActions(list);
 		Assert.assertEquals(expected, list);
 	}
@@ -104,12 +104,12 @@ public class TestBuildOfferedActions {
 		rp.add("height", 1);
 		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Pick");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.PICK.getRepresentation());
 		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(new String[] { "Pick", "Look" }, en.offeredActions());
+		Assert.assertEquals(new String[] { ActionType.PICK.getRepresentation(), ActionType.LOOK.getRepresentation() }, en.offeredActions());
 	}
 	@Test
 	public final void testPlantGrower() throws Exception {
@@ -118,12 +118,12 @@ public class TestBuildOfferedActions {
 		
 		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
+		expected.add(ActionType.LOOK.getRepresentation());
 		
 		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(new String[] { "Look" }, en.offeredActions());
+		Assert.assertEquals(new String[] { ActionType.LOOK.getRepresentation() }, en.offeredActions());
 	}
 	@Test
 	public final void testSalad() throws Exception {
@@ -135,20 +135,20 @@ public class TestBuildOfferedActions {
 		
 		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
+		expected.add(ActionType.LOOK.getRepresentation());
 		
 		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(new String[] { "Use","Look" }, en.offeredActions());
+		Assert.assertEquals(new String[] { ActionType.USE.getRepresentation(),ActionType.LOOK.getRepresentation() }, en.offeredActions());
 	}
 	@Test
 	public final void testDoor() throws Exception {
 		StendhalClient.get();
 		Door door = new Door();
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Open");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.OPEN.getRepresentation());
 		door.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
@@ -156,8 +156,8 @@ public class TestBuildOfferedActions {
 		door.onChangedAdded(new MockRPObject(), new MockRPObject());
 		list.clear();
 		expected.clear();
-		expected.add("Look");
-		expected.add("Close");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.CLOSE.getRepresentation());
 		door.buildOfferedActions(list);
 		Assert.assertEquals(expected, list);
 	}
@@ -167,8 +167,8 @@ public class TestBuildOfferedActions {
 		StendhalClient.get();
 		Box box = new Box();
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Open");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.OPEN.getRepresentation());
 		box.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
@@ -179,8 +179,8 @@ public class TestBuildOfferedActions {
 		StendhalClient.get();
 		GoldSource gs = new GoldSource();
 		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Prospect");
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.PROSPECT.getRepresentation());
 		gs.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
