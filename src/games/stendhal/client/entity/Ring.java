@@ -19,12 +19,12 @@ import marauroa.common.game.RPObject;
  */
 public class Ring extends Item {
 	/**
-	 * Whether the chest is currently open.
+	 * Whether the chest is currently working.
 	 */
 	private boolean working;
 
 	/**
-	 * Create a chest entity.
+	 * Create a Ring entity.
 	 */
 	Ring() {
 	}
