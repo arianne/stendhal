@@ -342,10 +342,20 @@
          </zone>
 	 
 	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
-           <portal x="31" y="63" ref="entrance">
+           <configurator class-name="games.stendhal.server.maps.fado.deathmatch.Deathmatch"/>
+	   <portal x="31" y="63" ref="entrance">
              <destination zone="0_fado_city" ref="battle_arena_entrance"/>
            </portal>
+	   <portal x="63" y="0" ref="basement_entrance">
+	     <destination zone="int_fado_battle_arena_-1" ref="basement_exit"/>
+           </portal>
          </zone>
+         <zone name="int_fado_battle_arena_-1" file="interiors/fado/battle_arena_-1.tmx">
+           <configurator class-name="games.stendhal.server.maps.fado.deathmatch.BattleArenaRecruiterNPC"/>
+           <portal x="63" y="0" ref="basement_exit">
+              <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
+           </portal>
+        </zone>
 	 
  <!--  Level -1 -->
 
