@@ -402,9 +402,13 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="creatureRespawn" alignment="0" pref="182" max="32767" attributes="0"/>
                                       <Component id="creatureXP" pref="182" max="32767" attributes="1"/>
                                       <Component id="creatureLevel" alignment="0" pref="182" max="32767" attributes="1"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="creatureRespawn" pref="153" max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -436,9 +440,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="creatureRespawn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="creatureHP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="creatureRespawn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -543,6 +548,11 @@
         <Component class="javax.swing.JTextField" name="creatureSpeed">
           <Properties>
             <Property name="text" type="java.lang.String" value="jTextField4"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel16">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="turns"/>
           </Properties>
         </Component>
       </SubComponents>

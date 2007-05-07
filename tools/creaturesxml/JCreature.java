@@ -178,7 +178,7 @@ public class JCreature extends javax.swing.JFrame {
         
         creatureLevel.setText(Integer.toString(actual.getLevel()));
         creatureXP.setText(Integer.toString(actual.getXP()/20));
-        creatureRespawn.setText(Integer.toString(actual.getRespawnTime()/20));
+        creatureRespawn.setText(Integer.toString(actual.getRespawnTime()));
         
         StringBuffer os = new StringBuffer("");
         for(DropItem item: actual.getDropItems()) {
@@ -259,6 +259,7 @@ public class JCreature extends javax.swing.JFrame {
         creatureDEF = new javax.swing.JTextField();
         creatureHP = new javax.swing.JTextField();
         creatureSpeed = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
         data = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         creatureDescription = new javax.swing.JTextArea();
@@ -461,6 +462,8 @@ public class JCreature extends javax.swing.JFrame {
 
         creatureSpeed.setText("jTextField4");
 
+        jLabel16.setText("turns");
+
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -494,9 +497,12 @@ public class JCreature extends javax.swing.JFrame {
                                     .add(jLabel10))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(creatureRespawn, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                                     .add(creatureXP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                    .add(creatureLevel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))))
+                                    .add(creatureLevel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
+                                        .add(creatureRespawn, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jLabel16)))))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -519,9 +525,10 @@ public class JCreature extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel10)
-                    .add(creatureRespawn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel14)
-                    .add(creatureHP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(creatureHP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel16)
+                    .add(creatureRespawn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -909,6 +916,7 @@ public class JCreature extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
