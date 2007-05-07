@@ -11,17 +11,23 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * dumps debug information about turn listener events
+ *
  * @author hendrik
  */
 public class DumpTurnListenerEvents extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
+		int outdated = 0;
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		int currentTurn = turnNotifier.getCurrentTurnForDebugging();
 		Map<Integer, Set<TurnEvent>> events = turnNotifier.getEventListForDebugging();
 		for (Integer turn : events.keySet()) {
-			
+			if (turn.intValue() < currentTurn) {
+				outdated++;
+			}
 		}
+		admin.sendPrivateText("Outdated turn events: " + outdated);
 	}
 }
