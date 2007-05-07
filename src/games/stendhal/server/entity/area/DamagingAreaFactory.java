@@ -84,6 +84,7 @@ public class DamagingAreaFactory extends OccupantAreaFactory {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 */
+	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new DamagingArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx), getProbability(ctx));
 	}

@@ -239,6 +239,7 @@ public class KTextEdit extends JPanel {
 				if (SwingUtilities.isEventDispatchThread()) {
 					// you can't call invokeAndWait from the event dispatch thread.
 					new Thread() {
+						@Override
 						public void run() {
 							scrollToBottom();
 						}

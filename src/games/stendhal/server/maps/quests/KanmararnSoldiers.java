@@ -129,6 +129,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	private class HenryQuestAction extends SpeakerNPC.ChatAction {
+		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 			if(!player.isQuestCompleted(QUEST_SLOT) && !"map".equals(player.getQuest(QUEST_SLOT))) {
 				npc.say("Find my #group, Peter, Tom, and Charles, prove it and I will reward you. Will you do it?");
@@ -140,30 +141,35 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	private class HenryQuestAcceptAction extends SpeakerNPC.ChatAction {
+		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 			player.setQuest(QUEST_SLOT, "start");
 		}
 	}
 
 	private class HenryQuestStartedCondition extends SpeakerNPC.ChatCondition {
+		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	private class HenryQuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
+		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
 			return (!player.hasQuest(QUEST_SLOT) || player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	private class HenryQuestCompletedCondition extends SpeakerNPC.ChatCondition {
+		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && !player.getQuest(QUEST_SLOT).equals("start"));
 		}
 	}
 
 	private class HenryQuestCompleteAction extends SpeakerNPC.ChatAction {
+		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 
 			List<Item> allLeatherLegs = player.getAllEquipped("leather_legs");
@@ -212,18 +218,21 @@ public class KanmararnSoldiers extends AbstractQuest {
 	}
 
 	private class JamesQuestCompleteCondition extends SpeakerNPC.ChatCondition {
+		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
 			return (player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("map"));
 		}
 	}
 
 	private class JamesQuestCompletedCondition extends SpeakerNPC.ChatCondition {
+		@Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
 			return (player.isQuestCompleted(QUEST_SLOT));
 		}
 	}
 
 	private class JamesQuestCompleteAction extends SpeakerNPC.ChatAction {
+		@Override
 		public void fire(Player player, String text, SpeakerNPC npc) {
 		
 			List<Item> allMaps = player.getAllEquipped("map");

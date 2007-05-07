@@ -140,6 +140,7 @@ class SourceObject extends MoveableObject {
 	}
 
 	/** returns true when this SourceObject is valid */
+	@Override
 	public boolean isValid() {
 		return (item != null);
 	}
@@ -148,6 +149,7 @@ class SourceObject extends MoveableObject {
 	 * returns true when this entity and the other is within the given
 	 * distance
 	 */
+	@Override
 	public boolean checkDistance(Entity other, double distance) {
 		Entity checker = (parent != null) ? parent : item;
 		if (other.nextTo(checker, distance)) {

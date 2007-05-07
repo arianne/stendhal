@@ -821,6 +821,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The mouse event.
 		 */
+		@Override
 		public void mouseDragged(MouseEvent ev) {
 			tbDragMovement(ev.getX(), ev.getY());
 		}
@@ -836,6 +837,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The mouse event.
 		 */
+		@Override
 		public void mousePressed(MouseEvent ev) {
 			if(ev.getButton() == MouseEvent.BUTTON1) {
 				tbDragBegin(ev.getX(), ev.getY());
@@ -848,6 +850,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The mouse event.
 		 */
+		@Override
 		public void mouseReleased(MouseEvent ev) {
 			if(ev.getButton() == MouseEvent.BUTTON1) {
 				tbDragEnd(ev.getX(), ev.getY());
@@ -860,6 +863,7 @@ public class InternalManagedDialog implements ManagedWindow {
 		 *
 		 * @param	ev		The mouse event.
 		 */
+		@Override
 		public void mouseClicked(MouseEvent ev) {
 			if(ev.getButton() == MouseEvent.BUTTON1) {
 				tbClicked(ev.getClickCount());

@@ -530,6 +530,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 *
 		 * @param	obj		The object to compare to.
 		 */
+		@Override
 		public boolean equals(final Object obj) {
 			if(!(obj instanceof FQID)) {
 				return false;
@@ -558,6 +559,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		 *
 		 * @return	The hash code.
 		 */
+		@Override
 		public int hashCode() {
 			int value = 0;
 

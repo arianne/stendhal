@@ -73,6 +73,7 @@ public class TileRenderer extends LayerRenderer {
 		Log4J.finishMethod(logger, "setMapData");
 	}
 	
+	@Override
 	public void setTileset(TileStore tileset) {
 		tiles=tileset;
 

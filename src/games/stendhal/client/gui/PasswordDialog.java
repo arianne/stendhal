@@ -45,7 +45,8 @@ public class PasswordDialog extends javax.swing.JFrame {
         jLabel1.setBounds(10, 10, 166, 17);
 
         currrentPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 currrentPassMouseClicked(evt);
             }
         });
@@ -65,7 +66,8 @@ public class PasswordDialog extends javax.swing.JFrame {
         jLabel3.setBounds(10, 70, 111, 30);
 
         newPass.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            @Override
+			public void keyTyped(java.awt.event.KeyEvent evt) {
                 newPassKeyTyped(evt);
             }
         });
@@ -78,7 +80,8 @@ public class PasswordDialog extends javax.swing.JFrame {
         jLabel4.setBounds(10, 110, 100, 30);
 
         newPassRepeat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
+            @Override
+			public void keyTyped(java.awt.event.KeyEvent evt) {
                 newPassRepeatKeyTyped(evt);
             }
         });

@@ -19,6 +19,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 		// The NPC is defined as a ferry announcer because he notifies
 		// passengers when the ferry arrives or departs.
 		SpeakerNPC npc = new AthorFerry.FerryAnnouncerNPC(name) {
+			@Override
 			public void onNewFerryState(int status) {
 				if (status == AthorFerry.ANCHORED_AT_ISLAND) {
 					say("Attention: The ferry has arrived at this coast! You can now #board the ship.");

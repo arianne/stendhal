@@ -18,6 +18,7 @@ import java.util.Map;
  */
 public class ChefNPC extends SpeakerNPCFactory {
 
+	@Override
 	protected void createDialog(SpeakerNPC npc) {
 		npc.addJob("I'm the local baker. I also run a #pizza delivery service. We used to get a lot of orders from Ados before the war broke out and they blocked the road. At least it gives me more time to #make sandwiches for out valuable customers; everybody says they're great!");
 		npc.addHelp("If you want to earn some money, you could do me a #favor and help me with the #pizza deliveries. My daughter #Sally used to do it, but she's camping at the moment.");

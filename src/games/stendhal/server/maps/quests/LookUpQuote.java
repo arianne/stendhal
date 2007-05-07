@@ -188,6 +188,7 @@ public class LookUpQuote extends AbstractQuest {
 	}
 
 	
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		createFishingRod();

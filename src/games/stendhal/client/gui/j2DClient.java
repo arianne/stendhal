@@ -784,6 +784,7 @@ public class j2DClient extends StendhalUI {
 	 * @throws	IllegalArgumentException
 	 *				If an unsupported ManagedWindow is given.
 	 */
+	@Override
 	public void addWindow(ManagedWindow mw) {
 		if(mw instanceof InternalManagedDialog) {
 			addDialog(((InternalManagedDialog) mw).getDialog());
@@ -831,6 +832,7 @@ public class j2DClient extends StendhalUI {
 	 * Sets the context menu. It is closed automatically one the user
 	 * clicks outside of it.
 	 */
+	@Override
 	public void setContextMenu(JPopupMenu contextMenu) {
 		baseframe.setContextMenu(contextMenu);
 	}
@@ -883,6 +885,7 @@ public class j2DClient extends StendhalUI {
 	/**
 	 * Initiate outfit selection by the user.
 	 */
+	@Override
 	public void chooseOutfit() {
 		int	outfit;
 
@@ -899,6 +902,7 @@ public class j2DClient extends StendhalUI {
 		OutfitDialog dialog = new OutfitDialog(frame, "Set outfit", outfit);
 		dialog.setVisible(true);
 	}
+	@Override
 	public void ManageGuilds() {
 	    GuildManager gm = new GuildManager();
 	    gm.setVisible(true);
@@ -995,6 +999,7 @@ public class j2DClient extends StendhalUI {
 	 *
 	 * @param	offline		<code>true</code> if offline.
 	 */
+	@Override
 	public void setOffline(boolean offline) {
 		screen.setOffline(offline);
 	}

@@ -229,6 +229,7 @@ public abstract class RPEntity extends Entity {
 	 *
 	 * @return	<code>true</code> if the other entity is an RPEntity.
 	 */
+	@Override
 	public boolean isObstacle(Entity entity) {
 		if (isGhost()) {
 			return false;
@@ -295,6 +296,7 @@ public abstract class RPEntity extends Entity {
 		put("name", name);
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

@@ -96,6 +96,7 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 		// JMenuItem
 		//
 
+		@Override
 		public void processMenuKeyEvent(MenuKeyEvent ev) {
 			switch (ev.getKeyCode()) {
 				case KeyEvent.VK_ESCAPE:

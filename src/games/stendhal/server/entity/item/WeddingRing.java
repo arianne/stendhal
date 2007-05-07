@@ -60,6 +60,7 @@ public class WeddingRing extends Ring {
 		super(item);
 	}
 
+	@Override
 	public void onUsed(RPEntity user) {
 		RPObject base = this;
 		// Find the top container

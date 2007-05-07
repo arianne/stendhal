@@ -160,6 +160,7 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/** returns true when this DestinationObject is valid */
+	@Override
 	public boolean isValid() {
 		return valid;
 	}
@@ -168,6 +169,7 @@ class DestinationObject extends MoveableObject {
 	 * returns true when this entity and the other is within the given
 	 * distance
 	 */
+	@Override
 	public boolean checkDistance(Entity other, double distance) {
 		if (parent != null) {
 			return (other.nextTo(parent, distance));

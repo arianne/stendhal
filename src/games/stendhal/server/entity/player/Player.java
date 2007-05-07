@@ -300,6 +300,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Stop and clear any active directions.
 	 */
+	@Override
 	public void stop() {
 		directions.clear();
 		super.stop();
@@ -354,6 +355,7 @@ public class Player extends RPEntity implements TurnListener {
 	 *
 	 * @param	karma		An amount of karma to add/subtract.
 	 */
+	@Override
 	public void addKarma(double karma) {
 		this.karma += karma;
 
@@ -369,6 +371,7 @@ public class Player extends RPEntity implements TurnListener {
 	 *
 	 * @return	A number between -scale and scale.
 	 */
+	@Override
 	public double getKarma(double scale) {
 		return getKarma(-scale, scale);
 	}
@@ -383,6 +386,7 @@ public class Player extends RPEntity implements TurnListener {
 	 *
 	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
+	@Override
 	public double getKarma(double negLimit, double posLimit) {
 		double limit;
 		double score;

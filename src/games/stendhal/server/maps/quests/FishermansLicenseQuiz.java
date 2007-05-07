@@ -222,6 +222,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 	}
 
 	
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		createQuizStep();

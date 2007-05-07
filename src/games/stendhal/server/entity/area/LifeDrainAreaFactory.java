@@ -51,6 +51,7 @@ return 0;
 	// OccupantAreaFactory
 	//
 
+	@Override
 	protected OccupantArea createArea(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new LifeDrainArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx));
 	}

@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
  */
 public class InmateNPC extends SpeakerNPCFactory {
 
+	@Override
 	protected void createDialog(SpeakerNPC npc) {
 		npc.addGreeting("Let me out!");
 		npc.addGoodbye();

@@ -58,7 +58,8 @@ public class GuildManager extends javax.swing.JFrame {
 
         guildTextBoxCreate.setText("Guild Name Here");
         guildTextBoxCreate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            @Override
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guildTextBoxCreateMouseClicked(evt);
             }
         });
