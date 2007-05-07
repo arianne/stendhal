@@ -585,7 +585,7 @@ public class Creature extends NPC {
 		List<Item> list = new LinkedList<Item>();
 
 		for (DropItem dropped : dropsItems) {
-			int probability = Rand.roll1D100();
+			double probability = (Rand.roll1D100()*Rand.roll1D100()*Rand.roll1D100())/1000000.0;
 			if (dropped.probability >= probability) {
 				Item item = manager.getItem(dropped.name);
 				if (item == null) {
