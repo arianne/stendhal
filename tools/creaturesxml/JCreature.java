@@ -787,6 +787,11 @@ public class JCreature extends javax.swing.JFrame {
         
         actual.setDescription(creatureDescription.getText());
         
+        actual.setRPStats(Integer.parseInt(creatureHP.getText()), 
+            Integer.parseInt(creatureATK.getText()),
+            Integer.parseInt(creatureDEF.getText()),
+            Double.parseDouble(creatureSpeed.getText()));
+        
         /* Drops */
         List<DropItem> dropList=new LinkedList<DropItem>();        
         BufferedReader reader=new BufferedReader(new StringReader(creatureDrops.getText()));
