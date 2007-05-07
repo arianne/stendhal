@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * The 2D view of an RP entity.
  */
-public abstract class RPEntity2DView extends AnimatedStateEntity2DView {
+public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	private static Map<Object, Sprite[]> bladeStrikeSprites;
 

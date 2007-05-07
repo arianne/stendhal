@@ -52,11 +52,6 @@ public abstract class AnimatedEntity2DView extends Entity2DView {
 	protected abstract Sprite getDefaultSprite();
 
 
-	protected boolean isAnimating() {
-		return !entity.stopped();
-	}
-
-
 	//
 	// Entity2DView
 	//

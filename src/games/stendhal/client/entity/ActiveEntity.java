@@ -131,7 +131,6 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @return	<code>true</code> if not moving.
 	 */
-	@Override
 	public boolean stopped() {
 		return (dx == 0.0) && (dy == 0.0);
 	}

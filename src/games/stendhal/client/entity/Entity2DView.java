@@ -74,7 +74,7 @@ public abstract class Entity2DView { // implements EntityView {
 	 * Rebuild the representation using the base entity.
 	 */
 	protected void buildRepresentation() {
-			sprite = SpriteStore.get().getSprite(translate(entity.getType()));
+		sprite = SpriteStore.get().getSprite(translate(entity.getType()));
 	}
 
 
@@ -162,6 +162,17 @@ public abstract class Entity2DView { // implements EntityView {
 	public int getZIndex() {
 		// XXX - Eventually abstract, but for transition
 		return 10000;
+	}
+
+
+	/**
+	 * Determine if this view is currently animatable.
+	 *
+	 * @return	<code>true</code> if animating enabled.
+	 */
+	protected boolean isAnimating() {
+		// Allow sprites to animate by default
+		return true;
 	}
 
 
