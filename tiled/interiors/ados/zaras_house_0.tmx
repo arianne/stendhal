@@ -60,24 +60,30 @@
  <tileset name="../../tileset/logic/item/vegetable.png" firstgid="183" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
+ <tileset name="clay_pot.png" firstgid="194" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/pot/clay_pot.png"/>
+ </tileset>
+ <tileset name="brick_wood.png" firstgid="195" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_brick_wood.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNjYGBgGyJYahC4gZaYCweml/5RPPIwAIhyS4MABAAA
+   H4sIAAAAAAAAAGNjYGBgIwH3kKgehO3I0DMSMRcOTC/9o3jkYQAIpX3CAAQAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAMXOSw7BUBSA4buL0mID9X5NvAeoPjBDYydiCxIDiY3Yn39wB81Bc4ukJ/km5+bPuQ2lVNXADnscErsm6uhg/IaHFXzEuOCo37qo6X6ICmwhQIgIJ1xxRhkD0RfU66yxwVbsLcP+0/zSP1L6CabCLMP9ORbC8s//z7O/4Z7j/bS+hKIhR/Q9jDLq674F90ttPAHDo+v4AAQAAA==
+   H4sIAAAAAAAAAMXOOw6CQBCA4b0Fio8LiA9EbUDRQg0UaiceyheJiRfxfv7FFmYIm0VNmORrJvkzM1RKeRaOyHD62I0wQIBFiQQpzrjgqvcT9HUfoQvX4IY7cnQQir6hirPDHgexdyz7svmlfxn6GEthVeH+Ghth++f/6+wfeNZ439S30bTUEv0U84pmuvfR+9IYbxvmvEoABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB6YCcSzqGgeqWA2EM8hoGYrHrm5QDyPAvvnA/ECCvQPB7AEiJdRoH8VEK+hklvQwVogXodHfiEB/RuBeBP1nDMoAAAU/dXdAAQAAA==
+   H4sIAAAAAAAAAGNgIA50QekePGpmAvEsJL4HEHsCsReRdqADbyD2AWJfItXPBuI5SHw/IPYH4gAksa149M8F4nmkOBANzAfiBRToHw5gCRAvo0D/KiBeQyW3oIO1QLwOj/xCAvo3AvEm6jlnUAAAaSzF6gAEAAA=
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoC/YTKH+LVRxxSgYKDB9oB0wClAAANMDAnQABAAA
+   H4sIAAAAAAAAAGNgIB4cJkEtLrCZQv1bqOCGUTBwYPpAO2AUoAAA7I8MaAAEAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="16" height="16">
