@@ -84,6 +84,10 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
 			if (is == null) {
+				is = new File(ref).toURL().openStream();
+			}
+				
+			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
 			saxParser.parse(is, this);

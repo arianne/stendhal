@@ -4,6 +4,7 @@ import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.rule.defaultruleset.DefaultCreature;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -115,6 +116,11 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			SAXParser saxParser = factory.newSAXParser();
 
 			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
+			
+			if (is == null) {
+				is = new File(ref).toURL().openStream();
+			}
+				
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
