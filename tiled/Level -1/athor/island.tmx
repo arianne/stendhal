@@ -45,16 +45,16 @@
  <tileset name="../../tileset/logic/creature/human.png" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/mummy.png" firstgid="153" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/mummy.png" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mummy.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/golem.png" firstgid="155" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/golem.png" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/huge_animal.png" firstgid="157" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/huge_animal.png" firstgid="139" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="165" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="147" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -84,12 +84,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bwWrDMAwA0P7tYAx22HkQ9hfb2L/uFChjLbhxLFt671IooaiJYkkOuVwAAAAAAABq+o4OoNFXdAAAAMAwn38+YXZyNb+z91GeTv591iIf2MkFABin51w3+4w4U48x+7mKMNP1ASAntQZgLHMPR6jbAEAPFXuKj8bj9e2spuJ9vav831eRZU2tmGve4Ya1VVy34D+t82Bv6ukx1rLjWs6h832eLHMRfcycD9YBAMhNrV/DzP0ijGCtIiNr+1jRzwWozf0O/egLYS5qHFDRc3QAxekHAY6pvI5u0QGQnucQAGvbTvpd9QEAoJ9be1ur7nlF9IqrnisAALhFjwtUtEUHAAB3vEcHAMDUXqIDSOA1OoCB5MtjKuXITq6Ml/k967fG71uPeeTYSGa8tVSsAQCQnfoObewR0INZGKhgX+sy7/UCMD8zHCOsOON5Vw7O9RMdQAJmyfNE1QDXFIBbVpypAADg2r2eVr8LwCx+AaJzSGwAAAEA
+   H4sIAAAAAAAAAO3bwWrDMAwA0P7tYAx22HkQdtnGfnqnQBlrwY1j2dJ7l0IJRU0US3LI5QIAAAAAAFDTd3QAjb6iAwAAAIb5/PMJs5Or+Z29j/J08u+zFvnATi4AwDg957rZZ8SZeozZz1WEma4PADmpNQBjmXs4Qt0GAHqo2FN8NB6vb2c1Fe/rXeX/voosa2rFXPMON6yt4roF/2mdB3tTT4+xlh3Xcg6d7/NkmYvoY+Z8sA4AQG5q/Rpm7hdhBGsVGVnbx4p+LkBt7nfoR18Ic1HjgIqeowMoTj8IcEzldXSLDoD0PIcAWNt20u+qDwAA/dza21p1zyuiV1z1XAEAwC16XKCiLToAALjjPToAAKb2Eh1AAq/RAQwkXx5TKUd2cmW8zO9ZvzV+33rMI8dGMuOtpWINAIDs1HdoY4+AHszCQAX7Wpd5rxeA+ZnhGGHFGc+7cnCun+gAEjBLnieqBrimANyy4kwFAADX7vW0+l0AZvELWVeaSAAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
