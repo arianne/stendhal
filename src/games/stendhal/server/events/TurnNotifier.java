@@ -25,7 +25,7 @@ public class TurnNotifier {
 	/**
 	 * Struct to store a pair of TurnListener and String.
 	 */
-	protected static class TurnEvent {
+	public static class TurnEvent {
 
 		public TurnListener turnListener;
 
@@ -228,5 +228,23 @@ public class TurnNotifier {
 	 */
 	public int getRemainingSeconds(TurnListener turnListener, String message) {
 		return (getRemainingTurns(turnListener, message) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
+	}
+
+	/**
+	 * Returns the list of events. Note this is only for debugging the TurnNotifier
+	 *
+	 * @return eventList
+	 */
+	public Map<Integer, Set<TurnEvent>> getEventListForDebugging() {
+		 return register;
+	}
+	
+	/**
+	 * Returns the current turn. Note this is only for debugging TurnNotifier
+	 *
+	 * @return current turn
+	 */
+	public int getCurrentTurnForDebugging() {
+		return currentTurn;
 	}
 }
