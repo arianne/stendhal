@@ -3,8 +3,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 
