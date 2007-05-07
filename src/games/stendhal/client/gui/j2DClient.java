@@ -509,21 +509,14 @@ public class j2DClient extends StendhalUI {
 
 
 	public void gameLoop() {
-
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
-
 		int fps = 0;
-
-		StaticGameLayers staticLayers = client.getStaticGameLayers();
 		GameObjects gameObjects = client.getGameObjects();
-
 		long oldTime = System.nanoTime();
 
 		// Clear the first screen
 		screen.clear();
-
 //		screen.place(-100, -100);
-
 		SoundMaster.play("harp-1.wav");
 
 		// keep looping until the game ends
