@@ -165,15 +165,6 @@ assertEquals(0,en.count);
 
 	@Test
 
-	public final void testStopped() {
-		Entity en = new MockEntity();
-		assertTrue(en.stopped());
-		
-	}
-
-
-	@Test
-
 	public final void testGetSlot() {
 		Entity en = new MockEntity();
 		assertEquals(null,en.getSlot(""));

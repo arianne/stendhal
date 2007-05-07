@@ -108,7 +108,7 @@ public class EntityFactoryTest {
 		rp.put("width", 1);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a ResizeableCreature by now", ResizeableCreature.class, en.getClass());
+		assertEquals("we should have created a Creature by now", Creature.class, en.getClass());
 
 	}
 
