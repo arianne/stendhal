@@ -459,8 +459,12 @@ public class TileRenderer extends LayerRenderer {
 			for (int i = x - 1; i < x + w + 1; i++) {
 				if ((j >= 0) && (j < getHeight()) && (i >= 0) && (i < getWidth())) {
 					Sprite sprite = getTile(i, j);
+					
+					if(sprite==null) {
+						logger.info("Null sprite at ("+i+","+j+")");
+					}
 
-// Apparently Broken [ 1708820 ], so safe to comment out until fixed:
+// TODO: Apparently Broken [ 1708820 ], so safe to comment out until fixed:
 //
 //					if (animatedTiles.containsKey(value)) {
 //						List<Integer> list = (animatedTiles.get(value));
