@@ -433,6 +433,36 @@
 		</mapconverter>
 	</target>
 
+	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes.">
+		<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
+		<mkdir dir="${build_tiled_convertmaps}/"/>
+
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
+           includes="games/stendhal/tools/MapUpdater.java">
+			<compilerarg value="-encoding"/>
+			<compilerarg value="utf-8"/>
+			<classpath>
+				<pathelement path="${build_tiled_convertmaps}"/>
+				<pathelement path="${marauroa_jar}"/>
+				<pathelement path="${log4j_jar}"/>
+				<pathelement path="${tiled_jar}"/>
+			</classpath>
+		</javac>
+
+		<taskdef name="mapupdater" classname="games.stendhal.tools.MapUpdater">
+			<classpath>
+				<pathelement path="${build_tiled_convertmaps}"/>
+				<pathelement path="${tiled_jar}"/>
+			</classpath>
+		</taskdef>
+
+		<mapupdater>
+			<fileset dir="tiled/">
+				<include name="Level */**/*.tmx"/>
+			</fileset>
+		</mapupdater>
+	</target>
+
 	<target name="compile_tests" description="Compile all tests" depends="init">
 		<mkdir dir="${build_tests}"/>
 
