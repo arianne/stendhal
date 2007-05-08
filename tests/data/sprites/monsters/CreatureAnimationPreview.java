@@ -1,7 +1,10 @@
 package data.sprites.monsters;
 
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.LayoutManager;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
+import java.awt.Rectangle;
+
 public class CreatureAnimationPreview {
 private static final int NUMBER_OF_ROWS = 4;
 private static final int NUMBER_OF_FRAMES = 3;
@@ -23,12 +31,12 @@ private static final int NUMBER_OF_FRAMES = 3;
 	private JPanel getJPanel() {
 		if (jPanel == null) {
 			jPanel = new JPanel();
-			jPanel.setLayout(new BorderLayout());
-			jPanel.add(getImageViewerSwing(), BorderLayout.WEST);
-			jPanel.add(getImageViewerSwing1(), BorderLayout.CENTER);
-			jPanel.add(getImageViewerSwing2(), BorderLayout.EAST);
-			jPanel.add(getImageViewerSwing3(), BorderLayout.NORTH);
-			jPanel.add(getImageViewerSwing4(), BorderLayout.SOUTH);
+			jPanel.setLayout(null);
+			jPanel.add(getImageViewerSwing(), null);
+			jPanel.add(getImageViewerSwing2(), null);
+			jPanel.add(getImageViewerSwing3(), null);
+			jPanel.add(getImageViewerSwing4(), null);
+			jPanel.add(getImageViewerSwing1(), null);
 		}
 		return jPanel;
 	}
@@ -40,6 +48,8 @@ private static final int NUMBER_OF_FRAMES = 3;
 private ImageViewerSwing getImageViewerSwing() {
 	if (imageViewerSwing == null) {
 		imageViewerSwing = new ImageViewerSwing();
+		imageViewerSwing.setName("imageViewerSwing");
+		imageViewerSwing.setBounds(new Rectangle(20, 20, 96, 168));
 	}
 	return imageViewerSwing;
 }
@@ -51,6 +61,8 @@ private ImageViewerSwing getImageViewerSwing() {
 private ImageViewerSwing getImageViewerSwing1() {
 	if (imageViewerSwing1 == null) {
 		imageViewerSwing1 = new ImageViewerSwing();
+		imageViewerSwing1.setName("imageViewerSwing1");
+		imageViewerSwing1.setBounds(new Rectangle(137, 212, 241, 353));
 	}
 	return imageViewerSwing1;
 }
@@ -62,6 +74,8 @@ private ImageViewerSwing getImageViewerSwing1() {
 private ImageViewerSwing getImageViewerSwing2() {
 	if (imageViewerSwing2 == null) {
 		imageViewerSwing2 = new ImageViewerSwing();
+		imageViewerSwing2.setName("imageViewerSwing2");
+		imageViewerSwing2.setBounds(new Rectangle(130, 20, 96, 168));
 	}
 	return imageViewerSwing2;
 }
@@ -73,6 +87,8 @@ private ImageViewerSwing getImageViewerSwing2() {
 private ImageViewerSwing getImageViewerSwing3() {
 	if (imageViewerSwing3 == null) {
 		imageViewerSwing3 = new ImageViewerSwing();
+		imageViewerSwing3.setName("imageViewerSwing3");
+		imageViewerSwing3.setBounds(new Rectangle(250,20,96,168));
 	}
 	return imageViewerSwing3;
 }
@@ -84,13 +100,16 @@ private ImageViewerSwing getImageViewerSwing3() {
 private ImageViewerSwing getImageViewerSwing4() {
 	if (imageViewerSwing4 == null) {
 		imageViewerSwing4 = new ImageViewerSwing();
+		imageViewerSwing4.setName("imageViewerSwing4");
+		imageViewerSwing4.setBounds(new Rectangle(370,20,96,168));
 	}
 	return imageViewerSwing4;
 }
+
 public static void main(String[] args) {
 	(new CreatureAnimationPreview()).getJFrame().setVisible(true);
 }
-	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="136,174"
+	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="141,108"
 	private JSplitPane jSplitPane = null;
 	private JScrollPane jScrollPane = null;
 	private FileTree jTree = null;
@@ -101,6 +120,7 @@ public static void main(String[] args) {
 	private ImageViewerSwing imageViewerSwing3 = null;
 	private ImageViewerSwing imageViewerSwing4 = null;
 	private AnimationRunner[] animations=null;
+	
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -110,7 +130,8 @@ public static void main(String[] args) {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			
-			jFrame.setSize(new Dimension(448, 316));
+			jFrame.setSize(new Dimension(818, 470));
+			
 			jFrame.setContentPane(getJSplitPane());
 			jFrame.setTitle("animated Monsters test");
 			jFrame.addWindowListener(new java.awt.event.WindowAdapter() {   
@@ -229,7 +250,6 @@ public static void main(String[] args) {
 	}
 	
 	AnimationRunner AnimationCreate(BufferedImage buf, int row, ImageViewerSwing imageViewer){
-	    BufferedImage[] buffers = buffersCreate(buf, row);
 		return new AnimationRunner(imageViewer);
 	}
 	private BufferedImage[] buffersCreate(BufferedImage buf, int row) {

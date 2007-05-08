@@ -1,5 +1,6 @@
 package data.sprites.monsters;
 
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -43,7 +44,7 @@ public class ImageViewerSwing extends JComponent
  * 
  */
 private void initialize() {
-        this.setSize(new Dimension(308, 210));
+        this.setSize(new Dimension(20,20));
 		
 }
 

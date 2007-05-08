@@ -1,7 +1,7 @@
+package data.sprites.monsters;
 /**
  * 
  */
-package data.sprites.monsters;
 
 import java.io.File;
 import java.io.FileNotFoundException;
