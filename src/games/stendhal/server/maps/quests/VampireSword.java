@@ -164,11 +164,8 @@ public class VampireSword extends AbstractQuest {
 					        player.drop("iron", REQUIRED_IRON);
 					        npc.say("You've brought everything I need to make the vampire sword. Come back in "
 					        		+ REQUIRED_MINUTES + " minutes and it will be ready");
-					        /* and set a state correctly
-					         -ConversationStates.STARTED_FORGE?
-					         and take the stuff from the player!!! player.drop?
-					         */
 				        	player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
+				        	npc.setCurrentState(ConversationStates.IDLE);
 				        }
 			        }
 		        });
