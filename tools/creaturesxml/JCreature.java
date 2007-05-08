@@ -44,8 +44,12 @@ public class JCreature extends javax.swing.JFrame {
     /** Creates new form JCreature */
     public JCreature() throws SAXException {
         initComponents();
-        creatures=loadCreaturesList();
-        items=loadItemsList();
+        loadData("creatures.xml","items.xml");
+    }
+
+    private void loadData(String creatureFile, String itemFile) throws SAXException {
+        creatures=loadCreaturesList(creatureFile);
+        items=loadItemsList(itemFile);
         setLists();
         creatureList.setSelectedIndex(0);
         refresh();
@@ -101,9 +105,9 @@ public class JCreature extends javax.swing.JFrame {
         });
     }
     
-    private List<DefaultCreature> loadCreaturesList() throws SAXException {
+    private List<DefaultCreature> loadCreaturesList(String ref) throws SAXException {
         CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
-        List<DefaultCreature> creatures = creatureLoader.load("creatures.xml");
+        List<DefaultCreature> creatures = creatureLoader.load(ref);
         sortCreatures(creatures);
         return creatures;
     }
@@ -122,9 +126,9 @@ public class JCreature extends javax.swing.JFrame {
         });
     }
     
-    private List<DefaultItem> loadItemsList() throws SAXException {
+    private List<DefaultItem> loadItemsList(String ref) throws SAXException {
         ItemsXMLLoader itemsLoader = ItemsXMLLoader.get();
-        List<DefaultItem> items = itemsLoader.load("items.xml");
+        List<DefaultItem> items = itemsLoader.load(ref);
         
         return items;
     }
@@ -276,6 +280,8 @@ public class JCreature extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
         setButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jLoad = new javax.swing.JMenu();
+        jLoadFromFile = new javax.swing.JMenuItem();
         jSave = new javax.swing.JMenu();
         jSaveToFile = new javax.swing.JMenuItem();
 
@@ -360,7 +366,7 @@ public class JCreature extends javax.swing.JFrame {
                             .add(creatureSubclass)
                             .add(creatureClass, 0, 256, Short.MAX_VALUE)))
                     .add(updateGFXButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 86, Short.MAX_VALUE)
                 .add(creatureImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -389,7 +395,7 @@ public class JCreature extends javax.swing.JFrame {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel6)
                             .add(creatureTileid, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 30, Short.MAX_VALUE)
                         .add(updateGFXButton))
                     .add(creatureImage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -410,7 +416,7 @@ public class JCreature extends javax.swing.JFrame {
                 .add(jLabel1)
                 .add(52, 52, 52)
                 .add(creatureName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 198, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -497,10 +503,10 @@ public class JCreature extends javax.swing.JFrame {
                                     .add(jLabel10))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(creatureXP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                    .add(creatureLevel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                                    .add(creatureXP, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                    .add(creatureLevel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .add(creatureRespawn, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                                        .add(creatureRespawn, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jLabel16)))))))
                 .addContainerGap())
@@ -568,7 +574,7 @@ public class JCreature extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(creatureDrops, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+            .add(creatureDrops, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
         );
         data.addTab("Drops", jPanel5);
 
@@ -621,10 +627,10 @@ public class JCreature extends javax.swing.JFrame {
             .add(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                     .add(jPanel8Layout.createSequentialGroup()
                         .add(jLabel11)
-                        .addContainerGap(240, Short.MAX_VALUE))))
+                        .addContainerGap(290, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -649,6 +655,18 @@ public class JCreature extends javax.swing.JFrame {
                 setButtonActionPerformed(evt);
             }
         });
+
+        jLoad.setText("Load");
+        jLoadFromFile.setText("From file");
+        jLoadFromFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoadFromFileActionPerformed(evt);
+            }
+        });
+
+        jLoad.add(jLoadFromFile);
+
+        jMenuBar1.add(jLoad);
 
         jSave.setText("Save");
         jSaveToFile.setText("To File");
@@ -680,15 +698,13 @@ public class JCreature extends javax.swing.JFrame {
                         .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
                         .add(addButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 100, Short.MAX_VALUE)
-                        .add(setButton)
-                        .add(28, 28, 28))
-                    .add(layout.createSequentialGroup()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 220, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(setButton))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 220, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -715,6 +731,38 @@ public class JCreature extends javax.swing.JFrame {
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLoadFromFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoadFromFileActionPerformed
+        String cdata=null;
+        String idata=null;
+        
+        JFileChooser fc = new JFileChooser("creatures.xml");
+        fc.setDialogTitle("Choose creatures XML file");
+        int returnVal = fc.showOpenDialog(this);
+        if(returnVal == 0) {
+            java.io.File file = fc.getSelectedFile();
+            cdata=file.getAbsolutePath();
+        } else {
+            return;
+        }
+        
+        fc = new JFileChooser("items.xml");
+        fc.setDialogTitle("Choose items XML file");
+        returnVal = fc.showOpenDialog(this);
+        if(returnVal == 0) {
+            java.io.File file = fc.getSelectedFile();
+            idata=file.getAbsolutePath();
+        } else {
+            return;
+        }
+        
+        try {
+            
+            loadData(cdata,idata);        
+        } catch (SAXException ex) {
+            ex.printStackTrace();
+        }        
+    }//GEN-LAST:event_jLoadFromFileActionPerformed
 
     private void updateGFXButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGFXButtonActionPerformed
         try {
@@ -874,14 +922,11 @@ public class JCreature extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                new JCreature().setVisible(true);
-                } catch(Exception e) {                    
-                }
-            }
-        });
+        try {
+            new JCreature().setVisible(true);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }       
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -925,6 +970,8 @@ public class JCreature extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jLoad;
+    private javax.swing.JMenuItem jLoadFromFile;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
