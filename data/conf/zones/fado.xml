@@ -38,9 +38,9 @@
              <destination zone="int_fado_tavern" ref="entrance_right"/>
            </portal>
            
-           <portal x="46" y="38" ref="bank_entrance">
+   <!--        <portal x="46" y="38" ref="bank_entrance">
              <destination zone="int_fado_bank" ref="entrance"/>
-           </portal>
+           </portal> -->
            
            <portal x="56" y="38" ref="bakery_entrance">
              <destination zone="int_fado_bakery" ref="entrance"/>
@@ -74,7 +74,7 @@
            </portal>
 
    	</zone>
-         
+       <!-- Commented out as requested by hendrik  
          <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
            
@@ -121,7 +121,7 @@
              </implementation>
            </entity>
          </zone>
-         
+         -->
          <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bakery.BakerNPC"/>
            <portal x="26" y="14" ref="entrance">
@@ -177,6 +177,7 @@
 
   	<zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.weaponshop.BuyerNPC"/>
+           <configurator class-name="games.stendhal.server.maps.fado.weaponshop.RingSmithNPC"/>
 	   <portal x="6" y="11" ref="entrance">
              <destination zone="0_fado_city" ref="weaponshop_entrance"/>
            </portal>

@@ -127,6 +127,7 @@ public class LearnAboutKarma extends AbstractQuest {
 						long roundedkarma = Math.round(player.tellKarma());
 						npc.say("Your karma is roughly " + roundedkarma + ".");
 						// TODO: make her say different things if it's positive or negative
+//						 TODO: make her say different things if it's big and potisive, small and negative etc. need idea of ranges for this.
 					}
 				});
 		//	player doesn't want to know what his own karma is

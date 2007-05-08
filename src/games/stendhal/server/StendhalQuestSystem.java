@@ -84,6 +84,7 @@ public class StendhalQuestSystem {
 		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		loadQuest("ReverseArrow");
+		loadQuest("RingMaker");
 		// loadQuest("SatoCataclysm");
 		// loadQuest("SemosMineTownRevivalWeeks");
 		loadQuest("SevenCherubs");

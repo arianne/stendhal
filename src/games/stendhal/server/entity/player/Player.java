@@ -778,7 +778,7 @@ public class Player extends RPEntity implements TurnListener {
 		Item emeraldRing=getFirstEquipped("emerald_ring");
 		
 		if(emeraldRing!=null && emeraldRing.getInt("amount")>0){
-			// Penalize: 2% less experience if wearing that ring
+			// Penalize: 1% less experience if wearing that ring
 			setXP((int) (getXP() * 0.99));
 			setATKXP((int) (getATKXP() * 0.99));
 			setDEFXP((int) (getDEFXP() * 0.99));
