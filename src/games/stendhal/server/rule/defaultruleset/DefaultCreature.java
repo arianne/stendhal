@@ -147,13 +147,13 @@ public class DefaultCreature {
 		this.width = width;
 		this.height = height;
 	}
-	
+
 	public double getWidth() {
 		return width;
 	}
-	
+
 	public double getHeight() {
-		return height;		
+		return height;
 	}
 
 	public void setNoiseLines(List<String> creatureSays) {
@@ -191,7 +191,7 @@ public class DefaultCreature {
 		creature.equip(equipsItems);
 		return creature;
 	}
-	
+
 	/** returns the tileid */
 	public String getTileId() {
 		return tileid;
@@ -213,7 +213,7 @@ public class DefaultCreature {
 	public String getCreatureName() {
 		return name;
 	}
-	
+
 	public void setCreatureClass(String val) {
 		clazz=val;
 	}
@@ -275,11 +275,14 @@ public class DefaultCreature {
                         <profile name="patrolling"/>
                 </ai>
 	</creature>
- */	
+ */
 	public String toXML() {
 		StringBuffer os=new StringBuffer();
 		os.append("  <creature name=\""+name+"\">\n");
 		os.append("    <type class=\""+clazz+"\" subclass=\""+subclass+"\" tileid=\""+tileid.replace("../../tileset/logic/creature/", "")+"\"/>\n");
+		if(description!=null) {
+			os.append("    <description>"+description+"</description>\n");
+		}
 		os.append("    <attributes>\n");
 		os.append("      <atk value=\""+atk+"\"/>\n");
 		os.append("      <def value=\""+def+"\"/>\n");
@@ -288,7 +291,7 @@ public class DefaultCreature {
 		os.append("      <size value=\""+width+","+height+"\"/>\n");
 		os.append("    </attributes>\n");
 		os.append("    <level value=\""+level+"\"/>\n");
-		os.append("    <experience value=\""+xp+"\"/>\n");
+		os.append("    <experience value=\""+(xp/20)+"\"/>\n");
 		os.append("    <respawn value=\""+respawn+"\"/>\n");
 		os.append("    <drops>\n");
 		for(DropItem item: dropsItems) {
@@ -307,7 +310,7 @@ public class DefaultCreature {
 				os.append("        <noise value=\""+say+"\"/>\n");
 			}
 			os.append("      </says>\n");
-		}		
+		}
 		for(Map.Entry<String, String> entry: aiProfiles.entrySet()) {
     		os.append("      <profile name=\""+entry.getKey()+"\"");
     		if(entry.getValue()!=null) {
