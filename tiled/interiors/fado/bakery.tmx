@@ -63,22 +63,22 @@
  <tileset name="../../tileset/building/entrance/pale_red_ew.png" firstgid="128" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ew.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="152" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/entrance/pale_red_ns.png" firstgid="176" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ns.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" firstgid="188" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" firstgid="212" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/pale_book_bottle_shelf.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/entrance/detail_ew.png" firstgid="200" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/entrance/detail_ew.png" firstgid="224" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/detail_ew.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="206" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="230" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="213" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="237" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="214" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="238" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="16">
@@ -93,27 +93,27 @@
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNgYGDgYyAOuOIQB+kXB2IJKBuGs4E4B8o+BMSHgfgI1ByYHgEg1gBiQyTzcLHdcNivDsT8SGapQHE+EBdA2UeB+BgQH4eag6xHCZ+niQCKZJhFjh5amEUN+xuQ7G8mQn0dle3vAOJOIO4C4m4i1NdT2f4JDAj/TyZRbzEQlxChzh9K12GRIzX+kc0oB+IKIvTUQvXVY5Ej1X5iw78GjcZmNzn2I4PhkP9G7afMfjUgVqYAqyLZj82sGUA8E4hnYdEjBsS8VMCieMxaCMSLgHgxFj0AQV+phwAIAAA=
+   H4sIAAAAAAAAAJNgYGDgYyAOuOIQB+kXB2IJKBuGs4E4B8q+BcS3gfgO1ByYHgEg1gBiQyTzcLHdcNivDsT8SGapQHE+EBdA2XeB+B4Q34eag6xHCZ+niQCKZJhFjh5amEUN+xuQ7G8mQn0dle3vAOJOIO4C4m4i1NdT2f4JDAj/TyZRbzEQlxChzh9K12GRIzX+kc0oB+IKIvTUQvXVY5Ej1X5Swr8aiGuw6KPEfmQwHPLfqP2U2a8GxMoUYFUk+7GZtQGINwLxJix6xICYlwpYFI9ZO4F4FxDvxqIHADLhK70ACAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgHLQCMRNA2j/KSA+PYD2TwTiSQNo/yjABFFAHI0Fxw2ko4AgY4Dtzxxg+0fB4AEA5EqTLwAIAAA=
+   H4sIAAAAAAAAAGNgGAWjgHLQCMRNA2j/IyB+PID2TwTiSQNo/yjABFFAHI0Fxw2ko4AgY4Dtzxxg+0fB4AEA2j/sxwAIAAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBrcClgXYADgAANT6/ogAIAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBrcCrgXYADgAAXhC9/wAIAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="16" opacity="0.52">
+ <layer name="collision" width="32" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvKwMBwdRTjxcgAmxw+fdjMwGUOuYAcswbSfkJhTGtAjP3EpgdsaslxA7n2kxOW1PT/QNuPTS0xgFppEJ85lJQz1LCfmnoGyn5apD9c+miJB8JOYjAAzGyYIwAIAAA=
+   H4sIAAAAAAAAAHvLwMDwdhTjxcgAmxw+fdjMwGUOuYAcswbSfkJhTGtAjP3EpgdsaslxA7n2kxOW1PT/QNuPTS0xgFppEJ85lJQz1LCfmnoGyn5apD9c+miJB8JOYjAAp9JbFwAIAAA=
   </data>
  </layer>
- <layer name="protection" width="32" height="16" opacity="0.24">
+ <layer name="protection" width="32" height="16" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAALvGwMBwbRSP4lE8ikfxKB7FIwoDAHB+kAkACAAA
+   H4sIAAAAAAAAAHvHwMDwbhSP4lE8ikfxKB7FIwoDAAo5LNgACAAA
   </data>
  </layer>
 </map>
