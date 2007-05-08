@@ -1,6 +1,7 @@
 #/bin/bash
 ./createtileset.sh ../../../../data/sprites/monsters/animal 48x64+48+128 animal.png
 ./createtileset.sh ../../../../data/sprites/monsters/beholder 48x64+48+128 beholder.png
+./createtileset.sh ../../../../data/sprites/monsters/chaos 48x64+48+128 chaos.png
 ./createtileset.sh ../../../../data/sprites/monsters/dark_elf 48x64+48+128 dark_elf.png
 ./createtileset.sh ../../../../data/sprites/monsters/demon 48x64+48+128 demon.png
 ./createtileset.sh ../../../../data/sprites/monsters/dwarf 48x64+48+128 dwarf.png
