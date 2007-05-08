@@ -30,6 +30,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="450" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="../../tileset/logic/item/vegetable.png" firstgid="451" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/vegetable.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3bsU7DQBBF0ST8Ylpaev6/oQHJIIU40W5mx+8Up0nnuSN2LZnL6XS68JTPb9fzbz+/v5/XVz3DzvTPpn82/bPpn03/bPf6d9iD6hl2pn+2W/07nQPVM+xM/2z6Z9M/2997nv5Z9vZfeQ+qZ3gE+mfrfA+ont0RvLr/x0DVszuCvf1H7YH+a9E/2733gNHngP5rqe7v/reGV50D+q9J/2yvOgdu9X87Pa56ZkdS3f+ZHaie2RHpn03/bLPvgfqvTf9ss++B+q9Nf7Z7MPoc0L8H/bPNOgf070F/tnugfyb9s42+B+rfi/7ZRt8D9e9Ff7Z7MLP/o6pnkkT/bPpnG/Ue4P8/etI/26j3AP170p/tHoz+Lsj9rwf9s83+Plj/temfbfb3wfqvTX+2e7D3HJixD9UzSKZ/tr3nwMx9qJ5BMv3Z7sG9/jP2ofrZ0T/drY6j9uG//ah+dvRnzj7s2Y/qZ0V/avbh6u9/C/qzZx+e2Y/qZ0F/avbD/e+Y9AcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAMb4ALvuu7AAAAQA=
@@ -57,7 +60,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3SQQkAAAgEQe2fzU6+jCAizCRYuIsAAAAAAAAAAAAAAAAAAAAAAAA2VV4XcGW29wEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOCLBmXKlpAAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.43">
