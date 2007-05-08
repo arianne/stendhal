@@ -3641,6 +3641,39 @@
     </ai>
   </creature>
 
+  <creature name="mithrilbourgh_soldier">
+    <type class="human" subclass="soldier_common" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="178"/>
+      <def value="28"/>
+      <hp value="500"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="64"/>
+    <experience value="3260"/>
+    <respawn value="1960"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="dark_elf_knight">
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
     <attributes>
@@ -3733,6 +3766,39 @@
     </ai>
   </creature>
 
+  <creature name="mithrilbourgh_archer">
+    <type class="human" subclass="soldier_archer" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="184"/>
+      <def value="29"/>
+      <hp value="540"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="68"/>
+    <experience value="3820"/>
+    <respawn value="2140"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="dark_elf_general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
     <attributes>
@@ -3790,6 +3856,72 @@
     </ai>
   </creature>
 
+  <creature name="mithrilbourgh_knight">
+    <type class="human" subclass="soldier_knight" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="188"/>
+      <def value="29"/>
+      <hp value="595"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="71"/>
+    <experience value="4280"/>
+    <respawn value="2290"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="mithrilbourgh_elite_archer">
+    <type class="human" subclass="soldier_elite_archer" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="189"/>
+      <def value="29"/>
+      <hp value="608"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="72"/>
+    <experience value="3820"/>
+    <respawn value="2140"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="barbarian_king">
     <type class="human" subclass="barbarian_leader" tileid="TODO:XXX"/>
     <description></description>
@@ -3810,6 +3942,39 @@
     <equips>
     </equips>
     <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="mithrilbourgh_sergeant">
+    <type class="human" subclass="soldier_sergeant" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="194"/>
+      <def value="30"/>
+      <hp value="650"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="76"/>
+    <experience value="5140"/>
+    <respawn value="2570"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -3876,6 +4041,72 @@
     </ai>
   </creature>
 
+  <creature name="mithrilbourgh_lieutenant">
+    <type class="human" subclass="soldier_lieutenant" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="203"/>
+      <def value="31"/>
+      <hp value="760"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="83"/>
+    <experience value="6540"/>
+    <respawn value="3010"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="mithrilbourgh_colonel">
+    <type class="human" subclass="soldier_colonel" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="210"/>
+      <def value="32"/>
+      <hp value="860"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="89"/>
+    <experience value="7930"/>
+    <respawn value="3450"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="dark_elf_wizard">
     <type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
     <attributes>
@@ -3929,6 +4160,39 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="mithrilbourgh_general">
+    <type class="human" subclass="soldier_general" tileid="TODO:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="217"/>
+      <def value="33"/>
+      <hp value="960"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="95"/>
+    <experience value="9520"/>
+    <respawn value="3940"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
