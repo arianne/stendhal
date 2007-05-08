@@ -1,40 +1,17 @@
 package data.sprites.monsters;
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.ImageSprite;
-import games.stendhal.client.Sprite;
-
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.Dimension;
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import javax.swing.JTree;
-
+import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
-import java.awt.Color;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.FlowLayout;
-import java.awt.ScrollPane;
-import java.awt.Toolkit;
-import java.awt.Transparency;
-import java.awt.image.BufferedImage;
 
-import javax.swing.JButton;
-import javax.swing.JEditorPane;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 public class CreatureAnimationPreview {
 private static final int NUMBER_OF_ROWS = 4;
 private static final int NUMBER_OF_FRAMES = 3;
