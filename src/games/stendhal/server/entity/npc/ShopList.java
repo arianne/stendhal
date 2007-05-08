@@ -27,10 +27,10 @@ public class ShopList {
 		shops.add("healing", "potion", 250);
 		shops.add("healing", "greater_potion", 500);
 
-		shops.add("superhealing", "antidote", 40);
-		shops.add("superhealing", "greater_antidote", 80);
-		shops.add("superhealing", "greater_potion", 400);
-		shops.add("superhealing", "mega_potion", 800);
+		shops.add("superhealing", "antidote", 50);
+		shops.add("superhealing", "greater_antidote", 100);
+		shops.add("superhealing", "greater_potion", 500);
+		shops.add("superhealing", "mega_potion", 1000);
 
 		shops.add("scrolls", "home_scroll", 250);
 		shops.add("scrolls", "summon_scroll", 200);
