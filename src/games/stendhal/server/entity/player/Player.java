@@ -461,6 +461,10 @@ public class Player extends RPEntity implements TurnListener {
 			}
 		}
 	}
+	
+	public double tellKarma() {
+		return karma;
+	}
 
 	/**
 	 * Add a player ignore entry.

@@ -251,6 +251,7 @@ public class LookBookforCeryl extends AbstractQuest {
 							money.setQuantity(50);
 							player.equip(money);
 							player.addXP(100);
+							player.addKarma(4.0);
 
 							player.notifyWorldAboutChanges();
 

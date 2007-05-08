@@ -120,6 +120,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						player.setQuest(QUEST_SLOT, "start");
+						player.addKarma(3.0);
 					}
 				});
 
@@ -252,6 +253,7 @@ public class TakeGoldforGrafindle extends AbstractQuest {
 							nalworkey.put("bound", player.getName());
 							player.equip(nalworkey);
 							player.addXP(200);
+							player.addKarma(5.0);
 
 							player.notifyWorldAboutChanges();
 

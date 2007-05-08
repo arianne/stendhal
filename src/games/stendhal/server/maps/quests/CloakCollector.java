@@ -116,13 +116,21 @@ public class CloakCollector extends AbstractQuest {
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					engine.say("Brilliant! I'm so excited! Bye!");
 					player.setQuest("cloaks_collector", "");
+					player.addKarma(5.0);
 				}
 			});
 
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.QUEST_OFFERED,
-			"Oh ... you're not very friendly", null);
+		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.QUEST_OFFERED,null,
+			 new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					engine.say("Oh ... you're not very friendly");
+					player.setQuest("cloaks_collector", "");
+					player.addKarma(-5.0);
+				}
+		});
  
 
 		// player asks about an individual cloak
@@ -187,6 +195,7 @@ public class CloakCollector extends AbstractQuest {
 								Item goldencloak = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_cloak");
 								goldencloak.put("bound", player.getName());
 								player.equip(goldencloak, true);
+								player.addKarma(5.0);
 								player.addXP(2500);
 								engine.say("Oh, they look so beautiful all together, thank you. Please take this very special cloak in return.");
 								player.setQuest("cloaks_collector", "done");

@@ -63,6 +63,7 @@ public class StendhalQuestSystem {
 		//loadQuest("HayunnCataclysm");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
+		loadQuest("LearnAboutKarma");
 		loadQuest("LookBookforCeryl");
 		loadQuest("LookUpQuote");
 		loadQuest("KanmararnSoldiers");

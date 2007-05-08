@@ -104,14 +104,21 @@ public class ToysCollector extends AbstractQuest {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					engine.say("Hooray! How exciting. See you soon.");
+					player.addKarma(8.0);
 					player.setQuest("toys_collector", "");
 				}
 			});
 
 
 		// player is not willing to help
-		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING,
-			"Oh ... you're mean.", null);
+		npc.add(ConversationStates.QUEST_OFFERED, "no", null, ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+				@Override
+				public void fire(Player player, String text, SpeakerNPC engine) {
+					engine.say("Oh ... you're mean.");
+					player.addKarma(-8.0);
+			}
+		});
 	}
 
 	private void step_2() {
@@ -154,6 +161,7 @@ public class ToysCollector extends AbstractQuest {
 								pie.setQuantity(3);
 								player.equip(pie, true);
 								player.addXP(100);
+								player.addKarma(10.0);
 								engine.say("These toys will keep me happy for ages! Please take these pies. Arlindo baked them for us but I think you should have them.");
 								player.setQuest("toys_collector", "done");
 								player.notifyWorldAboutChanges();
