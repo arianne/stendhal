@@ -269,8 +269,8 @@
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -302,8 +302,8 @@
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -533,8 +533,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -677,8 +677,8 @@
         <noise value="SHAAAAAAA!!"/>
       </says>
       <profile name="poisonous" params="5,deadly_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -902,8 +902,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -1044,8 +1044,8 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward" params="fire"/>
       <profile name="human"/>
+      <profile name="coward" params="fire"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -1340,8 +1340,8 @@
         <noise value="Ooooouuuuuh!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -1366,8 +1366,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
@@ -1549,8 +1549,8 @@
       <says>
         <noise value="Rrrrrrrrr"/>
       </says>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
@@ -1750,6 +1750,37 @@
       <item value="katana" quantity="[1,1]" probability="2.0"/>
       <item value="chain_armor" quantity="[1,1]" probability="15.0"/>
       <item value="chain_armor_+1" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="dwarf_guardian">
+    <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
+    <attributes>
+      <atk value="65"/>
+      <def value="18"/>
+      <hp value="150"/>
+      <speed value="0.6"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="18"/>
+    <experience value="230"/>
+    <respawn value="940"/>
+    <drops>
+      <item value="money" quantity="[9,31]" probability="100.0"/>
+      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
+      <item value="axe" quantity="[1,1]" probability="30.0"/>
+      <item value="twoside_axe" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="15.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2070,8 +2101,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -2373,8 +2404,8 @@
         <noise value="Uuuuhhhhh!, i'm gonna get you!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -2460,8 +2491,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -3106,8 +3137,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -3167,8 +3198,8 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
@@ -3305,8 +3336,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.3"/>
       <profile name="heal" params="5,50"/>
@@ -3336,8 +3367,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
       <profile name="patrolling"/>
@@ -3399,7 +3430,7 @@
     </ai>
   </creature>
 
-  <creature name="mountain_dwarf_guardian">
+  <creature name="mountain_rdian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
     <description></description>
     <attributes>
@@ -3874,8 +3905,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4439,8 +4470,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4467,8 +4498,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4497,8 +4528,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="15,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="10,50"/>
       <profile name="patrolling"/>
@@ -4524,8 +4555,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4578,8 +4609,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4609,8 +4640,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4638,8 +4669,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="15,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.1"/>
       <profile name="heal" params="15,50"/>
@@ -4668,8 +4699,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4697,8 +4728,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="20,50"/>
       <profile name="patrolling"/>
@@ -4751,8 +4782,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
@@ -4781,8 +4812,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.05"/>
       <profile name="heal" params="35,50"/>
