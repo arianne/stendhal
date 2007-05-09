@@ -458,7 +458,7 @@ public class CreatureLogic {
 	}
 
 	private void logicDoAttack() {
-		if ((StendhalRPRuleProcessor.get().getTurn() % 5 == attackTurn) && creature.isAttacking()) {
+		if ((StendhalRPRuleProcessor.get().getTurn() % StendhalRPAction.getAttackRate(creature) == attackTurn) && creature.isAttacking()) {
 			StendhalRPAction.attack(creature, creature.getAttackTarget());
 			creature.tryToPoison();
 		}

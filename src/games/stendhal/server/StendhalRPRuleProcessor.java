@@ -510,7 +510,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				if (!player.stopped()) {
 					StendhalRPAction.move(player);
 				}
-				if ((getTurn() % 5 == 0) && player.isAttacking()) // 1 round = 5
+				if (player.isAttacking() && (getTurn() % StendhalRPAction.getAttackRate(player) == 0)) // 1 round = 5
 				// turns
 				{
 					StendhalRPAction.attack(player, player.getAttackTarget());

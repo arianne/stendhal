@@ -237,6 +237,15 @@ public class StendhalRPAction {
 	}
 
 	/**
+	 * Returns the attack rate, the lower the better.
+	 * @param attacker
+	 * @return 
+	 */
+	public static int getAttackRate(RPEntity attacker) {
+		return 5;		
+	}
+	
+	/**
 	 * Lets the attacker try to attack the defender.
 	 * @param attacker The attacking RPEntity.
 	 * @param defender The defending RPEntity.
