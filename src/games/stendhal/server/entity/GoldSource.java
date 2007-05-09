@@ -74,9 +74,9 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	 * @return true iff the prospecting player should get
 	 *         a nugget. 
 	 */
-	private boolean prospectSuccessful() {
+	private boolean prospectSuccessful(Player player) {
 		int random = Rand.roll1D100();
-		return random <= FINDING_PROBABILITY * 100;
+		return random <= (FINDING_PROBABILITY + player.getKarma(FINDING_PROBABILITY)) * 100;
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 			// check if the player is still standing next to this gold source
 			if (player.nextTo(this)) {
 				// roll the dice
-				if (prospectSuccessful()) {
+				if (prospectSuccessful(player)) {
 					Item nugget = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_nugget");
 					player.equip(nugget, true);
 					player.sendPrivateText("You found a gold nugget.");

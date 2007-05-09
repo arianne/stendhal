@@ -16,7 +16,7 @@ import marauroa.common.game.RPClass;
  * He needs a fishing rod, time and luck.
  * Before he catches fish he needs to make a license.
  * 
- * Fishing takes 15 seconds; during this time, the player keep standing
+ * Fishing takes 8 seconds; during this time, the player keep standing
  * next to the fish source. In fact, the player only has to be there
  * when the prospecting action has finished. Therefore, make sure that two
  * fish sources are always at least 8 sec of walking away from each other,
@@ -38,11 +38,15 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 	 */
 	private double getSuccessProbability(Player player) {
 		String skill = player.getSkill("fishing");
+		double probability;
+
 		if (skill != null) {
-			return Math.max(0.05, Double.parseDouble(skill));
+			probability = Math.max(0.05, Double.parseDouble(skill));
 		} else {
-			return 0.05;
+			probability = 0.05;
 		}
+
+		return probability + player.getKarma(0.05);
 	}
 
 	/**fishing
