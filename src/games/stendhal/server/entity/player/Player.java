@@ -444,6 +444,11 @@ public class Player extends RPEntity implements TurnListener {
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
+		
+		if(has("xp")) {
+			// I want to force level to be updated.
+			addXP(0);
+		}
 
 		if (has("age")) {
 			age = getInt("age");

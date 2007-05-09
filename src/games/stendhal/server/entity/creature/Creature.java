@@ -165,9 +165,6 @@ public class Creature extends NPC {
 
 		update();
 
-		// FIX: Creature level if ficticious, so we restore it after the update.
-		setLevel(copy.getLevel());
-
 		stop();
 		if (logger.isDebugEnabled()) {
 			logger.debug(getIDforDebug() + " Created " + get("class") + ":" + this);
@@ -256,9 +253,6 @@ public class Creature extends NPC {
 		setLevel(level);
 
 		update();
-
-		// FIX: Creature level if ficticious, so we restore it after the update.
-		setLevel(level);
 
 		stop();
 		if (logger.isDebugEnabled()) {

@@ -274,8 +274,6 @@ public abstract class RPEntity extends Entity {
 		}
 		if (has("xp")) {
 			xp = getInt("xp");
-			// I want to force level to be updated.
-			addXP(0);
 		}
 		if (has("mana")) {
 			mana = getInt("mana");
