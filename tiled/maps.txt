@@ -19,14 +19,14 @@ zbaggateh-dd.tmx
 ./interiors/ados:
 bakery.tmx
 bank.tmx
-barracks_0.tmx
-barracks_1.tmx
+B*barracks_0.tmx
+B*barracks_1.tmx
 buraucrazy_0.tmx
 buraucrazy_1.tmx
 buraucrazy_2.tmx
 buraucrazy_3.tmx
-church_0.tmx
-church_1.tmx
+B*church_0.tmx
+B*church_1.tmx
 fishermans_hut_north.tmx
 fishermans_hut_south.tmx
 fishermans_hut_west.tmx
@@ -104,11 +104,11 @@ shepherd_house.tmx
 tavern.tmx
 weaponshop.tmx
 
-./interiors/koboldcity:
-house1.tmx
-house2.tmx
-house3.tmx
-house4.tmx
+B*./interiors/koboldcity:
+B*house1.tmx
+B*house2.tmx
+B*house3.tmx
+B*house4.tmx
 
 ./interiors/nalwor:
 bank_1.tmx
@@ -279,9 +279,9 @@ entrance.tmx
 caves_e.tmx
 caves.tmx
 caves_w.tmx
-drows_tunnel_ne.tmx
-drows_tunnel_n.tmx
-drows_tunnel_nw.tmx
+B*drows_tunnel_ne.tmx
+B*drows_tunnel_n.tmx
+B*drows_tunnel_nw.tmx
 drows_tunnel.tmx
 
 ./Level -1/orril:
@@ -318,11 +318,11 @@ ship_w2.tmx
 ./Level -2/kotoch:
 entrance.tmx
 
-./Level -2/nalwor:
-drows_tunnel_nw.tmx
+B*./Level -2/nalwor:
+B*drows_tunnel_nw.tmx
 
 ./Level -2/orril:
-dungeon.tmx
+B*dungeon.tmx
 dwarf_mine.tmx
 lich_palace.tmx
 
