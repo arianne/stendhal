@@ -76,7 +76,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	 */
 	private boolean prospectSuccessful(Player player) {
 		int random = Rand.roll1D100();
-		return random <= (FINDING_PROBABILITY + player.getKarma(FINDING_PROBABILITY)) * 100;
+		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
 	/**

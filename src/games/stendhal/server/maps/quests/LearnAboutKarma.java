@@ -124,7 +124,7 @@ public class LearnAboutKarma extends AbstractQuest {
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						long roundedkarma = Math.round(player.tellKarma());
+						long roundedkarma = Math.round(player.getKarma());
 						npc.say("Your karma is roughly " + roundedkarma + ".");
 						// TODO: make her say different things if it's positive or negative
 //						 TODO: make her say different things if it's big and potisive, small and negative etc. need idea of ranges for this.

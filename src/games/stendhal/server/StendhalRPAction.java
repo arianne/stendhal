@@ -70,7 +70,7 @@ public class StendhalRPAction {
 		/*
 		 * Apply some karma
 		 */
-		double karma = attacker.getKarma(0.3) - defender.getKarma(0.3);
+		double karma = attacker.useKarma(0.3) - defender.useKarma(0.3);
 
 		if (karma > 0.2) {
 			risk += 4;
@@ -147,7 +147,7 @@ public class StendhalRPAction {
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		attackerComponent += (attackerComponent * (float) attacker.getKarma(0.1));
+		attackerComponent += (attackerComponent * (float) attacker.useKarma(0.1));
 
 		logger.debug("ATK MAX: " + maxAttackerComponent + "\t ATK VALUE: " + attackerComponent);
 
@@ -161,7 +161,7 @@ public class StendhalRPAction {
 		/*
 		 * Account for karma (+/-10%)
 		 */
-		defenderComponent += (defenderComponent * (float) defender.getKarma(0.1));
+		defenderComponent += (defenderComponent * (float) defender.useKarma(0.1));
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + maxDefenderComponent + "\t DEF VALUE: " + defenderComponent);

@@ -194,6 +194,18 @@ public abstract class RPEntity extends Entity {
 	}
 
 	/**
+	 * Get the current amount of karma.
+	 *
+	 * @return	The current amount of karma.
+	 *
+	 * @see-also	#addKarma()
+	 */
+	public double getKarma() {
+		// No karma (yet)
+		return 0.0;
+	}
+
+	/**
 	 * Get some of the player's karma. A positive value indicates
 	 * good luck/energy. A negative value indicates bad luck/energy.
 	 * A value of zero should cause no change on an action or outcome.
@@ -202,7 +214,7 @@ public abstract class RPEntity extends Entity {
 	 *
 	 * @return	A number between -scale and scale.
 	 */
-	public double getKarma(double scale) {
+	public double useKarma(double scale) {
 		// No impact
 		return 0.0;
 	}
@@ -217,7 +229,24 @@ public abstract class RPEntity extends Entity {
 	 *
 	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
-	public double getKarma(double negLimit, double posLimit) {
+	public double useKarma(double negLimit, double posLimit) {
+		// No impact
+		return 0.0;
+	}
+
+	/**
+	 * Use some of the player's karma. A positive value indicates
+	 * good luck/energy. A negative value indicates bad luck/energy.
+	 * A value of zero should cause no change on an action or outcome.
+	 *
+	 * @param	negLimit	The lowest negative value returned.
+	 * @param	posLimit	The highest positive value returned.
+	 * @param	granularity	The amount that any extracted
+	 *				karma is a multiple of.
+	 *
+	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
+	 */
+	public double useKarma(double negLimit, double posLimit, double granularity) {
 		// No impact
 		return 0.0;
 	}

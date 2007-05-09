@@ -46,7 +46,7 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 			probability = 0.05;
 		}
 
-		return probability + player.getKarma(0.05);
+		return probability + player.useKarma(0.05);
 	}
 
 	/**fishing

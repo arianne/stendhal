@@ -363,7 +363,19 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	/**
-	 * Get some of the player's karma. A positive value indicates
+	 * Get the current amount of karma.
+	 *
+	 * @return	The current amount of karma.
+	 *
+	 * @see-also	#addKarma()
+	 */
+	@Override
+	public double getKarma() {
+		return karma;
+	}
+
+	/**
+	 * Use some of the player's karma. A positive value indicates
 	 * good luck/energy. A negative value indicates bad luck/energy.
 	 * A value of zero should cause no change on an action or outcome.
 	 *
@@ -372,14 +384,15 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return	A number between -scale and scale.
 	 */
 	@Override
-	public double getKarma(double scale) {
-		return getKarma(-scale, scale);
+	public double useKarma(double scale) {
+		return useKarma(-scale, scale);
 	}
 
 	/**
-	 * Get some of the player's karma. A positive value indicates
+	 * Use some of the player's karma. A positive value indicates
 	 * good luck/energy. A negative value indicates bad luck/energy.
 	 * A value of zero should cause no change on an action or outcome.
+	 * The granularity is <code>0.01</code> (%1 unit).
 	 *
 	 * @param	negLimit	The lowest negative value returned.
 	 * @param	posLimit	The highest positive value returned.
@@ -387,7 +400,24 @@ public class Player extends RPEntity implements TurnListener {
 	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
 	 */
 	@Override
-	public double getKarma(double negLimit, double posLimit) {
+	public double useKarma(double negLimit, double posLimit) {
+		return useKarma(negLimit, posLimit, 0.01);
+	}
+
+	/**
+	 * Use some of the player's karma. A positive value indicates
+	 * good luck/energy. A negative value indicates bad luck/energy.
+	 * A value of zero should cause no change on an action or outcome.
+	 *
+	 * @param	negLimit	The lowest negative value returned.
+	 * @param	posLimit	The highest positive value returned.
+	 * @param	granularity	The amount that any extracted
+	 *				karma is a multiple of.
+	 *
+	 * @return	A number within negLimit &lt;= 0 &lt;= posLimit.
+	 */
+	@Override
+	public double useKarma(double negLimit, double posLimit, double granularity) {
 		double limit;
 		double score;
 
@@ -425,6 +455,12 @@ public class Player extends RPEntity implements TurnListener {
 		 * Give at least 20% of possible payout
 		 */
 		score = (0.2 + (karmaRand.nextDouble() * 0.8)) * limit;
+
+		/*
+		 * Clip to grandularity
+		 */
+		score = ((int) (score / granularity)) * granularity;
+
 		karma -= score;
 
 		if (logger.isDebugEnabled()) {
@@ -465,10 +501,6 @@ public class Player extends RPEntity implements TurnListener {
 				features.clear();
 			}
 		}
-	}
-	
-	public double tellKarma() {
-		return karma;
 	}
 
 	/**

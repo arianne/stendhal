@@ -90,7 +90,7 @@ public class LifeDrainArea extends OccupantArea {
 		/*
 		 * Account for karma (+/-10%) potential
 		 */
-		score += ((float) entity.getKarma(0.1) * potential);
+		score += ((float) entity.useKarma(0.1) * potential);
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("DEF MAX: " + potential + "  DEF SCORE: " + score);
