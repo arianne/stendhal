@@ -39,6 +39,7 @@ import org.xml.sax.SAXException;
  */
 public class JCreature extends javax.swing.JFrame {
     boolean justUpdateCreature;
+    List<DefaultCreature> filteredCreatures;
     List<DefaultCreature> creatures;
     List<DefaultItem> items;
     
@@ -51,6 +52,7 @@ public class JCreature extends javax.swing.JFrame {
 
     private void loadData(String creatureFile, String itemFile) throws SAXException {
         creatures=loadCreaturesList(creatureFile);
+        filteredCreatures=creatures;
         items=loadItemsList(itemFile);
         setLists();
         creatureList.setSelectedIndex(0);
@@ -89,21 +91,36 @@ public class JCreature extends javax.swing.JFrame {
             "undead",
             "vampire"}));
         
-        updateLists();
+        updateItemLists();
+        updateCreatureList(filter.getText());
     }
     
-    private void updateLists() {
+    private void updateItemLists() {
         itemList.setModel(new javax.swing.AbstractListModel() {
             public Object getElementAt(int i) { return items.get(i).getItemName(); }
             public int getSize() { return items.size(); }
         });
+    }
+
+    private void updateCreatureList(String filter) {
+        filteredCreatures=new LinkedList<DefaultCreature>();
+        
+        if(filter.length()>0) {
+            for(DefaultCreature c: creatures) {
+                if(c.getCreatureName().contains(filter)) {
+                    filteredCreatures.add(c);
+                }
+            }
+        } else {
+            filteredCreatures=creatures;
+        }
 
         creatureList.setModel(new javax.swing.AbstractListModel() {
             public Object getElementAt(int i) {
-                DefaultCreature creature=creatures.get(i);
+                DefaultCreature creature=filteredCreatures.get(i);
                 return "("+creature.getLevel()+") "+creature.getCreatureName();
             }
-            public int getSize() { return creatures.size(); }
+            public int getSize() { return filteredCreatures.size(); }
         });
         
         amountOfCreatures.setText(Integer.toString(creatures.size()));
@@ -168,7 +185,7 @@ public class JCreature extends javax.swing.JFrame {
             return;
         }
         
-        DefaultCreature actual = (DefaultCreature)creatures.get(pos);
+        DefaultCreature actual = (DefaultCreature)filteredCreatures.get(pos);
         
         if(actual.getCreatureName()==null) {
             return;
@@ -300,6 +317,9 @@ public class JCreature extends javax.swing.JFrame {
         pushIntoArea = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         setButton = new javax.swing.JButton();
+        filter = new javax.swing.JTextField();
+        FilterButton = new javax.swing.JButton();
+        ClearButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jLoad = new javax.swing.JMenu();
         jLoadFromFile = new javax.swing.JMenuItem();
@@ -746,6 +766,22 @@ public class JCreature extends javax.swing.JFrame {
             }
         });
 
+        filter.setBackground(new java.awt.Color(204, 204, 204));
+
+        FilterButton.setText("Filter");
+        FilterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FilterButtonActionPerformed(evt);
+            }
+        });
+
+        ClearButton.setText("Clear");
+        ClearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClearButtonActionPerformed(evt);
+            }
+        });
+
         jLoad.setText("Load");
         jLoadFromFile.setText("From file");
         jLoadFromFile.addActionListener(new java.awt.event.ActionListener() {
@@ -787,23 +823,35 @@ public class JCreature extends javax.swing.JFrame {
                     .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(addButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 118, Short.MAX_VALUE)
                         .add(setButton))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 220, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(FilterButton)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 106, Short.MAX_VALUE)
+                        .add(ClearButton))
+                    .add(filter, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(filter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(FilterButton)
+                            .add(ClearButton))))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -812,15 +860,24 @@ public class JCreature extends javax.swing.JFrame {
                             .add(jPanel8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(data, 0, 0, Short.MAX_VALUE)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jScrollPane1)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(addButton)
                             .add(setButton))))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterButtonActionPerformed
+        updateCreatureList(filter.getText());
+    }//GEN-LAST:event_FilterButtonActionPerformed
+
+    private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
+        filter.setText("");
+        updateCreatureList(filter.getText());      
+    }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void justEditCreatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_justEditCreatureActionPerformed
         justUpdateCreature=!justUpdateCreature;
@@ -906,7 +963,7 @@ public class JCreature extends javax.swing.JFrame {
         int respawn=((900+(level*level)/10+(level*level*level)/400)/base)*base;;
                 
         int pos=creatureList.getSelectedIndex();
-        DefaultCreature actual = (DefaultCreature)creatures.get(pos);
+        DefaultCreature actual = (DefaultCreature)filteredCreatures.get(pos);
 
         if(justUpdateCreature) {
             creatureATK.setText(Integer.toString(atk));
@@ -953,7 +1010,7 @@ public class JCreature extends javax.swing.JFrame {
         setButton.setForeground(Color.BLACK);
         
         int pos=creatureList.getSelectedIndex();
-        DefaultCreature actual = (DefaultCreature)creatures.get(pos);
+        DefaultCreature actual = (DefaultCreature)filteredCreatures.get(pos);
         
         actual.setCreatureName(creatureName.getText());
         actual.setCreatureClass((String)creatureClass.getSelectedItem());
@@ -1021,7 +1078,7 @@ public class JCreature extends javax.swing.JFrame {
         actual.setAIProfiles(profiles);
         actual.setNoiseLines(noises);
         
-        sortCreatures(creatures);
+        sortCreatures(filteredCreatures);
         setLists();
         refresh();
         } catch (IOException e) {
@@ -1031,9 +1088,10 @@ public class JCreature extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         creatures.add(new DefaultCreature(null,null,null, null));
-        updateLists();
-        creatureList.setSelectedIndex(creatures.size()-1);
-        creatureList.ensureIndexIsVisible(creatures.size()-1);
+        updateItemLists();
+        updateCreatureList(filter.getText());
+        creatureList.setSelectedIndex(filteredCreatures.size()-1);
+        creatureList.ensureIndexIsVisible(filteredCreatures.size()-1);
         refresh();
         setButton.setForeground(Color.RED);
         addButton.setEnabled(false);
@@ -1055,6 +1113,8 @@ public class JCreature extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ClearButton;
+    private javax.swing.JButton FilterButton;
     private javax.swing.JButton SuggestAttributeButton;
     private javax.swing.JButton addButton;
     private javax.swing.JLabel amountOfCreatures;
@@ -1079,6 +1139,7 @@ public class JCreature extends javax.swing.JFrame {
     private javax.swing.JTextField creatureTileid;
     private javax.swing.JTextField creatureXP;
     private javax.swing.JTabbedPane data;
+    private javax.swing.JTextField filter;
     private javax.swing.JList itemList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
