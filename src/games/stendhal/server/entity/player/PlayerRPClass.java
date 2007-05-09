@@ -102,11 +102,11 @@ class PlayerRPClass {
 		player.add("sheep", RPClass.INT);
 
 		// Bank system
-		player.addRPSlot("bank", 20, RPClass.HIDDEN);
-		player.addRPSlot("bank_ados", 20, RPClass.HIDDEN);
-		player.addRPSlot("zaras_chest_ados", 20, RPClass.HIDDEN);
-		player.addRPSlot("bank_fado", 20, RPClass.HIDDEN);
-		player.addRPSlot("bank_nalwor", 20, RPClass.HIDDEN);
+		player.addRPSlot("bank", 30, RPClass.HIDDEN);
+		player.addRPSlot("bank_ados", 30, RPClass.HIDDEN);
+		player.addRPSlot("zaras_chest_ados", 30, RPClass.HIDDEN);
+		player.addRPSlot("bank_fado", 30, RPClass.HIDDEN);
+		player.addRPSlot("bank_nalwor", 30, RPClass.HIDDEN);
 
 		// Kills recorder - needed for quest
 		player.addRPSlot("!kills", 1, RPClass.HIDDEN);

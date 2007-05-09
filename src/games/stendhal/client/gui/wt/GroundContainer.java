@@ -234,7 +234,7 @@ public class GroundContainer extends WtPanel implements Inspector {
 	public EntityContainer inspectMe(Entity suspect, RPSlot content, EntityContainer container) {
 		if ((container == null) || !container.isVisible()) {
 			if (suspect instanceof Chest) {
-				container = new EntityContainer(client, suspect.getType(), 4, 5);
+				container = new EntityContainer(client, suspect.getType(), 5, 6);
 			} else {
 				container = new EntityContainer(client, suspect.getType(), 2, 2);
 			}
