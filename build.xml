@@ -27,6 +27,10 @@
 		
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+			match="GAME_NAME=.*"
+			replace="GAME_NAME=${game_name}"
+			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="DEFAULT_SERVER=.*"
 			replace="DEFAULT_SERVER=${default_server}"
 			byline="true"/>
