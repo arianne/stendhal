@@ -664,6 +664,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			npcs.add((AttackableCreature) object);
 			playersAndFriends.add((AttackableCreature) object);
 		} else if (object instanceof Sheep) {
+			npcs.add((Sheep) object);
 			playersAndFriends.add((Sheep) object);
 		} else if (object instanceof SpeakerNPC) {
 			npcs.add((SpeakerNPC) object);
@@ -699,6 +700,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Eventually move to <Entity>.onRemoved().
 		 */
+		/* BUG: I am not sure this works as expected as npcs list is loaded just once on startup and
+		 * never used again, so these removes are useless IMHO.
+		 */
 		if (object instanceof Player) {
 			players.remove((Player) object);
 			playersAndFriends.remove((Player) object);
@@ -707,6 +711,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			playersAndFriends.remove((AttackableCreature) object);
 		} else if (object instanceof Sheep) {
 			playersAndFriends.remove((Sheep) object);
+			npcs.remove((Sheep)object);
 		} else if (object instanceof SpeakerNPC) {
 			npcs.remove((SpeakerNPC) object);
 		} else if (object instanceof Portal) {

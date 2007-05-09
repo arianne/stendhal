@@ -15,6 +15,7 @@ package games.stendhal.client;
 import games.stendhal.client.gui.StendhalFirstScreen;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
 
@@ -41,7 +42,10 @@ public class stendhal extends Thread {
 		} catch (AccessControlException e) {
 			Debug.WEB_START_SANDBOX = true;
 		}
-		STENDHAL_FOLDER = "/stendhal/";
+
+		/** We set the main game folder to the game name */
+		String gameName=ClientGameConfiguration.get("GAME_NAME");
+		STENDHAL_FOLDER = "/"+gameName.toLowerCase()+"/";
 	}
 
 	public static final String VERSION = Version.VERSION;

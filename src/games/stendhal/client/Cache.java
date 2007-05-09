@@ -58,12 +58,13 @@ public class Cache {
 					}
 				}
 
-				file = new File(System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "cache/");
+				file = new File(System.getProperty("user.home") + stendhal.STENDHAL_FOLDER + "cache/");
 				if (!file.exists() && !file.mkdir()) {
 					logger.error("Can't create " + file.getAbsolutePath() + " folder");
 				}
 
-				new File(System.getProperty("user.home") + "/" + stendhal.STENDHAL_FOLDER + "cache/stendhal.cache")
+				String cacheFile=System.getProperty("user.home") + stendhal.STENDHAL_FOLDER + "cache/stendhal.cache";
+				new File(cacheFile)
 				        .createNewFile();
 			}
 			Configuration.setConfigurationFile(true, stendhal.STENDHAL_FOLDER, "cache/stendhal.cache");

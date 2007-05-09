@@ -22,8 +22,23 @@
 			byline="true"/>
 		<replaceregexp file="web/html/stendhal.version"
 			match=".*"
-			replace="${version}"
+			replace="${version}"		
 			byline="true"/>
+		
+		<!-- Update location of resources -->
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+			match="DEFAULT_SERVER=.*"
+			replace="DEFAULT_SERVER=${default_server}"
+			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+			match="UPDATE_SERVER_FOLDER=.*"
+			replace="UPDATE_SERVER_FOLDER=${updates_server}"
+			byline="true"/>
+		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
+			match="UPDATE_VERSION_CHECK=.*"
+			replace="UPDATE_VERSION_CHECK=${version_server}"
+			byline="true"/>
+		
 		<replaceregexp file="stendhal.jnlp"
 			match="-0\..*\.jar&quot;"
 			replace="-${version}.jar&quot;"

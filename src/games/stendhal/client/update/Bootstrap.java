@@ -94,7 +94,11 @@ public class Bootstrap {
 	private void init() {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
-		jarFolder = System.getProperty("user.home") + pathSep + "stendhal" + pathSep + "jar" + pathSep;
+		
+		String stendhal=ClientGameConfiguration.get("GAME_NAME");
+		System.out.println("GAME: "+stendhal);
+		
+		jarFolder = System.getProperty("user.home") + pathSep + stendhal + pathSep + "jar" + pathSep;
 		File folder = new File(jarFolder);
 		if (!folder.exists()) {
 			folder.mkdirs();
