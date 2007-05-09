@@ -242,7 +242,20 @@ public class StendhalRPAction {
 	 * @return 
 	 */
 	public static int getAttackRate(RPEntity attacker) {
-		return 5;		
+		List<Item> weapons=attacker.getWeapons();
+		
+		if(weapons.isEmpty()) {
+			return 5;
+		}
+		int best=weapons.get(0).getAttackRate();
+		for(Item weapon: weapons) {
+			int res=weapon.getAttackRate();
+			if(res<best) {
+				best=res;
+			}
+		}
+		
+		return best;
 	}
 	
 	/**

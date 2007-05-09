@@ -54,6 +54,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.add("subclass", RPClass.STRING); // subclass, long sword/leather // armor/...
 		entity.add("name", RPClass.STRING); // name of item (ie 'Kings Sword')
 		entity.add("atk", RPClass.SHORT); // Some items have attack values
+		entity.add("rate", RPClass.SHORT); // Some items indicate how often you can attack.
 		entity.add("def", RPClass.SHORT); // Some items have defense values
 		entity.add("amount", RPClass.INT); // Some items(food) have amount of something (a bottle, a piece of meat).
 		entity.add("range", RPClass.SHORT); // Some items (range weapons, ammunition, missiles) have a range. 
@@ -169,6 +170,19 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		return 0;
 	}
 
+	/**
+	 * Returns each how many turns this item can attack.
+	 * @return each how many turns this item can attack.
+	 */
+	public int getAttackRate() {
+		if (has("rate")) {
+			return getInt("rate");
+		}
+
+		/* Default attack rate is 5. */
+		return 5;
+    }
+	
 	/**
 	 * Returns if the item is persistent. Persistent items do not update their
 	 * stats from the item database and thus can have individual stats
@@ -338,5 +352,4 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 			StendhalRPWorld.get().remove(getID());
 		}
 	}
-
 }
