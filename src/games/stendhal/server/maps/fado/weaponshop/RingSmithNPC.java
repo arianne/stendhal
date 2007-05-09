@@ -5,6 +5,8 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.entity.npc.SellerBehaviour;
+import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -20,6 +22,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
+	private ShopList shops = ShopList.get();
 
 	/**
 	 * Configure a zone.
@@ -45,7 +48,8 @@ public class RingSmithNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addJob("I work with #gold, to fix and make jewellery.");
 				addReply("gold","It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
-				addHelp("You can sell weapons to Yorphin Baos over there.");
+				addHelp("You can sell weapons to Yorphin Baos over there. You might need the money to buy a special ring.");
+				addSeller(new SellerBehaviour(shops.get("sellrings")));
 				addGoodbye("Bye, my friend.");
 			}
 		};

@@ -81,6 +81,8 @@ public class ShopList {
 		shops.add("buyiron", "iron", 75);
 
 		shops.add("buygrain", "grain", 1);
+		
+		shops.add("sellrings", "engagement_ring", 5000);
 
 		// rare weapons shop
 		shops.add("buyrare", "scimitar", 65);

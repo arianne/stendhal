@@ -21,6 +21,7 @@ import marauroa.common.game.IRPZone;
  * PARTICIPANTS:
  * - Sister Benedicta, the nun of Fado Church
  * - the Priest of Fado Church
+ * - Ognir, the Ring Maker in Fado
  * 
  * STEPS:
  * - The nun explains that when two people are married, they can be together whenever they want
