@@ -276,13 +276,13 @@ entrance_n.tmx
 entrance.tmx
 
 ./Level -1/nalwor:
-caves_e.tmx
-caves.tmx
-caves_w.tmx
-B*drows_tunnel_ne.tmx
-B*drows_tunnel_n.tmx
-B*drows_tunnel_nw.tmx
-drows_tunnel.tmx
+D*	caves_e.tmx
+D*	caves.tmx
+D*	caves_w.tmx
+B*	drows_tunnel_ne.tmx
+B*	drows_tunnel_n.tmx
+B*	drows_tunnel_nw.tmx
+D*	drows_tunnel.tmx
 
 ./Level -1/orril:
 castle.tmx
