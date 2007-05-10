@@ -316,7 +316,7 @@ outside_nw.tmx
 ship_w2.tmx
 
 ./Level -2/kotoch:
-entrance.tmx
+D*	entrance.tmx
 
 B*./Level -2/nalwor:
 B*drows_tunnel_nw.tmx
