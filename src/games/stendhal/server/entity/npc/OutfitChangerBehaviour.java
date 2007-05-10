@@ -67,6 +67,14 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 				new Outfit(0, 82, null, null),
 				new Outfit(0, 83, null, null),
 				new Outfit(0, 84, null, null)));
+		
+		// wedding dress for brides
+		// it seems this must be an array as list even though it's only one item
+		outfitTypes.put("gown", Arrays.asList(new Outfit(null, null, 88, null)));
+		
+//		// wedding suit for grooms
+		// it seems this must be an array as list even though it's only one item
+		outfitTypes.put("suit", Arrays.asList(new Outfit(null, null, 87, null)));
 	}
 
 	/**
