@@ -150,7 +150,10 @@ West: Semos
       <parameter name="players-only">true</parameter>
     </implementation>
    </entity>
-   
+   <!-- exit for the admin house -->
+  <portal x="97" y="74" ref="house_exit_2">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
  </zone>
 
  <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="Level 0/ados/city_n.tmx">

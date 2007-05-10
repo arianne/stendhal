@@ -411,9 +411,13 @@ Awww... so you're a coward, then? Huh.
    </implementation>
   </entity>
 -->
-
-  <portal x="42" y="37" ref="tavern_entrance">
-   <destination zone="int_semos_tavern_0" ref="entrance"/>
+   <portal x="42" y="37" ref="tavern_entrance">
+     <destination zone="int_semos_tavern_0" ref="entrance"/>
+   </portal>
+   
+ <!--for the admin house -->
+  <portal x="59" y="37" ref="house_exit_1">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
   </portal>
 
   <portal x="53" y="37" ref="temple_entrance">
@@ -911,6 +915,48 @@ Holy mackerel! These chips are tasty.
      <destination zone="0_semos_city" ref="bakery_entrance"/>
     </portal>
    </zone>
+   
+    <!--for the admin house -->
+   <zone name="int_semos_house" file="interiors/semos/house.tmx">
+      <entity x="6" y="10">
+       <implementation class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC">
+         <parameter name="name">Skye</parameter>
+         <parameter name="class">beautifulgirlnpc</parameter>
+         <parameter name="node0">6,10</parameter>
+         <parameter name="node1">12,10</parameter>
+       </implementation>
+     </entity>
+    <portal x="1" y="11" ref="exit_1">
+     <destination zone="0_semos_city" ref="house_exit_1"/>
+    </portal>
+    <portal x="17" y="5" ref="exit_2">
+     <destination zone="0_ados_wall_n" ref="house_exit_2"/>
+    </portal>
+    <entity x="2" y="6">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
+    </entity>
+    <entity x="2" y="7">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
+    </entity>
+    <entity x="2" y="8">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
+    </entity>
+    <entity x="16" y="8">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
+    </entity>
+   <entity x="16" y="9">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
+    </entity>
+   <entity x="16" y="10">
+     <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
+     <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
+    </entity>
+    </zone> 
 
  <zone name="0_semos_road_e" level="0" x="500128" y="500000" file="Level 0/semos/road_e.tmx">
    <entity x="113" y="51">
