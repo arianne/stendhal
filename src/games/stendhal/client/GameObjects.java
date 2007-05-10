@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.RPEntity;
-import games.stendhal.client.entity.Text;
 import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.Color;
@@ -41,10 +40,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
 
 	private Map<FQID, Entity> objects;
-
-	private LinkedList<Text> texts;
-
-	private List<Text> textsToRemove;
 
 	/**
 	 * A list of all entities, sorted by the Z index, i.e. the order in which
@@ -93,8 +88,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	private GameObjects(StaticGameLayers collisionMap) {
 		objects = new HashMap<FQID, Entity>();
 
-		texts = new LinkedList<Text>();
-		textsToRemove = new LinkedList<Text>();
 		sortedObjects = new LinkedList<Entity>();
 
 		this.collisionMap = collisionMap;
@@ -131,19 +124,10 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		objects.clear();
 		sortedObjects.clear();
-		texts.clear();
+
+		GameScreen.get().clear();
+
 		Log4J.finishMethod(logger, "clear");
-	}
-
-	/** Removes all the text entities */
-	public void clearTexts() {
-		Log4J.startMethod(logger, "clearText");
-
-		for (Iterator it = texts.iterator(); it.hasNext();) {
-			textsToRemove.add((Text) it.next());
-		}
-		Log4J.finishMethod(logger, "clearText");
-
 	}
 
 	public boolean collides(Entity entity) {
@@ -168,36 +152,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		for (Entity entity : sortedObjects) {
 			entity.update(delta);
 		}
-	}
-
-	public void addText(Entity speaker, String text, Color color, boolean isTalking) {
-		double x = speaker.getX();
-		double y = speaker.getY();
-
-		boolean found = true;
-
-		while (found == true) {
-			found = false;
-			for (Text item : texts) {
-				if ((item.getX() == x) && (item.getY() == y)) {
-					found = true;
-					y += 0.5;
-					break;
-				}
-			}
-		}
-
-		Text entity = new Text(this, text, x, y, color, isTalking);
-		texts.add(entity);
-	}
-
-	public void addText(Entity speaker, Sprite sprite, long persistTime) {
-		Text entity = new Text(this, sprite, speaker.getX(), speaker.getY(), persistTime);
-		texts.add(entity);
-	}
-
-	public void removeText(Text entity) {
-		textsToRemove.add(entity);
 	}
 
 	public Entity at(double x, double y) {
@@ -252,19 +206,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		return null;
 	}
 
-	public Text at_text(double x, double y) {
-		ListIterator<Text> it = texts.listIterator(texts.size());
-		while (it.hasPrevious()) {
-			Text entity = it.previous();
-
-			if (entity.getDrawedArea().contains(x, y)) {
-				return entity;
-			}
-		}
-
-		return null;
-	}
-
 	/** Draw all the objects in game */
 	public void draw(GameScreen screen) {
 		sort();
@@ -281,19 +222,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 				RPEntity rpentity = (RPEntity) entity;
 				rpentity.drawHPbar(screen);
 			}
-		}
-	}
-
-	public void drawText(GameScreen screen) {
-		texts.removeAll(textsToRemove);
-		textsToRemove.clear();
-
-		try {
-			for (Text entity : texts) {
-				entity.draw(screen);
-			}
-		} catch (ConcurrentModificationException e) {
-			logger.error("cannot draw text", e);
 		}
 	}
 

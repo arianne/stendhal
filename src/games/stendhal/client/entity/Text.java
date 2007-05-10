@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 
@@ -39,7 +38,7 @@ public class Text {
 
 	private String text;
 
-	public Text(final GameObjects gameObjects, final Sprite textSprite, final double x, final double y, final long persistTime) {
+	public Text(final Sprite textSprite, final double x, final double y, final long persistTime) {
 		textImage = textSprite;
 		textImageTime = System.currentTimeMillis();
 			 
@@ -59,7 +58,7 @@ public class Text {
 		this.y = y;
 	}
 
-	public Text(final GameObjects gameObjects, final String text, final double x, final double y, final Color color, final boolean isTalking) {
+	public Text(final String text, final double x, final double y, final Color color, final boolean isTalking) {
 
 		// Speech bubbles will only be drawn if there's a background color
 		// intensifly@gmx.com
@@ -86,7 +85,7 @@ public class Text {
 		screen.draw(textImage, tx, ty);
 
 		if (System.currentTimeMillis() - textImageTime > textPersistTime) {
-			GameObjects.getInstance().removeText(this);
+			screen.removeText(this);
 		}
 	}
 

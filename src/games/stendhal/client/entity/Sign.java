@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameObjects;
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 
 import java.awt.Color;
@@ -55,8 +55,8 @@ public class Sign extends Entity {
 		// =handleAction(action);
 		switch (at) {
 			case READ:
-				GameObjects.getInstance().addText(
-					this, text, signColor, false);
+				GameScreen.get().addText(
+					getX(), getY(), text, signColor, false);
 
 				if (text.contains("\n")) {
 					// The sign's text has multiple lines. Add a linebreak after

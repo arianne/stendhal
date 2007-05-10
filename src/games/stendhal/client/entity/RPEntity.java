@@ -549,7 +549,7 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		StendhalUI.get().addEventLine(text, color);
-		GameObjects.getInstance().addText(this, text.replace("|", ""), color, false);
+		GameScreen.get().addText(getX(), getY(), text.replace("|", ""), color, false);
 	}
 
 	// When this entity stops attacking
@@ -602,8 +602,8 @@ public abstract class RPEntity extends ActiveEntity {
 				line = line + " ...";
 			}
 
-			GameObjects.getInstance().addText(
-				this, /* getTitle()+" says: "+ */ line, Color.black, true);
+			GameScreen.get().addText(
+				getX(), getY(), /* getTitle()+" says: "+ */ line, Color.black, true);
 		}
 	}
 
@@ -1086,7 +1086,7 @@ public abstract class RPEntity extends ActiveEntity {
 			if (distanceToUser() < 15 * 15) {
 				String text = getTitle() + " reaches Level " + getLevel();
 
-				GameObjects.getInstance().addText(this, GameScreen.get().createString(text, Color.green), 0);
+				GameScreen.get().addText(getX(), getY(), GameScreen.get().createString(text, Color.green), 0);
 				StendhalUI.get().addEventLine(text, Color.green);
 			}
 		}

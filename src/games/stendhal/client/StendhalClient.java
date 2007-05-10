@@ -329,7 +329,7 @@ public class StendhalClient extends ariannexp {
 	 * Clear any active text bubbles.
 	 */
 	public void clearTextBubbles() {
-		gameObjects.clearTexts();
+		screen.clearTexts();
 	}
 
 

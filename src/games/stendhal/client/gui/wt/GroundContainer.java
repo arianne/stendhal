@@ -147,9 +147,9 @@ public class GroundContainer extends WtPanel implements Inspector {
 		GameObjects gameObjects = client.getGameObjects();
 
 		// for the text pop up....
-		Text text = gameObjects.at_text(point.getX(), point.getY());
+		Text text = screen.getTextAt(point.getX(), point.getY());
 		if (text != null) {
-			gameObjects.removeText(text);
+			screen.removeText(text);
 			return true;
 		}
 
@@ -177,9 +177,9 @@ public class GroundContainer extends WtPanel implements Inspector {
 		GameObjects gameObjects = client.getGameObjects();
 
 		// for the text pop up....
-		Text text = gameObjects.at_text(point.getX(), point.getY());
+		Text text = screen.getTextAt(point.getX(), point.getY());
 		if (text != null) {
-			gameObjects.removeText(text);
+			screen.removeText(text);
 			return true;
 		}
 

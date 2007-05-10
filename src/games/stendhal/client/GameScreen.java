@@ -35,7 +35,12 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 
 import marauroa.common.Log4J;
@@ -68,6 +73,16 @@ public class GameScreen {
 	 * Client.
 	 */
 	protected StendhalClient	client;
+
+	/**
+	 * The text bubbles.
+	 */
+	private LinkedList<Text> texts;
+
+	/**
+	 * The text bubbles to remove.
+	 */
+	private List<Text> textsToRemove;
 
 	private static Sprite offlineIcon;
 
@@ -126,6 +141,11 @@ public class GameScreen {
 	 * The current screen view Y.
 	 */
 	private int	svy;
+
+	/**
+	 * Whether the internal state is valid
+	 */
+	private boolean valid;
 
 
 	static {
@@ -192,8 +212,17 @@ public class GameScreen {
 		dx = 0;
 		dy = 0;
 
+		texts = new LinkedList<Text>();
+		textsToRemove = new LinkedList<Text>();
+
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
+
+
+	public void invalidate() {
+		valid = false;
+	}
+
 
 	/** Prepare screen for the next frame to be rendered and move it if needed */
 	public void nextFrame() {
@@ -418,7 +447,7 @@ public class GameScreen {
 		gameLayers.draw(this, set + "_3_roof", x, y, w, h);
 		gameLayers.draw(this, set + "_4_roof_add", x, y, w, h);
 		gameObjects.drawHPbar(this);
-		gameObjects.drawText(this);
+		drawText();
 
 		baseframe.draw(expose());
 
@@ -430,6 +459,20 @@ public class GameScreen {
 			blinkOffline = 20;
 		} else {
 			blinkOffline--;
+		}
+	}
+
+
+	protected void drawText() {
+		texts.removeAll(textsToRemove);
+		textsToRemove.clear();
+
+		try {
+			for (Text entity : texts) {
+				entity.draw(this);
+			}
+		} catch (ConcurrentModificationException e) {
+			logger.error("cannot draw text", e);
 		}
 	}
 
@@ -487,13 +530,102 @@ public class GameScreen {
 		this.offline = offline;
 	}
 
+
+	/**
+	 * Add a text bubble.
+	 *
+	 *
+	 *
+	 */
+	public void addText(double x, double y, String text, Color color, boolean isTalking) {
+		boolean found = true;
+
+		while (found == true) {
+			found = false;
+			for (Text item : texts) {
+				if ((item.getX() == x) && (item.getY() == y)) {
+					found = true;
+					y += 0.5;
+					break;
+				}
+			}
+		}
+
+		Text entity = new Text(text, x, y, color, isTalking);
+		texts.add(entity);
+	}
+
+
+	/**
+	 * Add a text bubble.
+	 *
+	 *
+	 *
+	 */
+	public void addText(double x, double y, Sprite sprite, long persistTime) {
+		Text entity = new Text(sprite, x, y, persistTime);
+		texts.add(entity);
+	}
+
+
+	/**
+	 * Remove a text bubble.
+	 */
+	public void removeText(Text entity) {
+		textsToRemove.add(entity);
+	}
+
+
 	/**
 	 * Clear the screen.
 	 */
 	public void clear() {
+		Log4J.startMethod(logger, "clear");
+
+		texts.clear();
+		textsToRemove.clear();
+
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());
+
+		Log4J.finishMethod(logger, "clear");
 	}
+
+	/**
+	 * Removes all the text entities.
+	 */
+	public void clearTexts() {
+		Log4J.startMethod(logger, "clearText");
+
+		for (Iterator it = texts.iterator(); it.hasNext();) {
+			textsToRemove.add((Text) it.next());
+		}
+
+		Log4J.finishMethod(logger, "clearText");
+	}
+
+
+
+	/**
+	 * Get the text bubble at specific coordinates.
+	 *
+	 *
+	 *
+	 */
+	public Text getTextAt(double x, double y) {
+		ListIterator<Text> it = texts.listIterator(texts.size());
+
+		while (it.hasPrevious()) {
+			Text entity = it.previous();
+
+			if (entity.getDrawedArea().contains(x, y)) {
+				return entity;
+			}
+		}
+
+		return null;
+	}
+
 
 	/** Translate to world coordinates the given screen coordinate */
 	public Point2D translate(Point2D point) {
