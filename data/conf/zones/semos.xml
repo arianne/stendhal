@@ -1015,6 +1015,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="-1_semos_mine_n2" level="-1" x="500000" y="499744" file="Level -1/semos/mine_n2.tmx">
+    <configurator class-name="games.stendhal.server.maps.semos.mines.DwarfGuardianNPC"/>
  </zone>
 
  <zone name="-1_semos_mine_nw" level="-1" x="499744" y="499872" file="Level -1/semos/mine_nw.tmx">
