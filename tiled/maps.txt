@@ -224,10 +224,10 @@ mountain_n2_w2.tmx
 mountain_nw.tmx
 mountain_w2.tmx
 mountain_w.tmx
-river_se.tmx
+D*	river_se.tmx
 river_s.tmx
 river_s_w2.tmx
-river_sw.tmx
+D*	river_sw.tmx
 
 ./Level 0/semos:
 city.tmx
@@ -347,8 +347,8 @@ cave.tmx
 outside_nw.tmx
 
 ./Level -3/orril:
-dungeon.tmx
-dwarf_blacksmith.tmx
+D*	dungeon.tmx
+D! dwarf_blacksmith.tmx
 
 ./Level -3/semos:
 catacombs.tmx
