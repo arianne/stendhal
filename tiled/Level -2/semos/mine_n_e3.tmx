@@ -12,6 +12,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="70" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/mountain_orc.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2Yy27cQAwEDeT//znQKQsb66w0fHSTVYCuFtnV1oz99RXDn6Dn5OeBBhEdwP0Mor4LePcG93CBe8A94B7wD7jfDf73gvu9cO7vhXvfXvi7byen//OhA75EuKcDnkS6pwNePPG6xf/0PZ/+Tk/+Bmz41kXsODGbDWdd5H6Tsnnq3mnPjL0m5HIx2X/2Ts7ZXJy6V96zYg/HXF6Z6r9yD7dsXonyr7Zn5exu2bwy0X/13E7ZfCfSv8KeXbOq5/KOKf6751TO5jvRzhV2VJgx+r1ZXib5V5sv4t2ZfrKfKlTnO3l/tzsH/8qznc434clAda7MeV2faNTm+YRuB/jvc//1wVzZO233r4BKppv8K6GYZeRsSv4VUZ7Zxf1vs6qD/7xZXVD1f+Hg/t2cLmzx3zmnOspzqzqPmFEF9fkulLN16OhvKM/mgPr59D8UZ3LC5Z7yDqVZHIn035G7yhyuRPtXub9AHKo9UOngBhQ7gP96VHrQ/e3ZjMLdAP/9dPWg+9yBf3R0AP96VPUA99pk9qDrrgn3yOoA7r2I7gDuPYnqAP59ifgW4N6fk7sB7meAf7jAP+Af8A8X+IeLDf6n7hXBVP9T98pg2jkwbZ8KJmTGvfY57rmduFfaoxPX3E7dq+yhglt2uI/HKUPc56GeI+7zUc4V/zWoZsvZX4ditvivQzHbU//04B5quUb5pwP3UMk10j8duIdCptH+6cB9OjPFfz+d2Wb4pwP36coW/zrgfzcdGeNfiykdgOdU541/Tapyx78mVdnjX4vs7DN84z+GCg/416TKA/61qPBR/cBndHvCfT1R2XZ7xv99ojPtdo37z8jOtds7/n9SnSnuNXDIE/fxOGWJ/1jcMsR9LI754T4G1+xwf457brh/xqS8puxRxST3cA/c74L7kQ6n99XKB+Lpdor7Xrq94r6Xbrf0oZdul/Sgl26HdKCXbn/0YB/4hwu+BbvB/264E+zmjjf8z+PEG/79yfZPD7SJ8IV/X/C/myhfnAPP+QtgjXq6AAABAA==
@@ -39,7 +42,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3dPQ6AIAwGUE/nz/0v5GTipCFKW+W9laUDCfCVwDQB5FkfjgMAAAAAAAAA0N+WXQAAACSaswsAAGgkzwOA9y3ZBQAhZIHjcX4CAAAAAAAAKvI+P2d620RwRw4AAAC+Q34IAAAAABzkhQAAAFTn7AoAAAAA4/GWTQz5K5Dt6s8//wECxLD3BgCi2X8A/Je+Qz/yUgAAAAAAqE2WX4eeFb2ZYwDcsVYAAAAAQJsdxIYPWQAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.3">

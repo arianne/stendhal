@@ -12,6 +12,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="70" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/chaos.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="76" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/huge_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3ZS25bQQxFQQPe/54DDQQYGb1vX7JZBXjsRx5Kipyfn95+D/ywL/3n0n427WfTfy7v/bNpf1/nPWl/T/dd6X9P911pf90O+9L/ml32pf81u+xL//N22pd//5230658/z+n856O/K2v62wrdN/R1f5d5ntTx/3c6d1lxhU67ebp5lXnXKHbXt5uX2nWt3Tdyar2VeZ9WvddrO5fafa7dpg/1b/aHs7Yae50/0q7OGK3OdPtUzvaebYz3pqz4q6m3PYZb85ZaWfp9lVvYMWM6d2lm1e+gZXzJXa5umm3G1jdZOVranX7M7+3kpX93/7dq577qZmqSO+xe/Or81RSZZ/d25+Zo6oqO+3a/ujzV1dtr53a/6/Ss3TXqftXxWfaQZf+f1V8ps46tf+o+lxddWrPs7SfTf/Z9J9N+7m89mfTf65u3/l5lv5zaT+b/nNpP1e3/+fjWdrP5bU/l/ZzHWmv/16ONte+p7N9td/Dk9317+ON7trX9VZv/eta1Vz3ela2dxO1pLu7gax0czeQle7tBrLSrfXPSrfWPyvdWv+sdGv9s9Kt9c9Kt9Y/K91a/7x0b/2z0r31z0r31j8r3Vv/vHRz/bPSzd1AXrq5O8hL93YDeenebqCWt1q6AbwX8OFzATeA/ngfQH8+9OdDf9wA+uMGZvM5MNvV7wNP/F3BjdVwteWdG/AeU8fq/j5j6tF/Nv3RH/350p8v/WfTfzbNZ9N/Nv3Rfzb9+dAfAAAAAAAAAAD46x9Xw8CDAAABAA==
@@ -39,7 +45,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3byQ3AIAxFQbrLdkj/3VBDgsiP0UwFT+JikGkNoL4zHQAAAAAAAAAAAAAwyD4kAFDVkQ4ozhwIAAAwx5YOAAAAAAAAAF6zXwkAAAAAAPAfVzoAAAAAAJjuTgdQhjfjGpwTMMr/LgAAAAAAAAAAAAAAZrK3DgCwrj0dwGeezPXuAAAAAAAAAAAAAAAAa+j/s4hPAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.3">

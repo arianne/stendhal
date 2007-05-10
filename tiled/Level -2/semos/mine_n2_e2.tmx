@@ -15,6 +15,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="106" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/mountain_dwarf.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="111" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_soldier.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3Y207DQBAEUST4/2/mAUWYyAn27KVnpqukvBKzp+0EPj6IiIiIiIiIiIiIevdV4EVrUruyA01qR7agS+3GDrSpvdiALrUT/prUPvhrU/vgr03tg782tQ/+2tQ++GtT++CvTe2Dvza1D/ba1EbYa1M7Ya9P7YV5ntSOuOcJC9+w9ox73Ss+dz3je5dffOeum/rvLOx1qc2x14a7Z3h7h7tvmHsX8cO9Rxh6h79vuPuGvW88873D3jfufd+w79NdO+x7Ff0fLPY9wt+7Ff7soE4r/dlA/vD3bbU9/rnD37cd9mxgTZ8nr7vhX68zd/x7984c/75ddce/Xndt8e/RCnf8c7fSHP+c7TKP+mM/L4V11H+nO/Z5/He7d7bfZVfZv2s779vRn8M9PyfF53TkfWf54f6bwj363ty7c9tpPeMasJ+X2j1yHbjPKYN75FpwHyvD837kuvCPl808cn08+2Nldj/G97/5VbF/tMrfcQvV7M9a4e+whw72zx29Vm2hw8a6uT86O0e1a7Y9dLzvr6T2zLAFR/dXqU137sH1nr+S2nLHC//rqa3w7192fzawt2erDP5sQNPRf9YWov7sQFsWfzZRvxUbYAd1WuXPFurEBrx7Z8YGenfFi2dB30ac2EHdZvqwgVqttGEHedtlwvMgX7st8M+T0oEdaMty9uxgf9nOmu8F+8p8vuxgbRXOc2QD7OB1lc5wdAMZfodMVT03djBeh7NiB7E6nQ8buFfnc2ED/9f9PHgWvM7xHPD/yfkM3Dfg/LsfczwD7P/mdg7Yn+dyFti/r/N5YH+tjmfCc/9+nc4Ee++w9w5/77D3Dn/vsPcOf+/w9w7/eN9rZjYlAAABAA==
@@ -42,7 +48,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3bQQqAIBAFUM+bFLTp/G2lRVCYk/reCT6COjqaEgAAAAAAAAAAUNqiA1DNGh2AqeToAEAz9hfoyxIdAAAAAAAAACaiPwcAAAAAAAAAAADwDe80AcZhTQcArtQHANDGHh0AACZk/wX+zt0cAAAArTiDAgBP5egADO+IDgAAAAAAVOUPBwDQgpoDAICS+vAd4wYAAAAAANAX/R2Yj3kPAAD3TlZnWIUAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.51">

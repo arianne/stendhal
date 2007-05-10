@@ -12,6 +12,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="69" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="70" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/chaos.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="76" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/mythical_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3YQW7jMBBE0QC5/50DIwiUReCQEsmq6v4P0Hbc6k/JGX98XD4HL7w3ukenXSbO7Cpxl2nzOkvrnzRripSdpsyZKGG3CTOmStit+3zp3PfrPFsF7u8Ax5mqSeyPdegP1zPgMkd1rn8HqD+/E8czQP9z3PtjP9f+OIP+vbl9B9D+PPr35tQfGpyB3ujfG/3BGeiN/r25/RaA8+jfm6I/Z8vHye8A3i2edvfnu8Xbrv78fZljdafR9vT3sLLTTHvOgg/69+bQn7Ogs6LHbF/6+1jxTM7+G7wPvNxtcLch/b3s7Pj0MzkL+9Efsw1W9+I8aM3sfEefO/05C+s83f/KFk6zdOKy85X9OQfjXHftOFNFrnvmPXBGwn45B3sk7jRtXleVnqnEmZUqfrcmz37ayv4ue0ye/ZTV3V13mD7/LrP7SN4f/S9PdpG8P87AtxU7SN5dxzOw4+wn743+vfu/VD8DM83v3GuFnVU+A/T/X7X+u5uPflaS9P6zzU/0T9jbj/R3wMnms5+bIu0+VM/87AxJku5D1Xx2hiTu9+HwzDvP85TrzM47dp7tDqe5U/aaMucIh7nT3qspc45Qz566y8SZ/6KaP+2Zfydx5t9O7r1S90p2NnjSnO5nrOzxtDfdNe60WdWa9h529aR9Drr3RnfQHPTGC61B995oD/r3Rn/Qvxf+79cXv/v0suu3Ps6DN0V3zoGeujln4Cx1X86AjrorZ0BD3ZIzoKXuSH8ddUP6X9T7TLuqUe8z7apGvc+0qxr1PtOuatT7TLuqUe8z7apGcW/qhvS/KO5L3ZD2F8V9qTvSX0vdkfZa6pa011L3pLueui3NAQAAAAAAAAAAAAAAAAAAkOgLvjUCoAAAAQA=
@@ -39,7 +45,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3dSw5AQBAFwDkdCe5/HiuJiN/4pIepWlm+6NZj06QEwNu66ABAqC6ZA7VTfwAAAAAAAAAAAAAAAPbYP6mTuqMHgDVmQ53UnYleAAAAgLL10QFmSsryF8t72oSkgHzmAXP6AZ7jeQIAAAAAAHhfGx0AqJp9PuDrvEvd5ywAOGZWAgAAAAAAAAAAAAA8a4gOAPBDV3ZgznyH3H9LyrVV85xe6DeuASCCnV4AAAAAAAAAAAAAAAAAvmIEY19kLwAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.3">

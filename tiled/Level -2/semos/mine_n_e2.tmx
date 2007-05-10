@@ -48,6 +48,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="515" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="516" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_soldier.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3a626bQBSFUZrk/Z+5qlRUN7IJYGAf5qwtrV+9MfORVGr9OU3TJwAAAAAAAAAAAAAAAFDS11/p5yDb3zvQ09cT6Wci29870Mer/t6BHvTvbam/d2F8a/u/I31Gsu9A+nzoT+4dSJ8N/dF/zbnTz1PlHiqocu50myr3oP+40q31119//fXXX3/99de/wrnTXUbpv/XPT99HN+n+jNs/fTZy70D6TBzbP/2MXN8//VwAUE2Fpe+gswpL30FnFZa+g84qLH0HnVVY+g46q7D0HXRWYek76KrK0vdwd3v+3Xves1/3cbA1S9/hHb3z/13Ti59/dHv9//dx4O+1t/+8sz8zM1uzdJdu/V997es/dv95r77v6z9u/3lLf++n+k8n3Xc16f5L7fUft/+8K7/uH/+MNUu3uZstX3tLbc5sr/91/R9/7HFn99W/Tv/Hpbvrf75nS/fW/7rWf5buq/97/bYs3XJv/zXvQLrPFf3TLfTXX/9j/NpoKtBCf/31119//Z810r9X/++f1dJ//P5Ln9XTf/z+S430H6//mq4V+n9fuu8d+y99X/9p+t+7/7ufwa+2dN+j2L6lu+mfXbqb/tmlu+mfXbqb/tmlu+mfXbqb/rmlm+mfW7qX/tmle+mfW7qV/rmlO+mfW7qR/rml++ifW7qN/v+WOEO6Tff+yfOku3TtX+VM6S7d+lc7V7rL6P2rny/dpfr97Nmdzpp+1qr3snXps+09b/oZq93HlqXPoz8AAAAAAAAAAEf4Dc7MVBEAAAEA
@@ -75,12 +78,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SgREAIAgDMdx/Z3QMQJIJeveNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAprinegGV9N9N/93053fp4wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtPORCjQQAAAEA
+   H4sIAAAAAAAAAO3cSw7CIBAA0Gqixs/9j6vGlQtJ2oZWBua9ZVeEgeHXzDQBAAAAAAAAAAAAAAAAAAAAAAAAEZyPrVsARHKXE0KRo+tdCn1Y+kZ818q43XaIe22beiEXxVMbkwwxlf/pSYY5CcBy1gV6leWMDAAAAAAAAJCBN2DmvA6tW0BLa+Pvn6ixzMX/Id6bizSHzH9G97THoQNqAQCMbeke2l4b1lNrYFzeNCg5GReQnrUfYD/24AAAAADQnns6AAAAAAAAAPilHgcAEJl//wC28Tn7Of/xL2pBf+kLAACAvNzF0CtjF8b0Bk4cILkAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.3">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
