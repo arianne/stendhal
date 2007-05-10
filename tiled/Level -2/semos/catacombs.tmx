@@ -216,7 +216,7 @@
  </layer>
  <layer name="objects" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aQQ6CMBAFUL3/dZSFcU3iNVy48RLGxIQVCSjY6cx7Jyj9hQ7THg4AAACT4dh6BAAQW+975bXz8bfWe/58Z/zkLv/aBuugNLnXJv+8bguyrZr/M+lzj0mfCwAysE9vy3yyBeson0fwTC/Bx7eWM7l55iavJf02JvZaAAAAAIjl1/51pP73Xv3Hdx9YL7iuufytCwCA3O5qPQAKcJ8P5qkHqSjSmQ99sXaoQG0AbXj3gK1V/a60rtmrzjvs5eydIjh3a6GdTOe/asj/WvPPcJINlPQCaxS6nwCAAAA=
+   H4sIAAAAAAAAAO3aQQ6CMBAFUL3/dZSFccvCa7hw4yWMiQkrElCw05n3TlD6Cx2mPRwAAAAmw7H1CAAgtt73ymvn42+t9/z5zvjJXf61DdZBaXKvTf553RZkWzX/Z9LnHpM+FwBkYJ/elvlkC9ZRPo/gmV6Cj28tZ3LzzE1eS/ptTOy1AAAAABDLr/3rSP3vvfqP7z6wXnBdc/lbFwAAud3VegAU4D4fzFMPUlGkMx/6Yu1QgdoA2vDuAVur+l1pXbNXnXfYy9k7RXDu1kI7mc5/1ZD/teaf4SQbKOkFHkd+JwCAAAA=
   </data>
  </layer>
  <layer name="collision" width="128" height="64" opacity="0.37">
