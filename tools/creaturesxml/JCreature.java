@@ -30,6 +30,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.xml.sax.SAXException;
 
 
@@ -39,14 +41,16 @@ import org.xml.sax.SAXException;
  */
 public class JCreature extends javax.swing.JFrame {
     boolean justUpdateCreature;
-    List<DefaultCreature> filteredCreatures;
-    List<DefaultCreature> creatures;
-    List<DefaultItem> items;
+    private List<DefaultCreature> filteredCreatures;
+    private List<DefaultCreature> creatures;
+    private List<DefaultItem> items;
+    private boolean changes;
     
     /** Creates new form JCreature */
     public JCreature() throws SAXException {
         initComponents();
         loadData("creatures.xml","items.xml");
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         justUpdateCreature=false;
     }
 
@@ -92,7 +96,7 @@ public class JCreature extends javax.swing.JFrame {
             "vampire"}));
         
         updateItemLists();
-        updateCreatureList(filter.getText());
+        updateCreatureList(null, filter.getText());
     }
     
     private void updateItemLists() {
@@ -102,12 +106,22 @@ public class JCreature extends javax.swing.JFrame {
         });
     }
 
-    private void updateCreatureList(String filter) {
+    private void updateCreatureList(String field, String filter) {
         filteredCreatures=new LinkedList<DefaultCreature>();
         
         if(filter.length()>0) {
             for(DefaultCreature c: creatures) {
-                if(c.getCreatureName().contains(filter)) {
+                boolean add=false;
+                
+                if(field==null || field.equals("Name")) {
+                    add=c.getCreatureName().contains(filter);
+                } else if(field.contains(">")) {
+                    add=c.getLevel()>Integer.parseInt(filter);
+                } else if(field.contains("<")) {
+                    add=c.getLevel()<Integer.parseInt(filter);
+                }
+                    
+                if(add) {
                     filteredCreatures.add(c);
                 }
             }
@@ -320,6 +334,7 @@ public class JCreature extends javax.swing.JFrame {
         filter = new javax.swing.JTextField();
         FilterButton = new javax.swing.JButton();
         ClearButton = new javax.swing.JButton();
+        filteredField = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jLoad = new javax.swing.JMenu();
         jLoadFromFile = new javax.swing.JMenuItem();
@@ -330,6 +345,12 @@ public class JCreature extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Stendhal Creature Editor 2.00");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
+
         creatureList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -782,6 +803,9 @@ public class JCreature extends javax.swing.JFrame {
             }
         });
 
+        filteredField.setBackground(new java.awt.Color(204, 204, 204));
+        filteredField.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Name", "Level >", "Level <" }));
+
         jLoad.setText("Load");
         jLoadFromFile.setText("From file");
         jLoadFromFile.addActionListener(new java.awt.event.ActionListener() {
@@ -824,17 +848,21 @@ public class JCreature extends javax.swing.JFrame {
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
+                        .add(filteredField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                                .add(filter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 84, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(FilterButton))
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, ClearButton)))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(addButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 118, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 127, Short.MAX_VALUE)
                         .add(setButton))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(FilterButton)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 106, Short.MAX_VALUE)
-                        .add(ClearButton))
-                    .add(filter, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -844,11 +872,12 @@ public class JCreature extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
-                        .add(filter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(FilterButton)
-                            .add(ClearButton))))
+                            .add(filter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(ClearButton))
+                    .add(filteredField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
@@ -870,13 +899,26 @@ public class JCreature extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(!changes) {
+            System.exit(0);
+        } else {
+            int answer = JOptionPane.showConfirmDialog(this, "Exit without saving?");
+            if (answer == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            } else if (answer == JOptionPane.NO_OPTION) {
+                this.setVisible(true);
+            }        
+        }        
+    }//GEN-LAST:event_formWindowClosing
+
     private void FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterButtonActionPerformed
-        updateCreatureList(filter.getText());
+        updateCreatureList((String)filteredField.getSelectedItem(),filter.getText());
     }//GEN-LAST:event_FilterButtonActionPerformed
 
     private void ClearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClearButtonActionPerformed
         filter.setText("");
-        updateCreatureList(filter.getText());      
+        updateCreatureList(null,filter.getText());      
     }//GEN-LAST:event_ClearButtonActionPerformed
 
     private void justEditCreatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_justEditCreatureActionPerformed
@@ -998,6 +1040,7 @@ public class JCreature extends javax.swing.JFrame {
 
                 out.println("</creatures>");
                 out.close();
+                changes=false;
             }
             catch(FileNotFoundException e) { 
             }
@@ -1006,6 +1049,7 @@ public class JCreature extends javax.swing.JFrame {
 
     private void setButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setButtonActionPerformed
         try {
+        changes=true;
         addButton.setEnabled(true);
         setButton.setForeground(Color.BLACK);
         
@@ -1089,7 +1133,7 @@ public class JCreature extends javax.swing.JFrame {
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         creatures.add(new DefaultCreature(null,null,null, null));
         updateItemLists();
-        updateCreatureList(filter.getText());
+        updateCreatureList(null, filter.getText());
         creatureList.setSelectedIndex(filteredCreatures.size()-1);
         creatureList.ensureIndexIsVisible(filteredCreatures.size()-1);
         refresh();
@@ -1140,6 +1184,7 @@ public class JCreature extends javax.swing.JFrame {
     private javax.swing.JTextField creatureXP;
     private javax.swing.JTabbedPane data;
     private javax.swing.JTextField filter;
+    private javax.swing.JComboBox filteredField;
     private javax.swing.JList itemList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
