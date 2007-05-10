@@ -1213,6 +1213,15 @@ Mature sheep wanted: please speak to Sato
  <zone name="-2_semos_mine_e3" level="-2" x="500384" y="499872" file="Level -2/semos/mine_e3.tmx">
  </zone>
 
+ <zone name="-2_semos_mine_nw" level="-2" x="499744" y="499872" file="Level -2/semos/mine_nw.tmx">
+  <configurator class-name="games.stendhal.server.maps.semos.mines.HighPriestNPC" />
+  <portal x="26" y="44" ref="exit_balrog" replacing="true">
+   <destination zone="-2_semos_mine_nw" ref="to_balrog"/>
+  </portal>
+  <portal x="42" y="44" ref="to_balrog" replacing="true">
+   <destination zone="-2_semos_mine_nw" ref="exit_balrog"/>
+  </portal>
+ </zone>
 
  <zone name="-2_semos_dungeon" level="-2" x="500096" y="500032" file="Level -2/semos/dungeon.tmx">
  </zone>
