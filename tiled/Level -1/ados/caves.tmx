@@ -42,7 +42,7 @@
  <tileset name="../../tileset/logic/creature/giant_human.png" firstgid="181" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="184" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="187" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -77,7 +77,7 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UQWokQRDE+v8v8vMWHww+uBivp7oVUakAnQa6MkPJfFzX9SEiIiIiEswdoXeSZ32/Cr2zcO6vX8wl57q/fphFZvn/HrqHqaSE7mEiaaH7mEZa6D6mkRa6j2mkhe5jGmmh+5hGWug+ppEWuo9ppIXuYxrJobuZQnrofk6nJcl90A4n+P9K4q60w2k38Jmk3Wh/3gMb2lfTHZx4a7SnE2gO3d1JNIbu7ESezLtv012dzB3Z/SbdkbA3R88r+hf9i/5F/6J/0b/sv4Hvv9MzCudfzmYVei7Rv+hf9C/637XXibvq/z3/d4buQf9s6B70/zp3vkv3MNX/aten+6R31j/bJz2P/vWvf/3rX//617/+9a9//etf//rX/yr0XK209bgKPVcrbT2uQs/VSluPq9BztdLW4yr0XK209bgKPVcrbT2uQs/VSluPq9BztdLW4yr0XK209bjKzm+tvv2/obvS/x7/O0L3Ru//U56YMWV/2jW9P5WU/WnX9P5UEvenvdP7P5nU/Wn39P5PpWF//d+Xlv3p/4K0O9r1Zov/z9Aed/un5yLudkfoXvTPhu5F/3zobvTPh+5H/2zofvTPh+7oZP8tt0Xvon/2Bug99M/eAj27/jPu4AqYX//sHdBz61//+mdvgZ5X/6z/tG4bZkzmL6Fn1r83oH9vQP/eQOpcjfw1iTPTXTbybpJmprts5d2kzEv32Myu6L+XXdF/J7ui/152R/997I7+e9kV/XeyO/rvZWf038nu6L+Pu6L/Lu6O/vN5KvrPJSV0D9NJC93HVNKymo/u6XQaQnc0heTQ3UwjNXQv00gM3clUEkN3MpW00H1MJyF0B8LfAr278HdA7y38LdD7Cn8DX6H3Fv4O6J2FvwV6V2HvgN5R+Dug9xPW//Xi/X9MHaV5AAABAA==
+   H4sIAAAAAAAAAO2UQWokQRDE+v9f8ucWHww+uBivp7oVUakAnQa6MkPJfFzX9SEiIiIiEswdoXeSZ32/Cr2zcO6vX8wl57q/fphFZvn/HrqHqaSE7mEiaaH7mEZa6D6mkRa6j2mkhe5jGmmh+5hGWug+ppEWuo9ppIXuYxrJobuZQnrofk6nJcl90A4n+P9K4q60w2k38Jmk3Wh/3gMb2lfTHZx4a7SnE2gO3d1JNIbu7ESezLtv012dzB3Z/SbdkbA3R88r+hf9i/5F/6J/0b/sv4Hvv9MzCudfzmYVei7Rv+hf9C/637XXibvq/z3/d4buQf9s6B70/zp3vkv3MNX/aten+6R31j/bJz2P/vWvf/3rX//617/+9a9//etf//rX/yr0XK209bgKPVcrbT2uQs/VSluPq9BztdLW4yr0XK209bgKPVcrbT2uQs/VSluPq9BztdLW4yr0XK209bjKzm+tvv2/obvS/x7/O0L3Ru//U56YMWV/2jW9P5WU/WnX9P5UEvenvdP7P5nU/Wn39P5PpWF//d+Xlv3p/4K0O9r1Zov/z9Aed/un5yLudkfoXvTPhu5F/3zobvTPh+5H/2zofvTPh+7oZP8tt0Xvon/2Bug99M/eAj27/jPu4AqYX//sHdBz61//+mdvgZ5X/6z/tG4bZkzmL6Fn1r83oH9vQP/eQOpcjfw1iTPTXTbybpJmprts5d2kzEv32Myu6L+XXdF/J7ui/152R/997I7+e9kV/XeyO/rvZWf038nu6L+Pu6L/Lu6O/vN5KvrPJSV0D9NJC93HVNKymo/u6XQaQnc0heTQ3UwjNXQv00gM3clUEkN3MpW00H1MJyF0B8LfAr278HdA7y38LdD7Cn8DX6H3Fv4O6J2FvwV6V2HvgN5R+Dug9xPW//Xi/X8NBFRLAAABAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
