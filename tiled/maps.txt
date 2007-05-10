@@ -232,13 +232,13 @@ D*	river_sw.tmx
 ./Level 0/semos:
 city.tmx
 forest_s.tmx
-mountain_n2_e2.tmx
-mountain_n2_e.tmx
+D* mountain_n2_e2.tmx
+D* mountain_n2_e.tmx
 mountain_n2.tmx
-mountain_n2_w2.tmx
-mountain_n2_w.tmx
-mountain_n_e2.tmx
-mountain_n_w2.tmx
+D* mountain_n2_w2.tmx
+D* mountain_n2_w.tmx
+D* mountain_n_e2.tmx
+D* mountain_n_w2.tmx
 mountain_n_w3.tmx
 mountain_n_w4.tmx
 mountain_w2.tmx
