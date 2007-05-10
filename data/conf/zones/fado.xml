@@ -222,6 +222,12 @@
            </portal>
          </zone>
          
+                  
+         <zone name="int_fado_dressing_rooms" file="interiors/fado/dressing_rooms.tmx">
+         <configurator class-name="games.stendhal.server.maps.fado.dressingrooms.BrideAssistantNPC"/>
+         <configurator class-name="games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC"/>
+         </zone>
+         
          <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.hotel.GreeterNPC"/>
            
