@@ -33,6 +33,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="166" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="167" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/boss.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="170" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_evil.png"/>
+ </tileset>
  <layer name="0_floor" width="256" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3aMQ6DMBQFwS9u4PtfNopEhUjoQGKnmN7N28L2NjMb8Li1e/ocwP3sH7rsH7rsH7rsH7rWaABU2T90rdEAKLN/6LJ/aNMA6LJ/aNMA6LJ/6PIWCG0aAF32D20aAF3H/WsAtJw1QAeg41cDdAA6NADQAWjTAGizf2jTAGjTAGjTAGhzJwht//4KaQG829X+dQAaNAD4sn8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAax9FeM1FAAACAA==
@@ -60,7 +66,7 @@
  </layer>
  <layer name="objects" width="256" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dQQ7CMAwEwP7/xAMqceGhXKlUhIQMXjczD6h8SqPEWW8bAAAAzHHrLgAAAACIs3cXAAAAAAAAAAAAAER6dBcAAAAAAAAAg1Rmft4LvwUAAAAA8A1vCgAAAOA9834AAAAAAIBPqvrwvDsGAICjypwfAAAAAAAAAAAAAAAAAAAAIJssLgAAAAD4HTmfAADACqrmiQHASvw/gS56hwEAAAAAAAAgk54iACCRPQoAyWT7AAAAAACv9u4CAACAEfTFAQAA6dx5AAAAAADAkRmckGNy5o+1BAAAAAAAAAAAAPgnvYtcnXxPAAAAAJhD7jUAcDXuKwEgi7MHADg3OcsXAAAAAABgJU/mQf+FAAACAA==
+   H4sIAAAAAAAAAO3dQQqDMBAFUO+/6gGEbroRPGS3lZYWZMr8xPcOEP5KxUx+lgUAAADGcesOAAAAAMRZuwMAAAAAAAAAAAAAkR7dAQAAAAAAAGAglZ2f98K1AAAAAADOcKYA3u3dAQAAgBju+wEAAAAAAH6pmsNz7hgAAI4qe34AAAAAAAAAAAAAvtFJDAAAAAAA/XRxAQAAAMD/6PkEAACuoOo+MQC4Eu9P4IytYA2zwwAAAAAAAACQyUwRAJDINwoAyXT7AAAAAACv1u4AAACB9u4AEMhcHAAAkM6eBwAAAAAAHLmDE3KM3PnjWQIAAAAAAAAAAADzS+rhNLvI7PR7AgBAj607AAAwJL3XAMBs7FcCQBb/HgDgs5G7fAEAAAAAAK7kCcZ31fsAAAIA
   </data>
  </layer>
  <layer name="collision" width="256" height="128" opacity="0.37">
