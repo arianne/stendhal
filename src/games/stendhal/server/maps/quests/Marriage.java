@@ -155,7 +155,7 @@ public class Marriage extends AbstractQuest {
     
 	private void startEngagement(SpeakerNPC nun, Player player, String partnerName) {
 		IRPZone outsideChurchZone = StendhalRPWorld.get().getRPZone(nun.getID());
-		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 50, 4, 4));
+		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 50, 4, 5));
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
 	
