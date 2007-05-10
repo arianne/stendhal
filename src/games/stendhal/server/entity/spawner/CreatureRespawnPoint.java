@@ -99,6 +99,10 @@ public class CreatureRespawnPoint implements TurnListener {
 		respawning = true;
 		TurnNotifier.get().notifyInTurns(0, this, null); // respawn in next turn
 	}
+	
+	public Creature getPrototypeCreature() {
+		return prototypeCreature;
+	}
 
 	/**
 	 * Sets the time it takes to respawn a creature. Note that this value 
