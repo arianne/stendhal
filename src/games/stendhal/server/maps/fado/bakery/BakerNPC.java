@@ -81,7 +81,7 @@ public class BakerNPC implements ZoneConfigurator {
 				// addGreeting("Hi, most of the people are out of town at the moment.");
 				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work we have to do.");
 				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"),
-				        "Ados is short on supplies. We get most of our food from Semos City which is North of here.");
+				        "We get most of our food from Semos City which is North of here.");
 				addHelp("Ask me to make you a pie.");
 				addGoodbye();
 

@@ -45,7 +45,7 @@ public class VergerNPC implements ZoneConfigurator {
 				addJob("I am the church verger. I help with small menial tasks, but I do not mind, as my reward will come in the life beyond.");
 				addHelp("My only advice is to love and be kind to one another");
 				addQuest("I have eveything I need. But it does bring me pleasure to see people #married.");
-				addReply("married", "Sister Benedicta will explain the rituals to you.");
+				addReply("married", "If you want to be engaged, speak to Sister Benedicta. She'll make sure the priest knows about your plans.");
 				addReply("yes", "Congratulations!");
 				addReply("no", "A pity. I do hope you find a partner one day.");
 				addGoodbye("Goodbye, go safely.");

@@ -46,6 +46,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
+				addGreeting("Hi, can I help you?");
 				addJob("I work with #gold, to fix and make jewellery.");
 				addReply("gold","It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
 				addHelp("You can sell weapons to Yorphin Baos over there. You might need the money to buy a special ring.");
