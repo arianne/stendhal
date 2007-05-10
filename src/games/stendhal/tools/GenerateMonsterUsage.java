@@ -27,7 +27,7 @@ public class GenerateMonsterUsage {
 		for(IRPZone zone: StendhalRPWorld.get()) {
 			for(CreatureRespawnPoint p: ((StendhalRPZone)zone).getRespawnPointList()) {
 				Creature c=p.getPrototypeCreature();
-				int creatureCount=0;
+				int creatureCount=1;
 				if(count.containsKey(c.getName())) {
 					creatureCount=count.get(c.getName())+1;
 				}
