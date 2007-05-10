@@ -86,8 +86,7 @@ public class RingMaker extends AbstractQuest {
 		        new SpeakerNPC.ChatCondition() {
 			        @Override
 			        public boolean fire(Player player, String text, SpeakerNPC npc) {
-				        return !player.isEquipped("emerald_ring")&& !player.getQuest(QUEST_SLOT).startsWith("forging;");
-
+				        return !player.isEquipped("emerald_ring")&& (!player.hasQuest(QUEST_SLOT)||player.isQuestCompleted(QUEST_SLOT));
 			        }
 		        },
 		        ConversationStates.ATTENDING,
@@ -157,7 +156,11 @@ public class RingMaker extends AbstractQuest {
 		        	player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 		        	npc.setCurrentState(ConversationStates.IDLE);
 		        } else {
-		        	npc.say("Come back when you have both the money and the gold.");	
+		        	npc.say("Come back when you have both the money and the gold.");
+				/* set quest slot to done until he decides he wants to pay
+				this is incase player comes back without the ring and
+				wants to talk to him about something else */
+				player.setQuest(QUEST_SLOT, "done");
 		        	npc.setCurrentState(ConversationStates.ATTENDING);
 		        }
 			        }
@@ -168,6 +171,10 @@ public class RingMaker extends AbstractQuest {
                 null,
                 ConversationStates.ATTENDING,
                 "No problem, just come back when you have both the money and the gold.",
+				/* set quest slot to done until he decides he wants to pay
+				this is incase player comes back without the ring and
+				wants to talk to him about something else */
+		player.setQuest(QUEST_SLOT, "done");
                 null);
 		
 	}
