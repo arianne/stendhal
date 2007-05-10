@@ -307,7 +307,7 @@ mine_ne.tmx
 mine_nw.tmx
 
 ./Level 2/kikareukin:
-cave.tmx
+D* cave.tmx
 
 ./Level -2/ados:
 outside_nw.tmx
@@ -341,7 +341,7 @@ mine_n_e3.tmx
 mine_ne.tmx
 
 ./Level 3/kikareukin:
-cave.tmx
+D*	cave.tmx
 
 ./Level -3/ados:
 outside_nw.tmx
@@ -356,19 +356,19 @@ dungeon.tmx
 jail_walk.tmx
 
 ./Level 4/kikareukin:
-cave.tmx
+D* cave.tmx
 
 ./Level -4/semos:
 dungeon.tmx
 
 ./Level 5/kikareukin:
-cave.tmx
+D*	cave.tmx
 
 ./Level -5/kanmararn:
 entrance.tmx
 
 ./Level 6/kikareukin:
-islands.tmx
+D*	islands.tmx
 
 ./Level -6/kanmararn:
 city.tmx
