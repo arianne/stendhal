@@ -169,13 +169,17 @@ public class RingMaker extends AbstractQuest {
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 				ConversationPhrases.NO_MESSAGES,
                 null,
-                ConversationStates.ATTENDING,
-                "No problem, just come back when you have both the money and the gold.",
+                ConversationStates.ATTENDING, null,
+			new SpeakerNPC.ChatAction() {
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+				    npc.say("No problem, just come back when you have both the money and the gold.");
 				/* set quest slot to done until he decides he wants to pay
 				this is incase player comes back without the ring and
 				wants to talk to him about something else */
-		player.setQuest(QUEST_SLOT, "done");
-                null);
+				    player.setQuest(QUEST_SLOT, "done");
+				}
+                });
 		
 	}
 
