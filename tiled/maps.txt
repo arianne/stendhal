@@ -286,9 +286,9 @@ drows_tunnel.tmx
 
 ./Level -1/orril:
 castle.tmx
-castle_w.tmx
-dungeon.tmx
-mountain_w2.tmx
+D*  castle_w.tmx   is there a portal missing ??
+D*	dungeon.tmx
+D*	mountain_w2.tmx
 
 ./Level -1/semos:
 catacombs_ne.tmx
