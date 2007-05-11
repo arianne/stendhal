@@ -139,7 +139,6 @@ B*weaponshop.tmx
 
 ./interiors/orril:
 castle_0.tmx
-church.tmx
 D*	jynath_house.tmx
 
 ./interiors/semos:
