@@ -105,11 +105,22 @@ public class StaticGameLayers {
 	 * @throws ClassNotFoundException */
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
 		Log4J.startMethod(logger, "addLayer");
-		logger.info("Layer: "+name);
-		try {
-			if (name.endsWith("_collision")) {
-				String area = name.substring(0, name.length() - 10);
 
+
+		int i = name.indexOf('.');
+
+		if(i == -1) {
+			logger.error("Old server, please upgrade");
+			return;
+		}
+
+		String area = name.substring(0, i);
+		String layer = name.substring(i + 1);
+
+		logger.info("Layer: " + area + "/" + layer);
+
+		try {
+			if (layer.equals("collision")) {
 				/*
 				 * Add a collision layer.
 				 */
@@ -122,9 +133,7 @@ public class StaticGameLayers {
 				collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
 
 				collisions.put(area, collision);
-			} else if (name.endsWith("_tilesets")) {
-				String area = name.substring(0, name.length() - 9);
-
+			} else if (layer.equals("tilesets")) {
 				/*
 				 * Add tileset
 				 */
@@ -132,7 +141,7 @@ public class StaticGameLayers {
 				tileset.addTilesets(new InputSerializer(in));
 
 				tilesets.put(area, tileset);
-			} else if (name.endsWith("_map")) {
+			} else if (layer.endsWith("_map")) {
 				/*
 				 * It is the minimap image for this zone.
 				 */
@@ -147,7 +156,7 @@ public class StaticGameLayers {
 
 				LayerRenderer content = null;
 
-				URL url = getClass().getClassLoader().getResource("data/layers/" + name + ".jpg");
+				URL url = getClass().getClassLoader().getResource("data/layers/" + area + "/" + layer + ".jpg");
 
 				if (url != null) {
 					content = new ImageRenderer(url);
@@ -234,8 +243,10 @@ public class StaticGameLayers {
 		height = 0.0;
 		width = 0.0;
 
+		String prefix = area + ".";
+
 		for(Map.Entry<String, LayerRenderer> entry : layers.entrySet()) {
-			if(entry.getKey().startsWith(area)) {
+			if(entry.getKey().startsWith(prefix)) {
 				LayerRenderer lr = entry.getValue();
 
 				lr.setTileset(tileset);
@@ -253,10 +264,10 @@ public class StaticGameLayers {
 	}
 
 
-	public void draw(GameScreen screen, String layer, int x, int y, int width, int height) {
+	public void draw(GameScreen screen, String area, String layer, int x, int y, int width, int height) {
 		validate();
 
-		LayerRenderer lr = layers.get(layer);
+		LayerRenderer lr = getLayer(area, layer);
 
 		if(lr != null) {
 			lr.draw(screen, x, y, width, height);
@@ -289,8 +300,8 @@ public class StaticGameLayers {
 	 *
 	 * @return	A layer renderer, or <code>null</code>,
 	 */
-	public LayerRenderer getLayer(String name) {
-		return layers.get(name);
+	public LayerRenderer getLayer(String area, String layer) {
+		return layers.get(area + "." + layer);
 	}
 
 

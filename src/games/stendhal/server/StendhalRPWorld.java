@@ -268,10 +268,6 @@ public class StendhalRPWorld extends RPWorld {
 		return getRPZone(new IRPZone.ID(zone));
 	}
 
-//	public StendhalRPZone addArea(String name) throws Exception {
-//		return addArea(name, name.replace("-", "sub_"));
-//	}
-
 	/**
 	 * Add zone area.
 	 *
@@ -284,21 +280,23 @@ public class StendhalRPWorld extends RPWorld {
 		StendhalRPZone area = new StendhalRPZone(name);
 
 		StendhalMapStructure zonedata=null;
+
 		zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + content);
 
-		area.addTilesets(name+"_tilesets", zonedata.getTilesets());
-		area.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
-		area.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
-		area.addLayer(name + "_2_object", zonedata.getLayer("2_object"));
-		area.addLayer(name + "_3_roof", zonedata.getLayer("3_roof"));
+		area.addTilesets(name + ".tilesets", zonedata.getTilesets());
+		area.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
+		area.addLayer(name + ".1_terrain", zonedata.getLayer("1_terrain"));
+		area.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
+		area.addLayer(name + ".3_roof", zonedata.getLayer("3_roof"));
 
 		LayerDefinition layer = zonedata.getLayer("4_roof_add");
+
 		if (layer != null) {
-			area.addLayer(name + "_4_roof_add", layer);
+			area.addLayer(name + ".4_roof_add", layer);
 		}
 
-		area.addCollisionLayer(name + "_collision", zonedata.getLayer("collision"));
-		area.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
+		area.addCollisionLayer(name + ".collision", zonedata.getLayer("collision"));
+		area.addProtectionLayer(name + ".protection", zonedata.getLayer("protection"));
 
 		/*
 		 * NOTE: This is only used for int_house_000 now, so assume int

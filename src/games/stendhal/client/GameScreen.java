@@ -443,12 +443,12 @@ public class GameScreen {
 		int w = (int) getWidth();
 		int h = (int) getHeight();
 
-		gameLayers.draw(this, set + "_0_floor", x, y, w, h);
-		gameLayers.draw(this, set + "_1_terrain", x, y, w, h);
-		gameLayers.draw(this, set + "_2_object", x, y, w, h);
+		gameLayers.draw(this, set, "0_floor", x, y, w, h);
+		gameLayers.draw(this, set, "1_terrain", x, y, w, h);
+		gameLayers.draw(this, set, "2_object", x, y, w, h);
 		drawEntities();
-		gameLayers.draw(this, set + "_3_roof", x, y, w, h);
-		gameLayers.draw(this, set + "_4_roof_add", x, y, w, h);
+		gameLayers.draw(this, set, "3_roof", x, y, w, h);
+		gameLayers.draw(this, set, "4_roof_add", x, y, w, h);
 		gameObjects.drawHPbar(this);
 		drawText();
 

@@ -360,18 +360,20 @@ public class ZonesXMLLoader extends DefaultHandler {
 		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
-		zone.addTilesets(name+"_tilesets", zonedata.getTilesets());
-		zone.addLayer(name + "_0_floor", zonedata.getLayer("0_floor"));
-		zone.addLayer(name + "_1_terrain", zonedata.getLayer("1_terrain"));
-		zone.addLayer(name + "_2_object", zonedata.getLayer("2_object"));
-		zone.addLayer(name + "_3_roof", zonedata.getLayer("3_roof"));
+		zone.addTilesets(name + ".tilesets", zonedata.getTilesets());
+		zone.addLayer(name + ".0_floor", zonedata.getLayer("0_floor"));
+		zone.addLayer(name + ".1_terrain", zonedata.getLayer("1_terrain"));
+		zone.addLayer(name + ".2_object", zonedata.getLayer("2_object"));
+		zone.addLayer(name + ".3_roof", zonedata.getLayer("3_roof"));
 
 		LayerDefinition layer = zonedata.getLayer("4_roof_add");
+
 		if (layer != null) {
-			zone.addLayer(name + "_4_roof_add", layer);
+			zone.addLayer(name + ".4_roof_add", layer);
 		}
-		zone.addCollisionLayer(name + "_collision", zonedata.getLayer("collision"));
-		zone.addProtectionLayer(name + "_protection", zonedata.getLayer("protection"));
+
+		zone.addCollisionLayer(name + ".collision", zonedata.getLayer("collision"));
+		zone.addProtectionLayer(name + ".protection", zonedata.getLayer("protection"));
 
 		if(desc.isInterior()) {
 			zone.setPosition();
