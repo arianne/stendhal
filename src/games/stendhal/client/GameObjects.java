@@ -17,14 +17,11 @@ import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.events.RPObjectChangeListener;
 
-import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.util.Collections;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 

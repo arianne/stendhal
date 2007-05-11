@@ -35,7 +35,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
