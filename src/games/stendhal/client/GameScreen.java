@@ -317,7 +317,7 @@ public class GameScreen {
 		/*
 		 * If too far away, just center
 		 */
-		if((Math.abs(dvx) > sw) || (Math.abs(dvy) > sh)) {
+		if((Math.abs(dvx) > (sw / 2)) || (Math.abs(dvy) > (sh / 2))) {
 			center();
 		} else {
 			dx = adjustSpeed(dvx, dx);
