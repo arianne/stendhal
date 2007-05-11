@@ -44,14 +44,14 @@ zaras_house_1.tmx
 ./interiors/athor:
 dressing_room_f.tmx
 dressing_room_m.tmx
-holiday_apartment_1.tmx
-holiday_apartment_2.tmx
-holiday_apartment_3.tmx
-holiday_apartment_4.tmx
-holiday_apartment_5.tmx
-holiday_apartment_6.tmx
-holiday_apartment_7.tmx
-holiday_apartment_8.tmx
+D*	holiday_apartment_1.tmx
+D*	holiday_apartment_2.tmx
+D*	holiday_apartment_3.tmx
+D*	holiday_apartment_4.tmx
+D*	holiday_apartment_5.tmx
+D*	holiday_apartment_6.tmx
+D*	holiday_apartment_7.tmx
+D*	holiday_apartment_8.tmx
 small_hut.tmx
 
 ./interiors/fado:
