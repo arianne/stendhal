@@ -37,7 +37,10 @@ import java.util.Map;
 public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseListener {
 
 	/** width of this panel */
-	private static final int WIDTH = 200;
+	private static final int WIDTH = 165;
+
+	/** height of this panel */
+	private static final int HEIGHT = 235;
 
 	private StendhalClient client;
 
@@ -78,7 +81,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** Creates a new instance of OptionsPanel */
 	public SettingsPanel(StendhalUI ui, WtPanel frame) {
-		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, 280);
+		super("settings", (frame.getWidth() - WIDTH) / 2, 0, WIDTH, HEIGHT);
 
 		this.client = ui.getClient();
 
@@ -133,50 +136,50 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		WtButton button;
 
-		button = new WtButton("minimap", 150, 30, "Enable Minimap");
-		button.moveTo(10, 10);
+		button = new WtButton("minimap", 150, 25, "Enable Minimap");
+		button.moveTo(5, 5);
 		button.setPressed(minimap.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("minimap", button);
 
-		button = new WtButton("character", 150, 30, "Enable Character");
-		button.moveTo(10, 50);
+		button = new WtButton("character", 150, 25, "Enable Character");
+		button.moveTo(5, 35);
 		button.setPressed(character.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("character", button);
 
-		button = new WtButton("bag", 150, 30, "Enable Inventory");
-		button.moveTo(10, 90);
+		button = new WtButton("bag", 150, 25, "Enable Inventory");
+		button.moveTo(5, 65);
 		button.setPressed(inventory.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("bag", button);
 
-		button = new WtButton("keyring", 150, 30, "Enable Key Ring");
-		button.moveTo(10, 130);
+		button = new WtButton("keyring", 150, 25, "Enable Key Ring");
+		button.moveTo(5, 95);
 		button.setPressed(keyring.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("keyring", button);
 
-		button = new WtButton("buddies", 150, 30, "Enable Buddies");
-		button.moveTo(10, 170);
+		button = new WtButton("buddies", 150, 25, "Enable Buddies");
+		button.moveTo(5, 125);
 		button.setPressed(buddies.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("buddies", button);
 
-		button = new WtButton("gametools", 150, 30, "Enable Game Tools");
-		button.moveTo(10, 170);
+		button = new WtButton("gametools", 150, 25, "Enable Game Tools");
+		button.moveTo(5, 155);
 		button.setPressed(gbh.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
 		buttonMap.put("gametools", button);
 
-		spellsButton = new WtButton("spells", 150, 30, "Enable Spells Window");
-		spellsButton.moveTo(10, 210);
+		spellsButton = new WtButton("spells", 150, 25, "Enable Spells Window");
+		spellsButton.moveTo(5, 185);
 		spellsButton.setPressed(spells.isVisible());
 		spellsButton.registerClickListener(this);
 		addChild(spellsButton);
