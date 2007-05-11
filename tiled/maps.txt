@@ -192,7 +192,7 @@ island_w.tmx
 ship_w2.tmx
 
 ./Level 0/fado:
-city.tmx
+D* city.tmx
 raid_main.tmx
 
 ./Level 0/memory:
@@ -226,7 +226,7 @@ mountain_w2.tmx
 mountain_w.tmx
 D*	river_se.tmx
 river_s.tmx
-river_s_w2.tmx
+D*  river_s_w2.tmx
 D*	river_sw.tmx
 
 ./Level 0/semos:
