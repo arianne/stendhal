@@ -19,6 +19,11 @@ import javax.swing.JComponent;
 public class ImageViewerSwing extends JComponent
    {
    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8190301649166149694L;
+
+/**
      * default Constructor
      */
    public ImageViewerSwing()
@@ -162,7 +167,8 @@ public Dimension getPreferredSize()
     *
     * @return he minimum dimensions to properly display the Image
     */
-   public Dimension getMinimumSize()
+   @Override
+public Dimension getMinimumSize()
       {
       return getPreferredSize();
       }

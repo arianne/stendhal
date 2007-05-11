@@ -1,10 +1,8 @@
 package data.sprites.monsters;
 
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.LayoutManager;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,10 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
-import java.awt.Rectangle;
 
 public class CreatureAnimationPreview {
 private static final int NUMBER_OF_ROWS = 4;
@@ -137,6 +131,7 @@ public static void main(String[] args) {
 			jFrame.setTitle("animated Monsters test");
 			jFrame.addWindowListener(new java.awt.event.WindowAdapter() {   
 			
+				@Override
 				public void windowClosing(java.awt.event.WindowEvent e) {
 					if (animations!=null)
 					for (int i =0 ; i < animations.length; i++)
@@ -207,7 +202,7 @@ public static void main(String[] args) {
 		             file = fc.getSelectedFile();
 		            jTree = new FileTree(file.getPath());   
 		        } else {
-		            
+		            System.exit(0);
 		        }
 				
 			} catch (FileNotFoundException e1) {

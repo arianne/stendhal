@@ -16,7 +16,12 @@ import javax.swing.tree.TreePath;
 
 
 public class FileTree extends JTree {
-  public FileTree(String path) 
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+public FileTree(String path) 
       throws FileNotFoundException, SecurityException {
   super((TreeModel)null);// Create the JTree itself 
 
@@ -27,7 +32,7 @@ public class FileTree extends JTree {
   FileTreeNode rootNode = new FileTreeNode(null, path); 
 
   // Populate the root node with its subdirectories
-  boolean addedNodes = rootNode.populateDirectories(true);
+  rootNode.populateDirectories(true);
   setModel(new DefaultTreeModel(rootNode)); 
 
   // Listen for Tree Selection Events
@@ -56,7 +61,11 @@ public File getFile(TreePath path) {
 // file system tree
 protected class FileTreeNode
               extends DefaultMutableTreeNode {
-  public FileTreeNode(File parent, String name)
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3223106240309250204L;
+public FileTreeNode(File parent, String name)
       throws SecurityException, FileNotFoundException { 
   this.name = name; 
 
@@ -75,12 +84,14 @@ protected class FileTreeNode
 } 
 
 // Override isLeaf to check whether this is a directory 
+@Override
 public boolean isLeaf() {
   return !isDir; 
 } 
 
 // Override getAllowsChildren to check whether
 // this is a directory
+@Override
 public boolean getAllowsChildren() {
   return isDir;
 } 
@@ -107,7 +118,6 @@ if (populated == false) {
   // Process the directories
   for (int i = 0; i < names.length; i++) {
     String name = names[i];  
-    File d = new File(file, name);
     try {
      // if (d.isDirectory()) {
         FileTreeNode node =
