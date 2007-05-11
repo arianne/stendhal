@@ -222,10 +222,10 @@ forest_e.tmx
 forest_n.tmx
 mountain_n2_w2.tmx
 mountain_nw.tmx
-mountain_w2.tmx
-mountain_w.tmx
+D*	mountain_w2.tmx
+D*	mountain_w.tmx
 D*	river_se.tmx
-river_s.tmx
+D*	river_s.tmx
 D*  river_s_w2.tmx
 D*	river_sw.tmx
 
