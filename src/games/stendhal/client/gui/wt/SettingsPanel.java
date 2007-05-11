@@ -116,10 +116,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 		buywindow = new BuyWindow(StendhalUI.get());
 		buywindow.registerCloseListener(this);
+		buywindow.setVisible(false);
 		ui.addWindow(buywindow);
 
 		gbh = new GameButtonHelper(this, StendhalUI.get());
 		gbh.registerCloseListener(this);
+		gbh.setVisible(false);
 		ui.addWindow(gbh);
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
