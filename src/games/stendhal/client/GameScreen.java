@@ -443,6 +443,40 @@ public class GameScreen {
 		int w = (int) getWidth();
 		int h = (int) getHeight();
 
+		/*
+		 * End of the world (map falls short of the view)?
+		 */
+		int px = convertWorldXToScreen(Math.max(x, 0));
+
+		if(px > 0) {
+			g.setColor(Color.black);
+			g.fillRect(0, 0, px, sh);
+		}
+
+		px = convertWorldXToScreen(Math.min(x + w, ww));
+
+		if(px < sw) {
+			g.setColor(Color.black);
+			g.fillRect(px, 0, sw - px, sh);
+		}
+
+		int py = convertWorldYToScreen(Math.max(y, 0));
+
+		if(py > 0) {
+			g.setColor(Color.black);
+			g.fillRect(0, 0, sw, py);
+		}
+
+		py = convertWorldYToScreen(Math.min(y + h, wh));
+
+		if(py < sh) {
+			g.setColor(Color.black);
+			g.fillRect(0, py, sw, sh - py);
+		}
+
+		/*
+		 * Layers
+		 */
 		gameLayers.draw(this, set, "0_floor", x, y, w, h);
 		gameLayers.draw(this, set, "1_terrain", x, y, w, h);
 		gameLayers.draw(this, set, "2_object", x, y, w, h);
@@ -452,10 +486,16 @@ public class GameScreen {
 		gameObjects.drawHPbar(this);
 		drawText();
 
-		baseframe.draw(expose());
+		/*
+		 * Dialogs
+		 */
+		baseframe.draw(g);
 
+		/*
+		 * Offline
+		 */
 		if (offline && (blinkOffline > 0)) {
-			offlineIcon.draw(screen.expose(), 560, 420);
+			offlineIcon.draw(g, 560, 420);
 		}
 
 		if (blinkOffline < -10) {
@@ -471,7 +511,7 @@ public class GameScreen {
 //		Collections.sort(views, new EntityViewComparator());
 //
 //		for (Entity2DView view : views) {
-//			view.draw(screen);
+//			view.draw(this);
 //		}
 
 		GameObjects gameObjects = client.getGameObjects();
@@ -677,6 +717,31 @@ public class GameScreen {
 		return convertWorldToScreen(point.getX(), point.getY());
 	}
 
+
+	/**
+	 * Convert world X coordinate to screen coordinate.
+	 *
+	 * @param	wx		World X coordinate.
+	 *
+	 * @return	Screen X coordinate (in integer value).
+	 */
+	public int convertWorldXToScreen(double wx) {
+		return (int) (wx * SIZE_UNIT_PIXELS) - svx;
+	}
+
+
+	/**
+	 * Convert world Y coordinate to screen coordinate.
+	 *
+	 * @param	wy		World Y coordinate.
+	 *
+	 * @return	Screen Y coordinate (in integer value).
+	 */
+	public int convertWorldYToScreen(double wy) {
+		return (int) (wy * SIZE_UNIT_PIXELS) - svy;
+	}
+
+
 	/**
 	 * Convert world coordinates to screen coordinates.
 	 *
@@ -693,8 +758,8 @@ public class GameScreen {
 	 */
 	public Point convertWorldToScreen(double wx, double wy) {
 		return new Point(
-			(int) (wx * SIZE_UNIT_PIXELS) - svx,
-			(int) (wy * SIZE_UNIT_PIXELS) - svy);
+			convertWorldXToScreen(wx),
+			convertWorldYToScreen(wy));
 	}
 
 
@@ -722,8 +787,8 @@ public class GameScreen {
 	 */
 	public Rectangle convertWorldToScreen(double wx, double wy, double wwidth, double wheight) {
 		return new Rectangle(
-			(int) (wx * SIZE_UNIT_PIXELS) - svx,
-			(int) (wy * SIZE_UNIT_PIXELS) - svy,
+			convertWorldXToScreen(wx),
+			convertWorldYToScreen(wy),
 			(int) (wwidth * SIZE_UNIT_PIXELS),
 			(int) (wheight * SIZE_UNIT_PIXELS));
 	}
