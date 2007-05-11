@@ -214,17 +214,6 @@ public class StendhalClient extends ariannexp {
 				// Notify zone entering.
 				WorldObjects.fireZoneEntered(message.getRPZoneID().getID());
 
-				/** Full object is normal object+hidden objects */
-				RPObject hidden = message.getMyRPObjectAdded();
-				RPObject object = null;
-
-				for (RPObject search : message.getAddedRPObjects()) {
-					if (search.getID().equals(hidden.getID())) {
-						object = (RPObject) search.clone();
-						break;
-					}
-				}
-
 				String zoneid = message.getRPZoneID().getID();
 				staticLayers.setRPZoneLayersSet(zoneid);
 				screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
