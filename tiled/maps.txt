@@ -140,12 +140,7 @@ B*weaponshop.tmx
 ./interiors/orril:
 castle_0.tmx
 church.tmx
-jynath_house.tmx
-lovers_room2.tmx
-lovers_room3.tmx
-lovers_room4.tmx
-lovers_room5.tmx
-lovers_room.tmx
+D*	jynath_house.tmx
 
 ./interiors/semos:
 bakery.tmx
