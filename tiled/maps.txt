@@ -216,12 +216,12 @@ river_se.tmx
 river_s.tmx
 river_sw.tmx
 
-./Level 0/orril:
-castle.tmx
-forest_e.tmx
-forest_n.tmx
-mountain_n2_w2.tmx
-mountain_nw.tmx
+D*	./Level 0/orril:
+D*	castle.tmx
+D*	forest_e.tmx
+D*	forest_n.tmx
+D*	mountain_n2_w2.tmx
+D*	mountain_nw.tmx
 D*	mountain_w2.tmx
 D*	mountain_w.tmx
 D*	river_se.tmx
