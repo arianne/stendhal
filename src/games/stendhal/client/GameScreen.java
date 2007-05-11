@@ -35,11 +35,13 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 
@@ -84,6 +86,11 @@ public class GameScreen {
 	 */
 	private List<Text> textsToRemove;
 
+	/**
+	 * The entity views.
+	 */
+	protected List<Entity2DView>	views;
+
 	private static Sprite offlineIcon;
 
 	private boolean offline;
@@ -123,16 +130,6 @@ public class GameScreen {
 	private int	dvy;
 
 	/**
-	 * The screen pan X movement (scaled).
-	 */
-	private int	dx;
-
-	/**
-	 * The screen pan Y movement (scaled).
-	 */
-	private int	dy;
-
-	/**
 	 * The current screen view X.
 	 */
 	private int	svx;
@@ -141,6 +138,11 @@ public class GameScreen {
 	 * The current screen view Y.
 	 */
 	private int	svy;
+
+	/**
+	 * The pan speed.
+	 */
+	private int	speed;
 
 	/**
 	 * Whether the internal state is valid
@@ -209,11 +211,12 @@ public class GameScreen {
 		svy = sh / -2;
 		dvx = 0;
 		dvy = 0;
-		dx = 0;
-		dy = 0;
+
+		speed = 0;
 
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
+		views = new LinkedList<Entity2DView>();
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
@@ -238,6 +241,27 @@ public class GameScreen {
 		Log4J.finishMethod(logger, "nextFrame");
 	}
 
+
+	/**
+	 * Add an entity view.
+	 *
+	 * @param	view		A view.
+	 */
+	public void addEntityView(Entity2DView view) {
+		views.add(view);
+	}
+
+
+	/**
+	 * Remove an entity view.
+	 *
+	 * @param	view		A view.
+	 */
+	public void removeEntityView(Entity2DView view) {
+		views.remove(view);
+	}
+
+
 	/**
 	 * Returns the Graphics2D object in case you want to operate it directly.
 	 * Ex. GUI
@@ -248,91 +272,100 @@ public class GameScreen {
 
 
 	/**
-	 * Re-calculate the pan speed.
-	 *
-	 * @param	dist		The distance to goal.
-	 * @param	speed		The current speed (PAN_SCALE scaled).
-	 *
-	 * @return	The new speed.
-	 */
-	protected int adjustSpeed(int dist, int speed) {
-		if(dist == 0) {
-			speed = 0;
-		} else if(dist > 0) {
-			if(dist > 64) {
-				// Accelerate (max 16)
-				if(speed < (16 * PAN_SCALE)) {
-					speed++;
-				}
-			} else if(dist > 16) {
-				// No change
-			} else if(dist > 8) {
-				// Slow down slowly
-				speed = (speed * 3) / 4;
-
-				if(speed < PAN_SCALE) {
-					speed = PAN_SCALE;
-				}
-			} else {
-				// Slow down quickly
-				speed /= 2;
-
-				if(speed < PAN_SCALE) {
-					speed = PAN_SCALE;
-				}
-			}
-		} else {
-			if(dist < -64) {
-				// Accelerate (max 16)
-				if(speed > (-16 * PAN_SCALE)) {
-					speed--;
-				}
-			} else if(dist < -16) {
-				// No change
-			} else if(dist < -8) {
-				// Slow down slowly
-				speed = (speed * 3) / 4;
-
-				if(speed > -PAN_SCALE) {
-					speed = -PAN_SCALE;
-				}
-			} else {
-				// Slow down quickly
-				speed /= 2;
-
-				if(speed > -PAN_SCALE) {
-					speed = -PAN_SCALE;
-				}
-			}
-		}
-
-		return speed;
-	}
-
-
-	/**
 	 * Update the view position to center the target position.
 	 */
 	protected void adjustView() {
 		/*
-		 * If too far away, just center
+		 * Centered?
 		 */
-		if((Math.abs(dvx) > (sw / 2)) || (Math.abs(dvy) > (sh / 2))) {
+		if((dvx == 0) && (dvy == 0)) {
+			return;
+		}
+
+		int advx = Math.abs(dvx);
+		int advy = Math.abs(dvy);
+
+		if((advx > (sw / 2)) || (advy > (sh / 2))) {
+			/*
+			 * If too far away, just center
+			 */
 			center();
 		} else {
-			dx = adjustSpeed(dvx, dx);
-			dy = adjustSpeed(dvy, dy);
+			/*
+			 * Calculate the target speed.
+			 * The farther away, the faster.
+			 */
+			int dux = dvx / 40;
+			int duy = dvy / 40;
+
+			int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
+
+			if(speed > tspeed) {
+				speed = (speed + tspeed) / 2;
+
+				/*
+				 * Don't stall
+				 */
+				if((dvx != 0) || (dvy != 0)) {
+					speed = Math.max(speed, 1);
+				}
+			} else if(speed < tspeed) {
+				speed++;
+			}
 
 			/*
-			 * Adjust view
+			 * Moving?
 			 */
-			svx += (dx / PAN_SCALE);
-			dvx -= (dx / PAN_SCALE);
+			if(speed != 0) {
+				/*
+				 * Not a^2 + b^2 = c^2, but good enough
+				 */
+				int scalediv = (advx + advy) * PAN_SCALE;
 
-			svy += (dy / PAN_SCALE);
-			dvy -= (dy / PAN_SCALE);
+				int dx = speed * dvx / scalediv;
+				int dy = speed * dvy / scalediv;
 
-			throttleViewPan();
+				/*
+				 * Don't overshoot.
+				 * Don't stall.
+				 */
+				if(dvx < 0) {
+					if(dx == 0) {
+						dx = -1;
+					} else if(dx < dvx) {
+						dx = dvx;
+					}
+				} else if(dvx > 0) {
+					if(dx == 0) {
+						dx = 1;
+					} else if(dx > dvx) {
+						dx = dvx;
+					}
+				}
+
+				if(dvy < 0) {
+					if(dy == 0) {
+						dy = -1;
+					} else if(dy < dvy) {
+						dy = dvy;
+					}
+				} else if(dvy > 0) {
+					if(dy == 0) {
+						dy = 1;
+					} else if(dy > dvy) {
+						dy = dvy;
+					}
+				}
+
+				/*
+				 * Adjust view
+				 */
+				svx += dx;
+				dvx -= dx;
+
+				svy += dy;
+				dvy -= dy;
+			}
 		}
 	}
 
@@ -375,35 +408,6 @@ public class GameScreen {
 
 		dvx = cvx - svx;
 		dvy = cvy - svy;
-
-		throttleViewPan();
-	}
-
-
-	/**
-	 * Limit the pan speed to no more than the distances to the goal.
-	 * The will prevent overshoots (also stops on target hit).
-	 */
-	protected void throttleViewPan() {
-		if(dx > 0) {
-			if((dx / PAN_SCALE) > dvx) {
-				dx = dvx * PAN_SCALE;
-			}
-		} else if(dx < 0) {
-			if((dx / PAN_SCALE) < dvx) {
-				dx = dvx * PAN_SCALE;
-			}
-		}
-
-		if(dy > 0) {
-			if((dy / PAN_SCALE) > dvy) {
-				dy = dvy * PAN_SCALE;
-			}
-		} else if(dy < 0) {
-			if((dy / PAN_SCALE) < dvy) {
-				dy = dvy * PAN_SCALE;
-			}
-		}
 	}
 
 
@@ -417,8 +421,7 @@ public class GameScreen {
 		dvx = 0;
 		dvy = 0;
 
-		dx = 0;
-		dy = 0;
+		speed = 0;
 	}
 
 
@@ -443,7 +446,7 @@ public class GameScreen {
 		gameLayers.draw(this, set + "_0_floor", x, y, w, h);
 		gameLayers.draw(this, set + "_1_terrain", x, y, w, h);
 		gameLayers.draw(this, set + "_2_object", x, y, w, h);
-		gameObjects.draw(this);
+		drawEntities();
 		gameLayers.draw(this, set + "_3_roof", x, y, w, h);
 		gameLayers.draw(this, set + "_4_roof_add", x, y, w, h);
 		gameObjects.drawHPbar(this);
@@ -460,6 +463,19 @@ public class GameScreen {
 		} else {
 			blinkOffline--;
 		}
+	}
+
+
+	protected void drawEntities() {
+// SOON:
+//		Collections.sort(views, new EntityViewComparator());
+//
+//		for (Entity2DView view : views) {
+//			view.draw(screen);
+//		}
+
+		GameObjects gameObjects = client.getGameObjects();
+		gameObjects.draw(this);
 	}
 
 
@@ -502,10 +518,18 @@ public class GameScreen {
 	 * @param	y		The world Y coordinate.
 	 */
 	public void place(double x, double y) {
-		this.x = (int) x;
-		this.y = (int) y;
+		int ix = (int) x;
+		int iy = (int) y;
 
-		calculateView();
+		/*
+		 * Save CPU cycles
+		 */
+		if((ix != this.x) || (iy != this.y)) {
+			this.x = (int) x;
+			this.y = (int) y;
+
+			calculateView();
+		}
 	}
 
 	/**
@@ -604,6 +628,20 @@ public class GameScreen {
 		Log4J.finishMethod(logger, "clearText");
 	}
 
+
+	public Entity2DView getEntityViewAt(double x, double y) {
+		ListIterator<Entity2DView> it = views.listIterator(views.size());
+
+		while (it.hasPrevious()) {
+			Entity2DView view = it.previous();
+
+			if (view.getDrawnArea().contains(x, y)) {
+				return view;
+			}
+		}
+
+		return null;
+	}
 
 
 	/**
@@ -947,4 +985,17 @@ public class GameScreen {
 		return new ImageSprite(image);
 	}
 
+	//
+	//
+
+// SOON:
+//	protected class EntityViewComparator implements Comparator<Entity2DView> {
+//		//
+//		// Comparator
+//		//
+//
+//		public int compare(Entity2DView view1, Entity2DView view2) {
+//return 0;
+//		}
+//	}
 }
