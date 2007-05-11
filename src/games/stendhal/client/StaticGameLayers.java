@@ -110,12 +110,18 @@ public class StaticGameLayers {
 		int i = name.indexOf('.');
 
 		if(i == -1) {
-			logger.error("Old server, please upgrade");
+			logger.fatal("Old server, please upgrade");
 			return;
 		}
 
 		String area = name.substring(0, i);
 		String layer = name.substring(i + 1);
+		
+		/**
+		 * TODO: 
+		 * Encode area name into the data sent from server, so it is simpler to encode the 
+		 * area name.
+		 */
 
 		logger.info("Layer: " + area + "/" + layer);
 
