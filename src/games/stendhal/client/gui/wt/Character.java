@@ -41,7 +41,7 @@ import marauroa.common.game.RPSlot;
 public class Character extends WtPanel {
 
 	/** Panel width */
-	private static final int PANEL_WIDTH = 144;
+	private static final int PANEL_WIDTH = 170;
 
 	/** Panel height */
 	private static final int PANEL_HEIGHT = 280;
