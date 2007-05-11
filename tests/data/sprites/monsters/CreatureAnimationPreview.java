@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -197,7 +198,18 @@ public static void main(String[] args) {
 	private FileTree getJTree() {
 		if (jTree == null) {
 			try {
-				jTree = new FileTree("data/sprites");
+				File file=null;
+				JFileChooser fc=new JFileChooser();
+				fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int returnVal = fc.showOpenDialog(jScrollPane);
+
+		        if (returnVal == JFileChooser.APPROVE_OPTION) {
+		             file = fc.getSelectedFile();
+		            jTree = new FileTree(file.getPath());   
+		        } else {
+		            
+		        }
+				
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
