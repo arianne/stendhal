@@ -153,7 +153,7 @@ public class Player extends RPEntity implements TurnListener {
 				if (name.charAt(0) == '_') {
 					// cut off the strange underscore
 					Player buddy = StendhalRPRuleProcessor.get().getPlayer(name.substring(1));
-					if (buddy != null) {
+					if (buddy != null && !buddy.isGhost()) {
 						player.notifyOnline(buddy.getName());
 					} else {
 						player.notifyOffline(name.substring(1));

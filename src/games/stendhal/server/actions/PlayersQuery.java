@@ -54,7 +54,9 @@ public class PlayersQuery implements ActionListener {
 		StringBuilder online = new StringBuilder();
 		online.append(rules.getPlayers().size() + " Players online: ");
 		for (Player p : getSortedPlayers()) {
-			online.append(p.getName() + "(" + p.getLevel() + ") ");
+			if(!p.isGhost()) {
+				online.append(p.getName() + "(" + p.getLevel() + ") ");
+			}
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
@@ -88,7 +90,7 @@ public class PlayersQuery implements ActionListener {
 			rules.addGameEvent(player.getName(), "where", whoName);
 
 			Player who = rules.getPlayer(whoName);
-			if (who != null) {
+			if (who != null && !who.isGhost()) {
 				player.sendPrivateText(who.getName() + " is in " + who.get("zoneid") + " at (" + who.getX() + ","
 				        + who.getY() + ")");
 				player.notifyWorldAboutChanges();

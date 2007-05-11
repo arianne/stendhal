@@ -28,6 +28,9 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
+import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -37,6 +40,9 @@ import marauroa.common.game.RPObject;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends ActiveEntity {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(RPEntity.class);
+
 	/**
 	 * The value of an outfit that isn't set.
 	 */
@@ -100,7 +106,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private int base_mana;
 
-	private boolean fullghostmode;
+	private boolean ghostmode;
 
 	private String guild;
 
@@ -206,7 +212,7 @@ public abstract class RPEntity extends ActiveEntity {
 		/*
 		 * Don't draw if full ghostmode
 		 */
-		if(isFullGhostMode()) {
+		if(isGhostMode()) {
 			return;
 		}
 
@@ -402,8 +408,8 @@ public abstract class RPEntity extends ActiveEntity {
 	 *
 	 * @return	<code>true</code> is in full ghostmode.
 	 */
-	public boolean isFullGhostMode() {
-		return fullghostmode;
+	public boolean isGhostMode() {
+		return ghostmode;
 	}
 
 	public boolean isPoisoned() {
@@ -615,6 +621,10 @@ public abstract class RPEntity extends ActiveEntity {
 	/** Draws this entity in the screen */
 	@Override
 	public void draw(final GameScreen screen) {
+		if(isGhostMode()) {
+			return;
+		}
+
 		super.draw(screen);
 
 		if (!floaters.isEmpty()) {
@@ -681,6 +691,13 @@ public abstract class RPEntity extends ActiveEntity {
 			onPoisoned(Math.abs(object.getInt("poisoned")));
 		}
 
+		/*
+		 * Ghost mode feature.
+		 */
+		if (object.has("ghostmode")) {
+		    ghostmode = true;
+		}
+		
 		/*
 		 * Healed
 		 */
@@ -830,7 +847,7 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 	// RPObjectChangeListener
 	//
-
+	
 	/**
 	 * The object added/changed attribute(s).
 	 *
@@ -1055,8 +1072,8 @@ public abstract class RPEntity extends ActiveEntity {
 			base_mana = changes.getInt("base_mana");
 		}
 
-		if (changes.has("fullghostmode")) {
-		    fullghostmode = (changes.getInt("fullghostmode") != 0);
+		if (changes.has("ghostmode")) {
+		    ghostmode = true;
 		}
 
 		if (changes.has("guild")) {
@@ -1125,6 +1142,10 @@ public abstract class RPEntity extends ActiveEntity {
 			onEatEnd();
 		}
 
+		if (changes.has("ghostmode")) {
+		    ghostmode = false;
+		}
+		
 		/*
 		 * Attack target gone?
 		 */

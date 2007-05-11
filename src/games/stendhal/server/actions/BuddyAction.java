@@ -45,8 +45,9 @@ public class BuddyAction implements ActionListener {
 	private void onAddBuddy(Player player, RPAction action) {
 		String who = action.get("target");
 		String online = "0";
-		if (StendhalRPRuleProcessor.get().getPlayer(who) != null) {
-			online = "1";
+		Player buddy=StendhalRPRuleProcessor.get().getPlayer(who);
+		if ( buddy!= null && !buddy.isGhost()) {
+			online = "1";			
 		}
 		player.setKeyedSlot("!buddy", "_" + who, online);
 

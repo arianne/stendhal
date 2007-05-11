@@ -218,8 +218,10 @@ public class Minimap extends WtPanel {
 		for (Entity entity : client.getGameObjects()) {
 			if (entity instanceof Player) {
 				Player aPlayer = (Player) entity;
-				drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale)
-				        - pany + 2, playerColor);
+				if(!aPlayer.isGhostMode()) {
+					drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale)
+							- pany + 2, playerColor);
+				}
 			}
 		}
 

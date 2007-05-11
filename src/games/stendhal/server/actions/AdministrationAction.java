@@ -545,17 +545,28 @@ public class AdministrationAction implements ActionListener {
 
 	private void onGhostMode(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onGhostMode");
-
+		
+		onInvisible(player,action);
+		
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
-			player.returnToOriginalOutfit();
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
+
+			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
+				p.notifyOnline(player.getName());
+			}
+
 		} else {
 			player.put("ghostmode", "");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "on");
-			Outfit invisible = new Outfit(0, 98, 0, 98);
-			player.setOutfit(invisible, true);
+
+			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
+				p.notifyOffline(player.getName());
+			}
 		}
+		
+		player.notifyWorldAboutChanges();
+		
 		Log4J.finishMethod(logger, "onGhostMode");
 	}
 

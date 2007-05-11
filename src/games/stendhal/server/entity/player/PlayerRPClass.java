@@ -90,7 +90,7 @@ class PlayerRPClass {
 		player.add("admin", RPClass.FLAG);
 		player.add("adminlevel", RPClass.INT);
 		player.add("invisible", RPClass.FLAG, RPClass.HIDDEN);
-		player.add("ghostmode", RPClass.FLAG, RPClass.HIDDEN);
+		player.add("ghostmode", RPClass.FLAG);
 		player.add("teleclickmode", RPClass.FLAG, RPClass.HIDDEN);
 
 		player.add("release", RPClass.STRING, RPClass.HIDDEN);
@@ -135,6 +135,10 @@ class PlayerRPClass {
 		// The guild name
 		player.add("guild", RPClass.STRING);
 
+		/*
+		 * TODO: Remove this one as it is repeated.
+		 * Correct one is ghostmode.
+		 */
 		// Does player have full ghostmode?
 		player.add("fullghostmode", RPClass.INT); // 0 for off, 1 for on
 
