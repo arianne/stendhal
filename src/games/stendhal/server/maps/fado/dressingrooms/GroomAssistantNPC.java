@@ -42,11 +42,12 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Good day! If you're a prospective groom I can #help you prepare for the wedding");
+				addGreeting("Good day! If you're a prospective groom I can #help you prepare for your wedding.");
 				addJob("I assist grooms with getting suitably dressed for their wedding.");
-				addHelp("Please tell me if you want to #wear a #suit for your wedding.");
+				addHelp("Please tell me if you want to #wear #a #suit for your wedding.");
+				addReply("suit","If you want to look smart you must #wear #a #suit for your wedding. The hire charge is 50 money.");
 				addQuest("You should probably be thinking about your wedding.");
-				addGoodbye("Have a lovely time!");
+				addGoodbye("Good bye, I hope everything goes well for you.");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();
 				priceList.put("suit", 50);

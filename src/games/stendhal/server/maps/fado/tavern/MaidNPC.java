@@ -3,14 +3,15 @@ package games.stendhal.server.maps.fado.tavern;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
-import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.Path;
+
 
 /**
  * Builds the tavern maid NPC.
@@ -21,7 +22,6 @@ public class MaidNPC implements ZoneConfigurator {
 
 	private NPCList npcs = NPCList.get();
 
-	private ShopList shops = ShopList.get();
 
 	//
 	// ZoneConfigurator
@@ -62,10 +62,20 @@ public class MaidNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				//addGreeting();
-				addJob("I am the bar maid for this fair tavern. We sell both imported and local beers, and fine food.");
-				//addHelp("This tavern is a great place to take a break and meet new people! Just ask if you want me to #offer you a drink.");
-				addSeller(new SellerBehaviour(shops.get("food&drinks")));
-				addGoodbye();
+				addJob("I am the bar maid for this fair tavern. We sell imported beers and fine food.");
+				addHelp("Why not gather some friends and take a break together, you can put your food down and eat from that long table.");
+				addQuest("Oh, I don't have time for anything like that.");
+
+				Map<String, Integer> offers = new HashMap<String, Integer>();
+				offers.put("beer", 10);
+				offers.put("wine", 15);
+				offers.put("cherry", 20);
+				offers.put("cheese", 20);
+				offers.put("bread", 50);
+				offers.put("sandwich", 150);
+	 
+				addSeller(new SellerBehaviour(offers));
+				addGoodbye("Goodbye, all you customers do work me hard ...");
 			}
 		};
 		npcs.add(tavernMaid);
