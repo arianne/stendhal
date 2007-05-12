@@ -185,10 +185,10 @@
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.2">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3a24rjMBBF0UD/b///YzAhEIxk3VWlOntByPRMPJG0LbsDeb0AAFjv/+/5Z8RGf+A81z4tPRAX/bXRX9uq/jX/b8sDa9Bfz+96ptaZ/hhF/1ha+9A/Fvpro38sreua6uG5P+fMs9X7qnS+1PRm/wMAgJn4TFLHap6re9Dfn9817enZ+nr6+5Vb39z60z+Wp/VN/Rv9Y+H6r826f+1rTuV9/KXx3Rt4nw/arN7/u0S4Vuz0e+3tOc4b+veJ0h99+H0ciMXLHp3x2Z/r0Tyl9Zu95vT3hf7a6K/tvmY1/Z/+vuX96K+H/tror43+e3hdA5X+u+Y5Y+7fY2Y/W66LtdP67xpH6/H0Xzt3T2OJ5JT+K8eqzEv/UofZzTgHPrz0bx3rzLErO6V/6ljLczGKU/rfxzpz7MpO6Z/b/7PmrOqU/vexfn+eMWdllv1bzg32/xrWnVuuDbn+NQ3vx9H+w7oz+9+WdefR/V86tve9VFh3zvUsjXP2vFV56Z567h1r6zHKPPRPjWlknD3HqRrZsyvOgdJ5wf63k+q/+/1rnluPw7PceqXOhdY/wz9albFGelR+j4g8txEK7S8z7vPR7v8qe3+1kc9wHngZxwhv65r7nIE16A8v7S/010Z/bb39Pd3D0G+kf8vrEQv7Pwbu/9ror43+2uivjf7aLPrzucEPy/6cA/Z296e7L9z/98h9r8LD45RxnvxQN7IGrN/56K+N/tror43+2uivjf7a+Pysjf7advXnfPFpR3+uGX6x/7Vx/9dGf22ltvQHAAAAAAAAAAAAAABADt8f0cR3iJg/c9ed/0V57hf1+QOnSu1d9eu5Er4LD/pru/emPwCc5Q0nykYCAAABAA==
+   H4sIAAAAAAAAAO3a7WrjMBBG4ULvt/f/s5gQMEKyrO+Zec8DodvdeCPpWHYC+fkBAGC9v9/n3xEb/QF/rn1aeyAu+mujv7ZV/d/8vy0PrEF/Pff1zK0z/TGK/rG09qF/LPTXRv9YWtc118Nyf86ZZ6v3Ve18edOb/Q8AAGbiM8k7p+a5ugf97bmvaU/P1ufT367S+pbWn/6xPK1v7t/oHwvXf22n+799jlfWx18bX9rA+nzQZvX+3yXCtWKn+7W35zhr6N8nSn/04f04EIuVPTrjsz/Xo3lq6zd7zelvC/210V9bumZv+j/9fcvr0V8P/bXRXxv997C6Bir9d81zxty/x8z+eXJdTvPWf9c4Wo+n/9q5WxpLJF76rxyrMiv9ax1mN+Mc+LDSv3WsM8euzEv/3LEnz8UovPRPxzpz7Mq89C/t/1lzVuWlfzrW7+8z5qzsZP+Wc4P9v8bpzi3XhlL/Nw3T42j/cboz+/+s051H93/t2N7XUnG6c6lnbZyz563KSvfcz96xth6jzEL/3JhGxtlznKqRPbviHKidF+z/c3L9d7/+m5+tx+FZab1y50Lrn2EfrepYIz0q7yMiz22EQvvLjPt8tPu/yt5fbeQznAVWxjHC2rqWPmdgDfrDSvsL/bXRX1tvf0v3MPQb6d/yfMTC/o+B+782+mujvzb6a6O/thP9+dxgx8n+nAPn7e5Pd1u4/+9R+l6FhYeXcXp+qBtZA9bPv2/Dnn1Bf//uDVuvifT3L+3feyx86ml4v2fAN/pr4/2/Nj4/a6O/tl39OV9s2tGfa4Zd7H9t3P+10V9brS39AQAAAAAAAAAAAAAAUKL8/RH1uat/h4j5M3fV+V+U535Rn79ntNOW669+PVfCd+FBf21pc84BAPDlH2HnCHQAAAEA
   </data>
  </layer>
- <layer name="protection" width="128" height="128" opacity="0.49">
+ <layer name="protection" width="128" height="128" visible="0" opacity="0.49">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DsQkAAAgDsIIH9//NM3RIIJ2kqqqqqqqqqqqqqqqqqqqq6mkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPhgAX/fpFwAAAEA
   </data>

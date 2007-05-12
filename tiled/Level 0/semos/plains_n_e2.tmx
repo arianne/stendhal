@@ -110,7 +110,7 @@
  </layer>
  <layer name="collision" width="64" height="128" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Yy2rDQBAElU/O/1+CEAIH1pa0D3fPTBXoFHB3dbyy5W3btt+f43JmZcdI/q1r1Ws78cl/tP/KbWfSs8FdhygbtJj9fmi9bkTY4IANDmbdI6Myeh4ybLDDWRiDDdhghw3WffeKBBuwwRVswAY70TZY0TPKBis7ut8fv9Hn7meGYpczc3W+8wYK2KANG3BOdp7cL7Lu0bNB9k1eYYf/VPdvUd0fAKCX6p8h+ONf2R/yUvmZsvozdXX/ncruJ7izwZVvVvdXsv+fP/HkvZ51nyfu2Te4+ntG/7tuGd1PMrsBuLPy/I087828VBs43NeUHfDXZTt0wF+X7dABf122Qwf8ddkOHfDXZTt0UGQ7/X6u8ncB/xqZ78C/RqYT+KsbaHHyr37++f6ny3bogL8u26ED/rpshw7467IdOuCvy3bokMm/5/sk/nOyR1D6OxCt72zwr5nt0AF/XbZDB/x12Q4d8NdlO3TAX5fd22Fm56j+s551ovqrslfA+ddmO1wAAFWofu/Dv7Y/AAAAAGj4A2l0DeMAgAAA
+   H4sIAAAAAAAAAO2Z24qDUBAEzSfn/18WkYCBs4meS7pnpgp8CqS7etUou23b9nwchzMrO0bybx2rvtuJT/6j/VduO5OeDa46RNmgxezzofW9EWGDAzY4mHWPjMro9ZBhgx2uhTHYgA122GDds1ck2IANvsEGbLATbYMVPaNssLKj+/3x3OfXGzjs8qt85w0UsEEbNuA62blzv8i6R88G2Tc5ww7vVPdvUd0fAKCX6r8h+ONf2R/yUvmdsvo7dXX/ncruL3DXbOCy5xXfrH//M9nP9U/cOdez7nPHPfsG3z7P6H/VLaP7i8xuAO6svP5G3vdmHqoNHO5ryg7467IdOuCvy3bogL8u26ED/rpshw7467IdOiiynf6HoPJ3Af8amf+Bf41MJ/BXN9Di5F/9+uf5T5ft0AF/XbZDB/x12Q4d8NdlO3TAX5ft0CGTf8/zJP5zskdQ+jsQre9s8K+Z7dABf122Qwf8ddkOHfDXZTt0wF+X3dth5jN+ZP8ZO0T1V2WvAH9ttsMBAFCF6vc+/Gv7AwAAAICGPyRRpdMAgAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="128">
