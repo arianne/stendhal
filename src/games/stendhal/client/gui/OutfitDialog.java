@@ -53,7 +53,7 @@ public class OutfitDialog extends JDialog {
 	 */
 	private static final int HEAD_OUTFITS = 16;
 
-	private static final int CLOTHES_OUTFIT = 30;
+	private static final int CLOTHES_OUTFIT = 31;
 
 	private static final int HAIR_OUTFITS = 29;
 
