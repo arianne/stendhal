@@ -11,17 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 
-// TODO: consider splitting parts of this out into a quest class
 /**
  * Creates a priest NPC who can celebrate marriages between two
  * players.
  * 
- * Note: in this class, the Player variables are called groom
- * and bride. However, the game doesn't know the concept of
- * genders. The player who initiates the wedding is just called
- * groom, the other bride.
+ * The marriage itself is done in a separate quest file
  *   
- * @author daniel
+ * @author daniel/kymara
  *
  */
 public class PriestNPC implements ZoneConfigurator {
@@ -52,10 +48,11 @@ public class PriestNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Welcome to the church!");
-				addJob("I am the priest.");
-				//addHelp("");
-				//addQuest("");
+				addJob("I am the priest, and I will #marry those who have gold rings to exchange and are engaged.");
+				addHelp("I can help you #marry your loved one. But you must be engaged under the supervision of Sister Benedicta, and have a #ring to give your partner.");
+				addQuest("I will #marry people who were engaged in the proper manner. Speak to Sister Benedicta if you are not engaged yet. And remember each to bring a wedding #ring!");
 				addGoodbye("May the force be with you.");
+				addReply("ring","Once you are engaged, you can go to Ognir who works here in Fado to get your wedding rings made. I believe he also sells engagement rings, but they are purely for decoration. How wanton!");
 				
 			}
 		};

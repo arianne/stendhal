@@ -53,10 +53,11 @@ public class GreeterNPC implements ZoneConfigurator {
 				addGreeting("Hello! Welcome to the Fado City Hotel! Can I #help you?");
 
 				addJob("I am the hotel receptionist.");
-				addHelp("You can #reserve a room if you'd like, or #explore the hotel.");
+				addHelp("When the building work on the hotel rooms is complete you will be able to #reserve one.");
+				//addHelp("You can #reserve a room if you'd like, or #explore the hotel.");
 				addReply("reserve",
-				        "Sorry, but the hotel is still under construction and you can not reserve a room yet.");
-				addReply("explore", "You can take a stop at the hotel's mini restaurant.");
+				        "Sorry, but the hotel is still under construction and you can not reserve a room yet. You can #explore the rest.");
+				addReply("explore", "I'm afraid there is not very much to see, yet. The hotel is still being finished.");
 				//addSeller(new SellerBehaviour(shops.get("food&drinks")));
 				addGoodbye("Bye.");
 			}

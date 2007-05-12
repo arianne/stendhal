@@ -155,7 +155,7 @@ public class Marriage extends AbstractQuest {
     
 	private void startEngagement(SpeakerNPC nun, Player player, String partnerName) {
 		IRPZone outsideChurchZone = StendhalRPWorld.get().getRPZone(nun.getID());
-		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 50, 4, 5));
+		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 49, 5, 5));
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
 	
@@ -217,7 +217,7 @@ public class Marriage extends AbstractQuest {
 		        new SpeakerNPC.ChatCondition() {
 			        @Override
 			        public boolean fire(Player player, String text, SpeakerNPC npc) {
-				        return player.getQuest(QUEST_SLOT).startsWith("engaged"); 
+				        return player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).startsWith("engaged"); 
 			        }
 		        },
 		        ConversationStates.INFORMATION_1,
@@ -235,6 +235,41 @@ public class Marriage extends AbstractQuest {
 				        }
 			        }
 		        });
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+		        new SpeakerNPC.ChatCondition() {
+			        @Override
+			        public boolean fire(Player player, String text, SpeakerNPC npc) {
+				        return !player.hasQuest(QUEST_SLOT); 
+			        }
+		        },
+		        ConversationStates.ATTENDING,
+		        null,
+		        new SpeakerNPC.ChatAction() {
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        	npc.say("I'd forge a wedding ring for you to give your partner, if you were engaged to someone. If you want to get engaged, speak to the nun outside the church.");
+				        
+			        }
+		        });
+		npc.add(ConversationStates.ATTENDING,
+				ConversationPhrases.QUEST_MESSAGES,
+		        new SpeakerNPC.ChatCondition() {
+			        @Override
+			        public boolean fire(Player player, String text, SpeakerNPC npc) {
+				        return player.isQuestCompleted(QUEST_SLOT); 
+			        }
+		        },
+		        ConversationStates.ATTENDING,
+		        null,
+		        new SpeakerNPC.ChatAction() {
+			        @Override
+			        public void fire(Player player, String text, SpeakerNPC npc) {
+			        	npc.say("You must already have enough to do, now that you're married. Don't worry about me!");
+				        
+			        }
+		        });
+		
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 		        new SpeakerNPC.ChatCondition() {
@@ -309,7 +344,7 @@ public class Marriage extends AbstractQuest {
    private void GetDressedStep() {
     	
     	// Just go to the NPCs Tamara and Timothy
-	   // TODO: make only engaged person able to get into wedding dress/suit
+	   // you can only get into the room if you have the quest slot for marriage
     }
     private void MarriageStep() {
     	
@@ -421,6 +456,8 @@ public class Marriage extends AbstractQuest {
 		// persons
 		groom.setQuest(SPOUSE_QUEST_SLOT, bride.getName());
 		bride.setQuest(SPOUSE_QUEST_SLOT, groom.getName());
+		groom.setQuest(QUEST_SLOT, "done");
+		bride.setQuest(QUEST_SLOT, "done");
 		// Clear the variables so that other players can become groom and bride
 		// later
 		groom = null;
