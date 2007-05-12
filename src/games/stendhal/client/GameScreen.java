@@ -275,18 +275,18 @@ public class GameScreen {
 	 */
 	protected void adjustView() {
 		/*
-		 * Centered?
+		 * Already centered?
 		 */
 		if((dvx == 0) && (dvy == 0)) {
 			return;
 		}
 
-		int advx = Math.abs(dvx);
-		int advy = Math.abs(dvy);
+		int sx = convertWorldXToScreen(x) + (SIZE_UNIT_PIXELS / 2);
+		int sy = convertWorldYToScreen(y) + (SIZE_UNIT_PIXELS / 2);
 
-		if((advx > (sw / 2)) || (advy > (sh / 2))) {
+		if((sx < 0) || (sx >= sw) || (sy < 0) || (sy > sh)) {
 			/*
-			 * If too far away, just center
+			 * If off screen, just center
 			 */
 			center();
 		} else {
@@ -319,7 +319,7 @@ public class GameScreen {
 				/*
 				 * Not a^2 + b^2 = c^2, but good enough
 				 */
-				int scalediv = (advx + advy) * PAN_SCALE;
+				int scalediv = (Math.abs(dvx) + Math.abs(dvy)) * PAN_SCALE;
 
 				int dx = speed * dvx / scalediv;
 				int dy = speed * dvy / scalediv;
@@ -564,8 +564,8 @@ public class GameScreen {
 		 * Save CPU cycles
 		 */
 		if((ix != this.x) || (iy != this.y)) {
-			this.x = (int) x;
-			this.y = (int) y;
+			this.x = ix;
+			this.y = iy;
 
 			calculateView();
 		}
