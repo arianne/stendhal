@@ -57,13 +57,13 @@
  <tileset name="../../tileset/building/entrance/pale_red_ew.png" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/pale_red_ew.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/building/wall/int_wall_fancy_purple.png" firstgid="167" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/building/wall/int_wall_fancy_purple.png" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/wall/int_wall_fancy_purple.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="179" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="203" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="180" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="204" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="50" height="32">
@@ -83,7 +83,7 @@
  </layer>
  <layer name="3_roof" width="50" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TPRIBQRhE5wh+rsA6jZIhYzPlAjjFIiLCpntJHUwwO/Vlo0wb/ape1BN8LxjnxL9xgMfAU7BN4AiO4fT7p30MdXChDi7UwYU6uGjgGV7gNfMtqdzgPfcRiTzgE75gm/eUJEr5H3FHZTj3bxfGxkLcMTBcwhVcGxsLccfQcAO3sDY2FuKOmeHOv90bGwul/vNfRR1cqIMLdXChDi46V0aH6PMGqqR5QQAZAAA=
+   H4sIAAAAAAAAAO2TPRIBQRhE5wh+rsA6jZIhYzPlAjjFIiLCXmUvpoMJZqe+bJRpo1/Vi3qC7wXjnPg3DvAYeAq2CRzBMZx+/7SPoQ4u1MGFOrhQBxcNPMMLvGa+JZUbvOc+IpEHfMIXbPOekkQp/yPuqAzn/u3C2FiIOwaGS7iCa2NjIe4YGm7gFtbGxkLcMTPc+bd7Y2Oh1H/+q6iDC3VwoQ4u1MFF58roEH3ebXz4ZgAZAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="50" height="32">
@@ -96,14 +96,14 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAAAAwJcBSxPzAQAZAAA=
   </data>
  </layer>
- <layer name="collision" width="50" height="32" opacity="0.37">
+ <layer name="collision" width="50" height="32" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VUQqAMAxDe//r9IL+DkFtu8xmI4Hij2vywEw3M9fQT0WZsz48Z3wRuateo+dOHE/+bzmiucSB0SqOrrtk936gcogDq1M4ZiUOrhziwCrzr4m83yVxiOPujxBzzzM7uzhWMUdzfH1nXWLlyHaQlSMr9n6w9xwtVo7sLlaOv3OcylEd5K5OD5a5ACAyi+QAGQAA
+   H4sIAAAAAAAAAO2VUQqAMAxDe/+r9VL+DkFtu8xmI4Hij2vywEw3M9fQT0WZsz48Z3wRuateo+dOHE/+bzmiucSB0SqOrrtk936gcogDq1M4ZiUOrhziwCrzr4m83yVxiOPujxBzzzM7uzhWMUdzfH1nXWLlyHaQlSMr9n6w9xwtVo7sLlaOv3OcylEd5K5OD5a5ALmTmpAAGQAA
   </data>
  </layer>
- <layer name="protection" width="50" height="32" opacity="0.38">
+ <layer name="protection" width="50" height="32" visible="0" opacity="0.38">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DAQkAAAwEoeuf5wOux1Bw1VRVVVVVVR89jszuLQAZAAA=
+   H4sIAAAAAAAAAO3DAQkAAAwEoeuf7UOtx1Bw1VRVVVVVVR89TZ0N/AAZAAA=
   </data>
  </layer>
 </map>
