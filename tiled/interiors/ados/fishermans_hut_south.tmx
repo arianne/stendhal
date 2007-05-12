@@ -95,7 +95,7 @@
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvNwMCwepBgQoASvcSYgWwWIXOpbT+99OMyh4GBdD8PNvdTqp+StEiJ3cSmRVpgAOX3cIYABAAA
+   H4sIAAAAAAAAAFvNwMCwepBgQoASvcSYgWwWIXOpbT+99OMyhxK7iQ0zfGaQCmihn5K0SIndxIYrLTAAD5LbGQAEAAA=
   </data>
  </layer>
  <layer name="protection" width="16" height="16" opacity="0.69">

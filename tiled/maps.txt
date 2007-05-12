@@ -27,9 +27,9 @@ buraucrazy_2.tmx
 buraucrazy_3.tmx
 B*church_0.tmx
 B*church_1.tmx
-fishermans_hut_north.tmx
-fishermans_hut_south.tmx
-fishermans_hut_west.tmx
+D*	fishermans_hut_north.tmx
+D*	fishermans_hut_south.tmx
+D*	fishermans_hut_west.tmx
 goldsmith.tmx
 haunted_house.tmx
 K*library.tmx
