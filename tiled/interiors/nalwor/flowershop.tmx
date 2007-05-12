@@ -96,9 +96,12 @@
  <tileset name="../../tileset/logic/item/vegetable.png" firstgid="225" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
+ <tileset name="pot_plant_sprout.png" firstgid="236" tilewidth="32" tileheight="32">
+  <image source="../../tileset/plant/indoor/pot_plant_sprout.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNiYGBgGkAsiAMzoqljHuR65Qe5Xn4smB56xYBYFA0Tq1cUi35S9CJjMTLtFSPRXmyYgUh15OjlxYMZCMjTSu8oHhwYAH3wYxfcBQAA
+   H4sIAAAAAAAAAGNiYGBgGkAsiAMzoqljHuR65Qe5Xn4smB56xYBYFA0Tq1cUi35S9CJjMTLtFSPRXmyYm0h15OjlxYO5CcjTSu8oHhwYAFjcXK/cBQAA
   </data>
  </layer>
  <layer name="1_terrain" width="15" height="25">
@@ -108,7 +111,7 @@
  </layer>
  <layer name="2_object" width="15" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJ3TTQrCMBAF4FzNQ6hVsAtP4N9aRLeCbgRBd2JbUVFRT6BgraJX8hUmEIZpavPgoynpY1pIfaVUxUEDPOWWqrFukR5zE+iuZ3RLROqqP7od5k50RsZad7tCVwk9W1eTYuvqfpvYYn7vAMYwhxX0hecDWFq6M0s3a+6QyQvvFonUdZ0rvfNDwLs8IUSwscytQ1mwhR3sM/Zr4Cv5/zzAEU4Z+/z/ndB1DWe4wNXYf8Fb+N70nE5pHRjPx4YPfIWuzoLm5oXPteUJiWM3YfdFujqx0OUJ6Zp3NpoO0rPxA1K056fcBQAA
+   H4sIAAAAAAAAAJ2TTQrCMBBGczUPoVbBLjyBf2sR3Qq6EQTdia2ioqKeQMFaRS/iIfwKCYRhkth88MiE5DEJJKEQouRBDQTCL2Wtbkg6hCuDcgPNLUg4V/zhtgg3icpAq5XbZlzBeDZXwcXmKr8psUW/bw8MwRQsQJfZH4G5xZ1YXFPfPsEV6uYJ57r6fg0ud+Y7A3VpYrACa8uZq6DIsAFbsDOsV0Ao+P+5BwdwNKzT/zuS4xKcwBlctPUneDH3zd7pWNaRtj/ReIMP46rMZF9XaF9bHiD1dFMyz+OqJIxLE8vR9TbqHmRv4weYkDkp3AUAAA==
   </data>
  </layer>
  <layer name="3_roof" width="15" height="25">
