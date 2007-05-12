@@ -106,6 +106,7 @@ public class StaticGameLayers {
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
 		Log4J.startMethod(logger, "addLayer");
 
+		logger.info("Layer name: " + name);
 
 		int i = name.indexOf('.');
 
@@ -122,8 +123,6 @@ public class StaticGameLayers {
 		 * Encode area name into the data sent from server, so it is simpler to encode the 
 		 * area name.
 		 */
-
-		logger.info("Layer: " + area + "/" + layer);
 
 		try {
 			if (layer.equals("collision")) {
