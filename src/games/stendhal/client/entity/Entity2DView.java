@@ -21,11 +21,10 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
 /**
  * The 2D view of an entity.
  */
-public abstract class Entity2DView { // implements EntityView {
+public abstract class Entity2DView implements EntityView {
 	/**
 	 * The entity this view is for
 	 */
@@ -209,10 +208,6 @@ public abstract class Entity2DView { // implements EntityView {
 	}
 
 
-	//
-	// <EntityView>
-	//
-
 	/**
 	 * Draw the entity.
 	 *
@@ -245,5 +240,19 @@ public abstract class Entity2DView { // implements EntityView {
 	 */
 	protected void update() {
 		entityComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, entity.getVisibility() / 100.0f);
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Get the view's entity.
+	 *
+	 * @return	The view's entity.
+	 */
+	public Entity getEntity() {
+		return entity;
 	}
 }
