@@ -300,7 +300,7 @@ public class GameScreen {
 			int tspeed = ((dux * dux) + (duy * duy)) * PAN_SCALE;
 
 			if(speed > tspeed) {
-				speed = (speed + tspeed) / 2;
+				speed = (speed + speed + tspeed) / 3;
 
 				/*
 				 * Don't stall
@@ -309,7 +309,7 @@ public class GameScreen {
 					speed = Math.max(speed, 1);
 				}
 			} else if(speed < tspeed) {
-				speed++;
+				speed += 2;
 			}
 
 			/*
@@ -383,25 +383,21 @@ public class GameScreen {
 		 */
 		if(cvx < 0) {
 			cvx = 0;
-			svx = 0;
 		} else {
 			int max = (ww * SIZE_UNIT_PIXELS) - sw;
 
 			if(cvx > max) {
 				cvx = max;
-				svx = max;
 			}
 		}
 
 		if(cvy < 0) {
 			cvy = 0;
-			svy = 0;
 		} else {
 			int max = (wh * SIZE_UNIT_PIXELS) - sh;
 
 			if(cvy > max) {
 				cvy = max;
-				svy = max;
 			}
 		}
 
