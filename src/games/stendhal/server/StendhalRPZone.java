@@ -500,7 +500,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 				 * as a collision.
 				 */
 				if(clazz.contains("sheepfood")) {
-					collisionMap.setCollide(plantGrower.getArea(x, y), true);
+					if(!collisionMap.collides(x, y)) {
+						logger.warn("SheepFood@" + getID().getID() + "[" + x + "," + y + "] is not collision in map");
+
+						collisionMap.setCollide(plantGrower.getArea(x, y), true);
+					}
 				}
 			}
 		} catch (AttributeNotFoundException e) {
