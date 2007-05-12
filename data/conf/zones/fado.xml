@@ -72,6 +72,17 @@
 	   <portal x="35" y="57" ref="hut_entrance">
              <destination zone="int_fado_hut" ref="entrance"/>
            </portal>
+           
+  <entity x="16" y="10">
+    	<implementation class-name="games.stendhal.server.entity.Sign">
+      		<parameter name="text">
+Getting Married? Why not buy an engagement ring? 
+It's not an official engagement without the nun knowing, but your girl will like to wear a diamond ring!
+You'll definitely need a wedding ring. Come here to get yours cast once you are engaged!
+	</parameter>
+      		<parameter name="class">blackboard</parameter>
+     	</implementation>
+    </entity>
 
    	</zone>
        <!-- Commented out as requested by hendrik  
@@ -162,7 +173,20 @@
   		   <entity x="17" y="25">
      		 <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
              <attribute name="description">You see a table clean enough to eat from.</attribute>
-  		   </entity>		    		   	   
+  		   </entity>	
+  		 <entity x="21" y="23">
+    	<implementation class-name="games.stendhal.server.entity.Sign">
+      		<parameter name="text">
+SOUP RECIPE
+
+carrot, salad (From Semos)
+onion, cauliflower, broccoli, leek, spinach, courgette (From Fado)
+collard (special exotic type of cabbage - hard to find. often grows indoors)
+</parameter>
+      		<parameter name="class">book_blue</parameter>
+     	</implementation>
+    </entity>  
+  		   	    		   	   
          </zone>
          
    	<zone name="int_fado_house" file="interiors/fado/house.tmx">
@@ -173,6 +197,17 @@
            <portal x="7" y="10" ref="entrance_right">
              <destination zone="0_fado_city" ref="house_entrance"/>
            </portal>
+             <entity x="6" y="1">
+    	<implementation class-name="games.stendhal.server.entity.Sign">
+      		<parameter name="text">
+My Wish List
+
+cloak, elf_cloak, dwarf_cloak, elf_cloak_+2, green_dragon_cloak, 
+bone_dragon_cloak, lich_cloak, and vampire_cloak ...
+</parameter>
+      		<parameter name="class">blackboard</parameter>
+     	</implementation>
+    </entity>      
          </zone>
 
   	<zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
@@ -226,6 +261,26 @@
          <zone name="int_fado_dressing_rooms" file="interiors/fado/dressing_rooms.tmx">
          <configurator class-name="games.stendhal.server.maps.fado.dressingrooms.BrideAssistantNPC"/>
          <configurator class-name="games.stendhal.server.maps.fado.dressingrooms.GroomAssistantNPC"/>
+         <portal x="11" y="13" ref="entrance_left">
+           <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
+         </portal>
+          <portal x="12" y="13" ref="entrance_left">
+           <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
+         </portal>
+        <entity x="21" y="5">
+    	<implementation class-name="games.stendhal.server.entity.Sign">
+      		<parameter name="text">
+ADVICE FOR THE GROOM:
+
+Remember to take a wedding ring, to give the bride, to the church.
+Remind your bride to take a ring for you as well.
+
+When you get to the church, you ask the Priest if you can marry your bride.
+If the bride is called Helen, you should say 'marry Helen'
+	</parameter>
+      		<parameter name="class">book_red</parameter>
+     	</implementation>
+    </entity>
          </zone>
          
          <zone name="int_fado_hotel_0" file="interiors/fado/hotel_0.tmx">
@@ -233,6 +288,14 @@
            
            <portal x="8" y="63" ref="entrance">
              <destination zone="0_fado_city" ref="hotel_entrance"/>
+           </portal>
+           
+           <portal x="41" y="50" ref="dressing_rooms_entrance">
+             <destination zone="int_fado_dressing_rooms" ref="entrance_right"/>
+             <implementation class-name="games.stendhal.server.entity.portal.QuestCheckingPortal">
+      			<parameter name="quest">marriage</parameter>
+				<parameter name="rejected">The dressing rooms are only for a bride and groom to get dressed in.</parameter>
+             </implementation>
            </portal>
            
            <portal x="0" y="40" ref="room_001_entrance">
