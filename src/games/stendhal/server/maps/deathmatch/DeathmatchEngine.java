@@ -176,7 +176,7 @@ class DeathmatchEngine implements TurnListener {
 			if (xp > player.getXP()) {
 				xp = player.getXP();
 			}
-			player.addXP(-xp);
+			player.subXP(xp);
 		}
 
 		// send the player back to the entrance area
