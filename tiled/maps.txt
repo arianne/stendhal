@@ -279,7 +279,7 @@ B*	drows_tunnel_nw.tmx
 D*	drows_tunnel.tmx
 
 ./Level -1/orril:
-castle.tmx
+D*	castle.tmx
 D*  castle_w.tmx   is there a portal missing ??
 D*	dungeon.tmx
 D*	mountain_w2.tmx
