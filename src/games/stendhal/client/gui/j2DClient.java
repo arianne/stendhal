@@ -209,10 +209,12 @@ public class j2DClient extends StendhalUI {
 		 * Get hold the content of the frame and set up the resolution
 		 * of the game
 		 */
+		
+
+		
 		pane = new JLayeredPane();
 		pane.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		content.add(pane);
-
 
 		/*
 		 * Wrap canvas in panel that can has setPreferredSize()
@@ -222,12 +224,17 @@ public class j2DClient extends StendhalUI {
 		panel.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		pane.add(panel, JLayeredPane.DEFAULT_LAYER);
 
-
 		/*
 		 * Setup our rendering canvas
-		 */
-		canvas = new Canvas();
-		canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		 */		
+		
+		if (System.getProperty("stendhal.refactoringgui") != null) {
+		    canvas = new Canvas();
+		    canvas.setBounds(200, 0, 600, SCREEN_HEIGHT);// A bit repetitive... oh well
+		} else {
+		    canvas = new Canvas();
+		    canvas.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		}
 		// Tell AWT not to bother repainting our canvas since we're
 		// going to do that our self in accelerated mode
 		canvas.setIgnoreRepaint(true);
@@ -307,7 +314,7 @@ public class j2DClient extends StendhalUI {
 		if (System.getProperty("stendhal.onewindow") != null) {
 			content.add(gameLog);
 			frame.pack();
-		} else if (System.getProperty("stendhal.onewindowtitle") != null) {
+		} else if (System.getProperty("stendhal.onewindowtitle") != null || System.getProperty("stendhal.refactoringguiui") != null) {
 		    	JLabel header = new JLabel();	
 			header.setText("Game Chat and Events Log");
 			header.setFont(new java.awt.Font("Dialog", 3, 14));
