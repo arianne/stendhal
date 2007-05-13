@@ -119,15 +119,6 @@ public class j2DClient extends StendhalUI {
 // Not currently used (maybe later?)
 //	private FXLayer fx;
 
-	private long lastKeyRelease;
-
-	private long lastKeyEventsCleanUpStart;
-
-	private int[] veryFastKeyEvents = new int[4]; // at leat one more than
-
-	/** a nicer way of handling the keyboard */
-	private Map<Integer, Object> pressed;
-
 	private boolean ctrlDown;
 
 	private boolean shiftDown;
@@ -151,38 +142,10 @@ public class j2DClient extends StendhalUI {
 	private static final boolean newCode =
 			(System.getProperty("stendhal.newgui") != null);
 
-	private boolean fixkeyboardHandlinginX() {
-		logger.debug("OS: " + System.getProperty("os.name"));
-		try {
-			// NOTE: X does handle input in a different way of the rest of the world.
-			// This fixs the problem.
-			Runtime.getRuntime().exec("xset r off");
-			Runtime.getRuntime().addShutdownHook(new Thread() {
-
-				@Override
-				public void run() {
-					try {
-						Runtime.getRuntime().exec("xset r on");
-					} catch (Exception e) {
-						logger.error(e);
-					}
-				}
-			});
-			return true;
-		} catch (Exception e) {
-			logger.error("Error setting keyboard handling", e);
-		}
-
-		return false;
-	}
-
 	public j2DClient(StendhalClient client) {
 		super(client);
 		
 		setDefault(this);
-
-		pressed = new HashMap<Integer, Object>();
-
 
 		frame = new JFrame();
 
@@ -370,26 +333,7 @@ public class j2DClient extends StendhalUI {
 		}
 
 
-		// workaround for key auto repeat on X11 (linux)
-		// First we try the JNI solution. In case this fails, we do this:
-		// In the default case xset -r is execute on program start and xset r on exit
-		// As this will affect all applications you can write keys.x=magic to use
-		// a method called MagicKeyListener. Caution: This does not work on all pcs
-		// and creates create stress on the network and server in case it does not work.
 		KeyListener keyListener = new GameKeyHandler();
-		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
-			if (!X11KeyConfig.getResult()) {
-				boolean useXSet = WtWindowManager.getInstance().getProperty("keys.x", "xset").equals("xset");
-				if (useXSet) {
-					if (!fixkeyboardHandlinginX()) {
-						keyListener = new MagicKeyListener(keyListener);
-					}
-				} else {
-					keyListener = new MagicKeyListener(keyListener);
-				}
-			}
-		}
-
 
 		// add a key input system (defined below) to our canvas so we can
 		// respond to key pressed
@@ -564,7 +508,6 @@ public class j2DClient extends StendhalUI {
 			if (frame.getState() != Frame.ICONIFIED) {
 				logger.debug("Draw screen");
 				screen.draw(baseframe);
-				rotateKeyEventCounters();
 			}
 
 			// TODO: only draw it if it is required to save cpu time
@@ -730,22 +673,6 @@ public class j2DClient extends StendhalUI {
 	protected void quitConfirmCB() {
 		shutdown();
 	}
-
-
-	/**
-	 * Rotates the veryFastKeyEvents array
-	 */
-	private void rotateKeyEventCounters() {
-		if (lastKeyEventsCleanUpStart + 300 < System.currentTimeMillis()) {
-			lastKeyEventsCleanUpStart = System.currentTimeMillis();
-
-			for (int i = veryFastKeyEvents.length - 1; i > 0; i--) {
-				veryFastKeyEvents[i - 1] = veryFastKeyEvents[i];
-			}
-			veryFastKeyEvents[veryFastKeyEvents.length - 1] = 0;
-		}
-	}
-
 
 	/**
 	 * Save the current keyboard modifier (i.e. Alt/Ctrl/Shift) state.
@@ -1009,33 +936,15 @@ public class j2DClient extends StendhalUI {
 
 	protected class GameKeyHandler implements KeyListener {
 		public void keyPressed(KeyEvent e) {
-			// detect X11 auto repeat still beeing active
-			if ((lastKeyRelease > 0) && (lastKeyRelease + 1 >= e.getWhen())) {
-				veryFastKeyEvents[veryFastKeyEvents.length - 1]++;
-				if ((veryFastKeyEvents[0] > 2) && (veryFastKeyEvents[1] > 2) && (veryFastKeyEvents[2] > 2)) {
-					addEventLine("Detecting serious bug in keyboard handling.", Color.RED);
-
-					addEventLine(
-				                "Try executing xset -r in a terminal windows. Please write a bug report at http://sourceforge.net/tracker/?group_id=1111&atid=101111 including the name and version of your operating system and distribution",
-				                Color.BLACK);
-				}
-			}
-
 			updateModifiers(e);
 
-			if (!pressed.containsKey(Integer.valueOf(e.getKeyCode()))) {
-				onKeyPressed(e);
-				pressed.put(Integer.valueOf(e.getKeyCode()), null);
-			}
+			onKeyPressed(e);
 		}
 
 
 		public void keyReleased(KeyEvent e) {
-			lastKeyRelease = e.getWhen();
-
 			updateModifiers(e);
 			onKeyReleased(e);
-			pressed.remove(Integer.valueOf(e.getKeyCode()));
 		}
 
 
