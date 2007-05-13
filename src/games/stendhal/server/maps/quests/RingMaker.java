@@ -36,6 +36,9 @@ import games.stendhal.server.util.TimeUtil;
  * <ul>
  *  <li>Anytime you need it</li>
  * </ul>
+ * 
+ * NOTE: This quest uses the same NPC as Marriage.java, we need to be careful 
+ *       not to interfere with that mission.
  */
 public class RingMaker extends AbstractQuest {
 
@@ -46,6 +49,8 @@ public class RingMaker extends AbstractQuest {
 	private static final int REQUIRED_MINUTES = 10;
 
 	private static final String QUEST_SLOT = "fix_emerald_ring";
+	
+	private static final String MARRIAGE_QUEST_SLOT = "marriage";
 
 	@Override
 	public void init(String name) {
@@ -86,7 +91,12 @@ public class RingMaker extends AbstractQuest {
 		        new SpeakerNPC.ChatCondition() {
 			        @Override
 			        public boolean fire(Player player, String text, SpeakerNPC npc) {
-				        return !player.isEquipped("emerald_ring")&& (!player.hasQuest(QUEST_SLOT)||player.isQuestCompleted(QUEST_SLOT));
+			            // We need to ensure that the NPC is not forging the wedding 
+			            // ring from Marriage.java
+				        return !player.isEquipped("emerald_ring") && 
+				        (!player.hasQuest(QUEST_SLOT)||player.isQuestCompleted(QUEST_SLOT)) &&
+				        (!player.hasQuest(MARRIAGE_QUEST_SLOT) || player.hasQuest(MARRIAGE_QUEST_SLOT)
+				         && !player.getQuest(MARRIAGE_QUEST_SLOT).startsWith("forging;"));
 			        }
 		        },
 		        ConversationStates.ATTENDING,
@@ -119,7 +129,7 @@ public class RingMaker extends AbstractQuest {
 				        if (timeRemaining > 0L) {
 					        npc.say("I haven't finished fixing your ring. Please check back in "
 			                        + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-			                        + ".");
+			                        + ". Good bye for now.");
 					        return;
 				        }
 				        npc.say("I'm pleased to say, your ring is fixed! It's good as new now.");
@@ -130,6 +140,7 @@ public class RingMaker extends AbstractQuest {
 				        player.equip(emeraldRing, true);
 				        player.setQuest(QUEST_SLOT, "done");
 				        player.notifyWorldAboutChanges();
+				        npc.setCurrentState(ConversationStates.ATTENDING);
 			        }
 		        });
 
@@ -152,7 +163,7 @@ public class RingMaker extends AbstractQuest {
                 	player.drop("money", REQUIRED_MONEY);
                 	player.drop("emerald_ring");
                 	npc.say("Okay, that's all I need to fix the ring. Come back in "
-			        		+ REQUIRED_MINUTES + " minutes and it will be ready");
+			        		+ REQUIRED_MINUTES + " minutes and it will be ready. Bye for now.");
 		        	player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 		        	npc.setCurrentState(ConversationStates.IDLE);
 		        } else {

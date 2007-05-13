@@ -87,14 +87,13 @@ public class Marriage extends AbstractQuest {
 		new SpeakerNPC.ChatAction() {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
-			if (!player.hasQuest(QUEST_SLOT)) {
-			    engine.say("The great quest of all life is to be #married.");
-			} else if (player.isQuestCompleted(QUEST_SLOT)) {
-			    engine.say("I hope you are enjoying married life.");	  
+			    if (!player.hasQuest(QUEST_SLOT))
+			        engine.say("The great quest of all life is to be #married.");
+			    else if (player.isQuestCompleted(QUEST_SLOT))
+			        engine.say("I hope you are enjoying married life.");	  
+			    else
+			        engine.say("Haven't you organised your wedding yet?");
 			}
-			else { engine.say("Haven't you organised your wedding yet?");
-			     }
-		    }
 		});
 	nun.add(ConversationStates.ATTENDING,
 			"married",
@@ -291,7 +290,7 @@ public class Marriage extends AbstractQuest {
 				        if (timeRemaining > 0L) {
 					        npc.say("I haven't finished making the wedding ring. Please check back in "
 			                        + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
-			                        + ".");
+			                        + ". Bye for now.");
 					        return;
 				        }
 				        npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Look after it till the ceremony. Make sure one is made for you, too!");
@@ -302,6 +301,7 @@ public class Marriage extends AbstractQuest {
 				        player.equip(weddingRing, true);
 				        player.setQuest(QUEST_SLOT, "engaged_with_ring");
 				        player.notifyWorldAboutChanges();
+				        npc.setCurrentState(ConversationStates.ATTENDING);
 			        }
 		        });
 
@@ -323,7 +323,7 @@ public class Marriage extends AbstractQuest {
                 	player.drop("gold_bar", REQUIRED_GOLD);
                 	player.drop("money", REQUIRED_MONEY);
                 	npc.say("Good, come back in "
-			        		+ REQUIRED_MINUTES + " minutes and it will be ready");
+			        		+ REQUIRED_MINUTES + " minutes and it will be ready. Goodbye until then.");
 		        	player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 		        	npc.setCurrentState(ConversationStates.IDLE);
 		        } else {
@@ -368,12 +368,12 @@ public class Marriage extends AbstractQuest {
 			@Override
 			public boolean fire(Player player, String text, SpeakerNPC npc) {
 				return player.hasQuest(QUEST_SLOT)
-						&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring");
+						&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring")
+				                && player.isEquipped("wedding_ring");
 			}
 		}	
-    	// TODO: make sure the pair getting married are *both* engaged, and to each other
-    	// TODO: make sure they both have a ring not just first player
-    	
+    	// TODO: make sure the pair getting married are engaged to each other, if this is desired.
+      	
 			, ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 
@@ -413,6 +413,31 @@ public class Marriage extends AbstractQuest {
 
 		priest.add(ConversationStates.QUESTION_2, ConversationPhrases.NO_MESSAGES, null, ConversationStates.IDLE,
 		        "What a pity! Goodbye!", null);
+
+
+	// What he responds to marry if you haven't fulfilled all objectives before hand
+		priest.add(ConversationStates.ATTENDING, "marry", 
+				
+				new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return (!player.hasQuest(QUEST_SLOT)
+						||(player.hasQuest(QUEST_SLOT) && player.getQuest(QUEST_SLOT).equals("engaged")) || (player.hasQuest(QUEST_SLOT)&& player.getQuest(QUEST_SLOT).equals("engaged_with_ring") &&!player.isEquipped("wedding_ring")));
+			}
+		}	
+  			, ConversationStates.ATTENDING, "You're not ready to be married yet. Come back when you are properly engaged, and bring your wedding ring. And try to remember not to leave your partner behind ....", null);
+
+
+	// What he responds to marry if you are already married
+		priest.add(ConversationStates.ATTENDING, "marry", 
+				
+				new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return (player.isQuestCompleted(QUEST_SLOT));
+			}
+		}	
+  			, ConversationStates.ATTENDING, "You're married already, so you cannot marry again.", null);
     	
     }
     
@@ -433,6 +458,16 @@ public class Marriage extends AbstractQuest {
 			priest.say("You can't marry yourself!");
 		} else if (isMarried(bride)) {
 			priest.say("You are married already, " + bride.getName() + "! You can't marry again.");
+		} else if (!bride.hasQuest(QUEST_SLOT)) {
+			priest.say(bride.getName() + " isn't engaged.");
+		} else if (bride.hasQuest(QUEST_SLOT)
+						&& !bride.getQuest(QUEST_SLOT).startsWith("engaged")) {
+			priest.say(bride.getName() + " isn't engaged.");
+		} else if (bride.hasQuest(QUEST_SLOT)
+			    && !bride.getQuest(QUEST_SLOT).equals("engaged_with_ring")) {
+			priest.say(bride.getName() + " hasn't been to Ognir to get a ring cast for you!");
+		} else if (!bride.isEquipped("wedding_ring")) {
+			priest.say(bride.getName() + " hasn't got a wedding ring to give you.");
 		} else {
 			askGroom();
 		}
@@ -467,7 +502,6 @@ public class Marriage extends AbstractQuest {
 
 	private void giveRing(Player player, Player partner) {
 		//	 players bring their own golden rings
-		// TODO: have only checked one player has ring. need to check both. do it here or earlier?
 		player.drop("wedding_ring");
 		Item ring = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wedding_ring");
 		ring.put("infostring", partner.getName());
