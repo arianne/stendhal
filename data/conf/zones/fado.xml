@@ -264,7 +264,7 @@ bone_dragon_cloak, lich_cloak, and vampire_cloak ...
          <portal x="11" y="13" ref="entrance_left">
            <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
          </portal>
-          <portal x="12" y="13" ref="entrance_left">
+          <portal x="12" y="13" ref="entrance_right">
            <destination zone="int_fado_hotel_0" ref="dressing_rooms_entrance"/>
          </portal>
         <entity x="21" y="5">
