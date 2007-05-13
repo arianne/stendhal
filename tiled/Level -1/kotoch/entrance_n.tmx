@@ -42,6 +42,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="205" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Unbenannt" firstgid="206" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/earthen.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XSQqAMBBFwZCAI97/uiag4l4haNeiDtC8v+mcUsoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXMoLet9A3/428E1vtdf/m1q3oRqrSf9wWre5WqpV/3D0j03/2PSPrRztT/rH0rptN/rH8/Tv1x4AAPi7HRjDMGAAAAEA
@@ -49,7 +52,7 @@
  </layer>
  <layer name="1_terrain" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3TSwrCMBiF0e5IJ7oKh+LQJz42oYK6DBfrH1BwYhBaqzXnwAcdhBC4tKoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeDaMpjUbtP5qmjJp4I5xA3fQvvTvz944d82U2L+b0r8/jxbRMnPO/v8p7b+6f68z5+z/n+xfNvuXzf5ls3/Z0v6baBvtatxj/27qR6MX7aNDdMycedRr++F83Ck6R5dvPwQAAH7ADQHXK0kAAAEA
+   H4sIAAAAAAAAAO3TOwrCQBiF0exLG60txdInPlZh4zZckyhuyH9AwcZBSIzGOQc+SDEMA5dUFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADPhtG0ZoPWX01TJg3cMW7gDtqX/v3ZG+eOmRL7d1P69+fRIlpmztn/P6X9V/fvdeac/f+T/ctm/7LZv2z2L1vafxNto12Ne+zfTf1o9KJTtI/OmTOPem0/nI+7RIfo+u2HAADAD7gBIffOHAAAAQA=
   </data>
  </layer>
  <layer name="2_object" width="128" height="128">
@@ -59,7 +62,7 @@
  </layer>
  <layer name="3_roof" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQEAAACAkP6v7ggKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAauuOl9cAAAEA
+   H4sIAAAAAAAAAO3OAQ0AAAgDoPePZyJj3E1IQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/TTsAAABHLAHxvSQAAAEA
   </data>
  </layer>
  <layer name="4_roof_add" width="128" height="128">
