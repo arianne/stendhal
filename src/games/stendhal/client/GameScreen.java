@@ -830,11 +830,13 @@ public class GameScreen {
 	public void draw(Sprite sprite, double wx, double wy) {
 		Point p = convertWorldToScreen(wx, wy);
 
-		int spritew = sprite.getWidth() + 2;
-		int spriteh = sprite.getHeight() + 2;
-
-		if (((p.x >= -spritew) && (p.x < sw)) && ((p.y >= -spriteh) && (p.y < sh))) {
-			sprite.draw(g, p.x, p.y);
+		if (sprite != null) {
+			int spritew = sprite.getWidth() + 2;
+			int spriteh = sprite.getHeight() + 2;
+	
+			if (((p.x >= -spritew) && (p.x < sw)) && ((p.y >= -spriteh) && (p.y < sh))) {
+				sprite.draw(g, p.x, p.y);
+			}
 		}
 	}
 
