@@ -41,9 +41,9 @@ B*	temple.tmx
 K*	zaras_house_0.tmx
 K*	zaras_house_1.tmx
 
-./interiors/athor:
-dressing_room_f.tmx
-dressing_room_m.tmx
+B*	./interiors/athor:
+B*	dressing_room_f.tmx
+B*	dressing_room_m.tmx
 D*	holiday_apartment_1.tmx
 D*	holiday_apartment_2.tmx
 D*	holiday_apartment_3.tmx
@@ -52,7 +52,7 @@ D*	holiday_apartment_5.tmx
 D*	holiday_apartment_6.tmx
 D*	holiday_apartment_7.tmx
 D*	holiday_apartment_8.tmx
-small_hut.tmx
+B*	small_hut.tmx
 
 ./interiors/fado:
 bakery.tmx
@@ -179,15 +179,15 @@ K*	wall_n.tmx
 K*	wall_s.tmx
 K*	wall.tmx
 
-./Level 0/athor:
+B*	./Level 0/athor:
 K*	island_e.tmx
 K*	island.tmx
 K*	island_w.tmx
-ship_w2.tmx
+B*	ship_w2.tmx
 
-./Level 0/fado:
+B*	./Level 0/fado:
 D*	city.tmx
-raid_main.tmx
+B*	raid_main.tmx
 
 ./Level 0/memory:
 large_1.tmx
@@ -220,7 +220,7 @@ D*	mountain_w2.tmx
 D*	mountain_w.tmx
 D*	river_se.tmx
 D*	river_s.tmx
-D*  river_s_w2.tmx
+D*  	river_s_w2.tmx
 D*	river_sw.tmx
 
 ./Level 0/semos:
@@ -337,17 +337,17 @@ mine_ne.tmx
 D*	./Level 3/kikareukin:
 D*	cave.tmx
 
-./Level -3/ados:
-outside_nw.tmx
+B*	./Level -3/ados:
+B*	outside_nw.tmx
 
 D*	./Level -3/orril:
 D*	dungeon.tmx
 D! dwarf_blacksmith.tmx
 
-./Level -3/semos:
+B*	./Level -3/semos:
 K*	catacombs.tmx
 K*	dungeon.tmx
-jail_walk.tmx
+B*	jail_walk.tmx
 
 D*	./Level 4/kikareukin:
 D* 	cave.tmx
@@ -364,9 +364,9 @@ K*	entrance.tmx
 D*	./Level 6/kikareukin:
 D*	islands.tmx
 
-./Level -6/kanmararn:
-city.tmx
+B*	./Level -6/kanmararn:
+B*	city.tmx
 
-./Level -7/kanmararn:
-jail.tmx
+B*	./Level -7/kanmararn:
+B*	jail.tmx
 
