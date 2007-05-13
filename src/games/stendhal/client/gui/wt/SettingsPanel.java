@@ -40,7 +40,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	private static final int WIDTH = 165;
 
 	/** height of this panel */
-	private static final int HEIGHT = 235;
+	private static final int HEIGHT = 210;
 
 	private StendhalClient client;
 
@@ -69,9 +69,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	/** the player */
 	private User player;
-
-	/**spells button*/
-	private WtButton spellsButton;
 
 	/** map of the buttons (for faster access) ) */
 	private Map<String, WtButton> buttonMap;
@@ -128,10 +125,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		inventory.registerCloseListener(this);
 		ui.addWindow(inventory);
 
-		spells = new EntityContainer(client, "spells", 3, 4);
-		spells.registerCloseListener(this);
-		ui.addWindow(spells);
-
 		minimap = new Minimap(client);
 		minimap.registerCloseListener(this);
 		ui.addWindow(minimap);
@@ -180,14 +173,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		addChild(button);
 		buttonMap.put("gametools", button);
 
-		spellsButton = new WtButton("spells", 150, 25, "Enable Spells Window");
-		spellsButton.moveTo(5, 185);
-		spellsButton.setPressed(spells.isVisible());
-		spellsButton.registerClickListener(this);
-		addChild(spellsButton);
-		buttonMap.put("spells", spellsButton);
-		spellsButton.setVisible(false);
-
 	}
 
 	/** we're using the window manager */
@@ -225,11 +210,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			inventory.setSlot(player, "bag");
 			minimap.setPlayer(player);
 
-                        spells.setSlot(player, "spells");
-
-			if (player.getSlot("spells") != null) {
-				spellsButton.setVisible(true);
-			}
 		}
 
 		/*
@@ -261,8 +241,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		} else if (name.equals("gametools")) {
 			// check gametools panel
 			gbh.setVisible(state);
-		} else if (name.equals("spells")) {
-                        spells.setVisible(state);
+
                 }
 	}
 
