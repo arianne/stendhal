@@ -22,7 +22,6 @@ import org.apache.log4j.Logger;
  */
 class SourceObject extends MoveableObject {
 	private static Logger logger = Logger.getLogger(SourceObject.class);
-
 	/** the item */
 	private Item item;
 
@@ -79,19 +78,19 @@ class SourceObject extends MoveableObject {
 			if (!baseSlot.has(baseItemId)) {
 				logger.warn("Base item(" + parent + ") doesn't containt item(" + baseItemId + ") on given slot("
 				        + slot + ")");
-				player.sendPrivateText("There is no such item in the " + slot + " of " + parent.getName());
+				player.sendPrivateText("There is no such item in the " + slot + " of " + parent.getDescriptionName(true));
 				return;
 			}
 			
 			if (!(baseSlot instanceof EntitySlot) || (!((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
-				player.sendPrivateText("That " + slot + " of " + parent.getName() + " is too far away.");
+				player.sendPrivateText("The " + slot + " of " + parent.getDescriptionName(true) + " is too far away.");
 				return;
 			}
 
 			Entity entity = (Entity) baseSlot.get(baseItemId);
 			if (!(entity instanceof Item)) {
-				player.sendPrivateText("Oh, that " + entity.getName() + " is not an item and can therefor not be equiped");
+				player.sendPrivateText("Oh, that " + entity.getDescriptionName(true) + " is not an item and can therefor not be equiped");
 				return;
 			}
 			item = (Item) entity;
