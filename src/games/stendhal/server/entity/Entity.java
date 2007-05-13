@@ -606,21 +606,31 @@ public abstract class Entity extends RPObject {
 	 * @return description from the players point of view
 	 */
 	public String describe() {
-		String name;
-
 		String ret = "You see ";
 		if (hasDescription()) {
 			return (getDescription());
 		}
 
+		ret += getDescriptionName(false);
+		return (ret + ".");
+	}
+
+	/**
+	 * returns the name or something that can be used to identify the entity for the player
+	 *
+	 * @param definite true for "the" and false for "a/an" in case the entity has no name
+	 * @return name
+	 */
+	public String getDescriptionName(boolean definite) {
+		String name = null;
 		if ((name = getName()) != null) {
-			ret += name;
+			return name;
 		} else if (has("subclass")) {
-			ret += Grammar.a_noun(get("subclass"));
+			return Grammar.article_noun(get("subclass"), definite);
 		} else if (has("class")) {
-			ret += Grammar.a_noun(get("class"));
+			return Grammar.article_noun(get("class"), definite);
 		} else {
-			ret += "something indescribably strange";
+			String ret = "something indescribably strange";
 			if (has("type")) {
 				ret += " of type " + get("type");
 			}
@@ -630,7 +640,7 @@ public abstract class Entity extends RPObject {
 			if (has("zone")) {
 				ret += " in zone " + get("zone");
 			}
+			return ret;
 		}
-		return (ret + ".");
 	}
 }
