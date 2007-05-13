@@ -50,7 +50,7 @@ public class stendhal extends Thread {
 
 	public static final String VERSION = Version.VERSION;
 
-	public static String SCREEN_SIZE = "640x480";
+	public static String SCREEN_SIZE = null;
 
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
@@ -152,6 +152,10 @@ public class stendhal extends Thread {
 	 * @param args command line arguments
 	 */
 	public static void main(String args[]) {
+		//get size string
+		if (System.getProperty("stendhal.refactoringgui") != null) SCREEN_SIZE = "1000x480";
+		else SCREEN_SIZE="640x480";
+	    
 		parseCommandlineArguments(args);
 		startLogSystem();
 		startSwingLookAndFeel();
