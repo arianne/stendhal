@@ -322,11 +322,14 @@ public class Soup extends AbstractQuest {
 				    if (missing.size() > 0) {
 					npc.say("Thank you very much! What else did you bring?");
 				    } else {
-					placeSoupFor(player);
 					// had to comment out mana as not sure it's in game - added karma instead
 					player.addKarma(5.0);
 					//player.addBaseMana(10); // i don't know what number to choose here as i don't know about mana.
 					player.addXP(100);
+					/* place soup after XP added otherwise the XP change MIGHT change level 
+					   and player MIGHT gain health points which changes the base HP, 
+					   which is desired to be accurate for the place soup stage */
+					placeSoupFor(player);
 					player.healPoison();
 					npc.say("The soup's on the table for you. It will heal you. "
 						+ "My magical method in making the soup had given you a little karma too.");
