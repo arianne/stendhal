@@ -14,32 +14,32 @@ house_000.tmx
 house_001.tmx
 pathfinding.tmx
 server_down.tmx
-K*zbaggateh-dd.tmx
+K*	zbaggateh-dd.tmx
 
-./interiors/ados:
-bakery.tmx
-bank.tmx
-B*barracks_0.tmx
-B*barracks_1.tmx
-buraucrazy_0.tmx
-buraucrazy_1.tmx
-buraucrazy_2.tmx
-buraucrazy_3.tmx
-B*church_0.tmx
-B*church_1.tmx
+B*	./interiors/ados:
+B*	bakery.tmx
+B*	bank.tmx
+B*	barracks_0.tmx
+B*	barracks_1.tmx
+B*	buraucrazy_0.tmx
+B*	buraucrazy_1.tmx
+B*	buraucrazy_2.tmx
+B*	buraucrazy_3.tmx
+B*	church_0.tmx
+B*	church_1.tmx
 D*	fishermans_hut_north.tmx
 D*	fishermans_hut_south.tmx
 D*	fishermans_hut_west.tmx
-goldsmith.tmx
-haunted_house.tmx
-K*library.tmx
-magician_house.tmx
-reverse_arrow.tmx
-storage.tmx
-tavern_0.tmx
-temple.tmx
-K*zaras_house_0.tmx
-K*zaras_house_1.tmx
+B*	goldsmith.tmx
+B*	haunted_house.tmx
+K*	library.tmx
+B*	magician_house.tmx
+B*	reverse_arrow.tmx
+B*	storage.tmx
+B*	tavern_0.tmx
+B*	temple.tmx
+K*	zaras_house_0.tmx
+K*	zaras_house_1.tmx
 
 ./interiors/athor:
 dressing_room_f.tmx
@@ -56,13 +56,13 @@ small_hut.tmx
 
 ./interiors/fado:
 bakery.tmx
-K*bank.tmx
+K*	bank.tmx
 battle_arena_-1.tmx
 battle_arena.tmx
-K*church.tmx
-K*hotel_0.tmx
-K*house.tmx
-K*hut.tmx
+K*	church.tmx
+K*	hotel_0.tmx
+K*	house.tmx
+K*	hut.tmx
 lovers_room_0.tmx
 lovers_room_10.tmx
 lovers_room_11.tmx
@@ -101,65 +101,65 @@ room_018.tmx
 room_019.tmx
 room_020.tmx
 shepherd_house.tmx
-K*tavern.tmx
-K*weaponshop.tmx
+K*	tavern.tmx
+K*	weaponshop.tmx
 
-B*./interiors/koboldcity:
-B*house1.tmx
-B*house2.tmx
-B*house3.tmx
-B*house4.tmx
+B*	./interiors/koboldcity:
+B*	house1.tmx
+B*	house2.tmx
+B*	house3.tmx
+B*	house4.tmx
 
-B*./interiors/nalwor:
-B*bank_1.tmx
-B*bank.tmx
-B*blacksmith.tmx
-B*flowershop.tmx
-B*house1_basement.tmx
-B*house1.tmx
-B*house2.tmx
-B*house3.tmx
-B*house4_1.tmx
-B*house4_2.tmx
-B*house4.tmx
-B*inn_1.tmx
-B*inn_basement.tmx
-B*inn.tmx
-B*jail.tmx
-B*library_1.tmx
-B*library.tmx
-B*postoffice.tmx
-B*pottery.tmx
-B*royal_2ndfloor.tmx
-B*royal.tmx
-B*secret_torture_room.tmx
-B*tower_0.tmx
-B*tower_1.tmx
-B*weaponshop.tmx
+B*	./interiors/nalwor:
+B*	bank_1.tmx
+B*	bank.tmx
+B*	blacksmith.tmx
+B*	flowershop.tmx
+B*	house1_basement.tmx
+B*	house1.tmx
+B*	house2.tmx
+B*	house3.tmx
+B*	house4_1.tmx
+B*	house4_2.tmx
+B*	house4.tmx
+B*	inn_1.tmx
+B*	inn_basement.tmx
+B*	inn.tmx
+B*	jail.tmx
+B*	library_1.tmx
+B*	library.tmx
+B*	postoffice.tmx
+B*	pottery.tmx
+B*	royal_2ndfloor.tmx
+B*	royal.tmx
+B*	secret_torture_room.tmx
+B*	tower_0.tmx
+B*	tower_1.tmx
+B*	weaponshop.tmx
 
 ./interiors/orril:
 castle_0.tmx
 D*	jynath_house.tmx
 
 ./interiors/semos:
-K*bakery.tmx
-K*bank.tmx
+K*	bakery.tmx
+K*	bank.tmx
 blacksmith.tmx
 deathmatch.tmx
-K*library.tmx
+K*	library.tmx
 storage_0.tmx
 storage_-1.tmx
-K*tavern_0.tmx
-K*tavern_1.tmx
+K*	tavern_0.tmx
+K*	tavern_1.tmx
 tavern.tmx
 temple.tmx
 townhall.tmx
 
 ./Level 0/ados:
-K*city_n2.tmx
-K*city_n.tmx
-K*city_s.tmx
-K*city.tmx
+K*	city_n2.tmx
+K*	city_n.tmx
+K*	city_s.tmx
+K*	city.tmx
 coast_se.tmx
 coast_s.tmx
 coast_s_w2.tmx
@@ -168,25 +168,25 @@ forest_w2.tmx
 mountain_n2_w2.tmx
 mountain_n_w2.tmx
 mountain_nw.tmx
-K*outside_nw.tmx
+K*	outside_nw.tmx
 outside_w.tmx
 river_s2_w2.tmx
 rock.tmx
 rock_w.tmx
 swamp.tmx
-K*wall_n2.tmx
-K*wall_n.tmx
-K*wall_s.tmx
-K*wall.tmx
+K*	wall_n2.tmx
+K*	wall_n.tmx
+K*	wall_s.tmx
+K*	wall.tmx
 
 ./Level 0/athor:
-K*island_e.tmx
-K*island.tmx
-K*island_w.tmx
+K*	island_e.tmx
+K*	island.tmx
+K*	island_w.tmx
 ship_w2.tmx
 
 ./Level 0/fado:
-D* city.tmx
+D*	city.tmx
 raid_main.tmx
 
 ./Level 0/memory:
@@ -200,7 +200,7 @@ small_many_5.tmx
 small_many_6.tmx
 
 ./Level 0/nalwor:
-K*city.tmx
+K*	city.tmx
 forest_e.tmx
 forest_ne.tmx
 forest_n.tmx
@@ -224,15 +224,15 @@ D*  river_s_w2.tmx
 D*	river_sw.tmx
 
 ./Level 0/semos:
-K*city.tmx
+K*	city.tmx
 forest_s.tmx
-D* mountain_n2_e2.tmx
-D* mountain_n2_e.tmx
+D* 	mountain_n2_e2.tmx
+D* 	mountain_n2_e.tmx
 mountain_n2.tmx
-D* mountain_n2_w2.tmx
-D* mountain_n2_w.tmx
-D* mountain_n_e2.tmx
-D* mountain_n_w2.tmx
+D* 	mountain_n2_w2.tmx
+D* 	mountain_n2_w.tmx
+D* 	mountain_n_e2.tmx
+D* 	mountain_n_w2.tmx
 mountain_n_w3.tmx
 mountain_n_w4.tmx
 mountain_w2.tmx
@@ -249,16 +249,16 @@ village_w.tmx
 cave.tmx
 
 ./Level -1/ados:
-K*caves_se.tmx
-K*caves_s.tmx
-K*caves.tmx
+K*	caves_se.tmx
+K*	caves_s.tmx
+K*	caves.tmx
 city.tmx
 outside_nw.tmx
 
 ./Level -1/athor:
-K*island_e.tmx
-K*island.tmx
-K*ship_w2.tmx
+K*	island_e.tmx
+K*	island.tmx
+K*	ship_w2.tmx
 
 ./Level -1/great_cave:
 great_cave1.tmx
@@ -285,12 +285,12 @@ D*	dungeon.tmx
 D*	mountain_w2.tmx
 
 ./Level -1/semos:
-K*catacombs_ne.tmx
-K*catacombs_nw.tmx
-K*catacombs_se.tmx
-K*catacombs_sw.tmx
-K*caves.tmx
-K*dungeon.tmx
+K*	catacombs_ne.tmx
+K*	catacombs_nw.tmx
+K*	catacombs_se.tmx
+K*	catacombs_sw.tmx
+K*	caves.tmx
+K*	dungeon.tmx
 jail.tmx
 mine_n2_e2.tmx
 mine_n2_e.tmx
@@ -301,7 +301,7 @@ mine_ne.tmx
 mine_nw.tmx
 
 ./Level 2/kikareukin:
-D* cave.tmx
+D* 	cave.tmx
 
 ./Level -2/ados:
 outside_nw.tmx
@@ -312,17 +312,17 @@ ship_w2.tmx
 ./Level -2/kotoch:
 D*	entrance.tmx
 
-B*./Level -2/nalwor:
-B*drows_tunnel_nw.tmx
+B*	./Level -2/nalwor:
+B*	drows_tunnel_nw.tmx
 
 ./Level -2/orril:
-B*dungeon.tmx
+B*	dungeon.tmx
 dwarf_mine.tmx
 lich_palace.tmx
 
 ./Level -2/semos:
-K*catacombs.tmx
-K*dungeon.tmx
+K*	catacombs.tmx
+K*	dungeon.tmx
 jail.tmx
 mine_e2.tmx
 mine_e3.tmx
@@ -345,21 +345,21 @@ D*	dungeon.tmx
 D! dwarf_blacksmith.tmx
 
 ./Level -3/semos:
-K*catacombs.tmx
-K*dungeon.tmx
+K*	catacombs.tmx
+K*	dungeon.tmx
 jail_walk.tmx
 
 ./Level 4/kikareukin:
-D* cave.tmx
+D* 	cave.tmx
 
 ./Level -4/semos:
-K*dungeon.tmx
+K*	dungeon.tmx
 
 ./Level 5/kikareukin:
 D*	cave.tmx
 
 ./Level -5/kanmararn:
-K*entrance.tmx
+K*	entrance.tmx
 
 ./Level 6/kikareukin:
 D*	islands.tmx
