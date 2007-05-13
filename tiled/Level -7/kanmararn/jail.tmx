@@ -59,7 +59,7 @@
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3NuQ0AIAwAsYzBhHz7D0AkGhZAaWzp6osA4LeejaJ3e6ows5Xtoj8AANcBgam8MQAQAAA=
+   H4sIAAAAAAAAAO3NMQ0AMAwDsMAYwkrlT2Aoqjw2AScAXJvy/8r/ln8AAJIPtLY9AwAQAAA=
   </data>
  </layer>
  <layer name="objects" width="32" height="32">
