@@ -89,6 +89,21 @@ public class Grammar {
 	}
 
 	/**
+	 * Prefixes a noun with an article.
+	 *
+	 * @param noun nount
+	 * @param definite true for "the", false for a/an
+	 * @return noun with article
+	 */
+	public static String article_noun(String noun, boolean definite) {
+		if (definite) {
+			return "the " + noun;
+		} else {
+			return a_noun(noun);
+		}
+	}
+	
+	/**
 	 * "a [noun]" or "an [noun]", depending on the first syllable
 	 *
 	 * @param noun The noun to examine
