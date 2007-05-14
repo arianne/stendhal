@@ -79,7 +79,6 @@ lovers_room_6.tmx
 lovers_room_7.tmx
 lovers_room_8.tmx
 lovers_room_9.tmx
-README_lovers_rooms
 room_001.tmx
 room_002.tmx
 room_003.tmx
@@ -137,43 +136,43 @@ B*	tower_0.tmx
 B*	tower_1.tmx
 B*	weaponshop.tmx
 
-./interiors/orril:
-castle_0.tmx
+B*	./interiors/orril:
+B*	castle_0.tmx
 D*	jynath_house.tmx
 
-./interiors/semos:
+B*	./interiors/semos:
 K*	bakery.tmx
 K*	bank.tmx
-blacksmith.tmx
-deathmatch.tmx
+B*	blacksmith.tmx
+B*	deathmatch.tmx
 K*	library.tmx
-storage_0.tmx
-storage_-1.tmx
+B*	storage_0.tmx
+B*	storage_-1.tmx
 K*	tavern_0.tmx
 K*	tavern_1.tmx
-tavern.tmx
-temple.tmx
-townhall.tmx
+B*	tavern.tmx
+B*	temple.tmx
+B*	townhall.tmx
 
-./Level 0/ados:
+B*	./Level 0/ados:
 K*	city_n2.tmx
 K*	city_n.tmx
 K*	city_s.tmx
 K*	city.tmx
-coast_se.tmx
-coast_s.tmx
-coast_s_w2.tmx
-coast_sw.tmx
-forest_w2.tmx
-mountain_n2_w2.tmx
-mountain_n_w2.tmx
-mountain_nw.tmx
+B*	coast_se.tmx
+B*	coast_s.tmx
+B*	coast_s_w2.tmx
+B*	coast_sw.tmx
+B*	forest_w2.tmx
+B*	mountain_n2_w2.tmx
+B*	mountain_n_w2.tmx
+B*	mountain_nw.tmx
 K*	outside_nw.tmx
-outside_w.tmx
-river_s2_w2.tmx
-rock.tmx
-rock_w.tmx
-swamp.tmx
+B*	outside_w.tmx
+B*	river_s2_w2.tmx
+B*	rock.tmx
+B*	rock_w.tmx
+B*	swamp.tmx
 K*	wall_n2.tmx
 K*	wall_n.tmx
 K*	wall_s.tmx
@@ -260,10 +259,10 @@ K*	island_e.tmx
 K*	island.tmx
 K*	ship_w2.tmx
 
-./Level -1/great_cave:
-great_cave1.tmx
-great_cave2.tmx
-great_cave3.tmx
+B*	./Level -1/great_cave:
+B*	great_cave1.tmx
+B*	great_cave2.tmx
+B*	great_cave3.tmx
 
 B*	./Level -1/kotoch:
 B*	entrance_n.tmx
