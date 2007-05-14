@@ -40,11 +40,11 @@ public class Deathmatch implements ZoneConfigurator {
 	private void buildDeathmatch(StendhalRPZone zone) {
 		String zoneName = zone.getID().getID();
 		Rectangle2D shape = new Rectangle2D.Double();
-		shape.setRect(6, 5, 30 -5 -5 + 1, 56 - 6 + 1);
+		shape.setRect(5, 4, 38, 52);
 		Area arena = new Area(zone, shape);
 		FadoDeathmatch deathmatch = new FadoDeathmatch(zoneName, zone, arena);
-		deathmatch.createLegs(28, 39);
-		deathmatch.createNPC("Thonatun", 33, 40);
+		deathmatch.createLegs(27, 40);
+		deathmatch.createNPC("Thonatun", 29, 16);
 		
 		
 	}
