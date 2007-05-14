@@ -824,6 +824,7 @@
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
       <item value="leather_armor_+1" quantity="[1,1]" probability="20.0"/>
+      <item value="wooden_arrow" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden_arrow" quantity="10000"/>
@@ -1305,6 +1306,7 @@
       <item value="money" quantity="[2,15]" probability="100.0"/>
       <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
       <item value="scale_armor_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden_arrow" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
       <slot name="rhand" item="wooden_bow" quantity="1"/>
@@ -1807,6 +1809,7 @@
       <item value="money" quantity="[15,30]" probability="100.0"/>
       <item value="scale_armor_+1" quantity="[1,1]" probability="7.0"/>
       <item value="scale_armor_+2" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden_arrow" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden_arrow" quantity="10000"/>
@@ -2955,6 +2958,7 @@
       <item value="money" quantity="[15,50]" probability="100.0"/>
       <item value="elvish_armor" quantity="[1,1]" probability="10.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="steel_arrow" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="steel_arrow" quantity="10000"/>
@@ -2986,6 +2990,7 @@
       <item value="money" quantity="[15,80]" probability="100.0"/>
       <item value="elvish_armor" quantity="[1,1]" probability="10.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_arrow" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="golden_arrow" quantity="10000"/>
@@ -3760,6 +3765,7 @@
     <respawn value="2140"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="golden_arrow" quantity="[1,15]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -3872,6 +3878,7 @@
     <respawn value="2140"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="power_arrow" quantity="[1,5]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
