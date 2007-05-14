@@ -12,17 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.rule.defaultruleset;
 
-import games.stendhal.common.Pair;
-import games.stendhal.server.entity.creature.impl.DropItem;
-import games.stendhal.server.entity.creature.impl.EquipItem;
-import games.stendhal.server.entity.item.*;
+import games.stendhal.server.entity.item.Item;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import marauroa.common.Log4J;
+
 import org.apache.log4j.Logger;
 
 /**

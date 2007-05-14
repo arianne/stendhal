@@ -7,7 +7,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
-import games.stendhal.common.Pair;
 import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 import games.stendhal.server.rule.defaultruleset.DefaultItem;
@@ -118,7 +117,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 		text = "";
 		if (qName.equals("item")) {
 			name = attrs.getValue("name");
-			attributes = new HashMap<String, String>();
+			attributes = new LinkedHashMap<String, String>();
 			slots = new LinkedList<String>();
 			description = "";
 			implementation = null;

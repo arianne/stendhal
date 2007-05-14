@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -154,7 +154,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			dropsItems = new LinkedList<DropItem>();
 			equipsItems = new LinkedList<EquipItem>();
 			creatureSays = new LinkedList<String>();
-			aiProfiles = new HashMap<String, String>();
+			aiProfiles = new LinkedHashMap<String, String>();
 			description = null;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");

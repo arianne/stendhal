@@ -17,7 +17,7 @@ import games.stendhal.server.entity.creature.impl.DropItem;
 import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.rule.EntityManager;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -88,7 +88,7 @@ public class DefaultCreature {
 		dropsItems=new LinkedList<DropItem>();
 		equipsItems=new LinkedList<EquipItem>();
 		creatureSays=new LinkedList<String>();
-		aiProfiles=new HashMap<String,String>();
+		aiProfiles=new LinkedHashMap<String,String>();
 	}
 
 	public void setDescription(String text) {
