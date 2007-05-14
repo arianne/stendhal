@@ -52,7 +52,7 @@ public abstract class RPEntity extends Entity {
 	protected static Statistics stats;
 
 	private String name;
-
+	
 	private int atk;
 
 	private int atk_xp;
@@ -129,6 +129,7 @@ public abstract class RPEntity extends Entity {
 			RPClass entity = new RPClass("rpentity");
 			entity.isA("entity");
 			entity.add("name", RPClass.STRING);
+			entity.add("title", RPClass.STRING);
 			entity.add("level", RPClass.SHORT);
 			entity.add("xp", RPClass.INT);
 			entity.add("mana", RPClass.INT);
@@ -274,7 +275,7 @@ public abstract class RPEntity extends Entity {
 		if (has("name")) {
 			name = get("name");
 		}
-
+		
 		if (has("atk")) {
 			atk = getInt("atk");
 		}
