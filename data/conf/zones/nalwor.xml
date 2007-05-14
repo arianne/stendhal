@@ -403,7 +403,7 @@ oh <?xml version="1.0" encoding="UTF-8"?>
 
  <!--  Level -2 -->
 
-<zone name="-2_nalwor_drows_tunnel_nw" level="-2" x="500128" y="500256" file="Level -2/nalwor/drows_tunnel_nw.tmx">
+<zone name="-2_nalwor_drows_tunnel_nw" level="-2" x="500192" y="500224" file="Level -2/nalwor/drows_tunnel_nw.tmx">
   <portal x="12" y="124" ref="upstairs">
   	<destination zone="-1_nalwor_drows_tunnel_nw" ref="downstairs"/>
    </portal>
