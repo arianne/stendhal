@@ -3395,7 +3395,7 @@
 
   <item name="plate_shield">
     <type class="shield" subclass="plate_shield" tileid="-1"/>
-    <description>You see a solid plate shield. It is in goodcondition, and might be worth a little.</description>
+    <description>You see a solid plate shield. It is in goodcondition, and might beworth a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="14"/>
     </attributes>
