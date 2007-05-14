@@ -76,13 +76,13 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="filterButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace pref="86" max="32767" attributes="0"/>
                       <Component id="clearButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="200" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="addButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="88" max="32767" attributes="0"/>
+                      <EmptySpace pref="98" max="32767" attributes="0"/>
                       <Component id="setButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -193,11 +193,11 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="itemImplementation" alignment="0" pref="349" max="32767" attributes="0"/>
-                      <Component id="itemDescription" alignment="0" pref="349" max="32767" attributes="0"/>
+                      <Component id="itemImplementation" alignment="0" pref="382" max="32767" attributes="0"/>
+                      <Component id="itemDescription" alignment="0" pref="382" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="itemName" min="-2" pref="149" max="-2" attributes="0"/>
-                          <EmptySpace pref="47" max="32767" attributes="0"/>
+                          <EmptySpace pref="117" max="32767" attributes="0"/>
                           <Component id="amountOfItems" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -313,7 +313,7 @@
                       </Group>
                       <Component id="updateGFXButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
                   <Component id="imageResource" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -444,9 +444,9 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="itemValue" min="-2" pref="75" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="itemSuggestedValue" pref="59" max="32767" attributes="0"/>
+                                  <Component id="itemSuggestedValue" pref="84" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="itemWeight" pref="140" max="32767" attributes="0"/>
+                              <Component id="itemWeight" pref="165" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="suggestedValueButton" alignment="1" min="-2" max="-2" attributes="0"/>

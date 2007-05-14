@@ -921,6 +921,7 @@ public class JItem extends javax.swing.JFrame {
             }
             actual.setEquipableSlots(canEquip);
  
+            sortItems(filteredItems);        
             setLists();
  
             refresh();
