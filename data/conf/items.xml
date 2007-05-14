@@ -484,22 +484,6 @@
     </equipable>
   </item>
 
-  <item name="black_scythe">
-    <type class="axe" subclass="scythe" tileid="-1"/>
-    <description>You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <atk value="42"/>
-      <rate value="6"/>
-    </attributes>
-    <weight value="10.0"/>
-    <value value="14700"/>
-    <equipable>
-      <slot name="bag"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
   <item name="twoside_axe">
     <type class="axe" subclass="twosided_poleaxe" tileid="-1"/>
     <description>You see a well crafted twoside axe.</description>
@@ -593,6 +577,22 @@
       <slot name="lhand"/>
       <slot name="rhand"/>
       <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="black_scythe">
+    <type class="axe" subclass="scythe" tileid="-1"/>
+    <description>You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="42"/>
+      <rate value="6"/>
+    </attributes>
+    <weight value="10.0"/>
+    <value value="14700"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
     </equipable>
   </item>
 
@@ -735,6 +735,20 @@
     <equipable>
       <slot name="feet"/>
       <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="stone_boots">
+    <type class="boots" subclass="shadow_boots" tileid="-1"/>
+    <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="10"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="700"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
     </equipable>
   </item>
 
