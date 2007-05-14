@@ -55,15 +55,15 @@ D*	holiday_apartment_8.tmx
 B*	small_hut.tmx
 
 ./interiors/fado:
-bakery.tmx
+B*	bakery.tmx
 K*	bank.tmx
-battle_arena_-1.tmx
-battle_arena.tmx
+B*	battle_arena_-1.tmx
+B*	battle_arena.tmx
 K*	church.tmx
 K*	hotel_0.tmx
 K*	house.tmx
 K*	hut.tmx
-lovers_room_0.tmx
+B*	lovers_room_0.tmx
 lovers_room_10.tmx
 lovers_room_11.tmx
 lovers_room_12.tmx
@@ -188,26 +188,26 @@ B*	./Level 0/fado:
 D*	city.tmx
 B*	raid_main.tmx
 
-./Level 0/memory:
-large_1.tmx
-large_2.tmx
-small_many_1.tmx
-small_many_2.tmx
-small_many_3.tmx
-small_many_4.tmx
-small_many_5.tmx
-small_many_6.tmx
+B*	./Level 0/memory:
+B*	large_1.tmx
+B*	large_2.tmx
+B*	small_many_1.tmx
+B*	small_many_2.tmx
+B*	small_many_3.tmx
+B*	small_many_4.tmx
+B*	small_many_5.tmx
+B*	small_many_6.tmx
 
-./Level 0/nalwor:
+B*	./Level 0/nalwor:
 K*	city.tmx
-forest_e.tmx
-forest_ne.tmx
-forest_n.tmx
-forest_nw.tmx
-forest_w.tmx
-K*river_se.tmx
-K*river_s.tmx
-K*river_sw.tmx
+B*	forest_e.tmx
+B*	forest_ne.tmx
+B*	forest_n.tmx
+B*	forest_nw.tmx
+B*	forest_w.tmx
+K*	river_se.tmx
+K*	river_s.tmx
+K*	river_sw.tmx
 
 D*	./Level 0/orril:
 D*	castle.tmx
@@ -222,27 +222,27 @@ D*	river_s.tmx
 D*  	river_s_w2.tmx
 D*	river_sw.tmx
 
-./Level 0/semos:
+B*	./Level 0/semos:
 K*	city.tmx
-forest_s.tmx
+B*	forest_s.tmx
 D* 	mountain_n2_e2.tmx
 D* 	mountain_n2_e.tmx
-mountain_n2.tmx
+B*	mountain_n2.tmx
 D* 	mountain_n2_w2.tmx
 D* 	mountain_n2_w.tmx
 D* 	mountain_n_e2.tmx
 D* 	mountain_n_w2.tmx
-mountain_n_w3.tmx
-mountain_n_w4.tmx
-mountain_w2.tmx
-plains_n_e2.tmx
-plains_ne.tmx
-plains_n.tmx
-plains_s.tmx
-plains_w.tmx
-road_e.tmx
-road_se.tmx
-village_w.tmx
+B*	mountain_n_w3.tmx
+B*	mountain_n_w4.tmx
+B*	mountain_w2.tmx
+B*	plains_n_e2.tmx
+B*	plains_ne.tmx
+B*	plains_n.tmx
+B*	plains_s.tmx
+B*	plains_w.tmx
+B*	road_e.tmx
+B*	road_se.tmx
+B*	village_w.tmx
 
 B*	./Level 1/kikareukin:
 B*	cave.tmx
@@ -290,14 +290,14 @@ K*	catacombs_se.tmx
 K*	catacombs_sw.tmx
 K*	caves.tmx
 K*	dungeon.tmx
-jail.tmx
-mine_n2_e2.tmx
-mine_n2_e.tmx
-mine_n2.tmx
-mine_n2_w2.tmx
-mine_n_e2.tmx
-mine_ne.tmx
-mine_nw.tmx
+B*	jail.tmx
+B*	mine_n2_e2.tmx
+B*	mine_n2_e.tmx
+B*	mine_n2.tmx
+B*	mine_n2_w2.tmx
+B*	mine_n_e2.tmx
+B*	mine_ne.tmx
+B*	mine_nw.tmx
 
 D*	./Level 2/kikareukin:
 D* 	cave.tmx
