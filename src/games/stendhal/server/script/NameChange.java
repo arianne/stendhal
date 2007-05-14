@@ -16,17 +16,17 @@ public class NameChange extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-		if (args[0].equals("remove")) {
-		admin.remove("title");
-		admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
-		admin.update();
-		admin.notifyWorldAboutChanges();
-	} else {
-		admin.put("title", args[0]);
-		admin.sendPrivateText("Your name has been changed to " + admin.get("alternateTitle") + ".");
-		admin.update();
-		admin.notifyWorldAboutChanges();
-	}
+		if (args.get(0).equals("remove")) {
+			admin.remove("title");
+			admin.sendPrivateText("Your original name has been restored. Please change zones for the changes to take effect.");
+			admin.update();
+			admin.notifyWorldAboutChanges();
+		} else {
+			admin.put("title", args.get(0));
+			admin.sendPrivateText("Your name has been changed to " + admin.get("alternateTitle") + ".");
+			admin.update();
+			admin.notifyWorldAboutChanges();
+		}
 	}
 
 }
