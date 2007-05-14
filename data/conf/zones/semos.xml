@@ -715,6 +715,10 @@ Holy mackerel! These chips are tasty.
     <portal x="10" y="30" ref="entrance_right">
      <destination zone="0_semos_city" ref="bank_entrance"/>
     </portal>
+<!-- for the admin house-->
+    <portal x="24" y="8" ref="house_exit_3">
+     <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+    </portal>
 
     <entity x="2" y="2">
      <implementation class-name="games.stendhal.server.entity.PersonalChest"/>
@@ -929,9 +933,19 @@ Holy mackerel! These chips are tasty.
     <portal x="1" y="11" ref="exit_1">
      <destination zone="0_semos_city" ref="house_exit_1"/>
     </portal>
+
     <portal x="17" y="5" ref="exit_2">
      <destination zone="0_ados_wall_n" ref="house_exit_2"/>
     </portal>
+
+     <portal x="1" y="4" ref="exit_3">
+     <destination zone="int_semos_bank" ref="house_exit_3"/>
+    </portal>
+
+    <portal x="17" y="11" ref="exit_4">
+     <destination zone="-1_semos_jail" ref="house_exit_4"/>
+    </portal>
+
     <entity x="2" y="6">
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
@@ -1162,7 +1176,11 @@ Mature sheep wanted: please speak to Sato
 	   </implementation>
    </entity>
    <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
-  
+  <!--for the admin house-->
+ <portal x="15" y="7" ref="house_exit_4">
+    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+
   <portal x="28" y="17" ref="entrance">
    <destination zone="0_semos_plains_w" ref="jail_entrance"/>
   </portal>

@@ -117,6 +117,12 @@
  <tileset name="window_long_below.png" firstgid="281" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/window/window_long_below.png"/>
  </tileset>
+ <tileset name="banner.png" firstgid="284" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/banner.png"/>
+ </tileset>
+ <tileset name="banner_rotated_gm.png" firstgid="293" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/banner_rotated_gm.png"/>
+ </tileset>
  <layer name="0_floor" width="19" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGNyAjQp41CzSzBhs7ho1a+ibhQ1QwywAjMif88AEAAA=
@@ -129,7 +135,7 @@
  </layer>
  <layer name="2_object" width="19" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNgYGDgY6AMgPSLA7EAEGtQaJY6EPNDzVIC4vdA/BGIs4jUnwVVD9KniGQWCHwg000gfQ1oZlEDUMOsCUhmgcLrGwVmwcKrGIhLgPgLFcwqB+IKCsz5yoAaj0oUmPUNyaxZFJgDAw0MtEsTnykwA5QmkMPrEwXmIYe9GhArU4BVoWaJATEvHowM8KkTBWIAbp7P7cAEAAA=
+   H4sIAAAAAAAAAJNgYGDgY6AMgPSLA7EAEGtQaJY6EPNDzVIC4vdA/BGIs4jUnwVVD9KnCDVLlhEi94FMN4H0NSC5i1qAGmZNQDILFF7fKDALFl7FQFwCxF+oYFY5EFdQYM5XJLNgfiQXfEMyaxYF5sBAAwPt0sRnCswApQnk8PpEgXnIYa8GxMoUYFWoWWJAzIsHIwN86kSBGAAAboEwwAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="19" height="16">
@@ -137,12 +143,20 @@
    H4sIAAAAAAAAAGNgQAUZDMQBYtRlEmkWserIBW04xP8B8X8ixGCgEYi7qOSmR0A8iUpmTaSSOSMJ4EoTpILRNDGwAACgHL4xwAQAAA==
   </data>
  </layer>
+ <layer name="4_roof_add" width="19" height="16">
+  <properties>
+   <property name="4_roof_add" value=""/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAGNgGP5AlZE65mhSyZxRMApwAXUqpTGNEZJWATMbRTjABAAA
+  </data>
+ </layer>
  <layer name="objects" width="19" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMgqEJAO3V7bXABAAA
   </data>
  </layer>
- <layer name="collision" width="19" height="16" opacity="0.52">
+ <layer name="collision" width="19" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAHvLwMDwdohgYgA1zCBkJj41hMSwmUkJoIb/Rs2i3CxscoT04jMPV1oilKaplfYHOq8TiwGa2MxnwAQAAA==
   </data>
