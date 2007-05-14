@@ -14,7 +14,7 @@ import games.stendhal.common.ConfigurableFactoryContext;
 /**
  * A factory for <code>QuestCheckingPortal</code> objects.
  */
-public class QuestCheckingPortalFactory extends DoorFactory {
+public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 
 	//
 	// QuestCheckingPortalFactory
@@ -40,16 +40,17 @@ public class QuestCheckingPortalFactory extends DoorFactory {
 		return s;
 	}
 
+
 	//
-	// ConfigurableFactory
+	// AccessCheckingPortalFactory
 	//
 
 	/**
-	 * Create a locked door.
+	 * Create a quest checking portal.
 	 *
-	 * @param	ctx		Configuration context.
+	 * @param	ctx	Configuration context.
 	 *
-	 * @return	A QuestCheckingPortal.
+	 * @return	A Portal.
 	 *
 	 * @throws	IllegalArgumentException
 	 *				If there is a problem with the
@@ -57,9 +58,9 @@ public class QuestCheckingPortalFactory extends DoorFactory {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 *
-	 * @see		QuestCheckingPortal
+	 * @see		LevelCheckingPortal
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new QuestCheckingPortal(getQuest(ctx));
 	}
 }

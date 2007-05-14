@@ -9,14 +9,12 @@ package games.stendhal.server.entity.portal;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
 
 /**
  * A factory for <code>LevelCheckingPortal</code> objects.
  */
-public class LevelCheckingPortalFactory implements ConfigurableFactory {
-
+public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	//
 	// LevelCheckingPortalFactory
 	//
@@ -42,7 +40,7 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 				throw new IllegalArgumentException("Invalid maximum-level: " + s);
 			}
 		} else {
-			level = 9999; // LevelCheckingPortal.DEFAULT_MAX;
+			level = LevelCheckingPortal.DEFAULT_MAX;
 		}
 
 		return level;
@@ -69,14 +67,15 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 				throw new IllegalArgumentException("Invalid minimum-level: " + s);
 			}
 		} else {
-			level = 0; // LevelCheckingPortal.DEFAULT_MIN;
+			level = LevelCheckingPortal.DEFAULT_MIN;
 		}
 
 		return level;
 	}
 
+
 	//
-	// ConfigurableFactory
+	// AccessCheckingPortalFactory
 	//
 
 	/**
@@ -94,7 +93,7 @@ public class LevelCheckingPortalFactory implements ConfigurableFactory {
 	 *
 	 * @see		LevelCheckingPortal
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new LevelCheckingPortal(getMinimumLevel(ctx), getMaximumLevel(ctx));
 	}
 }

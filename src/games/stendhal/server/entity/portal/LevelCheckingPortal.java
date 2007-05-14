@@ -22,6 +22,17 @@ import games.stendhal.server.entity.player.Player;
  */
 public class LevelCheckingPortal extends AccessCheckingPortal {
 	/**
+	 * The default maximum level.
+	 */
+	public static final int	DEFAULT_MAX	= 9999;
+
+	/**
+	 * The default minimum level.
+	 */
+	public static final int	DEFAULT_MIN	= 0;
+
+
+	/**
 	 * The minimum level allowed to pass.
 	 */
 	private int minLevel;

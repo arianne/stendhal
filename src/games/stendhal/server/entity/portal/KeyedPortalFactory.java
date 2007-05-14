@@ -9,14 +9,12 @@ package games.stendhal.server.entity.portal;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
 
 /**
  * A factory for <code>KeyedPortal</code> objects.
  */
-public class KeyedPortalFactory implements ConfigurableFactory {
-
+public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 	//
 	// KeyedPortalFactory
 	//
@@ -65,40 +63,22 @@ public class KeyedPortalFactory implements ConfigurableFactory {
 		}
 	}
 
-	/**
-	 * Extract the rejected message from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The rejected message, or <code>null</code> if none.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the class attribute is missing.
-	 */
-	protected String getRejectedMessage(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		return ctx.getAttribute("rejected");
-	}
 
 	//
-	// ConfigurableFactory
+	// AccessCheckingPortalFactory
 	//
 
 	/**
 	 * Create a keyed portal.
 	 *
-	 * @param	ctx		Configuration context.
+	 * @param	ctx		The configuration context.
 	 *
-	 * @return	A KeyedPortal.
+	 * @return	The portal.
 	 *
 	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value sutable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		KeyedPortal
+	 *				If the class attribute is missing.
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		return new KeyedPortal(getKey(ctx), getQuantity(ctx), getRejectedMessage(ctx));
+	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return new KeyedPortal(getKey(ctx), getQuantity(ctx));
 	}
 }
