@@ -83,9 +83,9 @@ public class User extends Player {
 		RPAction rpaction;
 		switch (at) {
 		    
-			case JOIN_GUILD:
+			/*case JOIN_GUILD:
 			    StendhalUI.get().ManageGuilds();
-			    break;
+			    break;*/
 			case SET_OUTFIT:
 				StendhalUI.get().chooseOutfit();
 				break;
