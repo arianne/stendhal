@@ -85,9 +85,9 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 				// player is outside the fence
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.Not(
 				        new StandardInteraction.PlayerInAreaCondition(arena)), ConversationStates.INFORMATION_1,
-				        "Welcome to the Fado Battle Arena! Please talk to #Thontun if you want to join", null);
+				        "Welcome to the Fado Battle Arena! Please talk to #Thonatun if you want to join", null);
 				add(ConversationStates.INFORMATION_1, "Thontun", null, ConversationStates.INFORMATION_1,
-				        "Thontun is the official Battle Arena. He should be wandering around in this building.", null);
+				        "Thonatun is the official Battle Arena. He should be wandering around in this building.", null);
 
 				// player is inside
 				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
@@ -137,7 +137,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		zone.add(npc);
 		
 		// We create another NPC
-		SpeakerNPC npc1 = new SpeakerNPC("Needsaname") {
+		SpeakerNPC npc1 = new SpeakerNPC("Marcelo") {
 
 			@Override
 			protected void createPath() {
@@ -156,7 +156,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 				add(ConversationStates.INFORMATION_1, "Thonatun", null, ConversationStates.INFORMATION_1,
 				        "Thonaton is the official Battle Arena manager. He usually stays in the arena to help the fighters.", null);
 				addJob("I'm the battle arena assistant. Tell me if you need #help with anything. Talk to #Brutus or #Thonaton if you need anything else.");
-				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
+				addHelp("I can't help you too much, but you can talk to Brutus or Thonatun if you need help.");
 				addGoodbye("I hope you enjoy the Battle Arena!");
 			
 			}
