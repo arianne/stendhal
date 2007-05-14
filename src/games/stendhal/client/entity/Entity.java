@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
+
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.sound.SoundSystem;
 import java.awt.Rectangle;
@@ -64,11 +65,6 @@ public final byte[] ID_Token = new byte[0];
 	 * The entity name.
 	 */
 	protected String name;
-	
-	/**
-	 * An alternate name for the entity
-	 */
-	protected String alternateTitle;
 
 	/**
 	 * The entity sub-class.
@@ -106,7 +102,6 @@ public final byte[] ID_Token = new byte[0];
 	Entity() {
 		clazz = null;
 		name = null;
-		alternateTitle = null;
 		subclazz = null;
 		title = null;
 		type = null;
@@ -218,11 +213,6 @@ public final byte[] ID_Token = new byte[0];
 	public String getName() {
 		return name;
 	}
-	
-	public String getAlternateTitle() {
-		return alternateTitle;
-	}
-
 
 	/**
 	 * Get the entity sub-class.
@@ -243,19 +233,16 @@ public final byte[] ID_Token = new byte[0];
 	 * @return	The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
-		if (alternateTitle != null) {
-			return alternateTitle;
+		if(title != null) {
+			return title;
+		} else if(name != null) {
+			return name.replace('_', ' ');
+		} else if(type != null) {
+			return type.replace('_', ' ');
 		} else {
-			if(title != null) {
-				return title;
-			} else if(name != null) {
-				return name.replace('_', ' ');
-			} else if(type != null) {
-				return type.replace('_', ' ');
-			} else {
-				return null;
-			}
+			return null;
 		}
+		
 	}
 
 
@@ -550,9 +537,7 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Name
 		 */
-		if (object.has("alternateTitle")) {
-			name = object.get("alternateTitle");
-		} else if (object.has("name")) {
+		if (object.has("name")) {
 			name = object.get("name");
 		} else {
 			name = null;
@@ -693,11 +678,7 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Name
 		 */
-		if (changes.has("alternateTitle")) {
-			name = changes.get("alternateTitle");
-			alternateTitle = changes.get("alternateTitle");
-			changed();
-		} else if (changes.has("name")) {
+		if (changes.has("name")) {
 			name = changes.get("name");
 			changed();
 		}
@@ -772,10 +753,7 @@ public final byte[] ID_Token = new byte[0];
 		/*
 		 * Name
 		 */
-		if (changes.has("alternateTitle")) {
-			alternateTitle = null;
-			changed();
-		} else if (changes.has("name")) {
+		 if (changes.has("name")) {
 			name = null;
 			changed();
 		}

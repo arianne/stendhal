@@ -144,6 +144,8 @@ class PlayerRPClass {
 
 		// Client side features
 		player.add("features", RPClass.LONG_STRING, RPClass.PRIVATE);
+		
+		player.add("title", RPClass.STRING);
 	}
 
 	/**
