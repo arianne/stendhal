@@ -1615,10 +1615,10 @@
     <type class="drink" subclass="mega_potion" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
-      <amount value="600"/>
+      <amount value="800"/>
       <frequency value="1"/>
       <quantity value="1"/>
-      <regen value="600"/>
+      <regen value="800"/>
     </attributes>
     <weight value="1.0"/>
     <value value="7200"/>
@@ -1792,7 +1792,7 @@
   </item>
 
   <item name="courgette">
-    <type class="food" subclass="zucchini" tileid="-1"/>
+    <type class="food" subclass="courgette" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="40"/>
