@@ -3724,7 +3724,7 @@
       <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_boots" quantity="[1,1]" probability="1.0"/>
       <item value="vampire_cloak" quantity="[1,1]" probability="1.0"/>
-      <item value="chaos_war_hammer" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_hammer" quantity="[1,1]" probability="0.5"/>
       <item value="vulcano_hammer" quantity="[1,1]" probability="0.01"/>
       <item value="greater_potion" quantity="[1,2]" probability="3.0"/>
     </drops>
@@ -4996,7 +4996,7 @@
       <item value="mega_potion" quantity="[1,2]" probability="30.0"/>
       <item value="mega_potion" quantity="[1,1]" probability="2.0"/>
       <item value="chaos_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chaos_boors" quantity="[1,1]" probability="5.0"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="5.0"/>
       <item value="black_boots" quantity="[1,1]" probability="0.2"/>
       <item value="black_cloak" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_helmet" quantity="[1,1]" probability="1.0"/>
