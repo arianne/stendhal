@@ -155,7 +155,7 @@ public class User extends Player {
 	    super.onHealed(amount);
 	   
 			StendhalUI.get().addEventLine(
-			        getName() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
+			        getTitle() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
 		
     }
 
