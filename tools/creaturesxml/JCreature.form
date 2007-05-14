@@ -44,7 +44,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Stendhal Creature Editor 2.00"/>
+    <Property name="title" type="java.lang.String" value="Stendhal Creature Editor 2.30"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
@@ -81,7 +81,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="filteredField" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="filter" min="-2" pref="84" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                       <EmptySpace pref="127" max="32767" attributes="0"/>
                       <Component id="setButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="229" max="32767" attributes="1"/>
+                  <Component id="jScrollPane1" alignment="0" pref="239" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -131,7 +131,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jScrollPane1" pref="563" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="576" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -193,6 +193,7 @@
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="creatureTileid" max="32767" attributes="1"/>
@@ -200,11 +201,12 @@
                               <Component id="creatureSize" alignment="0" max="32767" attributes="1"/>
                               <Component id="creatureSubclass" alignment="0" max="32767" attributes="1"/>
                               <Component id="creatureClass" alignment="0" pref="256" max="32767" attributes="1"/>
+                              <Component id="creatureValue" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="updateGFXButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <EmptySpace pref="86" max="32767" attributes="0"/>
                   <Component id="creatureImage" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
@@ -240,7 +242,12 @@
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="creatureTileid" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="creatureValue" alignment="3" pref="28" max="32767" attributes="0"/>
+                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                           <Component id="updateGFXButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="creatureImage" alignment="0" max="32767" attributes="0"/>
@@ -310,7 +317,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="193" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="198" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -349,6 +356,17 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateGFXButtonActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JTextField" name="creatureValue">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="jTextField1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel18">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Value"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel3">
@@ -368,7 +386,7 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Component id="creatureName" min="-2" pref="198" max="-2" attributes="0"/>
-                  <EmptySpace pref="179" max="32767" attributes="0"/>
+                  <EmptySpace pref="187" max="32767" attributes="0"/>
                   <Component id="amountOfCreatures" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
@@ -476,9 +494,9 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                                          <EmptySpace pref="17" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="creatureLevel" pref="224" max="32767" attributes="1"/>
+                                      <Component id="creatureLevel" pref="245" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
@@ -527,7 +545,7 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="creatureLevel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -749,7 +767,7 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="creatureDrops" alignment="0" pref="186" max="32767" attributes="0"/>
+                  <Component id="creatureDrops" alignment="1" pref="172" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -842,10 +860,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="317" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="365" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="227" max="32767" attributes="0"/>
+                          <EmptySpace pref="261" max="32767" attributes="0"/>
                           <Component id="pushIntoArea" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

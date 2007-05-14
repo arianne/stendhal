@@ -4,8 +4,6 @@
  * Created on 6 de mayo de 2007, 22:52
  */
 
-package monsterxmlcreator;
-
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.server.config.CreaturesXMLLoader;
@@ -25,7 +23,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -228,12 +226,18 @@ public class JCreature extends javax.swing.JFrame {
         SuggestAttributeButtonActionPerformed(null);        
         
         StringBuffer os = new StringBuffer("");
+
+        double value=0;
         for(DropItem item: actual.getDropItems()) {
             os.append(item.name+"; ["+item.min+","+item.max+"]; "+item.probability+"\n");
+            value+=(getItemValue(item.name)*(item.probability)*(item.max+item.min)/2.0);
         }
+        
+        creatureValue.setText(Integer.toString((int)value));
         
         if(actual.getCreatureName() != null)
             creatureDrops.setText(os.toString());
+            
         
         os = new StringBuffer("");
         for(EquipItem item: actual.getEquipedItems()) {
@@ -286,6 +290,8 @@ public class JCreature extends javax.swing.JFrame {
         creatureTileid = new javax.swing.JTextField();
         creatureClass = new javax.swing.JComboBox();
         updateGFXButton = new javax.swing.JButton();
+        creatureValue = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         creatureName = new javax.swing.JTextField();
@@ -344,7 +350,7 @@ public class JCreature extends javax.swing.JFrame {
         creatureRespawn1.setText("jTextField8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Stendhal Creature Editor 2.00");
+        setTitle("Stendhal Creature Editor 2.30");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -392,7 +398,7 @@ public class JCreature extends javax.swing.JFrame {
         );
         creatureImageLayout.setVerticalGroup(
             creatureImageLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 193, Short.MAX_VALUE)
+            .add(0, 198, Short.MAX_VALUE)
         );
 
         jLabel6.setText("Tiled ID");
@@ -410,6 +416,11 @@ public class JCreature extends javax.swing.JFrame {
             }
         });
 
+        creatureValue.setEditable(false);
+        creatureValue.setText("jTextField1");
+
+        jLabel18.setText("Value");
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -423,15 +434,17 @@ public class JCreature extends javax.swing.JFrame {
                             .add(jLabel5)
                             .add(jLabel4)
                             .add(jLabel6)
-                            .add(jLabel3))
+                            .add(jLabel3)
+                            .add(jLabel18))
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(creatureTileid)
                             .add(creatureGFXLocation)
                             .add(creatureSize)
                             .add(creatureSubclass)
-                            .add(creatureClass, 0, 256, Short.MAX_VALUE)))
+                            .add(creatureClass, 0, 256, Short.MAX_VALUE)
+                            .add(creatureValue, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 148, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                     .add(updateGFXButton))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 86, Short.MAX_VALUE)
                 .add(creatureImage, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(49, 49, 49))
         );
@@ -460,7 +473,11 @@ public class JCreature extends javax.swing.JFrame {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel6)
                             .add(creatureTileid, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 30, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(creatureValue, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .add(jLabel18))
+                        .add(19, 19, 19)
                         .add(updateGFXButton))
                     .add(creatureImage, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -485,7 +502,7 @@ public class JCreature extends javax.swing.JFrame {
                 .add(jLabel1)
                 .add(52, 52, 52)
                 .add(creatureName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 198, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 179, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 187, Short.MAX_VALUE)
                 .add(amountOfCreatures)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel17)
@@ -611,8 +628,8 @@ public class JCreature extends javax.swing.JFrame {
                                             .add(org.jdesktop.layout.GroupLayout.TRAILING, suggestedRespawn))
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jLabel16)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 12, Short.MAX_VALUE))
-                                    .add(creatureLevel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)))
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 17, Short.MAX_VALUE))
+                                    .add(creatureLevel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)))
                             .add(jPanel4Layout.createSequentialGroup()
                                 .add(justEditCreature)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 90, Short.MAX_VALUE)
@@ -648,7 +665,7 @@ public class JCreature extends javax.swing.JFrame {
                     .add(justEditCreature))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel8)
                     .add(creatureLevel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -694,7 +711,7 @@ public class JCreature extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(creatureDrops, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, creatureDrops, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
         );
         data.addTab("Drops", jPanel5);
 
@@ -754,10 +771,10 @@ public class JCreature extends javax.swing.JFrame {
             .add(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .add(jPanel8Layout.createSequentialGroup()
                         .add(jLabel11)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 227, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 261, Short.MAX_VALUE)
                         .add(pushIntoArea)
                         .addContainerGap())))
         );
@@ -851,7 +868,7 @@ public class JCreature extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
                         .add(filteredField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 9, Short.MAX_VALUE)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(filter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 84, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -862,7 +879,7 @@ public class JCreature extends javax.swing.JFrame {
                         .add(addButton)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 127, Short.MAX_VALUE)
                         .add(setButton))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -889,7 +906,7 @@ public class JCreature extends javax.swing.JFrame {
                             .add(jPanel8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                             .add(data, 0, 0, Short.MAX_VALUE)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(addButton)
@@ -1095,7 +1112,7 @@ public class JCreature extends javax.swing.JFrame {
         }
         actual.setEquipedItems(equipList);
         
-        Map<String,String> profiles=new HashMap<String,String>();
+        Map<String,String> profiles=new LinkedHashMap<String,String>();
         List<String> noises=new LinkedList<String>();
         
         reader=new BufferedReader(new StringReader(creatureAI.getText()));
@@ -1125,6 +1142,8 @@ public class JCreature extends javax.swing.JFrame {
         sortCreatures(filteredCreatures);
         setLists();
         refresh();
+        
+        creatureList.setSelectedIndex(pos);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -1155,6 +1174,16 @@ public class JCreature extends javax.swing.JFrame {
             e.printStackTrace();
         }       
     }
+
+    private double getItemValue(String name) {
+        for(DefaultItem it: items) {
+            if(it.getItemName().equals(name)) {
+                return it.getValue();
+            }
+        }
+        
+        return -1;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ClearButton;
@@ -1181,6 +1210,7 @@ public class JCreature extends javax.swing.JFrame {
     private javax.swing.JTextField creatureSpeed;
     private javax.swing.JTextField creatureSubclass;
     private javax.swing.JTextField creatureTileid;
+    private javax.swing.JTextField creatureValue;
     private javax.swing.JTextField creatureXP;
     private javax.swing.JTabbedPane data;
     private javax.swing.JTextField filter;
@@ -1195,6 +1225,7 @@ public class JCreature extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
