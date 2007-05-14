@@ -20,10 +20,10 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
-      <profile name="coward"/>
       <profile name="non_offensive"/>
       <profile name="animal"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -49,9 +49,9 @@
       <says>
         <noise value="click-clack-click"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -75,10 +75,10 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="coward"/>
-      <profile name="animal"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -101,9 +101,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -126,10 +126,10 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="coward"/>
-      <profile name="animal"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -157,9 +157,9 @@
         <noise value="Oou! Oou!"/>
         <noise value="*flap* *flap*"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -188,9 +188,9 @@
       <says>
         <noise value="Aooooooouuhhh!!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -217,9 +217,9 @@
       <says>
         <noise value="Oink!!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -245,9 +245,9 @@
       <says>
         <noise value="Aooooooouuhhh!!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -276,10 +276,10 @@
       <says>
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -308,10 +308,10 @@
       <says>
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -338,9 +338,9 @@
       <says>
         <noise value="Grrr Grrr!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -368,9 +368,9 @@
         <noise value="SsSssSsssssss!"/>
       </says>
       <profile name="poisonous" params="5,poison"/>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -397,9 +397,9 @@
       <says>
         <noise value="Roar!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -426,9 +426,9 @@
       <says>
         <noise value="Grooooaaaarrrr!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -457,9 +457,9 @@
       <says>
         <noise value="Umm! Tasty meat."/>
       </says>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -488,9 +488,9 @@
         <noise value="Grrrr! Wooof!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -517,10 +517,10 @@
       <says>
         <noise value="WOOOOOOUUUUUUUUFFFF!!!!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="coward"/>
       <profile name="non_offensive"/>
       <profile name="animal"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -544,11 +544,11 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -575,9 +575,9 @@
       <says>
         <noise value="Miiiiaaauuu!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -606,9 +606,9 @@
         <noise value="Thou shall not pass!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -632,9 +632,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -659,9 +659,9 @@
       <says>
         <noise value="Defend yourself! I can see you!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -689,11 +689,11 @@
         <noise value="SHREEAK!!"/>
         <noise value="SHAAAAAAA!!"/>
       </says>
-      <profile name="brave"/>
       <profile name="poisonous" params="5,deadly_poison"/>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -721,9 +721,9 @@
       <says>
         <noise value="Breakfast time!"/>
       </says>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -752,9 +752,9 @@
         <noise value="Woorf wer warf!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -778,8 +778,8 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -802,9 +802,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -834,10 +834,10 @@
         <noise value="Wssss! Warf wit!"/>
       </says>
       <profile name="brave"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -864,9 +864,9 @@
       <says>
         <noise value="ROOOOAAAAR!"/>
       </says>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -890,9 +890,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -915,10 +915,10 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -944,9 +944,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -968,9 +968,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -997,9 +997,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1026,9 +1026,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1053,10 +1053,10 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
-      <profile name="coward" params="fire"/>
       <profile name="human"/>
+      <profile name="coward" params="fire"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1081,9 +1081,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1109,9 +1109,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1139,9 +1139,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1166,9 +1166,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1195,9 +1195,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1225,9 +1225,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1254,9 +1254,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1282,9 +1282,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1311,10 +1311,10 @@
       <slot name="lhand" item="wooden_arrow" quantity="10000"/>
     </equips>
     <ai>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1339,10 +1339,10 @@
       <says>
         <noise value="Ooooouuuuuh!"/>
       </says>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1366,11 +1366,11 @@
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -1397,9 +1397,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1426,9 +1426,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1459,10 +1459,10 @@
         <noise value="You, humans, never leave us alone!"/>
       </says>
       <profile name="brave"/>
-      <profile name="heal" params="5,150"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1493,10 +1493,10 @@
         <noise value="You humans never leave us alone!"/>
       </says>
       <profile name="brave"/>
-      <profile name="heal" params="5,150"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1519,9 +1519,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1549,11 +1549,11 @@
       <says>
         <noise value="Rrrrrrrrr"/>
       </says>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -1576,9 +1576,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1605,11 +1605,11 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="15,poison"/>
-      <profile name="patrolling"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1639,9 +1639,9 @@
         <noise value="brrraaaaaaaaaains"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1667,9 +1667,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1696,9 +1696,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1726,9 +1726,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1755,9 +1755,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1784,9 +1784,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1814,10 +1814,10 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1843,9 +1843,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1871,9 +1871,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1897,11 +1897,11 @@
     <equips>
     </equips>
     <ai>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1928,11 +1928,11 @@
     <equips>
     </equips>
     <ai>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1954,8 +1954,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -1982,9 +1982,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2009,9 +2009,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2040,9 +2040,9 @@
         <noise value="Thou shall not kill!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2065,9 +2065,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2090,11 +2090,11 @@
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -2119,9 +2119,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2150,9 +2150,9 @@
         <noise value="Zag-Zag!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2183,12 +2183,12 @@
         <noise value="Your death has come!"/>
         <noise value="Feel my wrath!"/>
       </says>
-      <profile name="brave"/>
       <profile name="poisonous" params="40,greater_poison"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2214,14 +2214,15 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="mage_elf">
     <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
+    <description></description>
     <attributes>
       <atk value="79"/>
       <def value="24"/>
@@ -2234,21 +2235,21 @@
     <respawn value="1000"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="10.0"/>
       <item value="elf_cloak" quantity="[1,1]" probability="4.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="glow_monster">
     <type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
+    <description></description>
     <attributes>
       <atk value="75"/>
       <def value="26"/>
@@ -2261,16 +2262,16 @@
     <respawn value="1000"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
-      <item value="morning_star" quantity="[1,1]" probability="5.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="3.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="10.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2293,12 +2294,12 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="40,greater_poison"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2326,15 +2327,16 @@
         <noise value="Yield to the Power!"/>
       </says>
       <profile name="brave"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="rotten_zombie">
     <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
+    <description></description>
     <attributes>
       <atk value="83"/>
       <def value="23"/>
@@ -2347,9 +2349,8 @@
     <respawn value="1020"/>
     <drops>
       <item value="money" quantity="[3,40]" probability="100.0"/>
-      <item value="leather_cuirass_+1" quantity="[1,1]" probability="50.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
@@ -2358,14 +2359,15 @@
         <noise value="bluuergghhhoooorrghhhhh"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
+    <description></description>
     <attributes>
       <atk value="84"/>
       <def value="23"/>
@@ -2378,8 +2380,7 @@
     <respawn value="1050"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="scythe" quantity="[1,1]" probability="10.0"/>
-      <item value="elf_cloak_+2" quantity="[1,1]" probability="4.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -2388,15 +2389,16 @@
         <noise value="Judgement is coming!"/>
         <noise value="Uuuuhhhhh!, i'm gonna get you!"/>
       </says>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="commander_elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
+    <description></description>
     <attributes>
       <atk value="86"/>
       <def value="28"/>
@@ -2409,25 +2411,23 @@
     <respawn value="1050"/>
     <drops>
       <item value="money" quantity="[5,35]" probability="100.0"/>
-      <item value="lion_shield_+1" quantity="[1,1]" probability="20.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="elf_cloak" quantity="[1,1]" probability="10.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="cannibal">
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
+    <description></description>
     <attributes>
       <atk value="88"/>
       <def value="27"/>
@@ -2440,10 +2440,6 @@
     <respawn value="1050"/>
     <drops>
       <item value="money" quantity="[5,39]" probability="100.0"/>
-      <item value="wooden_spear" quantity="[1,5]" probability="60.0"/>
-      <item value="leather_legs" quantity="[1,1]" probability="66.0"/>
-      <item value="knife" quantity="[1,1]" probability="36.0"/>
-      <item value="potion" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -2452,9 +2448,9 @@
         <noise value="Ou-Garrrr!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2476,16 +2472,17 @@
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
   <creature name="archmage_elf">
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
+    <description></description>
     <attributes>
       <atk value="95"/>
       <def value="25"/>
@@ -2498,22 +2495,20 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[4,45]" probability="100.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="10.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="3.0"/>
-      <item value="elf_cloak_+2" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="leader_dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
+    <description></description>
     <attributes>
       <atk value="95"/>
       <def value="29"/>
@@ -2526,26 +2521,22 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="8.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="8.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="15.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_mutant">
     <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
+    <description></description>
     <attributes>
       <atk value="100"/>
       <def value="27"/>
@@ -2558,22 +2549,22 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[8,35]" probability="100.0"/>
-      <item value="katana" quantity="[1,1]" probability="50.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="30.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="15.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="elder_cannibal">
     <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
+    <description></description>
     <attributes>
       <atk value="97"/>
       <def value="30"/>
@@ -2586,11 +2577,7 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[7,68]" probability="100.0"/>
-      <item value="knife" quantity="[1,1]" probability="8.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="8.0"/>
-      <item value="leather_legs" quantity="[1,1]" probability="10.0"/>
       <item value="potion" quantity="[1,3]" probability="20.0"/>
-      <item value="wooden_spear" quantity="[3,9]" probability="45.0"/>
     </drops>
     <equips>
     </equips>
@@ -2599,9 +2586,9 @@
         <noise value="Yummie!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2620,24 +2607,23 @@
     <respawn value="1160"/>
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="15.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="darkmonk">
     <type class="human" subclass="darkmonk" tileid="human.png:2"/>
+    <description></description>
     <attributes>
       <atk value="140"/>
       <def value="20"/>
@@ -2652,7 +2638,6 @@
       <item value="money" quantity="[5,20]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,1]" probability="10.0"/>
       <item value="antidote" quantity="[1,3]" probability="10.0"/>
-      <item value="staff" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -2662,10 +2647,10 @@
         <noise value="Hail to the greater Power!"/>
       </says>
       <profile name="brave"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2689,11 +2674,11 @@
     <equips>
     </equips>
     <ai>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.8"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2711,15 +2696,16 @@
     <experience value="1040"/>
     <respawn value="1220"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="money" quantity="[10,20]" probability="100.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2745,9 +2731,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2766,8 +2752,6 @@
     <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
-      <item value="demon_sword" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -2776,9 +2760,9 @@
         <noise value="Thou shall not rob!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2796,20 +2780,23 @@
     <experience value="1290"/>
     <respawn value="1300"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="elf_sacerdotist">
     <type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
+    <description></description>
     <attributes>
       <atk value="121"/>
       <def value="25"/>
@@ -2822,22 +2809,20 @@
     <respawn value="1320"/>
     <drops>
       <item value="money" quantity="[4,55]" probability="100.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="elf_cloak_+2" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="minotaur">
     <type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
+    <description></description>
     <attributes>
       <atk value="160"/>
       <def value="25"/>
@@ -2850,8 +2835,9 @@
     <respawn value="1320"/>
     <drops>
       <item value="money" quantity="[3,46]" probability="100.0"/>
-      <item value="twoside_axe_+3" quantity="[1,1]" probability="4.0"/>
       <item value="empty_scroll" quantity="[1,1]" probability="1.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.6"/>
     </drops>
     <equips>
     </equips>
@@ -2860,9 +2846,9 @@
         <noise value="You will never find the way out!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2881,21 +2867,15 @@
     <respawn value="1350"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="5.0"/>
-      <item value="bardiche" quantity="[1,1]" probability="1.0"/>
-      <item value="studded_legs" quantity="[1,1]" probability="8.0"/>
-      <item value="studded_helmet" quantity="[1,1]" probability="9.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2923,10 +2903,10 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -2946,18 +2926,21 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_elf_archer">
     <type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
+    <description></description>
     <attributes>
       <atk value="110"/>
       <def value="20"/>
@@ -2970,10 +2953,8 @@
     <respawn value="1430"/>
     <drops>
       <item value="money" quantity="[15,50]" probability="100.0"/>
-      <item value="steel_arrow" quantity="[10,20]" probability="40.0"/>
-      <item value="crossbow" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="steel_arrow" quantity="10000"/>
@@ -2981,15 +2962,16 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_elf_elite_archer">
     <type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
+    <description></description>
     <attributes>
       <atk value="120"/>
       <def value="20"/>
@@ -3002,10 +2984,8 @@
     <respawn value="1430"/>
     <drops>
       <item value="money" quantity="[15,80]" probability="100.0"/>
-      <item value="golden_arrow" quantity="[10,20]" probability="40.0"/>
-      <item value="crossbow" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
       <slot name="lhand" item="golden_arrow" quantity="10000"/>
@@ -3013,10 +2993,10 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3041,14 +3021,15 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="fire_elemental">
     <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
+    <description></description>
     <attributes>
       <atk value="110"/>
       <def value="21"/>
@@ -3062,15 +3043,14 @@
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater_antidote" quantity="[1,3]" probability="50.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3096,9 +3076,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3118,18 +3098,17 @@
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,1]" probability="50.0"/>
-      <item value="green_dragon_cloak" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="emerald" quantity="[1,4]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -3148,22 +3127,21 @@
     <respawn value="1490"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="30.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="3.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="10.0"/>
-      <item value="claymore" quantity="[1,1]" probability="1.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="death_knight">
     <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
+    <description></description>
     <attributes>
       <atk value="150"/>
       <def value="27"/>
@@ -3176,25 +3154,23 @@
     <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[4,60]" probability="100.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="scale_armor_+2" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="skull_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="coward"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="coward"/>
-      <profile name="human"/>
     </ai>
   </creature>
 
   <creature name="devil_queen">
     <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
+    <description></description>
     <attributes>
       <atk value="140"/>
       <def value="28"/>
@@ -3207,14 +3183,13 @@
     <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="great_sword" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="heal" params="5,50"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
     </ai>
   </creature>
 
@@ -3238,9 +3213,9 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3259,25 +3234,22 @@
     <respawn value="1580"/>
     <drops>
       <item value="money" quantity="[20,52]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="hammer" quantity="[1,1]" probability="30.0"/>
-      <item value="hammer_+3" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="30.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_elf">
     <type class="dark_elf" subclass="dark_elf" tileid="dark_elf.png:6"/>
+    <description></description>
     <attributes>
       <atk value="140"/>
       <def value="30"/>
@@ -3290,17 +3262,16 @@
     <respawn value="1610"/>
     <drops>
       <item value="money" quantity="[5,50]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3320,22 +3291,23 @@
     <drops>
       <item value="money" quantity="[10,120]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="7.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.3"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
-      <profile name="lifesteal" params="0.3"/>
     </ai>
   </creature>
 
   <creature name="bone_dragon">
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
+    <description></description>
     <attributes>
       <atk value="145"/>
       <def value="27"/>
@@ -3349,18 +3321,15 @@
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
-      <item value="bone_dragon_cloak" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
-      <profile name="patrolling"/>
-      <profile name="offensive"/>
       <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3379,19 +3348,16 @@
     <respawn value="1680"/>
     <drops>
       <item value="money" quantity="[30,150]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="dagger" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
-      <item value="soul_dagger" quantity="[1,1]" probability="0.01"/>
-      <item value="assassin_dagger" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3415,13 +3381,13 @@
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
-  <creature name="mountain_rdian">
+  <creature name="mountain_dwarf_guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
     <description></description>
     <attributes>
@@ -3436,20 +3402,15 @@
     <respawn value="1760"/>
     <drops>
       <item value="money" quantity="[9,31]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="axe" quantity="[1,1]" probability="30.0"/>
-      <item value="twoside_axe" quantity="[1,1]" probability="3.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3473,14 +3434,15 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_elf_captain">
     <type class="dark_elf" subclass="dark_elf_captain" tileid="dark_elf.png:1"/>
+    <description></description>
     <attributes>
       <atk value="190"/>
       <def value="35"/>
@@ -3493,22 +3455,22 @@
     <respawn value="1800"/>
     <drops>
       <item value="money" quantity="[5,90]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.3"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="6.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="lich">
     <type class="undead" subclass="lich" tileid="undead.png:7"/>
+    <description></description>
     <attributes>
       <atk value="160"/>
       <def value="30"/>
@@ -3522,21 +3484,15 @@
     <drops>
       <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="2.0"/>
-      <item value="scale_armor_+2" quantity="[1,1]" probability="8.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="3.0"/>
-      <item value="skull_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="scythe" quantity="[1,1]" probability="5.0"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3555,24 +3511,22 @@
     <respawn value="1830"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="7.0"/>
-      <item value="studded_legs" quantity="[1,1]" probability="17.0"/>
-      <item value="studded_helmet" quantity="[1,1]" probability="17.0"/>
-      <item value="cloak" quantity="[1,1]" probability="20.0"/>
-      <item value="potion" quantity="[1,1]" probability="30.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.3"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="minotaur_king">
     <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
+    <description></description>
     <attributes>
       <atk value="160"/>
       <def value="32"/>
@@ -3585,11 +3539,8 @@
     <respawn value="1870"/>
     <drops>
       <item value="money" quantity="[15,89]" probability="100.0"/>
-      <item value="steel_boots" quantity="[1,1]" probability="18.0"/>
-      <item value="viking_helmet" quantity="[1,1]" probability="46.0"/>
-      <item value="greater_potion" quantity="[1,2]" probability="90.0"/>
-      <item value="empty_scroll" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="6.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3598,9 +3549,9 @@
         <noise value="I am the king of this area!"/>
       </says>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3619,21 +3570,15 @@
     <respawn value="1870"/>
     <drops>
       <item value="money" quantity="[9,35]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="unicorn_shield" quantity="[1,1]" probability="3.0"/>
-      <item value="twoside_axe" quantity="[1,1]" probability="15.0"/>
-      <item value="halberd" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3652,14 +3597,14 @@
     <respawn value="1960"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3678,26 +3623,20 @@
     <respawn value="1960"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_elf_knight">
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
+    <description></description>
     <attributes>
       <atk value="180"/>
       <def value="32"/>
@@ -3710,23 +3649,22 @@
     <respawn value="2000"/>
     <drops>
       <item value="money" quantity="[50,80]" probability="100.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="great_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="vampire_lord">
     <type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
+    <description></description>
     <attributes>
       <atk value="170"/>
       <def value="27"/>
@@ -3740,18 +3678,16 @@
     <drops>
       <item value="money" quantity="[15,100]" probability="100.0"/>
       <item value="mega_potion" quantity="[1,2]" probability="55.0"/>
-      <item value="vampire_cloak" quantity="[1,1]" probability="10.0"/>
-      <item value="vampire_sword" quantity="[1,1]" probability="1.0"/>
       <item value="skull_ring" quantity="[1,1]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="1"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3775,9 +3711,9 @@
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3796,21 +3732,16 @@
     <respawn value="2090"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3829,26 +3760,20 @@
     <respawn value="2140"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="dark_elf_general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
+    <description></description>
     <attributes>
       <atk value="200"/>
       <def value="35"/>
@@ -3861,23 +3786,23 @@
     <respawn value="2240"/>
     <drops>
       <item value="money" quantity="[50,150]" probability="100.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="blue_dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
+    <description></description>
     <attributes>
       <atk value="210"/>
       <def value="35"/>
@@ -3889,18 +3814,18 @@
     <experience value="4130"/>
     <respawn value="2240"/>
     <drops>
-      <item value="blue_dragon_cloak" quantity="[1,1]" probability="5.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="80.0"/>
       <item value="money" quantity="[20,100]" probability="100.0"/>
+      <item value="sapphire" quantity="[1,4]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -3919,21 +3844,16 @@
     <respawn value="2290"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3952,21 +3872,14 @@
     <respawn value="2140"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -3985,21 +3898,14 @@
     <respawn value="2400"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4017,15 +3923,15 @@
     <experience value="4960"/>
     <respawn value="2510"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="money" quantity="[60,300]" probability="100.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.3"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4044,14 +3950,14 @@
     <respawn value="2510"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4070,21 +3976,15 @@
     <respawn value="2570"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4103,26 +4003,22 @@
     <respawn value="2690"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="8.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="8.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="8.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="ent">
     <type class="boss" subclass="treant" tileid="boss.png:2"/>
+    <description></description>
     <attributes>
       <atk value="180"/>
       <def value="45"/>
@@ -4135,16 +4031,16 @@
     <respawn value="2820"/>
     <drops>
       <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4162,17 +4058,16 @@
     <experience value="5920"/>
     <respawn value="2820"/>
     <drops>
-      <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="money" quantity="[30,50]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4191,21 +4086,15 @@
     <respawn value="3010"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4225,13 +4114,14 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4250,21 +4140,15 @@
     <respawn value="3450"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.7"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4289,17 +4173,18 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="giant_dwarf">
     <type class="boss" subclass="giant_dwarf" tileid="boss.png:0"/>
+    <description></description>
     <attributes>
       <atk value="225"/>
       <def value="35"/>
@@ -4312,16 +4197,17 @@
     <respawn value="3530"/>
     <drops>
       <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="magic_plate_armor" quantity="[1,1]" probability="0.0010"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4340,21 +4226,14 @@
     <respawn value="3690"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4373,18 +4252,16 @@
     <respawn value="3770"/>
     <drops>
       <item value="money" quantity="[30,150]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
-      <item value="soul_dagger" quantity="[1,1]" probability="0.1"/>
-      <item value="assassin_dagger" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="12.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4403,21 +4280,15 @@
     <respawn value="3940"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="ice_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4436,16 +4307,14 @@
     <respawn value="4120"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
-      <item value="chaos_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="black_sword" quantity="[1,1]" probability="0.01"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4464,19 +4333,18 @@
     <respawn value="4400"/>
     <drops>
       <item value="money" quantity="[50,400]" probability="100.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="5.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="0.0010"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="5,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4496,14 +4364,13 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
-      <item value="black_sword" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4528,12 +4395,12 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="5,greater_poison"/>
+      <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4558,11 +4425,11 @@
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4588,12 +4455,12 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="15,greater_poison"/>
+      <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="10,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4618,11 +4485,11 @@
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4642,15 +4509,15 @@
     <drops>
       <item value="money" quantity="[80,500]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="10.0"/>
-      <item value="chaos_hammer" quantity="[1,1]" probability="0.1"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="9.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4671,16 +4538,15 @@
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
       <item value="money" quantity="[30,450]" probability="100.0"/>
-      <item value="vulcano_hammer" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4700,21 +4566,15 @@
     <drops>
       <item value="money" quantity="[90,500]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
-      <item value="green_dragon_cloak" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="green_dragon_shield" quantity="[1,1]" probability="5.0"/>
-      <item value="chaos_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="black_sword" quantity="[1,1]" probability="0.0010"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4735,20 +4595,18 @@
       <item value="mega_potion" quantity="[1,2]" probability="50.0"/>
       <item value="deadly_poison" quantity="[1,3]" probability="40.0"/>
       <item value="money" quantity="[300,1500]" probability="100.0"/>
-      <item value="shadow_shield" quantity="[1,1]" probability="0.1"/>
-      <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="black_armor" quantity="[1,1]" probability="0.0010"/>
+      <item value="black_armor" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="poisonous" params="15,greater_poison"/>
+      <profile name="animal"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.1"/>
       <profile name="heal" params="15,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
-      <profile name="lifesteal" params="0.1"/>
     </ai>
   </creature>
 
@@ -4769,18 +4627,16 @@
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
       <item value="money" quantity="[30,650]" probability="100.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="ice_war_hammer" quantity="[1,1]" probability="0.1"/>
-      <item value="ice_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="ice_armor" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4800,17 +4656,16 @@
     <drops>
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
       <item value="money" quantity="[30,700]" probability="100.0"/>
-      <item value="magic_twoside_axe" quantity="[1,1]" probability="1.0"/>
       <item value="stone_armor" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4831,17 +4686,15 @@
       <item value="mega_potion" quantity="[1,4]" probability="100.0"/>
       <item value="greater_antidote" quantity="[1,6]" probability="80.0"/>
       <item value="money" quantity="[100,800]" probability="100.0"/>
-      <item value="green_thing_boots" quantity="[1,1]" probability="1.0"/>
-      <item value="ugmash" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="20,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4862,16 +4715,14 @@
       <item value="money" quantity="[100,900]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
       <item value="mega_potion" quantity="[1,1]" probability="2.0"/>
-      <item value="chaos_axe" quantity="[1,1]" probability="1.0"/>
-      <item value="black_halberd" quantity="[1,1]" probability="0.01"/>
       <item value="chaos_armor" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
@@ -4891,19 +4742,17 @@
     <drops>
       <item value="greater_potion" quantity="[1,3]" probability="70.0"/>
       <item value="money" quantity="[300,1000]" probability="100.0"/>
-      <item value="black_dragon_cloak" quantity="[1,1]" probability="5.0"/>
       <item value="obsidian" quantity="[1,4]" probability="10.0"/>
       <item value="black_armor" quantity="[1,1]" probability="0.01"/>
-      <item value="black_shield" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4924,19 +4773,16 @@
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
       <item value="money" quantity="[200,2000]" probability="100.0"/>
-      <item value="shadow_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="black_sword" quantity="[1,1]" probability="1.0"/>
       <item value="black_armor" quantity="[1,1]" probability="0.1"/>
-      <item value="black_halberd" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4957,17 +4803,16 @@
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
       <item value="money" quantity="[300,3000]" probability="100.0"/>
-      <item value="immortal_sword" quantity="[1,1]" probability="0.1"/>
       <item value="magic_plate_armor" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
     </ai>
   </creature>
 
@@ -4987,23 +4832,17 @@
     <drops>
       <item value="mega_potion" quantity="[2,4]" probability="50.0"/>
       <item value="money" quantity="[3000,10000]" probability="100.0"/>
-      <item value="shadow_shield" quantity="[1,1]" probability="5.0"/>
-      <item value="shadow_legs" quantity="[1,1]" probability="5.0"/>
-      <item value="shadow_armor" quantity="[1,1]" probability="50.0"/>
-      <item value="black_scythe" quantity="[1,1]" probability="1.0"/>
-      <item value="black_halberd" quantity="[1,1]" probability="0.1"/>
-      <item value="black_sword" quantity="[1,1]" probability="3.0"/>
       <item value="black_armor" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="lifesteal" params="0.05"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
-      <profile name="offensive"/>
-      <profile name="animal"/>
-      <profile name="lifesteal" params="0.05"/>
     </ai>
   </creature>
 
@@ -5023,18 +4862,16 @@
     <drops>
       <item value="money" quantity="[5000,50000]" probability="100.0"/>
       <item value="mega_potion" quantity="[2,4]" probability="60.0"/>
-      <item value="chaos_sword" quantity="[1,1]" probability="30.0"/>
-      <item value="black_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="demon_fire_sword" quantity="[1,1]" probability="0.1"/>
+      <item value="black_armor" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="brave"/>
-      <profile name="heal" params="15,50"/>
-      <profile name="patrolling"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="patrolling"/>
     </ai>
   </creature>
 
