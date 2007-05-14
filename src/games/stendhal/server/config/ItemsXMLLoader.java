@@ -29,11 +29,13 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	private double weight;
 
+	private int value;
+
 	/** slots where this item can be equiped */
 	private List<String> slots;
 
 	/** Attributes of the item */
-	private List<Pair<String, String>> attributes;
+	private Map<String, String> attributes;
 
 	private List<DefaultItem> list;
 
@@ -86,7 +88,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 			if (is == null) {
 				is = new File(ref).toURL().openStream();
 			}
-				
+
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
@@ -116,9 +118,9 @@ public class ItemsXMLLoader extends DefaultHandler {
 		text = "";
 		if (qName.equals("item")) {
 			name = attrs.getValue("name");
-			attributes = new LinkedList<Pair<String, String>>();
+			attributes = new HashMap<String, String>();
 			slots = new LinkedList<String>();
-			description = null;
+			description = "";
 			implementation = null;
 		} else if (qName.equals("type")) {
 			clazz = attrs.getValue("class");
@@ -134,6 +136,8 @@ public class ItemsXMLLoader extends DefaultHandler {
 			}
 		} else if (qName.equals("weight")) {
 			weight = Double.parseDouble(attrs.getValue("value"));
+		} else if (qName.equals("value")) {
+			value = Integer.parseInt(attrs.getValue("value"));
 		} else if (qName.equals("slot")) {
 			slots.add(attrs.getValue("name"));
 		} else if (qName.equals("attributes")) {
@@ -142,7 +146,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 			String name = qName;
 			String value = attrs.getValue("value");
 
-			attributes.add(new Pair<String, String>(name, value));
+			attributes.put(name, value);
 		}
 	}
 
@@ -154,6 +158,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 			item.setEquipableSlots(slots);
 			item.setAttributes(attributes);
 			item.setDescription(description);
+			item.setValue(value);
 
 			if (implementation == null) {
 				logger.error("Item without defined implementation: " + name);
@@ -168,13 +173,14 @@ public class ItemsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("description")) {
 			if (text != null) {
 				description = text.trim();
+
+				//TODO: There are empty spaces on the middle of the description.
 			}
-			text = "";
 		}
 	}
 
 	@Override
 	public void characters(char buf[], int offset, int len) {
-		text = text + (new String(buf, offset, len)).trim() + " ";
+		text = text + (new String(buf, offset, len)).trim();
 	}
 }

@@ -13,6 +13,8 @@
 package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.common.Pair;
+import games.stendhal.server.entity.creature.impl.DropItem;
+import games.stendhal.server.entity.creature.impl.EquipItem;
 import games.stendhal.server.entity.item.*;
 
 import java.lang.reflect.Constructor;
@@ -26,7 +28,7 @@ import org.apache.log4j.Logger;
 /**
  * All default items which can be reduced to stuff that increase the attack
  * point and stuff that increase the defense points
- * 
+ *
  * @author Matthias Totz
  */
 public class DefaultItem {
@@ -61,6 +63,10 @@ public class DefaultItem {
 	/** Implementation creator */
 	protected Creator creator;
 
+	private Class implementation;
+
+	private int value;
+
 	public DefaultItem(String clazz, String subclazz, String name, int tileid) {
 		this.clazz = clazz;
 		this.subclazz = subclazz;
@@ -71,33 +77,42 @@ public class DefaultItem {
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	
+
+	public double getWeight() {
+		return weight;
+	}
+
 	public Map<String, String> getAttributes() {
 		return attributes;
 	}
 
-	public void setAttributes(Pair<String, String> attribute) {
-		this.attributes = new HashMap<String, String>();
-		this.attributes.put(attribute.first(), attribute.second());
-	}
-
-	public void setAttributes(List<Pair<String, String>> attributes) {
-		this.attributes = new HashMap<String, String>();
-		for (Pair<String, String> attribute : attributes) {
-			this.attributes.put(attribute.first(), attribute.second());
-		}
+	public void setAttributes(Map<String, String> attributes) {
+		this.attributes = attributes;
 	}
 
 	public void setEquipableSlots(List<String> slots) {
 		this.slots = slots;
 	}
 
+	public List<String> getEquipableSlots() {
+		return slots;
+	}
+
 	public void setDescription(String text) {
 		this.description = text;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
 	public void setImplementation(Class implementation) {
+		this.implementation=implementation;
 		creator = buildCreator(implementation);
+	}
+
+	public Class getImplementation() {
+		return implementation;
 	}
 
 	/**
@@ -180,13 +195,67 @@ public class DefaultItem {
 		return tileid;
 	}
 
+	public void setTileId(int val) {
+		tileid=val;
+	}
+
+	public void setValue(int val) {
+		value=val;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
 	/** returns the class */
 	public String getItemClass() {
 		return clazz;
 	}
 
+	public void setItemClass(String val) {
+		clazz=val;
+	}
+
+	/** returns the subclass */
+	public String getItemSubClass() {
+		return subclazz;
+	}
+
+	public void setItemSubClass(String val) {
+		subclazz=val;
+	}
+
 	public String getItemName() {
 		return name;
+	}
+
+	public void setItemName(String val) {
+		name=val;
+	}
+
+	public String toXML() {
+		StringBuffer os=new StringBuffer();
+		os.append("  <item name=\""+name+"\">\n");
+		os.append("    <type class=\""+clazz+"\" subclass=\""+subclazz+"\" tileid=\""+tileid+"\"/>\n");
+		if(description!=null) {
+			os.append("    <description>"+description+"</description>\n");
+		}
+		os.append("    <implementation class-name=\""+implementation.getCanonicalName()+"\"/>");
+		os.append("    <attributes>\n");
+		for(Map.Entry<String,String> entry: attributes.entrySet()) {
+			os.append("      <"+entry.getKey()+" value=\""+entry.getValue()+"\"/>\n");
+		}
+
+		os.append("    </attributes>\n");
+		os.append("    <weight value=\""+weight+"\"/>\n");
+		os.append("    <value value=\""+value+"\"/>\n");
+		os.append("    <equipable>\n");
+		for(String slot: slots) {
+			os.append("      <slot name=\""+slot+"\"/>\n");
+		}
+		os.append("    </equipable>\n");
+		os.append("  </item>\n");
+		return os.toString();
 	}
 
 	//
