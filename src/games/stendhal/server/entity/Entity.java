@@ -92,6 +92,7 @@ public abstract class Entity extends RPObject {
 		entity.add("y", RPClass.SHORT);
 		entity.add("dir", RPClass.BYTE, RPClass.VOLATILE);
 		entity.add("speed", RPClass.FLOAT, RPClass.VOLATILE);
+		entity.add("alternateTitle", RPClass.STRING);
 
 		/*
 		 * If this is set, the client will discard/ignore entity
@@ -184,8 +185,13 @@ public abstract class Entity extends RPObject {
 	 */
 	public String getName() {
 		String name;
-
-		if (has("name")) {
+		String alternateTitle;
+		
+		if (has("alternateTitle")) {
+			if ((alternateTitle = get("alternateTitle")) != null) {
+				return alternateTitle.replace("_", " ");
+			}
+		} else if (has("name")) {
 			if ((name = get("name")) != null) {
 				return name.replace("_", " ");
 			}
