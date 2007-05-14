@@ -12,33 +12,41 @@
  ***************************************************************************/
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
-import marauroa.common.game.AttributeNotFoundException;
 
-public class QuestCheckingPortal extends Portal implements UseListener {
+public class QuestCheckingPortal extends AccessCheckingPortal {
+	private String questslot;
 
-	private String questslot = null;
+	public QuestCheckingPortal(String questslot) {
+		this(questslot, "Why should i go down there?. It looks very dangerous.");
+	}
 
-	public QuestCheckingPortal(String questslot) throws AttributeNotFoundException {
-		super();
-		put("type", "portal");
+
+	public QuestCheckingPortal(String questslot, String rejectMessage) {
+		super(rejectMessage);
+
 		this.questslot = questslot;
 	}
 
-	@Override
-	public void onUsed(RPEntity user) {
-		Player player = (Player) user;
-		
-		if (player.hasQuest(questslot)) {
-			StendhalRPAction.usePortal(player, this);
-		} else {
-			player.sendPrivateText("Why should i go down there?. It looks very dangerous.");
-			player.stop();
-			player.notifyWorldAboutChanges();
-		}
 
+	//
+	// AccessCheckingPortal
+	//
+
+	/**
+	 * Determine if this portal can be used.
+	 *
+	 * @param	user		The user to be checked.
+	 *
+	 * @return	<code>true<code> if the user can use the portal.
+	 */
+	@Override
+	protected boolean isAllowed(RPEntity user) {
+		if(user instanceof Player) {
+			return ((Player) user).hasQuest(questslot);
+		} else {
+			return false;
+		}
 	}
 }

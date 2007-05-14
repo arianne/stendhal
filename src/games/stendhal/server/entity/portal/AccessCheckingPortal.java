@@ -56,8 +56,29 @@ public abstract class AccessCheckingPortal extends Portal {
 	 */
 	protected void rejected(RPEntity user) {
 		if (rejectMessage != null) {
-			TurnNotifier.get().notifyInTurns(0, new SendMessage(user), rejectMessage);
+			sendMessage(user, rejectMessage);
 		}
+	}
+
+
+	/**
+	 * Wrapper to send a message to a user, without getting lost.
+	 *
+	 * @param	user		The user to send to.
+	 * @param	text		The message to send.
+	 */
+	protected void sendMessage(RPEntity user, String text) {
+		TurnNotifier.get().notifyInTurns(0, new SendMessage(user), text);
+	}
+
+
+	/**
+	 * Set the rejection message.
+	 *
+	 * @param	rejectMessage	The message to given when rejected.
+	 */
+	public void setRejectedMessage(String rejectMessage) {
+		this.rejectMessage = rejectMessage;
 	}
 
 
@@ -73,6 +94,7 @@ public abstract class AccessCheckingPortal extends Portal {
 		if (isAllowed(user)) {
 			super.onUsed(user);
 		} else {
+			user.stop();
 			rejected(user);
 		}
 	}
@@ -112,6 +134,7 @@ public abstract class AccessCheckingPortal extends Portal {
 		 */
 		public void onTurnReached(int currentTurn, String message) {
 			user.sendPrivateText(message);
+			user.notifyWorldAboutChanges();
 		}
 	}
 }

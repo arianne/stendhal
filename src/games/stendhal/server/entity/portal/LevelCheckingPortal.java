@@ -20,40 +20,81 @@ import games.stendhal.server.entity.player.Player;
  *
  * @author hendrik
  */
-public class LevelCheckingPortal extends Portal {
-
-	private int minLevel = 0;
-
-	private int maxLevel = 99;
-
+public class LevelCheckingPortal extends AccessCheckingPortal {
 	/**
-	 * default constructor
+	 * The minimum level allowed to pass.
 	 */
-	public LevelCheckingPortal() {
-		super();
-	}
+	private int minLevel;
 
 	/**
-	 * creates a level checking portal
+	 * The maximum level allowed to pass.
+	 */
+	private int maxLevel;
+
+
+	/**
+	 * Creates a level checking portal.
 	 *
-	 * @param minLevel
-	 * @param maxLevel
+	 * @param	minLevel	The minimum level allowed to pass.
+	 * @param	maxLevel	The maximum level allowed to pass.
 	 */
 	public LevelCheckingPortal(int minLevel, int maxLevel) {
-		super();
+		this(minLevel, maxLevel, null);
+	}
+
+
+	/**
+	 * Creates a level checking portal.
+	 *
+	 * @param	minLevel	The minimum level allowed to pass.
+	 * @param	maxLevel	The maximum level allowed to pass.
+	 * @param	rejectMessage	The custom rejection message.
+	 */
+	public LevelCheckingPortal(int minLevel, int maxLevel, String rejectMessage) {
+		super(rejectMessage);
+
 		this.minLevel = minLevel;
 		this.maxLevel = maxLevel;
 	}
 
+
+	//
+	// AccessCheckingPortal
+	//
+
+	/**
+	 * Determine if this portal can be used.
+	 *
+	 * @param	user		The user to be checked.
+	 *
+	 * @return	<code>true<code> if the user can use the portal.
+	 */
 	@Override
-	public void onUsed(RPEntity user) {
-		Player player = (Player) user;
-		if (player.getLevel() < minLevel) {
-			player.sendPrivateText("I am to weak to use this portal.");
-		} else if (player.getLevel() > maxLevel) {
-			player.sendPrivateText("I am to strong to use this portal.");
+	protected boolean isAllowed(RPEntity user) {
+		int level = user.getLevel();
+
+		if((level < minLevel) || (level > maxLevel)) {
+			return false;
 		} else {
-			super.onUsed(player);
+			return true;
+		}
+	}
+
+
+	/**
+	 * Called when the user is rejected.
+	 * This sends a rejection message to the user.
+	 *
+	 * @param	user		The rejected user.
+	 */
+	@Override
+	protected void rejected(RPEntity user) {
+		if(rejectMessage != null) {
+			super.rejected(user);
+		} else if (user.getLevel() < minLevel) {
+			sendMessage(user, "I am to weak to use this portal.");
+		} else if (user.getLevel() > maxLevel) {
+			sendMessage(user, "I am to strong to use this portal.");
 		}
 	}
 }
