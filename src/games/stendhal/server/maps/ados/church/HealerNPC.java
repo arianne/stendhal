@@ -27,10 +27,10 @@ public class HealerNPC extends SpeakerNPCFactory {
 
 		// Valo makes mega potions if you bring giant heart and money
 		Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-		requiredResources.put("money", 100);
+		requiredResources.put("money", 20);
 		requiredResources.put("giant_heart", 1);
 		ProducerBehaviour behaviour = new ProducerBehaviour("Valo_concoct_potion",
-				"concoct", "mega_potion", requiredResources, 3 * 60);
+				"concoct", "mega_potion", requiredResources, 2 * 60);
 
 		npc.addProducer(behaviour,
 		        "Greetings, young one. I #heal and I #help.");
