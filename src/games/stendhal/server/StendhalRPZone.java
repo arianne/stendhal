@@ -461,7 +461,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 							plantGrower = new VegetableGrower("onion");
 							break;
 						case 8:
-							plantGrower = new VegetableGrower("zucchini");
+							plantGrower = new VegetableGrower("courgette");
 							break;
 						case 9:
 							plantGrower = new PassiveEntityRespawnPoint("spinach", 1500);
