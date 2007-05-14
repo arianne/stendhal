@@ -238,7 +238,7 @@
 
   <item name="plate_armor">
     <type class="armor" subclass="plate_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong.</description>
+    <description>You see a suit of plate armor. You imagine it would be heavy butthe steel is well tempered and the suit is very strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -406,7 +406,7 @@
 
   <item name="small_axe">
     <type class="axe" subclass="small_axe" tileid="-1"/>
-    <description>You see a small axe. It appears well made but yoususpect it is too light to do much damage.</description>
+    <description>You see a smallaxe. It appears well made but yoususpect it is too light to do much damage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="7"/>
       <rate value="3"/>
@@ -864,13 +864,13 @@
     <type class="cloak" subclass="elvish_cloak" tileid="-1"/>
     <description>You see an elvish cloak. The material is dark, butthick and warm.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="8"/>
+      <def value="6"/>
     </attributes>
     <weight value="5.0"/>
-    <value value="448"/>
+    <value value="252"/>
     <equipable>
-      <slot name="cloak"/>
       <slot name="bag"/>
+      <slot name="cloak"/>
     </equipable>
   </item>
 
@@ -885,6 +885,20 @@
     <equipable>
       <slot name="cloak"/>
       <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="stone_cloak">
+    <type class="cloak" subclass="lightblue_cloak" tileid="-1"/>
+    <description>You see a blue elf cloak +2. The material isthick and warm.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="9"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="567"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="cloak"/>
     </equipable>
   </item>
 
@@ -1000,6 +1014,34 @@
     </equipable>
   </item>
 
+  <item name="chaos_cloak">
+    <type class="cloak" subclass="golden_cloak" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="20"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="2800"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="cloak"/>
+    </equipable>
+  </item>
+
+  <item name="black_cloak">
+    <type class="cloak" subclass="golden_cloak" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="25"/>
+    </attributes>
+    <weight value="5.0"/>
+    <value value="4375"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="cloak"/>
+    </equipable>
+  </item>
+
   <item name="club">
     <type class="club" subclass="club" tileid="-1"/>
     <description>You see a wooden club. It won't kill much but isbetter than no weapon.</description>
@@ -1034,7 +1076,7 @@
 
   <item name="mace">
     <type class="club" subclass="mace" tileid="-1"/>
-    <description>You see a mace, much neglected in years of use.</description>
+    <description>You see a mace,much neglected in years of use.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="16"/>
       <rate value="6"/>
@@ -1227,7 +1269,7 @@
 
   <item name="ugmash">
     <type class="club" subclass="club" tileid="-1"/>
-    <description>You see a wooden club. It won't kill much but is                 better than no weapon.</description>
+    <description>You see a wooden club. It won't kill much but isbetter than no weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
       <rate value="6"/>
