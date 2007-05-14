@@ -23,7 +23,7 @@ public class NameChange extends ScriptImpl {
 			admin.notifyWorldAboutChanges();
 		} else {
 			admin.put("title", args.get(0));
-			admin.sendPrivateText("Your name has been changed to " + admin.get("alternateTitle") + ".");
+			admin.sendPrivateText("Your name has been changed to " + admin.get("title") + ".");
 			admin.update();
 			admin.notifyWorldAboutChanges();
 		}
