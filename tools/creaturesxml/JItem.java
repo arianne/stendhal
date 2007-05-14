@@ -209,7 +209,12 @@ public class JItem extends javax.swing.JFrame {
         Collections.sort(items, new Comparator<DefaultItem>() {
             
             public int compare(DefaultItem o1, DefaultItem o2) {
-                return o1.getItemClass().compareTo(o2.getItemClass());
+                int cmp=o1.getItemClass().compareTo(o2.getItemClass());
+                if(cmp==0) {
+                    return o1.getValue()-o2.getValue();
+                } 
+                
+                return cmp;                          
             }
             
             @Override
