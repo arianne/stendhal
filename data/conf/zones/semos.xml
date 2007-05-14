@@ -216,6 +216,7 @@ The tavern has moved into a more central location in Semos. Please come join us 
   <title>The City of Semos</title>
   <configurator class-name="games.stendhal.server.maps.semos.city.CommonChest" />
 
+<![CDATA[
   <!-- XXX: Hypothtical "NPC" element. No used yet - Concept only -->
   <npc x="46" y="19">
    <!-- This returns a general configured SpeakerNPC object -->
@@ -313,6 +314,7 @@ Awww... so you're a coward, then? Huh.
    </dialog>
   </npc>
   <!-- XXX: End of Hypothtical "NPC" element. -->
+]]>
 
   <entity x="46" y="19">
     <implementation class-name="games.stendhal.server.maps.semos.city.GossipNPC">
