@@ -1524,6 +1524,24 @@
     </equipable>
   </item>
 
+  <item name="disease_poison">
+    <type class="drink" subclass="greater_poison" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
+      <amount value="-2000"/>
+      <frequency value="20"/>
+      <quantity value="1"/>
+      <regen value="-3"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="60"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="potion">
     <type class="drink" subclass="potion" tileid="-1"/>
     <description></description>
@@ -2287,20 +2305,6 @@
     </equipable>
   </item>
 
-  <item name="black_helmet">
-    <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
-    <description></description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="16"/>
-    </attributes>
-    <weight value="15.0"/>
-    <value value="1370"/>
-    <equipable>
-      <slot name="bag"/>
-      <slot name="head"/>
-    </equipable>
-  </item>
-
   <item name="magic_chain_helmet">
     <type class="helmet" subclass="magic_chain_helmet" tileid="-1"/>
     <description></description>
@@ -2312,6 +2316,20 @@
     <equipable>
       <slot name="head"/>
       <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="black_helmet">
+    <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="26"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="4732"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="head"/>
     </equipable>
   </item>
 
@@ -3455,7 +3473,7 @@
 
   <item name="skull_shield">
     <type class="shield" subclass="skull_shield" tileid="-1"/>
-    <description>The face of a skull scowls at you from this fearsome skull shield.</description>
+    <description>The face of a skull scowls at you from this fearsome skullshield.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="22"/>
     </attributes>

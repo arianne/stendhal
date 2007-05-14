@@ -278,8 +278,8 @@
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -310,8 +310,8 @@
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -550,8 +550,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -696,8 +696,8 @@
         <noise value="SHAAAAAAA!!"/>
       </says>
       <profile name="poisonous" params="5,deadly_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -928,8 +928,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -1075,8 +1075,8 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward" params="fire"/>
       <profile name="human"/>
+      <profile name="coward" params="fire"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -1247,6 +1247,7 @@
       <item value="scale_armor_+1" quantity="[1,1]" probability="0.01"/>
       <item value="battle_axe" quantity="[1,1]" probability="3.0"/>
       <item value="chain_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="minor_potion" quantity="[1,2]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -1372,8 +1373,8 @@
         <noise value="Ooooouuuuuh!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -1398,8 +1399,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
@@ -1588,8 +1589,8 @@
       <says>
         <noise value="Rrrrrrrrr"/>
       </says>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
@@ -2148,8 +2149,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -2457,8 +2458,8 @@
         <noise value="Uuuuhhhhh!, i'm gonna get you!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -2542,8 +2543,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -2598,6 +2599,7 @@
       <item value="war_hammer" quantity="[1,1]" probability="0.5"/>
       <item value="stone_boots" quantity="[1,1]" probability="0.01"/>
       <item value="stone_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="potion" quantity="[1,2]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -3195,8 +3197,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -3255,8 +3257,8 @@
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="coward"/>
       <profile name="human"/>
+      <profile name="coward"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
@@ -3396,8 +3398,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.3"/>
       <profile name="heal" params="5,50"/>
@@ -3426,8 +3428,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
       <profile name="patrolling"/>
@@ -3656,6 +3658,7 @@
       <item value="vampire_cloak" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_war_hammer" quantity="[1,1]" probability="0.5"/>
       <item value="vulcano_hammer" quantity="[1,1]" probability="0.01"/>
+      <item value="greater_potion" quantity="[1,2]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -3719,6 +3722,7 @@
       <item value="barbarian_armor" quantity="[1,1]" probability="20.0"/>
       <item value="chaos_hammer" quantity="[1,1]" probability="1.0"/>
       <item value="vulcano_hammer" quantity="[1,1]" probability="0.01"/>
+      <item value="greater_potion" quantity="[1,2]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -3952,8 +3956,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4061,6 +4065,7 @@
       <item value="black_boots" quantity="[1,1]" probability="0.05"/>
       <item value="ugmash" quantity="[1,1]" probability="0.01"/>
       <item value="chaos_hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="greater_potion" quantity="[1,3]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -4148,6 +4153,7 @@
       <item value="magic_twoside_axe" quantity="[1,1]" probability="0.01"/>
       <item value="vulcano_hammer" quantity="[1,1]" probability="0.01"/>
       <item value="black_boots" quantity="[1,1]" probability="0.07"/>
+      <item value="greater_potion" quantity="[2,4]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -4211,6 +4217,7 @@
       <profile name="human"/>
       <profile name="heal" params="15,50"/>
       <profile name="patrolling"/>
+      <profile name="poisonous" params="5,disease_poison"/>
     </ai>
   </creature>
 
@@ -4556,8 +4563,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4585,8 +4592,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4617,8 +4624,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="15,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="10,50"/>
       <profile name="patrolling"/>
@@ -4646,8 +4653,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4706,8 +4713,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4734,8 +4741,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4766,8 +4773,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="15,greater_poison"/>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.1"/>
       <profile name="heal" params="15,50"/>
@@ -4798,8 +4805,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4829,8 +4836,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4859,8 +4866,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="20,50"/>
       <profile name="patrolling"/>
@@ -4882,7 +4889,7 @@
     <respawn value="21600"/>
     <drops>
       <item value="money" quantity="[100,900]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
+      <item value="mega_potion" quantity="[1,2]" probability="30.0"/>
       <item value="mega_potion" quantity="[1,1]" probability="2.0"/>
       <item value="chaos_armor" quantity="[1,1]" probability="5.0"/>
       <item value="chaos_boors" quantity="[1,1]" probability="5.0"/>
@@ -4921,8 +4928,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
@@ -4943,7 +4950,7 @@
     <experience value="108000"/>
     <respawn value="32000"/>
     <drops>
-      <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
+      <item value="mega_potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
       <item value="money" quantity="[200,2000]" probability="100.0"/>
       <item value="black_armor" quantity="[1,1]" probability="0.1"/>
@@ -4953,8 +4960,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4983,8 +4990,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -5013,8 +5020,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="brave"/>
       <profile name="animal"/>
+      <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.05"/>
       <profile name="heal" params="35,50"/>
