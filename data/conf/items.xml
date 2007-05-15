@@ -2736,11 +2736,7 @@
     </attributes>
     <weight value="1.0"/>
     <value value="1"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
+<!-- not equippable becaus eequipping them breaks the Reverse Arrow Quest-->
   </item>
 
   <item name="note">

@@ -936,7 +936,7 @@ Holy mackerel! These chips are tasty.
      <destination zone="0_semos_city" ref="house_exit_1"/>
     </portal>
 
-    <portal x="17" y="5" ref="exit_2">
+    <portal x="17" y="4" ref="exit_2">
      <destination zone="0_ados_wall_n" ref="house_exit_2"/>
     </portal>
 
