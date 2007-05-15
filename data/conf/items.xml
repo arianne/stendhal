@@ -52,7 +52,7 @@
   </item>
 
   <item name="power_arrow">
-    <type class="ammunition" subclass="golden_arrow" tileid="-1"/>
+    <type class="ammunition" subclass="power_arrow" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="6"/>
@@ -62,9 +62,9 @@
     <weight value="0.1"/>
     <value value="2160"/>
     <equipable>
+      <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-      <slot name="bag"/>
     </equipable>
   </item>
 
@@ -184,13 +184,13 @@
     <type class="armor" subclass="scale_armor" tileid="-1"/>
     <description>You see a suit of scale armor. It is not flexiblelike chain, but will be a better defense.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="8"/>
+      <def value="7"/>
     </attributes>
     <weight value="45.0"/>
     <value value="3584"/>
     <equipable>
-      <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="armor"/>
     </equipable>
   </item>
 
@@ -265,7 +265,7 @@
   </item>
 
   <item name="barbarian_armor">
-    <type class="armor" subclass="studded_armor" tileid="-1"/>
+    <type class="armor" subclass="barbarian_armor" tileid="-1"/>
     <description>You see a suit ofelvish armor. It's made from tree leaves but it is really of good quality.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
@@ -307,7 +307,7 @@
   </item>
 
   <item name="dwarvish_armor">
-    <type class="armor" subclass="shadow_armor" tileid="-1"/>
+    <type class="armor" subclass="dwarvish_armor" tileid="-1"/>
     <description>You see a suit ofshadow armor. It's hard to decide with what it is made, it is so dark.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
@@ -321,7 +321,7 @@
   </item>
 
   <item name="stone_armor">
-    <type class="armor" subclass="ice_armor" tileid="-1"/>
+    <type class="armor" subclass="stone_armor" tileid="-1"/>
     <description>You see a suit of                 ice armor. It's made from the hardest materials with great attention to detail.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="18"/>
@@ -349,7 +349,7 @@
   </item>
 
   <item name="chaos_armor">
-    <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
+    <type class="armor" subclass="chaos_armor" tileid="-1"/>
     <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. Ithas been magically enhanced.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
@@ -377,7 +377,7 @@
   </item>
 
   <item name="black_armor">
-    <type class="armor" subclass="magic_plate_armor" tileid="-1"/>
+    <type class="armor" subclass="black_armor" tileid="-1"/>
     <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. It has been magically enhanced.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="26"/>
@@ -534,7 +534,7 @@
 
   <item name="halberd">
     <type class="axe" subclass="halberd" tileid="-1"/>
-    <description>You see a rare halberd, with an axe's blade fusedonto a shaft. It is both heavy and keen-edged.</description>
+    <description>You seea rare halberd, with an axe's blade fusedonto a shaft. It is both heavy and keen-edged.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
       <rate value="10"/>
@@ -2542,7 +2542,7 @@
 
   <item name="fado_hotel_key_006">
     <type class="key" subclass="hotel" tileid="-1"/>
-    <description>You see a key to room #006 in the Fado Hotel.</description>
+    <description>You seea key to room #006 in the Fado Hotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
