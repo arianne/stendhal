@@ -225,15 +225,16 @@ public class Marriage extends AbstractQuest {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 			        	if(player.isQuestInState(QUEST_SLOT, "engaged_with_ring")){
-			        		// player has wedding ring already. just remind to get spouse to get one.
-					        npc.say("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too!");
-					        npc.setCurrentState(ConversationStates.ATTENDING);
+			        		// player has wedding ring already. just remind to get spouse to get one and hint to get dressed.
+					        npc.say("Looking forward to your wedding? Make sure your fiancee gets a wedding ring made for you, too! Oh and remember to get #dressed up for the big day.");
+					        npc.setCurrentState(ConversationStates.INFORMATION_2);
 				        } else {
 				        	// says you'll need a ring
 					        npc.say("I see you're on a life-long quest to get married! I find marriage more of a task, ha ha! Anyway, you'll need a #wedding_ring.");
 				        }
 			        }
 		        });
+		//		 response to QUEST_MESSAGES if you are not engaged
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 		        new SpeakerNPC.ChatCondition() {
@@ -251,6 +252,7 @@ public class Marriage extends AbstractQuest {
 				        
 			        }
 		        });
+		// response to QUEST_MESSAGES when you're already married
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 		        new SpeakerNPC.ChatCondition() {
@@ -268,7 +270,7 @@ public class Marriage extends AbstractQuest {
 				        
 			        }
 		        });
-		
+		// Here the beahviour is defined for if you say hi to Ognir and your ring is being made
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 		        new SpeakerNPC.ChatCondition() {
@@ -287,13 +289,17 @@ public class Marriage extends AbstractQuest {
 				        long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
 				        long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 				                - System.currentTimeMillis();
+				        // ring is not ready yet
 				        if (timeRemaining > 0L) {
 					        npc.say("I haven't finished making the wedding ring. Please check back in "
 			                        + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L))
 			                        + ". Bye for now.");
 					        return;
 				        }
-				        npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Look after it till the ceremony. Make sure one is made for you, too!");
+				        /* ring is ready now. Bind it to person who made it.until the wedding day comes when the rings are exchanged
+				         * Give a prompt to a little hint about getting dressed for the wedding, if players like to.
+				         */
+				        npc.say("I'm pleased to say, the wedding ring for your fiancee is finished! Make sure one is made for you, too! *psst* just a little #hint for the wedding day ...");
 				        player.addXP(500);
 				        Item weddingRing = StendhalRPWorld.get().getRuleManager()
 				                .getEntityManager().getItem("wedding_ring");
@@ -301,7 +307,7 @@ public class Marriage extends AbstractQuest {
 				        player.equip(weddingRing, true);
 				        player.setQuest(QUEST_SLOT, "engaged_with_ring");
 				        player.notifyWorldAboutChanges();
-				        npc.setCurrentState(ConversationStates.ATTENDING);
+				        npc.setCurrentState(ConversationStates.INFORMATION_2);
 			        }
 		        });
 
@@ -312,6 +318,7 @@ public class Marriage extends AbstractQuest {
                 "I need " + REQUIRED_GOLD + " gold bars and a fee of " + REQUIRED_MONEY + " money, to make a wedding ring for your fiancee. Do you have it?",
                 null);
 		
+		// player says yes, they want a wedding ring made
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.YES_MESSAGES,
                 null,
@@ -327,16 +334,25 @@ public class Marriage extends AbstractQuest {
 		        	player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 		        	npc.setCurrentState(ConversationStates.IDLE);
 		        } else {
+		        	//player said they had the money and/or gold but they lied
 		        	npc.say("Come back when you have both the money and the gold.");	
 		        }
 			        }
 		        });
-		
+		// player says (s)he doesn't have the money and/or gold
 		npc.add(ConversationStates.QUEST_ITEM_QUESTION,
 				ConversationPhrases.NO_MESSAGES,
                 null,
                 ConversationStates.ATTENDING,
                 "No problem, just come back when you have both the money and the gold.",
+                null);
+		
+		// Just a little hint about getting dressed for the wedding.
+		npc.add(ConversationStates.INFORMATION_2,
+                Arrays.asList("dressed", "hint", "dress"),
+                null,
+                ConversationStates.ATTENDING,
+                "When my wife and I got married we went to Fado hotel and hired special clothes. The dressing rooms are on your right when you go in, look for the wooden door. Good luck!",
                 null);
 		
 	}

@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.fado.weaponshop;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -40,15 +39,22 @@ public class RingSmithNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				//doesn't move
+				nodes.add(new Path.Node(17, 8));
+				nodes.add(new Path.Node(15, 8));
+				nodes.add(new Path.Node(15, 11));
+				nodes.add(new Path.Node(17, 11));
+				nodes.add(new Path.Node(17, 15));
+				nodes.add(new Path.Node(18, 15));
+				nodes.add(new Path.Node(18, 8));
 				setPath(nodes, false);
 			}
 
 			@Override
 			protected void createDialog() {
 				addJob("I work with #gold, to fix and make jewellery.");
+				addReply("request","Just ask about the #task if you want me to make a wedding ring for someone.");
 				addReply("gold","It's cast from gold nuggets which you can pan for on Or'ril river. I don't cast it myself, but a smith in Ados does.");
-				addHelp("You can sell weapons to Yorphin Baos over there. You might need the money to buy a special ring.");
+				addHelp("You can sell weapons to Yorphin Baos over there. I sell jewelled rings and I can also make a wedding ring as a special #request.");
 				addSeller(new SellerBehaviour(shops.get("sellrings")));
 				addGoodbye("Bye, my friend.");
 			}
@@ -57,8 +63,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "ringsmithnpc");
-		npc.set(13, 7);
-		npc.setDirection(Direction.LEFT);
+		npc.set(17, 8);
 		npc.initHP(100);
 		zone.add(npc);
 
