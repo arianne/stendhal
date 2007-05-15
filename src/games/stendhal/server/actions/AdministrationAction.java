@@ -313,6 +313,20 @@ public class AdministrationAction implements ActionListener {
 					Log4J.finishMethod(logger, "onAdminLevel");
 					return;
 				}
+				
+				// Check level is on the range
+				int max=0;
+				
+				for(int level: REQUIRED_ADMIN_LEVELS.values()) {
+					if(level>max) {
+						max=level;
+					}					
+				}
+				
+				// If level is beyond max level, just set it to max.
+				if(newlevel>max) {
+					newlevel=max;
+				}
 
 				int mylevel = player.getAdminLevel();
 				if (mylevel < REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
