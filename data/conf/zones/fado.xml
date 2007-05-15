@@ -213,7 +213,7 @@ bone_dragon_cloak, lich_cloak, and vampire_cloak ...
   	<zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.weaponshop.BuyerNPC"/>
            <configurator class-name="games.stendhal.server.maps.fado.weaponshop.RingSmithNPC"/>
-	   <portal x="6" y="11" ref="entrance">
+	   <portal x="5" y="16" ref="entrance">
              <destination zone="0_fado_city" ref="weaponshop_entrance"/>
            </portal>
          </zone>
