@@ -66,6 +66,12 @@ public class Creature extends NPC {
 	private static final Logger logger = Log4J.getLogger(Creature.class);
 
 
+	/**
+	 * The higher the number the less items are dropped.
+	 * To use numbers determined at creatures.xml, just make it 1.
+	 */
+	private static final double SERVER_DROP_GENEROSITY = 1.5;
+
 	private CreatureRespawnPoint point;
 
 	/** the speed of this creature */
@@ -585,8 +591,9 @@ public class Creature extends NPC {
 		List<Item> list = new LinkedList<Item>();
 
 		for (DropItem dropped : dropsItems) {
-			double probability = (Rand.roll1D100()*Rand.roll1D100()*Rand.roll1D100())/1000000.0;
-			if (dropped.probability >= probability) {
+			double probability = Rand.rand(1000000)/10000.0;
+
+			if (probability <= (dropped.probability/SERVER_DROP_GENEROSITY)) {
 				Item item = manager.getItem(dropped.name);
 				if (item == null) {
 					logger.error("Unable to create item: " + dropped.name);
