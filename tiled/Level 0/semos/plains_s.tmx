@@ -96,10 +96,10 @@
  </layer>
  <layer name="collision" width="128" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2Za46EIBCEZ+9/nL3gZn+YOEagX/SL+hKTmYjSXdWC4OdTj98f+wMAAIA9GGfP5YR5tnt+Glb+Z9FM6t/9OtTBN5W00PhvcR8QxwlzlJYMuuzyyMr/DBpZ0i0fQAfeAxADZx7q/Jx2zm0G1/9TdarIyivuu6jXdy/UmB6K9ln9B3p2aQ//61BV94oxAz6jbzQz/1EbOZGMNc9rKo1Xb7G/tRmdfzu3ul8kz3l89F963+v3Drz38GdeV8bC7wis97go62qLfq52VXTOCmdtIpnDJNfN7iW9nyYGrxqT6js6Z7lvwYnv2Z76zjprP2rHzZOL5xjDHYst/L+3tdij8J5PqO2pOWpy12IVl2XsUXpRx3vqexf8j49L0ic3Pus8vLyXxNg9rog8QW9QU2cD//eSWd/I+fMUMmt7ov+R6xcQi/e6waOf6NqKrmvpurjLs1k9fi0n+98hBw3c/OF/LzT5n6pZFN3rtEteK4+kz5zW/0r6Vor1ycyjLvPmCG19ZtXFKh74X5Md3yCz6GRVj1F1bRU3pU0WzyywXstV9Z9yj45j9sz/LjlyoPrfCfgP/jnB+655AQAAAAAAAIAFWDPNufSpplNkvF57DJo9Lc43gbe+suMd770Pj761e5rU9qO8MhOx1+u5z1z1O1Z3JDWQoVaj6PxNhppbZw1WnJz7RQUN3mKyiFWbuzYGS72lYz312I103rLsi6sDdWy9/x9da/lOtTvvHXj2a+2/dT/anHbnvYPK/q/ac73xzAeH/PgDl449fgCAAAA=
+   H4sIAAAAAAAAAO2ZW27EIAxFp/tfTjdY9SNSJgLit7G5R4o0oxCwfR0T4POpx++P/QUAAMAe1NlzOWGe7e6fhjf9d4mZVL/7c8iDbyrFQqO/RT9SRuMDHpXnqFH98RonGy+NrPTPipFnXMCZQHsAcuDU8s7vaWffVnD1PzVOFXnTivstGnXuhRzTQ4n9rvoDPV6xh/51qBr3ijYDPrMzmpX+yI09kdSa5zOV6tXI9lGb2f3Rvbf+MnnO47P/0n6v3x5E7+GvtK6Mhd4ZWO9xUdbVFuNc7arEeVc4axPJHCZ5btWXtD+NDVE5Jo3v7J7lvgXHvmd76jfrqv2sHddPLpE1hluLLfS/t7XYo4ieT6jtqT5qfNdiZZel7VnxotZ76ncX9M+3SzIm1z5rP6K0l9jY3a4MP0FvkFNnA/192Tm+mfPnKewc2xP1z1y/gFyi1w0R42TnVnZeS9fFXd7N6vZrOVn/Dj5o4PoP/Xuh8f/UmGXRPU+7+PWmkfSd0+pfKb6VbH2y0qjLvDlDm5+7xsXKHuhfE48zyF3iZJWPWXltZTelzS6aWWC9lquqP6WPjjV7pX8XHzlQ9e8E9Af/nKB9V78AAAAAAAAAwAKsmdZc8akWp0x7o/YYNHtanDOB0Vi7E23vfYyIsbV7mtT2M792JmOvN3Kfueo5VnckObBDrmbR+UyG6lvnGLxxsu8XFWIwssnCVq3vWhss4y2t9dTLG+m8ZTkWNw7U2nr/P3vW8pvK228PIse11t96HK1P3n57UFn/t/ZcbSL9wSW//gD0AKHeAIAAAA==
   </data>
  </layer>
- <layer name="protection" width="128" height="64" opacity="0.35">
+ <layer name="protection" width="128" height="64" visible="0" opacity="0.35">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3T0Q3DMAzE0HT/dTJg0RGS2jk79wjw3xKt83McJ0mSJEmSJEmSJEmSJEmSJLfwR/oNHNvzKuk38/nm+r/DEaRnoP7MtNd/T0eSnoW59vrv5QzSMzHXfgTpvTS4MundrG4Do/aTbqX7PUbu6elGmv/PjJ2l7lL368y+GXe5Ptp0o383+nejfzf6d6N/N/p3o383+nejfzf6d6N/N3f7+wPvQP9u9O9G/27070b/bvSH/t3oD/270b8b/aF/N/p3o383+u/DFxW5NQIAgAAA
   </data>
