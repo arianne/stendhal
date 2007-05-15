@@ -2,6 +2,7 @@
 <creatures>
   <creature name="deer">
     <type class="animal" subclass="deer" tileid="animal.png:9"/>
+    <description></description>
     <attributes>
       <atk value="5"/>
       <def value="9"/>
@@ -13,8 +14,8 @@
     <experience value="0"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
-      <item value="ham" quantity="[1,2]" probability="30.0"/>
+      <item value="meat" quantity="[1,6]" probability="60.0"/>
+      <item value="ham" quantity="[1,3]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
@@ -70,6 +71,7 @@
     <drops>
       <item value="cheese" quantity="[1,1]" probability="50.0"/>
       <item value="money" quantity="[1,3]" probability="70.0"/>
+      <item value="club" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -83,6 +85,7 @@
 
   <creature name="bat">
     <type class="animal" subclass="bat" tileid="animal.png:0"/>
+    <description></description>
     <attributes>
       <atk value="19"/>
       <def value="13"/>
@@ -94,7 +97,7 @@
     <experience value="10"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,1]" probability="50.0"/>
+      <item value="meat" quantity="[1,2]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
@@ -133,6 +136,7 @@
 
   <creature name="penguin">
     <type class="animal" subclass="penguin" tileid="animal.png:16"/>
+    <description></description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -144,7 +148,8 @@
     <experience value="10"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
+      <item value="meat" quantity="[2,4]" probability="60.0"/>
+      <item value="cod" quantity="[2,3]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
@@ -161,6 +166,7 @@
 
   <creature name="monkey">
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
+    <description></description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -174,6 +180,8 @@
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="meat" quantity="[1,4]" probability="60.0"/>
+      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_armor_+1" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -189,6 +197,7 @@
 
   <creature name="boar">
     <type class="animal" subclass="boar" tileid="animal.png:4"/>
+    <description></description>
     <attributes>
       <atk value="27"/>
       <def value="14"/>
@@ -200,7 +209,7 @@
     <experience value="20"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="70.0"/>
+      <item value="meat" quantity="[2,5]" probability="70.0"/>
       <item value="ham" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
@@ -245,6 +254,7 @@
 
   <creature name="gnome">
     <type class="gnome" subclass="gnome" tileid="gnome.png:0"/>
+    <description></description>
     <attributes>
       <atk value="35"/>
       <def value="12"/>
@@ -257,10 +267,9 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
-      <item value="buckler" quantity="[1,1]" probability="20.0"/>
-      <item value="knife" quantity="[1,1]" probability="10.0"/>
       <item value="minor_potion" quantity="[1,1]" probability="5.0"/>
-      <item value="button_mushroom" quantity="[3,10]" probability="10.0"/>
+      <item value="button_mushroom" quantity="[3,6]" probability="10.0"/>
+      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -269,14 +278,15 @@
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="coward"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="mage_gnome">
     <type class="gnome" subclass="woman_gnome" tileid="gnome.png:1"/>
+    <description></description>
     <attributes>
       <atk value="35"/>
       <def value="12"/>
@@ -289,11 +299,9 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
-      <item value="buckler" quantity="[1,1]" probability="20.0"/>
-      <item value="knife" quantity="[1,1]" probability="10.0"/>
-      <item value="cloak" quantity="[1,1]" probability="1.0"/>
       <item value="minor_potion" quantity="[1,1]" probability="5.0"/>
       <item value="porcini" quantity="[1,10]" probability="10.0"/>
+      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -302,14 +310,15 @@
         <noise value="Giiiiiaaants! Run away!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="coward"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="caiman">
     <type class="animal" subclass="caiman" tileid="animal.png:6"/>
+    <description></description>
     <attributes>
       <atk value="27"/>
       <def value="13"/>
@@ -322,7 +331,7 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,8]" probability="70.0"/>
-      <item value="ham" quantity="[1,2]" probability="45.0"/>
+      <item value="ham" quantity="[1,3]" probability="45.0"/>
     </drops>
     <equips>
     </equips>
@@ -338,6 +347,7 @@
 
   <creature name="snake">
     <type class="animal" subclass="cobra" tileid="animal.png:7"/>
+    <description></description>
     <attributes>
       <atk value="16"/>
       <def value="10"/>
@@ -349,7 +359,7 @@
     <experience value="30"/>
     <respawn value="900"/>
     <drops>
-      <item value="money" quantity="[1,3]" probability="60.0"/>
+      <item value="money" quantity="[2,8]" probability="60.0"/>
       <item value="poison" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
@@ -367,8 +377,9 @@
 
   <creature name="bear">
     <type class="animal" subclass="bear" tileid="animal.png:1"/>
+    <description></description>
     <attributes>
-      <atk value="45"/>
+      <atk value="39"/>
       <def value="16"/>
       <hp value="50"/>
       <speed value="0.4"/>
@@ -378,8 +389,8 @@
     <experience value="40"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="50.0"/>
-      <item value="ham" quantity="[1,2]" probability="30.0"/>
+      <item value="meat" quantity="[3,7]" probability="50.0"/>
+      <item value="ham" quantity="[1,3]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
@@ -395,8 +406,9 @@
 
   <creature name="lion">
     <type class="animal" subclass="lion" tileid="animal.png:14"/>
+    <description></description>
     <attributes>
-      <atk value="44"/>
+      <atk value="39"/>
       <def value="16"/>
       <hp value="45"/>
       <speed value="0.5"/>
@@ -406,7 +418,7 @@
     <experience value="40"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
+      <item value="meat" quantity="[2,6]" probability="60.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
     </drops>
     <equips>
@@ -423,6 +435,7 @@
 
   <creature name="goblin">
     <type class="goblin" subclass="goblin" tileid="goblin.png:0"/>
+    <description></description>
     <attributes>
       <atk value="48"/>
       <def value="14"/>
@@ -435,10 +448,13 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
-      <item value="wooden_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="knife" quantity="[1,1]" probability="10.0"/>
-      <item value="dress" quantity="[1,1]" probability="5.0"/>
       <item value="pie" quantity="[1,1]" probability="1.0"/>
+      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="leather_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="staff" quantity="[1,1]" probability="1.0"/>
+      <item value="buckler" quantity="[1,1]" probability="0.5"/>
+      <item value="knife" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -454,6 +470,7 @@
 
   <creature name="kobold">
     <type class="kobold" subclass="kobold" tileid="kobold.png:1"/>
+    <description></description>
     <attributes>
       <atk value="48"/>
       <def value="17"/>
@@ -466,9 +483,12 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,6]" probability="90.0"/>
-      <item value="wooden_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="knife" quantity="[1,1]" probability="10.0"/>
-      <item value="leather_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_cuirass" quantity="[1,1]" probability="2.0"/>
+      <item value="small_axe" quantity="[1,1]" probability="1.3"/>
+      <item value="leather_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="buckler" quantity="[1,1]" probability="0.5"/>
+      <item value="knife" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -485,6 +505,7 @@
 
   <creature name="elephant">
     <type class="animal" subclass="elephant" tileid="animal.png:11"/>
+    <description></description>
     <attributes>
       <atk value="46"/>
       <def value="11"/>
@@ -496,7 +517,7 @@
     <experience value="50"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="100.0"/>
+      <item value="meat" quantity="[1,10]" probability="100.0"/>
       <item value="ham" quantity="[2,8]" probability="70.0"/>
     </drops>
     <equips>
@@ -533,8 +554,8 @@
     </equips>
     <ai>
       <profile name="poisonous" params="5,greater_poison"/>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -542,6 +563,7 @@
 
   <creature name="tiger">
     <type class="animal" subclass="tiger" tileid="animal.png:19"/>
+    <description></description>
     <attributes>
       <atk value="47"/>
       <def value="16"/>
@@ -553,7 +575,7 @@
     <experience value="50"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[1,4]" probability="60.0"/>
+      <item value="meat" quantity="[1,6]" probability="60.0"/>
       <item value="ham" quantity="[1,2]" probability="30.0"/>
     </drops>
     <equips>
@@ -570,6 +592,7 @@
 
   <creature name="skeleton">
     <type class="undead" subclass="skeleton" tileid="undead.png:9"/>
+    <description></description>
     <attributes>
       <atk value="51"/>
       <def value="13"/>
@@ -582,8 +605,11 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
-      <item value="wooden_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="dagger" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_cuirass_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="mace" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden_shied" quantity="[1,1]" probability="0.5"/>
+      <item value="dagger" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -600,6 +626,7 @@
 
   <creature name="gargoyle">
     <type class="gargoyle" subclass="gargoyle" tileid="gargoyle.png:2"/>
+    <description></description>
     <attributes>
       <atk value="42"/>
       <def value="17"/>
@@ -612,8 +639,6 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[2,10]" probability="90.0"/>
-      <item value="hand_axe" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
@@ -677,8 +702,8 @@
         <noise value="SHAAAAAAA!!"/>
       </says>
       <profile name="poisonous" params="5,deadly_poison"/>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -686,6 +711,7 @@
 
   <creature name="veteran_goblin">
     <type class="goblin" subclass="veteran_goblin" tileid="goblin.png:2"/>
+    <description></description>
     <attributes>
       <atk value="53"/>
       <def value="14"/>
@@ -698,9 +724,12 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[4,11]" probability="90.0"/>
-      <item value="studded_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="mace" quantity="[1,1]" probability="20.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_cuirass_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="studded_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="leather_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="mace" quantity="[1,1]" probability="2.0"/>
+      <item value="wooden_shield" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -716,6 +745,7 @@
 
   <creature name="soldier_kobold">
     <type class="kobold" subclass="soldier_kobold" tileid="kobold.png:3"/>
+    <description></description>
     <attributes>
       <atk value="48"/>
       <def value="18"/>
@@ -728,9 +758,12 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[3,11]" probability="90.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="mace" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="studded_armor" quantity="[1,1]" probability="6.0"/>
+      <item value="hand_axe" quantity="[1,1]" probability="1.4"/>
+      <item value="leather_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="leather_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden_shield" quantity="[1,1]" probability="1.3"/>
     </drops>
     <equips>
     </equips>
@@ -797,6 +830,7 @@
 
   <creature name="archer_kobold">
     <type class="kobold" subclass="archer_kobold" tileid="kobold.png:0"/>
+    <description></description>
     <attributes>
       <atk value="53"/>
       <def value="16"/>
@@ -809,8 +843,10 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[3,10]" probability="90.0"/>
-      <item value="wooden_bow" quantity="[1,1]" probability="4.0"/>
-      <item value="wooden_arrow" quantity="[1,10]" probability="20.0"/>
+      <item value="leather_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="wooden_arrow" quantity="[1,5]" probability="6.0"/>
+      <item value="leather_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden_bow" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden_arrow" quantity="10000"/>
@@ -830,6 +866,7 @@
 
   <creature name="black_bear">
     <type class="animal" subclass="black_bear" tileid="animal.png:2"/>
+    <description></description>
     <attributes>
       <atk value="49"/>
       <def value="15"/>
@@ -841,8 +878,8 @@
     <experience value="80"/>
     <respawn value="900"/>
     <drops>
-      <item value="meat" quantity="[3,6]" probability="60.0"/>
-      <item value="ham" quantity="[2,3]" probability="40.0"/>
+      <item value="meat" quantity="[3,12]" probability="60.0"/>
+      <item value="ham" quantity="[2,4]" probability="40.0"/>
     </drops>
     <equips>
     </equips>
@@ -858,6 +895,7 @@
 
   <creature name="elder_gargoyle">
     <type class="gargoyle" subclass="elder_gargoyle" tileid="gargoyle.png:1"/>
+    <description></description>
     <attributes>
       <atk value="52"/>
       <def value="16"/>
@@ -870,8 +908,6 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[4,12]" probability="90.0"/>
-      <item value="axe" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -902,8 +938,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="patrolling"/>
     </ai>
@@ -911,6 +947,7 @@
 
   <creature name="cyclops">
     <type class="giant" subclass="cyclops" tileid="giant.png:0"/>
+    <description></description>
     <attributes>
       <atk value="56"/>
       <def value="17"/>
@@ -923,11 +960,11 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[6,15]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="leather_cuirass" quantity="[1,1]" probability="20.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="mace_+2" quantity="[1,1]" probability="5.0"/>
-      <item value="hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="studded_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="mace_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="studded_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -965,6 +1002,7 @@
 
   <creature name="soldier_goblin">
     <type class="goblin" subclass="soldier_goblin" tileid="goblin.png:1"/>
+    <description></description>
     <attributes>
       <atk value="59"/>
       <def value="20"/>
@@ -977,10 +1015,14 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[4,15]" probability="90.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="10.0"/>
+      <item value="plate_shield" quantity="[1,1]" probability="5.0"/>
+      <item value="sword" quantity="[1,1]" probability="5.0"/>
       <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="0.4"/>
+      <item value="studded_boots" quantity="[1,1]" probability="0.4"/>
+      <item value="cloak" quantity="[1,1]" probability="0.4"/>
+      <item value="flail" quantity="[1,1]" probability="1.0"/>
+      <item value="short_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -993,6 +1035,7 @@
 
   <creature name="veteran_kobold">
     <type class="kobold" subclass="veteran_kobold" tileid="kobold.png:4"/>
+    <description></description>
     <attributes>
       <atk value="57"/>
       <def value="21"/>
@@ -1005,10 +1048,14 @@
     <respawn value="900"/>
     <drops>
       <item value="money" quantity="[3,15]" probability="90.0"/>
-      <item value="wooden_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="10.0"/>
-      <item value="flail" quantity="[1,1]" probability="20.0"/>
-      <item value="leather_armor" quantity="[1,1]" probability="20.0"/>
+      <item value="wooden_shield" quantity="[1,1]" probability="10.0"/>
+      <item value="plate_shield" quantity="[1,1]" probability="50.0"/>
+      <item value="flail" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="axe" quantity="[1,1]" probability="2.0"/>
+      <item value="studded_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="leather_helmet" quantity="[1,1]" probability="1.5"/>
+      <item value="short_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1022,6 +1069,7 @@
 
   <creature name="troll">
     <type class="troll" subclass="troll" tileid="troll.png:0"/>
+    <description></description>
     <attributes>
       <atk value="59"/>
       <def value="18"/>
@@ -1034,24 +1082,22 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[3,7]" probability="90.0"/>
-      <item value="wooden_shield" quantity="[1,1]" probability="35.0"/>
-      <item value="small_axe" quantity="[1,1]" probability="25.0"/>
-      <item value="axe" quantity="[1,1]" probability="5.0"/>
-      <item value="leather_armor" quantity="[1,1]" probability="15.0"/>
-      <item value="leather_armor_+1" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="coward" params="fire"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="orc">
     <type class="orc" subclass="orc" tileid="orc.png:2"/>
+    <description></description>
     <attributes>
       <atk value="54"/>
       <def value="20"/>
@@ -1064,9 +1110,10 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="100.0"/>
-      <item value="studded_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="0.05"/>
+      <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="short_sword" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
@@ -1079,6 +1126,7 @@
 
   <creature name="dark_gargoyle">
     <type class="gargoyle" subclass="dark_gargoyle" tileid="gargoyle.png:0"/>
+    <description></description>
     <attributes>
       <atk value="54"/>
       <def value="17"/>
@@ -1091,10 +1139,8 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="90.0"/>
-      <item value="axe" quantity="[1,1]" probability="30.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -1108,6 +1154,7 @@
 
   <creature name="ogre">
     <type class="giant" subclass="ogre" tileid="giant.png:2"/>
+    <description></description>
     <attributes>
       <atk value="59"/>
       <def value="16"/>
@@ -1120,10 +1167,11 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[6,19]" probability="100.0"/>
-      <item value="hammer" quantity="[1,1]" probability="20.0"/>
-      <item value="hammer_+3" quantity="[1,1]" probability="2.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="30.0"/>
-      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="hammer" quantity="[1,1]" probability="7.0"/>
+      <item value="hammer_+3" quantity="[1,1]" probability="0.7"/>
+      <item value="chain_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="0.9"/>
+      <item value="mace_+1" quantity="[1,1]" probability="0.9"/>
     </drops>
     <equips>
     </equips>
@@ -1137,6 +1185,7 @@
 
   <creature name="mummy">
     <type class="mummy" subclass="mummy" tileid="mummy.png:0"/>
+    <description></description>
     <attributes>
       <atk value="58"/>
       <def value="22"/>
@@ -1149,12 +1198,8 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="sword" quantity="[1,1]" probability="20.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="1.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="short_sword" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -1168,6 +1213,7 @@
 
   <creature name="risecia_thug">
     <type class="human" subclass="risecia_thug" tileid="human.png:8"/>
+    <description></description>
     <attributes>
       <atk value="55"/>
       <def value="25"/>
@@ -1180,11 +1226,13 @@
     <respawn value="910"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="2.0"/>
-      <item value="sword" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="3.0"/>
-      <item value="sandwich" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="8.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="1.3"/>
+      <item value="sandwich" quantity="[1,1]" probability="1.5"/>
+      <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="studded_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="short_sword" quantity="[1,1]" probability="2.5"/>
     </drops>
     <equips>
     </equips>
@@ -1198,6 +1246,7 @@
 
   <creature name="leader_kobold">
     <type class="kobold" subclass="leader_kobold" tileid="kobold.png:2"/>
+    <description></description>
     <attributes>
       <atk value="68"/>
       <def value="18"/>
@@ -1210,13 +1259,15 @@
     <respawn value="920"/>
     <drops>
       <item value="money" quantity="[3,20]" probability="90.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="axe" quantity="[1,1]" probability="10.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="1.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor" quantity="[1,1]" probability="8.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.0050"/>
+      <item value="battle_axe" quantity="[1,1]" probability="1.5"/>
+      <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="minor_potion" quantity="[1,2]" probability="1.5"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="plate_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1230,6 +1281,7 @@
 
   <creature name="orc_warrior">
     <type class="orc" subclass="orc_warrior" tileid="orc.png:3"/>
+    <description></description>
     <attributes>
       <atk value="58"/>
       <def value="18"/>
@@ -1242,13 +1294,11 @@
     <respawn value="920"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="5.0"/>
-      <item value="bardiche" quantity="[1,1]" probability="1.0"/>
-      <item value="studded_legs" quantity="[1,1]" probability="8.0"/>
-      <item value="studded_helmet" quantity="[1,1]" probability="9.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="3.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="0.3"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.05"/>
+      <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="sword" quantity="[1,1]" probability="1.3"/>
     </drops>
     <equips>
     </equips>
@@ -1262,6 +1312,7 @@
 
   <creature name="orc_hunter">
     <type class="orc" subclass="orc_hunter" tileid="orc.png:1"/>
+    <description></description>
     <attributes>
       <atk value="65"/>
       <def value="21"/>
@@ -1274,10 +1325,11 @@
     <respawn value="920"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="30.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="3.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="10.0"/>
-      <item value="claymore" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="4.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.35"/>
+      <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1290,6 +1342,7 @@
 
   <creature name="risecia_archer">
     <type class="human" subclass="risecia_archer" tileid="human.png:5"/>
+    <description></description>
     <attributes>
       <atk value="60"/>
       <def value="20"/>
@@ -1302,9 +1355,11 @@
     <respawn value="920"/>
     <drops>
       <item value="money" quantity="[2,15]" probability="100.0"/>
-      <item value="longbow" quantity="[1,1]" probability="8.0"/>
-      <item value="steel_arrow" quantity="[3,8]" probability="30.0"/>
-      <item value="longbow_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden_arrow" quantity="[1,5]" probability="10.0"/>
+      <item value="chain_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden_bow" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
       <slot name="rhand" item="wooden_bow" quantity="1"/>
@@ -1340,14 +1395,15 @@
         <noise value="Ooooouuuuuh!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="coward"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="giantrat">
     <type class="giant_animal" subclass="giantrat" tileid="giant_animal.png:1"/>
+    <description></description>
     <attributes>
       <atk value="70"/>
       <def value="18"/>
@@ -1361,13 +1417,12 @@
     <drops>
       <item value="money" quantity="[7,20]" probability="100.0"/>
       <item value="cheese" quantity="[3,7]" probability="80.0"/>
-      <item value="skull_staff" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
@@ -1376,6 +1431,7 @@
 
   <creature name="elf">
     <type class="elf" subclass="elf" tileid="elf.png:3"/>
+    <description></description>
     <attributes>
       <atk value="63"/>
       <def value="18"/>
@@ -1388,11 +1444,11 @@
     <respawn value="930"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="sword" quantity="[1,1]" probability="20.0"/>
-      <item value="katana" quantity="[1,1]" probability="2.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="6.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="plate_shield" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1406,6 +1462,7 @@
 
   <creature name="dwarf">
     <type class="dwarf" subclass="dwarf" tileid="dwarf.png:1"/>
+    <description></description>
     <attributes>
       <atk value="59"/>
       <def value="17"/>
@@ -1418,12 +1475,12 @@
     <respawn value="930"/>
     <drops>
       <item value="money" quantity="[9,22]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="hammer" quantity="[1,1]" probability="30.0"/>
-      <item value="hammer_+3" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="30.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="axe" quantity="[1,1]" probability="3.0"/>
+      <item value="mace_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_boots" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1437,6 +1494,7 @@
 
   <creature name="ratman">
     <type class="ratfolk" subclass="ratman" tileid="ratfolk.png:1"/>
+    <description></description>
     <attributes>
       <atk value="58"/>
       <def value="14"/>
@@ -1450,9 +1508,12 @@
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="cheese" quantity="[4,8]" probability="85.0"/>
-      <item value="katana" quantity="[1,1]" probability="2.0"/>
-      <item value="cloak" quantity="[1,1]" probability="10.0"/>
-      <item value="leather_boots" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_boots" quantity="[1,1]" probability="0.4"/>
+      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="lion_shield" quantity="[1,1]" probability="0.4"/>
     </drops>
     <equips>
     </equips>
@@ -1470,6 +1531,7 @@
 
   <creature name="ratwoman">
     <type class="ratfolk" subclass="ratwoman" tileid="ratfolk.png:2"/>
+    <description></description>
     <attributes>
       <atk value="58"/>
       <def value="14"/>
@@ -1483,8 +1545,10 @@
     <drops>
       <item value="money" quantity="[5,22]" probability="100.0"/>
       <item value="cheese" quantity="[4,8]" probability="85.0"/>
-      <item value="katana" quantity="[1,1]" probability="2.0"/>
-      <item value="cloak" quantity="[1,1]" probability="10.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_boots" quantity="[1,1]" probability="0.4"/>
     </drops>
     <equips>
     </equips>
@@ -1527,6 +1591,7 @@
 
   <creature name="crocodile">
     <type class="giant_animal" subclass="crocodile" tileid="giant_animal.png:0"/>
+    <description></description>
     <attributes>
       <atk value="80"/>
       <def value="18"/>
@@ -1541,7 +1606,6 @@
       <item value="money" quantity="[3,12]" probability="100.0"/>
       <item value="meat" quantity="[3,7]" probability="80.0"/>
       <item value="ham" quantity="[2,5]" probability="50.0"/>
-      <item value="leather_boots" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1549,8 +1613,8 @@
       <says>
         <noise value="Rrrrrrrrr"/>
       </says>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
       <profile name="patrolling"/>
@@ -1584,6 +1648,7 @@
 
   <creature name="venom_gargoyle">
     <type class="gargoyle" subclass="venom_gargoyle" tileid="gargoyle.png:3"/>
+    <description></description>
     <attributes>
       <atk value="65"/>
       <def value="20"/>
@@ -1596,10 +1661,9 @@
     <respawn value="930"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="90.0"/>
-      <item value="axe" quantity="[1,1]" probability="30.0"/>
-      <item value="bardiche" quantity="[1,1]" probability="3.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.4"/>
       <item value="poison" quantity="[1,1]" probability="15.0"/>
     </drops>
     <equips>
@@ -1615,6 +1679,7 @@
 
   <creature name="bloody_zombie">
     <type class="undead" subclass="bloody_zombie" tileid="undead.png:0"/>
+    <description></description>
     <attributes>
       <atk value="63"/>
       <def value="22"/>
@@ -1627,8 +1692,9 @@
     <respawn value="930"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
-      <item value="leather_armor" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_shield" quantity="[1,1]" probability="30.0"/>
+      <item value="chain_armor_+1" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="0.3"/>
     </drops>
     <equips>
     </equips>
@@ -1645,6 +1711,7 @@
 
   <creature name="elder_ogre">
     <type class="giant" subclass="elder_ogre" tileid="giant.png:1"/>
+    <description></description>
     <attributes>
       <atk value="68"/>
       <def value="12"/>
@@ -1657,10 +1724,9 @@
     <respawn value="940"/>
     <drops>
       <item value="money" quantity="[6,27]" probability="100.0"/>
-      <item value="hammer_+3" quantity="[1,1]" probability="10.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="30.0"/>
-      <item value="scale_armor_+1" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="skull_staff" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1674,6 +1740,7 @@
 
   <creature name="risecia_swordsman">
     <type class="human" subclass="risecia_swordsman" tileid="human.png:7"/>
+    <description></description>
     <attributes>
       <atk value="63"/>
       <def value="19"/>
@@ -1686,10 +1753,12 @@
     <respawn value="940"/>
     <drops>
       <item value="money" quantity="[3,25]" probability="100.0"/>
-      <item value="sword" quantity="[1,1]" probability="30.0"/>
-      <item value="claymore" quantity="[1,1]" probability="5.0"/>
-      <item value="katana" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.05"/>
+      <item value="steel_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chain_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="sword" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -1703,6 +1772,7 @@
 
   <creature name="orc_chief">
     <type class="orc" subclass="orc_chief" tileid="orc.png:0"/>
+    <description></description>
     <attributes>
       <atk value="70"/>
       <def value="24"/>
@@ -1715,11 +1785,12 @@
     <respawn value="940"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="7.0"/>
-      <item value="studded_legs" quantity="[1,1]" probability="17.0"/>
-      <item value="studded_helmet" quantity="[1,1]" probability="17.0"/>
-      <item value="cloak" quantity="[1,1]" probability="20.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="9.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.2"/>
       <item value="potion" quantity="[1,1]" probability="30.0"/>
+      <item value="steel_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1733,6 +1804,7 @@
 
   <creature name="militia_elf">
     <type class="elf" subclass="militia_elf" tileid="elf.png:6"/>
+    <description></description>
     <attributes>
       <atk value="65"/>
       <def value="21"/>
@@ -1745,11 +1817,13 @@
     <respawn value="940"/>
     <drops>
       <item value="money" quantity="[5,25]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="10.0"/>
-      <item value="katana" quantity="[1,1]" probability="2.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="5.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="2.5"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.35"/>
+      <item value="elvish_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="lion_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="scimitar" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1763,6 +1837,7 @@
 
   <creature name="dwarf_guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="dwarf.png:0"/>
+    <description></description>
     <attributes>
       <atk value="65"/>
       <def value="18"/>
@@ -1775,12 +1850,13 @@
     <respawn value="940"/>
     <drops>
       <item value="money" quantity="[9,31]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="axe" quantity="[1,1]" probability="30.0"/>
-      <item value="twoside_axe" quantity="[1,1]" probability="3.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="2.5"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.35"/>
+      <item value="battle_axe" quantity="[1,1]" probability="3.0"/>
+      <item value="mace_+2" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="viking_helmet" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1794,6 +1870,7 @@
 
   <creature name="archer_elf">
     <type class="elf" subclass="archer_elf" tileid="elf.png:0"/>
+    <description></description>
     <attributes>
       <atk value="64"/>
       <def value="18"/>
@@ -1806,10 +1883,10 @@
     <respawn value="950"/>
     <drops>
       <item value="money" quantity="[15,30]" probability="100.0"/>
-      <item value="wooden_arrow" quantity="[1,10]" probability="40.0"/>
-      <item value="wooden_bow" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="4.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden_arrow" quantity="[1,5]" probability="5.0"/>
+      <item value="wooden_bow" quantity="[1,1]" probability="2.5"/>
     </drops>
     <equips>
       <slot name="lhand" item="wooden_arrow" quantity="10000"/>
@@ -1826,6 +1903,7 @@
 
   <creature name="zombie">
     <type class="undead" subclass="zombie" tileid="undead.png:11"/>
+    <description></description>
     <attributes>
       <atk value="70"/>
       <def value="23"/>
@@ -1838,10 +1916,8 @@
     <respawn value="950"/>
     <drops>
       <item value="money" quantity="[3,40]" probability="90.0"/>
-      <item value="wooden_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="leather_armor" quantity="[1,1]" probability="20.0"/>
-      <item value="leather_cuirass" quantity="[1,1]" probability="10.0"/>
-      <item value="leather_armor_+1" quantity="[1,1]" probability="5.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="4.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1855,6 +1931,7 @@
 
   <creature name="elder_dwarf">
     <type class="dwarf" subclass="elder_dwarf" tileid="dwarf.png:2"/>
+    <description></description>
     <attributes>
       <atk value="68"/>
       <def value="17"/>
@@ -1867,13 +1944,13 @@
     <respawn value="960"/>
     <drops>
       <item value="money" quantity="[9,35]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="unicorn_shield" quantity="[1,1]" probability="3.0"/>
-      <item value="twoside_axe" quantity="[1,1]" probability="15.0"/>
-      <item value="halberd" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="5.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="twoside_axe" quantity="[1,1]" probability="2.5"/>
+      <item value="hammer" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="lion_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1915,6 +1992,7 @@
 
   <creature name="Chief_Falatheen_of_the_Risecia">
     <type class="human" subclass="risecia_leader" tileid="human.png:6"/>
+    <description></description>
     <attributes>
       <atk value="70"/>
       <def value="19"/>
@@ -1928,8 +2006,13 @@
     <drops>
       <item value="money" quantity="[10,40]" probability="70.0"/>
       <item value="pie" quantity="[1,1]" probability="5.0"/>
-      <item value="cloak" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="7.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="2.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="0.5"/>
+      <item value="elvish_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="elvish_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="chain_helmet_+2" quantity="[1,1]" probability="1.0"/>
+      <item value="scimitar" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -1967,6 +2050,7 @@
 
   <creature name="soldier_elf">
     <type class="elf" subclass="soldier_elf" tileid="elf.png:7"/>
+    <description></description>
     <attributes>
       <atk value="75"/>
       <def value="19"/>
@@ -1979,12 +2063,12 @@
     <respawn value="960"/>
     <drops>
       <item value="money" quantity="[5,29]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="lion_shield_+1" quantity="[1,1]" probability="1.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="8.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="2.5"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="1.0"/>
+      <item value="elvish_boots" quantity="[1,1]" probability="0.35"/>
+      <item value="elvish_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="katana" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -1998,6 +2082,7 @@
 
   <creature name="headless_monster">
     <type class="undead" subclass="headless_monster" tileid="undead.png:6"/>
+    <description></description>
     <attributes>
       <atk value="75"/>
       <def value="23"/>
@@ -2010,8 +2095,7 @@
     <respawn value="960"/>
     <drops>
       <item value="money" quantity="[3,40]" probability="90.0"/>
-      <item value="leather_armor_+1" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="30.0"/>
+      <item value="scale_armor_+1" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -2025,6 +2109,7 @@
 
   <creature name="warrior_skeleton">
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
+    <description></description>
     <attributes>
       <atk value="74"/>
       <def value="24"/>
@@ -2037,12 +2122,10 @@
     <respawn value="980"/>
     <drops>
       <item value="money" quantity="[5,29]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="20.0"/>
-      <item value="skull_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="scale_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="4.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="1.5"/>
+      <item value="hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="skull_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2101,8 +2184,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -2111,6 +2194,7 @@
 
   <creature name="royal_mummy">
     <type class="mummy" subclass="royal_mummy" tileid="mummy.png:1"/>
+    <description></description>
     <attributes>
       <atk value="90"/>
       <def value="25"/>
@@ -2123,10 +2207,8 @@
     <respawn value="990"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="skull_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="scale_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="3.0"/>
+      <item value="chain_helmet_+2" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2140,6 +2222,7 @@
 
   <creature name="cannibal_woman">
     <type class="human" subclass="cannibalwoman" tileid="human.png:1"/>
+    <description></description>
     <attributes>
       <atk value="90"/>
       <def value="25"/>
@@ -2152,9 +2235,9 @@
     <respawn value="990"/>
     <drops>
       <item value="money" quantity="[3,37]" probability="100.0"/>
-      <item value="knife" quantity="[1,1]" probability="36.0"/>
       <item value="onion" quantity="[1,1]" probability="18.0"/>
       <item value="leek" quantity="[1,1]" probability="15.0"/>
+      <item value="chain_helmet_+2" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2171,6 +2254,7 @@
 
   <creature name="archrat">
     <type class="ratfolk" subclass="archrat" tileid="ratfolk.png:0"/>
+    <description></description>
     <attributes>
       <atk value="82"/>
       <def value="27"/>
@@ -2183,8 +2267,10 @@
     <respawn value="1000"/>
     <drops>
       <item value="money" quantity="[10,35]" probability="100.0"/>
-      <item value="cloak" quantity="[1,1]" probability="20.0"/>
-      <item value="greater_poison" quantity="[1,1]" probability="15.0"/>
+      <item value="chain_armor_+3" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="2.5"/>
+      <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
+      <item value="elvish_cloak" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2205,6 +2291,7 @@
 
   <creature name="hero_dwarf">
     <type class="dwarf" subclass="hero_dwarf" tileid="dwarf.png:3"/>
+    <description></description>
     <attributes>
       <atk value="79"/>
       <def value="20"/>
@@ -2217,13 +2304,11 @@
     <respawn value="1000"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="4.5"/>
+      <item value="plate_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="twoside_axe" quantity="[1,1]" probability="3.0"/>
+      <item value="bardiche" quantity="[1,1]" probability="0.05"/>
+      <item value="golden_boots" quantity="[1,1]" probability="0.25"/>
     </drops>
     <equips>
     </equips>
@@ -2237,6 +2322,7 @@
 
   <creature name="mage_elf">
     <type class="elf" subclass="mage_elf" tileid="elf.png:5"/>
+    <description></description>
     <attributes>
       <atk value="79"/>
       <def value="24"/>
@@ -2249,8 +2335,7 @@
     <respawn value="1000"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="10.0"/>
-      <item value="elf_cloak" quantity="[1,1]" probability="4.0"/>
+      <item value="elf_cloak" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
@@ -2264,6 +2349,7 @@
 
   <creature name="glow_monster">
     <type class="mutant" subclass="glow_monster" tileid="mutant.png:1"/>
+    <description></description>
     <attributes>
       <atk value="75"/>
       <def value="26"/>
@@ -2276,8 +2362,11 @@
     <respawn value="1000"/>
     <drops>
       <item value="money" quantity="[4,30]" probability="100.0"/>
-      <item value="morning_star" quantity="[1,1]" probability="5.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="3.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="5.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_boots" quantity="[1,1]" probability="2.5"/>
+      <item value="dwarf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="morning_star" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2350,6 +2439,7 @@
 
   <creature name="rotten_zombie">
     <type class="undead" subclass="rotten_zombie" tileid="undead.png:8"/>
+    <description></description>
     <attributes>
       <atk value="83"/>
       <def value="23"/>
@@ -2362,9 +2452,9 @@
     <respawn value="1020"/>
     <drops>
       <item value="money" quantity="[3,40]" probability="100.0"/>
-      <item value="leather_cuirass_+1" quantity="[1,1]" probability="50.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="10.0"/>
+      <item value="scale_armor_+2" quantity="[1,1]" probability="15.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="hammer" quantity="[1,1]" probability="2.0"/>
     </drops>
     <equips>
     </equips>
@@ -2381,6 +2471,7 @@
 
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
+    <description></description>
     <attributes>
       <atk value="84"/>
       <def value="23"/>
@@ -2393,8 +2484,8 @@
     <respawn value="1050"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="scythe" quantity="[1,1]" probability="10.0"/>
-      <item value="elf_cloak_+2" quantity="[1,1]" probability="4.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="scythe" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2404,14 +2495,15 @@
         <noise value="Uuuuhhhhh!, i'm gonna get you!"/>
       </says>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="coward"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
 
   <creature name="commander_elf">
     <type class="elf" subclass="commander_elf" tileid="elf.png:2"/>
+    <description></description>
     <attributes>
       <atk value="86"/>
       <def value="28"/>
@@ -2424,12 +2516,15 @@
     <respawn value="1050"/>
     <drops>
       <item value="money" quantity="[5,35]" probability="100.0"/>
-      <item value="lion_shield_+1" quantity="[1,1]" probability="20.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="elf_cloak" quantity="[1,1]" probability="10.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="elvish_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="elf_cloak_+2" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="lion_shield_+1" quantity="[1,1]" probability="0.5"/>
+      <item value="claymore" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2443,6 +2538,7 @@
 
   <creature name="cannibal">
     <type class="human" subclass="cannibal" tileid="human.png:0"/>
+    <description></description>
     <attributes>
       <atk value="88"/>
       <def value="27"/>
@@ -2455,10 +2551,7 @@
     <respawn value="1050"/>
     <drops>
       <item value="money" quantity="[5,39]" probability="100.0"/>
-      <item value="wooden_spear" quantity="[1,5]" probability="60.0"/>
-      <item value="leather_legs" quantity="[1,1]" probability="66.0"/>
-      <item value="knife" quantity="[1,1]" probability="36.0"/>
-      <item value="potion" quantity="[1,1]" probability="10.0"/>
+      <item value="wooden_spear" quantity="[1,3]" probability="40.0"/>
     </drops>
     <equips>
     </equips>
@@ -2491,8 +2584,8 @@
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -2501,6 +2594,7 @@
 
   <creature name="archmage_elf">
     <type class="elf" subclass="archmage_elf" tileid="elf.png:1"/>
+    <description></description>
     <attributes>
       <atk value="95"/>
       <def value="25"/>
@@ -2513,9 +2607,7 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[4,45]" probability="100.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="10.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="3.0"/>
-      <item value="elf_cloak_+2" quantity="[1,1]" probability="1.0"/>
+      <item value="elf_cloak_+2" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2529,6 +2621,7 @@
 
   <creature name="leader_dwarf">
     <type class="dwarf" subclass="leader_dwarf" tileid="dwarf.png:4"/>
+    <description></description>
     <attributes>
       <atk value="95"/>
       <def value="29"/>
@@ -2541,13 +2634,14 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="8.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="8.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="8.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.25"/>
+      <item value="bardiche" quantity="[1,1]" probability="0.45"/>
+      <item value="war_hammer" quantity="[1,1]" probability="0.25"/>
+      <item value="stone_boots" quantity="[1,1]" probability="0.0050"/>
+      <item value="stone_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="potion" quantity="[1,2]" probability="1.5"/>
+      <item value="crown_shield" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2561,6 +2655,7 @@
 
   <creature name="dark_mutant">
     <type class="mutant" subclass="blacky" tileid="mutant.png:0"/>
+    <description></description>
     <attributes>
       <atk value="100"/>
       <def value="27"/>
@@ -2573,9 +2668,11 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[8,35]" probability="100.0"/>
-      <item value="katana" quantity="[1,1]" probability="50.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="studded_boots" quantity="[1,1]" probability="30.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.0025"/>
+      <item value="stone_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="hammer_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="viking_helmet" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2589,6 +2686,7 @@
 
   <creature name="elder_cannibal">
     <type class="human" subclass="elder_cannibal" tileid="human.png:3"/>
+    <description></description>
     <attributes>
       <atk value="97"/>
       <def value="30"/>
@@ -2601,11 +2699,7 @@
     <respawn value="1120"/>
     <drops>
       <item value="money" quantity="[7,68]" probability="100.0"/>
-      <item value="knife" quantity="[1,1]" probability="8.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="8.0"/>
-      <item value="leather_legs" quantity="[1,1]" probability="10.0"/>
       <item value="potion" quantity="[1,3]" probability="20.0"/>
-      <item value="wooden_spear" quantity="[3,9]" probability="45.0"/>
     </drops>
     <equips>
     </equips>
@@ -2635,11 +2729,12 @@
     <respawn value="1160"/>
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="elvish_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="green_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="dagger" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -2653,6 +2748,7 @@
 
   <creature name="darkmonk">
     <type class="human" subclass="darkmonk" tileid="human.png:2"/>
+    <description></description>
     <attributes>
       <atk value="140"/>
       <def value="20"/>
@@ -2667,7 +2763,6 @@
       <item value="money" quantity="[5,20]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,1]" probability="10.0"/>
       <item value="antidote" quantity="[1,3]" probability="10.0"/>
-      <item value="staff" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -2726,8 +2821,11 @@
     <experience value="1040"/>
     <respawn value="1220"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="money" quantity="[10,20]" probability="100.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="hammer_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="skull_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2753,9 +2851,10 @@
     <respawn value="1240"/>
     <drops>
       <item value="money" quantity="[4,17]" probability="100.0"/>
-      <item value="studded_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
+      <item value="studded_shield" quantity="[1,1]" probability="20.0"/>
+      <item value="short_sword" quantity="[1,1]" probability="15.0"/>
+      <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.025"/>
     </drops>
     <equips>
     </equips>
@@ -2768,6 +2867,7 @@
 
   <creature name="demon_skeleton">
     <type class="undead" subclass="demon_skeleton" tileid="undead.png:3"/>
+    <description></description>
     <attributes>
       <atk value="170"/>
       <def value="25"/>
@@ -2780,7 +2880,7 @@
     <respawn value="1260"/>
     <drops>
       <item value="money" quantity="[3,30]" probability="90.0"/>
-      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
+      <item value="demon_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -2809,8 +2909,12 @@
     <experience value="1290"/>
     <respawn value="1300"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="money" quantity="[10,30]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.25"/>
+      <item value="war_hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_helmet" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2823,6 +2927,7 @@
 
   <creature name="elf_sacerdotist">
     <type class="elf" subclass="elf_sacerdotist" tileid="elf.png:4"/>
+    <description></description>
     <attributes>
       <atk value="121"/>
       <def value="25"/>
@@ -2835,9 +2940,8 @@
     <respawn value="1320"/>
     <drops>
       <item value="money" quantity="[4,55]" probability="100.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="elf_cloak_+2" quantity="[1,1]" probability="5.0"/>
+      <item value="elf_cloak_+2" quantity="[1,1]" probability="0.5"/>
+      <item value="ice_sword" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -2851,6 +2955,7 @@
 
   <creature name="minotaur">
     <type class="minotaur" subclass="minotaur" tileid="minotaur.png:1"/>
+    <description></description>
     <attributes>
       <atk value="160"/>
       <def value="25"/>
@@ -2863,8 +2968,11 @@
     <respawn value="1320"/>
     <drops>
       <item value="money" quantity="[3,46]" probability="100.0"/>
-      <item value="twoside_axe_+3" quantity="[1,1]" probability="4.0"/>
       <item value="empty_scroll" quantity="[1,1]" probability="1.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.3"/>
+      <item value="war_hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="green_dragon_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2894,13 +3002,9 @@
     <respawn value="1350"/>
     <drops>
       <item value="money" quantity="[6,22]" probability="100.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="5.0"/>
-      <item value="bardiche" quantity="[1,1]" probability="1.0"/>
-      <item value="studded_legs" quantity="[1,1]" probability="8.0"/>
-      <item value="studded_helmet" quantity="[1,1]" probability="9.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.25"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.1"/>
+      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2927,8 +3031,11 @@
     <respawn value="1370"/>
     <drops>
       <item value="money" quantity="[4,55]" probability="100.0"/>
-      <item value="longbow" quantity="[1,1]" probability="10.0"/>
-      <item value="wooden_arrow" quantity="[5,15]" probability="20.0"/>
+      <item value="longbow" quantity="[1,1]" probability="5.0"/>
+      <item value="wooden_arrow" quantity="[5,15]" probability="10.0"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="crossbow" quantity="[1,1]" probability="0.5"/>
+      <item value="hunter_crossbow" quantity="[1,1]" probability="5.0E-4"/>
     </drops>
     <equips>
       <slot name="lhand" item="golden_arrow" quantity="10000"/>
@@ -2959,6 +3066,12 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="war_hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_hammer" quantity="[1,1]" probability="0.0050"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -2971,6 +3084,7 @@
 
   <creature name="dark_elf_archer">
     <type class="dark_elf" subclass="dark_elf_archer" tileid="dark_elf.png:0"/>
+    <description></description>
     <attributes>
       <atk value="110"/>
       <def value="20"/>
@@ -2983,46 +3097,14 @@
     <respawn value="1430"/>
     <drops>
       <item value="money" quantity="[15,50]" probability="100.0"/>
-      <item value="steel_arrow" quantity="[10,20]" probability="40.0"/>
-      <item value="crossbow" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="steel_arrow" quantity="[1,5]" probability="5.0"/>
+      <item value="longbow" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
       <slot name="lhand" item="steel_arrow" quantity="10000"/>
       <slot name="rhand" item="wooden_bow" quantity="1"/>
-    </equips>
-    <ai>
-      <profile name="brave"/>
-      <profile name="offensive"/>
-      <profile name="human"/>
-      <profile name="archer"/>
-      <profile name="patrolling"/>
-    </ai>
-  </creature>
-
-  <creature name="dark_elf_elite_archer">
-    <type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
-    <attributes>
-      <atk value="120"/>
-      <def value="20"/>
-      <hp value="130"/>
-      <speed value="1.0"/>
-      <size value="1,2"/>
-    </attributes>
-    <level value="49"/>
-    <experience value="1660"/>
-    <respawn value="1430"/>
-    <drops>
-      <item value="money" quantity="[15,80]" probability="100.0"/>
-      <item value="golden_arrow" quantity="[10,20]" probability="40.0"/>
-      <item value="crossbow" quantity="[1,1]" probability="10.0"/>
-      <item value="sword" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
-    </drops>
-    <equips>
-      <slot name="lhand" item="golden_arrow" quantity="10000"/>
-      <slot name="rhand" item="longbow_+1" quantity="1"/>
     </equips>
     <ai>
       <profile name="brave"/>
@@ -3062,6 +3144,7 @@
 
   <creature name="fire_elemental">
     <type class="elemental" subclass="fire_elemental" tileid="elemental.png:2"/>
+    <description></description>
     <attributes>
       <atk value="110"/>
       <def value="21"/>
@@ -3075,7 +3158,7 @@
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater_antidote" quantity="[1,3]" probability="50.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
+      <item value="fire_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -3131,9 +3214,9 @@
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,1]" probability="50.0"/>
-      <item value="green_dragon_cloak" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="emerald" quantity="[1,4]" probability="5.0"/>
+      <item value="green_dragon_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -3161,10 +3244,11 @@
     <respawn value="1490"/>
     <drops>
       <item value="money" quantity="[4,20]" probability="100.0"/>
-      <item value="short_sword" quantity="[1,1]" probability="30.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="3.0"/>
-      <item value="scimitar" quantity="[1,1]" probability="10.0"/>
-      <item value="claymore" quantity="[1,1]" probability="1.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="1.5"/>
+      <item value="green_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="biting_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3177,6 +3261,7 @@
 
   <creature name="death_knight">
     <type class="undead" subclass="death_knight" tileid="undead.png:1"/>
+    <description></description>
     <attributes>
       <atk value="150"/>
       <def value="27"/>
@@ -3189,18 +3274,18 @@
     <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[4,60]" probability="100.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="scale_armor_+2" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="skull_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="1.5"/>
+      <item value="shadow_helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="fire_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
       <profile name="offensive"/>
-      <profile name="human"/>
       <profile name="coward"/>
+      <profile name="human"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
@@ -3208,6 +3293,7 @@
 
   <creature name="devil_queen">
     <type class="undead" subclass="devil_queen" tileid="undead.png:4"/>
+    <description></description>
     <attributes>
       <atk value="140"/>
       <def value="28"/>
@@ -3220,7 +3306,6 @@
     <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="great_sword" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -3272,12 +3357,11 @@
     <respawn value="1580"/>
     <drops>
       <item value="money" quantity="[20,52]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="hammer" quantity="[1,1]" probability="30.0"/>
-      <item value="hammer_+3" quantity="[1,1]" probability="30.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="30.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="0.25"/>
+      <item value="twoside_axe" quantity="[1,1]" probability="5.0"/>
+      <item value="bardiche" quantity="[1,1]" probability="0.5"/>
+      <item value="stone_boots" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -3291,6 +3375,7 @@
 
   <creature name="dark_elf">
     <type class="dark_elf" subclass="dark_elf" tileid="dark_elf.png:6"/>
+    <description></description>
     <attributes>
       <atk value="140"/>
       <def value="30"/>
@@ -3303,9 +3388,11 @@
     <respawn value="1610"/>
     <drops>
       <item value="money" quantity="[5,50]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="bone_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -3333,7 +3420,8 @@
     <drops>
       <item value="money" quantity="[10,120]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="ugmash" quantity="[1,1]" probability="5.0E-4"/>
     </drops>
     <equips>
     </equips>
@@ -3349,6 +3437,7 @@
 
   <creature name="bone_dragon">
     <type class="huge_animal" subclass="bone_dragon" tileid="huge_animal.png:2"/>
+    <description></description>
     <attributes>
       <atk value="145"/>
       <def value="27"/>
@@ -3362,15 +3451,13 @@
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
-      <item value="bone_dragon_cloak" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="bone_dragon_cloak" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.5"/>
       <profile name="patrolling"/>
@@ -3392,9 +3479,11 @@
     <respawn value="1680"/>
     <drops>
       <item value="money" quantity="[30,150]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.0050"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="assassin_dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3422,6 +3511,7 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="golden_helmet_+3" quantity="[1,1]" probability="0.25"/>
     </drops>
     <equips>
     </equips>
@@ -3432,7 +3522,40 @@
     </ai>
   </creature>
 
-  <creature name="mountain_rdian">
+  <creature name="dark_elf_elite_archer">
+    <type class="dark_elf" subclass="dark_elf_elite_archer" tileid="dark_elf.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="130"/>
+      <def value="20"/>
+      <hp value="200"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="59"/>
+    <experience value="2640"/>
+    <respawn value="1760"/>
+    <drops>
+      <item value="money" quantity="[15,80]" probability="100.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_arrow" quantity="[1,5]" probability="5.0"/>
+      <item value="longbow" quantity="[1,1]" probability="2.5"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="golden_arrow" quantity="10000"/>
+      <slot name="rhand" item="longbow_+1" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="mountain_dwarf_guardian">
     <type class="dwarf" subclass="dwarf_guardian" tileid="mountain_dwarf.png:0"/>
     <description></description>
     <attributes>
@@ -3447,12 +3570,11 @@
     <respawn value="1760"/>
     <drops>
       <item value="money" quantity="[9,31]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="axe" quantity="[1,1]" probability="30.0"/>
-      <item value="twoside_axe" quantity="[1,1]" probability="3.0"/>
-      <item value="chain_armor" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="bardiche" quantity="[1,1]" probability="1.0"/>
+      <item value="halberd" quantity="[1,1]" probability="0.05"/>
+      <item value="stone_boots" quantity="[1,1]" probability="2.5"/>
+      <item value="golden_helmet" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3492,6 +3614,7 @@
 
   <creature name="dark_elf_captain">
     <type class="dark_elf" subclass="dark_elf_captain" tileid="dark_elf.png:1"/>
+    <description></description>
     <attributes>
       <atk value="190"/>
       <def value="35"/>
@@ -3504,9 +3627,12 @@
     <respawn value="1800"/>
     <drops>
       <item value="money" quantity="[5,90]" probability="100.0"/>
-      <item value="plate_shield" quantity="[1,1]" probability="40.0"/>
-      <item value="katana" quantity="[1,1]" probability="10.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.15"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="2.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="drow_sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -3520,6 +3646,7 @@
 
   <creature name="lich">
     <type class="undead" subclass="lich" tileid="undead.png:7"/>
+    <description></description>
     <attributes>
       <atk value="160"/>
       <def value="30"/>
@@ -3533,13 +3660,10 @@
     <drops>
       <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="biting_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="2.0"/>
-      <item value="scale_armor_+2" quantity="[1,1]" probability="8.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="3.0"/>
-      <item value="skull_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="scythe" quantity="[1,1]" probability="5.0"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -3566,11 +3690,11 @@
     <respawn value="1830"/>
     <drops>
       <item value="money" quantity="[10,25]" probability="100.0"/>
-      <item value="battle_axe" quantity="[1,1]" probability="7.0"/>
-      <item value="studded_legs" quantity="[1,1]" probability="17.0"/>
-      <item value="studded_helmet" quantity="[1,1]" probability="17.0"/>
-      <item value="cloak" quantity="[1,1]" probability="20.0"/>
-      <item value="potion" quantity="[1,1]" probability="30.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.15"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="2.5"/>
+      <item value="shadow_cloak" quantity="[1,1]" probability="0.25"/>
+      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3584,6 +3708,7 @@
 
   <creature name="minotaur_king">
     <type class="minotaur" subclass="mino_king" tileid="minotaur.png:0"/>
+    <description></description>
     <attributes>
       <atk value="160"/>
       <def value="32"/>
@@ -3596,11 +3721,13 @@
     <respawn value="1870"/>
     <drops>
       <item value="money" quantity="[15,89]" probability="100.0"/>
-      <item value="steel_boots" quantity="[1,1]" probability="18.0"/>
-      <item value="viking_helmet" quantity="[1,1]" probability="46.0"/>
-      <item value="greater_potion" quantity="[1,2]" probability="90.0"/>
-      <item value="empty_scroll" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="6.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="vampire_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_hammer" quantity="[1,1]" probability="0.25"/>
+      <item value="vulcano_hammer" quantity="[1,1]" probability="0.0050"/>
+      <item value="greater_potion" quantity="[1,2]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
@@ -3630,13 +3757,12 @@
     <respawn value="1870"/>
     <drops>
       <item value="money" quantity="[9,35]" probability="100.0"/>
-      <item value="lion_shield" quantity="[1,1]" probability="15.0"/>
-      <item value="unicorn_shield" quantity="[1,1]" probability="3.0"/>
-      <item value="twoside_axe" quantity="[1,1]" probability="15.0"/>
-      <item value="halberd" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_armor_+1" quantity="[1,1]" probability="15.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="5.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="bardiche" quantity="[1,1]" probability="2.0"/>
+      <item value="halberd" quantity="[1,1]" probability="0.5"/>
+      <item value="stone_boots" quantity="[1,1]" probability="1.5"/>
+      <item value="shadow_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -3663,7 +3789,11 @@
     <respawn value="1960"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="chaos_hammer" quantity="[1,1]" probability="0.5"/>
+      <item value="vulcano_hammer" quantity="[1,1]" probability="0.0050"/>
+      <item value="greater_potion" quantity="[1,2]" probability="1.5"/>
+      <item value="great_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3689,13 +3819,8 @@
     <respawn value="1960"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_boots" quantity="[1,1]" probability="1.5"/>
+      <item value="broadsword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -3709,6 +3834,7 @@
 
   <creature name="dark_elf_knight">
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
+    <description></description>
     <attributes>
       <atk value="180"/>
       <def value="32"/>
@@ -3721,9 +3847,11 @@
     <respawn value="2000"/>
     <drops>
       <item value="money" quantity="[50,80]" probability="100.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="great_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="stone_boots" quantity="[1,1]" probability="1.5"/>
+      <item value="shadow_helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="drow_sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -3738,6 +3866,7 @@
 
   <creature name="vampire_lord">
     <type class="vampire" subclass="vampire_lord_evil" tileid="vampire.png:2"/>
+    <description></description>
     <attributes>
       <atk value="170"/>
       <def value="27"/>
@@ -3751,9 +3880,9 @@
     <drops>
       <item value="money" quantity="[15,100]" probability="100.0"/>
       <item value="mega_potion" quantity="[1,2]" probability="55.0"/>
-      <item value="vampire_cloak" quantity="[1,1]" probability="10.0"/>
-      <item value="vampire_sword" quantity="[1,1]" probability="1.0"/>
       <item value="skull_ring" quantity="[1,1]" probability="100.0"/>
+      <item value="vampire_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="vampire_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -3807,13 +3936,11 @@
     <respawn value="2090"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="1.5"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="halberd" quantity="[1,1]" probability="1.5"/>
+      <item value="twoside_axe_+3" quantity="[1,1]" probability="0.05"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -3840,13 +3967,8 @@
     <respawn value="2140"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="golden_arrow" quantity="[1,15]" probability="5.0"/>
+      <item value="longbow_+1" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -3860,6 +3982,7 @@
 
   <creature name="dark_elf_general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
+    <description></description>
     <attributes>
       <atk value="200"/>
       <def value="35"/>
@@ -3872,9 +3995,11 @@
     <respawn value="2240"/>
     <drops>
       <item value="money" quantity="[50,150]" probability="100.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="25.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.05"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="0.2"/>
+      <item value="drow_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -3889,6 +4014,7 @@
 
   <creature name="blue_dragon">
     <type class="huge_animal" subclass="blue_dragon" tileid="huge_animal.png:1"/>
+    <description></description>
     <attributes>
       <atk value="210"/>
       <def value="35"/>
@@ -3900,15 +4026,16 @@
     <experience value="4130"/>
     <respawn value="2240"/>
     <drops>
-      <item value="blue_dragon_cloak" quantity="[1,1]" probability="5.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="80.0"/>
       <item value="money" quantity="[20,100]" probability="100.0"/>
+      <item value="sapphire" quantity="[1,4]" probability="10.0"/>
+      <item value="blue_dragon_cloak" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -3930,13 +4057,11 @@
     <respawn value="2290"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.08"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.08"/>
+      <item value="golden_helmet_+3" quantity="[1,1]" probability="0.5"/>
+      <item value="great_sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -3963,13 +4088,9 @@
     <respawn value="2140"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="power_arrow" quantity="[1,5]" probability="5.0"/>
+      <item value="golden_arrow" quantity="[1,15]" probability="5.0"/>
+      <item value="longbow_+1" quantity="[1,1]" probability="2.5"/>
     </drops>
     <equips>
     </equips>
@@ -3996,17 +4117,11 @@
     <respawn value="2400"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="poisonous" params="5,greater_poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4028,8 +4143,13 @@
     <experience value="4960"/>
     <respawn value="2510"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="money" quantity="[60,300]" probability="100.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.15"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.025"/>
+      <item value="ugmash" quantity="[1,1]" probability="0.0050"/>
+      <item value="chaos_hammer" quantity="[1,1]" probability="0.5"/>
+      <item value="greater_potion" quantity="[1,3]" probability="1.5"/>
+      <item value="chaos_shield" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -4055,7 +4175,12 @@
     <respawn value="2510"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="0.7"/>
+      <item value="chaos_helmet" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos_shield" quantity="[1,1]" probability="0.3"/>
+      <item value="chaos_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -4081,13 +4206,8 @@
     <respawn value="2570"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.7"/>
     </drops>
     <equips>
     </equips>
@@ -4114,13 +4234,14 @@
     <respawn value="2690"/>
     <drops>
       <item value="money" quantity="[5,40]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="8.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="8.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="20.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="20.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="dwarvish_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.25"/>
+      <item value="twoside_axe_+3" quantity="[1,1]" probability="0.5"/>
+      <item value="magic_twoside_axe" quantity="[1,1]" probability="0.0050"/>
+      <item value="vulcano_hammer" quantity="[1,1]" probability="0.0050"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.035"/>
+      <item value="greater_potion" quantity="[2,4]" probability="3.0"/>
+      <item value="magic_plate_shield" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -4134,6 +4255,7 @@
 
   <creature name="ent">
     <type class="boss" subclass="treant" tileid="boss.png:2"/>
+    <description></description>
     <attributes>
       <atk value="180"/>
       <def value="45"/>
@@ -4146,7 +4268,7 @@
     <respawn value="2820"/>
     <drops>
       <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="20.0"/>
     </drops>
     <equips>
     </equips>
@@ -4173,12 +4295,12 @@
     <experience value="5920"/>
     <respawn value="2820"/>
     <drops>
-      <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="money" quantity="[30,50]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
+      <profile name="poisonous" params="5,disease_poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4202,13 +4324,9 @@
     <respawn value="3010"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_helmet" quantity="[1,1]" probability="0.4"/>
     </drops>
     <equips>
     </equips>
@@ -4236,6 +4354,11 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_helmet" quantity="[1,1]" probability="0.2"/>
+      <item value="chaos_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -4261,13 +4384,8 @@
     <respawn value="3450"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="0.7"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4281,6 +4399,7 @@
 
   <creature name="dark_elf_wizard">
     <type class="dark_elf" subclass="dark_elf_wizard" tileid="dark_elf.png:9"/>
+    <description></description>
     <attributes>
       <atk value="225"/>
       <def value="35"/>
@@ -4296,6 +4415,7 @@
       <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
       <item value="greater_poison" quantity="[1,2]" probability="50.0"/>
       <item value="nalwor_city_scroll" quantity="[1,2]" probability="25.0"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4311,6 +4431,7 @@
 
   <creature name="giant_dwarf">
     <type class="boss" subclass="giant_dwarf" tileid="boss.png:0"/>
+    <description></description>
     <attributes>
       <atk value="225"/>
       <def value="35"/>
@@ -4323,7 +4444,10 @@
     <respawn value="3530"/>
     <drops>
       <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="magic_plate_armor" quantity="[1,1]" probability="0.0010"/>
+      <item value="magic_twoside_axe" quantity="[1,1]" probability="0.2"/>
+      <item value="durin_axe" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
@@ -4351,13 +4475,37 @@
     <respawn value="3690"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="shadows_assassin">
+    <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="215"/>
+      <def value="33"/>
+      <hp value="920"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="93"/>
+    <experience value="8970"/>
+    <respawn value="3770"/>
+    <drops>
+      <item value="money" quantity="[30,150]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="6.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.05"/>
+      <item value="black_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="dark_dagger" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -4384,13 +4532,11 @@
     <respawn value="3940"/>
     <drops>
       <item value="money" quantity="[5,33]" probability="100.0"/>
-      <item value="crown_shield" quantity="[1,1]" probability="4.0"/>
-      <item value="war_hammer" quantity="[1,1]" probability="5.0"/>
-      <item value="chain_armor_+3" quantity="[1,1]" probability="15.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="chain_legs" quantity="[1,1]" probability="10.0"/>
-      <item value="chain_helmet" quantity="[1,1]" probability="10.0"/>
-      <item value="dwarf_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="ice_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="2.0"/>
+      <item value="shadow_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="magic_plate_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="elvish_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -4417,7 +4563,13 @@
     <respawn value="4120"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="2.0"/>
+      <item value="shadow_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="0.1"/>
+      <item value="chaos_helmet" quantity="[1,1]" probability="0.7"/>
+      <item value="chaos_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4430,6 +4582,7 @@
 
   <creature name="dark_elf_viceroy">
     <type class="dark_elf" subclass="dark_elf_viceroy" tileid="dark_elf.png:8"/>
+    <description></description>
     <attributes>
       <atk value="245"/>
       <def value="35"/>
@@ -4441,11 +4594,14 @@
     <experience value="11000"/>
     <respawn value="4400"/>
     <drops>
-      <item value="money" quantity="[50,700]" probability="100.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="10.0"/>
-      <item value="ice_sword" quantity="[1,1]" probability="5.0"/>
-      <item value="golden_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="money" quantity="[50,400]" probability="100.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="5.0E-4"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.2"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="black_shield" quantity="[1,1]" probability="0.01"/>
+      <item value="drow_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4474,6 +4630,8 @@
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.01"/>
     </drops>
     <equips>
     </equips>
@@ -4516,6 +4674,7 @@
 
   <creature name="giant">
     <type class="giant_human" subclass="giant" tileid="giant_human.png:1"/>
+    <description></description>
     <attributes>
       <atk value="270"/>
       <def value="30"/>
@@ -4529,13 +4688,13 @@
     <drops>
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="80.0"/>
-      <item value="money" quantity="[30,450]" probability="100.0"/>
+      <item value="money" quantity="[30,300]" probability="100.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4558,8 +4717,9 @@
     <drops>
       <item value="greater_potion" quantity="[1,4]" probability="80.0"/>
       <item value="greater_poison" quantity="[1,1]" probability="50.0"/>
-      <item value="money" quantity="[30,700]" probability="100.0"/>
+      <item value="money" quantity="[30,300]" probability="100.0"/>
       <item value="empty_scroll" quantity="[1,2]" probability="25.0"/>
+      <item value="black_cloak" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -4589,6 +4749,7 @@
     <drops>
       <item value="greater_potion" quantity="[2,4]" probability="80.0"/>
       <item value="money" quantity="[60,400]" probability="100.0"/>
+      <item value="carbuncle" quantity="[1,4]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -4615,8 +4776,15 @@
     <experience value="14000"/>
     <respawn value="5300"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="money" quantity="[80,500]" probability="100.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.05"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.025"/>
+      <item value="black_shield" quantity="[1,1]" probability="0.05"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.0050"/>
     </drops>
     <equips>
     </equips>
@@ -4629,6 +4797,7 @@
 
   <creature name="giant_elder">
     <type class="giant_human" subclass="giant_elder" tileid="giant_human.png:0"/>
+    <description></description>
     <attributes>
       <atk value="270"/>
       <def value="35"/>
@@ -4642,13 +4811,15 @@
     <drops>
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
-      <item value="money" quantity="[30,900]" probability="100.0"/>
+      <item value="money" quantity="[30,450]" probability="100.0"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="orcish_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4669,17 +4840,14 @@
     <experience value="31900"/>
     <respawn value="10600"/>
     <drops>
-      <item value="money" quantity="[10,80]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,1]" probability="50.0"/>
-      <item value="green_dragon_cloak" quantity="[1,1]" probability="5.0"/>
-      <item value="fire_sword" quantity="[1,1]" probability="1.0"/>
-      <item value="plate_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="money" quantity="[90,500]" probability="100.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4700,9 +4868,12 @@
     <experience value="35200"/>
     <respawn value="11500"/>
     <drops>
-      <item value="mega_potion" quantity="[1,4]" probability="50.0"/>
+      <item value="mega_potion" quantity="[1,2]" probability="50.0"/>
       <item value="deadly_poison" quantity="[1,3]" probability="40.0"/>
-      <item value="money" quantity="[30,1500]" probability="100.0"/>
+      <item value="money" quantity="[300,1500]" probability="100.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="black_cloak" quantity="[1,1]" probability="0.05"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -4733,7 +4904,9 @@
     <drops>
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
-      <item value="money" quantity="[30,900]" probability="100.0"/>
+      <item value="money" quantity="[30,650]" probability="100.0"/>
+      <item value="ice_armor" quantity="[1,1]" probability="1.5"/>
+      <item value="ice_war_hammer" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -4760,9 +4933,11 @@
     <experience value="50800"/>
     <respawn value="16000"/>
     <drops>
-      <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
-      <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
-      <item value="money" quantity="[30,900]" probability="100.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
+      <item value="money" quantity="[30,700]" probability="100.0"/>
+      <item value="stone_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="durin_axe" quantity="[1,1]" probability="0.25"/>
+      <item value="magic_twoside_axe" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4791,8 +4966,8 @@
     <drops>
       <item value="mega_potion" quantity="[1,4]" probability="100.0"/>
       <item value="greater_antidote" quantity="[1,6]" probability="80.0"/>
-      <item value="money" quantity="[100,1000]" probability="100.0"/>
-      <item value="green_thing_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="money" quantity="[100,800]" probability="100.0"/>
+      <item value="green_thing_boots" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -4819,8 +4994,16 @@
     <experience value="70400"/>
     <respawn value="21600"/>
     <drops>
-      <item value="money" quantity="[10,50]" probability="100.0"/>
-      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="money" quantity="[100,900]" probability="100.0"/>
+      <item value="mega_potion" quantity="[1,2]" probability="30.0"/>
+      <item value="mega_potion" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="2.5"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.1"/>
+      <item value="black_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -4833,6 +5016,7 @@
 
   <creature name="black_dragon">
     <type class="mythical_animal" subclass="black_dragon" tileid="mythical_animal.png:0"/>
+    <description></description>
     <attributes>
       <atk value="290"/>
       <def value="42"/>
@@ -4844,15 +5028,17 @@
     <experience value="82000"/>
     <respawn value="24000"/>
     <drops>
-      <item value="mega_potion" quantity="[1,3]" probability="50.0"/>
-      <item value="money" quantity="[300,10000]" probability="100.0"/>
-      <item value="black_dragon_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="greater_potion" quantity="[1,3]" probability="70.0"/>
+      <item value="money" quantity="[300,1000]" probability="100.0"/>
+      <item value="obsidian" quantity="[1,4]" probability="10.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="0.0050"/>
+      <item value="black_dragon_cloak" quantity="[1,1]" probability="1.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
@@ -4873,15 +5059,20 @@
     <experience value="108000"/>
     <respawn value="32000"/>
     <drops>
-      <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
+      <item value="mega_potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
-      <item value="money" quantity="[30,900]" probability="100.0"/>
+      <item value="money" quantity="[200,2000]" probability="100.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="black_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="black_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
@@ -4904,7 +5095,10 @@
     <drops>
       <item value="greater_potion" quantity="[1,4]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
-      <item value="money" quantity="[30,900]" probability="100.0"/>
+      <item value="money" quantity="[300,3000]" probability="100.0"/>
+      <item value="magic_plate_armor" quantity="[1,1]" probability="0.1"/>
+      <item value="magic_chain_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="immortal_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
@@ -4919,10 +5113,11 @@
 
   <creature name="black_death">
     <type class="huge_animal" subclass="black_death" tileid="huge_animal.png:0"/>
+    <description></description>
     <attributes>
       <atk value="390"/>
       <def value="53"/>
-      <hp value="4800"/>
+      <hp value="5800"/>
       <speed value="1.0"/>
       <size value="3,4"/>
     </attributes>
@@ -4930,17 +5125,18 @@
     <experience value="270000"/>
     <respawn value="70000"/>
     <drops>
-      <item value="mega_potion" quantity="[5,15]" probability="50.0"/>
-      <item value="money" quantity="[3000,50000]" probability="100.0"/>
-      <item value="magic_plate_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="shadow_shield" quantity="[1,1]" probability="5.0"/>
-      <item value="shadow_legs" quantity="[1,1]" probability="5.0"/>
+      <item value="mega_potion" quantity="[2,4]" probability="50.0"/>
+      <item value="money" quantity="[3000,10000]" probability="100.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="black_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="black_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="black_sword" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
     </equips>
     <ai>
-      <profile name="animal"/>
       <profile name="brave"/>
+      <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.05"/>
       <profile name="heal" params="35,50"/>
@@ -4950,10 +5146,11 @@
 
   <creature name="balrog">
     <type class="boss" subclass="balrog" tileid="boss.png:1"/>
+    <description></description>
     <attributes>
       <atk value="420"/>
       <def value="55"/>
-      <hp value="7000"/>
+      <hp value="10000"/>
       <speed value="0.6"/>
       <size value="13,10"/>
     </attributes>
@@ -4961,8 +5158,12 @@
     <experience value="430000"/>
     <respawn value="120000"/>
     <drops>
-      <item value="money" quantity="[50,500]" probability="100.0"/>
-      <item value="greater_potion" quantity="[1,6]" probability="20.0"/>
+      <item value="money" quantity="[5000,50000]" probability="100.0"/>
+      <item value="mega_potion" quantity="[2,4]" probability="60.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="black_shield" quantity="[1,1]" probability="3.0"/>
+      <item value="emerald_ring" quantity="[1,1]" probability="5.0"/>
+      <item value="demon_fire_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
