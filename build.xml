@@ -188,6 +188,9 @@
                 <arg value="-jar"/>
                 <arg file="run/${client_jarname}"/>
             </exec>
+            
+            <!-- we've run the program, so delete the jars -->
+            <delete dir="run/"/>
     
         </target>
         
