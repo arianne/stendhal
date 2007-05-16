@@ -2,7 +2,7 @@
 <items>
   <item name="wooden_arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
-    <description>You see a wooden arrow. With a supply of arrowsin one hand and a bow in the other you can fight from a distance.</description>
+    <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can fight from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="1"/>
       <range value="0"/>
@@ -11,15 +11,15 @@
     <weight value="0.1"/>
     <value value="10"/>
     <equipable>
+      <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-      <slot name="bag"/>
     </equipable>
   </item>
 
   <item name="steel_arrow">
     <type class="ammunition" subclass="steel_arrow" tileid="-1"/>
-    <description>You see a shining steel arrow. With plenty ofthese, and a good bow, you'll be a formidable archer.</description>
+    <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="3"/>
       <range value="1"/>
@@ -28,9 +28,9 @@
     <weight value="0.1"/>
     <value value="270"/>
     <equipable>
+      <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
-      <slot name="bag"/>
     </equipable>
   </item>
 
@@ -70,35 +70,35 @@
 
   <item name="dress">
     <type class="armor" subclass="dress" tileid="-1"/>
-    <description>You see a dress, whichprovides practically no defence. It is barely worth picking up.</description>
+    <description>You see a dress, which provides practically no defence. It is barely worth picking up.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="1"/>
     </attributes>
     <weight value="5.0"/>
     <value value="7"/>
     <equipable>
-      <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="armor"/>
     </equipable>
   </item>
 
   <item name="leather_armor">
     <type class="armor" subclass="leather_armor" tileid="-1"/>
-    <description>You see a worn suit of leather armor. It willprovide only minimal protection.</description>
+    <description>You see a worn suit of leather armor. It will provide only minimal protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="3"/>
     </attributes>
     <weight value="15.0"/>
     <value value="189"/>
     <equipable>
-      <slot name="armor"/>
       <slot name="bag"/>
+      <slot name="armor"/>
     </equipable>
   </item>
 
   <item name="leather_cuirass">
     <type class="armor" subclass="leather_cuirass" tileid="-1"/>
-    <description>You see a leather cuirass, well made butstill able to be pierced by sharp swords.</description>
+    <description>You see a leather cuirass, well made but still able to be pierced by sharp swords.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -112,7 +112,7 @@
 
   <item name="leather_armor_+1">
     <type class="armor" subclass="leather_scale_armor" tileid="-1"/>
-    <description>You see a suit of leather armor +1. The leatheris toughened somehow for better protection.</description>
+    <description>You see a suit of leather armor +1. The leather is toughened somehow for better protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -140,7 +140,7 @@
 
   <item name="studded_armor">
     <type class="armor" subclass="studded_armor" tileid="-1"/>
-    <description>You see a suit of studded armor. Some studs areloose o r rusty but it is still fit for purpose.</description>
+    <description>You see a suit of studded armor. Some studs are loose or rusty but it is still fit for purpose.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="5"/>
     </attributes>
@@ -154,7 +154,7 @@
 
   <item name="chain_armor">
     <type class="armor" subclass="chain_armor" tileid="-1"/>
-    <description>You see a suit of chain armor. Perhaps even ifyou don't need it, you can sell it.</description>
+    <description>You see a suit of chain armor. Perhaps even if you don't need it, you can sell it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="6"/>
     </attributes>
@@ -168,7 +168,7 @@
 
   <item name="chain_armor_+1">
     <type class="armor" subclass="enhanced_chainmail" tileid="-1"/>
-    <description>You see a robust suit of chain armor +1. Thelinks are closely spaced so even the sharpest point should not pierce it.</description>
+    <description>You see a robust suit of chain armor +1. The links are closely spaced so even the sharpest point should not pierce it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="7"/>
     </attributes>
@@ -182,7 +182,7 @@
 
   <item name="scale_armor">
     <type class="armor" subclass="scale_armor" tileid="-1"/>
-    <description>You see a suit of scale armor. It is not flexiblelike chain, but will be a better defense.</description>
+    <description>You see a suit of scale armor. It is not flexible like chain, but will be a better defense.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="7"/>
     </attributes>
@@ -196,7 +196,7 @@
 
   <item name="scale_armor_+1">
     <type class="armor" subclass="iron_scale_armor" tileid="-1"/>
-    <description>You see a suit of scale armor +1, whose roundedscales will protect you from many blows.</description>
+    <description>You see a suit of scale armor +1, whose rounded scales will protect you from many blows.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="8"/>
     </attributes>
@@ -210,7 +210,7 @@
 
   <item name="chain_armor_+3">
     <type class="armor" subclass="golden_chainmail" tileid="-1"/>
-    <description>You see a valuable suit of chain armor +3. It iscrafted from fine links of expensive metal.</description>
+    <description>You see a valuable suit of chain armor +3. It is crafted from fine links of expensive metal.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -238,7 +238,7 @@
 
   <item name="plate_armor">
     <type class="armor" subclass="plate_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would beheavy butthe steel is well tempered and the suit is very strong.</description>
+    <description>You see a suit of plate armor. You imagine it would be heavy butthe steel is well tempered and the suit is very strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -252,7 +252,7 @@
 
   <item name="elvish_armor">
     <type class="armor" subclass="elvish_armor" tileid="-1"/>
-    <description>You see a suit ofelvish armor. It's made from tree leaves but it is really of good quality.</description>
+    <description>You see a suit of elvish armor. It's made from tree leaves but it is really of good quality.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="14"/>
     </attributes>
@@ -266,7 +266,7 @@
 
   <item name="barbarian_armor">
     <type class="armor" subclass="barbarian_armor" tileid="-1"/>
-    <description>You see a suit ofelvish armor. It's made from tree leaves but it is really of good quality.</description>
+    <description>You see a suit of elvish armor. It's made from tree leaves but it is really of good quality.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
     </attributes>
@@ -280,7 +280,7 @@
 
   <item name="golden_armor">
     <type class="armor" subclass="golden_armor" tileid="-1"/>
-    <description>You see a suit ofgolden armor. It's made from the best materials with great attention to detail.</description>
+    <description>You see a suit of golden armor. It's made from the best materials with great attention to detail.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="16"/>
     </attributes>
@@ -294,7 +294,7 @@
 
   <item name="shadow_armor">
     <type class="armor" subclass="shadow_armor" tileid="-1"/>
-    <description>You see a suit ofshadow armor. It's hard to decide with what it is made, it isso dark.</description>
+    <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
     </attributes>
@@ -308,7 +308,7 @@
 
   <item name="dwarvish_armor">
     <type class="armor" subclass="dwarvish_armor" tileid="-1"/>
-    <description>You see a suit ofshadow armor. It's hard to decide with what it is made, it is so dark.</description>
+    <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
     </attributes>
@@ -322,7 +322,7 @@
 
   <item name="stone_armor">
     <type class="armor" subclass="stone_armor" tileid="-1"/>
-    <description>You see a suit of                 ice armor. It's made from the hardest materials with great attention to detail.</description>
+    <description>You see a suit of stone armor.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="18"/>
     </attributes>
@@ -336,7 +336,7 @@
 
   <item name="ice_armor">
     <type class="armor" subclass="ice_armor" tileid="-1"/>
-    <description>You see a suit ofice armor. It's made from the hardest materials with great attention to detail.</description>
+    <description>You see a suit of ice armor. It's made from the hardest materials with great attention to detail.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="19"/>
     </attributes>
@@ -350,7 +350,7 @@
 
   <item name="chaos_armor">
     <type class="armor" subclass="chaos_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. Ithasbeen magically enhanced.</description>
+    <description>You see a suit of chaos armor.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
     </attributes>
@@ -378,7 +378,7 @@
 
   <item name="black_armor">
     <type class="armor" subclass="black_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. It has been magically enhanced.</description>
+    <description>You see a suit of black armor.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="26"/>
     </attributes>
@@ -406,7 +406,7 @@
 
   <item name="small_axe">
     <type class="axe" subclass="small_axe" tileid="-1"/>
-    <description>You see a smallaxe. It appears well made but yoususpect it is too light to do much damage.</description>
+    <description>You seea small axe. It appears well made but you suspect it is too light to do much damage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="7"/>
       <rate value="3"/>
@@ -422,7 +422,7 @@
 
   <item name="hand_axe">
     <type class="axe" subclass="hand_axe" tileid="-1"/>
-    <description>You see a hand axe, well worn from years of usebut may prove useful.</description>
+    <description>You see a hand axe, well worn from years of use but may prove useful.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="9"/>
       <rate value="4"/>
@@ -438,7 +438,7 @@
 
   <item name="axe">
     <type class="axe" subclass="axe" tileid="-1"/>
-    <description>You see a rusty but heavy axe. What it lacks insharpness it makes up for in weight.</description>
+    <description>You see a rusty but heavy axe. What it lacks in sharpness it makes up for in weight.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="12"/>
       <rate value="5"/>
@@ -454,7 +454,7 @@
 
   <item name="battle_axe">
     <type class="axe" subclass="battle_axe" tileid="-1"/>
-    <description>You see a battle axe. It is well crafted andsharp despite its age.</description>
+    <description>You see a battle axe. It is well crafted and sharp despite its age.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <rate value="6"/>
@@ -502,7 +502,7 @@
 
   <item name="bardiche">
     <type class="axe" subclass="bardiche" tileid="-1"/>
-    <description>You see a rare and powerfulbardiche.</description>
+    <description>You see a rare and powerful bardiche.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="33"/>
       <rate value="9"/>
@@ -534,7 +534,7 @@
 
   <item name="halberd">
     <type class="axe" subclass="halberd" tileid="-1"/>
-    <description>You seea rare halberd, with an axe's blade fusedonto a shaft. It is both heavy and keen-edged.</description>
+    <description>You see a rare halberd, with an axe's blade fused onto a shaft. It is both heavy and keen-edged.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
       <rate value="10"/>
@@ -582,7 +582,7 @@
 
   <item name="black_scythe">
     <type class="axe" subclass="scythe" tileid="-1"/>
-    <description>You see the weapon of death - a scythe. It looks dangerous but perhaps also a useful tool for farming.</description>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="42"/>
       <rate value="6"/>
@@ -614,7 +614,7 @@
 
   <item name="black_halberd">
     <type class="axe" subclass="halberd" tileid="-1"/>
-    <description>You see a rare halberd, with an axe's blade fused                 onto a shaft. It is both heavy and keen-edged.</description>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="57"/>
       <rate value="9"/>
@@ -642,7 +642,7 @@
 
   <item name="leather_boots">
     <type class="boots" subclass="leather_boots" tileid="-1"/>
-    <description>You see a simple pair of leather boots to giveyour feet some protection.</description>
+    <description>You see a simple pair of leather boots to give your feet some protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="1"/>
     </attributes>
@@ -656,7 +656,7 @@
 
   <item name="studded_boots">
     <type class="boots" subclass="studded_boots" tileid="-1"/>
-    <description>You see a pair of worn studded boots withmoderate protection for your feet.</description>
+    <description>You see a pair of worn studded boots with moderate protection for your feet.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="2"/>
     </attributes>
@@ -712,7 +712,7 @@
 
   <item name="golden_boots">
     <type class="boots" subclass="golden_boots" tileid="-1"/>
-    <description>You see a pair of golden boots. They will beheavy to wear but well worth their weight.</description>
+    <description>You see a pair of golden boots. They will be heavy to wear but well worth their weight.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="8"/>
     </attributes>
@@ -740,7 +740,7 @@
 
   <item name="stone_boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>
-    <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
+    <description>You see a pair of stone boots.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -754,7 +754,7 @@
 
   <item name="chaos_boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>
-    <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
+    <description>You see a pair of chaos boots.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
@@ -782,7 +782,7 @@
 
   <item name="black_boots">
     <type class="boots" subclass="shadow_boots" tileid="-1"/>
-    <description>You see a pair of shadow boots. You can't fathom what they are made of.</description>
+    <description>You see a pair of black boots.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
     </attributes>
@@ -848,7 +848,7 @@
 
   <item name="dwarf_cloak">
     <type class="cloak" subclass="red_cloak" tileid="-1"/>
-    <description>You see a dwarf cloak. Apparently this passes forfashion in some parts, but to you it looks more functional than fashionable.</description>
+    <description>You see a dwarf cloak. Apparently this passes for fashion in some parts, but to you it looks more functional than fashionable.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -862,7 +862,7 @@
 
   <item name="elvish_cloak">
     <type class="cloak" subclass="elvish_cloak" tileid="-1"/>
-    <description>You see an elvish cloak. The material is dark, butthick and warm.</description>
+    <description>You see an elvish cloak. The material is dark, but thick and warm.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="6"/>
     </attributes>
@@ -890,7 +890,7 @@
 
   <item name="stone_cloak">
     <type class="cloak" subclass="stone_cloak" tileid="-1"/>
-    <description>You see a stone cloak. It's hard to tell how it was made, asthe fibres look like narrow threads of mineral.</description>
+    <description>You see a stone cloak. It's hard to tell how it was made, as the fibres look like narrow threads of mineral.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -946,7 +946,7 @@
 
   <item name="vampire_cloak">
     <type class="cloak" subclass="brightred_cloak" tileid="-1"/>
-    <description>You see a vibrant red vampire cloak. Wearing itsends a shiver down your spine.</description>
+    <description>You see a vibrant red vampire cloak. Wearing it sends a shiver down your spine.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="12"/>
     </attributes>
@@ -1044,7 +1044,7 @@
 
   <item name="club">
     <type class="club" subclass="club" tileid="-1"/>
-    <description>You see a wooden club. It won't kill much but isbetter than no weapon.</description>
+    <description>You see a wooden club. It won't kill much but is better than no weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="6"/>
       <rate value="4"/>
@@ -1076,7 +1076,7 @@
 
   <item name="mace">
     <type class="club" subclass="mace" tileid="-1"/>
-    <description>You see a mace,much neglected in years of use.</description>
+    <description>You see a mace, much neglected in years of use.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="16"/>
       <rate value="6"/>
@@ -1092,7 +1092,7 @@
 
   <item name="flail">
     <type class="club" subclass="flail" tileid="-1"/>
-    <description>You see a military flail. Swinging it in circleswill tire you but it will be an effective weapon.</description>
+    <description>You see a military flail. Swinging it in circles will tire you but it will be an effective weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="19"/>
       <rate value="7"/>
@@ -1124,7 +1124,7 @@
 
   <item name="mace_+2">
     <type class="club" subclass="golden_mace" tileid="-1"/>
-    <description>You see a shining mace +2. Despite lookingornamental, it is sharp enough to do some damage.</description>
+    <description>You see a shining mace +2. Despite looking ornamental, it is sharp enough to do some damage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
       <rate value="8"/>
@@ -1140,7 +1140,7 @@
 
   <item name="skull_staff">
     <type class="club" subclass="skull_staff" tileid="-1"/>
-    <description>You see a rare skull staff. It appears mysticalbut will work like any other staff.</description>
+    <description>You see a rare skull staff. It appears mystical but will work like any other staff.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
       <lifesteal value="0.05"/>
@@ -1173,7 +1173,7 @@
 
   <item name="hammer">
     <type class="club" subclass="hammer" tileid="-1"/>
-    <description>You see a common hammer. It is heavy enough thatyou should be able to bludgeon your enemies with it.</description>
+    <description>You see a common hammer. It is heavy enough that you should be able to bludgeon your enemies with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="31"/>
       <rate value="9"/>
@@ -1189,7 +1189,7 @@
 
   <item name="hammer_+3">
     <type class="club" subclass="golden_hammer" tileid="-1"/>
-    <description>You see a valuable hammer +3. This golden weaponmay be worth a lot to someone.</description>
+    <description>You see a valuable hammer +3. This golden weapon may be worth a lot to someone.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="36"/>
       <rate value="9"/>
@@ -1253,7 +1253,7 @@
 
   <item name="ugmash">
     <type class="club" subclass="club" tileid="-1"/>
-    <description>You see a wooden club. It won't kill much but isbetter than no weapon.</description>
+    <description>You see a wooden club. It won't kill much but is better than no weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
       <rate value="6"/>
@@ -1418,7 +1418,7 @@
 
   <item name="antidote">
     <type class="drink" subclass="antidote" tileid="-1"/>
-    <description>You see an antidote, to cure you of poison andprotect you for a while.</description>
+    <description>You see an antidote, to cure you of poison and protect you for a while.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="400"/>
       <frequency value="1"/>
@@ -1436,7 +1436,7 @@
 
   <item name="greater_antidote">
     <type class="drink" subclass="greater_antidote" tileid="-1"/>
-    <description>You see a greater_antidote, to cure you of poison andprot ect you for a long while.</description>
+    <description>You see a greater_antidote, to cure you of poison and protect you for a long while.</description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="800"/>
       <frequency value="1"/>
@@ -2171,7 +2171,7 @@
 
   <item name="leather_helmet">
     <type class="helmet" subclass="leather_helmet" tileid="-1"/>
-    <description>You see a leather helmet, it seems more like a hatthan a defensive item.</description>
+    <description>You see a leather helmet, it seems more like a hat than a defensive item.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="1"/>
     </attributes>
@@ -2213,7 +2213,7 @@
 
   <item name="studded_helmet">
     <type class="helmet" subclass="studded_helmet" tileid="-1"/>
-    <description>You see a studded helmet, it should protect yourhead against cuts but perhaps not hard blows.</description>
+    <description>You see a studded helmet, it should protect your head against cuts but perhaps not hard blows.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="2"/>
     </attributes>
@@ -2227,7 +2227,7 @@
 
   <item name="chain_helmet">
     <type class="helmet" subclass="chain_helmet" tileid="-1"/>
-    <description>You see a solid chain helmet, it will be excellentprotection for your head.</description>
+    <description>You see a solid chain helmet, it will be excellent protection for your head.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -2269,7 +2269,7 @@
 
   <item name="golden_helmet">
     <type class="helmet" subclass="golden_helmet" tileid="-1"/>
-    <description>You see a heavy golden helmet. The thick metalshould protect you against almost anything.</description>
+    <description>You see a heavy golden helmet. The thick metal should protect you against almost anything.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -2283,7 +2283,7 @@
 
   <item name="shadow_helmet">
     <type class="helmet" subclass="shadow_helmet" tileid="-1"/>
-    <description>You see a heavy shadow helmet. Instead ofshining, it darkly gleams.</description>
+    <description>You see a heavy shadow helmet. Instead of shining, it darkly gleams.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -2612,7 +2612,7 @@
 
   <item name="leather_legs">
     <type class="legs" subclass="leather_legs" tileid="-1"/>
-    <description>You see a pair of leather legs. They look new butthey're poor quality.</description>
+    <description>You see a pair of leather legs. They look new but they're poor quality.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="1"/>
     </attributes>
@@ -2640,7 +2640,7 @@
 
   <item name="chain_legs">
     <type class="legs" subclass="chain_legs" tileid="-1"/>
-    <description>You see a pair of well made chain legs. Theyshould protect you against any attacks aimed low.</description>
+    <description>You see a pair of well made chain legs. They should protect you against any attacks aimed low.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -2682,7 +2682,7 @@
 
   <item name="shadow_legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
-    <description>You see a pair of shadow legs. The weight of themis incredible.</description>
+    <description>You see a pair of shadow legs. The weight of them is incredible.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -2696,7 +2696,7 @@
 
   <item name="chaos_legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
-    <description>You see a pair of shadow legs. The weight of them                 is incredible.</description>
+    <description>You see a pair of shadow legs. The weight of them is incredible.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
@@ -2710,7 +2710,7 @@
 
   <item name="black_legs">
     <type class="legs" subclass="shadow_legs" tileid="-1"/>
-    <description>You see a pair of shadow legs. The weight of them                 is incredible.</description>
+    <description>You see a pair of shadow legs. The weight of them is incredible.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
     </attributes>
@@ -2999,7 +2999,7 @@
 
   <item name="wooden_spear">
     <type class="missile" subclass="wooden_spear" tileid="-1"/>
-    <description>You see a wooden spear. With that primitive but powerful weaponyou can fight from a distance.</description>
+    <description>You see a wooden spear. With that primitive but powerful weapon you can fight from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="10"/>
       <range value="4"/>
@@ -3031,7 +3031,7 @@
 
   <item name="wooden_bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
-    <description>You see a wooden bow. With this in one hand, andwooden arrows in the other, you may be able to attack from a distance.</description>
+    <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="12"/>
       <range value="3"/>
@@ -3047,7 +3047,7 @@
 
   <item name="longbow">
     <type class="ranged" subclass="longbow" tileid="-1"/>
-    <description>You see a longbow. Equipped with this, and asupply of arrows, you will have an effective ranged attack.</description>
+    <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="14"/>
       <range value="4"/>
@@ -3063,7 +3063,7 @@
 
   <item name="longbow_+1">
     <type class="ranged" subclass="composite_bow" tileid="-1"/>
-    <description>You see a longbow +1. It's better strung thanmost bows, for excellent ranged attack.</description>
+    <description>You see a longbow +1. It's better strung than most bows, for excellent ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <range value="5"/>
@@ -3274,21 +3274,6 @@
     </equipable>
   </item>
 
-  <item name="dragon_egg">
-    <type class="resource" subclass="green_egg" tileid="-1"/>
-    <description>You see a valuable dragon egg.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
-      <quantity value="1"/>
-    </attributes>
-    <weight value="1.0"/>
-    <value value="10000"/>
-    <equipable>
-      <slot name="bag"/>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-    </equipable>
-  </item>
-
   <item name="spotted_egg">
     <type class="resource" subclass="spotted_egg" tileid="-1"/>
     <description>You see a spotted egg. You don't know what it is for.</description>
@@ -3297,6 +3282,21 @@
     </attributes>
     <weight value="1.0"/>
     <value value="7500"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="dragon_egg">
+    <type class="resource" subclass="green_egg" tileid="-1"/>
+    <description>You see a valuable dragon egg.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="10000"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
@@ -3453,7 +3453,7 @@
 
   <item name="home_scroll">
     <type class="scroll" subclass="home" tileid="-1"/>
-    <description>You see ahome scroll, it will take you back to semos city.</description>
+    <description>You see a home scroll, it will take you back to semos city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
       <infostring value="0_semos_city 30 40"/>
       <quantity value="1"/>
@@ -3499,7 +3499,7 @@
 
   <item name="wooden_shield">
     <type class="shield" subclass="wooden_shield" tileid="-1"/>
-    <description>You see a wooden shield. It is made of cheap wood and heavilyused. However, it still seems to offer you some kind of basic protection.</description>
+    <description>You see a wooden shield. It is made of cheap wood and heavily used. However, it still seems to offer you some kind of basic protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -3769,7 +3769,7 @@
 
   <item name="assassin_dagger">
     <type class="sword" subclass="dagger" tileid="-1"/>
-    <description>You see a dagger, it is little more than 		decorative but you may be able to hurt something with it.</description>
+    <description>You see a dagger, it is little more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="6"/>
       <rate value="2"/>
@@ -3801,7 +3801,7 @@
 
   <item name="soul_dagger">
     <type class="sword" subclass="dagger" tileid="-1"/>
-    <description>You see a dagger, it islittle more than 		decorative but you may be able to hurt something with it.</description>
+    <description>You see a dagger, it islittle more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="5"/>
       <rate value="1"/>
@@ -3817,7 +3817,7 @@
 
   <item name="dagger">
     <type class="sword" subclass="dagger" tileid="-1"/>
-    <description>You see a dagger, it is little more than 		decorative but you may be able to hurt something with it.</description>
+    <description>You see a dagger, it is little more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="8"/>
       <rate value="3"/>
@@ -3833,7 +3833,7 @@
 
   <item name="dark_dagger">
     <type class="sword" subclass="dagger" tileid="-1"/>
-    <description>You see a dagger, it is little more than 		decorative but you may be able to hurt something with it.</description>
+    <description>You see a dagger, it is little more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="8"/>
       <rate value="2"/>
@@ -3849,7 +3849,7 @@
 
   <item name="short_sword">
     <type class="sword" subclass="short_sword" tileid="-1"/>
-    <description>You see a well kept short sword which will be 		easy to carry as you travel.</description>
+    <description>You see a well kept short sword which will be easy to carry as you travel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="11"/>
       <rate value="4"/>
@@ -3895,7 +3895,7 @@
 
   <item name="sword">
     <type class="sword" subclass="sword" tileid="-1"/>
-    <description>You see a sharp sword which might even be worth a 		little.</description>
+    <description>You see a sharp sword which might even be worth a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="14"/>
       <rate value="4"/>
@@ -3911,7 +3911,7 @@
 
   <item name="scimitar">
     <type class="sword" subclass="scimitar" tileid="-1"/>
-    <description>This scimitar catches the light as you look at 		it, it will be a powerful weapon.</description>
+    <description>This scimitar catches the light as you look at it, it will be a powerful weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <rate value="4"/>
@@ -3943,7 +3943,7 @@
 
   <item name="orc_sword">
     <type class="sword" subclass="orc_sword" tileid="-1"/>
-    <description>You see an orc sword which has a heavy and deadlyappearance.</description>
+    <description>You see an orc sword which has a heavy and deadly appearance.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="24"/>
       <rate value="10"/>
@@ -3975,7 +3975,7 @@
 
   <item name="vampire_sword">
     <type class="sword" subclass="vampire_sword" tileid="-1"/>
-    <description>You see the vampire sword, which will suck life 		from those you attack with it.</description>
+    <description>You see the vampire sword, which will suck life from those you attack with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="24"/>
       <lifesteal value="0.1"/>
@@ -3992,7 +3992,7 @@
 
   <item name="claymore">
     <type class="sword" subclass="claymore" tileid="-1"/>
-    <description>This claymore is very hard to lift as it is so 		heavy. It will be a good weapon if you can swing it.</description>
+    <description>This claymore is very hard to lift as it is so heavy. It will be a good weapon if you can swing it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="28"/>
       <rate value="10"/>
@@ -4040,7 +4040,7 @@
 
   <item name="ice_sword">
     <type class="sword" subclass="ice_sword" tileid="-1"/>
-    <description>You see an ice sword, the blade is lethally cold 		to the touch, and you know it is one of the best weapons you'll find.</description>
+    <description>You see an ice sword, the blade is lethally cold to the touch, and you know it is one of the best weapons you'll find.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="29"/>
       <rate value="7"/>
@@ -4073,7 +4073,7 @@
 
   <item name="broadsword">
     <type class="sword" subclass="broadsword" tileid="-1"/>
-    <description>You see a mighty broadsword. Enemies will see 		their death.</description>
+    <description>You see a mighty broadsword. Enemies will see their death.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="34"/>
       <rate value="10"/>
@@ -4137,7 +4137,7 @@
 
   <item name="great_sword">
     <type class="sword" subclass="great_sword" tileid="-1"/>
-    <description>This rare great sword is heavy and of good 		craftmanship.</description>
+    <description>This rare great sword is heavy and of good craftmanship.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="45"/>
       <rate value="15"/>
@@ -4169,7 +4169,7 @@
 
   <item name="immortal_sword">
     <type class="sword" subclass="magic_sword" tileid="-1"/>
-    <description>This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite 		craftmanship.</description>
+    <description>This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite craftmanship.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="35"/>
       <rate value="6"/>
