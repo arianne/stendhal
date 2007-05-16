@@ -123,6 +123,10 @@ public class DailyMonsterQuest extends AbstractQuest {
 			if ("bat".equals(creatureName)) {
 					creatureName = "rat";
 			}
+			// don't ask any players to kill a balrog as it would be an impossible task (miguel hopes!)
+			if ("balrog".equals(creatureName)) {
+					creatureName = "black_death";
+			}
 			engine.say("Semos is in need of help. Go kill a " + creatureName + " and say #complete, once you're done.");
 			player.removeKill(creatureName);
 			questLast = "" + (new Date()).getTime();
