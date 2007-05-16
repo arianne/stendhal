@@ -66,7 +66,7 @@
 	</target>
 
 
-	<target name="server_build" depends="init" description="Build JAR file for Stendhal server">
+<target name="server_build" depends="init" description="Build JAR file for Stendhal server">
 		<property name="server_jarname" value="stendhal-server-${version}.jar"/>
 		<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
 		<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
@@ -113,12 +113,6 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
 			</classpath>
-
-		<jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>
-
-		<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
-		<mkdir dir="${build_server_xmlconf}/"/>
-
 		</javac>
 
 		<copy todir="${build_server_maps}/data/maps">
@@ -164,7 +158,9 @@
 
 	</target>
 
-        <target name="jar" depends="client_build" description="Builds Client and Server"/>
+        <target name="jar" depends="client_build, server_build" description="Builds Client and Server">
+            <echo>Built client and server for NetBeans.</echo>
+        </target>
         
         
         <!-- Runs the client -->
@@ -175,22 +171,16 @@
             
             <mkdir dir="run"/>
             
-            <copy todir="${user.dir}/run/">
+            <copy todir="run/">
                 <fileset file="build/lib/${client_jarname}"/>
                 <fileset file="build/lib/${client_data}"/>
                 <fileset file="build/lib/${client_sound}"/>
                 <fileset file="libs/marauroa.jar"/>
                 <fileset file="libs/log4j.jar"/>
             </copy>
-            <exec dir="run/" executable="java">
-                <arg value="-Xmx256m"/>
-                <arg value="-cp run/"/>
-                <arg value="-jar"/>
-                <arg file="run/${client_jarname}"/>
-            </exec>
-            
+            <exec command="java -Xmx256m -cp run/ -jar run/${client_jarname}"/>            
             <!-- we've run the program, so delete the jars -->
-            <delete dir="run/"/>
+            <!--<delete dir="run/"/>-->
     
         </target>
         
