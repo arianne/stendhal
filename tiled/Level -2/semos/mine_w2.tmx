@@ -27,6 +27,9 @@
  <tileset name="Sin nombre" firstgid="90" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/boss.png"/>
  </tileset>
+ <tileset name="enormous_creature.png" firstgid="93" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/enormous_creature.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3UwQ3DMBADQcHpyv0X5h6MQORZ85h3dNzA91rrBgAAAAAAAAAAAIA/+31IesuJ0s30119//fXXX3/99ddff/1P7r/z5nSzE/s33Z1u1rLDxO7666+//o1v0l9//fXXX3/99de/8+50s5Yd9J8v3Vd//fXXX3/9d259vXzPVdBMf/3111//zN3pZi07TGuu/4z+O76x+uuvf761/vrrr7/++uuvv/76t9+dbtayw+T/QuOb9Ndff/31119//fXvvDvdrGUH/edL901t3vQW/ffv3vKOtHTTxPYNb2iR7rl7//Tvt0m3nCjdTH/99ddff/31119//fXXX3/99QcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOMcDz1a02wAAAQA=
@@ -54,7 +57,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3asQnAMAwEQG8XPELI/nukcmVw+xa66w0Pj5EKjQEAAAAAAAAAAAAAAAAAAABAVW86AABwjYp7wZcOAJer+K8BAMiY4fcAAOyedACi9N+b/nvTf2/6BwBgcfsFwIk50YeuAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACo7gdAFvOxAAABAA==
+   H4sIAAAAAAAAAO3asQnAMAwEQG8XPEKK7L9GKlcGt2+hu97w8Bip0BgAAAAAAAAAAAAAAAAAAAAAVPWmAwAA16i4F3zpAHC5iv8aAICMGX4PAMDuSQcgSv+96b83/femfwAAFrdfAJyYE33oGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA6n7VGmukAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
