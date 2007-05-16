@@ -164,10 +164,7 @@
 
 	</target>
 
-        <target name="jar" depends="client_build" description="Builds Client and Server">
-            
-        
-        </target>
+        <target name="jar" depends="client_build" description="Builds Client and Server"/>
         
         
         <!-- Runs the client -->
@@ -187,8 +184,9 @@
             </copy>
             <exec dir="run/" executable="java">
                 <arg value="-Xmx256m"/>
+                <arg value="-cp run/"/>
                 <arg value="-jar"/>
-                <arg file="${client_jarname}"/>
+                <arg file="run/${client_jarname}"/>
             </exec>
     
         </target>
