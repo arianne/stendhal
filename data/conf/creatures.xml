@@ -4430,14 +4430,14 @@
   </creature>
 
   <creature name="giant_dwarf">
-    <type class="boss" subclass="giant_dwarf" tileid="boss.png:0"/>
+    <type class="huge_animal" subclass="giant_dwarf" tileid="huge.png:9"/>
     <description></description>
     <attributes>
       <atk value="225"/>
       <def value="35"/>
       <hp value="700"/>
       <speed value="0.4"/>
-      <size value="5,5"/>
+      <size value="3,4"/>
     </attributes>
     <level value="90"/>
     <experience value="8190"/>
@@ -5145,14 +5145,14 @@
   </creature>
 
   <creature name="balrog">
-    <type class="boss" subclass="balrog" tileid="boss.png:1"/>
+    <type class="enormous_creature" subclass="balrog" tileid="enormous_creature.png:0"/>
     <description></description>
     <attributes>
       <atk value="420"/>
       <def value="55"/>
       <hp value="10000"/>
       <speed value="0.6"/>
-      <size value="13,10"/>
+      <size value="13,18"/>
     </attributes>
     <level value="350"/>
     <experience value="430000"/>
