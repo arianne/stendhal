@@ -350,7 +350,7 @@
 
   <item name="chaos_armor">
     <type class="armor" subclass="chaos_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. Ithas been magically enhanced.</description>
+    <description>You see a suit of plate armor. You imagine it would be heavy but the steel is well tempered and the suit is very strong. Ithasbeen magically enhanced.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
     </attributes>
@@ -890,8 +890,7 @@
 
   <item name="stone_cloak">
     <type class="cloak" subclass="stone_cloak" tileid="-1"/>
-    <description>You see a stone cloak. It's hard to tell how it was made, as
-    the fibres look like narrow threads of mineral.</description>
+    <description>You see a stone cloak. It's hard to tell how it was made, asthe fibres look like narrow threads of mineral.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -2008,6 +2007,24 @@
     </equipable>
   </item>
 
+  <item name="egg">
+    <type class="food" subclass="egg" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <quantity value="1"/>
+      <amount value="30"/>
+      <regen value="1"/>
+      <frequency value="20"/>
+    </attributes>
+    <weight value="0.5"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="meat">
     <type class="food" subclass="meat" tileid="-1"/>
     <description></description>
@@ -2478,7 +2495,7 @@
 
   <item name="fado_hotel_key_001">
     <type class="key" subclass="hotel" tileid="-1"/>
-    <description>You see a key to room #001 in the Fado Hotel.</description>
+    <description>You see a key to room #001 in the FadoHotel.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -2873,6 +2890,62 @@
     </equipable>
   </item>
 
+  <item name="closed_envelope">
+    <type class="misc" subclass="closed_envelope" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="opened_envelope">
+    <type class="misc" subclass="opened_envelope" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="sealed_envelope">
+    <type class="misc" subclass="sealed_envelope" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="unsealed_envelope">
+    <type class="misc" subclass="unsealed_envelope" tileid="-1"/>
+    <description></description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="dart">
     <type class="missile" subclass="dart" tileid="-1"/>
     <description>You see a dart.</description>
@@ -3186,6 +3259,51 @@
     </equipable>
   </item>
 
+  <item name="golden_egg">
+    <type class="resource" subclass="golden_egg" tileid="-1"/>
+    <description>You see a valuable golden egg.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="dragon_egg">
+    <type class="resource" subclass="green_egg" tileid="-1"/>
+    <description>You see a valuable dragon egg.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="10000"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="spotted_egg">
+    <type class="resource" subclass="spotted_egg" tileid="-1"/>
+    <description>You see a spotted egg. You don't know what it is for.</description>
+    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+      <quantity value="1"/>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="7500"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="wedding_ring">
     <type class="ring" subclass="wedding" tileid="-1"/>
     <description></description>
@@ -3335,7 +3453,7 @@
 
   <item name="home_scroll">
     <type class="scroll" subclass="home" tileid="-1"/>
-    <description>You see a home scroll, it will take you back to semos city.</description>
+    <description>You see ahome scroll, it will take you back to semos city.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.MarkedScroll"/>    <attributes>
       <infostring value="0_semos_city 30 40"/>
       <quantity value="1"/>
@@ -3381,8 +3499,7 @@
 
   <item name="wooden_shield">
     <type class="shield" subclass="wooden_shield" tileid="-1"/>
-    <description>You see a wooden shield. It is made of cheap wood and heavily
-    used. However, it still seems to offer you some kind of basic protection.</description>
+    <description>You see a wooden shield. It is made of cheap wood and heavilyused. However, it still seems to offer you some kind of basic protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -3824,6 +3941,22 @@
     </equipable>
   </item>
 
+  <item name="orc_sword">
+    <type class="sword" subclass="orc_sword" tileid="-1"/>
+    <description>You see an orc sword which has a heavy and deadlyappearance.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="24"/>
+      <rate value="10"/>
+    </attributes>
+    <weight value="4.0"/>
+    <value value="69120"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="demon_sword">
     <type class="sword" subclass="scimitar" tileid="-1"/>
     <description>Demon skeletons return from hell with this sword.</description>
@@ -3947,6 +4080,22 @@
     </attributes>
     <weight value="4.0"/>
     <value value="196520"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="golden_orc_sword">
+    <type class="sword" subclass="golden_orc_sword" tileid="-1"/>
+    <description>You see a golden orc sword, with its heavy and deadly appearanceit seems also valuable.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="33"/>
+      <rate value="9"/>
+    </attributes>
+    <weight value="4.0"/>
+    <value value="199650"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
