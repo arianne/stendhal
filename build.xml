@@ -165,7 +165,36 @@
 	</target>
 
         <target name="jar" depends="client_build" description="Builds Client and Server">
+            
+        
         </target>
+        
+        
+        <!-- Runs the client -->
+        <target name="client_run" depends="client_build" description="Runs the client">
+            <property name="client_jarname" value="stendhal-${version}.jar"/>
+            <property name="client_data" value="stendhal-data-${version}.jar"/>
+            <property name="client_sound" value="stendhal-sound-data-${version}.jar"/>
+            
+            <mkdir dir="run"/>
+            
+            <copy todir="${user.dir}/run/">
+                <fileset file="build/lib/${client_jarname}"/>
+                <fileset file="build/lib/${client_data}"/>
+                <fileset file="build/lib/${client_sound}"/>
+                <fileset file="libs/marauroa.jar"/>
+                <fileset file="libs/log4j.jar"/>
+            </copy>
+            <exec dir="run/" executable="java">
+                <arg value="-Xmx256m"/>
+                <arg value="-jar"/>
+                <arg file="${client_jarname}"/>
+            </exec>
+    
+        </target>
+        
+        <!-- Netbeans won't let you choose ant options, so this does it for us-->
+        <target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
         
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<property name="client_jarname" value="stendhal-${version}.jar"/>
@@ -535,4 +564,5 @@
 			</fileset>
 		</xmlvalidate>
 	</target>
+        
 </project>
