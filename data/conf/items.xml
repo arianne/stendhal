@@ -3366,7 +3366,7 @@
 
   <item name="buckler">
     <type class="shield" subclass="buckler" tileid="-1"/>
-    <description>You see a small buckler. It may protect youagainst swords and maces but against stronger weapons you do not trust it.</description>
+    <description>You see a small buckler. It may protect you against swords and maces but against stronger weapons you do not trust it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="6"/>
     </attributes>
@@ -3381,7 +3381,8 @@
 
   <item name="wooden_shield">
     <type class="shield" subclass="wooden_shield" tileid="-1"/>
-    <description>You see a wooden shield. It is made of cheap wood and heavily used.However, it still seems to offer you some kind of basic protection.</description>
+    <description>You see a wooden shield. It is made of cheap wood and heavily
+    used. However, it still seems to offer you some kind of basic protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -3396,7 +3397,7 @@
 
   <item name="studded_shield">
     <type class="shield" subclass="studded_shield" tileid="-1"/>
-    <description>You see a studded shield. It's a little dentedbut seems robust enough.</description>
+    <description>You see a studded shield. It's a little dented but seems robust enough.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="12"/>
     </attributes>
@@ -3411,7 +3412,7 @@
 
   <item name="plate_shield">
     <type class="shield" subclass="plate_shield" tileid="-1"/>
-    <description>You see a solid plate shield. It is in goodcondition, and might beworth a little.</description>
+    <description>You see a solid plate shield. It is in good condition, and might beworth a little.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="14"/>
     </attributes>
@@ -3426,7 +3427,7 @@
 
   <item name="lion_shield">
     <type class="shield" subclass="lion_shield" tileid="-1"/>
-    <description>You see a valuable lion shield. It isheavy enough to defend you against strong attacks.</description>
+    <description>You see a valuable lion shield. It is heavy enough to defend you against strong attacks.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="16"/>
     </attributes>
@@ -3441,7 +3442,7 @@
 
   <item name="unicorn_shield">
     <type class="shield" subclass="unicorn_shield" tileid="-1"/>
-    <description>You see a unicorn shield. It's beautifullycrafted and will give you excellent protection.</description>
+    <description>You see a unicorn shield. It's beautifully crafted and will give you excellent protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="18"/>
     </attributes>
@@ -3456,7 +3457,7 @@
 
   <item name="lion_shield_+1">
     <type class="shield" subclass="enhanced_lion_shield" tileid="-1"/>
-    <description>A lion shield +1 glints at you. It will defendyou well.</description>
+    <description>A lion shield +1 glints at you. It will defend you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
     </attributes>
@@ -3471,7 +3472,7 @@
 
   <item name="skull_shield">
     <type class="shield" subclass="skull_shield" tileid="-1"/>
-    <description>The face of a skull scowls at you from this fearsome skullshield.</description>
+    <description>The face of a skull scowls at you from this fearsome skull shield.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="22"/>
     </attributes>
@@ -3500,7 +3501,7 @@
   </item>
 
   <item name="elvish_shield">
-    <type class="shield" subclass="golden_shield" tileid="-1"/>
+    <type class="shield" subclass="elvish_shield" tileid="-1"/>
     <description>You see an elvish shield made of tree leaves.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="28"/>
@@ -3531,7 +3532,7 @@
 
   <item name="golden_shield">
     <type class="shield" subclass="golden_shield" tileid="-1"/>
-    <description>You see a golden shield, it could be the ultimatein defence.</description>
+    <description>You see a golden shield, could it be the ultimate in defence?</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="34"/>
     </attributes>
@@ -3546,7 +3547,7 @@
 
   <item name="shadow_shield">
     <type class="shield" subclass="shadow_shield" tileid="-1"/>
-    <description>You see a shadow shield. Rather than reflectinglight, it seems to absorb it.</description>
+    <description>You see a shadow shield. Rather than reflecting light, it seems to absorb it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="36"/>
     </attributes>
@@ -3560,8 +3561,8 @@
   </item>
 
   <item name="chaos_shield">
-    <type class="shield" subclass="shadow_shield" tileid="-1"/>
-    <description>You see a shadow shield. Rather than reflecting                 light, it seems to absorb it.</description>
+    <type class="shield" subclass="darkangels_clan_shield" tileid="-1"/>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="39"/>
     </attributes>
@@ -3575,8 +3576,8 @@
   </item>
 
   <item name="magic_plate_shield">
-    <type class="shield" subclass="plate_shield" tileid="-1"/>
-    <description>You see a solid plate shield. It is in goodcondition, and might beworth a little.</description>
+    <type class="shield" subclass="lion_clan_shield" tileid="-1"/>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="40"/>
     </attributes>
@@ -3590,8 +3591,8 @@
   </item>
 
   <item name="black_shield">
-    <type class="shield" subclass="shadow_shield" tileid="-1"/>
-    <description>You see a shadow shield. Rather than reflecting                 light, it seems to absorb it.</description>
+    <type class="shield" subclass="black_shield" tileid="-1"/>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="42"/>
     </attributes>
