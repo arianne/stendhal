@@ -201,7 +201,7 @@ public class JItem extends javax.swing.JFrame {
 //                actual.setValue(1);
 //            }
 //        }
-//        
+        
         return items;
     }
     
@@ -840,11 +840,11 @@ public class JItem extends javax.swing.JFrame {
                 rate=Integer.parseInt(attributes.get("rate"));
             }
             
-            value=(int)(10*atk*atk*5.0/(double)rate);
+            value=(int)(10*atk*atk*atk*5.0/(double)rate);
         } else if(attributes.containsKey("def")) {
             int def=Integer.parseInt(attributes.get("def"));
 
-            value=(int)(7*def*def);
+            value=(int)(7*def*def*def);
         } else if(attributes.containsKey("regen")) {
             int amount=Integer.parseInt(attributes.get("amount"));
             int regen=Integer.parseInt(attributes.get("regen"));
