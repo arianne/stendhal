@@ -876,7 +876,7 @@
 
   <item name="elf_cloak_+2">
     <type class="cloak" subclass="lightblue_cloak" tileid="-1"/>
-    <description>You see a blue elf cloak +2. The material isthick and warm.</description>
+    <description>You see a blue elf cloak +2. The material is thick and warm.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="8"/>
     </attributes>
@@ -889,8 +889,9 @@
   </item>
 
   <item name="stone_cloak">
-    <type class="cloak" subclass="lightblue_cloak" tileid="-1"/>
-    <description>You see a blue elf cloak +2. The material isthick and warm.</description>
+    <type class="cloak" subclass="stone_cloak" tileid="-1"/>
+    <description>You see a stone cloak. It's hard to tell how it was made, as
+    the fibres look like narrow threads of mineral.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -904,7 +905,7 @@
 
   <item name="green_dragon_cloak">
     <type class="cloak" subclass="green_cloak" tileid="-1"/>
-    <description>You see a huge green dragon cloak. It's probablytoo big for you but, even dragging on the floor it will provide excellent protection.</description>
+    <description>You see a huge green dragon cloak. It's probably too big for you but, even dragging on the floor it will provide excellent protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -918,7 +919,7 @@
 
   <item name="bone_dragon_cloak">
     <type class="cloak" subclass="lilac_cloak" tileid="-1"/>
-    <description>You see a bone dragon cloak. It's incredibly old,like its last owner.</description>
+    <description>You see a bone dragon cloak. It's incredibly old, like its last owner.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
@@ -932,7 +933,7 @@
 
   <item name="lich_cloak">
     <type class="cloak" subclass="purple_cloak" tileid="-1"/>
-    <description>You see a purple lich cloak. It's stained withblood - yours, from the previous undead owner, or perhaps the blood of his enemies...</description>
+    <description>You see a purple lich cloak. It's stained with blood - yours, from the previous undead owner, or perhaps the blood of his enemies...</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
@@ -974,7 +975,7 @@
 
   <item name="blue_dragon_cloak">
     <type class="cloak" subclass="blue_cloak" tileid="-1"/>
-    <description>You see a blue dragon cloak. The weave is tightand strong, though you wish the colour drew less attention.</description>
+    <description>You see a blue dragon cloak. The weave is tight and strong, though you wish the colour drew less attention.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="13"/>
     </attributes>
@@ -988,7 +989,7 @@
 
   <item name="black_dragon_cloak">
     <type class="cloak" subclass="black_cloak" tileid="-1"/>
-    <description>You see a torn section from an enormousblack dragon cloak. You're very lucky: the piece is just the right size for a human to wear.</description>
+    <description>You see a torn section from an enormous black dragon cloak. You're very lucky: the piece is just the right size for a human to wear.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="18"/>
     </attributes>
@@ -1015,7 +1016,7 @@
   </item>
 
   <item name="chaos_cloak">
-    <type class="cloak" subclass="golden_cloak" tileid="-1"/>
+    <type class="cloak" subclass="multicoloured_cloak" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
@@ -1029,7 +1030,7 @@
   </item>
 
   <item name="black_cloak">
-    <type class="cloak" subclass="golden_cloak" tileid="-1"/>
+    <type class="cloak" subclass="trueblack_cloak" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="25"/>
