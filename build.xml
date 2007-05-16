@@ -113,6 +113,12 @@
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
 			</classpath>
+
+		<jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>
+
+		<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
+		<mkdir dir="${build_server_xmlconf}/"/>
+
 		</javac>
 
 		<copy todir="${build_server_maps}/data/maps">
@@ -158,7 +164,9 @@
 
 	</target>
 
-
+        <target name="jar" depends="client_build" description="Builds Client and Server">
+        </target>
+        
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<property name="client_jarname" value="stendhal-${version}.jar"/>
 		<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
