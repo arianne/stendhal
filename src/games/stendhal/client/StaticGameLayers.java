@@ -106,7 +106,7 @@ public class StaticGameLayers {
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
 		Log4J.startMethod(logger, "addLayer");
 
-		logger.info("Layer name: " + name);
+		logger.debug("Layer name: " + name);
 
 		int i = name.indexOf('.');
 

@@ -81,7 +81,7 @@ public class TileStore extends SpriteStore {
 		}
 		
 		public void map(int gid, Vector<Sprite> globaltileset) {
-			logger.info("Loading "+filename+": "+(gid)+" to "+(gid+amount));
+			logger.debug("Loading "+filename+": "+(gid)+" to "+(gid+amount));
 
 			/*
 			 * If needed increase vector size.
