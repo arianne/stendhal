@@ -1107,7 +1107,7 @@
   </item>
 
   <item name="mace_+1">
-    <type class="club" subclass="mace" tileid="-1"/>
+    <type class="club" subclass="enhanced_mace" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="19"/>
