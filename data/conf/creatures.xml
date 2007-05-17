@@ -455,6 +455,7 @@
       <item value="staff" quantity="[1,1]" probability="1.0"/>
       <item value="buckler" quantity="[1,1]" probability="0.5"/>
       <item value="knife" quantity="[1,1]" probability="0.5"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -730,6 +731,7 @@
       <item value="cloak" quantity="[1,1]" probability="0.5"/>
       <item value="mace" quantity="[1,1]" probability="2.0"/>
       <item value="wooden_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -1023,6 +1025,7 @@
       <item value="cloak" quantity="[1,1]" probability="0.4"/>
       <item value="flail" quantity="[1,1]" probability="1.0"/>
       <item value="short_sword" quantity="[1,1]" probability="1.0"/>
+      <item value="dress" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
