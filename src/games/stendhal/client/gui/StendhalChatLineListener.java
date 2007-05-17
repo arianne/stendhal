@@ -7,7 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 import javax.swing.JTextField;
 
@@ -30,9 +37,45 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		super();
 		this.playerChatText = playerChatText;
 		lines = new LinkedList<String>();
-		actual = 0;
+		
+		//Open chat log file
+		try {
+			FileInputStream fis = new FileInputStream("chat.log");
+			BufferedReader br=new BufferedReader(new InputStreamReader(fis));
+
+			String line =null;
+			while(null != (line = br.readLine())) {
+				lines.add(line);
+			}
+			br.close();
+			fis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		actual = lines.size();
 	}
 
+	public void save (){
+		// Save chat log file
+		FileOutputStream fo;
+		try {
+			fo = new FileOutputStream("chat.log");
+			PrintStream ps=new PrintStream(fo);
+
+			ListIterator< String > iterator = lines.listIterator();
+			while ( iterator.hasNext() ) 
+			{
+				ps.println( iterator.next());                 
+			}
+			ps.close();
+			fo.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}	
+		
+	}
+	
 	public void keyPressed(KeyEvent e) {
 		if (e.isShiftDown()) {
 			switch (e.getKeyCode()) {

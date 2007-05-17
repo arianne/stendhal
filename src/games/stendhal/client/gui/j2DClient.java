@@ -400,6 +400,7 @@ public class j2DClient extends StendhalUI {
 		// using the actual main thread to run the game.
 		gameLoop();
 
+		chatListener.save();
 		logger.debug("Exit");
 		System.exit(0);
 	} // constructor
