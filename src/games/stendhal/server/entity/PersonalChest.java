@@ -100,7 +100,6 @@ public class PersonalChest extends Chest {
 						PersonalChest.this.notifyWorldAboutChanges();
 
 						attending = null;
-						return; // don't notify again
 					}
 				}
 				TurnNotifier.get().notifyInTurns(0, this, null);
