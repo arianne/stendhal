@@ -58,7 +58,7 @@ public class CleanStorageSpace extends AbstractQuest {
 						player.addKarma(2.0);
 						player.setQuest("clean_storage", "start");
 						player.removeKill("rat");
-						player.removeKill("cobra");
+						player.removeKill("snake");
 						player.removeKill("caverat");
 					}
 				});
@@ -85,7 +85,7 @@ public class CleanStorageSpace extends AbstractQuest {
 	}
 
 	private void step_2() {
-		// Go kill at least a rat, a cave rat and a cobra.
+		// Go kill at least a rat, a cave rat and a snake.
 	}
 
 	private void step_3() {
@@ -109,7 +109,7 @@ public class CleanStorageSpace extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
 						if (player.hasKilled("rat") && player.hasKilled("caverat")
-								&& player.hasKilled("cobra")) {
+								&& player.hasKilled("snake")) {
 							engine.say("A hero at last! Thank you!");
 
 							player.addKarma(3.0);
