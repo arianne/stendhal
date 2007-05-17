@@ -1236,7 +1236,7 @@
   </item>
 
   <item name="chaos_hammer">
-    <type class="club" subclass="grand_warhammer" tileid="-1"/>
+    <type class="club" subclass="chaos_hammer" tileid="-1"/>
     <description>You see a huge war hammer. It is a fearsome weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="42"/>
@@ -1268,7 +1268,7 @@
   </item>
 
   <item name="vulcano_hammer">
-    <type class="club" subclass="grand_warhammer" tileid="-1"/>
+    <type class="club" subclass="vulcano_hammer" tileid="-1"/>
     <description>The weapon of a God.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="48"/>
