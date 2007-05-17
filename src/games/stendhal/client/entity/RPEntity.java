@@ -1089,7 +1089,7 @@ public abstract class RPEntity extends ActiveEntity {
 					StendhalUI.get().addEventLine( getTitle() + " earns "
 							+ Grammar.quantityplnoun(amount, "experience point")
 							+ ".", Color.blue);
-				} else {
+				} else if(amount<0) {
 					addFloater(""+amount, Color.pink);
 
 					StendhalUI.get().addEventLine( getTitle() + " loses "
