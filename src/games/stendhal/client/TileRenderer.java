@@ -461,7 +461,8 @@ public class TileRenderer extends LayerRenderer {
 					Sprite sprite = getTile(i, j);
 					
 					if(sprite==null) {
-						logger.info("Null sprite at ("+i+","+j+")");
+						logger.warn("Null sprite at ("+i+","+j+")");
+						sprite=SpriteStore.get().getSprite("data/sprites/failsafe.png");
 					}
 
 // TODO: Apparently Broken [ 1708820 ], so safe to comment out until fixed:
