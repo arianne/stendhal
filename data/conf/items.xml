@@ -565,7 +565,7 @@
   </item>
 
   <item name="durin_axe">
-    <type class="axe" subclass="battle_axe" tileid="-1"/>
+    <type class="axe" subclass="durin_axe" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="47"/>
@@ -1252,7 +1252,7 @@
   </item>
 
   <item name="ugmash">
-    <type class="club" subclass="club" tileid="-1"/>
+    <type class="club" subclass="ugmash" tileid="-1"/>
     <description>You see a wooden club. It won't kill much but is better than no weapon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
