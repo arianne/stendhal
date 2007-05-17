@@ -3958,7 +3958,7 @@
   </item>
 
   <item name="demon_sword">
-    <type class="sword" subclass="scimitar" tileid="-1"/>
+    <type class="sword" subclass="kilij" tileid="-1"/>
     <description>Demon skeletons return from hell with this sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
@@ -4120,7 +4120,7 @@
   </item>
 
   <item name="drow_sword">
-    <type class="sword" subclass="black_sword" tileid="-1"/>
+    <type class="sword" subclass="drow_sword" tileid="-1"/>
     <description>This is a genuine drow sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="31"/>
@@ -4184,7 +4184,7 @@
   </item>
 
   <item name="black_sword">
-    <type class="sword" subclass="magic_sword" tileid="-1"/>
+    <type class="sword" subclass="black_sword" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
@@ -4200,7 +4200,7 @@
   </item>
 
   <item name="demon_fire_sword">
-    <type class="sword" subclass="fire_sword" tileid="-1"/>
+    <type class="sword" subclass="demon_fire_sword" tileid="-1"/>
     <description>An horrible sword taken from hell deepest dungeon</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="58"/>
