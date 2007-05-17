@@ -559,8 +559,6 @@ public class AdministrationAction implements ActionListener {
 	private void onGhostMode(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onGhostMode");
 		
-		onInvisible(player,action);
-		
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
@@ -570,6 +568,12 @@ public class AdministrationAction implements ActionListener {
 			}
 
 		} else {
+			/*
+			 * When we enter ghostmode we want our player to be also invisible.
+			 */
+			player.put("invisible", "");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "on");
+
 			player.put("ghostmode", "");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "on");
 

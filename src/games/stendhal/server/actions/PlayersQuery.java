@@ -52,7 +52,14 @@ public class PlayersQuery implements ActionListener {
 		rules.addGameEvent(player.getName(), "who");
 
 		StringBuilder online = new StringBuilder();
-		online.append(rules.getPlayers().size() + " Players online: ");
+		int amount=0;
+		for (Player p : rules.getPlayers()) {
+			if(!p.isGhost()) {
+				amount++;
+			}
+		}
+		
+		online.append( amount+ " Players online: ");
 		for (Player p : getSortedPlayers()) {
 			if(!p.isGhost()) {
 				online.append(p.getName() + "(" + p.getLevel() + ") ");
