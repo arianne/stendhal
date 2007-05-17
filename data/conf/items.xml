@@ -3768,7 +3768,7 @@
   </item>
 
   <item name="assassin_dagger">
-    <type class="sword" subclass="dagger" tileid="-1"/>
+    <type class="sword" subclass="assassin_dagger" tileid="-1"/>
     <description>You see a dagger, it is little more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="6"/>
@@ -3800,7 +3800,7 @@
   </item>
 
   <item name="soul_dagger">
-    <type class="sword" subclass="dagger" tileid="-1"/>
+    <type class="sword" subclass="soul_dagger" tileid="-1"/>
     <description>You see a dagger, it islittle more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="5"/>
@@ -3832,7 +3832,7 @@
   </item>
 
   <item name="dark_dagger">
-    <type class="sword" subclass="dagger" tileid="-1"/>
+    <type class="sword" subclass="dark_dagger" tileid="-1"/>
     <description>You see a dagger, it is little more than decorative but you may be able to hurt something with it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="8"/>
