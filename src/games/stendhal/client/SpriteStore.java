@@ -64,6 +64,35 @@ public class SpriteStore {
 	/** The cached sprite map, from reference to sprite instance */
 	private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 
+	private class CachedSprite {
+		byte[] cache=new byte[0];
+		Sprite sprite;
+		int row;
+		
+		public CachedSprite(Sprite sprite, int row) {
+			this.sprite=sprite;
+			this.row=row;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if(obj instanceof CachedSprite) {
+				CachedSprite ca=(CachedSprite)obj;
+				return sprite.equals(ca.sprite) && row==ca.row;				
+			}
+			
+			return false;
+		}
+		
+		@Override
+		public int hashCode() {
+			return sprite.hashCode()*(row+1);
+		}
+	}
+	
+	/** The cached sprite map, from reference to sprite instance */
+	private HashMap<CachedSprite, Sprite[]> animatedSprites = new HashMap<CachedSprite, Sprite[]>();
+
 
 	/**
 	 * Create an animated sprite from a tile resource.
@@ -135,6 +164,11 @@ public class SpriteStore {
 	 * @return array of sprites
 	 */
 	public Sprite[] getSprites(Sprite animImage, int row, int frameCount, double width, double height) {
+		CachedSprite entry=new CachedSprite(animImage, row);
+		if (animatedSprites.containsKey(entry)) {
+			return animatedSprites.get(entry);
+		}
+		
 		// calculate width and height in pixels from width and height
 		// in tiles
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
@@ -154,6 +188,8 @@ public class SpriteStore {
 			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
 			animatedSprite[i] = new ImageSprite(image);
 		}
+		
+		animatedSprites.put(new CachedSprite(animImage,row), animatedSprite);
 
 		return animatedSprite;
 	}

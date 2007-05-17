@@ -124,7 +124,7 @@ public class TileStore extends SpriteStore {
 				}
 			}
 
-			sprites.free(filename);
+			sprites.free(BASE_FOLDER+filename);
 
 			loaded = true;
 		}
