@@ -44,6 +44,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	private static Sprite	blockedSprite;
 
 	private static Sprite	missedSprite;
+	
+	private Sprite cachedOutfitSprite;
+	private int cachedOutfit; 
 
 	/**
 	 * The RP entity this view is for.
@@ -82,6 +85,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		super(rpentity);
 
 		this.rpentity = rpentity;
+		this.cachedOutfit=-1;
 	}
 
 
@@ -146,9 +150,13 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @return	A sprite for the object
 	 */
-	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {
-		Sprite base = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
-		ImageSprite sprite = new ImageSprite(base);
+	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {		
+		if(outfit==cachedOutfit) {
+			return cachedOutfitSprite;
+		}
+			
+		cachedOutfitSprite = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
+		ImageSprite sprite = new ImageSprite(cachedOutfitSprite);
 		outfit /= 100;
 		if (outfit % 100 != 0) {
 			int dressIdx = outfit % 100;
@@ -166,7 +174,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			hair.draw(sprite.getGraphics(), 0, 0);
 		}
 
-		return sprite;
+		cachedOutfit=outfit;
+		cachedOutfitSprite=sprite;
+		
+		return cachedOutfitSprite;
 	}
 
 

@@ -106,7 +106,10 @@ public class Minimap extends WtPanel {
 		height = (h * scale < MINIMAP_HEIGHT) ? h * scale : MINIMAP_HEIGHT;
 
 		// create the image for the minimap
-		image = gc.createCompatibleImage(w * scale, h * scale);
+		if(image==null) {
+			image = gc.createCompatibleImage(w * scale, h * scale);
+		}
+		
 		Graphics2D mapgrapics = image.createGraphics();
 		Color freeColor = new Color(0.8f, 0.8f, 0.8f);
 		// Color freeColor = new Color(0.0f, 1.0f, 0.0f);
