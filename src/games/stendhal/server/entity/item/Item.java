@@ -106,7 +106,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param item item to copy
 	 */
 	public Item(Item item) {
-		this();
+		super(item);
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
 	}
 
