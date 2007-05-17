@@ -65,7 +65,6 @@ public class SpriteStore {
 	private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
 
 	private class CachedSprite {
-		byte[] cache=new byte[0];
 		Sprite sprite;
 		int row;
 		
@@ -168,6 +167,8 @@ public class SpriteStore {
 		if (animatedSprites.containsKey(entry)) {
 			return animatedSprites.get(entry);
 		}
+		
+		logger.info("Cache fail: "+animImage);
 		
 		// calculate width and height in pixels from width and height
 		// in tiles

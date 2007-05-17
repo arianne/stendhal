@@ -8,7 +8,6 @@ package games.stendhal.client;
 
 //
 //
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -189,5 +188,20 @@ public class ImageSprite implements Sprite {
 	 */
 	public int getWidth() {
 		return image.getWidth(null);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof ImageSprite) {
+			ImageSprite img=(ImageSprite)obj;
+			return image.equals(img.image);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return image.hashCode();
 	}
 }

@@ -295,4 +295,18 @@ public class AnimatedSprite implements Sprite {
 	public int getWidth() {
 		return width;
 	}
-}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof AnimatedSprite) {
+			AnimatedSprite img=(AnimatedSprite)obj;
+			return frames.equals(img.frames);
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return frames.hashCode();
+	}}
