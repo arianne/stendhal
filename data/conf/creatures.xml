@@ -2170,6 +2170,7 @@
 
   <creature name="wooden_golem">
     <type class="golem" subclass="wooden_golem" tileid="golem.png:1"/>
+    <description></description>
     <attributes>
       <atk value="80"/>
       <def value="17"/>
@@ -2182,7 +2183,7 @@
     <respawn value="990"/>
     <drops>
       <item value="money" quantity="[5,19]" probability="100.0"/>
-      <item value="wood" quantity="[1,1]" probability="15.0"/>
+      <item value="wood" quantity="[1,2]" probability="15.0"/>
     </drops>
     <equips>
     </equips>
