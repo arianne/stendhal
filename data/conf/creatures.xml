@@ -2311,7 +2311,7 @@
       <item value="plate_armor" quantity="[1,1]" probability="0.05"/>
       <item value="twoside_axe" quantity="[1,1]" probability="3.0"/>
       <item value="bardiche" quantity="[1,1]" probability="0.05"/>
-      <item value="golden_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="golden_boots" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
