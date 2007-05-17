@@ -70,7 +70,7 @@ public class Creature extends NPC {
 	 * The higher the number the less items are dropped.
 	 * To use numbers determined at creatures.xml, just make it 1.
 	 */
-	private static final double SERVER_DROP_GENEROSITY = 1.5;
+	private static final double SERVER_DROP_GENEROSITY = 1;
 
 	private CreatureRespawnPoint point;
 

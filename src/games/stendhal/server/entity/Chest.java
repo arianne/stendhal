@@ -36,7 +36,7 @@ public class Chest extends Entity implements UseListener {
 		RPClass chest = new RPClass("chest");
 		chest.isA("entity");
 		chest.add("open", RPClass.FLAG);
-		chest.addRPSlot("content", 20);
+		chest.addRPSlot("content", 30);
 	}
 
 	public Chest(RPObject object) throws AttributeNotFoundException {
