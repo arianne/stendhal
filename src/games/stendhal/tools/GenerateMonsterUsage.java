@@ -42,6 +42,7 @@ public class GenerateMonsterUsage {
 				if(count.containsKey(c.getName())) {
 					creatureCount=count.get(c.getName())+1;
 				}
+//				System.out.println(zone.getID().getID()+":"+c.getName());
 				count.put(c.getName(), creatureCount);
 			}
 		}
