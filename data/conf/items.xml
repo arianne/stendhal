@@ -581,7 +581,7 @@
   </item>
 
   <item name="black_scythe">
-    <type class="axe" subclass="scythe" tileid="-1"/>
+    <type class="axe" subclass="black_scythe" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="42"/>
@@ -613,7 +613,7 @@
   </item>
 
   <item name="black_halberd">
-    <type class="axe" subclass="halberd" tileid="-1"/>
+    <type class="axe" subclass="black_halberd" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="57"/>
@@ -739,7 +739,7 @@
   </item>
 
   <item name="stone_boots">
-    <type class="boots" subclass="shadow_boots" tileid="-1"/>
+    <type class="boots" subclass="stone_boots" tileid="-1"/>
     <description>You see a pair of stone boots.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
@@ -753,7 +753,7 @@
   </item>
 
   <item name="chaos_boots">
-    <type class="boots" subclass="shadow_boots" tileid="-1"/>
+    <type class="boots" subclass="chaos_boots" tileid="-1"/>
     <description>You see a pair of chaos boots.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
@@ -781,7 +781,7 @@
   </item>
 
   <item name="black_boots">
-    <type class="boots" subclass="shadow_boots" tileid="-1"/>
+    <type class="boots" subclass="black_boots" tileid="-1"/>
     <description>You see a pair of black boots.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
@@ -2296,7 +2296,7 @@
   </item>
 
   <item name="golden_helmet_+3">
-    <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
+    <type class="helmet" subclass="enhanced_golden_helmet" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="12"/>
@@ -2310,7 +2310,7 @@
   </item>
 
   <item name="chaos_helmet">
-    <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
+    <type class="helmet" subclass="chaos_helmet" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="14"/>
@@ -2338,7 +2338,7 @@
   </item>
 
   <item name="black_helmet">
-    <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
+    <type class="helmet" subclass="black_helmet" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="26"/>
@@ -2695,8 +2695,8 @@
   </item>
 
   <item name="chaos_legs">
-    <type class="legs" subclass="shadow_legs" tileid="-1"/>
-    <description>You see a pair of shadow legs. The weight of them is incredible.</description>
+    <type class="legs" subclass="chaos_legs" tileid="-1"/>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
@@ -2709,8 +2709,8 @@
   </item>
 
   <item name="black_legs">
-    <type class="legs" subclass="shadow_legs" tileid="-1"/>
-    <description>You see a pair of shadow legs. The weight of them is incredible.</description>
+    <type class="legs" subclass="black_legs" tileid="-1"/>
+    <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
     </attributes>
