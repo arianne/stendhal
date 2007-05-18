@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class CloakCollector extends AbstractQuest {
 
-	private static final List<String> neededcloaks = Arrays.asList("cloak", "elf_cloak", "dwarf_cloak", "elf_cloak_+2", "green_dragon_cloak", "bone_dragon_cloak", "lich_cloak", "vampire_cloak");
+	private static final List<String> neededcloaks = Arrays.asList("cloak", "elf_cloak", "dwarf_cloak", "blue_elf_cloak", "stone_cloak","green_dragon_cloak", "bone_dragon_cloak", "lich_cloak", "vampire_cloak","blue_dragon_cloak");
 
 	/**
 	 * Returns a list of the names of all cloaks that the given player
@@ -89,7 +89,7 @@ public class CloakCollector extends AbstractQuest {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
 					if (!player.isQuestCompleted("cloaks_collector")) {
-						engine.say("At the moment I'm obsessed with #cloaks! They come in so many colours. I want every one!");
+						engine.say("At the moment I'm obsessed with #cloaks! They come in so many colours. I want all the pretty ones!");
 					} else { // to be honest i don't understand when this would be implemented. i put the text i want down in stage 3 and it works fine.
 						engine.say("The cloaks are great! Thanks!");
 						engine.setCurrentState(ConversationStates.ATTENDING);
@@ -192,12 +192,12 @@ public class CloakCollector extends AbstractQuest {
 							if (missing.size() > 0) {
 								engine.say("Wow, thank you! What else did you bring?");
 							} else {
-								Item goldencloak = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_cloak");
-								goldencloak.put("bound", player.getName());
-								player.equip(goldencloak, true);
+								Item blackcloak = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("black_cloak");
+							        blackcloak.put("bound", player.getName());
+								player.equip(blackcloak, true);
 								player.addKarma(5.0);
 								player.addXP(2500);
-								engine.say("Oh, they look so beautiful all together, thank you. Please take this very special cloak in return.");
+								engine.say("Oh, they look so beautiful all together, thank you. Please take this black cloak in return, I don't like the colour.");
 								player.setQuest("cloaks_collector", "done");
 								player.notifyWorldAboutChanges();
 							}

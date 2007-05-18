@@ -38,9 +38,9 @@
              <destination zone="int_fado_tavern" ref="entrance_right"/>
            </portal>
            
-   <!--        <portal x="46" y="38" ref="bank_entrance">
+           <portal x="46" y="38" ref="bank_entrance">
              <destination zone="int_fado_bank" ref="entrance"/>
-           </portal> -->
+           </portal> 
            
            <portal x="56" y="38" ref="bakery_entrance">
              <destination zone="int_fado_bakery" ref="entrance"/>
@@ -85,7 +85,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
     </entity>
 
    	</zone>
-       <!-- Commented out as requested by hendrik  
+ 
          <zone name="int_fado_bank" file="interiors/fado/bank.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bank.TellerNPC"/>
            
@@ -132,7 +132,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
              </implementation>
            </entity>
          </zone>
-         -->
+         "green_dragon_cloak"
          <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bakery.BakerNPC"/>
            <portal x="26" y="14" ref="entrance">
@@ -202,8 +202,11 @@ collard (special exotic type of cabbage - hard to find. often grows indoors)
       		<parameter name="text">
 My Wish List
 
-cloak, elf_cloak, dwarf_cloak, elf_cloak_+2, green_dragon_cloak, 
-bone_dragon_cloak, lich_cloak, and vampire_cloak ...
+cloak, elf cloak, dwarf cloak, blue elf cloak, stone cloak, green dragon cloak, 
+bone dragon cloak, lich cloak, vampire cloak, blue dragon cloak ...
+
+... I don't like the vulgar chaos cloak or ugly black dragon cloak, ugh! 
+Don't want them, no way!
 </parameter>
       		<parameter name="class">blackboard</parameter>
      	</implementation>
