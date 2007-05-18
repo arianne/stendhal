@@ -76,7 +76,7 @@ public class StuffForVulcanus extends AbstractQuest {
 			@Override
 			public void fire(Player player, String text,
 					SpeakerNPC engine) {
-				engine.say("I will need several things: "+REQUIRED_IRON+" iron, "+REQUIRED_WOOD+" wood logs, "+REQUIRED_GOLD_BAR+" gold bars and "+REQUIRED_GIANT_HEART+" giant hearts. Come back when you have them.");
+				engine.say("I will need several things: "+REQUIRED_IRON+" iron, "+REQUIRED_WOOD+" wood logs, "+REQUIRED_GOLD_BAR+" gold bars and "+REQUIRED_GIANT_HEART+" giant hearts. Come back when you have them in the same #exact order!.");
 				player.setQuest(QUEST_SLOT, "start;0;0;0;0");
 			}
 		});
@@ -87,6 +87,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				"Oh, well forget it then, if you don't want an immortal sword...",
 				null
 		);
+		npc.addReply("exact", "This arcanum magic require that the ingredients are added on a exact order.");
 	}
 
 	private void step_2() {
