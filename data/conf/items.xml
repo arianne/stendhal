@@ -110,9 +110,9 @@
     </equipable>
   </item>
 
-  <item name="leather_armor_+1">
+  <item name="leather_scale_armor">
     <type class="armor" subclass="leather_scale_armor" tileid="-1"/>
-    <description>You see a suit of leather armor +1. The leather is toughened somehow for better protection.</description>
+    <description>You see a suit of leather scale armor. The leather is toughened somehow for better protection.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -124,7 +124,7 @@
     </equipable>
   </item>
 
-  <item name="leather_cuirass_+1">
+  <item name="pauldroned_leather_cuirass">
     <type class="armor" subclass="enhanced_leather_cuirass" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -166,9 +166,9 @@
     </equipable>
   </item>
 
-  <item name="chain_armor_+1">
+  <item name="enhanced_chainmail">
     <type class="armor" subclass="enhanced_chainmail" tileid="-1"/>
-    <description>You see a robust suit of chain armor +1. The links are closely spaced so even the sharpest point should not pierce it.</description>
+    <description>You see a robust suit of enhanced chainmail. The links are closely spaced so even the sharpest point should not pierce it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="7"/>
     </attributes>
@@ -194,7 +194,7 @@
     </equipable>
   </item>
 
-  <item name="scale_armor_+1">
+  <item name="iron_scale_armor">
     <type class="armor" subclass="iron_scale_armor" tileid="-1"/>
     <description>You see a suit of scale armor +1, whose rounded scales will protect you from many blows.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -208,7 +208,7 @@
     </equipable>
   </item>
 
-  <item name="chain_armor_+3">
+  <item name="golden_chainmail">
     <type class="armor" subclass="golden_chainmail" tileid="-1"/>
     <description>You see a valuable suit of chain armor +3. It is crafted from fine links of expensive metal.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -222,9 +222,9 @@
     </equipable>
   </item>
 
-  <item name="scale_armor_+2">
+  <item name="pauldroned_iron_cuirass">
     <type class="armor" subclass="enhanced_iron_cuirass" tileid="-1"/>
-    <description>You see a formidable suit of scale armor +2.</description>
+    <description>You see a formidable enhanced iron cuirass.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="9"/>
     </attributes>
@@ -518,7 +518,7 @@
     </equipable>
   </item>
 
-  <item name="twoside_axe_+3">
+  <item name="golden_twoside_axe">
     <type class="axe" subclass="golden_twosided_poleaxe" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -876,9 +876,9 @@
     </equipable>
   </item>
 
-  <item name="elf_cloak_+2">
+  <item name="blue_elf_cloak">
     <type class="cloak" subclass="lightblue_cloak" tileid="-1"/>
-    <description>You see a blue elf cloak +2. The material is thick and warm.</description>
+    <description>You see a blue elf cloak. The material is thick and warm.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="8"/>
     </attributes>
@@ -1108,7 +1108,7 @@
     </equipable>
   </item>
 
-  <item name="mace_+1">
+  <item name="enhanced_mace">
     <type class="club" subclass="enhanced_mace" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -1124,9 +1124,9 @@
     </equipable>
   </item>
 
-  <item name="mace_+2">
+  <item name="golden_mace">
     <type class="club" subclass="golden_mace" tileid="-1"/>
-    <description>You see a shining mace +2. Despite looking ornamental, it is sharp enough to do some damage.</description>
+    <description>You see a shining golden mace. Despite looking ornamental, it is sharp enough to do some damage.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="22"/>
       <rate value="8"/>
@@ -1189,9 +1189,9 @@
     </equipable>
   </item>
 
-  <item name="hammer_+3">
+  <item name="golden_hammer">
     <type class="club" subclass="golden_hammer" tileid="-1"/>
-    <description>You see a valuable hammer +3. This golden weapon may be worth a lot to someone.</description>
+    <description>You see a valuable golden hammer. This golden weapon may be worth a lot to someone.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="36"/>
       <rate value="9"/>
@@ -2255,7 +2255,7 @@
     </equipable>
   </item>
 
-  <item name="chain_helmet_+2">
+  <item name="aventail">
     <type class="helmet" subclass="aventail" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -2297,7 +2297,7 @@
     </equipable>
   </item>
 
-  <item name="golden_helmet_+3">
+  <item name="horned_golden_helmet">
     <type class="helmet" subclass="enhanced_golden_helmet" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
@@ -3063,9 +3063,9 @@
     </equipable>
   </item>
 
-  <item name="longbow_+1">
+  <item name="composite_bow">
     <type class="ranged" subclass="composite_bow" tileid="-1"/>
-    <description>You see a longbow +1. It's better strung than most bows, for excellent ranged attack.</description>
+    <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <range value="5"/>
@@ -3577,9 +3577,9 @@
     </equipable>
   </item>
 
-  <item name="lion_shield_+1">
+  <item name="enhanced_lion_shield">
     <type class="shield" subclass="enhanced_lion_shield" tileid="-1"/>
-    <description>A lion shield +1 glints at you. It will defend you well.</description>
+    <description>An enhanced lion shield glints at you. It will defend you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="20"/>
     </attributes>
