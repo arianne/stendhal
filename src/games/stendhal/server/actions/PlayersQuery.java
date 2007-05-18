@@ -49,6 +49,7 @@ public class PlayersQuery implements ActionListener {
 		Log4J.startMethod(logger, "who");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
+		if (player.has("title")) rules.addGameEvent(player.get("title"), "who");
 		rules.addGameEvent(player.getName(), "who");
 
 		StringBuilder online = new StringBuilder();
@@ -62,7 +63,11 @@ public class PlayersQuery implements ActionListener {
 		online.append( amount+ " Players online: ");
 		for (Player p : getSortedPlayers()) {
 			if(!p.isGhost()) {
-				online.append(p.getName() + "(" + p.getLevel() + ") ");
+				if (p.has("title")) {
+					online.append(p.get("title") + "(" + p.getLevel() + ") ");
+				} else {
+					online.append(p.getName() + "(" + p.getLevel() + ") ");
+				}
 			}
 		}
 		player.sendPrivateText(online.toString());
