@@ -63,7 +63,7 @@ public class PlayersQuery implements ActionListener {
 		online.append( amount+ " Players online: ");
 		for (Player p : getSortedPlayers()) {
 			if(!p.isGhost()) {
-				String playername=player.getName();
+				String playername=p.getName();
 				if (p.has("title")) {
 					playername=p.get("title");
 				}
