@@ -63,11 +63,12 @@ public class PlayersQuery implements ActionListener {
 		online.append( amount+ " Players online: ");
 		for (Player p : getSortedPlayers()) {
 			if(!p.isGhost()) {
+				String playername=player.getName();
 				if (p.has("title")) {
-					online.append(p.get("title") + "(" + p.getLevel() + ") ");
-				} else {
-					online.append(p.getName() + "(" + p.getLevel() + ") ");
+					playername=p.get("title");
 				}
+				
+				online.append(playername + "(" + p.getLevel() + ") ");
 			}
 		}
 		player.sendPrivateText(online.toString());
@@ -86,7 +87,7 @@ public class PlayersQuery implements ActionListener {
 		Collections.sort(players, new Comparator<Player>() {
 
 			public int compare(Player o1, Player o2) {
-				return o1.getName().compareTo(o2.getName());
+				return o1.getName().compareToIgnoreCase(o2.getName());
 			}
 		});
 		return players;
