@@ -89,23 +89,20 @@ public class Profile {
 	 * @return	A login profile.
 	 */
 	public static Profile decode(String info) {
-		StringTokenizer st;
+		String [] params;
 		Profile profile;
 		String s;
 
-		if (info.indexOf('\n') != -1) {
-			st = new StringTokenizer(info, "\n");
-		} else {
-			st = new StringTokenizer(info);
-		}
+
+		params = info.split("\n");
 
 		profile = new Profile();
 
 		/*
 		 * Server Host
 		 */
-		if (st.hasMoreTokens()) {
-			s = st.nextToken();
+		if(params.length > 0) {
+			s = params[0];
 
 			for (String host : OLD_SERVER_HOSTS) {
 				if (s.equals(host)) {
@@ -122,8 +119,8 @@ public class Profile {
 		/*
 		 * User
 		 */
-		if (st.hasMoreTokens()) {
-			s = st.nextToken();
+		if(params.length > 1) {
+			s = params[1];
 
 			if (s.length() != 0) {
 				profile.setUser(s);
@@ -133,8 +130,8 @@ public class Profile {
 		/*
 		 * Password
 		 */
-		if (st.hasMoreTokens()) {
-			s = st.nextToken();
+		if(params.length > 2) {
+			s = params[2];
 
 			if (s.length() != 0) {
 				profile.setPassword(s);
@@ -144,8 +141,8 @@ public class Profile {
 		/*
 		 * Server Port
 		 */
-		if (st.hasMoreTokens()) {
-			s = st.nextToken();
+		if(params.length > 3) {
+			s = params[3];
 
 			if (s.length() != 0) {
 				try {
@@ -159,11 +156,10 @@ public class Profile {
 		/*
 		 * Server Protocol (TCP/UDP)
 		 */
-		if (st.hasMoreTokens()) {
-			s = st.nextToken();
-			// ignore this token for compatibility reasons
-			// just add what every you want behind it
-		}
+		// params[4]
+		//
+		// ignore this token for compatibility reasons
+		// just add what every you want behind it
 
 		return profile;
 	}

@@ -41,6 +41,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import marauroa.client.ariannexpTimeoutException;
 import marauroa.common.Log4J;
@@ -57,6 +59,8 @@ public class LoginDialog extends JDialog {
 	private JComboBox profilesComboBox;
 
 	private JCheckBox saveLoginBox;
+
+	private JCheckBox savePasswordBox;
 
 	private JTextField usernameField;
 
@@ -189,11 +193,26 @@ public class LoginDialog extends JDialog {
 		 * Save Profile/Login
 		 */
 		saveLoginBox = new JCheckBox("Save login profile locally");
+		saveLoginBox.setSelected(false);
 
 		c.gridx = 0;
 		c.gridy = 5;
 		c.fill = GridBagConstraints.NONE;
 		contentPane.add(saveLoginBox, c);
+
+		/*
+		 * Save Profile Password
+		 */
+		savePasswordBox = new JCheckBox("Save password");
+		savePasswordBox.setSelected(true);
+		savePasswordBox.setEnabled(false);
+
+		c.gridx = 0;
+		c.gridy = 6;
+		c.fill = GridBagConstraints.NONE;
+		c.insets = new Insets(0, 20, 0, 0);
+		contentPane.add(savePasswordBox, c);
+
 
 		loginButton = new JButton();
 		loginButton.setText("Login to Server");
@@ -208,6 +227,7 @@ public class LoginDialog extends JDialog {
 
 		c.gridx = 1;
 		c.gridy = 5;
+		c.gridheight = 2;
 		c.anchor = GridBagConstraints.CENTER;
 		c.insets = new Insets(15, 4, 4, 4);
 		contentPane.add(loginButton, c);
@@ -217,6 +237,12 @@ public class LoginDialog extends JDialog {
 		 */
 		profiles = loadProfiles();
 		populateProfiles(profiles);
+
+
+		/*
+		 * Add this callback after everything is initialized
+		 */
+		saveLoginBox.addChangeListener(new SaveProfileStateCB());
 
 		//
 		// Dialog
@@ -255,7 +281,16 @@ public class LoginDialog extends JDialog {
 		if (saveLoginBox.isSelected()) {
 			profiles.add(profile);
 			populateProfiles(profiles);
-			saveProfiles(profiles);
+
+			if(savePasswordBox.isSelected()) {
+				saveProfiles(profiles);
+			} else {
+				String pw = profile.getPassword();
+				profile.setPassword("");
+				saveProfiles(profiles);
+				profile.setPassword(pw);
+			}
+
 		}
 
 		/*
@@ -429,6 +464,13 @@ public class LoginDialog extends JDialog {
 		}
 	}
 
+	/**
+	 * Called when save profile selection change.
+	 */
+	protected void saveProfileStateCB() {
+		savePasswordBox.setEnabled(saveLoginBox.isSelected());
+	}
+
 
 	/**
 	 * Server connect thread runnable.
@@ -453,6 +495,16 @@ public class LoginDialog extends JDialog {
 
 		public void actionPerformed(ActionEvent e) {
 			profilesCB();
+		}
+	}
+
+	/**
+	 * Save profile selection change.
+	 */
+	protected class SaveProfileStateCB implements ChangeListener {
+
+		public void stateChanged(ChangeEvent ev) {
+			saveProfileStateCB();
 		}
 	}
 }
