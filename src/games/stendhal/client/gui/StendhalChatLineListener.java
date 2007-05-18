@@ -3,6 +3,7 @@ package games.stendhal.client.gui;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.scripting.ChatLineParser;
 
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,8 +14,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Vector;
 
 import javax.swing.JTextField;
 
@@ -30,13 +33,24 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	private JTextField playerChatText;
 
 	private LinkedList<String> lines;
-
+	private Vector<String> playersonline;
+	
 	private int actual;
-
+	
+	
 	public StendhalChatLineListener(StendhalClient client, JTextField playerChatText) {
 		super();
 		this.playerChatText = playerChatText;
 		lines = new LinkedList<String>();
+		
+		/* Enable Keyboard TAB events*/
+		KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		 
+		kfm.setDefaultFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+		kfm.setDefaultFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+		
+		client.whoplayers = new Vector<String>();
+		playersonline = client.whoplayers;
 		
 		//Open chat log file
 		try {
@@ -77,8 +91,10 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	}
 	
 	public void keyPressed(KeyEvent e) {
+		int keypressed = e.getKeyCode();
+		
 		if (e.isShiftDown()) {
-			switch (e.getKeyCode()) {
+			switch (keypressed) {
 				case KeyEvent.VK_UP: {
 					if (actual > 0) {
 						playerChatText.setText(lines.get(actual - 1));
@@ -93,6 +109,24 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 					}
 					break;
 				}
+			}
+		}
+		
+		if(keypressed==KeyEvent.VK_TAB){
+			String[] strwords = playerChatText.getText().split(" ");
+
+			for (int i=0; i < playersonline.size();i++){
+				if (playersonline.elementAt(i).startsWith(strwords[strwords.length-1])){
+					String output = "";
+					for (int j=0; j<strwords.length-1;j++){
+						output = output + strwords[j] + " ";
+					}
+					output = output + playersonline.elementAt(i) + " ";
+					
+					playerChatText.setText(output);
+
+				}
+
 			}
 		}
 	}

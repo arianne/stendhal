@@ -32,6 +32,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 import marauroa.client.ariannexp;
@@ -85,7 +88,27 @@ public class StendhalClient extends ariannexp {
 
 	private UserContext	userContext;
 
+	public Vector <String> whoplayers;
+	
+	public void generateWhoPlayers(String text){
+		
+		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(text);
 
+		if (matcher.find()) {
+			String[] nombres = matcher.group(1).split(" ");
+
+			whoplayers.removeAllElements();
+			for (int i=0;i<nombres.length;i++){
+				matcher = Pattern.compile("^([-_a-zA-Z0-9]+)\\([0-9]+\\)$").matcher(nombres[i]);;
+				if (matcher.find()) {
+					whoplayers.addElement(matcher.group(1));
+				}
+			}
+		}
+		
+		
+	}
+	
 	public static StendhalClient get() {
 		if (client == null) {
 			client = new StendhalClient(LOG4J_PROPERTIES);

@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.soundreview.SoundMaster;
@@ -553,7 +554,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if (text.startsWith("Tutorial: ")) {
 			color = new Color(172, 0, 172);
 		}
-
+		StendhalClient.get().generateWhoPlayers(text);
 		StendhalUI.get().addEventLine(text, color);
 		GameScreen.get().addText(getX(), getY(), text.replace("|", ""), color, false);
 	}
