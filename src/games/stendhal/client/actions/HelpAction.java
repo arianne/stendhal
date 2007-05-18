@@ -21,7 +21,9 @@ class HelpAction implements SlashAction  {
 	public boolean execute(String[] params, String remainder) {
 		String[] lines = {
 		        "For a detailed reference, visit #http://arianne.sourceforge.net/wiki/index.php/StendhalManual",
-		        "Here are the most-used commands:", "- /away [<message>] \tSet an away message",
+		        "Here are the most-used commands:", 
+		        "- /away <message> \tSet an away message",
+		        "- /away  \tRemove status away",
 		        "- /tell <player> <message> \tSends a private message to <player>",
 		        "- /answer <message> \t\tSends a private message to the last player who sent a message to you",
 		        "- // <message> \t\tSends a private message to the last player you sent a message to",
