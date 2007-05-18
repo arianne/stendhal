@@ -203,7 +203,7 @@ public class CloaksForBario extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
-					if (player.drop("elf_cloak_+2")) {
+					if (player.drop("blue_elf_cloak")) {
 						// find out how many cloaks the player still has to bring
 						int toBring = Integer.parseInt(player.getQuest(QUEST_SLOT)) - 1;
 						if (toBring > 0) {
