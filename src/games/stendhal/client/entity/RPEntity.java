@@ -621,7 +621,7 @@ public abstract class RPEntity extends ActiveEntity {
 	/** Draws this entity in the screen */
 	@Override
 	public void draw(final GameScreen screen) {
-		if(isGhostMode()) {
+		if(this!=User.get() && isGhostMode()) {
 			return;
 		}
 

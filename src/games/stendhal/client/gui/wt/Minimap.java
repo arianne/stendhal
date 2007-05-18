@@ -21,6 +21,7 @@ import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.Sheep;
 import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.User;
@@ -106,9 +107,7 @@ public class Minimap extends WtPanel {
 		height = (h * scale < MINIMAP_HEIGHT) ? h * scale : MINIMAP_HEIGHT;
 
 		// create the image for the minimap
-		if(image==null) {
-			image = gc.createCompatibleImage(w * scale, h * scale);
-		}
+		image = gc.createCompatibleImage(w * scale, h * scale);
 		
 		Graphics2D mapgrapics = image.createGraphics();
 		Color freeColor = new Color(0.8f, 0.8f, 0.8f);
@@ -225,6 +224,9 @@ public class Minimap extends WtPanel {
 					drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale)
 							- pany + 2, playerColor);
 				}
+			} else if( entity instanceof Portal) {
+				drawDot(clientg, (int) (entity.getX() * scale) - panx, (int) ((entity.getY()) * scale)
+						- pany, Color.WHITE);
 			}
 		}
 
@@ -276,6 +278,13 @@ public class Minimap extends WtPanel {
 		g.drawLine(x, y + size, x, y - size);
 	}
 
+	private void drawDot(Graphics g, int x, int y, Color color) {
+		int size = 2;
+
+		g.setColor(color);
+		g.fillRect(x, y, size, size);
+	}
+	
 	/**
 	 * sets the current Player
 	 * @param player 
