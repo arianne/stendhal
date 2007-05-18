@@ -181,12 +181,16 @@ public class StuffForVulcanus extends AbstractQuest {
 					}
 				}
 
-				if(!missingSomething) {
+				if(player.hasKilled("giant") && !missingSomething) {
 					engine.say("You've brought everything I need to make the immortal sword. Come back in "+
 							REQUIRED_TIME + " minutes and it will be ready");
 					player.setQuest(QUEST_SLOT,
 							"forging;" + System.currentTimeMillis());
 				} else {
+					if(!player.hasKilled("giant")) {
+						engine.say("This sword can only be given to those that were able to kill a #giant");
+					}
+						
 					player.setQuest(QUEST_SLOT, "start;"+
 							(REQUIRED_IRON-neededIron)+";"+
 							(REQUIRED_WOOD-neededWoodLogs)+";"+
