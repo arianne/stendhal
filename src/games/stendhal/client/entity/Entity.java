@@ -27,7 +27,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public abstract class Entity implements RPObjectChangeListener, Comparable<Entity> {
+public abstract class Entity implements RPObjectChangeListener {
 
 	String[] moveSounds=null;
 	/** session wide instance identifier for this class
@@ -472,38 +472,6 @@ public final byte[] ID_Token = new byte[0];
 				break;
 		}
 
-	}
-
-	/**
-	 * Checks if this entity should be drawn on top of the given entity, if the
-	 * given entity should be drawn on top, or if it doesn't matter.
-	 * 
-	 * In the first case, this method returns a positive integer. In the second
-	 * case, it returns a negative integer. In the third case, it returns 0.
-	 * 
-	 * Also, players can only interact with the topmost entity.
-	 * 
-	 * Note: this comparator imposes orderings that are inconsistent with
-	 * equals().
-	 * 
-	 * @param other
-	 *            another entity to compare this one to
-	 * @return a negative integer, zero, or a positive integer as this object is
-	 *         less than, equal to, or greater than the specified object.
-	 */
-	public int compareTo(final Entity other) {
-		if(getView().getZIndex() == other.getView().getZIndex()){
-			if (this.getY() < other.getY()) {
-				// this entity is standing behind the other entity
-				return -1;
-			} else if (this.getY() > other.getY()) {
-				// this entity is standing in front of the other entity
-				return 1;
-			}
-				else return 0;
-		} else {
-			return getView().getZIndex() - other.getView().getZIndex();
-		}
 	}
 
 

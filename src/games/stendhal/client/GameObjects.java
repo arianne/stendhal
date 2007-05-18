@@ -13,12 +13,14 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.RPEntity;
 import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -35,6 +37,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
+
+	private static final Comparator<Entity> entityComparator = new EntityComparator();
 
 	private Map<FQID, Entity> objects;
 
@@ -96,7 +100,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 
 	private void sort() {
-		Collections.sort(sortedObjects);
+		Collections.sort(sortedObjects, entityComparator);
 	}
 
 	public Entity get(RPObject object) {
@@ -493,6 +497,44 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			}
 
 			return value;
+		}
+	}
+
+	//
+	//
+
+	protected static class EntityComparator implements Comparator<Entity> {
+		//
+		// EntityComparator
+		//
+
+		public int compare(Entity2DView view1, Entity2DView view2) {
+			int	rv;
+
+
+			rv = view1.getZIndex() - view2.getZIndex();
+
+			if(rv == 0) {
+				Rectangle2D area1 = view1.getDrawnArea();
+				Rectangle2D area2 = view2.getDrawnArea();
+
+				rv = (int) ((area1.getMaxY() - area2.getMaxY()) * 10.0);
+
+				if(rv == 0) {
+					rv = (int) ((area1.getMinX() - area2.getMinX()) * 10.0);
+				}
+			}
+
+			return rv;
+		}
+
+
+		//
+		// Comparator
+		//
+
+		public int compare(Entity entity1, Entity entity2) {
+			return compare(entity1.getView(), entity2.getView());
 		}
 	}
 }
