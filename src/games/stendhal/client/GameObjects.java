@@ -21,6 +21,7 @@ import games.stendhal.client.events.RPObjectChangeListener;
 import java.awt.geom.Rectangle2D;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -156,25 +157,29 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	}
 
 	public Entity at(double x, double y) {
-		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects.size());
-		while (it.hasPrevious()) {
-			Entity entity = it.previous();
+		try {
+			ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects
+					.size());
+			while (it.hasPrevious()) {
+				Entity entity = it.previous();
 
-			if (entity.getArea().contains(x, y)) {
-				return entity;
+				if (entity.getArea().contains(x, y)) {
+					return entity;
+				}
 			}
-		}
+			// Maybe user clicked outside char but on the drawed area of it
+			it = sortedObjects.listIterator(sortedObjects.size());
+			while (it.hasPrevious()) {
+				Entity entity = it.previous();
 
-		// Maybe user clicked outside char but on the drawed area of it
-		it = sortedObjects.listIterator(sortedObjects.size());
-		while (it.hasPrevious()) {
-			Entity entity = it.previous();
-
-			if (entity.getView().getDrawnArea().contains(x, y)) {
-				return entity;
+				if (entity.getView().getDrawnArea().contains(x, y)) {
+					return entity;
+				}
 			}
-		}
-
+		} catch (ConcurrentModificationException e) {
+			// TODO: make a more failsafe/sophosticated solution 
+			return null;
+		}		
 		return null;
 	}
 
