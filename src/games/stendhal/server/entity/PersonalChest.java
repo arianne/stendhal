@@ -8,8 +8,6 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.LinkedList;
-import java.util.List;
 
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
@@ -88,13 +86,6 @@ public class PersonalChest extends Chest {
 					/* If player is not next to depot clean it. */
 					if (!nextTo(attending) || !zone.has(attending.getID())) {
 						content = getSlot("content");
-
-						List<RPObject> itemsList = new LinkedList<RPObject>();
-
-						for (RPObject item : getSlot("content")) {
-							itemsList.add(item);
-						}
-
 						content.clear();
 						close();
 						PersonalChest.this.notifyWorldAboutChanges();
