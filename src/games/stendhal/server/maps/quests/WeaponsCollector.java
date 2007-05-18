@@ -227,7 +227,7 @@ public class WeaponsCollector extends AbstractQuest {
 		// Just find some of the weapons somewhere and bring them to Balduin.
 	}
 
-	private void stepsrc/games/stendhal/server/entity/npc/ShopList.java_3() {
+	private void step_3() {
 		SpeakerNPC npc = npcs.get("Balduin");
 
 		// player returns while quest is still active
