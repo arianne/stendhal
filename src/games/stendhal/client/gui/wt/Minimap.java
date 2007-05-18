@@ -283,6 +283,8 @@ public class Minimap extends WtPanel {
 
 		g.setColor(color);
 		g.fillRect(x, y, size, size);
+		g.setColor(Color.BLACK);
+		g.drawRect(x-1, y-1, size+1, size+1);
 	}
 	
 	/**
