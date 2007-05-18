@@ -88,12 +88,11 @@ public class ShopList {
 		shops.add("buyrare", "scimitar", 65);
 		shops.add("buyrare", "katana", 70);
 		shops.add("buyrare", "bardiche", 75);
-		shops.add("buyrare", "hammer_+3", 80);
+		shops.add("buyrare", "golden_hammer", 80);
 
 		// rare armor shop
-		shops.add("buyrare", "chain_armor_+1", 32);
-		shops.add("buyrare", "chain_armor_+2", 42);
-		shops.add("buyrare", "chain_armor_+3", 52);
+		shops.add("buyrare", "enhanced_chainmail", 32);
+		shops.add("buyrare", "golden_chainmail", 52);
 		shops.add("buyrare", "plate_armor", 62);
 		shops.add("buyrare", "plate_shield", 40);
 		shops.add("buyrare", "lion_shield", 50);
@@ -104,7 +103,7 @@ public class ShopList {
 		shops.add("elfbuyrare", "claymore", 90);
 		shops.add("elfbuyrare", "broadsword", 70);
 		shops.add("elfbuyrare", "staff", 75);
-		shops.add("elfbuyrare", "lion_shield_+1", 52);
+		shops.add("elfbuyrare", "enhanced_lion_shield", 52);
 		shops.add("elfbuyrare", "crown_shield", 80);
 
 		// more rare weapons shop (fado)
