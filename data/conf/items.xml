@@ -385,6 +385,8 @@
     <weight value="45.0"/>
     <value value="123032"/>
     <equipable>
+      <slot name="armor"/>
+      <slot name="bag"/>
     </equipable>
   </item>
 
@@ -1489,7 +1491,7 @@
   </item>
 
   <item name="deadly_poison">
-    <type class="drink" subclass="greater_poison" tileid="-1"/>
+    <type class="drink" subclass="deadly_poison" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="-100"/>
@@ -1507,7 +1509,7 @@
   </item>
 
   <item name="disease_poison">
-    <type class="drink" subclass="greater_poison" tileid="-1"/>
+    <type class="drink" subclass="disease_poison" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="-2000"/>
@@ -1525,7 +1527,7 @@
   </item>
 
   <item name="mega_poison">
-    <type class="drink" subclass="greater_poison" tileid="-1"/>
+    <type class="drink" subclass="mega_poison" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Drink"/>    <attributes>
       <amount value="-500"/>
@@ -3314,6 +3316,7 @@
     <equipable>
       <slot name="bag"/>
       <slot name="finger"/>
+      <slot name="keyring"/>
     </equipable>
   </item>
 
@@ -3327,6 +3330,7 @@
     <equipable>
       <slot name="bag"/>
       <slot name="finger"/>
+      <slot name="keyring"/>
     </equipable>
   </item>
 
@@ -3342,6 +3346,7 @@
     <equipable>
       <slot name="bag"/>
       <slot name="finger"/>
+      <slot name="keyring"/>
     </equipable>
   </item>
 
@@ -4120,7 +4125,7 @@
   </item>
 
   <item name="drow_sword">
-    <type class="sword" subclass="drow_sword" tileid="-1"/>
+    <type class="sword" subclass="blooddrinker" tileid="-1"/>
     <description>This is a genuine drow sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="31"/>
