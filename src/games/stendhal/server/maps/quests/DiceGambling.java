@@ -43,9 +43,9 @@ public class DiceGambling extends AbstractQuest {
 				new Pair<String, String>("antidote", "This antidote will serve you well when you fight against poisonous creatures."), // 11
 				new Pair<String, String>("sandwich", "You have won a tasty sandwich!"), // 12
 				new Pair<String, String>("chain_helmet", "Your prize is this robust chain helmet."), // 13
-				new Pair<String, String>("hammer_+3", "Take this valuable golden hammer!"), // 14
+				new Pair<String, String>("golden_hammer", "Take this valuable golden hammer!"), // 14
 				new Pair<String, String>("greater_potion", "You have won a greater potion, but with your luck you'll probably never have to use it!"), // 15
-				new Pair<String, String>("scale_armor_+2", "You have won this very rare enhanced scale armor."), // 16
+				new Pair<String, String>("pauldroned_iron_cuirass", "You have won this very rare iron cuirass with pauldrons!"), // 16
 				new Pair<String, String>("crown_shield", "You're so lucky! Here's your prize: an invaluable crown shield!"), // 17
 				new Pair<String, String>("golden_legs", "You have hit the JACKPOT! Golden legs!") // 18
 				);
