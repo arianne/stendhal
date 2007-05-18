@@ -238,7 +238,7 @@
 
   <item name="plate_armor">
     <type class="armor" subclass="plate_armor" tileid="-1"/>
-    <description>You see a suit of plate armor. You imagine it would be heavy butthe steel is well tempered and the suit is very strong.</description>
+    <description>You see a suit of plate armor. You imagineit would be heavy butthe steel is well tempered and the suit is very strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="10"/>
     </attributes>
@@ -294,7 +294,7 @@
 
   <item name="shadow_armor">
     <type class="armor" subclass="shadow_armor" tileid="-1"/>
-    <description>You see a suit of shadow armor. It's hard to decide with what it is made, it is so dark.</description>
+    <description>You see a suit of shadow armor. It's hard to decide with whatit is made, it is so dark.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
     </attributes>
@@ -631,7 +631,7 @@
   </item>
 
   <item name="book_black">
-    <type class="book" subclass="black" tileid="-1"/>
+    <type class="book" subclass="book_black" tileid="-1"/>
     <description></description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
@@ -2628,7 +2628,7 @@
 
   <item name="studded_legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
-    <description>You see a pair of blood stained studded legs.You're not sure if the blood came from their last owner ... or his enemies.</description>
+    <description>You see a pair ofblood stained studded legs.You're not sure if the blood came from their last owner ... or his enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="2"/>
     </attributes>
@@ -3870,7 +3870,7 @@
 
   <item name="r_hand_sword">
     <type class="sword" subclass="r_hand_sword" tileid="-1"/>
-    <description>You see r hand sword. It must be used with l hand sword.</description>
+    <description>You see r hand sword. Itmust be used with l hand sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <def value="6"/>
@@ -3997,7 +3997,7 @@
 
   <item name="claymore">
     <type class="sword" subclass="claymore" tileid="-1"/>
-    <description>This claymore is very hard to lift as it is so heavy. It will be a good weapon if you can swing it.</description>
+    <description>This claymore is very hard to lift as it isso heavy. It will be a good weapon if you can swing it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="28"/>
       <rate value="10"/>
