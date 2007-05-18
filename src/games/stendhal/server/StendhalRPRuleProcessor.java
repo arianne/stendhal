@@ -136,7 +136,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		QuestListAction.register();
 		StopAction.register();
 		UseAction.register();
-        CreateGuildAction.register();
+		CreateGuildAction.register();
+
 	}
 
 	private StendhalRPRuleProcessor() {
@@ -372,13 +373,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	 */
 	public Player getPlayer(String name) {
 		for (Player player : getPlayers()) {
-			if (player.getName().equals(name)) {
-				return player;
+			if (player.has("title")) {
+			        if (player.get("title").equals(name)) {
+					return player;
+				}
+			} else {
+				if (player.getName().equals(name)) {
+					return player;
+				}
 			}
 		}
 		return null;
 	}
-
+	
 	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
 		return plantGrowers;
 	}
