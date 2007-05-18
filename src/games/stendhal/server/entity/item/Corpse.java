@@ -37,6 +37,9 @@ import org.apache.log4j.Logger;
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
+	
+	private int width;
+	private int height;
 
 	/** Time (in seconds) until a corpse disappears. */
 	private static final int DEGRADATION_TIMEOUT = 15 * 60; // 15 minutes
@@ -60,10 +63,24 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 		entity.addRPSlot("content", 4);
 	}
+	
+	private void decideSize(String clazz) {
+		width=height=1;
+		
+		if (clazz.equals("giant_animal") || clazz.equals("giant_human") || clazz.equals("huge_animal")) {
+			width=height=2;
+		} else if (clazz.equals("mythical_animal") || clazz.equals("boss")) {
+			width=height=6;
+		} else if (clazz.equals("enormous_creature")) {
+			width=height=16;
+		}		
+	}
 
 	public Corpse(String clazz, int x, int y) throws AttributeNotFoundException {
 		put("type", "corpse");
 		put("class", clazz);
+
+		decideSize(clazz);
 
 		setX(x);
 		setY(y);
@@ -84,6 +101,8 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		} else {
 			put("class", entity.get("type"));
 		}
+		
+		decideSize(get("class"));
 
 		if ((killer != null) && (entity instanceof Player)) {
 			put("name", entity.getName());
@@ -119,7 +138,9 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		addSlot(slot);
 	}
 
-	
+	public void getArea(Rectangle2D rect, double x, double y){
+		rect.setRect(x, y, width,height);
+	}
 
 	private void modify() {
 		if (isContained()) {

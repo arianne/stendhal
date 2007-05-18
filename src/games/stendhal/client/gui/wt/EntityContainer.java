@@ -20,6 +20,8 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +44,7 @@ public class EntityContainer extends WtPanel {
 	private static final Logger logger = Log4J.getLogger(EntityContainer.class);
 
 	/** when the player is this far away from the container, the panel is closed */
-	private static final int MAX_DISTANCE = 5;
+	private static final int MAX_DISTANCE = 4;
 
 	/** the panels for each item */
 	private List<EntitySlot> slotPanels;
@@ -127,24 +129,23 @@ public class EntityContainer extends WtPanel {
 	 * far away, this panel closes itself. Note that this is clientside only.
 	 */
 	private void checkDistance() {
-	//	RPObject player = client.getPlayer();
-
 		int px = (int) User.get().getX();
 		int py = (int) User.get().getY();
 		int ix = (int) parent.getX();
 		int iy = (int) parent.getY();
-
-		int distance = Math.abs(px - ix) + Math.abs(py - iy);
+		
 
 		if (User.get().getID().equals(parent.getID())) {
 			// We don't want to close our own stuff
 			return;
 		}
 
-		if (distance > MAX_DISTANCE) {
-			logger
-			        .info("Closing " + slotName + " container because " + px + "," + py + " is far from " + ix + ","
-			                + iy);
+		Rectangle2D orig=parent.getArea();
+		orig.setRect(orig.getX()-MAX_DISTANCE, orig.getY()-MAX_DISTANCE, 
+				orig.getWidth()+MAX_DISTANCE*2, orig.getHeight()+MAX_DISTANCE*2);
+
+		if(!orig.contains(px, py)) {
+			logger.info("Closing " + slotName + " container because " + px + "," + py + " is too far from ("+ix+","+iy+"):" + orig);			
 			destroy();
 		}
 	}
