@@ -281,7 +281,7 @@ public class DefaultCreature {
                         <item value="sword" quantity="1" probability="30"/>
                         <item value="claymore" quantity="1" probability="5"/>
                         <item value="katana" quantity="1" probability="15"/>
-                        <item value="chain_armor_+3" quantity="1" probability="1"/>
+                        <item value="golden_chainmail" quantity="1" probability="1"/>
                 </drops>
                 <equips>
                 </equips>

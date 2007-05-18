@@ -24,11 +24,11 @@ public class Box extends Item implements UseListener {
 	private Logger logger = Logger.getLogger(Box.class);
 
 	// for christmas presents
-	private static final String[] ITEMS = { "greater_potion", "pie", "sandwich", "carrot", "cherry", "elf_cloak_+2",
+	private static final String[] ITEMS = { "greater_potion", "pie", "sandwich", "carrot", "cherry", "blue_elf_cloak",
 	        "summon_scroll" };
 
 	// for easter presents
-	private static final String[] ITEMS_2 = { "greater_potion", "pie", "sandwich", "cherry", "elf_cloak_+2",
+	private static final String[] ITEMS_2 = { "greater_potion", "pie", "sandwich", "cherry", "blue_elf_cloak",
 	        "home_scroll" };
 
 	/**
