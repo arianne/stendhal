@@ -180,8 +180,7 @@
     <drops>
       <item value="money" quantity="[2,5]" probability="70.0"/>
       <item value="meat" quantity="[1,4]" probability="60.0"/>
-      <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
-      <item value="leather_scale_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="ham" quantity="[1,2]" probability="30.0"/>
     </drops>
     <equips>
     </equips>
@@ -270,6 +269,7 @@
       <item value="minor_potion" quantity="[1,1]" probability="5.0"/>
       <item value="button_mushroom" quantity="[3,6]" probability="10.0"/>
       <item value="leather_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="buckler" quantity="[1,1]" probability="5.0"/>
     </drops>
     <equips>
     </equips>
@@ -609,7 +609,7 @@
       <item value="leather_cuirass" quantity="[1,1]" probability="10.0"/>
       <item value="pauldroned_leather_cuirass" quantity="[1,1]" probability="10.0"/>
       <item value="mace" quantity="[1,1]" probability="1.0"/>
-      <item value="wooden_shied" quantity="[1,1]" probability="0.5"/>
+      <item value="wooden_shield" quantity="[1,1]" probability="0.5"/>
       <item value="dagger" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
@@ -963,7 +963,7 @@
     <drops>
       <item value="money" quantity="[6,15]" probability="100.0"/>
       <item value="chain_armor" quantity="[1,1]" probability="1.0"/>
-      <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
+      <item value="leather_cuirass" quantity="[1,1]" probability="10.0"/>
       <item value="studded_boots" quantity="[1,1]" probability="0.5"/>
       <item value="enhanced_mace" quantity="[1,1]" probability="1.0"/>
       <item value="studded_shield" quantity="[1,1]" probability="0.5"/>
@@ -1301,7 +1301,7 @@
       <item value="scale_armor" quantity="[1,1]" probability="0.3"/>
       <item value="iron_scale_armor" quantity="[1,1]" probability="0.05"/>
       <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
-      <item value="sword" quantity="[1,1]" probability="1.3"/>
+      <item value="bardiche" quantity="[1,1]" probability="1.3"/>
     </drops>
     <equips>
     </equips>
@@ -1332,7 +1332,7 @@
       <item value="scale_armor" quantity="[1,1]" probability="1.0"/>
       <item value="iron_scale_armor" quantity="[1,1]" probability="0.35"/>
       <item value="chain_boots" quantity="[1,1]" probability="0.5"/>
-      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="claymore" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -1515,7 +1515,7 @@
       <item value="scale_armor" quantity="[1,1]" probability="2.0"/>
       <item value="iron_scale_armor" quantity="[1,1]" probability="0.5"/>
       <item value="steel_boots" quantity="[1,1]" probability="0.4"/>
-      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="skull_staff" quantity="[1,1]" probability="0.5"/>
       <item value="lion_shield" quantity="[1,1]" probability="0.4"/>
     </drops>
     <equips>
@@ -1793,7 +1793,7 @@
       <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="0.2"/>
       <item value="potion" quantity="[1,1]" probability="30.0"/>
       <item value="steel_boots" quantity="[1,1]" probability="0.5"/>
-      <item value="elf_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="cloak" quantity="[1,1]" probability="10"/>
     </drops>
     <equips>
     </equips>
@@ -1954,6 +1954,7 @@
       <item value="steel_boots" quantity="[1,1]" probability="1.0"/>
       <item value="dwarf_cloak" quantity="[1,1]" probability="0.5"/>
       <item value="lion_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="halberd" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2012,8 +2013,8 @@
       <item value="iron_scale_armor" quantity="[1,1]" probability="7.0"/>
       <item value="golden_chainmail" quantity="[1,1]" probability="2.0"/>
       <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="0.5"/>
-      <item value="elvish_boots" quantity="[1,1]" probability="0.25"/>
-      <item value="elvish_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="chain_boots" quantity="[1,1]" probability="1.25"/>
+      <item value="cloak" quantity="[1,1]" probability="5"/>
       <item value="aventail" quantity="[1,1]" probability="1.0"/>
       <item value="scimitar" quantity="[1,1]" probability="1.5"/>
     </drops>
@@ -2241,7 +2242,7 @@
       <item value="money" quantity="[3,37]" probability="100.0"/>
       <item value="onion" quantity="[1,1]" probability="18.0"/>
       <item value="leek" quantity="[1,1]" probability="15.0"/>
-      <item value="aventail" quantity="[1,1]" probability="1.0"/>
+      <item value="leather_helmet" quantity="[1,1]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -2274,7 +2275,7 @@
       <item value="golden_chainmail" quantity="[1,1]" probability="10.0"/>
       <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="2.5"/>
       <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
-      <item value="elvish_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2584,6 +2585,8 @@
     <respawn value="1080"/>
     <drops>
       <item value="money" quantity="[5,27]" probability="100.0"/>
+      <item value="stone_cloak" quantity="[1,1]" probability="10.0"/>
+      <item value="stone_boots" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
@@ -2674,8 +2677,8 @@
       <item value="money" quantity="[8,35]" probability="100.0"/>
       <item value="plate_armor" quantity="[1,1]" probability="7.0"/>
       <item value="shadow_armor" quantity="[1,1]" probability="0.0025"/>
-      <item value="stone_cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="golden_hammer" quantity="[1,1]" probability="1.0"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.0025"/>
+      <item value="black_shield" quantity="[1,1]" probability="0.0025"/>
       <item value="viking_helmet" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
@@ -2734,9 +2737,9 @@
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
       <item value="plate_armor" quantity="[1,1]" probability="7.0"/>
-      <item value="elvish_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="barbarian_armor" quantity="[1,1]" probability="0.5"/>
       <item value="golden_armor" quantity="[1,1]" probability="0.0050"/>
-      <item value="elvish_boots" quantity="[1,1]" probability="0.25"/>
+      <item value="studded_boots" quantity="[1,1]" probability="3"/>
       <item value="green_dragon_cloak" quantity="[1,1]" probability="0.5"/>
       <item value="dagger" quantity="[1,1]" probability="5.0"/>
     </drops>
@@ -2799,6 +2802,7 @@
       <item value="money" quantity="[10,50]" probability="100.0"/>
       <item value="potion" quantity="[1,2]" probability="30.0"/>
       <item value="vampirette_entrails" quantity="[1,1]" probability="100.0"/>
+      <item value="vampire_cloak" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
     </equips>
@@ -2973,11 +2977,10 @@
     <drops>
       <item value="money" quantity="[3,46]" probability="100.0"/>
       <item value="empty_scroll" quantity="[1,1]" probability="1.0"/>
-      <item value="barbarian_armor" quantity="[1,1]" probability="4.0"/>
+      <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="7.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="0.3"/>
       <item value="war_hammer" quantity="[1,1]" probability="1.0"/>
-      <item value="green_dragon_shield" quantity="[1,1]" probability="0.5"/>
-    </drops>
+     </drops>
     <equips>
     </equips>
     <ai>
@@ -3008,7 +3011,7 @@
       <item value="money" quantity="[6,22]" probability="100.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="0.25"/>
       <item value="shadow_boots" quantity="[1,1]" probability="0.1"/>
-      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
+      <item value="ugmash" quantity="[1,1]" probability="0.005"/>
     </drops>
     <equips>
     </equips>
@@ -3102,6 +3105,7 @@
     <drops>
       <item value="money" quantity="[15,50]" probability="100.0"/>
       <item value="elvish_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="elvish_cloak" quantity="[1,1]" probability="5.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
       <item value="steel_arrow" quantity="[1,5]" probability="5.0"/>
       <item value="longbow" quantity="[1,1]" probability="0.5"/>
@@ -3221,6 +3225,7 @@
       <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
       <item value="emerald" quantity="[1,4]" probability="5.0"/>
       <item value="green_dragon_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="green_dragon_cloak" quantity="[1,1]" probability="10"/>
     </drops>
     <equips>
     </equips>
@@ -3251,8 +3256,7 @@
       <item value="barbarian_armor" quantity="[1,1]" probability="5.0"/>
       <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
       <item value="shadow_boots" quantity="[1,1]" probability="1.5"/>
-      <item value="green_dragon_cloak" quantity="[1,1]" probability="0.5"/>
-      <item value="biting_sword" quantity="[1,1]" probability="1.0"/>
+      <item value="vulcano_hammer" quantity="[1,1]" probability="0.005"/>
     </drops>
     <equips>
     </equips>
@@ -3310,6 +3314,7 @@
     <respawn value="1520"/>
     <drops>
       <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="great_sword" quantity="[1,1]" probability="3.0"/>
     </drops>
     <equips>
     </equips>
@@ -3395,7 +3400,7 @@
       <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
       <item value="elvish_armor" quantity="[1,1]" probability="0.5"/>
       <item value="shadow_boots" quantity="[1,1]" probability="0.5"/>
-      <item value="bone_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="elvish_cloak" quantity="[1,1]" probability="1"/>
       <item value="chaos_sword" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
@@ -3455,7 +3460,7 @@
     <drops>
       <item value="money" quantity="[10,80]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
-      <item value="bone_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="bone_dragon_cloak" quantity="[1,1]" probability="2"/>
     </drops>
     <equips>
     </equips>
@@ -3486,7 +3491,6 @@
       <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
       <item value="shadow_armor" quantity="[1,1]" probability="0.0050"/>
       <item value="black_boots" quantity="[1,1]" probability="0.0050"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="0.5"/>
       <item value="assassin_dagger" quantity="[1,1]" probability="1.0"/>
     </drops>
     <equips>
@@ -3634,7 +3638,6 @@
       <item value="shadow_armor" quantity="[1,1]" probability="0.15"/>
       <item value="elvish_armor" quantity="[1,1]" probability="3.0"/>
       <item value="shadow_boots" quantity="[1,1]" probability="2.5"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="0.5"/>
       <item value="shadow_shield" quantity="[1,1]" probability="1.0"/>
       <item value="drow_sword" quantity="[1,1]" probability="0.05"/>
     </drops>
@@ -3665,7 +3668,7 @@
       <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
       <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
       <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
       <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
     </drops>
@@ -3728,7 +3731,6 @@
       <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
       <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
       <item value="chaos_boots" quantity="[1,1]" probability="0.5"/>
-      <item value="vampire_cloak" quantity="[1,1]" probability="0.5"/>
       <item value="chaos_hammer" quantity="[1,1]" probability="0.25"/>
       <item value="vulcano_hammer" quantity="[1,1]" probability="0.0050"/>
       <item value="greater_potion" quantity="[1,2]" probability="1.5"/>
@@ -4506,10 +4508,11 @@
     <respawn value="3770"/>
     <drops>
       <item value="money" quantity="[30,150]" probability="100.0"/>
+      <item value="assassin_dagger" quantity="[1,1]" probability="1.0"/>
       <item value="shadow_armor" quantity="[1,1]" probability="6.0"/>
       <item value="chaos_armor" quantity="[1,1]" probability="0.0050"/>
-      <item value="black_boots" quantity="[1,1]" probability="0.05"/>
-      <item value="black_dragon_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.1"/>
+      <item value="black_cloak" quantity="[1,1]" probability="0.005"/>
       <item value="dark_dagger" quantity="[1,1]" probability="0.05"/>
     </drops>
     <equips>
@@ -4541,7 +4544,7 @@
       <item value="chaos_boots" quantity="[1,1]" probability="2.0"/>
       <item value="shadow_cloak" quantity="[1,1]" probability="1.0"/>
       <item value="magic_plate_shield" quantity="[1,1]" probability="1.0"/>
-      <item value="elvish_sword" quantity="[1,1]" probability="0.1"/>
+      <item value="ice_sword" quantity="[1,1]" probability="0.1"/>
     </drops>
     <equips>
     </equips>
@@ -4847,6 +4850,9 @@
     <drops>
       <item value="money" quantity="[90,500]" probability="100.0"/>
       <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
+      <item value="green_dragon_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="green_dragon_shield" quantity="[1,1]" probability="2.0"/>
+      <item value="emerald" quantity="[1,2]" probability="10.0"/>
     </drops>
     <equips>
     </equips>
@@ -4969,7 +4975,7 @@
     <experience value="55300"/>
     <respawn value="17300"/>
     <drops>
-      <item value="mega_potion" quantity="[1,4]" probability="100.0"/>
+      <item value="mega_potion" quantity="[1,3]" probability="100.0"/>
       <item value="greater_antidote" quantity="[1,6]" probability="80.0"/>
       <item value="money" quantity="[100,800]" probability="100.0"/>
       <item value="green_thing_boots" quantity="[1,1]" probability="3.0"/>
@@ -5000,7 +5006,7 @@
     <respawn value="21600"/>
     <drops>
       <item value="money" quantity="[100,900]" probability="100.0"/>
-      <item value="mega_potion" quantity="[1,2]" probability="30.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="30.0"/>
       <item value="mega_potion" quantity="[1,1]" probability="1.0"/>
       <item value="chaos_armor" quantity="[1,1]" probability="2.5"/>
       <item value="chaos_boots" quantity="[1,1]" probability="2.5"/>
