@@ -63,7 +63,7 @@ public class PersonalChest extends Chest {
 			public void onTurnReached(int currentTurn, String message) {
 				if (attending != null) {
 					/* Can be replaced when we add Equip event */
-					/* Mirror player objects */
+					/* Mirror chest content into player's bank slot */
 					RPSlot bank = getBankSlot();
 					bank.clear();
 
@@ -71,21 +71,25 @@ public class PersonalChest extends Chest {
 						bank.add(item);
 					}
 
-					// A hack to allow client update correctly the chest...
 					RPSlot content = getSlot("content");
 					content.clear();
 
-					for (RPObject item : getBankSlot()) {
-						try {
-							content.add(cloneItem(item));
-						} catch (Exception e) {
-							logger.error("Cannot clone item " + item, e);
+					// if the player is next to the chest (and still logged in)
+					if (nextTo(attending) && zone.has(attending.getID())) {
+						// A hack to allow client update correctly the chest...
+						// by clearing the chest and copying the items back to it
+						// from the player's bank slot
+						for (RPObject item : getBankSlot()) {
+							try {
+								content.add(cloneItem(item));
+							} catch (Exception e) {
+								logger.error("Cannot clone item " + item, e);
+							}
 						}
-					}
 
-					/* If player is not next to depot clean it. */
-					if (!nextTo(attending) || !zone.has(attending.getID())) {
-						content = getSlot("content");
+					} else {
+
+						// If player is not next to depot, clean it.
 						content.clear();
 						close();
 						PersonalChest.this.notifyWorldAboutChanges();
