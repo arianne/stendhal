@@ -8,19 +8,20 @@ import java.util.Map;
  * Counts objects
  *
  * @author hendrik
+ * @param <K> Type of objects to count
  */
-public class ObjectCounter {
-	private Map<Object, Integer> counter = new HashMap<Object, Integer>();
+public class ObjectCounter<K> {
+	private Map<K, Integer> counter = new HashMap<K, Integer>();
 
 	public void clear() {
 		counter.clear();
 	}
 
-	public Map<Object, Integer> getMap() {
+	public Map<K, Integer> getMap() {
 		return counter;
 	}
 	
-	public void add(Object o) {
+	public void add(K o) {
 		Integer in = counter.get(o);
 		if (in == null) {
 			in = new Integer(1);
