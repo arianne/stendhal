@@ -4136,7 +4136,7 @@
   </creature>
 
   <creature name="barbarian_king">
-    <type class="human" subclass="barbarian_leader" tileid="human_barbarian.png:6"/>
+    <type class="human" subclass="barbarian_king" tileid="human_barbarian.png:6"/>
     <description></description>
     <attributes>
       <atk value="193"/>
