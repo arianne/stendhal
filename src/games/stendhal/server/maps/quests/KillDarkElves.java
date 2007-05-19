@@ -22,6 +22,7 @@ import java.util.Arrays;
  * - Maerion checks your kills, takes the amulet and gives you a ring of life as reward
  * 
  * REWARD:
+ * - emerald ring
  * - 10000 XP
  * 
  * REPETITIONS:
