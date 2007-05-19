@@ -78,6 +78,7 @@ public class KeyedPortalFactory extends AccessCheckingPortalFactory {
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
+	@Override
 	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new KeyedPortal(getKey(ctx), getQuantity(ctx));
 	}

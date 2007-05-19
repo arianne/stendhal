@@ -138,6 +138,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		addSlot(slot);
 	}
 
+	@Override
 	public void getArea(Rectangle2D rect, double x, double y){
 		rect.setRect(x, y, width,height);
 	}

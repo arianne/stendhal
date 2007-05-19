@@ -93,6 +93,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 *
 	 * @see		LevelCheckingPortal
 	 */
+	@Override
 	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new LevelCheckingPortal(getMinimumLevel(ctx), getMaximumLevel(ctx));
 	}

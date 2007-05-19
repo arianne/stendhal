@@ -60,6 +60,7 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 *
 	 * @see		LevelCheckingPortal
 	 */
+	@Override
 	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new QuestCheckingPortal(getQuest(ctx));
 	}
