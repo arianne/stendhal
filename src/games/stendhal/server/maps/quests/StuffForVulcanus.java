@@ -87,7 +87,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				"Oh, well forget it then, if you don't want an immortal sword...",
 				null
 		);
-		npc.addReply("exact", "This arcanum magic require that the ingredients are added on a exact order.");
+		npc.addReply("exact", "This archaic magic requires that the ingredients are added on a exact order.");
 	}
 
 	private void step_2() {
@@ -128,7 +128,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							neededIron-=amount;
 						}
 
-						engine.say("How do you expect me to #forge it without missing "+Grammar.quantityplnoun(neededIron, "iron bar")+"?");
+						engine.say("I cannot #forge it without the missing "+Grammar.quantityplnoun(neededIron, "iron")+".");
 						missingSomething=true;
 					} else {
 						player.drop("iron",neededIron);
@@ -159,7 +159,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							player.drop("gold_bar",amount);
 							neededGoldBars-=amount;
 						}
-						engine.say("I must pay a bill to spirits in other to cast the enchantment over the sword. I need "+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
+						engine.say("I must pay a bill to spirits in order to cast the enchantment over the sword. I need "+Grammar.quantityplnoun(neededGoldBars, "gold bar")+" more.");
 						missingSomething=true;
 					} else {
 						player.drop("gold_bar",neededGoldBars);
@@ -174,7 +174,7 @@ public class StuffForVulcanus extends AbstractQuest {
 							player.drop("giant_heart",amount);
 							neededGiantHearts-=amount;
 						}
-						engine.say("It is the base element of the enchantment. I do really need some "+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" more.");
+						engine.say("It is the base element of the enchantment. I need "+Grammar.quantityplnoun(neededGiantHearts, "giant heart")+" still.");
 						missingSomething=true;
 					} else {
 						player.drop("giant_heart",neededGiantHearts);
@@ -183,13 +183,13 @@ public class StuffForVulcanus extends AbstractQuest {
 				}
 
 				if(player.hasKilled("giant") && !missingSomething) {
-					engine.say("You've brought everything I need to make the immortal sword. Come back in "+
+					engine.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "+
 							REQUIRED_TIME + " minutes and it will be ready");
 					player.setQuest(QUEST_SLOT,
 							"forging;" + System.currentTimeMillis());
 				} else {
-					if(!player.hasKilled("giant")) {
-						engine.say("This sword can only be given to those that were able to kill a #giant");
+					if(!player.hasKilled("giant") && !missingSomething) {
+						engine.say("Did you really get those giant hearts yourself? I don't think so! This powerful sword can only be given to those that are strong enough to kill a #giant.");
 					}
 						
 					player.setQuest(QUEST_SLOT, "start;"+
@@ -228,7 +228,7 @@ public class StuffForVulcanus extends AbstractQuest {
 					return;
 				}
 
-				engine.say("I have finished forging the mighty immortal sword. You deserve this. Now i'm going back to work, goodbye!");
+				engine.say("I have finished forging the mighty immortal sword. You deserve this. Now I'm going to have a long rest, so, goodbye!");
 				player.addXP(15000);
 				Item magicSword = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("immortal_sword");
 				magicSword.put("bound", player.getName());
@@ -261,7 +261,7 @@ public class StuffForVulcanus extends AbstractQuest {
 				"iron",			
 				null, 
 				ConversationStates.ATTENDING,
-				"You know, collect the iron ore lying around and get it cast! Bye!",
+				"Collect some iron ore from the mines which are rich in minerals.",
 				null);
 		npc.add(ConversationStates.ANY,
 				"wood",			
@@ -273,13 +273,13 @@ public class StuffForVulcanus extends AbstractQuest {
 				"gold",			
 				null, 
 				ConversationStates.ATTENDING,
-				"Someone in Ados would forge the gold into gold bars for you.",
+				"A smith in Ados can forge the gold into gold bars for you.",
 				null);
 		npc.add(ConversationStates.ANY,
 				"giant",			
 				null, 
 				ConversationStates.ATTENDING,
-				"Long time ago forgotten histories talked about giants on the mountains at the north of Semos.",
+				"There are ancient stories of giants living in the mountains at the north of Semos and Ados.",
 				null);
 }
 @Override
