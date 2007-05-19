@@ -84,6 +84,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="448" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="resources.png" firstgid="449" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/resources.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONhYGDgoQPmpyEetWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA1Vbe58QJAAA=
@@ -111,10 +114,10 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAGNgGAWjgDbgEOPQMncUUA5G43wUjIJRQA1Ar7KE2vbQu6wCAKozvbrECQAA
   </data>
  </layer>
- <layer name="collision" width="25" height="25" visible="0" opacity="0.25">
+ <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAADvAyMBwgA6YlgCfHaTajc8cevqDVnYNdHxQ2w5qpjNy0zIpbqFHfhlIO2gJ6J2uaG0+PjsoiTta2oFcPg1lO3DpHe52UAKGYz6nhx20xgAbBRRnxAkAAA==
   </data>

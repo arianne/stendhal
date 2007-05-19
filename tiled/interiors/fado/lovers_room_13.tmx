@@ -72,6 +72,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="115" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="mushroom.png" firstgid="116" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/mushroom.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONgYGDgoAMWoCEetWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMAzukBDMQJAAA=
@@ -99,10 +102,10 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAGNgoA8ohWJa2zGYQQkBehSMglEwCkbBKKAElA1Tu+gBhqJ/AC8/HXjECQAA
   </data>
  </layer>
- <layer name="collision" width="25" height="25" visible="0" opacity="0.25">
+ <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAACtmYGAopgMmFxBjLi47iLWbEjuwmUUuQLcPmzilgJpmjdoxtO2gRv4kZM5IsYOcsoZUO4gFA20HNcFwsIMeYUVvO2hpF7Z6l9r2USMvE2M+PTAAA8ip9sQJAAA=
   </data>

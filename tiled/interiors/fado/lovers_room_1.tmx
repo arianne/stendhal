@@ -66,6 +66,12 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="159" tilewidth="0" tileheight="0">
+  <image source="../../../../../tiled-0.6.1"/>
+ </tileset>
+ <tileset name="vegetable.png" firstgid="159" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/vegetable.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNlYGBgpQPmoyEeSDtEgVgMiMWJMIOQWlx2SACxJBBLEWEHIbUDaYc0EMsAsSwRdhBSO9zT1agdI9MOWBlBCsZWnuCzA5Z/ScHY8vqoHaN2IGNYmU0Kxla+D3QepLYdtMYAsh+CvsQJAAA=
@@ -93,10 +99,10 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAGNgGAWjYBSMglEwWMB8Gqmlt55RMAooBdROd8MxHQMAk8FYOsQJAAA=
   </data>
  </layer>
- <layer name="collision" width="25" height="25" visible="0" opacity="0.25">
+ <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJvHwMAwjw6YECBFHz615Ooj1n2E7KAE0MrcUTtG7Ri1Y+jaMQ8HmxI7yLUfmY9uB7XCjVDZjss92PTicxe5/qC0/qAVGAx2UJKuiLWDGoCcOCTXbFpjAGgAbUzECQAA
   </data>

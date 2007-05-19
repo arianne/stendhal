@@ -117,9 +117,12 @@
  <tileset name="../../tileset/logic/protection.png" firstgid="370" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
+ <tileset name="vegetable.png" firstgid="371" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/vegetable.png"/>
+ </tileset>
  <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2QOQ6AUAhEf2/ivsT7X1Rqg8Pi2BhIXsk8mNbs6RQYo+XeHW99WUfEaTm03jJ/oZ2n/Ex33h/QTZ4uToVIl5n8iMfzB8PRGyCHtRvh63w2gzASmIBjFhYCaznK8UPHJuwEDuAoMBd0SeIRxAkAAA==
+   H4sIAAAAAAAAAO2UyQqAMAxE61lwX/Bj/ffmLGk2RxRp4B0zr5lDU9KnZUAMl3t13PVFHR6n5uB6i9wl7ZTyI91Zb5DeZOniYPB0Gcn3eCx3IBydguTQdj08nY+mJwYAo+CYiBnAUh3V8UPHSmwA9kL+2bz/z3ydDHMiLBLECQAA
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
@@ -144,12 +147,12 @@
  </layer>
  <layer name="objects" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+   H4sIAAAAAAAAAGNgGF6glnFwmzcKhiYYTVejYCSCYkbs7FEwCkbB4AAAiLo7bsQJAAA=
   </data>
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WywqDMBRFUf1k/3/SaZFYX7klR9cCJyZc3DRSl3maluJrZNXtKf1b9+/0Jfd/r139bRPOw5H+s2utPYn9PWfrz+z/df6Pzk59/3vP1v/O/oTz3+P51jOS+itnP6H/SsMT/v/uzk3v33qX99Za9xP71/ta+/f6R6b/f98/I9KvX3/d3JT+ymtkb+8HAAAAAAAAAACARB+zJ6ipAEAAAA==
+   H4sIAAAAAAAAAO3WSwqEMBRFQXvJ7n/iVKTT+Mlrck0VODHy8GBE18+yrMXHyKrbU/pb55/0Jffv1+4+24T9cKb/6tq3axL7e87Wn9n/a/+fnZ36/veerX/O/oT93+P+jjOS+itnv6H/TsMbvn9P56b3t97l/Vprziz7v7U2Yu+R/v/9/4xIv379dXNT+iuPkc3eDwAAAAAAAAAAAIk2lddCHABAAAA=
   </data>
  </layer>
  <layer name="protection" width="64" height="64" opacity="0.33">
