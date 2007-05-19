@@ -105,6 +105,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="346" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="../../tileset/building/decoration/mill_sail.png" firstgid="347" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/decoration/mill_sail.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XOxKCMBRAUcYZF2Dj/pfq2FkYTSDfl1OcEsl9QMDbcRw3AAAAAAAAAAAAYEqPhNHrGtW9Q/+/9pr9OeeazW7to+6xGYx8xiJ2l7T32u96+tUYvT+nL+oMcrsiPgclPdH6z/REmcHZfT3CO+Hq2leeQc01rzaDFmu9MoOes2t9rhrftW/PhNrr6zXjGu01ZjDyPsuR+r0a/avsT6P67xP77M89Rn+f/pI16e/XX7rX6t+n/9v7YZf+1PsxWn/p94F+/fr169evX7/+Oftzne0/c64Zuf4x+3d//vXr169fv379+vXr169/l/4Z///OyPWP2Z97jH79+vXr169fv379Lfp70N++HwAAAIC1vACtxoOaAIAAAA==
@@ -127,7 +130,7 @@
  </layer>
  <layer name="4_roof_add" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XMQqDQBCG0Z1DJEUSMIWeIm3uf6ZMs4UKIjYLmffgx2aL/bazNQAAAAAAAI68orVb7h6jbzKG/lr9vbV/q/dPuXfusdm/esZ6c26J/btU0Fs/+kvSX7sfAACA674n/iXPnAEAAAAAAAAAAAAAAAAAAAAAAACAkX5oC/iSAIAAAA==
+   H4sIAAAAAAAAAO3XOwrCQBSG0bnbUCEWugrb7CKP/S/DaQTHQAg2A7nnwNelmB9uk1IAAAAAAADYc4tSltoavV/Sh/259k/Rlm3/HG1D7V67/HRW12h71J6xvYsMPnf/iu1dZPC9PyP7c+8HAADgf+OBf8kj3wAAAAAAAAAAAAAAAAAAAAAAAABAT2/oCqCwAIAAAA==
   </data>
  </layer>
  <layer name="objects" width="64" height="128">
