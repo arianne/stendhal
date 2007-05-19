@@ -628,4 +628,8 @@ public class SpeakerNPC extends NPC {
 	public List<Transition> getTransitions() {
 		return engine.getTransitions();
 	}
+
+	public Engine getEngine() {
+		return engine;
+	}
 }
