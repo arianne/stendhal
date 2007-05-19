@@ -29,9 +29,6 @@ import java.awt.Point;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -41,9 +38,6 @@ import marauroa.common.game.RPObject;
  * You need to extend this object in order to add new elements to the game.
  */
 public abstract class RPEntity extends ActiveEntity {
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(RPEntity.class);
-
 	/**
 	 * The value of an outfit that isn't set.
 	 */
