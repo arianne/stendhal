@@ -1,6 +1,8 @@
 package games.stendhal.server.maps.semos.bakery;
 
 import static org.junit.Assert.*;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
@@ -21,13 +23,22 @@ public class ChefNPCTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
-
+	Engine en ;
+	Player player ;
+	SpeakerNPC npc;
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		npc = new SpeakerNPC("chef");
+		ChefNPC  cnpc = new ChefNPC();
+		
+		en = npc.getEngine();
+		cnpc.createDialog(npc);
+		
+		 player = new Player(new RPObject());
 	}
 
 	@After
@@ -36,13 +47,7 @@ public class ChefNPCTest {
 
 	@Test
 	public void testHiAndBye() {
-		SpeakerNPC npc = new SpeakerNPC("chef");
-		ChefNPC  cnpc = new ChefNPC();
-		
-		Engine en = npc.getEngine();
-		cnpc.createDialog(npc);
-		Player player = new Player(new RPObject());
-		
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
@@ -52,15 +57,47 @@ public class ChefNPCTest {
 		
 	}
 	@Test
-	public void testHiAndMake() {
-		SpeakerNPC npc = new SpeakerNPC("chef");
-		ChefNPC  cnpc = new ChefNPC();
+	public void testHiAndMakeNoStuff() {
 		
-		Engine en = npc.getEngine();
-		cnpc.createDialog(npc);
+		addslots(player);
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		en.step(player, "make");
+		assertTrue(npc.isTalking());
+		assertEquals("I can only make 1 sandwich if you bring me 2 #cheese, 1 #bread, and 1 #ham.", npc.get("text"));
+		en.step(player, "bye");
+		assertFalse(npc.isTalking());
+		assertEquals("Bye.", npc.get("text"));
+	}
+	@Test
+	public void testHiAndMakeWithStuff() {
 		
-		Player player = new Player(new RPObject());
+		addslots(player);
+		en.step(player, "hi");
+		assertTrue(npc.isTalking());
+		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
+		StackableItem cheese =  new StackableItem("cheese",null,null,null);
+		cheese.setQuantity(2);
+		player.getSlot("bag").add(cheese);
+		StackableItem bread =  new StackableItem("bread",null,null,null);
+		
+		player.getSlot("bag").add(bread );
+		player.getSlot("bag").add( new Item("ham",null,null,null));
+		assertEquals(2,player.getNumberOfEquipped("cheese"));
+		assertEquals(1,player.getNumberOfEquipped("bread"));
+		assertEquals(2,player.getNumberOfEquipped("ham"));
+		en.step(player, "make");
+		assertTrue(npc.isTalking());
+		assertEquals("I can only make 1 sandwich if you bring me 2 #cheese, 1 #bread, and 1 #ham.", npc.get("text"));
+		en.step(player, "bye");
+		assertFalse(npc.isTalking());
+		assertEquals("Bye.", npc.get("text"));
+	}
+
+	private void addslots(Player player) {
 		player.addSlot(new RPSlot("bag"));
+		player.getSlot("bag").setCapacity(20);
 		player.addSlot(new EntitySlot("lhand"));
 		player.addSlot(new EntitySlot("rhand"));
 		player.addSlot(new EntitySlot("armor"));
@@ -70,13 +107,5 @@ public class ChefNPCTest {
 		player.addSlot(new EntitySlot("finger"));
 		player.addSlot(new EntitySlot("cloak"));
 		player.addSlot(new EntitySlot("keyring"));
-		
-		en.step(player, "hi");
-		assertTrue(npc.isTalking());
-		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
-		en.step(player, "make");
-		assertTrue(npc.isTalking());
-		assertEquals("I can only make 1 sandwich if you bring me 2 #cheese, 1 #bread, and 1 #ham.", npc.get("text"));
-		
 	}
 }
