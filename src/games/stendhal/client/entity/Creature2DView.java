@@ -44,6 +44,16 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	protected double	width;
 
+	/**
+	 * The last resource path.
+	 */
+	private String		lrpath;
+
+	/**
+	 * The last metamorphosis.
+	 */
+	private String		lmetamorphosis;
+
 
 	/**
 	 * Create a 2D view of a creature.
@@ -55,6 +65,8 @@ public class Creature2DView extends RPEntity2DView {
 
 		this.creature = creature;
 
+		lrpath = "";
+		lmetamorphosis = "";
 		updateSize();
 	}
 
@@ -83,6 +95,23 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	public double getHeight() {
 		return height;
+	}
+
+
+	/**
+	 * Get the resource path.
+	 *
+	 * @return	The resource path.
+	 */
+	protected String getResourcePath() {
+		String rpath = entity.getEntityClass();
+		String subclass = entity.getEntitySubClass();
+
+		if(subclass != null) {
+			rpath += "/" + subclass;
+		}
+
+		return rpath;
 	}
 
 
@@ -131,14 +160,7 @@ public class Creature2DView extends RPEntity2DView {
 			return store.getSprite("data/sprites/monsters/" + metamorphosis + ".png");
 		}
 
-		String name = entity.getEntityClass();
-		String subclass = entity.getEntitySubClass();
-
-		if(subclass != null) {
-			name += "/" + subclass;
-		}
-
-		return store.getSprite(translate(name));
+		return store.getSprite(translate(getResourcePath()));
 	}
 
 
@@ -224,7 +246,29 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void update() {
-		buildRepresentation();
+		boolean	rebuild = false;
+
+		String rpath = getResourcePath();
+
+		if(!rpath.equals(lrpath)) {
+			rebuild = true;
+			lrpath = rpath;
+		}
+
+		String metamorphosis = creature.getMetamorphosis();
+
+		if(metamorphosis == null) {
+			metamorphosis = "";
+		}
+
+		if(!metamorphosis.equals(lmetamorphosis)) {
+			rebuild = true;
+			lmetamorphosis = metamorphosis;
+		}
+
+		if(rebuild) {
+			buildRepresentation();
+		}
 
 		super.update();
 	}

@@ -38,11 +38,6 @@ public class Player2DView extends RPEntity2DView {
 	private static Sprite	awaySprite;
 
 	/**
-	 * The current outfit.
-	 */
-	private Sprite	outfit;
-
-	/**
 	 * The current outfit code.
 	 */
 	private int	outfitCode;
@@ -70,8 +65,7 @@ public class Player2DView extends RPEntity2DView {
 
 		this.player = player;
 
-		outfit = null;
-		outfitCode = -1;
+		outfitCode = RPEntity.OUTFIT_UNSET;
 	}
 
 
@@ -89,22 +83,11 @@ public class Player2DView extends RPEntity2DView {
 		SpriteStore store = SpriteStore.get();
 
 		try {
-			int code = player.getOutfit();
-
-			/*
-			 * Don't rebuild the same outfit
-			 */
-			if(outfitCode != code) {
-				outfitCode = code;
-				outfit = getOutfitSprite(store, code);
-			}
+			return getOutfitSprite(store, player.getOutfit());
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
-			outfitCode = 0;
-			outfit = getOutfitSprite(store, 0);
+			return getOutfitSprite(store, 0);
 		}
-
-		return outfit;
 	}
 
 
@@ -153,16 +136,20 @@ public class Player2DView extends RPEntity2DView {
 	}
 
 
-	//
-	// <EntityView>
-	//
-
 	/**
 	 * Update representation.
 	 */
 	@Override
 	protected void update() {
-		buildRepresentation();
+		/*
+		 * Don't rebuild the same outfit
+		 */
+		int code = rpentity.getOutfit();
+
+		if (code != outfitCode) {
+			buildRepresentation();
+			outfitCode = code;
+		}
 
 		super.update();
 	}
