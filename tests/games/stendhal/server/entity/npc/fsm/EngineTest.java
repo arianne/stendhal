@@ -34,7 +34,7 @@ public class EngineTest {
 
 	@Test (expected=IllegalArgumentException.class)
 	public void testEngine() {
-		Engine en = new Engine(null);
+		new Engine(null);
 	}
 
 	@Test
