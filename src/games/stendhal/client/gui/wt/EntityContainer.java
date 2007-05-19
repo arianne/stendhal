@@ -20,7 +20,6 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;

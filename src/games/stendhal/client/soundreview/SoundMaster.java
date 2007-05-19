@@ -5,7 +5,6 @@ import games.stendhal.client.WorldObjects.WorldListener;
 
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.sound.sampled.AudioSystem;

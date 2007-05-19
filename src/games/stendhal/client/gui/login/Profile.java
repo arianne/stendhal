@@ -1,8 +1,6 @@
 /* $Id$ */
 package games.stendhal.client.gui.login;
 
-import java.util.StringTokenizer;
-
 /**
  * User login profile.
  */

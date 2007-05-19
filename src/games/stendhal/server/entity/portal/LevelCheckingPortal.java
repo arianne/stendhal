@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.portal;
 
 import games.stendhal.server.entity.RPEntity;
-import games.stendhal.server.entity.player.Player;
 
 /**
  * A portal which allows only certain levels of player to use it.
