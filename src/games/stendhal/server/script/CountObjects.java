@@ -9,6 +9,8 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.util.Iterator;
 import java.util.List;
 
+import marauroa.common.game.RPObject;
+
 /**
  * Counts the number of creatures on the world
  *
@@ -23,7 +25,11 @@ public class CountObjects extends ScriptImpl {
 		Iterator itr = world.iterator();
 		while (itr.hasNext()) {
 			StendhalRPZone zone = (StendhalRPZone) itr.next();
-			count = count + zone.getNPCList().size();
+			Iterator<RPObject> itr2 = zone.iterator();
+			while (itr2.hasNext()) {
+				itr2.next();
+				count++;
+			}
 		}
 		admin.sendPrivateText("Number of objects " + count);
 	}
