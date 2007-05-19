@@ -28,6 +28,8 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 				outdated++;
 			}
 		}
-		admin.sendPrivateText("Outdated turn events: " + outdated);
+		admin.sendPrivateText("Statistics: "
+			+ "Counted turn events:" + events.size()
+			+ "\nOutdated turn events: " + outdated);
 	}
 }
