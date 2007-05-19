@@ -7,7 +7,7 @@ import marauroa.common.game.RPClass;
 import org.junit.Test;
 
 
-public class TestRPclass {
+public class TestRPClass {
 	
 	@Test
 	public void subclass(){
