@@ -44,7 +44,9 @@ public class RingMaker extends AbstractQuest {
 
 	private static final int REQUIRED_GOLD = 2;
 
-	private static final int REQUIRED_MONEY = 100000;
+	private static final int REQUIRED_MONEY = 80000;
+
+        private static final int REQUIRED_GEM = 1;
 	
 	private static final int REQUIRED_MINUTES = 10;
 
@@ -148,7 +150,7 @@ public class RingMaker extends AbstractQuest {
                 "price",
                 null,
                 ConversationStates.QUEST_ITEM_BROUGHT,
-                "The charge for a new emerald is " + REQUIRED_MONEY + " money, and I need " + REQUIRED_GOLD + " gold bars to fix the ring. Do you want to pay now?",
+                "The charge for my service is " + REQUIRED_MONEY + " money, and I need " + REQUIRED_GOLD + " gold bars and " + REQUIRED_GEM + " emerald to fix the ring. Do you want to pay now?",
                 null);
 		
 		npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
@@ -158,8 +160,9 @@ public class RingMaker extends AbstractQuest {
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
-                if ((player.isEquipped("gold_bar", REQUIRED_GOLD)) && (player.isEquipped("money", REQUIRED_MONEY))){
+                if ((player.isEquipped("gold_bar", REQUIRED_GOLD)) && (player.isEquipped("money", REQUIRED_MONEY)) &&(player.isEquipped("emerald", REQUIRED_GEM))){
                 	player.drop("gold_bar", REQUIRED_GOLD);
+			player.drop("emerald", REQUIRED_GEM);
                 	player.drop("money", REQUIRED_MONEY);
                 	player.drop("emerald_ring");
                 	npc.say("Okay, that's all I need to fix the ring. Come back in "
@@ -167,7 +170,7 @@ public class RingMaker extends AbstractQuest {
 		        	player.setQuest(QUEST_SLOT, "forging;" + System.currentTimeMillis());
 		        	npc.setCurrentState(ConversationStates.IDLE);
 		        } else {
-		        	npc.say("Come back when you have both the money and the gold.");
+		        	npc.say("Come back when you have the money, the gem and the gold.");
 				/* set quest slot to done until he decides he wants to pay
 				this is incase player comes back without the ring and
 				wants to talk to him about something else */
@@ -184,7 +187,7 @@ public class RingMaker extends AbstractQuest {
 			new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
-				    npc.say("No problem, just come back when you have both the money and the gold.");
+				    npc.say("No problem, just come back when you have the money, the emerald, and the gold.");
 				/* set quest slot to done until he decides he wants to pay
 				this is incase player comes back without the ring and
 				wants to talk to him about something else */

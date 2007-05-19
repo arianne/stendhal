@@ -39,14 +39,13 @@ public class RingSmithNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(17, 8));
-				nodes.add(new Path.Node(15, 8));
-				nodes.add(new Path.Node(15, 11));
-				nodes.add(new Path.Node(17, 11));
-				nodes.add(new Path.Node(17, 15));
-				nodes.add(new Path.Node(18, 15));
-				nodes.add(new Path.Node(18, 8));
-				setPath(nodes, false);
+				nodes.add(new Path.Node(18, 7));
+				nodes.add(new Path.Node(15, 7));
+				nodes.add(new Path.Node(15, 9));
+				nodes.add(new Path.Node(16, 9));
+				nodes.add(new Path.Node(16, 13));
+				nodes.add(new Path.Node(18, 13));
+				setPath(nodes, true);
 			}
 
 			@Override
@@ -63,7 +62,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "ringsmithnpc");
-		npc.set(17, 8);
+		npc.set(18, 7);
 		npc.initHP(100);
 		zone.add(npc);
 

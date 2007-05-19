@@ -132,7 +132,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
              </implementation>
            </entity>
          </zone>
-         "green_dragon_cloak"
+ 
          <zone name="int_fado_bakery" file="interiors/fado/bakery.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.bakery.BakerNPC"/>
            <portal x="26" y="14" ref="entrance">
@@ -219,6 +219,21 @@ Don't want them, no way!
 	   <portal x="5" y="16" ref="entrance">
              <destination zone="0_fado_city" ref="weaponshop_entrance"/>
            </portal>
+            <entity x="15" y="13">
+    	<implementation class-name="games.stendhal.server.entity.Sign">
+      		<parameter name="text">
+Gemstones and Precious metals
+
+Gems are typically hoarded by dragons. If you're strong enough to kill one,
+you may find it carried some. Green dragons like green gems, blue dragons collect blue
+gems, and so on.
+
+Gold is harder to find in a land not rich in minerals. Or'ril river has a spot
+where panning for gold is possible. this spot is south of Or'ril castle. 
+</parameter>
+      		<parameter name="class">book_blue</parameter>
+     	</implementation>
+    </entity>      
          </zone>
 	 
 	 <zone name="int_fado_hut" file="interiors/fado/hut.tmx">
