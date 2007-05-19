@@ -40,6 +40,10 @@ public class Engine {
 	 * @param speakerNPC the speaker npc for which this FSM is created
 	 */
 	public Engine(SpeakerNPC speakerNPC) {
+		if (speakerNPC==null){
+			throw new IllegalArgumentException("speakerNpc must not be null");
+		}
+			
 		this.speakerNPC = speakerNPC;
 	}
 
@@ -152,10 +156,7 @@ public class Engine {
 
 		// First we try to match with stateless transitions.
 		for (Transition transition : stateTransitionTable) {
-			if (((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE) && transition
-			        .isAbsoluteJump(text))
-			        || ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text))
-			        || ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text))) {
+			if (matchesTransition(type, text, transition)) {
 				if (transition.isConditionFulfilled(player, text, speakerNPC)) {
 					if (transition.getCondition() == null) {
 						listConditionLess.add(transition);
@@ -179,6 +180,25 @@ public class Engine {
 		}
 
 		return false;
+	}
+
+	private boolean matchesTransition(MatchType type, String text, Transition transition) {
+		return isAbsoluteMatch(type, text, transition)
+		        || isExactMatch(type, text, transition)
+		        || isSimilarMatch(type, text, transition);
+	}
+
+	private boolean isSimilarMatch(MatchType type, String text, Transition transition) {
+		return ((type == MatchType.SIMILAR_MATCH) && transition.matchesBeginning(currentState, text));
+	}
+
+	private boolean isExactMatch(MatchType type, String text, Transition transition) {
+		return ((type == MatchType.EXACT_MATCH) && transition.matches(currentState, text));
+	}
+
+	private boolean isAbsoluteMatch(MatchType type, String text, Transition transition) {
+		return ((type == MatchType.ABSOLUTE_JUMP) && (currentState != ConversationStates.IDLE) && transition
+		        .isAbsoluteJump(text));
 	}
 
 	private void executeTransition(Player player, String text, Transition state) {
