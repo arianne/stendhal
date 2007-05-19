@@ -25,13 +25,14 @@ import org.apache.log4j.Logger;
  * QUEST: Daily Monster Kill Quest
  *
  * PARTICIPANTS:
- * - Major
+ * - Mayor
  * - some creatures
  *
  * STEPS:
- * - talk to Major to get a quest to kill one of a named creature class
+ * - talk to Mayor to get a quest to kill one of a named creature class
  * - kill one creature of that class
- * - tell Major that you are done
+ * - tell Mayor that you are done
+ * - if after 7 days you were not able to kill the creature, you have an option to get another quest
  *
  * REWARD:
  * - xp
@@ -122,10 +123,6 @@ public class DailyMonsterQuest extends AbstractQuest {
 			// anywhere they have a chance to survive.
 			if ("bat".equals(creatureName)) {
 					creatureName = "rat";
-			}
-			// don't ask any players to kill a balrog as it would be an impossible task (miguel hopes!)
-			if ("balrog".equals(creatureName)) {
-					creatureName = "black_death";
 			}
 			engine.say("Semos is in need of help. Go kill a " + creatureName + " and say #complete, once you're done.");
 			player.removeKill(creatureName);
@@ -285,7 +282,7 @@ public class DailyMonsterQuest extends AbstractQuest {
 					long timeRemaining = (Long.parseLong(questLast) + expireDelay) - System.currentTimeMillis();
 
 					if(timeRemaining < 0L) {
-						engine.say("As you wish, ask me for another #quest when you think you have what it takes to help semos again.");
+						engine.say("As you wish, ask me for another #quest when you think you have what it takes to help Semos again.");
 						//Don't make the player wait any longer and don't credit the player with a count increase?
 						//questCount = "" + (new Integer(questCount) + 1 );
 						//questLast = "" + (new Date()).getTime();
