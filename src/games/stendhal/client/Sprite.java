@@ -64,6 +64,18 @@ public interface Sprite {
 	 */
 	public int getHeight();
 
+
+	/**
+	 * Get the sprite reference. This identifier is an externally
+	 * opaque object that implements equals() and hashCode() to
+	 * uniquely/repeatably reference a keyed sprite.
+	 *
+	 * @return	The reference identifier, or <code>null</code> if
+	 *		not referencable.
+	 */
+	public Object getReference();
+
+
 	/**
 	 * Get the width of the drawn sprite
 	 * 

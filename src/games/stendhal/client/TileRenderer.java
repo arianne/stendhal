@@ -486,6 +486,11 @@ public class TileRenderer extends LayerRenderer {
 	 */
 	protected static class EmptySprite implements Sprite {
 		/**
+		 * A unique reference object.
+		 */
+		private static final Object	REF	= new Object();
+
+		/**
 		 * Copy the sprite.
 		 *
 		 * @return	A new copy of the sprite.
@@ -535,6 +540,18 @@ public class TileRenderer extends LayerRenderer {
 		 */
 		public int getHeight() {
 			return GameScreen.SIZE_UNIT_PIXELS;
+		}
+
+		/**
+		 * Get the sprite reference. This identifier is an externally
+		 * opaque object that implements equals() and hashCode() to
+		 * uniquely/repeatably reference a keyed sprite.
+		 *
+		 * @return	The reference identifier, or <code>null</code>
+		 *		if not referencable.
+		 */
+		public Object getReference() {
+			return REF;
 		}
 
 		/**

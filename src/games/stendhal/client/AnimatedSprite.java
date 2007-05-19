@@ -16,6 +16,11 @@ import java.awt.Graphics;
  */
 public class AnimatedSprite implements Sprite {
 	/**
+	 * The identifier reference.
+	 */
+	protected Object	reference;
+
+	/**
 	 * Whether the sprite is currently animating.
 	 */
 	protected boolean	animating;
@@ -86,6 +91,27 @@ public class AnimatedSprite implements Sprite {
 	 *				the delay is < 0.
 	 */
 	public AnimatedSprite(final Sprite [] frames, final long delay, boolean animating) throws IllegalArgumentException {
+		this(frames, delay, true, null);
+	}
+
+
+	/**
+	 * Create an animated sprite from a set of frame sprites.
+	 *
+	 * <strong>NOTE: The array of frames passed is not copied, and must
+	 * not be modified while this instance exists (unless you are sure
+	 * you know what you are doing).</strong>
+	 *
+	 * @param	frames		The frames to animate.
+	 * @param	delay		The minimum delay between frames (in ms).
+	 * @param	animating	If animation is enabled.
+	 * @param	reference	The sprite identifier reference.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If less than one frame is given, or
+	 *				the delay is < 0.
+	 */
+	public AnimatedSprite(final Sprite [] frames, final long delay, boolean animating, Object reference) throws IllegalArgumentException {
 		if(frames.length == 0) {
 			throw new IllegalArgumentException("Must have at least one frame");
 		}
@@ -97,6 +123,7 @@ public class AnimatedSprite implements Sprite {
 		this.frames = frames;
 		this.delay = delay;
 		this.animating = animating;
+		this.reference = reference;
 
 		height = 0;
 		width = 0;
@@ -227,18 +254,18 @@ public class AnimatedSprite implements Sprite {
 	public Sprite copy() {
 		return new AnimatedSprite(getFrames(), getDelay());
 	}
-	
+
 	/**
 	 * Flip each of the sprites of the animated sprite horizontally
 	 * @return a horizontally flipped animated sprite.
 	 */
 	public AnimatedSprite flip() {
 		AnimatedSprite copy=(AnimatedSprite)copy();
-		
+
 		for(int i=0;i<frames.length;i++) {
 			copy.frames[i]=((ImageSprite)frames[i]).flip();
 		}
-		
+
 		return copy;
 	}
 
@@ -288,6 +315,18 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
+	 * Get the sprite reference. This identifier is an externally
+	 * opaque object that implements equals() and hashCode() to
+	 * uniquely/repeatably reference a keyed sprite.
+	 *
+	 * @return	The reference identifier, or <code>null</code> if
+	 *		not referencable.
+	 */
+	public Object getReference() {
+		return reference;
+	}
+
+	/**
 	 * Get the width of the drawn sprite.
 	 * 
 	 * @return The width in pixels of this sprite.
@@ -296,17 +335,23 @@ public class AnimatedSprite implements Sprite {
 		return width;
 	}
 
+
+	//
+	// Object
+	//
+
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof AnimatedSprite) {
 			AnimatedSprite img=(AnimatedSprite)obj;
 			return frames.equals(img.frames);
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return frames.hashCode();
-	}}
+	}
+}

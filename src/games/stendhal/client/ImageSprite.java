@@ -35,6 +35,11 @@ public class ImageSprite implements Sprite {
 	/** The image to be drawn for this sprite */
 	protected Image image;
 
+	/**
+	 * The identifier reference.
+	 */
+	protected Object	reference;
+
 
 	/**
 	 * Create a new sprite based on an image
@@ -43,11 +48,36 @@ public class ImageSprite implements Sprite {
 	 *            The image that is this sprite
 	 */
 	public ImageSprite(Image image) {
+		this(image, null);
+	}
+
+
+	/**
+	 * Create a new sprite based on an image
+	 * 
+	 * @param	image		The image that is this sprite.
+	 * @param	reference	The sprite reference, or null.
+	 */
+	public ImageSprite(Image image, String reference) {
 		this.image = image;
+		this.reference = reference;
 	}
 
 
 	public ImageSprite(Sprite sprite) {
+		this(sprite, null);
+	}
+
+
+	/**
+	 * Create a copy of another sprite.
+	 * 
+	 * @param	sprite		The source sprite.
+	 * @param	reference	The sprite reference, or null.
+	 */
+	public ImageSprite(Sprite sprite, String reference) {
+		this.reference = reference;
+
 		image = getGC().createCompatibleImage(sprite.getWidth(), sprite.getHeight(), Transparency.BITMASK);
 
 		sprite.draw(image.getGraphics(), 0, 0);
@@ -58,26 +88,52 @@ public class ImageSprite implements Sprite {
 	// ImageSprite
 	//
 
+	/**
+	 * Create a sprite with the image flipped horizontally.
+	 *
+	 * @return	A horizontally flipped sprite.
+	 */
+	public static ImageSprite flipped(Sprite sprite) {
+		Image image = getGC().createCompatibleImage(sprite.getWidth(), sprite.getHeight(), Transparency.BITMASK);
+
+		int width = sprite.getWidth();
+
+		sprite.draw(image.getGraphics(), width, 0, width, 0, -width, sprite.getHeight());
+
+		return new ImageSprite(image);
+	}
+
+
 	protected static GraphicsConfiguration getGC() {
 		return GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
+
+	/**
+	 * Get the graphics context of the underlying image.
+	 *
+	 * @return	The graphics context.
+	 */
 	public Graphics getGraphics() {
 		return image.getGraphics();
 	}
-	
+
+
 	/**
 	 * Flip the image horizontally.
 	 * @return an horizontal flipped sprite.
 	 */
 	public ImageSprite flip() {
+		// TODO: Eventually, just call: flipped(this)
+
 		Image empty = getGC().createCompatibleImage(getWidth(), getHeight(), Transparency.BITMASK);
 		ImageSprite spr=new ImageSprite(empty);
-		
+
 		spr.getGraphics().drawImage(image, getWidth(), 0, 0, getHeight(), 0, 0, getWidth(), getHeight(), null);
-		
+
 		return spr;
 	}
+
 
 	/** overlays the image with the given color and returns a new image. */
 	private Image getModifiedImage(Color color, float alpha) {
@@ -167,8 +223,6 @@ public class ImageSprite implements Sprite {
 	// intensifly @ gmx.com, April 20th, 2006
 	// public void draw(Graphics g, int destx, int desty, int x,int y) {
 	public void draw(Graphics g, int destx, int desty, int x, int y, int w, int h) {
-
-		// g.drawImage(image,destx,desty,image.getWidth(null),image.getHeight(null),x,y,x+image.getWidth(null),y+image.getHeight(null),null);
 		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y + h, null);
 	}
 
@@ -182,6 +236,18 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
+	 * Get the sprite reference. This identifier is an externally
+	 * opaque object that implements equals() and hashCode() to
+	 * uniquely/repeatably reference a keyed sprite.
+	 *
+	 * @return	The reference identifier, or <code>null</code> if
+	 *		not referencable.
+	 */
+	public Object getReference() {
+		return reference;
+	}
+
+	/**
 	 * Get the width of the drawn sprite
 	 * 
 	 * @return The width in pixels of this sprite
@@ -190,16 +256,21 @@ public class ImageSprite implements Sprite {
 		return image.getWidth(null);
 	}
 
+
+	//
+	// Object
+	//
+
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof ImageSprite) {
 			ImageSprite img=(ImageSprite)obj;
 			return image.equals(img.image);
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return image.hashCode();
