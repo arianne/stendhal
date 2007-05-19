@@ -300,8 +300,36 @@ If the bride is called Helen, you should say 'marry Helen'
 				<parameter name="rejected">The dressing rooms are only for a bride and groom to get dressed in.</parameter>
              </implementation>
            </portal>
-           
-           <portal x="0" y="40" ref="room_001_entrance">
+
+                 <entity x="14" y="48">
+    	<implementation class-name="games.stendhal.server.entity.Sign">
+      		<parameter name="text">
+0. Blue Paradise - with a flaming bed
+1. Windy Love - be blown away
+2. Literary Haven - bathe, read and relax
+3. Heart of Flowers - a floral masterpiece
+4. A Gothic Romance - the room for mystics
+5. Gourmet Delight - a room for food lovers
+6. Forest Fantasy - for natural lovers
+7. The Cold Love - feel the chill
+8. Waterfall Wonder - splash, or admire
+9. Wooden Delicacy - go back to your roots
+10. Simple Serenity - a room of calm
+11. Water of Love - wine flows freely
+12. Stone Hearted - an architect's delight
+13. Blue For You - azure, lapis, cobalt and cornflower
+14. Rhapsody in pink - romantic yet regal
+15. Femme Fatale - feminine and frivolous
+
+If you're looking for a honeymoon room, just say the room number you desire
+For example say:  11  if you want the room called Water of Love.
+	</parameter>
+      		<parameter name="class">book_red</parameter>
+     	</implementation>
+    </entity>  
+
+       <!--    these hotel rooms aren't in use yet
+       <portal x="0" y="40" ref="room_001_entrance">
              <destination zone="int_fado_hotel_room_001" ref="entrance"/>
              <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
                <parameter name="key">fado_hotel_key_001</parameter>
@@ -363,9 +391,9 @@ If the bride is called Helen, you should say 'marry Helen'
                <parameter name="key">fado_hotel_key_008</parameter>
                <parameter name="rejected">Keys are at the front desk</parameter>
              </implementation>
-           </portal>
+           </portal>-->
          </zone>
-         
+    <!-- these hotel rooms aren't in use yet.     
          <zone name="int_fado_hotel_room_001" file="interiors/fado/room_001.tmx">
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_001_entrance"/>
@@ -412,7 +440,56 @@ If the bride is called Helen, you should say 'marry Helen'
            <portal x="8" y="14" ref="entrance">
              <destination zone="int_fado_hotel_0" ref="room_008_entrance"/>
            </portal>
+         </zone> -->
+
+         <zone name="int_fado_lovers_room_0" file="interiors/fado/lovers_room_0.tmx">
          </zone>
+	 
+	 <zone name="int_fado_lovers_room_1" file="interiors/fado/lovers_room_1.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_2" file="interiors/fado/lovers_room_2.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_3" file="interiors/fado/lovers_room_3.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_4" file="interiors/fado/lovers_room_4.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_5" file="interiors/fado/lovers_room_5.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_6" file="interiors/fado/lovers_room_6.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_7" file="interiors/fado/lovers_room_7.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_8" file="interiors/fado/lovers_room_8.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_9" file="interiors/fado/lovers_room_9.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_10" file="interiors/fado/lovers_room_10.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_11" file="interiors/fado/lovers_room_11.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_12" file="interiors/fado/lovers_room_12.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_13" file="interiors/fado/lovers_room_13.tmx">
+         </zone>
+
+         <zone name="int_fado_lovers_room_14" file="interiors/fado/lovers_room_14.tmx">
+         </zone>
+	 
+	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx">
+         </zone>
+
 	 
 	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.deathmatch.Deathmatch"/>

@@ -3,8 +3,10 @@ package games.stendhal.server.maps.quests;
 import java.awt.Rectangle;
 import java.util.Arrays;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.ConversationPhrases;
@@ -194,7 +196,7 @@ public class Marriage extends AbstractQuest {
 	private void finishEngagement() {
 		giveInvite(groom);
 		giveInvite(bride);
-		nun.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service.");
+		nun.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now engaged! Please make sure you have got wedding rings made before you go to the church for the service. And here are some invitations you can give to your guests.");
 		// Memorize that the two engaged so that the priest knows
 		groom.setQuest(QUEST_SLOT, "engaged");
 		bride.setQuest(QUEST_SLOT, "engaged");
@@ -502,13 +504,13 @@ public class Marriage extends AbstractQuest {
 
 	private void finishMarriage() {
 		exchangeRings();
-		priest.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now married!");
+		priest.say("Congratulations, " + groom.getName() + " and " + bride.getName() + ", you are now married! I don't really approve of this, but if you would like a honeymoon, go ask Linda in the hotel. Just say 'honeymoon' to her and she will understand.");
 		// Memorize that the two married so that they can't just marry other
 		// persons
 		groom.setQuest(SPOUSE_QUEST_SLOT, bride.getName());
 		bride.setQuest(SPOUSE_QUEST_SLOT, groom.getName());
-		groom.setQuest(QUEST_SLOT, "done");
-		bride.setQuest(QUEST_SLOT, "done");
+		groom.setQuest(QUEST_SLOT, "just_married");
+		bride.setQuest(QUEST_SLOT, "just_married");
 		// Clear the variables so that other players can become groom and bride
 		// later
 		groom = null;
@@ -535,9 +537,68 @@ public class Marriage extends AbstractQuest {
     
     private void HoneymoonStep() {
 	
-	/*SpeakerNPC npc = npcs.get("Linda");*/
-	// TODO: Hotel stuff
+	SpeakerNPC linda = npcs.get("Linda");
+	// tell her you want a honeymoon
+		linda.add(ConversationStates.ATTENDING, "honeymoon", 
+				
+		       new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return (player.hasQuest(QUEST_SLOT)&& player.getQuest(QUEST_SLOT).equals("just_married"));
+			}
+		}	
+  			, ConversationStates.QUESTION_1, "How lovely! Please read our catalogue here and tell me the room number that you would like.", null);
+  			
+  	// player says room number
+	for (int room = 0; room < 16; room++) {
+	    linda.add(ConversationStates.QUESTION_1,
+		    Integer.toString(room),
+		    null,
+		    ConversationStates.QUESTION_1,
+		    null,
+		    new SpeakerNPC.ChatAction() {
+			@Override
+			    public void fire(Player player, String text, SpeakerNPC npc) {
+				npc.say("Great choice! Use this scroll to return to the hotel,"
+						+ "our special honeymoon suites are so private that they don't use normal entrances and exits!");
+				player.setQuest(QUEST_SLOT, "done");
+				// yes i know it is stupid to do this here when i could use the giveInvite thing above but i don't know how to make it so that GiveInvite() has a parameter for quantity and a parameter for location so i gave up.
+				StackableItem invite = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("invitation_scroll");
+				invite.setQuantity(1);
+				invite.put("infostring", "int_fado_hotel_0 4 40"); /*interior of hotel*/
+				player.equip(invite, true);
+				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_fado_lovers_room_"+text);
+				player.teleport(zone, 5, 5, Direction.DOWN, player);
+				player.notifyWorldAboutChanges();
+				npc.setCurrentState(ConversationStates.IDLE);
+			        
+			    
+			    }
+			}
+		    );}
+    
+	
+	//player says something which isn't a room number
+		/*	npc.add(ConversationStates.QUESTION_1, "",
+		 *	new SpeakerNPC.ChatCondition() {
+		 *  @Override
+		 *	public boolean fire(Player player, String text, SpeakerNPC npc) {
+		 *	return !ROOMS.contains(text);
+		 *   }
+		 * },
+		ConversationStates.QUESTION_1, "Sorry, that's not a room number we have available.", null);*/
+  		    
 
+	// say honeymoon but you aren't 'just married'
+		linda.add(ConversationStates.ATTENDING, "honeymoon", 
+				
+				new SpeakerNPC.ChatCondition() {
+			@Override
+			public boolean fire(Player player, String text, SpeakerNPC npc) {
+				return (!(player.hasQuest(QUEST_SLOT)&& player.getQuest(QUEST_SLOT).equals("just_married")));
+			}
+		}	
+  			, ConversationStates.ATTENDING, "Our honeymoon suites are only available for just married customers.", null);
 
     }
     @Override
