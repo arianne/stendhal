@@ -112,6 +112,13 @@ public class ChefNPCTest {
 		assertEquals(0,player.getNumberOfEquipped("cheese"));
 		assertEquals(0,player.getNumberOfEquipped("bread"));
 		assertEquals(0,player.getNumberOfEquipped("ham"));
+		en.step(player, "bye");
+		assertFalse(npc.isTalking());
+		player.setQuest("leander_make_sandwiches","1;;0");
+		
+		en.step(player, "hi");
+		assertEquals("Welcome back! I'm done with your order. Here you have 1 sandwich.", npc.get("text"));
+		assertEquals(1,player.getNumberOfEquipped("sandwich"));
 	}
 
 	private void addslots(Player player) {
