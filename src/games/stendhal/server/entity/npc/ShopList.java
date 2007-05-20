@@ -30,7 +30,7 @@ public class ShopList {
 		shops.add("superhealing", "antidote", 50);
 		shops.add("superhealing", "greater_antidote", 100);
 		shops.add("superhealing", "greater_potion", 500);
-		shops.add("superhealing", "mega_potion", 1500);
+		//	shops.add("superhealing", "mega_potion", 1500); don't want giantheart market starting again
 
 		shops.add("scrolls", "home_scroll", 250);
 		shops.add("scrolls", "summon_scroll", 200);
