@@ -53,7 +53,7 @@
 
   <item name="power_arrow">
     <type class="ammunition" subclass="power_arrow" tileid="-1"/>
-    <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equiped with a bow</description>
+    <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="6"/>
       <range value="3"/>
@@ -308,7 +308,7 @@
 
   <item name="dwarvish_armor">
     <type class="armor" subclass="dwarvish_armor" tileid="-1"/>
-    <description></description>
+    <description>You see a dwarvish armor.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="17"/>
     </attributes>
@@ -584,7 +584,7 @@
 
   <item name="black_scythe">
     <type class="axe" subclass="black_scythe" tileid="-1"/>
-    <description>You see a black scythe. Its attack is awsome for a farming tool.</description>
+    <description>You see a black scythe. Its attack is awesome for a farming tool.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="42"/>
       <rate value="6"/>
@@ -672,7 +672,7 @@
 
   <item name="chain_boots">
     <type class="boots" subclass="chain_boots" tileid="-1"/>
-    <description>You see a pair of chain boots, quite rusty butstill strong.</description>
+    <description>You see a pair of chain boots, quite rusty but still strong.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="4"/>
     </attributes>
@@ -1743,7 +1743,7 @@
 
   <item name="button_mushroom">
     <type class="food" subclass="button_mushroom" tileid="-1"/>
-    <description>You see a buttonmushroom.  It can be an ingredient, or you can eat it.</description>
+    <description>You see a button mushroom.  It can be an ingredient, or you can eat it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
       <amount value="20"/>
       <frequency value="15"/>
@@ -2189,7 +2189,7 @@
 
   <item name="trophy_helmet">
     <type class="helmet" subclass="golden_horned_barbute" tileid="-1"/>
-    <description></description>
+    <description/>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="1"/>
     </attributes>
@@ -2372,7 +2372,7 @@
 
   <item name="kokuda">
     <type class="herb" subclass="kokuda" tileid="-1"/>
-    <description>You see a kokuda. It has medicinal properties. It has medicinal properties, if the right person uses it.</description>
+    <description>You see a kokuda. It has medicinal properties, if the right person uses it.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -2402,7 +2402,7 @@
 
   <item name="sapphire">
     <type class="jewellery" subclass="sapphire" tileid="-1"/>
-    <description/>
+    <description>You see a sapphire.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -2630,7 +2630,7 @@
 
   <item name="studded_legs">
     <type class="legs" subclass="studded_legs" tileid="-1"/>
-    <description>You see a pair ofblood stained studded legs.You're not sure if the blood came from their last owner ... or his enemies.</description>
+    <description>You see a pair of blood stained studded legs.You're not sure if the blood came from their last owner ... or his enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="2"/>
     </attributes>
@@ -2700,7 +2700,7 @@
 
   <item name="chaos_legs">
     <type class="legs" subclass="chaos_legs" tileid="-1"/>
-    <description/>
+    <description>You see a pair of chaos legs.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="11"/>
     </attributes>
@@ -2714,7 +2714,7 @@
 
   <item name="black_legs">
     <type class="legs" subclass="black_legs" tileid="-1"/>
-    <description/>
+    <description>You see a pair of black legs.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="15"/>
     </attributes>
@@ -2726,7 +2726,7 @@
 
   <item name="giant_heart">
     <type class="misc" subclass="giant_heart" tileid="-1"/>
-    <description/>
+    <description>You see a giant heart.  Which proves that a giant was defeated.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -2741,7 +2741,7 @@
 
   <item name="pizza">
     <type class="misc" subclass="pizza" tileid="-1"/>
-    <description/>
+    <description>You see a tasty pizza, and hope they put extra cheese on it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -2753,7 +2753,7 @@
 
   <item name="token">
     <type class="misc" subclass="token" tileid="-1"/>
-    <description/>
+    <description>You see a token, that when placed in the right spot could point you in the right direction.</description>
     <implementation class-name="games.stendhal.server.entity.item.Token"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -2764,7 +2764,7 @@
 
   <item name="note">
     <type class="misc" subclass="paper" tileid="-1"/>
-    <description/>
+    <description>You see a note.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="0.01"/>
@@ -2776,7 +2776,7 @@
 
   <item name="coupon">
     <type class="misc" subclass="coupon" tileid="-1"/>
-    <description/>
+    <description>You see a coupon.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="0.01"/>
@@ -2788,7 +2788,7 @@
 
   <item name="dice">
     <type class="misc" subclass="dice" tileid="-1"/>
-    <description/>
+    <description>You see a set of dice. May lady luck be with you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Dice"/>    <attributes>
     </attributes>
     <weight value="0.05"/>
@@ -2800,7 +2800,7 @@
 
   <item name="cards">
     <type class="misc" subclass="cards" tileid="-1"/>
-    <description/>
+    <description>You see a deck of cards.  Shuffle them well, to get a winning hand.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
     </attributes>
     <weight value="0.01"/>
@@ -2814,7 +2814,7 @@
 
   <item name="teddy">
     <type class="misc" subclass="teddy" tileid="-1"/>
-    <description/>
+    <description>You see a teddy bear. Its soft and cuddly, and children love them.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -2826,7 +2826,7 @@
 
   <item name="skull_ring">
     <type class="misc" subclass="skull_ring" tileid="-1"/>
-    <description/>
+    <description>You see a skull ring.</description>
     <implementation class-name="games.stendhal.server.entity.item.Ring"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
@@ -3872,7 +3872,7 @@
 
   <item name="r_hand_sword">
     <type class="sword" subclass="r_hand_sword" tileid="-1"/>
-    <description>You see r hand sword. Itmust be used with l hand sword.</description>
+    <description>You see r hand sword. It must be used with l hand sword.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <def value="6"/>
@@ -4015,7 +4015,7 @@
 
   <item name="biting_sword">
     <type class="sword" subclass="biting_sword" tileid="-1"/>
-    <description>The point of this biting sword is chiselled to a lethal point. It will serve you well.</description>
+    <description>The point of this biting sword is chiseled to a lethal point. It will serve you well.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="25"/>
       <rate value="6"/>
@@ -4144,7 +4144,7 @@
 
   <item name="great_sword">
     <type class="sword" subclass="great_sword" tileid="-1"/>
-    <description>This rare great sword is heavy and of good craftmanship.</description>
+    <description>This rare great sword is heavy and of good craftsmanship.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="45"/>
       <rate value="15"/>
@@ -4176,7 +4176,7 @@
 
   <item name="immortal_sword">
     <type class="sword" subclass="magic_sword" tileid="-1"/>
-    <description>This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite craftmanship.</description>
+    <description>This immortal sword is a gift of gods to the chosen one. It is heavy and of exquisite craftsmanship.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="35"/>
       <rate value="6"/>
