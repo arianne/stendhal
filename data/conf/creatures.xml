@@ -76,6 +76,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Squeak! Squeak!"/>
+      </says>
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="coward"/>
@@ -525,7 +528,7 @@
     </equips>
     <ai>
       <says>
-        <noise value="WOOOOOOUUUUUUUUFFFF!!!!"/>
+        <noise value="WHOOOOEOEOEZZZZZZ!!!"/>
       </says>
       <profile name="non_offensive"/>
       <profile name="animal"/>
@@ -3049,6 +3052,9 @@
       <slot name="rhand" item="composite_bow" quantity="1"/>
     </equips>
     <ai>
+      <says>
+        <noise value="I always get my prey"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -3439,6 +3445,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Hug?"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -4833,7 +4842,7 @@
     </equips>
     <ai>
       <says>
-        <noise value="I am become death, destroyer of worlds."/>
+        <noise value="Chaos will rule!"/>
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4864,6 +4873,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Gnomes! Run away!"/>
+        <noise value="You may steal my money but you'll never take my heart!"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
