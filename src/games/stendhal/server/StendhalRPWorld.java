@@ -71,7 +71,7 @@ public class StendhalRPWorld extends RPWorld {
 	public static final int MILLISECONDS_PER_TURN = 300;
 
 	/** The Singleton instance */
-	private static StendhalRPWorld instance;
+	protected static StendhalRPWorld instance;
 
 	/** The pathfinder thread. */
 	private PathfinderThread pathfinderThread;
@@ -79,7 +79,7 @@ public class StendhalRPWorld extends RPWorld {
 	/** The rule system manager */
 	private RuleManager ruleManager;
 
-	private StendhalRPWorld() {
+	protected StendhalRPWorld() {
 		super();
 
 		Log4J.startMethod(logger, "StendhalRPWorld");

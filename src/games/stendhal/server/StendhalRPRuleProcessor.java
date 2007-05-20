@@ -70,7 +70,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private static final Logger logger = Log4J.getLogger(StendhalRPRuleProcessor.class);
 
 	/** The Singleton instance */
-	private static StendhalRPRuleProcessor instance;
+	protected static StendhalRPRuleProcessor instance;
 
 	private StendhalPlayerDatabase database;
 
@@ -140,7 +140,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	}
 
-	private StendhalRPRuleProcessor() {
+	protected StendhalRPRuleProcessor() {
+		
+	}
+
+	private void init() {
 		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 		players = new LinkedList<Player>();
 		playersRmText = new LinkedList<Player>();
@@ -161,6 +165,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
 			instance = new StendhalRPRuleProcessor();
+			instance.init();
 		}
 		return instance;
 	}
