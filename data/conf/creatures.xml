@@ -3319,6 +3319,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Who wakes me from my meditation?"/>
+	<noise value="You will regret this!"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
@@ -3496,6 +3500,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Time to die."/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -3524,6 +3531,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="King he say kill!"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -3804,6 +3814,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Me destroy you!"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -4010,6 +4023,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="We will never return to the light"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4370,6 +4386,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Defy order! Seek chaos!"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -4427,6 +4446,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="The Spider Queen will avenge me!"/>
+      </says>
       <profile name="poisonous" params="5,greater_poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -4582,6 +4604,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Chaos in the wrath!"/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -4614,6 +4639,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Keep away from me, sunlight dweller!"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4701,6 +4729,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Fee Fie Foe Fum!!"/>
+        <noise value="I seek the blood of a Semos Man!"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -4732,6 +4764,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="The Queen of Spiders will take her revenge on you!"/>
+      </says>
       <profile name="poisonous" params="15,greater_poison"/>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -4797,6 +4832,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="I am become death, destroyer of worlds."/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -4857,6 +4895,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Wheee!!"/>
+	<noise value="It's fun up here!"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -4889,6 +4931,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="You disturbed my rest!"/>
+	<noise value="Now, you will pay."/>
+      </says>    
       <profile name="poisonous" params="15,greater_poison"/>
       <profile name="brave"/>
       <profile name="animal"/>
@@ -5019,6 +5065,9 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="I am become death, destroyer of worlds."/>
+      </says>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -5082,6 +5131,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Who dare challenge me?"/>
+	<noise value="Leave me now, before it is too late!"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -5114,6 +5167,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Meet thy maker!"/>
+	<noise value="Mere mortals cannot challenge me!"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -5146,13 +5203,17 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Your time to die has come!"/>
+	<noise value="Say goodbye to this world"/>
+      </says>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="lifesteal" params="0.05"/>
       <profile name="heal" params="35,50"/>
       <profile name="patrolling"/>
-    </ai>
+    </ai>    
   </creature>
 
   <creature name="balrog">
@@ -5179,6 +5240,10 @@
     <equips>
     </equips>
     <ai>
+      <says>
+        <noise value="Growwwwwwwrrrrrrr!"/>
+	<noise value="Arrrrllllggggghhhh"/>
+      </says>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
