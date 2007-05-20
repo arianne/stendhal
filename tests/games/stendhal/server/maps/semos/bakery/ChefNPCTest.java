@@ -8,7 +8,6 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
@@ -103,8 +102,16 @@ public class ChefNPCTest {
 		assertTrue(npc.isTalking());
 		assertEquals("I need you to fetch me 2 #cheese, 1 #bread, and 1 #ham for this job. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
+		String questStatus[] = player.getQuest("leander_make_sandwiches").split(";");
+		String[] expected ={"1","sandwich",""};
+		assertEquals(expected[0],questStatus[0]); //amount
+		assertEquals(expected[1],questStatus[1]); //item
+		
 		assertTrue(npc.isTalking());
 		assertEquals("OK, I will make 1 sandwich for you, but that will take some time. Please come back in 3 minutes.", npc.get("text"));
+		assertEquals(0,player.getNumberOfEquipped("cheese"));
+		assertEquals(0,player.getNumberOfEquipped("bread"));
+		assertEquals(0,player.getNumberOfEquipped("ham"));
 	}
 
 	private void addslots(Player player) {
