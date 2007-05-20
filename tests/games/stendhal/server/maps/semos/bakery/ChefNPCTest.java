@@ -77,7 +77,7 @@ public class ChefNPCTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
 	}
-	//@Test
+	@Test
 	public void testHiAndMakeWithStuff() {
 		
 	
@@ -103,8 +103,8 @@ public class ChefNPCTest {
 		assertTrue(npc.isTalking());
 		assertEquals("I need you to fetch me 2 #cheese, 1 #bread, and 1 #ham for this job. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
-		assertFalse(npc.isTalking());
-		assertEquals("Bye.", npc.get("text"));
+		assertTrue(npc.isTalking());
+		assertEquals("OK, I will make 1 sandwich for you, but that will take some time. Please come back in 3 minutes.", npc.get("text"));
 	}
 
 	private void addslots(Player player) {
@@ -120,7 +120,7 @@ public class ChefNPCTest {
 		player.addSlot(new EntitySlot("cloak"));
 		player.addSlot(new EntitySlot("keyring"));
 		player.addSlot (new RPSlot("!quests"));
-		player.getSlot("!quests").setCapacity(1);
+		player.getSlot("!quests").add(new RPObject());
 		
 	}
 }
