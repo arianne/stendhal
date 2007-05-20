@@ -156,7 +156,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		}
 		int cachedOutfit=outfit;
 
-		logger.info("Cache failure: "+outfit+"("+cachedOutfitSprite.size()+")");
+		logger.debug("Cache miss: "+outfit+"("+cachedOutfitSprite.size()+")");
 			
 		Sprite base = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
 		ImageSprite sprite = new ImageSprite(base);

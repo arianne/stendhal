@@ -168,7 +168,7 @@ public class SpriteStore {
 			return animatedSprites.get(entry);
 		}
 		
-		logger.info("Cache fail: "+animImage);
+		logger.debug("Cache miss: "+animImage);
 		
 		// calculate width and height in pixels from width and height
 		// in tiles
