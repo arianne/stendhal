@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import games.stendhal.server.entity.player.Player;
  *
  * REWARD: 
  * - 200 XP
- * - ability to buy a keyring
+ * - ability to use the keyring
  *
  * REPETITIONS:
  * - None.
@@ -116,7 +117,7 @@ public class HungryJoshua extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Thank you. I'd go myself, but I must work.",
+				"Thank you. Please tell him #food or #sandwich so he knows you're not just a customer.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -140,7 +141,7 @@ public class HungryJoshua extends AbstractQuest {
 
 		/** Remind player about the quest */
 		npc.add(ConversationStates.ATTENDING,
-				"food",
+				Arrays.asList("food", "sandwich","sandwiches"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -154,7 +155,13 @@ public class HungryJoshua extends AbstractQuest {
 
 		npc.add(ConversationStates.ATTENDING,
 				"Joshua",
-				null,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text, SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+								&& player.getQuest(QUEST_SLOT).equals("start");
+					}
+				},
 				ConversationStates.ATTENDING,
 				"My brother, the goldsmith in Ados.",
 				null);
@@ -164,8 +171,8 @@ public class HungryJoshua extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Joshua");
 
 		/** If player has quest and has brought the food, ask for it */
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("food", "sandwich","sandwiches"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -175,7 +182,7 @@ public class HungryJoshua extends AbstractQuest {
 					}
 				},
 				ConversationStates.QUEST_ITEM_BROUGHT,
-				"Hi, did my brother Xoderos send you with those sandwiches?",
+				"Oh great! Did my brother Xoderos send you with those sandwiches?",
 				null
 				);
 				
@@ -190,7 +197,7 @@ public class HungryJoshua extends AbstractQuest {
 					if (player.drop("sandwich", FOOD_AMOUNT)) {
 							player.setQuest(QUEST_SLOT, "joshua");
 							player.addXP(150);
-							engine.say("Thank you! Please let Xoderos know that I am fine. He will probably give you something in return.");
+							engine.say("Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.");
 							player.notifyWorldAboutChanges();
 							} else {
 								engine.say("Hey! Where did you put the sandwiches?");
@@ -213,8 +220,8 @@ public class HungryJoshua extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Xoderos");
 
 		/** Complete the quest */
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.ATTENDING,
+				Arrays.asList("joshua", "Joshua"),
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -230,7 +237,7 @@ public class HungryJoshua extends AbstractQuest {
 							SpeakerNPC engine) {
 							player.addXP(50);
 							engine.say("I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!");
-							// need to make it so that this slot being done means you get a keyring
+							// ideally, make it so that this slot being done means you get a keyring object instead what we currently have - a button in the settings panel
 							player.setFeature("keyring", true);
 							player.notifyWorldAboutChanges();
 							player.setQuest(QUEST_SLOT, "done");
