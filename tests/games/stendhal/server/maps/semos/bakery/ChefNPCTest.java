@@ -7,6 +7,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
+import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.PlayerHelper;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -44,7 +47,7 @@ public class ChefNPCTest {
 		
 		 player = new Player(new RPObject());
 		 player.setName("bob");
-		 addslots(player);
+		 PlayerHelper.addEmptySlots(player);
 	}
 
 	@After
@@ -121,20 +124,5 @@ public class ChefNPCTest {
 		assertEquals(1,player.getNumberOfEquipped("sandwich"));
 	}
 
-	private void addslots(Player player) {
-		player.addSlot(new EntitySlot("bag"));
-		player.getSlot("bag").setCapacity(20);
-		player.addSlot(new EntitySlot("lhand"));
-		player.addSlot(new EntitySlot("rhand"));
-		player.addSlot(new EntitySlot("armor"));
-		player.addSlot(new EntitySlot("head"));
-		player.addSlot(new EntitySlot("legs"));
-		player.addSlot(new EntitySlot("feet"));
-		player.addSlot(new EntitySlot("finger"));
-		player.addSlot(new EntitySlot("cloak"));
-		player.addSlot(new EntitySlot("keyring"));
-		player.addSlot (new RPSlot("!quests"));
-		player.getSlot("!quests").add(new RPObject());
-		
-	}
+	
 }

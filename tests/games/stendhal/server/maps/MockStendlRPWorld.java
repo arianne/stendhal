@@ -1,13 +1,13 @@
 /**
  * 
  */
-package games.stendhal.server.maps.semos.bakery;
+package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPWorld;
 import marauroa.common.game.RPObject;
 import marauroa.server.game.NoRPZoneException;
 
-class MockStendlRPWorld extends StendhalRPWorld{
+public class MockStendlRPWorld extends StendhalRPWorld{
 
 	@Override
 	public void modify(RPObject object) throws NoRPZoneException {

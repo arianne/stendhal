@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.semos.bakery;
+package games.stendhal.server.maps;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 
