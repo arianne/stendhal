@@ -36,12 +36,14 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		npc.addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
 		npc.addReply(Arrays.asList("rat", "rats"),
 		        "These rats are everywhere. I wonder where they come from. I can't even kill them as fast as they come up.");
-		
+		//prices are equal to the absolute value of their HP amount.
 		Map<String, Integer> offerings = new HashMap<String, Integer>();
 		offerings.put("poison", 40);
 		offerings.put("toadstool", 60);
 		offerings.put("greater_poison", 60);
 		offerings.put("deadly_poison", 100);
+		offerings.put("mega_poison", 500);
+		offerings.put("disease_poison", 2000);
 		npc.addBuyer(new BuyerBehaviour(offerings));
 		
 		npc.addGoodbye("Please kill some rats on your way up!");
