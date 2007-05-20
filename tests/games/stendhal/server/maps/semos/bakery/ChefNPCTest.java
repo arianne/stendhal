@@ -8,10 +8,10 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 
+import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.codehaus.groovy.runtime.NewInstanceMetaMethod;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,13 +19,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ChefNPCTest {
+	private Engine en;
+	private Player player;
+	private SpeakerNPC npc;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
 	}
-	Engine en ;
-	Player player ;
-	SpeakerNPC npc;
+
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
@@ -81,7 +83,6 @@ public class ChefNPCTest {
 		cheese.setQuantity(2);
 		player.getSlot("bag").add(cheese);
 		StackableItem bread =  new StackableItem("bread",null,null,null);
-		
 		player.getSlot("bag").add(bread );
 		player.getSlot("bag").add( new Item("ham",null,null,null));
 		assertEquals(2,player.getNumberOfEquipped("cheese"));
