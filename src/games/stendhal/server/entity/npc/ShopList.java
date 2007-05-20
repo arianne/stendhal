@@ -83,6 +83,12 @@ public class ShopList {
 		shops.add("buygrain", "grain", 1);
 		
 		shops.add("sellrings", "engagement_ring", 5000);
+		// gold and gemstones
+		shops.add("buyprecious", "gold_bar", 250);
+		shops.add("buyprecious", "emerald", 200);
+		shops.add("buyprecious", "carbuncle", 250);
+		shops.add("buyprecious", "sapphire", 300);
+		shops.add("buyprecious", "obsidian", 350);
 
 		// rare weapons shop
 		shops.add("buyrare", "scimitar", 65);
