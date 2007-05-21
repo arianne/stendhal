@@ -99,8 +99,7 @@ public class ChatAction implements ActionListener {
 
 		// TODO: find a cleaner way to implement it
 		if (Jail.isInJail(player)) {
-			player
-			        .sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
+			player.sendPrivateText("The strong anti telepathy aura prevents you from getting through. Use /support <text> to contact an admin!");
 			return;
 		}
 
@@ -113,7 +112,10 @@ public class ChatAction implements ActionListener {
 			String receiverName = action.get("target");
 
 			Player receiver = StendhalRPRuleProcessor.get().getPlayer(receiverName);
-			if (receiver == null) {
+			/*
+			 * If the receiver is not logged or if it is a ghost and you don't have the level to see ghosts...			 
+			 */
+			if (receiver == null || receiver.isGhost() && player.getAdminLevel()<AdministrationAction.getLevelForCommand("ghostmode")) {
 				player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently active.");
 				player.notifyWorldAboutChanges();
 				return;
