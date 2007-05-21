@@ -2721,6 +2721,8 @@
     <weight value="25.0"/>
     <value value="23625"/>
     <equipable>
+      <slot name="bag"/>
+      <slot name="legs"/>
     </equipable>
   </item>
 
