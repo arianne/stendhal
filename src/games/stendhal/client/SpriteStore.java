@@ -54,7 +54,7 @@ public class SpriteStore {
 	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+		gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
 	/**
@@ -197,6 +197,19 @@ public class SpriteStore {
 	}
 
 	/**
+	 * Get the failsafe sprite.
+	 *
+	 * @return	The failsafe sprite.
+	 */
+	public Sprite getFailsafe() {
+		/*
+		 * TODO: Create in-line sprite, incase missing all png's is
+		 * why we need a failsafe. Otherwise infinite loop will occur.
+		 */
+		return getSprite("data/sprites/failsafe.png");
+	}
+
+	/**
 	 * Retrieve a sprite from the store
 	 *
 	 * @param ref
@@ -224,7 +237,7 @@ public class SpriteStore {
 			
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
-				return getSprite("data/sprites/failsafe.png");
+				return getFailsafe();
 			}
 
 			// use ImageIO to read the image in
