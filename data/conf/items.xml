@@ -1576,6 +1576,9 @@
     <weight value="1.0"/>
     <value value="1250"/>
     <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
     </equipable>
   </item>
 
