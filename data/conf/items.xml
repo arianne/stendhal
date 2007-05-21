@@ -3220,7 +3220,7 @@
 
   <item name="gold_nugget">
     <type class="resource" subclass="gold_ore" tileid="-1"/>
-    <description/>
+    <description>You see a gold nugget.  Its rich golden color shines, and it may be useful.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -3250,7 +3250,7 @@
 
   <item name="gold_bar">
     <type class="resource" subclass="gold_bar" tileid="-1"/>
-    <description/>
+    <description>You see a gold bar. It will make beautiful jewlery, or fetch a fine price.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -3476,7 +3476,7 @@
 
   <item name="empty_scroll">
     <type class="scroll" subclass="empty" tileid="-1"/>
-    <description/>
+    <description>You see an empty scroll. If used correctly it will return you to where you marked it at.</description>
     <implementation class-name="games.stendhal.server.entity.item.scroll.EmptyScroll"/>    <attributes>
       <quantity value="1"/>
     </attributes>
@@ -3686,7 +3686,7 @@
 
   <item name="chaos_shield">
     <type class="shield" subclass="chaos_shield" tileid="-1"/>
-    <description/>
+    <description>You see a chaos shield.  Its  charming appearance will fool your enemies.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="39"/>
     </attributes>
@@ -3701,7 +3701,7 @@
 
   <item name="magic_plate_shield">
     <type class="shield" subclass="lion_clan_shield" tileid="-1"/>
-    <description/>
+    <description>You see a magic plate sheild. Its has a magical quality surrounding it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="40"/>
     </attributes>
@@ -3716,7 +3716,7 @@
 
   <item name="black_shield">
     <type class="shield" subclass="black_shield" tileid="-1"/>
-    <description/>
+    <description>You see a black shield. Its darkness will surely protect you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <def value="42"/>
     </attributes>
@@ -4192,7 +4192,7 @@
 
   <item name="black_sword">
     <type class="sword" subclass="black_sword" tileid="-1"/>
-    <description/>
+    <description>You see a black sword.  Its darkness will surely protect you.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="40"/>
       <rate value="7"/>
