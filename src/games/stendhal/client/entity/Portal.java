@@ -96,4 +96,8 @@ public class Portal extends InvisibleEntity {
 	public boolean isObstacle(Entity entity) {
 		return false;
 	}
+
+	public boolean isHidden() {
+		return hidden;
+	}
 }

@@ -40,7 +40,7 @@ import marauroa.common.game.RPAction;
 
 /**
  * The minimap.
- * 
+ *
  * @author mtotz
  */
 public class Minimap extends WtPanel {
@@ -108,7 +108,7 @@ public class Minimap extends WtPanel {
 
 		// create the image for the minimap
 		image = gc.createCompatibleImage(w * scale, h * scale);
-		
+
 		Graphics2D mapgrapics = image.createGraphics();
 		Color freeColor = new Color(0.8f, 0.8f, 0.8f);
 		// Color freeColor = new Color(0.0f, 1.0f, 0.0f);
@@ -149,7 +149,7 @@ public class Minimap extends WtPanel {
 
 	/**
 	 * Draws the minimap.
-	 * 
+	 *
 	 * @param g graphics object for the game main window
 	 */
 	@Override
@@ -225,8 +225,11 @@ public class Minimap extends WtPanel {
 							- pany + 2, playerColor);
 				}
 			} else if( entity instanceof Portal) {
-				drawDot(clientg, (int) (entity.getX() * scale) - panx, (int) ((entity.getY()) * scale)
-						- pany, Color.WHITE);
+				Portal portal = (Portal) entity;
+				if (!portal.isHidden()) {
+					drawDot(clientg, (int) (entity.getX() * scale) - panx, (int) ((entity.getY()) * scale) - pany,
+							Color.WHITE);
+				}
 			}
 		}
 
@@ -286,10 +289,10 @@ public class Minimap extends WtPanel {
 		g.setColor(Color.BLACK);
 		g.drawRect(x-1, y-1, size+1, size+1);
 	}
-	
+
 	/**
 	 * sets the current Player
-	 * @param player 
+	 * @param player
 	 */
 	public void setPlayer(final Player player) {
 		this.player = player;

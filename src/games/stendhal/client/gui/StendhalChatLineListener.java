@@ -56,7 +56,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		//Open chat log file
 		try {
 			//TODO: Create the file on the stendhal home folder.
-			File chatfile = new File("chat.log");
+			File chatfile = new File(games.stendhal.client.stendhal.STENDHAL_FOLDER+"chat.log");
 
 			if (chatfile.exists()) {
 				FileInputStream fis = new FileInputStream(chatfile);
@@ -80,8 +80,15 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		// Save chat log file
 		FileOutputStream fo;
 		try {
-			fo = new FileOutputStream("chat.log");
+			fo = new FileOutputStream(games.stendhal.client.stendhal.STENDHAL_FOLDER+"chat.log");
 			PrintStream ps=new PrintStream(fo);
+
+			/*
+			 * Keep size of chat.log in a reasonable size.
+			 */
+			while(lines.size()>200) {
+				lines.removeFirst();
+			}
 
 			ListIterator< String > iterator = lines.listIterator();
 			while ( iterator.hasNext() )
