@@ -35,11 +35,13 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+
 import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
@@ -284,7 +286,7 @@ public class GameScreen {
 		int sx = convertWorldXToScreen(x) + (SIZE_UNIT_PIXELS / 2);
 		int sy = convertWorldYToScreen(y) + (SIZE_UNIT_PIXELS / 2);
 
-		if((sx < 0) || (sx >= sw) || (sy < 0) || (sy > sh)) {
+		if((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
 			 * If off screen, just center
 			 */
@@ -818,14 +820,6 @@ public class GameScreen {
 	}
 
 
-	/**
-	 * Determine if a sprite will draw in the screen.
-	 */
-	public boolean isSpriteInScreen(Sprite sprite, int sx, int sy) {
-		return isInScreen(sx, sy, sprite.getWidth() + 2, sprite.getHeight() + 2);
-	}
-
-
 	/** Draw a sprite in screen given its world coordinates */
 	public void draw(Sprite sprite, double wx, double wy) {
 		Point p = convertWorldToScreen(wx, wy);
@@ -1050,14 +1044,29 @@ public class GameScreen {
 	//
 	//
 
-// SOON:
-//	protected class EntityViewComparator implements Comparator<Entity2DView> {
-//		//
-//		// Comparator
-//		//
-//
-//		public int compare(Entity2DView view1, Entity2DView view2) {
-//return 0;
-//		}
-//	}
+	public static class EntityViewComparator implements Comparator<Entity2DView> {
+		//
+		// Comparator
+		//
+
+		public int compare(Entity2DView view1, Entity2DView view2) {
+			int	rv;
+
+
+			rv = view1.getZIndex() - view2.getZIndex();
+
+			if(rv == 0) {
+				Rectangle2D area1 = view1.getDrawnArea();
+				Rectangle2D area2 = view2.getDrawnArea();
+
+				rv = (int) ((area1.getMaxY() - area2.getMaxY()) * 10.0);
+
+				if(rv == 0) {
+					rv = (int) ((area1.getMinX() - area2.getMinX()) * 10.0);
+				}
+			}
+
+			return rv;
+		}
+	}
 }
