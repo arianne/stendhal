@@ -101,9 +101,11 @@ public class TileStore extends SpriteStore {
 			
 			Sprite tiles = sprites.getSprite(BASE_FOLDER+filename);
 
-			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-			        .getDefaultConfiguration();
-			
+//			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
+//			        .getDefaultConfiguration();
+
+			int idx = 0;
+
 			/*
 			 * Set the correct size for the vector.
 			 */
@@ -112,15 +114,10 @@ public class TileStore extends SpriteStore {
 			for (int j = 0; j < tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS; j++) {
 				for (int i = 0; i < tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS; i++) {
 					amount++;
-					Image image = gc.createCompatibleImage(GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS,
-					        Transparency.BITMASK);
-					Graphics2D g = (Graphics2D) image.getGraphics();
 
-					tiles.draw(g, 0, 0, i * GameScreen.SIZE_UNIT_PIXELS, j * GameScreen.SIZE_UNIT_PIXELS,
-					        GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+					Sprite tile = sprites.getTile(tiles, i * GameScreen.SIZE_UNIT_PIXELS, j * GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
 
-					// create a sprite, add it the cache then return it
-					tileset.set(i + j * tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS, new ImageSprite(image));
+					tileset.set(idx++, tile);
 				}
 			}
 

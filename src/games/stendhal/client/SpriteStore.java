@@ -40,16 +40,21 @@ import org.apache.log4j.Logger;
  * @author Kevin Glass
  */
 public class SpriteStore {
-
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpriteStore.class);
 
 	/** The single instance of this class */
 	private static SpriteStore single = new SpriteStore();
 
+	/**
+	 * Screen graphics configuration.
+	 */
+	protected GraphicsConfiguration	gc;
+
 	private static boolean doOldBootstrapClassloaderWorkaroundFirst = true;
 
 	protected SpriteStore() {
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 	}
 
 	/**
@@ -175,19 +180,10 @@ public class SpriteStore {
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
 		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
 
-		Sprite[] animatedSprite = new ImageSprite[frameCount];
-
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-		        .getDefaultConfiguration();
+		Sprite[] animatedSprite = new Sprite[frameCount];
 
 		for (int i = 0; i < frameCount; i++) {
-			Image image = gc.createCompatibleImage(pixelWidth, pixelHeight, Transparency.BITMASK);
-			// Bugfixs: parameters width and height added, see comment in
-			// Sprite.java
-			// animImage.draw(image.getGraphics(),0,0,i*iwidth,row*iheight);
-			// intensifly @ gmx.com, April 20th, 2006
-			animImage.draw(image.getGraphics(), 0, 0, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
-			animatedSprite[i] = new ImageSprite(image);
+			animatedSprite[i] = getTile(animImage, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
 		}
 		
 		animatedSprites.put(new CachedSprite(animImage,row), animatedSprite);
@@ -239,9 +235,6 @@ public class SpriteStore {
 		}
 
 		// create an accelerated image of the right size to store our sprite in
-		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-		        .getDefaultConfiguration();
-
 		int mode = Transparency.BITMASK;
 
 		// ALPHA channel makes it runs 30% slower.
@@ -261,6 +254,29 @@ public class SpriteStore {
 
 		return sprite;
 	}
+
+
+	/**
+	 * Create a sprite tile (sub-region).
+	 *
+	 *
+	 */
+	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
+		if(false) {
+			//
+			// NEW (SEMI-TESTED) CODE
+			// Saves ~3.5M, but will break flip()
+			//
+			return new TileSprite(sprite, x, y, width, height, null);
+		} else {
+			Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
+
+			sprite.draw(image.getGraphics(), 0, 0, x, y, width, height);
+
+			return new ImageSprite(image);
+		}
+	}
+
 
 	/**
 	 * gets a resource URL. Use this method instead of classLoader.getResouce()
