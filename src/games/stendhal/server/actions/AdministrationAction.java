@@ -94,6 +94,15 @@ public class AdministrationAction implements ActionListener {
 	public static void registerCommandLevel(String command, int minLevel) {
 		REQUIRED_ADMIN_LEVELS.put(command, minLevel);
 	}
+	
+	public static int getLevelForCommand(String command) {
+		Integer val=REQUIRED_ADMIN_LEVELS.get(command);
+		if(val==null) {
+			return -1;
+		}
+		
+		return val;
+	}
 
 	public static boolean isPlayerAllowedToExecuteAdminCommand(Player player, String command, boolean verbose) {
 		// get adminlevel of player and required adminlevel for this command

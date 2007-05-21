@@ -48,7 +48,7 @@ public class PlayersQuery implements ActionListener {
 	public void onWho(Player player, RPAction action) {
 		Log4J.startMethod(logger, "who");
 		
-		final int REQUIRED_LEVEL_TO_SEE_GHOST=100;
+		final int REQUIRED_LEVEL_TO_SEE_GHOST=AdministrationAction.getLevelForCommand("ghostmode");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (player.has("title")) rules.addGameEvent(player.get("title"), "who");
