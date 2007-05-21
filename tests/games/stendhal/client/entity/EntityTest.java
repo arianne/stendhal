@@ -49,11 +49,7 @@ assertEquals(0,en.count);
 	 assertEquals("onPosition should only be called once ",1,en.count);
 	}
 	
-	@Test // throws ounnoticed Attribute not found exception
-	public final void testEntityInvalidRPObject() {
-		Entity en = EntityFactory.createEntity(new RPObject());
-		assertEquals(null, en);
-	}
+	
 	@Test
 	public final void testEntityRPObject() {
 		RPObject rpo = new RPObject();

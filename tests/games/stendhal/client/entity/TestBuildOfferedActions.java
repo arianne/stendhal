@@ -135,6 +135,7 @@ public class TestBuildOfferedActions {
 		
 		Entity en = EntityFactory.createEntity(rp);
 		List<String> expected = new ArrayList<String>();
+		expected.add(ActionType.USE.getRepresentation());
 		expected.add(ActionType.LOOK.getRepresentation());
 		
 		en.buildOfferedActions(list);
