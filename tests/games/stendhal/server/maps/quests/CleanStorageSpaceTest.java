@@ -68,8 +68,7 @@ public class CleanStorageSpaceTest {
 	public void doQuest() {
 		Player player;
 		player= new Player(new RPObject());
-		player.addSlot(new RPSlot("!kills"));
-		player.getSlot("!kills").add(new RPObject());
+		
 		PlayerHelper.addEmptySlots(player);
 	
 		SpeakerNPC npc = NPCList.get().get("Eonna");

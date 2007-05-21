@@ -20,6 +20,8 @@ public class PlayerHelper {
 		player.addSlot(new EntitySlot("keyring"));
 		player.addSlot (new RPSlot("!quests"));
 		player.getSlot("!quests").add(new RPObject());
+		player.addSlot(new RPSlot("!kills"));
+		player.getSlot("!kills").add(new RPObject());
 		
 	}
 }
