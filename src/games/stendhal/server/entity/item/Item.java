@@ -284,10 +284,6 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	@Override
 	public String describe() {
-		String atk = "0";
-		String def = "0";
-		String rate = "5";
-		String amount = "0";
 		String text = "You see " + Grammar.a_noun(getName().replace("_", " ")) + ".";
 		String stats = "";
 		if (hasDescription()) {
