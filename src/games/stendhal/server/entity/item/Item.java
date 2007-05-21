@@ -57,7 +57,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		entity.add("rate", RPClass.SHORT); // Some items indicate how often you can attack.
 		entity.add("def", RPClass.SHORT); // Some items have defense values
 		entity.add("amount", RPClass.INT); // Some items(food) have amount of something (a bottle, a piece of meat).
-		entity.add("range", RPClass.SHORT); // Some items (range weapons, ammunition, missiles) have a range. 
+		entity.add("range", RPClass.SHORT); // Some items (range weapons, ammunition, missiles) have a range.
 		entity.add("regen", RPClass.INT); // Some items(food) have regeneration speed
 		entity.add("frequency", RPClass.INT); // Some items(food) have regeneration speed
 		entity.add("quantity", RPClass.INT); // Some items(Stackable) have quantity
@@ -70,9 +70,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	}
 
 	/**
-	 * 
+	 *
 	 * Creates a new Item.
-	 * 
+	 *
 	 * @param name name of item
 	 * @param clazz class (or type) of item
 	 * @param subclass subclass of this item
@@ -100,7 +100,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		update();
 	}
 
-	/** 
+	/**
 	 * copy constuctor
 	 *
 	 * @param item item to copy
@@ -145,7 +145,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the attack points of this item. Positive and negative values are
 	 * allowed. If this item doesn't modify the attack it should return '0'.
-	 * 
+	 *
 	 * @return attack points
 	 */
 	public int getAttack() {
@@ -159,7 +159,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Returns the defense points of this item. Positive and negative values are
 	 * allowed. If this item doesn't modify the defense it should return '0'.
-	 * 
+	 *
 	 * @return defense points
 	 */
 	public int getDefense() {
@@ -182,11 +182,11 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		/* Default attack rate is 5. */
 		return 5;
     }
-	
+
 	/**
 	 * Returns if the item is persistent. Persistent items do not update their
 	 * stats from the item database and thus can have individual stats
-	 * 
+	 *
 	 * @return true if item is persistent
 	 */
 	public boolean isPersistent() {
@@ -199,7 +199,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 	/**
 	 * Checks if the item is of type <i>type</i>
-	 * 
+	 *
 	 * @param clazz
 	 *            the class to check
 	 * @return true if the type matches, else false
@@ -254,7 +254,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/**
 	 * Is called when the item is created, moved to the ground, or moved on
 	 * the ground.
-	 * 
+	 *
 	 * @param player The player who moved the item, or null if it wasn't moved
 	 *               by a player.
 	 */
@@ -286,6 +286,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public String describe() {
 		String atk = "0";
 		String def = "0";
+		String rate = "5";
 		String amount = "0";
 		String text = "You see " + Grammar.a_noun(getName().replace("_", " ")) + ".";
 		String stats = "";
@@ -301,6 +302,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (has("def")) {
 			def = get("def");
 		}
+		if (has("rate")) {
+			rate=get("rate");
+		}
 		if (has("amount")) {
 			amount = get("amount");
 		}
@@ -309,6 +313,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		}
 		if (!def.equals("0")) {
 			stats += " DEF: " + def;
+		}
+		if (!rate.equals("0")) {
+			stats += " RATE: " + def;
 		}
 		if (!amount.equals("0")) {
 			stats += " HP: " + amount;
