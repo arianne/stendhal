@@ -57,14 +57,13 @@ public class GreeterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hello! Welcome to Fado City! Would you like to #learn about Fado?");
-				addReply(
-				        "learn",
-				        "Fado City is the jewel of the Faiumoni empire. It has a very important trade route with Orril and Semos to the North and #Sikhw to the South.");
-				addReply("sikhw",
-				        "Sikhw is an old city that was conquered a long time ago. It is now nearly unreachable.");
+				addGreeting("Hello! Welcome to Fado City! You can #learn about Fado from me.");
+				addReply("learn",
+				        "Fado guards the bridge over Or'ril river which is vital for the commercial route between #Deniran and Ados. There's an active social life here, being the preferred city for celebrating marriages and tasting elaborate meals.");
+				addReply("Deniran",
+				        "Deniran is the jewel of the crown. Deniran is the center of Faiumoni and supports the army that tries to defeat enemies that wants to conquer Faiumoni.");
 				addJob("I greet all of the new-comers to Fado. I can #offer you a scroll if you'd like to come back here again.");
-				addHelp("You can head into the tavern to buy food, drinks, and other items. You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
+				addHelp("You can head into the tavern to buy food and drinks. You can also visit the people in the houses, or visit the blacksmith or the city hotel.");
 				addSeller(new SellerBehaviour(shops.get("fadoscrolls")));
 				addGoodbye("Bye.");
 			}
