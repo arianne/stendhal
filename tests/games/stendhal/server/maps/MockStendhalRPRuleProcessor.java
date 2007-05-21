@@ -14,4 +14,9 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	public void addGameEvent(String source, String event, String... params) {
 	
 	}
+
+	@Override
+	public int getTurn() {
+		return 0;
+	}
 }
