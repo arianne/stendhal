@@ -90,8 +90,8 @@ assertEquals("name1", mo.getName());
 		mo.get("Noexistant"); // throws AttributeNotFoundException
 	}
 
-	@Test (expected = AttributeNotFoundException.class) //the attributes are not copied
-	public void testItemItemDoesnotCopyAttributes() {
+	@Test 
+	public void testItemItemwithAttributes() {
 		Map<String,String> attribs = new HashMap<String, String>();
 		
 		attribs.put("att_1", "val_1");
