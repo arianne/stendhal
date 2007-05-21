@@ -1,6 +1,7 @@
 package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.scripting.ChatLineParser;
 
 import java.awt.KeyboardFocusManager;
@@ -27,6 +28,8 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {
+
+	private static final String CHAT_LOG_FILE = System.getProperty("user.home")+"/"+stendhal.STENDHAL_FOLDER+"chat.log";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalChatLineListener.class);
@@ -56,7 +59,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		//Open chat log file
 		try {
 			//TODO: Create the file on the stendhal home folder.
-			File chatfile = new File(games.stendhal.client.stendhal.STENDHAL_FOLDER+"chat.log");
+			File chatfile = new File(CHAT_LOG_FILE);
 
 			if (chatfile.exists()) {
 				FileInputStream fis = new FileInputStream(chatfile);
@@ -80,7 +83,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 		// Save chat log file
 		FileOutputStream fo;
 		try {
-			fo = new FileOutputStream(games.stendhal.client.stendhal.STENDHAL_FOLDER+"chat.log");
+			fo = new FileOutputStream(CHAT_LOG_FILE);
 			PrintStream ps=new PrintStream(fo);
 
 			/*
