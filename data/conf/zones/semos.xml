@@ -12,6 +12,18 @@
  </zone>
 
  <zone name="0_semos_mountain_n2_w2" level="0" x="499744" y="499744" file="Level 0/semos/mountain_n2_w2.tmx">
+  <portal x="102" y="42" ref="floor_door_0">
+   <destination zone="0_semos_mountain_n2_w2" ref="upper_door"/>
+  </portal>
+  <portal x="103" y="42" ref="floor_door_1">
+   <destination zone="0_semos_mountain_n2_w2" ref="upper_door"/>
+  </portal>
+  <portal x="104" y="42" ref="floor_door_2">
+   <destination zone="0_semos_mountain_n2_w2" ref="upper_door"/>
+  </portal>
+  <portal x="116" y="40" ref="upper_door">
+   <destination zone="0_semos_mountain_n2_w2" ref="floor_door_1"/>
+  </portal>
  </zone>
 
  <zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744" file="Level 0/semos/mountain_n2_w.tmx">
