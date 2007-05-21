@@ -47,6 +47,8 @@ public class PlayersQuery implements ActionListener {
 
 	public void onWho(Player player, RPAction action) {
 		Log4J.startMethod(logger, "who");
+		
+		final int REQUIRED_LEVEL_TO_SEE_GHOST=100;
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (player.has("title")) rules.addGameEvent(player.get("title"), "who");
@@ -55,20 +57,20 @@ public class PlayersQuery implements ActionListener {
 		StringBuilder online = new StringBuilder();
 		int amount=0;
 		for (Player p : rules.getPlayers()) {
-			if(!p.isGhost()) {
+			if(!p.isGhost() || player.getAdminLevel()>REQUIRED_LEVEL_TO_SEE_GHOST) {
 				amount++;
 			}
 		}
 		
 		online.append( amount+ " Players online: ");
 		for (Player p : getSortedPlayers()) {
-			if(!p.isGhost()) {
+			if(!p.isGhost()  || player.getAdminLevel()>REQUIRED_LEVEL_TO_SEE_GHOST ) {
 				String playername=p.getName();
 				if (p.has("title")) {
 					playername=p.get("title");
 				}
 				
-				online.append(playername + "(" + p.getLevel() + ") ");
+				online.append(playername + "(" + (p.isGhost()?"!":"")+ p.getLevel() + ") ");
 			}
 		}
 		player.sendPrivateText(online.toString());
