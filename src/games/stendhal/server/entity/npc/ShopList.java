@@ -29,6 +29,7 @@ public class ShopList {
 
 		shops.add("superhealing", "antidote", 50);
 		shops.add("superhealing", "greater_antidote", 100);
+		shops.add("superhealing", "potion", 250);
 		shops.add("superhealing", "greater_potion", 500);
 		//	shops.add("superhealing", "mega_potion", 1500); don't want giantheart market starting again
 
@@ -86,9 +87,9 @@ public class ShopList {
 		// gold and gemstones
 		shops.add("buyprecious", "gold_bar", 250);
 		shops.add("buyprecious", "emerald", 200);
-		shops.add("buyprecious", "carbuncle", 250);
-		shops.add("buyprecious", "sapphire", 300);
-		shops.add("buyprecious", "obsidian", 350);
+		shops.add("buyprecious", "sapphire", 400);
+		shops.add("buyprecious", "carbuncle", 600);
+		shops.add("buyprecious", "obsidian", 1000);
 
 		// rare weapons shop
 		shops.add("buyrare", "scimitar", 65);
@@ -104,19 +105,19 @@ public class ShopList {
 		shops.add("buyrare", "lion_shield", 50);
 
 		//rare elf weapons buyer
-		shops.add("elfbuyrare", "battle_axe", 50);
-		shops.add("elfbuyrare", "twoside_axe", 60);
+		shops.add("elfbuyrare", "battle_axe", 70);
+		shops.add("elfbuyrare", "twoside_axe", 80);
 		shops.add("elfbuyrare", "claymore", 90);
-		shops.add("elfbuyrare", "broadsword", 70);
+		shops.add("elfbuyrare", "broadsword", 100);
 		shops.add("elfbuyrare", "staff", 75);
-		shops.add("elfbuyrare", "enhanced_lion_shield", 52);
-		shops.add("elfbuyrare", "crown_shield", 80);
+		shops.add("elfbuyrare", "enhanced_lion_shield", 100);
+		shops.add("elfbuyrare", "crown_shield", 120);
 
 		// more rare weapons shop (fado)
-		shops.add("buyrare2", "war_hammer", 90);
-		shops.add("buyrare2", "biting_sword", 100);
-		shops.add("buyrare2", "crossbow", 125);
-		shops.add("buyrare2", "great_sword", 150);
+		shops.add("buyrare2", "war_hammer", 120);
+		shops.add("buyrare2", "biting_sword", 150);
+		shops.add("buyrare2", "crossbow", 175);
+		shops.add("buyrare2", "great_sword", 250);
 		shops.add("buyrare2", "fire_sword", 2000);
 		shops.add("buyrare2", "ice_sword", 5000);
 
