@@ -88,7 +88,7 @@ public class EquipmentActionTest {
 
 		MockPlayer player = new MockPlayer();
 		player.addSlot(new RPSlot("bag"));
-
+player.setName("bob");
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
