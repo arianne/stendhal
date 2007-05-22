@@ -79,7 +79,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Poisonous items that the player still has to consume. This also
 	 * includes poison that was the result of fighting against a poisonous
-	 * creature.  
+	 * creature.
 	 */
 	private List<ConsumableItem> poisonToConsume;
 
@@ -112,7 +112,7 @@ public class Player extends RPEntity implements TurnListener {
 	protected FeatureList features;
 
     private String guild;
-    
+
 	/**
 	 * A list of away replys sent to players.
 	 */
@@ -214,7 +214,7 @@ public class Player extends RPEntity implements TurnListener {
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		playerSheepManager = new PlayerSheepManager(this);
-		
+
 		put("type", "player");
 		// HACK: postman as NPC
 		if (object.has("name") && object.get("name").equals("postman")) {
@@ -293,10 +293,10 @@ public class Player extends RPEntity implements TurnListener {
 		if(get("zoneid").equals("int_afterlife") && entity instanceof Player) {
 			return false;
 		}
-		
+
 		return super.isObstacle(entity);
 	}
-	
+
 	/**
 	 * Stop and clear any active directions.
 	 */
@@ -480,7 +480,7 @@ public class Player extends RPEntity implements TurnListener {
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
-		
+
 		if(has("xp")) {
 			// I want to force level to be updated.
 			addXP(0);
@@ -760,7 +760,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Gets the name of the last player who privately talked to this player
 	 * using the /tell command, or null if nobody has talked to this player
-	 * since he logged in. 
+	 * since he logged in.
 	 */
 	public String getLastPrivateChatter() {
 		return lastPrivateChatterName;
@@ -813,14 +813,14 @@ public class Player extends RPEntity implements TurnListener {
 		poisonToConsume.clear();
 
 		Item emeraldRing=getFirstEquipped("emerald_ring");
-		
+
 		if(emeraldRing!=null && emeraldRing.getInt("amount")>0){
 			// Penalize: 1% less experience if wearing that ring
 			setXP((int) (getXP() * 0.99));
 			setATKXP((int) (getATKXP() * 0.99));
 			setDEFXP((int) (getDEFXP() * 0.99));
-			
-			/* 
+
+			/*
 			 * We broke now the emerald ring.
 			 */
 			emeraldRing.put("amount", 0);
@@ -831,8 +831,8 @@ public class Player extends RPEntity implements TurnListener {
 			setATKXP((int) (getATKXP() * 0.9));
 			setDEFXP((int) (getDEFXP() * 0.9));
 		}
-		
-		update();		
+
+		update();
 
 		super.onDead(killer, false);
 
@@ -885,7 +885,7 @@ public class Player extends RPEntity implements TurnListener {
 						StackableItem item = (StackableItem) object;
 
 						// We won't drop the full quantity, but only a percentage.
-						// Get a random percentage between 26 % and 75 % to drop  
+						// Get a random percentage between 26 % and 75 % to drop
 						double percentage = (Rand.rand(50) + 25) / 100.0;
 						int quantityToDrop = (int) Math.round(item.getQuantity() * percentage);
 
@@ -929,7 +929,7 @@ public class Player extends RPEntity implements TurnListener {
 	public boolean hasSheep() {
 		return has("sheep");
 	}
-	
+
 	public void setSheep(Sheep sheep) {
 		Log4J.startMethod(logger, "setSheep");
 		put("sheep", sheep.getID().getObjectID());
@@ -973,7 +973,7 @@ public class Player extends RPEntity implements TurnListener {
 
 	/**
 	 * Notifies this player that the given player has logged in.
-	 * @param who The name of the player who has logged in. 
+	 * @param who The name of the player who has logged in.
 	 */
 	public void notifyOnline(String who) {
 		String playerOnline = "_" + who;
@@ -1002,7 +1002,7 @@ public class Player extends RPEntity implements TurnListener {
 
 	/**
 	 * Notifies this player that the given player has logged out.
-	 * @param who The name of the player who has logged out. 
+	 * @param who The name of the player who has logged out.
 	 */
 	public void notifyOffline(String who) {
 		String playerOffline = "_" + who;
@@ -1048,7 +1048,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Checks whether the player has made any progress in the given
 	 * quest or not. For many quests, this is true right after the quest
-	 * has been started. 
+	 * has been started.
 	 * @param name The quest's name
 	 * @return true iff the player has made any progress in the quest
 	 */
@@ -1057,7 +1057,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	/**
-	 * Gets the player's current status in the given quest. 
+	 * Gets the player's current status in the given quest.
 	 * @param name The quest's name
 	 * @return the player's status in the quest
 	 */
@@ -1076,7 +1076,7 @@ public class Player extends RPEntity implements TurnListener {
 	 *        completely reset the player's status for the quest.
 	 */
 	public void setQuest(String name, String status) {
-		String oldStatus = getKeyedSlot("!quests", name); 
+		String oldStatus = getKeyedSlot("!quests", name);
 		setKeyedSlot("!quests", name, status);
 		if (status == null || !status.equals(oldStatus)) {
 			StendhalRPRuleProcessor.get().addGameEvent(this.getName(), "quest", name, status);
@@ -1125,7 +1125,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Checks if the player has ever killed a creature with the given name
 	 * without the help of any other player.
-	 * @param The name of the creature to check. 
+	 * @param The name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(String name) {
@@ -1140,7 +1140,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Checks if the player has ever killed a creature, with or without the
 	 * help of any other player.
-	 * @param The name of the creature to check. 
+	 * @param The name of the creature to check.
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilled(String name) {
@@ -1150,8 +1150,8 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Checks in which way this player has killed the creature with the given
 	 * name.
-	 * @param The name of the creature to check. 
-	 * @return either "solo", "shared", or null. 
+	 * @param The name of the creature to check.
+	 * @return either "solo", "shared", or null.
 	 */
 	public String getKill(String name) {
 		return getKeyedSlot("!kills", name);
@@ -1160,11 +1160,11 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Stores in which way the player has killed a creature with the given
 	 * name.
-	 * 
+	 *
 	 * This should not be called with mode "shared" if this player has already
 	 * killed the creature solo.
-	 *   
-	 * @param The name of the killed creature. 
+	 *
+	 * @param The name of the killed creature.
 	 * @param mode either "solo", "shared", or null.
 	 */
 	public void setKill(String name, String mode) {
@@ -1172,7 +1172,7 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	/**
-	 * ??? 
+	 * ???
 	 * @return ???
 	 */
 	public List<String> getKills() {
@@ -1215,10 +1215,10 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Poisons the player with a poisonous item.
 	 * Note that this method is also used when a player has been poisoned
-	 * while fighting against a poisonous creature. 
+	 * while fighting against a poisonous creature.
 	 * @param item the poisonous item
 	 * @return true iff the poisoning was effective, i.e. iff the player is
-	 *         not immune 
+	 *         not immune
 	 */
 	public boolean poison(ConsumableItem item) {
 		if (isImmune) {
@@ -1285,10 +1285,10 @@ public class Player extends RPEntity implements TurnListener {
 		Collections.sort(itemsToConsume, new Comparator<ConsumableItem>() {
 
 			public int compare(ConsumableItem o1, ConsumableItem o2) {
-				// TODO: highest regen value doesn't have to mean it
+				// highest regen value doesn't have to mean it
 				// actually heals fastest; it also depends on the
 				// frequency.
-				return Math.abs(o2.getRegen()) - Math.abs(o1.getRegen());
+				return Math.abs(o2.getRegen()*o2.getFrecuency()) - Math.abs(o1.getRegen()*o1.getFrecuency());
 			}
 
 			@Override
@@ -1447,7 +1447,7 @@ public class Player extends RPEntity implements TurnListener {
 	 */
 	public void setOutfit(Outfit outfit, boolean temporary) {
 		// if the new outfit is temporary and the player is not wearing
-		// a temporary outfit already, store the current outfit in a 
+		// a temporary outfit already, store the current outfit in a
 		// second slot so that we can return to it later.
 		if (temporary && !has("outfit_org")) {
 			put("outfit_org", get("outfit"));
@@ -1511,5 +1511,5 @@ public class Player extends RPEntity implements TurnListener {
 	public String toString() {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
-	
+
 }

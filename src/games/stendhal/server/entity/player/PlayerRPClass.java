@@ -60,7 +60,7 @@ class PlayerRPClass {
 
 	/** these items should be bound */
 	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key",
-	         "golden_boots", "golden_helmet", 
+	         "golden_boots", "golden_helmet",
 	        "trophy_helmet", "marked_scroll");
 
 	/*
@@ -79,7 +79,7 @@ hammer_+3 golden_hammer
 chain_helmet_+2 aventail
 golden_helmet_+3 horned_golden_helmet
 longbow_+1 composite_bow
-lion_shield_+1 enhanced_lion_shield 
+lion_shield_+1 enhanced_lion_shield
 	 */
 	private static final List<String> itemNamesOld = Arrays.asList(
 			"flail_+2",
@@ -181,7 +181,7 @@ lion_shield_+1 enhanced_lion_shield
 
 		// This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
 		player.addRPSlot("spells", 9, RPClass.PRIVATE);
-		
+
 		// The guild name
 		player.add("guild", RPClass.STRING);
 
@@ -329,7 +329,7 @@ lion_shield_+1 enhanced_lion_shield
 			}
 		}
 	}
-	
+
 	final static public String DEFAULT_ENTRY_ZONE="int_semos_townhall";
 
 	/**
@@ -444,7 +444,7 @@ lion_shield_+1 enhanced_lion_shield
 				RPSlot newSlot = new PlayerSlot(slotName);
 				loadSlotContent(player, slot, newSlot);
 			}
-			
+
 			for (Banks bank : Banks.values()) {
 				RPSlot slot = player.getSlot(bank.getSlotName());
 				RPSlot newSlot = new BankSlot(bank);
@@ -557,7 +557,7 @@ lion_shield_+1 enhanced_lion_shield
 		}
 	}
 
-	/** 
+	/**
 	 * send a welcome message to the player which can be configured
 	 * in marauroa.ini file as "server_welcome". If the value is
 	 * an http:// adress, the first line of that adress is read
