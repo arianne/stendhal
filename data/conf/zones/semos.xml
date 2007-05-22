@@ -12,18 +12,6 @@
  </zone>
 
  <zone name="0_semos_mountain_n2_w2" level="0" x="499744" y="499744" file="Level 0/semos/mountain_n2_w2.tmx">
-  <portal x="102" y="42" ref="floor_door_0">
-   <destination zone="0_semos_mountain_n2_w2" ref="upper_door"/>
-  </portal>
-  <portal x="103" y="42" ref="floor_door_1">
-   <destination zone="0_semos_mountain_n2_w2" ref="upper_door"/>
-  </portal>
-  <portal x="104" y="42" ref="floor_door_2">
-   <destination zone="0_semos_mountain_n2_w2" ref="upper_door"/>
-  </portal>
-  <portal x="116" y="40" ref="upper_door">
-   <destination zone="0_semos_mountain_n2_w2" ref="floor_door_1"/>
-  </portal>
  </zone>
 
  <zone name="0_semos_mountain_n2_w" level="0" x="499872" y="499744" file="Level 0/semos/mountain_n2_w.tmx">
@@ -36,6 +24,18 @@
  </zone>
 
  <zone name="0_semos_mountain_n2_e2" level="0" x="500256" y="499744" file="Level 0/semos/mountain_n2_e2.tmx">
+  <portal x="102" y="42" ref="floor_door_0">
+   <destination zone="0_semos_mountain_n2_e2" ref="upper_door"/>
+  </portal>
+  <portal x="103" y="42" ref="floor_door_1">
+   <destination zone="0_semos_mountain_n2_e2" ref="upper_door"/>
+  </portal>
+  <portal x="104" y="42" ref="floor_door_2">
+   <destination zone="0_semos_mountain_n2_e2" ref="upper_door"/>
+  </portal>
+  <portal x="116" y="40" ref="upper_door">
+   <destination zone="0_semos_mountain_n2_e2" ref="floor_door_1"/>
+  </portal>
  </zone>
 
  <zone name="0_semos_mountain_n_w3" level="0" x="499744" y="499872" file="Level 0/semos/mountain_n_w3.tmx">
@@ -131,7 +131,7 @@ Southeast: Farmhouse
   <portal x="86" y="26" ref="jail_entrance">
    <destination zone="-1_semos_jail" ref="entrance"/>
   </portal>
-  
+
   <entity x="53" y="26">
     <implementation class-name="games.stendhal.server.entity.FishSource">
      <parameter name="species">roach</parameter>
@@ -150,7 +150,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     </parameter>
    </implementation>
   </entity>
-  
+
   <entity x="23" y="48">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <parameter name="text">
@@ -428,7 +428,7 @@ Awww... so you're a coward, then? Huh.
    <portal x="42" y="37" ref="tavern_entrance">
      <destination zone="int_semos_tavern_0" ref="entrance"/>
    </portal>
-   
+
  <!--for the admin house -->
   <portal x="59" y="37" ref="house_exit_1">
    <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
@@ -500,7 +500,7 @@ Caution: These dungeons contain many rats, and more dangerous creatures. Enter a
     </parameter>
    </implementation>
   </entity>
-  
+
 
 <!-- TEST - Make the bird statue in semos a semi-safe zone -->
 <!--
@@ -535,7 +535,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
-    
+
     <!-- This must be after the NPC configurator -->
     <entity x="2" y="16">
      <implementation class-name="games.stendhal.server.entity.NPCOwnedChest">
@@ -554,7 +554,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 
    <zone name="int_semos_tavern_1" file="interiors/semos/tavern_1.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC" />
-    <configurator class-name="games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC" />    
+    <configurator class-name="games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC" />
 
     <portal x="4" y="4" ref="downstairs">
      <destination zone="int_semos_tavern_0" ref="upstairs"/>
@@ -564,7 +564,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
    <zone name="int_semos_temple" file="interiors/semos/temple.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.temple.HealerNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.temple.TelepathNPC" />
-    
+
     <portal x="10" y="23" ref="entrance_left">
      <destination zone="0_semos_city" ref="temple_entrance"/>
     </portal>
@@ -580,7 +580,7 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <portal x="13" y="23" ref="entrance_right">
      <destination zone="0_semos_city" ref="temple_entrance"/>
     </portal>
-    
+
     <portal x="11" y="10" ref="restart_life">
    	 <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
   	</portal>
@@ -859,7 +859,7 @@ Holy mackerel! These chips are tasty.
    <zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.townhall.BoyNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.townhall.MayorNPC" />
-    
+
     <portal x="14" y="46" ref="entrance_left">
      <destination zone="0_semos_city" ref="townhall_entrance_left"/>
     </portal>
@@ -933,7 +933,7 @@ Holy mackerel! These chips are tasty.
      <destination zone="0_semos_city" ref="bakery_entrance"/>
     </portal>
    </zone>
-   
+
     <!--for the admin house -->
    <zone name="int_semos_house" file="interiors/semos/house.tmx">
       <entity x="6" y="10">
@@ -984,7 +984,7 @@ Holy mackerel! These chips are tasty.
      <implementation class-name="games.stendhal.server.entity.WalkBlocker"/>
      <attribute name="description">You see a table which looks clean enough to eat from.</attribute>
     </entity>
-    </zone> 
+    </zone>
 
  <zone name="0_semos_road_e" level="0" x="500128" y="500000" file="Level 0/semos/road_e.tmx">
    <entity x="113" y="51">
@@ -1095,7 +1095,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="probability">30</parameter>
     <parameter name="players-only">true</parameter>
    </implementation>
-  </entity> 
+  </entity>
   <entity x="205" y="22">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
@@ -1267,7 +1267,7 @@ Mature sheep wanted: please speak to Sato
   <portal x="59" y="67" ref="jail_entrance_left">
    <destination zone="int_semos_temple" ref="restart_life"/>
   </portal>
- 
+
  </zone>
 
  <zone name="-2_semos_catacombs" level="-2" x="500000" y="499872" file="Level -2/semos/catacombs.tmx">
