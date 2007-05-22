@@ -250,7 +250,7 @@
 			<fileset dir="${sprites}"/>
 		</copy>
 
-		<copy todir="${build_client_data}/docu">
+		<copy todir="${build_client_data}/data/docu">
 			<fileset dir="${docu}"/>
 		</copy>
 
