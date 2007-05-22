@@ -3,9 +3,10 @@ package games.stendhal.server.actions.equip;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -82,4 +83,25 @@ public class EquipmentActionTest {
 		Assert.assertTrue("error message on invalid slot", player.getPrivateText() != null);
 	}
 
+	@Test
+	public void testDrop() {
+
+		MockPlayer player = new MockPlayer();
+		player.addSlot(new RPSlot("bag"));
+
+		RPAction drop = new RPAction();
+		drop.put("type", "drop");
+		drop.put("baseobject", player.getID().getObjectID());
+		drop.put("baseslot", "bag");
+		drop.put("x", player.getX());
+		drop.put("y", player.getY() + 1);
+		drop.put("quantity", "1");
+		drop.put("baseitem", -1);
+
+		EquipmentAction action = new EquipmentAction();
+		action.onAction(player, drop);
+		System.err.println(player.getPrivateText());
+		
+		Assert.assertTrue("error message on invalid item", player.getPrivateText() != null);
+	}
 }
