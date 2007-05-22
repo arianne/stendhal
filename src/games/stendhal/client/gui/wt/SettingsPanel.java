@@ -40,7 +40,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	private static final int WIDTH = 165;
 
 	/** height of this panel */
-	private static final int HEIGHT = 210;
+	private static final int HEIGHT = 180;
 
 	private StendhalClient client;
 
@@ -56,7 +56,7 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 
 	public BuyWindow buywindow;
 
-	private GameButtonHelper gbh;
+        private GameButtonHelper gbh;
 
 	/** the minimap panel */
 	private Minimap minimap;
@@ -114,12 +114,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		buywindow = new BuyWindow(StendhalUI.get());
 		buywindow.registerCloseListener(this);
 		buywindow.setVisible(false);
-		ui.addWindow(buywindow);
+		ui.addWindow(buywindow); 
 
-		gbh = new GameButtonHelper(this, StendhalUI.get());
+	      	gbh = new GameButtonHelper(this, StendhalUI.get());
 		gbh.registerCloseListener(this);
 		gbh.setVisible(false);
-		ui.addWindow(gbh);
+		ui.addWindow(gbh); 
 
 		inventory = new EntityContainer(client, "bag", 3, 4);
 		inventory.registerCloseListener(this);
@@ -166,12 +166,12 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		addChild(button);
 		buttonMap.put("buddies", button);
 
-		button = new WtButton("gametools", 150, 25, "Enable Game Tools");
+		/*	button = new WtButton("gametools", 150, 25, "Enable Game Tools");
 		button.moveTo(5, 155);
 		button.setPressed(gbh.isVisible());
 		button.registerClickListener(this);
 		addChild(button);
-		buttonMap.put("gametools", button);
+		buttonMap.put("gametools", button); */
 
 	}
 
@@ -238,9 +238,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		} else if (name.equals("buddies")) {
 			// check buddy panel
 			buddies.setVisible(state);
-		} else if (name.equals("gametools")) {
+			/*	} else if (name.equals("gametools")) {
 			// check gametools panel
-			gbh.setVisible(state);
+			gbh.setVisible(state); */
 
                 }
 	}
