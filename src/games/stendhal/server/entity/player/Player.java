@@ -1288,7 +1288,7 @@ public class Player extends RPEntity implements TurnListener {
 				// highest regen value doesn't have to mean it
 				// actually heals fastest; it also depends on the
 				// frequency.
-				return Math.abs(o2.getRegen()*o2.getFrecuency()) - Math.abs(o1.getRegen()*o1.getFrecuency());
+				return Math.abs(o2.getRegen()) - Math.abs(o1.getRegen());
 			}
 
 			@Override
