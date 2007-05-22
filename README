@@ -70,7 +70,8 @@ Changelog
 - Fado city is open
 - a woman in fado collects cloaks
 - the tavern maid in fado makes a special soup
-- get engaged, get a wedding ring made then get married at fado church
+- get engaged, get a wedding ring made 
+- get married at fado church then go on a honeymoon in the hotel
 - learn about Karma - it is also now used for more quests and activities
 - a sleeping cow now indicates that a player is away
 - Ported maps to a new format that is a lot less memory intensive
@@ -88,6 +89,7 @@ Changelog
 - On teleport screen change inmediately to your position.
 - fixed a problem with invisible creatures.
 - Added new outfits.
+- Admin House in semos with useful portals and nice NPC
 
 0.59 Apr 14, 2007
 World:
