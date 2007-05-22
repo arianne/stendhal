@@ -17,8 +17,6 @@ import games.stendhal.server.maps.semos.storage.HousewifeNPC;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
