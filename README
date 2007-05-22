@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-| This program is free software; you can redistribute it and/or modify         
+| This program is free software; you can redistribute it and/or modify
 | it under the terms of the GNU General Public License as published by
 | the Free Software Foundation.
-| 
+|
 | This program is distributed in the hope that it will be useful,
 | but WITHOUT ANY WARRANTY; without even the implied warranty of
 | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -12,20 +12,20 @@
 
 Stendhal
 --------
- 
+
 Are you looking for adventure? Want to fight for riches?
 Develop yourself and your social standing? Meet new people?
-Do you want to be part of a brave new world? 
+Do you want to be part of a brave new world?
 
-Stendhal is a fully fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system. 
+Stendhal is a fully fledged multiplayer online adventures game (MMORPG) developed using the Arianne game development system.
 
-Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons. 
+Stendhal features a new, rich and expanding world in which you can explore towns, buildings, plains, caves and dungeons.
 You will meet NPCs and acquire tasks and quests for valuable experience and cold hard cash.
 
-Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your 
-armour and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters! 
+Your character will develop and grow and with each new level up become stronger and better. With the money you acquire you can buy new items and improve your
+armour and weapons. And for the blood thirsty of you; satisfy your killing desires by roaming the world in search of evil monsters!
 
-Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment. 
+Stendhal is totally platform independent, written using Java 1.5 and the Java2D environment.
 
 So what are you waiting for?! A whole new world awaits...
 
@@ -33,7 +33,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.59
+Version 0.60
 
 
 How to play
@@ -66,11 +66,11 @@ No warranties. But let us know if it doesn't work.
 
 Changelog
 ---------
-0.60 May XX, 2007
+0.60 May 22, 2007
 - Fado city is open
 - a woman in fado collects cloaks
 - the tavern maid in fado makes a special soup
-- get engaged, get a wedding ring made 
+- get engaged, get a wedding ring made
 - get married at fado church then go on a honeymoon in the hotel
 - learn about Karma - it is also now used for more quests and activities
 - a sleeping cow now indicates that a player is away
@@ -90,6 +90,10 @@ Changelog
 - fixed a problem with invisible creatures.
 - Added new outfits.
 - Admin House in semos with useful portals and nice NPC
+- Added a full new area at Semos mine for level above 90.
+- Added around 30 new creatures and around 40 new items that are dropped by them.
+- Refactored all the creatures' drops so they do drop less but more useful stuff.
+- Added new maps that communicate drows mines with ados caves.
 
 0.59 Apr 14, 2007
 World:
@@ -135,7 +139,7 @@ Technical:
 - trading table added in semos townhall
 - improve Minimap: moveto by Double-Clicking
 - closed panel windows keep state on restart
-- rat city is open 
+- rat city is open
 - new zone configuration using xml
 - ctrl+r in gui clears all active text bubbles
 - mayor now tells how long till next quest
@@ -169,7 +173,7 @@ Technical:
 - fixed a problem which caused jumpy movement of slow creatures and NPCs.
 - a house in ados is haunted
 - the children of ados park are bored and want some toys
-- monks and elementals are worshipping on the mountains to the west 
+- monks and elementals are worshipping on the mountains to the west
 - Balduin is excited about weapons from the new creatures
 
 0.56  Dec 19, 2006
@@ -483,8 +487,8 @@ Marauroa:
   - Elder Dwarf
   - Orc warrior
   - Orc chief
- 
- 
+
+
 0.42 Jan 14, 2006
 
 - Added Venom rat.
@@ -670,7 +674,7 @@ Marauroa:
 - Fixed a bug related to sheep duplication
 - Added storable/volatile attributes
 - Logout position remembered
-- Text over all 
+- Text over all
 - Double click for default action ( instead of a single one ).
 - Added push action
 - Limited to 50 fps. Save CPU cycles.
