@@ -355,7 +355,7 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 	 * Cleans the old chat log entries.
 	 */
 	public void cleanChatLog(Transaction trans) {
-		try {
+		/*try {
 			Connection connection = ((JDBCTransaction) trans).getConnection();
 			Statement stmt = connection.createStatement();
 			logger.info("cleaning chat log");
@@ -363,6 +363,6 @@ public class StendhalPlayerDatabase extends JDBCPlayerDatabase {
 			stmt.close();
 		} catch (SQLException e) {
 			logger.error(e, e);
-		}
+		}*/
 	}
 }
