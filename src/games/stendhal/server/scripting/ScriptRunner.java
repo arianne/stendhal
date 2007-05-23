@@ -77,7 +77,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 		name = name.trim();
 
 		// block exploit
-		if (name.indexOf("..") < 0) {
+		if (name.indexOf("..") >= 0) {
 			return (ret);
 		}
 
