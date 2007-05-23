@@ -59,9 +59,7 @@ class PlayerRPClass {
 	private static boolean firstWelcomeException = true;
 
 	/** these items should be bound */
-	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key",
-	         "golden_boots", "golden_helmet",
-	        "trophy_helmet", "marked_scroll");
+	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet");
 
 	/*
 	 *
@@ -566,7 +564,7 @@ lion_shield_+1 enhanced_lion_shield
 	 * @param player Player
 	 */
 	static void welcome(Player player) {
-		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne";
+		String msg = "This release is EXPERIMENTAL. Please report problems, suggestions and bugs. You can find us at IRC irc.freenode.net #arianne. Note: remember to keep your password completely secret, never tell it to another friend, player, or even admin.";
 		try {
 			Configuration config = Configuration.getConfiguration();
 			if (config.has("server_welcome)")) {
