@@ -193,8 +193,6 @@ public abstract class RPEntity extends ActiveEntity {
 	public void drawHPbar(final GameScreen screen) {
 		Point p = screen.convertWorldToScreen(x, y);
 		drawHPbar(screen.expose(), p.x, p.y);
-
-		((RPEntity2DView) view).drawHPbar(screen);
 	}
 
 
@@ -216,6 +214,20 @@ public abstract class RPEntity extends ActiveEntity {
 		if (nameImage != null) {
 			nameImage.draw(g2d, x, y - 3 - nameImage.getHeight());
 		}
+
+		float hpRatio = getHPRatio();
+
+		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
+		float g = Math.min(hpRatio * 2.0f, 1.0f);
+
+		g2d.setColor(Color.gray);
+		g2d.fillRect(x, y - 3, 32, 3);
+
+		g2d.setColor(new Color(r, g, 0.0f));
+		g2d.fillRect(x, y - 3, (int) (hpRatio * 32.0), 3);
+
+		g2d.setColor(Color.black);
+		g2d.drawRect(x, y - 3, 32, 3);
 	}
 
 

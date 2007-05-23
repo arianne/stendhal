@@ -16,7 +16,6 @@ import games.stendhal.client.SpriteStore;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
@@ -108,44 +107,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
 		map.put(ActiveEntity.STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
 		map.put(ActiveEntity.STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
-	}
-
-
-	/** Draws only the hp bar **/
-	public void drawHPbar(final GameScreen screen) {
-		Point p = screen.convertWorldToScreen(rpentity.getX(), rpentity.getY());
-		drawHPbar(screen.expose(), p.x, p.y);
-	}
-
-
-	/**
-	 * Draw the entity HP bar.
-	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 */
-	protected void drawHPbar(final Graphics2D g2d, int x, int y) {
-		/*
-		 * Don't draw if full ghostmode
-		 */
-		if(rpentity.isGhostMode()) {
-			return;
-		}
-
-		float hpRatio = rpentity.getHPRatio();
-
-		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
-		float g = Math.min(hpRatio * 2.0f, 1.0f);
-
-		g2d.setColor(Color.gray);
-		g2d.fillRect(x, y - 3, 32, 3);
-
-		g2d.setColor(new Color(r, g, 0.0f));
-		g2d.fillRect(x, y - 3, (int) (hpRatio * 32.0), 3);
-
-		g2d.setColor(Color.black);
-		g2d.drawRect(x, y - 3, 32, 3);
 	}
 
 
