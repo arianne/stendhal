@@ -74,8 +74,17 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	// TODO: document and clean this method
 	private synchronized boolean perform(String name, String mode, Player player, String[] args) {
 		boolean ret = false;
-		ScriptingSandbox script = scripts.get(name);
 		name = name.trim();
+
+		// block exploit
+		if (name.indexOf("..") < 0) {
+			return (ret);
+		}
+
+		// if the script is already running get it, else null it
+		ScriptingSandbox script = scripts.get(name);
+
+		// unloading
 		if ("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
 			if ((script = scripts.remove(name)) != null) {
 				script.unload(player, args);
@@ -84,24 +93,27 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			script = null;
 		}
 
+		// load and/or execute
 		if ("load".equals(mode) || "execute".equals(mode)) {
-			if (name.indexOf("..") < 0) {
-				boolean ignoreExecute = false;
-				if (script == null) {
-					if (name.endsWith(".groovy")) {
-						script = new ScriptInGroovy(scriptDir + name);
-						ignoreExecute = true;
-					} else if (name.endsWith(".class")) {
-						script = new ScriptInJava(name);
-					}
-					if (script != null) {
-						ret = script.load(player, args);
-						scripts.put(name, script);
-					}
+			boolean ignoreExecute = false;
+
+			// load script if it is not already loaded,
+			// if we want to execute we'll also load it if needed
+			if (script == null) {
+				if (name.endsWith(".groovy")) {
+					script = new ScriptInGroovy(scriptDir + name);
+					ignoreExecute = true;
+				} else if (name.endsWith(".class")) {
+					script = new ScriptInJava(name);
 				}
-				if ("execute".equals(mode) && !ignoreExecute) {
-					ret = script.execute(player, args);
+				if (script != null) {
+					ret = script.load(player, args);
+					scripts.put(name, script);
 				}
+			}
+
+			if ("execute".equals(mode) && !ignoreExecute) {
+				ret = script.execute(player, args);
 			}
 		}
 
