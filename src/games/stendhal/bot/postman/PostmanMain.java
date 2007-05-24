@@ -45,8 +45,6 @@ public class PostmanMain extends Thread {
 
 	private String port;
 
-	private boolean tcp;
-
 	protected Postman postman = null;
 
 	protected long lastPerceptionTimestamp = 0;
@@ -68,13 +66,12 @@ public class PostmanMain extends Thread {
 	 * @param t TCP?
 	 * @throws SocketException on an network error
 	 */
-	public PostmanMain(String h, String u, String p, String c, String P, boolean t) throws SocketException {
+	public PostmanMain(String h, String u, String p, String c, String P) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
 		character = c;
 		port = P;
-		tcp = t;
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
@@ -263,7 +260,6 @@ public class PostmanMain extends Thread {
 				String character = null;
 				String host = null;
 				String port = null;
-				boolean tcp = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -276,14 +272,12 @@ public class PostmanMain extends Thread {
 						host = args[i + 1];
 					} else if (args[i].equals("-P")) {
 						port = args[i + 1];
-					} else if (args[i].equals("-t")) {
-						tcp = true;
 					}
 					i++;
 				}
 
 				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
-					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port, tcp);
+					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port);
 					postmanMain.start();
 					return;
 				}
@@ -299,8 +293,6 @@ public class PostmanMain extends Thread {
 			System.out.println("* -u\tUsername to log into Marauroa server");
 			System.out.println("* -p\tPassword to log into Marauroa server");
 			System.out.println("* -c\tCharacter used to log into Marauroa server");
-			System.out.println("Optional parameters");
-			System.out.println("* -t\tuse tcp-connection to server");
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 			System.exit(1);
