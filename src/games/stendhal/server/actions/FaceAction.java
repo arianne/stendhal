@@ -12,7 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import marauroa.common.game.*;
 import games.stendhal.common.*;

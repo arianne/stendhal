@@ -18,7 +18,7 @@ import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This class is responsible of keeping players who have misbehaved

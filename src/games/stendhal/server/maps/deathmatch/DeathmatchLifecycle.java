@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.deathmatch;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * life cycle of the deathmatch

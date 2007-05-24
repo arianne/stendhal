@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * code for abstract/int_admin_playground which creates a NPC to help testers.

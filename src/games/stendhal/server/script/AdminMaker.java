@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Creates a portable NPC who gives ALL players powerful items,

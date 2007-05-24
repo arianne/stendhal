@@ -42,7 +42,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.server.game.Statistics;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public abstract class RPEntity extends Entity {
 

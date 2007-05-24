@@ -22,7 +22,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class LookAction implements ActionListener {
 

@@ -7,7 +7,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 

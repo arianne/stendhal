@@ -16,9 +16,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import marauroa.common.Log4J;
-import marauroa.server.game.RPWorld;
+import marauroa.server.game.rp.RPWorld;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * A Thread for finding a path without blocking the main game thread

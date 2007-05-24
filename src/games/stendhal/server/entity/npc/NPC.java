@@ -22,7 +22,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public abstract class NPC extends RPEntity {
 

@@ -14,7 +14,7 @@ import java.util.Random;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * An area that drains an RPEntity of HP while over it.

@@ -17,7 +17,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * An ItemChangeGuardCreature is a creature that is responsible for guarding a

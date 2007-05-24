@@ -14,7 +14,7 @@ import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows

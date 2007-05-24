@@ -92,7 +92,7 @@ public class AgeDumper {
 	public static void main(String[] args) throws Exception {
 		StendhalRPWorld.get();
 		Configuration.setConfigurationFile("marauroa-prod.ini");
-		JDBCPlayerDatabase db = (JDBCPlayerDatabase) StendhalPlayerDatabase.resetDatabaseConnection();
+		JDBCPlayerDatabase db = (JDBCPlayerDatabase) StendhalPlayerDatabase.newConnection();
 		AgeDumper itemDumper = new AgeDumper(db);
 		itemDumper.dump();
 	}

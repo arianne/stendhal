@@ -8,7 +8,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Useful method to deal with equipable items

@@ -19,7 +19,7 @@ import java.util.Map;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class StackableItem extends Item implements Stackable {
 

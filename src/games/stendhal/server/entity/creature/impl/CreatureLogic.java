@@ -16,7 +16,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class CreatureLogic {
 	private static Logger logger = Logger.getLogger(CreatureLogic.class);

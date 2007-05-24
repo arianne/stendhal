@@ -31,14 +31,14 @@ import games.stendhal.server.pathfinder.Path.Node;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
+
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObjectNotFoundException;
-import marauroa.server.game.NoRPZoneException;
-import marauroa.server.game.RPServerManager;
-
-import org.apache.log4j.Logger;
+import marauroa.server.game.rp.RPServerManager;
 
 public class StendhalRPAction {
 
@@ -267,8 +267,7 @@ public class StendhalRPAction {
 	 * @throws NoRPZoneException
 	 * @throws RPObjectNotFoundException
 	 */
-	public static boolean attack(RPEntity attacker, RPEntity defender) throws AttributeNotFoundException,
-	        NoRPZoneException, RPObjectNotFoundException {
+	public static boolean attack(RPEntity attacker, RPEntity defender) throws AttributeNotFoundException, RPObjectNotFoundException {
 		boolean result = false;
 
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(attacker.getID());
@@ -415,7 +414,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException {
+	public static void move(RPEntity entity) throws AttributeNotFoundException {
 		if (entity.stopped()) {
 			return;
 		}
@@ -498,12 +497,8 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 */
 	public static void transferContent(Player player) throws AttributeNotFoundException {
-		Log4J.startMethod(logger, "transferContent");
-
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
-		rpman.transferContent(player.getID(), zone.getContents());
-
-		Log4J.finishMethod(logger, "transferContent");
+		rpman.transferContent(player, zone.getContents());
 	}
 
 	/**
@@ -514,8 +509,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException,
-	        NoRPZoneException {
+	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException {
 		// String zoneid = player.get("zoneid");
 
 		StendhalRPZone origin = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
@@ -559,9 +553,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException {
-		Log4J.startMethod(logger, "usePortal");
-
+	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException {
 		if (!player.nextTo(portal)) {
 			// Too far to use the portal
 			return false;
@@ -588,7 +580,6 @@ public class StendhalRPAction {
 
 		dest.onUsedBackwards(player);
 
-		Log4J.finishMethod(logger, "usePortal");
 		return true;
 	}
 
@@ -731,10 +722,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException,
-	        NoRPZoneException {
-		Log4J.startMethod(logger, "changeZone");
-
+	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		String destination = zone.getID().getID();
@@ -772,8 +760,8 @@ public class StendhalRPAction {
 
 			player.removeSheep(sheep);
 
-			world.changeZone(source, destination, sheep);
-			world.changeZone(source, destination, player);
+			world.changeZone(destination, sheep);
+			world.changeZone(destination, player);
 
 			player.setSheep(sheep);
 
@@ -781,7 +769,7 @@ public class StendhalRPAction {
 //			zone.addPlayerAndFriends(sheep);
 
 		} else {
-			world.changeZone(source, destination, player);
+			world.changeZone(destination, player);
 		}
 //		zone.addPlayerAndFriends(player);
 
@@ -805,7 +793,6 @@ public class StendhalRPAction {
 		 * There isn't any world.modify because there is already considered
 		 * inside the implicit world.add call at changeZone
 		 */
-		Log4J.finishMethod(logger, "changeZone");
 	}
 
 	/**

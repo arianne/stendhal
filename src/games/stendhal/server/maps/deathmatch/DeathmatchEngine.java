@@ -23,7 +23,7 @@ import java.util.List;
 
 import marauroa.common.game.RPObjectNotFoundException;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * this is the internal class which handles an active deathmatch session

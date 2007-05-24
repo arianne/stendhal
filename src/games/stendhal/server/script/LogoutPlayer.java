@@ -12,7 +12,7 @@ import java.util.List;
 import marauroa.server.game.PlayerEntryContainer;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Logout a player

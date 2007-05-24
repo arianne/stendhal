@@ -20,7 +20,7 @@ import games.stendhal.server.StendhalRPAction;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class Portal extends Entity implements UseListener {
 

@@ -6,7 +6,7 @@
 
 package games.stendhal.server.actions;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;

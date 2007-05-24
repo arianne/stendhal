@@ -14,7 +14,7 @@ import games.stendhal.server.events.TurnNotifier;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.IRPZone;

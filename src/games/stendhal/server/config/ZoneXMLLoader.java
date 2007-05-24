@@ -11,7 +11,7 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 import marauroa.common.Log4J;
 
 /**

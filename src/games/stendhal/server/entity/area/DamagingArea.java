@@ -10,7 +10,7 @@ package games.stendhal.server.entity.area;
 //
 
 import java.util.Random;
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;

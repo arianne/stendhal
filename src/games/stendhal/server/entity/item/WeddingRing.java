@@ -24,7 +24,7 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * A special ring that allows the owner to teleport to his or her spouse.

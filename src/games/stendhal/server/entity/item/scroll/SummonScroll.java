@@ -26,7 +26,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Represents a creature summon scroll.

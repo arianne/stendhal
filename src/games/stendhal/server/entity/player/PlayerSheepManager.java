@@ -6,7 +6,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class PlayerSheepManager {
 	private static Logger logger = Logger.getLogger(PlayerSheepManager.class);

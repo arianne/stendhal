@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Represents the behaviour of a NPC who is able to either sell items

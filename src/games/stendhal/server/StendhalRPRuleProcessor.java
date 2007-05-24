@@ -21,7 +21,6 @@ import games.stendhal.server.actions.BuddyAction;
 import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.actions.CreateGuildAction;
 import games.stendhal.server.actions.DisplaceAction;
-import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.FaceAction;
 import games.stendhal.server.actions.LookAction;
 import games.stendhal.server.actions.MoveAction;
@@ -31,6 +30,7 @@ import games.stendhal.server.actions.PlayersQuery;
 import games.stendhal.server.actions.QuestListAction;
 import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
+import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -51,18 +51,16 @@ import java.util.Map;
 
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
-import marauroa.common.PropertyNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
-import marauroa.server.createaccount.Result;
-import marauroa.server.game.IRPRuleProcessor;
-import marauroa.server.game.RPServerManager;
+import marauroa.common.game.Result;
 import marauroa.server.game.Statistics;
-import marauroa.server.game.Transaction;
-
-import org.apache.log4j.Logger;
+import marauroa.server.game.db.Transaction;
+import marauroa.server.game.rp.IRPRuleProcessor;
+import marauroa.server.game.rp.RPServerManager;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 

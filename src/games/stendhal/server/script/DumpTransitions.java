@@ -11,7 +11,7 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/

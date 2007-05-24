@@ -15,7 +15,7 @@ import java.util.List;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Deep inspects a player and all his/her items

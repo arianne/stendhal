@@ -11,7 +11,7 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Manager for scripts written in Java.

@@ -41,7 +41,7 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Most /commands for admins are handled here. 

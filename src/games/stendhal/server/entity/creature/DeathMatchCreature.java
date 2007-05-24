@@ -3,7 +3,7 @@ package games.stendhal.server.entity.creature;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * An creature that will only reward the specified player 

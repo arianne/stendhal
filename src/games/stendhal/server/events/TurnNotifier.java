@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Other classes can register here to be notified at some time in the future.

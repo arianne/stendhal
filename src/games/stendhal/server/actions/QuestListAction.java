@@ -1,6 +1,6 @@
 package games.stendhal.server.actions;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPRuleProcessor;

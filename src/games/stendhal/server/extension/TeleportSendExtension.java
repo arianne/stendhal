@@ -12,7 +12,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Stendhal TeleportSend Extenstion

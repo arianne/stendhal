@@ -11,7 +11,7 @@ import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Creates a portable NPC which sell foods&drinks at meetings.

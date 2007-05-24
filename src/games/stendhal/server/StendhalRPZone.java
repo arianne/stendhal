@@ -49,17 +49,16 @@ import java.util.Set;
 import java.util.Vector;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.net.OutputSerializer;
-import marauroa.common.net.TransferContent;
-import marauroa.server.game.MarauroaRPZone;
+import marauroa.common.net.message.TransferContent;
+import marauroa.server.game.rp.MarauroaRPZone;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 
@@ -214,16 +213,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public void addLayer(String name, LayerDefinition layer) throws IOException {
-		Log4J.startMethod(logger, "addLayer");
-
 		byte[] byteContents=layer.encode();
 		addToContent(name, byteContents);
-		Log4J.finishMethod(logger, "addLayer");
 	}
 
 	public void addTilesets(String name, List<TileSetDefinition> tilesets) throws IOException {
-		Log4J.startMethod(logger, "addLayer");
-
 		/*
 		 * Serialize the tileset data to send it to client.
 		 */
@@ -247,7 +241,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		addToContent(name, array.toByteArray());
-		Log4J.finishMethod(logger, "addLayer");
     }
 
 	/**
@@ -266,17 +259,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public void addCollisionLayer(String name, LayerDefinition collisionLayer) throws IOException {
-		Log4J.startMethod(logger, "addCollisionLayer");
 		addToContent(name, collisionLayer.encode());
 		collisionMap.setCollisionData(collisionLayer);
-
-		Log4J.finishMethod(logger, "addCollisionLayer");
 	}
 
 	public void addProtectionLayer(String name, LayerDefinition protectionLayer) throws IOException {
-		Log4J.startMethod(logger, "addProtectionLayer");
 		protectionMap.setCollisionData(protectionLayer);
-		Log4J.finishMethod(logger, "addProtectionLayer");
 	}
 
 	public void setPosition(int level, int x, int y) {
@@ -326,8 +314,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * XXX - This should be moved to the zone loader or something.
 	 */
 	public void populate(LayerDefinition objectsLayer) throws IOException, RPObjectInvalidException {
-		Log4J.startMethod(logger, "populate");
-
 		/* We build the layer data */
 		objectsLayer.build();
 
@@ -343,8 +329,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 			}
 		}
-
-		Log4J.finishMethod(logger, "populate");
 	}
 
 	/**
@@ -507,7 +491,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 					}
 				}
 			}
-		} catch (AttributeNotFoundException e) {
+		} catch (Exception e) {
 			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
 		}
 	}
@@ -618,17 +602,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return contents;
 	}
 
-	public boolean isInProtectionArea(Entity entity) throws AttributeNotFoundException {
+	public boolean isInProtectionArea(Entity entity) {
 		Rectangle2D area = entity.getArea(entity.getX(), entity.getY());
 		return protectionMap.collides(area);
 	}
 
-	public boolean leavesZone(Entity entity, double x, double y) throws AttributeNotFoundException {
+	public boolean leavesZone(Entity entity, double x, double y) {
 		Rectangle2D area = entity.getArea(x, y);
 		return collisionMap.leavesZone(area);
 	}
 
-	public boolean simpleCollides(Entity entity, double x, double y) throws AttributeNotFoundException {
+	public boolean simpleCollides(Entity entity, double x, double y) {
 		Rectangle2D area = entity.getArea(x, y);
 		return collisionMap.collides(area);
 	}
@@ -777,7 +761,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param y2 y value of position 2
 	 * @return true if there is a collision
 	 */
-	public boolean collidesOnLine(int x1, int y1, int x2, int y2) throws AttributeNotFoundException {
+	public boolean collidesOnLine(int x1, int y1, int x2, int y2) {
 
 		Vector<Point> points = Line.renderLine(x1, y1, x2, y2);
 		for (Point point : points) {
@@ -788,7 +772,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return false;
 	}
 
-	public boolean collides(int x, int y) throws AttributeNotFoundException {
+	public boolean collides(int x, int y) {
 		return collisionMap.collides(x, y);
 	}
 
@@ -802,7 +786,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @return true iff the entity could stand on the given position
 	 * @throws AttributeNotFoundException
 	 */
-	public synchronized boolean collides(Entity entity, double x, double y) throws AttributeNotFoundException {
+	public synchronized boolean collides(Entity entity, double x, double y) {
 		return collides(entity, x, y, true);
 	}
 
@@ -818,7 +802,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @throws AttributeNotFoundException
 	 */
 	public synchronized boolean collides(Entity entity, double x, double y, boolean checkObjects)
-	        throws AttributeNotFoundException {
+	        {
 		Rectangle2D area = entity.getArea(x, y);
 
 		if (collisionMap.collides(area)) {
@@ -849,7 +833,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 *
 	 * @return the entity at x,y or null if there is none
 	 */
-	public synchronized Entity getEntityAt(double x, double y) throws AttributeNotFoundException {
+	public synchronized Entity getEntityAt(double x, double y) {
 		for (RPObject other : objects.values()) {
 			Entity otherEntity = (Entity) other;
 

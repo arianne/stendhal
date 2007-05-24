@@ -32,8 +32,7 @@ import java.net.ServerSocket;
 
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import simple.http.PipelineHandler;
 import simple.http.PipelineHandlerFactory;
@@ -51,6 +50,9 @@ import simple.http.serve.ProtocolHandlerFactory;
 import simple.template.View;
 
 public class StendhalHttpServer extends StendhalServerExtension implements ProtocolHandler {
+	/*
+	 * TODO: Port this to Java instead of using Groovy scripts. 
+	 */
 
 	private static final Logger logger = Log4J.getLogger(StendhalHttpServer.class);
 

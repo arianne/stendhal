@@ -20,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Creates an NPC which manages bets.
