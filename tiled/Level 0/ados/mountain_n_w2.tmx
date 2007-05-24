@@ -53,7 +53,7 @@
  </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dsXbbMBBFQZ8kLlLm/382bYpIIkECb5eY4nb2EYRZUrRFW99fX1/fkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRpab/+Kb0W3Wf6zvld6bVr3Hxm6een9ebmoG4Je3NQo7R9Yg7M4Bz7n/9p1Sx0n8nu9q/8r87BEYOnnJc623/yv2MOkqXNqtsf9e88C2m7yvYj/h1noOs8rNiPEf/uM9BhPlY931H/GTOQfvzULCTn/Yr/qMVdj9l1BpLeMy3SpfeyYmkT88A8XdqDed3SbqxrlDblnS/tzL5HvHX3LMxe548XpffvCVW2f+VuDmrMQAX7avNQeW13zkAF59V73WGNK2ah8n4+ufRcdDiedijtxr1Go/vJXpwlSZIkVerPh9Lr05jb2dLPR9d80+vVPOP0OjXXPb0ecdcac+77xHzPuO8X832r5O5+gj3t3WPS3z59zyD/nD3/XvHft1mv+Wlr/jl7/j06aj+yn2lr/p/tZ/jPsrvj/w6k97xKZ8/7R/1nHrv8M/azXVfZ8x+/3utszv+afcJ/hv3O/ld/xutszr++/wp7/rX8V5nv7n/F/inu/LP2q51ffRZF2mI3+4Txu9Ie1f07uPO/177b6/uVzyJKm1Tz72J/12dRpU345+z580+bPM2/6nXe7v5H3+up7j7i//tNaZdK9hX9rxzb79x38z/6tZXO/VfP7fz581/3ex/+9Zp93VfVnv9c+yrG/K/5p4732fZHZyBtNNu/4rFfxZ7/2Ax08D9i/2T/u/6ep6P/Ufun+5/9nifMwBl7/s+agbP2/LP+d88A/2v+3a8D+Y/772jPf8z+qn+Vaz/+zzj2+fPnz5//efsRf6//teN/vL+jKEfGAAABAA==
+   H4sIAAAAAAAAAO3dMXbbMBBFUZ8kLlJm/+vw/tKmiGQSIPhniFu8zj6CcIcUbdHW58fHx6ckSZIkSZIkSZIkSZIkSZIkSZIkSZIkSZIkSbq1X/+UXouuM33n/K702jVuvrL089P95uagbgl7c1CjtH1iDszgGvuf/+muWeg+k93tX/nPzsERg6eclzrbf+d/xRwkS5tVtz/q33kW0naV7Uf8O85A13m4Yz9G/LvPQIf5uOv5jvqvmIH046dmITnvM/6jFlc9ZtcZSHqvtEiX3suKpU3MA/N0aQ/mdUu7sa5R2pR3vrQz+x7x1tWzsHqdP16U3r8nVNn+lbs5qDEDFeyrzUPltV05AxWcr9rrr+Ba0+4js9DB/kxfBdbQdVae4N+ttBv3Go3uJ3txliRJklSpP9+UXp/G3M6Wfj6a802vV+uM0+vUWvf0esRd95hz3yfme8Z9v5jvWyV39xPsae8ek/726XsG+efs+feK/76tes1PW/PP2fPv0VH7kf1MW/P/3n6F/yq7K/7vQHrPq3T2vH/Uf+Wxyz9jv9r1Lnv+49d7nc35z9kn/FfY7+w/+zNeZ3P+9f3vsOdfy/8u8939Z+yf4s4/a3+386vPokhb7GafMH5X2qO6fwd3/tfad3t9n/ksorRJNf8u9ld9FlXahH/Onj//tMnT/Kte5+3uf/S9nuruI/6/35R2qWRf0X/m2H7nvpv/0a+tdO6fPbfz58//vt/78K/X6uu+qvb819pXMeY/55863lfbH52BtNFq/4rHfhV7/mMz0MH/iP2T/a/6e56O/kftn+5/9nueMANn7Pk/awbO2vPP+l89A/zn/LtfB/If99/Rnv+Y/ax/lWs//s849vnz58+f/3n7EX+v/7Xjf7y/gGFRQQAAAQA=
   </data>
  </layer>
  <layer name="1_terrain" width="128" height="128">
@@ -63,7 +63,7 @@
  </layer>
  <layer name="2_object" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3duw3CQBREUTcLjg3FAeZjSmNcA8FI63Okm4+02Ut2mgAAAAAAAAAAAAAAAAAAAAAAAPjHKZ3T3B5CxZIu6doeAgAAMIBburdHUPNIa3sEDM4t89j293fLBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYmz/jj82f8QAAwDO90rs9hIpP2tK3vAMAAAAAABjHD0LlRBEAAAEA
+   H4sIAAAAAAAAAO3duQ0CQRREwU0WsIHUuFmO0GhiQKKl2Srp+S19b5yZJgAAAAAAAAAAAAAAAAAAAAAAAH6xSuu0aQ+hYpt2ad8eAgAAMIBzurRHUHNNt/YIGJy3zGX73t9bJgAAAAAAdBzSMZ3aQ6hw/2VzfwAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+zZ/xy+bPeAAA4J7m9GgPoeKZXuld3gEAAAAAAIzjA0AwStsAAAEA
   </data>
  </layer>
  <layer name="3_roof" width="128" height="128">
