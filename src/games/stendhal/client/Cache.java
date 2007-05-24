@@ -11,7 +11,7 @@ import java.util.Properties;
 
 import marauroa.common.Configuration;
 import marauroa.common.io.Persistence;
-import marauroa.common.net.TransferContent;
+import marauroa.common.net.message.TransferContent;
 
 import marauroa.common.Logger;
 

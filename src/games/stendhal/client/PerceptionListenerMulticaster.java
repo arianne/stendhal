@@ -11,7 +11,7 @@ package games.stendhal.client;
 
 import marauroa.client.net.IPerceptionListener;
 import marauroa.common.game.RPObject;
-import marauroa.common.net.MessageS2CPerception;
+import marauroa.common.net.message.MessageS2CPerception;
 
 /**
  * A multicaster for IPerceptionListener. This will cascade perception
@@ -193,7 +193,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	 * @param e the exception that happened.
 	 * @param perception the message that causes the problem.
 	 */
-	public int onException(Exception e, MessageS2CPerception perception) throws Exception {
+	public void onException(Exception e, MessageS2CPerception perception) {
 		IPerceptionListener []	listeners;
 		int			idx;
 
@@ -205,8 +205,6 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 		while(idx-- != 0) {
 			listeners[idx].onException(e, perception);
 		}
-
-		return 0;
 	}
 
 
@@ -311,7 +309,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	 * @param type type of the perception: SYNC or DELTA.
 	 * @param timestamp the timestamp of the perception.
 	 */
-	public int onPerceptionBegin(byte type, int timestamp) {
+	public void onPerceptionBegin(byte type, int timestamp) {
 		IPerceptionListener []	listeners;
 		int			idx;
 
@@ -323,8 +321,6 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 		while(idx-- != 0) {
 			listeners[idx].onPerceptionBegin(type, timestamp);
 		}
-
-		return 0;
 	}
 
 
@@ -334,7 +330,7 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 	 * @param type type of the perception: SYNC or DELTA.
 	 * @param timestamp the timestamp of the perception.
 	 */
-	public int onPerceptionEnd(byte type, int timestamp) {
+	public void onPerceptionEnd(byte type, int timestamp) {
 		IPerceptionListener []	listeners;
 		int			idx;
 
@@ -346,15 +342,13 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 		while(idx-- != 0) {
 			listeners[idx].onPerceptionEnd(type, timestamp);
 		}
-
-		return 0;
 	}
 
 
 	/**
 	 * onSynced is called when the client recover sync.
 	 */
-	public int onSynced() {
+	public void onSynced() {
 		IPerceptionListener []	listeners;
 		int			idx;
 
@@ -366,15 +360,13 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 		while(idx-- != 0) {
 			listeners[idx].onSynced();
 		}
-
-		return 0;
 	}
 
 
 	/**
 	 * onUnsynced is called when the client losses sync.
 	 */
-	public int onUnsynced() {
+	public void onUnsynced() {
 		IPerceptionListener []	listeners;
 		int			idx;
 
@@ -386,27 +378,5 @@ public class PerceptionListenerMulticaster implements IPerceptionListener {
 		while(idx-- != 0) {
 			listeners[idx].onUnsynced();
 		}
-
-		return 0;
-	}
-
-
-	/**
-	 * Timeout.
-	 */
-	public int onTimeout() {
-		IPerceptionListener []	listeners;
-		int			idx;
-
-
-		listeners = this.listeners;
-
-		idx = listeners.length;
-
-		while(idx-- != 0) {
-			listeners[idx].onTimeout();
-		}
-
-		return 0;
 	}
 }

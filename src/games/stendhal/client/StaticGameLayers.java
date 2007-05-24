@@ -104,8 +104,6 @@ public class StaticGameLayers {
 	/** Add a new Layer to the set 
 	 * @throws ClassNotFoundException */
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
-		Log4J.startMethod(logger, "addLayer");
-
 		logger.debug("Layer name: " + name);
 
 		int i = name.indexOf('.');
@@ -124,62 +122,58 @@ public class StaticGameLayers {
 		 * area name.
 		 */
 
-		try {
-			if (layer.equals("collision")) {
-				/*
-				 * Add a collision layer.
-				 */
-				if(collisions.containsKey(area)) {
-					// Repeated layers should be ignored.
-					return;
-				}
-
-				CollisionDetection collision = new CollisionDetection();
-				collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
-
-				collisions.put(area, collision);
-			} else if (layer.equals("tilesets")) {
-				/*
-				 * Add tileset
-				 */
-				TileStore tileset = new TileStore();
-				tileset.addTilesets(new InputSerializer(in));
-
-				tilesets.put(area, tileset);
-			} else if (layer.endsWith("_map")) {
-				/*
-				 * It is the minimap image for this zone.
-				 */
-			} else {
-				/*
-				 * It is a tile layer.
-				 */
-				if(layers.containsKey(name)) {
-					// Repeated layers should be ignored.
-					return;
-				}
-
-				LayerRenderer content = null;
-
-				URL url = getClass().getClassLoader().getResource("data/layers/" + area + "/" + layer + ".jpg");
-
-				if (url != null) {
-					content = new ImageRenderer(url);
-				}
-
-				if (content == null) {
-					//TODO: XXX
-					content = new TileRenderer();
-					((TileRenderer) content).setMapData(new InputSerializer(in));
-				}
-
-				layers.put(name, content);
+		if (layer.equals("collision")) {
+			/*
+			 * Add a collision layer.
+			 */
+			if(collisions.containsKey(area)) {
+				// Repeated layers should be ignored.
+				return;
 			}
 
-			valid = false;
-		} finally {
-			Log4J.finishMethod(logger, "addLayer");
+			CollisionDetection collision = new CollisionDetection();
+			collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
+
+			collisions.put(area, collision);
+		} else if (layer.equals("tilesets")) {
+			/*
+			 * Add tileset
+			 */
+			TileStore tileset = new TileStore();
+			tileset.addTilesets(new InputSerializer(in));
+
+			tilesets.put(area, tileset);
+		} else if (layer.endsWith("_map")) {
+			/*
+			 * It is the minimap image for this zone.
+			 */
+		} else {
+			/*
+			 * It is a tile layer.
+			 */
+			if(layers.containsKey(name)) {
+				// Repeated layers should be ignored.
+				return;
+			}
+
+			LayerRenderer content = null;
+
+			URL url = getClass().getClassLoader().getResource("data/layers/" + area + "/" + layer + ".jpg");
+
+			if (url != null) {
+				content = new ImageRenderer(url);
+			}
+
+			if (content == null) {
+				//TODO: XXX
+				content = new TileRenderer();
+				((TileRenderer) content).setMapData(new InputSerializer(in));
+			}
+
+			layers.put(name, content);
 		}
+
+		valid = false;
 	}
 
 	public boolean collides(Rectangle2D shape) {
@@ -194,25 +188,19 @@ public class StaticGameLayers {
 
 	/** Removes all layers */
 	public void clear() {
-		Log4J.startMethod(logger, "clear");
 		layers.clear();
 		tilesets.clear();
 		collision = null;
 		area = null;
-		Log4J.finishMethod(logger, "clear");
 	}
 
 	/** Set the set of layers that is going to be rendered */
 	public void setRPZoneLayersSet(String area) {
-		Log4J.startMethod(logger, "setRPZoneLayersSet");
-
-		logger.info("Area: "+area);
+		logger.debug("Area: "+area);
 
 		this.area = area;
 		this.areaChanged = true;
 		valid = false;
-
-		Log4J.finishMethod(logger, "setRPZoneLayersSet");
 	}
 	
 

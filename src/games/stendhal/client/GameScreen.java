@@ -230,16 +230,12 @@ public class GameScreen {
 
 	/** Prepare screen for the next frame to be rendered and move it if needed */
 	public void nextFrame() {
-		Log4J.startMethod(logger, "nextFrame");
-
 		g.dispose();
 		strategy.show();
 
 		adjustView();
 
 		g = (Graphics2D) strategy.getDrawGraphics();
-
-		Log4J.finishMethod(logger, "nextFrame");
 	}
 
 
@@ -641,28 +637,20 @@ public class GameScreen {
 	 * Clear the screen.
 	 */
 	public void clear() {
-		Log4J.startMethod(logger, "clear");
-
 		texts.clear();
 		textsToRemove.clear();
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());
-
-		Log4J.finishMethod(logger, "clear");
 	}
 
 	/**
 	 * Removes all the text entities.
 	 */
 	public void clearTexts() {
-		Log4J.startMethod(logger, "clearText");
-
 		for (Iterator it = texts.iterator(); it.hasNext();) {
 			textsToRemove.add((Text) it.next());
 		}
-
-		Log4J.finishMethod(logger, "clearText");
 	}
 
 
