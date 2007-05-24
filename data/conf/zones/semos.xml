@@ -1058,9 +1058,108 @@ Mature sheep wanted: please speak to Sato
  <zone name="-1_semos_mine_n_e2" level="-1" x="500256" y="499744" file="Level -1/semos/mine_n_e2.tmx">
  </zone>
 
- <zone name="-1_semos_mine_nw" level="-1" x="499744" y="499872" file="Level -1/semos/mine_nw.tmx">
+ <zone name="int_wofol_house1" file="interiors/wofol/house1.tmx">
+  <portal x="5" y="8" ref="entrance">
+     <destination zone="-1_semos_mine_n_w2" ref="house1_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house2" file="interiors/wofol/house2.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_n_w2" ref="house2_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house3" file="interiors/wofol/house3.tmx">
+  <portal x="6" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_n_w2" ref="house3_entrance"/>
+   </portal>
+ </zone>
+
+ <zone name="-1_semos_mine_n_w2" level="-1" x="499744" y="499872" file="Level -1/semos/mine_n_w2.tmx">
+  <portal x="121" y="17" ref="house1_entrance">
+     <destination zone="int_wofol_house1" ref="entrance"/>
+   </portal>
+  <portal x="103" y="46" ref="house2_entrance">
+     <destination zone="int_wofol_house2" ref="entrance"/>
+   </portal>
+  <portal x="115" y="46" ref="house3_entrance">
+     <destination zone="int_wofol_house3" ref="entrance"/>
+   </portal>
+ </zone>
+
+ <zone name="int_wofol_house4" file="interiors/wofol/house4.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house4_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house5" file="interiors/wofol/house5.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house5_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house7" file="interiors/wofol/house7.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house7_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_blacksmith" file="interiors/wofol/blacksmith.tmx">
+  <portal x="5" y="11" ref="entrance_left">
+     <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_left"/>
+   </portal>
+  <portal x="19" y="11" ref="entrance_right">
+     <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_right"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house8" file="interiors/wofol/house8.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house8_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house9" file="interiors/wofol/house9.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house9_entrance"/>
+   </portal>
+ </zone>
+ <zone name="int_wofol_house6" file="interiors/wofol/house6.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house6_entrance"/>
+   </portal>
+  </zone>
+ <zone name="int_wofol_house10" file="interiors/wofol/house10.tmx">
+  <portal x="7" y="13" ref="entrance">
+     <destination zone="-1_semos_mine_nw" ref="house10_entrance"/>
+   </portal>
+  </zone>
+
+ <zone name="-1_semos_mine_nw" level="-1" x="499872" y="499872" file="Level -1/semos/mine_nw.tmx">
+   <portal x="6" y="23" ref="house4_entrance">
+     <destination zone="int_wofol_house4" ref="entrance"/>
+   </portal>
+   <portal x="24" y="23" ref="house5_entrance">
+     <destination zone="int_wofol_house5" ref="entrance"/>
+   </portal>
+   <portal x="40" y="25" ref="house7_entrance">
+     <destination zone="int_wofol_house7" ref="entrance"/>
+   </portal>
+   <portal x="17" y="65" ref="blacksmith_entrance_left">
+     <destination zone="int_wofol_blacksmith" ref="entrance_left"/>
+   </portal>
+  <portal x="28" y="65" ref="blacksmith_entrance_right">
+     <destination zone="int_wofol_blacksmith" ref="entrance_right"/>
+   </portal>
+   <portal x="45" y="65" ref="house8_entrance">
+     <destination zone="int_wofol_house8" ref="entrance"/>
+   </portal>
+   <portal x="58" y="65" ref="house9_entrance">
+     <destination zone="int_wofol_house9" ref="entrance"/>
+   </portal>
+  <portal x="63" y="86" ref="house6_entrance">
+     <destination zone="int_wofol_house6" ref="entrance"/>
+   </portal>
+   <portal x="30" y="94" ref="house10_entrance">
+     <destination zone="int_wofol_house10" ref="entrance"/>
+   </portal>
   <!-- Spikes -->
-  <entity x="205" y="20">
+  <entity x="77" y="20">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1069,7 +1168,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-    <entity x="206" y="20">
+    <entity x="78" y="20">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1078,7 +1177,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-  <entity x="205" y="21">
+  <entity x="77" y="21">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1087,7 +1186,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
- <entity x="206" y="21">
+ <entity x="78" y="21">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1096,7 +1195,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-  <entity x="205" y="22">
+  <entity x="77" y="22">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1105,7 +1204,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-    <entity x="206" y="22">
+    <entity x="78" y="22">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1114,7 +1213,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-   <entity x="205" y="26">
+   <entity x="77" y="26">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1123,7 +1222,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-  <entity x="206" y="26">
+  <entity x="78" y="26">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1132,7 +1231,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-   <entity x="205" y="27">
+   <entity x="77" y="27">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1141,7 +1240,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-  <entity x="206" y="27">
+  <entity x="78" y="27">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
@@ -1150,7 +1249,7 @@ Mature sheep wanted: please speak to Sato
     <parameter name="players-only">true</parameter>
    </implementation>
   </entity>
-   <entity x="206" y="28">
+   <entity x="77" y="28">
    <implementation class-name="games.stendhal.server.entity.area.DamagingArea">
     <parameter name="name">razor sharp spikes</parameter>
     <parameter name="interval">2</parameter>
