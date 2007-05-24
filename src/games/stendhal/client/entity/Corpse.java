@@ -15,7 +15,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.gui.wt.EntityContainer;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Corpse extends PassiveEntity implements Inspectable {
@@ -27,7 +26,7 @@ public class Corpse extends PassiveEntity implements Inspectable {
 
 
 	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) {
 		super.onChangedAdded(base, diff);
 	}
 

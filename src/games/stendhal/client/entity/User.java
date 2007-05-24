@@ -11,7 +11,6 @@ import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -202,7 +201,7 @@ public class User extends Player {
 
 
 	@Override
-    public void onChangedAdded(final RPObject base, final  RPObject diff) throws AttributeNotFoundException {
+    public void onChangedAdded(final RPObject base, final  RPObject diff) {
 		modificationCount++;
 		super.onChangedAdded(base, diff);
 

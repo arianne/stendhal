@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 /**
@@ -41,7 +40,7 @@ public class StackableItem extends Item {
 
 
 	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("quantity")) {

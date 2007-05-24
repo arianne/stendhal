@@ -18,7 +18,6 @@ import games.stendhal.common.Rand;
 
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -34,7 +33,7 @@ public class Sheep extends NPC {
 
 
 	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("weight")) {

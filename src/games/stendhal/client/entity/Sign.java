@@ -18,7 +18,6 @@ import games.stendhal.client.StendhalUI;
 import java.awt.Color;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {
@@ -29,7 +28,7 @@ public class Sign extends Entity {
 	private static final Color signColor = new Color(0x006400); // dark green
 
 	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject base, final RPObject diff) {
 		super.onChangedAdded(base, diff);
 
 		if (diff.has("text")) {
