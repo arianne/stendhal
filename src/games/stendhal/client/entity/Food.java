@@ -21,6 +21,11 @@ import marauroa.common.game.RPObject;
  */
 public abstract class Food extends Entity {
 	/**
+	 * Amount property.
+	 */
+	public final static Object	PROP_AMOUNT	= new Object();
+
+	/**
 	 * The current amount of food.
 	 */
 	private int amount;
@@ -101,7 +106,7 @@ public abstract class Food extends Entity {
 				SoundMaster.play("pop-2.wav", getX(), getY());
 			}
 
-//			fireChange(PROP_AMOUNT);
+			fireChange(PROP_AMOUNT);
 			fireChange(PROP_STATE);
 		}
 	}

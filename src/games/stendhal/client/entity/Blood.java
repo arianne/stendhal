@@ -22,6 +22,11 @@ import marauroa.common.game.RPObject;
  */
 public class Blood extends PassiveEntity {
 	/**
+	 * Amount property.
+	 */
+	public final static Object	PROP_AMOUNT	= new Object();
+
+	/**
 	 * The amount of blood.
 	 */
 	private String	amount;
@@ -101,7 +106,7 @@ public class Blood extends PassiveEntity {
 		 */
 		if (changes.has("amount")) {
 			amount = changes.get("amount");
-//			fireChange(PROP_AMOUNT);
+			fireChange(PROP_AMOUNT);
 			fireChange(PROP_STATE);
 		}
 	}
@@ -122,7 +127,7 @@ public class Blood extends PassiveEntity {
 		 */
 		if (changes.has("amount")) {
 			amount = "0";
-//			fireChange(PROP_AMOUNT);
+			fireChange(PROP_AMOUNT);
 			fireChange(PROP_STATE);
 		}
 	}

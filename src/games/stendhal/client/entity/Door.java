@@ -23,6 +23,11 @@ import games.stendhal.common.Direction;
  * A door entity.
  */
 public class Door extends Entity {
+	/**
+	 * Orientation property.
+	 */
+	public final static Object	PROP_ORIENTATION	= new Object();
+
 	/*
 	 * The closed state.
 	 */
@@ -155,7 +160,7 @@ public class Door extends Entity {
 		 */
 		if (changes.has("dir")) {
 			orientation = Direction.build(changes.getInt("dir"));
-//			fireChange(PROP_ORIENTATION);
+			fireChange(PROP_ORIENTATION);
 		}
 	}
 
@@ -183,7 +188,7 @@ public class Door extends Entity {
 		 */
 		if (object.has("dir")) {
 			orientation = Direction.STOP;
-//			fireChange(PROP_ORIENTATION);
+			fireChange(PROP_ORIENTATION);
 		}
 	}
 

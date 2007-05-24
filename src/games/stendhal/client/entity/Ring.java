@@ -19,6 +19,11 @@ import marauroa.common.game.RPObject;
  */
 public class Ring extends Item {
 	/**
+	 * Working property.
+	 */
+	public final static Object	PROP_WORKING	= new Object();
+
+	/**
 	 * Whether the chest is currently working.
 	 */
 	private boolean working;
@@ -82,7 +87,7 @@ public class Ring extends Item {
 			 * having amount > 0
 			 */
 			working = changes.getInt("amount") > 0;
-//			fireChange(PROP_WORKING);
+			fireChange(PROP_WORKING);
 			fireChange(PROP_STATE);
 		}
 	}

@@ -25,6 +25,11 @@ import marauroa.common.game.RPObject;
 /** A Player entity */
 public class Player extends RPEntity {
 	/**
+	 * Away property.
+	 */
+	public final static Object	PROP_AWAY	= new Object();
+
+	/**
 	 * The away message of this player.
 	 */
 	private String	away;
@@ -152,7 +157,7 @@ public class Player extends RPEntity {
 			 */
 			if (!object.has("away") || !object.get("away").equals(changes.get("away"))) {
 				away = changes.get("away");
-//				fireChange(PROP_AWAY);
+				fireChange(PROP_AWAY);
 				onAway(away);
 			}
 		}
@@ -187,7 +192,7 @@ public class Player extends RPEntity {
 
 		if (changes.has("away")) {
 			away = null;
-//			fireChange(PROP_AWAY);
+			fireChange(PROP_AWAY);
 			onAway(null);
 		}
 	}
