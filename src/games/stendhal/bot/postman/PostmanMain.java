@@ -19,12 +19,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.client.ariannexpTimeoutException;
-import marauroa.client.net.DefaultPerceptionListener;
+import marauroa.client.BannedAddressException;
+import marauroa.client.TimeoutException;
+import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.RPObject;
-import marauroa.common.net.MessageS2CPerception;
-import marauroa.common.net.TransferContent;
+import marauroa.common.net.InvalidVersionException;
+import marauroa.common.net.message.MessageS2CPerception;
+import marauroa.common.net.message.TransferContent;
 
 /**
  * Starts Postman and connect to server.
@@ -51,7 +53,7 @@ public class PostmanMain extends Thread {
 
 	protected Map<RPObject.ID, RPObject> world_objects;
 
-	protected marauroa.client.ariannexp clientManager;
+	protected marauroa.client.ClientFramework clientManager;
 
 	protected PerceptionHandler handler;
 
@@ -76,19 +78,51 @@ public class PostmanMain extends Thread {
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
-		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+		handler = new PerceptionHandler(new IPerceptionListener() {
+			public boolean onAdded(RPObject arg0) {
+	            return false;
+            }
 
-			@Override
-			public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
+			public boolean onClear() {
+	            return false;
+            }
+
+			public boolean onDeleted(RPObject arg0) {
+	            return false;
+            }
+
+			public void onException(Exception e, MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
 				e.printStackTrace();
-				return 0;
-			}
+            }
 
+			public boolean onModifiedAdded(RPObject arg0, RPObject arg1) {
+	            return false;
+            }
+
+			public boolean onModifiedDeleted(RPObject arg0, RPObject arg1) {
+	            return false;
+            }
+
+			public boolean onMyRPObject(RPObject arg0, RPObject arg1) {
+	            return false;
+            }
+
+			public void onPerceptionBegin(byte arg0, int arg1) {
+            }
+
+			public void onPerceptionEnd(byte arg0, int arg1) {
+            }
+
+			public void onSynced() {
+            }
+
+			public void onUnsynced() {
+            }
 		});
 
-		clientManager = new marauroa.client.ariannexp("games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ClientFramework("games/stendhal/log4j.properties") {
 
 			@Override
 			protected String getGameName() {
@@ -112,7 +146,7 @@ public class PostmanMain extends Thread {
 						}
 					}
 				} catch (Exception e) {
-					onError(3, "Exception while applying perception");
+					e.printStackTrace();
 				}
 			}
 
@@ -129,12 +163,10 @@ public class PostmanMain extends Thread {
 			protected void onServerInfo(String[] info) {
 				// do nothing
 			}
-
+			
 			@Override
-			protected void onError(int code, String reason) {
-				System.out.println(reason);
-				System.err.println(reason);
-				Runtime.getRuntime().halt(1);
+			protected void onPreviousLogins(List<String> previousLogins) {
+				
 			}
 
 			@Override
@@ -156,7 +188,7 @@ public class PostmanMain extends Thread {
 	@Override
 	public void run() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port), tcp);
+			clientManager.connect(host, Integer.parseInt(port));
 			clientManager.login(username, password);
 			PostmanIRC postmanIRC = new PostmanIRC(host);
 			postmanIRC.connect();
@@ -166,7 +198,7 @@ public class PostmanMain extends Thread {
 			System.err.println("Socket Exception");
 			Runtime.getRuntime().halt(1);
 			return;
-		} catch (ariannexpTimeoutException e) {
+		} catch (TimeoutException e) {
 			System.err.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
@@ -193,17 +225,28 @@ public class PostmanMain extends Thread {
 			}
 		}
 
-		long start = System.currentTimeMillis();
-		while (clientManager.logout() == false) {
-			if (start + 5000 < System.currentTimeMillis()) {
-				Runtime.getRuntime().halt(2);
-			}
-			try {
-				sleep(100);
-			} catch (InterruptedException e) {
-				// ignore
-			}
-		}
+		try {
+	        long start = System.currentTimeMillis();
+	        while (clientManager.logout() == false) {
+	        	/*
+	        	 * Milliseconds to wait before exit.
+	        	 */
+	        	if (start + 20000 < System.currentTimeMillis()) {
+	        		Runtime.getRuntime().halt(2);
+	        	}
+	        	try {
+	        		sleep(100);
+	        	} catch (InterruptedException e) {
+	        		// ignore
+	        	}
+	        }
+        } catch (InvalidVersionException e) {
+	        e.printStackTrace();
+        } catch (TimeoutException e) {
+	        e.printStackTrace();
+        } catch (BannedAddressException e) {
+	        e.printStackTrace();
+        }
 	}
 
 	/**
