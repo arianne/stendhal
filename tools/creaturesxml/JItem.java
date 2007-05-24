@@ -41,8 +41,7 @@ import org.xml.sax.SAXException;
 public class JItem extends javax.swing.JFrame {
     boolean justUpdateItem;
     private List<DefaultItem> filteredItems;
-    private List<DefaultItem> items;
-    private List<DefaultCreature> creatures;
+    private EditorXML xml;
     private boolean changes;
     
     private List<Pair<DefaultCreature,DropItem>> usedAt;
@@ -62,17 +61,15 @@ public class JItem extends javax.swing.JFrame {
     };
     
     /** Creates new form JItem */
-    public JItem() throws SAXException {
+    public JItem(EditorXML xml) throws SAXException {
         initComponents();
-        loadData("creatures.xml","items.xml");
+        this.xml=xml;
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         justUpdateItem=false;
     }
     
     private void loadData(String creatureFile, String itemFile) throws SAXException {
-        creatures=loadCreaturesList(creatureFile);
-        items=loadItemsList(itemFile);
-        filteredItems=items;
+        filteredItems=xml.getItems();
         setLists();
         itemList.setSelectedIndex(0);
         refresh();
@@ -127,9 +124,9 @@ public class JItem extends javax.swing.JFrame {
     private void updateCreatureList(String item) {
         itemUsedAtList.setModel(new javax.swing.AbstractListModel() {
             public Object getElementAt(int i) {
-                return creatures.get(i).getCreatureName();
+                return xml.getCreatures().get(i).getCreatureName();
             }
-            public int getSize() { return creatures.size(); }
+            public int getSize() { return xml.getCreatures().size(); }
         });
     }
     
@@ -137,7 +134,7 @@ public class JItem extends javax.swing.JFrame {
         filteredItems=new LinkedList<DefaultItem>();
         
         if(filter.length()>0) {
-            for(DefaultItem c: items) {
+            for(DefaultItem c: xml.getItems()) {
                 boolean add=false;
                 
                 if(field==null || field.equals("Name")) {
@@ -153,7 +150,7 @@ public class JItem extends javax.swing.JFrame {
                 }
             }
         } else {
-            filteredItems=items;
+            filteredItems=xml.getItems();
         }
         
         itemList.setModel(new javax.swing.AbstractListModel() {
@@ -164,65 +161,9 @@ public class JItem extends javax.swing.JFrame {
             public int getSize() { return filteredItems.size(); }
         });
         
-        amountOfItems.setText(Integer.toString(items.size()));
+        amountOfItems.setText(Integer.toString(xml.getItems().size()));
     }
     
-    private List<DefaultCreature> loadCreaturesList(String ref) throws SAXException {
-        CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
-        List<DefaultCreature> creatures = creatureLoader.load(ref);
-        sortCreatures(creatures);
-        
-        return creatures;
-    }
-    
-    private void sortCreatures(final List<DefaultCreature> creatures) {
-        Collections.sort(creatures, new Comparator<DefaultCreature>() {
-            
-            public int compare(DefaultCreature o1, DefaultCreature o2) {
-                return o1.getLevel() - o2.getLevel();
-            }
-            
-            @Override
-            public boolean equals(Object obj) {
-                return true;
-            }
-        });
-    }
-    
-    private List<DefaultItem> loadItemsList(String ref) throws SAXException {
-        ItemsXMLLoader itemsLoader = ItemsXMLLoader.get();
-        List<DefaultItem> items = itemsLoader.load(ref);
-        
-        sortItems(items);
-        
-//        for(DefaultItem actual: items) {
-//            actual.setValue(suggestItemValue(actual.getAttributes()));
-//            if(actual.getValue()<=0) {
-//                actual.setValue(1);
-//            }
-//        }
-        
-        return items;
-    }
-    
-     private void sortItems(final List<DefaultItem> items) {
-        Collections.sort(items, new Comparator<DefaultItem>() {
-            
-            public int compare(DefaultItem o1, DefaultItem o2) {
-                int cmp=o1.getItemClass().compareTo(o2.getItemClass());
-                if(cmp==0) {
-                    return o1.getValue()-o2.getValue();
-                } 
-                
-                return cmp;                          
-            }
-            
-            @Override
-            public boolean equals(Object obj) {
-                return true;
-            }
-        });
-    }
     
    private void clean(Graphics g) {
         g.setColor(Color.WHITE);
@@ -297,7 +238,7 @@ public class JItem extends javax.swing.JFrame {
         itemEquipable.setSelectedIndices(array);
         
         usedAt=new LinkedList<Pair<DefaultCreature,DropItem>>();
-        for(DefaultCreature c: creatures) {
+        for(DefaultCreature c: xml.getCreatures()) {
             List<DropItem> drops=c.getDropItems();
             for(DropItem it: drops) {
                 if(it.name.equals(actual.getItemName())) {
@@ -807,7 +748,7 @@ public class JItem extends javax.swing.JFrame {
                 out.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
                 out.println("<items>");
                 
-                for(DefaultItem c: items) {
+                for(DefaultItem c: xml.getItems()) {
                     out.println(c.toXML());
                 }
 
@@ -921,7 +862,7 @@ public class JItem extends javax.swing.JFrame {
             }
             actual.setEquipableSlots(canEquip);
  
-            sortItems(filteredItems);        
+            xml.sortItems(filteredItems);        
             setLists();
  
             refresh();
@@ -931,7 +872,7 @@ public class JItem extends javax.swing.JFrame {
     }//GEN-LAST:event_setButtonActionPerformed
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        items.add(new DefaultItem(null,null,null, -1));
+        xml.getItems().add(new DefaultItem(null,null,null, -1));
         updateItemList(null, filterValue.getText());
         updateCreatureList(null);
         itemList.setSelectedIndex(filteredItems.size()-1);
@@ -941,16 +882,6 @@ public class JItem extends javax.swing.JFrame {
         addButton.setEnabled(false);
     }//GEN-LAST:event_addButtonActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            new JItem().setVisible(true);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

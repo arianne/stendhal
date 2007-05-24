@@ -40,22 +40,19 @@ import org.xml.sax.SAXException;
 public class JCreature extends javax.swing.JFrame {
     boolean justUpdateCreature;
     private List<DefaultCreature> filteredCreatures;
-    private List<DefaultCreature> creatures;
-    private List<DefaultItem> items;
+    private EditorXML xml;
     private boolean changes;
     
     /** Creates new form JCreature */
-    public JCreature() throws SAXException {
+    public JCreature(EditorXML xml) throws SAXException {
         initComponents();
-        loadData("creatures.xml","items.xml");
+        loadData();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         justUpdateCreature=false;
     }
 
-    private void loadData(String creatureFile, String itemFile) throws SAXException {
-        creatures=loadCreaturesList(creatureFile);
-        filteredCreatures=creatures;
-        items=loadItemsList(itemFile);
+    private void loadData() throws SAXException {
+        filteredCreatures=xml.getCreatures();
         setLists();
         creatureList.setSelectedIndex(0);
         refresh();
@@ -99,16 +96,16 @@ public class JCreature extends javax.swing.JFrame {
     
     private void updateItemLists() {
         itemList.setModel(new javax.swing.AbstractListModel() {
-            public Object getElementAt(int i) { return items.get(i).getItemName(); }
-            public int getSize() { return items.size(); }
+            public Object getElementAt(int i) { return xml.getItems().get(i).getItemName(); }
+            public int getSize() { return xml.getItems().size(); }
         });
     }
 
     private void updateCreatureList(String field, String filter) {
         filteredCreatures=new LinkedList<DefaultCreature>();
-        
+                
         if(filter.length()>0) {
-            for(DefaultCreature c: creatures) {
+            for(DefaultCreature c: xml.getCreatures()) {
                 boolean add=false;
                 
                 if(field==null || field.equals("Name")) {
@@ -124,7 +121,7 @@ public class JCreature extends javax.swing.JFrame {
                 }
             }
         } else {
-            filteredCreatures=creatures;
+            filteredCreatures=xml.getCreatures();
         }
 
         creatureList.setModel(new javax.swing.AbstractListModel() {
@@ -135,35 +132,7 @@ public class JCreature extends javax.swing.JFrame {
             public int getSize() { return filteredCreatures.size(); }
         });
         
-        amountOfCreatures.setText(Integer.toString(creatures.size()));
-    }
-    
-    private List<DefaultCreature> loadCreaturesList(String ref) throws SAXException {
-        CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
-        List<DefaultCreature> creatures = creatureLoader.load(ref);
-        sortCreatures(creatures);
-        
-        /* Disabled.
-        for(DefaultCreature c: creatures) {
-            c.setLevel(c.getLevel(),20*suggestedXPValue(c.getLevel()));
-            c.setRespawnTime(suggestedRespawnValue(c.getLevel()));
-        }
-        */
-        return creatures;
-    }
-    
-    private void sortCreatures(final List<DefaultCreature> creatures) {
-        Collections.sort(creatures, new Comparator<DefaultCreature>() {
-            
-            public int compare(DefaultCreature o1, DefaultCreature o2) {
-                return o1.getLevel() - o2.getLevel();
-            }
-            
-            @Override
-            public boolean equals(Object obj) {
-                return true;
-            }
-        });
+        amountOfCreatures.setText(Integer.toString(xml.getCreatures().size()));
     }
     
     private List<DefaultItem> loadItemsList(String ref) throws SAXException {
@@ -917,6 +886,7 @@ public class JCreature extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        /* TODO: Query EditorXML for exit. */
         if(!changes) {
             System.exit(0);
         } else {
@@ -948,7 +918,7 @@ public class JCreature extends javax.swing.JFrame {
         if(itemList.getSelectedIndex()<0) {
             return;
         }
-        
+        List<DefaultItem> items=xml.getItems();
         switch(i) {
             case 0:
                 creatureDescription.insert(items.get(itemList.getSelectedIndex()).getItemName(), creatureDescription.getCaretPosition());
@@ -977,7 +947,7 @@ public class JCreature extends javax.swing.JFrame {
         }
 
         try {
-            loadData(cdata,"items.xml");        
+            xml.updateCreaturesFromFile(cdata);
         } catch (SAXException ex) {
             ex.printStackTrace();
         }        
@@ -1051,7 +1021,7 @@ public class JCreature extends javax.swing.JFrame {
                 out.println("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>");
                 out.println("<creatures>");
                 
-                for(DefaultCreature c: creatures) {
+                for(DefaultCreature c: xml.getCreatures()) {
                     out.println(c.toXML());
                 }
 
@@ -1139,7 +1109,7 @@ public class JCreature extends javax.swing.JFrame {
         actual.setAIProfiles(profiles);
         actual.setNoiseLines(noises);
         
-        sortCreatures(filteredCreatures);
+        xml.sortCreatures(filteredCreatures);
         setLists();
         refresh();
         
@@ -1150,7 +1120,7 @@ public class JCreature extends javax.swing.JFrame {
     }//GEN-LAST:event_setButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        creatures.add(new DefaultCreature(null,null,null, null));
+        xml.getCreatures().add(new DefaultCreature(null,null,null, null));
         updateItemLists();
         updateCreatureList(null, filter.getText());
         creatureList.setSelectedIndex(filteredCreatures.size()-1);
@@ -1164,19 +1134,8 @@ public class JCreature extends javax.swing.JFrame {
         refresh();
     }//GEN-LAST:event_creatureListValueChanged
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        try {
-            new JCreature().setVisible(true);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }       
-    }
-
     private double getItemValue(String name) {
-        for(DefaultItem it: items) {
+        for(DefaultItem it: xml.getItems()) {
             if(it.getItemName().equals(name)) {
                 return it.getValue();
             }
