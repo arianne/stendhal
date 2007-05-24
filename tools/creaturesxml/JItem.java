@@ -42,45 +42,31 @@ public class JItem extends javax.swing.JFrame {
     boolean justUpdateItem;
     private List<DefaultItem> filteredItems;
     private EditorXML xml;
-    private boolean changes;
     
     private List<Pair<DefaultCreature,DropItem>> usedAt;
     
-    final String[] slots=new String[] {
-        "bag",
-        "lhand",
-        "rhand",
-        "armor",
-        "head",
-        "legs",
-        "cloak",
-        "feet",
-        "finger",
-        "spells",
-        "keyring"
-    };
-    
     /** Creates new form JItem */
     public JItem(EditorXML xml) throws SAXException {
-        initComponents();
         this.xml=xml;
+        initComponents();
+        loadData();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         justUpdateItem=false;
     }
     
-    private void loadData(String creatureFile, String itemFile) throws SAXException {
+    private void loadData() throws SAXException {
         filteredItems=xml.getItems();
         setLists();
         itemList.setSelectedIndex(0);
         refresh();
     }
     
-    private void setLists() {
+    void setLists() {
         itemEquipable.setModel(new javax.swing.AbstractListModel() {
             public Object getElementAt(int i) {
-                return slots[i];
+                return EditorXML.slots[i];
             }
-            public int getSize() { return slots.length; }
+            public int getSize() { return EditorXML.slots.length; }
         });
         
         itemClass.setModel(new javax.swing.DefaultComboBoxModel(
@@ -223,8 +209,8 @@ public class JItem extends javax.swing.JFrame {
         Vector<Integer> selected=new Vector<Integer>();
         
         for(String slot: actual.getEquipableSlots()) {
-            for(int i=0;i<slots.length;i++) {
-                if(slot.equals(slots[i])) {
+            for(int i=0;i<EditorXML.slots.length;i++) {
+                if(slot.equals(EditorXML.slots[i])) {
                     selected.add(i);
                     break;
                 }
@@ -702,16 +688,7 @@ public class JItem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        if(!changes) {
-            System.exit(0);
-        } else {
-            int answer = JOptionPane.showConfirmDialog(this, "Exit without saving?");
-            if (answer == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            } else if (answer == JOptionPane.NO_OPTION) {
-                this.setVisible(true);
-            }        
-        }        
+        xml.requestFormClosing(this);
     }//GEN-LAST:event_formWindowClosing
 
     private void jLoadFromFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoadFromFileActionPerformed
@@ -729,7 +706,7 @@ public class JItem extends javax.swing.JFrame {
         }
 
         try {
-            loadData("creatures.xml", cdata);        
+            xml.updateItemsFromFile(cdata);
         } catch (SAXException ex) {
             ex.printStackTrace();
         }        
@@ -754,7 +731,7 @@ public class JItem extends javax.swing.JFrame {
 
                 out.println("</items>");
                 out.close();
-                changes=false;
+                xml.itemsChangeClear();
             }
             catch(FileNotFoundException e) { 
             }
@@ -828,7 +805,7 @@ public class JItem extends javax.swing.JFrame {
     
     private void setButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setButtonActionPerformed
         try {
-            changes=true;
+            xml.itemsChange();
             addButton.setEnabled(true);
             setButton.setForeground(Color.BLACK);
  
@@ -862,8 +839,8 @@ public class JItem extends javax.swing.JFrame {
             }
             actual.setEquipableSlots(canEquip);
  
-            xml.sortItems(filteredItems);        
-            setLists();
+            xml.sortItems(filteredItems);                    
+            xml.updateFrameContents();
  
             refresh();
         } catch (Exception e) {

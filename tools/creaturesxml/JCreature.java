@@ -41,10 +41,10 @@ public class JCreature extends javax.swing.JFrame {
     boolean justUpdateCreature;
     private List<DefaultCreature> filteredCreatures;
     private EditorXML xml;
-    private boolean changes;
     
     /** Creates new form JCreature */
     public JCreature(EditorXML xml) throws SAXException {
+        this.xml=xml;
         initComponents();
         loadData();
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -58,7 +58,7 @@ public class JCreature extends javax.swing.JFrame {
         refresh();
     }
     
-    private void setLists() {
+    void setLists() {
         creatureClass.setModel(new javax.swing.DefaultComboBoxModel(
              new String[] {
             "animal",
@@ -886,17 +886,7 @@ public class JCreature extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        /* TODO: Query EditorXML for exit. */
-        if(!changes) {
-            System.exit(0);
-        } else {
-            int answer = JOptionPane.showConfirmDialog(this, "Exit without saving?");
-            if (answer == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            } else if (answer == JOptionPane.NO_OPTION) {
-                this.setVisible(true);
-            }        
-        }        
+        xml.requestFormClosing(this);
     }//GEN-LAST:event_formWindowClosing
 
     private void FilterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterButtonActionPerformed
@@ -1027,7 +1017,7 @@ public class JCreature extends javax.swing.JFrame {
 
                 out.println("</creatures>");
                 out.close();
-                changes=false;
+                xml.creaturesChangeClear();
             }
             catch(FileNotFoundException e) { 
             }
@@ -1036,7 +1026,7 @@ public class JCreature extends javax.swing.JFrame {
 
     private void setButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setButtonActionPerformed
         try {
-        changes=true;
+        xml.creaturesChange();
         addButton.setEnabled(true);
         setButton.setForeground(Color.BLACK);
         
@@ -1110,7 +1100,7 @@ public class JCreature extends javax.swing.JFrame {
         actual.setNoiseLines(noises);
         
         xml.sortCreatures(filteredCreatures);
-        setLists();
+        xml.updateFrameContents();
         refresh();
         
         creatureList.setSelectedIndex(pos);

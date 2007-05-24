@@ -5,6 +5,8 @@ import games.stendhal.server.rule.defaultruleset.DefaultItem;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.xml.sax.SAXException;
 /*
  * EditorXML.java
@@ -20,23 +22,43 @@ import org.xml.sax.SAXException;
  * @author miguel
  */
 public class EditorXML {
-    private List<DefaultCreature> creatures;
-    private List<DefaultItem> items;
+    private boolean creaturesChange;
+    private boolean itemsChange;
+    private List<DefaultCreature> creaturesList;
+    private List<DefaultItem> itemsList;
+    
+    final static public String[] slots=new String[] {
+        "bag",
+        "lhand",
+        "rhand",
+        "armor",
+        "head",
+        "legs",
+        "cloak",
+        "feet",
+        "finger",
+        "spells",
+        "keyring"
+    };
+
+    JCreature creatureFrame;
+    JItem itemFrame;
     
     /** Creates a new instance of EditorXML */
     public EditorXML() throws SAXException {
-        creatures=loadCreaturesList("creatures.xml");
-        items=loadItemsList("items.xml");        
+        creaturesChange=false;
+        itemsChange=false;
+
+        creaturesList=loadCreaturesList("creatures.xml");
+        itemsList=loadItemsList("items.xml");
+
+        creatureFrame=new JCreature(this);
+        itemFrame=new JItem(this);        
     }
     
     public static void main(String[] args) throws SAXException {
         EditorXML xml=new EditorXML();
-        
-        JCreature creature=new JCreature(xml);
-        JItem item=new JItem(xml);
-        
-        creature.setVisible(true);
-        item.setVisible(true);        
+        xml.setVisible(true);
     }
     
     void sortCreatures(final List<DefaultCreature> creatures) {
@@ -53,14 +75,18 @@ public class EditorXML {
         });
     }
     
-    public void updateCreaturesFromFile(String ref) throws SAXException {
-        creatures=loadCreaturesList(ref);
-    }
-
-    public void updateItemsFromFile(String ref) throws SAXException {
-        items=loadItemsList(ref);
+    public void updateFrameContents() {
+        creatureFrame.setLists();
+        itemFrame.setLists();
     }
     
+    public void updateCreaturesFromFile(String ref) throws SAXException {
+        creaturesList=loadCreaturesList(ref);
+    }
+    
+    public void updateItemsFromFile(String ref) throws SAXException {
+        itemsList=loadItemsList(ref);
+    }
     
     private List<DefaultCreature> loadCreaturesList(String ref) throws SAXException {
         CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
@@ -69,11 +95,11 @@ public class EditorXML {
         
         return creatures;
     }
-
+    
     List<DefaultCreature> getCreatures() {
-        return creatures;
+        return creaturesList;
     }
-
+    
     private List<DefaultItem> loadItemsList(String ref) throws SAXException {
         ItemsXMLLoader itemsLoader = ItemsXMLLoader.get();
         List<DefaultItem> items = itemsLoader.load(ref);
@@ -83,16 +109,16 @@ public class EditorXML {
         return items;
     }
     
-     void sortItems(final List<DefaultItem> items) {
+    void sortItems(final List<DefaultItem> items) {
         Collections.sort(items, new Comparator<DefaultItem>() {
             
             public int compare(DefaultItem o1, DefaultItem o2) {
                 int cmp=o1.getItemClass().compareTo(o2.getItemClass());
                 if(cmp==0) {
                     return o1.getValue()-o2.getValue();
-                } 
+                }
                 
-                return cmp;                          
+                return cmp;
             }
             
             @Override
@@ -101,9 +127,47 @@ public class EditorXML {
             }
         });
     }
-
-     List<DefaultItem> getItems() {
-        return items;
+    
+    List<DefaultItem> getItems() {
+        return itemsList;
     }
     
+    public boolean hasChanges() {        
+        return creaturesChange || itemsChange;
+    }
+    
+    public void requestFormClosing(JFrame frame) {
+        if(!hasChanges()) {
+            System.exit(0);
+        } else {
+            int answer = JOptionPane.showConfirmDialog(frame, "Exit without saving?");
+            if (answer == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            } else if (answer == JOptionPane.NO_OPTION) {
+                frame.setVisible(true);
+            }        
+        }          
+    }
+
+    void creaturesChange() {
+        creaturesChange=true;
+    }
+
+    void creaturesChangeClear() {
+        creaturesChange=false;
+    }
+
+    void itemsChange() {
+        itemsChange=true;
+    }
+
+    void itemsChangeClear() {
+        itemsChange=false;
+    }
+
+    public void setVisible(boolean b) {
+        itemFrame.setVisible(true);
+        creatureFrame.setVisible(true);
+    }
+            
 }
