@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class GenerateBestiaryAndItems {
+	/* TESTING Branching... */
 
 	public static void generateCreatures() throws Exception {
 		CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
