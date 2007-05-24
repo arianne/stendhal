@@ -44,9 +44,12 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import marauroa.client.ariannexpTimeoutException;
+import marauroa.client.BannedAddressException;
+import marauroa.client.LoginFailedException;
+import marauroa.client.TimeoutException;
 import marauroa.common.Log4J;
 import marauroa.common.io.Persistence;
+import marauroa.common.net.InvalidVersionException;
 
 /**
  * Server login dialog.
@@ -328,21 +331,9 @@ public class LoginDialog extends JDialog {
 			return;
 		}
 
-		try {
-			if (client.login(profile.getUser(), profile.getPassword()) == false) {
-				String result = client.getEvent();
+			try {
+	            client.login(profile.getUser(), profile.getPassword());
 
-				if (result == null) {
-					result = "Server is not available right now. The server "
-					        + "may be down or, if you are using a custom server, "
-					        + "you may have entered its name and port number incorrectly.";
-				}
-
-				progressBar.cancel();
-				setEnabled(true);
-
-				JOptionPane.showMessageDialog(this, result, "Error Logging In", JOptionPane.ERROR_MESSAGE);
-			} else {
 				progressBar.step();
 				progressBar.finish();
 
@@ -350,21 +341,39 @@ public class LoginDialog extends JDialog {
 				owner.setVisible(false);
 				stendhal.doLogin = true;
 				client.setUserName(profile.getUser());
-			}
-		} catch (ariannexpTimeoutException ex) {
-			progressBar.cancel();
-			setEnabled(true);
+			} catch (InvalidVersionException e) {
+				progressBar.cancel();
+				setEnabled(true);
 
-			JOptionPane.showMessageDialog(this, "Server does not respond. The server may be down or, "
-			        + "if you are using a custom server, you may have entered "
-			        + "its name and port number incorrectly.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
-		} catch (Exception ex) {
-			progressBar.cancel();
-			setEnabled(true);
+				JOptionPane.showMessageDialog(this, 
+						"You are running an incompatible version of Stendhal. Please update", 
+						"Invalid version",
+						JOptionPane.ERROR_MESSAGE);
+            } catch (TimeoutException e) {
+				progressBar.cancel();
+				setEnabled(true);
 
-			JOptionPane.showMessageDialog(this, "Stendhal cannot connect. Please check that your connection "
-			        + "is set up and active, then try again.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
-		}
+				JOptionPane.showMessageDialog(this, 
+						"Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.", 
+						"Error Logging In", 
+						JOptionPane.ERROR_MESSAGE);				
+            } catch (LoginFailedException e) {
+				progressBar.cancel();
+				setEnabled(true);
+
+				JOptionPane.showMessageDialog(this, 
+						e.getMessage(), 
+						"Login failed", 
+						JOptionPane.INFORMATION_MESSAGE);
+            } catch (BannedAddressException e) {
+				progressBar.cancel();
+				setEnabled(true);
+
+				JOptionPane.showMessageDialog(this, 
+						"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+						"IP Banned",
+						JOptionPane.ERROR_MESSAGE);
+            }
 	}
 
 	/**
