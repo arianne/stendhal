@@ -695,7 +695,7 @@ public class JItem extends javax.swing.JFrame {
         String cdata=null;
         
         JFileChooser fc = new JFileChooser(".");
-        fc.setSelectedFile(new File("creatures.xml"));
+        fc.setSelectedFile(new File(EditorXML.itemsFile));
         fc.setDialogTitle("Choose items XML file");
         int returnVal = fc.showOpenDialog(this);
         if(returnVal == 0) {
@@ -707,6 +707,7 @@ public class JItem extends javax.swing.JFrame {
 
         try {
             xml.updateItemsFromFile(cdata);
+            xml.itemsChangeClear();
         } catch (SAXException ex) {
             ex.printStackTrace();
         }        
@@ -714,6 +715,7 @@ public class JItem extends javax.swing.JFrame {
 
     private void jSaveToFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveToFileActionPerformed
         JFileChooser fc = new JFileChooser(".");
+        fc.setSelectedFile(new File(EditorXML.itemsFile));
         fc.setDialogTitle("Choose items XML file to save");
         int returnVal = fc.showSaveDialog(this);
         if(returnVal == 0)

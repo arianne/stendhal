@@ -27,6 +27,9 @@ public class EditorXML {
     private List<DefaultCreature> creaturesList;
     private List<DefaultItem> itemsList;
     
+    public final static String itemsFile="data/conf/items.xml";
+    public final static String creaturesFile="data/conf/creatures.xml";
+    
     final static public String[] slots=new String[] {
         "bag",
         "lhand",
@@ -49,8 +52,8 @@ public class EditorXML {
         creaturesChange=false;
         itemsChange=false;
 
-        creaturesList=loadCreaturesList("creatures.xml");
-        itemsList=loadItemsList("items.xml");
+        creaturesList=loadCreaturesList(EditorXML.creaturesFile);
+        itemsList=loadItemsList(EditorXML.itemsFile);
 
         creatureFrame=new JCreature(this);
         itemFrame=new JItem(this);        
@@ -82,10 +85,12 @@ public class EditorXML {
     
     public void updateCreaturesFromFile(String ref) throws SAXException {
         creaturesList=loadCreaturesList(ref);
+        updateFrameContents();
     }
     
     public void updateItemsFromFile(String ref) throws SAXException {
         itemsList=loadItemsList(ref);
+        updateFrameContents();
     }
     
     private List<DefaultCreature> loadCreaturesList(String ref) throws SAXException {
