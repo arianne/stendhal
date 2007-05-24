@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 
@@ -19,6 +20,8 @@ import marauroa.client.*;
 import marauroa.client.net.*;
 import marauroa.common.game.*;
 import marauroa.common.net.*;
+import marauroa.common.net.message.MessageS2CPerception;
+import marauroa.common.net.message.TransferContent;
 
 public class textClient extends Thread {
 
@@ -36,11 +39,11 @@ public class textClient extends Thread {
 
 	private Map<RPObject.ID, RPObject> world_objects;
 
-	private marauroa.client.ariannexp clientManager;
+	private marauroa.client.ClientFramework clientManager;
 
 	private PerceptionHandler handler;
 
-	public textClient(String h, String u, String p, String c, String P, boolean t) throws SocketException {
+	public textClient(String h, String u, String p, String c, String P) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
@@ -49,18 +52,65 @@ public class textClient extends Thread {
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
-		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+		handler = new PerceptionHandler(new IPerceptionListener() {
 
-			@Override
-			public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
+			public boolean onAdded(RPObject arg0) {
+	            // TODO Auto-generated method stub
+	            return false;
+            }
+
+			public boolean onClear() {
+	            // TODO Auto-generated method stub
+	            return false;
+            }
+
+			public boolean onDeleted(RPObject arg0) {
+	            // TODO Auto-generated method stub
+	            return false;
+            }
+
+			public void onException(Exception e, MessageS2CPerception perception) {
 				e.printStackTrace();
 				System.out.println(perception);
-				return 0;
-			}
+            }
+
+			public boolean onModifiedAdded(RPObject arg0, RPObject arg1) {
+	            // TODO Auto-generated method stub
+	            return false;
+            }
+
+			public boolean onModifiedDeleted(RPObject arg0, RPObject arg1) {
+	            // TODO Auto-generated method stub
+	            return false;
+            }
+
+			public boolean onMyRPObject(RPObject arg0, RPObject arg1) {
+	            // TODO Auto-generated method stub
+	            return false;
+            }
+
+			public void onPerceptionBegin(byte arg0, int arg1) {
+	            // TODO Auto-generated method stub
+	            
+            }
+
+			public void onPerceptionEnd(byte arg0, int arg1) {
+	            // TODO Auto-generated method stub
+	            
+            }
+
+			public void onSynced() {
+	            // TODO Auto-generated method stub
+	            
+            }
+
+			public void onUnsynced() {
+	            // TODO Auto-generated method stub
+	            
+            }
 		});
 
-		clientManager = new marauroa.client.ariannexp("games/stendhal/log4j.properties") {
-
+		clientManager = new ClientFramework("games/stendhal/log4j.properties") {
 			@Override
 			protected String getGameName() {
 				return "stendhal";
@@ -99,7 +149,7 @@ public class textClient extends Thread {
 						System.out.println("</World contents ------------------------------------->");
 					}
 				} catch (Exception e) {
-					onError(3, "Exception while applying perception");
+					e.printStackTrace();
 				}
 			}
 
@@ -143,9 +193,10 @@ public class textClient extends Thread {
 			}
 
 			@Override
-			protected void onError(int code, String reason) {
-				System.out.println(reason);
-			}
+            protected void onPreviousLogins(List<String> arg0) {
+	            // TODO Auto-generated method stub
+	            
+            }
 		};
 
 	}
@@ -153,29 +204,26 @@ public class textClient extends Thread {
 	@Override
 	public void run() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port), true);
-			clientManager.login(username, password);
-		} catch (SocketException e) {
-			return;
-		} catch (ariannexpTimeoutException e) {
-			System.out.println("textClient can't connect to Stendhal server. Server is down?");
-			return;
-		}
+	        clientManager.connect(host, Integer.parseInt(port));
+	        clientManager.login(username, password);
 
-		boolean cond = true;
+	        boolean cond = true;
 
-		while (cond) {
-			clientManager.loop(0);
-			try {
-				sleep(100);
-			} catch (InterruptedException e) {
-			}
-			;
-		}
+	        while (cond) {
+	        	clientManager.loop(0);
+	        	try {
+	        		sleep(100);
+	        	} catch (InterruptedException e) {
+	        	}
+	        	;
+	        }
 
-		while (clientManager.logout() == false) {
-			;
-		}
+	        while (clientManager.logout() == false) {
+	        	;
+	        }
+        } catch (Exception e) {
+	        e.printStackTrace();
+        }
 	}
 
 	public static void main(String[] args) {
@@ -204,15 +252,13 @@ public class textClient extends Thread {
 						if ("1".equals(args[i + 1])) {
 							ShowWorld = true;
 						}
-					} else if (args[i].equals("-t")) {
-						tcp = true;
 					}
 					i++;
 				}
 
 				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
 					System.out.println("Parameter operation");
-					new textClient(host, username, password, character, port, tcp).start();
+					new textClient(host, username, password, character, port).start();
 					return;
 				}
 			}

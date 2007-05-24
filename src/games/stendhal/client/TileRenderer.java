@@ -62,7 +62,6 @@ public class TileRenderer extends LayerRenderer {
 	/** Sets the data that will be rendered 
 	 * @throws ClassNotFoundException */
 	public void setMapData(InputSerializer in) throws IOException, ClassNotFoundException {
-		Log4J.startMethod(logger, "setMapData");
 		LayerDefinition layer=LayerDefinition.decode(in);
 		width=layer.getWidth();
 		height=layer.getHeight();
@@ -70,7 +69,6 @@ public class TileRenderer extends LayerRenderer {
 		logger.debug("Layer("+layer.getName()+"): " +width+"x"+height);
 		
 		map=layer.expose();
-		Log4J.finishMethod(logger, "setMapData");
 	}
 	
 	@Override

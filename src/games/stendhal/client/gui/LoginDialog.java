@@ -317,7 +317,7 @@ public class LoginDialog extends JDialog {
 		setEnabled(false);
 
 		try {
-			client.connect(profile.getHost(), profile.getPort(), true);
+			client.connect(profile.getHost(), profile.getPort());
 
 			// for each major connection milestone call step()
 			progressBar.step();
