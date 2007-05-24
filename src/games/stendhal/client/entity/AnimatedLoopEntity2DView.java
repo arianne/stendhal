@@ -12,8 +12,6 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -48,9 +46,8 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 */
 	protected Sprite getAnimatedSprite() {
 		String resource = translate(entity.getType());
-		SpriteStore store = SpriteStore.get();
 
-		return new AnimatedSprite(store.getSprites(resource, 0, frames, 1, 1), 100L);
+		return SpriteStore.get().getAnimatedSprite(resource, 0, frames, 1.0, 1.0, 100L, true);
 	}
 
 
@@ -64,7 +61,7 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		sprite = getAnimatedSprite();
+		setSprite(getAnimatedSprite());
 	}
 
 

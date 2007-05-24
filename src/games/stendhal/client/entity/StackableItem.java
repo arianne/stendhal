@@ -19,8 +19,20 @@ import marauroa.common.game.RPObject;
  * This is a stackable item.
  */
 public class StackableItem extends Item {
+	/**
+	 * Quantity property.
+	 */
+	public final static Object	PROP_QUANTITY	= new Object();
+
+	/**
+	 * The item quantity.
+	 */
 	private int quantity;
 
+
+	/**
+	 * Create a stackable item.
+	 */
 	public StackableItem()  {
 		quantity = 0;
 	}
@@ -40,17 +52,6 @@ public class StackableItem extends Item {
 	}
 
 
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-		if (diff.has("quantity")) {
-			quantity = diff.getInt("quantity");
-			changed();
-		}
-	}
-
-
 	//
 	// Entity
 	//
@@ -63,5 +64,26 @@ public class StackableItem extends Item {
 	@Override
 	protected Entity2DView createView() {
 		return new StackableItem2DView(this);
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) throws AttributeNotFoundException {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("quantity")) {
+			quantity = changes.getInt("quantity");
+			fireChange(PROP_QUANTITY);
+		}
 	}
 }

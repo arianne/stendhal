@@ -39,6 +39,21 @@ import marauroa.common.game.RPObject;
  */
 public abstract class RPEntity extends ActiveEntity {
 	/**
+	 * Admin Level property.
+	 */
+	public final static Object	PROP_ADMIN_LEVEL= new Object();
+
+	/**
+	 * Outfit property.
+	 */
+	public final static Object	PROP_OUTFIT	= new Object();
+
+	/**
+	 * Title Type property.
+	 */
+	public final static Object	PROP_TITLE_TYPE	= new Object();
+
+	/**
 	 * The value of an outfit that isn't set.
 	 */
 	public static final int	OUTFIT_UNSET	= -1;
@@ -861,7 +876,7 @@ public abstract class RPEntity extends ActiveEntity {
 			 */
 			if (changes.has("outfit")) {
 				outfit = changes.getInt("outfit");
-				changed();
+				fireChange(PROP_OUTFIT);
 			}
 
 			/*
@@ -970,7 +985,7 @@ public abstract class RPEntity extends ActiveEntity {
 			if (changes.has("adminlevel")) {
 				adminlevel = changes.getInt("adminlevel");
 				titleChange = true;
-				changed();
+				fireChange(PROP_ADMIN_LEVEL);
 			}
 
 			/*
@@ -979,11 +994,12 @@ public abstract class RPEntity extends ActiveEntity {
 			if (changes.has("title_type")) {
 				titleType = changes.get("title_type");
 				titleChange = true;
-				changed();
+				fireChange(PROP_TITLE_TYPE);
 			}
 
 			if (changes.has("class") || changes.has("name") || changes.has("title") || changes.has("type")) {
 				titleChange = true;
+				fireChange(PROP_TITLE);
 			}
 
 			if(titleChange) {
@@ -1108,7 +1124,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		if (changes.has("outfit")) {
 			outfit = OUTFIT_UNSET;
-			changed();
+			fireChange(PROP_OUTFIT);
 		}
 
 		/*

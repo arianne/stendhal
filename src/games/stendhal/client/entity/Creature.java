@@ -32,6 +32,16 @@ import marauroa.common.game.RPObject;
 import org.apache.log4j.Logger;
 
 public class Creature extends RPEntity {
+	/**
+	 * Size property.
+	 */
+	public final static Object	PROP_SIZE		= new Object();
+
+	/**
+	 * Metamorphosis property.
+	 */
+	public final static Object	PROP_METAMORPHOSIS	= new Object();
+
 
 	@Override
 	protected void nonCreatureClientAddEventLine(final String text) {
@@ -73,10 +83,6 @@ public class Creature extends RPEntity {
 	/** the path we got */
 	private List<Node> moveToTargetPath;
 
-
-	protected static String translate(final String type) {
-		return "data/sprites/monsters/" + type + ".png";
-	}
 
 	public List<Node> getPatrolPath() {
 		return patrolPath;
@@ -470,12 +476,12 @@ public class Creature extends RPEntity {
 
 		if (changes.has("width")) {
 			width = changes.getDouble("width");
-			changed();
+			fireChange(PROP_SIZE);
 		}
 
 		if (changes.has("height")) {
 			height = changes.getDouble("height");
-			changed();
+			fireChange(PROP_SIZE);
 		}
 
 		/*
@@ -487,7 +493,7 @@ public class Creature extends RPEntity {
 
 		if (changes.has("metamorphosis")) {
 			metamorphosis = object.get("metamorphosis");
-			changed();
+			fireChange(PROP_METAMORPHOSIS);
 		}
 	}
 
@@ -504,7 +510,7 @@ public class Creature extends RPEntity {
 
 		if (changes.has("metamorphosis")) {
 			metamorphosis = null;
-			changed();
+			fireChange(PROP_METAMORPHOSIS);
 		}
 	}
 }

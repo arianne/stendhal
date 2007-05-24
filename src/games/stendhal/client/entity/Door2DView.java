@@ -13,8 +13,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-
-import games.stendhal.client.AnimatedSprite;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
@@ -74,7 +73,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		String name = door.getEntityClass();
 
 		switch(door.getOrientation()) {
@@ -117,22 +116,11 @@ public class Door2DView extends AnimatedStateEntity2DView {
 				height = 1.0;
 		}
 
-		String resource = "data/sprites/doors/" + name + ".png";
+		String resource = translate(name);
 		SpriteStore store = SpriteStore.get();
 
 		map.put(Door.STATE_OPEN, store.getAnimatedSprite(resource, 0, 1, width, height, 0L, false));
 		map.put(Door.STATE_CLOSED, store.getAnimatedSprite(resource, 1, 1, width, height, 0L, false));
-	}
-
-
-	/**
-	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a <code>close</code>
-	 * named animation, or override this method</strong>.
-	 */
-	@Override
-	protected Object getDefaultState() {
-		return Door.STATE_CLOSED;
 	}
 
 
@@ -163,5 +151,18 @@ public class Door2DView extends AnimatedStateEntity2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+
+	/**
+	 * Translate a resource name into it's sprite image path.
+	 *
+	 * @param	name		The resource name.
+	 *
+	 * @return	The full resource name.
+	 */
+	@Override
+	protected String translate(final String name) {
+		return "data/sprites/doors/" + name + ".png";
 	}
 }

@@ -13,15 +13,14 @@ import games.stendhal.client.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
 /**
- * The 2D view of an item.
+ * The 2D view of a spell.
  */
 public class Spell2DView extends Entity2DView {
 	/**
-	 * Create a 2D view of an item.
+	 * Create a 2D view of a spell.
 	 *
-	 * @param	entity		The entity to render.
+	 * @param	spell		The entity to render.
 	 */
 	public Spell2DView(final Spell spell) {
 		super(spell);
@@ -37,15 +36,7 @@ public class Spell2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		String name = entity.getEntityClass();
-		String subclass = entity.getEntitySubClass();
-
-		if(subclass != null) {
-			name += "/" + subclass;
-		}
-
-		sprite = SpriteStore.get().getSprite(
-			"data/sprites/spells/" + name + ".png");
+		setSprite(SpriteStore.get().getSprite(translate(getClassResourcePath())));
 	}
 
 
@@ -71,5 +62,39 @@ public class Spell2DView extends Entity2DView {
 	@Override
 	public int getZIndex() {
 		return 7000;
+	}
+
+
+	/**
+	 * Translate a resource name into it's sprite image path.
+	 *
+	 * @param	name		The resource name.
+	 *
+	 * @return	The full resource name.
+	 */
+	@Override
+	protected String translate(final String name) {
+		return "data/sprites/spells/" + name + ".png";
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		}
 	}
 }

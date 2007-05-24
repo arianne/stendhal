@@ -14,8 +14,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -25,42 +23,19 @@ import games.stendhal.client.SpriteStore;
  */
 public class Sheep2DView extends RPEntity2DView {
 	/**
-	 * Sprite representing eating.
-	 */
-	private static Sprite eatSprite;
-
-	/**
-	 * Sprite representing hunger.
-	 */
-	private static Sprite foodSprite;
-
-	/**
-	 * Sprite representing walking.
-	 */
-	private static Sprite walkSprite;
-
-	/**
-	 * Sprite representing following
-	 */
-	private static Sprite followSprite;
-
-
-	/**
 	 * The entity this view is for.
 	 */
 	private Sheep	sheep;
 
+	/**
+	 * The current idea sprite.
+	 */
 	private Sprite	ideaSprite;
 
-
-	static {
-		SpriteStore st = SpriteStore.get();
-
-		eatSprite = st.getSprite("data/sprites/ideas/eat.png");
-		foodSprite = st.getSprite("data/sprites/ideas/food.png");
-		walkSprite = st.getSprite("data/sprites/ideas/walk.png");
-		followSprite = st.getSprite("data/sprites/ideas/follow.png");
-	}
+	/**
+	 * The idea property changed.
+	 */
+	protected boolean	ideaChanged;
 
 
 	/**
@@ -73,6 +48,7 @@ public class Sheep2DView extends RPEntity2DView {
 
 		this.sheep = sheep;
 		ideaSprite = null;
+		ideaChanged = false;
 	}
 
 
@@ -88,22 +64,11 @@ public class Sheep2DView extends RPEntity2DView {
 	protected Sprite getIdeaSprite() {
 		String idea = sheep.getIdea();
 
-
 		if(idea == null) {
 			return null;
 		}
 
-		if ("eat".equals(idea)) {
-			return eatSprite;
-		} else if ("food".equals(idea)) {
-			return foodSprite;
-		} else if ("walk".equals(idea)) {
-			return walkSprite;
-		} else if ("follow".equals(idea)) {
-			return followSprite;
-		} else {
-			return null;
-		}
+		return SpriteStore.get().getSprite("data/sprites/ideas/" + idea + ".png");
 	}
 
 
@@ -119,7 +84,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	height		The image height in tile units.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map, double width, double height) {
+	protected void buildSprites(Map<Object, Sprite> map, double width, double height) {
 		Sprite tiles = getAnimationSprite();
 
 		SpriteStore store = SpriteStore.get();
@@ -160,7 +125,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		buildSprites(map, 1.0, 1.0);
 	}
 
@@ -198,10 +163,6 @@ public class Sheep2DView extends RPEntity2DView {
 	}
 
 
-	//
-	// <EntityView>
-	//
-
 	/**
 	 * Update representation.
 	 */
@@ -209,6 +170,30 @@ public class Sheep2DView extends RPEntity2DView {
 	public void update() {
 		super.update();
 
-		ideaSprite = getIdeaSprite();
+		if(ideaChanged) {
+			ideaSprite = getIdeaSprite();
+			ideaChanged = false;
+		}
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Sheep.PROP_IDEA) {
+			ideaChanged = true;
+		}
 	}
 }

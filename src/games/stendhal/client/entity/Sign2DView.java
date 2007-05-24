@@ -14,7 +14,6 @@ import games.stendhal.client.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
 /**
  * The 2D view of a sign.
  */
@@ -35,18 +34,16 @@ public class Sign2DView extends Entity2DView {
 
 	/**
 	 * Build the visual representation of this entity.
-	 *
-	 *
 	 */
 	@Override
 	protected void buildRepresentation() {
-		String name = entity.getEntityClass();
+		String name = getClassResourcePath();
 
 		if (name == null) {
 			name = "default";
 		}
 
-		sprite = SpriteStore.get().getSprite("data/sprites/signs/" + name + ".png");
+		setSprite(SpriteStore.get().getSprite(translate(name)));
 	}
 
 
@@ -73,5 +70,39 @@ public class Sign2DView extends Entity2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+
+	/**
+	 * Translate a resource name into it's sprite image path.
+	 *
+	 * @param	name		The resource name.
+	 *
+	 * @return	The full resource name.
+	 */
+	@Override
+	protected String translate(final String name) {
+		return "data/sprites/signs/" + name + ".png";
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		}
 	}
 }

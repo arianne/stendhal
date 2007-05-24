@@ -147,7 +147,7 @@ public class Door extends Entity {
 		 */
 		if (changes.has("open")) {
 			open = true;
-			changed();
+			fireChange(PROP_STATE);
 		}
 
 		/*
@@ -155,7 +155,7 @@ public class Door extends Entity {
 		 */
 		if (changes.has("dir")) {
 			orientation = Direction.build(changes.getInt("dir"));
-			changed();
+//			fireChange(PROP_ORIENTATION);
 		}
 	}
 
@@ -175,7 +175,7 @@ public class Door extends Entity {
 		 */
 		if (changes.has("open")) {
 			open = false;
-			changed();
+			fireChange(PROP_STATE);
 		}
 
 		/*
@@ -183,7 +183,7 @@ public class Door extends Entity {
 		 */
 		if (object.has("dir")) {
 			orientation = Direction.STOP;
-			changed();
+//			fireChange(PROP_ORIENTATION);
 		}
 	}
 

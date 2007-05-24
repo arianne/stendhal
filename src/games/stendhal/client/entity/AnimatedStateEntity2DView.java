@@ -9,7 +9,6 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -23,7 +22,7 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of an animated entity.
  */
-public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
+public abstract class AnimatedStateEntity2DView extends Entity2DView {
 	/**
 	 * Logger.
 	 */
@@ -32,7 +31,12 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	/**
 	 * Map of named sprites.
 	 */
-	protected Map<Object, AnimatedSprite>	sprites;
+	protected Map<Object, Sprite>	sprites;
+
+	/**
+	 * The model state value changed.
+	 */
+	protected boolean	stateChanged;
 
 
 	/**
@@ -43,7 +47,8 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	public AnimatedStateEntity2DView(final Entity entity) {
 		super(entity);
 
-		sprites = new HashMap<Object, AnimatedSprite>();
+		sprites = new HashMap<Object, Sprite>();
+		stateChanged = false;
 	}
 
 
@@ -52,11 +57,19 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	//
 
 	/**
+	 * Build animations.
+	 */
+	protected void buildAnimations() {
+		buildSprites(sprites);
+	}
+
+
+	/**
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
 	 */
-	protected abstract void buildSprites(Map<Object, AnimatedSprite> map);
+	protected abstract void buildSprites(Map<Object, Sprite> map);
 
 
 	/**
@@ -64,32 +77,18 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 *
 	 */
-	protected AnimatedSprite getSprite(final Object state) {
+	protected Sprite getSprite(final Object state) {
 		return sprites.get(state);
 	}
 
 
 	/**
-	 * Get the default state name.
+	 * Get the current model state.
+	 *
+	 * @return	The model state.
 	 */
-	protected abstract Object getDefaultState();
-
-
 	protected Object getState() {
 		return entity.getState();
-	}
-
-
-	//
-	// AnimatedEntity2DView
-	//
-
-	/**
-	 * Build animations.
-	 */
-	@Override
-	protected void buildAnimations() {
-		buildSprites(sprites);
 	}
 
 
@@ -98,34 +97,67 @@ public abstract class AnimatedStateEntity2DView extends AnimatedEntity2DView {
 	 *
 	 *
 	 */
-	@Override
-	protected AnimatedSprite getAnimatedSprite() {
+	protected Sprite getStateSprite() {
 		Object state = getState();
-		AnimatedSprite sprite = getSprite(state);
+		Sprite sprite = getSprite(state);
 
 		if (sprite == null) {
 			logger.error("No sprite found for: " + state);
-			return new AnimatedSprite(new Sprite[] { SpriteStore.get().getSprite("data/sprites/failsafe.png") }, 0L, false);
+			return SpriteStore.get().getFailsafe();
 		}
-
-		sprite.reset();
 
 		return sprite;
 	}
 
 
+	//
+	// Entity2DView
+	//
+
 	/**
-	 * This method gets the default image.
-	 *
-	 * @return	The default sprite, or <code>null</code>.
+	 * Build the visual representation of this entity.
+	 * This builds all the animation sprites and sets the default frame.
 	 */
 	@Override
-	protected Sprite getDefaultSprite() {
-		AnimatedSprite sprite = getSprite(getDefaultState());
+	protected void buildRepresentation() {
+		buildAnimations();
 
-		sprite.stop();
-		sprite.reset();
+		setSprite(getStateSprite());
+		stateChanged = false;
+	}
 
-		return sprite;
+
+	/**
+	 * Update representation.
+	 */
+	@Override
+	public void update() {
+		super.update();
+
+		if(stateChanged) {
+			setSprite(getStateSprite());
+			stateChanged = false;
+		}
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_STATE) {
+			stateChanged = true;
+		}
 	}
 }

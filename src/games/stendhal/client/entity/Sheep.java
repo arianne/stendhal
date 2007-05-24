@@ -24,6 +24,16 @@ import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
 public class Sheep extends NPC {
+	/**
+	 * Sheep idea property.
+	 */
+	public final static Object	PROP_IDEA	= new Object();
+
+	/**
+	 * Sheep weight property.
+	 */
+	public final static Object	PROP_WEIGHT	= new Object();
+
 	public static final String	STATE_BIG_DOWN	= "big_" + STATE_DOWN;
 	public static final String	STATE_BIG_UP	= "big_" + STATE_UP;
 	public static final String	STATE_BIG_LEFT	= "big_" + STATE_LEFT;
@@ -43,8 +53,9 @@ public class Sheep extends NPC {
 
 			if (weight > oldWeight) {
 				SoundMaster.play("eat-1.wav",x,y);//playSound("sheep-eat", 8, 15);
-				changed();
 			}
+
+			fireChange(PROP_WEIGHT);
 		}
 		
 		if (diff.has("idea")) {
@@ -62,7 +73,7 @@ public class Sheep extends NPC {
 				idea = null;
 			}
 
-			changed();
+			fireChange(PROP_IDEA);
 		}
 	}
 
@@ -182,7 +193,4 @@ public class Sheep extends NPC {
 	protected Entity2DView createView() {
 		return new Sheep2DView(this);
 	}
-
-
-
 }

@@ -14,9 +14,8 @@ import games.stendhal.client.GameScreen;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
 /**
- * The 2D view of a portal.
+ * The 2D view of an invisible entity.
  */
 public class InvisibleEntity2DView extends Entity2DView {
 	/**
@@ -38,6 +37,16 @@ public class InvisibleEntity2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
+	}
+
+
+	/**
+	 * Draw the entity (NOT!).
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	@Override
+	public void draw(final GameScreen screen) {
 	}
 
 
@@ -64,19 +73,5 @@ public class InvisibleEntity2DView extends Entity2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
-	}
-
-
-	//
-	// <EntityView>
-	//
-
-	/**
-	 * Draw the entity (NOT!).
-	 *
-	 * @param	screen		The screen to drawn on.
-	 */
-	@Override
-	public void draw(final GameScreen screen) {
 	}
 }

@@ -101,7 +101,8 @@ public abstract class Food extends Entity {
 				SoundMaster.play("pop-2.wav", getX(), getY());
 			}
 
-			changed();
+//			fireChange(PROP_AMOUNT);
+			fireChange(PROP_STATE);
 		}
 	}
 }

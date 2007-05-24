@@ -17,7 +17,6 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -31,26 +30,12 @@ public class NPC2DView extends RPEntity2DView {
 	private static final Logger logger = Log4J.getLogger(NPC2DView.class);
 
 	/**
-	 * The current outfit.
-	 */
-	private Sprite	outfit;
-
-	/**
-	 * The current outfit code.
-	 */
-	private int	outfitCode;
-
-
-	/**
 	 * Create a 2D view of an NPC.
 	 *
 	 * @param	entity		The entity to render.
 	 */
 	public NPC2DView(final RPEntity entity) {
 		super(entity);
-
-		outfit = null;
-		outfitCode = -1;
 	}
 
 
@@ -72,26 +57,15 @@ public class NPC2DView extends RPEntity2DView {
 			int code = rpentity.getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
-				/*
-				 * Don't rebuild the same outfit
-				 */
-				if(outfitCode != code) {
-					outfitCode = code;
-					outfit = getOutfitSprite(store, code);
-				}
-
+				return getOutfitSprite(store, code);
 			} else {
 				// This NPC's outfit is read from a single file.
-				outfitCode = -1;
-				outfit = store.getSprite(translate("npc/" + entity.getEntityClass()));
+				return store.getSprite(translate("npc/" + entity.getEntityClass()));
 			}
 		} catch (Exception e) {
 			logger.error("Cannot build animations", e);
-			outfitCode = -1;
-			outfit = store.getSprite(translate(entity.getEntityClass()));
+			return store.getSprite(translate(entity.getEntityClass()));
 		}
-
-		return outfit;
 	}
 
 
@@ -105,7 +79,7 @@ public class NPC2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		buildSprites(map, 1.5, 2.0);
 	}
 
@@ -122,5 +96,26 @@ public class NPC2DView extends RPEntity2DView {
 	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.5, 2.0);
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		}
 	}
 }

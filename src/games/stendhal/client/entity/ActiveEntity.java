@@ -18,6 +18,11 @@ import marauroa.common.game.RPObject;
  */
 public abstract class ActiveEntity extends Entity {
 	/**
+	 * Speed property.
+	 */
+	public final static Object	PROP_SPEED	= new Object();
+
+	/**
 	 * The down facing state.
 	 */
 	public static final String	STATE_DOWN	= "move_down";
@@ -246,9 +251,6 @@ public abstract class ActiveEntity extends Entity {
 
 		dx = direction.getdx() * speed;
 		dy = direction.getdy() * speed;
-
-		// TODO: KLUDGE - Ensure that view animation is set right
-		changed();
 	}
 
 
@@ -311,7 +313,7 @@ public abstract class ActiveEntity extends Entity {
 		if (diff.has("dir")) {
 			direction = Direction.build(diff.getInt("dir"));
 			setDirection(direction);
-			changed();
+			fireChange(PROP_STATE);
 		} else if (base.has("dir")) {
 			direction = Direction.build(base.getInt("dir"));
 			setDirection(direction);
@@ -323,7 +325,7 @@ public abstract class ActiveEntity extends Entity {
 
 		if (diff.has("speed")) {
 			speed = diff.getDouble("speed");
-			changed();
+			fireChange(PROP_SPEED);
 		} else if (base.has("speed")) {
 			speed = base.getDouble("speed");
 		} else {

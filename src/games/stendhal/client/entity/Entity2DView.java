@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -24,21 +25,16 @@ import java.awt.geom.Rectangle2D;
 /**
  * The 2D view of an entity.
  */
-public abstract class Entity2DView implements EntityView {
+public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * The entity this view is for
 	 */
 	protected Entity	entity;
 
 	/**
-	 * The last entity change serial number.
-	 */
-	private int	changeSerial;
-
-	/**
 	 * The entity image (or current one at least).
 	 */
-	protected Sprite sprite;
+	private Sprite		sprite;
 
 	/**
 	 * The entity drawing composite.
@@ -50,6 +46,21 @@ public abstract class Entity2DView implements EntityView {
 	 */
 	protected boolean	contained;
 
+	/**
+	 * Model values affecting animation.
+	 */
+	protected boolean	animatedChanged;
+
+	/**
+	 * Model values affecting visual representation changed.
+	 */
+	protected boolean	representationChanged;
+
+	/**
+	 * The visibility value changed.
+	 */
+	protected boolean	visibilityChanged;
+
 
 	/**
 	 * Create a 2D view of an entity.
@@ -59,9 +70,13 @@ public abstract class Entity2DView implements EntityView {
 	public Entity2DView(final Entity entity) {
 		this.entity = entity;
 
-		changeSerial = entity.getChangeSerial() - 1;
-		entityComposite = AlphaComposite.SrcOver;
+		entityComposite = getComposite();
 		contained = false;
+		animatedChanged = false;
+		visibilityChanged = false;
+		representationChanged = false;
+
+		entity.addChangeListener(this);
 	}
 
 
@@ -73,7 +88,7 @@ public abstract class Entity2DView implements EntityView {
 	 * Rebuild the representation using the base entity.
 	 */
 	protected void buildRepresentation() {
-		sprite = SpriteStore.get().getSprite(translate(entity.getType()));
+		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
 	}
 
 
@@ -107,6 +122,44 @@ public abstract class Entity2DView implements EntityView {
 
 			g2d.setColor(Color.green);
 			g2d.draw(screen.convertWorldToScreen(entity.getArea()));
+		}
+	}
+
+
+	/**
+	 * Get the class resource sub-path. The is the base sprite image name,
+	 * relative to <code>translate()</code>.
+	 *
+	 * @return	The resource path.
+	 */
+	protected String getClassResourcePath() {
+		String rpath = entity.getEntityClass();
+
+		if(rpath != null) {
+			String subclass = entity.getEntitySubClass();
+
+			if(subclass != null) {
+				rpath += "/" + subclass;
+			}
+		}
+
+		return rpath;
+	}
+
+
+	/**
+	 * Get the drawing composite.
+	 *
+	 * @return	The drawing composite.
+	 */
+	protected AlphaComposite getComposite() {
+		int visibility = entity.getVisibility();
+
+		if(visibility == 100) {
+			return AlphaComposite.SrcOver;
+		} else {
+			return AlphaComposite.getInstance(
+				AlphaComposite.SRC_OVER, visibility / 100.0f);
 		}
 	}
 
@@ -159,7 +212,6 @@ public abstract class Entity2DView implements EntityView {
 	 * @return	The drawing index.
 	 */
 	public int getZIndex() {
-		// XXX - Eventually abstract, but for transition
 		return 10000;
 	}
 
@@ -198,13 +250,46 @@ public abstract class Entity2DView implements EntityView {
 
 
 	/**
-	 * Get the resource path for a sprite type.
+	 * Set the sprite's animation state (if applicable).
 	 *
-	 *
-	 *
+	 * @param	sprite		The sprite.
 	 */
-	protected static String translate(final String type) {
-		return "data/sprites/" + type + ".png";
+	protected void setAnimation(Sprite sprite) {
+		if(sprite instanceof AnimatedSprite) {
+			AnimatedSprite asprite = (AnimatedSprite) sprite;
+
+			if(isAnimating()) {
+				asprite.start();
+			} else {
+				asprite.stop();
+				asprite.reset();
+			}
+		}
+	}
+
+
+	/**
+	 * Set the sprite.
+	 *
+	 * @param	sprite		The sprite.
+	 */
+	protected void setSprite(Sprite sprite) {
+		setAnimation(sprite);
+		animatedChanged = false;
+
+		this.sprite = sprite;
+	}
+
+
+	/**
+	 * Translate a resource name into it's sprite image path.
+	 *
+	 * @param	name		The resource name.
+	 *
+	 * @return	The full resource name.
+	 */
+	protected String translate(final String name) {
+		return "data/sprites/" + name + ".png";
 	}
 
 
@@ -214,19 +299,10 @@ public abstract class Entity2DView implements EntityView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	public void draw(final GameScreen screen) {
-		int	serial;
-
-
 		/*
 		 * Check for entity changes
 		 */
-		serial = entity.getChangeSerial();
-
-		if(serial != changeSerial) {
-			update();
-			changeSerial = serial;
-		}
-
+		update();
 
 		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
 
@@ -236,10 +312,44 @@ public abstract class Entity2DView implements EntityView {
 	}
 
 	/**
-	 * Update representation.
+	 * Handle updates.
 	 */
 	protected void update() {
-		entityComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, entity.getVisibility() / 100.0f);
+		if(representationChanged) {
+			buildRepresentation();
+			representationChanged = false;
+		}
+
+		if(visibilityChanged) {
+			entityComposite = getComposite();
+			visibilityChanged = false;
+		}
+
+		if(animatedChanged) {
+			setAnimation(getSprite());
+			animatedChanged = false;
+		}
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	public void entityChanged(Entity entity, Object property)
+	{
+		if(property == Entity.PROP_ANIMATED)
+			animatedChanged = true;
+		else if(property == Entity.PROP_TYPE)
+			representationChanged = true;
+		else if(property == Entity.PROP_VISIBILITY)
+			visibilityChanged = true;
 	}
 
 

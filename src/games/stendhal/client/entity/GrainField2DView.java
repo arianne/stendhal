@@ -12,8 +12,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-
-import games.stendhal.client.AnimatedSprite;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
@@ -59,7 +58,7 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		double	height;
 		double	width;
 		int	maxRipeness;
@@ -84,17 +83,6 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 			map.put(Integer.toString(i),
 				store.getAnimatedSprite(resource, i, 1, width, height, 0L, false));
 		}
-	}
-
-
-	/**
-	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a <code>0</code>
-	 * named animation, or override this method</strong>.
-	 */
-	@Override
-	protected Object getDefaultState() {
-		return "0";
 	}
 
 
@@ -125,5 +113,26 @@ public class GrainField2DView extends AnimatedStateEntity2DView {
 	@Override
 	public int getZIndex() {
 		return 3000;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		}
 	}
 }

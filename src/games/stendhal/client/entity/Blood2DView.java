@@ -13,8 +13,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-
-import games.stendhal.client.AnimatedSprite;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
@@ -41,7 +40,7 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		SpriteStore store = SpriteStore.get();
 
 		String clazz = entity.getEntityClass();
@@ -59,17 +58,6 @@ public class Blood2DView extends AnimatedStateEntity2DView {
 		map.put("1", store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false));
 		map.put("2", store.getAnimatedSprite(resource, 2, 1, 1, 1, 0L, false));
 		map.put("3", store.getAnimatedSprite(resource, 3, 1, 1, 1, 0L, false));
-	}
-
-
-	/**
-	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a <code>0</code>
-	 * named animation, or override this method</strong>.
-	 */
-	@Override
-	protected Object getDefaultState() {
-		return "0";
 	}
 
 

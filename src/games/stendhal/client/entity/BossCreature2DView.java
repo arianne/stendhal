@@ -1,10 +1,8 @@
 package games.stendhal.client.entity;
 
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 
 import java.util.Map;
-
 
 
 public class BossCreature2DView extends Creature2DView {
@@ -13,7 +11,7 @@ public class BossCreature2DView extends Creature2DView {
     }
 
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		Sprite tiles=getAnimationSprite();
 		
 		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 0, getWidth(), getHeight()));
@@ -21,10 +19,5 @@ public class BossCreature2DView extends Creature2DView {
 
 		map.put(ActiveEntity.STATE_UP, map.get(ActiveEntity.STATE_RIGHT));
 		map.put(ActiveEntity.STATE_DOWN, map.get(ActiveEntity.STATE_LEFT));
-	}
-
-	@Override
-	protected String getDefaultState() {
-		return ActiveEntity.STATE_RIGHT;
 	}
 }

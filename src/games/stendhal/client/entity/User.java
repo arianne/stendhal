@@ -208,7 +208,6 @@ public class User extends Player {
 
 		if(diff.has("features")) {
 			features.decode(diff.get("features"));
-			changed();
 		}
     }
 
@@ -219,7 +218,6 @@ public class User extends Player {
 
 		if(diff.has("features")) {
 			features.clear();
-			changed();
 		}
     }
 	

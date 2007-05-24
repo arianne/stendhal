@@ -101,7 +101,8 @@ public class Blood extends PassiveEntity {
 		 */
 		if (changes.has("amount")) {
 			amount = changes.get("amount");
-			changed();
+//			fireChange(PROP_AMOUNT);
+			fireChange(PROP_STATE);
 		}
 	}
 
@@ -121,7 +122,8 @@ public class Blood extends PassiveEntity {
 		 */
 		if (changes.has("amount")) {
 			amount = "0";
-			changed();
+//			fireChange(PROP_AMOUNT);
+			fireChange(PROP_STATE);
 		}
 	}
 }

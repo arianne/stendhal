@@ -126,12 +126,10 @@ public class ResizeableCreature extends Creature {
 
 		if (changes.has("width")) {
 			width = changes.getDouble("width");
-			changed();
 		}
 
 		if (changes.has("height")) {
 			height = changes.getDouble("height");
-			changed();
 		}
 	}
 }

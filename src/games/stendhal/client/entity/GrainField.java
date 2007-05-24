@@ -189,12 +189,13 @@ public class GrainField extends Entity {
 
 		if (changes.has("ripeness")) {
 			ripeness = changes.get("ripeness");
-			changed();
+//			fireChange(PROP_RIPENESS);
+			fireChange(PROP_STATE);
 		}
 
 		if (object.has("max_ripeness")) {
 			maxRipeness = object.getInt("max_ripeness");
-			changed();
+//			fireChange(PROP_MAX_RIPENESS);
 		}
 	}
 

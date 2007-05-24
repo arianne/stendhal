@@ -26,7 +26,6 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
-
 /**
  * The 2D view of an RP entity.
  */
@@ -46,7 +45,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	private static Sprite	missedSprite;
 	
-	private static Map<Integer,Sprite> cachedOutfitSprite;
+	private static Map<OutfitRef,Sprite> cachedOutfitSprite;
 
 	/**
 	 * The RP entity this view is for.
@@ -74,7 +73,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
 		poisonedSprite = st.getSprite("data/sprites/ideas/poisoned.png");
 		
-		cachedOutfitSprite= new HashMap<Integer,Sprite>();
+		cachedOutfitSprite = new HashMap<OutfitRef,Sprite>();
 	}
 
 
@@ -101,7 +100,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
-	protected void buildSprites(Map<Object, AnimatedSprite> map, double width, double height) {
+	protected void buildSprites(Map<Object, Sprite> map, double width, double height) {
 		Sprite tiles = getAnimationSprite();
 
 		map.put(ActiveEntity.STATE_UP, getAnimatedWalk(tiles, 0, width, height));
@@ -189,11 +188,12 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @return	A sprite for the object
 	 */
-	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {		
-		if(cachedOutfitSprite.containsKey(outfit)) {
-			return cachedOutfitSprite.get(outfit);
+	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {
+		OutfitRef reference = new OutfitRef(outfit);
+
+		if(cachedOutfitSprite.containsKey(reference)) {
+			return cachedOutfitSprite.get(reference);
 		}
-		int cachedOutfit=outfit;
 
 		logger.debug("Cache miss: "+outfit+"("+cachedOutfitSprite.size()+")");
 			
@@ -216,25 +216,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			hair.draw(sprite.getGraphics(), 0, 0);
 		}
 
-		cachedOutfitSprite.put(cachedOutfit, sprite);
+		cachedOutfitSprite.put(reference, sprite);
 		
 		return sprite;
-	}
-
-
-	//
-	// AnimatedEntity2DView
-	//
-
-	/**
-	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a
-	 * <code><strong>ActiveEntity.STATE_UP</strong></code> named sprite,
-	 * or override this method</strong>.
-	 */
-	@Override
-	protected Object getDefaultState() {
-		return ActiveEntity.STATE_UP;
 	}
 
 
@@ -331,5 +315,105 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	@Override
 	public int getZIndex() {
 		return 8000;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == RPEntity.PROP_OUTFIT) {
+			representationChanged = true;
+		}
+	}
+
+	//
+	//
+
+	/**
+	 * Outfit sprite reference.
+	 */
+	protected static class OutfitRef {
+		/*
+		 * The outfit code.
+		 */
+		protected int	code;
+
+
+		/**
+		 * Create an outfit reference.
+		 *
+		 * @param	code		The outfit code.
+		 */
+		public OutfitRef(int code) {
+			this.code = code;
+		}
+
+
+		//
+		// OutfitRef
+		//
+
+		/**
+		 * Get the outfit code.
+		 *
+		 * @return	The outfit code.
+		 */
+		public int getCode() {
+			return code;
+		}
+
+
+		//
+		// Object
+		//
+
+		/**
+		 * Determine if this equals another object.
+		 *
+		 * @param	obj		Another object.
+		 *
+		 * @return	<code>true</code> if the object is an OutfitRef
+		 *		with the same code.
+		 */
+		public boolean equals(Object obj) {
+			if(obj instanceof OutfitRef) {
+				return (getCode() == ((OutfitRef) obj).getCode());
+			}
+
+			return false;
+		}
+
+
+		/**
+		 * Get the hash code.
+		 *
+		 * @return	The hash code.
+		 */
+		public int hashCode() {
+			return getCode();
+		}
+
+
+		/**
+		 * Get the string representation.
+		 *
+		 * @return	The string in the form of
+		 *		<code>outfit:</code><em>code</em>.
+		 */
+		public String toString() {
+			return "outfit:" + getCode();
+		}
 	}
 }

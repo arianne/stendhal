@@ -9,7 +9,6 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -38,20 +37,13 @@ public class Player2DView extends RPEntity2DView {
 	private static Sprite	awaySprite;
 
 	/**
-	 * The current outfit code.
-	 */
-	private int	outfitCode;
-
-	/**
 	 * The player entity.
 	 */
 	private Player	player;
 
 
 	static {
-		SpriteStore st = SpriteStore.get();
-
-		awaySprite = new AnimatedSprite(st.getSprites("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0), 2000L);
+		awaySprite = SpriteStore.get().getAnimatedSprite("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0, 2000L, true);
 	}
 
 
@@ -64,8 +56,6 @@ public class Player2DView extends RPEntity2DView {
 		super(player);
 
 		this.player = player;
-
-		outfitCode = RPEntity.OUTFIT_UNSET;
 	}
 
 
@@ -101,7 +91,7 @@ public class Player2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		buildSprites(map, 1.5, 2.0);
 	}
 
@@ -133,24 +123,5 @@ public class Player2DView extends RPEntity2DView {
 	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 2.0);
-	}
-
-
-	/**
-	 * Update representation.
-	 */
-	@Override
-	protected void update() {
-		/*
-		 * Don't rebuild the same outfit
-		 */
-		int code = rpentity.getOutfit();
-
-		if (code != outfitCode) {
-			buildRepresentation();
-			outfitCode = code;
-		}
-
-		super.update();
 	}
 }

@@ -27,6 +27,11 @@ public class StackableItem2DView extends Item2DView {
 	private StackableItem	item;
 
 	/**
+	 * The quantity value changed.
+	 */
+	protected boolean	quantityChanged;
+
+	/**
 	 * The image of the quantity.
 	 */
 	private Sprite		quantitySprite;
@@ -42,6 +47,7 @@ public class StackableItem2DView extends Item2DView {
 
 		this.item = item;
 		quantitySprite = getQuantitySprite();
+		quantityChanged = false;
 	}
 
 
@@ -106,10 +112,6 @@ public class StackableItem2DView extends Item2DView {
 	}
 
 
-	//
-	// <EntityView>
-	//
-
 	/**
 	 * Update representation.
 	 */
@@ -117,6 +119,30 @@ public class StackableItem2DView extends Item2DView {
 	public void update() {
 		super.update();
 
-		quantitySprite = getQuantitySprite();
+		if(quantityChanged) {
+			quantitySprite = getQuantitySprite();
+			quantityChanged = false;
+		}
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == StackableItem.PROP_QUANTITY) {
+			quantityChanged = true;
+		}
 	}
 }

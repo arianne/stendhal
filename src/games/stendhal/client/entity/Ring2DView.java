@@ -17,7 +17,7 @@ import java.awt.geom.Rectangle2D;
 
 
 /**
- * The 2D view of a chest.
+ * The 2D view of a ring.
  */
 public class Ring2DView extends Item2DView {
 	private Ring ring;
@@ -45,14 +45,7 @@ public class Ring2DView extends Item2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		String name = entity.getEntityClass();
-		String subclass = entity.getEntitySubClass();
-
-		if (subclass != null) {
-			name += "/" + subclass;
-		}
-		
-		String resource = "data/sprites/items/" + name + ".png";
+		String resource = translate(getClassResourcePath());
 		SpriteStore store = SpriteStore.get();
 
 		working=store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false);
@@ -95,5 +88,26 @@ public class Ring2DView extends Item2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		}
 	}
 }

@@ -11,8 +11,8 @@ package games.stendhal.client.entity;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
@@ -24,8 +24,14 @@ public class Corpse2DView extends Entity2DView {
 	 */
 	private Corpse		corpse;
 
+	/**
+	 * The corpse height.
+	 */
 	private double		height;
 
+	/**
+	 * The corpse width.
+	 */
 	private double		width;
 
 
@@ -48,11 +54,21 @@ public class Corpse2DView extends Entity2DView {
 	// Corpse2DView
 	//
 
+	/**
+	 * Get the height.
+	 *
+	 * @return	The height in tile units.
+	 */
 	public double getHeight() {
 		return height;
 	}
 
 
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width in tile units.
+	 */
 	public double getWidth() {
 		return width;
 	}
@@ -88,10 +104,12 @@ public class Corpse2DView extends Entity2DView {
 			}
 		}
 
-		sprite = SpriteStore.get().getSprite(translate(corpseType));
+		Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
 
 		width = (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
 		height = (double) sprite.getHeight() / GameScreen.SIZE_UNIT_PIXELS;
+
+		setSprite(sprite);
 	}
 
 
@@ -118,5 +136,26 @@ public class Corpse2DView extends Entity2DView {
 	@Override
 	public int getZIndex() {
 		return 5500;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		}
 	}
 }

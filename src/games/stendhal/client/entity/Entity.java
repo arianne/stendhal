@@ -28,6 +28,46 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public abstract class Entity implements RPObjectChangeListener {
+	/**
+	 * Animated property.
+	 */
+	public final static Object	PROP_ANIMATED	= new Object();
+
+	/**
+	 * Entity class/subclass property.
+	 */
+	public final static Object	PROP_CLASS	= new Object();
+
+	/**
+	 * Name property.
+	 */
+	public final static Object	PROP_NAME	= new Object();
+
+	/**
+	 * Position property.
+	 */
+	public final static Object	PROP_POSITION	= new Object();
+
+	/**
+	 * State property.
+	 */
+	public final static Object	PROP_STATE	= new Object();
+
+	/**
+	 * Title property.
+	 */
+	public final static Object	PROP_TITLE	= new Object();
+
+	/**
+	 * Type property.
+	 */
+	public final static Object	PROP_TYPE	= new Object();
+
+	/**
+	 * Visibility property.
+	 */
+	public final static Object	PROP_VISIBILITY	= new Object();
+
 
 	String[] moveSounds=null;
 	/** session wide instance identifier for this class
@@ -43,15 +83,14 @@ public final byte[] ID_Token = new byte[0];
 	protected double y;
 
 	/**
-	 * The current change serial.
-	 */
-	protected int	changeSerial;
-
-	/**
 	 * The entity visibility.
 	 */
 	protected int		visibility;
 
+	/**
+	 * Change listeners.
+	 */
+	protected EntityChangeListener []	changeListeners;
 
 	/** The arianne object associated with this game entity */
 	protected RPObject rpObject;
@@ -108,7 +147,44 @@ public final byte[] ID_Token = new byte[0];
 		x = 0.0;
 		y = 0.0;
 
-		changeSerial = 0;
+		changeListeners = new EntityChangeListener[0];
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Add a change listener.
+	 *
+	 * @param	l		The listener.
+	 */
+	public void addChangeListener(EntityChangeListener l) {
+		EntityChangeListener []	newListeners;
+
+
+		int len = changeListeners.length;
+
+		newListeners = new EntityChangeListener[len + 1];
+		System.arraycopy(changeListeners, 0, newListeners, 0, len);
+		newListeners[len] = l;
+
+		changeListeners = newListeners;
+	}
+
+
+	/**
+	 * Fire change to all registered listeners.
+	 *
+	 * @param	property	The changed property.
+	 */
+	protected void fireChange(Object property) {
+		EntityChangeListener [] listeners = changeListeners;
+
+		for(EntityChangeListener l : listeners) {
+			l.entityChanged(this, property);
+		}
 	}
 
 
@@ -125,15 +201,6 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		return view;
-	}
-
-
-	/**
-	 * Mark this entity changed in some way that might effect it's
-	 * observed state .
-	 */
-	protected void changed() {
-		changeSerial++;
 	}
 
 
@@ -163,19 +230,6 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	public int getVisibility() {
 		return visibility;
-	}
-
-
-	/**
-	 * Get an opaque value (using equality compare) to determine if
-	 * the entity has changed. This will do until real notification
-	 * can be implemented.
-	 *
-	 * @return	A value that should only be compared to other calls
-	 *		to this function (for this entity instance).
-	 */
-	public int getChangeSerial() {
-		return changeSerial;
 	}
 
 
@@ -376,6 +430,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	y		The new Y coordinate.
 	 */
 	protected void onPosition(double x, double y) {
+		fireChange(PROP_POSITION);
 	}
 
 
@@ -601,6 +656,16 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
+	 * Remove a change listener.
+	 *
+	 * @param	l		The listener.
+	 */
+	public void removeChangeListener(EntityChangeListener l) {
+		// TODO!
+	}
+
+
+	/**
 	 * Update cycle.
 	 *
 	 * @param	delta		The time (in ms) since last call.
@@ -640,7 +705,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("class")) {
 			clazz = changes.get("class");
-			changed();
+			fireChange(PROP_CLASS);
 		}
 
 		/*
@@ -648,7 +713,8 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("name")) {
 			name = changes.get("name");
-			changed();
+			fireChange(PROP_NAME);
+			fireChange(PROP_TITLE);
 		}
 
 		/*
@@ -656,7 +722,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("subclass")) {
 			subclazz = changes.get("subclass");
-			changed();
+			fireChange(PROP_CLASS);
 		}
 
 		/*
@@ -664,7 +730,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("title")) {
 			title = changes.get("title");
-			changed();
+			fireChange(PROP_TITLE);
 		}
 
 		/*
@@ -672,7 +738,8 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("type")) {
 			type = changes.get("type");
-			changed();
+			fireChange(PROP_TYPE);
+			fireChange(PROP_TITLE);
 		}
 
 		/*
@@ -680,7 +747,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if(changes.has("visibility")) {
 			visibility = changes.getInt("visibility");
-			changed();
+			fireChange(PROP_VISIBILITY);
 		}
 
 
@@ -715,7 +782,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("class")) {
 			clazz = null;
-			changed();
+			fireChange(PROP_CLASS);
 		}
 
 		/*
@@ -723,7 +790,8 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		 if (changes.has("name")) {
 			name = null;
-			changed();
+			fireChange(PROP_NAME);
+			fireChange(PROP_TITLE);
 		}
 
 		/*
@@ -731,7 +799,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("subclass")) {
 			subclazz = null;
-			changed();
+			fireChange(PROP_CLASS);
 		}
 
 		/*
@@ -739,7 +807,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("title")) {
 			title = null;
-			changed();
+			fireChange(PROP_TITLE);
 		}
 
 		/*
@@ -747,7 +815,8 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if (changes.has("type")) {
 			type = null;
-			changed();
+			fireChange(PROP_TYPE);
+			fireChange(PROP_TITLE);
 		}
 
 		/*
@@ -755,7 +824,7 @@ public final byte[] ID_Token = new byte[0];
 		 */
 		if(changes.has("visibility")) {
 			visibility = 100;
-			changed();
+			fireChange(PROP_VISIBILITY);
 		}
 	}
 

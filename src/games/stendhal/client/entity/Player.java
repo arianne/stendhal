@@ -152,7 +152,7 @@ public class Player extends RPEntity {
 			 */
 			if (!object.has("away") || !object.get("away").equals(changes.get("away"))) {
 				away = changes.get("away");
-				changed();
+//				fireChange(PROP_AWAY);
 				onAway(away);
 			}
 		}
@@ -187,7 +187,7 @@ public class Player extends RPEntity {
 
 		if (changes.has("away")) {
 			away = null;
-			changed();
+//			fireChange(PROP_AWAY);
 			onAway(null);
 		}
 	}

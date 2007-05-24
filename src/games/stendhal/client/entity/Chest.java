@@ -166,7 +166,7 @@ public class Chest extends Entity implements Inspectable {
 				requestOpen = false;
 			}
 
-			changed();
+			fireChange(PROP_STATE);
 		}
 
 		if (changes.hasSlot("content")) {
@@ -194,7 +194,7 @@ public class Chest extends Entity implements Inspectable {
 				wtEntityContainer = null;
 			}
 
-			changed();
+			fireChange(PROP_STATE);
 		}
 	}
 

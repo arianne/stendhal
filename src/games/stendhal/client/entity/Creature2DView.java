@@ -18,8 +18,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Map;
 
-
-import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
@@ -44,16 +42,6 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	protected double	width;
 
-	/**
-	 * The last resource path.
-	 */
-	private String		lrpath;
-
-	/**
-	 * The last metamorphosis.
-	 */
-	private String		lmetamorphosis;
-
 
 	/**
 	 * Create a 2D view of a creature.
@@ -65,8 +53,6 @@ public class Creature2DView extends RPEntity2DView {
 
 		this.creature = creature;
 
-		lrpath = "";
-		lmetamorphosis = "";
 		updateSize();
 	}
 
@@ -95,23 +81,6 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	public double getHeight() {
 		return height;
-	}
-
-
-	/**
-	 * Get the resource path.
-	 *
-	 * @return	The resource path.
-	 */
-	protected String getResourcePath() {
-		String rpath = entity.getEntityClass();
-		String subclass = entity.getEntitySubClass();
-
-		if(subclass != null) {
-			rpath += "/" + subclass;
-		}
-
-		return rpath;
 	}
 
 
@@ -152,15 +121,13 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		SpriteStore store = SpriteStore.get();
+		String resource = creature.getMetamorphosis();
 
-		String metamorphosis = creature.getMetamorphosis();
-
-		if(metamorphosis != null) {
-			return store.getSprite("data/sprites/monsters/" + metamorphosis + ".png");
+		if(resource == null) {
+			resource = getClassResourcePath();
 		}
 
-		return store.getSprite(translate(getResourcePath()));
+		return SpriteStore.get().getSprite(translate(resource));
 	}
 
 
@@ -174,7 +141,7 @@ public class Creature2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		buildSprites(map, getWidth(), getHeight());
 	}
 
@@ -236,40 +203,39 @@ public class Creature2DView extends RPEntity2DView {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
-	protected static String translate(final String type) {
-		return "data/sprites/monsters/" + type + ".png";
+
+	/**
+	 * Translate a resource name into it's sprite image path.
+	 *
+	 * @param	name		The resource name.
+	 *
+	 * @return	The full resource name.
+	 */
+	@Override
+	protected String translate(final String name) {
+		return "data/sprites/monsters/" + name + ".png";
 	}
 
 
+	//
+	// EntityChangeListener
+	//
+
 	/**
-	 * Update representation.
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
 	 */
 	@Override
-	protected void update() {
-		boolean	rebuild = false;
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
 
-		String rpath = getResourcePath();
-
-		if(!rpath.equals(lrpath)) {
-			rebuild = true;
-			lrpath = rpath;
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		} else if(property == Creature.PROP_METAMORPHOSIS) {
+			representationChanged = true;
 		}
-
-		String metamorphosis = creature.getMetamorphosis();
-
-		if(metamorphosis == null) {
-			metamorphosis = "";
-		}
-
-		if(!metamorphosis.equals(lmetamorphosis)) {
-			rebuild = true;
-			lmetamorphosis = metamorphosis;
-		}
-
-		if(rebuild) {
-			buildRepresentation();
-		}
-
-		super.update();
 	}
 }

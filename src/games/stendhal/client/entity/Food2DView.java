@@ -13,8 +13,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-
-import games.stendhal.client.AnimatedSprite;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 /**
@@ -50,7 +49,7 @@ public class Food2DView extends AnimatedStateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, AnimatedSprite> map) {
+	protected void buildSprites(Map<Object, Sprite> map) {
 		String resource = translate(entity.getType());
 
 		SpriteStore store = SpriteStore.get();
@@ -59,17 +58,6 @@ public class Food2DView extends AnimatedStateEntity2DView {
 			map.put(Integer.toString(i),
 				store.getAnimatedSprite(resource, i, 1, 1, 1, 0L, false));
 		}
-	}
-
-
-	/**
-	 * Get the default state name.
-	 * <strong>All sub-classes MUST provide a <code>0</code>
-	 * named animation, or override this method</strong>.
-	 */
-	@Override
-	protected Object getDefaultState() {
-		return "0";
 	}
 
 
