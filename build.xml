@@ -10,6 +10,7 @@
   
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 	<property name="build_client" value="${buildroot}/build_client"/>
+	<property name="build_server" value="${buildroot}/build_server"/>
 	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
 
 	<target name="init">
