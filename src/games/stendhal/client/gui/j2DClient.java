@@ -57,23 +57,26 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
+import marauroa.client.BannedAddressException;
+import marauroa.client.TimeoutException;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
+import marauroa.common.net.InvalidVersionException;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
@@ -473,8 +476,9 @@ public class j2DClient extends StendhalUI {
 		long lastMessageHandle = refreshTime;
 
 		gameRunning = true;
+		boolean canExit = false;
 
-		while (gameRunning) {
+		while (!canExit) {
 			fps++;
 			// figure out what time it is right after the screen flip then
 			// later we can figure out how long we have been doing redrawing
@@ -554,10 +558,25 @@ public class j2DClient extends StendhalUI {
 			}
 
 			logger.debug("End sleeping");
+			
+			if(!gameRunning) {
+				logger.info("Request logout");
+				try {
+					/*
+					 * We request server permision to logout.
+					 * Server can deny it. 
+					 */
+	                if(client.logout()) {
+	                	canExit=true;
+	                } else {
+	                	gameRunning=true;
+	                }
+                } catch (Exception e) {
+	                e.printStackTrace();
+                }
+			}
 		}
 
-		logger.info("Request logout");
-		client.logout();
 		SoundSystem.get().exit();
 	}
 
@@ -688,12 +707,10 @@ public class j2DClient extends StendhalUI {
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
 	protected void shutdown() {
-		Log4J.startMethod(logger, "shutdown");
 		gameRunning = false;
 
 		// try to save the window configuration
 		WtWindowManager.getInstance().save();
-		Log4J.finishMethod(logger, "shutdown");
 	}
 
 
