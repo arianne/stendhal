@@ -177,7 +177,7 @@ public class JCreature extends javax.swing.JFrame {
         creatureSize.setText((int)actual.getWidth()+","+(int)actual.getHeight());
         creatureTileid.setText(actual.getTileId().replace("../../tileset/logic/creature/",""));
         String gfxLocation = "/"+actual.getCreatureClass()+"/"+actual.getCreatureSubClass()+".png";
-        Sprite spr = SpriteStore.get().getSprite("data/sprites/monsters"+gfxLocation);
+        Sprite spr = SpriteStore.get().getSprite("stendhal/data/sprites/monsters"+gfxLocation);
         
         drawSinglePart(spr, actual.getWidth(), actual.getHeight(), creatureImage.getGraphics());
         creatureGFXLocation.setText(gfxLocation);

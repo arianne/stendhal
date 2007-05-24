@@ -27,8 +27,8 @@ public class EditorXML {
     private List<DefaultCreature> creaturesList;
     private List<DefaultItem> itemsList;
     
-    public final static String itemsFile="data/conf/items.xml";
-    public final static String creaturesFile="data/conf/creatures.xml";
+    public final static String itemsFile="stendhal/data/conf/items.xml";
+    public final static String creaturesFile="stendhal/data/conf/creatures.xml";
     
     final static public String[] slots=new String[] {
         "bag",

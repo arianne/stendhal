@@ -187,7 +187,7 @@ public class JItem extends javax.swing.JFrame {
         itemClass.setSelectedItem(actual.getItemClass());
         itemSubclass.setText(actual.getItemSubClass());
         String gfxLocation = "/"+actual.getItemClass()+"/"+actual.getItemSubClass()+".png";
-        Sprite spr = SpriteStore.get().getSprite("data/sprites/items"+gfxLocation);
+        Sprite spr = SpriteStore.get().getSprite("stendhal/data/sprites/items"+gfxLocation);
         
         drawSinglePart(spr, 1, 1, imageResource.getGraphics());
         itemGFXLocation.setText(gfxLocation);
