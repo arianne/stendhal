@@ -10,7 +10,7 @@
   
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 	<property name="build_client" value="${buildroot}/build_client"/>
-	<property name="build_server" value="${buildroot}/build_server"/>
+	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
 
 	<target name="init">
 		<mkdir dir="${lib}"/>
@@ -58,7 +58,7 @@
 		<delete dir="${build_client}"/>
 		<delete dir="${buildroot}/build_client_data/"/>
 		<delete dir="${build_server}"/>
-		<delete dir="${buildroot}/build_server_maps/"/>
+		<delete dir="${build_server_maps}"/>
 		<delete dir="${buildroot}/build_server_quests/"/>
 		<delete dir="${buildroot}/build_server_xmlconf/"/>
 		<delete dir="${build_tests}"/>
@@ -98,7 +98,6 @@
 			</manifest>
 		</jar>
 
-		<property name="build_server_maps" value="${buildroot}/build_server_maps/"/>
 		<mkdir dir="${build_server_maps}/"/>
 
 		<javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines"  source="1.5" target="1.5"
@@ -528,6 +527,7 @@
 			<classpath>
 				<pathelement path="${build_client}"/>
 				<pathelement path="${build_server}"/>
+				<pathelement path="${build_server_maps}"/>
 				<pathelement path="${marauroa_jar}"/>
 				<pathelement path="${log4j_jar}"/>
 				<pathelement path="${junit_jar}"/>
