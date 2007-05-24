@@ -19,6 +19,8 @@ import javax.swing.*;
 import games.stendhal.client.*;
 import games.stendhal.client.update.ClientGameConfiguration;
 import marauroa.client.*;
+import marauroa.common.game.AccountResult;
+import marauroa.common.net.InvalidVersionException;
 
 /**
  * Summary description for CreateAccountDialog
@@ -202,7 +204,7 @@ public class CreateAccountDialog extends JDialog {
 	}
 
 	private void createAccountButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
-		final String username = usernameField.getText();
+		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
 		final String passwordretype = new String(passwordField.getPassword());
 
@@ -251,61 +253,55 @@ public class CreateAccountDialog extends JDialog {
 					return;
 				}
 
-				try {
-					if (client.createAccount(username, password, email) == false) {
-						String result = client.getEvent();
-						if (result == null) {
-							result = "The server is not responding. Please check that it is online, and that you supplied the correct details.";
-						}
-						progressBar.cancel();
-						setVisible(true);
-						JOptionPane.showMessageDialog(owner, result, "Error Creating Account",
-						        JOptionPane.ERROR_MESSAGE);
+                try {
+                	AccountResult result = client.createAccount(accountUsername, password, email);
+                	/*
+                	 * Print username returned by server, as server can modify it at will
+                	 * to match account names rules. 
+                	 */
 
-						return;
-					} else {
-						progressBar.step();
-						progressBar.finish();
-						client.setUserName(username);
-					}
-				} catch (ariannexpTimeoutException ex) {
+					progressBar.step();
+					progressBar.finish();
+					
+					// TODO: Check mental conflict bewteen username and account name.
+					// Be sure to fix all the variable names.
+					client.setUserName(accountUsername);
+
+					/*
+					 * Once the account is created, login into server.
+					 */
+	                client.login(accountUsername, password);
+					progressBar.step();
+					progressBar.finish();
+
+					setVisible(false);
+					owner.setVisible(false);
+					
+					stendhal.doLogin = true;
+                } catch (TimeoutException e) {
 					progressBar.cancel();
 					setVisible(true);
 					JOptionPane.showMessageDialog(
 						owner,
 						"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
 						"Error Creating Account", JOptionPane.ERROR_MESSAGE);
-				}
-
-				try {
-					if (client.login(username, password) == false) {
-						String result = client.getEvent();
-						if (result == null) {
-							result = "Unable to connect to server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.";
-						}
-						progressBar.cancel();
-						setVisible(true);
-						JOptionPane.showMessageDialog(owner, result, "Error Logging In", JOptionPane.ERROR_MESSAGE);
-					} else {
-						progressBar.step();
-						progressBar.finish();
-						//                        try {//wait just long enough for progress bar to close
-						//                            progressBar.m_run.join();
-						//                        }catch (InterruptedException ie) {}
-
-						setVisible(false);
-						owner.setVisible(false);
-						stendhal.doLogin = true;
-					}
-				} catch (ariannexpTimeoutException ex) {
+                } catch (InvalidVersionException e) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(
-						owner,
-						"Unable to connect to the server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-						"Error Logging In", JOptionPane.ERROR_MESSAGE);
-				}
-
+					JOptionPane.showMessageDialog(owner, "Invalid version", "You are running an incompatible version of Stendhal. Please update", JOptionPane.ERROR_MESSAGE);
+                } catch (CreateAccountFailedException e) {
+					progressBar.cancel();
+					setVisible(true);
+					JOptionPane.showMessageDialog(owner, "Create account failed", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+                } catch (BannedAddressException e) {
+					progressBar.cancel();
+					setVisible(true);
+					JOptionPane.showMessageDialog(owner, "IP Banned", "You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111", JOptionPane.ERROR_MESSAGE);
+                } catch(LoginFailedException e) {
+					progressBar.cancel();
+					setVisible(true);
+					JOptionPane.showMessageDialog(owner, "Login failed", e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+                }
 			}
 		};
 		m_connectionThread.start();
