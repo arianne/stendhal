@@ -245,8 +245,8 @@ public class CreateAccountDialog extends JDialog {
 				} catch (Exception ex) {
 					progressBar.cancel();//if something goes horribly just cancel the progressbar
 					setVisible(true);
-					JOptionPane.showMessageDialog(owner,
-						"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
+					JOptionPane.showMessageDialog(owner, 
+							"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
 
 					ex.printStackTrace();
 
@@ -284,23 +284,36 @@ public class CreateAccountDialog extends JDialog {
 					JOptionPane.showMessageDialog(
 						owner,
 						"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-						"Error Creating Account", JOptionPane.ERROR_MESSAGE);
+						"Error Creating Account", 
+						JOptionPane.ERROR_MESSAGE);
                 } catch (InvalidVersionException e) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(owner, "Invalid version", "You are running an incompatible version of Stendhal. Please update", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(owner, 
+							"You are running an incompatible version of Stendhal. Please update", 
+							"Invalid version",
+							JOptionPane.ERROR_MESSAGE);
                 } catch (CreateAccountFailedException e) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(owner, "Create account failed", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(owner, 
+							e.getMessage(),
+							"Create account failed",
+							JOptionPane.ERROR_MESSAGE);
                 } catch (BannedAddressException e) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(owner, "IP Banned", "You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(owner, 
+							"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+							"IP Banned",
+							JOptionPane.ERROR_MESSAGE);
                 } catch(LoginFailedException e) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(owner, "Login failed", e.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(owner, 
+							e.getMessage(), 
+							"Login failed", 
+							JOptionPane.INFORMATION_MESSAGE);
                 }
 			}
 		};
