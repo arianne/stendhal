@@ -30,7 +30,7 @@ import marauroa.common.game.RPSlot;
 
 import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This panel is a container showing all items in a slot

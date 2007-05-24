@@ -4,7 +4,7 @@ import games.stendhal.client.scripting.ScriptRecorder;
 
 import java.io.FileNotFoundException;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Enable/disable input recording.

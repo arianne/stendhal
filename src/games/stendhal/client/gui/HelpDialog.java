@@ -23,7 +23,7 @@ import javax.swing.text.html.StyleSheet;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * A help system that displays the manual

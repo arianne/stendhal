@@ -73,7 +73,7 @@ import javax.swing.WindowConstants;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {

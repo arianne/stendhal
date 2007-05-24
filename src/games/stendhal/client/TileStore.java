@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import marauroa.common.Log4J;
 import marauroa.common.net.InputSerializer;

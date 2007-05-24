@@ -37,6 +37,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
+
+import marauroa.client.ClientFramework;
 import marauroa.client.ariannexp;
 import marauroa.client.net.DefaultPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
@@ -49,7 +51,7 @@ import marauroa.client.net.IPerceptionListener;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This class is the glue to Marauroa, it extends ariannexp and allow us to
@@ -58,7 +60,7 @@ import org.apache.log4j.Logger;
  * This class should be limited to functionality independant of the UI
  * (that goes in StendhalUI or a subclass). 
  */
-public class StendhalClient extends ariannexp {
+public class StendhalClient extends ClientFramework {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalClient.class);

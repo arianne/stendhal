@@ -13,7 +13,7 @@ import marauroa.common.Configuration;
 import marauroa.common.io.Persistence;
 import marauroa.common.net.TransferContent;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * <p>Manages a two level cache which one or both levels are optional:</p>

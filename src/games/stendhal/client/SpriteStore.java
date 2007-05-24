@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
 
 import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * A resource manager for sprites in the game. Its often quite important how and

@@ -32,7 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Displays a credits dialog box

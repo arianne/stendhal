@@ -13,7 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * trys to enable DetectableKeyRepeat on X11 using a native library

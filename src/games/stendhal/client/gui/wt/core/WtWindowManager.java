@@ -28,7 +28,7 @@ import java.util.Properties;
 import marauroa.common.Log4J;
 import marauroa.common.io.Persistence;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This manager keeps track of all the windows and their positions/ minimized

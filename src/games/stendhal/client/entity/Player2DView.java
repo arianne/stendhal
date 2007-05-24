@@ -19,7 +19,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import marauroa.common.Log4J;
 

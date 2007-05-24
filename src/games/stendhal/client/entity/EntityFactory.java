@@ -17,7 +17,7 @@ import games.stendhal.client.StendhalUI;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * creates a Stendhal Entity object based on a Marauroa RPObject.

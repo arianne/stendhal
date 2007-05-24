@@ -31,7 +31,7 @@ import java.util.Map;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {

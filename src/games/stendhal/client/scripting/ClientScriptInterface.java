@@ -1,6 +1,6 @@
 package games.stendhal.client.scripting;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Interface used by client side scripts to interact with the game

@@ -25,7 +25,7 @@ import javax.swing.JTextField;
 
 import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {
 

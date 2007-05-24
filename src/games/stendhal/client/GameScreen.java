@@ -48,7 +48,7 @@ import games.stendhal.client.gui.wt.core.WtBaseframe;
 
 import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This class is an abstraction of the game screen, so that we can think of it

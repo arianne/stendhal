@@ -53,7 +53,7 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
 import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This sound system makes available a library of sounds which can be performed

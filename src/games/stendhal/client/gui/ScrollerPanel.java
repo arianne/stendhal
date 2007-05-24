@@ -29,7 +29,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
