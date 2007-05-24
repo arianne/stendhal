@@ -288,6 +288,15 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
     <portal x="7" y="1" ref="0">
      <destination zone="0_ados_city_n" ref="11"/>
     </portal>
+    <portal x="28" y="28" ref="downstairs">
+     <destination zone="int_ados_haunted_house_basement" ref="upstairs"/>
+    </portal>
+   </zone>
+
+   <zone name="int_ados_haunted_house_basement" file="interiors/ados/haunted_house_basement.tmx">
+    <portal x="14" y="14" ref="upstairs">
+     <destination zone="int_ados_haunted_house" ref="downstairs"/>
+    </portal>
    </zone>
 
    <zone name="int_ados_bakery" file="interiors/ados/bakery.tmx">
@@ -378,25 +387,59 @@ in roaches.
     </portal>
    </zone>
 
-<!-- I will add the temple again when I've found an appropriate building 
+<!-- dine will add the temple again when dine's found an appropriate building 
   <zone name="int_ados_temple" file="interiors/ados/temple.tmx">
     <portal x="10" y="23" ref="entrance_left">
-     <destination zone="0_ados_wall" ref="temple_entrance_left"/>
+     <destination zone="" ref="temple_entrance_left"/>
     </portal>
 
     <portal x="11" y="23" ref="entrance_center_left">
-     <destination zone="0_ados_wall" ref="temple_entrance_left"/>
+     <destination zone="" ref="temple_entrance_left"/>
     </portal>
 
     <portal x="12" y="23" ref="entrance_center_right">
-     <destination zone="0_ados_wall" ref="temple_entrance_center"/>
+     <destination zone="" ref="temple_entrance_center"/>
     </portal>
 
     <portal x="13" y="23" ref="entrance_right">
-     <destination zone="0_ados_wall" ref="temple_entrance_right"/>
+     <destination zone="" ref="temple_entrance_right"/>
     </portal>
    </zone>
 -->   
+
+
+  <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
+    <portal x="24" y="58" ref="entrance_left">
+     <destination zone="0_ados_wall" ref="barracks_entrance_left"/>
+    </portal>
+
+    <portal x="25" y="58" ref="entrance_right">
+     <destination zone="0_ados_wall" ref="barracks_entrance_center"/>
+    </portal>
+
+ <!--  there's a portal marked here on map but can't see where it goes?
+  (comment by katie)
+  <portal x="2" y="46" ref="upstairs_1">
+     <destination zone="int_ados_barracks_1" ref="downstairs_1"/>
+    </portal> -->
+
+    <portal x="46" y="11" ref="upstairs_2">
+     <destination zone="int_ados_barracks_1" ref="downstairs_2"/>
+    </portal>
+
+   </zone>
+
+  <zone name="int_ados_barracks_1" file="interiors/ados/barracks_1.tmx">
+ <!--   <portal x="2" y="46" ref="downstairs_1">
+     <destination zone="int_ados_barracks_0" ref="upstairs_1"/>
+    </portal>-->
+
+    <portal x="36" y="4" ref="downstairs_2">
+     <destination zone="int_ados_barracks_0" ref="upstairs_2"/>
+    </portal>
+   </zone>
+
    <zone name="int_ados_storage" file="interiors/ados/storage.tmx">
     <portal x="14" y="30" ref="storage_inside_left">
      <destination zone="0_ados_city_n" ref="storage_outside_1"/>
@@ -496,17 +539,17 @@ Southeast: Docks
    </zone>
    
    <zone name="0_ados_wall" level="0" x="500768" y="500000" file="Level 0/ados/wall.tmx">
-<!-- this building is going to be barracks
-     <portal x="100" y="52" ref="temple_entrance_left">
-      <destination zone="int_ados_temple" ref="entrance_center_left"/>
+
+     <portal x="100" y="52" ref="barracks_entrance_left">
+      <destination zone="int_ados_barracks_0" ref="entrance_left"/>
     </portal>
-    <portal x="101" y="52" ref="temple_entrance_center">
-      <destination zone="int_ados_temple" ref="entrance_center_right"/>
+    <portal x="101" y="52" ref="barracks_entrance_center">
+      <destination zone="int_ados_barracks_0" ref="entrance_right"/>
     </portal>
-    <portal x="102" y="52" ref="temple_entrance_right">
-      <destination zone="int_ados_temple" ref="entrance_right"/>
+    <portal x="102" y="52" ref="barracks_entrance_right">
+      <destination zone="int_ados_barracks_0" ref="entrance_right"/>
     </portal>
--->
+
    </zone>
    
    <zone name="0_ados_city" level="0" x="500896" y="500000" file="Level 0/ados/city.tmx">

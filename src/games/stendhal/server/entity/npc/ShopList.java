@@ -124,6 +124,7 @@ public class ShopList {
 		// more rare armor shop (ados?)
 		shops.add("buyrare3", "studded_boots", 75);
 		shops.add("buyrare3", "chain_boots", 90);
+		shops.add("buyrare3", "steel_boots", 1000);
 		shops.add("buyrare3", "skull_shield", 100);
 		shops.add("buyrare3", "unicorn_shield", 125);
 		shops.add("buyrare3", "viking_helmet", 250);
