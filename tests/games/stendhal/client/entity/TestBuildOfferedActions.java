@@ -1,12 +1,14 @@
 package games.stendhal.client.entity;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPObject;
 
 import org.junit.Assert;
@@ -249,7 +251,7 @@ public class TestBuildOfferedActions {
 		}
 
 		@Override
-		public String get(final String attribute) throws AttributeNotFoundException {
+		public String get(final String attribute) {
 			if (attribute.equals("type")) {
 				return _type;
 			}
@@ -263,7 +265,7 @@ public class TestBuildOfferedActions {
 		}
 
 		@Override
-		public double getDouble(final String arg0) throws AttributeNotFoundException {
+		public double getDouble(final String arg0) {
 			return 0.0;
 		}
 	}
