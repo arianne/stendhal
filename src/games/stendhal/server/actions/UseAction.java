@@ -37,8 +37,6 @@ public class UseAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "use");
-
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
 			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
@@ -100,8 +98,6 @@ public class UseAction implements ActionListener {
 				invokeUseListener(player, object);
 			}
 		}
-
-		Log4J.finishMethod(logger, "use");
 	}
 	
 	private void invokeUseListener(Player player, RPObject object) {

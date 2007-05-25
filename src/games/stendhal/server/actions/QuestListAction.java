@@ -15,9 +15,6 @@ public class QuestListAction implements ActionListener {
 	     StendhalRPRuleProcessor.register("listquests", new QuestListAction());
 	}
 	public void onAction(Player player, RPAction action) {
-		
-		Log4J.startMethod(logger, "onAction");
-
 		StringBuilder st = new StringBuilder();
 		if (action.has("target")){
 			String which=action.get("target");
@@ -28,7 +25,6 @@ public class QuestListAction implements ActionListener {
 		}
 		player.sendPrivateText(st.toString());
 		player.notifyWorldAboutChanges();
-		Log4J.finishMethod(logger, "onAction");
 	}
 
 }

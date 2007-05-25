@@ -33,8 +33,6 @@ public class LookAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "look");
-
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		// When look is casted over something in a slot
@@ -111,7 +109,5 @@ public class LookAction implements ActionListener {
 				world.modify(player);
 			}
 		}
-
-		Log4J.finishMethod(logger, "look");
 	}
 }

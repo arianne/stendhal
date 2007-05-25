@@ -29,8 +29,6 @@ public class OutfitAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "outfit");
-
 		if (action.has("value")) {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
 			Outfit outfit = new Outfit(action.getInt("value"));
@@ -38,7 +36,5 @@ public class OutfitAction implements ActionListener {
 				player.setOutfit(outfit, false);
 			}
 		}
-
-		Log4J.finishMethod(logger, "outfit");
 	}
 }

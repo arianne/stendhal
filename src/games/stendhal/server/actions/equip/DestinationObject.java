@@ -127,12 +127,17 @@ class DestinationObject extends MoveableObject {
 				return false;
 			}
 
+			/*
+			 * TODO: Broken.
+			 * Marauroa 2.0 improved all the slot handling.
+			 * XXX: Recode.
+			 */
 			// not very accurate...the containment level of this slot
-			int depth = rpslot.getContainedDepth();
+			int depth = 0;
 
 			// count items in source item (if it is an container)
 			for (RPSlot sourceSlot : entity.slots()) {
-				depth += sourceSlot.getNumberOfContainedItems();
+				depth += sourceSlot.size();
 			}
 
 			// check the maximum level of contained elements
@@ -221,7 +226,6 @@ class DestinationObject extends MoveableObject {
 			// entity still there?
 			if (entity != null) {
 				// yep, so it is not stacked. simplay add it
-				rpslot.assignValidID(entity);
 				rpslot.add(entity);
 			}
 

@@ -27,11 +27,11 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.entity.spawner.VegetableGrower;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.spawner.GrainField;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
+import games.stendhal.server.entity.spawner.VegetableGrower;
 import games.stendhal.server.events.MovementListener;
 import games.stendhal.server.rule.EntityManager;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -48,7 +48,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
@@ -57,8 +60,6 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
 import marauroa.server.game.rp.MarauroaRPZone;
-
-import marauroa.common.Logger;
 
 public class StendhalRPZone extends MarauroaRPZone {
 

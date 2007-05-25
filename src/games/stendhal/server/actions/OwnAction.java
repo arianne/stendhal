@@ -37,8 +37,6 @@ public class OwnAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "own");
-
 		// BUG: This features is potentially abusable right now. Consider
 		// removing it...
 		if (player.hasSheep() && action.has("target") && (action.getInt("target") == -1)) // Allow release of sheep
@@ -94,7 +92,5 @@ public class OwnAction implements ActionListener {
 				}
 			}
 		}
-
-		Log4J.finishMethod(logger, "own");
 	}
 }

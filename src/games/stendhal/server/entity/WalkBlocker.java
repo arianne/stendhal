@@ -6,8 +6,6 @@
 
 package games.stendhal.server.entity;
 
-import marauroa.common.game.AttributeNotFoundException;
-
 /**
  * An entity that just acts as an obsticle. This is a temporary workaround
  * to allow items to be placed, but not players/entities, until multi-level
@@ -18,7 +16,7 @@ public class WalkBlocker extends Entity {
 	/**
 	 * Create a walk blocker.
 	 */
-	public WalkBlocker() throws AttributeNotFoundException {
+	public WalkBlocker() {
 		put("type", "walk_blocker");
 	}
 

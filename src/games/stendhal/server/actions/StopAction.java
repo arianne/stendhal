@@ -28,15 +28,11 @@ public class StopAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "stop");
-
 		player.stop();
 
 		if (action.has("attack")) {
 			player.stopAttack();
 		}
 		player.notifyWorldAboutChanges();
-
-		Log4J.finishMethod(logger, "stop");
 	}
 }

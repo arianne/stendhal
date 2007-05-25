@@ -18,10 +18,12 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Iterator;
 
-import marauroa.common.game.AttributeNotFoundException;
+
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A chest is an unmovable container. It can be opened and closed. While
@@ -35,30 +37,28 @@ public class Chest extends Entity implements UseListener {
 	public static void generateRPClass() {
 		RPClass chest = new RPClass("chest");
 		chest.isA("entity");
-		chest.add("open", RPClass.FLAG);
+		chest.addAttribute("open", Type.FLAG);
 		chest.addRPSlot("content", 30);
 	}
 
-	public Chest(RPObject object) throws AttributeNotFoundException {
+	public Chest(RPObject object) {
 		super(object);
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
 			RPSlot slot = new LootableSlot(this);
-			slot.setCapacity(4);
 			addSlot(slot);
 		}
 
 		update();
 	}
 
-	public Chest() throws AttributeNotFoundException {
+	public Chest() {
 		super();
 		put("type", "chest");
 		open = false;
 
 		RPSlot slot = new LootableSlot(this);
-		slot.setCapacity(4);
 		addSlot(slot);
 	}
 
@@ -91,7 +91,6 @@ public class Chest extends Entity implements UseListener {
 
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
-		content.assignValidID(entity);
 		content.add(entity);
 	}
 

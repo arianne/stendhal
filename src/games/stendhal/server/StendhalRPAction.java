@@ -32,7 +32,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
 
-import javax.management.AttributeNotFoundException;
+
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
@@ -267,7 +267,7 @@ public class StendhalRPAction {
 	 * @throws NoRPZoneException
 	 * @throws RPObjectNotFoundException
 	 */
-	public static boolean attack(RPEntity attacker, RPEntity defender) throws AttributeNotFoundException, RPObjectNotFoundException {
+	public static boolean attack(RPEntity attacker, RPEntity defender), RPObjectNotFoundException {
 		boolean result = false;
 
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(attacker.getID());
@@ -414,7 +414,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void move(RPEntity entity) throws AttributeNotFoundException {
+	public static void move(RPEntity entity) {
 		if (entity.stopped()) {
 			return;
 		}
@@ -496,7 +496,7 @@ public class StendhalRPAction {
 	 * @param player
 	 * @throws AttributeNotFoundException
 	 */
-	public static void transferContent(Player player) throws AttributeNotFoundException {
+	public static void transferContent(Player player) {
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
 		rpman.transferContent(player, zone.getContents());
 	}
@@ -509,7 +509,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException {
+	public static void decideChangeZone(Player player, int x, int y) {
 		// String zoneid = player.get("zoneid");
 
 		StendhalRPZone origin = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
@@ -553,7 +553,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException {
+	public static boolean usePortal(Player player, Portal portal) {
 		if (!player.nextTo(portal)) {
 			// Too far to use the portal
 			return false;
@@ -722,7 +722,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException {
+	public static void changeZone(Player player, StendhalRPZone zone) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		String destination = zone.getID().getID();

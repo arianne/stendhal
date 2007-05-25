@@ -19,7 +19,7 @@ import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.Logger;
@@ -45,12 +45,12 @@ public abstract class NPC extends RPEntity {
 		}
 	}
 
-	public NPC(RPObject object) throws AttributeNotFoundException {
+	public NPC(RPObject object) {
 		super(object);
 		update();
 	}
 
-	public NPC() throws AttributeNotFoundException {
+	public NPC() {
 		super();
 		put("type", "npc");
 

@@ -58,8 +58,6 @@ public class BuddyAction implements ActionListener {
 		int duration;
 		String reason;
 
-		Log4J.startMethod(logger, "ignore");
-
 		if (action.has("target")) {
 			String who = action.get("target");
 
@@ -79,13 +77,9 @@ public class BuddyAction implements ActionListener {
 				player.sendPrivateText(who + " was added to your ignore list.");
 			}
 		}
-
-		Log4J.finishMethod(logger, "ignore");
 	}
 
 	private void onUnignore(Player player, RPAction action) {
-		Log4J.startMethod(logger, "unignore");
-
 		if (action.has("target")) {
 			String who = action.get("target");
 
@@ -93,13 +87,9 @@ public class BuddyAction implements ActionListener {
 				player.sendPrivateText(who + " was removed from your ignore list.");
 			}
 		}
-
-		Log4J.finishMethod(logger, "unignore");
 	}
 
 	private void onRemoveBuddy(Player player, RPAction action) {
-		Log4J.startMethod(logger, "removeBuddy");
-
 		if (action.has("target")) {
 			String who = action.get("target");
 
@@ -110,7 +100,5 @@ public class BuddyAction implements ActionListener {
 			// TEMP! Supreceeded by /unignore
 			player.removeIgnore(who);
 		}
-
-		Log4J.finishMethod(logger, "removeBuddy");
 	}
 }

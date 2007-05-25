@@ -18,7 +18,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.StendhalRPAction;
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.Logger;
 
@@ -45,7 +45,7 @@ public class Portal extends Entity implements UseListener {
 		}
 	}
 
-	public Portal() throws AttributeNotFoundException {
+	public Portal() {
 		super();
 		put("type", "portal");
 		settedDestination = false;

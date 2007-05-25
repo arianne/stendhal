@@ -2,7 +2,7 @@ package games.stendhal.server.entity.portal;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
-import marauroa.common.game.AttributeNotFoundException;
+
 
 /**
  * A KeyDestroyingDoor works just like a normal locked door, except that it
@@ -49,7 +49,7 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 * @throws AttributeNotFoundException
 	 */
 	public KeyDestroyingDoor(String key, String clazz, Direction dir, int requiredAmount)
-	        throws AttributeNotFoundException {
+	        {
 		super(key, clazz, dir);
 		this.requiredAmount = requiredAmount;
 	}

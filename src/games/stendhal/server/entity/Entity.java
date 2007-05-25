@@ -12,15 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.common.Grammar;
 import games.stendhal.common.Direction;
+import games.stendhal.common.Grammar;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import marauroa.common.game.AttributeNotFoundException;
+
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 public abstract class Entity extends RPObject {
 	//
@@ -87,32 +90,33 @@ public abstract class Entity extends RPObject {
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
-		entity.add("description", RPClass.LONG_STRING, RPClass.HIDDEN); // Some things may have a textual description
-		entity.add("x", RPClass.SHORT);
-		entity.add("y", RPClass.SHORT);
-		entity.add("dir", RPClass.BYTE, RPClass.VOLATILE);
-		entity.add("speed", RPClass.FLOAT, RPClass.VOLATILE);
-		entity.add("alternateTitle", RPClass.STRING);
+	
+		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN); // Some things may have a textual description
+		entity.addAttribute("x", Type.SHORT);
+		entity.addAttribute("y", Type.SHORT);
+		entity.addAttribute("dir", Type.BYTE, Definition.VOLATILE);
+		entity.addAttribute("speed", Type.FLOAT, Definition.VOLATILE);
+		entity.addAttribute("alternateTitle", Type.STRING);
 
 		/*
 		 * If this is set, the client will discard/ignore entity
 		 */
-		entity.add("server-only", RPClass.FLAG, RPClass.VOLATILE);
+		entity.addAttribute("server-only", Type.FLAG, Definition.VOLATILE);
 
 
 		/*
 		 * The current overlayed client effect.
 		 */
-		entity.add("effect", RPClass.STRING, RPClass.VOLATILE);
+		entity.addAttribute("effect", Type.STRING, Definition.VOLATILE);
 
 		/*
 		 * The visibility of the entity drawn on client (0-100).
 		 * 0=Invisible, 100=Solid. Useful when mixed with effect.
 		 */
-		entity.add("visibility", RPClass.INT, RPClass.VOLATILE);
+		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
 	}
 
-	public Entity(RPObject object) throws AttributeNotFoundException {
+	public Entity(RPObject object) {
 		super(object);
 		direction = Direction.STOP;
 		speed = 0;
@@ -124,11 +128,11 @@ public abstract class Entity extends RPObject {
 		update();
 	}
 
-	public Entity() throws AttributeNotFoundException {
+	public Entity() {
 		super();
 	}
 
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		if (has("x")) {
 			x = getInt("x");
 		}

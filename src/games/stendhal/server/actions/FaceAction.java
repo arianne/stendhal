@@ -30,14 +30,10 @@ public class FaceAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "face");
-
 		if (action.has("dir")) {
 			player.stop();
 			player.setDirection(Direction.build(action.getInt("dir")));
 			player.notifyWorldAboutChanges();
 		}
-
-		Log4J.finishMethod(logger, "face");
 	}
 }

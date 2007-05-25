@@ -9,13 +9,13 @@ package games.stendhal.server.entity;
 //
 //
 
-import java.util.Map;
-
-import marauroa.common.game.AttributeNotFoundException;
-
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContextImpl;
 import games.stendhal.common.ConfigurableFactoryHelper;
+
+import java.util.Map;
+
+
 
 /**
  * A utility class for creating entities using ConfigurableFactory.
@@ -67,14 +67,7 @@ public class EntityFactoryHelper {
 		 */
 		if(attributes != null) {
 			for(String name : attributes.keySet()) {
-				try {
-					entity.put(name, attributes.get(name));
-				} catch(AttributeNotFoundException ex) {
-					throw new IllegalArgumentException(
-						"Unable to set attribute '"
-						+ name + "' on "
-						+ entity.getClass().getName());
-				}
+				entity.put(name, attributes.get(name));
 			}
 		}
 

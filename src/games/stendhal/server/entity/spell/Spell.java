@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 
 /**
@@ -66,7 +66,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	}
 
 	/** no public 'default' item */
-	private Spell() throws AttributeNotFoundException {
+	private Spell() {
 		super();
 		put("type", "spell");
 		update();

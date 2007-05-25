@@ -41,8 +41,6 @@ public class AwayAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void onAway(Player player, RPAction action) {
-		Log4J.startMethod(logger, "away");
-
 		if (action.has("message")) {
 			player.put("away", action.get("message"));
 		} else if (player.has("away")) {
@@ -51,8 +49,6 @@ public class AwayAction implements ActionListener {
 
 		player.resetAwayReplies();
 		player.notifyWorldAboutChanges();
-
-		Log4J.finishMethod(logger, "away");
 	}
 
 	/**

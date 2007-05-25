@@ -33,7 +33,6 @@ public class AttackAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "attack");
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
@@ -47,7 +46,5 @@ public class AttackAction implements ActionListener {
 				}
 			}
 		}
-
-		Log4J.finishMethod(logger, "attack");
 	}
 }

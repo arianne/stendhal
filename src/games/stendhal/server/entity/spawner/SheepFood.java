@@ -15,7 +15,7 @@ package games.stendhal.server.entity.spawner;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
 
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
@@ -39,13 +39,13 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 		food.add("amount", RPClass.BYTE);
 	}
 
-	public SheepFood(RPObject object) throws AttributeNotFoundException {
+	public SheepFood(RPObject object) {
 		super(object, null, GROWING_RATE);
 		put("type", "food");
 		update();
 	}
 
-	public SheepFood() throws AttributeNotFoundException {
+	public SheepFood() {
 		super(null, GROWING_RATE);
 		put("type", "food");
 	}

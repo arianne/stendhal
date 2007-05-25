@@ -36,8 +36,6 @@ public class MoveAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "move");
-
 		String type = action.get("type");
 
 		if (type.equals("move")) {
@@ -48,8 +46,6 @@ public class MoveAction implements ActionListener {
 	}
 
 	private void move(Player player, RPAction action) {
-		Log4J.startMethod(logger, "move");
-
 		if (action.has("dir")) {
 			int dirval;
 
@@ -64,13 +60,9 @@ public class MoveAction implements ActionListener {
 
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
-
-		Log4J.finishMethod(logger, "move");
 	}
 
 	private void moveTo(Player player, RPAction action) {
-		Log4J.startMethod(logger, "moveto");
-		
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
 			return;
@@ -95,7 +87,5 @@ public class MoveAction implements ActionListener {
 		}
 
 		player.applyClientDirection(false);
-
-		Log4J.finishMethod(logger, "moveto");
 	}
 }

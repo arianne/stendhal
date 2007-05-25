@@ -38,8 +38,6 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void removeFromGuild(Player player, RPAction action) {
-		Log4J.startMethod(logger, "removeFromGuild");
-
 		if (player.get("guild") != null) {
 		    player.remove("guild");//resets guild
 		    player.remove("description"); //resets description
@@ -51,8 +49,6 @@ public class RemoveFromGuildAction implements ActionListener {
                 
 		player.update();
 		player.notifyWorldAboutChanges();
-
-		Log4J.finishMethod(logger, "removeFromGuild");
 	}
 
 	/**

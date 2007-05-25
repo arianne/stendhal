@@ -13,7 +13,7 @@ import java.util.Random;
 import marauroa.common.Logger;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+
 import games.stendhal.common.Level;
 import games.stendhal.server.entity.RPEntity;
 
@@ -54,7 +54,7 @@ public class DamagingArea extends OccupantArea {
 	 * @param	probability	The chance of damage while walking
 	 *				(0.0 - 1.0).
 	 */
-	public DamagingArea(String name, int width, int height, int damage, int interval, double probability) throws AttributeNotFoundException {
+	public DamagingArea(String name, int width, int height, int damage, int interval, double probability) {
 		super("damaging_area", name, width, height, interval);
 
 		this.damage = damage;

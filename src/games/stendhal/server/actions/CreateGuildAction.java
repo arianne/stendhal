@@ -38,9 +38,7 @@ public class CreateGuildAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void joinGuild(Player player, RPAction action) {
-		Log4J.startMethod(logger, "joinguild");
-
-                //now we see if the player is in a guild. If not, put them in the requested one.
+        //now we see if the player is in a guild. If not, put them in the requested one.
 		if (player.get("guild") != null) {
 		    player.sendPrivateText("You are already in a guild! Please leave your old one and try again.");
 		} else {
@@ -55,8 +53,6 @@ public class CreateGuildAction implements ActionListener {
                 
 		player.update();
 		player.notifyWorldAboutChanges();
-
-		Log4J.finishMethod(logger, "joinguild");
 	}
 
 	/**

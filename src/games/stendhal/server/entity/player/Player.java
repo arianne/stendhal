@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Random;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -211,7 +211,7 @@ public class Player extends RPEntity implements TurnListener {
 		world.remove(player.getID());
 	}
 
-	public Player(RPObject object) throws AttributeNotFoundException {
+	public Player(RPObject object) {
 		super(object);
 		playerSheepManager = new PlayerSheepManager(this);
 
@@ -478,7 +478,7 @@ public class Player extends RPEntity implements TurnListener {
 	 * contructor, sometimes before prereqs are initialized.
 	 */
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		super.update();
 
 		if(has("xp")) {

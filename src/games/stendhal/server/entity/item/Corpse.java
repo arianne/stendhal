@@ -27,10 +27,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Definition.Type;
 
 import marauroa.common.Logger;
 
@@ -55,11 +56,11 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
 		entity.isA("entity");
-		entity.add("class", RPClass.STRING);
-		entity.add("stage", RPClass.BYTE);
+		entity.addAttribute("class", Type.STRING);
+		entity.addAttribute("stage", Type.BYTE);
 
-		entity.add("name", RPClass.STRING);
-		entity.add("killer", RPClass.STRING);
+		entity.addAttribute("name", Type.STRING);
+		entity.addAttribute("killer", Type.STRING);
 
 		entity.addRPSlot("content", 4);
 	}
@@ -76,7 +77,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		}		
 	}
 
-	public Corpse(String clazz, int x, int y) throws AttributeNotFoundException {
+	public Corpse(String clazz, int x, int y) {
 		put("type", "corpse");
 		put("class", clazz);
 
@@ -89,11 +90,10 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		put("stage", stage);
 
 		RPSlot slot = new LootableSlot(this);
-		slot.setCapacity(4);
 		addSlot(slot);
 	}
 
-	public Corpse(RPEntity entity, Entity killer) throws AttributeNotFoundException {
+	public Corpse(RPEntity entity, Entity killer) {
 		put("type", "corpse");
 
 		if (entity.has("class")) {
@@ -134,7 +134,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		put("stage", stage);
 
 		RPSlot slot = new LootableSlot(this);
-		slot.setCapacity(4);
 		addSlot(slot);
 	}
 
@@ -230,7 +229,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
-		content.assignValidID(entity);
 		content.add(entity);
 	}
 

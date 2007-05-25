@@ -34,7 +34,6 @@ public class DisplaceAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "displace");
 		if (action.has("baseitem")) {
 			int targetObject = action.getInt("baseitem");
 
@@ -78,7 +77,5 @@ public class DisplaceAction implements ActionListener {
 				}
 			}
 		}
-
-		Log4J.finishMethod(logger, "displace");
 	}
 }

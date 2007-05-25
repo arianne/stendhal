@@ -17,7 +17,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPObject;
 
 /**
@@ -28,13 +28,13 @@ import marauroa.common.game.RPObject;
 public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements UseListener {
 	private String vegetableName;
 
-	public VegetableGrower(RPObject object, String name) throws AttributeNotFoundException {
+	public VegetableGrower(RPObject object, String name) {
 		super(object, "items/grower/"+name+"_grower", "Pick", 1, 1, 1);
 		vegetableName=name;
 		update();
 	}
 
-	public VegetableGrower(String name) throws AttributeNotFoundException {
+	public VegetableGrower(String name) {
 		super("items/grower/"+name+"_grower", "Pick", 1, 1, 1);
 		vegetableName=name;
 	}

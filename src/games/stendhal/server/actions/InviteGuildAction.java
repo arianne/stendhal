@@ -38,8 +38,6 @@ public class InviteGuildAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void inviteToGuild(Player player, RPAction action) {
-		Log4J.startMethod(logger, "inviteToGuild");
-
 		//invites to guild
 		if (action.has("playername") && action.has("guildname")) {
 		    // we have all the options, so let's coninue...
@@ -70,8 +68,6 @@ public class InviteGuildAction implements ActionListener {
                 
 		player.update();
 		player.notifyWorldAboutChanges();
-
-		Log4J.finishMethod(logger, "guild");
 	}
 
 	/**

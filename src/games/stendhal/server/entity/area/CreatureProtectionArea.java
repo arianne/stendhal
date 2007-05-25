@@ -13,8 +13,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
-
 /**
  * An area prevents creatures from entering. This allows a layered chain
  * of criteria. Think of this as a creature firewall.
@@ -44,7 +42,7 @@ public class CreatureProtectionArea extends Entity {
 	/**
 	 * Create a 1x1 creature protection area.
 	 */
-	public CreatureProtectionArea() throws AttributeNotFoundException {
+	public CreatureProtectionArea() {
 		this(1, 1);
 	}
 
@@ -54,7 +52,7 @@ public class CreatureProtectionArea extends Entity {
 	 * @param	width		The area width.
 	 * @param	height		The area height.
 	 */
-	public CreatureProtectionArea(int width, int height) throws AttributeNotFoundException {
+	public CreatureProtectionArea(int width, int height) {
 		this(width, height, true);
 	}
 
@@ -65,7 +63,7 @@ public class CreatureProtectionArea extends Entity {
 	 * @param	height		The area height.
 	 * @param	defaultBlocked	Whether blocked on no match.
 	 */
-	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) throws AttributeNotFoundException {
+	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) {
 		put("type", "creature_protection_area");
 		put("server-only", "");
 

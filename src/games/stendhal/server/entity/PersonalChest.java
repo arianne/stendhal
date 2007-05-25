@@ -9,12 +9,12 @@ import games.stendhal.server.events.TurnNotifier;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import marauroa.common.game.AttributeNotFoundException;
+
+
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import marauroa.common.Logger;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows
@@ -44,7 +44,7 @@ public class PersonalChest extends Chest {
 	/**
 	 * Create a personal chest using the default bank slot.
 	 */
-	public PersonalChest() throws AttributeNotFoundException {
+	public PersonalChest() {
 		this(DEFAULT_BANK);
 	}
 
@@ -53,7 +53,7 @@ public class PersonalChest extends Chest {
 	 *
 	 * @param	bankName	The name of the bank slot.
 	 */
-	public PersonalChest(String bankName) throws AttributeNotFoundException {
+	public PersonalChest(String bankName) {
 		this.bankName = bankName;
 
 		attending = null;

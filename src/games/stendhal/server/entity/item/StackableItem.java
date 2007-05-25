@@ -16,7 +16,7 @@ import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
-import marauroa.common.game.AttributeNotFoundException;
+
 import marauroa.common.game.RPObject;
 
 import marauroa.common.Logger;
@@ -44,7 +44,7 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		super.update();
 		if (has("quantity")) {
 			quantity = getInt("quantity");
