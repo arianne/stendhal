@@ -125,6 +125,7 @@ public class EntityFactoryTest {
 	@Test
 	public final void nPC() {
 		RPObject rp = new MockRPObject("npc",  null);
+		rp.put("name", "bob");
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a NPC by now", NPC.class, en.getClass());
