@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 
+import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -57,7 +58,7 @@ public class NPC2DView extends RPEntity2DView {
 			int code = rpentity.getOutfit();
 
 			if (code != RPEntity.OUTFIT_UNSET) {
-				return getOutfitSprite(store, code);
+				return OutfitStore.get().getOutfit(code);
 			} else {
 				// This NPC's outfit is read from a single file.
 				return store.getSprite(translate("npc/" + entity.getEntityClass()));

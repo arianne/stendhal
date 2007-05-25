@@ -10,6 +10,7 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -70,13 +71,13 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected Sprite getAnimationSprite() {
-		SpriteStore store = SpriteStore.get();
+		OutfitStore store = OutfitStore.get();
 
 		try {
-			return getOutfitSprite(store, player.getOutfit());
+			return store.getOutfit(player.getOutfit());
 		} catch (Exception e) {
-			logger.error("Cannot build animations", e);
-			return getOutfitSprite(store, 0);
+			logger.error("Cannot build outfit", e);
+			return store.getFailsafeOutfit();
 		}
 	}
 

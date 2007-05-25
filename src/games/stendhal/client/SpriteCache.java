@@ -14,10 +14,19 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import marauroa.common.Log4J;
+
 /**
  * A cache of keyed sprites.
  */
 public class SpriteCache {
+	/**
+	 * The logger instance.
+	 */
+	private static final Logger logger = Log4J.getLogger(SpriteCache.class);
+
 	/**
 	 * The singleton.
 	 */
@@ -63,6 +72,7 @@ public class SpriteCache {
 	public void add(Object key, Sprite sprite) {
 		if(key != null) {
 			sprites.put(key, new SoftReference<Sprite>(sprite));
+			logger.debug("SpriteCache - add: " + key);
 		}
 	}
 
@@ -92,13 +102,17 @@ public class SpriteCache {
 		Reference<Sprite> ref = sprites.get(key);
 
 		if(ref == null) {
+			logger.debug("SpriteCache - miss: " + key);
 			return null;
 		}
 
 		Sprite sprite = ref.get();
 
 		if(sprite == null) {
+			logger.debug("SpriteCache - GC'd miss: " + key);
 			sprites.remove(key);
+		} else {
+			logger.debug("SpriteCache - hit: " + key);
 		}
 
 		return sprite;

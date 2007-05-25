@@ -11,6 +11,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.ImageSprite;
+import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
@@ -45,8 +46,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 	private static Sprite	missedSprite;
 	
-	private static Map<OutfitRef,Sprite> cachedOutfitSprite;
-
 	/**
 	 * The RP entity this view is for.
 	 */
@@ -72,8 +71,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		missedSprite = st.getSprite("data/sprites/combat/missed.png");
 		eatingSprite = st.getSprite("data/sprites/ideas/eat.png");
 		poisonedSprite = st.getSprite("data/sprites/ideas/poisoned.png");
-		
-		cachedOutfitSprite = new HashMap<OutfitRef,Sprite>();
 	}
 
 
@@ -172,53 +169,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected Sprite getAnimationSprite() {
 		return SpriteStore.get().getSprite(translate(entity.getType()));
-	}
-
-
-	/**
-	 * Gets the outfit sprite.
-	 * 
-	 * The outfit is described by an "outfit code".
-	 * It is an 8-digit integer of the form RRHHDDBB where RR is the
-	 * number of the hair graphics, HH for the head, DD for the dress,
-	 * and BB for the base.
-	 * 
-	 * @param	store		The sprite store
-	 * @param	outfit		The outfit code.
-	 *
-	 * @return	A sprite for the object
-	 */
-	protected Sprite getOutfitSprite(final SpriteStore store, int outfit) {
-		OutfitRef reference = new OutfitRef(outfit);
-
-		if(cachedOutfitSprite.containsKey(reference)) {
-			return cachedOutfitSprite.get(reference);
-		}
-
-		logger.debug("Cache miss: "+outfit+"("+cachedOutfitSprite.size()+")");
-			
-		Sprite base = store.getSprite("data/sprites/outfit/player_base_" + outfit % 100 + ".png");
-		ImageSprite sprite = new ImageSprite(base);
-		outfit /= 100;
-		if (outfit % 100 != 0) {
-			int dressIdx = outfit % 100;
-			Sprite dress = store.getSprite("data/sprites/outfit/dress_" + dressIdx + ".png");
-			dress.draw(sprite.getGraphics(), 0, 0);
-		}
-		outfit /= 100;
-
-		Sprite head = store.getSprite("data/sprites/outfit/head_" + outfit % 100 + ".png");
-		head.draw(sprite.getGraphics(), 0, 0);
-		outfit /= 100;
-
-		if (outfit % 100 != 0) {
-			Sprite hair = store.getSprite("data/sprites/outfit/hair_" + outfit % 100 + ".png");
-			hair.draw(sprite.getGraphics(), 0, 0);
-		}
-
-		cachedOutfitSprite.put(reference, sprite);
-		
-		return sprite;
 	}
 
 
@@ -335,85 +285,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if(property == RPEntity.PROP_OUTFIT) {
 			representationChanged = true;
-		}
-	}
-
-	//
-	//
-
-	/**
-	 * Outfit sprite reference.
-	 */
-	protected static class OutfitRef {
-		/*
-		 * The outfit code.
-		 */
-		protected int	code;
-
-
-		/**
-		 * Create an outfit reference.
-		 *
-		 * @param	code		The outfit code.
-		 */
-		public OutfitRef(int code) {
-			this.code = code;
-		}
-
-
-		//
-		// OutfitRef
-		//
-
-		/**
-		 * Get the outfit code.
-		 *
-		 * @return	The outfit code.
-		 */
-		public int getCode() {
-			return code;
-		}
-
-
-		//
-		// Object
-		//
-
-		/**
-		 * Determine if this equals another object.
-		 *
-		 * @param	obj		Another object.
-		 *
-		 * @return	<code>true</code> if the object is an OutfitRef
-		 *		with the same code.
-		 */
-		public boolean equals(Object obj) {
-			if(obj instanceof OutfitRef) {
-				return (getCode() == ((OutfitRef) obj).getCode());
-			}
-
-			return false;
-		}
-
-
-		/**
-		 * Get the hash code.
-		 *
-		 * @return	The hash code.
-		 */
-		public int hashCode() {
-			return getCode();
-		}
-
-
-		/**
-		 * Get the string representation.
-		 *
-		 * @return	The string in the form of
-		 *		<code>outfit:</code><em>code</em>.
-		 */
-		public String toString() {
-			return "outfit:" + getCode();
 		}
 	}
 }
