@@ -267,6 +267,7 @@ public class OutfitStore {
 		 * @return	<code>true</code> if the object is an OutfitRef
 		 *		with the same code.
 		 */
+		@Override
 		public boolean equals(Object obj) {
 			if(obj instanceof OutfitRef) {
 				return (getCode() == ((OutfitRef) obj).getCode());
@@ -281,6 +282,7 @@ public class OutfitStore {
 		 *
 		 * @return	The hash code.
 		 */
+		@Override
 		public int hashCode() {
 			return getCode();
 		}
@@ -292,6 +294,7 @@ public class OutfitStore {
 		 * @return	The string in the form of
 		 *		<code>outfit:</code><em>code</em>.
 		 */
+		@Override
 		public String toString() {
 			return "outfit:" + getCode();
 		}

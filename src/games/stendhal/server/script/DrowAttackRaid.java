@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class DrowAttackRaid extends CreateRaid {
 	
+	@Override
 	protected Map<String,Integer> createArmy() {
 		Map<String,Integer> attackArmy=new HashMap<String, Integer>();
 		attackArmy.put("dark_elf",30);
