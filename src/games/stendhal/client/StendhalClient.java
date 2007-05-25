@@ -268,6 +268,10 @@ public class StendhalClient extends ariannexp {
 
 		/** We clean the game object container */
 		logger.debug("CLEANING static object list");
+		staticLayers.clear();
+
+		// TODO: Does this go back somewhere, or did I just enter
+		// the wrong variable name???
 		gameObjects.clear();
 
 		for (TransferContent item : items) {
