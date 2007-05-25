@@ -199,8 +199,8 @@ assertEquals(0,en.count);
  int count=0;
 	
 		public MockEntity() {
-			rpobject = new RPObject();
-			rpobject.put("type", "entity");
+			rpObject = new RPObject();
+			rpObject.put("type", "entity");
 		}
 
 		@Override
