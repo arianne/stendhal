@@ -158,13 +158,6 @@ public class StendhalFirstScreen extends JFrame {
 		Container contentPane = this.getContentPane();
 		contentPane.setLayout(null);
 
-		// Hack: Give C code a change to get access to the x11-connection
-		// by letting its paint-method beeing invoked by awt.
-		if (System.getProperty("os.name", "").toLowerCase().contains("linux")) {
-			X11KeyConfig.get().setBounds(0, 0, 1, 1);
-			contentPane.add(X11KeyConfig.get());
-		}
-
 		addComponent(contentPane, loginButton, 220, 300, 200, 32);
 		addComponent(contentPane, createAccountButton, 220, 340, 200, 32);
 		addComponent(contentPane, helpButton, 220, 380, 200, 32);
