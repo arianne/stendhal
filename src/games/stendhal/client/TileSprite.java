@@ -318,5 +318,11 @@ public class TileSprite implements Sprite {
 		public int hashCode() {
 			return parent.hashCode() ^ x ^ y;
 		}
+
+
+		@Override
+		public String toString() {
+			return parent + "[" + x + "," + y + "/" + width + "x" + height + "]";
+		}
 	}
 }

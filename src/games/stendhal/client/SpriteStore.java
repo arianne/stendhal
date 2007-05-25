@@ -66,34 +66,6 @@ public class SpriteStore {
 		return single;
 	}
 
-	private class CachedSprite {
-		Sprite sprite;
-		int row;
-		
-		public CachedSprite(Sprite sprite, int row) {
-			this.sprite=sprite;
-			this.row=row;
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if(obj instanceof CachedSprite) {
-				CachedSprite ca=(CachedSprite)obj;
-				return sprite.equals(ca.sprite) && row==ca.row;				
-			}
-			
-			return false;
-		}
-		
-		@Override
-		public int hashCode() {
-			return sprite.hashCode()*(row+1);
-		}
-	}
-	
-	/** The cached sprite map, from reference to sprite instance */
-	private HashMap<CachedSprite, Sprite[]> animatedSprites = new HashMap<CachedSprite, Sprite[]>();
-
 
 	/**
 	 * Create an animated sprite from a tile resource.
@@ -165,13 +137,6 @@ public class SpriteStore {
 	 * @return array of sprites
 	 */
 	public Sprite[] getSprites(Sprite animImage, int row, int frameCount, double width, double height) {
-		CachedSprite entry=new CachedSprite(animImage, row);
-		if (animatedSprites.containsKey(entry)) {
-			return animatedSprites.get(entry);
-		}
-		
-		logger.debug("Cache miss: "+animImage);
-		
 		// calculate width and height in pixels from width and height
 		// in tiles
 		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
@@ -183,8 +148,6 @@ public class SpriteStore {
 			animatedSprite[i] = getTile(animImage, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
 		}
 		
-		animatedSprites.put(new CachedSprite(animImage,row), animatedSprite);
-
 		return animatedSprite;
 	}
 
@@ -274,19 +237,33 @@ public class SpriteStore {
 	 *
 	 */
 	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
-		if(false) {
-			//
-			// NEW (SEMI-TESTED) CODE
-			// Saves ~3.5M, but will break flip()
-			//
-			return new TileSprite(sprite, x, y, width, height, null);
-		} else {
-			Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
+		SpriteCache cache = SpriteCache.get();
 
-			sprite.draw(image.getGraphics(), 0, 0, x, y, width, height);
+		Object reference = TileSprite.createReference(sprite, x, y, width, height);
 
-			return new ImageSprite(image);
+		Sprite tile = cache.get(reference);
+
+		if(tile == null) {
+			if(false) {
+				//
+				// NEW (SEMI-TESTED) CODE
+				// Saves ~3.5M, but will break flip()
+				//
+				tile = new TileSprite(sprite, x, y, width, height, null);
+			} else {
+				Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
+
+				sprite.draw(image.getGraphics(), 0, 0, x, y, width, height);
+
+				tile = new ImageSprite(image);
+			}
+
+			if(tile != null) {
+				cache.add(reference, tile);
+			}
 		}
+
+		return tile;
 	}
 
 
