@@ -365,4 +365,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public Entity getEntity() {
 		return entity;
 	}
+
+
+	/**
+	 * Release any view resources. This view should not be used after
+	 * this is called.
+	 */
+	public void release()
+	{
+		entity.removeChangeListener(this);
+		entity = null;
+	}
 }

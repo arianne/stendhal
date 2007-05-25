@@ -19,4 +19,11 @@ public interface EntityView {
 	 * @return	The view's entity.
 	 */
 	public Entity getEntity();
+
+
+	/**
+	 * Release any view resources. This view should not be used after
+	 * this is called.
+	 */
+	public void release();
 }
