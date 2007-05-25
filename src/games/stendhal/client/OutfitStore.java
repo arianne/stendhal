@@ -147,6 +147,16 @@ public class OutfitStore {
 
 
 	/**
+	 * Get the empty sprite tileset.
+	 *
+	 * @return	The sprite, or <code>null</code> on error.
+	 */
+	public Sprite getEmptySprite(int index) {
+		return store.getSprite("data/sprites/outfit/sprite_empty.png");
+	}
+
+
+	/**
 	 * Get the failsafe outfit.
 	 *
 	 * @return	The failsafe outfit tileset.
