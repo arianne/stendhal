@@ -144,34 +144,39 @@ public class Grammar {
 	}
 
 	public static String fullform(String noun) {
-		String enoun = noun.toLowerCase();
-		if (enoun.equals("meat") || enoun.equals("ham") || enoun.equals("cheese") || enoun.equals("wood")
-		        || enoun.equals("paper") || enoun.equals("iron")) {
-			enoun = addPrefixIfNotAlreadyThere("piece of ", enoun);
-		} else if (enoun.endsWith(" ore") || enoun.endsWith("_ore")) {
-			enoun = addPrefixIfNotAlreadyThere("nugget of ", enoun);
-		} else if (enoun.equals("flour")) {
-			enoun = addPrefixIfNotAlreadyThere("sack of ", enoun);
-		} else if (enoun.equals("grain")) {
-			enoun = addPrefixIfNotAlreadyThere("sheaf of ", enoun);
-		} else if (enoun.equals("bread")) {
-			enoun = addPrefixIfNotAlreadyThere("loaf of ", enoun);
-		} else if (enoun.equals("beer") || enoun.equals("wine") || enoun.endsWith("poison") || enoun.equals("antidote")) {
-			enoun = addPrefixIfNotAlreadyThere("bottle of ", enoun);
-		} else if (enoun.equals("money")) {
+		String result;
+		String lowString=noun.toLowerCase(); 
+			result = lowString.replace("#","");
+		if (result.equals("meat") || result.equals("ham") || result.equals("cheese") || result.equals("wood")
+		        || result.equals("paper") || result.equals("iron")) {
+			result = addPrefixIfNotAlreadyThere("piece of ", lowString);
+		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
+			result = addPrefixIfNotAlreadyThere("nugget of ", lowString);
+		} else if (result.equals("flour")) {
+			result = addPrefixIfNotAlreadyThere("sack of ", lowString);
+		} else if (result.equals("grain")) {
+			result = addPrefixIfNotAlreadyThere("sheaf of ", lowString);
+		} else if (result.equals("bread")) {
+			result = addPrefixIfNotAlreadyThere("loaf of ", lowString);
+		} else if (result.equals("beer") || result.equals("wine") || result.endsWith("poison") || result.equals("antidote")) {
+			result = addPrefixIfNotAlreadyThere("bottle of ", lowString);
+		} else if (result.equals("money")) {
 			// TODO: fix this (going back to money as workaround because /drop 1 coin does not work
 			// enoun = "coin";
-		} else if (enoun.startsWith("book_") || enoun.startsWith("book ")) {
-			enoun = enoun.substring(5) + " book";
-		} else if (enoun.equals("arandula")) {
-			enoun = addPrefixIfNotAlreadyThere("sprig of ", enoun);
-		} else if ((enoun.indexOf("_armor") > -1) || (enoun.indexOf(" armor") > -1)) {
-			enoun = addPrefixIfNotAlreadyThere("suit of ", enoun);
-		} else if (enoun.endsWith("_legs") || enoun.endsWith(" legs") || enoun.endsWith("_boots")
-		        || enoun.endsWith(" boots")) {
-			enoun = addPrefixIfNotAlreadyThere("pair of ", enoun);
+		} else if (result.startsWith("book_") || result.startsWith("book ")) {
+			result = result.substring(5) + " book";
+		} else if (result.equals("arandula")) {
+			result = addPrefixIfNotAlreadyThere("sprig of ", lowString);
+		} else if ((result.indexOf("_armor") > -1) || (result.indexOf(" armor") > -1)) {
+			result = addPrefixIfNotAlreadyThere("suit of ", lowString);
+		} else if (result.endsWith("_legs") || result.endsWith(" legs") || result.endsWith("_boots")
+		        || result.endsWith(" boots")) {
+			result = addPrefixIfNotAlreadyThere("pair of ", lowString);
+		} else {
+			result = lowString;
 		}
-		return enoun;
+		
+		return result;
 	}
 
 	/**
@@ -209,10 +214,10 @@ public class Grammar {
 	public static String plural(String noun) {
 		String enoun = fullform(noun);
 		String postfix = "";
-		int pos = enoun.length() - 3;
-		if ((enoun.length() > 2) && (enoun.substring(pos, pos + 2).equals("_+"))) {
-			postfix = enoun.substring(pos);
-			enoun = enoun.substring(0, pos);
+		int position = enoun.indexOf('+');
+		if (position != -1){
+			postfix = enoun.substring(position-1);
+			enoun = enoun.substring(0, position-1);
 		}
 		try {
 			// in "of"-phrases pluralize only the first part
