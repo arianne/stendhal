@@ -232,23 +232,7 @@ public class Bootstrap {
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
-				if (e instanceof InvocationTargetException) {
-					unexspectedErrorHandling(e);
-				} else {
-					JOptionPane
-					        .showMessageDialog(
-					                null,
-					                "Something nasty happened while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-					                        + e);
-					e.printStackTrace(System.err);
-					try {
-						Class clazz = Class.forName(className);
-						Method method = clazz.getMethod("main", args.getClass());
-						method.invoke(null, (Object) args);
-					} catch (Exception err) {
-						err.printStackTrace(System.err);
-					}
-				}
+				unexspectedErrorHandling(e);
 			}
 
 		}
@@ -317,11 +301,19 @@ public class Bootstrap {
 
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
+		} else if (e instanceof LinkageError) {
+			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. Clear updates so that they are downloaded again after restarting Stendhal?", 
+					"Stendhal", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (res == JOptionPane.YES_OPTION) {
+				bootProp.remove("load");
+				try {
+					saveBootProp();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "Could not write jar.properties");
+				}
+			}
 		} else {
-			JOptionPane
-			        .showMessageDialog(
-			                null,
-			                "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+			JOptionPane.showMessageDialog(null, "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
 			                        + e);
 		}
 		System.exit(1);
