@@ -36,7 +36,6 @@ public class ResetTutorial extends ScriptImpl {
 
 		// create new store object
 		rpObject = new RPObject();
-		slot.assignValidID(rpObject);
 		slot.add(new RPObject());
 
 		// notify the player

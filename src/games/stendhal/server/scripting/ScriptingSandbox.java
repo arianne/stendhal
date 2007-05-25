@@ -197,8 +197,6 @@ public abstract class ScriptingSandbox {
 
 	@SuppressWarnings("unchecked")
     public void unload(Player player, String[] args) {
-		Log4J.startMethod(logger, "unload");
-
 		for (NPC npc : (List<NPC>) loadedNPCs.clone()) {
 			remove(npc);
 		}
@@ -206,8 +204,6 @@ public abstract class ScriptingSandbox {
 		for (RPObject object : (List<RPObject>) loadedRPObjects.clone()) {
 			remove(object);
 		}
-
-		Log4J.finishMethod(logger, "unload");
 	}
 
 	public boolean execute(Player player, String[] args) {

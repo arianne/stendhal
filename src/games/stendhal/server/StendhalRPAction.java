@@ -267,7 +267,7 @@ public class StendhalRPAction {
 	 * @throws NoRPZoneException
 	 * @throws RPObjectNotFoundException
 	 */
-	public static boolean attack(RPEntity attacker, RPEntity defender), RPObjectNotFoundException {
+	public static boolean attack(RPEntity attacker, RPEntity defender) throws RPObjectNotFoundException {
 		boolean result = false;
 
 		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(attacker.getID());

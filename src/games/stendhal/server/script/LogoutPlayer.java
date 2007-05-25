@@ -9,7 +9,6 @@ import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
 
-import marauroa.server.game.PlayerEntryContainer;
 import marauroa.common.game.RPObject;
 
 import marauroa.common.Logger;
@@ -25,7 +24,6 @@ public class LogoutPlayer extends ScriptImpl {
 
 	@Override
 	public void execute(Player admin, List<String> args) {
-
 		// help text
 		if (args.size() == 0) {
 			admin.sendPrivateText("/script LogoutPlayer.class <playername> logs a player out");
@@ -34,33 +32,10 @@ public class LogoutPlayer extends ScriptImpl {
 		
 		try {
 			//see processLogoutEvent in marauroa-1.34/src/marauroa/server/game/GameServerManager.java
-			
-			PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
-			
-			int clientid = playerContainer.getClientidPlayer(args.get(0));
-			if (clientid == -1) {
-				admin.sendPrivateText(args.get(0) + " not found");
-				return;
-			}
-			
-			Player player = StendhalRPRuleProcessor.get().getPlayer(args.get(0));
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
-			RPObject.ID id = playerContainer.getRPObjectID(clientid);
-			RPObject object = zone.get(id);
-			
-			//player.sendPrivateText("You have been logged out by an admin");
-			
-			// remove player from Stendhal
-			if(StendhalRPRuleProcessor.get().onExit(id)) {
-				// NOTE: Set the Object so that it is stored in Database 
-				playerContainer.setRPObject(clientid, object);
-			}
 
-			// remove the player from Narauroa's player container
-			playerContainer.removeRuntimePlayer(clientid);
-			
+			Player player = StendhalRPRuleProcessor.get().getPlayer(args.get(0));
+			StendhalRPRuleProcessor.get().getRPManager().disconnectPlayer(player);
 			admin.sendPrivateText(args.get(0) + " has been logged out");
-			
 		} catch (Exception e) {
 			logger.error(e, e);
 		}

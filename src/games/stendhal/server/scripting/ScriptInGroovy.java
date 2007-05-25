@@ -43,7 +43,6 @@ public class ScriptInGroovy extends ScriptingSandbox {
 		groovyBinding.setVariable("args", args);
 		GroovyShell interp = new GroovyShell(groovyBinding);
 		boolean ret = true;
-		Log4J.startMethod(logger, "load");
 		try {
 			File f = new File(groovyScript);
 			interp.evaluate(f);
@@ -56,7 +55,6 @@ public class ScriptInGroovy extends ScriptingSandbox {
 			setMessage(e.getMessage());
 			ret = false;
 		}
-		Log4J.finishMethod(logger, "load");
 		return (ret);
 	}
 

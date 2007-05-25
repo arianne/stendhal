@@ -124,7 +124,6 @@ public class DefaultActionManager implements ActionManager {
 		if (rpslot.isFull()) {
 			return false;
 		} else {
-			rpslot.assignValidID(item);
 			rpslot.add(item);
 			entity.updateItemAtkDef();
 			return true;

@@ -709,4 +709,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}
     }
+
+	public RPServerManager getRPManager() {
+	    return rpman;	    
+    }
 }

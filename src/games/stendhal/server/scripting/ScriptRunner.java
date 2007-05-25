@@ -130,8 +130,6 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onScript");
-
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
 		}
@@ -199,7 +197,6 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			}
 		}
 		player.sendPrivateText(text);
-		Log4J.finishMethod(logger, "onScript");
 	}
 
 }

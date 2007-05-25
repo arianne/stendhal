@@ -59,8 +59,6 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 	}
 
 	private void onSpell(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onSpell");
-
 		String usage = "Usage: #/spell <spellname>";
 		String text = "";
 
@@ -159,8 +157,6 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 		}
 
 		player.sendPrivateText(text);
-
-		Log4J.finishMethod(logger, "onSpell");
 	}
 
 }

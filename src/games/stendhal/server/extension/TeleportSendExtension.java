@@ -59,7 +59,6 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 	}
 
 	private void onTeleportSend(Player admin, RPAction action) {
-		Log4J.startMethod(logger, "onTeleportSend");
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin, CMD_NAME, true)) {
 			return;
 		}
@@ -101,8 +100,6 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 		} else {
 			admin.sendPrivateText(CMD_USAGE);
 		}
-
-		Log4J.finishMethod(logger, "onTeleportSend");
 	}
 
 }
