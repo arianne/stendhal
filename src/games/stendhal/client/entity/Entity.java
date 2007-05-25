@@ -874,8 +874,10 @@ public final byte[] ID_Token = new byte[0];
 	 * An object was removed.
 	 *
 	 * @param	object		The object.
+	 * @deprecated Moving to different listener. Use release().
 	 */
+	@Deprecated 
 	public final void onRemoved(final RPObject object) {
-		// DEPRECATED - Moving to different listener. Use release().
+		
 	}
 }
