@@ -104,8 +104,6 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private boolean poisoned;
 
-	private Sprite nameImage;
-
 	private long combatIconTime;
 
 	private List<FloatingMessage> floaters;
@@ -174,64 +172,9 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 
-	/**
-	 * Build the title sprite.
-	 */
-	protected void buildTitle() {
-		Color nameColor = null;
-
-		if (titleType != null) {
-			if (titleType.equals("npc")) {
-				nameColor = new Color(200, 200, 255);
-			} else if (titleType.equals("enemy")) {
-				nameColor = new Color(255, 200, 200);
-			}
-		}
-
-		if(nameColor == null) {
-			if (adminlevel >= 800) {
-				nameColor = new Color(200, 200, 0);
-			} else if (adminlevel >= 400) {
-				nameColor = new Color(255, 255, 0);
-			} else if (adminlevel > 0) {
-				nameColor = new Color(255, 255, 172);
-			} else {
-				nameColor = Color.white;
-			}
-		}
-        if (GameScreen.get()!=null){
-		nameImage = GameScreen.get().createString(getTitle(), nameColor);
-        }
-	}
-
-
 	/** Draws only the Name and hp bar **/
 	public void drawHPbar(final GameScreen screen) {
-		Point p = screen.convertWorldToScreen(x, y);
-		drawHPbar(screen.expose(), p.x, p.y);
-
 		((RPEntity2DView) view).drawHPbar(screen);
-	}
-
-
-	/**
-	 * Draw the entity title and HP bar.
-	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 */
-	protected void drawHPbar(final Graphics2D g2d, int x, int y) {
-		/*
-		 * Don't draw if full ghostmode
-		 */
-		if(isGhostMode()) {
-			return;
-		}
-
-		if (nameImage != null) {
-			nameImage.draw(g2d, x, y - 3 - nameImage.getHeight());
-		}
 	}
 
 
@@ -363,6 +306,17 @@ public abstract class RPEntity extends ActiveEntity {
 			return null;
 		}
 	}
+
+
+	/**
+	 * Get title type.
+	 *
+	 * @return	The title type.
+	 */
+	public String getTitleType() {
+		return titleType;
+	}
+
 
 	/**
 	 * @return Returns the xp.
@@ -774,7 +728,7 @@ public abstract class RPEntity extends ActiveEntity {
 			titleType = null;
 		}
 
-		buildTitle();
+//		buildTitle();
 	}
 
 
@@ -978,14 +932,11 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 			}
 
-			boolean titleChange = false;
-
 			/*
 			 * Admin level
 			 */
 			if (changes.has("adminlevel")) {
 				adminlevel = changes.getInt("adminlevel");
-				titleChange = true;
 				fireChange(PROP_ADMIN_LEVEL);
 			}
 
@@ -994,17 +945,14 @@ public abstract class RPEntity extends ActiveEntity {
 			 */
 			if (changes.has("title_type")) {
 				titleType = changes.get("title_type");
-				titleChange = true;
 				fireChange(PROP_TITLE_TYPE);
 			}
 
+			/*
+			 * Title
+			 */
 			if (changes.has("class") || changes.has("name") || changes.has("title") || changes.has("type")) {
-				titleChange = true;
 				fireChange(PROP_TITLE);
-			}
-
-			if(titleChange) {
-				buildTitle();
 			}
 		}
 

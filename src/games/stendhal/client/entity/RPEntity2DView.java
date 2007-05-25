@@ -54,6 +54,16 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	private int		frameBladeStrike;
 
+	/**
+	 * Model attributes effecting the title changed.
+	 */
+	private boolean		titleChanged;
+
+	/**
+	 * The title image sprite.
+	 */
+	private Sprite		titleSprite;
+
 
 	static {
 		SpriteStore st = SpriteStore.get();
@@ -81,6 +91,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		super(rpentity);
 
 		this.rpentity = rpentity;
+
+		titleSprite = createTitleSprite();
+		titleChanged = false;
 	}
 
 
@@ -105,9 +118,51 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 
+	/**
+	 * Create the title sprite.
+	 *
+	 * @return	The title sprite.
+	 */
+	protected Sprite createTitleSprite() {
+		String titleType = rpentity.getTitleType();
+		int adminlevel = rpentity.getAdminLevel();
+		Color nameColor = null;
+
+		if (titleType != null) {
+			if (titleType.equals("npc")) {
+				nameColor = new Color(200, 200, 255);
+			} else if (titleType.equals("enemy")) {
+				nameColor = new Color(255, 200, 200);
+			}
+		}
+
+		if(nameColor == null) {
+			if (adminlevel >= 800) {
+				nameColor = new Color(200, 200, 0);
+			} else if (adminlevel >= 400) {
+				nameColor = new Color(255, 255, 0);
+			} else if (adminlevel > 0) {
+				nameColor = new Color(255, 255, 172);
+			} else {
+				nameColor = Color.white;
+			}
+		}
+
+		return GameScreen.get().createString(entity.getTitle(), nameColor);
+	}
+
+
 	/** Draws only the hp bar **/
 	public void drawHPbar(final GameScreen screen) {
+		/*
+		 * Don't draw if full ghostmode
+		 */
+		if(rpentity.isGhostMode()) {
+			return;
+		}
+
 		Point p = screen.convertWorldToScreen(rpentity.getX(), rpentity.getY());
+		drawTitle(screen.expose(), p.x, p.y);
 		drawHPbar(screen.expose(), p.x, p.y);
 	}
 
@@ -120,13 +175,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	y		The drawn Y coordinate.
 	 */
 	protected void drawHPbar(final Graphics2D g2d, int x, int y) {
-		/*
-		 * Don't draw if full ghostmode
-		 */
-		if(rpentity.isGhostMode()) {
-			return;
-		}
-
 		float hpRatio = rpentity.getHPRatio();
 
 		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
@@ -140,6 +188,20 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		g2d.setColor(Color.black);
 		g2d.drawRect(x, y - 3, 32, 3);
+	}
+
+
+	/**
+	 * Draw the entity title.
+	 *
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 */
+	protected void drawTitle(final Graphics2D g2d, int x, int y) {
+		if (titleSprite != null) {
+			titleSprite.draw(g2d, x, y - 3 - titleSprite.getHeight());
+		}
 	}
 
 
@@ -266,6 +328,20 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 
+	/**
+	 * Handle updates.
+	 */
+	@Override
+	public void update() {
+		super.update();
+
+		if(titleChanged) {
+			titleSprite = createTitleSprite();
+			titleChanged = false;
+		}
+	}
+
+
 	//
 	// EntityChangeListener
 	//
@@ -281,8 +357,14 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	{
 		super.entityChanged(entity, property);
 
-		if(property == RPEntity.PROP_OUTFIT) {
+		if(property == RPEntity.PROP_ADMIN_LEVEL) {
+			titleChanged = true;
+		} else if(property == RPEntity.PROP_OUTFIT) {
 			representationChanged = true;
+		} else if(property == RPEntity.PROP_TITLE) {
+			titleChanged = true;
+		} else if(property == RPEntity.PROP_TITLE_TYPE) {
+			titleChanged = true;
 		}
 	}
 }
