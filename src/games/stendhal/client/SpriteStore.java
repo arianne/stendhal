@@ -244,7 +244,7 @@ public class SpriteStore {
 		Sprite tile = cache.get(reference);
 
 		if(tile == null) {
-			if(false) {
+			if(true) {
 				//
 				// NEW (SEMI-TESTED) CODE
 				// Saves ~3.5M, but will break flip()

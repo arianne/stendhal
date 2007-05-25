@@ -15,7 +15,7 @@ public class BossCreature2DView extends Creature2DView {
 		Sprite tiles=getAnimationSprite();
 		
 		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 0, getWidth(), getHeight()));
-		map.put(ActiveEntity.STATE_LEFT, getAnimatedWalk(tiles, 0, getWidth(), getHeight()).flip());
+		map.put(ActiveEntity.STATE_LEFT, getAnimatedWalk(tiles, 1, getWidth(), getHeight()));
 
 		map.put(ActiveEntity.STATE_UP, map.get(ActiveEntity.STATE_RIGHT));
 		map.put(ActiveEntity.STATE_DOWN, map.get(ActiveEntity.STATE_LEFT));
