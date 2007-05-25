@@ -23,6 +23,8 @@ import games.stendhal.server.entity.player.Player;
  */
 
 /*
+ * Note: this class has a natural ordering that is inconsistent with equals.
+ * 
  * TODO: bug: calling consume() on a stack of ConsumableItems uses up all
  * items in the stack, not only a single one.
  * 
@@ -94,5 +96,10 @@ public class ConsumableItem extends StackableItem implements UseListener {
 		Player player = (Player) user;
 		player.consumeItem(this);
 		player.notifyWorldAboutChanges();
+	}
+
+	public int compareTo(ConsumableItem other) {
+		
+		return getRegen()/getFrecuency() -other.getRegen()/other.getFrecuency();
 	}
 }
