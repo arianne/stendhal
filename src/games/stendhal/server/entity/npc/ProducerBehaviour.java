@@ -168,7 +168,7 @@ public class ProducerBehaviour extends Behaviour {
 	private String getRequiredResourceNamesWithHashes(int amount) {
 		Set<String> requiredResourcesWithHashes = new HashSet<String>();
 		for (Map.Entry<String, Integer> entry : getRequiredResourcesPerItem().entrySet()) {
-			requiredResourcesWithHashes.add(amount * entry.getValue() + " #" + entry.getKey());
+			requiredResourcesWithHashes.add(Grammar.quantityplnoun(amount * entry.getValue(), "#"+entry.getKey()));
 		}
 		return Grammar.enumerateCollection(requiredResourcesWithHashes);
 	}
@@ -207,7 +207,7 @@ public class ProducerBehaviour extends Behaviour {
 	 */
 	public boolean askForResources(SpeakerNPC npc, Player player, int amount) {
 		if (getMaximalAmount(player) < amount) {
-			npc.say("I can only " + getProductionActivity() + " " + amount + " " + getProductName()
+			npc.say("I can only " + getProductionActivity() + " " + Grammar.quantityplnoun(amount, getProductName())
 			        + " if you bring me " + getRequiredResourceNamesWithHashes(amount) + ".");
 			return false;
 		} else {
@@ -276,10 +276,7 @@ public class ProducerBehaviour extends Behaviour {
 			}
 
 			player.equip(products, true);
-			npc.say("Welcome back! I'm done with your order. Here you have " + numberOfProductItems + " "
-			// + getProductUnit()
-			        // + " of "
-			        + getProductName() + ".");
+			npc.say("Welcome back! I'm done with your order. Here you have " +Grammar.quantityplnoun( numberOfProductItems, getProductName()) + ".");
 			player.setQuest(questSlot, "done");
 			// give some XP as a little bonus for industrious workers
 			player.addXP(numberOfProductItems);
