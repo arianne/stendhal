@@ -62,10 +62,10 @@ public class LayerDefinitionTest {
 		int tileid=layer.getTileAt(10, 20);
 		assertEquals(1, tileid);
 		
-		assertEquals("source1",layer.getTilesetFor(layer.getTileAt(10, 20))); 
-		assertEquals("source2",layer.getTilesetFor(layer.getTileAt(19, 7))); 
-		assertEquals("source4",layer.getTilesetFor(layer.getTileAt(11, 2))); 
-		assertEquals("source3",layer.getTilesetFor(layer.getTileAt(15, 21)));
+		assertEquals("source1",layer.getTilesetFor(layer.getTileAt(10, 20)).getSource()); 
+		assertEquals("source2",layer.getTilesetFor(layer.getTileAt(19, 7)).getSource()); 
+		assertEquals("source4",layer.getTilesetFor(layer.getTileAt(11, 2)).getSource()); 
+		assertEquals("source3",layer.getTilesetFor(layer.getTileAt(15, 21)).getSource());
 		
 		assertEquals(0,layer.getTileAt(57, 34));
 		assertNull(layer.getTilesetFor(layer.getTileAt(57, 34)));
