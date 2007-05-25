@@ -56,8 +56,9 @@ public class User extends Player {
 
 		WorldObjects.firePlayerMoved();
 		HearingArea.set(x, y);
-
-		GameScreen.get().place(x, y);
+        if (GameScreen.get()!=null){
+        	GameScreen.get().place(x, y);
+        }
 	}
 
 	@Override
@@ -195,10 +196,11 @@ public class User extends Player {
 		if(object.has("features")) {
 			features.decode(object.get("features"));
 		}
-
-		GameScreen.get().place(getX(), getY());
-		GameScreen.get().center();
-        }
+		if (GameScreen.get()!=null){
+			GameScreen.get().place(getX(), getY());
+			GameScreen.get().center();
+		}
+      }
 
 
 	@Override

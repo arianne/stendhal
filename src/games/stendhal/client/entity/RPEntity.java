@@ -199,8 +199,9 @@ public abstract class RPEntity extends ActiveEntity {
 				nameColor = Color.white;
 			}
 		}
-
+        if (GameScreen.get()!=null){
 		nameImage = GameScreen.get().createString(getTitle(), nameColor);
+        }
 	}
 
 
