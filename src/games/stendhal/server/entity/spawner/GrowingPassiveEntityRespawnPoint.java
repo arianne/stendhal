@@ -18,6 +18,7 @@ import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * This respwan point has to be "used" to get the item. After that,
@@ -38,11 +39,11 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	public static void generateRPClass() {
 		RPClass grainFieldClass = new RPClass("growing_entity_spawner");
 		grainFieldClass.isA("plant_grower");
-		grainFieldClass.add("action_name", RPClass.STRING);
-		grainFieldClass.add("max_ripeness", RPClass.BYTE);
-		grainFieldClass.add("width", RPClass.BYTE);
-		grainFieldClass.add("height", RPClass.BYTE);
-		grainFieldClass.add("ripeness", RPClass.BYTE);
+		grainFieldClass.addAttribute("action_name", Type.STRING);
+		grainFieldClass.addAttribute("max_ripeness", Type.BYTE);
+		grainFieldClass.addAttribute("width", Type.BYTE);
+		grainFieldClass.addAttribute("height", Type.BYTE);
+		grainFieldClass.addAttribute("ripeness", Type.BYTE);
 	}
 
 	private void init(String clazz, String actionName, int maxRipeness, int width, int height) {

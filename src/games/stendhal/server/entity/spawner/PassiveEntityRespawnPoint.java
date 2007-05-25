@@ -24,6 +24,7 @@ import games.stendhal.server.events.TurnNotifier;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A PassiveEntityRespawnPoint basically is a 1x1 area where a plant,
@@ -82,7 +83,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	public static void generateRPClass() {
 		RPClass grower = new RPClass("plant_grower");
 		grower.isA("entity");
-		grower.add("class", RPClass.STRING);
+		grower.addAttribute("class", Type.STRING);
 	}
 
 	

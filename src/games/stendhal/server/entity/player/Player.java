@@ -46,6 +46,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SyntaxException;
 
 import marauroa.common.Logger;
 
@@ -123,7 +124,7 @@ public class Player extends RPEntity implements TurnListener {
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
-		} catch (RPClass.SyntaxException e) {
+		} catch (SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
@@ -915,15 +916,12 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void removeSheep(Sheep sheep) {
-		Log4J.startMethod(logger, "removeSheep");
 		if (has("sheep")) {
 			remove("sheep");
 		} else {
 			logger.warn("Called removeSheep but player has not sheep: " + this);
 		}
 		StendhalRPRuleProcessor.get().removeNPC(sheep);
-
-		Log4J.finishMethod(logger, "removeSheep");
 	}
 
 	public boolean hasSheep() {
@@ -931,12 +929,9 @@ public class Player extends RPEntity implements TurnListener {
 	}
 
 	public void setSheep(Sheep sheep) {
-		Log4J.startMethod(logger, "setSheep");
 		put("sheep", sheep.getID().getObjectID());
 
 		StendhalRPRuleProcessor.get().addNPC(sheep);
-
-		Log4J.finishMethod(logger, "setSheep");
 	}
 
 	public static class NoSheepException extends RuntimeException {

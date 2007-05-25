@@ -17,7 +17,6 @@ public class PlayerSheepManager {
 	}
 	
 	void storeSheep(Sheep sheep) {
-		Log4J.startMethod(logger, "storeSheep");
 		if (!player.hasSlot("#flock")) {
 			player.addSlot(new RPSlot("#flock"));
 		}
@@ -26,29 +25,23 @@ public class PlayerSheepManager {
 		slot.clear();
 		slot.add(sheep);
 		player.put("sheep", sheep.getID().getObjectID());
-		Log4J.finishMethod(logger, "storeSheep");
 	}
 
 	public Sheep retrieveSheep() throws NoSheepException {
-		Log4J.startMethod(logger, "retrieveSheep");
-		try {
-			if (player.hasSlot("#flock")) {
-				RPSlot slot = player.getSlot("#flock");
-				if (slot.size() > 0) {
-					RPObject object = slot.getFirst();
-					slot.remove(object.getID());
+		if (player.hasSlot("#flock")) {
+			RPSlot slot = player.getSlot("#flock");
+			if (slot.size() > 0) {
+				RPObject object = slot.getFirst();
+				slot.remove(object.getID());
 
-					Sheep sheep = new Sheep(object, player);
+				Sheep sheep = new Sheep(object, player);
 
-					player.removeSlot("#flock");
-					return sheep;
-				}
+				player.removeSlot("#flock");
+				return sheep;
 			}
-
-			throw new NoSheepException();
-		} finally {
-			Log4J.finishMethod(logger, "retrieveSheep");
 		}
+
+		throw new NoSheepException();
 	}
 
 }

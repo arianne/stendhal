@@ -20,7 +20,9 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A door is a special kind of portal which can be open or closed.
@@ -43,9 +45,9 @@ public abstract class Door extends Portal implements TurnListener {
 	public static void generateRPClass() {
 		RPClass door = new RPClass("door");
 		door.isA("entity");
-		door.add("class", RPClass.STRING);
-		door.add("locked", RPClass.STRING, RPClass.PRIVATE);
-		door.add("open", RPClass.FLAG);
+		door.addAttribute("class", Type.STRING);
+		door.addAttribute("locked", Type.STRING, Definition.HIDDEN);
+		door.addAttribute("open", Type.FLAG);
 	}
 
 	/**

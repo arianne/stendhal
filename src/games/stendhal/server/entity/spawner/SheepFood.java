@@ -18,6 +18,7 @@ import games.stendhal.server.entity.item.Item;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 import games.stendhal.server.events.TurnNotifier;
 
@@ -36,7 +37,7 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
 		food.isA("plant_grower");
-		food.add("amount", RPClass.BYTE);
+		food.addAttribute("amount", Type.BYTE);
 	}
 
 	public SheepFood(RPObject object) {
