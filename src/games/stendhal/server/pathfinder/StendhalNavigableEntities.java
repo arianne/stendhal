@@ -1,11 +1,11 @@
 package games.stendhal.server.pathfinder;
 
-import java.awt.geom.Rectangle2D;
-import java.util.Iterator;
-
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+
+import java.awt.geom.Rectangle2D;
+import java.util.Iterator;
 
 import marauroa.common.game.RPObject;
 

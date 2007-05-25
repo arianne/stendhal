@@ -1,10 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
@@ -15,6 +10,11 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * QUEST: Pizza Delivery

@@ -16,9 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * ServerExtension to load groovy scripts

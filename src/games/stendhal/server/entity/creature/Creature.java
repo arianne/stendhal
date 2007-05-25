@@ -41,16 +41,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.common.Log4J;
+import javax.management.AttributeNotFoundException;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
-
-import marauroa.common.Logger;
 
 /**
  * Serverside representation of a creature.

@@ -16,7 +16,6 @@ import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.PlayerHelper;
 import games.stendhal.server.maps.ados.outside.AnimalKeeperNPC;
 import games.stendhal.server.maps.ados.outside.VeterinarianNPC;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 

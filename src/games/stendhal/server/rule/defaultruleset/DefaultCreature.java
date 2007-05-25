@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 public class DefaultCreature {

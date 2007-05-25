@@ -1,12 +1,13 @@
 package games.stendhal.client.update;
 
-import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JProgressBar;
+
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
 
 public class UpdateGUI extends JFrame {
 

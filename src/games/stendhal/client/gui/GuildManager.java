@@ -8,7 +8,9 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
+
 import javax.swing.JOptionPane;
+
 import marauroa.common.game.RPAction;
 
 /**

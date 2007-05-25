@@ -9,13 +9,13 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import java.util.Random;
-import marauroa.common.Logger;
-
-import marauroa.common.Log4J;
-
 import games.stendhal.common.Level;
 import games.stendhal.server.entity.RPEntity;
+
+import java.util.Random;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * An area that damages an RPEntity while over it.

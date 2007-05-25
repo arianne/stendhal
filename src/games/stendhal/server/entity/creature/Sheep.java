@@ -18,13 +18,15 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
-import marauroa.common.Log4J;
 
+import javax.management.AttributeNotFoundException;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
-import marauroa.common.Logger;
 
 /**
  * A sheep is a domestic animal that can be owned by a player.

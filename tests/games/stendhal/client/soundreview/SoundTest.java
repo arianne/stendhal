@@ -1,6 +1,7 @@
 package games.stendhal.client.soundreview;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import games.stendhal.client.entity.User;
 
 import org.junit.After;

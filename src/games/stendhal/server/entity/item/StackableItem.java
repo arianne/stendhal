@@ -16,10 +16,8 @@ import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
-
-import marauroa.common.game.RPObject;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 public class StackableItem extends Item implements Stackable {
 

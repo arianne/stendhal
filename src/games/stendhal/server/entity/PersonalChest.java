@@ -9,8 +9,6 @@ import games.stendhal.server.events.TurnNotifier;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-
-
 import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;

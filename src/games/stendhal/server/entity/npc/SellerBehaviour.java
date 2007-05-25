@@ -21,9 +21,8 @@ import games.stendhal.server.rule.EntityManager;
 import java.util.HashMap;
 import java.util.Map;
 
-import marauroa.common.Logger;
-
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 
 /**

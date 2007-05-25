@@ -8,12 +8,13 @@ package games.stendhal.server.entity.item.scroll;
 //
 //
 
-import java.util.Map;
-import java.util.StringTokenizer;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
+
+import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * Represents an teleport scroll that acts as an invitation to an event.

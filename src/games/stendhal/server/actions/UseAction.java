@@ -22,11 +22,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import marauroa.common.Logger;
 
 public class UseAction implements ActionListener {
 

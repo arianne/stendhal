@@ -34,8 +34,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.Definition;

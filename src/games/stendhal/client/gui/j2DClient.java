@@ -71,12 +71,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import marauroa.client.BannedAddressException;
-import marauroa.client.TimeoutException;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-import marauroa.common.net.InvalidVersionException;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {

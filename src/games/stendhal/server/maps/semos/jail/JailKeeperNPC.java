@@ -3,8 +3,8 @@ package games.stendhal.server.maps.semos.jail;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -19,7 +19,6 @@ import games.stendhal.server.entity.item.Item;
 import java.util.LinkedList;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 /**

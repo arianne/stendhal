@@ -3,7 +3,6 @@ package games.stendhal.client.soundreview;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import games.stendhal.client.entity.User;
 
 import java.awt.geom.Rectangle2D;

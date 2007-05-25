@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 

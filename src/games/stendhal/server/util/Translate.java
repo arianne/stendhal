@@ -8,6 +8,7 @@ import java.io.Writer;
 import java.util.Properties;
 
 import marauroa.common.Logger;
+
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 

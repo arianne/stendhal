@@ -8,14 +8,16 @@ package games.stendhal.client.gui.wt.core;
 //
 //
 
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.Icon;
 import javax.swing.JMenuItem;
 import javax.swing.event.MenuKeyEvent;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
 
 /**
  * A popup-menu that will redirect most key events to it's invoker.

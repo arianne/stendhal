@@ -14,13 +14,10 @@ package games.stendhal.server.entity.spawner;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
-
-
+import games.stendhal.server.events.TurnNotifier;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
-
-import games.stendhal.server.events.TurnNotifier;
 
 /**
  * A regenerative source of food that can be eaten by sheep.

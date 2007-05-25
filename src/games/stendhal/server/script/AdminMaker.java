@@ -1,5 +1,6 @@
 package games.stendhal.server.script;
 
+import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -10,7 +11,6 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
-import games.stendhal.common.Level;
 
 import java.util.Arrays;
 import java.util.List;

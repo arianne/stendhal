@@ -12,6 +12,10 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Entity2DView;
+import games.stendhal.client.entity.Text;
+import games.stendhal.client.gui.wt.core.WtBaseframe;
+
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -25,8 +29,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.RenderingHints;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.Transparency;
 import java.awt.font.TextAttribute;
@@ -42,12 +46,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import games.stendhal.client.entity.Entity2DView;
-import games.stendhal.client.entity.Text;
-import games.stendhal.client.gui.wt.core.WtBaseframe;
-
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 /**

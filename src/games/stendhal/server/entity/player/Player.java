@@ -42,13 +42,10 @@ import java.util.List;
 import java.util.Random;
 
 import marauroa.common.Log4J;
-
-import marauroa.common.game.RPClass;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
-
-import marauroa.common.Logger;
 
 public class Player extends RPEntity implements TurnListener {
 

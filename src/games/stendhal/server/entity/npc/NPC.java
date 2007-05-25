@@ -18,14 +18,14 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
-import marauroa.common.Log4J;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
-import marauroa.common.Logger;
 
 public abstract class NPC extends RPEntity {
 

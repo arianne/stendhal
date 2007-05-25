@@ -24,7 +24,6 @@ import java.security.AccessControlException;
 import javax.swing.JOptionPane;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 public class stendhal extends Thread {

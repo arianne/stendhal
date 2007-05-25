@@ -27,13 +27,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
 import marauroa.common.Log4J;
-
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
-
-import marauroa.common.Logger;
 
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 

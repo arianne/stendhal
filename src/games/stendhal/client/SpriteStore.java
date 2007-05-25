@@ -25,7 +25,6 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 /**

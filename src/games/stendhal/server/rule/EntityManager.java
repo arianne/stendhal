@@ -10,6 +10,7 @@ package games.stendhal.server.rule;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.item.Item;
+
 import java.util.Collection;
 
 /**

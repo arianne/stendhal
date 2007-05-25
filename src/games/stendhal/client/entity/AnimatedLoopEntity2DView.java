@@ -9,13 +9,12 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-
-
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
 /**
  * The 2D view of an entity that always loops images.

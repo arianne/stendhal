@@ -25,8 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
 import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * This listener handles all entity movements from a slot to

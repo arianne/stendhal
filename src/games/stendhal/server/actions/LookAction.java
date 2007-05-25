@@ -18,11 +18,10 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import marauroa.common.Logger;
 
 public class LookAction implements ActionListener {
 

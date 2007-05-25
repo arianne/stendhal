@@ -18,8 +18,8 @@ import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Dice extends Item {

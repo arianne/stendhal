@@ -12,13 +12,32 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
-import games.stendhal.client.*;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.update.ClientGameConfiguration;
-import marauroa.client.*;
+
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import marauroa.client.BannedAddressException;
+import marauroa.client.CreateAccountFailedException;
+import marauroa.client.LoginFailedException;
+import marauroa.client.TimeoutException;
 import marauroa.common.game.AccountResult;
 import marauroa.common.net.InvalidVersionException;
 

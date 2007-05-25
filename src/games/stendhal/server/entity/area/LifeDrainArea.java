@@ -12,8 +12,6 @@ import games.stendhal.server.entity.RPEntity;
 import java.util.Random;
 
 import marauroa.common.Log4J;
-
-
 import marauroa.common.Logger;
 
 /**

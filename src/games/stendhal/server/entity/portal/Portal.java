@@ -12,17 +12,16 @@
  ***************************************************************************/
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.server.events.UseListener;
+import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.events.UseListener;
 import marauroa.common.Log4J;
-
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
-import marauroa.common.Logger;
 
 public class Portal extends Entity implements UseListener {
 

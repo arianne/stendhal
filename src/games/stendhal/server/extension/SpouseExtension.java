@@ -16,9 +16,8 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * @author intensifly

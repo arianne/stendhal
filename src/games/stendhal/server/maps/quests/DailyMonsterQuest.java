@@ -1,5 +1,6 @@
 package games.stendhal.server.maps.quests;
 
+import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.LevelBasedComparator;
@@ -7,7 +8,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
-import games.stendhal.common.Level;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.Random;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 /**

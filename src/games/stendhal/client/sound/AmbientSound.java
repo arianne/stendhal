@@ -24,7 +24,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 /**

@@ -12,14 +12,12 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import marauroa.common.Logger;
-
-import marauroa.common.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
+import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 public class FaceAction implements ActionListener {
 

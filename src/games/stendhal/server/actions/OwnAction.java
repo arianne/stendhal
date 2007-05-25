@@ -23,10 +23,9 @@ import games.stendhal.server.pathfinder.Path.Node;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import marauroa.common.Logger;
 
 public class OwnAction implements ActionListener {
 

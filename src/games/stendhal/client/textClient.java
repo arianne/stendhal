@@ -12,14 +12,16 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.io.IOException;
-import java.net.*;
-import java.util.*;
+import java.net.SocketException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import marauroa.client.*;
-import marauroa.client.net.*;
-import marauroa.common.game.*;
-import marauroa.common.net.*;
+import marauroa.client.ClientFramework;
+import marauroa.client.net.IPerceptionListener;
+import marauroa.client.net.PerceptionHandler;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
 

@@ -19,9 +19,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import marauroa.common.Logger;
-
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * The 2D view of a player.

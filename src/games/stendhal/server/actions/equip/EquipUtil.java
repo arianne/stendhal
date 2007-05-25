@@ -1,14 +1,14 @@
 package games.stendhal.server.actions.equip;
 
-import java.util.List;
-
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
+
+import java.util.List;
 
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 /**
  * Useful method to deal with equipable items

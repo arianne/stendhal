@@ -10,9 +10,8 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 /**
  * a box which can be unwrapped.

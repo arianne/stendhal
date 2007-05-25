@@ -1,11 +1,10 @@
 package games.stendhal.server.actions;
 
-import marauroa.common.Logger;
-
 import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 

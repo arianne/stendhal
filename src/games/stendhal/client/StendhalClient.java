@@ -20,7 +20,6 @@ import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.ClientGameConfiguration;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
-import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 
 import java.awt.Color;
@@ -40,17 +39,15 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 import marauroa.client.ClientFramework;
+import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.client.net.IPerceptionListener;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
-
-import marauroa.common.Logger;
 
 /**
  * This class is the glue to Marauroa, it extends ariannexp and allow us to

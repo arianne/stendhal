@@ -10,10 +10,9 @@ import java.net.URL;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
+import marauroa.common.Logger;
 import marauroa.common.io.Persistence;
 import marauroa.common.net.message.TransferContent;
-
-import marauroa.common.Logger;
 
 /**
  * <p>Manages a two level cache which one or both levels are optional:</p>

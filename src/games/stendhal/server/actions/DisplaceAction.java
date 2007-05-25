@@ -15,15 +15,14 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.item.Item;
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import marauroa.common.Logger;
 
 public class DisplaceAction implements ActionListener {
 

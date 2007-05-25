@@ -23,9 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.net.InputSerializer;
-
 import marauroa.common.Logger;
+import marauroa.common.net.InputSerializer;
 
 /** This class stores the layers that make the floor and the buildings */
 

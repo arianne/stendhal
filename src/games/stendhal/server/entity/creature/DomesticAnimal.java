@@ -19,10 +19,10 @@ import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
 
-import marauroa.common.Logger;
+import javax.management.AttributeNotFoundException;
 
 import marauroa.common.Log4J;
-
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
 /**

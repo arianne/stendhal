@@ -24,7 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 public class Path {

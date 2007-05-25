@@ -3,6 +3,8 @@ package games.stendhal.server.entity.portal;
 import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
 
+import javax.management.AttributeNotFoundException;
+
 
 /**
  * A KeyDestroyingDoor works just like a normal locked door, except that it

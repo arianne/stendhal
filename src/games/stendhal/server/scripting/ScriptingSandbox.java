@@ -15,9 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 public abstract class ScriptingSandbox {
 

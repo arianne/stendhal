@@ -14,19 +14,13 @@ package games.stendhal.client;
 
 import games.stendhal.tools.tiled.TileSetDefinition;
 
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
-import java.awt.Transparency;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
-import marauroa.common.Logger;
-
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.net.InputSerializer;
 
 /** It is class to get tiles from the tileset */

@@ -25,12 +25,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import marauroa.common.Log4J;
-
-import marauroa.common.Logger;
 
 /**
  * This panel is a container showing all items in a slot

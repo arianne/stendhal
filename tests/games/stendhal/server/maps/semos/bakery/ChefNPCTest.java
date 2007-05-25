@@ -6,13 +6,11 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.PlayerHelper;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
 import marauroa.common.game.RPObject.ID;
 
 import org.junit.After;

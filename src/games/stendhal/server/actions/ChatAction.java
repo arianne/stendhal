@@ -23,9 +23,8 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 import marauroa.server.game.db.Transaction;
 
 /**

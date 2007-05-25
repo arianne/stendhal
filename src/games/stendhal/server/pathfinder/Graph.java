@@ -5,7 +5,9 @@
  */
 package games.stendhal.server.pathfinder;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
 /**
  * @author Ramon Talavera maxdemian@terra.es

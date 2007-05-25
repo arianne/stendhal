@@ -13,6 +13,7 @@
 package games.stendhal.server.entity.item.scroll;
 
 import games.stendhal.server.entity.RPEntity;
+
 import java.util.Map;
 
 /**

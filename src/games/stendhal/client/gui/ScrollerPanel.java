@@ -29,10 +29,10 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 
-import marauroa.common.Logger;
-
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import marauroa.common.Logger;
 
 /**
  * ScrollerPanel can be used for displaying a scrolling text (as in movie

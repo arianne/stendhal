@@ -12,11 +12,16 @@
  ***************************************************************************/
 package games.stendhal.tools.tiled;
 
-import tiled.core.*;
-import tiled.io.*;
-
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Stack;
-import java.io.*;
+
+import tiled.core.Map;
+import tiled.core.TileSet;
+import tiled.io.MapReader;
+import tiled.io.PluginLogger;
 
 /**
  * experimental reader for *.stend files 

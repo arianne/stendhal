@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 /**

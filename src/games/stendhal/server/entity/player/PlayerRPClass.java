@@ -37,14 +37,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Configuration;
+import marauroa.common.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
-
-import marauroa.common.Logger;
 
 /**
  * Handles the RPClass registration and updating old Player objects

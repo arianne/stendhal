@@ -12,8 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.net.URL;
 import java.awt.image.BufferedImage;
+import java.net.URL;
+
 import javax.imageio.ImageIO;
 
 /**

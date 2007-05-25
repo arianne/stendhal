@@ -29,9 +29,8 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.RPObject;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {

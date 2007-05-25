@@ -10,11 +10,10 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import java.util.Iterator;
 import java.util.List;
 
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import marauroa.common.Logger;
 
 /**
  * this encapsulates the equip/drop destination

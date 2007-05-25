@@ -10,7 +10,6 @@ import java.io.File;
 import java.util.HashMap;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 public class ScriptInGroovy extends ScriptingSandbox {

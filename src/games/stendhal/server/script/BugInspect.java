@@ -12,10 +12,9 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.util.HashSet;
 import java.util.List;
 
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import marauroa.common.Logger;
 
 /**
  * Deep inspects a player and all his/her items

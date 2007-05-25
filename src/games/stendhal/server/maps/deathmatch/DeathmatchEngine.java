@@ -21,9 +21,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.RPObjectNotFoundException;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObjectNotFoundException;
 
 /**
  * this is the internal class which handles an active deathmatch session

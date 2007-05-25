@@ -1,15 +1,11 @@
 
 package games.stendhal.server.script;
 
-import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
-
-import marauroa.common.game.RPObject;
 
 import marauroa.common.Logger;
 

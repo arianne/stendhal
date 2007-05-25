@@ -30,9 +30,8 @@ import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.AudioClip;
-
-
 import games.stendhal.common.MathHelper;
+
 import java.awt.geom.Point2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

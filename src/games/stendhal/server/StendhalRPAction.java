@@ -32,7 +32,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
 
-
+import javax.management.AttributeNotFoundException;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;

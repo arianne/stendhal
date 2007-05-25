@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +23,6 @@ import java.util.Vector;
 import javax.swing.JTextField;
 
 import marauroa.common.Log4J;
-
 import marauroa.common.Logger;
 
 public class StendhalChatLineListener implements ActionListener, KeyListener {

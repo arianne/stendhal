@@ -6,13 +6,11 @@
 
 package games.stendhal.server.actions;
 
-import marauroa.common.Logger;
-
-import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * Process guildl actions from client. (Invite)

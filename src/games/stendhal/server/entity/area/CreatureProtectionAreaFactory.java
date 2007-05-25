@@ -9,10 +9,10 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import java.util.StringTokenizer;
-
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
+
+import java.util.StringTokenizer;
 
 /**
  * A base factory for <code>CreatureProtectionArea</code> objects.

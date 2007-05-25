@@ -22,9 +22,8 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
-import marauroa.common.game.RPObject;
-
 import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 /**
  * A special ring that allows the owner to teleport to his or her spouse.
