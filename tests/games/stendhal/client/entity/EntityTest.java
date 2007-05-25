@@ -56,10 +56,12 @@ assertEquals(0,en.count);
 	public final void testEntityRPObject() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
+		rpo.put("name", "bob");
+
 		Entity en = new MockEntity();
 		en.initialize(rpo);
 		assertEquals("hugo", en.getType());
-		assertEquals("hugo", en.getName());
+		assertEquals("bob", en.getName());
 
 	}
 
@@ -92,7 +94,7 @@ assertEquals(0,en.count);
 		en = new MockEntity();
 		en.initialize(rpo);
 		assertEquals("_hugo", en.getType());
-		assertEquals(" hugo", en.getName());
+
 		rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "ragnarok");
@@ -197,8 +199,8 @@ assertEquals(0,en.count);
  int count=0;
 	
 		public MockEntity() {
-			RPObject object = new RPObject();
-			object.put("type", "entity");
+			rpobject = new RPObject();
+			rpobject.put("type", "entity");
 		}
 
 		@Override

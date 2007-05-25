@@ -24,10 +24,10 @@ public class PairTest {
 	@Test
 	public final void testEquals() {
 		Pair<String, Integer> p1, p2, p3;
-		Integer intOne = new Integer(1);
-		p1 = new Pair<String, Integer>(new String("hugo"), new Integer(1));
-		p2 = new Pair<String, Integer>(new String("hugo"), new Integer(1));
-		p3 = new Pair<String, Integer>(new String("hugo"), new Integer(1));
+		Integer intOne = Integer.valueOf(1);
+		p1 = new Pair<String, Integer>(new String("hugo"),Integer.valueOf(1));
+		p2 = new Pair<String, Integer>(new String("hugo"), Integer.valueOf(1));
+		p3 = new Pair<String, Integer>(new String("hugo"), Integer.valueOf(1));
 		assertTrue(p1.first().equals(p2.first()));
 		assertTrue(p2.first().equals(p3.first()));
 		assertTrue(p1.first().equals(p3.first()));

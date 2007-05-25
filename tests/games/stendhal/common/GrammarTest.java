@@ -99,6 +99,7 @@ public class GrammarTest {
 
 	@Test
 	public void testPluralItem() {
+		Assert.assertEquals("sandwiches", Grammar.plural("sandwich"));
 		Assert.assertEquals("knives", Grammar.plural("knife"));
 		Assert.assertEquals("daggers", Grammar.plural("dagger"));
 		Assert.assertEquals("short swords", Grammar.plural("short sword"));
@@ -160,6 +161,7 @@ public class GrammarTest {
 		Assert.assertEquals("suits of chain armor +1", Grammar.plural("suit of chain armor +1")); //
 		Assert.assertEquals("suits of scale armor", Grammar.plural("suit of scale armor")); //
 		Assert.assertEquals("suits of scale armor +1", Grammar.plural("suit of scale armor +1")); //
+		Assert.assertEquals("suits of scale armor +112", Grammar.plural("suit of scale armor +112")); //
 		Assert.assertEquals("suits of chain armor +3", Grammar.plural("suit of chain armor +3")); //
 		Assert.assertEquals("suits of scale armor +2", Grammar.plural("suit of scale armor +2")); //
 		Assert.assertEquals("suits of plate armor", Grammar.plural("suit of plate armor")); //
@@ -329,4 +331,29 @@ public class GrammarTest {
 		Assert.assertEquals("black dragons", Grammar.plural("black dragon"));
 
 	}
-}
+	/**
+	 * Tests pluralisation of creatures
+	 */
+	@Test
+	public void testFullForm() {
+		Assert.assertEquals("1 sandwich", Grammar.quantityplnoun(1,"sandwich"));
+		Assert.assertEquals("2 sandwiches", Grammar.quantityplnoun(2,"sandwich"));
+		Assert.assertEquals("1 piece of ham", Grammar.quantityplnoun(1,"ham"));
+		Assert.assertEquals("2 pieces of ham", Grammar.quantityplnoun(2,"ham"));
+		Assert.assertEquals("1 piece of cheese", Grammar.quantityplnoun(1,"cheese"));
+		Assert.assertEquals("2 pieces of cheese", Grammar.quantityplnoun(2,"cheese"));
+		Assert.assertEquals("1 loaf of bread", Grammar.quantityplnoun(1,"bread"));
+		Assert.assertEquals("2 loaves of bread", Grammar.quantityplnoun(2,"bread"));
+		Assert.assertEquals("1 #sandwich", Grammar.quantityplnoun(1,"#sandwich"));
+		Assert.assertEquals("2 #sandwiches", Grammar.quantityplnoun(2,"#sandwich"));
+		Assert.assertEquals("1 piece of #ham", Grammar.quantityplnoun(1,"#ham"));
+		Assert.assertEquals("2 pieces of #ham", Grammar.quantityplnoun(2,"#ham"));
+		Assert.assertEquals("1 piece of #cheese", Grammar.quantityplnoun(1,"#cheese"));
+		Assert.assertEquals("2 pieces of #cheese", Grammar.quantityplnoun(2,"#cheese"));
+		Assert.assertEquals("1 loaf of #bread", Grammar.quantityplnoun(1,"#bread"));
+		Assert.assertEquals("2 loaves of #bread", Grammar.quantityplnoun(2,"#bread"));
+
+	
+	}
+	
+	}
