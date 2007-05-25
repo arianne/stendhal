@@ -96,13 +96,9 @@ public class TileStore extends SpriteStore {
 		}
 
 		public void load() {
-			SpriteStore sprites=SpriteStore.get();
-			filename=filename.replace("../../", "/");
+			SpriteStore store = SpriteStore.get();
 			
-			Sprite tiles = sprites.getSprite(BASE_FOLDER+filename);
-
-//			GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
-//			        .getDefaultConfiguration();
+			Sprite tiles = store.getSprite(BASE_FOLDER+filename);
 
 			int idx = 0;
 
@@ -115,13 +111,11 @@ public class TileStore extends SpriteStore {
 				for (int i = 0; i < tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS; i++) {
 					amount++;
 
-					Sprite tile = sprites.getTile(tiles, i * GameScreen.SIZE_UNIT_PIXELS, j * GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+					Sprite tile = store.getTile(tiles, i * GameScreen.SIZE_UNIT_PIXELS, j * GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
 
 					tileset.set(idx++, tile);
 				}
 			}
-
-			sprites.free(BASE_FOLDER+filename);
 
 			loaded = true;
 		}
@@ -149,6 +143,8 @@ public class TileStore extends SpriteStore {
 	}
 
 	private RangeFilename add(String ref) {
+		ref = ref.replace("../../", "/");
+
 		RangeFilename range=tilesetsLoaded.get(ref);
 		if(range==null) {
 			range=new RangeFilename(ref);

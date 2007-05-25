@@ -66,9 +66,6 @@ public class SpriteStore {
 		return single;
 	}
 
-	/** The cached sprite map, from reference to sprite instance */
-	private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
-
 	private class CachedSprite {
 		Sprite sprite;
 		int row;
@@ -191,11 +188,6 @@ public class SpriteStore {
 		return animatedSprite;
 	}
 
-	public void free(String ref) {
-		sprites.put(ref, null);
-		sprites.remove(ref);
-	}
-
 	/**
 	 * Get the failsafe sprite.
 	 *
@@ -218,18 +210,29 @@ public class SpriteStore {
 	 *         reference
 	 */
 	public Sprite getSprite(String ref) {
-		return getSprite(ref, false);
-	}
+		SpriteCache cache = SpriteCache.get();
 
-	public Sprite getSprite(String ref, boolean loadAlpha) {
-		// if we've already got the sprite in the cache
-		// then just return the existing version
-		if (sprites.get(ref) != null) {
-			return sprites.get(ref);
+
+		Sprite sprite = cache.get(ref);
+
+		if(sprite == null) {
+			if((sprite = loadSprite(ref)) != null) {
+				cache.add(ref, sprite);
+			}
 		}
 
-		// otherwise, go away and grab the sprite from the resource
-		// loader
+		return sprite;
+	}
+
+
+	/**
+	 * Load a sprite from a resource reference.
+	 *
+	 * @param	ref		The image resource name.
+	 *
+	 * @return	A sprite, or <code>null</code> if missing/on error.
+	 */
+	protected Sprite loadSprite(String ref) {
 		BufferedImage sourceImage = null;
 
 		try {
@@ -251,10 +254,7 @@ public class SpriteStore {
 		int mode = Transparency.BITMASK;
 
 		// ALPHA channel makes it runs 30% slower.
-		// if(loadAlpha)
-		// {
 		// mode=Transparency.TRANSLUCENT;
-		// }
 
 		Image image = gc.createCompatibleImage(sourceImage.getWidth(), sourceImage.getHeight(), mode);
 
@@ -262,8 +262,7 @@ public class SpriteStore {
 		image.getGraphics().drawImage(sourceImage, 0, 0, null);
 
 		// create a sprite, add it the cache then return it
-		Sprite sprite = new ImageSprite(image);
-		sprites.put(ref, sprite);
+		Sprite sprite = new ImageSprite(image, ref);
 
 		return sprite;
 	}
