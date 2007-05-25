@@ -610,7 +610,7 @@ public class j2DClient extends StendhalUI {
 					 * Ctrl+R
 					 * Remove text bubbles
 					 */
-					client.clearTextBubbles();
+					screen.clearTexts();
 				}
 
 				break;

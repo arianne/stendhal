@@ -342,14 +342,6 @@ public class StendhalClient extends ariannexp {
 
 
 	/**
-	 * Clear any active text bubbles.
-	 */
-	public void clearTextBubbles() {
-		screen.clearTexts();
-	}
-
-
-	/**
 	 * Add an active player movement direction.
 	 *
 	 * @param	dir		The direction.
