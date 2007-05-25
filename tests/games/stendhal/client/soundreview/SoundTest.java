@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class SoundTest {
@@ -38,7 +39,7 @@ public class SoundTest {
 		new Sound("bla",0,0,true);
 		
 	}
-
+@Ignore
 	@Test
 	public void testPlay() {
 		SoundMaster sm = new SoundMaster();

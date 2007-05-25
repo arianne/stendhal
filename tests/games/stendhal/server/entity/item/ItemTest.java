@@ -28,6 +28,7 @@ public class ItemTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		StendhalRPWorld world = StendhalRPWorld.get();
+		if (StendhalRPWorld.get().getRPZone(ZONE_NAME)==null)
 		world.addArea(ZONE_NAME, ZONE_CONTENT);
 
 	}

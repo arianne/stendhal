@@ -81,7 +81,8 @@ public class TestBuildOfferedActions {
 		sh.initialize(rpo);
 		List<String> expected = new ArrayList<String>();
 		expected.add(ActionType.LOOK.getRepresentation());
-		expected.add(ActionType.OPEN.getRepresentation());
+		expected.add(ActionType.INSPECT.getRepresentation());
+		expected.add(ActionType.CLOSE.getRepresentation());
 		sh.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
@@ -163,18 +164,18 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected, list);
 	}
 
-	@Test
-	public final void testBox() {
-		StendhalClient.get();
-		Box box = new Box();
-		List<String> expected = new ArrayList<String>();
-		expected.add(ActionType.LOOK.getRepresentation());
-		expected.add(ActionType.OPEN.getRepresentation());
-		box.buildOfferedActions(list);
-		Assert.assertNotNull(list);
-		Assert.assertEquals(expected, list);
-
-	}
+//	@Test
+//	public final void testBox() {
+//		StendhalClient.get();
+//		Box box = new Box();
+//		List<String> expected = new ArrayList<String>();
+//		expected.add(ActionType.LOOK.getRepresentation());
+//		expected.add(ActionType.OPEN.getRepresentation());
+//		box.buildOfferedActions(list);
+//		Assert.assertNotNull(list);
+//		Assert.assertEquals(expected, list);
+//
+//	}
 	@Test
 	public final void testGoldSource() {
 		StendhalClient.get();
