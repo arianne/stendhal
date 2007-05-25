@@ -158,9 +158,9 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * Add a change listener.
 	 *
-	 * @param	l		The listener.
+	 * @param	listener	The listener.
 	 */
-	public void addChangeListener(EntityChangeListener l) {
+	public void addChangeListener(EntityChangeListener listener) {
 		EntityChangeListener []	newListeners;
 
 
@@ -168,7 +168,7 @@ public final byte[] ID_Token = new byte[0];
 
 		newListeners = new EntityChangeListener[len + 1];
 		System.arraycopy(changeListeners, 0, newListeners, 0, len);
-		newListeners[len] = l;
+		newListeners[len] = listener;
 
 		changeListeners = newListeners;
 	}
@@ -658,10 +658,39 @@ public final byte[] ID_Token = new byte[0];
 	/**
 	 * Remove a change listener.
 	 *
-	 * @param	l		The listener.
+	 * @param	listener	The listener.
 	 */
-	public void removeChangeListener(EntityChangeListener l) {
-		// TODO!
+	public void removeChangeListener(EntityChangeListener listener) {
+		EntityChangeListener []	newListeners;
+		int			idx;
+
+
+		idx = changeListeners.length;
+
+		while(idx-- != 0) {
+			if(changeListeners[idx] == listener) {
+				newListeners =
+					new EntityChangeListener[
+						changeListeners.length - 1];
+
+				if(idx != 0) {
+					System.arraycopy(
+						changeListeners, 0,
+						newListeners, 0,
+						idx);
+				}
+
+				if(++idx != changeListeners.length) {
+					System.arraycopy(
+						changeListeners, idx,
+						newListeners, idx - 1,
+						changeListeners.length - idx);
+				}
+
+				changeListeners = newListeners;
+				break;
+			}
+		}
 	}
 
 

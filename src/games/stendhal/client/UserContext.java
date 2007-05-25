@@ -203,18 +203,78 @@ public class UserContext implements RPObjectChangeListener {
 	/**
 	 * Remove a buddy change listener.
 	 *
-	 * @param	l		The listener.
+	 * @param	listener	The listener.
 	 */
-	public void removeBuddyChangeListener(BuddyChangeListener l) {
+	public void removeBuddyChangeListener(BuddyChangeListener listener) {
+		BuddyChangeListener []	newListeners;
+		int			idx;
+
+
+		idx = buddyListeners.length;
+
+		while(idx-- != 0) {
+			if(buddyListeners[idx] == listener) {
+				newListeners =
+					new BuddyChangeListener[
+						buddyListeners.length - 1];
+
+				if(idx != 0) {
+					System.arraycopy(
+						buddyListeners, 0,
+						newListeners, 0,
+						idx);
+				}
+
+				if(++idx != buddyListeners.length) {
+					System.arraycopy(
+						buddyListeners, idx,
+						newListeners, idx - 1,
+						buddyListeners.length - idx);
+				}
+
+				buddyListeners = newListeners;
+				break;
+			}
+		}
 	}
 
 
 	/**
 	 * Remove a feature change listener.
 	 *
-	 * @param	l		The listener.
+	 * @param	listener	The listener.
 	 */
-	public void removeFeatureChangeListener(FeatureChangeListener l) {
+	public void removeFeatureChangeListener(FeatureChangeListener listener) {
+		FeatureChangeListener []	newListeners;
+		int				idx;
+
+
+		idx = featureListeners.length;
+
+		while(idx-- != 0) {
+			if(featureListeners[idx] == listener) {
+				newListeners =
+					new FeatureChangeListener[
+						featureListeners.length - 1];
+
+				if(idx != 0) {
+					System.arraycopy(
+						featureListeners, 0,
+						newListeners, 0,
+						idx);
+				}
+
+				if(++idx != featureListeners.length) {
+					System.arraycopy(
+						featureListeners, idx,
+						newListeners, idx - 1,
+						featureListeners.length - idx);
+				}
+
+				featureListeners = newListeners;
+				break;
+			}
+		}
 	}
 
 
