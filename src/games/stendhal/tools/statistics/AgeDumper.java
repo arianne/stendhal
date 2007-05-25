@@ -9,10 +9,8 @@ import java.sql.SQLException;
 
 import marauroa.common.Configuration;
 import marauroa.common.game.RPObject;
-import marauroa.server.game.GenericDatabaseException;
-import marauroa.server.game.JDBCPlayerDatabase;
-import marauroa.server.game.JDBCTransaction;
-import marauroa.server.game.Transaction;
+import marauroa.server.game.db.JDBCTransaction;
+import marauroa.server.game.db.Transaction;
 
 /**
  * Dumps the Age and Release of players
@@ -20,7 +18,7 @@ import marauroa.server.game.Transaction;
  * @author hendrik
  */
 public class AgeDumper {
-	JDBCPlayerDatabase db;
+	StendhalPlayerDatabase db;
 	Transaction trans;
 	PreparedStatement ps;
 	java.sql.Date date;
@@ -31,7 +29,7 @@ public class AgeDumper {
 	 * @param db JDBCPlayerDatabase
 	 * @throws GenericDatabaseException if no database connection can be created
 	 */
-	private AgeDumper(JDBCPlayerDatabase db) throws GenericDatabaseException {
+	private AgeDumper(StendhalPlayerDatabase db) {
 		this.db = db;
 		this.trans = db.getTransaction();
 	}
@@ -42,19 +40,17 @@ public class AgeDumper {
 	 * @throws Exception in case of an unexspected Exception
 	 */
 	private void dump() throws Exception {
-		JDBCPlayerDatabase.RPObjectIterator it = db.iterator(trans);
 		String query = "insert into age(datewhen, charname, age, version) values(?, ?, ?, ?)";
 	    date = new java.sql.Date(new java.util.Date().getTime());
 		Connection connection = ((JDBCTransaction) trans).getConnection();
 		ps = connection.prepareStatement(query);
 
-		while (it.hasNext()) {
-			int id = it.next();
-			RPObject object = db.loadRPObject(trans, id);
+		for(RPObject object: db) {
 			String name = object.get("name");
 			//System.out.println(id + " " + name);
 			logPlayer(name, object);
 		}
+
 		ps.close();
 		trans.commit();
 	}
@@ -92,7 +88,7 @@ public class AgeDumper {
 	public static void main(String[] args) throws Exception {
 		StendhalRPWorld.get();
 		Configuration.setConfigurationFile("marauroa-prod.ini");
-		JDBCPlayerDatabase db = (JDBCPlayerDatabase) StendhalPlayerDatabase.newConnection();
+		StendhalPlayerDatabase db = (StendhalPlayerDatabase) StendhalPlayerDatabase.newConnection();
 		AgeDumper itemDumper = new AgeDumper(db);
 		itemDumper.dump();
 	}

@@ -65,7 +65,7 @@ public class TileSetDefinition implements Serializable {
 		return array.toByteArray();
     }
 
-	public void readObject(InputSerializer in) throws IOException, ClassNotFoundException {
+	public void readObject(InputSerializer in) throws IOException {
 		name=in.readString();
 		source=in.readString();
 		gid=in.readInt();

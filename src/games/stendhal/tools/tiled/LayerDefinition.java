@@ -200,7 +200,7 @@ public class LayerDefinition implements Serializable {
 		return name;
     }
 
-	public void readObject(InputSerializer in) throws IOException, ClassNotFoundException {
+	public void readObject(InputSerializer in) throws IOException {
 		name=in.readString();
 		width=in.readInt();
 		height=in.readInt();
