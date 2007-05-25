@@ -10,8 +10,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.AnimatedSprite;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.ImageSprite;
-import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 

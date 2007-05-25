@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-import marauroa.common.net.InputSerializer;
 
 import org.apache.log4j.Logger;
 
