@@ -3,6 +3,7 @@ package games.stendhal.client.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import games.stendhal.client.GameObjects;
+import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 import org.junit.AfterClass;
@@ -37,6 +38,7 @@ public class EntityFactoryTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		GameObjects.createInstance(null);
+		Log4J.init();
 	}
 
 	@AfterClass
@@ -116,6 +118,7 @@ public class EntityFactoryTest {
 	@Test
 	public final void sheep() {
 		RPObject rp = new MockRPObject("sheep",  null);
+		rp.put("weight", 0);
 		Entity en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a Sheep by now", Sheep.class, en.getClass());
