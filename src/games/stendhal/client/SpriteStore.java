@@ -297,6 +297,8 @@ public class SpriteStore {
 
 	/**
 	 * Warning, ugly workaround for a bug in Bootstrap.java prior (including) version 0.57.
+	 * There are still old version of Bootstrap araound as this file cannot be updated with
+	 * the automatic updater.
 	 *
 	 * @param ref resource name
 	 * @return URL to that resource or null in case it was not found
