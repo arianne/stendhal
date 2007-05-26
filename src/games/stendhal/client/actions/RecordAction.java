@@ -4,6 +4,7 @@ import games.stendhal.client.scripting.ScriptRecorder;
 
 import java.io.FileNotFoundException;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -11,7 +12,7 @@ import marauroa.common.Logger;
  */
 public class RecordAction implements SlashAction  {
 
-	private static Logger logger = Logger.getLogger(RecordAction.class);
+	private static Logger logger = Log4J.getLogger(RecordAction.class);
 
 	private ScriptRecorder recorder = null;
 

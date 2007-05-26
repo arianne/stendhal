@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -42,7 +43,7 @@ public class TurnNotifier {
 		}
 	}
 
-	private static Logger logger = Logger.getLogger(TurnNotifier.class);
+	private static Logger logger = Log4J.getLogger(TurnNotifier.class);
 
 	/** The Singleton instance **/
 	private static TurnNotifier instance = null;

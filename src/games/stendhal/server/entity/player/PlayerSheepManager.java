@@ -2,12 +2,13 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player.NoSheepException;
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerSheepManager {
-	private static Logger logger = Logger.getLogger(PlayerSheepManager.class);
+	private static Logger logger = Log4J.getLogger(PlayerSheepManager.class);
 	private Player player = null;
 	
 	PlayerSheepManager(Player player) {

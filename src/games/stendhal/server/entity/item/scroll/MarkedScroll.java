@@ -21,6 +21,7 @@ import games.stendhal.server.entity.player.Player;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -28,7 +29,7 @@ import marauroa.common.Logger;
  */
 public class MarkedScroll extends TeleportScroll {
 
-	private static final Logger logger = Logger.getLogger(MarkedScroll.class);
+	private static final Logger logger = Log4J.getLogger(MarkedScroll.class);
 
 	/**
 	 * Creates a new marked teleport scroll

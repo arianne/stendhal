@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -24,7 +25,7 @@ import marauroa.common.Logger;
  */
 public class TeleporterBehaviour implements TurnListener {
 
-	private static Logger logger = Logger.getLogger(TeleporterBehaviour.class);
+	private static Logger logger = Log4J.getLogger(TeleporterBehaviour.class);
 
 	private StendhalRPZone zone = null;
 

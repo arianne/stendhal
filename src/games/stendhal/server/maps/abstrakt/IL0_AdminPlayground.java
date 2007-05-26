@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -262,7 +263,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 					player.sendPrivateText("Welcome in " + zoneName);
 				}
 			} catch (Exception e) {
-				Logger.getLogger(SightseeingAction.class).error(e, e);
+				Log4J.getLogger(SightseeingAction.class).error(e, e);
 			}
 
 			counter++;

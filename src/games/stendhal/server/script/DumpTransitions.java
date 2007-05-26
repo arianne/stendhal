@@ -11,6 +11,7 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -21,7 +22,7 @@ import marauroa.common.Logger;
  */
 public class DumpTransitions extends ScriptImpl {
 
-	private static Logger logger = Logger.getLogger(DumpTransitions.class);
+	private static Logger logger = Log4J.getLogger(DumpTransitions.class);
 
 	private StringBuilder dumpedTable = null;
 

@@ -20,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -54,7 +55,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 	private static final int WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS = 10 * 3;
 
-	private static Logger logger = Logger.getLogger(BetManager.class);
+	private static Logger logger = Log4J.getLogger(BetManager.class);
 
 	/** the NPC */
 	protected ScriptingNPC npc = null;

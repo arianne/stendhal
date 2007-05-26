@@ -16,10 +16,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 public class CreatureLogic {
-	private static Logger logger = Logger.getLogger(CreatureLogic.class);
+	private static Logger logger = Log4J.getLogger(CreatureLogic.class);
 
 	/**
 	 * the number of rounds the creature should wait when the path to the target

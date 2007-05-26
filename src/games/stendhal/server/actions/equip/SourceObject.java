@@ -11,6 +11,7 @@ import games.stendhal.server.events.EquipListener;
 
 import java.util.List;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -20,7 +21,7 @@ import marauroa.common.game.RPSlot;
  * this encapsulates the equip/drop source
  */
 class SourceObject extends MoveableObject {
-	private static Logger logger = Logger.getLogger(SourceObject.class);
+	private static Logger logger = Log4J.getLogger(SourceObject.class);
 	/** the item */
 	private Item item;
 

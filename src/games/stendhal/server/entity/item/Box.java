@@ -10,6 +10,7 @@ import games.stendhal.server.events.UseListener;
 
 import java.util.Map;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
@@ -20,7 +21,7 @@ import marauroa.common.game.RPObject;
  */
 public class Box extends Item implements UseListener {
 
-	private Logger logger = Logger.getLogger(Box.class);
+	private Logger logger = Log4J.getLogger(Box.class);
 
 	// for christmas presents
 	private static final String[] ITEMS = { "greater_potion", "pie", "sandwich", "carrot", "cherry", "blue_elf_cloak",

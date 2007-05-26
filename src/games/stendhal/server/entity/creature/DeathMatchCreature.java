@@ -2,6 +2,7 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -61,7 +62,7 @@ public class DeathMatchCreature extends Creature {
 			player.notifyWorldAboutChanges();
 			
 		} else {
-			Logger.getLogger(DeathMatchCreature.class).error(damageReceived);
+			Log4J.getLogger(DeathMatchCreature.class).error(damageReceived);
 		}
 	}
 

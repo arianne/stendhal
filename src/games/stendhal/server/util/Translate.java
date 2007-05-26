@@ -7,6 +7,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Properties;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 import org.apache.velocity.VelocityContext;
@@ -19,7 +20,7 @@ import org.apache.velocity.app.Velocity;
  */
 public class Translate {
 
-	private static Logger logger = Logger.getLogger(Translate.class);
+	private static Logger logger = Log4J.getLogger(Translate.class);
 
 	private static Properties dictionary = new Properties();
 

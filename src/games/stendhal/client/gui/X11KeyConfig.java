@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -36,7 +37,7 @@ public class X11KeyConfig extends Canvas {
 
 	private static X11KeyConfig instance = null;
 
-	private static Logger logger = Logger.getLogger(X11KeyConfig.class);
+	private static Logger logger = Log4J.getLogger(X11KeyConfig.class);
 
 	// ------------------------------------------------------------------------
 	//                     public api (singleton and result)

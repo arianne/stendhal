@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObjectNotFoundException;
 
@@ -35,7 +36,7 @@ class DeathmatchEngine implements TurnListener {
 	
 	private static final long NUMBER_OF_CREATURES = 10;
 
-	private static Logger logger = Logger.getLogger(DeathmatchEngine.class);
+	private static Logger logger = Log4J.getLogger(DeathmatchEngine.class);
 
 	private final Player player;
 

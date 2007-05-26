@@ -32,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 
+import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
@@ -41,7 +42,7 @@ public class CreditsDialog extends JDialog {
 
 	private static final long serialVersionUID = 4312205320503928411L;
 
-	private static final Logger logger = Logger.getLogger(CreditsDialog.class);
+	private static final Logger logger = Log4J.getLogger(CreditsDialog.class);
 
 	private ScrollerPanel sp;
 
