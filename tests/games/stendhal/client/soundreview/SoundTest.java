@@ -3,6 +3,8 @@ package games.stendhal.client.soundreview;
 import static org.junit.Assert.*;
 import games.stendhal.client.entity.User;
 
+import marauroa.common.Log4J;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +16,7 @@ public class SoundTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Log4J.init();
 	}
 
 	@AfterClass
@@ -39,7 +42,7 @@ public class SoundTest {
 		new Sound("bla",0,0,true);
 		
 	}
-@Ignore
+
 	@Test
 	public void testPlay() {
 		SoundMaster sm = new SoundMaster();
