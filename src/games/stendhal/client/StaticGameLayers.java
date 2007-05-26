@@ -131,7 +131,7 @@ public class StaticGameLayers {
 			}
 
 			CollisionDetection collision = new CollisionDetection();
-			collision.setCollisionData(LayerDefinition.decode(new InputSerializer(in)));
+			collision.setCollisionData(LayerDefinition.decode(in));
 
 			collisions.put(area, collision);
 		} else if (layer.equals("tilesets")) {
@@ -166,7 +166,7 @@ public class StaticGameLayers {
 			if (content == null) {
 				//TODO: XXX
 				content = new TileRenderer();
-				((TileRenderer) content).setMapData(new InputSerializer(in));
+				((TileRenderer) content).setMapData(in);
 			}
 
 			layers.put(name, content);

@@ -274,29 +274,42 @@ public class CreateAccountDialog extends JDialog {
 
                 try {
                 	AccountResult result = client.createAccount(accountUsername, password, email);
-                	/*
-                	 * Print username returned by server, as server can modify it at will
-                	 * to match account names rules. 
-                	 */
+                	if (result.failed()) {
+                		/*
+                		 * If the account can't be created, show an error message and don't continue.
+                		 */
+    					progressBar.cancel();
+    					setVisible(true);
+    					JOptionPane.showMessageDialog(owner, 
+    							result.getResult().getText(),
+    							"Create account failed",
+    							JOptionPane.ERROR_MESSAGE);
+					} else {
 
-					progressBar.step();
-					progressBar.finish();
-					
-					// TODO: Check mental conflict bewteen username and account name.
-					// Be sure to fix all the variable names.
-					client.setUserName(accountUsername);
+						/*
+						 * Print username returned by server, as server can modify it at will
+						 * to match account names rules. 
+						 */
 
-					/*
-					 * Once the account is created, login into server.
-					 */
-	                client.login(accountUsername, password);
-					progressBar.step();
-					progressBar.finish();
+						progressBar.step();
+						progressBar.finish();
 
-					setVisible(false);
-					owner.setVisible(false);
-					
-					stendhal.doLogin = true;
+						// TODO: Check mental conflict bewteen username and account name.
+						// Be sure to fix all the variable names.
+						client.setUserName(accountUsername);
+
+						/*
+						 * Once the account is created, login into server.
+						 */
+						client.login(accountUsername, password);
+						progressBar.step();
+						progressBar.finish();
+
+						setVisible(false);
+						owner.setVisible(false);
+
+						stendhal.doLogin = true;
+					}
                 } catch (TimeoutException e) {
 					progressBar.cancel();
 					setVisible(true);
@@ -311,13 +324,6 @@ public class CreateAccountDialog extends JDialog {
 					JOptionPane.showMessageDialog(owner, 
 							"You are running an incompatible version of Stendhal. Please update", 
 							"Invalid version",
-							JOptionPane.ERROR_MESSAGE);
-                } catch (CreateAccountFailedException e) {
-					progressBar.cancel();
-					setVisible(true);
-					JOptionPane.showMessageDialog(owner, 
-							e.getMessage(),
-							"Create account failed",
 							JOptionPane.ERROR_MESSAGE);
                 } catch (BannedAddressException e) {
 					progressBar.cancel();

@@ -16,6 +16,7 @@ import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.Graphics;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -24,7 +25,6 @@ import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.net.InputSerializer;
 
 /**
  * This is a helper class to render coherent tiles based on the tileset. This
@@ -60,7 +60,7 @@ public class TileRenderer extends LayerRenderer {
 
 	/** Sets the data that will be rendered 
 	 * @throws ClassNotFoundException */
-	public void setMapData(InputSerializer in) throws IOException, ClassNotFoundException {
+	public void setMapData(InputStream in) throws IOException, ClassNotFoundException {
 		LayerDefinition layer=LayerDefinition.decode(in);
 		width=layer.getWidth();
 		height=layer.getHeight();

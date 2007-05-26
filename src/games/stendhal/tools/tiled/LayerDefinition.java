@@ -2,8 +2,12 @@ package games.stendhal.tools.tiled;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.zip.DeflaterOutputStream;
+import java.util.zip.Inflater;
+import java.util.zip.InflaterInputStream;
 
 import marauroa.common.net.InputSerializer;
 import marauroa.common.net.OutputSerializer;
@@ -124,9 +128,11 @@ public class LayerDefinition implements Serializable {
 	 */
 	public byte[] encode() throws IOException {
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
-		OutputSerializer out = new OutputSerializer(array);
+		DeflaterOutputStream out_stream = new DeflaterOutputStream(array);
+		OutputSerializer out = new OutputSerializer(out_stream);
 		
 		writeObject(out);
+		out_stream.close();
 		
 		return array.toByteArray();
     }
@@ -139,9 +145,13 @@ public class LayerDefinition implements Serializable {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public static LayerDefinition decode(InputSerializer in) throws IOException, ClassNotFoundException {
+	public static LayerDefinition decode(InputStream in) throws IOException, ClassNotFoundException {
 		LayerDefinition layer=new LayerDefinition(0,0);
-		layer=(LayerDefinition) in.readObject(layer);
+
+		InflaterInputStream szlib = new InflaterInputStream(in,new Inflater());
+		InputSerializer ser=new InputSerializer(szlib);
+		
+		layer=(LayerDefinition) ser.readObject(layer);
 		layer.build();
 		return layer;
     }
