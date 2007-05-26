@@ -117,14 +117,6 @@ public class StendhalClient extends ariannexp {
 		return client;
 	}
 
-// TESTS COMPILED WITHOUT THIS. Has the TODO been done?
-//	/**
-//	 * For testing purpose durkham 07.03.2007 //TODO: try to get rid of this
-//	 * without destroying the tests
-//	 */
-//	protected StendhalClient() {
-//		super(new String());
-//	}
 
 	protected StendhalClient(String loggingProperties) {
 		super(loggingProperties);
