@@ -132,7 +132,7 @@ public class Creature2DView extends RPEntity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// StateEntity2DView
 	//
 
 	/**

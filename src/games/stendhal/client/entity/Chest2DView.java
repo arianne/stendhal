@@ -19,7 +19,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of a chest.
  */
-public class Chest2DView extends AnimatedStateEntity2DView {
+public class Chest2DView extends StateEntity2DView {
 	/**
 	 * Create a 2D view of a chest.
 	 *
@@ -31,7 +31,7 @@ public class Chest2DView extends AnimatedStateEntity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// StateEntity2DView
 	//
 
 	/**

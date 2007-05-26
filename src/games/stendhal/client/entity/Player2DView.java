@@ -83,7 +83,7 @@ public class Player2DView extends RPEntity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// StateEntity2DView
 	//
 
 	/**

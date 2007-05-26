@@ -19,7 +19,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of food.
  */
-public class Food2DView extends AnimatedStateEntity2DView {
+public class Food2DView extends StateEntity2DView {
 	/**
 	 * The number of states.
 	 */
@@ -40,7 +40,7 @@ public class Food2DView extends AnimatedStateEntity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// StateEntity2DView
 	//
 
 	/**

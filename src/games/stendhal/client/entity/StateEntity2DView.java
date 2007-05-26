@@ -1,5 +1,5 @@
 /*
- * @(#) games/stendhal/client/entity/AnimatedStateEntity2DView.java
+ * @(#) games/stendhal/client/entity/StateEntity2DView.java
  *
  * $Id$
  */
@@ -22,11 +22,11 @@ import org.apache.log4j.Logger;
 /**
  * The 2D view of an animated entity.
  */
-public abstract class AnimatedStateEntity2DView extends Entity2DView {
+public abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Logger.
 	 */
-	private static final Logger logger = Log4J.getLogger(AnimatedStateEntity2DView.class);
+	private static final Logger logger = Log4J.getLogger(StateEntity2DView.class);
 
 	/**
 	 * Map of named sprites.
@@ -44,7 +44,7 @@ public abstract class AnimatedStateEntity2DView extends Entity2DView {
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedStateEntity2DView(final Entity entity) {
+	public StateEntity2DView(final Entity entity) {
 		super(entity);
 
 		sprites = new HashMap<Object, Sprite>();
@@ -53,7 +53,7 @@ public abstract class AnimatedStateEntity2DView extends Entity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// StateEntity2DView
 	//
 
 	/**
@@ -128,7 +128,7 @@ public abstract class AnimatedStateEntity2DView extends Entity2DView {
 
 
 	/**
-	 * Update representation.
+	 * Handle updates.
 	 */
 	@Override
 	public void update() {

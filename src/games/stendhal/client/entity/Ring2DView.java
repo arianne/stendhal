@@ -36,7 +36,7 @@ public class Ring2DView extends Item2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// Entity2DView
 	//
 
 	/**

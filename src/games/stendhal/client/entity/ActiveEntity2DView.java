@@ -9,7 +9,7 @@ package games.stendhal.client.entity;
 /**
  * The 2D view of an animated entity.
  */
-public abstract class ActiveEntity2DView extends AnimatedStateEntity2DView {
+public abstract class ActiveEntity2DView extends StateEntity2DView {
 	/**
 	 * The active entity.
 	 */

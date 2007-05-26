@@ -19,7 +19,7 @@ import games.stendhal.client.SpriteStore;
 /**
  * The 2D view of a door.
  */
-public class Door2DView extends AnimatedStateEntity2DView {
+public class Door2DView extends StateEntity2DView {
 	/*
 	 * The drawing X offset from the entity position.
 	 */
@@ -64,7 +64,7 @@ public class Door2DView extends AnimatedStateEntity2DView {
 
 
 	//
-	// AnimatedStateEntity2DView
+	// StateEntity2DView
 	//
 
 	/**
