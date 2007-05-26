@@ -15,7 +15,7 @@ package games.stendhal.client.entity;
 import marauroa.common.game.RPObject;
 
 /**
- * A chest entity.
+ * A ring entity.
  */
 public class Ring extends Item {
 	/**
@@ -24,15 +24,38 @@ public class Ring extends Item {
 	public final static Object	PROP_WORKING	= new Object();
 
 	/**
-	 * Whether the chest is currently working.
+	 * Whether the ring is currently working.
 	 */
 	private boolean working;
+
 
 	/**
 	 * Create a Ring entity.
 	 */
-	Ring() {
+	public Ring() {
 	}
+
+
+	//
+	// Ring
+	//
+
+	/**
+	 * Determine if a ring is working.
+	 *
+	 * @return	<code>true</code> if a ring is working.
+	 */
+	public boolean isWorking() {
+		return working;
+	}
+
+
+
+	@Override
+	public ActionType defaultAction() {
+		return ActionType.LOOK;
+	}
+
 
 	//
 	// Entity
@@ -61,10 +84,15 @@ public class Ring extends Item {
 		super.initialize(object);
 
 		/*
-		 * A ring works either by not having amount of having amount>0
+		 * A ring works either by not having amount or having amount > 0
 		 */
-		working=(((!object.has("amount")) || object.has("amount") && object.getInt("amount")>0));
+		if(object.has("amount")) {
+			working = object.getInt("amount") > 0;
+		} else {
+			working = true;
+		}
 	}
+
 
 	//
 	// RPObjectChangeListener
@@ -80,7 +108,6 @@ public class Ring extends Item {
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
-		// TODO: Add onChangedRemoved() case
 		if(changes.has("amount")) {
 			/*
 			 * A ring works either by not having amount of
@@ -88,17 +115,23 @@ public class Ring extends Item {
 			 */
 			working = changes.getInt("amount") > 0;
 			fireChange(PROP_WORKING);
-			fireChange(PROP_STATE);
 		}
 	}
 
 
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
 	@Override
-	public ActionType defaultAction() {
-		return ActionType.LOOK;
-	}
-	
-	public boolean isWorking() {
-		return working;
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("amount")) {
+			working = true;
+			fireChange(PROP_WORKING);
+		}
 	}
 }

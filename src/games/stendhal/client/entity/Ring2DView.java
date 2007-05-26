@@ -20,10 +20,27 @@ import java.awt.geom.Rectangle2D;
  * The 2D view of a ring.
  */
 public class Ring2DView extends Item2DView {
+	/**
+	 * The ring entity.
+	 */
 	private Ring ring;
+
+	/**
+	 * The working sprite.
+	 */
 	private Sprite working;
+
+	/**
+	 * The broken sprite.
+	 */
 	private Sprite broken;
-	
+
+	/**
+	 * The state changed.
+	 */
+	private boolean	stateChanged;
+
+
 	/**
 	 * Create a 2D view of a chest.
 	 *
@@ -32,6 +49,9 @@ public class Ring2DView extends Item2DView {
 	public Ring2DView(final Ring ring) {
 		super(ring);
 		this.ring=ring;
+
+		setSprite(getStateSprite());
+		stateChanged = false;
 	}
 
 
@@ -50,14 +70,22 @@ public class Ring2DView extends Item2DView {
 
 		working=store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false);
 		broken=store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false);
+
+		setSprite(getStateSprite());
+		stateChanged = false;
 	}
 
-	@Override
-	public Sprite getSprite() {
+
+	/**
+	 * Get the appropriete sprite for the current state.
+	 *
+	 * @return	A sprite.
+	 */
+	protected Sprite getStateSprite() {
 		if(ring.isWorking()) {
 			return working;
 		} else {
-			return broken;			
+			return broken;
 		}
 	}
 
@@ -91,6 +119,20 @@ public class Ring2DView extends Item2DView {
 	}
 
 
+	/**
+	 * Handle updates.
+	 */
+	@Override
+	public void update() {
+		super.update();
+
+		if(stateChanged) {
+			setSprite(getStateSprite());
+			stateChanged = false;
+		}
+	}
+
+
 	//
 	// EntityChangeListener
 	//
@@ -106,8 +148,8 @@ public class Ring2DView extends Item2DView {
 	{
 		super.entityChanged(entity, property);
 
-		if(property == Entity.PROP_CLASS) {
-			representationChanged = true;
+		if(property == Ring.PROP_WORKING) {
+			stateChanged = true;
 		}
 	}
 }
