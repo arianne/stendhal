@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -95,8 +94,8 @@ public class Bootstrap {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
 		
-		String stendhal=ClientGameConfiguration.get("GAME_NAME");
-		System.out.println("GAME: "+stendhal);
+		String stendhal=ClientGameConfiguration.get("GAME_NAME").toLowerCase();
+		System.out.println("GAME: " + stendhal);
 		
 		jarFolder = System.getProperty("user.home") + pathSep + stendhal + pathSep + "jar" + pathSep;
 		File folder = new File(jarFolder);
@@ -197,13 +196,13 @@ public class Bootstrap {
 				Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
+			} catch (SecurityException e) {
+				throw e;
 			} catch (Exception e) {
 				e.printStackTrace(System.err);
-				JOptionPane
-				        .showMessageDialog(
-				                null,
-				                "Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-				                        + e);
+				JOptionPane.showMessageDialog(null,
+				    "Something nasty happened while trying to build classpath for UpdateManager.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+                    + e);
 			}
 		}
 
@@ -232,23 +231,7 @@ public class Bootstrap {
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
-				if (e instanceof InvocationTargetException) {
-					unexspectedErrorHandling(e);
-				} else {
-					JOptionPane
-					        .showMessageDialog(
-					                null,
-					                "Something nasty happened while trying to build classpath.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
-					                        + e);
-					e.printStackTrace(System.err);
-					try {
-						Class clazz = Class.forName(className);
-						Method method = clazz.getMethod("main", args.getClass());
-						method.invoke(null, (Object) args);
-					} catch (Exception err) {
-						err.printStackTrace(System.err);
-					}
-				}
+				unexspectedErrorHandling(e);
 			}
 
 		}
@@ -287,11 +270,21 @@ public class Bootstrap {
 			t.printStackTrace(System.err);
 		}
 
+		boolean startSelfBuild = true;
 		if (isSigned()) {
+			startSelfBuild = false;
 			// official client, look for updates and integrate additinal .jar files
 			System.err.println("Integrating old updates and looking for new ones");
-			AccessController.doPrivileged(new PrivilegedBoot<Object>(className, args));
-		} else {
+			try {
+				AccessController.doPrivileged(new PrivilegedBoot<Object>(className, args));
+			} catch (SecurityException e) {
+				// partly update
+				System.err.println("Got SecurityException most likly because singed jars files from the official distribution have been included into a self build client." + e);
+				startSelfBuild = true;
+			}
+		}
+
+		if (startSelfBuild) {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
@@ -317,11 +310,19 @@ public class Bootstrap {
 
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
+		} else if (e instanceof LinkageError) {
+			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. Clear updates so that they are downloaded again after restarting Stendhal?", 
+					"Stendhal", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			if (res == JOptionPane.YES_OPTION) {
+				bootProp.remove("load");
+				try {
+					saveBootProp();
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(null, "Could not write jar.properties");
+				}
+			}
 		} else {
-			JOptionPane
-			        .showMessageDialog(
-			                null,
-			                "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
+			JOptionPane.showMessageDialog(null, "An unexspected error occured.\r\nPlease open a bug report at http://sf.net/projects/arianne with this error message:\r\n"
 			                        + e);
 		}
 		System.exit(1);
