@@ -74,7 +74,7 @@ public class Player extends RPEntity {
 	 *				if no-longer away.
 	 */
 	protected void onAway(final String message) {
-		addFloater(((message != null) ? "Away" : "Back"), Color.blue);
+		addTextIndicator(((message != null) ? "Away" : "Back"), Color.blue);
 	}
 
 	@Override

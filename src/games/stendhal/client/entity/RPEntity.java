@@ -26,6 +26,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,7 +42,12 @@ public abstract class RPEntity extends ActiveEntity {
 	/**
 	 * Admin Level property.
 	 */
-	public final static Object	PROP_ADMIN_LEVEL= new Object();
+	public final static Object	PROP_ADMIN_LEVEL	= new Object();
+
+	/**
+	 * Indicator text property.
+	 */
+	public final static Object	PROP_TEXT_INDICATORS	= new Object();
 
 	/**
 	 * Outfit property.
@@ -106,7 +112,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	private long combatIconTime;
 
-	private List<FloatingMessage> floaters;
+	private List<TextIndicator> textIndicators;
 
 	private RPObject.ID attacking;
 
@@ -151,7 +157,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	/** Create a new game entity */
 	RPEntity()  {
-		floaters = new LinkedList<FloatingMessage>();
+		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;
 		lastAttacker = null;
 	}
@@ -162,13 +168,14 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 
 	/**
-	 * Create/add a "floater" message.
+	 * Create/add a text indicator message.
 	 *
 	 * @param	text		The text message.
 	 * @param	color		The color of the text.
 	 */
-	protected void addFloater(final String text, final Color color) {
-		floaters.add(new FloatingMessage(text, color));
+	protected void addTextIndicator(final String text, final Color color) {
+		textIndicators.add(new TextIndicator(text, color));
+		fireChange(PROP_TEXT_INDICATORS);
 	}
 
 
@@ -259,6 +266,17 @@ public abstract class RPEntity extends ActiveEntity {
 	public float getHPRatio() {
 		return hp_base_hp;
 	}
+
+
+	/**
+	 * Get the list of text indicator elements.
+	 *
+	 * @return	An iterator of text indicators.
+	 */
+	public Iterator<TextIndicator> getTextIndicators() {
+		return textIndicators.iterator();
+	}
+
 
 	public int getLevel() {
 		return level;
@@ -427,7 +445,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 		//playSound("punch-mix", 20, 60, 80);
 
-		addFloater("-" + damage, Color.red);
+		addTextIndicator("-" + damage, Color.red);
 
 		boolean showAttackInfoForPlayer = (!User.isNull())
 		        && (this.equals(User.get()) || attacker.equals(User.get()));
@@ -467,7 +485,7 @@ public abstract class RPEntity extends ActiveEntity {
 	// When entity gets healed
 	public void onHealed(final int amount) {
 		if (distanceToUser() < 15 * 15) {
-			addFloater("+" + amount, Color.green);
+			addTextIndicator("+" + amount, Color.green);
 		}
 	}
 
@@ -486,7 +504,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if ((distanceToUser() < 15 * 15)) {
 			poisoned = true;
 
-			addFloater("-" + amount, Color.red);
+			addTextIndicator("-" + amount, Color.red);
 
 			StendhalUI.get().addEventLine(
 			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
@@ -580,17 +598,18 @@ public abstract class RPEntity extends ActiveEntity {
 
 		super.draw(screen);
 
-		if (!floaters.isEmpty()) {
-			// Draw the floaters
+		if (!textIndicators.isEmpty()) {
+			// Draw the text indicators
 			Graphics g = screen.expose();
 			Point p = screen.convertWorldToScreen(getX(), getY());
 
-			for(FloatingMessage floater : floaters) {
-				floater.draw(g, p.x, p.y);
+			for(TextIndicator indicator : textIndicators) {
+				indicator.draw(g, p.x, p.y);
 			}
 
-			if(floaters.get(0).getAge() > 2000L) {
-				floaters.remove(0);
+			if(textIndicators.get(0).getAge() > 2000L) {
+				textIndicators.remove(0);
+				fireChange(PROP_TEXT_INDICATORS);
 			}
 		}
 	}
@@ -727,8 +746,6 @@ public abstract class RPEntity extends ActiveEntity {
 		} else {
 			titleType = null;
 		}
-
-//		buildTitle();
 	}
 
 
@@ -1032,13 +1049,13 @@ public abstract class RPEntity extends ActiveEntity {
 			if (distanceToUser() < 15 * 15) {
 				int amount=(changes.getInt("xp") - object.getInt("xp"));
 				if(amount>0) {
-					addFloater("+" + amount, Color.cyan);
+					addTextIndicator("+" + amount, Color.cyan);
 
 					StendhalUI.get().addEventLine( getTitle() + " earns "
 							+ Grammar.quantityplnoun(amount, "experience point")
 							+ ".", Color.blue);
 				} else if(amount<0) {
-					addFloater(""+amount, Color.pink);
+					addTextIndicator(""+amount, Color.pink);
 
 					StendhalUI.get().addEventLine( getTitle() + " loses "
 							+ Grammar.quantityplnoun(amount, "experience point")
@@ -1110,7 +1127,7 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 	//
 
-	public static class FloatingMessage {
+	public static class TextIndicator {
 		/**
 		 * The text sprite.
 		 */
@@ -1121,6 +1138,11 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		protected long		start;
 
+		/**
+		 * The message text.
+		 */
+		protected String	text;
+
 
 		/**
 		 * Create a floating message.
@@ -1128,14 +1150,16 @@ public abstract class RPEntity extends ActiveEntity {
 		 * @param	text		The text to drawn.
 		 * @param	color		The text color.
 		 */
-		public FloatingMessage(String text, Color color) {
+		public TextIndicator(String text, Color color) {
+			this.text = text;
+
 			sprite = GameScreen.get().createString(text, color);
 			start = System.currentTimeMillis();
 		}
 
 
 		//
-		// FloatingMessage
+		// <Floater>
 		//
 
 		/**
@@ -1155,6 +1179,10 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 
+		//
+		// TextIndicator
+		//
+
 		/**
 		 * Get the age of this message.
 		 *
@@ -1162,6 +1190,16 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		public long getAge() {
 			return System.currentTimeMillis() - start;
+		}
+
+
+		/**
+		 * Get the text message.
+		 *
+		 * @return	The text message.
+		 */
+		public String getText() {
+			return text;
 		}
 	}
 }
