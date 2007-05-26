@@ -6,10 +6,35 @@
 
 package games.stendhal.client.entity;
 
+//
+//
+
+import games.stendhal.common.Direction;
+
 /**
  * The 2D view of an animated entity.
  */
 public abstract class ActiveEntity2DView extends StateEntity2DView {
+	/**
+	 * The down facing state.
+	 */
+	protected static final String	STATE_DOWN	= "move_down";
+
+	/**
+	 * The up facing state.
+	 */
+	protected static final String	STATE_UP	= "move_up";
+
+	/**
+	 * The left facing state.
+	 */
+	protected static final String	STATE_LEFT	= "move_left";
+
+	/**
+	 * The right facing state.
+	 */
+	protected static final String	STATE_RIGHT	= "move_right";
+
 	/**
 	 * The active entity.
 	 */
@@ -25,6 +50,51 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 		super(activeEntity);
 
 		this.activeEntity = activeEntity;
+	}
+
+
+	//
+	// ActiveEntity2DView
+	//
+
+	/**
+	 * Get the appropriete named state for a direction.
+	 *
+	 * @param	direction	The direction.
+	 *
+	 * @return	A named state.
+	 */
+	protected String getDirectionState(final Direction direction) {
+		switch (direction) {
+			case LEFT:
+				return STATE_LEFT;
+
+			case RIGHT:
+				return STATE_RIGHT;
+
+			case UP:
+				return STATE_UP;
+
+			case DOWN:
+				return STATE_DOWN;
+
+			default:
+				return STATE_DOWN;
+		}
+	}
+
+
+	//
+	// StateEntity2DView
+	//
+
+	/**
+	 * Get the current model state.
+	 *
+	 * @return	The model state.
+	 */
+	protected Object getState() {
+		return getDirectionState(activeEntity.getDirection());
 	}
 
 
@@ -54,11 +124,13 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 
-		if(property == ActiveEntity.PROP_SPEED) {
+		if(property == ActiveEntity.PROP_DIRECTION) {
+			stateChanged = true;
+		} else if(property == ActiveEntity.PROP_SPEED) {
 			animatedChanged = true;
 		}
 	}

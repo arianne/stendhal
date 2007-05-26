@@ -34,54 +34,25 @@ public class Sheep extends NPC {
 	 */
 	public final static Object	PROP_WEIGHT	= new Object();
 
-	public static final String	STATE_BIG_DOWN	= "big_" + STATE_DOWN;
-	public static final String	STATE_BIG_UP	= "big_" + STATE_UP;
-	public static final String	STATE_BIG_LEFT	= "big_" + STATE_LEFT;
-	public static final String	STATE_BIG_RIGHT	= "big_" + STATE_RIGHT;
-
+	/**
+	 * The sheep's weight (0-100).
+	 */
 	private int weight;
+
+	/**
+	 * The sheep's idea.
+	 */
 	private String	idea;
 
 
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-		if (diff.has("weight")) {
-			int oldWeight = weight;
-			weight = diff.getInt("weight");
-
-			if (weight > oldWeight) {
-				SoundMaster.play("eat-1.wav",x,y);//playSound("sheep-eat", 8, 15);
-			}
-
-			fireChange(PROP_WEIGHT);
-		}
-		
-		if (diff.has("idea")) {
-			idea = diff.get("idea");
-
-			if ("eat".equals(idea)) {
-				probableChat(15);
-			} else if ("food".equals(idea)) {
-				probableChat(20);
-			} else if ("walk".equals(idea)) {
-				probableChat(20);
-			} else if ("follow".equals(idea)) {
-				probableChat(20);
-			} else if ("stop".equals(idea)){
-				idea = null;
-			}
-
-			fireChange(PROP_IDEA);
-		}
-	}
-
+	//
+	// Sheep
+	//
 
 	/**
 	 * Get the idea setting.
 	 *
-	 *
+	 * @return	The sheep's idea.
 	 */
 	public String getIdea() {
 		return idea;
@@ -91,12 +62,57 @@ public class Sheep extends NPC {
 	/**
 	 * Get the weight.
 	 *
-	 *
+	 * @return	The sheep's weight.
 	 */
 	public int getWeight() {
 		return weight;
 	}
 
+
+	/**
+	 * The idea changed.
+	 *
+	 * @param	idea		The idea, or <code>null</code>.
+	 */
+	protected void onIdea(String idea) {
+		if(idea == null) {
+			// No "idea" - Do nothing
+		} else if ("eat".equals(idea)) {
+			probableChat(15);
+		} else if ("food".equals(idea)) {
+			probableChat(20);
+		} else if ("walk".equals(idea)) {
+			probableChat(20);
+		} else if ("follow".equals(idea)) {
+			probableChat(20);
+		} else if ("stop".equals(idea)) {
+			// Do nothing
+		}
+	}
+
+
+	private void probableChat(final int chance) {
+
+		String[][] soundnames={{"sheep-1.wav","sheep-3.wav"},{"sheep-2.wav","sheep-4.wav"}};
+		int which=Rand.rand(2);
+
+
+//		sfx.sheep-mix.a = sheep-1.wav
+//		sfx.sheep-mix.b = sheep-3.wav
+//
+//		sfx.sheep-mix2.b = sheep-2.wav
+//		sfx.sheep-mix2.a = sheep-4.wav
+
+		if (Rand.rand(100)<chance){
+		String token = weight > 50 ? soundnames[0][which]:soundnames[1][which];
+		SoundMaster.play(token,x,y);//playSound(token, 20, 35, chance);
+		}
+	}
+
+
+	//
+	//
+	//
 
 	@Override
 	public void onAction(final ActionType at, final String... params) {
@@ -108,7 +124,7 @@ public class Sheep extends NPC {
 				int id = getID().getObjectID();
 				rpaction.put("target", id);
 				at.send(rpaction);
-				
+
 				SoundMaster.play("sheep-2.wav",x,y);//playSound("sheep-chat-2", 25, 60);
 				break;
 
@@ -119,24 +135,6 @@ public class Sheep extends NPC {
 				break;
 		}
 
-	}
-
-	private void probableChat(final int chance) {
-		
-		String[][] soundnames={{"sheep-1.wav","sheep-3.wav"},{"sheep-2.wav","sheep-4.wav"}};
-		int which=Rand.rand(2);
-		
-		
-//		sfx.sheep-mix.a = sheep-1.wav
-//		sfx.sheep-mix.b = sheep-3.wav
-//		
-//		sfx.sheep-mix2.b = sheep-2.wav
-//		sfx.sheep-mix2.a = sheep-4.wav
-	
-		if (Rand.rand(100)<chance){
-		String token = weight > 50 ? soundnames[0][which]:soundnames[1][which];
-		SoundMaster.play(token,x,y);//playSound(token, 20, 35, chance);
-		}
 	}
 
 
@@ -158,29 +156,6 @@ public class Sheep extends NPC {
 
 
 	//
-	// RPEntity
-	//
-
-	/**
-	 * Get the appropriete named state for a direction.
-	 *
-	 * @param	direction	The direction.
-	 *
-	 * @return	A named state.
-	 */
-	@Override
-	protected String getDirectionState(final Direction direction) {
-		String state = super.getDirectionState(direction);
-
-		if (getWeight() >= 60) {
-			state = "big_" + state;
-		}
-
-		return state;
-	}
-
-
-	//
 	// Entity
 	//
 
@@ -192,5 +167,96 @@ public class Sheep extends NPC {
 	@Override
 	protected Entity2DView createView() {
 		return new Sheep2DView(this);
+	}
+
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		/*
+		 * Idea
+		 */
+		if (object.has("idea")) {
+			idea = object.get("idea");
+		} else {
+			idea = null;
+		}
+
+		/*
+		 * Weight
+		 */
+		weight = object.getInt("weight");
+
+
+		onIdea(idea);
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		/*
+		 * Idea
+		 */
+		if (changes.has("idea")) {
+			idea = changes.get("idea");
+			onIdea(idea);
+			fireChange(PROP_IDEA);
+		}
+
+		/*
+		 * Weight
+		 */
+		if (changes.has("weight")) {
+			int oldWeight = weight;
+			weight = changes.getInt("weight");
+
+			if (weight > oldWeight) {
+				//playSound("sheep-eat", 8, 15);
+				SoundMaster.play("eat-1.wav",x,y);
+			}
+
+			fireChange(PROP_WEIGHT);
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		/*
+		 * Idea
+		 */
+		if (changes.has("idea")) {
+			idea = null;
+			onIdea(idea);
+			fireChange(PROP_IDEA);
+		}
 	}
 }

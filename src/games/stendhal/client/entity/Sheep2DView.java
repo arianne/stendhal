@@ -17,11 +17,38 @@ import java.util.Map;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.common.Direction;
 
 /**
  * The 2D view of a sheep.
  */
 public class Sheep2DView extends RPEntity2DView {
+	/**
+	 * The weight that a sheep becomes fat (big).
+	 */
+	protected static final int	BIG_WEIGHT	= 60;
+
+	/**
+	 * The down facing big state.
+	 */
+	protected static final String	STATE_BIG_DOWN	= "big:move_down";
+
+	/**
+	 * The up facing big state.
+	 */
+	protected static final String	STATE_BIG_UP	= "big:move_up";
+
+	/**
+	 * The left facing big state.
+	 */
+	protected static final String	STATE_BIG_LEFT	= "big:move_left";
+
+	/**
+	 * The right facing big state.
+	 */
+	protected static final String	STATE_BIG_RIGHT	= "big:move_right";
+
+
 	/**
 	 * The entity this view is for.
 	 */
@@ -89,29 +116,64 @@ public class Sheep2DView extends RPEntity2DView {
 
 		SpriteStore store = SpriteStore.get();
 
-		map.put(ActiveEntity.STATE_UP,
+		map.put(STATE_UP,
 			store.getAnimatedSprite(tiles, 0, 3, width, height, 100L, false));
 
-		map.put(ActiveEntity.STATE_RIGHT,
+		map.put(STATE_RIGHT,
 			store.getAnimatedSprite(tiles, 1, 3, width, height, 100L, false));
 
-		map.put(ActiveEntity.STATE_DOWN,
+		map.put(STATE_DOWN,
 			store.getAnimatedSprite(tiles, 2, 3, width, height, 100L, false));
 
-		map.put(ActiveEntity.STATE_LEFT,
+		map.put(STATE_LEFT,
 			store.getAnimatedSprite(tiles, 3, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_BIG_UP,
+		map.put(STATE_BIG_UP,
 			store.getAnimatedSprite(tiles, 4, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_BIG_RIGHT,
+		map.put(STATE_BIG_RIGHT,
 			store.getAnimatedSprite(tiles, 5, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_BIG_DOWN,
+		map.put(STATE_BIG_DOWN,
 			store.getAnimatedSprite(tiles, 6, 3, width, height, 100L, false));
 
-		map.put(Sheep.STATE_BIG_LEFT,
+		map.put(STATE_BIG_LEFT,
 			store.getAnimatedSprite(tiles, 7, 3, width, height, 100L, false));
+	}
+
+
+	//
+	// ActiveEntity2DView
+	//
+
+	/**
+	 * Get the appropriete named state for a direction.
+	 *
+	 * @param	direction	The direction.
+	 *
+	 * @return	A named state.
+	 */
+	protected String getDirectionState(final Direction direction) {
+		if(sheep.getWeight() < BIG_WEIGHT) {
+			return super.getDirectionState(direction);
+		}
+
+		switch (direction) {
+			case LEFT:
+				return STATE_BIG_LEFT;
+
+			case RIGHT:
+				return STATE_BIG_RIGHT;
+
+			case UP:
+				return STATE_BIG_UP;
+
+			case DOWN:
+				return STATE_BIG_DOWN;
+
+			default:
+				return STATE_BIG_DOWN;
+		}
 	}
 
 
@@ -194,6 +256,8 @@ public class Sheep2DView extends RPEntity2DView {
 
 		if(property == Sheep.PROP_IDEA) {
 			ideaChanged = true;
+		} else if(property == Sheep.PROP_WEIGHT) {
+			stateChanged = true;
 		}
 	}
 }

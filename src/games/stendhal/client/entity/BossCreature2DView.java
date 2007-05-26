@@ -35,9 +35,9 @@ public class BossCreature2DView extends Creature2DView {
 		Sprite right = store.getTile(tiles, 0, 0, pWidth, pHeight);
 		Sprite left = store.getTile(tiles, 0, pHeight, pWidth, pHeight);
 
-		map.put(ActiveEntity.STATE_RIGHT, right);
-		map.put(ActiveEntity.STATE_LEFT, left);
-		map.put(ActiveEntity.STATE_UP, right);
-		map.put(ActiveEntity.STATE_DOWN, left);
+		map.put(STATE_RIGHT, right);
+		map.put(STATE_LEFT, left);
+		map.put(STATE_UP, right);
+		map.put(STATE_DOWN, left);
 	}
 }

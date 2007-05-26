@@ -14,33 +14,18 @@ import games.stendhal.common.Direction;
 import marauroa.common.game.RPObject;
 
 /**
- * An entity that has movement.
+ * An entity that has movement and direction.
  */
 public abstract class ActiveEntity extends Entity {
+	/**
+	 * Direction property.
+	 */
+	public final static Object	PROP_DIRECTION	= new Object();
+
 	/**
 	 * Speed property.
 	 */
 	public final static Object	PROP_SPEED	= new Object();
-
-	/**
-	 * The down facing state.
-	 */
-	public static final String	STATE_DOWN	= "move_down";
-
-	/**
-	 * The up facing state.
-	 */
-	public static final String	STATE_UP	= "move_up";
-
-	/**
-	 * The left facing state.
-	 */
-	public static final String	STATE_LEFT	= "move_left";
-
-	/**
-	 * The right facing state.
-	 */
-	public static final String	STATE_RIGHT	= "move_right";
 
 	/**
 	 * The current [facing] direction.
@@ -77,32 +62,6 @@ public abstract class ActiveEntity extends Entity {
 		return direction;
 	}
 
-
-	/**
-	 * Get the appropriete named state for a direction.
-	 *
-	 * @param	direction	The direction.
-	 *
-	 * @return	A named state.
-	 */
-	protected String getDirectionState(final Direction direction) {
-		switch (direction) {
-			case LEFT:
-				return STATE_LEFT;
-
-			case RIGHT:
-				return STATE_RIGHT;
-
-			case UP:
-				return STATE_UP;
-
-			case DOWN:
-				return STATE_DOWN;
-
-			default:
-				return STATE_DOWN;
-		}
-	}
 
 	/**
 	 * The entity has started motion.
@@ -216,16 +175,6 @@ public abstract class ActiveEntity extends Entity {
 	//
 
 	/**
-	 * Get the current entity state.
-	 *
-	 * @return	The current state.
-	 */
-	@Override
-	public String getState() {
-		return getDirectionState(getDirection());
-	}
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -313,6 +262,7 @@ public abstract class ActiveEntity extends Entity {
 		if (diff.has("dir")) {
 			direction = Direction.build(diff.getInt("dir"));
 			setDirection(direction);
+			fireChange(PROP_DIRECTION);
 			fireChange(PROP_STATE);
 		} else if (base.has("dir")) {
 			direction = Direction.build(base.getInt("dir"));

@@ -69,10 +69,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		SpriteStore st = SpriteStore.get();
 
 		bladeStrikeSprites = new HashMap<Object, Sprite[]>();
-		bladeStrikeSprites.put(ActiveEntity.STATE_UP, st.getSprites("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
-		bladeStrikeSprites.put(ActiveEntity.STATE_RIGHT, st.getSprites("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
-		bladeStrikeSprites.put(ActiveEntity.STATE_DOWN, st.getSprites("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
-		bladeStrikeSprites.put(ActiveEntity.STATE_LEFT, st.getSprites("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_UP, st.getSprites("data/sprites/combat/blade_strike.png", 0, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_RIGHT, st.getSprites("data/sprites/combat/blade_strike.png", 1, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_DOWN, st.getSprites("data/sprites/combat/blade_strike.png", 2, 3, 3, 4));
+		bladeStrikeSprites.put(STATE_LEFT, st.getSprites("data/sprites/combat/blade_strike.png", 3, 3, 3, 4));
 
 		hitSprite = st.getSprite("data/sprites/combat/hitted.png");
 		blockedSprite = st.getSprite("data/sprites/combat/blocked.png");
@@ -111,10 +111,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildSprites(Map<Object, Sprite> map, double width, double height) {
 		Sprite tiles = getAnimationSprite();
 
-		map.put(ActiveEntity.STATE_UP, getAnimatedWalk(tiles, 0, width, height));
-		map.put(ActiveEntity.STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
-		map.put(ActiveEntity.STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
-		map.put(ActiveEntity.STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
+		map.put(STATE_UP, getAnimatedWalk(tiles, 0, width, height));
+		map.put(STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
+		map.put(STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
+		map.put(STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
 	}
 
 
