@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -95,8 +94,8 @@ public class Bootstrap {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
 		
-		String stendhal=ClientGameConfiguration.get("GAME_NAME");
-		System.out.println("GAME: "+stendhal);
+		String stendhal=ClientGameConfiguration.get("GAME_NAME").toLowerCase();
+		System.out.println("GAME: " + stendhal);
 		
 		jarFolder = System.getProperty("user.home") + pathSep + stendhal + pathSep + "jar" + pathSep;
 		File folder = new File(jarFolder);
