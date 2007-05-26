@@ -82,7 +82,7 @@ public class StendhalClient extends ariannexp {
 	private static final String LOG4J_PROPERTIES = "data/conf/log4j.properties";
 	protected GameScreen screen;
 
-	protected PerceptionListenerMulticaster listeners;
+//	protected PerceptionListenerMulticaster listeners;
 
 	private String userName="";
 
@@ -117,16 +117,16 @@ public class StendhalClient extends ariannexp {
 		return client;
 	}
 
-	/**
-	 * For testing purpose durkham 07.03.2007 //TODO: try to get rid of this
-	 * without destroying the tests
-	 */
+// TESTS COMPILED WITHOUT THIS. Has the TODO been done?
+//	/**
+//	 * For testing purpose durkham 07.03.2007 //TODO: try to get rid of this
+//	 * without destroying the tests
+//	 */
+//	protected StendhalClient() {
+//		super(new String());
+//	}
 
-	protected StendhalClient() {
-		super(new String());
-	}
-
-	private StendhalClient(String loggingProperties) {
+	protected StendhalClient(String loggingProperties) {
 		super(loggingProperties);
 
 		SoundSystem.get();
@@ -136,10 +136,11 @@ public class StendhalClient extends ariannexp {
 		gameObjects = GameObjects.createInstance(staticLayers);
 		userContext = new UserContext();
 
-		listeners = new PerceptionListenerMulticaster();
-		listeners.addListener(new StendhalPerceptionListener());
+//		listeners = new PerceptionListenerMulticaster();
+//		listeners.addListener(new StendhalPerceptionListener());
 
-		handler = new PerceptionHandler(listeners);
+//		handler = new PerceptionHandler(listeners);
+		handler = new PerceptionHandler(new StendhalPerceptionListener());
 
 		cache = new Cache();
 		cache.init();
@@ -148,14 +149,15 @@ public class StendhalClient extends ariannexp {
 	}
 
 
-	public void addPerceptionListener(IPerceptionListener listener) {
-		listeners.addListener(listener);
-	}
-
-
-	public void removePerceptionListener(IPerceptionListener listener) {
-		listeners.removeListener(listener);
-	}
+// MAYBE NOT:
+//	public void addPerceptionListener(IPerceptionListener listener) {
+//		listeners.addListener(listener);
+//	}
+//
+//
+//	public void removePerceptionListener(IPerceptionListener listener) {
+//		listeners.removeListener(listener);
+//	}
 
 
 	@Override
@@ -381,8 +383,8 @@ public class StendhalClient extends ariannexp {
 			}
 
 			/*
-		 * Move to end
-		 */
+			 * Move to end
+			 */
 			directions.remove(idx);
 		}
 
@@ -510,6 +512,7 @@ public class StendhalClient extends ariannexp {
 	protected void dispatchAdded(RPObject object, boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") added to client");
+			fixContainers(object);
 			fireAdded(object, user);
 		} catch (Exception e) {
 			logger.error("onAdded failed, object is " + object, e);
@@ -526,6 +529,7 @@ public class StendhalClient extends ariannexp {
 	protected void dispatchRemoved(RPObject object, boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") removed from client");
+			fixContainers(object);
 			fireRemoved(object, user);
 		} catch (Exception e) {
 			logger.error("onDeleted failed, object is " + object, e);
@@ -543,6 +547,8 @@ public class StendhalClient extends ariannexp {
 	protected void dispatchModifyAdded(RPObject object, RPObject changes, boolean user) {
 		try {
 			logger.debug("Object(" + object.getID() + ") modified in client");
+			fixContainers(object);
+			fixContainers(changes);
 			fireChangedAdded(object, changes, user);
 			object.applyDifferences(changes, null);
 		} catch (Exception e) {
@@ -564,6 +570,8 @@ public class StendhalClient extends ariannexp {
 			logger.debug("Object(" + object.getID() + ") modified in client");
 			logger.debug("Original(" + object + ") modified in client");
 
+			fixContainers(object);
+			fixContainers(changes);
 			fireChangedRemoved(object, changes, user);
 			object.applyDifferences(null, changes);
 
@@ -576,13 +584,60 @@ public class StendhalClient extends ariannexp {
 
 
 	/**
+	 * Dump an object out in an easily readable format.
+	 * TEMP!! TEST METHOD - USED FOR DEBUGING.
+	 * Probably should be in a common util class if useful long term.
+	 */
+	public static void dumpObject(RPObject object) {
+		System.err.println(object.getRPClass().getName() + "[" + object.getID().getObjectID() + "]");
+
+		for(String name : object) {
+			System.err.println("  " + name + ": " + object.get(name));
+		}
+
+		System.err.println();
+	}
+
+
+	/**
+	 * Fix parent <-> child linkage.
+	 * THIS WILL PROBABLY NOT BE NEEDED AFTER 2.0's FIXES.
+	 */
+	protected void fixContainers(final RPObject object) {
+		for(RPSlot slot : object.slots()) {
+			for(RPObject sobject : slot) {
+				if(!sobject.isContained()) {
+					logger.debug("Fixing container: " + slot);
+					sobject.setContainer(object, slot);
+				}
+
+				fixContainers(sobject);
+			}
+		}
+	}
+
+
+	/**
 	 * Notify listeners that an object was added.
 	 *
 	 * @param	object		The object.
 	 * @param	user		If this is the private user object.
 	 */
 	protected void fireAdded(RPObject object, boolean user) {
+// TEST CODE:
+//System.err.println("fireAdded()");
+//dumpObject(object);
 		gameObjects.onAdded(object);
+
+// NEW CODE:
+//		/*
+//		 * Walk each slot
+//		 */
+//		for(RPSlot slot : object.slots()) {
+//			for(RPObject sobject : slot) {
+//				fireAdded(sobject, user);
+//			}
+//		}
 	}
 
 
@@ -593,19 +648,21 @@ public class StendhalClient extends ariannexp {
 	 * @param	user		If this is the private user object.
 	 */
 	protected void fireRemoved(RPObject object, boolean user) {
+// TEST CODE:
+//System.err.println("fireRemoved()");
+//dumpObject(object);
+
+// NEW CODE:
+//		/*
+//		 * Walk each slot
+//		 */
+//		for(RPSlot slot : object.slots()) {
+//			for(RPObject sobject : slot) {
+//				fireRemoved(sobject, user);
+//			}
+//		}
+
 		gameObjects.onRemoved(object);
-	}
-
-
-	/**
-	 * Notify listeners that an object changed attributes(s).
-	 *
-	 * @param	object		The object.
-	 * @param	user		If this is the private user object.
-	 */
-	protected void fireChanged(RPObject object, boolean user) {
-// After listener split/changed
-//		gameObjects.onChanged(object);
 	}
 
 
@@ -625,37 +682,45 @@ public class StendhalClient extends ariannexp {
 		}
 
 		/*
-		 * Walk each changed slot
+		 * Walk each slot
 		 */
 		for(RPSlot cslot : changes.slots()) {
-			if(cslot.size() == 0) {
-				continue;
+			if(cslot.size() != 0) {
+				fireChangedAdded(object, cslot, user);
 			}
+		}
+	}
 
-			String slotName = cslot.getName();
-			RPSlot slot;
 
-			/*
-			 * Find the original slot entry (if any)
-			 */
-			if(object.hasSlot(slotName)) {
-				slot = object.getSlot(cslot.getName());
-			} else {
-				slot = null;
-			}
+	/**
+	 * Notify listeners that an object slot added/changed attribute(s).
+	 * This will cascade down object trees.
+	 *
+	 * @param	object		The base object.
+	 * @param	cslot		The changes slot.
+	 * @param	user		If this is the private user object.
+	 */
+	protected void fireChangedAdded(RPObject object, RPSlot cslot, boolean user) {
+		String slotName = cslot.getName();
+		RPSlot slot;
 
-			/*
-			 * Walk the slot changes
-			 */
-			for(RPObject schanges : cslot) {
-				RPObject.ID id = object.getID();
-				RPObject sobject;
+		/*
+		 * Find the original slot entry (if any)
+		 */
+		if(object.hasSlot(slotName)) {
+			slot = object.getSlot(slotName);
+		} else {
+			slot = null;
+		}
 
-				if((slot != null) && slot.has(id)) {
-					sobject = slot.get(id);
-				} else {
-					sobject = null;
-				}
+		/*
+		 * Walk the changes
+		 */
+		for(RPObject schanges : cslot) {
+			RPObject.ID id = object.getID();
+
+			if((slot != null) && slot.has(id)) {
+				RPObject sobject = slot.get(id);
 
 				gameObjects.onChangedAdded(object, slotName, sobject, schanges);
 
@@ -663,9 +728,20 @@ public class StendhalClient extends ariannexp {
 					userContext.onChangedAdded(object, slotName, sobject, schanges);
 				}
 
-				if(sobject != null) {
-					fireChangedAdded(sobject, schanges, user);
-				}
+				fireChangedAdded(sobject, schanges, user);
+			} else {
+//				gameObjects.onAdded(object, slotName, schanges);
+//
+//				if(user) {
+//					userContext.onAdded(object, slotName, schanges);
+//				}
+
+if(!schanges.isContained()) {
+logger.warn("!!! Not contained! - " + schanges);
+}
+
+// NEW CODE:
+//				fireAdded(schanges, user);
 			}
 		}
 	}
@@ -687,47 +763,58 @@ public class StendhalClient extends ariannexp {
 		}
 
 		/*
-		 * Walk each changed slot
+		 * Walk each slot
 		 */
 		for(RPSlot cslot : changes.slots()) {
-			if(cslot.size() == 0) {
-				continue;
+			if(cslot.size() != 0) {
+				fireChangedRemoved(object, cslot, user);
 			}
+		}
+	}
 
-			String slotName = cslot.getName();
-			RPSlot slot;
+
+	/**
+	 * Notify listeners that an object slot removed attribute(s).
+	 * This will cascade down object trees.
+	 *
+	 * @param	object		The base object.
+	 * @param	cslot		The changes slot.
+	 * @param	user		If this is the private user object.
+	 */
+	protected void fireChangedRemoved(RPObject object, RPSlot cslot, boolean user) {
+		String slotName = cslot.getName();
+
+		/*
+		 * Find the original slot entry
+		 */
+		RPSlot slot = object.getSlot(slotName);
+
+		/*
+		 * Walk the changes
+		 */
+		for(RPObject schanges : cslot) {
+			RPObject sobject = slot.get(schanges.getID());
 
 			/*
-			 * Find the original slot entry (if any)
+			 * Remove attrs vs. object [see applyDifferences()]
 			 */
-			if(object.hasSlot(slotName)) {
-				slot = object.getSlot(cslot.getName());
-			} else {
-				slot = null;
-			}
-
-			/*
-			 * Walk the slot changes
-			 */
-			for(RPObject schanges : cslot) {
-				RPObject.ID id = object.getID();
-				RPObject sobject;
-
-				if((slot != null) && slot.has(id)) {
-					sobject = slot.get(id);
-				} else {
-					sobject = null;
-				}
-
+			if(schanges.size() > 1) {
 				gameObjects.onChangedRemoved(object, slotName, sobject, schanges);
 
 				if(user) {
 					userContext.onChangedRemoved(object, slotName, sobject, schanges);
 				}
 
-				if(sobject != null) {
-					fireChangedRemoved(sobject, schanges, user);
-				}
+				fireChangedRemoved(sobject, schanges, user);
+			} else {
+//				gameObjects.onRemoved(object, slotName, sobject);
+//
+//				if(user) {
+//					userContext.onRemoved(object, slotName, sobject);
+//				}
+
+// NEW CODE:
+//				fireRemoved(sobject, user);
 			}
 		}
 	}
@@ -843,11 +930,9 @@ public class StendhalClient extends ariannexp {
 
 	public void setUserName(String username) {
 		userName=username;
-	    
-    }
+	}
 
 	public String getUserName() {
-	 
-	    return userName;
-    }
+		return userName;
+	}
 }
