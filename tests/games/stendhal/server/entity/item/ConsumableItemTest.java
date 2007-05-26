@@ -7,9 +7,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -18,7 +15,6 @@ public class ConsumableItemTest {
 	private static ConsumableItem d100_1;
 	private static ConsumableItem c50_1;
 	private static ConsumableItem c100_2;
-	private static ConsumableItem c100_3;
 	private static ConsumableItem c200_1;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -48,29 +44,8 @@ public class ConsumableItemTest {
 		attributes.put("regen","100");
 		attributes.put("frequency","2");
 		c100_2= new ConsumableItem(null, null, null, attributes );
-
-		attributes.put("regen","100");
-		attributes.put("frequency","3");
-		c100_3= new ConsumableItem(null, null, null, attributes );
-		
-
-		
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-	
-	
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-	
 	@Test
 	public void compareSGNxy_minSGNyx() {
 		//sgn(x.compareTo(y)) == -sgn(y.compareTo(x))
