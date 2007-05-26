@@ -95,24 +95,11 @@ public class Sheep extends NPC {
 
 		String[][] soundnames={{"sheep-1.wav","sheep-3.wav"},{"sheep-2.wav","sheep-4.wav"}};
 		int which=Rand.rand(2);
-
-
-//		sfx.sheep-mix.a = sheep-1.wav
-//		sfx.sheep-mix.b = sheep-3.wav
-//
-//		sfx.sheep-mix2.b = sheep-2.wav
-//		sfx.sheep-mix2.a = sheep-4.wav
-
 		if (Rand.rand(100)<chance){
 		String token = weight > 50 ? soundnames[0][which]:soundnames[1][which];
 		SoundMaster.play(token,x,y);//playSound(token, 20, 35, chance);
 		}
 	}
-
-
-	//
-	//
-	//
 
 	@Override
 	public void onAction(final ActionType at, final String... params) {
@@ -125,12 +112,11 @@ public class Sheep extends NPC {
 				rpaction.put("target", id);
 				at.send(rpaction);
 
-				SoundMaster.play("sheep-2.wav",x,y);//playSound("sheep-chat-2", 25, 60);
+				SoundMaster.play("sheep-2.wav",x,y);
 				break;
 
 			default:
 				SoundMaster.play((weight > 50) ?"sheep-2.wav":"sheep-1.wav",x,y);
-				//playSound((weight > 50 ? "sheep-chat-2" : "sheep-chat"), 15, 40);
 				super.onAction(at, params);
 				break;
 		}
@@ -231,7 +217,6 @@ public class Sheep extends NPC {
 			weight = changes.getInt("weight");
 
 			if (weight > oldWeight) {
-				//playSound("sheep-eat", 8, 15);
 				SoundMaster.play("eat-1.wav",x,y);
 			}
 
