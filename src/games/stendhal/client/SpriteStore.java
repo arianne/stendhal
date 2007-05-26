@@ -110,6 +110,20 @@ public class SpriteStore {
 
 
 	/**
+	 * Create a sprite tile (sub-region) using tile units.
+	 *
+	 *
+	 * @see-also	#getTile(Sprite,int,int,int,int)
+	 */
+	public Sprite getSprite(Sprite sprite, int column, int row, double width, double height) {
+		int pixelWidth = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
+		int pixelHeight = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
+
+		return getTile(sprite, column * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
+	}
+
+
+	/**
 	 * Retrieve a collection of sprites from the store.
 	 *
 	 * @param ref
@@ -234,6 +248,7 @@ public class SpriteStore {
 	 * Create a sprite tile (sub-region).
 	 *
 	 *
+	 * @see-also	#getSprite(Sprite,int,int,double,double)
 	 */
 	public Sprite getTile(Sprite sprite, int x, int y, int width, int height) {
 		SpriteCache cache = SpriteCache.get();

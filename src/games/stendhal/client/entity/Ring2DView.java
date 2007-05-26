@@ -65,11 +65,11 @@ public class Ring2DView extends Item2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		String resource = translate(getClassResourcePath());
 		SpriteStore store = SpriteStore.get();
 
-		working=store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false);
-		broken=store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false);
+		Sprite tiles = store.getSprite(translate(getClassResourcePath()));
+		working = store.getSprite(tiles, 0, 0, 1.0, 1.0);
+		broken = store.getSprite(tiles, 0, 1, 1.0, 1.0);
 
 		setSprite(getStateSprite());
 		stateChanged = false;

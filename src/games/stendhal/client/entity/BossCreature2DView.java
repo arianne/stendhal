@@ -29,11 +29,8 @@ public class BossCreature2DView extends Creature2DView {
 		Sprite tiles=getAnimationSprite();
 		SpriteStore store = SpriteStore.get();
 
-		int pWidth = (int) (getWidth() * GameScreen.SIZE_UNIT_PIXELS);
-		int pHeight = (int) (getHeight() * GameScreen.SIZE_UNIT_PIXELS);
-
-		Sprite right = store.getTile(tiles, 0, 0, pWidth, pHeight);
-		Sprite left = store.getTile(tiles, 0, pHeight, pWidth, pHeight);
+		Sprite right = store.getSprite(tiles, 0, 0, getWidth(), getHeight());
+		Sprite left = store.getSprite(tiles, 0, 1, getWidth(), getHeight());
 
 		map.put(STATE_RIGHT, right);
 		map.put(STATE_LEFT, left);
