@@ -97,7 +97,6 @@ public class OutfitDialog extends JDialog {
 
 	// 0 for animation UP, 1 RIGHT, 2 DOWN and 3 LEFT
 	private int animation = 2;
-	private final int lefthandAnimation = 2;
 
 	private StendhalClient client;
 
@@ -173,14 +172,14 @@ public class OutfitDialog extends JDialog {
          */
         private void drawHair(int code, Graphics g) {
         	clean(g);
-            SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+            SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
         }
         /**
          * draws a head from  the outfit code
          */
         private void drawHead(int code, Graphics g) {
         	clean(g);
-        	  SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        	  SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
         }
 
         /**
@@ -188,7 +187,7 @@ public class OutfitDialog extends JDialog {
          */
         private void drawDress(int code, Graphics g) {
         	clean(g);
-            SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+            SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
         }
         
         /**
@@ -196,7 +195,7 @@ public class OutfitDialog extends JDialog {
          */
         private void drawBase(int code, Graphics g) {
         	clean(g);
-        	  SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        	  SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
          }
         
 	/**
