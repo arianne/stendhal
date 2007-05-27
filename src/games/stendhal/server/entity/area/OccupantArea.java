@@ -92,7 +92,7 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 		targets.add(entity.getID());
 
 		if (targets.size() == 1) {
-			TurnNotifier.get().notifyInTurns(interval, this, null);
+			TurnNotifier.get().notifyInTurns(interval, this);
 		}
 	}
 
@@ -166,7 +166,7 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 		targets.remove(entity.getID());
 
 		if (targets.isEmpty()) {
-			TurnNotifier.get().dontNotify(this, null);
+			TurnNotifier.get().dontNotify(this);
 		}
 	}
 
@@ -362,7 +362,7 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 		}
 
 		if (!targets.isEmpty()) {
-			TurnNotifier.get().notifyInTurns(interval, this, null);
+			TurnNotifier.get().notifyInTurns(interval, this);
 		}
 	}
 }

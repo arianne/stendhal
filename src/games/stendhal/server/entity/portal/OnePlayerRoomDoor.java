@@ -26,7 +26,7 @@ public class OnePlayerRoomDoor extends Door {
 					open();
 				}
 			}
-			TurnNotifier.get().notifyInTurns(60, this, null);
+			TurnNotifier.get().notifyInTurns(60, this);
 		}
 
 	}
@@ -39,7 +39,7 @@ public class OnePlayerRoomDoor extends Door {
 	 */
 	public OnePlayerRoomDoor(String clazz, Direction dir) {
 		super(clazz, dir);
-		TurnNotifier.get().notifyInTurns(60, new PeriodicOpener(), null);
+		TurnNotifier.get().notifyInTurns(60, new PeriodicOpener());
 	}
 
 	@Override

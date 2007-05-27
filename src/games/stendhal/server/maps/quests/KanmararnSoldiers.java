@@ -90,7 +90,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		}
 		
 		public void start() {
-			TurnNotifier.get().notifyInTurns(1, this, null);
+			TurnNotifier.get().notifyInTurns(1, this);
 		}
 		
 		private boolean equalsExpectedItem(Item item) {

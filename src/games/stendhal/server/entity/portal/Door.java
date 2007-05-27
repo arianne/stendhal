@@ -123,13 +123,13 @@ public abstract class Door extends Portal implements TurnListener {
 				// The door is still open because another player just used it.
 				// Thus, it is scheduled to auto-close soon. We delay this
 				// auto-closing.
-				turnNotifier.dontNotify(this, null);
+				turnNotifier.dontNotify(this);
 			} else {
 				open();
 			}
 
 			// register automatic close
-			turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this, null);
+			turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this);
 
 			// use it
 			super.onUsed(user);

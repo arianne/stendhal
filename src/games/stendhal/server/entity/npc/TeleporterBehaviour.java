@@ -41,13 +41,13 @@ public class TeleporterBehaviour implements TurnListener {
 	public TeleporterBehaviour(final SpeakerNPC speakerNPC, final String repeatedText) {
 		this.speakerNPC = speakerNPC;
 		listZones();
-		TurnNotifier.get().notifyInTurns(60, this, null);
+		TurnNotifier.get().notifyInTurns(60, this);
 		// say something every minute so that can be noticed more easily
 		TurnNotifier.get().notifyInTurns(60, new TurnListener() {
 
 			public void onTurnReached(int currentTurn, String message) {
 				speakerNPC.say(repeatedText);
-				TurnNotifier.get().notifyInTurns(60 * 3, this, null);
+				TurnNotifier.get().notifyInTurns(60 * 3, this);
 			}
 		}, null);
 	}
@@ -119,6 +119,6 @@ public class TeleporterBehaviour implements TurnListener {
 		}
 
 		// Schedule so we are notified again in 5 minutes
-		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this, null);
+		TurnNotifier.get().notifyInTurns(5 * 60 * 3, this);
 	}
 }

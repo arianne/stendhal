@@ -97,7 +97,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		this.creatures = new LinkedList<Creature>();
 
 		respawning = true;
-		TurnNotifier.get().notifyInTurns(0, this, null); // respawn in next turn
+		TurnNotifier.get().notifyInTurns(0, this); // respawn in next turn
 	}
 	
 	public Creature getPrototypeCreature() {
@@ -123,7 +123,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		if (!respawning) {
 			// start respawning a new creature
 			respawning = true;
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this, null);
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
 		}
 
 		creatures.remove(dead);
@@ -142,7 +142,7 @@ public class CreatureRespawnPoint implements TurnListener {
 			respawning = false;
 		} else {
 			// TODO: consider increasing the variance to increase randomization
-			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this, null);
+			TurnNotifier.get().notifyInTurns(Rand.rand(respawnTime, respawnTime / 30), this);
 		}
 	}
 

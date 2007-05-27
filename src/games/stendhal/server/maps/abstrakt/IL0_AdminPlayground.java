@@ -118,7 +118,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
-			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, text, game), null);
+			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, text, game));
 		}
 	}
 
@@ -202,7 +202,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 				}
 			}
 			if (keepRunning) {
-				TurnNotifier.get().notifyInTurns(0, this, null);
+				TurnNotifier.get().notifyInTurns(0, this);
 			}
 		}
 	}
@@ -232,7 +232,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 			this.player = player;
 			counter = 0;
 			player.sendPrivateText("Let's start");
-			TurnNotifier.get().notifyInTurns(10, this, null);
+			TurnNotifier.get().notifyInTurns(10, this);
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
@@ -267,7 +267,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 			counter++;
 			if (counter < zones.size()) {
-				TurnNotifier.get().notifyInTurns(10, this, null);
+				TurnNotifier.get().notifyInTurns(10, this);
 			}
 		}
 	}

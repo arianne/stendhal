@@ -97,10 +97,10 @@ public class PersonalChest extends Chest {
 						attending = null;
 					}
 				}
-				TurnNotifier.get().notifyInTurns(0, this, null);
+				TurnNotifier.get().notifyInTurns(0, this);
 			}
 		};
-		TurnNotifier.get().notifyInTurns(0, turnListener, null);
+		TurnNotifier.get().notifyInTurns(0, turnListener);
 	}
 
 

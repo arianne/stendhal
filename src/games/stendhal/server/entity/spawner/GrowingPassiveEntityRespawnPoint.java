@@ -88,7 +88,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	protected void growNewFruit() {
 		setRipeness(ripeness + 1);
 		if (ripeness < maxRipeness) {
-			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
+			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
 		}
 		notifyWorldAboutChanges();
 	}
@@ -109,7 +109,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	public void setToFullGrowth() {
 		setRipeness(maxRipeness);
 		// don't grow anything new until someone harvests
-		TurnNotifier.get().dontNotify(this, null);
+		TurnNotifier.get().dontNotify(this);
 	}
 
 }

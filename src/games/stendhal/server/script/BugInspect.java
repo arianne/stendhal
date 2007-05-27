@@ -30,7 +30,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		TurnNotifier.get().notifyInTurns(6, this, null);
+		TurnNotifier.get().notifyInTurns(6, this);
 		keepRunning = true;
 		seen.clear();
 	}
@@ -106,7 +106,7 @@ public class BugInspect extends ScriptImpl implements TurnListener {
 		}
 		
 		if (keepRunning) {
-			TurnNotifier.get().notifyInTurns(6, this, null);
+			TurnNotifier.get().notifyInTurns(6, this);
 		}
 	}
 

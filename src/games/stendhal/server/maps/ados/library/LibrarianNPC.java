@@ -70,7 +70,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 						        thread.setPriority(Thread.MIN_PRIORITY);
 						        thread.setDaemon(true);
 						        thread.start();
-						        TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(npc, access), null);
+						        TurnNotifier.get().notifyInTurns(10, new WikipediaWaiter(npc, access));
 						        npc.say("Please wait, while i am looking it up in the book called #Wikipedia!");
 					        }
 					        // TODO: implement pointer to authors, GFDL, etc...
@@ -103,7 +103,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 
 		public void onTurnReached(int currentTurn, String message) {
 			if (!access.isFinished()) {
-				TurnNotifier.get().notifyInTurns(3, new WikipediaWaiter(npc, access), null);
+				TurnNotifier.get().notifyInTurns(3, new WikipediaWaiter(npc, access));
 				return;
 			}
 			if (access.getError() != null) {

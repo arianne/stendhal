@@ -89,7 +89,7 @@ class DeathmatchEngine implements TurnListener {
 			action();
 		}
 		if (keepRunning) {
-			TurnNotifier.get().notifyInTurns(0, this, null);
+			TurnNotifier.get().notifyInTurns(0, this);
 		}
 	}
 

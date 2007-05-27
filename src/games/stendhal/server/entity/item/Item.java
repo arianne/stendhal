@@ -269,7 +269,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		// persistent items don't degrade
 		if (!isPersistent()) {
 			// stop the timer so that the item won't degrade anymore
-			TurnNotifier.get().dontNotify(this, null);
+			TurnNotifier.get().dontNotify(this);
 		}
 		if (plantGrower != null) {
 			plantGrower.onFruitPicked(this);

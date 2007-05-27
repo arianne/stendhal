@@ -61,8 +61,8 @@ public abstract class CroupierNPC extends SpeakerNPC {
 			}
 			// The croupier takes the dice away from the table after some time.
 			// This is simulated by shortening the degradation time of the dice.
-			TurnNotifier.get().dontNotify(dice, null);
-			TurnNotifier.get().notifyInSeconds(CLEAR_PLAYING_AREA_TIME, dice, null);
+			TurnNotifier.get().dontNotify(dice);
+			TurnNotifier.get().notifyInSeconds(CLEAR_PLAYING_AREA_TIME, dice);
 		}
 	}
 

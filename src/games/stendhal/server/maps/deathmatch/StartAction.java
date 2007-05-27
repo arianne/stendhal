@@ -28,6 +28,6 @@ public class StartAction extends SpeakerNPC.ChatAction {
 		DeathmatchState deathmatchState = DeathmatchState.createStartState(player.getLevel());
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
 		DeathmatchEngine scriptingAction = new DeathmatchEngine(player, deathmatchInfo);
-		TurnNotifier.get().notifyInTurns(0, scriptingAction, null);
+		TurnNotifier.get().notifyInTurns(0, scriptingAction);
 	}
 }

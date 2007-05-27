@@ -278,7 +278,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				targets.clear();
 				state = State.IDLE;
 			} else {
-				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this, null);
+				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 			}
 		}
 	}
@@ -378,7 +378,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				winner = args.get(1);
 				state = State.PAYING_BETS;
 				npc.say("And the winner is ... " + winner + ".");
-				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this, null);
+				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 				break;
 			}
 		}

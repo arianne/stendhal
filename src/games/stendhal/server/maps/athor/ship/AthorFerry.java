@@ -119,7 +119,7 @@ public class AthorFerry implements TurnListener {
 	 * @return A String representation of the ferry's current state.
 	 */
 	public String getCurrentDescription() {
-		int secondsUntilNextState = TurnNotifier.get().getRemainingSeconds(this, null);
+		int secondsUntilNextState = TurnNotifier.get().getRemainingSeconds(this);
 		return String.format(descriptions.get(state), TimeUtil.approxTimeUntil(secondsUntilNextState));	}
 
 	/**

@@ -50,7 +50,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 					cryForHelp = "Katinka shouts: Help! " + Grammar.A_noun(killer.get("name")) + " is eating our "
 					        + Grammar.plural(this.get("name")) + ".";
 					// HACK: we need to wait a turn because the message is lost otherwise
-					TurnNotifier.get().notifyInTurns(0, this, null);
+					TurnNotifier.get().notifyInTurns(0, this);
 				}
 			}
 		}

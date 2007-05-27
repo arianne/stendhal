@@ -98,7 +98,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		if (picked != null) {
 			picked.setPlantGrower(null);
 		}
-		TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this, null);
+		TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
 	}
 
 	protected int getRandomTurnsForRegrow() {
@@ -127,7 +127,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 			growNewFruit();
 		}
 		// don't grow anything new until someone picks a fruit
-		TurnNotifier.get().dontNotify(this, null);
+		TurnNotifier.get().dontNotify(this);
 	}
 
 	/**

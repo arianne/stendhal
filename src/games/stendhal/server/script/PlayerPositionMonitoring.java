@@ -52,7 +52,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		public void onTurnReached(int currentTurn, String message) {
 			list();
 			if (counter < INTERVALS.length) {
-				TurnNotifier.get().notifyInTurns((int) (INTERVALS[counter] * 1000 / 300f), this, null);
+				TurnNotifier.get().notifyInTurns((int) (INTERVALS[counter] * 1000 / 300f), this);
 			}
 			counter++;
 		}
@@ -62,7 +62,7 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 	@Override
 	public void execute(Player admin, List<String> args) {
 		super.execute(admin, args);
-		TurnNotifier.get().notifyInTurns(1, new PlayerPositionListener(admin), null);
+		TurnNotifier.get().notifyInTurns(1, new PlayerPositionListener(admin));
 	}
 
 }

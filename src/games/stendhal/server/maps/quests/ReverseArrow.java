@@ -141,7 +141,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			}
 
 			// teleport the player out
-			TurnNotifier.get().notifyInTurns(6, new FinishNotifier(true, player), null); // 2 seconds
+			TurnNotifier.get().notifyInTurns(6, new FinishNotifier(true, player)); // 2 seconds
 		}
 	}
 
@@ -190,11 +190,11 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					if (counter > 0) {
 						npc.say("You have " + counter + " seconds left.");
 						counter = counter - 10;
-						TurnNotifier.get().notifyInTurns(10*3, this, null);
+						TurnNotifier.get().notifyInTurns(10*3, this);
 					} else {
 						// teleport the player out
 						npc.say("Sorry, your time is up.");
-						TurnNotifier.get().notifyInTurns(1, new FinishNotifier(true, player), null); // need to do this on the next turn
+						TurnNotifier.get().notifyInTurns(1, new FinishNotifier(true, player)); // need to do this on the next turn
 					}
 				}
 			}
@@ -350,7 +350,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
-		TurnNotifier.get().notifyInTurns(1, new FinishNotifier(false, player), null);
+		TurnNotifier.get().notifyInTurns(1, new FinishNotifier(false, player));
 	}
 
 	/**
@@ -364,9 +364,9 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else if (moveCount == MAX_MOVES) {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
-			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck(), null); // 2 seconds
+			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck()); // 2 seconds
 			if (timer != null) {
-				TurnNotifier.get().dontNotify(timer, null);
+				TurnNotifier.get().dontNotify(timer);
 			}
 		} else {
 			npc.say("Sorry, you may only do " + MAX_MOVES + " moves");
@@ -385,7 +385,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			removeAllTokens();
 			addAllTokens();
 			timer = new Timer(player);
-			TurnNotifier.get().notifyInTurns(0, timer, null);
+			TurnNotifier.get().notifyInTurns(0, timer);
 			moveCount = 0;
 		}
 	}
@@ -408,7 +408,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			player = null;
 			moveCount = 0;
 			if (timer != null) {
-				TurnNotifier.get().dontNotify(timer, null);
+				TurnNotifier.get().dontNotify(timer);
 			}
 			door.open();
 		}

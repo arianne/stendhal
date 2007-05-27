@@ -96,6 +96,6 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	public void setToFullGrowth() {
 		setAmount(MAX_NUMBER_OF_FRUITS);
 		// don't grow anything new until someone picks a fruit
-		TurnNotifier.get().dontNotify(this, null);
+		TurnNotifier.get().dontNotify(this);
 	}
 }

@@ -173,7 +173,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 
 	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
-		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player), null);
+		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player));
     }
 
 }
