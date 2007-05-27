@@ -53,7 +53,7 @@ public class BeerForHayunnTest {
 	
 	
 	@Test
-	public void bfhtet(){
+	public void quest(){
 		Player player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 		(new MockRetiredAdventurer()).createDialog(hayunn);
@@ -76,9 +76,19 @@ public class BeerForHayunnTest {
 		en.step(player,"hi");
 		en.step(player,"yes");
 		assertEquals("done",player.getQuest("beer_hayunn"));
-		
-		
-		
+		en.step(player,"bye");
+		//reject
+		Player player2 = new Player(new RPObject());
+		PlayerHelper.addEmptySlots(player2);
+		en.step(player2, "hi");
+		assertTrue(hayunn.isTalking());
+		assertEquals("You've probably heard of me; Hayunn Naratha, a retired adventurer. Have you read my book? No? It's called \"Know How To Kill Creatures\". Maybe we could talk about adventuring, if you like?", hayunn.get("text"));
+		en.step(player2, "quest");
+		assertEquals("My mouth is dry, but I can't be seen to abandon my post! Could you bring me some #beer from the #tavern?", hayunn.get("text"));
+		en.step(player2, "no");
+		assertTrue(player2.hasQuest("beer_hayunn"));
+		assertEquals("rejected",player2.getQuest("beer_hayunn"));
+		en.step(player2, "bye");
 	}
 
 }
