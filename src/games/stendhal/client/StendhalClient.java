@@ -43,6 +43,7 @@ import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -292,12 +293,21 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onAvailableCharacters(String[] characters) {
-		try {
-			//TODO: Check we have characters and if not offer us to create one.
-			chooseCharacter(characters[0]);
-		} catch (Exception e) {
-			logger.error("StendhalClient::onAvailableCharacters", e);
+		/*
+		 * Check we have characters and if not offer us to create one.
+		 */
+		if (characters.length > 0) {
+			try {
+				chooseCharacter(characters[0]);
+			} catch (Exception e) {
+				logger.error("StendhalClient::onAvailableCharacters", e);
+			}
+		} else {
+			RPObject template = new RPObject();
+			// TODO: Account Username can be != of Character username.
+			CharacterResult res = createCharacter(getAccountUsername(), template);
 		}
+	
 	}
 
 	@Override
@@ -804,12 +814,12 @@ public class StendhalClient extends ClientFramework {
         }
 	}
 
-	public void setUserName(String username) {
+	public void setAccountUsername(String username) {
 		userName=username;
 	    
     }
 
-	public String getUserName() {
+	public String getAccountUsername() {
 	 
 	    return userName;
     }

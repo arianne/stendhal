@@ -296,7 +296,7 @@ public class CreateAccountDialog extends JDialog {
 
 						// TODO: Check mental conflict bewteen username and account name.
 						// Be sure to fix all the variable names.
-						client.setUserName(accountUsername);
+						client.setAccountUsername(accountUsername);
 
 						/*
 						 * Once the account is created, login into server.
