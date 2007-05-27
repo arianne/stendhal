@@ -18,14 +18,13 @@
 
 package games.stendhal.client.gui;
 
+import games.stendhal.client.EmptySprite;
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.*;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
@@ -113,7 +112,7 @@ public class OutfitDialog extends JDialog {
 		bodies = new Sprite[total_bodies];
 		clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.png that is always at 0
 		// loads the sprites
-		loadSprites();
+	    //	loadSprites();
 
 		// updates the draws every 2500 milliseconds
 		timer = new Timer();
@@ -147,28 +146,28 @@ public class OutfitDialog extends JDialog {
 	/**
 	 * @return a String with the name of the selected hair sprite file
 	 */
-	public String getSelectedHair() {
+	private String getSelectedHair() {
 		return "hair_" + hairs_index + ".png";
 	}
 
 	/**
 	 * @return a String with the name of the selected head sprite file
 	 */
-	public String getSelectedHead() {
+	private String getSelectedHead() {
 		return "head_" + heads_index + ".png";
 	}
 
 	/**
 	 * @return a String with the name of the selected body sprite file
 	 */
-	public String getSelectedBody() {
+	private String getSelectedBody() {
 		return "player_base_" + bodies_index + ".png";
 	}
 
 	/**
 	 * @return a String with the name of the selected clothes sprite file
 	 */
-	public String getSelectedClothes() {
+	private String getSelectedClothes() {
 		String filename = "dress_" + clothes_index + ".png";
 		return filename;
 	}
@@ -194,7 +193,7 @@ public class OutfitDialog extends JDialog {
 		}
 
 		// to allow choosing no hair and no clothes
-		hairs[0] = st.getSprite("data/sprites/outfit/sprite_empty.png");
+		hairs[0] = new EmptySprite();//st.getSprite("data/sprites/outfit/sprite_empty.png");
 		clothes[0] = st.getSprite("data/sprites/outfit/sprite_empty.png");
 	}
 
@@ -243,7 +242,7 @@ public class OutfitDialog extends JDialog {
 		
                 //uses OutfitStore now
                 
-                OutfitStore.get().getBaseSprite(bodies_index).draw(g, 2, 2);
+        OutfitStore.get().getBaseSprite(bodies_index).draw(g, 2, 2);
 		OutfitStore.get().getDressSprite(clothes_index).draw(g, 2, 2);
 		OutfitStore.get().getHeadSprite(heads_index).draw(g, 2, 2);
 		OutfitStore.get().getHairSprite(hairs_index).draw(g, 2, 2);

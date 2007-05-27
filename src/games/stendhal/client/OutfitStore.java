@@ -79,10 +79,10 @@ public class OutfitStore {
 		idx = code % 100;
 		code /= 100;
 
-		if (idx != 0) {
+		
 			layer = getDressSprite(idx);
 			layer.draw(g, 0, 0);
-		}
+		
 
 
 		/*
@@ -91,22 +91,18 @@ public class OutfitStore {
 		idx = code % 100;
 		code /= 100;
 
-		if (idx != 0) {
 			layer = getHeadSprite(idx);
 			layer.draw(g, 0, 0);
-		}
-
+		
 
 		/*
 		 * Hair layer
 		 */
 		idx = code % 100;
 
-		if (idx != 0) {
 			layer = getHairSprite(idx);
 			layer.draw(g, 0, 0);
-		}
-
+		
 
 		return sprite;
 	}
@@ -142,6 +138,7 @@ public class OutfitStore {
 	 * @return	The sprite, or <code>null</code>.
 	 */
 	public Sprite getDressSprite(int index) {
+		if (index==0) return getEmptySprite();
 		return store.getSprite("data/sprites/outfit/dress_" + index + ".png");
 	}
 
@@ -151,8 +148,9 @@ public class OutfitStore {
 	 *
 	 * @return	The sprite, or <code>null</code> on error.
 	 */
-	public Sprite getEmptySprite(int index) {
-		return store.getSprite("data/sprites/outfit/sprite_empty.png");
+	private Sprite getEmptySprite() {
+		//TODO have a single Emptysprite use store
+		return new EmptySprite();
 	}
 
 
@@ -175,6 +173,7 @@ public class OutfitStore {
 	 * @return	The sprite, or <code>null</code>.
 	 */
 	public Sprite getHairSprite(int index) {
+		if (index==0) return  getEmptySprite();
 		return store.getSprite("data/sprites/outfit/hair_" + index + ".png");
 	}
 
