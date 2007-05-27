@@ -121,8 +121,19 @@ public class TurnNotifier {
 	 * 
 	 * @param diff the number of turns to wait before notifying
 	 * @param turnListener the object to notify
+	 */
+	public void notifyInTurns(int diff, TurnListener turnListener) {
+		notifyInTurns(diff, turnListener);
+	}
+
+	/**
+	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
+	 * 
+	 * @param diff the number of turns to wait before notifying
+	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
 	 */
+	@Deprecated
 	public void notifyInTurns(int diff, TurnListener turnListener, String message) {
 		notifyAtTurn(currentTurn + diff + 1, turnListener, message);
 	}
@@ -132,8 +143,19 @@ public class TurnNotifier {
 	 * 
 	 * @param sec the number of seconds to wait before notifying
 	 * @param turnListener the object to notify
+	 */
+	public void notifyInSeconds(int sec, TurnListener turnListener) {
+		notifyInSeconds(sec, turnListener, null);
+	}
+
+	/**
+	 * Notifies the <i>turnListener</i> in <i>sec</i> seconds.
+	 * 
+	 * @param sec the number of seconds to wait before notifying
+	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
 	 */
+	@Deprecated
 	public void notifyInSeconds(int sec, TurnListener turnListener, String message) {
 		notifyInTurns(StendhalRPWorld.get().getTurnsInSeconds(sec), turnListener, message);
 	}
@@ -143,8 +165,19 @@ public class TurnNotifier {
 	 * 
 	 * @param turn the number of the turn
 	 * @param turnListener the object to notify
+	 */
+	public void notifyAtTurn(int turn, TurnListener turnListener) {
+		notifyAtTurn(turn, turnListener);
+	}
+
+	/**
+	 * Notifies the <i>turnListener</i> at turn number <i>turn</i>.
+	 * 
+	 * @param turn the number of the turn
+	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
 	 */
+	@Deprecated
 	public void notifyAtTurn(int turn, TurnListener turnListener, String message) {
 		if (turn <= currentTurn) {
 			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
@@ -165,10 +198,22 @@ public class TurnNotifier {
 
 	/**
 	 * Forgets all registered notification entries for the given TurnListener
-	 * where the entry's message equals the given one. 
+	 * where the entry's message equals the given one.
+	 *
+	 * @param turnListener
+	 */
+	public void dontNotify(TurnListener turnListener) {
+		dontNotify(turnListener, null);
+	}
+
+	/**
+	 * Forgets all registered notification entries for the given TurnListener
+	 * where the entry's message equals the given one.
+	 *
 	 * @param turnListener
 	 * @param message
 	 */
+	@Deprecated
 	public void dontNotify(TurnListener turnListener, String message) {
 		// all events that are equal to this one should be forgotten.
 		TurnEvent turnEvent = new TurnEvent(turnListener, message);
@@ -187,15 +232,27 @@ public class TurnNotifier {
 			}
 		}
 	}
-
 	/**
 	 * Finds out how many turns will pass until the given TurnListener
 	 * will be notified with the given message.
+	 *
+	 * @param turnListener
+	 * @return the number of remaining turns, or -1 if the given TurnListener
+	 *         will not be notified with the given message.
+	 */
+	public int getRemainingTurns(TurnListener turnListener) {
+		return  getRemainingTurns(turnListener, null);
+	}
+	/**
+	 * Finds out how many turns will pass until the given TurnListener
+	 * will be notified with the given message.
+	 *
 	 * @param turnListener
 	 * @param message
 	 * @return the number of remaining turns, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
+	@Deprecated
 	public int getRemainingTurns(TurnListener turnListener, String message) {
 		// all events match that are equal to this.
 		TurnEvent turnEvent = new TurnEvent(turnListener, message);
@@ -221,11 +278,25 @@ public class TurnNotifier {
 	/**
 	 * Finds out how many seconds will pass until the given TurnListener
 	 * will be notified with the given message.
+	 *
+	 * @param turnListener
+	 * @return the number of remaining seconds, or -1 if the given TurnListener
+	 *         will not be notified with the given message.
+	 */
+	public int getRemainingSeconds(TurnListener turnListener) {
+		return getRemainingSeconds(turnListener, null);
+	}
+
+	/**
+	 * Finds out how many seconds will pass until the given TurnListener
+	 * will be notified with the given message.
+	 *
 	 * @param turnListener
 	 * @param message
 	 * @return the number of remaining seconds, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
+	@Deprecated
 	public int getRemainingSeconds(TurnListener turnListener, String message) {
 		return (getRemainingTurns(turnListener, message) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
 	}
