@@ -179,12 +179,6 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 
-	/** Draws only the Name and hp bar **/
-	public void drawHPbar(final GameScreen screen) {
-		((RPEntity2DView) view).drawHPbar(screen);
-	}
-
-
 	/**
 	 * Get the admin level.
 	 *
@@ -606,11 +600,6 @@ public abstract class RPEntity extends ActiveEntity {
 			for(TextIndicator indicator : textIndicators) {
 				indicator.draw(g, p.x, p.y);
 			}
-
-			if(textIndicators.get(0).getAge() > 2000L) {
-				textIndicators.remove(0);
-				fireChange(PROP_TEXT_INDICATORS);
-			}
 		}
 	}
 
@@ -766,6 +755,24 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		super.release();
+	}
+
+
+	/**
+	 * Update cycle.
+	 *
+	 * @param	delta		The time (in ms) since last call.
+	 */
+	@Override
+	public void update(final long delta) {
+		super.update(delta);
+
+		if(!textIndicators.isEmpty()) {
+			if(textIndicators.get(0).getAge() > 2000L) {
+				textIndicators.remove(0);
+				fireChange(PROP_TEXT_INDICATORS);
+			}
+		}
 	}
 
 	//
