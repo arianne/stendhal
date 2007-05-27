@@ -361,7 +361,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			titleChanged = true;
 		} else if(property == RPEntity.PROP_OUTFIT) {
 			representationChanged = true;
-		} else if(property == RPEntity.PROP_TITLE) {
+		} else if(property == Entity.PROP_TITLE) {
 			titleChanged = true;
 		} else if(property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;
