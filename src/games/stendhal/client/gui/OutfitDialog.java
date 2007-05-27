@@ -20,6 +20,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
+import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.BorderLayout;
@@ -96,6 +97,7 @@ public class OutfitDialog extends JDialog {
 
 	// 0 for animation UP, 1 RIGHT, 2 DOWN and 3 LEFT
 	private int animation = 2;
+	private final int lefthandAnimation = 2;
 
 	private StendhalClient client;
 
@@ -125,8 +127,6 @@ public class OutfitDialog extends JDialog {
 		heads = new Sprite[total_heads];
 		bodies = new Sprite[total_bodies];
 		clothes = new Sprite[total_clothes]; // Plus 1 to add the sprite_empty.png that is always at 0
-		// loads the sprites
-	    //	loadSprites();
 
 		// updates the draws every 2500 milliseconds
 		timer = new Timer();
@@ -172,45 +172,43 @@ public class OutfitDialog extends JDialog {
          * draws a hair images from an outfit code
          */
         private void drawHair(int code, Graphics g) {
-                OutfitStore.get().getHairSprite(code).draw(g, 2, 2);
+        	clean(g);
+            SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
         }
         /**
          * draws a head from  the outfit code
          */
         private void drawHead(int code, Graphics g) {
-                OutfitStore.get().getHeadSprite(code).draw(g, 2, 2);
+        	clean(g);
+        	  SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
         }
 
         /**
          * draws a dress from the outfit code
          */
         private void drawDress(int code, Graphics g) {
-                OutfitStore.get().getDressSprite(code).draw(g, 2, 2);
+        	clean(g);
+            SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
         }
         
         /**
          * draws a base from an outfit code
          */
         private void drawBase(int code, Graphics g) {
-                OutfitStore.get().getBaseSprite(code).draw(g, 2, 2);
-        }
+        	clean(g);
+        	  SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), lefthandAnimation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+         }
         
 	/**
 	 * draws final player
 	 */
 	private void drawFinalPlayer(Graphics g) {
 		clean(g);
-		
-                //uses OutfitStore now
-                
-        OutfitStore.get().getBaseSprite(bodies_index).draw(g, 2, 2);
-		OutfitStore.get().getDressSprite(clothes_index).draw(g, 2, 2);
-		OutfitStore.get().getHeadSprite(heads_index).draw(g, 2, 2);
-		OutfitStore.get().getHairSprite(hairs_index).draw(g, 2, 2);
-                 
-          
-                
-        }
+       SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+      }
 
 	/** This method is called from within the constructor to
 	 * initialize the form.
