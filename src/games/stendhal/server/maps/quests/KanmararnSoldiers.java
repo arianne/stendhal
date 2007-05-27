@@ -124,7 +124,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 				logger.warn("Quest corpse is full: " + corpse.get("name"));
 			}
 			// continue the checking cycle
-			TurnNotifier.get().notifyInSeconds(CORPSE_REFILL_SECONDS, this, null);
+			TurnNotifier.get().notifyInSeconds(CORPSE_REFILL_SECONDS, this);
         }
 	}
 

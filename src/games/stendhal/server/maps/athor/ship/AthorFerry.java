@@ -93,7 +93,7 @@ public class AthorFerry implements TurnListener {
 		
 		listeners = new LinkedList<AthorFerry.FerryAnnouncerNPC>();
 		// initiate the turn notification cycle
-		TurnNotifier.get().notifyInSeconds(1, this, null);
+		TurnNotifier.get().notifyInSeconds(1, this);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class AthorFerry implements TurnListener {
 		for (AthorFerry.FerryAnnouncerNPC npc: listeners) {
 			npc.onNewFerryState(state);
 		}
-		TurnNotifier.get().notifyInSeconds(durations.get(state), this, null);
+		TurnNotifier.get().notifyInSeconds(durations.get(state), this);
 	}
 	
 	public void addListener(AthorFerry.FerryAnnouncerNPC npc) {

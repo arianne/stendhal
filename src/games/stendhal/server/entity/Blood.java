@@ -45,7 +45,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 		put("class", "red");
 		put("amount", Rand.rand(4));
 
-		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
+		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 
 		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
 

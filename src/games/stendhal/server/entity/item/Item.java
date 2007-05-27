@@ -261,7 +261,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void onPutOnGround(Player player) {
 		// persistent items don't degrade
 		if (!isPersistent()) {
-			TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this, null);
+			TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 		}
 	}
 

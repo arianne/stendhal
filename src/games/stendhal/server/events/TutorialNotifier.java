@@ -25,7 +25,7 @@ public class TutorialNotifier {
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event 
 			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage());
-			TurnNotifier.get().notifyInSeconds(1, dpts, null);
+			TurnNotifier.get().notifyInSeconds(1, dpts);
 		}
 	}
 
