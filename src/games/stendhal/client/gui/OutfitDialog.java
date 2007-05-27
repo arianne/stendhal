@@ -18,14 +18,22 @@
 
 package games.stendhal.client.gui;
 
-import games.stendhal.client.EmptySprite;
-import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.OutfitStore;
+import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -34,7 +42,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -143,59 +157,6 @@ public class OutfitDialog extends JDialog {
 
 	}
 
-	/**
-	 * @return a String with the name of the selected hair sprite file
-	 */
-	private String getSelectedHair() {
-		return "hair_" + hairs_index + ".png";
-	}
-
-	/**
-	 * @return a String with the name of the selected head sprite file
-	 */
-	private String getSelectedHead() {
-		return "head_" + heads_index + ".png";
-	}
-
-	/**
-	 * @return a String with the name of the selected body sprite file
-	 */
-	private String getSelectedBody() {
-		return "player_base_" + bodies_index + ".png";
-	}
-
-	/**
-	 * @return a String with the name of the selected clothes sprite file
-	 */
-	private String getSelectedClothes() {
-		String filename = "dress_" + clothes_index + ".png";
-		return filename;
-	}
-
-	/**
-	 * Loads the sprites into the arrays
-	 */
-	private void loadSprites() {
-		SpriteStore st = SpriteStore.get();
-
-		// load the sprites
-		for (int i = 1; i < hairs.length; i++) {
-			hairs[i] = st.getSprite("data/sprites/outfit/hair_" + i + ".png");
-		}
-		for (int i = 0; i < heads.length; i++) {
-			heads[i] = st.getSprite("data/sprites/outfit/head_" + i + ".png");
-		}
-		for (int i = 0; i < bodies.length; i++) {
-			bodies[i] = st.getSprite("data/sprites/outfit/player_base_" + i + ".png");
-		}
-		for (int i = 1; i < clothes.length; i++) {
-			clothes[i] = st.getSprite("data/sprites/outfit/dress_" + i + ".png");
-		}
-
-		// to allow choosing no hair and no clothes
-		hairs[0] = new EmptySprite();//st.getSprite("data/sprites/outfit/sprite_empty.png");
-		clothes[0] = st.getSprite("data/sprites/outfit/sprite_empty.png");
-	}
 
 	/**
 	 * Cleans the previous draw
