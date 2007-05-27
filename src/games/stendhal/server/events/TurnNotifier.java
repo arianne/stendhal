@@ -123,7 +123,7 @@ public class TurnNotifier {
 	 * @param turnListener the object to notify
 	 */
 	public void notifyInTurns(int diff, TurnListener turnListener) {
-		notifyInTurns(diff, turnListener);
+		notifyInTurns(diff, turnListener, null);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class TurnNotifier {
 	 * @param turnListener the object to notify
 	 */
 	public void notifyAtTurn(int turn, TurnListener turnListener) {
-		notifyAtTurn(turn, turnListener);
+		notifyAtTurn(turn, turnListener, null);
 	}
 
 	/**
