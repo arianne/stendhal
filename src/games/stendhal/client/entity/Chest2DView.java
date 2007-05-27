@@ -20,6 +20,22 @@ import games.stendhal.client.SpriteStore;
  * The 2D view of a chest.
  */
 public class Chest2DView extends StateEntity2DView {
+	/*
+	 * The closed state.
+	 */
+	protected final static String	STATE_CLOSED	= "close";
+
+	/*
+	 * The open state.
+	 */
+	protected final static String	STATE_OPEN	= "open";
+
+	/**
+	 * The chest entity.
+	 */
+	protected Chest		chest;
+
+
 	/**
 	 * Create a 2D view of a chest.
 	 *
@@ -27,6 +43,8 @@ public class Chest2DView extends StateEntity2DView {
 	 */
 	public Chest2DView(final Chest chest) {
 		super(chest);
+
+		this.chest = chest;
 	}
 
 
@@ -41,11 +59,23 @@ public class Chest2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(Map<Object, Sprite> map) {
-		String resource = translate(entity.getType());
 		SpriteStore store = SpriteStore.get();
 
-		map.put(Chest.STATE_CLOSED, store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false));
-		map.put(Chest.STATE_OPEN, store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false));
+		Sprite tiles = store.getSprite(translate(entity.getType()));
+
+		map.put(STATE_CLOSED, store.getSprite(tiles, 0, 0, 1.0, 1.0));
+		map.put(STATE_OPEN, store.getSprite(tiles, 0, 1, 1.0, 1.0));
+	}
+
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public Object getState() {
+		return chest.isOpen() ? STATE_OPEN : STATE_CLOSED;
 	}
 
 
@@ -76,5 +106,26 @@ public class Chest2DView extends StateEntity2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Chest.PROP_OPEN) {
+			stateChanged = true;
+		}
 	}
 }

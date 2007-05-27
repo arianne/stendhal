@@ -24,19 +24,14 @@ import games.stendhal.common.Direction;
  */
 public class Door extends Entity {
 	/**
+	 * Open state property.
+	 */
+	public final static Object	PROP_OPEN		= new Object();
+
+	/**
 	 * Orientation property.
 	 */
 	public final static Object	PROP_ORIENTATION	= new Object();
-
-	/*
-	 * The closed state.
-	 */
-	public final static String	STATE_CLOSED	= "close";
-
-	/*
-	 * The open state.
-	 */
-	public final static String	STATE_OPEN	= "open";
 
 	/**
 	 * Whether the door is open.
@@ -96,17 +91,6 @@ public class Door extends Entity {
 
 
 	/**
-	 * Get the current entity state.
-	 *
-	 * @return	The current state.
-	 */
-	@Override
-	public String getState() {
-		return open ? STATE_OPEN : STATE_CLOSED;
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -152,7 +136,7 @@ public class Door extends Entity {
 		 */
 		if (changes.has("open")) {
 			open = true;
-			fireChange(PROP_STATE);
+			fireChange(PROP_OPEN);
 		}
 
 		/*
@@ -180,7 +164,7 @@ public class Door extends Entity {
 		 */
 		if (changes.has("open")) {
 			open = false;
-			fireChange(PROP_STATE);
+			fireChange(PROP_OPEN);
 		}
 
 		/*

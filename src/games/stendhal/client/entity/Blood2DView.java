@@ -21,12 +21,20 @@ import games.stendhal.client.SpriteStore;
  */
 public class Blood2DView extends StateEntity2DView {
 	/**
+	 * The bloo entity.
+	 */
+	protected Blood		blood;
+
+
+	/**
 	 * Create a 2D view of blood.
 	 *
 	 * @param	entity		The entity to render.
 	 */
 	public Blood2DView(final Blood blood) {
 		super(blood);
+
+		this.blood = blood;
 	}
 
 
@@ -41,8 +49,6 @@ public class Blood2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(Map<Object, Sprite> map) {
-		SpriteStore store = SpriteStore.get();
-
 		String clazz = entity.getEntityClass();
 
 		/*
@@ -52,12 +58,23 @@ public class Blood2DView extends StateEntity2DView {
 			clazz = "red";
 		}
 
-		String resource = "data/sprites/combat/blood_" + clazz + ".png";
+		SpriteStore store = SpriteStore.get();
+		Sprite tiles = store.getSprite("data/sprites/combat/blood_" + clazz + ".png");
 
-		map.put("0", store.getAnimatedSprite(resource, 0, 1, 1, 1, 0L, false));
-		map.put("1", store.getAnimatedSprite(resource, 1, 1, 1, 1, 0L, false));
-		map.put("2", store.getAnimatedSprite(resource, 2, 1, 1, 1, 0L, false));
-		map.put("3", store.getAnimatedSprite(resource, 3, 1, 1, 1, 0L, false));
+		for(int i = 0; i < 4; i++) {
+			map.put(new Integer(i), store.getSprite(tiles, 0, i, 1.0, 1.0));
+		}
+	}
+
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	protected Object getState() {
+		return blood.getAmount();
 	}
 
 
@@ -88,5 +105,26 @@ public class Blood2DView extends StateEntity2DView {
 	@Override
 	public int getZIndex() {
 		return 2000;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Blood.PROP_AMOUNT) {
+			stateChanged = true;
+		}
 	}
 }

@@ -24,15 +24,15 @@ import marauroa.common.game.RPSlot;
  * A chest entity.
  */
 public class Chest extends Entity implements Inspectable {
-	/*
-	 * The closed state.
+	/**
+	 * Content property.
 	 */
-	public final static String	STATE_CLOSED	= "close";
+	public static final Object	PROP_CONTENT		= new Object();
 
-	/*
-	 * The open state.
+	/**
+	 * Open state property.
 	 */
-	public final static String	STATE_OPEN	= "open";
+	public static final Object	PROP_OPEN		= new Object();
 
 	/**
 	 * Whether the chest is currently open.
@@ -66,6 +66,30 @@ public class Chest extends Entity implements Inspectable {
 
 
 	//
+	// Chest
+	//
+
+	/**
+	 * Get the chest contents.
+	 *
+	 * @return	The contents slot.
+	 */
+	public RPSlot getContent() {
+		return content;
+	}
+
+
+	/**
+	 * Determine if the chest is open.
+	 *
+	 * @return	<code>true</code> if the chest is open.
+	 */
+	public boolean isOpen() {
+		return open;
+	}
+
+
+	//
 	// Inspectable
 	//
 
@@ -91,17 +115,6 @@ public class Chest extends Entity implements Inspectable {
 	@Override
 	protected Entity2DView createView() {
 		return new Chest2DView(this);
-	}
-
-
-	/**
-	 * Get the current entity state.
-	 *
-	 * @return	The current state.
-	 */
-	@Override
-	public String getState() {
-		return open ? STATE_OPEN : STATE_CLOSED;
 	}
 
 
@@ -166,11 +179,12 @@ public class Chest extends Entity implements Inspectable {
 				requestOpen = false;
 			}
 
-			fireChange(PROP_STATE);
+			fireChange(PROP_OPEN);
 		}
 
 		if (changes.hasSlot("content")) {
 			content = changes.getSlot("content");
+			fireChange(PROP_CONTENT);
 		}
 	}
 
@@ -194,7 +208,7 @@ public class Chest extends Entity implements Inspectable {
 				wtEntityContainer = null;
 			}
 
-			fireChange(PROP_STATE);
+			fireChange(PROP_OPEN);
 		}
 	}
 

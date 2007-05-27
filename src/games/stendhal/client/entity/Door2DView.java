@@ -21,6 +21,16 @@ import games.stendhal.client.SpriteStore;
  */
 public class Door2DView extends StateEntity2DView {
 	/*
+	 * The closed state.
+	 */
+	protected final static String	STATE_CLOSED	= "close";
+
+	/*
+	 * The open state.
+	 */
+	protected final static String	STATE_OPEN	= "open";
+
+	/*
 	 * The drawing X offset from the entity position.
 	 */
 	protected double	xoffset;
@@ -116,11 +126,22 @@ public class Door2DView extends StateEntity2DView {
 				height = 1.0;
 		}
 
-		String resource = translate(name);
 		SpriteStore store = SpriteStore.get();
+		Sprite tiles = store.getSprite(translate(name));
 
-		map.put(Door.STATE_OPEN, store.getAnimatedSprite(resource, 0, 1, width, height, 0L, false));
-		map.put(Door.STATE_CLOSED, store.getAnimatedSprite(resource, 1, 1, width, height, 0L, false));
+		map.put(STATE_OPEN, store.getSprite(tiles, 0, 0, width, height));
+		map.put(STATE_CLOSED, store.getSprite(tiles, 0, 1, width, height));
+	}
+
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public Object getState() {
+		return door.isOpen() ? STATE_OPEN : STATE_CLOSED;
 	}
 
 
@@ -164,5 +185,26 @@ public class Door2DView extends StateEntity2DView {
 	@Override
 	protected String translate(final String name) {
 		return "data/sprites/doors/" + name + ".png";
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Door.PROP_OPEN) {
+			stateChanged = true;
+		}
 	}
 }

@@ -87,9 +87,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	 *
 	 * @return	The model state.
 	 */
-	protected Object getState() {
-		return entity.getState();
-	}
+	protected abstract Object getState();
 
 
 	/**

@@ -19,6 +19,9 @@ import games.stendhal.client.SpriteStore;
  * The 2D view of a grain field.
  */
 public class GrainField2DView extends StateEntity2DView {
+	/**
+	 * The grain field entity.
+	 */
 	private GrainField	grainField;
 
 
@@ -75,14 +78,23 @@ public class GrainField2DView extends StateEntity2DView {
 			clazz = "grain_field";
 		}
 
-		String resource = translate(clazz);
-
 		SpriteStore store = SpriteStore.get();
+		Sprite tiles = store.getSprite(translate(clazz));
 
 		for(int i = 0; i <= maxRipeness; i++) {
-			map.put(Integer.toString(i),
-				store.getAnimatedSprite(resource, i, 1, width, height, 0L, false));
+			map.put(new Integer(i), store.getSprite(tiles, 0, i, width, height));
 		}
+	}
+
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public Object getState() {
+		return new Integer(grainField.getRipeness());
 	}
 
 
@@ -133,6 +145,8 @@ public class GrainField2DView extends StateEntity2DView {
 
 		if(property == Entity.PROP_CLASS) {
 			representationChanged = true;
+		} else if(property == GrainField.PROP_RIPENESS) {
+			stateChanged = true;
 		}
 	}
 }

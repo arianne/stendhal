@@ -30,11 +30,6 @@ public abstract class Food extends Entity {
 	 */
 	private int amount;
 
-	/**
-	 * The current state.
-	 */
-	private String state;
-
 
 	/**
 	 * Create a food entity.
@@ -44,19 +39,22 @@ public abstract class Food extends Entity {
 
 
 	//
-	// Entity
+	// Food
 	//
 
 	/**
-	 * Get the current entity state.
+	 * Get the amount.
 	 *
-	 * @return	The current state.
+	 * @return	The amount.
 	 */
-	@Override
-	public String getState() {
-		return state;
+	public int getAmount() {
+		return amount;
 	}
 
+
+	//
+	// Entity
+	//
 
 	/**
 	 * Initialize this entity for an object.
@@ -70,10 +68,8 @@ public abstract class Food extends Entity {
 		super.initialize(object);
 
 		if (object.has("amount")) {
-			state = object.get("amount");
 			amount = object.getInt("amount");
 		} else {
-			state = "0";
 			amount = 0;
 		}
 	}
@@ -97,7 +93,6 @@ public abstract class Food extends Entity {
 
 		if (changes.has("amount")) {
 			int oldAmount = amount;
-			state = changes.get("amount");
 			amount = changes.getInt("amount");
 
 			// TODO this causes problems because of unidentified content refresh
@@ -107,7 +102,6 @@ public abstract class Food extends Entity {
 			}
 
 			fireChange(PROP_AMOUNT);
-			fireChange(PROP_STATE);
 		}
 	}
 }

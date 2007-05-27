@@ -21,6 +21,11 @@ import games.stendhal.client.SpriteStore;
  */
 public class Food2DView extends StateEntity2DView {
 	/**
+	 * The food entity.
+	 */
+	protected Food	food;
+
+	/**
 	 * The number of states.
 	 */
 	protected int	states;
@@ -35,6 +40,7 @@ public class Food2DView extends StateEntity2DView {
 	public Food2DView(final Food food, int states) {
 		super(food);
 
+		this.food = food;
 		this.states = states;
 	}
 
@@ -50,14 +56,23 @@ public class Food2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(Map<Object, Sprite> map) {
-		String resource = translate(entity.getType());
-
 		SpriteStore store = SpriteStore.get();
+		Sprite tiles = store.getSprite(translate(entity.getType()));
 
 		for(int i = 0; i < states; i++) {
-			map.put(Integer.toString(i),
-				store.getAnimatedSprite(resource, i, 1, 1, 1, 0L, false));
+			map.put(new Integer(i), store.getSprite(tiles, 0, i, 1.0, 1.0));
 		}
+	}
+
+
+	/**
+	 * Get the current entity state.
+	 *
+	 * @return	The current state.
+	 */
+	@Override
+	public Object getState() {
+		return new Integer(food.getAmount());
 	}
 
 
@@ -88,5 +103,26 @@ public class Food2DView extends StateEntity2DView {
 	@Override
 	public int getZIndex() {
 		return 6000;
+	}
+
+
+	//
+	// EntityChangeListener
+	//
+
+	/**
+	 * An entity was changed.
+	 *
+	 * @param	entity		The entity that was changed.
+	 * @param	property	The property identifier.
+	 */
+	@Override
+	public void entityChanged(Entity entity, Object property)
+	{
+		super.entityChanged(entity, property);
+
+		if(property == Food.PROP_AMOUNT) {
+			stateChanged = true;
+		}
 	}
 }

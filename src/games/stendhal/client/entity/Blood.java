@@ -29,13 +29,27 @@ public class Blood extends PassiveEntity {
 	/**
 	 * The amount of blood.
 	 */
-	private String	amount;
+	private int	amount;
 
 
 	/**
 	 * Create a blood entity.
 	 */
 	public Blood() {
+	}
+
+
+	//
+	// Blood
+	//
+
+	/**
+	 * Get the current amount.
+	 *
+	 * @return	The current amount.
+	 */
+	public int getAmount() {
+		return amount;
 	}
 
 
@@ -55,17 +69,6 @@ public class Blood extends PassiveEntity {
 
 
 	/**
-	 * Get the current entity state.
-	 *
-	 * @return	The current state.
-	 */
-	@Override
-	public String getState() {
-		return amount;
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -80,9 +83,9 @@ public class Blood extends PassiveEntity {
 		 * Amount
 		 */
 		if (object.has("amount")) {
-			amount = object.get("amount");
+			amount = object.getInt("amount");
 		} else {
-			amount = "0";
+			amount = 0;
 		}
 	}
 
@@ -105,9 +108,8 @@ public class Blood extends PassiveEntity {
 		 * Amount
 		 */
 		if (changes.has("amount")) {
-			amount = changes.get("amount");
+			amount = changes.getInt("amount");
 			fireChange(PROP_AMOUNT);
-			fireChange(PROP_STATE);
 		}
 	}
 
@@ -126,9 +128,8 @@ public class Blood extends PassiveEntity {
 		 * Amount
 		 */
 		if (changes.has("amount")) {
-			amount = "0";
+			amount = 0;
 			fireChange(PROP_AMOUNT);
-			fireChange(PROP_STATE);
 		}
 	}
 }
