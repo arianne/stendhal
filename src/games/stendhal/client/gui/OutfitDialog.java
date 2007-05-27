@@ -20,6 +20,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.OutfitStore;
 import games.stendhal.client.StendhalClient;
 
 import java.awt.*;
@@ -69,7 +70,7 @@ public class OutfitDialog extends JDialog {
 	private Sprite[] clothes = null;
 
 	// current selected parts index
-	private int hairs_index = 0;
+	private int hairs_index = 1;
 
 	private int heads_index = 0;
 
@@ -206,25 +207,50 @@ public class OutfitDialog extends JDialog {
 		g.setColor(Color.WHITE);
 		g.fillRect(2, 2, 48, 64);
 	}
+       
+        /**
+         * draws a hair images from an outfit code
+         */
+        private void drawHair(int code, Graphics g) {
+                OutfitStore.get().getHairSprite(code).draw(g, 2, 2);
+        }
+        /**
+         * draws a head from  the outfit code
+         */
+        private void drawHead(int code, Graphics g) {
+                OutfitStore.get().getHeadSprite(code).draw(g, 2, 2);
+        }
 
-	/**
-	 * draws selected single part
-	 */
-	private void drawSinglePart(Sprite sprite, Graphics g) {
-		clean(g);
-		SpriteStore.get().getSprites(sprite, animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-	}
-
+        /**
+         * draws a dress from the outfit code
+         */
+        private void drawDress(int code, Graphics g) {
+                OutfitStore.get().getDressSprite(code).draw(g, 2, 2);
+        }
+        
+        /**
+         * draws a base from an outfit code
+         */
+        private void drawBase(int code, Graphics g) {
+                OutfitStore.get().getBaseSprite(code).draw(g, 2, 2);
+        }
+        
 	/**
 	 * draws final player
 	 */
 	private void drawFinalPlayer(Graphics g) {
 		clean(g);
-		SpriteStore.get().getSprites(bodies[bodies_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-		SpriteStore.get().getSprites(clothes[clothes_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-		SpriteStore.get().getSprites(heads[heads_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-		SpriteStore.get().getSprites(hairs[hairs_index], animation, 3, 1.5, 2)[1].draw(g, 2, 2);
-	}
+		
+                //uses OutfitStore now
+                
+                OutfitStore.get().getBaseSprite(bodies_index).draw(g, 2, 2);
+		OutfitStore.get().getDressSprite(clothes_index).draw(g, 2, 2);
+		OutfitStore.get().getHeadSprite(heads_index).draw(g, 2, 2);
+		OutfitStore.get().getHairSprite(hairs_index).draw(g, 2, 2);
+                 
+          
+                
+        }
 
 	/** This method is called from within the constructor to
 	 * initialize the form.
@@ -442,10 +468,10 @@ public class OutfitDialog extends JDialog {
 	private void jsliderAnimationStateChanged(ChangeEvent evt) {//GEN-FIRST:event_jsliderAnimationStateChanged
 		animation = jsliderAnimation.getValue();
 		drawFinalPlayer(jlblFinalResult.getGraphics());
-		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
-		drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
-		drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
-		drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
+		drawHair(hairs_index, jlblHairs.getGraphics());
+		drawHead(heads_index, jlblHeads.getGraphics());
+		drawBase(bodies_index, jlblBodies.getGraphics());
+		drawDress(clothes_index, jlblClothes.getGraphics());
 	}//GEN-LAST:event_jsliderAnimationStateChanged
 
 	/** when user closes this window */
@@ -461,7 +487,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			clothes_index = 0;
 		}
-		drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
+                clean(jlblClothes.getGraphics());
+		drawDress(clothes_index, jlblClothes.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtRightClothesActionPerformed
 
@@ -472,7 +499,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			clothes_index = clothes.length - 1;
 		}
-		drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
+                clean(jlblClothes.getGraphics());
+		drawDress(clothes_index, jlblClothes.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtLeftClothesActionPerformed
 
@@ -483,7 +511,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			bodies_index = 0;
 		}
-		drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
+                clean(jlblBodies.getGraphics());
+		drawBase(bodies_index, jlblBodies.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtRightBodiesActionPerformed
 
@@ -494,7 +523,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			bodies_index = bodies.length - 1;
 		}
-		drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
+                clean(jlblBodies.getGraphics());
+		drawBase(bodies_index, jlblBodies.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtLeftBodiesActionPerformed
 
@@ -505,7 +535,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			heads_index = 0;
 		}
-		drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
+                clean(jlblHeads.getGraphics());
+		drawHead(heads_index, jlblHeads.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtRightHeadsActionPerformed
 
@@ -516,7 +547,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			heads_index = heads.length - 1;
 		}
-		drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
+                clean(jlblHeads.getGraphics());
+		drawHead(heads_index, jlblHeads.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtLeftHeadsActionPerformed
 
@@ -527,7 +559,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			hairs_index = 0;
 		}
-		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
+                clean(jlblHairs.getGraphics());
+		drawHair(hairs_index, jlblHairs.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtRightHairsActionPerformed
 
@@ -538,7 +571,8 @@ public class OutfitDialog extends JDialog {
 		} else {
 			hairs_index = hairs.length - 1;
 		}
-		drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
+                clean(jlblHairs.getGraphics());
+		drawHair(hairs_index, jlblHairs.getGraphics());
 		drawFinalPlayer(jlblFinalResult.getGraphics());
 	}//GEN-LAST:event_jbtLeftHairsActionPerformed
 
@@ -610,10 +644,10 @@ public class OutfitDialog extends JDialog {
 		@Override
 		public void run() {
 			// draws single parts
-			drawSinglePart(hairs[hairs_index], jlblHairs.getGraphics());
-			drawSinglePart(heads[heads_index], jlblHeads.getGraphics());
-			drawSinglePart(bodies[bodies_index], jlblBodies.getGraphics());
-			drawSinglePart(clothes[clothes_index], jlblClothes.getGraphics());
+			drawHair(hairs_index, jlblHairs.getGraphics());
+			drawHead(heads_index, jlblHeads.getGraphics());
+			drawBase(bodies_index, jlblBodies.getGraphics());
+			drawDress(clothes_index, jlblClothes.getGraphics());
 			drawFinalPlayer(jlblFinalResult.getGraphics());
 		}
 
