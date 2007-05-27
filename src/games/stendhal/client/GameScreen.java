@@ -844,16 +844,56 @@ public class GameScreen {
 		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text) + 2, 16, Transparency.BITMASK);
 		Graphics g2d = image.getGraphics();
 
-		g2d.setColor(Color.black);
-		g2d.drawString(text, 0, 9);
-		g2d.drawString(text, 0, 11);
-		g2d.drawString(text, 2, 9);
-		g2d.drawString(text, 2, 11);
+		// TODO: Check textColor's brightness and use white for
+		// outline when too dark
+		drawOutlineString(g2d, textColor, text, 1, 10);
 
-		g2d.setColor(textColor);
-		g2d.drawString(text, 1, 10);
 		return new ImageSprite(image);
 	}
+
+
+	/**
+	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
+	 * only with an outline border. The area drawn extends 1 pixel out
+	 * on all side from what would normal be drawn by drawString().
+	 *
+	 * @param	g		The graphics context.
+	 * @param	textColor	The text color.
+	 * @param	outlineColor	The outline color.
+	 * @param	text		The text to draw.
+	 * @param	x		The X position.
+	 * @param	y		The Y position.
+	 */
+	public void drawOutlineString(final Graphics g, final Color textColor, final String text, final int x, final int y) {
+		// TODO: Check textColor's brightness and use white for
+		// outline when too dark
+		drawOutlineString(g, textColor, Color.black, text, x, y);
+	}
+
+
+	/**
+	 * Draw a text string (like <em>Graphics</em><code>.drawString()</code>)
+	 * only with an outline border. The area drawn extends 1 pixel out
+	 * on all side from what would normal be drawn by drawString().
+	 *
+	 * @param	g		The graphics context.
+	 * @param	textColor	The text color.
+	 * @param	outlineColor	The outline color.
+	 * @param	text		The text to draw.
+	 * @param	x		The X position.
+	 * @param	y		The Y position.
+	 */
+	public void drawOutlineString(final Graphics g, final Color textColor, final Color outlineColor, final String text, final int x, final int y) {
+		g.setColor(outlineColor);
+		g.drawString(text, x - 1, y - 1);
+		g.drawString(text, x - 1, y + 1);
+		g.drawString(text, x + 1, y - 1);
+		g.drawString(text, x + 1, y + 1);
+
+		g.setColor(textColor);
+		g.drawString(text, x, y);
+	}
+
 
 	private int positionStringOfSize(String text, int width) {
 		String[] words = text.split(" ");

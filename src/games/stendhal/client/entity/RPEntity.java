@@ -768,10 +768,17 @@ public abstract class RPEntity extends ActiveEntity {
 		super.update(delta);
 
 		if(!textIndicators.isEmpty()) {
-			if(textIndicators.get(0).getAge() > 2000L) {
-				textIndicators.remove(0);
-				fireChange(PROP_TEXT_INDICATORS);
+			Iterator<TextIndicator> iter = textIndicators.iterator();
+
+			while(iter.hasNext()) {
+				TextIndicator textIndicator = iter.next();
+
+				if(textIndicator.addAge(delta) > 2000L) {
+					iter.remove();
+				}
 			}
+
+			fireChange(PROP_TEXT_INDICATORS);
 		}
 	}
 
@@ -1136,14 +1143,14 @@ public abstract class RPEntity extends ActiveEntity {
 
 	public static class TextIndicator {
 		/**
-		 * The text sprite.
+		 * The text color.
 		 */
-		protected Sprite	sprite;
+		protected Color		color;
 
 		/**
-		 * The start time of the message.
+		 * The age of the message (in ms).
 		 */
-		protected long		start;
+		protected long		age;
 
 		/**
 		 * The message text.
@@ -1159,9 +1166,9 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		public TextIndicator(final String text, final Color color) {
 			this.text = text;
+			this.color = color;
 
-			sprite = GameScreen.get().createString(text, color);
-			start = System.currentTimeMillis();
+			age = 0L;
 		}
 
 
@@ -1179,10 +1186,13 @@ public abstract class RPEntity extends ActiveEntity {
 		public void draw(final Graphics g, final int x, final int y) {
 			long age = getAge();
 
-			int tx = x + 20 - (sprite.getWidth() / 2);
+
+			int width = g.getFontMetrics().stringWidth(text) + 2;
+
+			int tx = x + 20 - (width / 2);
 			int ty = y - (int) (age * 5L / 300L);
 
-			sprite.draw(g, tx, ty);
+			GameScreen.get().drawOutlineString(g, color, text, tx, ty + 10);
 		}
 
 
@@ -1191,12 +1201,26 @@ public abstract class RPEntity extends ActiveEntity {
 		//
 
 		/**
+		 * Add to the age of this message.
+		 *
+		 * @param	time		The amout to add.
+		 *
+		 * @return	The new age (in milliseconds).
+		 */
+		public long addAge(long time) {
+			age += time;
+
+			return age;
+		}
+
+
+		/**
 		 * Get the age of this message.
 		 *
 		 * @return	The age (in milliseconds).
 		 */
 		public long getAge() {
-			return System.currentTimeMillis() - start;
+			return age;
 		}
 
 
