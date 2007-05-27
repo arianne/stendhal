@@ -74,7 +74,7 @@ public class GoldSource extends Entity {
 	 *		entity's area.
 	 */
 	@Override
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		return false;
 	}
 }

@@ -49,11 +49,6 @@ public abstract class Entity implements RPObjectChangeListener {
 	public final static Object	PROP_POSITION	= new Object();
 
 	/**
-	 * State property.
-	 */
-	public final static Object	PROP_STATE	= new Object();
-
-	/**
 	 * Title property.
 	 */
 	public final static Object	PROP_TITLE	= new Object();
@@ -160,7 +155,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	listener	The listener.
 	 */
-	public void addChangeListener(EntityChangeListener listener) {
+	public void addChangeListener(final EntityChangeListener listener) {
 		EntityChangeListener []	newListeners;
 
 
@@ -179,7 +174,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	property	The changed property.
 	 */
-	protected void fireChange(Object property) {
+	protected void fireChange(final Object property) {
 		EntityChangeListener [] listeners = changeListeners;
 
 		for(EntityChangeListener l : listeners) {
@@ -420,7 +415,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	x		The new X coordinate.
 	 * @param	y		The new Y coordinate.
 	 */
-	protected void onPosition(double x, double y) {
+	protected void onPosition(final double x, final double y) {
 		fireChange(PROP_POSITION);
 	}
 
@@ -629,7 +624,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @return	<code>true</code> the entity can not enter this
 	 *		entity's area.
 	 */
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		return (entity != this);
 	}
 
@@ -651,7 +646,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	listener	The listener.
 	 */
-	public void removeChangeListener(EntityChangeListener listener) {
+	public void removeChangeListener(final EntityChangeListener listener) {
 		EntityChangeListener []	newListeners;
 		int			idx;
 

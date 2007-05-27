@@ -254,7 +254,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *
 	 * @param	sprite		The sprite.
 	 */
-	protected void setAnimation(Sprite sprite) {
+	protected void setAnimation(final Sprite sprite) {
 		if(sprite instanceof AnimatedSprite) {
 			AnimatedSprite asprite = (AnimatedSprite) sprite;
 
@@ -273,7 +273,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 *
 	 * @param	sprite		The sprite.
 	 */
-	protected void setSprite(Sprite sprite) {
+	protected void setSprite(final Sprite sprite) {
 		setAnimation(sprite);
 		animatedChanged = false;
 
@@ -342,7 +342,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param	entity		The entity that was changed.
 	 * @param	property	The property identifier.
 	 */
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		if(property == Entity.PROP_ANIMATED)
 			animatedChanged = true;

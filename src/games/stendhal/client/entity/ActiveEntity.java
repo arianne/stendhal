@@ -69,7 +69,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param	dx		The X axis speed/delta.
 	 * @param	dy		The Y axis speed/delta.
 	 */
-	protected void onMotion(double dx, double dy) {
+	protected void onMotion(final double dx, final double dy) {
 	}
 
 
@@ -85,7 +85,7 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @param	direction	The direction.
 	 */
-	protected void setDirection(Direction direction) {
+	protected void setDirection(final Direction direction) {
 		this.direction = direction;
 	}
 
@@ -263,7 +263,6 @@ public abstract class ActiveEntity extends Entity {
 			direction = Direction.build(diff.getInt("dir"));
 			setDirection(direction);
 			fireChange(PROP_DIRECTION);
-			fireChange(PROP_STATE);
 		} else if (base.has("dir")) {
 			direction = Direction.build(base.getInt("dir"));
 			setDirection(direction);

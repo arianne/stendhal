@@ -111,7 +111,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	height		The image height in tile units.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map, double width, double height) {
+	protected void buildSprites(final Map<Object, Sprite> map, final double width, final double height) {
 		Sprite tiles = getAnimationSprite();
 
 		SpriteStore store = SpriteStore.get();
@@ -187,7 +187,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		buildSprites(map, 1.0, 1.0);
 	}
 
@@ -202,7 +202,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		super.draw(screen, g2d, x, y, width, height);
 
 		if (ideaSprite != null) {
@@ -250,7 +250,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

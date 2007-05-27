@@ -72,7 +72,7 @@ public class Sheep extends NPC {
 	 *
 	 * @param	idea		The idea, or <code>null</code>.
 	 */
-	protected void onIdea(String idea) {
+	protected void onIdea(final String idea) {
 		if(idea == null) {
 			// No "idea" - Do nothing
 		} else if ("eat".equals(idea)) {

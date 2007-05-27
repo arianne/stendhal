@@ -83,7 +83,7 @@ public class Door2DView extends StateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		String name = door.getEntityClass();
 
 		switch(door.getOrientation()) {
@@ -140,7 +140,7 @@ public class Door2DView extends StateEntity2DView {
 	 * @return	The current state.
 	 */
 	@Override
-	public Object getState() {
+	protected Object getState() {
 		return door.isOpen() ? STATE_OPEN : STATE_CLOSED;
 	}
 
@@ -199,7 +199,7 @@ public class Door2DView extends StateEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

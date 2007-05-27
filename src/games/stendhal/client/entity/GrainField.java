@@ -68,7 +68,7 @@ public class GrainField extends Entity {
 	 * @param	width		The entity width.
 	 * @param	height		The entity height.
 	 */
-	public GrainField(int width, int height)  {
+	public GrainField(final int width, final int height)  {
 		this.width = width;
 		this.height = height;
 	}

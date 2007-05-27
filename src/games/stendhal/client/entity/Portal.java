@@ -22,7 +22,9 @@ import marauroa.common.game.RPObject;
  * sprites for it.
  */
 public class Portal extends InvisibleEntity {
-
+	/**
+	 * Whether the portal is hidden.
+	 */
 	private boolean hidden = false;
 
 
@@ -69,6 +71,24 @@ public class Portal extends InvisibleEntity {
 	}
 
 
+	//
+	// Portal
+	//
+
+	/**
+	 * Determine if the portal is hidden.
+	 *
+	 * @return	<code>true</code> if hidden.
+	 */
+	public boolean isHidden() {
+		return hidden;
+	}
+
+
+	//
+	// Entity
+	//
+
 	/**
 	 * Initialize this entity for an object.
 	 *
@@ -93,11 +113,7 @@ public class Portal extends InvisibleEntity {
 	 *		entity's area.
 	 */
 	@Override
-	public boolean isObstacle(Entity entity) {
+	public boolean isObstacle(final Entity entity) {
 		return false;
-	}
-
-	public boolean isHidden() {
-		return hidden;
 	}
 }

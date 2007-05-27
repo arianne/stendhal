@@ -1150,7 +1150,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * @param	text		The text to drawn.
 		 * @param	color		The text color.
 		 */
-		public TextIndicator(String text, Color color) {
+		public TextIndicator(final String text, final Color color) {
 			this.text = text;
 
 			sprite = GameScreen.get().createString(text, color);
@@ -1169,7 +1169,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 * @param	x		The drawn X coordinate.
 		 * @param	y		The drawn Y coordinate.
 		 */
-		public void draw(Graphics g, int x, int y) {
+		public void draw(final Graphics g, final int x, final int y) {
 			long age = getAge();
 
 			int tx = x + 20 - (sprite.getWidth() / 2);

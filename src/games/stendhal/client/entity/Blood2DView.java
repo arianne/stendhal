@@ -48,7 +48,7 @@ public class Blood2DView extends StateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		String clazz = entity.getEntityClass();
 
 		/*
@@ -119,7 +119,7 @@ public class Blood2DView extends StateEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

@@ -108,7 +108,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
-	protected void buildSprites(Map<Object, Sprite> map, double width, double height) {
+	protected void buildSprites(final Map<Object, Sprite> map, final double width, final double height) {
 		Sprite tiles = getAnimationSprite();
 
 		map.put(STATE_UP, getAnimatedWalk(tiles, 0, width, height));
@@ -174,7 +174,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
 	 */
-	protected void drawHPbar(final Graphics2D g2d, int x, int y) {
+	protected void drawHPbar(final Graphics2D g2d, final int x, final int y) {
 		float hpRatio = rpentity.getHPRatio();
 
 		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
@@ -213,7 +213,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @return	An animated sprite.
 	 */
-	protected AnimatedSprite getAnimatedWalk(Sprite tiles, int row, double width, double height) {
+	protected AnimatedSprite getAnimatedWalk(final Sprite tiles, final int row, final double width, final double height) {
 		Sprite [] frames = SpriteStore.get().getSprites(tiles, row, 4, width, height);
 
 		frames[3] = frames[1];
@@ -242,7 +242,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		Rectangle srect = screen.convertWorldToScreen(entity.getArea());
 
 		if (rpentity.isBeingAttacked()) {
@@ -353,7 +353,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

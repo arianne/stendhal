@@ -25,12 +25,6 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	private EntityContainer contentWindow;
 
 
-
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-	}
-
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.INSPECT;

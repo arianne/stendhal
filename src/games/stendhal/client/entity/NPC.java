@@ -105,7 +105,7 @@ public class NPC extends RPEntity {
 	 * @param	y		The new Y coordinate.
 	 */
 	@Override
-	protected void onPosition(double x, double y) {
+	protected void onPosition(final double x, final double y) {
 		super.onPosition(x, y);
 
 		if(soundWait < System.currentTimeMillis()&&Rand.rand(1000)<5) {

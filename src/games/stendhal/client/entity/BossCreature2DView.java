@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 public class BossCreature2DView extends Creature2DView {
-	public BossCreature2DView(BossCreature creature) {
+	public BossCreature2DView(final BossCreature creature) {
 		super(creature);
 	}
 
@@ -25,7 +25,7 @@ public class BossCreature2DView extends Creature2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		Sprite tiles=getAnimationSprite();
 		SpriteStore store = SpriteStore.get();
 

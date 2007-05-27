@@ -144,7 +144,7 @@ public class Ring2DView extends Item2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

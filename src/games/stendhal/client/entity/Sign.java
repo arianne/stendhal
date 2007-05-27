@@ -22,20 +22,18 @@ import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {
+	/**
+	 * Text property.
+	 */
+	public final static Object	PROP_TEXT		= new Object();
 
+	/**
+	 * The sign text.
+	 */
 	private String text;
 
 	// Give Signs same color on Screen and Log window. intensifly@gmx.com
 	private static final Color signColor = new Color(0x006400); // dark green
-
-	@Override
-	public void onChangedAdded(final RPObject base, final RPObject diff) throws AttributeNotFoundException {
-		super.onChangedAdded(base, diff);
-
-		if (diff.has("text")) {
-			text = diff.get("text");
-		}
-	}
 
 
 	@Override
@@ -87,5 +85,43 @@ public class Sign extends Entity {
 	@Override
 	protected Entity2DView createView() {
 		return new Sign2DView(this);
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) throws AttributeNotFoundException {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("text")) {
+			text = changes.get("text");
+			fireChange(PROP_TEXT);
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("text")) {
+			text = "";
+			fireChange(PROP_TEXT);
+		}
 	}
 }

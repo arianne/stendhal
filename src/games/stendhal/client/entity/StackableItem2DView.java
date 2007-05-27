@@ -92,7 +92,7 @@ public class StackableItem2DView extends Item2DView {
 	 * @param	screen		The screen to drawn on.
 	 */
 	@Override
-	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		super.draw(screen, g2d, x, y, width, height);
 
 		if (quantitySprite != null) {
@@ -137,7 +137,7 @@ public class StackableItem2DView extends Item2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

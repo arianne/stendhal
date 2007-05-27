@@ -92,7 +92,7 @@ public class Player2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		buildSprites(map, 1.5, 2.0);
 	}
 

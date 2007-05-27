@@ -69,13 +69,15 @@ public abstract class StateEntity2DView extends Entity2DView {
 	 *
 	 * @param	map		The map to populate.
 	 */
-	protected abstract void buildSprites(Map<Object, Sprite> map);
+	protected abstract void buildSprites(final Map<Object, Sprite> map);
 
 
 	/**
-	 * Get a named state sprite.
+	 * Get a keyed state sprite.
 	 *
+	 * @param	state		The state.
 	 *
+	 * @return	The appropriete sprite for the given state.
 	 */
 	protected Sprite getSprite(final Object state) {
 		return sprites.get(state);
@@ -93,7 +95,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	/**
 	 * Get the current animated sprite.
 	 *
-	 *
+	 * @return	The appropriete sprite for the current state.
 	 */
 	protected Sprite getStateSprite() {
 		Object state = getState();
@@ -135,27 +137,6 @@ public abstract class StateEntity2DView extends Entity2DView {
 		if(stateChanged) {
 			setSprite(getStateSprite());
 			stateChanged = false;
-		}
-	}
-
-
-	//
-	// EntityChangeListener
-	//
-
-	/**
-	 * An entity was changed.
-	 *
-	 * @param	entity		The entity that was changed.
-	 * @param	property	The property identifier.
-	 */
-	@Override
-	public void entityChanged(Entity entity, Object property)
-	{
-		super.entityChanged(entity, property);
-
-		if(property == Entity.PROP_STATE) {
-			stateChanged = true;
 		}
 	}
 }

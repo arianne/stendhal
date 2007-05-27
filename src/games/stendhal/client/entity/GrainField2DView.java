@@ -61,7 +61,7 @@ public class GrainField2DView extends StateEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		double	height;
 		double	width;
 		int	maxRipeness;
@@ -93,7 +93,7 @@ public class GrainField2DView extends StateEntity2DView {
 	 * @return	The current state.
 	 */
 	@Override
-	public Object getState() {
+	protected Object getState() {
 		return new Integer(grainField.getRipeness());
 	}
 
@@ -139,7 +139,7 @@ public class GrainField2DView extends StateEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 

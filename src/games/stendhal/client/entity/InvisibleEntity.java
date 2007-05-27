@@ -95,7 +95,7 @@ public class InvisibleEntity extends Entity {
 	 * @param	changes		The changes.
 	 */
 	@Override
-	public void onChangedAdded(RPObject object, RPObject changes) {
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
 		if (changes.has("height")) {

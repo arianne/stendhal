@@ -80,7 +80,7 @@ public class NPC2DView extends RPEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-	protected void buildSprites(Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		buildSprites(map, 1.5, 2.0);
 	}
 
@@ -111,7 +111,7 @@ public class NPC2DView extends RPEntity2DView {
 	 * @param	property	The property identifier.
 	 */
 	@Override
-	public void entityChanged(Entity entity, Object property)
+	public void entityChanged(final Entity entity, final Object property)
 	{
 		super.entityChanged(entity, property);
 
