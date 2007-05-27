@@ -177,8 +177,14 @@ public class Sheep extends NPC {
 		/*
 		 * Weight
 		 */
-		weight = object.getInt("weight");
-
+		if (object.has("weight")){
+			//TODO: find why there are sheep without "weight" attribute
+			//System.out.println ("weight set in init" + object);
+		    weight = object.getInt("weight");
+		}
+		else {
+			//System.out.println ("but " + object);
+		}
 
 		onIdea(idea);
 	}
