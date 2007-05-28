@@ -111,4 +111,20 @@ public class TutorialNotifier {
 		process(player, TutorialEventType.FIRST_KILL);
 	}
 
+	/**
+	 * a player who stayed another minute in game
+	 *
+	 * @param player Player
+	 * @param age    playing time
+	 */
+	public static void aged(Player player, int age) {
+		if (age >= 15) {
+			process(player, TutorialEventType.TIMED_NAKED);
+		} else if (age >= 10) {
+			// TODO: activate this after password change is implemented
+			// process(player, TutorialEventType.TIMED_PASSWORD);
+		} else if (age >= 5) {
+			process(player, TutorialEventType.TIMED_HELP);
+		}
+	}
 }

@@ -837,7 +837,7 @@ public class Player extends RPEntity implements TurnListener {
 		super.onDead(killer, false);
 
 		setHP(getBaseHP());
-		
+
 		returnToOriginalOutfit();
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
@@ -970,6 +970,7 @@ public class Player extends RPEntity implements TurnListener {
 	public void setAge(int age) {
 		this.age = age;
 		put("age", age);
+		TutorialNotifier.aged(this, age);
 	}
 
 	/**
