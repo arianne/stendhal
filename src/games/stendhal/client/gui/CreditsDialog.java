@@ -11,7 +11,7 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

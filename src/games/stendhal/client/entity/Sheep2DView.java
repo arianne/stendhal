@@ -16,7 +16,7 @@ import java.util.Map;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
 
 /**

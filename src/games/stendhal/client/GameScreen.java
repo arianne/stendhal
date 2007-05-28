@@ -45,6 +45,7 @@ import java.util.ListIterator;
 import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.sprite.ImageSprite;
 
 import marauroa.common.Log4J;

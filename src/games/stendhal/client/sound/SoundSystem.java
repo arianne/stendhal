@@ -25,11 +25,11 @@
 
 package games.stendhal.client.sound;
 
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.AudioClip;
+import games.stendhal.client.sprite.SpriteStore;
 
 
 import games.stendhal.common.MathHelper;

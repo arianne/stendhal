@@ -18,8 +18,8 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;

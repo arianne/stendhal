@@ -1,16 +1,13 @@
-/* $Id$ */
-/***************************************************************************
- *                      (C) Copyright 2003 - Marauroa                      *
- ***************************************************************************
- ***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-package games.stendhal.client;
+/*
+ * @(#) src/games/stendhal/client/sprite/SpriteStore.java
+ *
+ * $Id$
+ */
+
+package games.stendhal.client.sprite;
+
+//
+//
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
@@ -20,29 +17,23 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
-
 import javax.imageio.ImageIO;
 
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.client.sprite.AnimatedSprite;
-import games.stendhal.client.sprite.EmptySprite;
-import games.stendhal.client.sprite.ImageSprite;
-import games.stendhal.client.sprite.SpriteCache;
-import games.stendhal.client.sprite.TileSprite;
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.Sprite;
 
 /**
- * A resource manager for sprites in the game. Its often quite important how and
- * where you get your game resources from. In most cases it makes sense to have
- * a central resource loader that goes away, gets your resources and caches them
- * for future use.
+ * A resource manager for sprites in the game. Its often quite important how
+ * and where you get your game resources from. In most cases it makes sense
+ * to have a central resource loader that goes away, gets your resources and
+ * caches them for future use.
  * <p>
  * [singleton]
  * <p>
- *
- * @author Kevin Glass
  */
 public class SpriteStore {
 	/** the logger instance. */

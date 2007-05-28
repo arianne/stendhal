@@ -19,7 +19,7 @@ import marauroa.common.Log4J;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * The 2D view of an NPC.

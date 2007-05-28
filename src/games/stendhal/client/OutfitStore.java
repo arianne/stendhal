@@ -13,6 +13,7 @@ import java.awt.Graphics;
 
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.SpriteCache;
+import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * An outfit store.

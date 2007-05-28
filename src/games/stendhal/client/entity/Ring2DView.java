@@ -10,7 +10,7 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;

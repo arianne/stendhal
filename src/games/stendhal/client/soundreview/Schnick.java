@@ -1,6 +1,6 @@
 package games.stendhal.client.soundreview;
 
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.io.File;
 import java.io.FileInputStream;

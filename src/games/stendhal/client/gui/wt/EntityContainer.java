@@ -13,11 +13,11 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;

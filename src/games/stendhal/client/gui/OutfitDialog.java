@@ -20,8 +20,8 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

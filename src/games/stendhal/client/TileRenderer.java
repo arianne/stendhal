@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.io.IOException;

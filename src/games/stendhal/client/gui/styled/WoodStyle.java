@@ -17,7 +17,7 @@ import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * The wood style.

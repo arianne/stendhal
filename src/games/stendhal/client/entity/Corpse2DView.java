@@ -13,7 +13,7 @@ import java.awt.geom.Rectangle2D;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * The 2D view of a corpse.

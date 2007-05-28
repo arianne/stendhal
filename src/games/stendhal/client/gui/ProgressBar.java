@@ -1,6 +1,6 @@
 package games.stendhal.client.gui;
 
-import games.stendhal.client.SpriteStore;
+import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.update.ClientGameConfiguration;
 
 import java.awt.Window;
