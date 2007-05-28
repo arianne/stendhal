@@ -844,8 +844,6 @@ public class GameScreen {
 		Image image = gc.createCompatibleImage(g.getFontMetrics().stringWidth(text) + 2, 16, Transparency.BITMASK);
 		Graphics g2d = image.getGraphics();
 
-		// TODO: Check textColor's brightness and use white for
-		// outline when too dark
 		drawOutlineString(g2d, textColor, text, 1, 10);
 
 		return new ImageSprite(image);
@@ -865,9 +863,15 @@ public class GameScreen {
 	 * @param	y		The Y position.
 	 */
 	public void drawOutlineString(final Graphics g, final Color textColor, final String text, final int x, final int y) {
-		// TODO: Check textColor's brightness and use white for
-		// outline when too dark
-		drawOutlineString(g, textColor, Color.black, text, x, y);
+		/*
+		 * Use light gray as outline for colors < 25% bright.
+		 * Luminance = 0.299R + 0.587G + 0.114B
+		 */
+		int lum = ((textColor.getRed() * 299)
+			+ (textColor.getGreen() * 587)
+			+ (textColor.getBlue() * 114)) / 1000;
+
+		drawOutlineString(g, textColor, (lum >= 64) ? Color.black : Color.lightGray, text, x, y);
 	}
 
 
