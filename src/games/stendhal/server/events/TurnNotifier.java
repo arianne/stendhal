@@ -35,15 +35,33 @@ public class TurnNotifier {
 			this.message = message;
 		}
 
-		public boolean equals(TurnEvent other) {
-			return (turnListener == other.turnListener)
-			        && (((message == null) && (other.message == null)) || message.equals(other.message));
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj == null) {
+				return false;
+			}
+			if (getClass() != obj.getClass()) { 
+				return false;
+			}
+
+			final TurnEvent other = (TurnEvent) obj;
+			if (!turnListener.equals(other.turnListener)) {
+				return false;
+			}
+
+			if (message == null) {
+				return (other.message == null);
+			}
+			return (message.equals(other.message));
 		}
 
 		@Override
 		public int hashCode() {
 			final int PRIME = 31;
-			int result = 1;
+			int result = super.hashCode();
 			result = PRIME * result + ((message == null) ? 0 : message.hashCode());
 			result = PRIME * result + ((turnListener == null) ? 0 : turnListener.hashCode());
 			return result;
