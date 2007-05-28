@@ -10,7 +10,7 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
+import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

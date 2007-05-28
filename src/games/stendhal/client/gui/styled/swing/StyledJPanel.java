@@ -14,8 +14,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import games.stendhal.client.Sprite;
 import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.sprite.Sprite;
 
 /**
  * A styled JPanel.

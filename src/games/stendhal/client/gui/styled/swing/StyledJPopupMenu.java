@@ -18,8 +18,8 @@ import javax.swing.JMenuItem;
 import javax.swing.MenuElement;
 import javax.swing.border.Border;
 
-import games.stendhal.client.Sprite;
 import games.stendhal.client.gui.styled.Style;
+import games.stendhal.client.sprite.Sprite;
 
 /**
  * A styled JPopupMenu.

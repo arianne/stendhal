@@ -13,7 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.Border;
 
-import games.stendhal.client.Sprite;
+import games.stendhal.client.sprite.Sprite;
 
 /**
  * Style information.

@@ -18,12 +18,12 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
+import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Graphics;

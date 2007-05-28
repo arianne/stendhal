@@ -10,9 +10,9 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.sprite.AnimatedSprite;
+import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.AlphaComposite;

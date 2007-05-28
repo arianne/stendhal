@@ -1,10 +1,10 @@
 /*
- * @(#) src/games/stendhal/client/Sprite.java
+ * @(#) src/games/stendhal/client/spiite/Sprite.java
  *
  * $Id$
  */
 
-package games.stendhal.client;
+package games.stendhal.client.sprite;
 
 //
 //

@@ -19,7 +19,6 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
@@ -28,6 +27,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Color;
 import java.awt.Graphics;

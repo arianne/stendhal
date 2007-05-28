@@ -11,8 +11,6 @@ package games.stendhal.client.sprite;
 
 import java.awt.Graphics;
 
-import games.stendhal.client.Sprite;
-
 /**
  * This is a sprite that is a tile region of another sprite.
  */

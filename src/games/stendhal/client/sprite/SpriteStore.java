@@ -24,7 +24,6 @@ import marauroa.common.Log4J;
 import org.apache.log4j.Logger;
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 
 /**
  * A resource manager for sprites in the game. Its often quite important how

@@ -18,8 +18,6 @@ import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 
-import games.stendhal.client.Sprite;
-
 /**
  * A sprite to be displayed on the screen. Note that a sprite contains no state
  * information, i.e. its just the image and not the location. This allows us to

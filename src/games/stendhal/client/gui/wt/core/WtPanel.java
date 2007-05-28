@@ -16,8 +16,8 @@
  */
 package games.stendhal.client.gui.wt.core;
 
-import games.stendhal.client.Sprite;
 import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
 

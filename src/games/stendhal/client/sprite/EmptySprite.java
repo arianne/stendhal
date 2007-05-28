@@ -11,8 +11,6 @@ package games.stendhal.client.sprite;
 
 import java.awt.Graphics;
 
-import games.stendhal.client.Sprite;
-
 /**
  * An empty (non-drawing) sprite.
  */

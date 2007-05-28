@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.Sprite;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.core.WtDraggable;
+import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Graphics;
 import java.awt.Point;

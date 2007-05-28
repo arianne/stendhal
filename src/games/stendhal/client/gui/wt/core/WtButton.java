@@ -18,7 +18,8 @@
 
 package games.stendhal.client.gui.wt.core;
 
-import games.stendhal.client.Sprite;
+import games.stendhal.client.sprite.Sprite;
+
 import java.awt.Graphics;
 import java.awt.Point;
 

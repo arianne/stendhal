@@ -18,8 +18,6 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 
-import games.stendhal.client.Sprite;
-
 /**
  * A cache of keyed sprites.
  */

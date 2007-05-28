@@ -25,11 +25,11 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPSlot;
 
-import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 /**

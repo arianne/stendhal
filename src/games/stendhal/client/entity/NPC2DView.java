@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 import marauroa.common.Log4J;
 
 import games.stendhal.client.OutfitStore;
-import games.stendhal.client.Sprite;
+import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 /**
