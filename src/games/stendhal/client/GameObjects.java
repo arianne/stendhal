@@ -217,7 +217,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		sort();
 
 		for (Entity entity : sortedObjects) {
-			entity.draw(screen);
+			entity.getView().draw(screen);
 		}
 	}
 

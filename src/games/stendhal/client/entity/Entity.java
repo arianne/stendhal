@@ -421,15 +421,6 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
-	 * DEPRECATED - Eventually will go away (when view used directly),
-	 * but still needed for now.
-	 */
-	public void draw(final GameScreen screen) {
-		view.draw(screen);
-	}
-
-
-	/**
 	 * returns the slot with the specified name or null if the entity does not
 	 * have this slot
 	 */
