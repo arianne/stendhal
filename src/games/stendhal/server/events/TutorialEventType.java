@@ -15,7 +15,10 @@ public enum TutorialEventType {
 	FIRST_ATTACKED ("Did you notice that creature walking towards you with the yellow square? It is attacking you."),
 	FIRST_KILL ("Double click on the Corpse and drag the items with the mouse over your bag and drop them there."),
 	FIRST_PLAYER ("Have you noticed that this name is printed in white? It is another real human player"),
-	FIRST_DEATH ("Oh, you have just died. But fortunately death is not permanent in this world.");
+	FIRST_DEATH ("Oh, you have just died. But fortunately death is not permanent in this world."), 
+	TIMED_HELP ("There is a manuel with many pictures on the first screen before you login."),
+	TIMED_NAKED ("Oh, aren't you fealing cold? Right click on yourself and choose \"Set Outfit\" to get dressed."),
+	TIMED_PASSWORD ("Remember to keep your password completely secret, never tell it to another friend, player, or even admin.");
 	
 	private String message = null;
 
