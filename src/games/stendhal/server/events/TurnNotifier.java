@@ -25,6 +25,8 @@ public class TurnNotifier {
 	/**
 	 * Struct to store a pair of TurnListener and String.
 	 */
+	// TODO: get rid of this class after the message parameter is not used anymore
+	// this class uses lots of memory
 	public static class TurnEvent {
 
 		public TurnListener turnListener;
@@ -132,6 +134,7 @@ public class TurnNotifier {
 	 * @param diff the number of turns to wait before notifying
 	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
+	 * @deprecated use notifyInTurns(int, TurnListener) with an anon inner class 
 	 */
 	@Deprecated
 	public void notifyInTurns(int diff, TurnListener turnListener, String message) {
@@ -154,6 +157,7 @@ public class TurnNotifier {
 	 * @param sec the number of seconds to wait before notifying
 	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
+	 * @deprecated use notifyInSeconds(int, TurnListener) with an anon inner class 
 	 */
 	@Deprecated
 	public void notifyInSeconds(int sec, TurnListener turnListener, String message) {
@@ -176,6 +180,7 @@ public class TurnNotifier {
 	 * @param turn the number of the turn
 	 * @param turnListener the object to notify
 	 * @param message an object to pass to the event handler
+	 * @deprecated use notifyAtTurn(int, TurnListener) with an anon inner class 
 	 */
 	@Deprecated
 	public void notifyAtTurn(int turn, TurnListener turnListener, String message) {
@@ -212,6 +217,7 @@ public class TurnNotifier {
 	 *
 	 * @param turnListener
 	 * @param message
+	 * @deprecated use dontNotify(TurnListener) with an anon inner class 
 	 */
 	@Deprecated
 	public void dontNotify(TurnListener turnListener, String message) {
@@ -251,6 +257,7 @@ public class TurnNotifier {
 	 * @param message
 	 * @return the number of remaining turns, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
+	 * @deprecated use getRemainingTurns(TurnListener) with an anon inner class 
 	 */
 	@Deprecated
 	public int getRemainingTurns(TurnListener turnListener, String message) {
@@ -269,7 +276,7 @@ public class TurnNotifier {
 		}
 		if (matchingTurns.size() > 0) {
 			Collections.sort(matchingTurns);
-			return matchingTurns.get(0) - currentTurn;
+			return matchingTurns.get(0).intValue() - currentTurn;
 		} else {
 			return -1;
 		}
@@ -295,6 +302,7 @@ public class TurnNotifier {
 	 * @param message
 	 * @return the number of remaining seconds, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
+	 * @deprecated use getRemainingSeconds(TurnListener) with an anon inner class 
 	 */
 	@Deprecated
 	public int getRemainingSeconds(TurnListener turnListener, String message) {
