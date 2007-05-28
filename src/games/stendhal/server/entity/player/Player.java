@@ -837,7 +837,8 @@ public class Player extends RPEntity implements TurnListener {
 		super.onDead(killer, false);
 
 		setHP(getBaseHP());
-
+		
+		returnToOriginalOutfit();
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
         // Penalize: Respawn on afterlive zone and
@@ -1469,8 +1470,7 @@ public class Player extends RPEntity implements TurnListener {
 	/**
 	 * Tries to give the player his original outfit back after he has put on
 	 * a temporary outfit.
-	 * This will only be successful if the player is wearing an outfit
-	 * he got here, and if the original outfit has been stored.
+	 * This will only be successful if the original outfit has been stored.
 	 *
 	 * @return true iff returning was successful.
 	 */
