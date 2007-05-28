@@ -15,7 +15,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.EntityFactory;
-import games.stendhal.client.entity.RPEntity2DView;
 import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
@@ -224,11 +223,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/** Draw the creature's Name/HP Bar */
 	public void drawHPbar(GameScreen screen) {
 		for (Entity entity : sortedObjects) {
-			Entity2DView view = entity.getView();
-
-			if (view instanceof RPEntity2DView) {
-				((RPEntity2DView) view).drawHPbar(screen);
-			}
+			entity.getView().drawTop(screen);
 		}
 	}
 

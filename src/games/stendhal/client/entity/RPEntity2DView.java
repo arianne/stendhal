@@ -183,21 +183,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 
-	/** Draws only the hp bar **/
-	public void drawHPbar(final GameScreen screen) {
-		/*
-		 * Don't draw if full ghostmode
-		 */
-		if(rpentity.isGhostMode()) {
-			return;
-		}
-
-		Point p = screen.convertWorldToScreen(rpentity.getX(), rpentity.getY());
-		drawTitle(screen.expose(), p.x, p.y);
-		drawHPbar(screen.expose(), p.x, p.y);
-	}
-
-
 	/**
 	 * Draw the entity HP bar.
 	 *
@@ -361,6 +346,37 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		}
 
 		drawFloaters(screen, g2d, x, y);
+	}
+
+
+	/**
+	 * Draw the top layer parts of an entity. This will be on down after
+	 * all other game layers are rendered.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	public void drawTop(final GameScreen screen) {
+		if((rpentity == User.get()) || !rpentity.isGhostMode()) {
+			super.drawTop(screen);
+		}
+	}
+
+
+	/**
+	 * Draw the top layer parts of an entity. This will be on down after
+	 * all other game layers are rendered.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn entity width.
+	 * @param	height		The drawn entity height.
+	 */
+	@Override
+	protected void drawTop(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		drawTitle(g2d, x, y);
+		drawHPbar(g2d, x, y);
 	}
 
 

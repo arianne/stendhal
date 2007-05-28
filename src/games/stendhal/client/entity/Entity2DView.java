@@ -93,12 +93,21 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
-	 * Draw the base entity part.
+	 * Draw the entity.
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
-	protected void drawEntity(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
-		getSprite().draw(g2d, x, y);
+	public void draw(final GameScreen screen) {
+		/*
+		 * Check for entity changes
+		 */
+		update();
+
+		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
+
+		if(screen.isInScreen(r)) {
+			draw(screen, screen.expose(), r.x, r.y, r.width, r.height);
+		}
 	}
 
 
@@ -106,6 +115,11 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Draw the entity.
 	 *
 	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn entity width.
+	 * @param	height		The drawn entity height.
 	 */
 	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
 		Composite oldComposite;
@@ -123,6 +137,50 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			g2d.setColor(Color.green);
 			g2d.draw(screen.convertWorldToScreen(entity.getArea()));
 		}
+	}
+
+
+	/**
+	 * Draw the base entity part.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn entity width.
+	 * @param	height		The drawn entity height.
+	 */
+	protected void drawEntity(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+		getSprite().draw(g2d, x, y);
+	}
+
+
+	/**
+	 * Draw the top layer parts of an entity. This will be on down after
+	 * all other game layers are rendered.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 */
+	public void drawTop(final GameScreen screen) {
+		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
+
+		if(screen.isInScreen(r)) {
+			drawTop(screen, screen.expose(), r.x, r.y, r.width, r.height);
+		}
+	}
+
+
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn entity width.
+	 * @param	height		The drawn entity height.
+	 */
+	protected void drawTop(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
 	}
 
 
@@ -292,24 +350,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		return "data/sprites/" + name + ".png";
 	}
 
-
-	/**
-	 * Draw the entity.
-	 *
-	 * @param	screen		The screen to drawn on.
-	 */
-	public void draw(final GameScreen screen) {
-		/*
-		 * Check for entity changes
-		 */
-		update();
-
-		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
-
-		if(screen.isInScreen(r)) {
-			draw(screen, screen.expose(), r.x, r.y, r.width, r.height);
-		}
-	}
 
 	/**
 	 * Handle updates.
