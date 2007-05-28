@@ -1,15 +1,17 @@
 /*
- * @(#) src/games/stendhal/client/TileSprite.java
+ * @(#) src/games/stendhal/client/sprite/TileSprite.java
  *
  * $Id$
  */
 
-package games.stendhal.client;
+package games.stendhal.client.sprite;
 
 //
 //
 
 import java.awt.Graphics;
+
+import games.stendhal.client.Sprite;
 
 /**
  * This is a sprite that is a tile region of another sprite.
@@ -203,53 +205,6 @@ public class TileSprite implements Sprite {
 	public int getWidth() {
 		return width;
 	}
-
-
-	//
-	// Object
-	//
-
-	@Override
-	public boolean equals(Object obj) {
-		if(this == obj) {
-			return true;
-		}
-
-		if(obj instanceof TileSprite) {
-			TileSprite tsprite = (TileSprite) obj;
-
-			if(!sprite.equals(tsprite.sprite)) {
-				return false;
-			}
-
-			if(x != tsprite.x) {
-				return false;
-			}
-
-			if(y != tsprite.y) {
-				return false;
-			}
-
-			if(width != tsprite.width) {
-				return false;
-			}
-
-			if(height != tsprite.height) {
-				return false;
-			}
-
-			return true;
-		}
-
-		return false;
-	}
-
-
-	@Override
-	public int hashCode() {
-		return sprite.hashCode() ^ x ^ y;
-	}
-
 
 	//
 	//

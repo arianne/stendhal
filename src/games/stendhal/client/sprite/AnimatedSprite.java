@@ -1,15 +1,17 @@
 /*
- * @(#) src/games/stendhal/client/AnimatedSprite.java
+ * @(#) src/games/stendhal/client/sprite/AnimatedSprite.java
  *
  * $Id$
  */
 
-package games.stendhal.client;
+package games.stendhal.client.sprite;
 
 //
 //
 
 import java.awt.Graphics;
+
+import games.stendhal.client.Sprite;
 
 /**
  * This is a sprite that transparently animates itself when drawn.
@@ -256,20 +258,6 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
-	 * Flip each of the sprites of the animated sprite horizontally
-	 * @return a horizontally flipped animated sprite.
-	 */
-	public AnimatedSprite flip() {
-		AnimatedSprite copy=(AnimatedSprite)copy();
-
-		for(int i=0;i<frames.length;i++) {
-			copy.frames[i]=((ImageSprite)frames[i]).flip();
-		}
-
-		return copy;
-	}
-
-	/**
 	 * Draw the sprite onto the graphics context provided.
 	 * 
 	 * @param g
@@ -333,25 +321,5 @@ public class AnimatedSprite implements Sprite {
 	 */
 	public int getWidth() {
 		return width;
-	}
-
-
-	//
-	// Object
-	//
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof AnimatedSprite) {
-			AnimatedSprite img=(AnimatedSprite)obj;
-			return frames.equals(img.frames);
-		}
-
-		return false;
-	}
-
-	@Override
-	public int hashCode() {
-		return frames.hashCode();
 	}
 }

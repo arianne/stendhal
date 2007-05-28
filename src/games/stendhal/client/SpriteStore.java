@@ -27,6 +27,12 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.sprite.AnimatedSprite;
+import games.stendhal.client.sprite.EmptySprite;
+import games.stendhal.client.sprite.ImageSprite;
+import games.stendhal.client.sprite.SpriteCache;
+import games.stendhal.client.sprite.TileSprite;
+
 /**
  * A resource manager for sprites in the game. Its often quite important how and
  * where you get your game resources from. In most cases it makes sense to have
@@ -245,8 +251,46 @@ public class SpriteStore {
 
 
 	/**
+	 * Get an empty sprite with the size of a single tile.
+	 *
+	 * @return	An empty sprite.
+	 */
+	public Sprite getEmptySprite() {
+		return getEmptySprite(GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+	}
+
+
+	/**
+	 * Get an empty sprite.
+	 *
+	 * @param	width		The width.
+	 * @param	height		The height.
+	 *
+	 * @return	An empty sprite.
+	 */
+	public Sprite getEmptySprite(final int width, final int height) {
+		SpriteCache cache = SpriteCache.get();
+
+		Object reference = EmptySprite.createReference(width, height);
+
+		Sprite sprite = cache.get(reference);
+
+		if(sprite == null) {
+			sprite = new EmptySprite(width, height, reference);
+			cache.add(reference, sprite);
+		}
+
+		return sprite;
+	}
+
+
+	/**
 	 * Create a sprite tile (sub-region).
 	 *
+	 *
+	 *
+	 * @param	width		The width.
+	 * @param	height		The height.
 	 *
 	 * @see-also	#getSprite(Sprite,int,int,double,double)
 	 */
@@ -258,21 +302,9 @@ public class SpriteStore {
 		Sprite tile = cache.get(reference);
 
 		if(tile == null) {
-			if(true) {
-				//
-				// NEW (SEMI-TESTED) CODE
-				// Saves ~3.5M, but will break flip()
-				//
-				tile = new TileSprite(sprite, x, y, width, height, null);
-			} else {
-				Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
+			tile = new TileSprite(sprite, x, y, width, height, reference);
 
-				sprite.draw(image.getGraphics(), 0, 0, x, y, width, height);
-
-				tile = new ImageSprite(image);
-			}
-
-			if(tile != null) {
+			if(reference != null) {
 				cache.add(reference, tile);
 			}
 		}

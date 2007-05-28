@@ -11,6 +11,9 @@ package games.stendhal.client;
 
 import java.awt.Graphics;
 
+import games.stendhal.client.sprite.ImageSprite;
+import games.stendhal.client.sprite.SpriteCache;
+
 /**
  * An outfit store.
  */
@@ -146,11 +149,10 @@ public class OutfitStore {
 	/**
 	 * Get the empty sprite tileset.
 	 *
-	 * @return	The sprite, or <code>null</code> on error.
+	 * @return	The sprite.
 	 */
 	private Sprite getEmptySprite() {
-		//TODO have a single Emptysprite use store
-		return new EmptySprite();
+		return store.getEmptySprite();
 	}
 
 

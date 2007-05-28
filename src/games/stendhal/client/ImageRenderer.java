@@ -16,6 +16,8 @@ import java.net.URL;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
+import games.stendhal.client.sprite.ImageSprite;
+
 /**
  * This class renders a layer based on a complete image
  */

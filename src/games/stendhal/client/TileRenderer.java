@@ -31,11 +31,8 @@ import org.apache.log4j.Logger;
  * should be replaced by independent tiles as soon as possible .
  */
 public class TileRenderer extends LayerRenderer {
-
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileRenderer.class);
-
-	private static final Sprite	emptySprite = new EmptySprite();
 
 	private TileStore tiles;
 
@@ -75,6 +72,8 @@ public class TileRenderer extends LayerRenderer {
 	@Override
 	public void setTileset(TileStore tileset) {
 		tiles=tileset;
+
+		Sprite emptySprite = SpriteStore.get().getEmptySprite();
 
 		/*
 		 * Cache normal sprites
@@ -461,7 +460,7 @@ public class TileRenderer extends LayerRenderer {
 					
 					if(sprite==null) {
 						logger.warn("Null sprite at ("+i+","+j+")");
-						sprite=SpriteStore.get().getSprite("data/sprites/failsafe.png");
+						sprite=SpriteStore.get().getFailsafe();
 					}
 
 // TODO: Apparently Broken [ 1708820 ], so safe to comment out until fixed:

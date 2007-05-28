@@ -1,13 +1,14 @@
 /*
- * @(#) src/games/stendhal/client/ImageSprite.java
+ * @(#) src/games/stendhal/client/sprite/ImageSprite.java
  *
  * $Id$
  */
 
-package games.stendhal.client;
+package games.stendhal.client.sprite;
 
 //
 //
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -16,6 +17,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Transparency;
 import java.awt.image.BufferedImage;
+
+import games.stendhal.client.Sprite;
 
 /**
  * A sprite to be displayed on the screen. Note that a sprite contains no state
@@ -64,6 +67,11 @@ public class ImageSprite implements Sprite {
 	}
 
 
+	/**
+	 * Create an image sprite from another sprite.
+	 *
+	 * @param	sprite		The source sprite.
+	 */
 	public ImageSprite(Sprite sprite) {
 		this(sprite, null);
 	}
@@ -116,22 +124,6 @@ public class ImageSprite implements Sprite {
 	 */
 	public Graphics getGraphics() {
 		return image.getGraphics();
-	}
-
-
-	/**
-	 * Flip the image horizontally.
-	 * @return an horizontal flipped sprite.
-	 */
-	public ImageSprite flip() {
-		// TODO: Eventually, just call: flipped(this)
-
-		Image empty = getGC().createCompatibleImage(getWidth(), getHeight(), Transparency.BITMASK);
-		ImageSprite spr=new ImageSprite(empty);
-
-		spr.getGraphics().drawImage(image, getWidth(), 0, 0, getHeight(), 0, 0, getWidth(), getHeight(), null);
-
-		return spr;
 	}
 
 
@@ -210,18 +202,6 @@ public class ImageSprite implements Sprite {
 	 * @param h
 	 *            the height
 	 */
-	// Bugfix: to use image.getWidth()/getHeight() is not correct for images
-	// coming from the Tilestore, as those are used to draw more than 1 Sprite
-	// from the same image. The relevant image size is that of the image
-	// that we're painting in, but the Graphics context doesn't say anything
-	// about the size of the image it belongs to so I had to add parameters
-	// for width and height. This bug was responsible for the drawing problems
-	// on Mac OS X.
-	// What I don't understand now though is why it worked well on Windows ;)
-	// This bugfix also affects Sprite.draw in TileStore.java and
-	// SpriteStore.java
-	// intensifly @ gmx.com, April 20th, 2006
-	// public void draw(Graphics g, int destx, int desty, int x,int y) {
 	public void draw(Graphics g, int destx, int desty, int x, int y, int w, int h) {
 		g.drawImage(image, destx, desty, destx + w, desty + h, x, y, x + w, y + h, null);
 	}
@@ -254,25 +234,5 @@ public class ImageSprite implements Sprite {
 	 */
 	public int getWidth() {
 		return image.getWidth(null);
-	}
-
-
-	//
-	// Object
-	//
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof ImageSprite) {
-			ImageSprite img=(ImageSprite)obj;
-			return image.equals(img.image);
-		}
-
-		return false;
-	}
-
-	@Override
-	public int hashCode() {
-		return image.hashCode();
 	}
 }
