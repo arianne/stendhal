@@ -39,7 +39,13 @@ public class Bootstrap {
 	 */
 	private static class ButtomUpOrderClassLoader extends URLClassLoader {
 
-		private ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
+		/**
+		 * Creates a buttom up order class loader
+		 *
+		 * @param urls   classpath
+		 * @param parent parent classloader
+		 */
+		ButtomUpOrderClassLoader(URL[] urls, ClassLoader parent) {
 			super(urls, parent);
 		}
 
@@ -90,7 +96,10 @@ public class Bootstrap {
 		}
 	}
 
-	private void init() {
+	/**
+	 * initializes the startup process
+	 */
+	void init() {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
 		
@@ -111,7 +120,7 @@ public class Bootstrap {
 	 * @return ClassLoader object
 	 * @throws Exception if an unexpected error occurs
 	 */
-	private ClassLoader createClassloader() throws Exception {
+	ClassLoader createClassloader() throws Exception {
 		// load jar.properties
 		String propFile = jarFolder + "jar.properties";
 		bootProp = new Properties();
@@ -299,7 +308,12 @@ public class Bootstrap {
 		}
 	}
 
-	private void unexspectedErrorHandling(Throwable t) {
+	/**
+	 * Handles exceptions during program invocation
+	 *
+	 * @param t exception
+	 */
+	void unexspectedErrorHandling(Throwable t) {
 		// unwrap chained expections
 		Throwable e = t;
 		while (e.getCause() != null) {
