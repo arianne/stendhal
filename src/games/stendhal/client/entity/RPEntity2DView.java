@@ -14,11 +14,13 @@ import games.stendhal.client.Sprite;
 import games.stendhal.client.SpriteStore;
 
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import marauroa.common.Log4J;
@@ -152,6 +154,35 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 
+	/**
+	 * Draw the floating text indicators (floaters).
+	 *
+	 * @param	screen		The game screen.
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 */
+	protected void drawFloaters(final GameScreen screen, final Graphics2D g2d, final int x, final int y) {
+		FontMetrics fm = g2d.getFontMetrics();
+
+		Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
+
+		while(iter.hasNext()) {
+			RPEntity.TextIndicator indicator = iter.next();
+
+			long age = indicator.getAge();
+			String text = indicator.getText();
+
+			int width = fm.stringWidth(text) + 2;
+
+			int tx = x + 20 - (width / 2);
+			int ty = y - (int) (age * 5L / 300L);
+
+			screen.drawOutlineString(g2d, indicator.getColor(), text, tx, ty + 10);
+		}
+	}
+
+
 	/** Draws only the hp bar **/
 	public void drawHPbar(final GameScreen screen) {
 		/*
@@ -241,6 +272,24 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
+	public void draw(final GameScreen screen) {
+		// NOTE: This bypasses update() also, but should not hurt
+		if((rpentity == User.get()) || !rpentity.isGhostMode()) {
+			super.draw(screen);
+		}
+	}
+
+
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn entity width.
+	 * @param	height		The drawn entity height.
+	 */
 	@Override
 	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		Rectangle srect = screen.convertWorldToScreen(entity.getArea());
@@ -310,6 +359,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 					break;
 			}
 		}
+
+		drawFloaters(screen, g2d, x, y);
 	}
 
 

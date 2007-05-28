@@ -23,9 +23,6 @@ import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -582,26 +579,6 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 	// Entity
 	//
-
-	/** Draws this entity in the screen */
-	@Override
-	public void draw(final GameScreen screen) {
-		if(this!=User.get() && isGhostMode()) {
-			return;
-		}
-
-		super.draw(screen);
-
-		if (!textIndicators.isEmpty()) {
-			// Draw the text indicators
-			Graphics g = screen.expose();
-			Point p = screen.convertWorldToScreen(getX(), getY());
-
-			for(TextIndicator indicator : textIndicators) {
-				indicator.draw(g, p.x, p.y);
-			}
-		}
-	}
 
 	/**
 	 * Initialize this entity for an object.
@@ -1173,30 +1150,6 @@ public abstract class RPEntity extends ActiveEntity {
 
 
 		//
-		// <Floater>
-		//
-
-		/**
-		 * Draw this floating message.
-		 *
-		 * @param	g		The graphics context.
-		 * @param	x		The drawn X coordinate.
-		 * @param	y		The drawn Y coordinate.
-		 */
-		public void draw(final Graphics g, final int x, final int y) {
-			long age = getAge();
-
-
-			int width = g.getFontMetrics().stringWidth(text) + 2;
-
-			int tx = x + 20 - (width / 2);
-			int ty = y - (int) (age * 5L / 300L);
-
-			GameScreen.get().drawOutlineString(g, color, text, tx, ty + 10);
-		}
-
-
-		//
 		// TextIndicator
 		//
 
@@ -1221,6 +1174,16 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		public long getAge() {
 			return age;
+		}
+
+
+		/**
+		 * Get the text color.
+		 *
+		 * @return	The text color.
+		 */
+		public Color getColor() {
+			return color;
 		}
 
 
