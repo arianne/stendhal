@@ -21,11 +21,11 @@ public class TutorialNotifier {
 		if (player.getKeyedSlot("!tutorial", key) == null) {
 			player.setKeyedSlot("!tutorial", key, "1");
 
-			// we must delay this for 2 turn for technical reasons (like zone change)
+			// we must delay this for 1 turn for technical reasons (like zone change)
 			// but we delay it for 2 seconds so that the player has some time to
 			// recognize the event 
 			DelayedPlayerTextSender dpts = new DelayedPlayerTextSender(player, "Tutorial: " + type.getMessage());
-			TurnNotifier.get().notifyInSeconds(1, dpts);
+			TurnNotifier.get().notifyInSeconds(2, dpts);
 		}
 	}
 
@@ -110,4 +110,5 @@ public class TutorialNotifier {
 	public static void killedSomething(Player player) {
 		process(player, TutorialEventType.FIRST_KILL);
 	}
+
 }
