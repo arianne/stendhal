@@ -11,7 +11,6 @@ package games.stendhal.client.sprite;
 
 import java.awt.Graphics;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.Sprite;
 
 /**

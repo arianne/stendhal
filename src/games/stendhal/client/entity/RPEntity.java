@@ -14,7 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.Sprite;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;

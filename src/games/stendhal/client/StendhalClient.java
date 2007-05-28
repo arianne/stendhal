@@ -45,7 +45,6 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.client.net.IPerceptionListener;
 import marauroa.common.net.MessageS2CPerception;
 import marauroa.common.net.TransferContent;
 

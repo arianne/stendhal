@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 
 import games.stendhal.client.events.RPObjectChangeListener;
