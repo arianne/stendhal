@@ -15,10 +15,7 @@ import org.apache.log4j.Logger;
 /**
  * Other classes can register here to be notified at some time in the future.
  * 
- * 
- * 
- * @author hendrik
- * @author daniel
+ * @author hendrik, daniel
  */
 public class TurnNotifier {
 
@@ -124,6 +121,9 @@ public class TurnNotifier {
 	 * @param diff the number of turns to wait before notifying
 	 * @param turnListener the object to notify
 	 */
+	// internally uses old code for compatibility; will be rewritten after 
+	// the other method is not required by external classes anymore
+	@SuppressWarnings("deprecation")
 	public void notifyInTurns(int diff, TurnListener turnListener) {
 		notifyInTurns(diff, turnListener, null);
 	}
@@ -147,6 +147,9 @@ public class TurnNotifier {
 	 * @param sec the number of seconds to wait before notifying
 	 * @param turnListener the object to notify
 	 */
+	// internally uses old code for compatibility; will be rewritten after 
+	// the other method is not required by external classes anymore
+	@SuppressWarnings("deprecation")
 	public void notifyInSeconds(int sec, TurnListener turnListener) {
 		notifyInSeconds(sec, turnListener, null);
 	}
@@ -170,6 +173,9 @@ public class TurnNotifier {
 	 * @param turn the number of the turn
 	 * @param turnListener the object to notify
 	 */
+	// internally uses old code for compatibility; will be rewritten after 
+	// the other method is not required by external classes anymore
+	@SuppressWarnings("deprecation")
 	public void notifyAtTurn(int turn, TurnListener turnListener) {
 		notifyAtTurn(turn, turnListener, null);
 	}
@@ -207,6 +213,9 @@ public class TurnNotifier {
 	 *
 	 * @param turnListener
 	 */
+ 	// internally uses old code for compatibility; will be rewritten after 
+	// the other method is not required by external classes anymore
+	@SuppressWarnings("deprecation")
 	public void dontNotify(TurnListener turnListener) {
 		dontNotify(turnListener, null);
 	}
@@ -246,6 +255,9 @@ public class TurnNotifier {
 	 * @return the number of remaining turns, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
+	// internally uses old code for compatibility; will be rewritten after 
+	// the other method is not required by external classes anymore
+	@SuppressWarnings("deprecation")
 	public int getRemainingTurns(TurnListener turnListener) {
 		return  getRemainingTurns(turnListener, null);
 	}
@@ -290,6 +302,9 @@ public class TurnNotifier {
 	 * @return the number of remaining seconds, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
+	// internally uses old code for compatibility; will be rewritten after 
+	// the other method is not required by external classes anymore
+	@SuppressWarnings("deprecation")
 	public int getRemainingSeconds(TurnListener turnListener) {
 		return getRemainingSeconds(turnListener, null);
 	}
