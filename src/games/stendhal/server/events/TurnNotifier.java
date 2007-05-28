@@ -39,6 +39,16 @@ public class TurnNotifier {
 			return (turnListener == other.turnListener)
 			        && (((message == null) && (other.message == null)) || message.equals(other.message));
 		}
+
+		@Override
+		public int hashCode() {
+			final int PRIME = 31;
+			int result = 1;
+			result = PRIME * result + ((message == null) ? 0 : message.hashCode());
+			result = PRIME * result + ((turnListener == null) ? 0 : turnListener.hashCode());
+			return result;
+		}
+		
 	}
 
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
