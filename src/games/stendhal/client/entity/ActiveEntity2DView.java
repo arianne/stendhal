@@ -93,6 +93,7 @@ public abstract class ActiveEntity2DView extends StateEntity2DView {
 	 *
 	 * @return	The model state.
 	 */
+	@Override
 	protected Object getState() {
 		return getDirectionState(activeEntity.getDirection());
 	}

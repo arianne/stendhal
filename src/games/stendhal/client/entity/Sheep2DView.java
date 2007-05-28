@@ -153,6 +153,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 *
 	 * @return	A named state.
 	 */
+	@Override
 	protected String getDirectionState(final Direction direction) {
 		if(sheep.getWeight() < BIG_WEIGHT) {
 			return super.getDirectionState(direction);

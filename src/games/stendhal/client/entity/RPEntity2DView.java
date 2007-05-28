@@ -256,6 +256,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
+	@Override
 	public void draw(final GameScreen screen) {
 		// NOTE: This bypasses update() also, but should not hurt
 		if((rpentity == User.get()) || !rpentity.isGhostMode()) {
@@ -354,6 +355,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @param	screen		The screen to drawn on.
 	 */
+	@Override
 	public void drawTop(final GameScreen screen) {
 		if((rpentity == User.get()) || !rpentity.isGhostMode()) {
 			super.drawTop(screen);
