@@ -54,6 +54,9 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="170" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="../../tileset/building/entrance/detail_ns.png" firstgid="171" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/entrance/detail_ns.png"/>
+ </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGByAg0w8qn9U/6h+8vUDAEvsJpwABAAA
@@ -66,22 +69,22 @@
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAK3PuQ5BURRG4fMmhsbQkRgSOrPWWFzTO6DDC5ipzDypVezqBJft/slX7JOs4kSNMf4XhhhhLPccC7GUtwiCqKKGOhooYoIpZnKvsBYbVBCQPo8mWmib75azerdtxQ57RX/AUZwUvT2v+hTSij6GODLIKvoEksb7//fQx0DZO+ig+6Y74/Khd9sVtz/6Ox5WX0bhRyXpw/AphfAEu5duDwAEAAA=
+   H4sIAAAAAAAAAK3PNw7CQBRF0dkJoSF0IBEk6Mi0xMKkAuiAhZChIsNKuZZ+NbKxNfhJp5mvW0xSKRX2YY2N2MpbAlE00UIbHVQd7LAXBzQQkb6MLnroK38rab3XjuKEs0F/wVXcDHp9QfU55A36FNIooGjQZ5BVwf9/hDEmhr2FAYYu3R2PH73Xnnj90b/x0fo6KpopZpg73Gw16eMIOVhgiZXL3RbDF0My02UABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBTwDrQDBggAAJVyXzIABAAA
+   H4sIAAAAAAAAAGNgGAWjYBTwDrQDqAxWA/EaIF5LQB0AQeUiHwAEAAA=
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoB1YTkOzR8EoGAWUAwCMwvoBAAQAAA==
+   H4sIAAAAAAAAAGNgGAWjYBQMRrCcDnYAAPWZ2W4ABAAA
   </data>
  </layer>
  <layer name="collision" width="16" height="16" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvFwMCwikaYgQJ9hACpeqhhJyX2E3ILPfVjM2Ow6CfWTHL0UyP+qZ1uBxoDANN2US8ABAAA
+   H4sIAAAAAAAAAFvFwMCwapBhYgCpeqhhJyX2E3ILPfVjM2Ow6CfWTHL0UyP+qZ1uCZlH67wGACHA4UkABAAA
   </data>
  </layer>
  <layer name="protection" width="16" height="16">
