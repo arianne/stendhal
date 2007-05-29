@@ -41,11 +41,18 @@ public class BoyNPC implements ZoneConfigurator {
 
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
-						if (!player.isQuestCompleted("introduce_players")) {
-							engine.say("Ssshh! Come here, " + player.getName() + "! I have a #task for you.");
-						} else {
+						
+						if (player.hasQuest("introduce_players")){
+						    if (!player.isQuestCompleted("introduce_players")) {
+							engine.say("*sniff* *sniff* I still feel ill, please hurry");
+						    } else {
 							engine.say("Hi again " + player.getName() + "! Thanks again, I'm feeling much better now.");
+						    }
+						} else {
+							engine.say("Ssshh! Come here, " + player.getName() + "! I have a #task for you.");
+						    
 						}
+						
 					}
 				});
 				addGoodbye();
