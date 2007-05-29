@@ -343,7 +343,7 @@ public class StendhalRPWorld extends RPWorld {
 
 			sbuf.append("zones/*.xml:\n\n");
 			sbuf.append(" <zone name=\"" + name + "\" file=\"interiors/abstract/house_000.tmx\">\n");
-			sbuf.append("  <portal x=\"7\" y=\"1\" ref=\"entrance\">\n");
+			sbuf.append("  <portal x=\"7\" y=\"14\" ref=\"entrance\">\n");
 			sbuf.append("   <destination zone=\"" + zone.getID().getID() + "\" ref=\"house_" + dest + "_entrance\"/>\n");
 			sbuf.append("  </portal>\n");
 			sbuf.append(" </zone>\n");
