@@ -55,6 +55,7 @@ public abstract class NPC extends RPEntity {
 
 	public NPC() {
 		super();
+		setRPClass("npc");
 		put("type", "npc");
 
 		put("x", 0);

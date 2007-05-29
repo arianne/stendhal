@@ -38,7 +38,10 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import marauroa.client.BannedAddressException;
 import marauroa.client.ClientFramework;
+import marauroa.client.CreateCharacterFailedException;
+import marauroa.client.TimeoutException;
 import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Log4J;
@@ -47,6 +50,7 @@ import marauroa.common.game.CharacterResult;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.net.InvalidVersionException;
 import marauroa.common.net.message.MessageS2CPerception;
 import marauroa.common.net.message.TransferContent;
 
@@ -305,7 +309,21 @@ public class StendhalClient extends ClientFramework {
 		} else {
 			RPObject template = new RPObject();
 			// TODO: Account Username can be != of Character username.
-			CharacterResult res = createCharacter(getAccountUsername(), template);
+			try {
+	            CharacterResult res = createCharacter(getAccountUsername(), template);
+            } catch (TimeoutException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            } catch (InvalidVersionException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            } catch (CreateCharacterFailedException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            } catch (BannedAddressException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            }
 		}
 	
 	}

@@ -41,6 +41,7 @@ public class Chest extends Entity implements UseListener {
 
 	public Chest(RPObject object) {
 		super(object);
+		setRPClass("chest");
 		put("type", "chest");
 
 		if (!hasSlot("content")) {
@@ -53,6 +54,7 @@ public class Chest extends Entity implements UseListener {
 
 	public Chest() {
 		super();
+		setRPClass("chest");
 		put("type", "chest");
 		open = false;
 

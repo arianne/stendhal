@@ -20,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.game.IRPZone;
+import marauroa.common.game.RPClass;
 
 /**
  * An base area that performs actions on RPEntity's that are entering, leaving,
@@ -53,6 +54,11 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	protected int width;
 
 
+	public static void generateRPClass() {
+		RPClass entity = new RPClass("damaging_area");
+		entity.isA("entity");
+	}
+	
 	/**
 	 * Create an occupant area.
 	 *
@@ -63,6 +69,8 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	 * @param	interval	Standing action interval.
 	 */
 	public OccupantArea(String type, String name, int width, int height, int interval) {
+		super();
+		setRPClass(type);
 		put("type", type);
 		put("name", name);
 

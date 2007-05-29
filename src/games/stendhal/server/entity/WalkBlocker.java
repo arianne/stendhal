@@ -6,6 +6,8 @@
 
 package games.stendhal.server.entity;
 
+import marauroa.common.game.RPClass;
+
 /**
  * An entity that just acts as an obsticle. This is a temporary workaround
  * to allow items to be placed, but not players/entities, until multi-level
@@ -13,10 +15,16 @@ package games.stendhal.server.entity;
  */
 public class WalkBlocker extends Entity {
 
+	public static void generateRPClass() {
+		RPClass entity = new RPClass("walk_blocker");
+		entity.isA("entity");
+	}	
+
 	/**
 	 * Create a walk blocker.
 	 */
 	public WalkBlocker() {
+		setRPClass("walk_blocker");
 		put("type", "walk_blocker");
 	}
 

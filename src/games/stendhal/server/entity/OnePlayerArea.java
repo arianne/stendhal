@@ -15,6 +15,8 @@ import games.stendhal.server.events.MovementListener;
 
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.game.RPClass;
+
 
 
 /**
@@ -30,6 +32,11 @@ import java.awt.geom.Rectangle2D;
 public class OnePlayerArea extends Entity implements MovementListener {
 
 	
+	public static void generateRPClass() {
+		RPClass entity = new RPClass("one_player_area");
+		entity.isA("entity");
+	}	
+
 	/**
 	 * The area height.
 	 */
@@ -52,6 +59,7 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 * @param	height		The area height.
 	 */
 	public OnePlayerArea(int width, int height) {
+		setRPClass("one_player_area");
 		put("type", "one_player_area");
 		put("server-only", "");
 

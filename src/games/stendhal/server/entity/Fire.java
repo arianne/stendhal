@@ -22,6 +22,7 @@ public class Fire extends Entity implements UseListener {
 	public Fire(int width, int height) {
 		super();
 		setDescription("You see a flickering light. You are tented to touch it");
+		setRPClass("fire");
 		put("type", "fire");
 		put("width", width);
 		put("height", height);

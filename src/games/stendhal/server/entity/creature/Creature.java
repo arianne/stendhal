@@ -122,6 +122,7 @@ public class Creature extends NPC {
 		super(object);
 		creatureLogic = new CreatureLogic(this);
 
+		setRPClass("creature");
 		put("type", "creature");
 		put("title_type", "enemy");
 		if (object.has("title_type")) {
@@ -189,8 +190,9 @@ public class Creature extends NPC {
 	 * deriving class
 	 */
 	public Creature() {
-		super();
+		super();		
 		creatureLogic = new CreatureLogic(this);
+		setRPClass("creature");
 		put("type", "creature");
 		put("title_type", "enemy");
 

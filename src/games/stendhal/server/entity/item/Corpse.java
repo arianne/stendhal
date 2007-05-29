@@ -34,7 +34,7 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
-
+	
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 	
 	private int width;
@@ -76,6 +76,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	}
 
 	public Corpse(String clazz, int x, int y) {
+		setRPClass("corpse");
 		put("type", "corpse");
 		put("class", clazz);
 
@@ -92,6 +93,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	}
 
 	public Corpse(RPEntity entity, Entity killer) {
+		setRPClass("corpse");
 		put("type", "corpse");
 
 		if (entity.has("class")) {

@@ -49,6 +49,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 
 	private void init(String clazz, String actionName, int maxRipeness, int width, int height) {
 		this.maxRipeness = maxRipeness;
+		setRPClass("growing_entity_spawner");
 		put("type", "growing_entity_spawner");
 		put("class", clazz);
 		put("action_name", actionName);

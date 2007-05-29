@@ -66,6 +66,8 @@ import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Result;
 import marauroa.server.game.Statistics;
+import marauroa.server.game.container.PlayerEntry;
+import marauroa.server.game.container.PlayerEntryContainer;
 import marauroa.server.game.db.DatabaseFactory;
 import marauroa.server.game.db.JDBCDatabase;
 import marauroa.server.game.db.Transaction;
@@ -572,7 +574,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	synchronized public boolean onInit(RPObject object) throws RPObjectInvalidException {
 		try {
+			PlayerEntry entry=PlayerEntryContainer.getContainer().get(object);			
+			
 			Player player = Player.create(object);
+			// TODO: This is a hack, it should use instead RPObjectFactory.
+			entry.object=player;
+			
 			playersRmText.add(player);
 			playersRmPrivateText.add(player);
 			players.add(player);
@@ -670,7 +677,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			 */
 			RPObject object = new RPObject();
 			object.setID(RPObject.INVALID_ID);
-			
+
 			object.put("type", "player");
 			object.put("name", character);
 			object.put("outfit", new Outfit().getCode());

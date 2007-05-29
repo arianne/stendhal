@@ -58,6 +58,7 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 		super();
 		this.itemName = itemName;
 		setDescription("There is something in the water.");
+		setRPClass("fish_source");
 		put("type", "fish_source");
 	}
 

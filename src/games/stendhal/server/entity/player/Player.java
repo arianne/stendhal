@@ -213,6 +213,7 @@ public class Player extends RPEntity implements TurnListener {
 		super(object);
 		playerSheepManager = new PlayerSheepManager(this);
 
+		setRPClass("player");
 		put("type", "player");
 		// HACK: postman as NPC
 		if (object.has("name") && object.get("name").equals("postman")) {

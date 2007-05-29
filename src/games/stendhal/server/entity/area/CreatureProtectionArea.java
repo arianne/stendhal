@@ -64,6 +64,7 @@ public class CreatureProtectionArea extends Entity {
 	 * @param	defaultBlocked	Whether blocked on no match.
 	 */
 	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) {
+		setRPClass("creature_protection_area");
 		put("type", "creature_protection_area");
 		put("server-only", "");
 

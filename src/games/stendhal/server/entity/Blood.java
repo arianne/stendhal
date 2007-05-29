@@ -41,6 +41,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	}
 
 	public Blood(RPEntity entity) {
+		setRPClass("blood");
 		put("type", "blood");
 		put("class", "red");
 		put("amount", Rand.rand(4));
