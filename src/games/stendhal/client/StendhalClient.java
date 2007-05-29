@@ -215,9 +215,7 @@ public class StendhalClient extends ClientFramework {
 	@Override
 	protected void onPerception(MessageS2CPerception message) {
 		try {
-			if (logger.isDebugEnabled()) {
-				logger.debug("message: " + message);
-			}
+			logger.info("message: " + message);
 
 			// TODO: Bad smell.
 			if (message.getPerceptionType() == 1/* Perception.SYNC */) {

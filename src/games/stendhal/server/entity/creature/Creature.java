@@ -266,13 +266,10 @@ public class Creature extends NPC {
 		update();
 
 		stop();
-		if (logger.isDebugEnabled()) {
-			logger.debug(getIDforDebug() + " Created " + clazz + ":" + this);
-		}
 	}
 
 	public RPObject.ID getIDforDebug() {
-		return getID();
+		return null;
 	}
 
 	public void setRespawnPoint(CreatureRespawnPoint point) {
