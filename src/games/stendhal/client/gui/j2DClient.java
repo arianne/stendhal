@@ -134,6 +134,11 @@ public class j2DClient extends StendhalUI {
 	private Component	quitDialog;
 
 	/**
+	 * Delayed direction release holder.
+	 */
+	protected DelayedDirectionRelease	directionRelease;
+
+	/**
 	 * Not currently used - but will likely be later
 	 */
 	private static final boolean newCode =
@@ -169,9 +174,6 @@ public class j2DClient extends StendhalUI {
 		 * Get hold the content of the frame and set up the resolution
 		 * of the game
 		 */
-		
-
-		
 		pane = new JLayeredPane();
 		pane.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
 		content.add(pane);
@@ -345,8 +347,6 @@ public class j2DClient extends StendhalUI {
 			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, Color.RED);
 		}
 
-
-
 		frame.setLocation(new Point(20, 20));
 
 		// finally make the window visible
@@ -391,6 +391,7 @@ public class j2DClient extends StendhalUI {
 		windowManager.setDefaultProperties("corpse", false, 0, 190);
 		windowManager.setDefaultProperties("chest", false, 100, 190);
 
+		directionRelease = null;
 
 		// Start the main game loop, note: this method will not
 		// return until the game has finished running. Hence we are
@@ -456,6 +457,9 @@ public class j2DClient extends StendhalUI {
 		return imd.getDialog();
 	}
 
+// MEMORY DEBUGGING:
+//private long avgmemt = 0L;
+//private long avgmemc = 0L;
 
 	public void gameLoop() {
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
@@ -474,6 +478,14 @@ public class j2DClient extends StendhalUI {
 
 		gameRunning = true;
 
+// MEMORY DEBUGGING:
+//{
+//Runtime rt = Runtime.getRuntime();
+//rt.gc();
+//long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
+//System.err.println("init mem = " + mem + "k");
+//}
+
 		while (gameRunning) {
 			fps++;
 			// figure out what time it is right after the screen flip then
@@ -486,6 +498,14 @@ public class j2DClient extends StendhalUI {
 			long delta = now - refreshTime;
 			refreshTime = now;
 
+// MEMORY DEBUGGING:
+//Runtime rt = Runtime.getRuntime();
+//long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
+//avgmemt += mem;
+//avgmemc++;
+//
+//System.err.println("mem = " + (avgmemt / avgmemc) + "k");
+////rt.gc();
 			logger.debug("Move objects");
 			gameObjects.move(delta);
 
@@ -514,6 +534,18 @@ public class j2DClient extends StendhalUI {
 			logger.debug("Query network");
 			if (client.loop(0)) {
 				lastMessageHandle = System.currentTimeMillis();
+			}
+
+
+			/*
+			 * Process delayed direction release
+			 */
+			if((directionRelease != null) && directionRelease.hasExpired()) {
+				client.removeDirection(
+					directionRelease.getDirection(),
+					directionRelease.isFacing());
+
+				directionRelease = null;
 			}
 
 			if (System.nanoTime() - oldTime > 1000000000) {
@@ -557,11 +589,27 @@ public class j2DClient extends StendhalUI {
 		}
 
 		logger.info("Request logout");
+
+// MEMORY DEBUGGING:
+//{
+//Runtime rt = Runtime.getRuntime();
+////rt.gc();
+//long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
+//System.err.println("end mem = " + mem + "k");
+//}
+
 		client.logout();
 		SoundSystem.get().exit();
 	}
 
 
+	/**
+	 * Convert a keycode to the corresponding direction.
+	 *
+	 * @param	keyCode		The keycode.
+	 *
+	 * @return	The direction, or <code>null</code>.
+	 */
 	protected Direction keyCodeToDirection(int keyCode) {
 		switch (keyCode) {
 			case KeyEvent.VK_LEFT:
@@ -623,6 +671,7 @@ public class j2DClient extends StendhalUI {
 				 * Ctrl means face, otherwise move
 				 */
 				Direction direction = keyCodeToDirection(e.getKeyCode());
+
 //				int dy;
 //				if (direction.getdy()==0)
 //					dy=1;
@@ -638,11 +687,8 @@ public class j2DClient extends StendhalUI {
 						en.onAction(en.defaultAction());	
 					}
 				}
-				client.addDirection(
-						direction,
-						e.isControlDown());
 
-				break;
+				processDirectionPress(direction, e.isControlDown());
 		}
 	}
 
@@ -656,10 +702,68 @@ public class j2DClient extends StendhalUI {
 				/*
 				 * Ctrl means face, otherwise move
 				 */
-				client.removeDirection(
+				processDirectionRelease(
 					keyCodeToDirection(e.getKeyCode()),
 					e.isControlDown());
 		}
+	}
+
+
+	/**
+	 * Handle direction press actions.
+	 *
+	 * @param	direction	The direction.
+	 * @param	facing		If facing only.
+	 */
+	protected void processDirectionPress(Direction direction, boolean facing) {
+		if(directionRelease != null) {
+			if(directionRelease.check(direction, facing)) {
+				/*
+				 * Cancel pending release
+				 */
+				logger.debug("Repeat suppressed");
+				directionRelease = null;
+				return;
+			} else {
+				/*
+				 * Flush pending release
+				 */
+				client.removeDirection(
+					directionRelease.getDirection(),
+					directionRelease.isFacing());
+
+				directionRelease = null;
+			}
+		}
+
+		client.addDirection(direction, facing);
+	}
+
+
+	/**
+	 * Handle direction release actions.
+	 *
+	 * @param	direction	The direction.
+	 * @param	facing		If facing only.
+	 */
+	protected void processDirectionRelease(Direction direction, boolean facing) {
+		if(directionRelease != null) {
+			if(directionRelease.check(direction, facing)) {
+				/*
+				 * Ignore repeats
+				 */
+				return;
+			} else {
+				/*
+				 * Flush previous release
+				 */
+				client.removeDirection(
+					directionRelease.getDirection(),
+					directionRelease.isFacing());
+			}
+		}
+
+		directionRelease = new DelayedDirectionRelease(direction, facing);
 	}
 
 
@@ -1017,5 +1121,92 @@ public class j2DClient extends StendhalUI {
 		System.out.println("* -port\tport of the Marauroa server (try 32160)");
 		System.out.println("* -u\tUsername to log into Marauroa server");
 		System.out.println("* -p\tPassword to log into Marauroa server");
+	}
+
+	//
+	//
+
+	protected static class DelayedDirectionRelease {
+		/**
+		 * The maximum delay between auto-repeat release-press
+		 */
+		protected static final long	DELAY	= 50L;
+
+		protected long		expiration;
+		protected Direction	dir;
+		protected boolean	facing;
+
+
+		public DelayedDirectionRelease(Direction dir, boolean facing) {
+			this.dir = dir;
+			this.facing = facing;
+
+			expiration = System.currentTimeMillis() + DELAY;
+		}
+
+
+		//
+		// DelayedDirectionRelease
+		//
+
+		/**
+		 * Get the direction.
+		 *
+		 * @return	The direction.
+		 */
+		public Direction getDirection() {
+			return dir;
+		}
+
+
+		/**
+		 * Determine if the delay point has been reached.
+		 *
+		 * @return	<code>true</code> if the delay time has been
+		 *		reached.
+		 */
+		public boolean hasExpired() {
+			return System.currentTimeMillis() >= expiration;
+		}
+
+
+		/**
+		 * Determine if the facing only option was used.
+		 *
+		 * @return	<code>true</code> if facing only.
+		 */
+		public boolean isFacing() {
+			return facing;
+		}
+
+
+		/**
+		 * Check if a new direction matches the existing one, and
+		 * if so, reset the expiration point.
+		 *
+		 * @param	dir		The direction.
+		 * @param	facing		The facing flag.
+		 *
+		 * @return	<code>true</code> if this is a repeat.
+		 */
+		public boolean check(Direction dir, boolean facing) {
+			if(!this.dir.equals(dir)) {
+				return false;
+			}
+
+			if(this.facing != facing) {
+				return false;
+			}
+
+			long now = System.currentTimeMillis();
+
+			if(now >= expiration) {
+				return false;
+			}
+
+			expiration = now + DELAY;
+
+			return true;
+		}
 	}
 }
