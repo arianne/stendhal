@@ -48,7 +48,7 @@ public class LifeDrainArea extends OccupantArea {
 	 *				stationary (in turns).
 	 */
 	public LifeDrainArea(String name, int width, int height, int damage, int interval) throws AttributeNotFoundException {
-		super("damaging_area", name, width, height, interval);
+		super(name, width, height, interval);
 
 		this.damage = damage;
 

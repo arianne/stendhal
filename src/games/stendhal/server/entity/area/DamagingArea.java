@@ -55,7 +55,7 @@ public class DamagingArea extends OccupantArea {
 	 *				(0.0 - 1.0).
 	 */
 	public DamagingArea(String name, int width, int height, int damage, int interval, double probability) throws AttributeNotFoundException {
-		super("damaging_area", name, width, height, interval);
+		super(name, width, height, interval);
 
 		this.damage = damage;
 		this.probability = probability;

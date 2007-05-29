@@ -259,28 +259,28 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	public void onAdded(final RPObject object) {
 		Log4J.startMethod(logger, "onAdded");
 
-		if(object.getRPClass().subclassOf("entity")) {
+		if(!object.getRPClass().subclassOf("entity")) {
+			logger.warn("Non-entity object added: " + object);
+		}
+
+		if (!object.has("server-only")) {
 			if(!object.has("type")) {
 				logger.error("Entity without type: " + object);
 				return;
 			}
 
-			if (!object.has("server-only")) {
-				Entity entity = add(object);
+			Entity entity = add(object);
 
-				/*
-				 * Only non-contained objects are on screen
-				 */
-				if(!object.isContained()) {
-					sortedObjects.add(entity);
-				}
-
-				logger.debug("added " + entity);
-			} else {
-				logger.debug("Discarding object: " + object);
+			/*
+			 * Only non-contained objects are on screen
+			 */
+			if(!object.isContained()) {
+				sortedObjects.add(entity);
 			}
+
+			logger.debug("added " + entity);
 		} else {
-			logger.warn("Non-entity object added: " + object);
+			logger.debug("Discarding object: " + object);
 		}
 
 		Log4J.finishMethod(logger, "onAdded");

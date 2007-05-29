@@ -66,7 +66,7 @@ public class CreatureProtectionArea extends Entity {
 	 * @param	defaultBlocked	Whether blocked on no match.
 	 */
 	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) throws AttributeNotFoundException {
-		put("type", "creature_protection_area");
+		put("type", "area");
 		put("server-only", "");
 
 		this.width = width;

@@ -58,6 +58,9 @@ public final class EntityMap {
 		register("gold_source", null, "GoldSource");
 		register("fish_source", null, "FishSource");
 
+		register("area", null, "InvisibleEntity");
+
+		// TODO: Remove after a week [2007/05/29]
 		register("walk_blocker", null, "InvisibleEntity");
 		register("damaging_area", null, "InvisibleEntity");
 

@@ -57,14 +57,13 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	/**
 	 * Create an occupant area.
 	 *
-	 * @param	type		The entity type.
 	 * @param	name		The entity name.
 	 * @param	width		Width of this area
 	 * @param	height		Height of this area
 	 * @param	interval	Standing action interval.
 	 */
-	public OccupantArea(String type, String name, int width, int height, int interval) throws AttributeNotFoundException {
-		put("type", type);
+	public OccupantArea(String name, int width, int height, int interval) throws AttributeNotFoundException {
+		put("type", "area");
 		put("name", name);
 
 		this.height = height;
