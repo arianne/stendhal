@@ -1,6 +1,5 @@
 package games.stendhal.client;
 
-import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
 
