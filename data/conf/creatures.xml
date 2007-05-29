@@ -4547,7 +4547,7 @@
   </creature>
 
   <creature name="shadows_assassin">
-    <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
+    <type class="human" subclass="shadows_assassin" tileid="human_evil.png:3"/>
     <description></description>
     <attributes>
       <atk value="215"/>
