@@ -91,6 +91,7 @@ public abstract class Entity extends RPObject {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
 	
+		entity.addAttribute("type", Type.STRING);
 		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN); // Some things may have a textual description
 		entity.addAttribute("x", Type.SHORT);
 		entity.addAttribute("y", Type.SHORT);
