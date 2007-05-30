@@ -348,6 +348,64 @@
     </ai>
   </creature>
 
+  <creature name="babybear">
+    <type class="animal" subclass="babybear" tileid="animal.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="24"/>
+      <def value="7"/>
+      <hp value="54"/>
+      <speed value="0.4"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="50.0"/>
+      <item value="ham" quantity="[1,1]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Roar!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="panda">
+    <type class="animal" subclass="pandabear" tileid="animal.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="24"/>
+      <def value="7"/>
+      <hp value="54"/>
+      <speed value="0.4"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="2"/>
+    <experience value="20"/>
+    <respawn value="900"/>
+    <drops>
+      <item value="meat" quantity="[1,3]" probability="50.0"/>
+      <item value="ham" quantity="[1,2]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Roar!"/>
+      </says>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="snake">
     <type class="animal" subclass="cobra" tileid="animal.png:7"/>
     <description></description>
@@ -1167,6 +1225,31 @@
     </ai>
   </creature>
 
+  <creature name="littlefairy">
+    <type class="human" subclass="littlefairy" tileid="human.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="70"/>
+      <def value="13"/>
+      <hp value="81"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="11"/>
+    <experience value="120"/>
+    <respawn value="910"/>
+    <drops>
+      <item value="money" quantity="[3,7]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="ogre">
     <type class="giant" subclass="ogre" tileid="giant.png:2"/>
     <description></description>
@@ -1634,6 +1717,36 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,150"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="frogman">
+    <type class="frogman" subclass="frogman" tileid="frogman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="83"/>
+      <def value="15"/>
+      <hp value="98"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="15"/>
+    <experience value="180"/>
+    <respawn value="930"/>
+    <drops>
+      <item value="money" quantity="[5,19]" probability="100.0"/>
+      <item value="enhanced_chainmail" quantity="[1,1]" probability="6.0"/>
+      <item value="scale_armor" quantity="[1,1]" probability="1.0"/>
+      <item value="iron_scale_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="plate_shield" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -2127,6 +2240,33 @@
     </ai>
   </creature>
 
+  <creature name="ogre_soldier">
+    <type class="giant" subclass="ogre_soldier" tileid="giant.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="103"/>
+      <def value="17"/>
+      <hp value="132"/>
+      <speed value="0.6"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="22"/>
+    <experience value="320"/>
+    <respawn value="970"/>
+    <drops>
+      <item value="money" quantity="[6,31]" probability="100.0"/>
+      <item value="battle_axe" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="warrior_skeleton">
     <type class="undead" subclass="warrior_skeleton" tileid="undead.png:10"/>
     <description></description>
@@ -2428,6 +2568,104 @@
     </ai>
   </creature>
 
+  <creature name="sheepman">
+    <type class="sheepman" subclass="sheepman" tileid="sheepman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="110"/>
+      <def value="19"/>
+      <hp value="150"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="25"/>
+    <experience value="400"/>
+    <respawn value="1000"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="golden_chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
+      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="You're messing with the rats?!"/>
+        <noise value="Your death has come!"/>
+        <noise value="Feel my wrath!"/>
+      </says>
+      <profile name="poisonous" params="40,greater_poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="elite_frogman">
+    <type class="frogman" subclass="caped_frogman" tileid="frogman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="112"/>
+      <def value="19"/>
+      <hp value="156"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="26"/>
+    <experience value="430"/>
+    <respawn value="1010"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="elder_skeleton">
+    <type class="undead" subclass="elder_skeleton" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="112"/>
+      <def value="19"/>
+      <hp value="156"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="26"/>
+    <experience value="430"/>
+    <respawn value="1010"/>
+    <drops>
+      <item value="money" quantity="[3,10]" probability="90.0"/>
+      <item value="leather_cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned_leather_cuirass" quantity="[1,1]" probability="10.0"/>
+      <item value="mace" quantity="[1,1]" probability="1.0"/>
+      <item value="wooden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="studded_legs" quantity="[1,1]" probability="1.0"/>
+      <item value="dagger" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Thou shall not pass!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="monk">
     <type class="human" subclass="monk" tileid="human.png:4"/>
     <attributes>
@@ -2485,6 +2723,31 @@
         <noise value="bluuergghhhoooorrghhhhh"/>
       </says>
       <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="littlewizard">
+    <type class="human" subclass="littlewizard" tileid="human.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="116"/>
+      <def value="19"/>
+      <hp value="168"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="28"/>
+    <experience value="490"/>
+    <respawn value="1030"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -2588,6 +2851,43 @@
     </ai>
   </creature>
 
+  <creature name="armored_sheepman">
+    <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="123"/>
+      <def value="20"/>
+      <hp value="188"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="31"/>
+    <experience value="600"/>
+    <respawn value="1070"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="golden_chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
+      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="You're messing with the rats?!"/>
+        <noise value="Your death has come!"/>
+        <noise value="Feel my wrath!"/>
+      </says>
+      <profile name="poisonous" params="40,greater_poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="stone_golem">
     <type class="golem" subclass="stone_golem" tileid="golem.png:0"/>
     <attributes>
@@ -2612,6 +2912,58 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="superogre">
+    <type class="giant" subclass="superogre" tileid="giant.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="125"/>
+      <def value="21"/>
+      <hp value="195"/>
+      <speed value="0.6"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="33"/>
+    <experience value="640"/>
+    <respawn value="1080"/>
+    <drops>
+      <item value="money" quantity="[6,31]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="wizard_frogman">
+    <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="129"/>
+      <def value="21"/>
+      <hp value="210"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="34"/>
+    <experience value="730"/>
+    <respawn value="1110"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -2770,6 +3122,43 @@
     </ai>
   </creature>
 
+  <creature name="elder_sheepman">
+    <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="136"/>
+      <def value="22"/>
+      <hp value="241"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="38"/>
+    <experience value="920"/>
+    <respawn value="1180"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="golden_chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
+      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="You're messing with the rats?!"/>
+        <noise value="Your death has come!"/>
+        <noise value="Feel my wrath!"/>
+      </says>
+      <profile name="poisonous" params="40,greater_poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="darkmonk">
     <type class="human" subclass="darkmonk" tileid="human.png:2"/>
     <description></description>
@@ -2916,6 +3305,102 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="invisible_man">
+    <type class="undead" subclass="invisible_man" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="144"/>
+      <def value="23"/>
+      <hp value="275"/>
+      <speed value="0.8"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="42"/>
+    <experience value="1160"/>
+    <respawn value="1260"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Thou shall not rob!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="child_dark_elf">
+    <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="145"/>
+      <def value="24"/>
+      <hp value="283"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="43"/>
+    <experience value="1220"/>
+    <respawn value="1280"/>
+    <drops>
+      <item value="money" quantity="[5,10]" probability="100.0"/>
+      <item value="elvish_armor" quantity="[1,1]" probability="0.05"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.05"/>
+      <item value="elvish_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="chaos_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="elite_sheepman">
+    <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="136"/>
+      <def value="22"/>
+      <hp value="241"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="43"/>
+    <experience value="920"/>
+    <respawn value="1180"/>
+    <drops>
+      <item value="money" quantity="[10,35]" probability="100.0"/>
+      <item value="golden_chainmail" quantity="[1,1]" probability="10.0"/>
+      <item value="pauldroned_iron_cuirass" quantity="[1,1]" probability="2.5"/>
+      <item value="greater_poison" quantity="[1,1]" probability="7.0"/>
+      <item value="biting_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="You're messing with the rats?!"/>
+        <noise value="Your death has come!"/>
+        <noise value="Feel my wrath!"/>
+      </says>
+      <profile name="poisonous" params="40,greater_poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -3500,6 +3985,37 @@
     </ai>
   </creature>
 
+  <creature name="fallen_warrior">
+    <type class="undead" subclass="fallen_warrior" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="165"/>
+      <def value="26"/>
+      <hp value="402"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="55"/>
+    <experience value="2210"/>
+    <respawn value="1610"/>
+    <drops>
+      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="assassin">
     <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
     <description></description>
@@ -3985,7 +4501,7 @@
       <item value="money" quantity="[5,43]" probability="100.0"/>
       <item value="dwarvish_armor" quantity="[1,1]" probability="1.5"/>
       <item value="stone_armor" quantity="[1,1]" probability="0.05"/>
-      <item value="black_legs" quantity="[1,1]" probability="0.005"/>
+      <item value="black_legs" quantity="[1,1]" probability="0.0050"/>
       <item value="halberd" quantity="[1,1]" probability="1.5"/>
       <item value="golden_twoside_axe" quantity="[1,1]" probability="0.05"/>
       <item value="black_boots" quantity="[1,1]" probability="0.0050"/>
@@ -4181,6 +4697,37 @@
     </ai>
   </creature>
 
+  <creature name="fallen_priest">
+    <type class="undead" subclass="fallen_priest" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="192"/>
+      <def value="30"/>
+      <hp value="636"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="74"/>
+    <experience value="4790"/>
+    <respawn value="2460"/>
+    <drops>
+      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="barbarian_king">
     <type class="human" subclass="barbarian_king" tileid="human_barbarian.png:6"/>
     <description></description>
@@ -4305,6 +4852,35 @@
     </ai>
   </creature>
 
+  <creature name="incorporeal_armor">
+    <type class="undead" subclass="incorporeal_armor" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="198"/>
+      <def value="31"/>
+      <hp value="707"/>
+      <speed value="0.8"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="79"/>
+    <experience value="5720"/>
+    <respawn value="2750"/>
+    <drops>
+      <item value="money" quantity="[3,30]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Thou shall not rob!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="ent">
     <type class="boss" subclass="treant" tileid="boss.png:2"/>
     <description></description>
@@ -4362,6 +4938,37 @@
     </ai>
   </creature>
 
+  <creature name="dead_lich">
+    <type class="undead" subclass="dead_lich" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="202"/>
+      <def value="31"/>
+      <hp value="751"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="82"/>
+    <experience value="6330"/>
+    <respawn value="2950"/>
+    <drops>
+      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="mithrilbourgh_lieutenant">
     <type class="human" subclass="soldier_lieutenant" tileid="human_soldier.png:6"/>
     <description></description>
@@ -4384,6 +4991,34 @@
     <equips>
     </equips>
     <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="high_naga">
+    <type class="mutant" subclass="high_naga" tileid="mutant.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="204"/>
+      <def value="31"/>
+      <hp value="782"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="84"/>
+    <experience value="6760"/>
+    <respawn value="3080"/>
+    <drops>
+      <item value="money" quantity="[10,60]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="5,greater_poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4520,6 +5155,37 @@
     </ai>
   </creature>
 
+  <creature name="fallen_high_priest">
+    <type class="undead" subclass="fallen_high_priest" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="213"/>
+      <def value="32"/>
+      <hp value="894"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="91"/>
+    <experience value="8440"/>
+    <respawn value="3610"/>
+    <drops>
+      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="mithrilbourgh_wizard">
     <type class="human" subclass="soldier_wizard" tileid="human_soldier.png:8"/>
     <description></description>
@@ -4571,6 +5237,38 @@
     <equips>
     </equips>
     <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="armed_naga">
+    <type class="mutant" subclass="armed_naga" tileid="mutant.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="216"/>
+      <def value="33"/>
+      <hp value="944"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="94"/>
+    <experience value="9240"/>
+    <respawn value="3850"/>
+    <drops>
+      <item value="money" quantity="[5,60]" probability="100.0"/>
+      <item value="ice_armor" quantity="[1,1]" probability="0.4"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="2.0"/>
+      <item value="shadow_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="magic_plate_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="ice_sword" quantity="[1,1]" probability="0.4"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="5,greater_poison"/>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
@@ -4681,6 +5379,75 @@
     </ai>
   </creature>
 
+  <creature name="high_lich">
+    <type class="undead" subclass="high_lich" tileid="undead.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="202"/>
+      <def value="31"/>
+      <hp value="751"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="104"/>
+    <experience value="6330"/>
+    <respawn value="2950"/>
+    <drops>
+      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
+      <item value="money" quantity="[10,90]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="dark_elf_ranger">
+    <type class="dark_elf" subclass="dark_elf_ranger" tileid="dark_elf.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="231"/>
+      <def value="34"/>
+      <hp value="1179"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="107"/>
+    <experience value="13300"/>
+    <respawn value="5100"/>
+    <drops>
+      <item value="money" quantity="[50,120]" probability="100.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="2.5"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="5.0E-4"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.2"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="1.0"/>
+      <item value="black_shield" quantity="[1,1]" probability="0.01"/>
+      <item value="drow_sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Keep away from me, sunlight dweller!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="chaos_dragonrider">
     <type class="chaos" subclass="chaos_dragonrider" tileid="chaos.png:1"/>
     <description></description>
@@ -4769,6 +5536,35 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="armored_warrior">
+    <type class="human" subclass="armored_warrior" tileid="human.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="238"/>
+      <def value="35"/>
+      <hp value="1317"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="114"/>
+    <experience value="15900"/>
+    <respawn value="5900"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="chaos_legs" quantity="[1,1]" probability="5.0"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.01"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -4904,6 +5700,35 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="armored_leader">
+    <type class="human" subclass="armorer_leader" tileid="human.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="264"/>
+      <def value="38"/>
+      <hp value="1898"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="140"/>
+    <experience value="28800"/>
+    <respawn value="9700"/>
+    <drops>
+      <item value="money" quantity="[10,50]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="chaos_legs" quantity="[1,1]" probability="5.0"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="0.5"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.025"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -5157,7 +5982,7 @@
       <item value="mega_potion" quantity="[1,2]" probability="50.0"/>
       <item value="giant_heart" quantity="[1,1]" probability="85.0"/>
       <item value="money" quantity="[200,2000]" probability="100.0"/>
-      <item value="black_legs" quantity="[1,1]" probability="0.50"/>
+      <item value="black_legs" quantity="[1,1]" probability="0.5"/>
       <item value="black_armor" quantity="[1,1]" probability="0.05"/>
       <item value="black_boots" quantity="[1,1]" probability="0.25"/>
       <item value="black_cloak" quantity="[1,1]" probability="1.0"/>
