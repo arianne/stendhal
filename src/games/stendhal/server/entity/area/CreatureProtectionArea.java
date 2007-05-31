@@ -9,7 +9,6 @@ package games.stendhal.server.entity.area;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
 
-import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
