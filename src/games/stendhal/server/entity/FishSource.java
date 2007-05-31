@@ -62,31 +62,11 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 		put("type", "fish_source");
 	}
 
-//	public FishSource(RPObject object) {
-//		super(object);
-//		setDescription("You see something in the water.");
-//		put("type", "fish_source");
-//	}
 
 	public static void generateRPClass() {
 		RPClass grower = new RPClass("fish_source");
 		grower.isA("entity");
 	}
-
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>false</code>.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		// The player cannot walk over the PlantGrower.
-		return true;
-	}
-
-	
 
 	/**
 	 * Decides randomly if a prospecting action should be
