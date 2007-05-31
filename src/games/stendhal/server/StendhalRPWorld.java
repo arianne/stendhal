@@ -21,6 +21,7 @@ import games.stendhal.server.entity.FishSource;
 import games.stendhal.server.entity.GoldSource;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.area.AreaEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
@@ -166,6 +167,7 @@ public class StendhalRPWorld extends RPWorld {
 		Entity.generateRPClass();
 
 		// Entity sub-classes
+		AreaEntity.generateRPClass();
 		Blood.generateRPClass();
 		Chest.generateRPClass();
 		Corpse.generateRPClass();

@@ -18,10 +18,11 @@ import games.stendhal.server.entity.PassiveEntity;
  * A base area entity.
  */
 public abstract class AreaEntity extends PassiveEntity {
-	/**
-	 * The RPClass.
-	 */
-	public final static RPClass	RPCLASS		= createRPClass();
+// MAYBEDO (if Entity.RPCLASS added):
+//	/**
+//	 * The RPClass.
+//	 */
+//	public final static RPClass	RPCLASS		= createRPClass();
 
 	/**
 	 * The height.
@@ -58,21 +59,29 @@ public abstract class AreaEntity extends PassiveEntity {
 	/**
 	 * Define the RPClass.
 	 *
-	 * NOTE: Same thing [almost] as generateRPClass(), but incompatible
-	 * method signature.
-	 *
 	 * @return	The configured RPClass.
 	 */
-	protected static RPClass createRPClass() {
+	private static RPClass createRPClass() {
 		RPClass rpclass = new RPClass("area");
 
 		// MAYBEDO: rpclass.isA(Entity.RPCLASS)
 		rpclass.isA("entity");
 
 		rpclass.add("height", RPClass.SHORT);
+		rpclass.add("name", RPClass.STRING);
 		rpclass.add("width", RPClass.SHORT);
 
 		return rpclass;
+	}
+
+
+	/**
+	 * Generate the RPClass (compatible with manual init/order).
+	 *
+	 * NOTE: This MUST be called during environment initialization.
+	 */
+	public static void generateRPClass() {
+		createRPClass();
 	}
 
 

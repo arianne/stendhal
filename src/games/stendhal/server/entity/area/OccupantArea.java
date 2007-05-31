@@ -26,7 +26,7 @@ import marauroa.common.game.IRPZone;
  * An base area that performs actions on RPEntity's that are entering, leaving,
  * moving in, or standing in it's space.
  */
-public class OccupantArea extends PassiveEntity implements MovementListener, TurnListener {
+public class OccupantArea extends AreaEntity implements MovementListener, TurnListener {
 	
 	/**
 	 * How often an action is done while stationary (in turns).
@@ -43,16 +43,6 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	 */
 	protected List<RPEntity.ID> targets;
 
-	/**
-	 * The height.
-	 */
-	protected int height;
-
-	/**
-	 * The width
-	 */
-	protected int width;
-
 
 	/**
 	 * Create an occupant area.
@@ -63,16 +53,12 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	 * @param	interval	Standing action interval.
 	 */
 	public OccupantArea(String name, int width, int height, int interval) throws AttributeNotFoundException {
-		put("type", "area");
+		super(width, height);
+
 		put("name", name);
 
-		this.height = height;
-		this.width = width;
 		this.interval = interval;
 
-		put("width", width);
-		put("height", height);
-		
 		playersOnly = false;
 		targets = new LinkedList<RPEntity.ID>();
 	}
@@ -185,19 +171,6 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	//
 
 	/**
-	 * Get the area.
-	 *
-	 * @param	rect		The rectangle to fill in.
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
-	 */
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, width, height);
-	}
-
-
-	/**
 	 * Called when this object is added to a zone.
 	 *
 	 * @param	zone		The zone this was added to.
@@ -228,21 +201,13 @@ public class OccupantArea extends PassiveEntity implements MovementListener, Tur
 	public void update() throws AttributeNotFoundException {
 		StendhalRPZone zone;
 
-		super.update();
-
 		/*
 		 * Reregister incase coordinates/size changed (could be smarter)
 		 */
 		zone = getZone();
 		zone.removeMovementListener(this);
 
-		if(has("height")) {
-			height = getInt("height");
-		}
-
-		if(has("width")) {
-			width = getInt("width");
-		}
+		super.update();
 
 		zone.addMovementListener(this);
 	}

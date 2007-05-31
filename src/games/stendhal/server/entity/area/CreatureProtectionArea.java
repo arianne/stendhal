@@ -19,7 +19,7 @@ import marauroa.common.game.AttributeNotFoundException;
  * An area prevents creatures from entering. This allows a layered chain
  * of criteria. Think of this as a creature firewall.
  */
-public class CreatureProtectionArea extends Entity {
+public class CreatureProtectionArea extends AreaEntity {
 
 	/**
 	 * Whether to block on no match.
@@ -31,15 +31,6 @@ public class CreatureProtectionArea extends Entity {
 	 */
 	protected List<Entry> entries;
 
-	/**
-	 * The area height.
-	 */
-	protected int height;
-
-	/**
-	 * The area width.
-	 */
-	protected int width;
 
 	/**
 	 * Create a 1x1 creature protection area.
@@ -66,11 +57,10 @@ public class CreatureProtectionArea extends Entity {
 	 * @param	defaultBlocked	Whether blocked on no match.
 	 */
 	public CreatureProtectionArea(int width, int height, boolean defaultBlocked) throws AttributeNotFoundException {
-		put("type", "area");
+		super(width, height);
+
 		put("server-only", "");
 
-		this.width = width;
-		this.height = height;
 		this.defaultBlocked = defaultBlocked;
 
 		entries = new LinkedList<Entry>();
@@ -149,18 +139,6 @@ public class CreatureProtectionArea extends Entity {
 	//
 	// Entity
 	//
-
-	/**
-	 * Get the entity's area.
-	 *
-	 * @param	rect		The rectangle to fill in.
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
-	 */
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, width, height);
-	}
 
 	/**
 	 * Checks whether a creature can enter.
