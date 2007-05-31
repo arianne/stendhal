@@ -86,12 +86,17 @@ public class Sheep2DView extends RPEntity2DView {
 	/**
 	 * Get the approriete idea sprite.
 	 *
-	 *
+	 * @return	The sprite representing the current idea, or null.
 	 */
 	protected Sprite getIdeaSprite() {
 		String idea = sheep.getIdea();
 
 		if(idea == null) {
+			return null;
+		}
+
+		// TODO: Remove 'stop' idea on server side if not needed
+		if(idea.equals("stop")) {
 			return null;
 		}
 

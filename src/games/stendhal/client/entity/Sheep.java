@@ -21,7 +21,7 @@ import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** A Sheep entity */
-public class Sheep extends NPC {
+public class Sheep extends RPEntity {
 	/**
 	 * Sheep idea property.
 	 */
@@ -179,11 +179,9 @@ public class Sheep extends NPC {
 		 */
 		if (object.has("weight")){
 			//TODO: find why there are sheep without "weight" attribute
-			//System.out.println ("weight set in init" + object);
-		    weight = object.getInt("weight");
-		}
-		else {
-			//System.out.println ("but " + object);
+			weight = object.getInt("weight");
+		} else {
+			weight = 0;
 		}
 
 		onIdea(idea);
