@@ -195,7 +195,7 @@ public class Path {
 		// 		logger.info("status: " + path.getStatus());
 		if (path.getStatus() == Pathfinder.PATH_NOT_FOUND) {
 			if (logger.isDebugEnabled()) {
-				logger.debug("Pathfinding aborted: " + zone.getID() + " " + entity.get("name") + " (" + x + ", " + y
+				logger.debug("Pathfinding aborted: " + zone.getID() + " " + entity.getName() + " (" + x + ", " + y
 				        + ") " + destination + " Pathfinding time: " + (System.currentTimeMillis() - startTime)
 				        + "  steps: " + steps);
 			}
