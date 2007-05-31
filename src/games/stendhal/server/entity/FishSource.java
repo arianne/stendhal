@@ -1,7 +1,8 @@
 package games.stendhal.server.entity;
 
+import java.lang.ref.WeakReference;
+
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -25,8 +26,47 @@ import marauroa.common.game.RPClass;
  * @author dine
  *
  */
-public class FishSource extends Entity implements UseListener, TurnListener {
+public class FishSource extends Entity implements UseListener {
 
+	
+	private class Fisher implements TurnListener{
+		WeakReference<Player> playerRef;
+		public Fisher(Player bob) {
+			playerRef = new WeakReference<Player>(bob);
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Fisher) {
+				Fisher new_name = (Fisher)obj ;
+				return playerRef.get()==new_name.playerRef.get();
+			}else{
+				return false;
+			}
+			
+		}
+		@Override
+		public int hashCode() {
+			return super.hashCode();
+		}
+		
+		public void onTurnReached(int currentTurn, String message) {
+			Player player= playerRef.get();
+			if (playerRef.get() != null) {
+				// check if the player is still standing next to this fish source
+				if (player.nextTo(getX(),getY(),0.25)) {
+					// roll the dice
+					if (fishingSuccessful(player)) {
+						Item fish = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+						player.equip(fish, true);
+						player.sendPrivateText("You caught a fish.");
+					} else {
+						player.sendPrivateText("You didn't get a fish.");
+					}
+				}
+			}
+		}
+		
+	}
 	private String itemName;
 	
 	/**
@@ -88,16 +128,16 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 			if (player.nextTo(this)) {
 
 				if (player.isEquipped("fishing_rod")) {
-					String name = player.getName();
+					Fisher fisher = new Fisher(player);
 					// You can't start a new prospecting action before
 					// the last one has finished.
-					if (TurnNotifier.get().getRemainingTurns(this, name) == -1) {
+					if (TurnNotifier.get().getRemainingTurns(fisher) == -1) {
 						player.faceTo(this);
 						player.notifyWorldAboutChanges();
 
 						// some feedback is needed.
 						player.sendPrivateText("You have started fishing.");
-						TurnNotifier.get().notifyInSeconds(PROSPECTING_DURATION, this, name);
+						TurnNotifier.get().notifyInSeconds(PROSPECTING_DURATION, fisher);
 					}
 				} else {
 					player.sendPrivateText("You need a fishing rod for fishing.");
@@ -106,24 +146,5 @@ public class FishSource extends Entity implements UseListener, TurnListener {
 		}
 	}
 
-	/*
-	 * Is called when a player has finished.
-	 */
-	public void onTurnReached(int currentTurn, String message) {
-		Player player = StendhalRPRuleProcessor.get().getPlayer(message);
-		// check if the player is still logged in
-		if (player != null) {
-			// check if the player is still standing next to this fish source
-			if (player.nextTo(this)) {
-				// roll the dice
-				if (fishingSuccessful(player)) {
-					Item fish = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
-					player.equip(fish, true);
-					player.sendPrivateText("You caught a fish.");
-				} else {
-					player.sendPrivateText("You didn't get a fish.");
-				}
-			}
-		}
-	}
+
 }
