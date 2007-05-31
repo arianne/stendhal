@@ -42,6 +42,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 	private int actual;
 
 
+	@SuppressWarnings("unchecked")
 	public StendhalChatLineListener(StendhalClient client, JTextField playerChatText) {
 		super();
 		this.playerChatText = playerChatText;
