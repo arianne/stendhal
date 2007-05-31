@@ -59,6 +59,7 @@ public class MoveAction implements ActionListener {
 			player.applyClientDirection(true);
 		}
 
+		// TODO: This is called VERY often, skip useless code from here please.
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
 	}
