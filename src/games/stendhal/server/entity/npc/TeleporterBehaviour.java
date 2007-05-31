@@ -49,7 +49,7 @@ public class TeleporterBehaviour implements TurnListener {
 				speakerNPC.say(repeatedText);
 				TurnNotifier.get().notifyInTurns(60 * 3, this);
 			}
-		}, null);
+		});
 	}
 
 	/**
