@@ -68,7 +68,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			Player instance=(Player)player;			
 
 			// first try an update
-			String query = "UPDATE character_stats SET"+
+			String query = "UPDATE character_stats SET "+
 			   "sentence='" + StringChecker.escapeSQLString(instance.getSentence())+"', "+
 			   "age=" + instance.getAge()+", "+
 			   "level=" + instance.getLevel()+", "+
@@ -79,14 +79,14 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			   "def=" + instance.getDEF()+", "+
 			   "hp=" + instance.getBaseHP()+", "+
 			   "karma=" + instance.getKarma()+
-
-			   "' WHERE name='" + StringChecker.escapeSQLString(player.get("name"));
+			   " WHERE name='" + StringChecker.escapeSQLString(player.get("name"))+"'";
+			logger.info("storeCharacter is running: "+query);
 			int count = stmt.executeUpdate(query);
 			
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
-				query = "INSERT INTO character_stats (name, sentence, age, level, outfit, xp, money, atk, def, hp, karma) VALUES ('" +
-				   instance.getName()+"', "+
+				query = "INSERT INTO character_stats (name, sentence, age, level, outfit, xp, money, atk, def, hp, karma) VALUES (" +
+				   "'"+instance.getName()+"', "+
 				   "'"+StringChecker.escapeSQLString(instance.getSentence())+"', "+
 				   instance.getAge()+", "+
 				   instance.getLevel()+", "+
@@ -99,11 +99,12 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 				   instance.getKarma()+
 				   ")";
 ;
+				logger.info("storeCharacter is running: "+query);
 				stmt.executeUpdate(query);
 			}
 			stmt.close();
 		} catch (SQLException sqle) {
-			logger.warn("error adding game event", sqle);
+			logger.warn("error storing character", sqle);
 			throw sqle;
 		}
 	}
