@@ -43,10 +43,11 @@ public class TurnNotifier {
 			if (obj == null) {
 				return false;
 			}
+			
 			if (getClass() != obj.getClass()) { 
 				return false;
 			}
-
+			if (obj instanceof TurnEvent){
 			final TurnEvent other = (TurnEvent) obj;
 			if (!turnListener.equals(other.turnListener)) {
 				return false;
@@ -56,6 +57,8 @@ public class TurnNotifier {
 				return (other.message == null);
 			}
 			return (message.equals(other.message));
+			}
+			else return false;
 		}
 
 		@Override
