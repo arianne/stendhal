@@ -41,6 +41,11 @@ public abstract class RPEntity extends ActiveEntity {
 	public final static Object	PROP_ADMIN_LEVEL	= new Object();
 
 	/**
+	 * Ghostmode property.
+	 */
+	public final static Object	PROP_GHOSTMODE		= new Object();
+
+	/**
 	 * Indicator text property.
 	 */
 	public final static Object	PROP_TEXT_INDICATORS	= new Object();
@@ -1028,7 +1033,8 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("ghostmode")) {
-		    ghostmode = true;
+			ghostmode = true;
+			fireChange(PROP_GHOSTMODE);
 		}
 
 		if (changes.has("guild")) {
@@ -1098,7 +1104,8 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 
 		if (changes.has("ghostmode")) {
-		    ghostmode = false;
+			ghostmode = false;
+			fireChange(PROP_GHOSTMODE);
 		}
 		
 		/*

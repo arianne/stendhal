@@ -70,10 +70,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	public Entity2DView(final Entity entity) {
 		this.entity = entity;
 
-		entityComposite = getComposite();
+		entityComposite = AlphaComposite.SrcOver;
 		contained = false;
 		animatedChanged = false;
-		visibilityChanged = false;
+		visibilityChanged = true;
 		representationChanged = false;
 
 		entity.addChangeListener(this);
@@ -211,10 +211,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return	The drawing composite.
 	 */
 	protected AlphaComposite getComposite() {
-		int visibility = entity.getVisibility();
+		int visibility = getVisibility();
 
 		if(visibility == 100) {
 			return AlphaComposite.SrcOver;
+		} else if(visibility == 0) {
+			return AlphaComposite.Dst;
 		} else {
 			return AlphaComposite.getInstance(
 				AlphaComposite.SRC_OVER, visibility / 100.0f);
@@ -237,6 +239,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public Sprite getSprite() {
 		return sprite;
+	}
+
+
+	/**
+	 * Get the entity's visibility.
+	 *
+	 * @return	The visibility value (0-100).
+	 */
+	protected int getVisibility() {
+		return entity.getVisibility();
 	}
 
 
@@ -384,12 +396,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public void entityChanged(final Entity entity, final Object property)
 	{
-		if(property == Entity.PROP_ANIMATED)
+		if(property == Entity.PROP_ANIMATED) {
 			animatedChanged = true;
-		else if(property == Entity.PROP_TYPE)
+		} else if(property == Entity.PROP_TYPE) {
 			representationChanged = true;
-		else if(property == Entity.PROP_VISIBILITY)
+		} else if(property == Entity.PROP_VISIBILITY) {
 			visibilityChanged = true;
+		}
 	}
 
 

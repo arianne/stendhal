@@ -82,6 +82,18 @@ public class Player2DView extends RPEntity2DView {
 	}
 
 
+	/**
+	 * Determine is the user can see this entity while in ghostmode.
+	 *
+	 * @return	<code>true</code> if the client user can see this
+	 *		entity while in ghostmode.
+	 */
+	@Override
+	protected boolean isVisibleGhost() {
+		return User.isAdmin();
+	}
+
+
 	//
 	// StateEntity2DView
 	//

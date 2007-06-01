@@ -14,6 +14,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -190,12 +191,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	y		The drawn Y coordinate.
 	 */
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y) {
-		if (rpentity instanceof Player) {
-		    Player player = (Player) rpentity;
-		    if (player.isGhostMode()) { //just DON'T draw ghostmode title bar. It's annoying and you can't always tell if you're in ghostmode
-			return;
-		    }
-		}
 		float hpRatio = rpentity.getHPRatio();
 
 		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
@@ -220,11 +215,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	y		The drawn Y coordinate.
 	 */
 	protected void drawTitle(final Graphics2D g2d, int x, int y) {
-		
-		if (rpentity instanceof Player) {
-		    Player player = (Player) rpentity;
-		    if (player.isGhostMode()) return;
-		}
 		if (titleSprite != null) {
 			titleSprite.draw(g2d, x, y - 3 - titleSprite.getHeight());
 		}
@@ -258,23 +248,21 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	}
 
 
+	/**
+	 * Determine is the user can see this entity while in ghostmode.
+	 *
+	 * @return	<code>true</code> if the client user can see this
+	 *		entity while in ghostmode.
+	 */
+	protected boolean isVisibleGhost() {
+		// TODO: Find clean way to do in subclass
+		return (rpentity == User.get());
+	}
+
+
 	//
 	// Entity2DView
 	//
-
-	/**
-	 * Draw the entity.
-	 *
-	 * @param	screen		The screen to drawn on.
-	 */
-	@Override
-	public void draw(final GameScreen screen) {
-		// NOTE: This bypasses update() also, but should not hurt
-		if((rpentity == User.get()) || !rpentity.isGhostMode()) {
-			super.draw(screen);
-		}
-	}
-
 
 	/**
 	 * Draw the entity.
@@ -365,20 +353,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * all other game layers are rendered.
 	 *
 	 * @param	screen		The screen to drawn on.
-	 */
-	@Override
-	public void drawTop(final GameScreen screen) {
-		if((rpentity == User.get()) || !rpentity.isGhostMode()) {
-			super.drawTop(screen);
-		}
-	}
-
-
-	/**
-	 * Draw the top layer parts of an entity. This will be on down after
-	 * all other game layers are rendered.
-	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
@@ -387,8 +361,34 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void drawTop(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		Composite oldComposite = g2d.getComposite();
+		g2d.setComposite(entityComposite);
+
 		drawTitle(g2d, x, y);
 		drawHPbar(g2d, x, y);
+
+		g2d.setComposite(oldComposite);
+	}
+
+
+	/**
+	 * Get the entity's visibility.
+	 *
+	 * @return	The visibility value (0-100).
+	 */
+	protected int getVisibility() {
+		/*
+		 * Hide while in ghostmode.
+		 */
+		if(rpentity.isGhostMode()) {
+			if(isVisibleGhost()) {
+				return super.getVisibility() / 2;
+			} else {
+				return 0;
+			}
+		} else {
+			return super.getVisibility();
+		}
 	}
 
 
@@ -438,6 +438,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		if(property == RPEntity.PROP_ADMIN_LEVEL) {
 			titleChanged = true;
+			visibilityChanged = true;
+		} else if(property == RPEntity.PROP_GHOSTMODE) {
+			visibilityChanged = true;
 		} else if(property == RPEntity.PROP_OUTFIT) {
 			representationChanged = true;
 		} else if(property == Entity.PROP_TITLE) {
