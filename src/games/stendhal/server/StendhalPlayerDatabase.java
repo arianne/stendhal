@@ -1,5 +1,6 @@
 package games.stendhal.server;
 
+import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 import marauroa.common.Configuration;
@@ -66,7 +68,52 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			Statement stmt = connection.createStatement();
 			
 			Player instance=(Player)player;			
+			
+			String head=null;
+			String armor=null;
+			String lhand=null;
+			String rhand=null;
+			String legs=null;
+			String feet=null;
+			String cloak=null;
+			
+			Item item=null;
+			item=instance.getHelmet();
+			if(item!=null) {
+			  head=item.getName();
+			}
 
+			item=instance.getArmor();
+			if(item!=null) {
+			  armor=item.getName();
+			}
+
+			item=instance.getShield();
+			if(item!=null) {
+			  lhand=item.getName();
+			}
+
+			List<Item> items=instance.getWeapons();
+			if(items.size()>0) {
+			  rhand=items.get(0).getName();
+			}
+
+			item=instance.getLegs();
+			if(item!=null) {
+			  legs=item.getName();
+			}
+
+			item=instance.getBoots();
+			if(item!=null) {
+			  feet=item.getName();
+			}
+
+			item=instance.getCloak();
+			if(item!=null) {
+			  cloak=item.getName();
+			}
+
+			
 			// first try an update
 			String query = "UPDATE character_stats SET "+
 			   "sentence='" + StringChecker.escapeSQLString(instance.getSentence())+"', "+
@@ -78,15 +125,24 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			   "atk=" + instance.getATK()+", "+
 			   "def=" + instance.getDEF()+", "+
 			   "hp=" + instance.getBaseHP()+", "+
-			   "karma=" + instance.getKarma()+
+			   "karma=" + instance.getKarma()+", "+
+			   
+			   "head='" + StringChecker.escapeSQLString(head)+"', "+
+			   "armor='" + StringChecker.escapeSQLString(armor)+"', "+
+			   "lhand='" + StringChecker.escapeSQLString(lhand)+"', "+
+			   "rhand='" + StringChecker.escapeSQLString(rhand)+"', "+
+			   "legs='" + StringChecker.escapeSQLString(legs)+"', "+
+			   "feet='" + StringChecker.escapeSQLString(feet)+"', "+
+			   "cloak='" + StringChecker.escapeSQLString(cloak)+"'"+
 			   " WHERE name='" + StringChecker.escapeSQLString(player.get("name"))+"'";
 			logger.debug("storeCharacter is running: "+query);
 			int count = stmt.executeUpdate(query);
 			
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
-				query = "INSERT INTO character_stats (name, sentence, age, level, outfit, xp, money, atk, def, hp, karma) VALUES (" +
-				   "'"+instance.getName()+"', "+
+				query = "INSERT INTO character_stats (name, sentence, age, level, outfit, xp, money, atk, def, hp, karma" +
+						"head, armor, lhand, rhand, legs, feet, cloak) VALUES (" +
+				   "'"+StringChecker.escapeSQLString(instance.getName())+"', "+
 				   "'"+StringChecker.escapeSQLString(instance.getSentence())+"', "+
 				   instance.getAge()+", "+
 				   instance.getLevel()+", "+
@@ -97,6 +153,13 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 				   instance.getDEF()+", "+
 				   instance.getBaseHP()+", "+
 				   instance.getKarma()+
+				   "'"+StringChecker.escapeSQLString(head)+"', "+
+				   "'"+StringChecker.escapeSQLString(armor)+"', "+
+				   "'"+StringChecker.escapeSQLString(lhand)+"', "+
+				   "'"+StringChecker.escapeSQLString(rhand)+"', "+
+				   "'"+StringChecker.escapeSQLString(legs)+"', "+
+				   "'"+StringChecker.escapeSQLString(feet)+"', "+
+				   "'"+StringChecker.escapeSQLString(cloak)+"'"+
 				   ")";
 ;
 				logger.debug("storeCharacter is running: "+query);
