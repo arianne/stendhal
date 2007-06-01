@@ -121,16 +121,31 @@ public class ShopList {
 		shops.add("buyrare2", "fire_sword", 2000);
 		shops.add("buyrare2", "ice_sword", 5000);
 
-		// more rare armor shop (ados?)
-		shops.add("buyrare3", "studded_boots", 75);
-		shops.add("buyrare3", "chain_boots", 90);
+		// very rare armor shop (ados)
 		shops.add("buyrare3", "steel_boots", 1000);
-		shops.add("buyrare3", "skull_shield", 100);
-		shops.add("buyrare3", "unicorn_shield", 125);
-		shops.add("buyrare3", "viking_helmet", 250);
+		shops.add("buyrare3", "golden_boots", 1500);
+        shops.add("buyrare3", "shadow_boots", 2000);
 		shops.add("buyrare3", "golden_legs", 3000);
-		shops.add("buyrare3", "golden_shield", 5000);
+        shops.add("buyrare3", "shadow_legs", 5000);
+		shops.add("buyrare3", "golden_shield", 9000);
+		shops.add("buyrare3", "golden_armor", 7000);
+		shops.add("buyrare3", "shadow_shield", 15000);
+		shops.add("buyrare3", "shadow_armor", 10000);
+		
+		// less rare armor shop (kobold city -  kobolds drop some of these things)
+		shops.add("buystuff2", "leather_scale_armor", 65);
+		shops.add("buystuff2", "studded_legs", 70);
+		shops.add("buystuff2", "studded_boots", 75);
+		shops.add("buystuff2", "chain_boots", 100);
+		shops.add("buystuff2", "skull_shield", 100);
+		shops.add("buystuff2", "unicorn_shield", 125);
+		shops.add("buystuff2", "viking_helmet", 250);
 
+		shops.add("sellstuff2", "leather_boots", 50);		
+		shops.add("sellstuff2", "studded_helmet", 60);
+		shops.add("sellstuff2", "studded_shield", 80);
+		shops.add("sellstuff2", "sword", 90);
+		shops.add("sellstuff2", "dwarf_cloak", 230);
 	}
 
 	static private ShopList instance;
