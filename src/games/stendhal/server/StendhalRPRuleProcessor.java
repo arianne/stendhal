@@ -675,7 +675,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Create the player character object
 			 */
-			RPObject object = new Player(new RPObject());
+			Player object = new Player(new RPObject());
 			object.setID(RPObject.INVALID_ID);
 
 			object.put("type", "player");
@@ -688,6 +688,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			object.put("def", 10);
 			object.put("def_xp", 0);
 			object.put("xp", 0);
+			
+			/*
+			 * TODO: Update the above to use Player and RPEntity methods.
+			 */
+			object.update();
 
 			RuleManager manager = RuleSetFactory.getRuleSet("default");
 
@@ -712,6 +717,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+			logger.error("Can't create character",e);
 			TestHelper.fail();
 			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}
