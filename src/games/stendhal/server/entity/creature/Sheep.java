@@ -215,7 +215,7 @@ public class Sheep extends DomesticAnimal {
 			moveToOwner();
 		} else {
 			logger.debug("Sheep has nothing to do");
-			setIdea("stop");
+			setIdea(null);
 			stop();
 			clearPath();
 		}

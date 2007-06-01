@@ -29,6 +29,9 @@ public abstract class NPC extends RPEntity {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(NPC.class);
 
+	/**
+	 * The NPC's current idea/thought.
+	 */
 	private String idea;
 
 	public static void generateRPClass() {
@@ -58,15 +61,30 @@ public abstract class NPC extends RPEntity {
 		put("y", 0);
 	}
 
+
+	/**
+	 * Set the NPC's idea/thought.
+	 *
+	 * @param	idea		The idea mnemonic, or <code>null</code>.
+	 */
 	public void setIdea(String idea) {
-		if (idea.equals(this.idea)) {
-			return;
+		if(idea != null) {
+			if (!idea.equals(this.idea)) {
+				put("idea", idea);
+			}
+		} else if(has("idea")) {
+			remove("idea");
 		}
 
 		this.idea = idea;
-		put("idea", idea);
 	}
 
+
+	/**
+	 * Get the NPC's idea/thought.
+	 *
+	 * @return	The idea mnemonic, or <code>null</code>.
+	 */
 	public String getIdea() {
 		return idea;
 	}
