@@ -1087,6 +1087,7 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="int_wofol_house4" file="interiors/wofol/house4.tmx">
+ <configurator class-name="games.stendhal.server.maps.wofol.house4.TraderNPC" />
   <portal x="7" y="13" ref="entrance">
      <destination zone="-1_semos_mine_nw" ref="house4_entrance"/>
    </portal>

@@ -39,9 +39,6 @@
  <tileset name="Unbenannt" firstgid="104" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="105" tilewidth="0" tileheight="0">
-  <image source="../../../../../tiled-0.6.1"/>
- </tileset>
  <tileset name="animal.png" firstgid="105" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
