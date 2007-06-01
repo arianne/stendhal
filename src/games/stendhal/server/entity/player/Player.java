@@ -1505,4 +1505,9 @@ public class Player extends RPEntity implements TurnListener {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
 
+	public String getSentence() {
+		// TODO: Sentence here.
+	    return "";
+    }
+
 }

@@ -1,12 +1,31 @@
 create table if not exists characters_stats
   (
-  id integer auto_increment not null,
   name varchar(32) not null,
-  outfit varchar(32),
+  sentence varchar(256),
+  age integer,
   level integer,
+  outfit varchar(32),
   xp integer,
+  money integer,
   
-  primary key(id)
+  married varchar(32),
+  
+  /* Attributes */
+  atk integer,
+  def integer,
+  hp integer,
+  karma integer,
+  
+  /* Equipment */
+  head varchar(32),
+  armor varchar(32),
+  lhand varchar(32),
+  rhand varchar(32),
+  legs varchar(32),
+  feet varchar(32),
+  cloak varchar(32),
+  
+  primary key(name)
   )
   TYPE=INNODB;
   

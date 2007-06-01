@@ -675,7 +675,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * Create the player character object
 			 */
-			RPObject object = new RPObject();
+			RPObject object = new Player(new RPObject());
 			object.setID(RPObject.INVALID_ID);
 
 			object.put("type", "player");
