@@ -325,7 +325,7 @@ public class Bootstrap {
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
 		} else if (e instanceof LinkageError) {
-			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. Clear updates so that they are downloaded again after restarting Stendhal?", 
+			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?", 
 					"Stendhal", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
 				bootProp.remove("load");
