@@ -190,6 +190,12 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	y		The drawn Y coordinate.
 	 */
 	protected void drawHPbar(final Graphics2D g2d, final int x, final int y) {
+		if (rpentity instanceof Player) {
+		    Player player = (Player) rpentity;
+		    if (player.isGhostMode()) { //just DON'T draw ghostmode title bar. It's annoying and you can't always tell if you're in ghostmode
+			return;
+		    }
+		}
 		float hpRatio = rpentity.getHPRatio();
 
 		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
@@ -214,6 +220,11 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	y		The drawn Y coordinate.
 	 */
 	protected void drawTitle(final Graphics2D g2d, int x, int y) {
+		
+		if (rpentity instanceof Player) {
+		    Player player = (Player) rpentity;
+		    if (player.isGhostMode()) return;
+		}
 		if (titleSprite != null) {
 			titleSprite.draw(g2d, x, y - 3 - titleSprite.getHeight());
 		}
