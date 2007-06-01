@@ -1,4 +1,4 @@
-create table if not exists characters_stats
+create table if not exists character_stats
   (
   name varchar(32) not null,
   sentence varchar(256),
