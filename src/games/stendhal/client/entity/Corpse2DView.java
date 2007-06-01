@@ -10,14 +10,21 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.SpriteStore;
+import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * The 2D view of a corpse.
  */
 public class Corpse2DView extends Entity2DView {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(Corpse2DView.class);
+
 	/**
 	 * The RP entity this view is for.
 	 */
