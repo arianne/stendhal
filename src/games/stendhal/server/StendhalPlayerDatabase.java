@@ -80,7 +80,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			   "hp=" + instance.getBaseHP()+", "+
 			   "karma=" + instance.getKarma()+
 			   " WHERE name='" + StringChecker.escapeSQLString(player.get("name"))+"'";
-			logger.info("storeCharacter is running: "+query);
+			logger.debug("storeCharacter is running: "+query);
 			int count = stmt.executeUpdate(query);
 			
 			if (count == 0) {
@@ -99,7 +99,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 				   instance.getKarma()+
 				   ")";
 ;
-				logger.info("storeCharacter is running: "+query);
+				logger.debug("storeCharacter is running: "+query);
 				stmt.executeUpdate(query);
 			}
 			stmt.close();
