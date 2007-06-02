@@ -1103,6 +1103,7 @@ Mature sheep wanted: please speak to Sato
    </portal>
  </zone>
  <zone name="int_wofol_blacksmith" file="interiors/wofol/blacksmith.tmx">
+ <configurator class-name="games.stendhal.server.maps.wofol.blacksmith.BlacksmithNPC" />
   <portal x="5" y="11" ref="entrance_left">
      <destination zone="-1_semos_mine_nw" ref="blacksmith_entrance_left"/>
    </portal>

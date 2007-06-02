@@ -641,6 +641,18 @@
       <slot name="bag"/>
     </equipable>
   </item>
+  
+  <item name="book_blue">
+    <type class="book" subclass="book_blue" tileid="-1"/>
+    <description>You see a book with the words GEMS AND MINERALS on the front cover.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+    </equipable>
+  </item>
 
   <item name="leather_boots">
     <type class="boots" subclass="leather_boots" tileid="-1"/>
@@ -3782,7 +3794,7 @@
 
   <item name="assassin_dagger">
     <type class="sword" subclass="assassin_dagger" tileid="-1"/>
-    <description>You see a dagger, it is little more than decorative but you may be able to hurt something with it.</description>
+    <description>You see an assassin dagger, easy to pull out and use when needed.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="6"/>
       <rate value="2"/>
@@ -3805,6 +3817,22 @@
     </attributes>
     <weight value="0.2"/>
     <value value="5716"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="obsidian_knife">
+    <type class="sword" subclass="obsidian_knife" tileid="-1"/>
+    <description>You see a knife whose blade is crafted to a lethal edge from finest obsidian.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="4"/>
+      <rate value="1"/>
+    </attributes>
+    <weight value="0.1"/>
+    <value value="6250"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>
