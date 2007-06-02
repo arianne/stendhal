@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-public class Blackjack extends AbstractQuest implements TurnListener {
+public class Blackjack extends AbstractQuest  {
 
 	private static final int MIN_STAKE = 10;
 	
@@ -217,16 +217,17 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 		return message;
 	}
 	
-	private void letBankDrawAfterPause(String playerName) {
-		TurnNotifier.get().notifyInSeconds(1, this, playerName);
-	}
-
-	public void onTurnReached(int currentTurn, String message) {
-		// Check whether the player is still there, or if he
-		// has left/said goodbye/logged out.
-		if (message.equals(ramon.getAttending().getName())) {
-			dealCards(ramon.getAttending(), 1);
-		}
+	private void letBankDrawAfterPause(final String playerName) {
+		TurnNotifier.get().notifyInSeconds(1, new TurnListener(){
+			String name = playerName;
+			public void onTurnReached(int currentTurn, String message) {
+				if (name.equals(ramon.getAttending().getName())) {
+					dealCards(ramon.getAttending(), 1);
+				}
+				
+			}
+			
+		});
 	}
 
 	/**
@@ -248,7 +249,7 @@ public class Blackjack extends AbstractQuest implements TurnListener {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	public void addToWorld() {
 
 		ramon = new SpeakerNPC("Ramon") {
