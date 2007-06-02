@@ -81,6 +81,7 @@ public class StendhalQuestSystem {
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
 		//loadQuest("NomyrCataclysm");
+		loadQuest("ObsidianKnife");
 		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
 		loadQuest("ReverseArrow");
