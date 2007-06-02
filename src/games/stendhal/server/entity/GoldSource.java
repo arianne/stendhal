@@ -1,7 +1,8 @@
 package games.stendhal.server.entity;
 
+import java.lang.ref.WeakReference;
+
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
@@ -25,8 +26,49 @@ import marauroa.common.game.RPObject;
  * @author daniel
  *
  */
-public class GoldSource extends Entity implements UseListener, TurnListener {
+public class GoldSource extends Entity implements UseListener {
 
+	private static final String NEEDED_EQUIPMENT = "gold_pan";
+	private class Prospector implements TurnListener{
+		WeakReference<Player> playerRef;
+		public Prospector(Player bob) {
+			playerRef = new WeakReference<Player>(bob);
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Prospector) {
+				Prospector new_name = (Prospector)obj ;
+				return playerRef.get()==new_name.playerRef.get();
+			}else{
+				return false;
+			}
+			
+		}
+		@Override
+		public int hashCode() {
+			return super.hashCode();
+		}
+		
+		public void onTurnReached(int currentTurn, String message) {
+			Player player = playerRef.get();
+			// check if the player is still logged in
+			if (player != null) {
+				// check if the player is still standing next to this gold source
+				if (player.nextTo(getX(),getY(),0.25)) {
+					// roll the dice
+					if (isSuccessful(player)) {
+						Item nugget = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+						player.equip(nugget, true);
+						player.sendPrivateText("You found a gold nugget.");
+					} else {
+						player.sendPrivateText("You didn't find anything.");
+					}
+				}
+			}
+		}
+		
+	}
+	private String itemName ="gold_nugget";
 	/**
 	 * The chance that prospecting is successful.
 	 */
@@ -36,7 +78,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	 * How long it takes to prospect for gold (in seconds) 
 	 * TODO: randomize this number a bit.
 	 */
-	private final static int PROSPECTING_DURATION = 10;
+	private final static int DURATION = 10;
 
 	public GoldSource() {
 		super();
@@ -64,7 +106,6 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {
-		// The player can walk over the PlantGrower.
 		return false;
 	}
 
@@ -74,7 +115,7 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 	 * @return true iff the prospecting player should get
 	 *         a nugget. 
 	 */
-	private boolean prospectSuccessful(Player player) {
+	private boolean isSuccessful(Player player) {
 		int random = Rand.roll1D100();
 		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
@@ -87,17 +128,17 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 			Player player = (Player) entity;
 			if (player.nextTo(this)) {
 
-				if (player.isEquipped("gold_pan")) {
-					String name = player.getName();
+				if (player.isEquipped(NEEDED_EQUIPMENT)) {
+					Prospector prospect = new Prospector(player);
 					// You can't start a new prospecting action before
 					// the last one has finished.
-					if (TurnNotifier.get().getRemainingTurns(this, name) == -1) {
+					if (TurnNotifier.get().getRemainingTurns(prospect) == -1) {
 						player.faceTo(this);
 						player.notifyWorldAboutChanges();
 
 						// some feedback is needed.
 						player.sendPrivateText("You have started to prospect for gold.");
-						TurnNotifier.get().notifyInSeconds(PROSPECTING_DURATION, this, name);
+						TurnNotifier.get().notifyInSeconds(DURATION, prospect);
 					}
 				} else {
 					player.sendPrivateText("You need a gold pan to prospect for gold.");
@@ -106,24 +147,4 @@ public class GoldSource extends Entity implements UseListener, TurnListener {
 		}
 	}
 
-	/*
-	 * Is called when a player has finished prospecting for gold.
-	 */
-	public void onTurnReached(int currentTurn, String message) {
-		Player player = StendhalRPRuleProcessor.get().getPlayer(message);
-		// check if the player is still logged in
-		if (player != null) {
-			// check if the player is still standing next to this gold source
-			if (player.nextTo(this)) {
-				// roll the dice
-				if (prospectSuccessful(player)) {
-					Item nugget = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("gold_nugget");
-					player.equip(nugget, true);
-					player.sendPrivateText("You found a gold nugget.");
-				} else {
-					player.sendPrivateText("You didn't find anything.");
-				}
-			}
-		}
-	}
 }
