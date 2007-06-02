@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import marauroa.common.Log4J;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -49,10 +51,17 @@ public class TurnNotifier {
 			}
 			if (obj instanceof TurnEvent){
 			TurnEvent other = (TurnEvent) obj;
-			if (turnListener!=(other.turnListener)) {
+		
+			try {
+				if (!turnListener.equals(other.turnListener)) {
+					return false;
+				}
+			} catch (ClassCastException e) {
+				e.printStackTrace();
 				return false;
 			}
-
+			
+			
 			if (message == null) {
 				return (other.message == null);
 			}
