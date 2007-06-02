@@ -12,17 +12,32 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+
+import marauroa.common.Log4J;
+
+import org.apache.log4j.Logger;
 
 /**
  * The 2D view of a grain field.
  */
 public class GrainField2DView extends StateEntity2DView {
 	/**
+	 * Logger.
+	 */
+	private static final Logger logger = Log4J.getLogger(RPEntity2DView.class);
+
+	/**
 	 * The grain field entity.
 	 */
 	private GrainField	grainField;
+
+	/**
+	 * The number of states.
+	 */
+	protected int		states;
 
 
 	/**
@@ -34,6 +49,8 @@ public class GrainField2DView extends StateEntity2DView {
 		super(grainField);
 
 		this.grainField = grainField;
+
+		states = 0;
 	}
 
 
@@ -41,11 +58,21 @@ public class GrainField2DView extends StateEntity2DView {
 	// GrainField2DView
 	//
 
+	/**
+	 * Get the height.
+	 *
+	 * @return	The height in tile units.
+	 */
 	public double getHeight() {
 		return grainField.getHeight();
 	}
 
 
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width in tile units.
+	 */
 	public double getWidth() {
 		return grainField.getWidth();
 	}
@@ -64,24 +91,34 @@ public class GrainField2DView extends StateEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map) {
 		double	height;
 		double	width;
-		int	maxRipeness;
 		String	clazz;
 
 
 		height = getHeight();
 		width = getWidth();
-		maxRipeness = grainField.getMaximumRipeness();
 
 		clazz = grainField.getEntityClass();
 
 		if(clazz == null)  {
+			logger.warn("No entity class set");
 			clazz = "grain_field";
 		}
 
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite(translate(clazz));
 
-		for(int i = 0; i <= maxRipeness; i++) {
+		states = grainField.getMaximumRipeness() + 1;
+		int imageStates = tiles.getHeight() / (int) (GameScreen.SIZE_UNIT_PIXELS * height);
+
+		if(imageStates != states) {
+			logger.warn("State count mismatch: " + imageStates + " != " + states);
+
+			if(imageStates < states) {
+				states = imageStates;
+			}
+		}
+
+		for(int i = 0; i < states; i++) {
 			map.put(new Integer(i), store.getSprite(tiles, 0, i, width, height));
 		}
 	}
