@@ -23,17 +23,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
-
 /**
  * The 2D view of an RP entity.
  */
 public abstract class RPEntity2DView extends ActiveEntity2DView {
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(RPEntity2DView.class);
-
 	private static Map<Object, Sprite[]> bladeStrikeSprites;
 
 	private static Sprite	eatingSprite;
@@ -375,6 +368,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @return	The visibility value (0-100).
 	 */
+	@Override
 	protected int getVisibility() {
 		/*
 		 * Hide while in ghostmode.
