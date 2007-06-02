@@ -57,7 +57,6 @@ public class TurnNotifier {
 					return false;
 				}
 			} catch (ClassCastException e) {
-				e.printStackTrace();
 				return false;
 			}
 			
