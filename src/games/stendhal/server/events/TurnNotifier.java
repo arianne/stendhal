@@ -48,7 +48,7 @@ public class TurnNotifier {
 				return false;
 			}
 			if (obj instanceof TurnEvent){
-			final TurnEvent other = (TurnEvent) obj;
+			TurnEvent other = (TurnEvent) obj;
 			if (!turnListener.equals(other.turnListener)) {
 				return false;
 			}
