@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  * 
  * @author daniel
  */
-public class Jail implements TurnListener, LoginListener {
+public class Jail implements LoginListener {
 
 	private static final Logger logger = Log4J.getLogger(Jail.class);
 
@@ -79,9 +79,9 @@ public class Jail implements TurnListener, LoginListener {
 	 * @param policeman The name of the admin who wants to jail the criminal
 	 * @param minutes The duration of the sentence
 	 */
-	public void imprison(String criminalName, Player policeman, int minutes, String reason) {
+	public void imprison(final String criminalName, Player policeman, int minutes, String reason) {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		Player criminal = StendhalRPRuleProcessor.get().getPlayer(criminalName);
+		final Player criminal = StendhalRPRuleProcessor.get().getPlayer(criminalName);
 
 		if (criminal == null) {
 			String text = "Player " + criminalName + " not found";
@@ -106,23 +106,30 @@ public class Jail implements TurnListener, LoginListener {
 			Point cell = Rand.rand(cellEntryPoints);
 			successful = criminal.teleport(jail, cell.x, cell.y, Direction.DOWN, policeman);
 		}
-		policeman.sendPrivateText("You have jailed " + criminal.getName() 
+		policeman.sendPrivateText("You have jailed " + criminalName
 				+ " for " + minutes + " minutes. Reason: " + reason + ".");
 		criminal.sendPrivateText("You have been jailed by " + policeman.getName()
 				+ " for " + minutes + " minutes. Reason: " + reason + ".");
 		ChatAction.sendMessageToSupporters("JailKeeper", policeman.getName()
-				+ " jailed " + criminal.getName() 
+				+ " jailed " + criminalName
 				+ " for " + minutes + " minutes. Reason: " + reason + ".");
 
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
-		// the 'message' paramter to store the player's name, so that
-		// we know who is to be released when onTurnReached() is called.
-		//
+		// 
 		// NOTE: The player won't be automatically released if the
 		// server is restarted before the player could be released.
-		TurnNotifier.get().notifyInSeconds(minutes * 60, this, criminalName);
+		TurnNotifier.get().notifyInSeconds(minutes * 60,
+				new TurnListener (){
+					public void onTurnReached(int currentTurn, String message) {
+						
+						if (!release(criminalName)) {
+							// The player has logged out. Release him when he logs in again.
+							namesOfPlayersToRelease.add(criminalName);
+						}
+						
+					}});
 	}
 
 	/**
@@ -145,8 +152,7 @@ public class Jail implements TurnListener, LoginListener {
 		if (isInJail(inmate)) {
 			IRPZone.ID zoneid = new IRPZone.ID("-3_semos_jail");
 			if (!world.hasRPZone(zoneid)) {
-				String text = "Zone " + zoneid + " not found";
-				logger.debug(text);
+				logger.debug("Zone " + zoneid + " not found");
 			}
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
 
@@ -174,19 +180,6 @@ public class Jail implements TurnListener, LoginListener {
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Is called when the time has come to release an inmate.
-	 * @param turn
-	 * @param message the inmate's name
-	 */
-	public void onTurnReached(int turn, String message) {
-		String playerName = message;
-		if (!release(playerName)) {
-			// The player has logged out. Release him when he logs in again.
-			namesOfPlayersToRelease.add(playerName);
-		}
 	}
 
 	public void onLoggedIn(Player player) {
