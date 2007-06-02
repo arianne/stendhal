@@ -68,7 +68,7 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @param	text		The message to send.
 	 */
 	protected void sendMessage(RPEntity user, String text) {
-		TurnNotifier.get().notifyInTurns(0, new SendMessage(user), text);
+		TurnNotifier.get().notifyInTurns(0, new SendMessage(user, text));
 	}
 
 
@@ -111,15 +111,17 @@ public abstract class AccessCheckingPortal extends Portal {
 		/**
 		 * The user to send to.
 		 */
-		protected RPEntity user;
+		final protected RPEntity user;
+		final private String text;
 
 		/**
 		 * Create a message sending turn listener.
 		 *
 		 * @param	user		The user to send to.
 		 */
-		public SendMessage(RPEntity user) {
+		public SendMessage(RPEntity user, String text) {
 			this.user = user;
+			this.text = text;
 		}
 
 		//
@@ -133,7 +135,7 @@ public abstract class AccessCheckingPortal extends Portal {
 		 * @param	message		The string that was used.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
-			user.sendPrivateText(message);
+			user.sendPrivateText(this.text);
 			user.notifyWorldAboutChanges();
 		}
 	}
