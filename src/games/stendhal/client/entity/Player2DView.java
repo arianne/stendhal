@@ -90,7 +90,15 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected boolean isVisibleGhost() {
-		return User.isAdmin();
+		/*
+		 * Admins see all
+		 */
+		if(User.isAdmin()) {
+			return true;
+		}
+
+		// TODO: Find clean way to do in subclass [need User2DView?]
+		return (player == User.get());
 	}
 
 

@@ -255,8 +255,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *		entity while in ghostmode.
 	 */
 	protected boolean isVisibleGhost() {
-		// TODO: Find clean way to do in subclass
-		return (rpentity == User.get());
+		return false;
 	}
 
 
