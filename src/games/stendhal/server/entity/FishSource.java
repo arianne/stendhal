@@ -29,6 +29,8 @@ import marauroa.common.game.RPClass;
 public class FishSource extends Entity implements UseListener {
 
 	
+	private static final String NEEDED_EQUIPMENT = "fishing_rod";
+
 	private class Fisher implements TurnListener{
 		WeakReference<Player> playerRef;
 		public Fisher(Player bob) {
@@ -55,7 +57,7 @@ public class FishSource extends Entity implements UseListener {
 				// check if the player is still standing next to this fish source
 				if (player.nextTo(getX(),getY(),0.25)) {
 					// roll the dice
-					if (fishingSuccessful(player)) {
+					if (isSuccessful(player)) {
 						Item fish = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 						player.equip(fish, true);
 						player.sendPrivateText("You caught a fish.");
@@ -93,7 +95,7 @@ public class FishSource extends Entity implements UseListener {
 	 * How long it takes to fish (in seconds) 
 	 * TODO: randomize this number a bit.
 	 */
-	private final static int PROSPECTING_DURATION = 8;
+	private final static int DURATION = 8;
 
 	public FishSource(String itemName) {
 		super();
@@ -114,7 +116,7 @@ public class FishSource extends Entity implements UseListener {
 	 * @return true iff the prospecting player should get
 	 *         a fish. 
 	 */
-	private boolean fishingSuccessful(Player player) {
+	private boolean isSuccessful(Player player) {
 		int random = Rand.roll1D100();
 		return random <= getSuccessProbability(player) * 100;
 	}
@@ -127,7 +129,7 @@ public class FishSource extends Entity implements UseListener {
 			Player player = (Player) entity;
 			if (player.nextTo(this)) {
 
-				if (player.isEquipped("fishing_rod")) {
+				if (player.isEquipped(NEEDED_EQUIPMENT)) {
 					Fisher fisher = new Fisher(player);
 					// You can't start a new prospecting action before
 					// the last one has finished.
@@ -137,7 +139,7 @@ public class FishSource extends Entity implements UseListener {
 
 						// some feedback is needed.
 						player.sendPrivateText("You have started fishing.");
-						TurnNotifier.get().notifyInSeconds(PROSPECTING_DURATION, fisher);
+						TurnNotifier.get().notifyInSeconds(DURATION, fisher);
 					}
 				} else {
 					player.sendPrivateText("You need a fishing rod for fishing.");
