@@ -5,7 +5,7 @@ import games.stendhal.common.Rand;
 import java.util.HashMap;
 
 public class Sound {
-	private static HashMap<String, String[]> soundArray;
+	public static HashMap<String, String[]> soundArray;
 	private int x;
 	private int y;
 	private String name;
