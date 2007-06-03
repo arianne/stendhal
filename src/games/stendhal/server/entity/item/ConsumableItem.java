@@ -34,7 +34,7 @@ import games.stendhal.server.entity.player.Player;
  * item runs out the other ones also runs out. Perhaps this must be
  * fixed inside StackableItem itself
  */
-public class ConsumableItem extends StackableItem implements UseListener {
+public class ConsumableItem extends StackableItem implements UseListener ,Comparable<ConsumableItem>{
 
 	/** How much of this item has not yet been consumed. */
 	private int left;
@@ -98,6 +98,10 @@ public class ConsumableItem extends StackableItem implements UseListener {
 		player.notifyWorldAboutChanges();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	public int compareTo(ConsumableItem other) {
 		
 		return getRegen()/getFrecuency() -other.getRegen()/other.getFrecuency();
