@@ -23,19 +23,13 @@ public class HearingAreaTest {
 
 	@Test
 	public void contains() {
-		assertTrue("both in ", HearingArea.contains(0, 0));
-		assertFalse("both out", HearingArea.contains(100, 100));
-		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", HearingArea.contains(HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", HearingArea.contains(HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
-		assertTrue("inner edge belongs", HearingArea.contains(-(HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", HearingArea.contains(-(HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
-		assertFalse("x in , y out", HearingArea.contains(0, 100));
-		assertFalse("x out y in", HearingArea.contains(100, 10));
+		runContainTests();
 		new User();
+		runContainTests();
+		
+	}
+
+	private void runContainTests() {
 		assertTrue("both in ", HearingArea.contains(0, 0));
 		assertFalse("both out", HearingArea.contains(100, 100));
 		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
@@ -48,7 +42,6 @@ public class HearingAreaTest {
 		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
 		assertFalse("x in , y out", HearingArea.contains(0, 100));
 		assertFalse("x out y in", HearingArea.contains(100, 10));
-		
 	}
 
 	@Test
