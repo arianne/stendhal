@@ -35,7 +35,6 @@ import games.stendhal.server.events.TutorialNotifier;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -1284,21 +1283,8 @@ public class Player extends RPEntity implements TurnListener {
 			// Player was poisoned, but antidote saved it.
 		}
 
-		Collections.sort(itemsToConsume, new Comparator<ConsumableItem>() {
-
-			public int compare(ConsumableItem o1, ConsumableItem o2) {
-				// highest regen value doesn't have to mean it
-				// actually heals fastest; it also depends on the
-				// frequency.
-				return o1.compareTo(o2);
-			}
-
-			@Override
-			public boolean equals(Object obj) {
-				return true;
-			}
-		});
-
+		Collections.sort(itemsToConsume);
+		
 		item.removeOne();
 	}
 
