@@ -140,9 +140,10 @@ public class j2DClient extends StendhalUI {
 
 	/**
 	 * Not currently used - but will likely be later
+	 * if so uncomment it regards AstridEmma
 	 */
-	private static final boolean newCode =
-			(System.getProperty("stendhal.newgui") != null);
+//	private static final boolean newCode =
+//			(System.getProperty("stendhal.newgui") != null);
 
 	public j2DClient(StendhalClient client) {
 		super(client);
