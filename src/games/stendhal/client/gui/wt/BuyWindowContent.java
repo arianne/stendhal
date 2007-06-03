@@ -73,7 +73,8 @@ public class BuyWindowContent extends javax.swing.JPanel {
     private HashMap items = new HashMap();
 
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    @SuppressWarnings("serial")
+	private void initComponents() {
         WoodStyle style = new WoodStyle();
 	nextButton = new StyledJButton(style);
         mainPanel = new javax.swing.JPanel();
@@ -126,7 +127,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
         intro_panel.add(jLabel5);
         jLabel5.setBounds(0, 10, 224, 15);
 
-        npc_chooser.setModel(new javax.swing.AbstractListModel() {
+        npc_chooser.setModel( new javax.swing.AbstractListModel() {
             String[] strings = { "Xin Blanca", "Food and Drink Selling", "Potions" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
