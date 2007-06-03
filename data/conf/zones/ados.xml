@@ -285,6 +285,7 @@ Under new management. Chest to the right is still held by Semos Bank Merchants L
    </zone>
 
    <zone name="int_ados_haunted_house" file="interiors/ados/haunted_house.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.hauntedhouse.WomanGhostNPC" />
     <portal x="7" y="1" ref="0">
      <destination zone="0_ados_city_n" ref="11"/>
     </portal>
