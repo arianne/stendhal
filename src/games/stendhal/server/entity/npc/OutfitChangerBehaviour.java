@@ -13,11 +13,11 @@
 package games.stendhal.server.entity.npc;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.*;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ import java.util.List;
  * Represents the behaviour of a NPC who is able to sell outfits
  * to a player.
  */
-public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnListener, LoginListener {
+public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginListener {
 
 	public static final int NEVER_WEARS_OFF = -1;
 
@@ -130,7 +130,41 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 			return false;
 		}
 	}
+	class OutwearClothes implements TurnListener{
+		WeakReference<Player> ref ;
+		String name;
+		public OutwearClothes(Player player) {
+			ref = new WeakReference<Player>(player);
+			name= player.getName();
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof OutwearClothes) {
+				OutwearClothes new_name = (OutwearClothes)obj ;
+				return ref.get()==new_name.ref.get();
+			}else{
+				return false;
+			}
+			
+		}
+		@Override
+		public int hashCode() {
+			return ref.get()== null? 0 : ref.get().hashCode();
+		}
+		
+		public void onTurnReached(int currentTurn, String message) {
+			
+			if (ref.get() != null) {
+				onWornOff(ref.get());
+			} else {
+				// The player has logged out before the outfit wore off.
+				// Remove it when the player logs in again.
+				namesOfPlayersWithWornOffOutfits.add(name);
+			}
+		}
 
+	
+	}
 	/**
 	 * Tries to get back the bought/lent outfit and give the player
 	 * his original outfit back.
@@ -146,9 +180,9 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		if (endurance != NEVER_WEARS_OFF) {
 			// restart the wear-off timer if the player was still wearing
 			// another temporary outfit.
-			TurnNotifier.get().dontNotify(this, player.getName());
+			TurnNotifier.get().dontNotify(new OutwearClothes(player));
 			// make the costume disappear after some time
-			TurnNotifier.get().notifyInTurns(endurance, this, player.getName());
+			TurnNotifier.get().notifyInTurns(endurance, new OutwearClothes(player));
 		}
 	}
 
@@ -198,18 +232,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements TurnLis
 		}
 	}
 
-	public void onTurnReached(int currentTurn, String message) {
-		String playerName = message;
-		Player player = StendhalRPRuleProcessor.get().getPlayer(playerName);
-		if (player != null) {
-			onWornOff(player);
-		} else {
-			// The player has logged out before the outfit wore off.
-			// Remove it when the player logs in again.
-			namesOfPlayersWithWornOffOutfits.add(playerName);
-		}
-	}
-
+	
 	public void onLoggedIn(Player player) {
 		if (namesOfPlayersWithWornOffOutfits.contains(player.getName())) {
 			onWornOff(player);
