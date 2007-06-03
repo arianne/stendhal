@@ -36,7 +36,7 @@ import games.stendhal.server.util.TimeUtil;
  * REWARD:
  * <ul>
  *  <li>Obsidian Knife</li>
- *  <li>3600 XP</li>
+ *  <li>11500 XP</li>
  * </ul>
  *
  * REPETITIONS:
@@ -152,8 +152,8 @@ public class ObsidianKnife extends AbstractQuest {
 					@Override
 					    public void fire(Player player, String text, SpeakerNPC npc) {
 						if (player.drop(text, REQUIRED_FOOD)) {
-							player.addKarma(15.0);
-							player.addXP(100);
+							player.addKarma(35.0);
+							player.addXP(1000);
 							npc.say("Great! you brought the " + text + "!");
 							player.setQuest(QUEST_SLOT, "food_brought");
 							player.notifyWorldAboutChanges();
@@ -326,7 +326,7 @@ private void offerKnifeStep() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 				        String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-				        long delay = REQUIRED_DAYS * 60 *60 * 1000; // milliseconds in REQUIRED_DAYS days
+				        long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
 				        long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 				                - System.currentTimeMillis();
 				        if (timeRemaining > 0L) {
@@ -354,9 +354,10 @@ private void offerKnifeStep() {
 				"knife",
 				null,
 				ConversationStates.QUEST_2_OFFERED,
-				 "I'll make an obsidian knife if you can get the gem which makes the blade. Bring a " + FISH + " bone to make the handle, too.", 
+				 "I'll make an obsidian knife if you can get the gem which makes the blade. Bring a " + FISH + " so that I can make the bone handle, too.", 
 			    null);
-		
+
+		// player says hi to NPC when equipped with the fish and the gem		
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 		        new SpeakerNPC.ChatCondition() {
@@ -380,6 +381,21 @@ private void offerKnifeStep() {
 			        }
 		         }
 		       );
+
+		//  player says hi to NPC when not equipped with the fish and the gem
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+		        new SpeakerNPC.ChatCondition() {
+			        @Override
+			        public boolean fire(Player player, String text, SpeakerNPC npc) {
+				        return player.hasQuest(QUEST_SLOT)
+				                && player.getQuest(QUEST_SLOT).equals("knife_offered")
+				        	    && !(player.isEquipped("obsidian")&&player.isEquipped(FISH));
+			        }
+		        },
+		        ConversationStates.ATTENDING,
+			"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a + " + FISH + " and a piece of obsidian. In the meantime if I can #help you, just say the word.",
+		       null);
 		
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
@@ -406,7 +422,7 @@ private void offerKnifeStep() {
 					        return;
 				        }
 				        npc.say("The knife is ready! You know, that was enjoyable. I think I'll start making things again. Thanks!");
-				        player.addXP(3000);
+				        player.addXP(10000);
 				        Item knife = StendhalRPWorld.get().getRuleManager()
 				                .getEntityManager().getItem("obsidian_knife");
 				        knife.put("bound", player.getName());
