@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
  */
 public class RecordAction implements SlashAction  {
 
-	private static Logger logger = Logger.getLogger(RecordAction.class);
+	private static final Logger logger = Logger.getLogger(RecordAction.class);
 
 	private ScriptRecorder recorder = null;
 
@@ -23,15 +23,15 @@ public class RecordAction implements SlashAction  {
 	 *
 	 * @return	<code>true</code> if  was handled.
 	 */
-	public boolean execute(String[] params, String remainder) {
+	public boolean execute(final String[] params, final String remainder) {
 		if (recorder != null) {
 			recorder.end();
 			recorder = null;
 		}
 
-		String name = params[0];
+		final String name = params[0];
 
-		if (!name.equals("stop")) {
+		if (!"stop".equals(name)) { 
 			try {
 				recorder = new ScriptRecorder(name);
 				recorder.start();
