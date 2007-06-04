@@ -33,6 +33,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -45,6 +47,8 @@ import marauroa.common.game.RPObject;
  * @author mtotz
  */
 public class EntitySlot extends WtPanel implements WtDropTarget {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(EntitySlot.class);
 
 	/** the (background) sprite for this slot */
 	private Sprite graphic;
@@ -87,6 +91,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** called when an object is dropped. */
 	public boolean onDrop(WtDraggable droppedObject) {
 		if ((droppedObject instanceof MoveableEntityContainer) && (parent != null)) {
+			logger.debug("droppedObject is instance of MoveableEntityContainer: "+parent);
 			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 
 			// Don't drag an item into the same slot
@@ -105,6 +110,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			action.put("targetslot", getName());
 
 			client.send(action);
+		} else {
+			logger.debug("droppedObject is NOT instance of MoveableEntityContainer: "+parent);
 		}
 
 		return false;

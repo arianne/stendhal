@@ -30,6 +30,8 @@ import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -39,6 +41,8 @@ import marauroa.common.game.RPSlot;
  * @author mtotz
  */
 public class Character extends WtPanel {
+	/** the logger instance. */
+	private static final Logger logger = Log4J.getLogger(Character.class);
 
 	/** Panel width */
 	private static final int PANEL_WIDTH = 170;
@@ -157,6 +161,7 @@ public class Character extends WtPanel {
 			RPSlot slot = playerEntity.getSlot(slotName);
 
 			if (slot == null) {
+				logger.warn("Player has missing slot "+slotName);
 				continue;
 			}
 
@@ -169,6 +174,8 @@ public class Character extends WtPanel {
 				for (RPObject content : slot) {
 					entitySlot.add(content);
 				}
+			} else {
+				logger.warn("missing slot panel for "+slotName);
 			}
 
 			// count all money
