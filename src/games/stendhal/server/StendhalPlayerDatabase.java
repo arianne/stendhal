@@ -152,7 +152,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 				   instance.getATK()+", "+
 				   instance.getDEF()+", "+
 				   instance.getBaseHP()+", "+
-				   instance.getKarma()+
+				   instance.getKarma()+", "+
 				   "'"+StringChecker.escapeSQLString(head)+"', "+
 				   "'"+StringChecker.escapeSQLString(armor)+"', "+
 				   "'"+StringChecker.escapeSQLString(lhand)+"', "+
