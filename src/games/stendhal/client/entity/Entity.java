@@ -780,4 +780,8 @@ public final byte[] ID_Token = new byte[0];
 	public final void onRemoved(final RPObject object) {
 		// DEPRECATED - Moving to different listener. Use release().
 	}
+	
+	public String toString() {
+		return rpObject.toString();
+	}
 }
