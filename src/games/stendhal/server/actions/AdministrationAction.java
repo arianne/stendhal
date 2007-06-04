@@ -381,6 +381,11 @@ public class AdministrationAction implements ActionListener {
 			boolean isNumerical = false;
 
 			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
+			if(type==null) {				
+				player.sendPrivateText("Attribute you are altering is not defined in RPClass("+changed.getRPClass().getName()+")");
+				return;
+			}
+
 			if ((type.getType() == Type.BYTE) || (type.getType() == Type.SHORT) || (type.getType() == Type.INT)) {
 				isNumerical = true;
 			}
