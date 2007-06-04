@@ -2,6 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 
 /**
  * Send a message to a player.
@@ -23,6 +24,7 @@ class MessageAction implements SlashAction  {
 
 		RPAction tell = new RPAction();
 
+		tell.setRPClass(RPClass.getRPClass("tell"));
 		tell.put("type", "tell");
 		tell.put("target", lastPlayerTell);
 		tell.put("text", remainder);

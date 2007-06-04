@@ -200,10 +200,12 @@ public class StendhalRPWorld extends RPWorld {
 
 		// Chat action class
 		RPClass chatAction = new RPClass("chat");
+		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
 		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 
 		// Tell action class
 		chatAction = new RPClass("tell");
+		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
 		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 		chatAction.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
 	}

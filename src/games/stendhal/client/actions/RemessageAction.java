@@ -2,6 +2,7 @@ package games.stendhal.client.actions;
 
 import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 
 /**
  * Send a message to the last player messaged.
@@ -24,6 +25,7 @@ class RemessageAction implements SlashAction  {
 
 		RPAction tell = new RPAction();
 
+		tell.setRPClass(RPClass.getRPClass("tell"));
 		tell.put("type", "tell");
 		tell.put("target", messageCommand.getLastPlayerTell());
 		tell.put("text", remainder);

@@ -9,6 +9,7 @@ import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPClass;
 
 /**
  * Parses the input in the chat box and invokes the appropriate action.
@@ -77,6 +78,7 @@ public class ChatLineParser {
 			// Chat command. The most frequent one.
 			RPAction chat = new RPAction();
 
+			chat.setRPClass(RPClass.getRPClass("chat"));
 			chat.put("type", "chat");
 			chat.put("text", text);
 
