@@ -93,39 +93,52 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		addSlot(slot);
 	}
 
-	public Corpse(RPEntity entity, Entity killer) throws AttributeNotFoundException {
+
+	/**
+	 * Create a corpse.
+	 *
+	 * @param	victim		The killed entity.
+	 * @param	killer		The killer entity.
+	 *
+	 *
+	 */
+	public Corpse(RPEntity victim, Entity killer) throws AttributeNotFoundException {
+		this(victim, getKillerName(killer));
+	}
+
+	/**
+	 * Create a corpse.
+	 *
+	 * @param	victim		The killed entity.
+	 * @param	killerName	The killer name.
+	 *
+	 *
+	 */
+	public Corpse(RPEntity victim, String killerName) throws AttributeNotFoundException {
 		put("type", "corpse");
 
-		if (entity.has("class")) {
-			put("class", entity.get("class"));
+		if (victim.has("class")) {
+			put("class", victim.get("class"));
 		} else {
-			put("class", entity.get("type"));
+			put("class", victim.get("type"));
 		}
 		
 		decideSize(get("class"));
 
-		if ((killer != null) && (entity instanceof Player)) {
-			put("name", entity.getName());
-
-			if (killer.has("name")) {
-				put("killer", killer.get("name"));
-			} else if (killer.has("subclass")) {
-				put("killer", killer.get("subclass"));
-			} else if (killer.has("class")) {
-				put("killer", killer.get("class"));
-			} else if (killer.has("type")) {
-				put("killer", killer.get("type"));
-			}
-		}
-
-		if ((killer == null) && has("killer")) {
-			logger.error("Corpse: (" + entity + ") with null killer: (" + killer + ")");
+		if ((killerName != null) && (victim instanceof Player)) {
+			put("name", victim.getName());
+			put("killer", killerName);
+		} else if(has("killer")) {
+			logger.error("Corpse: (" + victim + ") with null killer: (" + killerName + ")");
 			remove("killer");
 		}
 
 		// Consider rewriting this section once we get corpses larger
 		// than 2x2. 
-		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
+		//
+		// TODO: decideSize() has been called, width/height are set.
+		//       Center corpse area on victim area.
+		Rectangle2D rect = victim.getArea();
 		setX((int) Math.round(rect.getCenterX() - 1));
 		setY((int) Math.round(rect.getCenterY() - 1));
 
@@ -137,6 +150,37 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		slot.setCapacity(4);
 		addSlot(slot);
 	}
+
+
+	//
+	// Corpse
+	//
+
+	/**
+	 * Get the killer name.
+	 *
+	 * @param	killer		The killer entity.
+	 *
+	 * @return	The name of the killer, or <code>null</code>.
+	 */
+	protected static String getKillerName(Entity killer) {
+		String name = null;
+
+		if (killer != null) {
+			if (killer.has("name")) {
+				name = killer.get("name");
+			} else if (killer.has("subclass")) {
+				name = killer.get("subclass");
+			} else if (killer.has("class")) {
+				name = killer.get("class");
+			} else if (killer.has("type")) {
+				name = killer.get("type");
+			}
+		}
+
+		return name;
+	}
+
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y){

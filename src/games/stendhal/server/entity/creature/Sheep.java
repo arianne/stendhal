@@ -164,16 +164,51 @@ public class Sheep extends DomesticAnimal {
 		return chosen;
 	}
 
+
+	/**
+	 * Called when the sheep is starving.
+	 */
+	protected void onStarve() {
+		if(weight > 0) {
+			setWeight(weight - 1);
+			hunger = 0;
+		} else {
+			int hp = getHP();
+
+			if(hp > 0) {
+				hp--;
+				setHP(hp);
+			}
+
+			if(hp == 0) {
+// TODO: Add [remaining] support for arbitrary death reason/description
+//				onDead("starvation");
+				onDead(null);
+			}
+
+			hunger -= 50;
+		}
+	}
+
+
+	/**
+	 * Let the sheep eat some food.
+	 *
+	 * @param	food		The food to eat.
+	 */
 	private void eat(SheepFood food) {
 		int amount = food.getAmount();
+
 		if (amount > 0) {
 			food.onFruitPicked(null);
 
 			if (weight < MAX_WEIGHT) {
 				setWeight(weight + 1);
 			}
+
+			heal(5);
+			hunger = 0;
 		}
-		hunger = 0;
 	}
 
 	/**
@@ -183,46 +218,84 @@ public class Sheep extends DomesticAnimal {
 	public void logic() {
 		Log4J.startMethod(logger, "logic");
 
-		if (!isEnemyNear(20) && (owner == null)) // if there is no player near and none will see us... 
-		{
-			stop();
-
-			notifyWorldAboutChanges();
-			return;
-		}
-
 		hunger++;
-		SheepFood food = null;
 
-		if ((hunger > 50) && ((food = getNearestFood(6)) != null) && (weight < MAX_WEIGHT)) {
-			if (nextTo(food)) {
-				logger.debug("Sheep eats");
-				setIdea("eat");
-				eat(food);
-				clearPath();
-				stop();
-			} else {
-				logger.debug("Sheep moves to food");
-				setIdea("food");
-				setMovement(food, 0, 0, 20);
-				//        setAsynchonousMovement(food,0,0);
-				moveto(SPEED);
-			}
-		} else if (owner == null) {
-			logger.debug("Sheep (ownerless) moves randomly");
-			moveRandomly();
-		} else if ((owner != null) && !nextTo(owner)) {
-			moveToOwner();
-		} else {
-			logger.debug("Sheep has nothing to do");
-			setIdea(null);
-			stop();
-			clearPath();
-		}
-
+		/*
+		 * Allow owner to call sheep
+		 */
 		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
 			clearPath();
 			moveToOwner();
+		}
+
+
+		/*
+		 * Hunting if moving and food is on the mind
+		 */
+		boolean hunting = !stopped() && "food".equals(getIdea());
+
+		/*
+		 * If not already hunting for food, try to find some when
+		 * hungry (and hunger pains surface [every 10]).
+		 */
+		if(!hunting && (hunger >= 50) && ((hunger % 10) == 0)) {
+			SheepFood food = getNearestFood(6);
+
+			if(food != null) {
+				if (nextTo(food)) {
+					logger.debug("Sheep eats");
+					setIdea("eat");
+					eat(food);
+					clearPath();
+					stop();
+				} else {
+					logger.debug("Sheep moves to food");
+					setIdea("food");
+					setMovement(food, 0, 0, 20);
+					//setAsynchonousMovement(food,0,0);
+					moveto(SPEED);
+					hunting = true;
+				}
+			} else {
+				setIdea(null);
+				hunting = false;
+			}
+		}
+
+		/*
+		 * Starving?
+		 */
+		if (hunger > 200) {
+			onStarve();
+		}
+
+		/*
+		 * If not hunting for food, do other things
+		 */
+		if(!hunting) {
+			if (owner == null) {
+				if (!isEnemyNear(20)) {
+					/*
+					 * If there is no player near then
+					 * no one will see us...
+					 */
+					stop();
+					notifyWorldAboutChanges();
+					return;
+				} else {
+					logger.debug("Sheep (ownerless) moves randomly");
+					moveRandomly();
+				}
+			} else if (!nextTo(owner)) {
+				moveToOwner();
+			} else {
+				// TODO: Add bordem threshold to
+				//       wander [slightly] from owner
+				logger.debug("Sheep has nothing to do");
+				setIdea(null);
+				stop();
+				clearPath();
+			}
 		}
 
 		if (!stopped()) {
@@ -234,14 +307,7 @@ public class Sheep extends DomesticAnimal {
 
 				// move randomly, hoping we find a way by chance
 				moveRandomly();
-				if (hunger > 50) { // ignore food-movement for a short time
-					hunger = hunger - 5;
-				}
 			}
-		}
-
-		if (getHP() < getBaseHP()) {
-			healSelf(5, 100);
 		}
 
 		notifyWorldAboutChanges();

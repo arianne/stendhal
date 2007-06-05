@@ -557,15 +557,10 @@ public class Creature extends NPC {
 	 */
 	public void healSelf(int amount, int frequency) {
 		if ((StendhalRPRuleProcessor.get().getTurn() % frequency == 0) && (getHP() > 0)) {
-			if (getHP() + amount < getBaseHP()) {
-				setHP(getHP() + amount);
-				put("heal", amount);
-			} else {
-				setHP(getBaseHP());
-				put("heal", getHP() + amount - getBaseHP());
-			}
+			heal(amount);
 		}
 	}
+
 
 	public void equip(List<EquipItem> items) {
 		for (EquipItem equipedItem : items) {

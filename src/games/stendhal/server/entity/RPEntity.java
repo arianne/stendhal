@@ -268,6 +268,27 @@ public abstract class RPEntity extends Entity {
 		return (entity instanceof RPEntity);
 	}
 
+
+	/**
+	 * Heal.
+	 *
+	 * @param	amount		The [maximum] amount to heal by.
+	 */
+	public void heal(int amount) {
+		if(getHP() != getBaseHP()) {
+			int newHP = getHP() + amount;
+
+			if (newHP <= getBaseHP()) {
+				setHP(newHP);
+				put("heal", amount);
+			} else {
+				setHP(getBaseHP());
+				put("heal", getBaseHP() - getHP());
+			}
+		}
+	}
+
+
 	@Override
 	public void update() throws AttributeNotFoundException {
 		super.update();
