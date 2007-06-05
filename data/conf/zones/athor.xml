@@ -439,6 +439,7 @@ You get your stake back when there is a draw. If you win, you get the double of 
 
   <zone name="-1_athor_island" level="-1" x="501024" y="500384" file="Level -1/athor/island.tmx">
     <configurator class-name="games.stendhal.server.maps.athor.cave.MinotaurCreature"/>
+    <configurator class-name="games.stendhal.server.maps.athor.cave.GhostNPC"/>
     <portal x="118" y="96" ref="quicksand_out">
       <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
     </portal>

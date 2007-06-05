@@ -159,7 +159,7 @@ West: Semos
  <zone name="0_ados_city_n" level="0" x="500896" y="499872" file="Level 0/ados/city_n.tmx">
    <configurator class-name="games.stendhal.server.maps.ados.city.MakeupArtistNPC" />
    <configurator class-name="games.stendhal.server.maps.ados.city.KidsNPCs" />  
-   
+   <configurator class-name="games.stendhal.server.maps.ados.city.KidGhostNPC" /> 
    <portal x="60" y="16" ref="tavern_entrance_left">
      <destination zone="int_ados_tavern_0" ref="entrance_left"/>
    </portal>

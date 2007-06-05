@@ -261,6 +261,7 @@ East: Nalwor, Semos
  </zone>
 
  <zone name="-3_orril_dungeon" level="-3" x="499936" y="500224" file="Level -3/orril/dungeon.tmx">
+  <configurator class-name="games.stendhal.server.maps.orril.dungeon.GhostNPC"/>
  </zone>
 
 

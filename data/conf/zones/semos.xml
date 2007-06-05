@@ -1093,6 +1093,7 @@ Mature sheep wanted: please speak to Sato
    </portal>
  </zone>
  <zone name="int_wofol_house5" file="interiors/wofol/house5.tmx">
+ <configurator class-name="games.stendhal.server.maps.wofol.house5.GhostNPC" />
   <portal x="7" y="13" ref="entrance">
      <destination zone="-1_semos_mine_nw" ref="house5_entrance"/>
    </portal>
@@ -1136,8 +1137,8 @@ Mature sheep wanted: please speak to Sato
    <portal x="6" y="23" ref="house4_entrance">
      <destination zone="int_wofol_house4" ref="entrance"/>
    </portal>
-   <portal x="24" y="23" ref="house5_entrance">
-     <destination zone="int_wofol_house5" ref="entrance"/>
+   <portal x="24" y="23" ref="house9_entrance">
+     <destination zone="int_wofol_house9" ref="entrance"/>
    </portal>
    <portal x="40" y="25" ref="house7_entrance">
      <destination zone="int_wofol_house7" ref="entrance"/>
@@ -1151,8 +1152,8 @@ Mature sheep wanted: please speak to Sato
    <portal x="45" y="65" ref="house8_entrance">
      <destination zone="int_wofol_house8" ref="entrance"/>
    </portal>
-   <portal x="58" y="65" ref="house9_entrance">
-     <destination zone="int_wofol_house9" ref="entrance"/>
+   <portal x="58" y="65" ref="house5_entrance">
+     <destination zone="int_wofol_house5" ref="entrance"/>
    </portal>
   <portal x="63" y="86" ref="house6_entrance">
      <destination zone="int_wofol_house6" ref="entrance"/>
