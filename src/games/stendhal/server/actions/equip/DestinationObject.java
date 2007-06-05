@@ -204,6 +204,11 @@ class DestinationObject extends MoveableObject {
 			
 			if(entity.has("x")) {
 				logger.info("Equipped item had x. Removing");
+				/*
+				 * TODO: Hack!
+				 *  I need to set them to 0,0 so they notice the update
+				 */
+				entity.set(0,0);
 				entity.remove("x");
 			}
 			if(entity.has("y")) {
