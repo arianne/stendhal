@@ -566,9 +566,14 @@ public class j2DClient extends StendhalUI {
 	                if(client.logout()) {
 	                	canExit=true;
 	                } else {
+	                	logger.warn("You can't logout now.");
 	                	gameRunning=true;
 	                }
                 } catch (Exception e) {
+                	/*
+                	 * If we get a timeout exception we accept exit request.
+                	 */
+                	canExit=true;
 	                e.printStackTrace();
                 }
 			}
