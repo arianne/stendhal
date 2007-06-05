@@ -168,15 +168,16 @@ public class Character extends WtPanel {
 
 			EntitySlot entitySlot = slotPanels.get(slotName);
 
-			if (entitySlot != null) {
+			/*
+			 * NOTE: We are interested in updating only objects that are register at slotPanels.
+			 */
+			if (entitySlot != null) {				
 				entitySlot.clear();
 				entitySlot.setParent(playerEntity);
 				// found a gui element for this slot
 				for (RPObject content : slot) {
 					entitySlot.add(content);
 				}
-			} else {
-				logger.warn("missing slot panel for "+slotName);
 			}
 
 			// count all money

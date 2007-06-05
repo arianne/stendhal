@@ -63,24 +63,9 @@ class PlayerRPClass {
 	/** these items should be bound */
 	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet");
 
-	/*
-	 *
-leather_armor_+1 leather_scale_armor
-leather_cuirass_+1 pauldroned_leather_cuirass
-chain_armor_+1 enhanced_chainmail
-scale_armor_+1 iron_scale_armor
-chain_armor_+3 golden_chainmail
-scale_armor_+2 pauldroned_iron_cuirass
-twoside_axe_+3 golden_twoside_axe
-elf_cloak_+2 blue_elf_cloak
-mace_+1 enhanced_mace
-mace_+2 golden_mace
-hammer_+3 golden_hammer
-chain_helmet_+2 aventail
-golden_helmet_+3 horned_golden_helmet
-longbow_+1 composite_bow
-lion_shield_+1 enhanced_lion_shield
-	 */
+	/**
+	 * Old items names
+	 */ 
 	private static final List<String> itemNamesOld = Arrays.asList(
 			"flail_+2",
 			"leather_armor_+1",
@@ -99,6 +84,9 @@ lion_shield_+1 enhanced_lion_shield
 			"longbow_+1",
 			"lion_shield_+1");
 
+	/**
+	 * New items names
+	 */ 
 	private static final List<String> itemNamesNew = Arrays.asList(
 			"morning_star",
 			"leather_scale_armor",
