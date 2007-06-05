@@ -74,6 +74,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<NPC> npcs;
 
+	/**
+	 * The sheep foods in the zone.
+	 */
+	private List<SheepFood>		sheepFoods;
+
 	private List<CreatureRespawnPoint> respawnPoints;
 
 	private List<PassiveEntityRespawnPoint> plantGrowers;
@@ -127,6 +132,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		numHouses = 0;
 
 		npcs = new LinkedList<NPC>();
+		sheepFoods = new LinkedList<SheepFood>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
 		plantGrowers = new LinkedList<PassiveEntityRespawnPoint>();
 		players = new LinkedList<Player>();
@@ -181,12 +187,49 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return null;
 	}
 
+	/**
+	 * Get the list of sheep foods in the zone.
+	 *
+	 * @return	The list of sheep foods.
+	 */
+	public List<SheepFood> getSheepFoodList() {
+		return sheepFoods;
+	}
+
 	public List<CreatureRespawnPoint> getRespawnPointList() {
 		return respawnPoints;
 	}
 
+
+	/**
+	 * @deprecated	Use add(CreatureRespawnPoint).
+	 */
 	public void addRespawnPoint(CreatureRespawnPoint point) {
+		add(point);
+	}
+
+	/**
+	 * Add a creature respawn point to the zone.
+	 *
+	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use
+	 * normal add().
+	 *
+	 * @param	point		The respawn point.
+	 */
+	public void add(CreatureRespawnPoint point) {
 		respawnPoints.add(point);
+	}
+
+	/**
+	 * Remove a creature respawn point from the zone.
+	 *
+	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use
+	 * normal remove().
+	 *
+	 * @param	point		The respawn point.
+	 */
+	public void remove(CreatureRespawnPoint point) {
+		respawnPoints.remove(point);
 	}
 
 	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
@@ -395,7 +438,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				if (manager.isCreature(clazz, type)) {
 					Creature creature = manager.getCreature(clazz, type);
 					CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
-					respawnPoints.add(point);
+					add(point);
 				} else {
 					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
 				}
@@ -491,8 +534,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 				// full fruits on server restart
 				plantGrower.setToFullGrowth();
-
-				plantGrowers.add(plantGrower);
 
 				/*
 				 * XXX - TEMP!!
@@ -661,6 +702,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Eventually move to <Entity>.onAdded().
 		 */
+		if(object instanceof PassiveEntityRespawnPoint) {
+			plantGrowers.add((PassiveEntityRespawnPoint) object);
+		}
+
 		if (object instanceof Player) {
 			players.add((Player) object);
 			playersAndFriends.add((Player) object);
@@ -670,6 +715,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof Sheep) {
 			npcs.add((Sheep) object);
 			playersAndFriends.add((Sheep) object);
+		} else if (object instanceof SheepFood) {
+			sheepFoods.add((SheepFood) object);
 		} else if (object instanceof SpeakerNPC) {
 			npcs.add((SpeakerNPC) object);
 			NPCList.get().add((SpeakerNPC) object);
@@ -704,9 +751,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Eventually move to <Entity>.onRemoved().
 		 */
-		/* BUG: I am not sure this works as expected as npcs list is loaded just once on startup and
-		 * never used again, so these removes are useless IMHO.
-		 */
+		if(object instanceof PassiveEntityRespawnPoint) {
+			plantGrowers.remove((PassiveEntityRespawnPoint) object);
+		}
+
 		if (object instanceof Player) {
 			players.remove((Player) object);
 			playersAndFriends.remove((Player) object);
@@ -716,7 +764,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (object instanceof Sheep) {
 			playersAndFriends.remove((Sheep) object);
 			npcs.remove((Sheep)object);
+		} else if (object instanceof SheepFood) {
+			sheepFoods.remove((SheepFood) object);
 		} else if (object instanceof SpeakerNPC) {
+			/*
+			 * BUG: I am not sure this works as expected as npcs
+			 * list is loaded just once on startup and never
+			 * used again, so these removes are useless IMHO.
+			 *
+			 * TODO: Move NPC (and all entity) handling to
+			 * zone scoped/managed/dispatched.
+			 */
 			npcs.remove((SpeakerNPC) object);
 		} else if (object instanceof Portal) {
 			portals.remove((Portal) object);

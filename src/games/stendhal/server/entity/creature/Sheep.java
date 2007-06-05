@@ -147,20 +147,20 @@ public class Sheep extends DomesticAnimal {
 		double squaredDistance = range * range; // This way we save several sqrt operations
 		SheepFood chosen = null;
 
-		for (PassiveEntityRespawnPoint grower : StendhalRPRuleProcessor.get().getPlantGrowers()) {
-			if ((grower instanceof SheepFood) && grower.get("zoneid").equals(get("zoneid"))) {
-				SheepFood food = (SheepFood) grower;
+		for (SheepFood food : getZone().getSheepFoodList()) {
+			if (food.getAmount() > 0) {
 				int fx = food.getX();
 				int fy = food.getY();
 
-				if ((Math.abs(fx - x) < range) && (Math.abs(fy - y) < range) && (food.getAmount() > 0)) {
-					if (this.squaredDistance(food) < squaredDistance) {
-						chosen = food;
-						squaredDistance = this.squaredDistance(food);
-					}
+				double foodDistance = squaredDistance(food);
+
+				if (foodDistance < squaredDistance) {
+					chosen = food;
+					squaredDistance = foodDistance;
 				}
 			}
 		}
+
 		return chosen;
 	}
 
