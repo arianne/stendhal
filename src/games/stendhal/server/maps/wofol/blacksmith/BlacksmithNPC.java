@@ -52,7 +52,8 @@ public class BlacksmithNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				//addGreeting("How did you get down here? I usually only see #kobolds.");
 				addJob("I am a blacksmith. I was a mountain dwarf but I left that lot behind me. Good riddance, I say!");
-				addHelp("");
+				addHelp("Watch out for the house with the green crystals outside. A powerful undead lich lives there.");
+				addReply("offer","#Wrvil is the one who runs a shop, not me.");
 				addReply("kobolds","You know, those odd furry creatures. Don't get much conversation out of any except #Wrvil.");
 				addReply("Wrvil","He runs a trading business not far from here. I used to make the odd item for him, but don't have any energy left.");
 				addGoodbye();
