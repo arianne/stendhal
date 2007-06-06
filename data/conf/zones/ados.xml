@@ -450,6 +450,18 @@ in roaches.
      <destination zone="0_ados_city_n" ref="storage_outside_5"/>
     </portal>
    </zone> 
+
+   <zone name="int_ados_sewing_room" file="interiors/ados/sewing_room.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.sewingroom.SeamstressNPC" />
+    <portal x="6" y="18" ref="sewing_entrance_left">
+     <destination zone="0_ados_city" ref="sewing_entrance"/>
+    </portal>
+    
+    <portal x="7" y="18" ref="sewing_entrance_right">
+     <destination zone="0_ados_city" ref="sewing_entrance"/>
+    </portal>
+   </zone> 
+
    
    <zone name="int_ados_town_hall" file="interiors/ados/buraucrazy_0.tmx">
     <portal x="22" y="17" ref="entrance">
@@ -565,7 +577,10 @@ Southeast: Docks
     <portal x="51" y="21" ref="library_entrance_right">
       <destination zone="int_ados_library" ref="entrance_right"/>
     </portal>
-    <portal x="67" y="65" ref="fishermans_hut_west_entrance">
+    <portal x="39" y="57" ref="sewing_entrance">
+     <destination zone="int_ados_sewing_room" ref="sewing_entrance_right"/>
+    </portal>
+   <portal x="67" y="65" ref="fishermans_hut_west_entrance">
      	<destination zone="int_ados_fishermans_hut_west" ref="entrance_fishermans_hut_west"/>
     </portal>
    <portal x="75" y="61" ref="fishermans_hut_north_entrance">
