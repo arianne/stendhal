@@ -3699,7 +3699,7 @@
       <item value="money" quantity="[5,40]" probability="100.0"/>
       <item value="greater_antidote" quantity="[1,3]" probability="50.0"/>
       <item value="perch" quantity="[1,3]" probability="25.0"/>
-      <item value="roach" quantity="[1,4]" probability="25.0"/>
+      <item value="mackerel" quantity="[1,4]" probability="25.0"/>
     </drops>
     <equips>
     </equips>

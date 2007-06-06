@@ -17,7 +17,7 @@ import games.stendhal.server.pathfinder.Path;
 /**
  * Builds the bakery baker NPC.
  *
- * @author timothyb89
+ * @author timothyb89/kymara
  */
 public class BakerNPC implements ZoneConfigurator {
 
@@ -78,25 +78,26 @@ public class BakerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				// addGreeting("Hi, most of the people are out of town at the moment.");
-				addJob("I'm the local baker. Although we get most of our supplies from Semos City, there is still a lot of work we have to do.");
-				addReply(Arrays.asList("flour", "meat", "carrot", "mushroom", "button_mushroom"),
-				        "We get most of our food from Semos City which is North of here.");
-				addHelp("Ask me to make you a pie.");
+				addJob("I'm the local baker. My speciality is fish and leek pies. I pride myself in making them promptly.");
+				addReply(Arrays.asList("cod", "mackerel"),   
+				        "You can catch cod in Ados. Mackerel may be caught at sea. Perhaps creatures which eat fish might drop them too.");
+				addReply("flour","We get our supplies of flour from Semos");
+				addReply("leek","We're lucky enough to have leeks growing right here in the Fado allotments.");
+				addHelp("Ask me to make you a fish and leek pie. They're not stodgy like meat pies so you can eat them a little quicker.");
 				addGoodbye();
 
-				// Linzo makes pies if you bring him flour, meat, carrot and a mushroom
+				// Linzo makes fish pies if you bring him flour, leek, cod and mackerel
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-				requiredResources.put("flour", 2);
-				requiredResources.put("meat", 2);
-				requiredResources.put("carrot", 1);
-				requiredResources.put("button_mushroom", 1);
+				requiredResources.put("flour", 1);
+				requiredResources.put("cod", 2);
+				requiredResources.put("mackerel", 1);
+				requiredResources.put("leek", 1);
 
-				ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_pie", "make", "pie",
-				        requiredResources, 7 * 60);
+				ProducerBehaviour behaviour = new ProducerBehaviour("linzo_make_fish_pie", "make", "fish_pie",
+				        requiredResources, 5 * 60);
 
 				addProducer(behaviour,
-				        "Hi! I bet you've heard about my famous pie and want me to #make one for you, am I right?");
+				        "Hi there. Have you come to try my fish pies? I can #make one for you.");
 			}
 		};
 
