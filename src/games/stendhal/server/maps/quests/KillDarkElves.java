@@ -42,9 +42,14 @@ public class KillDarkElves extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("kill_dark_elves")) {
+						if (!player.hasQuest("kill_dark_elves")) {
 							engine.say("I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.");
-						} else {
+						} 
+						else if (!player.isQuestCompleted("kill_dark_elves")){
+							engine.say("I already asked you to kill every dark elf in the tunnel below the secret room. And bring me the amulet from the thing.");
+							engine.setCurrentState(ConversationStates.ATTENDING);
+						}
+						else {
 							engine.say("Thanks for your help. I am relieved to have the amulet back.");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						}
@@ -55,7 +60,7 @@ public class KillDarkElves extends AbstractQuest {
 				ConversationPhrases.YES_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
-				"Good. Please kill all the dark elves down there and get the amulet from the mutant thing.",
+				"Good. Please kill every dark elf down there and get the amulet from the mutant thing.",
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC engine) {
@@ -131,7 +136,7 @@ public class KillDarkElves extends AbstractQuest {
 								engine.say("What happened to the amulet? Remember I need it back!");
 							}
 						} else {
-							engine.say("Don't you remember promising to sort out my dark elf problem? You need to go to the #secret #room below.");
+							engine.say("Don't you remember promising to sort out my dark elf problem? You need to go to the #secret #room below. Kill every dark elf.");
 						}
 					}
 				});
