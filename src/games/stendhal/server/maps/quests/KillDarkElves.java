@@ -42,7 +42,7 @@ public class KillDarkElves extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.hasQuest("kill_dark_elves")) {
+						if (!player.hasQuest("kill_dark_elves")||player.getQuest("kill_dark_elves").equals("rejected")) {
 							engine.say("I have a problem with some dark elves. I used to be in league with them... now they are too strong. There is access to their lair from a #secret #room in this hall.");
 						} 
 						else if (!player.isQuestCompleted("kill_dark_elves")){
