@@ -103,7 +103,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	 *
 	 */
 	public Corpse(RPEntity victim, Entity killer) throws AttributeNotFoundException {
-		this(victim, getKillerName(killer));
+		this(victim, killer.getTitle());
 	}
 
 	/**
@@ -155,32 +155,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	//
 	// Corpse
 	//
-
-	/**
-	 * Get the killer name.
-	 *
-	 * @param	killer		The killer entity.
-	 *
-	 * @return	The name of the killer, or <code>null</code>.
-	 */
-	protected static String getKillerName(Entity killer) {
-		String name = null;
-
-		if (killer != null) {
-			if (killer.has("name")) {
-				name = killer.get("name");
-			} else if (killer.has("subclass")) {
-				name = killer.get("subclass");
-			} else if (killer.has("class")) {
-				name = killer.get("class");
-			} else if (killer.has("type")) {
-				name = killer.get("type");
-			}
-		}
-
-		return name;
-	}
-
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y){

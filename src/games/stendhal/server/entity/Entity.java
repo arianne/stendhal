@@ -184,21 +184,34 @@ public abstract class Entity extends RPObject {
 	 * @return	The entity's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
-		String name;
-		String alternateTitle;
-		
-		if (has("alternateTitle")) {
-			if ((alternateTitle = get("alternateTitle")) != null) {
-				return alternateTitle.replace("_", " ");
-			}
-		} else if (has("name")) {
-			if ((name = get("name")) != null) {
-				return name.replace("_", " ");
-			}
+		if (has("name")) {
+			return get("name").replace("_", " ");
+		} else {
+			return null;
 		}
-
-		return null;
 	}
+
+	/**
+	 * Get the nicely formatted entity title/name.
+	 *
+	 * @return	The title, or <code>null</code> if unknown.
+	 */
+	public String getTitle() {
+		if (has("title")) {
+			return get("title");
+		} else if (has("name")) {
+			return get("name").replace('_', ' ');
+		} else if (has("subclass")) {
+			return get("subclass").replace('_', ' ');
+		} else if (has("class")) {
+			return get("class").replace('_', ' ');
+		} else if (has("type")) {
+			return get("type").replace('_', ' ');
+		} else {
+			return null;
+		}
+	}
+
 
 	public int getX() {
 		return x;

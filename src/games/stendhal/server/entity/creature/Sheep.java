@@ -173,19 +173,7 @@ public class Sheep extends DomesticAnimal {
 			setWeight(weight - 1);
 			hunger = 0;
 		} else {
-			int hp = getHP();
-
-			if(hp > 0) {
-				hp--;
-				setHP(hp);
-			}
-
-			if(hp == 0) {
-// TODO: Add [remaining] support for arbitrary death reason/description
-//				onDead("starvation");
-				onDead(null);
-			}
-
+			damage(1, "starvation");
 			hunger -= 50;
 		}
 	}

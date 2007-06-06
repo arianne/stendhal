@@ -684,6 +684,65 @@ public abstract class RPEntity extends Entity {
 		}
 	}
 
+
+	/**
+	 * Damage this entity.
+	 *
+	 * @param	amount		The HP to take.
+	 *
+	 * @return	The damage actually taken (in case HP was < amount).
+	 */
+	protected int damage(final int amount) {
+		int hp = getHP();
+		int taken = Math.min(amount, hp);
+
+		taken = amount;
+		hp -= taken;
+		setHP(hp);
+
+		return taken;
+	}
+
+
+	/**
+	 * Damage this entity, and call onDead() if HP reaches 0.
+	 *
+	 * @param	amount		The HP to take.
+	 * @param	attacker	The attacking entity.
+	 *
+	 * @return	The damage actually taken (in case HP was < amount).
+	 */
+	public int damage(final int amount, final Entity attacker) {
+		int taken = damage(amount);
+
+		if(hp == 0) {
+			onDead(attacker);
+		}
+
+		return taken;
+	}
+
+
+	/**
+	 * Damage this entity, and call onDead() if HP reaches 0.
+	 *
+	 * @param	amount		The HP to take.
+	 * @param	attackerName	The name of the attacker (sutable
+	 *				for use with <em>onDead()</em>.)
+	 *
+	 * @return	The damage actually taken (in case HP was < amount).
+	 */
+	public int damage(final int amount, final String attackerName) {
+		int taken = damage(amount);
+
+		if(hp == 0) {
+			onDead(attackerName);
+		}
+
+		return taken;
+	}
+
+
 	/**
 	 * Kills this RPEntity.
 	 * @param killer The killer
@@ -691,16 +750,6 @@ public abstract class RPEntity extends Entity {
 	protected void kill(Entity killer) {
 		setHP(0);
 		StendhalRPRuleProcessor.get().killRPEntity(this, killer);
-	}
-
-	/**
-	 * This method is called when the entity has been killed ( hp==0 ).
-	 * 
-	 * @param killer
-	 *            The entity who caused the death
-	 */
-	public void onDead(Entity killer) {
-		onDead(killer, true);
 	}
 	
 	/**
@@ -782,6 +831,30 @@ public abstract class RPEntity extends Entity {
 		}
 	}
 
+
+	/**
+	 * This method is called when the entity has been killed ( hp==0 ).
+	 * 
+	 * @param killer
+	 *            The entity who caused the death
+	 */
+	public void onDead(Entity killer) {
+		onDead(killer, true);
+	}
+
+
+	/**
+	 * This method is called when the entity has been killed ( hp==0 ).
+	 * 
+	 * @param	killerName	The killer's name (a phrase sutable
+	 *				in the expression "<code>by</code>
+	 *				<em>killerName</em>".
+	 */
+	public void onDead(String killerName) {
+		onDead(killerName, true);
+	}
+
+
 	/**
 	 * This method is called when this entity has been killed (hp == 0).
 	 * 
@@ -790,15 +863,31 @@ public abstract class RPEntity extends Entity {
 	 * 		  almost everything remove is true, but not for the players, who
 	 *        are instead moved to afterlife ("reborn").
 	 */
-	protected void onDead(Entity killer, boolean remove) {
+	public void onDead(Entity killer, boolean remove) {
+		String killerName = killer.getTitle();
+
+		if (killer instanceof RPEntity) {
+			StendhalRPRuleProcessor.get().addGameEvent(killerName, "killed", getName());
+		}
+
+		onDead(killerName, remove);
+	}
+
+
+	/**
+	 * This method is called when this entity has been killed (hp == 0).
+	 * 
+	 * @param	killerName	The killer's name (a phrase sutable
+	 *				in the expression "<code>by</code>
+	 *				<em>killerName</em>".
+	 * @param	remove		<code>true</code> to remove entity
+	 *				from world.
+	 */
+	protected void onDead(String killerName, boolean remove) {
 		stopAttack();
 		int oldLevel = this.getLevel();
 		int oldXP = this.getXP();
 
-		if (killer instanceof RPEntity) {
-			StendhalRPRuleProcessor.get().addGameEvent(killer.getName(), "killed", getName());
-		}
-		
 		letAttackersStopAttack();
 		
 		if (this instanceof Player) {
@@ -821,6 +910,7 @@ public abstract class RPEntity extends Entity {
 		totalDamageReceived = 0;
 
 		// Stats about dead
+		// TODO: Use getTitle() instead??
 		if (has("name")) {
 			stats.add("Killed " + get("name"), 1);
 		} else {
@@ -828,7 +918,7 @@ public abstract class RPEntity extends Entity {
 		}
 
 		// Add a corpse
-		Corpse corpse = new Corpse(this, killer);
+		Corpse corpse = new Corpse(this, killerName);
 
 		// Add some reward inside the corpse
 		dropItemsOn(corpse);
@@ -1605,4 +1695,28 @@ public abstract class RPEntity extends Entity {
 		put("outfit", outfit.getCode());
 	}
 
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Get the nicely formatted entity title/name.
+	 *
+	 * @return	The title, or <code>null</code> if unknown.
+	 */
+	@Override
+	public String getTitle() {
+		if (has("title")) {
+			return get("title");
+		} else if (name != null) {
+			return name.replace('_', ' ');
+		} else if (has("class")) {
+			return get("class").replace('_', ' ');
+		} else if (has("type")) {
+			return get("type").replace('_', ' ');
+		} else {
+			return null;
+		}
+	}
 }
