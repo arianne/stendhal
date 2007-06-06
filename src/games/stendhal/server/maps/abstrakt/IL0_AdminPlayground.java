@@ -239,27 +239,20 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 			try {
 				String zoneName = zones.get(counter);
 				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
-				 
-				if (!player.teleport(zone, 5, 5, null, null)) {
-					if  (!player.teleport(zone, 50, 50, null, null))  {
-						if  (!player.teleport(zone, 20, 20, null, null))  {
-							if  (!player.teleport(zone, 100, 100, null, null))  {
-								if ( !player.teleport(zone, 100, 5, null, null))  {
-									player.sendPrivateText("Sorry, did not find a free spot in " + zoneName);
-								} else {
-									player.sendPrivateText("Welcome in " + zoneName);
-								}
-							} else {
-								player.sendPrivateText("Welcome in " + zoneName);
-							}
-						} else {
-							player.sendPrivateText("Welcome in " + zoneName);
-						}
-					} else {
+
+				int tele_x[] = {5,50,20,100,100};
+				int tele_y[] = {5,50,20,100,5};
+
+				boolean found_spot = false;
+				for(int i = 0; i < tele_x.length; i++) {
+					if(player.teleport(zone, tele_x[i], tele_y[i], null, null)) {
 						player.sendPrivateText("Welcome in " + zoneName);
+						found_spot = true;
+						break;
 					}
-				} else {
-					player.sendPrivateText("Welcome in " + zoneName);
+				}
+				if(!found_spot) {
+					player.sendPrivateText("Sorry, did not find a free spot in " + zoneName);
 				}
 			} catch (Exception e) {
 				Logger.getLogger(SightseeingAction.class).error(e, e);
