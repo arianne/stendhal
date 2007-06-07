@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
+import games.stendhal.server.pathfinder.Path;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -40,6 +41,22 @@ public class Sheep extends DomesticAnimal {
 	final private double SPEED = 0.25;
 
 	/**
+	 * The amount of hunger that indicates hungry.
+	 */
+	protected static final int	HUNGER_HUNGRY		= 50;
+
+	/**
+	 * The amount of hunger that indicates extremely hungry.
+	 */
+	protected static final int	HUNGER_EXTREMELY_HUNGRY	= 500;
+
+	/**
+	 * The amount of hunger that indicates starvation.
+	 */
+	protected static final int	HUNGER_STARVATION	= 1000;
+
+
+	/**
 	 * The weight at which the sheep will stop eating.
 	 */
 	final public int MAX_WEIGHT = 100;
@@ -59,7 +76,8 @@ public class Sheep extends DomesticAnimal {
 			RPClass sheep = new RPClass("sheep");
 			sheep.isA("creature");
 			sheep.add("weight", RPClass.BYTE);
-			sheep.add("eat", RPClass.FLAG);
+// TODO: Needed?
+//			sheep.add("eat", RPClass.FLAG);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -133,6 +151,25 @@ public class Sheep extends DomesticAnimal {
 		return SPEED;
 	}
 
+
+	/**
+	 * Set the owner.
+	 *
+	 * @param	owner		The new owner (or <code>null</code>).
+	 */
+	@Override
+	public void setOwner(Player owner) {
+		super.setOwner(owner);
+
+		/*
+		 * Reset idea/movement state (do in super??)
+		 */
+		setIdea(null);
+		stop();
+		clearPath();
+	}
+
+
 	/**
 	 * Returns the SheepFood that is nearest to the sheep's current position.
 	 * If there is no SheepFood within the given range, returns none.
@@ -144,7 +181,9 @@ public class Sheep extends DomesticAnimal {
 		int x = getX();
 		int y = getY();
 
-		double squaredDistance = range * range; // This way we save several sqrt operations
+		// This way we save several sqrt operations
+		double squaredDistance = range * range;
+
 		SheepFood chosen = null;
 
 		for (SheepFood food : getZone().getSheepFoodList()) {
@@ -154,7 +193,7 @@ public class Sheep extends DomesticAnimal {
 
 				double foodDistance = squaredDistance(food);
 
-				if (foodDistance < squaredDistance) {
+				if (foodDistance <= squaredDistance) {
 					chosen = food;
 					squaredDistance = foodDistance;
 				}
@@ -164,6 +203,126 @@ public class Sheep extends DomesticAnimal {
 		return chosen;
 	}
 
+// DGB0606 - A temporary debug aid used to trace just a single sheep.
+//
+// TODO: Remove all "DGB0606" commented out lines 1 week after 2007/06/06,
+// IFF everything with sheep movement/eating looks good and these won't
+// all need to be re-added to trace down the problem.
+
+// SEE-DGB0606 // private boolean debugme = false;
+
+	/**
+	 * Called when the sheep is hungry.
+	 *
+	 * @return	<code>true</code> if the sheep is hunting for food.
+	 */
+	protected boolean onHungry() {
+		boolean hunting = "food".equals(getIdea());
+
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Hungry");
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: was hunting = " + hunting);
+		/*
+		 * Will try to eat if one of...
+		 *  - Food already on the mind and not moving (collision?)
+		 *  - Food not on the mind and hunger pains (every 10)
+		 */
+		if(hunting) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Food on mind");
+			if(!stopped()) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Still hunting");
+				return true;
+			}
+		} else {
+			/*
+			 * Only do something on occational hunger pains
+			 */
+			if((hunger % 10) != 0) {
+				return false;
+			}
+		}
+
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Searching");
+		/*
+		 * Search for food
+		 */
+		SheepFood food = getNearestFood(6);
+
+		if(food != null) {
+			hunting = true;
+
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Found food");
+			if (nextTo(food)) {
+				logger.debug("Sheep eats");
+				setIdea("eat");
+				eat(food);
+				clearPath();
+				stop();
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: By food");
+			} else {
+				logger.debug("Sheep moves to food");
+				setIdea("food");
+				setMovement(food, 0, 0, 20);
+				//setAsynchonousMovement(food,0,0);
+				setSpeed(SPEED);
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Targeted food");
+			}
+		} else if(hunting) {
+			setIdea(null);
+			hunting = false;
+		}
+
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: hunting = " + hunting);
+		return hunting;
+	}
+
+
+	/**
+	 * Called when the sheep is idle.
+	 */
+	protected void onIdle() {
+		int turn = StendhalRPRuleProcessor.get().getTurn();
+
+		if (owner == null) {
+			/*
+			 * Check if player near (creature's enemy)
+			 */
+			if (((turn % 15) == 0) && isEnemyNear(20)) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: No owner");
+				logger.debug("Sheep (ownerless) moves randomly");
+				moveRandomly();
+			} else {
+				logger.debug("Sheep sleeping");
+
+				// TODO: Add 'sleep' idea?
+				//setIdea("sleep");
+				setIdea(null);
+			}
+		} else if (((turn % 10) == 0) && (hunger >= HUNGER_EXTREMELY_HUNGRY)) {
+			/*
+			 * An extremely hungry sheep becomes agitated
+			 */
+			setIdea("food");
+			setRandomPathFrom(owner.getX(), owner.getY(), 20);
+			setSpeed(SPEED);
+		} else if (!nextTo(owner)) {
+			moveToOwner();
+		} else {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: By owner");
+			if((turn % 100) == 0) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Bored");
+				logger.debug("Sheep is bored");
+
+				// TODO: Add 'curious' idea?
+				//setIdea("curious");
+				setRandomPathFrom(owner.getX(), owner.getY(), 10);
+				setSpeed(SPEED);
+			} else {
+				logger.debug("Sheep has nothing to do");
+				setIdea(null);
+			}
+		}
+	}
+
 
 	/**
 	 * Called when the sheep is starving.
@@ -171,11 +330,11 @@ public class Sheep extends DomesticAnimal {
 	protected void onStarve() {
 		if(weight > 0) {
 			setWeight(weight - 1);
-			hunger = 0;
 		} else {
 			damage(1, "starvation");
-			hunger -= 50;
 		}
+
+		hunger /= 2;
 	}
 
 
@@ -196,8 +355,10 @@ public class Sheep extends DomesticAnimal {
 
 			heal(5);
 			hunger = 0;
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Eating");
 		}
 	}
+
 
 	/**
 	 * Determines what the sheep shall do next.
@@ -208,94 +369,56 @@ public class Sheep extends DomesticAnimal {
 
 		hunger++;
 
+// SEE-DGB0606 // if(owner != null) debugme = true;
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: idea = " + getIdea());
+
 		/*
-		 * Allow owner to call sheep
+		 * Allow owner to call sheep (will override other reactions)
 		 */
 		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
-			clearPath();
 			moveToOwner();
-		}
-
-
-		/*
-		 * Hunting if moving and food is on the mind
-		 */
-		boolean hunting = !stopped() && "food".equals(getIdea());
-
-		/*
-		 * If not already hunting for food, try to find some when
-		 * hungry (and hunger pains surface [every 10]).
-		 */
-		if(!hunting && (hunger >= 50) && ((hunger % 10) == 0)) {
-			SheepFood food = getNearestFood(6);
-
-			if(food != null) {
-				if (nextTo(food)) {
-					logger.debug("Sheep eats");
-					setIdea("eat");
-					eat(food);
-					clearPath();
-					stop();
-				} else {
-					logger.debug("Sheep moves to food");
-					setIdea("food");
-					setMovement(food, 0, 0, 20);
-					//setAsynchonousMovement(food,0,0);
-					moveto(SPEED);
-					hunting = true;
-				}
-			} else {
-				setIdea(null);
-				hunting = false;
+		} else if(stopped()) {
+			/*
+			 * Hungry?
+			 */
+			if((hunger < HUNGER_HUNGRY) || !onHungry()) {
+				/*
+				 * If not hunting for food, do other things
+				 */
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Not hunting");
+				onIdle();
 			}
+		} else if(hunger >= HUNGER_EXTREMELY_HUNGRY) {
+			onHungry();
 		}
 
 		/*
 		 * Starving?
 		 */
-		if (hunger > 200) {
+		if (hunger >= HUNGER_STARVATION) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Starving");
 			onStarve();
 		}
 
-		/*
-		 * If not hunting for food, do other things
-		 */
-		if(!hunting) {
-			if (owner == null) {
-				if (!isEnemyNear(20)) {
-					/*
-					 * If there is no player near then
-					 * no one will see us...
-					 */
-					stop();
-					notifyWorldAboutChanges();
-					return;
-				} else {
-					logger.debug("Sheep (ownerless) moves randomly");
-					moveRandomly();
-				}
-			} else if (!nextTo(owner)) {
-				moveToOwner();
-			} else {
-				// TODO: Add bordem threshold to
-				//       wander [slightly] from owner
-				logger.debug("Sheep has nothing to do");
-				setIdea(null);
-				stop();
-				clearPath();
-			}
-		}
-
+		// TODO: Move to upper level logic()?, as it really seems to
+		// apply to all RPEntity's.
 		if (!stopped()) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Path: " + getPath());
+			moveto(SPEED);
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: X/Y: " + getX() + "/" + getY());
 			StendhalRPAction.move(this);
-			// /* if we collided with something we stop and clear the path */
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: *X/Y: " + getX() + "/" + getY());
+
+			/*
+			 * If we collided with something we stop and clear
+			 * the path
+			 */
 			if (collides()) {
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Collided");
 				stop();
 				clearPath();
-
-				// move randomly, hoping we find a way by chance
-				moveRandomly();
 			}
+// SEE-DGB0606 // if(debugme) logger.info("SHEEP: stopped = " + stopped());
 		}
 
 		notifyWorldAboutChanges();

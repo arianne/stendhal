@@ -17,7 +17,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.pathfinder.Path;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
@@ -97,7 +99,6 @@ public abstract class NPC extends RPEntity {
 		put("text", text);
 	}
 
-	private int escapeCollision;
 
 	/**
 	 * Moves to the given entity. When the distance to the destination more than
@@ -186,17 +187,38 @@ public abstract class NPC extends RPEntity {
 		}
 	}
 
-	public void moveRandomly(double speed) {
-		if (escapeCollision > 0) {
-			escapeCollision--;
-		}
 
-		if (stopped() || collides() || (escapeCollision == 0)) {
-			setDirection(Direction.rand());
-			setSpeed(speed);
-			escapeCollision = 10;
-		}
+	/**
+	 * Set a random destination as a path and start moving.
+	 *
+	 * @param	speed		The speed to move at.
+	 */
+	public void moveRandomly(final double speed) {
+		setRandomPathFrom(getX(), getY(), 10);
+		setSpeed(speed);
 	}
+
+
+	/**
+	 * Set a random destination as a path.
+	 *
+	 * @param	distance	The maximum axis distance to move.
+	 * @param	x		The origin X coordinate for placement.
+	 * @param	y		The origin Y coordinate for placement.
+	 */
+	public void setRandomPathFrom(final int x, final int y, final int distance) {
+		Random rand = new Random();
+
+		int dist2_1 = distance + distance + 1;
+		int dx = rand.nextInt(dist2_1) - distance;
+		int dy = rand.nextInt(dist2_1) - distance;
+
+		List<Path.Node> path = new ArrayList<Path.Node>(1);
+		path.add(new Path.Node(x + dx, y + dy));
+
+		setPath(path, false);
+	}
+
 
 	abstract public void logic();
 
