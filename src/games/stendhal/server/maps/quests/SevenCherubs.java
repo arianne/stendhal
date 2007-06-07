@@ -126,7 +126,7 @@ public class SevenCherubs extends AbstractQuest {
 							player.setQuest(QUEST_SLOT, npcDoneText
 									+ ";" + engine.getName());
 		
-							player.setHP(player.getBaseHP());
+							player.heal();
 							player.healPoison();
 	
 							if (left > 0) {

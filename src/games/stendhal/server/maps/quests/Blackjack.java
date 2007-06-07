@@ -285,8 +285,7 @@ public class Blackjack extends AbstractQuest  {
 		ramon.setX(26);
 		ramon.setY(35);
 		ramon.setDirection(Direction.DOWN);
-		ramon.setBaseHP(100);
-		ramon.setHP(ramon.getBaseHP());
+		ramon.initHP(100);
 		zone.add(ramon);		
 
 		cardValues = new HashMap<String,Integer>();

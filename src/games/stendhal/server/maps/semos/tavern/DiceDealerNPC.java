@@ -59,8 +59,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 		ricardo.setX(28);
 		ricardo.setY(4);
 		ricardo.setDirection(Direction.LEFT);
-		ricardo.setBaseHP(100);
-		ricardo.setHP(ricardo.getBaseHP());
+		ricardo.initHP(100);
 		Rectangle tableArea = new Rectangle(25, 4, 2, 3);
 		ricardo.setTableArea(tableArea);
 		zone.add(ricardo);

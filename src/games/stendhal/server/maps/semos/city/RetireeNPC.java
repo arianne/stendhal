@@ -46,7 +46,7 @@ public class RetireeNPC  extends SpeakerNPCFactory {
 					        }
 				        } else {
 					        npc.say("What? No; you clean me! Begin with my back, thanks.");
-					        player.setHP(player.getHP() - 5);
+					        player.damage(5, npc);
 					        player.notifyWorldAboutChanges();
 				        }
 			        }

@@ -279,7 +279,7 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	public void onDead(Entity who) {
-		setHP(getBaseHP());
+		heal();
 		notifyWorldAboutChanges();
 	}
 

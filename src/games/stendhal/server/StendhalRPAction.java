@@ -392,17 +392,12 @@ public class StendhalRPAction {
 		if (sumLifesteal != 0) {
 			// 0.5f is used for rounding
 			int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
-			lifesteal = Math.min(lifesteal, attacker.getBaseHP() - attacker.getHP());
-			int newHP = attacker.getHP() + lifesteal;
-			if (newHP > 1) {
-				attacker.setHP(newHP);
-				if (lifesteal > 0) {
-					attacker.put("heal", lifesteal);
-				}
-			} else {
-				attacker.setHP(1);
-				damage = damage / 2;
+
+			if(attacker.heal(lifesteal) == 0) {
+				// If no effective healing, reduce damage
+				damage /= 2;
 			}
+
 			attacker.notifyWorldAboutChanges();
 		}
 		return damage;

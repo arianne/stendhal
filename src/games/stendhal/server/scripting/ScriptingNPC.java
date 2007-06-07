@@ -11,8 +11,7 @@ public class ScriptingNPC extends SpeakerNPC {
 
 	public ScriptingNPC(String name) {
 		super(name);
-		setBaseHP(100);
-		setHP(getBaseHP());
+		initHP(100);
 	}
 
 	public void setPath(List<Path.Node> path) {

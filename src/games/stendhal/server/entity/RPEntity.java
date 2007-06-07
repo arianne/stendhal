@@ -270,22 +270,37 @@ public abstract class RPEntity extends Entity {
 
 
 	/**
-	 * Heal.
+	 * Heal this entity completely.
+	 *
+	 * @return	The amount actually healed.
+	 */
+	public int heal() {
+		int baseHP = getBaseHP();
+		int given = baseHP - getHP();
+
+		put("heal", given);
+		setHP(baseHP);
+
+		return given;
+	}
+
+
+	/**
+	 * Heal this entity.
 	 *
 	 * @param	amount		The [maximum] amount to heal by.
+	 *
+	 * @return	The amount actually healed.
 	 */
-	public void heal(int amount) {
-		if(getHP() != getBaseHP()) {
-			int newHP = getHP() + amount;
+	public int heal(int amount) {
+		int hp = getHP();
+		int given = Math.min(amount, getBaseHP() - hp);
 
-			if (newHP <= getBaseHP()) {
-				setHP(newHP);
-				put("heal", amount);
-			} else {
-				setHP(getBaseHP());
-				put("heal", getBaseHP() - getHP());
-			}
-		}
+		hp += given;
+		put("heal", given);
+		setHP(hp);
+
+		return given;
 	}
 
 
@@ -429,11 +444,22 @@ public abstract class RPEntity extends Entity {
 		return def_xp;
 	}
 
+	/**
+	 * Set the base and current HP.
+	 *
+	 * @param	hp		The HP to set.
+	 */
 	public void initHP(int hp) {
 		setBaseHP(hp);
 		setHP(hp);
 	}
 
+
+	/**
+	 * Set the base HP.
+	 *
+	 * @param	newhp		The base HP to set.
+	 */
 	public void setBaseHP(int newhp) {
 		this.base_hp = newhp;
 		put("base_hp", newhp);
@@ -445,10 +471,22 @@ public abstract class RPEntity extends Entity {
 		}
 	}
 
+
+	/**
+	 * Get the base HP.
+	 *
+	 * @return	The current HP.
+	 */
 	public int getBaseHP() {
 		return base_hp;
 	}
 
+
+	/**
+	 * Set the HP.
+	 *
+	 * @param	hp		The HP to set.
+	 */
 	public void setHP(int hp) {
 		this.hp = hp;
 		put("hp", hp);
@@ -460,6 +498,12 @@ public abstract class RPEntity extends Entity {
 		}
 	}
 
+
+	/**
+	 * Get the current HP.
+	 *
+	 * @return	The current HP.
+	 */
 	public int getHP() {
 		return hp;
 	}
@@ -686,7 +730,8 @@ public abstract class RPEntity extends Entity {
 
 
 	/**
-	 * Damage this entity.
+	 * Apply damage to this entity. This is normally called from one of
+	 * the other damage() methods to account for death.
 	 *
 	 * @param	amount		The HP to take.
 	 *
@@ -696,7 +741,6 @@ public abstract class RPEntity extends Entity {
 		int hp = getHP();
 		int taken = Math.min(amount, hp);
 
-		taken = amount;
 		hp -= taken;
 		setHP(hp);
 
@@ -705,7 +749,7 @@ public abstract class RPEntity extends Entity {
 
 
 	/**
-	 * Damage this entity, and call onDead() if HP reaches 0.
+	 * Apply damage to this entity, and call onDead() if HP reaches 0.
 	 *
 	 * @param	amount		The HP to take.
 	 * @param	attacker	The attacking entity.
@@ -724,7 +768,7 @@ public abstract class RPEntity extends Entity {
 
 
 	/**
-	 * Damage this entity, and call onDead() if HP reaches 0.
+	 * Apply damage to this entity, and call onDead() if HP reaches 0.
 	 *
 	 * @param	amount		The HP to take.
 	 * @param	attackerName	The name of the attacker (sutable

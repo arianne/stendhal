@@ -80,8 +80,7 @@ public class TraderNPC implements ZoneConfigurator {
 		xinBlanca.put("class", "weaponsellernpc");
 		xinBlanca.setX(2);
 		xinBlanca.setY(14);
-		xinBlanca.setBaseHP(100);
-		xinBlanca.setHP(xinBlanca.getBaseHP());
+		xinBlanca.initHP(100);
 		zone.add(xinBlanca);
 
 	}

@@ -40,7 +40,7 @@ public class HealerBehaviour extends SellerBehaviour {
 	 * @param player The player who should be healed.
 	 */
 	public void heal(Player player) {
-		player.setHP(player.getBaseHP());
+		player.heal();
 		player.healPoison();
 		StendhalRPWorld.get().modify(player);
 	}

@@ -102,8 +102,7 @@ public class Sheep extends DomesticAnimal {
 		setATK(ATK);
 		setDEF(DEF);
 		setXP(XP);
-		setBaseHP(HP);
-		setHP(HP);
+		initHP(HP);
 
 		hunger = 0;
 		update();

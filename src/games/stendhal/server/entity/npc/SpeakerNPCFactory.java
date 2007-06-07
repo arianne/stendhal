@@ -192,7 +192,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		SpeakerNPC npc = instantiate(getName(ctx));
 
 		npc.put("class", getClass(ctx));
-		npc.initHP(100);
+		npc.setBaseHP(100);
 		npc.setHP(getHP(ctx));
 		npc.setLevel(getLevel(ctx));
 		

@@ -94,9 +94,8 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 			// put spells and actions here
 			if (castSpell.contains("heal")) {
 				if (player.getMana() > 15) {
-					String basehp = player.get("base_hp");
-					int bhp = Integer.parseInt(basehp);
-					player.setHP(bhp);
+					player.heal();
+
 					String mana = player.get("mana");
 					int mana_a = Integer.parseInt(mana);
 					int newmana = mana_a - 15;

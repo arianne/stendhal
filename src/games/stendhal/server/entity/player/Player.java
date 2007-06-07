@@ -1310,11 +1310,7 @@ public class Player extends RPEntity implements TurnListener {
 				int amount = poison.consume();
 				put("poisoned", amount);
 
-				if (getHP() + amount > 0) {
-					setHP(getHP() + amount);
-				} else {
-					kill(poison);
-				}
+				damage(-amount, poison);
 
 				notifyWorldAboutChanges();
 				break;
@@ -1336,10 +1332,7 @@ public class Player extends RPEntity implements TurnListener {
 				int amount = consumableItem.consume();
 				put("eating", amount);
 
-				if (getHP() + amount < getBaseHP()) {
-					setHP(getHP() + amount);
-				} else {
-					setHP(getBaseHP());
+				if(heal(amount) == 0) {
 					itemsToConsume.clear();
 				}
 

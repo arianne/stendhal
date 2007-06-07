@@ -79,8 +79,7 @@ public class TraderNPC implements ZoneConfigurator {
 		trader.put("class", "koboldnpc");
 		trader.setX(4);
 		trader.setY(3);
-		trader.setBaseHP(100);
-		trader.setHP(trader.getBaseHP());
+		trader.initHP(100);
 		zone.add(trader);
 
 	}
