@@ -57,7 +57,7 @@
  <tileset name="../../tileset/logic/creature/huge_animal.png" firstgid="98" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/mythical_animal.png" firstgid="106" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/mythical_animal.png" firstgid="108" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mythical_animal.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -87,7 +87,7 @@
  </layer>
  <layer name="objects" width="64" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OXUsCQRjF8f0CliVGEBEEmvZOmV54o2llpkXRe5Al2UXf/wN0ocIK27o78zx7Rju/y52dM3/PIyIiIpquiw5wXAcdMMOqIWcNg70d0xBSdYoOoES9ogMMVNABPmvogJGzP76vJlox6Qn4NpkroAPISd9Ku4dKuzR0jw7wOUEHzKC04val8F5deI/c8I4OGMmiA4hCfIHfv1HYzCtsuiaHDlB2jQ4g+mee0QEJWYr5/4NKxfxaUdq9i/jfotL75HnrFndrUhFk7QIdoKyFDojoFh0QoIkOiOEFHeCzILj1KLgl5RwdoKSPDlA2AL6dAr5N9n6Udq9CztoRN94s3j+2uEtURgcEKIWcfcTYObLs2LW8P1YU2nHNNjrA0AE6IIbPKee9RCp0LKMD5tiWwMa+5f2MQIOkTcGtPcEtpA10AJFDfgFk5E+LAEAAAA==
+   H4sIAAAAAAAAAO3OMQrCQBgF4b1CECSN2Aka0Ct4BgkWFioSO+9fewXJ7s9k1/n695iUJEmSpHYMdICkdKMDFKqnAyRJmJEOkFS1Ox0gVWCiAwLs6ABJ0iJ1dEDj1kG/l6Bf/W6TsT2XipCkhl3pgD/yogOCvekAVetDB0jK9qQDZtjTAUEOdMBMJzqgoAcdoGYdM/erIhWKtKUDpAX5AgZMoooAQAAA
   </data>
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.37">
