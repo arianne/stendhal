@@ -1,0 +1,95 @@
+package games.stendhal.server.maps.mithrilbourgh.stores;
+
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.npc.BuyerBehaviour;
+import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.Path;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Builds an NPC to buy previously un bought weapons.
+ * He is the QM of the Mithrilbourgh Army, who are short of boots and helmets
+ *
+ * @author kymara
+ */
+public class BuyerNPC implements ZoneConfigurator {
+
+	private NPCList npcs = NPCList.get();
+
+	private ShopList shops = ShopList.get();
+
+	/**
+	 * Configure a zone.
+	 *
+	 * @param	zone		The zone to be configured.
+	 * @param	attributes	Configuration attributes.
+	 */
+	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+		buildNPC(zone);
+	}
+
+	private void buildNPC(StendhalRPZone zone) {
+		SpeakerNPC npc = new SpeakerNPC("Diehelm Brui") {
+
+			@Override
+			protected void createPath() {
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(10, 3));
+				nodes.add(new Path.Node(10, 7));
+				nodes.add(new Path.Node(15, 7));
+				nodes.add(new Path.Node(15, 1));
+				nodes.add(new Path.Node(3, 1));
+				nodes.add(new Path.Node(3, 6));
+				nodes.add(new Path.Node(10, 6));
+				setPath(nodes, true);
+			}
+
+			@Override
+			protected void createDialog() {
+				addGreeting("Welcome to the supply stores for the Mithrilbourgh Army.");
+				addJob("I proud to be the Quartermaster of the Mithrilbourgh Army. However, we are lacking in #boots and #helmets.");
+				addReply("boots","I seem to hand out stone boots very regularly, but our careless soldiers  always lose them. Thus, I buy any good boots that you can offer, see the blue book for a price list.");
+				addReply("helmets","I do not have a good source of helmets. Any you can sell me would be appreciated, at the moment we only have enough for the lieutenants, and none for the soldiers. The red book has details.");
+				addHelp("As Quartermaster, I take #offers for supplies which we are short of.");
+				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
+				        "I buy #boots and #helmets on behalf of the Mithrilbourgh Army.", null);
+				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
+				        ConversationStates.ATTENDING,
+				        "The Mithrilbourgh Army is not in need your services at present.", null);
+				addBuyer(new BuyerBehaviour(shops.get("boots&helm")), false);
+ 				addGoodbye("Bye.");
+			}
+		};
+		npc.setDescription("You see Diehelm Brui, the Quartermaster.");
+		npcs.add(npc);
+		zone.assignRPObjectID(npc);
+		npc.put("class", "recruiter3npc");
+		npc.set(10, 3);
+		npc.initHP(100);
+		zone.add(npc);
+
+		// Add a book with the shop offers
+		Sign book = new Sign();
+		zone.assignRPObjectID(book);
+		book.set(12, 3);
+		book.setText(" -- Buying -- \n steel_boots\t 1000\n golden_boots\t 1500\n shadow_boots\t 2000\n stone_boots\t 2500\n chaos_boots\t 4000");
+		book.setClass("book_blue");
+		zone.add(book);
+		Sign book2 = new Sign();
+		zone.assignRPObjectID(book2);
+		book2.set(13, 4);
+		book2.setText(" -- Buying -- \n golden_helmet\t 3000\n shadow_helmet\t 4000\n horned_golden_helmet 5000\n chaos_helmet\t 6000\n magic_chain_helmet\t 8000\n black_helmet\t 10000");
+		book2.setClass("book_red");
+		zone.add(book2);
+
+	}
+}

@@ -122,10 +122,6 @@ public class ShopList {
 		shops.add("buyrare2", "ice_sword", 5000);
 
 		// very rare armor shop (ados)
-		shops.add("buyrare3", "steel_boots", 1000);
-		shops.add("buyrare3", "golden_boots", 1500);
-		shops.add("buyrare3", "shadow_boots", 2000);
-		shops.add("buyrare3", "stone_boots", 2500);
 		shops.add("buyrare3", "golden_legs", 3000);
 		shops.add("buyrare3", "shadow_legs", 5000);
 		shops.add("buyrare3", "golden_armor", 7000);
@@ -156,6 +152,26 @@ public class ShopList {
 		shops.add("buycloaks", "golden_cloak", 5000);
 		shops.add("buycloaks", "chaos_cloak", 10000);
 		shops.add("buycloaks", "black_cloak", 20000);
+
+		// boots shop (mithrilbourgh)
+		// Note the shop sign is done by hand in games.stendhal.server.maps.mithrilbourgh.stores
+		// Because I wanted to split boots and helmets
+		// Please if you change anything, change also the sign (by hand)
+		shops.add("boots&helm", "steel_boots", 1000);
+		shops.add("boots&helm", "golden_boots", 1500);
+		shops.add("boots&helm", "shadow_boots", 2000);
+		shops.add("boots&helm", "stone_boots", 2500);
+		shops.add("boots&helm", "chaos_boots", 4000);
+
+		// helmet shop (mithrilbourgh)
+		// Note the shop sign is done by hand in games.stendhal.server.maps.mithrilbourgh.stores
+		shops.add("boots&helm", "golden_helmet", 3000);
+		shops.add("boots&helm", "shadow_helmet", 4000);
+		shops.add("boots&helm", "horned_golden_helmet", 5000);
+		shops.add("boots&helm", "chaos_helmet", 6000);
+		shops.add("boots&helm", "magic_chain_helmet", 8000);		
+		shops.add("boots&helm", "black_helmet", 10000);
+
 	}
 
 	static private ShopList instance;
