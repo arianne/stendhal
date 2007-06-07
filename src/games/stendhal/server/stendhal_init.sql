@@ -1,6 +1,7 @@
 create table if not exists character_stats
   (
   name varchar(32) not null,
+  admin int default 0,
   sentence varchar(256),
   age integer,
   level integer,

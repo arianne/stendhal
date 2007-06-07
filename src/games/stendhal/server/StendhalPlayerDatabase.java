@@ -117,6 +117,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			// first try an update
 			String query = "UPDATE character_stats SET "+
 			   "sentence='" + StringChecker.escapeSQLString(instance.getSentence())+"', "+
+			   "admin="+ instance.getAdminLevel()+", "+
 			   "age=" + instance.getAge()+", "+
 			   "level=" + instance.getLevel()+", "+
 			   "outfit='" + instance.getOutfit().getCode()+"', "+
@@ -140,9 +141,10 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
-				query = "INSERT INTO character_stats (name, sentence, age, level, outfit, xp, money, atk, def, hp, karma, " +
+				query = "INSERT INTO character_stats (name, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, " +
 						"head, armor, lhand, rhand, legs, feet, cloak) VALUES (" +
 				   "'"+StringChecker.escapeSQLString(instance.getName())+"', "+
+				   instance.getAdminLevel()+", "+
 				   "'"+StringChecker.escapeSQLString(instance.getSentence())+"', "+
 				   instance.getAge()+", "+
 				   instance.getLevel()+", "+
