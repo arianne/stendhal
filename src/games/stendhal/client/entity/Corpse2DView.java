@@ -169,6 +169,7 @@ public class Corpse2DView extends Entity2DView {
 	 *
 	 * @return	<code>true</code> if the entity is movable.
 	 */
+	@Override
 	public boolean isMovable() {
 		return true;
 	}
