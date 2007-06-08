@@ -176,9 +176,6 @@ public class Sheep extends DomesticAnimal {
 	 *         given range
 	 */
 	private SheepFood getNearestFood(double range) {
-		int x = getX();
-		int y = getY();
-
 		// This way we save several sqrt operations
 		double squaredDistance = range * range;
 
@@ -186,9 +183,6 @@ public class Sheep extends DomesticAnimal {
 
 		for (SheepFood food : getZone().getSheepFoodList()) {
 			if (food.getAmount() > 0) {
-				int fx = food.getX();
-				int fy = food.getY();
-
 				double foodDistance = squaredDistance(food);
 
 				if (foodDistance <= squaredDistance) {
