@@ -31,6 +31,6 @@ public class ThingCreature implements ZoneConfigurator {
 	private void buildDrowTunnelArea(StendhalRPZone zone, Map<String, String> attributes) {
 		Creature creature = new ItemGuardCreature(manager.getCreature("thing"), "amulet");
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 32, 5, creature, 1);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 	}
 }

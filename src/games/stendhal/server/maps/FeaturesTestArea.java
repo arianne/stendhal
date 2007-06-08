@@ -76,18 +76,18 @@ public class FeaturesTestArea implements ZoneConfigurator {
 
 		Creature creature = new QuestRat(manager.getCreature("rat"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 40, 5, creature, 1);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 	}
 
 	private void attackableAnimal(StendhalRPZone zone, Map<String, String> attributes) {
 		Creature creature = new AttackableCreature(manager.getCreature("orc"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 4, 56, creature, 1);
 		point.setRespawnTime(60 * 60 * 3);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 
 		creature = manager.getCreature("deer");
 		point = new CreatureRespawnPoint(zone, 14, 56, creature, 1);
 		point.setRespawnTime(60 * 60 * 3);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 	}
 }

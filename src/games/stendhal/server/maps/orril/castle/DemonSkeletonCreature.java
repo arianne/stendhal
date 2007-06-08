@@ -32,6 +32,6 @@ public class DemonSkeletonCreature implements ZoneConfigurator {
 
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 54, 48, creature, 1);
 
-		zone.addRespawnPoint(point);
+		zone.add(point);
 	}
 }

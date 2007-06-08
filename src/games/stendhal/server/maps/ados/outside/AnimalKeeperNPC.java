@@ -114,19 +114,19 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		DefaultEntityManager manager = (DefaultEntityManager) StendhalRPWorld.get().getRuleManager().getEntityManager();
 		Creature creature = new AdosAttackableCreature(manager.getCreature("bear"));
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 65, 34, creature, 1);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 
 		// 67, 29 bear
 		point = new CreatureRespawnPoint(zone, 67, 29, creature, 1);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 
 		// 67, 31 black_bear
 		creature = new AdosAttackableCreature(manager.getCreature("black_bear"));
 		point = new CreatureRespawnPoint(zone, 67, 31, creature, 1);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 
 		// 67, 35 black_bear
 		point = new CreatureRespawnPoint(zone, 67, 35, creature, 1);
-		zone.addRespawnPoint(point);
+		zone.add(point);
 	}
 }

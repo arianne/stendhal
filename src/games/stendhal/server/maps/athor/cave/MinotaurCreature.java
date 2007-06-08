@@ -30,7 +30,7 @@ public class MinotaurCreature implements ZoneConfigurator {
 
 		CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 121, 121, creature, 1);
 
-		zone.addRespawnPoint(point);
+		zone.add(point);
 
 	}
 }
