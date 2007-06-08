@@ -13,7 +13,6 @@
 
 package games.stendhal.client.gui.wt;
 
-import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
@@ -22,7 +21,6 @@ import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtPanel;

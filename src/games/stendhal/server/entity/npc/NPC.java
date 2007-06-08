@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.pathfinder.Path;
@@ -20,10 +19,12 @@ import games.stendhal.server.pathfinder.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+
 import org.apache.log4j.Logger;
 
 public abstract class NPC extends RPEntity {

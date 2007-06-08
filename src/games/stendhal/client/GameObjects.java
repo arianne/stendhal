@@ -13,18 +13,12 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity;
-import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.events.RPObjectChangeListener;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.Map;
 
 import marauroa.common.Log4J;
