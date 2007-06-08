@@ -157,7 +157,7 @@ public class GameScreen {
 	/**
 	 * Whether the internal state is valid
 	 */
-	private boolean valid;
+	//private boolean valid;
 
 
 	static {
@@ -232,9 +232,9 @@ public class GameScreen {
 	}
 
 
-	public void invalidate() {
-		valid = false;
-	}
+//	public void invalidate() {
+//		valid = false;
+//	}
 
 
 	/** Prepare screen for the next frame to be rendered and move it if needed */
@@ -443,7 +443,7 @@ public class GameScreen {
 		StaticGameLayers gameLayers = client.getStaticGameLayers();
 		String set = gameLayers.getRPZoneLayerSet();
 
-		GameObjects gameObjects = client.getGameObjects();
+//		GameObjects gameObjects = client.getGameObjects();
 
 		int x = (int) getViewX();
 		int y = (int) getViewY();
