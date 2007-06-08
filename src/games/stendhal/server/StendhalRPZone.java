@@ -204,6 +204,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * @deprecated	Use add(CreatureRespawnPoint).
 	 */
+	@Deprecated
 	public void addRespawnPoint(CreatureRespawnPoint point) {
 		add(point);
 	}
