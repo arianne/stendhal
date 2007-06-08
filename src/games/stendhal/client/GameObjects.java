@@ -38,15 +38,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(GameObjects.class);
 
-	private static final Comparator<Entity> entityComparator = new EntityComparator();
-
 	private Map<FQID, Entity> objects;
-
-	/**
-	 * A list of all entities, sorted by the Z index, i.e. the order in which
-	 * they should be drawn.
-	 */
-	private LinkedList<Entity> sortedObjects;
 
 	private StaticGameLayers collisionMap;
 
@@ -89,19 +81,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	private GameObjects(StaticGameLayers collisionMap) {
 		objects = new HashMap<FQID, Entity>();
 
-		sortedObjects = new LinkedList<Entity>();
-
 		this.collisionMap = collisionMap;
 	}
 
 	public Iterator<Entity> iterator() {
-		return sortedObjects.iterator();
+		return objects.values().iterator();
 	}
 
-
-	private void sort() {
-		Collections.sort(sortedObjects, entityComparator);
-	}
 
 	public Entity get(RPObject object) {
 		return objects.get(FQID.create(object));
@@ -124,8 +110,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 
 		objects.clear();
-		sortedObjects.clear();
-
 		GameScreen.get().clear();
 
 		Log4J.finishMethod(logger, "clear");
@@ -139,7 +123,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			return true;
 		}
 
-		for (Entity other : sortedObjects) {
+		for (Entity other : objects.values()) {
 			if(other.isObstacle(entity) && area.intersects(other.getArea())) {
 				return true;
 			}
@@ -150,80 +134,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** Move objects based on the lapsus of time ellapsed since the last call. */
 	public void move(long delta) {
-		for (Entity entity : sortedObjects) {
+		for (Entity entity : objects.values()) {
 			entity.update(delta);
-		}
-	}
-
-	public Entity at(double x, double y) {
-		try {
-			ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects
-					.size());
-			while (it.hasPrevious()) {
-				Entity entity = it.previous();
-
-				if (entity.getArea().contains(x, y)) {
-					return entity;
-				}
-			}
-			// Maybe user clicked outside char but on the drawed area of it
-			it = sortedObjects.listIterator(sortedObjects.size());
-			while (it.hasPrevious()) {
-				Entity entity = it.previous();
-
-				if (entity.getView().getDrawnArea().contains(x, y)) {
-					return entity;
-				}
-			}
-		} catch (ConcurrentModificationException e) {
-			// TODO: make a more failsafe/sophosticated solution 
-			return null;
-		}		
-		return null;
-	}
-
-	public Entity at_undercreature(double x, double y) {
-		ListIterator<Entity> it = sortedObjects.listIterator(sortedObjects.size());
-		while (it.hasPrevious()) {
-			Entity entity = it.previous();
-
-			if (entity.getArea().contains(x, y)) {
-				if (entity.getType().equals("creature")) {
-					continue;
-				}
-				return entity;
-			}
-		}
-
-		// Maybe user clicked outside char but on the drawed area of it
-		it = sortedObjects.listIterator(sortedObjects.size());
-		while (it.hasPrevious()) {
-			Entity entity = it.previous();
-
-			if (entity.getView().getDrawnArea().contains(x, y)) {
-				if (entity.getType().equals("creature")) {
-					continue;
-				}
-				return entity;
-			}
-		}
-
-		return null;
-	}
-
-	/** Draw all the objects in game */
-	public void draw(GameScreen screen) {
-		sort();
-
-		for (Entity entity : sortedObjects) {
-			entity.getView().draw(screen);
-		}
-	}
-
-	/** Draw the creature's Name/HP Bar */
-	public void drawHPbar(GameScreen screen) {
-		for (Entity entity : sortedObjects) {
-			entity.getView().drawTop(screen);
 		}
 	}
 
@@ -275,7 +187,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			 * Only non-contained objects are on screen
 			 */
 			if(!object.isContained()) {
-				sortedObjects.add(entity);
+				GameScreen.get().addEntityView(entity.getView());
 			}
 
 			logger.debug("added " + entity);
@@ -374,8 +286,8 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Entity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
+			GameScreen.get().removeEntityView(entity.getView());
 			entity.release();
-			sortedObjects.remove(entity);
 		}
 
 		Log4J.finishMethod(logger, "onRemoved");
@@ -498,44 +410,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			}
 
 			return value;
-		}
-	}
-
-	//
-	//
-
-	protected static class EntityComparator implements Comparator<Entity> {
-		//
-		// EntityComparator
-		//
-
-		public int compare(Entity2DView view1, Entity2DView view2) {
-			int	rv;
-
-
-			rv = view1.getZIndex() - view2.getZIndex();
-
-			if(rv == 0) {
-				Rectangle2D area1 = view1.getDrawnArea();
-				Rectangle2D area2 = view2.getDrawnArea();
-
-				rv = (int) ((area1.getMaxY() - area2.getMaxY()) * 10.0);
-
-				if(rv == 0) {
-					rv = (int) ((area1.getMinX() - area2.getMinX()) * 10.0);
-				}
-			}
-
-			return rv;
-		}
-
-
-		//
-		// Comparator
-		//
-
-		public int compare(Entity entity1, Entity entity2) {
-			return compare(entity1.getView(), entity2.getView());
 		}
 	}
 }

@@ -20,6 +20,7 @@ import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.PassiveEntity;
 import games.stendhal.client.entity.Text;
@@ -119,12 +120,11 @@ public class GroundContainer extends WtPanel implements Inspector {
 			return other;
 		}
 		Point2D point = screen.translate(new Point2D.Double(x, y));
-		GameObjects gameObjects = client.getGameObjects();
-		Entity object = gameObjects.at_undercreature(point.getX(), point.getY());
+		EntityView view = screen.getMovableEntityViewAt(point.getX(), point.getY());
 
 		// only Items can be dragged
-		if ((object != null) && (object instanceof PassiveEntity)) {
-			return new MoveableEntityContainer(object, (int) point.getX(), (int) point.getY());
+		if (view != null) {
+			return new MoveableEntityContainer(view.getEntity(), (int) point.getX(), (int) point.getY());
 		}
 		return null;
 	}
@@ -144,7 +144,6 @@ public class GroundContainer extends WtPanel implements Inspector {
 
 		// get clicked entity
 		Point2D point = screen.translate(p);
-		GameObjects gameObjects = client.getGameObjects();
 
 		// for the text pop up....
 		Text text = screen.getTextAt(point.getX(), point.getY());
@@ -154,8 +153,10 @@ public class GroundContainer extends WtPanel implements Inspector {
 		}
 
 		// for the clicked entity....
-		Entity entity = gameObjects.at(point.getX(), point.getY());
-		if (entity != null) {
+		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+		if (view != null) {
+			Entity entity = view.getEntity();
+
 			if (ui.isCtrlDown()) {
 				entity.onAction(entity.defaultAction());
 			} else if (ui.isShiftDown()) {
@@ -174,7 +175,6 @@ public class GroundContainer extends WtPanel implements Inspector {
 		}
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
-		GameObjects gameObjects = client.getGameObjects();
 
 		// for the text pop up....
 		Text text = screen.getTextAt(point.getX(), point.getY());
@@ -183,8 +183,11 @@ public class GroundContainer extends WtPanel implements Inspector {
 			return true;
 		}
 
-		Entity entity = gameObjects.at(point.getX(), point.getY());
-		if (entity != null) {
+		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+
+		if (view != null) {
+			Entity entity = view.getEntity();
+
 			// ... do the default action
 			// String action = entity.defaultAction();
 			entity.onAction(entity.defaultAction());
@@ -211,10 +214,12 @@ public class GroundContainer extends WtPanel implements Inspector {
 		}
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
-		GameObjects gameObjects = client.getGameObjects();
-		Entity entity = gameObjects.at(point.getX(), point.getY());
 
-		if (entity != null) {
+		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+
+		if (view != null) {
+			Entity entity = view.getEntity();
+
 			// ... show context menu (aka command list)
 			String[] actions = entity.offeredActions();
 			if (actions.length > 0) {

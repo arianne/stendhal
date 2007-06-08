@@ -97,4 +97,18 @@ public class Spell2DView extends Entity2DView {
 			representationChanged = true;
 		}
 	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Determine if this entity can be moved (e.g. via dragging).
+	 *
+	 * @return	<code>true</code> if the entity is movable.
+	 */
+	public boolean isMovable() {
+		return true;
+	}
 }

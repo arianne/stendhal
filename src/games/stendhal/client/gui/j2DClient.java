@@ -19,6 +19,7 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.styled.Style;
@@ -681,11 +682,19 @@ public class j2DClient extends StendhalUI {
 //				else
 //					dy=2;
 
-				Entity en =GameObjects.getInstance().at(User.get().getX()+direction.getdx(),User.get().getY()+direction.getdy()+1
-				);
-				if (en != null&& !en.equals(User.get())){
-					if (e.isAltGraphDown()){
-						en.onAction(en.defaultAction());	
+				if (e.isAltGraphDown()) {
+					User user = User.get();
+
+					EntityView view = screen.getEntityViewAt(user.getX() + direction.getdx(), user.getY() + direction.getdy() + 1);
+
+					if (view != null) {
+						Entity entity = view.getEntity();
+						if(!entity.equals(user)) {
+							entity.onAction(entity.defaultAction());
+							// TODO: Do we want
+							// to move also? Or
+							// just 'return' here?
+						}
 					}
 				}
 

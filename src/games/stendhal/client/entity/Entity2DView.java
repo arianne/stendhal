@@ -421,6 +421,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
+	 * Determine if this entity can be moved (e.g. via dragging).
+	 *
+	 * @return	<code>true</code> if the entity is movable.
+	 */
+	public boolean isMovable() {
+		return false;
+	}
+
+
+	/**
 	 * Release any view resources. This view should not be used after
 	 * this is called.
 	 */

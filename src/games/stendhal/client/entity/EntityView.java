@@ -22,6 +22,14 @@ public interface EntityView {
 
 
 	/**
+	 * Determine if this entity can be moved (e.g. via dragging).
+	 *
+	 * @return	<code>true</code> if the entity is movable.
+	 */
+	public boolean isMovable();
+
+
+	/**
 	 * Release any view resources. This view should not be used after
 	 * this is called.
 	 */

@@ -333,7 +333,20 @@ public final byte[] ID_Token = new byte[0];
 	protected double getWidth() {
 		return 1.0;
 	}
-	
+
+
+	/**
+	 * Determine if this entity represents an instance of an RPClass.
+	 *
+	 * @param	clazz		The class name.
+	 *
+	 * @return	<code>true</code> if the entity represents that class,
+	 *		or a subclass.
+	 */
+	public boolean isInstanceOf(String clazz) {
+		return rpObject.getRPClass().subclassOf(clazz);
+	}
+
 	
 	/**
 	 * @param user the current player's character

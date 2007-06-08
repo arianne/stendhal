@@ -35,6 +35,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.text.AttributedString;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
@@ -65,6 +66,11 @@ public class GameScreen {
 
 	/** The width / height of one tile. */
 	public final static int SIZE_UNIT_PIXELS = 32;
+
+	/**
+	 * Comparator used to sort entities to display.
+	 */
+	protected static final EntityViewComparator	entityViewComparator = new EntityViewComparator();
 
 	/**
 	 * A scale factor for panning delta (to allow non-float precision).
@@ -253,6 +259,7 @@ public class GameScreen {
 	 */
 	public void addEntityView(Entity2DView view) {
 		views.add(view);
+		Collections.sort(views, entityViewComparator);
 	}
 
 
@@ -483,7 +490,7 @@ public class GameScreen {
 		drawEntities();
 		gameLayers.draw(this, set, "3_roof", x, y, w, h);
 		gameLayers.draw(this, set, "4_roof_add", x, y, w, h);
-		gameObjects.drawHPbar(this);
+		drawTopEntities();
 		drawText();
 
 		/*
@@ -506,19 +513,29 @@ public class GameScreen {
 	}
 
 
+	/**
+	 * Draw the screen entities.
+	 */
 	protected void drawEntities() {
-// SOON:
-//		Collections.sort(views, new EntityViewComparator());
-//
-//		for (Entity2DView view : views) {
-//			view.draw(this);
-//		}
-
-		GameObjects gameObjects = client.getGameObjects();
-		gameObjects.draw(this);
+		for (Entity2DView view : views) {
+			view.draw(this);
+		}
 	}
 
 
+	/**
+	 * Draw the top portion screen entities (such as HP/title bars).
+	 */
+	protected void drawTopEntities() {
+		for (Entity2DView view : views) {
+			view.drawTop(this);
+		}
+	}
+
+
+	/**
+	 * Draw the screen text bubbles.
+	 */
 	protected void drawText() {
 		texts.removeAll(textsToRemove);
 		textsToRemove.clear();
@@ -669,14 +686,85 @@ public class GameScreen {
 	}
 
 
+	/**
+	 * Get an entity view at given coordinates.
+	 *
+	 * @param	x		The X world coordinate.
+	 * @param	y		The Y world coordinate.
+	 *
+	 * @return	The entity view, or <code>null</code> if none found.
+	 */
 	public Entity2DView getEntityViewAt(double x, double y) {
-		ListIterator<Entity2DView> it = views.listIterator(views.size());
+		ListIterator<Entity2DView> it;
+
+		/*
+		 * Try the physical entity areas first
+		 */
+		it = views.listIterator(views.size());
+
+		while (it.hasPrevious()) {
+			Entity2DView view = it.previous();
+
+			if (view.getEntity().getArea().contains(x, y)) {
+				return view;
+			}
+		}
+
+		/*
+		 * Now the visual entity areas
+		 */
+		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
 			Entity2DView view = it.previous();
 
 			if (view.getDrawnArea().contains(x, y)) {
 				return view;
+			}
+		}
+
+		return null;
+	}
+
+
+	/**
+	 * Get an entity view that is movable at given coordinates.
+	 *
+	 * @param	x		The X world coordinate.
+	 * @param	y		The Y world coordinate.
+	 *
+	 * @return	The entity view, or <code>null</code> if none found.
+	 */
+	public Entity2DView getMovableEntityViewAt(final double x, final double y) {
+		ListIterator<Entity2DView> it;
+
+		/*
+		 * Try the physical entity areas first
+		 */
+		it = views.listIterator(views.size());
+
+		while (it.hasPrevious()) {
+			Entity2DView view = it.previous();
+
+			if(view.isMovable()) {
+				if (view.getEntity().getArea().contains(x, y)) {
+					return view;
+				}
+			}
+		}
+
+		/*
+		 * Now the visual entity areas
+		 */
+		it = views.listIterator(views.size());
+
+		while (it.hasPrevious()) {
+			Entity2DView view = it.previous();
+
+			if(view.isMovable()) {
+				if (view.getDrawnArea().contains(x, y)) {
+					return view;
+				}
 			}
 		}
 
