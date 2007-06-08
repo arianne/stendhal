@@ -26,7 +26,7 @@ import java.util.List;
  * - Josephine gives you a reward
  * 
  * REWARD:
- * - golden cloak 
+ * - black cloak
  * - 2500 XP
  * 
  * REPETITIONS:
