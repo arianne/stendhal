@@ -370,8 +370,8 @@ public class SpeakerNPC extends NPC {
 
 	protected void say(String text, boolean turnToPlayer) {
 		// be polite and face the player we are talking to
-		if (turnToPlayer && (attending != null) && (!facingTo(attending))) {
-			faceTo(attending);
+		if (turnToPlayer && (attending != null)) {
+			faceToward(attending);
 		}
 		super.say(text);
 

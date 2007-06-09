@@ -231,7 +231,7 @@ public class StendhalRPAction {
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "attack", entity.getName());
 
 		player.attack(entity);
-		player.faceTo(entity);
+		player.faceToward(entity);
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
 	}
@@ -449,7 +449,7 @@ public class StendhalRPAction {
 					}
 
 					for (Portal portal : zone.getPortals()) {
-						if (player.nextTo(portal) && player.facingTo(portal)) {
+						if (player.nextTo(portal) && player.isFacingToward(portal)) {
 							logger.debug("Using portal " + portal);
 							portal.onUsed(player);
 							return;

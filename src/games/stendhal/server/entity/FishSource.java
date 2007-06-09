@@ -134,7 +134,7 @@ public class FishSource extends Entity implements UseListener {
 					// You can't start a new prospecting action before
 					// the last one has finished.
 					if (TurnNotifier.get().getRemainingTurns(fisher) == -1) {
-						player.faceTo(this);
+						player.faceToward(this);
 						player.notifyWorldAboutChanges();
 
 						// some feedback is needed.

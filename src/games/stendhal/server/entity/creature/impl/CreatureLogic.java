@@ -263,7 +263,7 @@ public class CreatureLogic {
 		}
 		creature.stop();
 		creature.attack(target);
-		creature.faceTo(target);
+		creature.faceToward(target);
 		aiState = AiState.ATTACKING;
 	}
 
@@ -380,7 +380,7 @@ public class CreatureLogic {
 		creature.attack(target);
 
 		if (waitRounds == 0) {
-			creature.faceTo(target);
+			creature.faceToward(target);
 		}
 
 		// our current Path is blocked...mostly by the target or another

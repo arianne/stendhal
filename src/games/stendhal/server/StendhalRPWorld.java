@@ -13,6 +13,7 @@
 package games.stendhal.server;
 
 import games.stendhal.server.config.ZoneGroupsXMLLoader;
+import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Chest;
 import games.stendhal.server.entity.Entity;
@@ -167,6 +168,7 @@ public class StendhalRPWorld extends RPWorld {
 		Entity.generateRPClass();
 
 		// Entity sub-classes
+		ActiveEntity.generateRPClass();
 		AreaEntity.generateRPClass();
 		Blood.generateRPClass();
 		Chest.generateRPClass();
@@ -178,9 +180,11 @@ public class StendhalRPWorld extends RPWorld {
 		Item.generateRPClass();
 		PassiveEntityRespawnPoint.generateRPClass();
 		Portal.generateRPClass();
-		RPEntity.generateRPClass();
 		Sign.generateRPClass();
 		Spell.generateRPClass();
+
+		// ActiveEntity sub-classes
+		RPEntity.generateRPClass();
 
 		// RPEntity sub-classes
 		NPC.generateRPClass();

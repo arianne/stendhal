@@ -74,10 +74,6 @@ public abstract class Entity extends RPObject {
 
 	private int y;
 
-	private Direction direction;
-
-	private double speed;
-
 	private boolean collides;
 
 	/**
@@ -90,9 +86,6 @@ public abstract class Entity extends RPObject {
 		entity.add("description", RPClass.LONG_STRING, RPClass.HIDDEN); // Some things may have a textual description
 		entity.add("x", RPClass.SHORT);
 		entity.add("y", RPClass.SHORT);
-		entity.add("dir", RPClass.BYTE, RPClass.VOLATILE);
-		entity.add("speed", RPClass.FLOAT, RPClass.VOLATILE);
-		entity.add("alternateTitle", RPClass.STRING);
 
 		/*
 		 * If this is set, the client will discard/ignore entity
@@ -114,8 +107,6 @@ public abstract class Entity extends RPObject {
 
 	public Entity(RPObject object) throws AttributeNotFoundException {
 		super(object);
-		direction = Direction.STOP;
-		speed = 0;
 
 		if(!has("visibility")) {
 			put("visibility", 100);
@@ -134,12 +125,6 @@ public abstract class Entity extends RPObject {
 		}
 		if (has("y")) {
 			y = getInt("y");
-		}
-		if (has("speed")) {
-			speed = getDouble("speed");
-		}
-		if (has("dir")) {
-			direction = Direction.build(getInt("dir"));
 		}
 	}
 
@@ -251,29 +236,6 @@ public abstract class Entity extends RPObject {
 
 
 	/**
-	 * Set the current facing direction.
-	 *
-	 *
-	 */
-	public void setDirection(Direction dir) {
-		if (dir == this.direction) {
-			return;
-		}
-		this.direction = dir;
-		put("dir", direction.get());
-	}
-
-
-	/**
-	 * Get the current facing direction.
-	 *
-	 *
-	 */
-	public Direction getDirection() {
-		return direction;
-	}
-
-	/**
 	 * Get the zone this entity is in.
 	 *
 	 * @return	A zone, or <code>null</code> if not in one.
@@ -286,43 +248,15 @@ public abstract class Entity extends RPObject {
 		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
 	}
 
-	public void setSpeed(double speed) {
-		if (speed == this.speed) {
-			return;
-		}
-		this.speed = speed;
-		put("speed", speed);
-	}
-
-	public double getSpeed() {
-		return speed;
-	}
-
-	private int turnsToCompleteMove;
-
-	public boolean isMoveCompleted() {
-		++turnsToCompleteMove;
-		if (turnsToCompleteMove >= 1.0 / speed) {
-			turnsToCompleteMove = 0;
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * stops the walking of this entity
-	 */
-	public void stop() {
-		setSpeed(0);
-	}
-
 	/**
 	 * is this entity not moving
+	 *
+	 * TODO: Remove after the StendhalNavigableEntities dependancy is gone
 	 *
 	 * @return true, if it stopped, false if it is moving
 	 */
 	public boolean stopped() {
-		return speed == 0;
+		return true;
 	}
 
 	public void setCollides(boolean collides) {
@@ -512,51 +446,6 @@ public abstract class Entity extends RPObject {
 		return thisArea.intersects(otherArea);
 	}
 
-	public boolean facingTo(Entity entity) {
-		Rectangle2D thisArea = getArea(x, y);
-		Rectangle2D otherArea = entity.getArea(entity.x, entity.y);
-		if ((direction == Direction.UP) && (thisArea.getX() == otherArea.getX())
-		        && (thisArea.getY() - 1 == otherArea.getY())) {
-			return true;
-		}
-		if ((direction == Direction.DOWN) && (thisArea.getX() == otherArea.getX())
-		        && (thisArea.getY() + 1 == otherArea.getY())) {
-			return true;
-		}
-		if ((direction == Direction.LEFT) && (thisArea.getY() == otherArea.getY())
-		        && (thisArea.getX() - 1 == otherArea.getX())) {
-			return true;
-		}
-		if ((direction == Direction.RIGHT) && (thisArea.getY() == otherArea.getY())
-		        && (thisArea.getX() + 1 == otherArea.getX())) {
-			return true;
-		}
-		return false;
-	}
-
-	public void faceTo(Entity entity) {
-		Rectangle2D otherArea = entity.getArea(entity.getX(), entity.getY());
-		setDirection(directionTo((int) otherArea.getX(), (int) otherArea.getY()));
-	}
-
-	private Direction directionTo(int px, int py) {
-		Rectangle2D area = getArea(x, y);
-		int rx = (int) area.getX();
-		int ry = (int) area.getY();
-		if (Math.abs(px - rx) > Math.abs(py - ry)) {
-			if (px - rx > 0) {
-				return Direction.RIGHT;
-			} else {
-				return Direction.LEFT;
-			}
-		} else {
-			if (py - ry > 0) {
-				return Direction.DOWN;
-			} else {
-				return Direction.UP;
-			}
-		}
-	}
 
 	/**
 	 * Get the area this object currently occupies.

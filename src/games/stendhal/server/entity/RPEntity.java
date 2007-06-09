@@ -44,7 +44,7 @@ import marauroa.server.game.Statistics;
 
 import org.apache.log4j.Logger;
 
-public abstract class RPEntity extends Entity {
+public abstract class RPEntity extends ActiveEntity {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RPEntity.class);
@@ -127,7 +127,7 @@ public abstract class RPEntity extends Entity {
 
 		try {
 			RPClass entity = new RPClass("rpentity");
-			entity.isA("entity");
+			entity.isA("active_entity");
 			entity.add("name", RPClass.STRING);
 			entity.add("title", RPClass.STRING);
 			entity.add("level", RPClass.SHORT);

@@ -133,7 +133,7 @@ public class GoldSource extends Entity implements UseListener {
 					// You can't start a new prospecting action before
 					// the last one has finished.
 					if (TurnNotifier.get().getRemainingTurns(prospect) == -1) {
-						player.faceTo(this);
+						player.faceToward(this);
 						player.notifyWorldAboutChanges();
 
 						// some feedback is needed.

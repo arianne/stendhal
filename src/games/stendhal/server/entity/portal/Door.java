@@ -46,6 +46,9 @@ public abstract class Door extends Portal implements TurnListener {
 		door.add("class", RPClass.STRING);
 		door.add("locked", RPClass.STRING, RPClass.PRIVATE);
 		door.add("open", RPClass.FLAG);
+
+		// TODO: Change to 'orientation' on server & client
+		door.add("dir", RPClass.BYTE, RPClass.VOLATILE);
 	}
 
 	/**
@@ -55,11 +58,9 @@ public abstract class Door extends Portal implements TurnListener {
 	 *            through this door
 	 */
 	public Door(String clazz, Direction dir) {
-		super();
 		put("type", "door");
 		put("class", clazz);
-
-		setDirection(dir);
+		put("dir", dir.get());
 
 		open = false;
 	}
