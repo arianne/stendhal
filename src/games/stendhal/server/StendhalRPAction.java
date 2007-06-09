@@ -409,82 +409,11 @@ public class StendhalRPAction {
 	 * @param entity The entity that should move
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
+	 *
+	 * @deprecated	Use entity.applyMovement() directly.
 	 */
 	public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException {
-		if (entity.stopped()) {
-			return;
-		}
-
-		int x = entity.getX();
-		int y = entity.getY();
-
-		Direction dir = entity.getDirection();
-		int dx = dir.getdx();
-		int dy = dir.getdy();
-
-		int nx = x + dx;
-		int ny = y + dy;
-
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
-		boolean collision = zone.collides(entity, nx, ny);
-		boolean ignoreCollision = entity.isGhost();
-
-		if (collision) {
-			if (entity instanceof Player) {
-				Player player = (Player) entity;
-
-				// If we are too far from sheep skip zone change
-				Sheep sheep = null;
-				if (player.hasSheep()) {
-					sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
-				}
-
-				if (!((sheep != null) && (player.squaredDistance(sheep) > 7 * 7))) {
-					if (zone.leavesZone(player, nx, ny)) {
-						logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
-						decideChangeZone(player, nx, ny);
-						player.stop();
-						player.notifyWorldAboutChanges();
-						return;
-					}
-
-					for (Portal portal : zone.getPortals()) {
-						if (player.nextTo(portal) && player.isFacingToward(portal)) {
-							logger.debug("Using portal " + portal);
-							portal.onUsed(player);
-							return;
-						}
-					}
-				}
-			}
-		}
-		if (!collision || ignoreCollision) {
-			if (!entity.isMoveCompleted()) {
-				logger.debug(entity.get("type") + ") move not completed");
-				return;
-			}
-
-			if (logger.isDebugEnabled()) {
-				logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
-			}
-
-			entity.setX(nx);
-			entity.setY(ny);
-
-			entity.setCollides(false);
-			zone.notifyMovement(entity, x, y, nx, ny);
-
-			entity.notifyWorldAboutChanges();
-		} else {
-			/* Collision */
-			if (logger.isDebugEnabled()) {
-				logger.debug("Collision at (" + nx + "," + ny + ")");
-			}
-			entity.setCollides(true);
-
-			entity.stop();
-			entity.notifyWorldAboutChanges();
-		}
+		entity.applyMovement();
 	}
 
 	/**
@@ -501,48 +430,75 @@ public class StendhalRPAction {
 		Log4J.finishMethod(logger, "transferContent");
 	}
 
+
 	/**
-	 * ???
-	 * @param player
-	 * @param x
-	 * @param y
-	 * @throws AttributeNotFoundException
-	 * @throws NoRPZoneException
+	 * Find the zone that contains an entity at global coordinates.
+	 *
+	 * TODO: Move to StendhalRPWorld
+	 *
+	 * @param	level		The level.
+	 * @param	wx		The global X coordinate.
+	 * @param	wy		The global Y coordinate.
+	 * @param	entity		The entity.
+	 *
+	 * @return	The matching zone, or <code>null</code> if not found.
 	 */
-	public static void decideChangeZone(Player player, int x, int y) throws AttributeNotFoundException,
-	        NoRPZoneException {
-		// String zoneid = player.get("zoneid");
-
-		StendhalRPZone origin = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
-		int player_x = x + origin.getX();
-		int player_y = y + origin.getY();
-
-		boolean found = false;
-
+	protected static StendhalRPZone getZoneAt(int level, int wx, int wy, Entity entity) {
 		for (IRPZone izone : StendhalRPWorld.get()) {
 			StendhalRPZone zone = (StendhalRPZone) izone;
-			if ((zone.isInterior() == false) && (zone.getLevel() == origin.getLevel())) {
-				if (zone.contains(player, origin.getLevel(), player_x, player_y)) {
-					if (found) {
-						logger.error("Already contained at :" + zone.getID());
-					}
 
-					found = true;
-					logger.debug("Contained at :" + zone.getID());
+			if (zone.isInterior()) {
+				continue;
+			}
 
-					player.setX(player_x - zone.getX());
-					player.setY(player_y - zone.getY());
+			if(zone.getLevel() != level) {
+				continue;
+			}
 
-					logger.debug(player.getName() + " pos would be (" + player.getX() + "," + player.getY() + ")");
-
-					changeZone(player, zone);
-				}
+			/* TODO:
+			 * This is likely broken for entity larger than 2x2,
+			 * because parts of them will exist in multiple zones
+			 * (and not in collision)
+			 */
+			if (zone.contains(entity, level, wx, wy)) {
+				logger.debug("Contained at :" + zone.getID());
+				return zone;
 			}
 		}
 
-		if (!found) {
-			logger.warn("Unable to choose a new zone for player " + player.getName() + " at (" + player_x + ","
-			        + player_y + ") source was " + origin.getID().getID() + " at (" + x + ", " + y + ")");
+		return null;
+	}
+
+
+	/**
+	 * Change an entity's zone based on it's global world coordinates.
+	 *
+	 * @param	entity		The entity changing zones.
+	 * @param	x		The entity's old zone X coordinate.
+	 * @param	y		The entity's old zone Y coordinate.
+	 */
+	public static void decideChangeZone(Entity entity, int x, int y) {
+		StendhalRPZone origin = entity.getZone();
+
+		int entity_x = x + origin.getX();
+		int entity_y = y + origin.getY();
+
+		StendhalRPZone zone = getZoneAt(origin.getLevel(), entity_x, entity_y, entity);
+
+		if(zone != null) {
+			entity.setX(entity_x - zone.getX());
+			entity.setY(entity_y - zone.getY());
+
+			logger.debug(entity.getTitle() + " pos would be (" + entity.getX() + "," + entity.getY() + ")");
+
+			// TODO: Refactor changeZone to not require Player
+			changeZone((Player) entity, zone);
+		} else {
+			logger.warn("Unable to choose a new zone for entity: "
+				+ entity.getName()
+				+ " at (" + entity_x + "," + entity_y
+				+ ") source was " + origin.getID().getID()
+				+ " at (" + x + ", " + y + ")");
 		}
 	}
 

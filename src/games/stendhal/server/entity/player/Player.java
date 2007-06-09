@@ -1473,6 +1473,38 @@ public class Player extends RPEntity implements TurnListener {
 		return playerSheepManager;
 	}
 
+
+	//
+	// ActiveEntity
+	//
+
+	/**
+	 * Determine if zone changes are currently allowed via normal means
+	 * (non-portal teleportation doesn't count).
+	 *
+	 * @return	<code>true</code> if the entity can change zones.
+	 */
+	@Override
+	protected boolean isZoneChangeAllowed() {
+		/*
+		 * If we are too far from our sheep, then disallow zone change
+		 */
+		if (hasSheep()) {
+			Sheep sheep = (Sheep) StendhalRPWorld.get().get(getSheep());
+
+			if(squaredDistance(sheep) > (7 * 7)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+
+	//
+	// Object
+	//
+
 	@Override
 	public int hashCode() {
 		// player names are unique, so we can use the name's hash code.
@@ -1491,5 +1523,4 @@ public class Player extends RPEntity implements TurnListener {
 	public String toString() {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
-
 }

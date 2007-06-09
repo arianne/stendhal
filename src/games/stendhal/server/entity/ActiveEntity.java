@@ -10,10 +10,17 @@ package games.stendhal.server.entity;
 //
 
 import java.awt.geom.Rectangle2D;
+import org.apache.log4j.Logger;
 
 import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.portal.Portal;
 
+import marauroa.common.Log4J;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
@@ -21,6 +28,11 @@ import marauroa.common.game.RPObject;
  * An entity that hase speed and direction.
  */
 public abstract class ActiveEntity extends Entity {
+	/**
+	 * The logger.
+	 */
+	private static final Logger logger = Log4J.getLogger(ActiveEntity.class);
+
 	/*
 	 * The facing direction
 	 */
@@ -64,6 +76,79 @@ public abstract class ActiveEntity extends Entity {
 	//
 	// ActiveEntity
 	//
+
+	/**
+	 * Apply movement and process it's reactions.
+	 */
+	public void applyMovement() {
+		if (isStopped()) {
+			return;
+		}
+
+		int x = getX();
+		int y = getY();
+
+		Direction dir = getDirection();
+		int dx = dir.getdx();
+		int dy = dir.getdy();
+
+		int nx = x + dx;
+		int ny = y + dy;
+
+		StendhalRPZone zone = getZone();
+		boolean collision = zone.collides(this, nx, ny);
+
+		if (collision) {
+			// TODO: Break the Player dependency
+			// For now isZoneChangeAllowed() should return false
+			// with non-Player entity's.
+			if(isZoneChangeAllowed()) {
+				if (zone.leavesZone(this, nx, ny)) {
+					logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+					StendhalRPAction.decideChangeZone(this, nx, ny);
+					stop();
+					notifyWorldAboutChanges();
+					return;
+				}
+
+				// TODO: If Player becomes 1x1, remove "+ 1"
+				Portal portal = zone.getPortal(nx, ny + 1);
+
+				if(portal != null) {
+					logger.debug("Using portal " + portal);
+					// TODO: Generalize parameter type
+					portal.onUsed((RPEntity) this);
+					return;
+				}
+			}
+		}
+
+		if (!collision || isGhost()) {
+			if (!isMoveCompleted()) {
+				logger.debug(get("type") + ") move not completed");
+				return;
+			}
+
+			if (logger.isDebugEnabled()) {
+				logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+			}
+
+			set(nx, ny);
+			setCollides(false);
+			onMoved(x, y, nx, ny);
+		} else {
+			/* Collision */
+			if (logger.isDebugEnabled()) {
+				logger.debug("Collision at (" + nx + "," + ny + ")");
+			}
+
+			stop();
+			setCollides(true);
+		}
+
+		notifyWorldAboutChanges();
+	}
+
 
 	/**
 	 * Define the RPClass.
@@ -200,6 +285,29 @@ public abstract class ActiveEntity extends Entity {
 
 
 	/**
+	 * Determine if zone changes are currently allowed via normal means
+	 * (non-portal teleportation doesn't count).
+	 *
+	 * @return	<code>true</code> if the entity can change zones.
+	 */
+	protected boolean isZoneChangeAllowed() {
+		return false;
+	}
+
+
+	/**
+	 * Notify of intra-zone movement.
+	 *
+	 * @param	oldX		The old X coordinate.
+	 * @param	oldY		The old Y coordinate.
+	 * @param	newX		The new X coordinate.
+	 * @param	newY		The new Y coordinate.
+	 */
+	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+	}
+
+
+	/**
 	 * Set the facing direction.
 	 *
 	 * @param	dir		The facing direction.
@@ -234,6 +342,7 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	public void stop() {
 		setSpeed(0.0);
+		turnsToCompleteMove = 0;
 	}
 
 
