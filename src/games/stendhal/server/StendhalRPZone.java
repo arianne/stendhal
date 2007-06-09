@@ -350,19 +350,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return interior;
 	}
 
-	public boolean contains(Entity player, int level, int player_x, int player_y) {
-		Rectangle2D area = player.getArea(player_x, player_y);
+
+	/**
+	 * Determine if this zone overlaps an area in global coordinates.
+	 *
+	 * @param	area		The area (in global coordinate space).
+	 *
+	 * @return	<code>true</code> if the area overlaps.
+	 */
+	public boolean contains(Rectangle2D area) {
 		Rectangle2D zone = new Rectangle(x, y, getWidth(), getHeight());
 
 		return zone.intersects(area);
 	}
 
-	public boolean contains(Entity entity, StendhalRPZone zone) {
-		Rectangle2D area = entity.getArea(entity.getX() + zone.x, entity.getY() + zone.y);
-		Rectangle2D zonearea = new Rectangle(x, y, getWidth(), getHeight());
-
-		return zonearea.intersects(area);
-	}
 
 	/**
 	 * Populate a zone based on it's map content.
@@ -613,17 +614,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 			}
 
-			if (!zone.contains(portal, this)) {
-				continue;
-			}
-
-			logger.debug(zone + " contains " + portal);
-
 			Portal target = zone.getPortal(portal.getX() + getX() - zone.getX(), portal.getY() + getY() - zone.getY());
 
 			if (target == null) {
 				continue;
 			}
+
+			logger.debug(zone + " contains " + target);
 
 			if (target.loaded()) {
 				logger.debug(target + " already loaded");

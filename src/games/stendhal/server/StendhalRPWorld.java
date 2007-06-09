@@ -366,9 +366,46 @@ public class StendhalRPWorld extends RPWorld {
 		}
 	}
 
+
+	/**
+	 * Find the zone that would contain an entity at global coordinates.
+	 *
+	 * TODO:
+	 * This is likely broken for entity larger than 2x2,
+	 * because parts of them will exist in multiple zones
+	 * (and not in collision)
+	 *
+	 * @param	level		The level.
+	 * @param	wx		The global X coordinate.
+	 * @param	wy		The global Y coordinate.
+	 * @param	entity		The entity.
+	 *
+	 * @return	The matching zone, or <code>null</code> if not found.
+	 */
+	public StendhalRPZone getZoneAt(int level, int wx, int wy, Entity entity) {
+		for (IRPZone izone : this) {
+			StendhalRPZone zone = (StendhalRPZone) izone;
+
+			if (zone.isInterior()) {
+				continue;
+			}
+
+			if(zone.getLevel() != level) {
+				continue;
+			}
+
+			if (zone.contains(entity.getArea(wx, wy))) {
+				logger.debug("Contained at :" + zone.getID());
+				return zone;
+			}
+		}
+
+		return null;
+	}
+
+
 	@Override
 	public void onFinish() throws Exception {
 		StendhalRPRuleProcessor.get().addGameEvent("server system", "shutdown");
 	}
-
 }

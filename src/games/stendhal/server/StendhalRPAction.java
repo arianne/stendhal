@@ -432,45 +432,6 @@ public class StendhalRPAction {
 
 
 	/**
-	 * Find the zone that contains an entity at global coordinates.
-	 *
-	 * TODO: Move to StendhalRPWorld
-	 *
-	 * @param	level		The level.
-	 * @param	wx		The global X coordinate.
-	 * @param	wy		The global Y coordinate.
-	 * @param	entity		The entity.
-	 *
-	 * @return	The matching zone, or <code>null</code> if not found.
-	 */
-	protected static StendhalRPZone getZoneAt(int level, int wx, int wy, Entity entity) {
-		for (IRPZone izone : StendhalRPWorld.get()) {
-			StendhalRPZone zone = (StendhalRPZone) izone;
-
-			if (zone.isInterior()) {
-				continue;
-			}
-
-			if(zone.getLevel() != level) {
-				continue;
-			}
-
-			/* TODO:
-			 * This is likely broken for entity larger than 2x2,
-			 * because parts of them will exist in multiple zones
-			 * (and not in collision)
-			 */
-			if (zone.contains(entity, level, wx, wy)) {
-				logger.debug("Contained at :" + zone.getID());
-				return zone;
-			}
-		}
-
-		return null;
-	}
-
-
-	/**
 	 * Change an entity's zone based on it's global world coordinates.
 	 *
 	 * @param	entity		The entity changing zones.
@@ -483,7 +444,7 @@ public class StendhalRPAction {
 		int entity_x = x + origin.getX();
 		int entity_y = y + origin.getY();
 
-		StendhalRPZone zone = getZoneAt(origin.getLevel(), entity_x, entity_y, entity);
+		StendhalRPZone zone = StendhalRPWorld.get().getZoneAt(origin.getLevel(), entity_x, entity_y, entity);
 
 		if(zone != null) {
 			entity.setX(entity_x - zone.getX());
