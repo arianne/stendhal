@@ -663,6 +663,7 @@ public class GameScreen {
 	public void clear() {
 		Log4J.startMethod(logger, "clear");
 
+		views.clear();
 		texts.clear();
 		textsToRemove.clear();
 
