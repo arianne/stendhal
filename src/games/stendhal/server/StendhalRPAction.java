@@ -653,32 +653,10 @@ public class StendhalRPAction {
 
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "change zone", destination);
 
-		player.setKeyedSlot("!visited", destination, Long.toString(System.currentTimeMillis()));
-
 		player.clearPath();
 
 		String source = player.getID().getZoneID();
 		
-		/*
-		 * TODO: HACK: We should create an interface for this like onEnter and onLeave
-		 */ 
-		/*
-		 * If player enters afterlife, make it partially transparent
-		 */
-		if(destination.equals("int_afterlife")) {
-			player.put("visibility",50);
-		}
-		/*
-		 * Of course remove the effect once it leave
-		 */
-		if(source.equals("int_afterlife") && player.has("visibility")) {
-			player.remove("visibility");
-		}
-
-//		StendhalRPZone oldzone = player.getZone();
-
-//		oldzone.removePlayerAndFriends(player);
-
 		if (player.hasSheep()) {
 			Sheep sheep = (Sheep) world.get(player.getSheep());
 
@@ -689,13 +667,9 @@ public class StendhalRPAction {
 
 			player.setSheep(sheep);
 
-//			oldzone.removePlayerAndFriends(sheep);
-//			zone.addPlayerAndFriends(sheep);
-
 		} else {
 			world.changeZone(source, destination, player);
 		}
-//		zone.addPlayerAndFriends(player);
 
 		placeat(zone, player, player.getX(), player.getY());
 		player.stop();

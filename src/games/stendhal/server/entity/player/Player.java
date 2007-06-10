@@ -1502,6 +1502,54 @@ public class Player extends RPEntity implements TurnListener {
 
 
 	//
+	// Entity
+	//
+
+	/**
+	 * Called when this object is added to a zone.
+	 *
+	 * @param	zone		The zone this was added to.
+	 */
+	@Override
+	public void onAdded(StendhalRPZone zone) {
+		super.onAdded(zone);
+
+
+		String zoneName = zone.getID().getID();
+
+		/*
+		 * If player enters afterlife, make them partially transparent
+		 */
+		if(zoneName.equals("int_afterlife")) {
+			setVisibility(50);
+		}
+
+		/*
+		 * Remember zones we've been in
+		 */
+		setKeyedSlot("!visited", zoneName, Long.toString(System.currentTimeMillis()));
+	}
+
+
+	/**
+	 * Called when this object is being removed from a zone.
+	 *
+	 * @param	zone		The zone this will be removed from.
+	 */
+	@Override
+	public void onRemoved(StendhalRPZone zone) {
+		/*
+		 * If player leaves afterlife, make them normal
+		 */
+		if(zone.getID().getID().equals("int_afterlife")) {
+			setVisibility(100);
+		}
+
+		super.onRemoved(zone);
+	}
+
+
+	//
 	// Object
 	//
 

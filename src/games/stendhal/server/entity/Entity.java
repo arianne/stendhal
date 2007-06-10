@@ -551,4 +551,14 @@ public abstract class Entity extends RPObject {
 			return ret;
 		}
 	}
+
+
+	/**
+	 * Set the entity's visibility.
+	 *
+	 * @param	visibility	The visibility (0-100).
+	 */
+	public void setVisibility(final int visibility) {
+		put("visibility", visibility);
+	}
 }
