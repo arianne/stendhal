@@ -129,9 +129,9 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 		private SpeakerNPC engine;
 
-		private String text;
-
-		private int destIdx = 0;
+//		private String text;
+//
+//		private int destIdx = 0;
 
 		private int counter = 0;
 
@@ -146,7 +146,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		public TeleportScriptAction(Player player, SpeakerNPC engine, String text, ScriptInGroovy game) {
 			this.player = player;
 			this.engine = engine;
-			this.text = text;
+			//this.text = text;
 			this.game = game;
 		}
 
@@ -208,7 +208,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 	}
 
 	public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnListener {
-		private ScriptInGroovy game;
+	//	private ScriptInGroovy game;
 
 		private Player player;
 
@@ -217,7 +217,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		private int counter = 0;
 
 		public SightseeingAction(ScriptInGroovy game, StendhalRPWorld world) {
-			this.game = game;
+		//	this.game = game;
 
 			zones = new ArrayList<String>();
 			Iterator itr = world.iterator();
