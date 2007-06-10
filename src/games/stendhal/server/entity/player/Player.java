@@ -111,9 +111,7 @@ public class Player extends RPEntity implements TurnListener {
 	 */
 	protected FeatureList features;
 
-    private String guild;
-
-	/**
+ 	/**
 	 * A list of away replys sent to players.
 	 */
 	protected HashMap<String, Long> awayReplies;
