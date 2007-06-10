@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.Jail;
+import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -542,6 +543,8 @@ public class AdministrationAction implements ActionListener {
 			player.remove("ghostmode");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
 
+			StendhalPlayerDatabase.getDatabase().setOnlineStatus(player, true);			
+
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOnline(player.getName());
 			}
@@ -556,6 +559,8 @@ public class AdministrationAction implements ActionListener {
 			player.put("ghostmode", "");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "on");
 
+			StendhalPlayerDatabase.getDatabase().setOnlineStatus(player, false);
+			
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOffline(player.getName());
 			}

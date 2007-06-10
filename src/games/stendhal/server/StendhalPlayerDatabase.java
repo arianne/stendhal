@@ -12,6 +12,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import sun.rmi.runtime.GetThreadPoolAction;
+
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
@@ -55,8 +57,9 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 		return new StendhalPlayerDatabase(props);
 	}
 	
-	public void clearOnlineStatus(Transaction transaction) {
+	public void clearOnlineStatus() {
 		try {
+			JDBCTransaction transaction=(JDBCTransaction) getTransaction();
 			Connection connection = ((JDBCTransaction) transaction).getConnection();
 			Statement stmt = connection.createStatement();
 			
@@ -70,8 +73,9 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 		}
 	}
 
-	public void setOnlineStatus(Transaction transaction, Player player, boolean online) {
+	public void setOnlineStatus(Player player, boolean online) {
 		try {
+			JDBCTransaction transaction=(JDBCTransaction) getTransaction();
 			Connection connection = ((JDBCTransaction) transaction).getConnection();
 			Statement stmt = connection.createStatement();
 			
