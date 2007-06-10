@@ -45,11 +45,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
      */
     private int amount = 0;
     
-    /**
-     *Is there an extra option (eg. buy and sell)?
-     */
-    private boolean extraoptions = false;
-    
+     
     /**
      *If there is an extra option, are we using it (only buy at this point)
      */
@@ -262,7 +258,6 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	amount = 0;
 	buying = false;
 	buildMe = null;
-	extraoptions = false;
 	itemAmount.setValue(0);
 	
 	//set card
@@ -313,8 +308,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	    
 	    
 	} else if (card.contains("xin")) {
-	    extraoptions = true;
-	    if (xinSell.getSelectedValue() != null) {
+	      if (xinSell.getSelectedValue() != null) {
 		buildMe = String.valueOf(xinSell.getSelectedValue());
 	    } else {
 		buildMe = String.valueOf(xinBuy.getSelectedValue()); //not getSelectedValues for a reason...
