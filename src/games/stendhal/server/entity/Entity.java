@@ -13,7 +13,6 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import java.awt.Rectangle;
