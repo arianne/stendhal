@@ -64,9 +64,6 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 	/** the inventory */
 	private EntityContainer inventory;
 
-        /** the spells list */
-        private EntityContainer spells;
-
 	/** the player */
 	private User player;
 
