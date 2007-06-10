@@ -8,7 +8,6 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalUI;
 import java.awt.CardLayout;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 import games.stendhal.client.gui.styled.swing.StyledJButton;
@@ -66,7 +65,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
     /**
      *The hashmap is used to take an item name (such as "Knife ($15)") and translates it into something an NPC can understand (such as, simply, 'knife')
      */
-    private HashMap items = new HashMap();
+   // private HashMap items = new HashMap();
 
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     @SuppressWarnings("serial")
@@ -353,42 +352,42 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	
 	
     }//GEN-LAST:event_nextButtonActionPerformed
-    /**
-     *Adds items to the items hashmap
-     */
-    private void addToMap() {
-        // put entries here. maybe this isn't the best way to do things, but it should work if everything is typed correctly
-	/*
-	// Xin shop
-	items.put("Knife ($15)", "knife");
-	items.put("Club ($10)", "club");
-	items.put("Dagger ($25)", "dagger");
-	items.put("Wooden Shield ($25)", "wooden_shield");
-	items.put("Dress ($25)", "dress");
-	items.put("Leather Helmet ($25)", "leather_helmet");
-	items.put("Cloak ($30)", "cloak");
-	items.put("Leather Legs ($35)", "leather_legs");
-	items.put("Short Sword ($15)", "short_sword");
-	items.put("Sword ($60)", "sword");
-	items.put("Studded Shield ($20)", "studded_shield");
-	items.put("Studded Armor ($22)", "studded_armor");
-	items.put("Studded Legs ($20)", "studded_legs");
-	items.put("Chain Armor ($29)", "chain_armor");
-	items.put("Chain Helmet ($25)", "chain_helmet");
-	items.put("Chain Legs ($27)", "chain_legs");
-	
-	// food&drink shop
-	items.put("Beer ($10)", "beer");
-	items.put("Wine ($15)", "wine");
-	items.put("Flask ($5)", "flask");
-	items.put("Cheese ($20)", "cheese");
-	items.put("Apple ($10)", "apple");
-	items.put("Carrot ($10)", "carrot");
-	items.put("Meat ($40)", "meat");
-	items.put("Ham ($80)", "ham");
-	 */ //commented for other fix
-	    
-    }
+//    /**
+//     *Adds items to the items hashmap
+//     */
+//    private void addToMap() {
+//        // put entries here. maybe this isn't the best way to do things, but it should work if everything is typed correctly
+//	/*
+//	// Xin shop
+//	items.put("Knife ($15)", "knife");
+//	items.put("Club ($10)", "club");
+//	items.put("Dagger ($25)", "dagger");
+//	items.put("Wooden Shield ($25)", "wooden_shield");
+//	items.put("Dress ($25)", "dress");
+//	items.put("Leather Helmet ($25)", "leather_helmet");
+//	items.put("Cloak ($30)", "cloak");
+//	items.put("Leather Legs ($35)", "leather_legs");
+//	items.put("Short Sword ($15)", "short_sword");
+//	items.put("Sword ($60)", "sword");
+//	items.put("Studded Shield ($20)", "studded_shield");
+//	items.put("Studded Armor ($22)", "studded_armor");
+//	items.put("Studded Legs ($20)", "studded_legs");
+//	items.put("Chain Armor ($29)", "chain_armor");
+//	items.put("Chain Helmet ($25)", "chain_helmet");
+//	items.put("Chain Legs ($27)", "chain_legs");
+//	
+//	// food&drink shop
+//	items.put("Beer ($10)", "beer");
+//	items.put("Wine ($15)", "wine");
+//	items.put("Flask ($5)", "flask");
+//	items.put("Cheese ($20)", "cheese");
+//	items.put("Apple ($10)", "apple");
+//	items.put("Carrot ($10)", "carrot");
+//	items.put("Meat ($40)", "meat");
+//	items.put("Ham ($80)", "ham");
+//	 */ //commented for other fix
+//	    
+//    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel amountChooser;
