@@ -33,6 +33,7 @@ import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
 
 import java.awt.geom.Rectangle2D;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
 
-public class Player extends RPEntity implements TurnListener {
+public class Player extends RPEntity {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
@@ -936,6 +937,42 @@ public class Player extends RPEntity implements TurnListener {
 		Log4J.finishMethod(logger, "setSheep");
 	}
 
+	private final class AntidoteEater implements TurnListener {
+		
+		WeakReference<Player> ref;
+		public AntidoteEater(Player player) {
+			ref = new WeakReference<Player>(player);
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			if( ref.get()==null){
+				return;
+			}
+			ref.get().isImmune=false;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null){
+				return false;
+			}
+			if (obj instanceof AntidoteEater) {
+				AntidoteEater other = (AntidoteEater) obj;
+				return ref.get()== other.ref.get();
+				
+			}else{
+				return false;
+			}
+			
+		}
+
+		@Override
+		public int hashCode() {
+			
+			return ref.hashCode();
+		}
+	}
+
 	public static class NoSheepException extends RuntimeException {
 
 		private static final long serialVersionUID = -6689072547778842040L;
@@ -1277,8 +1314,9 @@ public class Player extends RPEntity implements TurnListener {
 			TurnNotifier notifier = TurnNotifier.get();
 			// first remove all effects from previously used immunities to
 			// restart the timer
-			notifier.dontNotify(this, "end_immunity");
-			notifier.notifyInTurns(soloItem.getAmount(), this, "end_immunity");
+			TurnListener tl = new AntidoteEater(this);
+			notifier.dontNotify(tl);
+			notifier.notifyInTurns(soloItem.getAmount(), tl);
 		} else if (!isImmune) {
 			// Player was poisoned and is currently not immune
 			poison(soloItem);
@@ -1350,11 +1388,6 @@ public class Player extends RPEntity implements TurnListener {
 
 	// TODO: use the turn notifier for consumable items to
 	// get rid of Player.consume().
-	public void onTurnReached(int turn, String message) {
-		if ("end_immunity".equals(message)) {
-			isImmune = false;
-		}
-	}
 
 	@Override
 	public String describe() {
