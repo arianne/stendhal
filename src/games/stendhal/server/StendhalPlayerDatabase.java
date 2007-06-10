@@ -54,6 +54,37 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 
 		return new StendhalPlayerDatabase(props);
 	}
+	
+	public void clearOnlineStatus(Transaction transaction) {
+		try {
+			Connection connection = ((JDBCTransaction) transaction).getConnection();
+			Statement stmt = connection.createStatement();
+			
+			// first try an update
+			String query = "UPDATE character_stats SET online=0";
+			logger.info("clearOnlineStatus is running: "+query);
+			stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException sqle) {
+			logger.info("error storing character", sqle);
+		}
+	}
+
+	public void setOnlineStatus(Transaction transaction, Player player, boolean online) {
+		try {
+			Connection connection = ((JDBCTransaction) transaction).getConnection();
+			Statement stmt = connection.createStatement();
+			
+			// first try an update
+			String query = "UPDATE character_stats SET "+
+			   "online="+(online?1:0)+" WHERE name='" + StringChecker.escapeSQLString(player.get("name"))+"'";
+			logger.info("setOnlineStatus is running: "+query);
+			stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException sqle) {
+			logger.info("error storing character", sqle);
+		}
+	}
 
 	@Override
 	public void storeCharacter(Transaction transaction, String username, String character,
@@ -117,6 +148,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			// first try an update
 			String query = "UPDATE character_stats SET "+
 			   "sentence='" + StringChecker.escapeSQLString(instance.getSentence())+"', "+
+			   "online=false, "+
 			   "admin="+ instance.getAdminLevel()+", "+
 			   "age=" + instance.getAge()+", "+
 			   "level=" + instance.getLevel()+", "+
@@ -141,9 +173,10 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
-				query = "INSERT INTO character_stats (name, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, " +
+				query = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, " +
 						"head, armor, lhand, rhand, legs, feet, cloak) VALUES (" +
 				   "'"+StringChecker.escapeSQLString(instance.getName())+"', "+
+				   " false"+", "+
 				   instance.getAdminLevel()+", "+
 				   "'"+StringChecker.escapeSQLString(instance.getSentence())+"', "+
 				   instance.getAge()+", "+

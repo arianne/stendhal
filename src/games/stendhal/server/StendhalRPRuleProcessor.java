@@ -157,6 +157,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private void init() {
 		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
+		database.clearOnlineStatus(database.getTransaction());
 		players = new LinkedList<Player>();
 		playersRmText = new LinkedList<Player>();
 		playersRmPrivateText = new LinkedList<Player>();
@@ -593,6 +594,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			addGameEvent(player.getName(), "login");
 			LoginNotifier.get().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
+			
+			database.setOnlineStatus(database.getTransaction(), player, true);
 
 			return true;
 		} catch (Exception e) {
@@ -616,6 +619,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			Player.destroy(player);
 			players.remove(player);
 			addGameEvent(player.getName(), "logout");
+			
+			database.setOnlineStatus(database.getTransaction(), player, false);
+
 			logger.debug("removed player " + player);
 			return true;
 		} catch (Exception e) {

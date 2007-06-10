@@ -1,6 +1,8 @@
 create table if not exists character_stats
   (
   name varchar(32) not null,
+  online boolean,
+  
   admin int default 0,
   sentence varchar(256),
   age integer,
@@ -28,7 +30,7 @@ create table if not exists character_stats
   
   primary key(name)
   )
-  TYPE=INNODB;
+  TYPE=MYISAM;
   
   
 create table if not exists halloffame
@@ -39,4 +41,5 @@ create table if not exists halloffame
   points integer not null,
 
   primary key(id)
-  ) TYPE=INNODB;
+  ) 
+  TYPE=MYISAM;
