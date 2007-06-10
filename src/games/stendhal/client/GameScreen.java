@@ -259,7 +259,6 @@ public class GameScreen {
 	 */
 	public void addEntityView(Entity2DView view) {
 		views.add(view);
-		Collections.sort(views, entityViewComparator);
 	}
 
 
@@ -436,14 +435,14 @@ public class GameScreen {
 	 * Draw the screen.
 	 */
 	public void draw(WtBaseframe baseframe) {
+		Collections.sort(views, entityViewComparator);
+
 		/*
 		 * Draw the GameLayers from bootom to top, relies on exact
 		 * naming of the layers
 		 */
 		StaticGameLayers gameLayers = client.getStaticGameLayers();
 		String set = gameLayers.getRPZoneLayerSet();
-
-//		GameObjects gameObjects = client.getGameObjects();
 
 		int x = (int) getViewX();
 		int y = (int) getViewY();
