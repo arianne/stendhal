@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server;
 
-import games.stendhal.common.Direction;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
@@ -412,6 +411,7 @@ public class StendhalRPAction {
 	 *
 	 * @deprecated	Use entity.applyMovement() directly.
 	 */
+	@Deprecated
 	public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException {
 		entity.applyMovement();
 	}

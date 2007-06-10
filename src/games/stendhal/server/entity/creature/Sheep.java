@@ -13,7 +13,6 @@
 package games.stendhal.server.entity.creature;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -405,7 +404,7 @@ public class Sheep extends DomesticAnimal {
 // SEE-DGB0606 // if(debugme) logger.info("SHEEP: Path: " + getPath());
 			moveto(SPEED);
 // SEE-DGB0606 // if(debugme) logger.info("SHEEP: X/Y: " + getX() + "/" + getY());
-			StendhalRPAction.move(this);
+			applyMovement();
 // SEE-DGB0606 // if(debugme) logger.info("SHEEP: *X/Y: " + getX() + "/" + getY());
 
 			/*

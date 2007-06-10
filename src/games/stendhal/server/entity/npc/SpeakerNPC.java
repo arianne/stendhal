@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Corpse;
@@ -307,7 +306,7 @@ public class SpeakerNPC extends NPC {
 		if (!isTalking()) {
 			if (hasPath()) {
 				Path.followPath(this, 0.2);
-				StendhalRPAction.move(this);
+				applyMovement();
 			}
 		} else if (attending != null) {
 			// If the player is too far away

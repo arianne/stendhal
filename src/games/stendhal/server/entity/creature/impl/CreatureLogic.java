@@ -452,7 +452,7 @@ public class CreatureLogic {
 
 	private void logicDoMove() {
 		if (!creature.stopped()) {
-			StendhalRPAction.move(creature);
+			creature.applyMovement();
 		}
 
 	}
