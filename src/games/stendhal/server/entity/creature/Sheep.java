@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
@@ -68,6 +69,11 @@ public class Sheep extends DomesticAnimal {
 
 	final private static int XP = 0;
 
+	/**
+	 * Random timing offset to give sheep non-synchronized reactions.
+	 */
+	private int timingAdjust;
+
 	private int hunger;
 
 	public static void generateRPClass() {
@@ -104,6 +110,7 @@ public class Sheep extends DomesticAnimal {
 		initHP(HP);
 
 		hunger = 0;
+		timingAdjust = Rand.rand(10);
 		update();
 		logger.debug("Created Sheep: " + this);
 	}
@@ -272,7 +279,7 @@ public class Sheep extends DomesticAnimal {
 	 * Called when the sheep is idle.
 	 */
 	protected void onIdle() {
-		int turn = StendhalRPRuleProcessor.get().getTurn();
+		int turn = StendhalRPRuleProcessor.get().getTurn() + timingAdjust;
 
 		if (owner == null) {
 			/*
@@ -407,9 +414,9 @@ public class Sheep extends DomesticAnimal {
 			 */
 			if (collides()) {
 // SEE-DGB0606 // if(debugme) logger.info("SHEEP: Collided");
-				stop();
 				clearPath();
 			}
+
 // SEE-DGB0606 // if(debugme) logger.info("SHEEP: stopped = " + stopped());
 		}
 
