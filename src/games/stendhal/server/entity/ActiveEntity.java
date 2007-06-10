@@ -85,6 +85,8 @@ public abstract class ActiveEntity extends Entity {
 			return;
 		}
 
+		setCollides(false);
+
 		int x = getX();
 		int y = getY();
 
@@ -134,7 +136,6 @@ public abstract class ActiveEntity extends Entity {
 			}
 
 			set(nx, ny);
-			setCollides(false);
 			onMoved(x, y, nx, ny);
 		} else {
 			/* Collision */
