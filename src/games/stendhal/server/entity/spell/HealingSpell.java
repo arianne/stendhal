@@ -31,7 +31,7 @@ import java.util.Map;
 public class HealingSpell extends Spell implements UseListener {
 	public int healAmount = 0;
 
-	private HealingSpell(String name, Map<String, String> attributes) {
+	HealingSpell(String name, Map<String, String> attributes) {
 		super(name, attributes);
 	}
 
