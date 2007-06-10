@@ -30,7 +30,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			@Override
 			public int getCharge(Player player) {
 				if (player.hasSheep()) {
-					Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+					Sheep sheep = player.getSheep();
 					return Math.round(getUnitPrice(chosenItem) * ((float) sheep.getWeight() / (float) sheep.MAX_WEIGHT));
 				} else {
 					return 0;
@@ -41,7 +41,7 @@ public class SheepBuyerNPC extends SpeakerNPCFactory {
 			public boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
 				// amount is currently ignored.
 				if (player.hasSheep()) {
-					Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+					Sheep sheep = player.getSheep();
 					if (seller.squaredDistance(sheep) > 5 * 5) {
 						seller.say("*drool* Sheep flesh! Bring da sheep here!");
 					} else {

@@ -110,7 +110,7 @@ public class PlayersQuery implements ActionListener {
 				        + who.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else if (whoName.equals("sheep") && player.hasSheep()) {
-				Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+				Sheep sheep = player.getSheep();
 				player.sendPrivateText("Your sheep is in " + sheep.get("zoneid") + " at (" + sheep.getX() + ","
 				        + sheep.getY() + ")");
 				player.notifyWorldAboutChanges();

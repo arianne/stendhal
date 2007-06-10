@@ -44,6 +44,7 @@ import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
 
 import org.apache.log4j.Logger;
@@ -170,14 +171,12 @@ public class Player extends RPEntity implements TurnListener {
 
 	public static void destroy(Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
-//		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
-//		zone.removePlayerAndFriends(player);
+
 		try {
 			if (player.hasSheep()) {
-				Sheep sheep = (Sheep) world.remove(player.getSheep());
+				Sheep sheep = player.getSheep();
 				player.playerSheepManager.storeSheep(sheep);
 				StendhalRPRuleProcessor.get().removeNPC(sheep);
-//				zone.removePlayerAndFriends(sheep);
 			} else {
 				// Bug on pre 0.20 released
 				if (player.hasSlot("#flock")) {
@@ -798,12 +797,12 @@ public class Player extends RPEntity implements TurnListener {
 
 		if (hasSheep()) {
 			// We make the sheep ownerless so someone can use it
-			if (world.has(getSheep())) {
-				Sheep sheep = (Sheep) world.get(getSheep());
-				sheep.setOwner(null);
-			} else {
+			try {
+				getSheep().setOwner(null);
+			} catch(RPObjectInvalidException ex) {
 				logger.warn("INCOHERENCE: Player has sheep but sheep doesn't exists");
 			}
+
 			remove("sheep");
 		}
 
@@ -948,8 +947,14 @@ public class Player extends RPEntity implements TurnListener {
 		}
 	}
 
-	public RPObject.ID getSheep() throws NoSheepException {
-		return new RPObject.ID(getInt("sheep"), get("zoneid"));
+
+	/**
+	 * Get the player's sheep.
+	 *
+	 * @return	The sheep.
+	 */
+	public Sheep getSheep() {
+		return (Sheep) StendhalRPWorld.get().get(new RPObject.ID(getInt("sheep"), get("zoneid")));
 	}
 
 
@@ -1490,7 +1495,7 @@ public class Player extends RPEntity implements TurnListener {
 		 * If we are too far from our sheep, then disallow zone change
 		 */
 		if (hasSheep()) {
-			Sheep sheep = (Sheep) StendhalRPWorld.get().get(getSheep());
+			Sheep sheep = getSheep();
 
 			if(squaredDistance(sheep) > (7 * 7)) {
 				return false;

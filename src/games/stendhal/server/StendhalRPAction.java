@@ -603,7 +603,7 @@ public class StendhalRPAction {
 				Player player = (Player) entity;
 				if (player.hasSheep()) {
 					try {
-						Sheep sheep = (Sheep) StendhalRPWorld.get().get(player.getSheep());
+						Sheep sheep = player.getSheep();
 						// Call placeat for the sheep on the same spot as the 
 						// player to ensure that there will be a path between the
 						// player and his/her sheep.
@@ -658,7 +658,7 @@ public class StendhalRPAction {
 		String source = player.getID().getZoneID();
 		
 		if (player.hasSheep()) {
-			Sheep sheep = (Sheep) world.get(player.getSheep());
+			Sheep sheep = player.getSheep();
 
 			player.removeSheep(sheep);
 
@@ -676,7 +676,7 @@ public class StendhalRPAction {
 		player.stopAttack();
 
 		if (player.hasSheep()) {
-			Sheep sheep = (Sheep) world.get(player.getSheep());
+			Sheep sheep = player.getSheep();
 			placeat(zone, sheep, player.getX() + 1, player.getY() + 1);
 			sheep.clearPath();
 			sheep.stop();
