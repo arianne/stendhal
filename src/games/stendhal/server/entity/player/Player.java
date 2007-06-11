@@ -937,7 +937,7 @@ public class Player extends RPEntity {
 		Log4J.finishMethod(logger, "setSheep");
 	}
 
-	private final class AntidoteEater implements TurnListener {
+	private static  class AntidoteEater implements TurnListener {
 		
 		WeakReference<Player> ref;
 		public AntidoteEater(Player player) {
