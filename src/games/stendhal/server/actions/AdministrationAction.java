@@ -14,6 +14,7 @@ package games.stendhal.server.actions;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.server.Jail;
+import games.stendhal.server.GagManager;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -72,6 +73,7 @@ public class AdministrationAction implements ActionListener {
 		StendhalRPRuleProcessor.register("ghostmode", administration);
 		StendhalRPRuleProcessor.register("teleclickmode", administration);
 		StendhalRPRuleProcessor.register("jail", administration);
+		StendhalRPRuleProcessor.register("gag", administration);
 
 		REQUIRED_ADMIN_LEVELS.put("adminlevel", 0);
 		REQUIRED_ADMIN_LEVELS.put("support", 100);
@@ -80,6 +82,7 @@ public class AdministrationAction implements ActionListener {
 		REQUIRED_ADMIN_LEVELS.put("teleportto", 300);
 		REQUIRED_ADMIN_LEVELS.put("teleport", 400);
 		REQUIRED_ADMIN_LEVELS.put("jail", 400);
+		REQUIRED_ADMIN_LEVELS.put("gag", 400);
 		REQUIRED_ADMIN_LEVELS.put("invisible", 500);
 		REQUIRED_ADMIN_LEVELS.put("ghostmode", 500);
 		REQUIRED_ADMIN_LEVELS.put("teleclickmode", 500);
@@ -176,6 +179,8 @@ public class AdministrationAction implements ActionListener {
 			onDestroy(player, action);
 		} else if (type.equals("jail")) {
 			onJail(player, action);
+		} else if (type.equals("gag")) {
+			onGag(player, action);
 		}
 	}
 
@@ -744,6 +749,30 @@ public class AdministrationAction implements ActionListener {
 		}
 
 		Log4J.finishMethod(logger, "onJail");
+	}
+
+	private void onGag(Player player, RPAction action) {
+		Log4J.startMethod(logger, "onGag");
+
+		if (action.has("target") && action.has("minutes")) {
+			String target = action.get("target");
+			String reason = "";
+			if (action.has("reason")) {
+				reason = action.get("reason");
+			}
+			try {
+				int minutes = action.getInt("minutes");
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "gag", target,
+				        Integer.toString(minutes), reason);
+				GagManager.get().gag(target, player, minutes, reason);
+			} catch (NumberFormatException e) {
+				player.sendPrivateText("Usage: /gag name minutes reason");
+			}
+		} else {
+			player.sendPrivateText("Usage: /gag name minutes reason");
+		}
+
+		Log4J.finishMethod(logger, "onGag");
 	}
 
 	/**

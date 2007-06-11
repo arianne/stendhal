@@ -232,6 +232,10 @@ public class StendhalRPWorld extends RPWorld {
 				validatePortal(portal);
 			}
 		}
+		
+		// TODO: make sure this is the proper place for this + way to do this
+		// make sure that it is always initialized on server startup so that its LoginListener does not miss anyone.
+		GagManager.get();
 	}
 
 	protected void validatePortal(Portal portal) {

@@ -13,10 +13,12 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.Grammar;
+import games.stendhal.server.GagManager;
 import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalPlayerDatabase;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.util.TimeUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +56,13 @@ public class ChatAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
+		
+		if(GagManager.isGagged(player)) {
+			long timeRemaining = GagManager.get().getTimeRemaining(player);
+			player.sendPrivateText("You are gagged, it will expire in " + TimeUtil.approxTimeUntil((int) (timeRemaining / 1000L)));
+			return;
+		}
+		
 		if (action.get("type").equals("chat")) {
 			onChat(player, action);
 		} else if (action.get("type").equals("tell")) {
