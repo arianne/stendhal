@@ -17,7 +17,6 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.SlotIsFullException;
 

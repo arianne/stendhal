@@ -9,7 +9,6 @@ package games.stendhal.server.extension;
 
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;

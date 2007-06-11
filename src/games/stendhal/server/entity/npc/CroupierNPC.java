@@ -11,8 +11,6 @@ import games.stendhal.server.util.Area;
 import java.awt.Rectangle;
 import java.util.List;
 
-import marauroa.common.game.IRPZone;
-
 public abstract class CroupierNPC extends SpeakerNPC {
 
 	/**

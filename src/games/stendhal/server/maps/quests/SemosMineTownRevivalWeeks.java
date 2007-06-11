@@ -15,8 +15,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.IRPZone;
-
 /**
  * Puts the player into a funny constume
  */

@@ -15,8 +15,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.IRPZone;
-
 /** 
  * QUEST: Find the seven cherubs that are all around the world.
  * PARTICIPANTS: 

@@ -20,7 +20,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 
 import org.apache.log4j.Logger;

@@ -2,7 +2,6 @@ package games.stendhal.server.actions.equip;
 
 import java.util.List;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;

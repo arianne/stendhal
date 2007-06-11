@@ -12,7 +12,6 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
-import marauroa.common.game.IRPZone;
 
 /**
  * QUEST: Plink's Toy

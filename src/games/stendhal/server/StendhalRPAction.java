@@ -31,7 +31,6 @@ import java.awt.Shape;
 import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.server.game.NoRPZoneException;
 import marauroa.server.game.RPServerManager;

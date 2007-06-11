@@ -1,6 +1,5 @@
 package games.stendhal.server.util;
 
-import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 
 import java.awt.Shape;
