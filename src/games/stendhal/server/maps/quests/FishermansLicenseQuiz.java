@@ -52,11 +52,11 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 		"clownfish",
 		"surgeonfish"
 	);
-	
+
 	private int currentSpeciesNo;
 
-	private static StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-			.getRPZone("int_ados_fishermans_hut_west");
+	// TODO: Account for possible zone reload
+	private static StendhalRPZone zone = StendhalRPWorld.get().getZone("int_ados_fishermans_hut_west");
 	
 	private Item fishOnTable;
 

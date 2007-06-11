@@ -30,7 +30,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	}
 	
 	private void createNPC() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_mountain_n2"));
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_mountain_n2");
 		SpeakerNPC npc = new SpeakerNPC("Susi") {
 			@Override
 			protected void createPath() {
@@ -115,7 +115,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 	}
 
 	private void createSignToCloseTower() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_mountain_n2"));
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_mountain_n2");
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
 		sign.setX(105);

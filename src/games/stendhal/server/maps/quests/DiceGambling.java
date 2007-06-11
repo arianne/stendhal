@@ -52,7 +52,7 @@ public class DiceGambling extends AbstractQuest {
 
 		ricardo.setPrizes(prizes);
 		
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(ricardo.getID());
+		StendhalRPZone zone = ricardo.getZone();
 		
 		Sign blackboard = new Sign();
 		zone.assignRPObjectID(blackboard);

@@ -67,7 +67,7 @@ public class InvitationScroll extends TeleportScroll {
 			return false;
 		}
 
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(st.nextToken());
+		zone = StendhalRPWorld.get().getZone(st.nextToken());
 
 		if (!st.hasMoreTokens()) {
 			return false;

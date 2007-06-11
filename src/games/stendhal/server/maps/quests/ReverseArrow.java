@@ -185,7 +185,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			// in order not to teleport the next player out too early,
 			// we have to compare it to the player who started this timer
 			if ((player == timerPlayer) && (player != null)) {
-				IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+				IRPZone playerZone = player.getZone();
+
 				if (playerZone.equals(zone)) {
 					if (counter > 0) {
 						npc.say("You have " + counter + " seconds left.");
@@ -277,7 +278,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	}
 
 	private void step_1() {
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(ZONE_NAME));
+		zone = StendhalRPWorld.get().getZone(ZONE_NAME);
 		step1CreateNPC();
 		step1CreateDoors();
 	}
@@ -322,7 +323,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	private void step1CreateDoors() {
 		// 0_semos_mountain_n2 at (95,101)
 		String entranceZoneName = "0_semos_mountain_n2"; 
-		entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(entranceZoneName));
+		entranceZone = StendhalRPWorld.get().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor", Direction.DOWN);
 		entranceZone.assignRPObjectID(door);
 		door.setX(95);
@@ -379,7 +380,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * @param player Player
 	 */
 	public void start(Player player) {
-		IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+		IRPZone playerZone = player.getZone();
+
 		if (playerZone.equals(zone)) {
 			this.player = player;
 			removeAllTokens();
@@ -398,7 +400,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 */
 	protected void finish(boolean reset, Player player) {
 		if (player != null) {
-			IRPZone playerZone = StendhalRPWorld.get().getRPZone(player.getID());
+			IRPZone playerZone = player.getZone();
+
 			if (playerZone.equals(zone)) {
 				player.teleport(entranceZone, door.getX(), door.getY() + 1, Direction.DOWN, player);
 			}

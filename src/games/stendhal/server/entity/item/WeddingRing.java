@@ -86,7 +86,7 @@ public class WeddingRing extends Ring {
 			if (spouse == null) {
 				player.sendPrivateText(spouseName + " is not online.");
 			} else if (spouse.isEquipped("wedding_ring")) {
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(spouse.getID());
+				StendhalRPZone zone = spouse.getZone();
 				int x = spouse.getX();
 				int y = spouse.getY();
 				Direction dir = spouse.getDirection();

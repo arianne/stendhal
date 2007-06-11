@@ -65,7 +65,7 @@ public class OwnAction implements ActionListener {
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);

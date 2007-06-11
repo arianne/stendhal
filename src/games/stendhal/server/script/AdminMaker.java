@@ -129,7 +129,7 @@ public class AdminMaker extends ScriptImpl {
 			Destination picked = DESTINATIONS.get(i);
 			
 			//Teleport
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(picked.zone);
+			StendhalRPZone zone = StendhalRPWorld.get().getZone(picked.zone);
 			if(!player.teleport(zone, picked.x, picked.y, null, player)) {
 				logger.error("AdminMaker random teleport failed, " + picked.zone + " " + picked.x + " " + picked.y);
 				return false;

@@ -72,7 +72,6 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	 * @param playingArea shape of the playing area (in the same zone as the NPC)
 	 */
 	public void setTableArea(Rectangle playingArea) {
-		IRPZone npcZone = StendhalRPWorld.get().getRPZone(this.getID());
-		this.playingArea = new Area(npcZone, playingArea);
+		this.playingArea = new Area(getZone(), playingArea);
 	}
 }

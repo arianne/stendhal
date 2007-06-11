@@ -337,7 +337,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 	 * add corpses of ex-NPCs.
 	 */
 	private void prepareCorpses() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("-6_kanmararn_city"));
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("-6_kanmararn_city");
 
 		// Now we create the corpse of the second NPC
 		Corpse tom = new Corpse("youngsoldiernpc", 5, 47);

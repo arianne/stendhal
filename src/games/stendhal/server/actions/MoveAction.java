@@ -89,7 +89,7 @@ public class MoveAction implements ActionListener {
 				player.setPath(path, false);
 			} else {
 				//Teleport
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+				StendhalRPZone zone = player.getZone();
 				player.teleport(zone, x, y, null, null);
 			}
 		}

@@ -83,7 +83,7 @@ class DestinationObject extends MoveableObject {
 
 	/** checks if it is possible to add the entity to the world */
 	public boolean preCheck(Entity entity, Player player) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
 
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
@@ -229,7 +229,7 @@ class DestinationObject extends MoveableObject {
 		} else {
 			// drop the entity to the ground. Do this always in the player's
 			// zone.
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 			logger.debug("adding " + entity.get("name") + " to " + zone);
 
 			// HACK: Avoid a problem on database

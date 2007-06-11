@@ -42,7 +42,7 @@ public abstract class ScriptingSandbox {
 	}
 
 	public boolean setZone(String name) {
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(name);
+		zone = StendhalRPWorld.get().getZone(name);
 		return (zone != null);
 	}
 
@@ -72,7 +72,7 @@ public abstract class ScriptingSandbox {
 	 */
 	@Deprecated
 	public boolean transferPlayer(Player player, String zoneName, int x, int y) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+		StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
 		return player.teleport(zone, x, y, null, null);
 	}
 
@@ -171,7 +171,7 @@ public abstract class ScriptingSandbox {
 		logger.info("Removing " + filename + " added NPC: " + npc);
 		try {
 			String id = npc.getID().getZoneID();
-			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
+			zone = StendhalRPWorld.get().getZone(id);
 			NPCList.get().remove(npc.getName());
 			StendhalRPRuleProcessor.get().removeNPC(npc);
 			zone.getNPCList().remove(npc);
@@ -186,7 +186,7 @@ public abstract class ScriptingSandbox {
 		try {
 			logger.info("Removing script added object: " + object);
 			String id = object.getID().getZoneID();
-			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
+			zone = StendhalRPWorld.get().getZone(id);
 			zone.remove(object);
 			loadedRPObjects.remove(object);
 		} catch (Exception e) {

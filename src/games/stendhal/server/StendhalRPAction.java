@@ -200,7 +200,7 @@ public class StendhalRPAction {
 
 		// Enabled PVP
 		if ((entity instanceof Player) || (entity instanceof Sheep)) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 
 			// Make sure that you can't attack players or sheep (even wild
 			// sheep) who are inside a protection area.
@@ -269,7 +269,7 @@ public class StendhalRPAction {
 	        NoRPZoneException, RPObjectNotFoundException {
 		boolean result = false;
 
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(attacker.getID());
+		StendhalRPZone zone = attacker.getZone();
 		if (!zone.has(defender.getID()) || (defender.getHP() == 0)) {
 			logger.debug("Attack from " + attacker + " to " + defender + " stopped because target was lost("
 			        + zone.has(defender.getID()) + ") or dead.");
@@ -423,7 +423,7 @@ public class StendhalRPAction {
 	public static void transferContent(Player player) throws AttributeNotFoundException {
 		Log4J.startMethod(logger, "transferContent");
 
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
 		rpman.transferContent(player.getID(), zone.getContents());
 
 		Log4J.finishMethod(logger, "transferContent");

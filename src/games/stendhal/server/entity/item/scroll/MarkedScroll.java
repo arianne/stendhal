@@ -60,7 +60,7 @@ public class MarkedScroll extends TeleportScroll {
 	@Override
 	protected boolean useTeleportScroll(Player player) {
 		// init as home_scroll
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("0_semos_city");
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_city");
 		int x = 30;
 		int y = 40;
 
@@ -74,7 +74,7 @@ public class MarkedScroll extends TeleportScroll {
 			if (st.countTokens() == 3) {
 				// check destination
 				String zoneName = st.nextToken();
-				StendhalRPZone temp = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+				StendhalRPZone temp = StendhalRPWorld.get().getZone(zoneName);
 				if (temp == null) {
 					// invalid zone (the scroll may have been marked in an
 					// old version and the zone was removed)

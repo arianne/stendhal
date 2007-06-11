@@ -279,7 +279,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public void onTurnReached(int currentTurn, String message) {
 		// remove this object from the zone where it's lying on
 		// the ground
-		StendhalRPWorld.get().getRPZone(getID()).remove(getID());
+		getZone().remove(getID());
 	}
 
 	@Override

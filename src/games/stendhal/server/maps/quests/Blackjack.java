@@ -47,8 +47,8 @@ public class Blackjack extends AbstractQuest  {
 
 	private SpeakerNPC ramon;
 
-	private StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
-	.getRPZone("-1_athor_ship_w2");
+	// TODO: Resolve when requested (incase reloadable zones support added)
+	private StendhalRPZone zone = StendhalRPWorld.get().getZone("-1_athor_ship_w2");
 	
 	private void startNewGame(Player player) {
 		cleanUpTable();

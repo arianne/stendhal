@@ -65,7 +65,8 @@ public class SummonScroll extends InfoStringScroll {
 	 */
 	@Override
 	protected boolean useScroll(Player player) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
+
 		if (zone.isInProtectionArea(player)) {
 			player.sendPrivateText("The aura of protection in this area prevents the scroll from working!");
 			return false;

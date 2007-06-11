@@ -126,7 +126,7 @@ public class PlinksToy extends AbstractQuest {
 	}
 	
 	private void step_2() {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID("0_semos_plains_n"));
+		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_plains_n");
 		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint("teddy", 1500);
 		zone.assignRPObjectID(teddyRespawner);
 		teddyRespawner.setX(107);

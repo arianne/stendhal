@@ -135,7 +135,7 @@ public class Portal extends Entity implements UseListener {
 			return false;
 		}
 
-		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(getDestinationZone()));
+		StendhalRPZone destZone = StendhalRPWorld.get().getZone(getDestinationZone());
 
 		Portal dest = destZone.getPortal(getDestinationReference());
 

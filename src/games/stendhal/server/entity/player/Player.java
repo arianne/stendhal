@@ -839,7 +839,7 @@ public class Player extends RPEntity {
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
         // Penalize: Respawn on afterlive zone and
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_afterlife");
+		StendhalRPZone zone = world.getZone("int_afterlife");
 
 		zone.placeObjectAtEntryPoint(this);
 		StendhalRPAction.changeZone(this, zone);

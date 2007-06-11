@@ -283,7 +283,7 @@ public class AdministrationAction implements ActionListener {
 				}
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported.getID());
+			StendhalRPZone zone = teleported.getZone();
 			int x = teleported.getX();
 			int y = teleported.getY();
 
@@ -473,7 +473,7 @@ public class AdministrationAction implements ActionListener {
 		Log4J.startMethod(logger, "onSummon");
 
 		if (action.has("creature") && action.has("x") && action.has("y")) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 			int x = action.getInt("x");
 			int y = action.getInt("y");
 
@@ -778,7 +778,7 @@ public class AdministrationAction implements ActionListener {
 
 		// go for the id
 		if (id != null) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 
 			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getID().getID());
 			if (zone.has(oid)) {

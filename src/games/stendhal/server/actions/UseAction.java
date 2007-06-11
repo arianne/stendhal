@@ -41,7 +41,7 @@ public class UseAction implements ActionListener {
 
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 
 			int baseObject = action.getInt("baseobject");
 
@@ -92,7 +92,7 @@ public class UseAction implements ActionListener {
 		else if (action.has("target")) {
 			int usedObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);

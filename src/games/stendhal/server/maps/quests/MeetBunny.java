@@ -81,7 +81,7 @@ public class MeetBunny extends AbstractQuest {
 		bunny.initHP(100);
 
 		// start in int_admin_playground
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
+		zone = StendhalRPWorld.get().getZone("int_admin_playground");
 		zone.assignRPObjectID(bunny);
 		bunny.set(17, 12);
 		zone.add(bunny);

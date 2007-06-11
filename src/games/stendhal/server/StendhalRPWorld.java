@@ -251,7 +251,7 @@ public class StendhalRPWorld extends RPWorld {
 			return;
 		}
 
-		StendhalRPZone zone = (StendhalRPZone) getRPZone(id);
+		StendhalRPZone zone = getZone(id);
 
 		if (zone == null) {
 			logger.warn(portal + " has an invalid destination zone: " + id);
@@ -364,6 +364,18 @@ public class StendhalRPWorld extends RPWorld {
 
 			logger.info(sbuf.toString());
 		}
+	}
+
+
+	/**
+	 * Find a named zone.
+	 *
+	 * @param	name		The zone name.
+	 *
+	 * @return	The matching zone, or <code>null</code> if not found.
+	 */
+	public StendhalRPZone getZone(final String id) {
+		return (StendhalRPZone) getRPZone(new IRPZone.ID(id));
 	}
 
 

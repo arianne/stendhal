@@ -165,7 +165,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(teleported.getID());
+			StendhalRPZone zone = teleported.getZone();
 			int x = teleported.getX();
 			int y = teleported.getY();
 

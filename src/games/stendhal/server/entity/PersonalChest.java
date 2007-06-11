@@ -140,7 +140,7 @@ public class PersonalChest extends Chest {
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 
-		zone = StendhalRPWorld.get().getRPZone(player.getID());
+		zone = player.getZone();
 
 		if (player.nextTo(this)) {
 			if (isOpen()) {

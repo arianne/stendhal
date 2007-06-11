@@ -44,7 +44,8 @@ public class LogoutPlayer extends ScriptImpl {
 			}
 			
 			Player player = StendhalRPRuleProcessor.get().getPlayer(args.get(0));
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
+
 			RPObject.ID id = playerContainer.getRPObjectID(clientid);
 			RPObject object = zone.get(id);
 			

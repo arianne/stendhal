@@ -83,7 +83,7 @@ public class SellerBehaviour extends MerchantBehaviour {
 		}
 
 		item.put("zoneid", player.get("zoneid"));
-		IRPZone zone = world.getRPZone(player.getID());
+		IRPZone zone = player.getZone();
 		zone.assignRPObjectID(item);
 
 		if (player.isEquipped("money", getCharge(player))) {

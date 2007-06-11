@@ -59,8 +59,7 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 					        @Override
 					        public void fire(Player player, String text, SpeakerNPC engine) {
 						        if (player.getLevel() >= 20) {
-							        StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
-							                "int_fado_battle_arena");
+							        StendhalRPZone zone = StendhalRPWorld.get().getZone("int_fado_battle_arena");
 							        player.teleport(zone, 33, 26, Direction.DOWN, null);
 						        } else {
 							        engine.say("Sorry, you are too weak! Maybe you should train a bit more before coming back.");

@@ -30,7 +30,7 @@ public class PathfinderTest {
 		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addArea("int_pathfinding", "interiors/abstract/pathfinding.tmx");
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_pathfinding");
+		StendhalRPZone zone = world.getZone("int_pathfinding");
 
 		List<String> tests = Arrays.asList("rat;50;10;rat;55;3", "rat;55;3;rat;50;10", "rat;50;12;rat;52;15",
 		        "rat;52;15;rat;50;12", "bat;50;9;rat;55;3", "bat;55;2;rat;50;10", "bat;50;11;rat;52;15",

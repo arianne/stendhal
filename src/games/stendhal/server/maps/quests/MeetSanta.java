@@ -81,7 +81,7 @@ public class MeetSanta extends AbstractQuest {
 		santa.initHP(100);
 
 		// start in int_admin_playground
-		zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
+		zone = StendhalRPWorld.get().getZone("int_admin_playground");
 		zone.assignRPObjectID(santa);
 		santa.set(17, 12);
 		zone.add(santa);

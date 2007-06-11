@@ -45,7 +45,7 @@ public class OnePlayerRoomDoor extends Door {
 	@Override
 	protected boolean mayBeOpened(Player player) {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(super.getDestinationZone());
+		StendhalRPZone zone = world.getZone(super.getDestinationZone());
 		return (zone.getPlayerAndFirends().size() == 0);
 	}
 }

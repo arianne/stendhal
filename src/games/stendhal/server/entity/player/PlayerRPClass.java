@@ -352,7 +352,7 @@ lion_shield_+1 enhanced_lion_shield
 				player.put("release", Debug.VERSION);
 			}
 
-			IRPZone tempZone = StendhalRPWorld.get().getRPZone(new IRPZone.ID(object.get("zoneid")));
+			IRPZone tempZone = StendhalRPWorld.get().getZone(object.get("zoneid"));
 			if (tempZone == null) {
 				firstVisit = true;
 			}
@@ -374,7 +374,7 @@ lion_shield_+1 enhanced_lion_shield
 
 		StendhalRPAction.transferContent(player);
 
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
 
 		if (firstVisit) {
 			zone.placeObjectAtEntryPoint(player);

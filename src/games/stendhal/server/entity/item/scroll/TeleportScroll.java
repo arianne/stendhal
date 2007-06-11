@@ -62,7 +62,8 @@ public abstract class TeleportScroll extends InfoStringScroll {
 	 */
 	@Override
 	protected boolean useScroll(Player player) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
+
 		if (!zone.isTeleportAllowed()) {
 			player.sendPrivateText("The strong anti magic aura in this area prevents the scroll from working!");
 			return false;

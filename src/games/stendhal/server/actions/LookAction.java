@@ -39,7 +39,7 @@ public class LookAction implements ActionListener {
 
 		// When look is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 
 			int baseObject = action.getInt("baseobject");
 
@@ -96,7 +96,7 @@ public class LookAction implements ActionListener {
 		else if (action.has("target")) {
 			int usedObject = action.getInt("target");
 
-			StendhalRPZone zone = (StendhalRPZone) world.getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 			RPObject.ID targetid = new RPObject.ID(usedObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);

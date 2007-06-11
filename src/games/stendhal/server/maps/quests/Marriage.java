@@ -155,7 +155,7 @@ public class Marriage extends AbstractQuest {
     }
     
 	private void startEngagement(SpeakerNPC nun, Player player, String partnerName) {
-		IRPZone outsideChurchZone = StendhalRPWorld.get().getRPZone(nun.getID());
+		IRPZone outsideChurchZone = nun.getZone();
 		Area inFrontOfNun = new Area(outsideChurchZone, new Rectangle(51, 49, 5, 5));
 		groom = player;
 		bride = StendhalRPRuleProcessor.get().getPlayer(partnerName);
@@ -460,7 +460,7 @@ public class Marriage extends AbstractQuest {
     }
     
     private void startMarriage(SpeakerNPC priest, Player player, String partnerName) {
-		IRPZone churchZone = StendhalRPWorld.get().getRPZone(priest.getID());
+		IRPZone churchZone = priest.getZone();
 		Area inFrontOfAltar = new Area(churchZone, new Rectangle(10, 8, 4, 1));
 
 		groom = player;
@@ -567,7 +567,7 @@ public class Marriage extends AbstractQuest {
 				invite.setQuantity(1);
 				invite.put("infostring", "int_fado_hotel_0 4 40"); /*interior of hotel*/
 				player.equip(invite, true);
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_fado_lovers_room_"+text);
+				StendhalRPZone zone = StendhalRPWorld.get().getZone("int_fado_lovers_room_"+text);
 				player.teleport(zone, 5, 5, Direction.DOWN, player);
 				player.notifyWorldAboutChanges();
 				npc.setCurrentState(ConversationStates.IDLE);

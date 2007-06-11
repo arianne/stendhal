@@ -180,7 +180,7 @@ class DeathmatchEngine implements TurnListener {
 		}
 
 		// send the player back to the entrance area
-		StendhalRPZone entranceZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+		StendhalRPZone entranceZone = StendhalRPWorld.get().getZone(zoneName);
 		player.teleport(entranceZone, 96, 75, null, player);
 
 		removePlayersMonsters();
@@ -294,8 +294,8 @@ class DeathmatchEngine implements TurnListener {
 	 */
 	public void removePlayersMonsters() {
 		for (Creature creature : spawnedCreatures) {
-			String id = creature.getID().getZoneID();
-			StendhalRPZone monsterZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(id);
+			StendhalRPZone monsterZone = creature.getZone();
+
 			try {
 				StendhalRPRuleProcessor.get().removeNPC(creature);
 				monsterZone.getNPCList().remove(creature);

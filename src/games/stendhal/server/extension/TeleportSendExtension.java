@@ -89,7 +89,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 				}
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player2.getID());
+			StendhalRPZone zone = player2.getZone();
 			int x = player2.getX();
 			int y = player2.getY();
 

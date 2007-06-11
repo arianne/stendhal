@@ -70,8 +70,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 					        @Override
 					        public void fire(Player player, String text, SpeakerNPC engine) {
 						        if (player.getLevel() >= 20) {
-							        StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
-							                "0_ados_wall_n");
+							        StendhalRPZone zone = StendhalRPWorld.get().getZone("0_ados_wall_n");
 							        player.teleport(zone, 100, 86, Direction.DOWN, null);
 						        } else {
 							        engine.say("Sorry, you are too weak!");

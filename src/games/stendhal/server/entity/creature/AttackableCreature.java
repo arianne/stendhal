@@ -24,19 +24,6 @@ public class AttackableCreature extends Creature {
 		super(copy);
 	}
 
-	@Override
-	public void init() {
-		super.init();
-//		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(this.getID());
-//		zone.addPlayerAndFriends(this);
-	}
-
-	@Override
-	public void onDead(Entity killer) {
-//		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(this.getID());
-//		zone.removePlayerAndFriends(this);
-		super.onDead(killer);
-	}
 
 	@Override
 	protected List<RPEntity> getEnemyList() {

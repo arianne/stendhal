@@ -144,7 +144,7 @@ public class Path {
 	        double maxDistance, boolean withEntities) {
 
 		if (zone == null) {
-			zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(entity.getID());
+			zone = entity.getZone();
 		}
 
 		// Log4J.startMethod(logger, "searchPath");

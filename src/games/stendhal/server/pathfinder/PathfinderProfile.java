@@ -40,7 +40,7 @@ public class PathfinderProfile {
 		startLogSystem();
 		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addArea(pathfinderZone, "interiors/abstract/pathfinding.tmx");
-		StendhalRPZone zone = (StendhalRPZone) world.getRPZone(pathfinderZone);
+		StendhalRPZone zone = world.getZone(pathfinderZone);
 
 		// read profile data
 		ArrayList<String> tests;

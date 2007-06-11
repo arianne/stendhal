@@ -38,7 +38,7 @@ public class DisplaceAction implements ActionListener {
 		if (action.has("baseitem")) {
 			int targetObject = action.getInt("baseitem");
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+			StendhalRPZone zone = player.getZone();
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);

@@ -54,7 +54,8 @@ public class EmptyScroll extends Scroll {
 	 */
 	@Override
 	protected boolean useScroll(Player player) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
+
 		if (zone.isTeleportAllowed()) {
 			Item markedScroll = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("marked_scroll");
 			markedScroll.put("infostring", player.getID().getZoneID() + " " + player.getX() + " " + player.getY());

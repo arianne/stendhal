@@ -28,7 +28,7 @@ public class EquipUtil {
 	 *         available.
 	 */
 	static Entity getEntityFromId(Player player, int objectId) {
-		StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(player.getID());
+		StendhalRPZone zone = player.getZone();
 		RPObject.ID id = new RPObject.ID(objectId, zone.getID());
 
 		if (!zone.has(id)) {

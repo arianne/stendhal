@@ -177,7 +177,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 							engine.say("We will always be.");
 							break;
 						default:
-							StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone("int_admin_playground");
+							StendhalRPZone zone = StendhalRPWorld.get().getZone("int_admin_playground");
 						    player.teleport(zone, 10, 10, null, null);
 							inversedSpeed = 1;
 							beamed = true;
@@ -238,7 +238,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		public void onTurnReached(int currentTurn, String message) {
 			try {
 				String zoneName = zones.get(counter);
-				StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneName);
+				StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
 
 				int tele_x[] = {5,50,20,100,100};
 				int tele_y[] = {5,50,20,100,5};
