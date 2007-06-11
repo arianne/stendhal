@@ -16,10 +16,13 @@ import games.stendhal.server.events.UseListener;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.StendhalRPAction;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.StendhalRPWorld;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
+
 import org.apache.log4j.Logger;
 
 public class Portal extends Entity implements UseListener {
@@ -45,8 +48,7 @@ public class Portal extends Entity implements UseListener {
 		}
 	}
 
-	public Portal() throws AttributeNotFoundException {
-		super();
+	public Portal() {
 		put("type", "portal");
 		settedDestination = false;
 	}
@@ -108,15 +110,47 @@ public class Portal extends Entity implements UseListener {
 		return settedDestination;
 	}
 
-	
+
 
 	@Override
 	public String toString() {
 		return "Portal at " + get("zoneid") + "[" + getX() + "," + getY() + "]";
 	}
 
-	protected void usePortal(Player player) {
-		StendhalRPAction.usePortal(player, this);
+	/**
+	 * Use the portal.
+	 *
+	 * @return	<code>true</code> if the portal worked,
+	 *		<code>false</code> otherwise.
+	 */
+	protected boolean usePortal(Player player) {
+		if (!nextTo(player)) {
+			// Too far to use the portal
+			return false;
+		}
+
+		if (getDestinationZone() == null) {
+			// This portal is incomplete
+			logger.error(this + " has no destination.");
+			return false;
+		}
+
+		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(new IRPZone.ID(getDestinationZone()));
+
+		Portal dest = destZone.getPortal(getDestinationReference());
+
+		if (dest == null) {
+			// This portal is incomplete
+			logger.error(this + " has invalid destination");
+			return false;
+		}
+
+		player.teleport(destZone, dest.getX(), dest.getY(), null, null);
+		player.stop();
+
+		dest.onUsedBackwards(player);
+
+		return true;
 	}
 
 	public void onUsed(RPEntity user) {

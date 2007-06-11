@@ -22,7 +22,6 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.pathfinder.Path.Node;
@@ -463,46 +462,6 @@ public class StendhalRPAction {
 		}
 	}
 
-	/**
-	 * Tries to teleport the given player through the given portal.
-	 * @param player The player who wants to use the portal.
-	 * @param portal The portal that should be used.
-	 * @return true if using the portal was successful.
-	 * @throws AttributeNotFoundException
-	 * @throws NoRPZoneException
-	 */
-	public static boolean usePortal(Player player, Portal portal) throws AttributeNotFoundException, NoRPZoneException {
-		Log4J.startMethod(logger, "usePortal");
-
-		if (!player.nextTo(portal)) {
-			// Too far to use the portal
-			return false;
-		}
-
-		if (portal.getDestinationZone() == null) {
-			// This portal is incomplete
-			logger.error("Portal " + portal + " has no destination.");
-			return false;
-		}
-
-		StendhalRPZone destZone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(
-		        new IRPZone.ID(portal.getDestinationZone()));
-
-		Portal dest = destZone.getPortal(portal.getDestinationReference());
-		if (dest == null) {
-			// This portal is incomplete
-			logger.error("Portal " + portal + " has invalid destination");
-			return false;
-		}
-
-		player.teleport(destZone, dest.getX(), dest.getY(), null, null);
-		player.stop();
-
-		dest.onUsedBackwards(player);
-
-		Log4J.finishMethod(logger, "usePortal");
-		return true;
-	}
 
 	/**
 	 * Places an entity at a specified position in a specified zone. If this point is 
