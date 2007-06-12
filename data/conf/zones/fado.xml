@@ -505,23 +505,23 @@ For example say:  11  if you want the room called Water of Love.
 	 <zone name="int_fado_lovers_room_15" file="interiors/fado/lovers_room_15.tmx">
          </zone>
 
-<!-- Shut the fado DM doors -->	 
-	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
+<!-- Shut the fado DM  -->	 
+<!--	 <zone name="int_fado_battle_arena" file="interiors/fado/battle_arena.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.deathmatch.Deathmatch"/>
-	  <!-- <portal x="31" y="63" ref="entrance">
+	  <portal x="31" y="63" ref="entrance">
              <destination zone="0_fado_city" ref="battle_arena_entrance"/>
            </portal>
 	   <portal x="63" y="0" ref="basement_entrance">
 	     <destination zone="int_fado_battle_arena_-1" ref="basement_exit"/>
-           </portal> -->
+           </portal> 
          </zone>
          <zone name="int_fado_battle_arena_-1" file="interiors/fado/battle_arena_-1.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.deathmatch.BattleArenaRecruiterNPC"/>
-          <!-- <portal x="63" y="0" ref="basement_exit">
+          <portal x="63" y="0" ref="basement_exit">
               <destination zone="int_fado_battle_arena" ref="basement_entrance"/>
-           </portal> -->
+           </portal>
         </zone>
-	 
+	 -->
  <!--  Level -1 -->
 
 
