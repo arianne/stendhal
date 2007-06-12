@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -80,7 +79,12 @@ public class ObsidianKnife extends AbstractQuest {
 					        npc.say("You know, it's hard to get food round here. I don't have any #supplies for next year.");
 				        } else if (player.isQuestCompleted(QUEST_SLOT)) {
 					        npc.say("I'm inspired to work again! I'm making things for Wrvil now. Thanks for getting me interested in forging again.");
-				        } else {
+					        npc.setCurrentState(ConversationStates.ATTENDING);
+				        } else if (player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("food_brought")){
+				        	npc.say("Now I'm less worried about food I've realised I'm bored. There's a #book I'd love to read.");
+				        	npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
+				        }
+				        else {
 					        npc.say("I'm sure I asked you to do something for me, already.");
 				        }
 			        }
@@ -146,7 +150,7 @@ public class ObsidianKnife extends AbstractQuest {
 										&& player.isEquipped(text,REQUIRED_FOOD);
 					}
 				},
-				ConversationStates.QUEST_ITEM_BROUGHT,
+				ConversationStates.ATTENDING,
 				null,
 				new SpeakerNPC.ChatAction() {
 					@Override
@@ -168,20 +172,6 @@ public class ObsidianKnife extends AbstractQuest {
 
 private void requestBookStep() {
 	SpeakerNPC npc = npcs.get("Alrak");
-	
-	npc.add(ConversationStates.ATTENDING,
-			ConversationPhrases.QUEST_MESSAGES,
-			null,
-	        ConversationStates.QUEST_ITEM_BROUGHT,
-	        null,
-	        new SpeakerNPC.ChatAction() {
-		        @Override
-		        public void fire(Player player, String text, SpeakerNPC npc) {
-		        	if (player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("food_brought")) {
-			        	npc.say("Now I'm less worried about food I've realised I'm bored. There's a #book I'd love to read.");
-			        } 
-		        }
-	        });
 	
 	npc.add(ConversationStates.QUEST_ITEM_BROUGHT,
 			"book",
@@ -460,30 +450,4 @@ private void offerKnifeStep() {
 		offerKnifeStep();
 	}
 
-	@Override
-	public List<String> getHistory(Player player) {
-		List<String> res = new ArrayList<String>();
-		if (!player.hasQuest(QUEST_SLOT)) {
-			return res;
-		}
-		res.add("FIRST_CHAT");
-		String questState = player.getQuest(QUEST_SLOT);
-		if (questState.equals("rejected")) {
-			res.add("QUEST_REJECTED");
-		}
-		if (player.isQuestInState(QUEST_SLOT, "start", "done")) {
-			res.add("QUEST_ACCEPTED");
-		}
-		if ((questState.equals("start") && player.isEquipped("goblet"))
-		        || questState.equals("done")) {
-			res.add("FOUND_ITEM");
-		}
-		if (player.getQuest(QUEST_SLOT).startsWith("forging;")) {
-			res.add("FORGING");
-		}
-		if (questState.equals("done")) {
-			res.add("DONE");
-		}
-		return res;
-	}
 }
