@@ -12,9 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
-import games.stendhal.server.entity.Entity;
+
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
