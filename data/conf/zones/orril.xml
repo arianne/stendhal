@@ -116,6 +116,12 @@
  </zone>
 
  <zone name="0_orril_forest_e" level="0" x="500000" y="500256" file="Level 0/orril/forest_e.tmx">
+  <entity x="43" y="103">
+    <implementation class-name="games.stendhal.server.entity.WellSource" />
+  </entity>
+  <entity x="44" y="103">
+    <implementation class-name="games.stendhal.server.entity.WellSource" />
+  </entity>
  </zone>
 
   <zone name="0_orril_river_s_w2" level="0" x="499616" y="500384" file="Level 0/orril/river_s_w2.tmx">
@@ -177,6 +183,12 @@ East: Nalwor, Semos
  </zone>
 
  <zone name="0_orril_river_se" level="0" x="500000" y="500384" file="Level 0/orril/river_se.tmx">
+  <entity x="0" y="8">
+    <implementation class-name="games.stendhal.server.entity.WellSource" />
+  </entity>
+  <entity x="1" y="8">
+    <implementation class-name="games.stendhal.server.entity.WellSource" />
+  </entity>
  </zone>
 
 

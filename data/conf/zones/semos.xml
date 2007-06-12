@@ -46,6 +46,13 @@
   <portal x="116" y="40" ref="upper_door">
    <destination zone="0_semos_mountain_n2_e2" ref="floor_door_1"/>
   </portal>
+ <!-- wishing well-->
+  <entity x="87" y="61">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="88" y="61">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
  </zone>
 
  <zone name="0_semos_mountain_n_w3" level="0" x="499744" y="499872" file="Level 0/semos/mountain_n_w3.tmx">
@@ -101,6 +108,13 @@ South: Semos city
       <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
+  <entity x="101" y="72">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="102" y="72">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+ 
  </zone>
 
  <zone name="0_semos_plains_ne" level="0" x="500128" y="499872" file="Level 0/semos/plains_ne.tmx">
@@ -435,6 +449,16 @@ Awww... so you're a coward, then? Huh.
    </implementation>
   </entity>
 -->
+
+ <!-- wishing well outside Bank-->
+  <entity x="15" y="29">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="16" y="29">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+
+
    <portal x="42" y="37" ref="tavern_entrance">
      <destination zone="int_semos_tavern_0" ref="entrance"/>
    </portal>
@@ -946,6 +970,7 @@ Holy mackerel! These chips are tasty.
 
     <!--for the admin house -->
    <zone name="int_semos_house" file="interiors/semos/house.tmx">
+   <configurator class-name="games.stendhal.server.maps.semos.house.CatSellerNPC"/>
       <entity x="6" y="10">
        <implementation class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC">
          <parameter name="name">Skye</parameter>
@@ -1006,6 +1031,13 @@ East: Ados city
        <parameter name="class">signpost</parameter>
      </implementation>
    </entity>
+    <!-- wishing well-->
+  <entity x="122" y="1">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="123" y="1">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
  </zone>
 
  <zone name="0_semos_road_se" level="0" x="500128" y="500064" file="Level 0/semos/road_se.tmx">
@@ -1045,6 +1077,14 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="0_semos_forest_s" level="0" x="500000" y="500128" file="Level 0/semos/forest_s.tmx">
+  <!-- wishing well-->
+  <entity x="44" y="70">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+  <entity x="45" y="70">
+    <implementation class-name="games.stendhal.server.entity.WellSource"/>
+  </entity>
+ 
  </zone>
 
  <!--  Level -1 -->
