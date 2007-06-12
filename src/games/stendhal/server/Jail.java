@@ -30,6 +30,38 @@ import org.apache.log4j.Logger;
  */
 public class Jail implements LoginListener {
 
+	private final class Jailer implements TurnListener {
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Jailer){
+				Jailer other = (Jailer) obj;
+				return _name.equals(other._name);
+			}
+			
+			return false;
+		}
+		@Override
+		public int hashCode() {
+		
+			return _name.hashCode();
+		}
+		String _name;
+
+		private Jailer(String name) {
+			
+			_name = name;
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			
+			if (!release(_name)) {
+				// The player has logged out. Release him when he logs in again.
+				namesOfPlayersToRelease.add(_name);
+			}
+			
+		}
+	}
+
 	private static final Logger logger = Log4J.getLogger(Jail.class);
 
 	/** The Singleton instance */
@@ -114,6 +146,7 @@ public class Jail implements LoginListener {
 				+ " jailed " + criminalName
 				+ " for " + minutes + " minutes. Reason: " + reason + ".");
 
+		TurnNotifier.get().dontNotify(new Jailer(criminalName));
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
@@ -121,15 +154,7 @@ public class Jail implements LoginListener {
 		// NOTE: The player won't be automatically released if the
 		// server is restarted before the player could be released.
 		TurnNotifier.get().notifyInSeconds(minutes * 60,
-				new TurnListener (){
-					public void onTurnReached(int currentTurn, String message) {
-						
-						if (!release(criminalName)) {
-							// The player has logged out. Release him when he logs in again.
-							namesOfPlayersToRelease.add(criminalName);
-						}
-						
-					}});
+				new Jailer(criminalName));
 	}
 
 	/**
