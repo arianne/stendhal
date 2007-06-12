@@ -50,7 +50,7 @@ public class EntityFactory {
 			if (object.has("class")) {
 				eclass = object.get("class");
 			}
-
+			
 			Class entityClass = EntityMap.getClass(type, eclass);
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.

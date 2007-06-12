@@ -75,7 +75,14 @@ public class User extends Player {
 	   	if (rpObject.has("sheep")) {
 				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
 			}
-		}
+	
+		
+	
+	   	if (rpObject.has("pet")) {
+	   		list.add(ActionType.LEAVE_PET.getRepresentation());
+	   	}
+
+	}
 	  
 	@Override
 	public void onAction(final ActionType at, final String... params) {
@@ -92,6 +99,14 @@ public class User extends Player {
 				break;
 
 			case LEAVE_SHEEP:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				rpaction.put("target", "-1");
+				at.send(rpaction);
+				SoundMaster.play("sheep-2.wav",x,y);
+				break;
+				
+			case LEAVE_PET:
 				rpaction = new RPAction();
 				rpaction.put("type", at.toString());
 				rpaction.put("target", "-1");
@@ -148,6 +163,13 @@ public class User extends Player {
 	        return false;
         }
 		return rpObject.has("sheep");
+    }
+
+	public  boolean hasPet() {
+		if (rpObject== null) {
+	        return false;
+        }
+		return rpObject.has("pet");
     }
 
 	@Override

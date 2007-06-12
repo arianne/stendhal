@@ -47,7 +47,11 @@ public final class EntityMap {
 		register("creature", "boss", "BossCreature");
 		register("creature", null, "Creature");
 
-		register("sheep", null, "Sheep");
+		register("sheep", null, "Sheep");	
+		/* Not sure whether to register individual pets from child classes, 
+		 * or the whole parent class Pet. suggestions welcome. */
+		register("cat", null, "Pet");
+		register("pet", null, "Pet");
 
 		register("npc", null, "NPC");
 
@@ -57,6 +61,7 @@ public final class EntityMap {
 		register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
 		register("gold_source", null, "GoldSource");
 		register("fish_source", null, "FishSource");
+		register("well_source", null, "WellSource");
 
 		register("area", null, "InvisibleEntity");
 

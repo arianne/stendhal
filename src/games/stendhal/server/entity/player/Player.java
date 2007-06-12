@@ -24,6 +24,7 @@ import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -119,6 +120,8 @@ public class Player extends RPEntity {
 
 	private PlayerSheepManager playerSheepManager = null;
 
+	private PlayerPetManager playerPetManager = null;
+
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
@@ -201,7 +204,12 @@ public class Player extends RPEntity {
 				player.removeSlot("#flock");
 			}
 		}
-
+		if (player.hasPet()) {
+			Pet pet = (Pet) world.remove(player.getPet());
+			player.playerPetManager.storePet(pet);
+			StendhalRPRuleProcessor.get().removeNPC(pet);
+//			zone.removePlayerAndFriends(sheep);
+		}
 		player.stop();
 		player.stopAttack();
 
@@ -211,7 +219,7 @@ public class Player extends RPEntity {
 	public Player(RPObject object) throws AttributeNotFoundException {
 		super(object);
 		playerSheepManager = new PlayerSheepManager(this);
-
+		playerPetManager = new PlayerPetManager(this);
 		put("type", "player");
 		// HACK: postman as NPC
 		if (object.has("name") && object.get("name").equals("postman")) {
@@ -804,6 +812,17 @@ public class Player extends RPEntity {
 
 			remove("sheep");
 		}
+		// TODO Sheep stuff changed above! Must Pet stuff change?
+		if (hasPet()) {
+			// We make the pet ownerless so someone can use it
+			if (world.has(getPet())) {
+				Pet pet = (Pet) world.get(getPet());
+				pet.setOwner(null);
+			} else {
+				logger.warn("INCOHERENCE: Player has pet but pet doesn't exist");
+			}
+			remove("pet");
+		}
 
 		// We stop eating anything
 		itemsToConsume.clear();
@@ -924,10 +943,32 @@ public class Player extends RPEntity {
 		Log4J.finishMethod(logger, "removeSheep");
 	}
 
+	public void removePet(Pet pet) {
+		Log4J.startMethod(logger, "removePet");
+		if (has("pet")) {
+			remove("pet");
+		} else {
+			logger.warn("Called removePet but player has not pet: " + this);
+		}
+		StendhalRPRuleProcessor.get().removeNPC(pet);
+
+		Log4J.finishMethod(logger, "removePet");
+	}
 	public boolean hasSheep() {
 		return has("sheep");
 	}
 
+	public boolean hasPet() {
+		return has("pet");
+	}
+	public void setPet(Pet pet) {
+		Log4J.startMethod(logger, "setPet");
+		put("pet", pet.getID().getObjectID());
+
+		StendhalRPRuleProcessor.get().addNPC(pet);
+
+		Log4J.finishMethod(logger, "setPet");
+	}
 	public void setSheep(Sheep sheep) {
 		Log4J.startMethod(logger, "setSheep");
 		put("sheep", sheep.getID().getObjectID());
@@ -992,6 +1033,22 @@ public class Player extends RPEntity {
 		return (Sheep) StendhalRPWorld.get().get(new RPObject.ID(getInt("sheep"), get("zoneid")));
 	}
 
+	public static class NoPetException extends RuntimeException {
+	    //does this need to be a different number?
+		private static final long serialVersionUID = -6689072547778842040L;
+
+		public NoPetException() {
+			super();
+		}
+		
+		public NoPetException(String except) {
+		    super(except);
+		}
+	}
+
+	public RPObject.ID getPet() throws NoPetException {
+		return new RPObject.ID(getInt("pet"), get("zoneid"));
+	}
 
 	/**
 	 * Gets the number of minutes that this player has been logged in on the
@@ -1510,6 +1567,16 @@ public class Player extends RPEntity {
 	}
 
 
+	/**
+	 * gets the pet manager for this player
+	 *
+	 * @return PlayerPetManager
+	 */
+	public PlayerPetManager getPlayerPetManager() {
+		return playerPetManager;
+	}
+
+
 	//
 	// ActiveEntity
 	//
@@ -1588,7 +1655,6 @@ public class Player extends RPEntity {
 	//
 	// Object
 	//
-
 	@Override
 	public int hashCode() {
 		// player names are unique, so we can use the name's hash code.

@@ -19,6 +19,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.slot.BankSlot;
@@ -149,6 +150,11 @@ lion_shield_+1 enhanced_lion_shield
 		player.addRPSlot("#flock", 1, RPClass.HIDDEN);
 		player.add("sheep", RPClass.INT);
 
+		// Store cat at DB
+		player.addRPSlot("#pets", 1, RPClass.HIDDEN);
+		player.add("pet", RPClass.INT);
+		player.add("cat", RPClass.INT);
+
 		// Bank system
 		player.addRPSlot("bank", 30, RPClass.HIDDEN);
 		player.addRPSlot("bank_ados", 30, RPClass.HIDDEN);
@@ -204,7 +210,7 @@ lion_shield_+1 enhanced_lion_shield
 		String[] slotsNormal = { "bag", "rhand", "lhand", "head", "armor", "legs", "feet", "finger", "cloak", "bank",
 		        "bank_ados", "zaras_chest_ados", "bank_fado", "bank_nalwor", "spells", "keyring" };
 
-		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills", "!tutorial" };
+		String[] slotsSpecial = { "!quests", "!kills", "!buddy", "!ignore", "!visited", "skills", "!tutorial"};
 
 		// Port from 0.03 to 0.10
 		if (!object.has("base_hp")) {
@@ -420,7 +426,23 @@ lion_shield_+1 enhanced_lion_shield
 				player.removeSlot("#flock");
 			}
 		}
+//		 load pet
+		if (player.hasPet()) {
+				logger.debug("Player has a cat");
+				Pet pet = player.getPlayerPetManager().retrievePet();
+				pet.put("zoneid", player.get("zoneid"));
+				if (!pet.has("base_hp")) {
+					pet.put("base_hp", "200");
+					pet.put("hp", "200");
+				}
 
+				world.add(pet);
+
+				player.setPet(pet);
+
+				StendhalRPAction.placeat(zone, pet, x, y);
+//				zone.addPlayerAndFriends(cat);
+		}		
 		StendhalRPAction.placeat(zone, player, x, y);
 //		zone.addPlayerAndFriends(player);
 
