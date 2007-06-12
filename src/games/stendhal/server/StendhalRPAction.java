@@ -18,6 +18,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -198,7 +199,7 @@ public class StendhalRPAction {
 		}
 
 		// Enabled PVP
-		if ((entity instanceof Player) || (entity instanceof Sheep)) {
+		if ((entity instanceof Player) || (entity instanceof Sheep) || (entity instanceof Pet)) {
 			StendhalRPZone zone = player.getZone();
 
 			// Make sure that you can't attack players or sheep (even wild
@@ -214,6 +215,15 @@ public class StendhalRPAction {
 						name = Grammar.suffix_s(owner.getName()) + " sheep";
 					} else {
 						name = "that sheep";
+					}
+				}
+
+				if (entity instanceof Pet) {
+					Player owner = ((Pet) entity).getOwner();
+					if (name != null) {
+						name = Grammar.suffix_s(owner.getName()) + " pet";
+					} else {
+						name = "that poor little cat";
 					}
 				}
 
@@ -406,7 +416,7 @@ public class StendhalRPAction {
 	 * @param entity The entity that should move
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
-	 *
+     *
 	 * @deprecated	Use entity.applyMovement() directly.
 	 */
 	@Deprecated
@@ -588,6 +598,16 @@ public class StendhalRPAction {
 						}
 					}
 				}
+				if (player.hasPet()) {
+						//Note there is now a better getSheep method so there should also be a better getPet method
+						Pet pet = (Pet) StendhalRPWorld.get().get(player.getPet());
+						// Call placeat for the pet on the same spot as the 
+						// player to ensure that there will be a path between the
+						// player and his/her cat.
+						placeat(zone, pet, nx, ny); 
+						pet.clearPath();
+						pet.stop();
+				}
 			}
 		}
 		return found;
@@ -615,30 +635,51 @@ public class StendhalRPAction {
 
 		String source = player.getID().getZoneID();
 		
-		if (player.hasSheep()) {
+		if (player.hasSheep() && player.hasPet()) {
 			Sheep sheep = player.getSheep();
-
+			Pet pet = (Pet) world.get(player.getPet());
 			player.removeSheep(sheep);
-
+			player.removePet(pet);
+			world.changeZone(source, destination, sheep);
+			world.changeZone(source, destination, pet);
+			world.changeZone(source, destination, player);
+			player.setSheep(sheep);
+			player.setPet(pet);
+//			oldzone.removePlayerAndFriends(sheep);
+//			zone.addPlayerAndFriends(sheep);
+		}
+		else if (player.hasPet()) {
+			Pet pet = (Pet) world.get(player.getPet());
+			player.removePet(pet);
+			world.changeZone(source, destination, pet);
+			world.changeZone(source, destination, player);
+			player.setPet(pet);
+//			oldzone.removePlayerAndFriends(cat);
+//			zone.addPlayerAndFriends(cat);
+		}
+		else if (player.hasSheep()) {
+			Sheep sheep = player.getSheep();
+			player.removeSheep(sheep);
 			world.changeZone(source, destination, sheep);
 			world.changeZone(source, destination, player);
-
 			player.setSheep(sheep);
-
-		} else {
-			world.changeZone(source, destination, player);
 		}
+		else
+		        world.changeZone(source, destination, player);
 
 		placeat(zone, player, player.getX(), player.getY());
 		player.stop();
 		player.stopAttack();
 
-		if (player.hasSheep()) {
-			Sheep sheep = player.getSheep();
+		/* placeat on player does this - so we don't need it again,
+		  if (player.hasSheep()) {
+			Sheep sheep = (Sheep) world.get(player.getSheep());
 			placeat(zone, sheep, player.getX() + 1, player.getY() + 1);
 			sheep.clearPath();
 			sheep.stop();
 		}
+
+		*/
 
 		if (!source.equals(destination)) {
 			transferContent(player);

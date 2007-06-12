@@ -20,11 +20,14 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Fire;
 import games.stendhal.server.entity.FishSource;
 import games.stendhal.server.entity.GoldSource;
+import games.stendhal.server.entity.WellSource;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.area.AreaEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Sheep;
+import games.stendhal.server.entity.creature.Cat;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
@@ -177,6 +180,7 @@ public class StendhalRPWorld extends RPWorld {
 		Fire.generateRPClass();
 		FishSource.generateRPClass();
 		GoldSource.generateRPClass();
+		WellSource.generateRPClass();
 		Item.generateRPClass();
 		PassiveEntityRespawnPoint.generateRPClass();
 		Portal.generateRPClass();
@@ -195,6 +199,9 @@ public class StendhalRPWorld extends RPWorld {
 
 		// Creature sub-classes
 		Sheep.generateRPClass();
+		Pet.generateRPClass();
+		Cat.generateRPClass();
+
 
 		// PassiveEntityRespawnPoint sub-class
 		GrowingPassiveEntityRespawnPoint.generateRPClass();
