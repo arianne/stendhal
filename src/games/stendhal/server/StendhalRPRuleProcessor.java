@@ -345,10 +345,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersRmText.add(player);
 	}
 
+	// TODO: Move to StendhalRPZone
 	public void addBlood(Blood blood) {
 		bloods.add(blood);
 	}
 
+	// TODO: Move to StendhalRPZone
 	public boolean bloodAt(int x, int y) {
 		for (Blood blood : bloods) {
 			if ((blood.getX() == x) && (blood.getY() == y)) {
@@ -358,6 +360,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return false;
 	}
 
+	// TODO: Move to StendhalRPZone
 	public void removeBlood(Blood blood) {
 		bloodsToRemove.add(blood);
 	}
@@ -488,8 +491,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					player.notifyWorldAboutChanges();
 				}
 			}
-			
 			for (Player player : players) {
+			// TODO: Move to Player.logic() or something
+			// and decouple/hide Player's internal impl
 				if (player.has("risk")) {
 					player.remove("risk");
 					player.notifyWorldAboutChanges();
@@ -514,6 +518,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					player.remove("offline");
 					player.notifyWorldAboutChanges();
 				}
+
+				// TODO: Integrate with applyMovement()
 				if (player.hasPath()) {
 					if (Path.followPath(player, 1)) {
 						player.stop();
@@ -521,9 +527,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					}
 					player.notifyWorldAboutChanges();
 				}
-				if (!player.stopped()) {
-					player.applyMovement();
-				}
+				player.applyMovement();
+
 				if (player.isAttacking() && (getTurn() % StendhalRPAction.getAttackRate(player) == 0)) // 1 round = 5
 				// turns
 				{
