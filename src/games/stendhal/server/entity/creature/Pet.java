@@ -40,24 +40,24 @@ public abstract class Pet extends DomesticAnimal {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Pet.class);
 	/* Default Settings*/
-	final private double SPEED = 0.5;
+	protected double SPEED = 0.5;
 
 	/**
 	 * The weight at which the pet will stop eating.
 	 */
 	final public int MAX_WEIGHT = 100;
 
-	final private static int HP = 100;
+	 protected static int HP = 100;
 
-	final private static int incHP = 5;
+	 protected static int incHP = 5;
 
-	final private static int ATK = 10;
+	 protected static int ATK = 10;
 
-	final private static int DEF = 20;
+	 protected static int DEF = 20;
 
-	final private static int XP = 0;
+	 protected static int XP = 0;
 
-	private int hunger;
+	protected int hunger;
 
 	public static void generateRPClass() {
 		try {

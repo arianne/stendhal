@@ -36,25 +36,19 @@ public class Cat extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Cat.class);
 
-	final private double SPEED = 0.9;
+	
+	
+static{
+	 HP = 200;
 
-	/**
-	 * The weight at which the cat will stop eating.
-	 */
-	final public int MAX_WEIGHT = 100;
+	 incHP = 6;
 
-	private static final int HP = 200;
+	 ATK = 10;
 
-	private static final int incHP = 6;
+	 DEF = 30;
 
-	private static final int ATK = 10;
-
-	private static final int DEF = 30;
-
-	private static final int XP = 0;
-
-	private int hunger;
-
+	 XP = 0;
+}
 	public static void generateRPClass() {
 		try {
 			RPClass cat = new RPClass("cat");
@@ -82,7 +76,8 @@ public class Cat extends Pet {
 		super(owner);
 	        put("type", "cat");
 	        put("title","cat");
-	
+	        SPEED = 0.9;
+
 		update();
 		logger.debug("Created Cat: " + this);
 	}
