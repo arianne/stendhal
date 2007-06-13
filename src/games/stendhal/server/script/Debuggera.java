@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.abstrakt;
+package games.stendhal.server.script;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
@@ -9,15 +9,15 @@ import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.scripting.ScriptInGroovy;
+import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
+import games.stendhal.server.scripting.ScriptingSandbox;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Random;
 
 import org.apache.log4j.Logger;
 
@@ -26,26 +26,7 @@ import org.apache.log4j.Logger;
  * 
  * @author hendrik
  */
-public class IL0_AdminPlayground implements ZoneConfigurator {
-
-	// WARNING: This code has been ported from a groovy script to java on a very low level.
-	//          It compiles fine, but will throw an NullPointerException at runtime because of
-	//          the missing "game" attribute. It needs some refactoring.
-
-
-	// TODO remove this dependency
-	private static ScriptInGroovy game = null;
-
-	/**
-	 * Configure a zone.
-	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
-	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-		buildDebuggera(zone, attributes);
-	}
-
+public class Debuggera extends ScriptImpl {
 
 	boolean debuggeraEnabled = false;
 
@@ -75,10 +56,10 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 	}
 
 	class QuestsAction extends SpeakerNPC.ChatAction {
-		ScriptInGroovy game;
+		ScriptingSandbox sandbox;
 
-		public QuestsAction(ScriptInGroovy game) {
-			this.game = game;
+		public QuestsAction(ScriptingSandbox sandbox) {
+			this.sandbox = sandbox;
 		}
 
 		@Override
@@ -100,7 +81,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 					String value = quest.substring(pos + 1);
 					quest = quest.substring(0, pos);
 					sb.append("\r\n\r\nSet \"" + quest + "\" to \"" + value + "\"");
-					game.addGameEvent(player.getName(), "alter_quest", Arrays.asList(player.getName(), quest, value));
+					sandbox.addGameEvent(player.getName(), "alter_quest", Arrays.asList(player.getName(), quest, value));
 					player.setQuest(quest.trim(), value.trim());
 				}
 			}
@@ -110,20 +91,20 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 
 	class TeleportNPCAction extends SpeakerNPC.ChatAction {
-		ScriptInGroovy game;
+		ScriptingSandbox sandbox;
 
-		public TeleportNPCAction(ScriptInGroovy game) {
-			this.game = game;
+		public TeleportNPCAction(ScriptingSandbox sandbox) {
+			this.sandbox = sandbox;
 		}
 
 		@Override
 		public void fire(Player player, String text, SpeakerNPC engine) {
-			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, text, game));
+			TurnNotifier.get().notifyInTurns(0, new TeleportScriptAction(player, engine, text, sandbox));
 		}
 	}
 
 	class TeleportScriptAction implements TurnListener {
-		private ScriptInGroovy game;
+		private ScriptingSandbox sandbox;
 
 		private Player player;
 
@@ -143,11 +124,11 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 		// syntax-error:  private final String[] MAGIC_PHRASE = {"Across the land,", "Across the sea.", "Friends forever,", "We will always be."};
 
-		public TeleportScriptAction(Player player, SpeakerNPC engine, String text, ScriptInGroovy game) {
+		public TeleportScriptAction(Player player, SpeakerNPC engine, String text, ScriptingSandbox sandbox) {
 			this.player = player;
 			this.engine = engine;
 			//this.text = text;
-			this.game = game;
+			this.sandbox = sandbox;
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
@@ -159,7 +140,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 					Direction direction = player.getDirection();
 					direction = Direction.build((direction.get()) % 4 + 1);
 					player.setDirection(direction);
-					game.modify(player);
+					sandbox.modify(player);
 					if (direction == Direction.DOWN) {
 						switch (textCounter) {
 						case 0:
@@ -177,8 +158,21 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 							engine.say("We will always be.");
 							break;
 						default:
-							StendhalRPZone zone = StendhalRPWorld.get().getZone("int_admin_playground");
-						    player.teleport(zone, 10, 10, null, null);
+							// Teleport to a near by spot
+							
+							StendhalRPZone zone = sandbox.getZone(player);
+							int x = player.getX();
+							int y = player.getY();
+							int tele_offsets[][] = {{7,7},{7,-7},{-7,7},{-7,-7}};
+							Random random = new Random();
+
+							for(int i = 0; i < 3; i++) {
+								int r = random.nextInt(tele_offsets.length);
+								if(player.teleport(zone, x + tele_offsets[r][0], y + tele_offsets[r][1], null, null)) {
+									break;
+								}
+							}
+							
 							inversedSpeed = 1;
 							beamed = true;
 							break;
@@ -192,7 +186,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 					Direction direction = player.getDirection();
 					direction = Direction.build((direction.get()) % 4 + 1);
 					player.setDirection(direction);
-					game.modify(player);
+					sandbox.modify(player);
 					if (direction == Direction.DOWN) {
 						inversedSpeed++;
 						if (inversedSpeed == 3) {
@@ -208,7 +202,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 	}
 
 	public class SightseeingAction extends SpeakerNPC.ChatAction implements TurnListener {
-	//	private ScriptInGroovy game;
+	//	private ScriptingSandbox sandbox;
 
 		private Player player;
 
@@ -216,8 +210,8 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 
 		private int counter = 0;
 
-		public SightseeingAction(ScriptInGroovy game, StendhalRPWorld world) {
-		//	this.game = game;
+		public SightseeingAction(ScriptingSandbox sandbox, StendhalRPWorld world) {
+		//	this.sandbox = sandbox;
 
 			zones = new ArrayList<String>();
 			Iterator itr = world.iterator();
@@ -240,12 +234,11 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 				String zoneName = zones.get(counter);
 				StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
 
-				int tele_x[] = {5,50,20,100,100};
-				int tele_y[] = {5,50,20,100,5};
-
+				int tele_xy[][] = {{5,5},{50,50},{20,20},{100,100},{100,5}};
 				boolean found_spot = false;
-				for(int i = 0; i < tele_x.length; i++) {
-					if(player.teleport(zone, tele_x[i], tele_y[i], null, null)) {
+				
+				for(int i = 0; i < tele_xy.length; i++) {
+					if(player.teleport(zone, tele_xy[i][0], tele_xy[i][1], null, null)) {
 						player.sendPrivateText("Welcome in " + zoneName);
 						found_spot = true;
 						break;
@@ -265,21 +258,31 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		}
 	}
 
-
-
-	private void buildDebuggera(StendhalRPZone zone, Map<String, String> attributes) {
+	@Override
+	public void load(Player admin, List<String> args, ScriptingSandbox sandbox) {
+		super.load(admin, args, sandbox);
 
 		// Create NPC
 		ScriptingNPC npc = new ScriptingNPC("Debuggera");
 		npc.setClass("girlnpc");
 
-		// Place NPC in int_admin_playground 
-		// if this script is executed by an admin
+		// Place NPC in int_admin_playground on server start
 		String myZone = "int_admin_playground";
-		game.setZone(myZone);
-		npc.set(4, 11);
+		sandbox.setZone(myZone);
+		int x = 4;
+		int y = 11;
+		
+		// If this script is executed by an admin, Debuggera will be placed next to him/her.
+		if (admin != null) {
+			sandbox.setZone(sandbox.getZone(admin));
+			x = admin.getX() + 1;
+			y = admin.getY();
+		}
+		
+		// Set zone and position
+		npc.set(x, y);
 		npc.setDirection(Direction.DOWN);
-		game.add(npc);
+		sandbox.add(npc);
 
 		// 
 		npc.add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), null, ConversationStates.IDLE, "My mom said, i am not allowed to talk to strangers.", null);
@@ -292,10 +295,7 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		 npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
 		 */
 		npc.behave(Arrays.asList("insane", "crazy", "mad"), "Why are you so mean? I AM NOT INSANE. My mummy says, I am a #special child.");
-		npc
-						.behave(
-										Arrays.asList("special", "special child"),
-										"I can see another world in my dreams. That are more thans dreams. There the people are sitting in front of machines called computers. This are realy strange people. They cannot use telepathy without something they call inter-network. But these people and machines are somehow connected to our world. If I concentrate, I can #change thinks in our world.");
+		npc.behave(Arrays.asList("special", "special child"), "I can see another world in my dreams. That are more thans dreams. There the people are sitting in front of machines called computers. This are realy strange people. They cannot use telepathy without something they call inter-network. But these people and machines are somehow connected to our world. If I concentrate, I can #change thinks in our world.");
 		// npc.behave("verschmelzung", "\r\nYou have one hand,\r\nI have the other.\r\nPut them together,\r\nWe have each other.");
 		npc.add(ConversationStates.ATTENDING, Arrays.asList("susi"), null, ConversationStates.ATTENDING, "Yes, she is my twin sister. People consider her normal because she hides her special abilities.", null);
 
@@ -312,13 +312,13 @@ public class IL0_AdminPlayground implements ZoneConfigurator {
 		npc.add(ConversationStates.INFORMATION_4, Arrays.asList("I will be your friend.", "I will be your friend"), null, ConversationStates.ATTENDING, "Cool. We are friends now.", new StandardInteraction.SetQuestAction("debuggera", "friends"));
 
 		// quests
-		npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(game));
+		npc.add(ConversationStates.ATTENDING, "quest", new AdminCondition(), ConversationStates.ATTENDING, null, new QuestsAction(sandbox));
 
 		// teleport
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("teleport", "teleportme"), new AdminCondition(), ConversationStates.IDLE, null, new TeleportNPCAction(game));
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("teleport", "teleportme"), new AdminCondition(), ConversationStates.IDLE, null, new TeleportNPCAction(sandbox));
 
 		StendhalRPWorld world = StendhalRPWorld.get();
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("sightseeing", "memory", "memoryhole"), new AdminCondition(), ConversationStates.IDLE, null, new SightseeingAction(game, world));
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("sightseeing", "memory", "memoryhole"), new AdminCondition(), ConversationStates.IDLE, null, new SightseeingAction(sandbox, world));
 	}
 	/*
 	 Make new friends,
