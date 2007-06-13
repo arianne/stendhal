@@ -81,7 +81,6 @@ public class ConsumableItemTest {
 	@Test 
 	public void compareTO_Equals() {
 //		(x.compareTo(y)==0) == (x.equals(y)).
-		// TODO: decide if we want comparision be strict for consumables
 		assertEquals(0,c100_1.compareTo(d100_1));
 		assertEquals(0,d100_1.compareTo(c100_1));
 		assertEquals(0,c100_1.compareTo(c100_1));
