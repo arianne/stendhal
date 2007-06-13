@@ -19,12 +19,10 @@ import marauroa.common.game.RPObject;
  * He needs time and luck.
  * 
  * Wishing takes 10 seconds; during this time, the player keep standing
- * next to the well source. In fact, the player only has to be there
- * when the wishing action has finished. Therefore, make sure that two
- * well sources are always at least 5 sec of walking away from each other,
- * so that the player can't wish at several sites simultaneously.
+ * next to the well source. At every well are two sources next to each other, 
+ * so the player can actually make 2 wishes at once.
  * 
- * @author daniel
+ * @author kymara (based on FishSource by daniel)
  *
  */
 public class WellSource extends Entity implements UseListener {
@@ -59,6 +57,7 @@ public class WellSource extends Entity implements UseListener {
 					if (isSuccessful(player)) {
 					        String itemName = items[Rand.rand(items.length)];
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+						// TODO: player bind the better prizes below: horned_golden_helmet & dark_dagger
 						player.equip(item, true);
 						player.sendPrivateText("You were lucky and found " + Grammar.a_noun(itemName));
 					} else {
@@ -69,7 +68,7 @@ public class WellSource extends Entity implements UseListener {
 		}
 		
 	}
-        private  String[] items = {"money", "iron_ore", "gold_nugget", "home_scroll", "greater_potion", "sapphire", "carbuncle", "horned_golden_helmet", "dark_dagger", "present"};
+        private  String[] items = {"money", "wood", "iron_ore", "gold_nugget", "potion", "home_scroll", "greater_potion", "sapphire", "carbuncle", "horned_golden_helmet", "dark_dagger", "present"};
 
 	/**
 	 * The chance that wishing is successful.
@@ -135,7 +134,7 @@ public class WellSource extends Entity implements UseListener {
 				if (TurnNotifier.get().getRemainingTurns(wish) == -1) {
 					player.faceToward(this);
 				        player.notifyWorldAboutChanges();
-
+					// TODO: remove X money from player as they throw a coin into the well
 					// some feedback is needed.
 					player.sendPrivateText("You make a wish.");
 				       	TurnNotifier.get().notifyInSeconds(DURATION, wish);
