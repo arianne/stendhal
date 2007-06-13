@@ -91,12 +91,6 @@ public class FishSource extends Entity implements UseListener {
 		return probability + player.useKarma(0.05);
 	}
 
-	/**fishing
-	 * How long it takes to fish (in seconds) 
-	 * TODO: randomize this number a bit.
-	 */
-	private final static int DURATION = 8;
-
 	public FishSource(String itemName) {
 		super();
 		this.itemName = itemName;
@@ -139,13 +133,22 @@ public class FishSource extends Entity implements UseListener {
 
 						// some feedback is needed.
 						player.sendPrivateText("You have started fishing.");
-						TurnNotifier.get().notifyInSeconds(DURATION, fisher);
+						TurnNotifier.get().notifyInSeconds(getDuration(), fisher);
 					}
 				} else {
 					player.sendPrivateText("You need a fishing rod for fishing.");
 				}
 			}
 		}
+	}
+
+
+	/**
+	 * @return an int between 5 and 8 to represent seconds needed for fishing
+	 */
+	private int getDuration() {
+		
+		return 5  + Rand.rand(3);
 	}
 
 
