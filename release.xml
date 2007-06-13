@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <project name="stendhal" default="all" basedir=".">
-	<property file="build.ant.properties"/>
 	<property file="build.ant-private.properties"/>
+	<property file="build.ant.properties"/>
 
 	<target name="temp" depends="init,jardiff,sign_diff-jars" />
 
