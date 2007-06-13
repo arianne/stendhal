@@ -32,6 +32,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
+import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
@@ -1607,6 +1608,69 @@ public class Player extends RPEntity {
 	//
 	// Entity
 	//
+
+	/**
+	 * Perform cycle logic.
+	 */
+	@Override
+	public void logic() {
+		if (has("risk")) {
+			remove("risk");
+			notifyWorldAboutChanges();
+		}
+
+		if (has("damage")) {
+			remove("damage");
+			notifyWorldAboutChanges();
+		}
+
+		if (has("heal")) {
+			remove("heal");
+			notifyWorldAboutChanges();
+		}
+
+		if (has("dead")) {
+			remove("dead");
+			notifyWorldAboutChanges();
+		}
+
+		if (has("online")) {
+			remove("online");
+			notifyWorldAboutChanges();
+		}
+
+		if (has("offline")) {
+			remove("offline");
+			notifyWorldAboutChanges();
+		}
+
+		// TODO: Integrate with applyMovement()
+		if (hasPath()) {
+			if (Path.followPath(this, 1.0)) {
+				stop();
+				clearPath();
+			}
+
+			notifyWorldAboutChanges();
+		}
+
+		applyMovement();
+
+		int turn = StendhalRPRuleProcessor.get().getTurn();
+
+		// 1 round = 5 turns
+		if (isAttacking() && ((turn % StendhalRPAction.getAttackRate(this)) == 0)) {
+			StendhalRPAction.attack(this, getAttackTarget());
+		}
+
+		if ((turn % 180) == 0) {
+			setAge(getAge() + 1);
+			notifyWorldAboutChanges();
+		}
+
+		consume(turn);
+	}
+
 
 	/**
 	 * Called when this object is added to a zone.

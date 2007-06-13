@@ -1787,4 +1787,11 @@ public abstract class RPEntity extends ActiveEntity {
 			return null;
 		}
 	}
+
+
+	/**
+	 * Perform cycle logic.
+	 * TODO: Move up to Entity class eventually.
+	 */
+	public abstract void logic();
 }

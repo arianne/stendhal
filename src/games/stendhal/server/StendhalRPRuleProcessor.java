@@ -464,60 +464,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			for (Player player : players) {
-			// TODO: Move to Player.logic() or something
-			// and decouple/hide Player's internal impl
-				if (player.has("risk")) {
-					player.remove("risk");
-					player.notifyWorldAboutChanges();
+				try {
+					player.logic();
+				} catch (Exception e) {
+					logger.error("Error in player logic", e);
 				}
-				if (player.has("damage")) {
-					player.remove("damage");
-					player.notifyWorldAboutChanges();
-				}
-				if (player.has("heal")) {
-					player.remove("heal");
-					player.notifyWorldAboutChanges();
-				}
-				if (player.has("dead")) {
-					player.remove("dead");
-					player.notifyWorldAboutChanges();
-				}
-				if (player.has("online")) {
-					player.remove("online");
-					player.notifyWorldAboutChanges();
-				}
-				if (player.has("offline")) {
-					player.remove("offline");
-					player.notifyWorldAboutChanges();
-				}
-
-				// TODO: Integrate with applyMovement()
-				if (player.hasPath()) {
-					if (Path.followPath(player, 1)) {
-						player.stop();
-						player.clearPath();
-					}
-					player.notifyWorldAboutChanges();
-				}
-				player.applyMovement();
-
-				if (player.isAttacking() && (getTurn() % StendhalRPAction.getAttackRate(player) == 0)) // 1 round = 5
-				// turns
-				{
-					StendhalRPAction.attack(player, player.getAttackTarget());
-				}
-				if (getTurn() % 180 == 0) {
-					player.setAge(player.getAge() + 1);
-					player.notifyWorldAboutChanges();
-				}
-				player.consume(getTurn());
 			}
 			
 			for (NPC npc : npcs) {
 				try {
 					npc.logic();
 				} catch (Exception e) {
-					logger.error("error in beginTurn", e);
+					logger.error("Error in npc logic", e);
 				}
 			}
 
