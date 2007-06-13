@@ -61,7 +61,6 @@ public class EquipmentActionTest {
 	 */
 	@BeforeClass
 	public static void buildWorld() throws Exception {
-		// TODO: Check what happens if this has already been done by some other test. 
 		StendhalRPWorld world = StendhalRPWorld.get();
 		world.addArea(ZONE_NAME, ZONE_CONTENT);
 		Player.generateRPClass();
