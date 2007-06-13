@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * An orcish NPC who buys sheep from players.
- * You get the weight of the sheep * 50 in gold coins.
+ * You get the weight of the sheep * 15 in gold coins.
  */
 public class SheepBuyerNPC extends SpeakerNPCFactory {
 
