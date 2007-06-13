@@ -147,13 +147,10 @@ public abstract class Pet extends DomesticAnimal {
         Item chosen=null;
 		for ( Item i  : items){
 			if (canEat(i)){
-			//TODO: maybe we can comment the outer if seems to be double testing to me astridemma
-				if ((Math.abs(i.getX() - getX()) < range) && (Math.abs(i.getY() - getY()) < range)) {
 					if (this.squaredDistance(i) < squaredDistance) {
 						chosen = i;
 						squaredDistance = this.squaredDistance(i);
 					}
-				}
 			}
 			
 		}
