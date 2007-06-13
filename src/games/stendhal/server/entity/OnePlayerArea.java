@@ -20,11 +20,11 @@ import games.stendhal.server.events.MovementListener;
  * An area that only allows one play at a time to enter.
  * This currently does not account for being "placed" into the zone.
  *
- * XXX
+ * 
  * XXX Changed to full zone scan to assure this is secure.
  * XXX Will improve later once all ways to enter a zone are accounted for.
  * XXX Commented out code is that used for fast (but unreliable) check.
- * XXX
+ * 
  */
 public class OnePlayerArea extends Entity implements MovementListener {
 
