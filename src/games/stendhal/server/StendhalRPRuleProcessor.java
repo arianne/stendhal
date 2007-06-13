@@ -108,10 +108,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	private List<PassiveEntityRespawnPoint> plantGrowers;
 
-	private List<Blood> bloods;
-
-	private List<Blood> bloodsToRemove;
-
 	public static void register(String action, ActionListener actionClass) {
 		if (actionsMap.get(action) != null) {
 			logger.error("Registering twice (previous was "+actionsMap.get(action).getClass()+") the same action handler: " + action+ " with "+actionClass.getClass());
@@ -155,8 +151,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
-		bloods = new LinkedList<Blood>();
-		bloodsToRemove = new LinkedList<Blood>();
 		registerActions();
 		instance = this;
 		addGameEvent("server system", "startup");
@@ -345,26 +339,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		playersRmText.add(player);
 	}
 
-	// TODO: Move to StendhalRPZone
-	public void addBlood(Blood blood) {
-		bloods.add(blood);
-	}
-
-	// TODO: Move to StendhalRPZone
-	public boolean bloodAt(int x, int y) {
-		for (Blood blood : bloods) {
-			if ((blood.getX() == x) && (blood.getY() == y)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	// TODO: Move to StendhalRPZone
-	public void removeBlood(Blood blood) {
-		bloodsToRemove.add(blood);
-	}
-
 	/**
 	 * Gets all players who are currently online.
 	 * @return A list of all online players
@@ -479,11 +453,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			entityToKill.clear();
 			// Done this way because a problem with comodification... :(
 			npcs.removeAll(npcsToRemove);
-			bloods.removeAll(bloodsToRemove);
 			npcs.addAll(npcsToAdd);
 			npcsToAdd.clear();
 			npcsToRemove.clear();
-			bloodsToRemove.clear();
 
 			for (Player player : playersRmPrivateText) {
 				if (player.has("private_text")) {

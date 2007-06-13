@@ -15,6 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Line;
+import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
@@ -87,6 +88,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private List<Player> players;
 
+	/**
+	 * The blood spills.
+	 */
+	private List<Blood> bloods;
+
 	private boolean teleportAllowed = true;
 
 	private boolean moveToAllowed = true;
@@ -131,6 +137,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		itemsOnGround = new HashSet<Item>();
 		numHouses = 0;
 
+		bloods = new LinkedList<Blood>();
 		npcs = new LinkedList<NPC>();
 		sheepFoods = new LinkedList<SheepFood>();
 		respawnPoints = new LinkedList<CreatureRespawnPoint>();
@@ -154,6 +161,26 @@ public class StendhalRPZone extends MarauroaRPZone {
 		// do nothing
 	}
 
+
+	/**
+	 * Get blood (if any) at a specified zone position.
+	 *
+	 * @param	x		The X coordinate.
+	 * @param	y		The Y coordinate.
+	 *
+	 * @return	The blood, or <code>null</code>.
+	 */
+	public Blood getBlood(final int x, final int y) {
+		for (Blood blood : bloods) {
+			if ((blood.getX() == x) && (blood.getY() == y)) {
+				return blood;
+			}
+		}
+
+		return null;
+	}
+
+
 	public List<NPC> getNPCList() {
 		return npcs;
 	}
@@ -175,7 +202,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Get the portal (if any) at a specified zone position.
 	 *
+	 * @param	x		The X coordinate.
+	 * @param	y		The Y coordinate.
 	 *
+	 * @return	The portal, or <code>null</code>.
 	 */
 	public Portal getPortal(int x, int y) {
 		for (Portal portal : portals) {
@@ -704,7 +734,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			plantGrowers.add((PassiveEntityRespawnPoint) object);
 		}
 
-		if (object instanceof Player) {
+		if (object instanceof Blood) {
+			bloods.add((Blood) object);
+		} else if (object instanceof Player) {
 			players.add((Player) object);
 			playersAndFriends.add((Player) object);
 		} else if (object instanceof AttackableCreature) {
@@ -753,7 +785,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			plantGrowers.remove((PassiveEntityRespawnPoint) object);
 		}
 
-		if (object instanceof Player) {
+		if (object instanceof Blood) {
+			bloods.remove((Blood) object);
+		} else if (object instanceof Player) {
 			players.remove((Player) object);
 			playersAndFriends.remove((Player) object);
 		} else if (object instanceof AttackableCreature) {

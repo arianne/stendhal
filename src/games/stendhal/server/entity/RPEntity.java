@@ -671,15 +671,19 @@ public abstract class RPEntity extends ActiveEntity {
 	 */
 	private void bleedOnGround() {
 		Rectangle2D rect = getArea();
-		if (!StendhalRPRuleProcessor.get().bloodAt((int) rect.getX(), (int) rect.getY())) {
-			Blood blood = new Blood(this);
-			IRPZone zone = getZone();
+		int bx = (int) rect.getX();
+		int by = (int) rect.getY();
+		StendhalRPZone zone = getZone();
+
+		if(zone.getBlood(bx, by) == null) {
+			Blood blood = new Blood();
+			blood.set(bx, by);
+
 			zone.assignRPObjectID(blood);
 			zone.add(blood);
-			StendhalRPRuleProcessor.get().addBlood(blood);
 		}
-
 	}
+
 	/**
 	 * This method is called when this entity has been attacked by Entity
 	 * attacker and it has been damaged with damage points.

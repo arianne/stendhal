@@ -13,14 +13,10 @@
 package games.stendhal.server.entity;
 
 import games.stendhal.common.Rand;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
-import java.awt.geom.Rectangle2D;
-
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 
 /**
@@ -40,26 +36,50 @@ public class Blood extends PassiveEntity implements TurnListener {
 		blood.add("amount", RPClass.BYTE);
 	}
 
-	public Blood(RPEntity entity) throws AttributeNotFoundException {
-		put("type", "blood");
-		put("class", "red");
-		put("amount", Rand.rand(4));
 
-		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
-
-		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
-
-		set((int) rect.getX(), (int) rect.getY());
+	/**
+	 * Create a blood entity.
+	 */
+	public Blood() {
+		this("red", Rand.rand(4));
 	}
 
 
+	/**
+	 * Create a blood entity.
+	 *
+	 * @param	clazz		The class of blood.
+	 * @param	amount		The amount of blood.
+	 */
+	public Blood(final String clazz, final int amount) {
+		put("type", "blood");
+		put("class", clazz);
+		put("amount", amount);
+
+		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
+	}
+
+
+	//
+	// Entity
+	//
+
+	/**
+	 * Get the entity description.
+	 *
+	 * @return	The description text.
+	 */
 	@Override
 	public String describe() {
 		return ("You see a pool of blood.");
 	}
 
+
+	//
+	// TurnListener
+	//
+
 	public void onTurnReached(int currentTurn, String message) {
-		StendhalRPWorld.get().remove(getID());
-		StendhalRPRuleProcessor.get().removeBlood(this);
+		getZone().remove(this);
 	}
 }
