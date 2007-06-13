@@ -33,7 +33,7 @@ public abstract class AbstractQuest implements IQuest {
 	 * @param name name of quest
 	 * @param slotName name of quest-slot
 	 */
-	public void init(String name, String slotName) {
+	protected void init(String name, String slotName) {
 		this.name = name;
 		this.slotName = slotName;
 	}
