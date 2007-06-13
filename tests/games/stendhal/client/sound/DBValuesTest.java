@@ -32,9 +32,7 @@ public class DBValuesTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	/**
-	 * TODO: check if this really what we want it to do astridemma 20.02.2007 
-	 */
+	
 	@Test
 	public final void testGetDBValue() {
 		assertEquals(Float.NEGATIVE_INFINITY, DBValues.getDBValue(-1));
