@@ -95,12 +95,20 @@ public class EquipmentAction implements ActionListener {
 	/** callback for the equip action */
 	private void onEquip(Player player, RPAction action) {
 		// get source and check it
-		logger.debug("Checking source object conditions");
+		logger.debug("Checking source object conditions: "+action);
 		SourceObject source = new SourceObject(action, player);
-		if (!source.isValid() || !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
-		        || !source.checkClass(validContainerClassesList)) {
-			// source is not valid
+		if (!source.isValid()) { 
 			logger.debug("Source is not valid");
+			return;
+		}
+		
+		if(!source.checkDistance(player, EquipActionConsts.MAXDISTANCE)) {
+			logger.debug("Source is not valid: source too far from player.");
+			return;
+		}
+
+		if(!source.checkClass(validContainerClassesList)) {
+			logger.debug("Source is not valid: Not valid class");
 			return;
 		}
 

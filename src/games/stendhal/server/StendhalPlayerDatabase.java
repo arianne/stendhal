@@ -12,8 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import sun.rmi.runtime.GetThreadPoolAction;
-
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
@@ -65,7 +63,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			
 			// first try an update
 			String query = "UPDATE character_stats SET online=0";
-			logger.info("clearOnlineStatus is running: "+query);
+			logger.debug("clearOnlineStatus is running: "+query);
 			stmt.executeUpdate(query);
 			stmt.close();
 		} catch (SQLException sqle) {
@@ -82,7 +80,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			// first try an update
 			String query = "UPDATE character_stats SET "+
 			   "online="+(online?1:0)+" WHERE name='" + StringChecker.escapeSQLString(player.get("name"))+"'";
-			logger.info("setOnlineStatus is running: "+query);
+			logger.debug("setOnlineStatus is running: "+query);
 			stmt.executeUpdate(query);
 			stmt.close();
 		} catch (SQLException sqle) {
