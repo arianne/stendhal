@@ -355,7 +355,6 @@ public class Grammar {
 			case 3:
 				return "third";
 			default: {
-				// TODO: implement this if needed
 				logger.error("Gramar.ordered not implemented for: " + n, new Throwable());
 				return Integer.toString(n);
 			}
