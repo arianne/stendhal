@@ -148,7 +148,7 @@ public class FishSource extends Entity implements UseListener {
 	 */
 	private int getDuration() {
 		
-		return 5  + Rand.rand(3);
+		return 5  + Rand.rand(4);
 	}
 
 

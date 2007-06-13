@@ -74,12 +74,6 @@ public class GoldSource extends Entity implements UseListener {
 	 */
 	private final static double FINDING_PROBABILITY = 0.1;
 
-	/**
-	 * How long it takes to prospect for gold (in seconds) 
-	 * TODO: randomize this number a bit.
-	 */
-	private final static int DURATION = 10;
-
 	public GoldSource() {
 		super();
 		setDescription("You see something golden glittering.");
@@ -138,13 +132,20 @@ public class GoldSource extends Entity implements UseListener {
 
 						// some feedback is needed.
 						player.sendPrivateText("You have started to prospect for gold.");
-						TurnNotifier.get().notifyInSeconds(DURATION, prospect);
+						TurnNotifier.get().notifyInSeconds(getDuration(), prospect);
 					}
 				} else {
 					player.sendPrivateText("You need a gold pan to prospect for gold.");
 				}
 			}
 		}
+	}
+	/**
+	 * @return an int between 7 and 10 to represent seconds needed for prospecting
+	 */
+	private int getDuration() {
+		
+		return 7  + Rand.rand(4);
 	}
 
 }
