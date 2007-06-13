@@ -151,7 +151,7 @@ public static void main(String[] args) {
 					 imageViewerSwing2 = null;
 					 imageViewerSwing3 = null;
 					 imageViewerSwing4 = null;
-					System.out.println("windowClosing()"); // TODO Auto-generated Event stub windowClosing()
+					System.out.println("windowClosing()"); 
 					super.windowClosing(e);
 					System.exit(0);
 				}
@@ -206,10 +206,8 @@ public static void main(String[] args) {
 		        }
 				
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
