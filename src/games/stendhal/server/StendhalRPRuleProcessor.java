@@ -31,7 +31,6 @@ import games.stendhal.server.actions.PlayersQuery;
 import games.stendhal.server.actions.QuestListAction;
 import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
-import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
@@ -41,7 +40,6 @@ import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.scripting.ScriptRunner;
 
 import java.util.HashMap;
