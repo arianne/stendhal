@@ -1444,8 +1444,7 @@ public class Player extends RPEntity {
 		}
 	}
 
-	// TODO: use the turn notifier for consumable items to
-	// get rid of Player.consume().
+	// TODO: use the turn notifier for consumable items to get rid of Player.consume().
 
 	@Override
 	public String describe() {
