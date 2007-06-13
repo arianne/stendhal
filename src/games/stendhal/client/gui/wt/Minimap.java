@@ -121,12 +121,6 @@ public class Minimap extends WtPanel {
 			}
 		}
 
-		/*
-		 * XXX - TEMP!!!
-		 * Show SheepFood as obsticals until all maps can be fixed.
-		 */
-		mapgrapics.setColor(blockedColor);
-
 		for (Entity entity : client.getGameObjects()) {
 			if (entity instanceof SheepFood) {
 				mapgrapics.fillRect(((int) entity.getX()) * scale, ((int) entity.getY()) * scale, scale, scale);
