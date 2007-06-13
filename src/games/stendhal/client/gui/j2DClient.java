@@ -691,9 +691,7 @@ public class j2DClient extends StendhalUI {
 						Entity entity = view.getEntity();
 						if(!entity.equals(user)) {
 							entity.onAction(entity.defaultAction());
-							// TODO: Do we want
-							// to move also? Or
-							// just 'return' here?
+							// TODO: Do we want  to move also? Or just 'return' here?
 						}
 					}
 				}
