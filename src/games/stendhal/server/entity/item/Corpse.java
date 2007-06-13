@@ -163,21 +163,23 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	private void modify() {
 		if (isContained()) {
-			// We modify the base container if the object change.
-			RPObject base = getContainer();
-			while (base.isContained()) {
-				if (base == base.getContainer()) {
-					logger.error("A corpse is contained by itself.");
-					break;
-				}
-
-				base = base.getContainer();
-			}
-
-			StendhalRPWorld.get().modify(base);
+			StendhalRPWorld.get().modify(getBase());
 		} else {
 			notifyWorldAboutChanges();
 		}
+	}
+
+	private RPObject getBase() {
+		RPObject base = getContainer();
+		while (base.isContained()) {
+			if (base == base.getContainer()) {
+				logger.error("A corpse is contained by itself.");
+				break;
+			}
+
+			base = base.getContainer();
+		}
+		return base;
 	}
 
 	private boolean decDegradation(int aktTurn) {
@@ -196,17 +198,9 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		if (!decDegradation(currentTurn)) {
 			if (isContained()) {
 				// We modify the base container if the object change.
-				RPObject base = getContainer();
-				while (base.isContained()) {
-					if (base == base.getContainer()) {
-						logger.error("A corpse is contained by itself.");
-						break;
-					}
+				
 
-					base = base.getContainer();
-				}
-
-				StendhalRPWorld.get().modify(base);
+				StendhalRPWorld.get().modify(getBase());
 
 				getContainerSlot().remove(this.getID());
 			} else {
