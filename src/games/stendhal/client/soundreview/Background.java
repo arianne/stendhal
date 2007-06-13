@@ -36,18 +36,17 @@ public class Background {
 	}
 	
 	private void initSemosVillage() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	private void initSemosCity() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	private void initSemosRoad() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void initSemosBlacksmith() {
