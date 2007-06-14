@@ -13,7 +13,7 @@ public class Profile {
 	protected static final String NEW_SERVER_HOST = "stendhal.game-host.org";
 
 	/** Default server port */
-	public static final int DEFAULT_SERVER_PORT = 32160;
+	public static final int DEFAULT_SERVER_PORT = 32170;
 
 	protected String host;
 

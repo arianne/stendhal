@@ -89,6 +89,89 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 	}
 
 	@Override
+	public void addCharacter(Transaction transaction, String username, String character,
+	        RPObject player) throws SQLException, IOException {
+		super.addCharacter(transaction, username, character, player);
+
+		/*
+		 * Here goes the stendhal specific code. 
+		 */
+		try {
+			Connection connection = ((JDBCTransaction) transaction).getConnection();
+			Statement stmt = connection.createStatement();
+
+			Player instance = (Player) player;
+
+			String head = null;
+			String armor = null;
+			String lhand = null;
+			String rhand = null;
+			String legs = null;
+			String feet = null;
+			String cloak = null;
+
+			String query = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, "
+			        + "head, armor, lhand, rhand, legs, feet, cloak) VALUES ("
+			        + "'"
+			        + StringChecker.escapeSQLString(instance.getName())
+			        + "', "
+			        + " false"
+			        + ", "
+			        + instance.getAdminLevel()
+			        + ", "
+			        + "'"
+			        + StringChecker.escapeSQLString(instance.getSentence())
+			        + "', "
+			        + 0
+			        + ", "
+			        + 0
+			        + ", "
+			        + "'"
+			        + 0
+			        + "', "
+			        + 0
+			        + ", "
+			        + 0
+			        + ", "
+			        + instance.getATK()
+			        + ", "
+			        + instance.getDEF()
+			        + ", "
+			        + instance.getBaseHP()
+			        + ", "
+			        + instance.getKarma()
+			        + ", "
+			        + "'"
+			        + StringChecker.escapeSQLString(head)
+			        + "', "
+			        + "'"
+			        + StringChecker.escapeSQLString(armor)
+			        + "', "
+			        + "'"
+			        + StringChecker.escapeSQLString(lhand)
+			        + "', "
+			        + "'"
+			        + StringChecker.escapeSQLString(rhand)
+			        + "', "
+			        + "'"
+			        + StringChecker.escapeSQLString(legs)
+			        + "', "
+			        + "'"
+			        + StringChecker.escapeSQLString(feet)
+			        + "', "
+			        + "'"
+			        + StringChecker.escapeSQLString(cloak) + "'" + ")";
+			;
+			logger.debug("storeCharacter is running: " + query);
+			stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException sqle) {
+			logger.warn("error storing character", sqle);
+			throw sqle;
+		}
+	}
+	
+	@Override
 	public void storeCharacter(Transaction transaction, String username, String character,
 	        RPObject player) throws SQLException, IOException {
 		super.storeCharacter(transaction, username, character, player);
