@@ -89,8 +89,10 @@ public final class EntityMap {
 		register("item", "missile", "StackableItem");
 		register("item", "ammunition", "StackableItem");
 		// TODO: remove this after release of 0.59
-		register("item", "projectiles", "StackableItem");
+		//register("item", "projectiles", "StackableItem");
+		
 		register("item", "resource", "StackableItem");
+		
 		register("item", "scroll", "StackableItem");
 		register("item","jewellery","StackableItem");
 
