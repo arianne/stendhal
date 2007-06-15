@@ -945,15 +945,6 @@ public abstract class RPEntity extends ActiveEntity {
 		int oldXP = this.getXP();
 
 		letAttackersStopAttack();
-		
-		if (this instanceof Player) {
-			// Players lose some experience when dying.
-			// TODO: docu for formula
-			this.setXP((oldXP * 10) / 9);
-			oldLevel = this.getLevel();
-			oldXP = this.getXP();
-			this.setXP((int) (oldXP * 0.9));
-		}
 
 		// Establish how much xp points your are rewarded
 		if (oldXP > 0) {

@@ -22,6 +22,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -490,7 +491,7 @@ public class AdministrationAction implements ActionListener {
 				// Is the entity a creature
 				if (manager.isCreature(type)) {
 					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
-					entity = manager.getCreature(type);
+					entity = new RaidCreature(manager.getCreature(type));
 					StendhalRPRuleProcessor.get().addNPC((Creature) entity);
 				} else if (manager.isItem(type)) {
 					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
