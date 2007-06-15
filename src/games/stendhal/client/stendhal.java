@@ -49,7 +49,7 @@ public class stendhal extends Thread {
 
 	public static final String VERSION = Version.VERSION;
 
-	public static String SCREEN_SIZE = null;
+	public static String SCREEN_SIZE = "640x480";
 
 	public static final boolean SHOW_COLLISION_DETECTION = false;
 
@@ -140,8 +140,6 @@ public class stendhal extends Thread {
 	 * @param client StendhalClient
 	 */
 	private static void startGameGUI(StendhalClient client) {
-		
-		
 		new j2DClient(client);
 	}
 

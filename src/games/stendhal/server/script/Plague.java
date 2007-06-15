@@ -3,6 +3,7 @@ package games.stendhal.server.script;
 import games.stendhal.common.MathHelper;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class Plague extends ScriptImpl {
 
-	private static final int MAX_RING_COUNT = 2;
+	private static final int MAX_RING_COUNT = 3;
 
 	@Override
 	public void execute(Player admin, List<String> args) {
@@ -35,7 +36,7 @@ public class Plague extends ScriptImpl {
 		if (args.size() >= 2) {
 			creatureClass = args.get(1);
 		}
-		Creature creature = sandbox.getCreature(creatureClass);
+		Creature creature = new RaidCreature(sandbox.getCreature(creatureClass));
 		if (creature == null) {
 			admin.sendPrivateText("No such creature");
 		} else {

@@ -23,6 +23,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
@@ -811,27 +812,28 @@ public class Player extends RPEntity implements TurnListener {
 		itemsToConsume.clear();
 		poisonToConsume.clear();
 
-		Item emeraldRing=getFirstEquipped("emerald_ring");
+		if (!(killer instanceof RaidCreature)) {
+			Item emeraldRing = getFirstEquipped("emerald_ring");
 
-		if(emeraldRing!=null && emeraldRing.getInt("amount")>0){
-			// Penalize: 1% less experience if wearing that ring
-			setXP((int) (getXP() * 0.99));
-			setATKXP((int) (getATKXP() * 0.99));
-			setDEFXP((int) (getDEFXP() * 0.99));
+			if (emeraldRing != null && emeraldRing.getInt("amount") > 0) {
+				// Penalize: 1% less experience if wearing that ring
+				setXP((int) (getXP() * 0.99));
+				setATKXP((int) (getATKXP() * 0.99));
+				setDEFXP((int) (getDEFXP() * 0.99));
 
-			/*
-			 * We broke now the emerald ring.
-			 */
-			emeraldRing.put("amount", 0);
+				/*
+				 * We broke now the emerald ring.
+				 */
+				emeraldRing.put("amount", 0);
+			} else {
+				// Penalize: 10% less experience
+				setXP((int) (getXP() * 0.9));
+				setATKXP((int) (getATKXP() * 0.9));
+				setDEFXP((int) (getDEFXP() * 0.9));
+			}
+
+			update();
 		}
-		else{
-			// Penalize: 10% less experience
-			setXP((int) (getXP() * 0.9));
-			setATKXP((int) (getATKXP() * 0.9));
-			setDEFXP((int) (getDEFXP() * 0.9));
-		}
-
-		update();
 
 		super.onDead(killer, false);
 
@@ -839,6 +841,7 @@ public class Player extends RPEntity implements TurnListener {
 
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
+		
         // Penalize: Respawn on afterlive zone and
 		StendhalRPZone zone = (StendhalRPZone) world.getRPZone("int_afterlife");
 
