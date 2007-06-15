@@ -92,6 +92,7 @@ public final class EntityMap {
 		register("item", "projectiles", "StackableItem");
 		register("item", "resource", "StackableItem");
 		register("item", "scroll", "StackableItem");
+		register("item","jewellery","StackableItem");
 
 		register("portal", null, "Portal");
 		register("door", null, "Door");
