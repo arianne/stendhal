@@ -809,6 +809,7 @@ public abstract class RPEntity extends ActiveEntity {
 				int pushed_id = getID().getObjectID();
 				rpaction.put("target", pushed_id);
 				at.send(rpaction);
+				break;
 			default:
 				super.onAction(at, params);
 				break;
