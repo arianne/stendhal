@@ -33,7 +33,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.60
+Version 0.61
 
 
 How to play
@@ -46,7 +46,7 @@ Please download Stendhal from http://arianne.sourceforge.net
 
 Then just do:
 
-  java -jar stendhal-0.59.jar
+  java -jar stendhal-0.61.jar
 
 Alternatively you can run it using Java Webstart technology at:
 
@@ -75,6 +75,7 @@ Changelog
 - Make fish pies in Ados
 - Minor fixes to drops and maps
 - Added GM /gag command, to silence players, works like /jail
+- Add Push so you can push players, creatures, etc...
 
 0.60 May 22, 2007
 - Fado city is open
