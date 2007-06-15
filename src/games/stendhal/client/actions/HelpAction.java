@@ -36,7 +36,6 @@ class HelpAction implements SlashAction  {
 		        "- /unignore <player> \tRemove <player> from your ignore list",
 		        "- /where <player> \t\tShow the current location of <player>",
 		        "- /quit \t\tLeave the game. You will continue where you left off upon your return",
-		        "- /sound volume <value> \tSet volume to a value from 0 to 100",
 		        "- /sound mute <on|off> \tMute or unmute the sounds" };
 
 		for (String line : lines) {
