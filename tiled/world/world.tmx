@@ -185,221 +185,227 @@
  <tileset name="sub_1_semos_mine_nw.png" firstgid="904" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_nw.png"/>
  </tileset>
- <tileset name="sub_2_orril_lich_palace.png" firstgid="936" tilewidth="64" tileheight="64">
+ <tileset name="sub_2_orril_lich_palace.png" firstgid="920" tilewidth="64" tileheight="64">
   <image source="sub_2_orril_lich_palace.png"/>
  </tileset>
- <tileset name="0_ados_wall.png" firstgid="952" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_wall.png" firstgid="936" tilewidth="64" tileheight="64">
   <image source="0_ados_wall.png"/>
  </tileset>
- <tileset name="0_ados_wall_n.png" firstgid="968" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_wall_n.png" firstgid="952" tilewidth="64" tileheight="64">
   <image source="0_ados_wall_n.png"/>
  </tileset>
- <tileset name="0_ados_outside_nw.png" firstgid="984" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_outside_nw.png" firstgid="968" tilewidth="64" tileheight="64">
   <image source="0_ados_outside_nw.png"/>
  </tileset>
- <tileset name="0_ados_outside_w.png" firstgid="1000" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_outside_w.png" firstgid="984" tilewidth="64" tileheight="64">
   <image source="0_ados_outside_w.png"/>
  </tileset>
- <tileset name="0_ados_city_n.png" firstgid="1016" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_n.png" firstgid="1000" tilewidth="64" tileheight="64">
   <image source="0_ados_city_n.png"/>
  </tileset>
- <tileset name="0_ados_city.png" firstgid="1032" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city.png" firstgid="1016" tilewidth="64" tileheight="64">
   <image source="0_ados_city.png"/>
  </tileset>
- <tileset name="0_nalwor_river_se.png" firstgid="1048" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_river_se.png" firstgid="1032" tilewidth="64" tileheight="64">
   <image source="0_nalwor_river_se.png"/>
  </tileset>
- <tileset name="0_ados_wall_s.png" firstgid="1080" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_wall_s.png" firstgid="1064" tilewidth="64" tileheight="64">
   <image source="0_ados_wall_s.png"/>
  </tileset>
- <tileset name="0_ados_coast_se.png" firstgid="1096" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_se.png" firstgid="1080" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_se.png"/>
  </tileset>
- <tileset name="0_ados_coast_sw.png" firstgid="1112" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_sw.png" firstgid="1096" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_sw.png"/>
  </tileset>
- <tileset name="0_ados_coast_s_w2.png" firstgid="1128" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_s_w2.png" firstgid="1112" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_s_w2.png"/>
  </tileset>
- <tileset name="0_ados_coast_s.png" firstgid="1144" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_coast_s.png" firstgid="1128" tilewidth="64" tileheight="64">
   <image source="0_ados_coast_s.png"/>
  </tileset>
- <tileset name="0_athor_ship_w2.png" firstgid="1160" tilewidth="64" tileheight="64">
+ <tileset name="0_athor_ship_w2.png" firstgid="1144" tilewidth="64" tileheight="64">
   <image source="0_athor_ship_w2.png"/>
  </tileset>
- <tileset name="sub_1_athor_ship_w2.png" firstgid="1176" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_athor_ship_w2.png" firstgid="1160" tilewidth="64" tileheight="64">
   <image source="sub_1_athor_ship_w2.png"/>
  </tileset>
- <tileset name="sub_2_athor_ship_w2.png" firstgid="1192" tilewidth="64" tileheight="64">
+ <tileset name="sub_2_athor_ship_w2.png" firstgid="1176" tilewidth="64" tileheight="64">
   <image source="sub_2_athor_ship_w2.png"/>
  </tileset>
- <tileset name="0_athor_island_w.png" firstgid="1208" tilewidth="64" tileheight="64">
+ <tileset name="0_athor_island_w.png" firstgid="1192" tilewidth="64" tileheight="64">
   <image source="0_athor_island_w.png"/>
  </tileset>
- <tileset name="0_athor_island.png" firstgid="1224" tilewidth="64" tileheight="64">
+ <tileset name="0_athor_island.png" firstgid="1208" tilewidth="64" tileheight="64">
   <image source="0_athor_island.png"/>
  </tileset>
- <tileset name="0_nalwor_forest_e.png" firstgid="1240" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_forest_e.png" firstgid="1224" tilewidth="64" tileheight="64">
   <image source="0_nalwor_forest_e.png"/>
  </tileset>
- <tileset name="0_nalwor_forest_ne.png" firstgid="1272" tilewidth="64" tileheight="64">
+ <tileset name="0_nalwor_forest_ne.png" firstgid="1256" tilewidth="64" tileheight="64">
   <image source="0_nalwor_forest_ne.png"/>
  </tileset>
- <tileset name="0_ados_swamp.png" firstgid="1304" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_swamp.png" firstgid="1272" tilewidth="64" tileheight="64">
   <image source="0_ados_swamp.png"/>
  </tileset>
- <tileset name="sub_1_orril_mountain_w2.png" firstgid="1320" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_orril_mountain_w2.png" firstgid="1288" tilewidth="64" tileheight="64">
   <image source="sub_1_orril_mountain_w2.png"/>
  </tileset>
- <tileset name="sub_2_orril_dwarf_mine.png" firstgid="1328" tilewidth="64" tileheight="64">
+ <tileset name="sub_2_orril_dwarf_mine.png" firstgid="1296" tilewidth="64" tileheight="64">
   <image source="sub_2_orril_dwarf_mine.png"/>
  </tileset>
- <tileset name="sub_1_ados_outside_nw.png" firstgid="1336" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_ados_outside_nw.png" firstgid="1304" tilewidth="64" tileheight="64">
   <image source="sub_1_ados_outside_nw.png"/>
  </tileset>
- <tileset name="sub_2_ados_outside_nw.png" firstgid="1340" tilewidth="64" tileheight="64">
+ <tileset name="sub_2_ados_outside_nw.png" firstgid="1308" tilewidth="64" tileheight="64">
   <image source="sub_2_ados_outside_nw.png"/>
  </tileset>
- <tileset name="sub_3_ados_outside_nw.png" firstgid="1344" tilewidth="64" tileheight="64">
+ <tileset name="sub_3_ados_outside_nw.png" firstgid="1312" tilewidth="64" tileheight="64">
   <image source="sub_3_ados_outside_nw.png"/>
  </tileset>
- <tileset name="sub_5_kanmararn_entrance.png" firstgid="1348" tilewidth="64" tileheight="64">
+ <tileset name="sub_5_kanmararn_entrance.png" firstgid="1316" tilewidth="64" tileheight="64">
   <image source="sub_5_kanmararn_entrance.png"/>
  </tileset>
- <tileset name="0_semos_plains_ne.png" firstgid="1364" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_plains_ne.png" firstgid="1332" tilewidth="64" tileheight="64">
   <image source="0_semos_plains_ne.png"/>
  </tileset>
- <tileset name="0_semos_plains_n_e2.png" firstgid="1372" tilewidth="64" tileheight="64">
+ <tileset name="0_semos_plains_n_e2.png" firstgid="1340" tilewidth="64" tileheight="64">
   <image source="0_semos_plains_n_e2.png"/>
  </tileset>
- <tileset name="sub_3_orril_dwarf_blacksmith.png" firstgid="1380" tilewidth="64" tileheight="64">
+ <tileset name="sub_3_orril_dwarf_blacksmith.png" firstgid="1348" tilewidth="64" tileheight="64">
   <image source="sub_3_orril_dwarf_blacksmith.png"/>
  </tileset>
- <tileset name="sub_1_semos_catacombs_ne.png" firstgid="1381" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_catacombs_ne.png" firstgid="1349" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_catacombs_ne.png"/>
  </tileset>
- <tileset name="sub_2_semos_catacombs.png" firstgid="1385" tilewidth="64" tileheight="64">
+ <tileset name="sub_2_semos_catacombs.png" firstgid="1353" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_catacombs.png"/>
  </tileset>
- <tileset name="sub_3_semos_catacombs.png" firstgid="1393" tilewidth="64" tileheight="64">
+ <tileset name="sub_3_semos_catacombs.png" firstgid="1361" tilewidth="64" tileheight="64">
   <image source="sub_3_semos_catacombs.png"/>
  </tileset>
- <tileset name="sub_1_athor_island.png" firstgid="1397" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_athor_island.png" firstgid="1365" tilewidth="64" tileheight="64">
   <image source="sub_1_athor_island.png"/>
  </tileset>
- <tileset name="sub_1_semos_catacombs_nw.png" firstgid="1413" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_catacombs_nw.png" firstgid="1381" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_catacombs_nw.png"/>
  </tileset>
- <tileset name="sub_1_semos_catacombs_se.png" firstgid="1417" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_catacombs_se.png" firstgid="1385" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_catacombs_se.png"/>
  </tileset>
- <tileset name="sub_1_semos_catacombs_sw.png" firstgid="1421" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_semos_catacombs_sw.png" firstgid="1389" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_catacombs_sw.png"/>
  </tileset>
- <tileset name="0_ados_city_s" firstgid="1425" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_city_s" firstgid="1393" tilewidth="64" tileheight="64">
   <image source="0_ados_city_s.png"/>
  </tileset>
- <tileset name="0_fado_city" firstgid="1441" tilewidth="64" tileheight="64">
+ <tileset name="0_fado_city" firstgid="1409" tilewidth="64" tileheight="64">
   <image source="0_fado_city.png"/>
  </tileset>
- <tileset name="0_athor_island_e" firstgid="1457" tilewidth="64" tileheight="64">
+ <tileset name="0_athor_island_e" firstgid="1425" tilewidth="64" tileheight="64">
   <image source="0_athor_island_e.png"/>
  </tileset>
- <tileset name="sub_1_athor_island_e" firstgid="1473" tilewidth="64" tileheight="64">
+ <tileset name="sub_1_athor_island_e" firstgid="1441" tilewidth="64" tileheight="64">
   <image source="sub_1_athor_island_e.png"/>
  </tileset>
- <tileset name="0_ados_river_s2_w2" firstgid="1489" tilewidth="64" tileheight="64">
+ <tileset name="0_ados_river_s2_w2" firstgid="1457" tilewidth="64" tileheight="64">
   <image source="0_ados_river_s2_w2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1505" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1473" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_drows_tunnel.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1521" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1489" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_drows_tunnel_n.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1537" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1505" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_caves.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1553" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1521" tilewidth="64" tileheight="64">
   <image source="sub_1_ados_caves.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1569" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1537" tilewidth="64" tileheight="64">
   <image source="sub_1_ados_caves_s.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1585" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1553" tilewidth="64" tileheight="64">
   <image source="sub_1_ados_caves_se.png"/>
  </tileset>
- <tileset name="-3_semos_jail_walk" firstgid="1601" tilewidth="64" tileheight="64">
+ <tileset name="-3_semos_jail_walk" firstgid="1569" tilewidth="64" tileheight="64">
   <image source="sub_3_semos_jail_walk.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1617" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1585" tilewidth="64" tileheight="64">
   <image source="sub_1_kotoch_entrance_n.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1633" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1601" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_caves_e.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1665" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1633" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_caves.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1681" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1649" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_caves_w.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1697" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1665" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_drows_tunnel_nw.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1713" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1681" tilewidth="64" tileheight="64">
   <image source="sub_2_nalwor_drows_tunnel_nw.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1733" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1701" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_ne.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1749" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1717" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_n2_e.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1765" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1733" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_n2_e2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1781" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1749" tilewidth="64" tileheight="64">
   <image source="sub_1_semos_mine_n_e2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1797" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1765" tilewidth="64" tileheight="64">
   <image source="sub_1_nalwor_drows_tunnel_ne.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1829" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1797" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_n_e2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1845" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1813" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_e.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1861" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1829" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_e2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1877" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1845" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_e3.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1893" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1861" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_n2_e.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1909" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1877" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_n2_e2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1925" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1893" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_n2_e3.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1941" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1909" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_ne.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1957" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1925" tilewidth="64" tileheight="64">
   <image source="sub_2_semos_mine_n_e3.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1973" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1941" tilewidth="64" tileheight="64">
   <image source="0_ados_city_n2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="1989" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1957" tilewidth="64" tileheight="64">
   <image source="0_ados_wall_n2.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="2005" tilewidth="64" tileheight="64">
+ <tileset name="Sin nombre" firstgid="1973" tilewidth="64" tileheight="64">
   <image source="sub_1_ados_city.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="1989" tilewidth="64" tileheight="64">
+  <image source="0_nalwor_forest_n_e2.png"/>
+ </tileset>
+ <tileset name="Sin nombre" firstgid="2005" tilewidth="64" tileheight="64">
+  <image source="0_ados_mountain_n2_w3.png"/>
  </tileset>
  <layer name="Layer 7" width="52" height="32">
   <data encoding="base64" compression="gzip">
@@ -413,7 +419,7 @@
  </layer>
  <layer name="Layer 5" width="52" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3PSQ2AQBTA0M8BQXhg3xf/XqgFEg7D0CYV8CIs5aoirfXo0aNHjx49evToeXJdRjTccld+39NjGHjkKQPPjGHhlbcMPDuGg0++MvC8vR49evTo0aNHj55/eW5VH51WABoAAA==
+   H4sIAAAAAAAAAO3PyQ2AMBDF0MkhnRC2sATovzc+JSDlEAZbcgHPjFruCG2NBw8ePHjw4MGDB8+bu2iWdK+H+H3PKMOkZ50deBYZVr3p3YGnPAZ96suBp/Z48ODBgwcPHjx4/uW5AaWsuu8AGgAA
   </data>
  </layer>
  <layer name="Layer 4" width="52" height="32">
@@ -423,22 +429,22 @@
  </layer>
  <layer name="Layer 3" width="52" height="32" opacity="0.61">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3WS04CURCF4WbQ7IcdAA2IIo9FsAHERBQVFHwAKijvN6KyTv6h6RE3dtJlpyr5plXnJHdwLUtH8kRCSimlgq5kW9aZ7d2+KLtiHu4zVeb2uYf34+xyfOyjZIiFeQtwkAj7n+evknRI4QhpV581NgIymjimwwkyOHX1+cRWQEYTWTrkkEfB1ecL3wIyeuUHOwE5VPBcoIJLXKGKa9zgVkA+UzXUcYd7NNDEAx4F5DP1hGe00EYHL3jFm4B8prro4R0f6GOAIUYC8v1WPOBfO8YEU8wwxwJLrAR0UEop9X/sAVGlRxUAGgAA
+   H4sIAAAAAAAAAO3WS04CURCF4WZAr8O2QUEQcA9sQGQvykN88FIUUBF5CIoCrpN/aHrEDZ100alKvmnVOckdXMvSkTxnEaWUUmF3HrWsQtS/fQfscnzcZ+qC20Uf7x+yyw2wj5LBsXkLcBGzg8+zqzgdjnCMhKfPNxYCMppI0uEEKaQ9fX7wKyCjiVM6ZJBFztNniZWAjH5Z409ADhU+l7hCCWVUUMU1agLymbrBLe5wjzoaaKIlIJ+pNh7wiA6e8IwuegLymerjBa94wwDvGOJDQL7/8lv8a0cYY4IpPjHDHF8COiillNofG2WtQOEAGgAA
   </data>
  </layer>
  <layer name="Layer 2" width="64" height="34">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3XVVMVcQDG4eNYn8ROLAywW8FAFETAVqQRsLu7uxvpOIDdH8yHKxkudBzjnLPnXDxXO7Pz/mZ2dv+b1CsUSkr4I5v6h0Kb2cJWqqhmBzs5xnFOcLJ/5Pf+bQWatlFIEbvYzR72corTnOFsAPuLNZVQShn72M8BDnKO81zgYgD7yzVVsJ1KDnGYIxzlEpe5wtUA9l/TdJ0b3GQAAxnEYJ7xnBfUBLD/lqbb3OEuQxjKMIbzklrqqA9g/z1N93nAQ0YwklGMpoFGmmgOYP8jTY95wtOuPsYwlnG00Eob4QD0F/T1vaOQIsZrmkAyE5nDXOYxn0xWsoqsn/SnuFdq38j3/UqxjSWUUsYkTZOZQgoLWMgiFpPNanJY85P+qe41LQb6e0rVNJVpTCeNdJawlFzyyGdtAJ7/nmZomsksZrOM5WSwgnWsZwMbA9gfz0opi4IdkVJORRTsiJTtVEbBjkipojoKdiQk/GvzmM8CFrKIxaSRTks/53zaCPeL/N7fNbrr7ElNb/+s1FLX+8f1JSxlGcvJYAWZrKRdcwedvIrB/jHax1KvuYFGmrr1ryKLbFaTwxpyyeO15je85V0M9o/r+pejWXMLrbR1689nLetYzwY2sonNvNf8gY98isH+CdqTCWtup4PObv1b2EoB2yikiGJK+Kz5C1/5FoP90aKmj/cPtdT1ifye/61ecwONNMVhf7PmFlppi8P+sOZ2OuiMw/6EhISE/+E7ICL67gAiAAA=
+   H4sIAAAAAAAAAO3XVVMVcQCH4eNI2GIXYnd3dyCSFoIBCnYgaXe3Iqh0i1/TxysZL3QclXPOci6eq53Z+b0zu7P/XdYvFFoW81d2JYZCu0llD4fI5TB5nOYMZzmXGP69/1qapr2kk0E+RzjKMc5zgYtcCmB/pqYsssnhOAUUcoLLlHCF0gD279O0nwMc5CRFFHOKMsqpoDKA/VWarnKN68STQCIDeMJTnvE8gP03NN3kFrcZyCAGM4QXvOQVrwPYf0fTXe5xn6EMYzhJvOEt73gfwP4Hmh7yiMeMYCSjGE01H6ihNgD9afG+d6STwRhNYxnHeGYxmznMZRWrWcPaX/Qnu9fk+PD3/U6mjVlkk8METROZRDLzmM8CFrKO9Wxg4y/6U9xrShT0/2yyphSmMJVFLGYJS9nEZrawNQDP/8+maZrODGZ+72M5K1jJNrazg50B7O/LrlAaATvCpYzyCNgRLhVURsCOcKniagTsiIn531LZQxp7SSeDTLKoTnDOp4bahPDv/VNJzp4jqOsfCtXTQGP/H9ezyWEf+znAQQ6Ry0fNn/hMXRT2j9Q+iibNzbTQ2qP/MHnkc4SjHOM4BdRrbqCRpijsH/39X442ze100Nmjv5ATnKSIYk5xmjM0a26hlbYo7B+rfRxdmr/Qzdce/Wc5x3kucJFLXKaEds0ddNIVhf2Roi7Ou0QDjXHh39PbmjQ300JrH+xv09xOB519sL9L8xe6+doH+2NiYmJ6wzfsqxacACIAAA==
   </data>
  </layer>
  <layer name="Layer 1" width="64" height="34" visible="0" opacity="0.95">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="Floor" width="64" height="34">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
 </map>
