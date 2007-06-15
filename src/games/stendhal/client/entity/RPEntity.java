@@ -781,6 +781,8 @@ public abstract class RPEntity extends ActiveEntity {
 				list.add(ActionType.STOP_ATTACK.getRepresentation());
 			}
 		}
+
+		list.add(ActionType.PUSH.getRepresentation());
 	}
 
 	@Override
@@ -801,6 +803,12 @@ public abstract class RPEntity extends ActiveEntity {
 				rpaction.put("attack", "");
 				at.send(rpaction);
 				break;
+			case PUSH:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+				int pushed_id = getID().getObjectID();
+				rpaction.put("target", pushed_id);
+				at.send(rpaction);
 			default:
 				super.onAction(at, params);
 				break;

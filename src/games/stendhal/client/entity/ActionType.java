@@ -15,6 +15,7 @@ public enum ActionType {
 	INSPECT("inspect", "Inspect"), 
 	ATTACK("attack", "Attack"), 
 	STOP_ATTACK("stop", "Stop attack"), 
+	PUSH("push", "Push"), 
 	CLOSE("use", "Close"), 
 	OPEN("use", "Open"), 
 	OWN("own", "Own"), 

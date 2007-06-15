@@ -42,12 +42,11 @@ public class GenerateMonsterUsage {
 				if(count.containsKey(c.getName())) {
 					creatureCount=count.get(c.getName())+1;
 				}
-//				System.out.println(zone.getID().getID()+":"+c.getName());
+
 				count.put(c.getName(), creatureCount);
 			}
 		}
 		
-		System.out.println("World Creature usage");
 		for(Map.Entry<String, Integer> e: count.entrySet()) {
 			System.out.println(e.getKey()+";"+e.getValue());
 		}

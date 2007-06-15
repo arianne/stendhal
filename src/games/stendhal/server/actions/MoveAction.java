@@ -17,7 +17,10 @@ import org.apache.log4j.Logger;
 import marauroa.common.game.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.Path;
 
@@ -33,6 +36,7 @@ public class MoveAction implements ActionListener {
 		MoveAction move = new MoveAction();
 		StendhalRPRuleProcessor.register("move", move);
 		StendhalRPRuleProcessor.register("moveto", move);
+		StendhalRPRuleProcessor.register("push", move);
 	}
 
 	public void onAction(Player player, RPAction action) {
@@ -44,8 +48,49 @@ public class MoveAction implements ActionListener {
 			move(player, action);
 		} else if (type.equals("moveto")) {
 			moveTo(player, action);
+		} else if (type.equals("push")) {
+			push(player, action);
 		}
 	}
+
+	class StopPushAction implements TurnListener {
+		RPEntity tostop;
+		
+		StopPushAction(RPEntity entity) {
+			tostop=entity;
+		}
+
+		public void onTurnReached(int currentTurn, String message) {
+			tostop.stop();
+			tostop.notifyWorldAboutChanges();
+        }
+	}
+	private void push(Player player, RPAction action) {
+		if (action.has("target")) {
+			int targetObject = action.getInt("target");
+
+			StendhalRPZone zone = player.getZone();
+			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
+			if (zone.has(targetid)) {
+				RPObject object = zone.get(targetid);
+
+				if (object instanceof RPEntity) {
+					RPEntity entity=(RPEntity)object;
+					if(player.nextTo(entity)) {
+						Direction dir=player.getDirectionToward(entity);
+						
+						int x=entity.getX()+dir.getdx();
+						int y=entity.getY()+dir.getdy();
+						
+						if(!zone.collides(entity, x, y)) {
+							entity.set(x, y);
+							entity.notifyWorldAboutChanges();
+						}
+					}
+				}
+			}
+		}
+    }
 
 	private void move(Player player, RPAction action) {
 		Log4J.startMethod(logger, "move");

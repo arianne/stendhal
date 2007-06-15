@@ -197,6 +197,25 @@ class DestinationObject extends MoveableObject {
 
 			RPSlot rpslot = parent.getSlot(slot);
 
+			if(entity.has("x")) {
+				logger.debug("Equipped item had x. Removing");
+				/*
+				 * TODO: Hack!
+				 *  I need to set them to 0,0 so they notice the update
+				 */
+				entity.set(0,0);
+				entity.remove("x");
+			}
+			if(entity.has("y")) {
+				logger.debug("Equipped item had y. Removing");
+				/*
+				 * TODO: Hack!
+				 *  I need to set them to 0,0 so they notice the update
+				 */
+				entity.set(0,0);
+				entity.remove("y");
+			}
+
 			// check if the item can be merged with one already in the slot
 			if (entity instanceof Stackable) {
 				Stackable stackEntity = (Stackable) entity;
