@@ -2754,6 +2754,31 @@
     </ai>
   </creature>
 
+  <creature name="duergar">
+    <type class="dwarf" subclass="duergar" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="119"/>
+      <def value="20"/>
+      <hp value="175"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="29"/>
+    <experience value="530"/>
+    <respawn value="1040"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="death">
     <type class="undead" subclass="death" tileid="undead.png:2"/>
     <description></description>
@@ -2912,6 +2937,31 @@
       <profile name="animal"/>
       <profile name="offensive"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="duergar_axeman">
+    <type class="dwarf" subclass="duergar_axe" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="125"/>
+      <def value="21"/>
+      <hp value="195"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="32"/>
+    <experience value="640"/>
+    <respawn value="1080"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -3084,6 +3134,31 @@
         <noise value="Yummie!"/>
       </says>
       <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="duergar_elder">
+    <type class="dwarf" subclass="duergar_elder" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="125"/>
+      <def value="21"/>
+      <hp value="195"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="36"/>
+    <experience value="640"/>
+    <respawn value="1080"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
@@ -3269,6 +3344,31 @@
       <item value="short_sword" quantity="[1,1]" probability="15.0"/>
       <item value="studded_armor" quantity="[1,1]" probability="10.0"/>
       <item value="shadow_boots" quantity="[1,1]" probability="0.025"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="duergar_elite">
+    <type class="dwarf" subclass="duergar_elite" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="142"/>
+      <def value="23"/>
+      <hp value="266"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="41"/>
+    <experience value="1090"/>
+    <respawn value="1240"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
     </drops>
     <equips>
     </equips>
@@ -3525,6 +3625,31 @@
     </ai>
   </creature>
 
+  <creature name="duergar_hero">
+    <type class="dwarf" subclass="duergar_hero" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="151"/>
+      <def value="24"/>
+      <hp value="311"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="46"/>
+    <experience value="1430"/>
+    <respawn value="1350"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="hunter">
     <type class="human" subclass="hunter" tileid="human_evil.png:2"/>
     <description></description>
@@ -3762,6 +3887,31 @@
       <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
       <item value="shadow_boots" quantity="[1,1]" probability="1.5"/>
       <item value="vulcano_hammer" quantity="[1,1]" probability="0.0050"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="duergar_wizard">
+    <type class="dwarf" subclass="duergar_wizard" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="159"/>
+      <def value="25"/>
+      <hp value="360"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="51"/>
+    <experience value="1830"/>
+    <respawn value="1490"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
     </drops>
     <equips>
     </equips>
@@ -4230,6 +4380,31 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="duergar_black">
+    <type class="dwarf" subclass="duergar_black" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="172"/>
+      <def value="27"/>
+      <hp value="458"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="60"/>
+    <experience value="2760"/>
+    <respawn value="1800"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -4938,6 +5113,31 @@
     </ai>
   </creature>
 
+  <creature name="duergar_king">
+    <type class="dwarf" subclass="duergar_king" tileid="duegar.png:XXX"/>
+    <description></description>
+    <attributes>
+      <atk value="200"/>
+      <def value="31"/>
+      <hp value="736"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="81"/>
+    <experience value="6120"/>
+    <respawn value="2880"/>
+    <drops>
+      <item value="money" quantity="[3,27]" probability="90.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="dead_lich">
     <type class="undead" subclass="dead_lich" tileid="undead.png:XXX"/>
     <description></description>
@@ -5229,7 +5429,7 @@
       <item value="money" quantity="[30,150]" probability="100.0"/>
       <item value="assassin_dagger" quantity="[1,1]" probability="1.0"/>
       <item value="shadow_armor" quantity="[1,1]" probability="2.0"/>
-      <item value="chaos_armor" quantity="[1,1]" probability="0.010"/>
+      <item value="chaos_armor" quantity="[1,1]" probability="0.01"/>
       <item value="shadow_boots" quantity="[1,1]" probability="0.1"/>
       <item value="black_cloak" quantity="[1,1]" probability="0.0050"/>
       <item value="dark_dagger" quantity="[1,1]" probability="0.1"/>
