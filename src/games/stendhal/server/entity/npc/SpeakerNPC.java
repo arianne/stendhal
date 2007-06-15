@@ -113,9 +113,13 @@ import org.apache.log4j.Logger;
  * exception of the IDLE state.
  */
 public class SpeakerNPC extends NPC {
-
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
+
+	/**
+	 * The normal walking speed.
+	 */
+	private static final double	BASE_SPEED		= 0.2;
 
 	private Engine engine = new Engine(this);
 
@@ -160,7 +164,6 @@ public class SpeakerNPC extends NPC {
 	 * @param name The NPC's name. Please note that names should be unique.
 	 */
 	public SpeakerNPC(String name) {
-		super();
 		createPath();
 
 		lastMessageTurn = 0;
@@ -171,11 +174,9 @@ public class SpeakerNPC extends NPC {
 	}
 
 	protected void createPath(){
-		
 	}
 
 	protected void createDialog() {
-		
 	}
 
 	/**
@@ -188,7 +189,7 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1, 1, 1);
+		rect.setRect(x, y + 1.0, 1.0, 1.0);
 	}
 
 	/**
@@ -274,6 +275,14 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void setAttending(Player player) {
 		attending = player;
+
+		if(player != null) {
+			stop();
+		} else {
+			if(hasPath()) {
+				setSpeed(getBaseSpeed());
+			}
+		}
 	}
 
 	@Override
@@ -304,10 +313,12 @@ public class SpeakerNPC extends NPC {
 
 		// if no player is talking to the NPC, the NPC can move around.
 		if (!isTalking()) {
-			if (hasPath()) {
-				Path.followPath(this, 0.2);
-				applyMovement();
+			// TODO: Reset this on FSM engine state change
+			if(getAttending() != null) {
+				setAttending(null);
 			}
+
+			applyMovement();
 		} else if (attending != null) {
 			// If the player is too far away
 			if ((attending.squaredDistance(this) > 8 * 8)
@@ -319,10 +330,7 @@ public class SpeakerNPC extends NPC {
 				}
 				onGoodbye(attending);
 				engine.setCurrentState(ConversationStates.IDLE);
-				attending = null;
-			}
-			if (!stopped()) {
-				stop();
+				setAttending(null);
 			}
 		}
 
@@ -488,7 +496,7 @@ public class SpeakerNPC extends NPC {
 		// If we are no attending a player attend, this one.
 		if (engine.getCurrentState() == ConversationStates.IDLE) {
 			logger.debug("Attending player " + player.getName());
-			attending = player;
+			setAttending(player);
 		}
 
 		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
@@ -630,5 +638,20 @@ public class SpeakerNPC extends NPC {
 
 	public Engine getEngine() {
 		return engine;
+	}
+
+
+	//
+	// RPEntity
+	//
+
+	/**
+	 * Get the normal movement speed.
+	 *
+	 * @return	The normal speed when moving.
+	 */
+	@Override
+	public double getBaseSpeed() {
+		return BASE_SPEED;
 	}
 }

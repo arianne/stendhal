@@ -95,6 +95,7 @@ public class MoveAction implements ActionListener {
 		}
 
 		player.applyClientDirection(false);
+		player.notifyWorldAboutChanges();
 
 		Log4J.finishMethod(logger, "moveto");
 	}

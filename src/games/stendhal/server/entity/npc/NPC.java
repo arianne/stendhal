@@ -12,13 +12,13 @@
  ***************************************************************************/
 package games.stendhal.server.entity.npc;
 
+import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.AttributeNotFoundException;
@@ -57,7 +57,6 @@ public abstract class NPC extends RPEntity {
 	}
 
 	public NPC() throws AttributeNotFoundException {
-		super();
 		put("type", "npc");
 
 		put("x", 0);
@@ -166,13 +165,15 @@ public abstract class NPC extends RPEntity {
 	 *            the maximum radius in which a path is searched
 	 */
 	public void setMovement(Entity destEntity, double min, double max, double maxPathRadius) {
-		if (nextTo(destEntity.getX(), destEntity.getY(), min) && hasPath()) {
-			logger.debug("Removing path because nextto(" + destEntity.getX() + "," + destEntity.getY() + "," + min
-			        + ") of (" + getX() + "," + getY() + ")");
-			clearPath();
-		}
+		if (nextTo(destEntity.getX(), destEntity.getY(), min)) {
+			stop();
 
-		if ((squaredDistance(destEntity.getX(), destEntity.getY()) > max) && !hasPath()) {
+			if(hasPath()) {
+				logger.debug("Removing path because nextto(" + destEntity.getX() + "," + destEntity.getY() + "," + min
+			        + ") of (" + getX() + "," + getY() + ")");
+				clearPath();
+			}
+		} else if ((squaredDistance(destEntity.getX(), destEntity.getY()) > max)) {
 			logger.debug("Creating path because (" + getX() + "," + getY() + ") distance(" + destEntity.getX() + ","
 			        + destEntity.getY() + ")>" + max);
 			List<Path.Node> path = Path.searchPath(this, destEntity, maxPathRadius);
@@ -180,23 +181,12 @@ public abstract class NPC extends RPEntity {
 		}
 	}
 
-	/** follows the calculated path. */
-	public void moveto(double speed) {
-		if (hasPath() && Path.followPath(this, speed)) {
-			stop();
-			clearPath();
-		}
-	}
-
 
 	/**
 	 * Set a random destination as a path and start moving.
-	 *
-	 * @param	speed		The speed to move at.
 	 */
-	public void moveRandomly(final double speed) {
+	public void setRandomPath() {
 		setRandomPathFrom(getX(), getY(), 10);
-		setSpeed(speed);
 	}
 
 
@@ -208,11 +198,9 @@ public abstract class NPC extends RPEntity {
 	 * @param	y		The origin Y coordinate for placement.
 	 */
 	public void setRandomPathFrom(final int x, final int y, final int distance) {
-		Random rand = new Random();
-
 		int dist2_1 = distance + distance + 1;
-		int dx = rand.nextInt(dist2_1) - distance;
-		int dy = rand.nextInt(dist2_1) - distance;
+		int dx = Rand.rand(dist2_1) - distance;
+		int dy = Rand.rand(dist2_1) - distance;
 
 		List<Path.Node> path = new ArrayList<Path.Node>(1);
 		path.add(new Path.Node(x + dx, y + dy));
@@ -220,6 +208,10 @@ public abstract class NPC extends RPEntity {
 		setPath(path, false);
 	}
 
+
+	//
+	// RPEntity
+	//
 
 	/**
 	 * Returns true if this RPEntity is attackable

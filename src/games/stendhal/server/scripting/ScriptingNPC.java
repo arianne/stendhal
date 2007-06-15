@@ -16,8 +16,7 @@ public class ScriptingNPC extends SpeakerNPC {
 
 	public void setPath(List<Path.Node> path) {
 		super.setPath(path, true);
-		setX(path.get(0).x);
-		setY(path.get(0).y);
+		set(path.get(0).x, path.get(0).y);
 	}
 
 	// TODO: use message constants from Behaviours.java

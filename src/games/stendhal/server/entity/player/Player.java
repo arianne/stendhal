@@ -58,6 +58,11 @@ public class Player extends RPEntity {
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
 	/**
+	 * The normal walking speed.
+	 */
+	private static final double	BASE_SPEED		= 1.0;
+
+	/**
 	 * The base log for karma use.
 	 */
 	private static final double KARMA_BASELOG = Math.log(10.0);
@@ -288,7 +293,7 @@ public class Player extends RPEntity {
 			}
 
 			setDirection(direction);
-			setSpeed(1);
+			setSpeed(getBaseSpeed());
 		} else if (stopOnNone) {
 			stop();
 		}
@@ -1578,6 +1583,21 @@ public class Player extends RPEntity {
 
 
 	//
+	// RPEntity
+	//
+
+	/**
+	 * Get the normal movement speed.
+	 *
+	 * @return	The normal speed when moving.
+	 */
+	@Override
+	public double getBaseSpeed() {
+		return BASE_SPEED;
+	}
+
+
+	//
 	// ActiveEntity
 	//
 
@@ -1640,16 +1660,6 @@ public class Player extends RPEntity {
 
 		if (has("offline")) {
 			remove("offline");
-			notifyWorldAboutChanges();
-		}
-
-		// TODO: Integrate with applyMovement()
-		if (hasPath()) {
-			if (Path.followPath(this, 1.0)) {
-				stop();
-				clearPath();
-			}
-
 			notifyWorldAboutChanges();
 		}
 

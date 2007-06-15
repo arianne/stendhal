@@ -61,28 +61,23 @@ public class Path {
 		Path.callback = callback;
 	}
 
-	private static void moveto(RPEntity entity, int x, int y, double speed) {
+	private static void faceto(RPEntity entity, int x, int y) {
 		int rndx = x - entity.getX();
 		int rndy = y - entity.getY();
 
 		if (Math.abs(rndx) > Math.abs(rndy)) {
 			if (rndx < 0.0) {
 				entity.setDirection(Direction.LEFT);
-				entity.setSpeed(speed);
 			} else {
 				entity.setDirection(Direction.RIGHT);
-				entity.setSpeed(speed);
 			}
 		} else {
 			if (rndy < 0.0) {
 				entity.setDirection(Direction.UP);
-				entity.setSpeed(speed);
 			} else {
 				entity.setDirection(Direction.DOWN);
-				entity.setSpeed(speed);
 			}
 		}
-		entity.notifyWorldAboutChanges();
 	}
 
 	/**
@@ -271,50 +266,25 @@ public class Path {
 		 */
 		return searchPath(entity, entity.getX(), entity.getY(), new Rectangle(((int) area.getX()) - 1, ((int) area
 		        .getY()) - 1, ((int) area.getWidth()) + 2, ((int) area.getHeight()) + 2), maxDistance);
-
-		//
-		// OLD CODE:
-		//
-		//		Rectangle2D rect = entity.getArea(entity.getX(), entity.getY());
-		//
-		//		
-		//		List<Node> res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-		//						dest.getX(), dest.getY(), 1, 1), maxDistance);
-		//
-		//		if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1)) {
-		//			
-		//			logger.debug("trying 2: " + (entity.getX() + (int) rect.getWidth() - 1));
-		//			
-		//				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-		//					dest.getX() - (int) rect.getWidth() + 1, dest.getY(), 1, 1), maxDistance);
-		//			if (((res == null) || res.isEmpty()) && (rect.getHeight() > 1)) {
-		//				logger.debug("trying 3");
-		//
-		//				res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-		//					dest.getX(), dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
-		//				if (((res == null) || res.isEmpty()) && (rect.getWidth() > 1) && (rect.getHeight() > 1)) {
-		//					logger.debug("trying 4");
-		//					res = searchPath(entity, entity.getX(), entity.getY(), new Rectangle(
-		//						dest.getX() - (int) rect.getWidth() + 1, dest.getY() - (int) rect.getHeight() + 1, 1, 1), maxDistance);
-		//				}
-		//			}
-		//		}
-		//		// logger.debug(!res.isEmpty());
-		//		return res;
 	}
 
-	public static boolean followPath(RPEntity entity, double speed) {
+	/**
+	 * Follow the current path (if any) by pointing the direction toward
+	 * the next destination point.
+	 *
+	 * @param	entity		The entity to point.
+	 */
+	public static boolean followPath(final RPEntity entity) {
 		List<Node> path = entity.getPath();
 
-		if (path.size() == 0) {
+		if (path == null) {
 			return true;
 		}
 
 		int pos = entity.getPathPosition();
-
 		Node actual = path.get(pos);
 
-		if (entity.squaredDistance(actual.x, actual.y) == 0) {
+		if((actual.x == entity.getX()) && (actual.y == entity.getY())) {
 			logger.debug("Completed waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path");
 			pos++;
 			if (pos < path.size()) {
@@ -322,13 +292,14 @@ public class Path {
 				actual = path.get(pos);
 				logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path from ("
 				        + entity.getX() + "," + entity.getY() + ")");
-				moveto(entity, actual.x, actual.y, speed);
+				faceto(entity, actual.x, actual.y);
 				return false;
 			} else {
 				if (entity.isPathLoop()) {
 					entity.setPathPosition(0);
 				} else {
 					entity.stop();
+					entity.clearPath();
 				}
 
 				return true;
@@ -336,7 +307,7 @@ public class Path {
 		} else {
 			logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path from ("
 			        + entity.getX() + "," + entity.getY() + ")");
-			moveto(entity, actual.x, actual.y, speed);
+			faceto(entity, actual.x, actual.y);
 			return false;
 		}
 	}

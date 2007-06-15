@@ -37,7 +37,10 @@ public class Sheep extends DomesticAnimal {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sheep.class);
 
-	final private double SPEED = 0.25;
+	/**
+	 * The normal walking speed.
+	 */
+	private static final double	BASE_SPEED		= 0.25;
 
 	/**
 	 * The amount of hunger that indicates hungry.
@@ -150,11 +153,6 @@ public class Sheep extends DomesticAnimal {
 		super.onDead(killer);
 	}
 
-	@Override
-	public double getSpeed() {
-		return SPEED;
-	}
-
 
 	/**
 	 * Set the owner.
@@ -201,13 +199,6 @@ public class Sheep extends DomesticAnimal {
 		return chosen;
 	}
 
-// DGB0606 - A temporary debug aid used to trace just a single sheep.
-//
-// TODO: Remove all "DGB0606" commented out lines 1 week after 2007/06/06,
-// IFF everything with sheep movement/eating looks good and these won't
-// all need to be re-added to trace down the problem.
-
-// SEE-DGB0606 // private boolean debugme = false;
 
 	/**
 	 * Called when the sheep is hungry.
@@ -217,17 +208,13 @@ public class Sheep extends DomesticAnimal {
 	protected boolean onHungry() {
 		boolean hunting = "food".equals(getIdea());
 
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Hungry");
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: was hunting = " + hunting);
 		/*
 		 * Will try to eat if one of...
 		 *  - Food already on the mind and not moving (collision?)
 		 *  - Food not on the mind and hunger pains (every 10)
 		 */
 		if(hunting) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Food on mind");
 			if(!stopped()) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Still hunting");
 				return true;
 			}
 		} else {
@@ -239,7 +226,6 @@ public class Sheep extends DomesticAnimal {
 			}
 		}
 
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Searching");
 		/*
 		 * Search for food
 		 */
@@ -248,28 +234,23 @@ public class Sheep extends DomesticAnimal {
 		if(food != null) {
 			hunting = true;
 
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Found food");
 			if (nextTo(food)) {
 				logger.debug("Sheep eats");
 				setIdea("eat");
 				eat(food);
 				clearPath();
 				stop();
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: By food");
 			} else {
 				logger.debug("Sheep moves to food");
 				setIdea("food");
 				setMovement(food, 0, 0, 20);
 				//setAsynchonousMovement(food,0,0);
-				setSpeed(SPEED);
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Targeted food");
 			}
 		} else if(hunting) {
 			setIdea(null);
 			hunting = false;
 		}
 
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: hunting = " + hunting);
 		return hunting;
 	}
 
@@ -285,7 +266,6 @@ public class Sheep extends DomesticAnimal {
 			 * Check if player near (creature's enemy)
 			 */
 			if (((turn % 15) == 0) && isEnemyNear(20)) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: No owner");
 				logger.debug("Sheep (ownerless) moves randomly");
 				moveRandomly();
 			} else {
@@ -301,19 +281,17 @@ public class Sheep extends DomesticAnimal {
 			 */
 			setIdea("food");
 			setRandomPathFrom(owner.getX(), owner.getY(), 20);
-			setSpeed(SPEED);
+			setSpeed(getBaseSpeed());
 		} else if (!nextTo(owner)) {
 			moveToOwner();
 		} else {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: By owner");
 			if((turn % 100) == 0) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Bored");
 				logger.debug("Sheep is bored");
 
 				// TODO: Add 'curious' idea?
 				//setIdea("curious");
 				setRandomPathFrom(owner.getX(), owner.getY(), 10);
-				setSpeed(SPEED);
+				setSpeed(getBaseSpeed());
 			} else {
 				logger.debug("Sheep has nothing to do");
 				setIdea(null);
@@ -353,8 +331,22 @@ public class Sheep extends DomesticAnimal {
 
 			heal(5);
 			hunger = 0;
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Eating");
 		}
+	}
+
+
+	//
+	// RPEntity
+	//
+
+	/**
+	 * Get the normal movement speed.
+	 *
+	 * @return	The normal speed when moving.
+	 */
+	@Override
+	public double getBaseSpeed() {
+		return BASE_SPEED;
 	}
 
 
@@ -366,9 +358,6 @@ public class Sheep extends DomesticAnimal {
 		Log4J.startMethod(logger, "logic");
 
 		hunger++;
-
-// SEE-DGB0606 // if(owner != null) debugme = true;
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: idea = " + getIdea());
 
 		/*
 		 * Allow owner to call sheep (will override other reactions)
@@ -383,7 +372,6 @@ public class Sheep extends DomesticAnimal {
 				/*
 				 * If not hunting for food, do other things
 				 */
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Not hunting");
 				onIdle();
 			}
 		} else if(hunger >= HUNGER_EXTREMELY_HUNGRY) {
@@ -394,34 +382,31 @@ public class Sheep extends DomesticAnimal {
 		 * Starving?
 		 */
 		if (hunger >= HUNGER_STARVATION) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Starving");
 			onStarve();
 		}
 
 		// TODO: Move to upper level logic()?, as it really seems to
 		// apply to all RPEntity's.
 		if (!stopped()) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Path: " + getPath());
-			moveto(SPEED);
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: X/Y: " + getX() + "/" + getY());
 			applyMovement();
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: *X/Y: " + getX() + "/" + getY());
 
 			/*
 			 * If we collided with something we stop and clear
 			 * the path
 			 */
 			if (collides()) {
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: Collided");
 				clearPath();
 			}
-
-// SEE-DGB0606 // if(debugme) logger.info("SHEEP: stopped = " + stopped());
 		}
 
 		notifyWorldAboutChanges();
 		Log4J.finishMethod(logger, "logic");
 	}
+
+
+	//
+	// Entity
+	//
 
 	@Override
 	public String describe() {
@@ -431,5 +416,4 @@ public class Sheep extends DomesticAnimal {
 		}
 		return (text);
 	}
-
 }

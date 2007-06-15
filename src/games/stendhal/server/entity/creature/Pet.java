@@ -127,12 +127,7 @@ public abstract class Pet extends DomesticAnimal {
 
 		super.onDead(killer);
 	}
-	
-	@Override
-	public double getSpeed() {
-		return SPEED;
-	}
-	
+
 	/**
 	 * Returns the PetFood that is nearest to the pet's current position.
 	 * If there is no PetFood within the given range, returns none.
@@ -175,6 +170,22 @@ public abstract class Pet extends DomesticAnimal {
 		hunger = 0;
 	}
 
+
+	//
+	// RPEntity
+	//
+
+	/**
+	 * Get the normal movement speed.
+	 *
+	 * @return	The normal speed when moving.
+	 */
+	@Override
+	public double getBaseSpeed() {
+		return SPEED;
+	}
+
+
 	/**
 	 * Determines what the pet shall do next.
 	 */
@@ -204,8 +215,7 @@ public abstract class Pet extends DomesticAnimal {
 				logger.debug("Pet moves to food");
 				setIdea("food");
 				setMovement(food, 0, 0, 20);
-				//        setAsynchonousMovement(food,0,0);
-				moveto(SPEED);
+				//setAsynchonousMovement(food,0,0);
 			}
 		} else if (owner == null) {
 			logger.debug("Pet (ownerless) moves randomly");

@@ -191,9 +191,8 @@ public class CreatureLogic {
 			logger.debug(creature.getIDforDebug() + " Following path");
 		}
 		if (creature.hasPath()) {
-			Path.followPath(creature, creature.getSpeed());
+			Path.followPath(creature);
 		}
-		aiState = AiState.PATROL;
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("patrol;").append(creature.pathToString()).append('|');
 		}
@@ -239,7 +238,6 @@ public class CreatureLogic {
 			}
 		}
 
-		creature.moveto(creature.getSpeed());
 		waitRounds = 0; // clear waitrounds
 		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
 		if (Debug.CREATURES_DEBUG_SERVER) {
@@ -315,7 +313,7 @@ public class CreatureLogic {
 		if (creature.hasPath()) {
 			if (creature.getPath().size() == 1) {
 				// pseudo random move. complete it
-				if (!Path.followPath(creature, creature.getSpeed())) {
+				if (!Path.followPath(creature)) {
 					return;
 				}
 				creature.clearPath();
@@ -364,7 +362,7 @@ public class CreatureLogic {
 			int ny = creature.getY() + nextDir.getdy();
 			nodes.add(new Path.Node(nx, ny));
 			creature.setPath(nodes, false);
-			Path.followPath(creature, creature.getSpeed());
+			//Path.followPath(creature);
 		}
 	}
 
@@ -395,7 +393,7 @@ public class CreatureLogic {
 			// Try to fix the issue by moving randomly.
 			Direction dir = Direction.rand();
 			creature.setDirection(dir);
-			creature.setSpeed(creature.getSpeed());
+			creature.setSpeed(creature.getBaseSpeed());
 
 			// wait some rounds so the path can be cleared by other
 			// creatures
@@ -417,7 +415,7 @@ public class CreatureLogic {
 			}
 
 			creature.setMovement(target, 0, 0, 20.0);
-			creature.moveto(creature.getSpeed());
+
 			if (Debug.CREATURES_DEBUG_SERVER) {
 				debug.append(";newpath");
 			}
@@ -451,10 +449,7 @@ public class CreatureLogic {
 	}
 
 	private void logicDoMove() {
-		if (!creature.stopped()) {
-			creature.applyMovement();
-		}
-
+		creature.applyMovement();
 	}
 
 	private void logicDoAttack() {
@@ -495,6 +490,7 @@ public class CreatureLogic {
 			// No target, so patrol along
 			if ((aiState != AiState.PATROL) || !creature.hasPath()) {
 				logicCreatePatrolPath();
+				aiState = AiState.PATROL;
 			}
 			logicFollowPatrolPath();
 		} else if (creature.squaredDistance(target) > 18 * 18) {

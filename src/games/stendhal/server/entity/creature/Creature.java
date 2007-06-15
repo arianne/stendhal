@@ -74,8 +74,8 @@ public class Creature extends NPC {
 
 	private CreatureRespawnPoint point;
 
-	/** the speed of this creature */
-	private double speed;
+	/** The base speed of this creature */
+	private double baseSpeed;
 
 	/** size in width of a tile */
 	private int width;
@@ -134,7 +134,7 @@ public class Creature extends NPC {
 	public Creature(Creature copy) {
 		this();
 
-		this.speed = copy.speed;
+		this.baseSpeed = copy.baseSpeed;
 		this.width = copy.width;
 		this.height = copy.height;
 
@@ -210,7 +210,7 @@ public class Creature extends NPC {
 	 * @param xp The creature's experience
 	 * @param width The creature's width, in squares
 	 * @param height The creature's height, in squares
-	 * @param speed
+	 * @param baseSpeed
 	 * @param dropItems
 	 * @param aiProfiles
 	 * @param noises
@@ -219,11 +219,11 @@ public class Creature extends NPC {
 	 * @throws AttributeNotFoundException
 	 */
 	public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp,
-	        int width, int height, double speed, List<DropItem> dropItems, Map<String, String> aiProfiles,
+	        int width, int height, double baseSpeed, List<DropItem> dropItems, Map<String, String> aiProfiles,
 	        List<String> noises, int respawnTime, String description) throws AttributeNotFoundException {
 		this();
 
-		this.speed = speed;
+		this.baseSpeed = baseSpeed;
 		this.width = width;
 		this.height = height;
 
@@ -371,10 +371,6 @@ public class Creature extends NPC {
 		}
 	}
 
-	@Override
-	public double getSpeed() {
-		return speed;
-	}
 
 	/**
 	 * Returns a list of enemies. One of it will be attacked.
@@ -634,6 +630,18 @@ public class Creature extends NPC {
 	public void init() {
 		// do nothing
 	}
+
+
+	/**
+	 * Get the normal movement speed.
+	 *
+	 * @return	The normal speed when moving.
+	 */
+	@Override
+	public double getBaseSpeed() {
+		return baseSpeed;
+	}
+
 
 	@Override
 	public void logic() {

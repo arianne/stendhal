@@ -881,6 +881,14 @@ public abstract class RPEntity extends ActiveEntity {
 
 
 	/**
+	 * Get the normal movement speed.
+	 *
+	 * @return	The normal speed when moving.
+	 */
+	public abstract double getBaseSpeed();
+
+
+	/**
 	 * This method is called when the entity has been killed ( hp==0 ).
 	 * 
 	 * @param killer
@@ -1020,22 +1028,30 @@ public abstract class RPEntity extends ActiveEntity {
 	 **************************************************************************/
 
 	/**
-	 * Set a path to follow for this entity. A previos path is cleared and the
-	 * entity starts at the first node (so the first node should be its
-	 * position, of course)
+	 * Set a path for this entity to follow. Any previous path is cleared
+	 * and the entity starts at the first node (so the first node should
+	 * be its position, of course). The speed will be set to the default
+	 * for the entity.
 	 * 
-	 * @param path
-	 *            list of connected nodes
-	 * @param cycle
-	 *            true, the entity will resume at the start of the path when
-	 *            finished; false, it will stop at the last node (and clear the
-	 *            path)
+	 * @param	path		List of connected nodes
+	 * @param	cycle		If true, the entity will resume at
+	 *				the start of the path when finished;
+	 *				If false, it will stop at the last
+	 *				node (and clear the path).
 	 */
-	public void setPath(List<Path.Node> path, boolean cycle) {
-		this.path = path;
-		this.pathPosition = 0;
-		this.pathLoop = cycle;
+	public void setPath(final List<Path.Node> path, final boolean cycle) {
+		if((path != null) && !path.isEmpty()) {
+			this.path = path;
+			this.pathPosition = 0;
+			this.pathLoop = cycle;
+
+			setSpeed(getBaseSpeed());
+			Path.followPath(this);
+		} else {
+			clearPath();
+		}
 	}
+
 
 	/**
 	 * Adds some nodes to the path to follow for this entity. The current
@@ -1747,6 +1763,20 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 	// ActiveEntity
 	//
+
+	/**
+	 * Apply movement and process it's reactions.
+	 */
+	@Override
+	public void applyMovement() {
+		if (hasPath()) {
+			Path.followPath(this);
+			notifyWorldAboutChanges();
+		}
+
+		super.applyMovement();
+	}
+
 
 	/**
 	 * Notify of intra-zone movement.

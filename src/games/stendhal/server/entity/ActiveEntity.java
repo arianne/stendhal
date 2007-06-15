@@ -43,9 +43,9 @@ public abstract class ActiveEntity extends Entity {
 	private double		speed;
 
 	/**
-	 * The number of turns to complete a move.
+	 * The amount of uncommited tile movement.
 	 */
-	private int		turnsToCompleteMove;
+	private double		movementOffset;
 
 
 	/**
@@ -54,6 +54,7 @@ public abstract class ActiveEntity extends Entity {
 	public ActiveEntity() {
 		direction = Direction.STOP;
 		speed = 0.0;
+		movementOffset = 0.0;
 	}
 
 
@@ -142,7 +143,6 @@ public abstract class ActiveEntity extends Entity {
 				logger.debug("Collision at (" + nx + "," + ny + ")");
 			}
 
-			stop();
 			setCollides(true);
 		}
 
@@ -262,15 +262,20 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 
-	public boolean isMoveCompleted() {
-		++turnsToCompleteMove;
+	/**
+	 * Determine if this entity has move at least a whole tile.
+	 *
+	 * @return	<code>true</code> if moved a whole tile.
+	 */
+	protected boolean isMoveCompleted() {
+		movementOffset += getSpeed();
 
-		if (turnsToCompleteMove >= (1.0 / speed)) {
-			turnsToCompleteMove = 0;
+		if(movementOffset >= 1.0) {
+			movementOffset -= 1.0;
 			return true;
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 
@@ -342,7 +347,7 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	public void stop() {
 		setSpeed(0.0);
-		turnsToCompleteMove = 0;
+		movementOffset = 0.0;
 	}
 
 

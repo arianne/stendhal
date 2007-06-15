@@ -114,9 +114,6 @@ public abstract class DomesticAnimal extends Creature {
 		}
 	}
 
-	@Override
-	public abstract double getSpeed();
-
 	public void setWeight(int weight) {
 		this.weight = weight;
 		put("weight", weight);
@@ -130,13 +127,12 @@ public abstract class DomesticAnimal extends Creature {
 		logger.debug("Domestic animal (owner) moves to owner");
 		setIdea("follow");
 		setMovement(owner, 0, 0, 20);
-		//      setAsynchonousMovement(owner,0,0);
-		moveto(getSpeed());
+		//setAsynchonousMovement(owner,0,0);
 	}
 
 	protected void moveRandomly() {
 		setIdea("walk");
-		moveRandomly(getSpeed());
+		setRandomPath();
 	}
 
 	/**
@@ -151,9 +147,19 @@ public abstract class DomesticAnimal extends Creature {
 		corpse.add(food);
 	}
 
+
+	//
+	// ActiveEntity
+	//
+
 	/**
-	 * Determines what the animal shall do next.
+	 * Apply movement and process it's reactions.
 	 */
-	@Override
-	public abstract void logic();
+	public void applyMovement() {
+		super.applyMovement();
+
+		if(collides()) {
+			stop();
+		}
+	}
 }
