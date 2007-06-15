@@ -201,6 +201,20 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
+	 * Draw the entity status bar. The status bar show the title and
+	 * HP bar.
+	 *
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 */
+	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y) {
+		drawTitle(g2d, x, y);
+		drawHPbar(g2d, x, y);
+	}
+
+
+	/**
 	 * Draw the entity title.
 	 *
 	 * @param	g2d		The graphics context.
@@ -356,8 +370,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		Composite oldComposite = g2d.getComposite();
 		g2d.setComposite(entityComposite);
 
-		drawTitle(g2d, x, y);
-		drawHPbar(g2d, x, y);
+		drawStatusBar(g2d, x, y);
 
 		g2d.setComposite(oldComposite);
 	}

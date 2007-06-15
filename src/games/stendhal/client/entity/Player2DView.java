@@ -65,6 +65,22 @@ public class Player2DView extends RPEntity2DView {
 	//
 
 	/**
+	 * Draw the entity status bar.
+	 *
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 */
+	@Override
+	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y) {
+		/*
+		 * Shift bar slightly to avoid overlap with smaller entities
+		 */
+		super.drawStatusBar(g2d, x, y + 6);
+	}
+
+
+	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
 	 * @return	A tile sprite containing all animation images.
