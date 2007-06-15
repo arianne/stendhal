@@ -133,7 +133,7 @@ public class AudioClip {
 				line.open(audioInputStream);
 				return line;
 			} catch (LineUnavailableException e) {
-				logger.info("audioclip cannot be played, no free lines available");
+				logger.debug("audioclip cannot be played, no free lines available");
 			}
 		}
 		return null;
