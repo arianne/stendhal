@@ -179,4 +179,22 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public void setPathPosition(int pathPos) {
 		this.pathPosition = pathPos;
 	}
+
+
+	//
+	// ActiveEntity
+	//
+
+	/**
+	 * Apply movement and process it's reactions.
+	 */
+	@Override
+	public void applyMovement() {
+		if (hasPath()) {
+			Path.followPath(this);
+			notifyWorldAboutChanges();
+		}
+
+		super.applyMovement();
+	}
 }

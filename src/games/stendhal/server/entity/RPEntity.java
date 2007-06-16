@@ -1670,20 +1670,6 @@ public abstract class RPEntity extends GuidedEntity {
 	//
 
 	/**
-	 * Apply movement and process it's reactions.
-	 */
-	@Override
-	public void applyMovement() {
-		if (hasPath()) {
-			Path.followPath(this);
-			notifyWorldAboutChanges();
-		}
-
-		super.applyMovement();
-	}
-
-
-	/**
 	 * Notify of intra-zone movement.
 	 *
 	 * @param	oldX		The old X coordinate.
