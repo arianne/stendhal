@@ -155,6 +155,7 @@ public abstract class DomesticAnimal extends Creature {
 	/**
 	 * Apply movement and process it's reactions.
 	 */
+	@Override
 	public void applyMovement() {
 		super.applyMovement();
 

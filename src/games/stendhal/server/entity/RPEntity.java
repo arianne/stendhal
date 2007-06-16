@@ -875,6 +875,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 *
 	 * @return	The normal speed when moving.
 	 */
+	@Override
 	public abstract double getBaseSpeed();
 
 
