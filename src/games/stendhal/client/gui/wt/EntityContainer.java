@@ -144,7 +144,7 @@ public class EntityContainer extends WtPanel {
 				orig.getWidth()+MAX_DISTANCE*2, orig.getHeight()+MAX_DISTANCE*2);
 
 		if(!orig.contains(px, py)) {
-			logger.info("Closing " + slotName + " container because " + px + "," + py + " is too far from ("+ix+","+iy+"):" + orig);			
+			logger.debug("Closing " + slotName + " container because " + px + "," + py + " is too far from ("+ix+","+iy+"):" + orig);			
 			destroy();
 		}
 	}
