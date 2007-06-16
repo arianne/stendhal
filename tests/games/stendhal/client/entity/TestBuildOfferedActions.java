@@ -52,6 +52,7 @@ public class TestBuildOfferedActions {
 		User user = new User();
 		expected.add(ActionType.LOOK.getRepresentation());
 		expected.add(ActionType.ATTACK.getRepresentation());
+		expected.add(ActionType.PUSH.getRepresentation());
 		expected.add(ActionType.OWN.getRepresentation());
 		sheep.buildOfferedActions(list);
 		Assert.assertNotNull(list);
@@ -63,6 +64,7 @@ public class TestBuildOfferedActions {
 		expected = new ArrayList<String>();
 		expected.add(ActionType.LOOK.getRepresentation());
 		expected.add(ActionType.ATTACK.getRepresentation());
+		expected.add(ActionType.PUSH.getRepresentation());
 		RPObject object = new RPObject();
 		object.put("type",1);
 		object.put("sheep", 1);
