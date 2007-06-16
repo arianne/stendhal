@@ -309,6 +309,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param	newY		The new Y coordinate.
 	 */
 	protected void onMoved(int oldX, int oldY, int newX, int newY) {
+		getZone().notifyMovement(this, oldX, oldY, newX, newY);
 	}
 
 

@@ -12,7 +12,6 @@ package games.stendhal.server.entity;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.AttributeNotFoundException;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 
@@ -221,12 +220,12 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	/**
 	 * Invoked when an entity enters the object area.
 	 *
-	 * @param	entity		The RPEntity who moved.
+	 * @param	entity		The entity that moved.
 	 * @param	zone		The new zone.
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onEntered(RPEntity entity, StendhalRPZone zone, int newX, int newY) {
+	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
 		//		/*
 		//		 * Ghosts don't occupy normal space
 		//		 */
@@ -255,13 +254,13 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	/**
 	 * Invoked when an entity leaves the object area.
 	 *
-	 * @param	entity		The RPEntity who entered.
+	 * @param	entity		The entity that entered.
 	 * @param	zone		The old zone.
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 *
 	 */
-	public void onExited(RPEntity entity, StendhalRPZone zone, int oldX, int oldY) {
+	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY) {
 		//		/*
 		//		 * Check occupant incase a ghost or teleporter entered.
 		//		 */
@@ -272,13 +271,13 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	/**
 	 * Invoked when an entity moves while over the object area.
 	 *
-	 * @param	entity		The RPEntity who left.
+	 * @param	entity		The entity that left.
 	 * @param	zone		The zone.
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onMoved(RPEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
+	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
 	}
 }

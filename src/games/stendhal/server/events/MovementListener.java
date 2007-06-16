@@ -11,7 +11,7 @@ package games.stendhal.server.events;
 
 import java.awt.geom.Rectangle2D;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.ActiveEntity;
 
 /**
  * Objects that monitor being moved over an area in a zone.
@@ -20,7 +20,6 @@ import games.stendhal.server.entity.RPEntity;
  * entity does not "walk" (e.g. teleported, signon/off).
  */
 public interface MovementListener {
-
 	/**
 	 * Get the area that this object occupies.
 	 *
@@ -31,33 +30,33 @@ public interface MovementListener {
 	/**
 	 * Invoked when an entity enters the object area.
 	 *
-	 * @param	entity		The RPEntity who moved.
+	 * @param	entity		The entity that moved.
 	 * @param	zone		The new zone.
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onEntered(RPEntity entity, StendhalRPZone zone, int newX, int newY);
+	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY);
 
 	/**
 	 * Invoked when an entity leaves the object area.
 	 *
-	 * @param	entity		The RPEntity who entered.
+	 * @param	entity		The entity that entered.
 	 * @param	zone		The old zone.
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 *
 	 */
-	public void onExited(RPEntity entity, StendhalRPZone zone, int oldX, int oldY);
+	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY);
 
 	/**
 	 * Invoked when an entity moves while over the object area.
 	 *
-	 * @param	entity		The RPEntity who left.
+	 * @param	entity		The entity that left.
 	 * @param	zone		The zone.
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onMoved(RPEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY);
+	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY);
 }

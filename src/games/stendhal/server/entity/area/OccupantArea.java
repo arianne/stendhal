@@ -7,6 +7,7 @@
 package games.stendhal.server.entity.area;
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
@@ -219,22 +220,31 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	/**
 	 * Invoked when an entity enters the object area.
 	 *
-	 * @param	entity		The RPEntity who moved.
+	 * @param	entity		The entity that moved.
 	 * @param	zone		The new zone.
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onEntered(RPEntity entity, StendhalRPZone zone, int newX, int newY) {
+	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
 		/*
-		 * Only effect players?
+		 * Ignore non-RPEntity's
 		 */
-		if (playersOnly && !(entity instanceof Player)) {
+		if (!(entity instanceof RPEntity)) {
 			return;
 		}
 
-		if(handleAdded(entity)) {
-			handleMovement(entity);
-			addTarget(entity);
+		RPEntity rpentity = (RPEntity) entity;
+
+		/*
+		 * Only effect players?
+		 */
+		if (playersOnly && !(rpentity instanceof Player)) {
+			return;
+		}
+
+		if(handleAdded(rpentity)) {
+			handleMovement(rpentity);
+			addTarget(rpentity);
 		}
 	}
 
@@ -242,24 +252,33 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	/**
 	 * Invoked when an entity leaves the object area.
 	 *
-	 * @param	entity		The RPEntity who entered.
+	 * @param	entity		The entity that entered.
 	 * @param	zone		The old zone.
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 *
 	 */
-	public void onExited(RPEntity entity, StendhalRPZone zone, int oldX, int oldY) {
+	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY) {
 		/*
-		 * Only effect players?
+		 * Ignore non-RPEntity's
 		 */
-		if (playersOnly && !(entity instanceof Player)) {
+		if (!(entity instanceof RPEntity)) {
 			return;
 		}
 
-		if(targets.contains(entity.getID())) {
-			handleMovement(entity);
-			removeTarget(entity);
-			handleRemoved(entity);
+		RPEntity rpentity = (RPEntity) entity;
+
+		/*
+		 * Only effect players?
+		 */
+		if (playersOnly && !(rpentity instanceof Player)) {
+			return;
+		}
+
+		if(targets.contains(rpentity.getID())) {
+			handleMovement(rpentity);
+			removeTarget(rpentity);
+			handleRemoved(rpentity);
 		}
 	}
 
@@ -267,16 +286,25 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	/**
 	 * Invoked when an entity moves while over the object area.
 	 *
-	 * @param	entity		The RPEntity who left.
+	 * @param	entity		The entity that left.
 	 * @param	zone		The zone.
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onMoved(RPEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
-		if(targets.contains(entity.getID())) {
-			handleMovement(entity);
+	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY) {
+		/*
+		 * Ignore non-RPEntity's
+		 */
+		if (!(entity instanceof RPEntity)) {
+			return;
+		}
+
+		RPEntity rpentity = (RPEntity) entity;
+
+		if(targets.contains(rpentity.getID())) {
+			handleMovement(rpentity);
 		}
 	}
 

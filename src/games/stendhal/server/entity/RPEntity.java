@@ -1666,26 +1666,6 @@ public abstract class RPEntity extends GuidedEntity {
 
 
 	//
-	// ActiveEntity
-	//
-
-	/**
-	 * Notify of intra-zone movement.
-	 *
-	 * @param	oldX		The old X coordinate.
-	 * @param	oldY		The old Y coordinate.
-	 * @param	newX		The new X coordinate.
-	 * @param	newY		The new Y coordinate.
-	 */
-	@Override
-	protected void onMoved(int oldX, int oldY, int newX, int newY) {
-		super.onMoved(oldX, oldY, newX, newY);
-
-		getZone().notifyMovement(this, oldX, oldY, newX, newY);
-	}
-
-
-	//
 	// Entity
 	//
 

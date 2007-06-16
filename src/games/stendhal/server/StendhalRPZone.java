@@ -15,6 +15,7 @@ package games.stendhal.server;
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.common.Line;
+import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
@@ -958,7 +959,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void notifyEntered(RPEntity entity, int newX, int newY) {
+	public void notifyEntered(ActiveEntity entity, int newX, int newY) {
 		Rectangle2D eArea;
 
 		eArea = entity.getArea(newX, newY);
@@ -977,7 +978,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param	oldX		The old X coordinate.
 	 * @param	oldY		The old Y coordinate.
 	 */
-	public void notifyExited(RPEntity entity, int oldX, int oldY) {
+	public void notifyExited(ActiveEntity entity, int oldX, int oldY) {
 		Rectangle2D eArea;
 
 		eArea = entity.getArea(oldX, oldY);
@@ -998,7 +999,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void notifyMovement(RPEntity entity, int oldX, int oldY, int newX, int newY) {
+	public void notifyMovement(ActiveEntity entity, int oldX, int oldY, int newX, int newY) {
 		Rectangle2D area;
 		Rectangle2D oeArea;
 		Rectangle2D neArea;
