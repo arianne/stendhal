@@ -44,7 +44,7 @@ import marauroa.server.game.Statistics;
 
 import org.apache.log4j.Logger;
 
-public abstract class RPEntity extends ActiveEntity {
+public abstract class RPEntity extends GuidedEntity {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(RPEntity.class);
@@ -98,15 +98,6 @@ public abstract class RPEntity extends ActiveEntity {
 	protected Set<Player> playersToReward;
 
 	protected int totalDamageReceived;
-
-	/** the path */
-	private List<Path.Node> path;
-
-	/** current position in the path */
-	private int pathPosition;
-
-	/** true if the path is a loop */
-	private boolean pathLoop;
 
 	/**
 	 * To prevent players from gaining attack and defense experience by
@@ -1014,83 +1005,6 @@ public abstract class RPEntity extends ActiveEntity {
 		return attackTarget;
 	}
 
-	/***************************************************************************
-	 * * Path handling code. * *
-	 **************************************************************************/
-
-	/**
-	 * Set a path for this entity to follow. Any previous path is cleared
-	 * and the entity starts at the first node (so the first node should
-	 * be its position, of course). The speed will be set to the default
-	 * for the entity.
-	 * 
-	 * @param	path		List of connected nodes
-	 * @param	cycle		If true, the entity will resume at
-	 *				the start of the path when finished;
-	 *				If false, it will stop at the last
-	 *				node (and clear the path).
-	 */
-	public void setPath(final List<Path.Node> path, final boolean cycle) {
-		if((path != null) && !path.isEmpty()) {
-			this.path = path;
-			this.pathPosition = 0;
-			this.pathLoop = cycle;
-
-			setSpeed(getBaseSpeed());
-			Path.followPath(this);
-		} else {
-			clearPath();
-		}
-	}
-
-
-	/**
-	 * Adds some nodes to the path to follow for this entity. The current
-	 * path-position is kept.
-	 */
-	public void addToPath(List<Path.Node> pathNodes) {
-		if (path == null) {
-			path = new ArrayList<Path.Node>();
-		}
-		path.addAll(pathNodes);
-	}
-
-	/**
-	 * Sets the loop-flag of the path. Note that the path should be closed.
-	 */
-	public void setPathLoop(boolean loop) {
-		this.pathLoop = loop;
-	}
-
-	public void clearPath() {
-		this.path = null;
-		this.pathPosition = 0;
-		this.pathLoop = false;
-	}
-
-	public boolean hasPath() {
-		return path != null;
-	}
-
-	public List<Path.Node> getPath() {
-		return path;
-	}
-
-	public boolean isPathLoop() {
-		return pathLoop;
-	}
-
-	public int getPathPosition() {
-		return pathPosition;
-	}
-
-	public boolean pathCompleted() {
-		return (path != null) && (pathPosition == path.size() - 1);
-	}
-
-	public void setPathPosition(int pathPos) {
-		this.pathPosition = pathPos;
-	}
 
 	/***************************************************************************
 	 * * Equipment handling. * *

@@ -15,7 +15,9 @@ package games.stendhal.server.pathfinder;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.GuidedEntity;
 import games.stendhal.server.entity.RPEntity;
 
 import java.awt.Rectangle;
@@ -61,7 +63,7 @@ public class Path {
 		Path.callback = callback;
 	}
 
-	private static void faceto(RPEntity entity, int x, int y) {
+	private static void faceto(ActiveEntity entity, int x, int y) {
 		int rndx = x - entity.getX();
 		int rndy = y - entity.getY();
 
@@ -274,7 +276,7 @@ public class Path {
 	 *
 	 * @param	entity		The entity to point.
 	 */
-	public static boolean followPath(final RPEntity entity) {
+	public static boolean followPath(final GuidedEntity entity) {
 		List<Node> path = entity.getPath();
 
 		if (path == null) {
