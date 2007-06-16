@@ -20,12 +20,12 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * Direction property.
 	 */
-	public final static Object	PROP_DIRECTION	= new Object();
+	public static final Object	PROP_DIRECTION	= new Object();
 
 	/**
 	 * Speed property.
 	 */
-	public final static Object	PROP_SPEED	= new Object();
+	public static final Object	PROP_SPEED	= new Object();
 
 	/**
 	 * The current [facing] direction.
@@ -33,10 +33,10 @@ public abstract class ActiveEntity extends Entity {
 	private Direction	direction;
 
 	/** The current speed of this entity horizontally (tiles?/sec) */
-	protected double	dx;
+	private double	dx;
 
 	/** The current speed of this entity vertically (tiles?/sec) */
-	protected double	dy;
+	private double	dy;
 
 
 	/**
@@ -135,7 +135,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	// When rpentity moves, it will be called with the data.
-	protected void onMove(final int x,final  int y,final  Direction direction,final  double speed) {
+	protected void onMove(final int x, final int y, final Direction direction, final double speed) {
 
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
@@ -212,7 +212,7 @@ public abstract class ActiveEntity extends Entity {
 	public void update(final long delta) {
 		super.update(delta);
 
-		if(!stopped()) {
+		if (!stopped()) {
 			double step = (delta / 300.0);
 
 			double oldX = x;
@@ -247,8 +247,8 @@ public abstract class ActiveEntity extends Entity {
 		int oldx = base.getInt("x");
 		int oldy = base.getInt("y");
 
-		int newX=oldx;
-		int newY=oldy;
+		int newX = oldx;
+		int newY = oldy;
 
 		if (diff.has("x")) {
 			newX = diff.getInt("x");
@@ -257,17 +257,17 @@ public abstract class ActiveEntity extends Entity {
 			newY = diff.getInt("y");
 		}
 
-		Direction direction;
+		Direction temp_direction;
 
 		if (diff.has("dir")) {
-			direction = Direction.build(diff.getInt("dir"));
-			setDirection(direction);
+			temp_direction = Direction.build(diff.getInt("dir"));
+			setDirection(temp_direction);
 			fireChange(PROP_DIRECTION);
 		} else if (base.has("dir")) {
-			direction = Direction.build(base.getInt("dir"));
-			setDirection(direction);
+			temp_direction = Direction.build(base.getInt("dir"));
+			setDirection(temp_direction);
 		} else {
-			direction = Direction.STOP;
+			temp_direction = Direction.STOP;
 		}
 
 		double speed;
@@ -281,9 +281,9 @@ public abstract class ActiveEntity extends Entity {
 			speed = 0;
 		}
 
-		onMove(newX, newY, direction, speed);
+		onMove(newX, newY, temp_direction, speed);
 
-		if ((Direction.STOP.equals(direction)) || (speed == 0)) {
+		if ((Direction.STOP.equals(temp_direction)) || (speed == 0)) {
 			dx = 0.0;
 			dy = 0.0;
 
