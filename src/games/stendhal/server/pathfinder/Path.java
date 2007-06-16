@@ -29,10 +29,43 @@ import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
 
-public class Path {
+public abstract class Path {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Path.class);
+
+
+	//
+	// Path
+	//
+
+	/**
+	 * Follow this path.
+	 *
+	 * @param	entity		The entity to direct along the path.
+	 *
+	 * @return	<code>true</code> if something to follow,
+	 *		<code>false</code> if complete.
+	 */
+	public abstract boolean follow(ActiveEntity entity);
+
+
+	/**
+	 * Get the final destination point.
+	 *
+	 * @return	The destination node, or <code>null</code> if there
+	 *		is none (i.e. no path, or unbound/infinite movement).
+	 */
+	public abstract Node getDestination();
+
+
+	/**
+	 * Determine if the path has finished.
+	 *
+	 * @return	<code>true</code> if there is no more path to follow.
+	 */
+	public abstract boolean isFinished();
+
 
 	private static StepCallback callback;
 
@@ -49,6 +82,27 @@ public class Path {
 			this.y = y;
 		}
 
+
+		/**
+		 * Get the X coordinate.
+		 *
+		 * @return	The X coordinate.
+		 */
+		public int getX() {
+			return x;
+		}
+
+
+		/**
+		 * Get the Y coordinate.
+		 *
+		 * @return	The Y coordinate.
+		 */
+		public int getY() {
+			return y;
+		}
+
+
 		@Override
 		public String toString() {
 			return "(" + x + "," + y + ")";
@@ -63,7 +117,7 @@ public class Path {
 		Path.callback = callback;
 	}
 
-	private static void faceto(ActiveEntity entity, int x, int y) {
+	protected static void faceto(ActiveEntity entity, int x, int y) {
 		int rndx = x - entity.getX();
 		int rndy = y - entity.getY();
 

@@ -12,6 +12,7 @@ package games.stendhal.server.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import marauroa.common.game.RPObject;
@@ -20,8 +21,6 @@ import marauroa.common.game.RPObject;
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
-	
-
 	/** the path */
 	private List<Path.Node> path;
 
@@ -73,11 +72,34 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * be its position, of course). The speed will be set to the default
 	 * for the entity.
 	 * 
+	 * TODO: Change to accept just 'Path' after everything is converted
+	 *       to use Path's rather than Node lists.
+	 * 
+	 * @param	path		The path.
+	 */
+	public void setPath(final FixedPath path) {
+		if(path != null) {
+			setPath(path.getNodeList(), path.isLoop());
+		} else {
+			clearPath();
+		}
+	}
+
+
+	/**
+	 * Set a path for this entity to follow. Any previous path is cleared
+	 * and the entity starts at the first node (so the first node should
+	 * be its position, of course). The speed will be set to the default
+	 * for the entity.
+	 * 
+	 * TODO: Deprecate and merge with setPath(Path), but not yet.
+	 * 
 	 * @param	path		List of connected nodes
 	 * @param	cycle		If true, the entity will resume at
 	 *				the start of the path when finished;
 	 *				If false, it will stop at the last
 	 *				node (and clear the path).
+	 * SOON: @deprecated
 	 */
 	public void setPath(final List<Path.Node> path, final boolean cycle) {
 		if((path != null) && !path.isEmpty()) {
