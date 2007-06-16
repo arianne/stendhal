@@ -11,23 +11,16 @@ package games.stendhal.server.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
 
-import games.stendhal.common.Direction;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.pathfinder.Path;
 
-import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
 
 /**
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
-	/**
-	 * The logger.
-	 */
-	private static final Logger logger = Log4J.getLogger(GuidedEntity.class);
+	
 
 	/** the path */
 	private List<Path.Node> path;

@@ -20,7 +20,6 @@ import games.stendhal.server.*;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
 import games.stendhal.server.pathfinder.Path;
 

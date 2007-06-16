@@ -33,8 +33,6 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
-import games.stendhal.server.pathfinder.Path;
-
 import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
