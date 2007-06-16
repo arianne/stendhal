@@ -77,7 +77,7 @@
 		<copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
 		<copy todir="${build_server}/games/stendhal/server/" file="${src}/games/stendhal/server/stendhal_init.sql"/>
 
-		<javac srcdir="${src}" destdir="${build_server}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
+		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
            includes="games/stendhal/server/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/maps/**, games/stendhal/server/script/**, games/stendhal/client/**, games/stendhal/tools/**">
 			<compilerarg value="-encoding"/>
@@ -100,7 +100,7 @@
 
 		<mkdir dir="${build_server_maps}/"/>
 
-		<javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="true" debuglevel="source,lines"  source="1.5" target="1.5"
+		<javac srcdir="${src}/games/stendhal/server/maps/" destdir="${build_server_maps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}"
            includes="**/*.java"
            excludes="games/stendhal/server/maps/quests/**">
 			<compilerarg value="-encoding"/>
@@ -139,7 +139,7 @@
 
 		<property name="build_server_script" value="${buildroot}/build_server_script/"/>
 		<mkdir dir="${build_server_script}/"/>
-		<javac srcdir="${src}" destdir="${build_server_script}" debug="true" debuglevel="source,lines"  source="1.5" target="1.5"
+		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}"
            includes="games/stendhal/server/script/**">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -195,7 +195,7 @@
 
 		<mkdir dir="${build_client}/"/>
 
-		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.5" target="1.5"
+		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
            includes="games/stendhal/client/**, games/stendhal/common/**" 
            excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/update/Starter.java">
 			<compilerarg value="-encoding"/>
@@ -210,7 +210,7 @@
 		
 		<!-- compile Starter.java for Java 1.2. So we will be able to 
   		 display a dialogbox if running on an old Java Version -->
-		<javac srcdir="${src}" destdir="${build_client}" debug="true" debuglevel="source,lines" source="1.2" target="1.2"
+		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.2" target="1.2" deprecation="${javac.deprecation}"
            includes="games/stendhal/client/update/Starter.java">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -447,7 +447,7 @@
 		<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
 		<mkdir dir="${build_tiled_convertmaps}/"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}"
            includes="games/stendhal/tools/MapConverter.java">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -479,7 +479,7 @@
 		<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
 		<mkdir dir="${build_tiled_convertmaps}/"/>
 
-		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="true" debuglevel="source,lines"
+		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}"
            includes="games/stendhal/tools/MapUpdater.java">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -508,7 +508,7 @@
 	<target name="compile_tests" description="Compile all tests" depends="server_build, client_build">
 		<mkdir dir="${build_tests}"/>
 
-		<javac srcdir="tests" destdir="${build_tests}" debug="true" debuglevel="source,lines" source="1.5" target="1.5">
+		<javac srcdir="tests" destdir="${build_tests}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}">
 			<include name="**/*.java"/>
 
 			<compilerarg value="-encoding"/>
