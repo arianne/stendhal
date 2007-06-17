@@ -39,8 +39,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				// npc does not move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(new FixedPath(nodes, false));
+				setPath(null);
 			}
 
 			@Override
