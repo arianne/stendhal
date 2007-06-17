@@ -78,7 +78,7 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="266" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/human_barbarian.png" firstgid="287" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/human_barbarian.png" firstgid="290" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_barbarian.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -108,7 +108,7 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3b2w2AIAwFUJ3BAXzvv6IL+FECqOA5ExBCAty2wwAAAAAAAAAAAAAAAAAAAADAX6zj2yuAuNN5BYDXze5jADLJIgAAANIdgb/UUvm/FVkDAAD90KsF8E3qrbRod24BHifTh77VrgsCAAD9MBNc12R/AQhQL6VVsmgAAChPLzgArVIXA4C2be5yAAAAACBBT3MQZiwBeJo+GwAAcskzAOBeydzFvC8A8BdqVwAAUIa3NQAAAEDMBZ2h3fIAAAEA
+   H4sIAAAAAAAAAO3b2w2AIAwFUJ3BDXzvP6EL+FECqOA5ExBCAty2wwAAAAAAAAAAAAAAAAAAAADAX6zj2yuAuNN5BYDXze5jADLJIgAAANIdgb/UUvm/FVkDAAD90KsF8E3qrbRod24BHifTh77VrgsCAAD9MBNc12R/AQhQL6VVsmgAAChPLzgArVIXA4C2be5yAAAAACBBT3MQZiwBeJo+GwAAcskzAOBeydzFvC8A8BdqVwAAUIa3NQAAAEDMBQzcfuAAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.36">

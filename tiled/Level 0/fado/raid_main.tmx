@@ -42,49 +42,49 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="101" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/elemental.png" firstgid="122" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/elemental.png" firstgid="125" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elemental.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/undead.png" firstgid="126" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/undead.png" firstgid="129" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/small_animal.png" firstgid="138" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/small_animal.png" firstgid="141" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/small_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/gnome.png" firstgid="143" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/gnome.png" firstgid="146" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/gnome.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/golem.png" firstgid="145" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/golem.png" firstgid="148" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/mythical_animal.png" firstgid="147" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/mythical_animal.png" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mythical_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/huge_animal.png" firstgid="148" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/huge_animal.png" firstgid="151" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/giant_animal.png" firstgid="157" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/giant_animal.png" firstgid="161" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/beholder.png" firstgid="159" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/beholder.png" firstgid="163" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/beholder.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/elf.png" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/elf.png" firstgid="166" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/dwarf.png" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/dwarf.png" firstgid="174" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/dwarf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/orc.png" firstgid="175" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/orc.png" firstgid="179" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/orc.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/ratfolk.png" firstgid="179" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/ratfolk.png" firstgid="183" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/ratfolk.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="182" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="186" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="../../tileset/logic/protection.png" firstgid="183" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/protection.png" firstgid="187" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/protection.png"/>
  </tileset>
  <layer name="0_floor" width="100" height="100">
@@ -114,17 +114,17 @@
  </layer>
  <layer name="objects" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3av0vEMBTA8f6zbuJ+KsgtCjrIoeCmg4NOCuIf6HQgpb00yfuRvHw/i+C1aZo2eclLpwkAAES1864AgOnMuwKBPXpXACoixa4H7wpAXKT30wJ9ANFFHBMi3lMkrC1i0FzHaMRe4nn/zr0rgCKpMX+EnAjjD6yk5sDMkQEcMR4su888nhgPAEAcHnHdKteVO8fpfa64m+Tv4U64vDUj5Mmgh/w5trIa02rkxq6ILgTK0GxH7TFHYm4m0YZL1uJ173MoYG4+hmzpU4zfZebjitd4UnpdyfX0qDn3U3FVcu5W+2710MfX2vLUvRPD03KePe3pS2sODDk9P6NR+nfqPkvz7S23n/Q9a5crcW1tPcybAAAAgAiuKs69cbgm7JQ+X8Txkfj916QWkHLwrgCA6ani3NuF/71UlAdAnua+iveezZJr7wpU+lYq90ep3Lne2z8H6446r94VQEgt5Yz23hXoAPmAMi3Ov0pp9JOvgnN6b9OldTkQTQsxg9g+rtK1i9b6PpIW+vabcvkt3KOkd+8KVIr2PHJ9eldA0OjPEvWs8uUt0eg3VuvpkutYxyzJ9n0WLOu/3vMfmiLmVjT3YIjDMUV6rq3sQWqN58DRWu4p9X11Ty43Hme1R2wxx1xbq0jN5ba2KcbTwvdeveceo9u6Dx8hB9lCf4Cs0r2gCO/zfvY3dRzkWeSdWvpmcs5yfdJyO2iLtA4EAAC2/gBnCM4EQJwAAA==
+   H4sIAAAAAAAAAO3av0vEMBTA8f6zbuJ+gwpyi4IOcig46uCgk4L45zkdSGkvTfJ+JC/fzyJ4bZqmTV7y0mkCAABR7bwrAGA6865AYI/eFYCKSLHrwbsCEBfp/bRAH0B0EceEiPcUCWuLGDTXMRqxl3jev3PvCqBIaswfISfC+AMrqTkwc2QAR4wHy+4zjyfGAwAQh0dct8p15c5xep8r7ib5e7gTLm/NCHky6CF/jq2sxrQaubEroguBMjTbUXvMkZibSbThkrV43fscCpibjyFb+hTjd5n5uOI1npReV3I9PWrO/VRclZy71b5bPfTxtbY8de/E8LScZ097+tKaA0NOz89olP6dus/SfHvL7Sd9z9rlSlxbWw/zJgAAACCCq4pzbxyuCTulzxdxfCR+/zWpBaQcvCsAYHqqOPd24X8vFeUBkKe5r+K9Z7Pk2rsClb6Vyv1RKneu9/bPwbqjzqt3BRBSSzmjvXcFOkA+oEyL869SGv3kq+Cc3tt0aV0ORNNCzCC2j6t07aK1vo+khb79plx+C/co6d27ApWiPY9cn94VEDT6s0Q9q3x5SzT6jdV6uuQ61jFLsn2fBcv6r/f8h6aIuRXNPRjicEyRnmsre5Ba4zlwtJZ7Sn1f3ZPLjcdZ7RFbzDHX1ipSc7mtbYrxtPC9V++5x+i27sNHyEG20B8gq3QvKML7vJ/9TR0HeRZ5p5a+mZyzXJ+03A7aIq0DAQCArT9IKcCxQJwAAA==
   </data>
  </layer>
  <layer name="collision" width="100" height="100" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YQVIDIRBA0dz/QDmfC3eKTjcw9O/Mf1WUG2HAXyQmr5ck9fNOjJl5q3N2n4Ey/jtL9MzZeTvmRMzMqWQPlpUe7x8/R/P+WiPbY+X1qpNIj2iXyJo750R8Yo/sGqs9oncqwh7ejxX2YLEHiz3qjPZW0WP0v+sTe4x4P+ZUrLvj82B07W497uL9YDnRI/K+ZY9v3g8Weo/I9yiZ58yucwq9R/Z3dsyp5Pe799m9X+/HeVc9omNm3uqc1fMRddtvVrfzddtvVrfzddtvVrfz7Xr/II3o+aplPxtV/12relQ2vOrRTaf7MfK0HvQzPa0HnT1Y7LHnOSfWtcd59mCxx72yz7cHiz1Y7JFf8072YLEHiz1YntAj+t08waf32PW7p9hjbu5d7HHueavr2eO8qx4dR+bsxCFJ3VW/ju54/a3ey873j+p92eP3WboZ9ejEHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WOzBYg8We7DYg8UeLPZgsQeLPVjswWIPFnuw2IPFHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WOzBYg8We7DYg8UeLFc9Oo7uZ5Ckjr4AFKHi20CcAAA=
+   H4sIAAAAAAAAAO3YQVIDIRBA0dz/SDmdC3eKTjcw9O/Mf1WUG2HAXyQmr5ck9fNOjJl5q3N2n4Ey/jtL9MzZeTvmRMzMqWQPlpUe7x8/R/P+WiPbY+X1qpNIj2iXyJo750R8Yo/sGqs9oncqwh7ejxX2YLEHiz3qjPZW0WP0v+sTe4x4P+ZUrLvj82B07W497uL9YDnRI/K+ZY9v3g8Weo/I9yiZ58yucwq9R/Z3dsyp5Pe799m9X+/HeVc9omNm3uqc1fMRddtvVrfzddtvVrfzddtvVrfz7Xr/II3o+aplPxtV/12relQ2vOrRTaf7MfK0HvQzPa0HnT1Y7LHnOSfWtcd59mCxx72yz7cHiz1Y7JFf8072YLEHiz1YntAj+t08waf32PW7p9hjbu5d7HHueavr2eO8qx4dR+bsxCFJ3VW/ju54/a3ey873j+p92eP3WboZ9ejEHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WOzBYg8We7DYg8UeLPZgsQeLPVjswWIPFnuw2IPFHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WOzBYg8We7DYg8UeLFc9Oo7uZ5Ckjr4ASqFekUCcAAA=
   </data>
  </layer>
  <layer name="protection" width="100" height="100" opacity="0.33">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3RQQrCQBBFwbn/hXI9cZmFSlTI66EK/jKQnnestQ4zs2G74pvvfv3m3zdU6NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGiR4seLXq0XL1x0ia6+830OLv7zfQ42+mWp+k36NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGiR4seLXq07Nzj3aqm/e8nerTo0aJHy649zMymbKrpN+jRokeLHi16tOjRokeLHi16tOjRokeLHi16tOjRokeLHi16tOjRokfLzj0m3qFHix4tO/eYSI8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY8WPVpe9TAzK+8BPCXPZECcAAA=
+   H4sIAAAAAAAAAO3RQQrCQBBFwbn/lXI5cZmFSlTI66EK/jKQnnestQ4zs2G74pvvfv3m3zdU6NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGiR4seLXq0XL1x0ia6+830OLv7zfQ42+mWp+k36NGiR4seLXq06NGiR4seLXq06NGiR4seLXq06NGiR4seLXq07Nzj3aqm/e8nerTo0aJHy649zMymbKrpN+jRokeLHi16tOjRokeLHi16tOjRokeLHi16tOjRokeLHi16tOjRokfLzj0m3qFHix4tO/eYSI8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY8WPVr0aNGjRY8WPVpe9TAzK+8BwswXwUCcAAA=
   </data>
  </layer>
 </map>

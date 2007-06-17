@@ -36,19 +36,19 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/golem.png" firstgid="140" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/golem.png" firstgid="143" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/golem.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/elemental.png" firstgid="142" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/elemental.png" firstgid="145" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elemental.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/human.png" firstgid="146" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/human.png" firstgid="149" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/giant_animal.png" firstgid="155" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/giant_animal.png" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="157" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="160" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -78,12 +78,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dsQ4CIQwA0PtxdXNyMBonf9bB1ajnAaX1vV1tJCmlEFgWAAB42kUHAKQmhwA9yTEwxiE6AIBFLqKme3QAAFDcqBpSrQoAAGRxjA4AAOAD9QoAAAAAALDF6L0GZ8kByM4+PUB77pGoz1oQAAAAAKA2feDajC8wA2d2AACgnTVrfW/fwjjWvgAA7amx4DXnAACA1vbRAQAkcu30vTPc33OKDgDgT+jvQR+XDZ+9NYuiDr0CAIg329pBfZCL8Wpny1oDYFbmCSLMVt+u0WuPGOgrqpbPnO8A6MPc4D+ASO/OBusR5WGsfqevwzcq3GkxIk/IRWTnrDCMpRdQnzEG1qiUM2a4DwBgNueBv1VpTlkr6r0R75wAMAtzEgAA2TwATkhO0wAAAQA=
+   H4sIAAAAAAAAAO3dsQ4CIQwA0PtxdXN1MBonv9XB1ajnAaX1vV1tJCmlEFgWAAB42kUHAKQmhwA9yTEwxiE6AIBFLqKme3QAAFDcqBpSrQoAAGRxjA4AAOAD9QoAAAAAALDF6L0GZ8kByM4+PUB77pGoz1oQAAAAAKA2feDajC8wA2d2AACgnTVrfW/fwjjWvgAA7amx4DXnAACA1vbRAQAkcu30vTPc33OKDgDgT+jvQR+XDZ+9NYuiDr0CAIg329pBfZCL8Wpny1oDYFbmCSLMVt+u0WuPGOgrqpbPnO8A6MPc4D+ASO/OBusR5WGsfqevwzcq3GkxIk/IRWTnrDCMpRdQnzEG1qiUM2a4DwBgNueBv1VpTlkr6r0R75wAMAtzEgAA2TwAS7ZnegAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aSW4jQQwAQf3/D/7rQHcPrKW6a8lIgHexg3Ux/PN4PH6MMcbkZnSz9zFz/f9q9r5mrv//mv0dqrNDd+8424T/Os324b9Os634r9dsP/7nxV/P+OsZf/EXf/EXf/EXf/EX/3b8xV/82/EX/3b82/Fvx78d/3b82/Fvx1/82/EXf/EX/3b82/EX/3b82/EX/3b82/Fvx78d/3b82/Fvx78d/3b82/Hv5u//7fh38/8f7fh3+8ue/9nx7/aKPf9z49/tVXv+5/WOPf/z4t+Ofzv+7fh3e9ee/1nxb8e/Hf92/NvxF/92/Nt94+8e9s/7b8e/HX/xbzfK333smfffjn87/u34t+Pfjn+70f7uZK+8/3af+ruHM/L+293l737WzPtvx7/bO/b8z4t/O/7tvvEffQ/u697etedzVvzb3eXvbtbM++/2iT3/c+LfbpS/m9gz77/bp/b8z2h1f3d2Xd/Yc9k//u34d/vW/lV/d7Jmd/lrzUb6u4X98v67jbDnv2ej7Pnv10h7/ns12v4U/8LOV9jv+i2elXa/yn6Xb3Dl/it+g6v3XXn3Z3fuv9q3mLnzHd9xlu1K9zL7d/+2w+zfYYwx5t75BwhPq8gAAAEA
+   H4sIAAAAAAAAAO3RS67jMAwF0ex/FbXUnjaC5w9l2TGv6gA1lEhBfD4fzMxsuWa7e1979/8fOdrHsv9/C7b0/+/hYk/P65T2EZ7OIzBdQ/P0PjyY3osH0vtxY+qBm1If3JB6YXLqh4mpJyalvpiQeuNi6o8LqT8upAwMphwMpBwMpCwUUxaKKQvFlIViykIxZaGYslBMWSimPBRSHgopEydTLk6kbBykbBykbBykfOykfOykfOykNbCR1sBGWgMbaQ1spDWwkdbARloDG2kNbKQ1sJHWwEZaAxspHzspHzspGwcpGwcpFydSLk6kTJxMmTiZ8lBIWSimLBRTFoopC8WUhWLKwUDKwUDKwUDKwUDKwUDKwUDKQjFloZiyUOz7rHqjmLJQTFkopjwUUh4KHd2jfiikPBRSHgopD4WUh0LKQyHlodDZ+9QHhZSHQt/n1B+FlIdCV+fofSikPBRSFoopC8WUhWLKQrHvs7N30XMYSDkYSDkYaHSO3oeBlIHBlIHBlIHB/rpH/TCY+uNC6o8LPeGpOSviYuqNi6k3Lqa+mNDZOXofJqS+mND/d6kXJqSemJT6YWLqhcmpD24oAcU64qa6YkJdcGMdcHNvw4O9ET/qDXi4O2bveepdTzTq13v/9YZf72FmZs/2D1K8ibwAAAEA
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

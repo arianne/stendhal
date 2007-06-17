@@ -72,19 +72,19 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="218" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/elf.png" firstgid="239" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/elf.png" firstgid="242" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/giant.png" firstgid="247" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/giant.png" firstgid="250" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/undead.png" firstgid="250" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/undead.png" firstgid="255" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="262" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="267" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="263" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="268" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -114,12 +114,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dvQ6CMBQGUJwU3//53FwdGEjcNDEmLpAI9Oe25zwAvaGh/XqHMgwAAAB9e5YuAAAA3m6ZxrlnGgf+MZ5KV0A01rI6mAd6kyuvAdA2GYrePYI+GwCikDcBiMD5DYA9nHvSm0oXABWTZdtm/QMAANhuLl0AEF7rvRm9RUjnctA9Bb5TAACAuPSoAQAAAAAAAAAAAAAAAAAA1l0PurOLNM7mB4Af9m0A4EsuAPjQP9vGe4O2LP2fRWYEANbICgDUQJ8qNnkCAAAAAAAAAAAAAIAlLzRjJQAAAAEA
+   H4sIAAAAAAAAAO3dvQ6CMBQGUNwV3//l3FzdGEgcNDEmLpAI9Oe25zwAvaGh/XqHMgwAAAB9e5YuAAAA3m6ZxrlnGgf+MZ5KV0A01rI6mAd6kyuvAdA2GYrePYI+GwCikDcBiMD5DYA9nHvSm0oXABWTZdtm/QMAANhuLl0AEF7rvRm9RUjnctA9Bb5TAACAuPSoAQAAAAAAAAAAAAAAAAAA1l0PurOLNM7mB4Af9m0A4EsuAPjQP9vGe4O2LP2fRWYEANbICgDUQJ8qNnkCAAAAAAAAAAAAAIAlLxbcv8QAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YMW4DQQwEQSnx/5/sVIkBWeBqyGU10OmBnCEu2McDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3+TneU70R/+70f9uTvbvPvqj/90k+3cDefS/m3T/biBLunv9Z0l338mNpDPv5EbSmXdyI+nMJ3kj6UwneSPpTCd5I+lMb3Ii6cxuciLpzG5yIunMNtmRdCab7Eg6k012JJ0JszeVnp/6Z+4O0nMzcwfpOal/5u4gPR/JrP4DJEmSJEmym1Vvmd5G51nZl/7nqf+9Vvf1X9L7b1f/u033f+sddN/pVC/6n7OT/nf3/05f+te//j/bOz3Tyb6qSeewqf/X2bqQzqS6++47dSOdh/6zpPM4kWN6tkk3kM7iRH7p+breQHpn/fe5gYl5vZtZesbqHStv5a9vpXeu6n7KLqn+p+Y3ff7KfT/JZHp+0+ev3Pl0/x0znDz7N3Y+xcTd0711yKCaKbunO+uYSQUT9kz30zWXKrrvme6nuxNuoPNs0725/3S2E7yVdK5TnUw6u1ucSDqzm5xIOrOb7U46nw12JZ3LFruSzoUkSZIkSZIkSZIkSZIkSZ7zF8Cbub8AAAEA
+   H4sIAAAAAAAAAO3YMW4DQQwEQSn2///rVIkBWeBqyGU10OmBnCEu2McDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3+TneU70R/+70f9uTvbvPvqj/90k+3cDefS/m3T/biBLunv9Z0l338mNpDPv5EbSmXdyI+nMJ3kj6UwneSPpTCd5I+lMb3Ii6cxuciLpzG5yIunMNtmRdCab7Eg6k012JJ0JszeVnp/6Z+4O0nMzcwfpOal/5u4gPR/JrP4DJEmSJEmym1Vvmd5G51nZl/7nqf+9Vvf1X9L7b1f/u033f+sddN/pVC/6n7OT/nf3/05f+te//j/bOz3Tyb6qSeewqf/X2bqQzqS6++47dSOdh/6zpPM4kWN6tkk3kM7iRH7p+breQHpn/fe5gYl5vZtZesbqHStv5a9vpXeu6n7KLqn+p+Y3ff7KfT/JZHp+0+ev3Pl0/x0znDz7N3Y+xcTd0711yKCaKbunO+uYSQUT9kz30zWXKrrvme6nuxNuoPNs0725/3S2E7yVdK5TnUw6u1ucSDqzm5xIOrOb7U46nw12JZ3LFruSzoUkSZIkSZIkSZIkSZIkSZ7zFwZtel4AAAEA
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

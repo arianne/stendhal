@@ -174,19 +174,19 @@
  <tileset name="../../tileset/logic/creature/mutant.png" firstgid="453" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mutant.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/animal.png" firstgid="457" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/animal.png" firstgid="456" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/vampire.png" firstgid="478" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/vampire.png" firstgid="480" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/vampire.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/beholder.png" firstgid="485" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/beholder.png" firstgid="487" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/beholder.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="488" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="490" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="489" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="491" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="64">
@@ -216,12 +216,12 @@
  </layer>
  <layer name="objects" width="128" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aQQ6CMBAFUL3/dZSFccvCa7hw4yWMiQkrElCw05n3TlD6Cx2mPRwAAAAmw7H1CAAgtt73ymvn42+t9/z5zvjJXf61DdZBaXKvTf553RZkWzX/Z9LnHpM+FwBkYJ/elvlkC9ZRPo/gmV6Cj28tZ3LzzE1eS/ptTOy1AAAAABDLr/3rSP3vvfqP7z6wXnBdc/lbFwAAud3VegAU4D4fzFMPUlGkMx/6Yu1QgdoA2vDuAVur+l1pXbNXnXfYy9k7RXDu1kI7mc5/1ZD/teaf4SQbKOkFHkd+JwCAAAA=
+   H4sIAAAAAAAAAO3aQQ6CMBAFUL3/dZSFcUviQVy48Q7GxIQVCSjY6cx7Jyj9hQ7THg4AAACT4dh6BAAQW+975bXz8bfWe/58Z/zkLv/aBuugNLnXJv+8bguyrZr/M+lzj0mfCwAysE9vy3yyBeson0fwTC/Bx7eWM7l55iavJf02JvZaAAAAAIjl1/51pP73Xv3Hdx9YL7iuufytCwCA3O5qPQAKcJ8P5qkHqSjSmQ99sXaoQG0AbXj3gK1V/a60rtmrzjvs5eydIjh3a6GdTOe/asj/WvPPcJINlPQCUkLuwACAAAA=
   </data>
  </layer>
  <layer name="collision" width="128" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2TC27EIAxE2/tftMeoVipStVoSMB4/EzySxX4IjOc5P99fXz9VVVVVVVVVVVVVVVV/1RPtq4rhXjPw7LKI9pyxvJXdL513hopURu90/qew987bcp/a006VRV7+V/uieZzI/l3F/zzmn0T1QzPKzr2dp17b5+LPMydVM7DGvPf/LjOzwn+lP5qlx7vufR6lp/H3uCvCby+XiHW0t1X1zsv2rlqfU3iNltLn1VnR/K2enz4DT+G/qkjuO/FX+aSyJDiPem6/qVdLJgoR7w3NXJmnVZRnKjOa/a78SQ5R95zI/yWiB8s9NDcl//a7el1h4TkHs+fTzNT8SZG9jZxD8yr+2r7v9tC8ns7/pYw50Jwi+26/q9dMWWfxkaFvWhmyoLmcyj9THrSXE2fA4l2VB82FmgFy7laeL/6+LAhl8ux5B82XznJE0b4je6f5nsCfzvDKH+1jNseI1YNd9nyz+/vEn9LqzGas7P4y8W/ahX+7N7LnE2ZgJ/5E3+p+3mdbta7mQGfnLZq/oieLiv/ZM7Ajf0t2GXrIOANP5X+3h2be6699Vq+zOdDZzWpX/tGyzOcT8qF5787feo4yH8veDEVK7TFrRjTzXm/tu3qdzeEqv1kVf21vihzunlHdezd/vfN6+6z3P5H9TA4jz6juLv46ebG/6sWDgbdo7leZRKwzOYzuv8t6hYG3aO6Knizy5D/bkzUrj+xo9ln5z+5f6YvOn64MGvH0/z/P3uj8M1TLIWK9y/+O0wyz3vPFfzx3paweiv/+/Ec8qPuiM89WUbq6P6ovOuus5c25sq8aqV9YnAYsAIAAAA==
+   H4sIAAAAAAAAAO2TC27EIAxE2/vftKeoVipStVoSMB4/EzySxX4IjOc5P99fXz9VVVVVVVVVVVVVVVV/1RPtq4rhXjPw7LKI9pyxvJXdL513hopURu90/qew987bcp/a006VRV7+V/uieZzI/l3F/zzmn0T1QzPKzr2dp17b5+LPMydVM7DGvPf/LjOzwn+lP5qlx7vufR6lp/H3uCvCby+XiHW0t1X1zsv2rlqfU3iNltLn1VnR/K2enz4DT+G/qkjuO/FX+aSyJDiPem6/qVdLJgoR7w3NXJmnVZRnKjOa/a78SQ5R95zI/yWiB8s9NDcl//a7el1h4TkHs+fTzNT8SZG9jZxD8yr+2r7v9tC8ns7/pYw50Jwi+26/q9dMWWfxkaFvWhmyoLmcyj9THrSXE2fA4l2VB82FmgFy7laeL/6+LAhl8ux5B82XznJE0b4je6f5nsCfzvDKH+1jNseI1YNd9nyz+/vEn9LqzGas7P4y8W/ahX+7N7LnE2ZgJ/5E3+p+3mdbta7mQGfnLZq/oieLiv/ZM7Ajf0t2GXrIOANP5X+3h2be6699Vq+zOdDZzWpX/tGyzOcT8qF5787feo4yH8veDEVK7TFrRjTzXm/tu3qdzeEqv1kVf21vihzunlHdezd/vfN6+6z3P5H9TA4jz6juLv46ebG/6sWDgbdo7leZRKwzOYzuv8t6hYG3aO6Knizy5D/bkzUrj+xo9ln5z+5f6YvOn64MGvH0/z/P3uj8M1TLIWK9y/+O0wyz3vPFfzx3paweiv/+/Ec8qPuiM89WUbq6P6ovOuus5c25sq8aqV91SszBAIAAAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="64">
