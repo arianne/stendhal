@@ -537,7 +537,7 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	// Called when entity says text
-	public void onTalk(final String text) {		
+	public void onTalk(final String text) {
 		if (User.isAdmin() || distanceToUser() < 15 * 15) {
 			// TODO: Creature circle reference
 			nonCreatureClientAddEventLine(text);
@@ -639,7 +639,7 @@ public abstract class RPEntity extends ActiveEntity {
 		if (object.has("ghostmode")) {
 		    ghostmode = true;
 		}
-		
+
 		/*
 		 * Healed
 		 */
@@ -782,7 +782,9 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 		}
 
-		list.add(ActionType.PUSH.getRepresentation());
+		if(!User.isNull() && User.get()!=this) {
+	    	list.add(ActionType.PUSH.getRepresentation());
+		}
 	}
 
 	@Override
@@ -821,7 +823,7 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 	// RPObjectChangeListener
 	//
-	
+
 	/**
 	 * The object added/changed attribute(s).
 	 *
@@ -1116,7 +1118,7 @@ public abstract class RPEntity extends ActiveEntity {
 			ghostmode = false;
 			fireChange(PROP_GHOSTMODE);
 		}
-		
+
 		/*
 		 * Attack target gone?
 		 */
