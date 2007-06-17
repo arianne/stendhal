@@ -479,8 +479,16 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When entity gets healed
 	public void onHealed(final int amount) {
+	}
+
+	// When entity adjusts HP
+	public void onHPChange(final int amount) {
 		if (distanceToUser() < 15 * 15) {
-			addTextIndicator("+" + amount, Color.green);
+			if(amount > 0) {
+				addTextIndicator("+" + amount, Color.green);
+			} else {
+				addTextIndicator(String.valueOf(amount), Color.red);
+			}
 		}
 	}
 
@@ -498,8 +506,6 @@ public abstract class RPEntity extends ActiveEntity {
 	public final void onPoisoned(final int amount) {
 		if ((distanceToUser() < 15 * 15)) {
 			poisoned = true;
-
-			addTextIndicator("-" + amount, Color.red);
 
 			StendhalUI.get().addEventLine(
 			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
@@ -883,9 +889,9 @@ public abstract class RPEntity extends ActiveEntity {
 			 * HP change
 			 */
 			if (changes.has("hp") && object.has("hp")) {
-				int healing = changes.getInt("hp") - object.getInt("hp");
-				if (healing > 0) {
-					onHealed(healing);
+				int change = changes.getInt("hp") - object.getInt("hp");
+				if (change != 0) {
+					onHPChange(change);
 				}
 			}
 

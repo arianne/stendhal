@@ -73,8 +73,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 		seamstress.put("class", "woman_002_npc");
 		seamstress.setX(7);
 		seamstress.setY(6);
-		seamstress.setBaseHP(100);
-		seamstress.setHP(seamstress.getBaseHP());
+		seamstress.initHP(100);
 		zone.add(seamstress);
 
 	}

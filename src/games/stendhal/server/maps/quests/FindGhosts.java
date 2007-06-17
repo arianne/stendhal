@@ -185,7 +185,7 @@ public class FindGhosts extends AbstractQuest {
 		    			    npc.say(reply);
 		    		    } else {
 		    			    player.setBaseHP(50+player.getBaseHP());
-		    			    player.heal(50);
+		    			    player.heal(50, true);
 		    			    player.addXP(5000);
 		    			    reply += " Now that I know those 4 names, perhaps I can even reach the spirits with my mind. I can't give you anything of material value, but I have given you a boost to your basic wellbeing, which will last forever. May you live long, and prosper.";
 		    			    npc.say(reply);

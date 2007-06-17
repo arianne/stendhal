@@ -268,8 +268,10 @@ public abstract class RPEntity extends GuidedEntity {
 		int baseHP = getBaseHP();
 		int given = baseHP - getHP();
 
-		put("heal", given);
-		setHP(baseHP);
+		if(given != 0) {
+			put("heal", given);
+			setHP(baseHP);
+		}
 
 		return given;
 	}
@@ -283,12 +285,32 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return	The amount actually healed.
 	 */
 	public int heal(int amount) {
+		return heal(amount, false);
+	}
+
+
+	/**
+	 * Heal this entity.
+	 *
+	 * @param	amount		The [maximum] amount to heal by.
+	 * @param	tell		Whether to tell the entity they've
+	 *				been healed.
+	 *
+	 * @return	The amount actually healed.
+	 */
+	public int heal(int amount, boolean tell) {
 		int hp = getHP();
 		int given = Math.min(amount, getBaseHP() - hp);
 
-		hp += given;
-		put("heal", given);
-		setHP(hp);
+		if(given != 0) {
+			hp += given;
+
+			if(tell) {
+				put("heal", given);
+			}
+
+			setHP(hp);
+		}
 
 		return given;
 	}

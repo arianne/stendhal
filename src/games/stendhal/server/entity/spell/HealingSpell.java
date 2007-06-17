@@ -64,7 +64,7 @@ public class HealingSpell extends Spell implements UseListener {
 		Player player = (Player) user;
 
 		if (player.getMana() >= 25) {
-			player.heal(getHealingAmount(player));
+			player.heal(getHealingAmount(player), true);
 
 			//takes away the mana
 			int mana = player.getMana();

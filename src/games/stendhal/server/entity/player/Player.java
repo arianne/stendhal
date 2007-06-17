@@ -1436,7 +1436,7 @@ public class Player extends RPEntity {
 				int amount = consumableItem.consume();
 				put("eating", amount);
 
-				if(heal(amount) == 0) {
+				if(heal(amount, true) == 0) {
 					itemsToConsume.clear();
 				}
 
