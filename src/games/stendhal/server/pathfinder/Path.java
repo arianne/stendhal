@@ -267,26 +267,27 @@ public abstract class Path {
 		return list;
 	}
 
-	/**
-	 * Finds a path for the Entity <code>entity</code> to the other Entity
-	 * <code>dest</code>.
-	 * 
-	 * @param entity
-	 *            the Entity (also start point)
-	 * @param dest
-	 *            the destination Entity
-	 */
-	public static void searchPathAsynchonous(RPEntity entity, Entity dest) {
-		StendhalRPWorld.get().checkPathfinder();
-
-		boolean result = StendhalRPWorld.get().getPathfinder().queuePath(
-		        new QueuedPath(new SimplePathListener(entity), entity, entity.getX(), entity.getY(), dest.getArea(dest
-		                .getX(), dest.getY())));
-
-		if (!result) {
-			logger.warn("Pathfinder queue is full...path not added");
-		}
-	}
+// TODO: Re-enable/(refactor?) later if async needed.
+//	/**
+//	 * Finds a path for the Entity <code>entity</code> to the other Entity
+//	 * <code>dest</code>.
+//	 * 
+//	 * @param entity
+//	 *            the Entity (also start point)
+//	 * @param dest
+//	 *            the destination Entity
+//	 */
+//	public static void searchPathAsynchonous(RPEntity entity, Entity dest) {
+//		StendhalRPWorld.get().checkPathfinder();
+//
+//		boolean result = StendhalRPWorld.get().getPathfinder().queuePath(
+//		        new QueuedPath(new SimplePathListener(entity), entity, entity.getX(), entity.getY(), dest.getArea(dest
+//		                .getX(), dest.getY())));
+//
+//		if (!result) {
+//			logger.warn("Pathfinder queue is full...path not added");
+//		}
+//	}
 
 	/**
 	 * Finds a path for the Entity <code>entity</code> to (or next to)
@@ -331,7 +332,7 @@ public abstract class Path {
 	 * @param	entity		The entity to point.
 	 */
 	public static boolean followPath(final GuidedEntity entity) {
-		List<Node> path = entity.getPath();
+		List<Node> path = entity.getPathList();
 
 		if (path == null) {
 			return true;
@@ -374,27 +375,28 @@ public abstract class Path {
 		public void stepDone(Pathfinder.Node lastNode);
 	}
 
-	/** the threaded-pathfinder callback */
-	private static class SimplePathListener implements PathListener {
-
-		/** the entity the path belongs to */
-		private RPEntity entity;
-
-		/**
-		 * creates a new instance of SimplePathLister
-		 * 
-		 * @param entity
-		 *            the entity the path belongs to
-		 */
-		public SimplePathListener(RPEntity entity) {
-			this.entity = entity;
-		}
-
-		/** simply appends the calculated path to the entitys path */
-		public void onPathFinished(QueuedPath path, PathState state) {
-			if (state == PathState.PATH_FOUND) {
-				entity.addToPath(path.getPath());
-			}
-		}
-	}
+// TODO: Re-enable/(refactor?) later if async needed.
+//	/** the threaded-pathfinder callback */
+//	private static class SimplePathListener implements PathListener {
+//
+//		/** the entity the path belongs to */
+//		private RPEntity entity;
+//
+//		/**
+//		 * creates a new instance of SimplePathLister
+//		 * 
+//		 * @param entity
+//		 *            the entity the path belongs to
+//		 */
+//		public SimplePathListener(RPEntity entity) {
+//			this.entity = entity;
+//		}
+//
+//		/** simply appends the calculated path to the entitys path */
+//		public void onPathFinished(QueuedPath path, PathState state) {
+//			if (state == PathState.PATH_FOUND) {
+//				entity.addToPath(path.getPath());
+//			}
+//		}
+//	}
 }

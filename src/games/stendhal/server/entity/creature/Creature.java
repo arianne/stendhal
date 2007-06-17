@@ -498,9 +498,10 @@ public class Creature extends NPC {
 	}
 
 	/** returns a string-repesentation of the path */
+	// TODO: Adapt for opaque 'Path' objects
 	public String pathToString() {
 		int pos = getPathPosition();
-		List<Path.Node> thePath = getPath();
+		List<Path.Node> thePath = getPathList();
 		List<Path.Node> nodeList = thePath.subList(pos, thePath.size());
 
 		return nodeList.toString();

@@ -110,7 +110,9 @@ public class CreatureLogic {
 		}
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("attacked;").append(target.getID().getObjectID()).append('|');
+			debug.append("attacked;");
+			debug.append(target.getID().getObjectID());
+			debug.append('|');
 		}
 
 		if (logger.isDebugEnabled()) {
@@ -145,7 +147,9 @@ public class CreatureLogic {
 				logger.debug(creature.getIDforDebug() + " Creature(" + creature.get("type") + ") gets a new target.");
 			}
 			if (Debug.CREATURES_DEBUG_SERVER) {
-				debug.append("newtarget;").append(target.getID().getObjectID()).append('|');
+				debug.append("newtarget;");
+				debug.append(target.getID().getObjectID());
+				debug.append('|');
 			}
 		}
 	}
@@ -180,7 +184,9 @@ public class CreatureLogic {
 		creature.setPath(new FixedPath(nodes, true));
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("generatepatrolpath;").append(time2).append("|");
+			debug.append("generatepatrolpath;");
+			debug.append(time2);
+			debug.append('|');
 		}
 	}
 
@@ -195,7 +201,10 @@ public class CreatureLogic {
 			Path.followPath(creature);
 		}
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("patrol;").append(creature.pathToString()).append('|');
+			debug.append("patrol;");
+			// TODO: Adapt for opaque 'Path' object
+			debug.append(creature.pathToString());
+			debug.append('|');
 		}
 	}
 
@@ -228,7 +237,7 @@ public class CreatureLogic {
 		creature.clearPath();
 		creature.setMovement(target, 0, 0, 20.0);
 
-		if ((creature.getPath() == null) || (creature.getPath().size() == 0)) {
+		if (!creature.hasPath()) {
 			if (!creature.nextTo(target)) {
 				creature.stopAttack();
 				target = null;
@@ -242,15 +251,18 @@ public class CreatureLogic {
 		waitRounds = 0; // clear waitrounds
 		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			List path = creature.getPath();
+			List path = creature.getPathList();
 			if (path != null) {
-				debug.append("targetmoved;").append(creature.pathToString()).append("|");
+				debug.append("targetmoved;");
+				// TODO: Adapt for opaque 'Path' objects
+				debug.append(creature.pathToString());
+				debug.append("|");
 			}
 		}
 	}
 
 	/**
-	 * attackts the target
+	 * attacks the target
 	 */
 	private void logicAttack() {
 		if (Debug.CREATURES_DEBUG_SERVER) {
@@ -312,7 +324,8 @@ public class CreatureLogic {
 
 		// the path can be the path to the target or the pseudo random move
 		if (creature.hasPath()) {
-			if (creature.getPath().size() == 1) {
+			// TODO: FIXME - Remove path size assumption/dependency
+			if (creature.getPathList().size() == 1) {
 				// pseudo random move. complete it
 				if (!Path.followPath(creature)) {
 					return;
@@ -391,6 +404,7 @@ public class CreatureLogic {
 			// invalidate the path and stop
 			creature.clearPath();
 
+			// TODO: Use setRandomPath()?
 			// Try to fix the issue by moving randomly.
 			Direction dir = Direction.rand();
 			creature.setDirection(dir);
@@ -410,6 +424,7 @@ public class CreatureLogic {
 			waitRounds--;
 		} else {
 			// Are we still patrolling?
+			// TODO: Adapt for opaque 'Path' objects
 			if (creature.isPathLoop() || (aiState == AiState.PATROL)) {
 				// yep, so clear the patrol path
 				creature.clearPath();
@@ -421,7 +436,7 @@ public class CreatureLogic {
 				debug.append(";newpath");
 			}
 
-			if ((creature.getPath() == null) || (creature.getPath().size() == 0)) {
+			if (!creature.hasPath()) {
 				// If creature is blocked, choose a new target
 				// TODO: if we are an archer and in range, creature is ok
 				//       don't get to near to the enemy. 
@@ -439,7 +454,9 @@ public class CreatureLogic {
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
 			} else {
 				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append(';').append(creature.getPath());
+					debug.append(';');
+					// TODO: Adapt for opaque 'Path' object
+					debug.append(creature.getPathList());
 				}
 			}
 		}
