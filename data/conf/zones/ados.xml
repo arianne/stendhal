@@ -10,6 +10,9 @@
  <zone name="0_ados_mountain_n2_w2" level="0" x="500384" y="499744" file="Level 0/ados/mountain_n2_w2.tmx">
  </zone>
 
+ <zone name="0_ados_mountain_n2_w3" level="0" x="500640" y="499744" file="Level 0/ados/mountain_n2_w3.tmx">
+ </zone>
+
  <zone name="0_ados_wall_n2" level="0" x="500768" y="499744" file="Level 0/ados/wall_n2.tmx">
  </zone>
 
