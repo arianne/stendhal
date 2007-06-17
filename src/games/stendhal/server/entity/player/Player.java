@@ -1529,7 +1529,7 @@ public class Player extends RPEntity {
 	 * @return
 	 */
 	public boolean canPush(RPEntity entity) {
-		return (StendhalRPRuleProcessor.get().getTurn()-pushCounter>10);
+		return (this!=entity && StendhalRPRuleProcessor.get().getTurn()-pushCounter>10);
 	}
 
 	@Override
