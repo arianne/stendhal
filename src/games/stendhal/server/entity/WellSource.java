@@ -52,7 +52,7 @@ public class WellSource extends Entity implements UseListener {
 			// check if the player is still logged in
 			if (player != null) {
 				// check if the player is still standing next to this well source
-				if (player.nextTo(getX(),getY(),0.25)) {
+				if (nextTo(player,0.25)) {
 					// roll the dice
 					if (isSuccessful(player)) {
 					        String itemName = items[Rand.rand(items.length)];
