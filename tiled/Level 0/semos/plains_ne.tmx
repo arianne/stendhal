@@ -105,6 +105,9 @@
  <tileset name="../../tileset/building/decoration/mill_sail.png" firstgid="341" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/decoration/mill_sail.png"/>
  </tileset>
+ <tileset name="Sin nombre" firstgid="345" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/animal.png"/>
+ </tileset>
  <layer name="0_floor" width="64" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XOxKCMBRAUcYZF2Dj/pfq2FkYTSDfl1OcEsl9QMDbcRw3AAAAAAAAAAAAYEqPhNHrGtW9Q/+/9pr9OeeazW7to+6xGYx8xiJ2l7T32u96+tUYvT+nL+oMcrsiPgclPdH6z/REmcHZfT3CO+Hq2leeQc01rzaDFmu9MoOes2t9rhrftW/PhNrr6zXjGu01ZjDyPsuR+r0a/avsT6P67xP77M89Rn+f/pI16e/XX7rX6t+n/9v7YZf+1PsxWn/p94F+/fr169evX7/+Oftzne0/c64Zuf4x+3d//vXr169fv379+vXr169/l/4Z///OyPWP2Z97jH79+vXr169fv379Lfp70N++HwAAAIC1vACtxoOaAIAAAA==
@@ -132,7 +135,7 @@
  </layer>
  <layer name="objects" width="64" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bMQ7CMAwAwPZpDAhWxP//gjowIKAiVRKc+E7qUKYkdl0nFcsCAPWd13+PAGBM6icAMLvs/c5z/tnXYZN5DbLmQaT5bmOJNB6OOYkhDGvGGlxak7L2A0ep+TAGNQ3i8i4FyEPNh3nZc0EdnqV89EcAENd9fb9quaxl99Bby/zPYK/Pr/n820+0If9pZYT3v/wnM/0/ACOabV94/TCf2r8B9FBan9U/ICv1D4Bvap55+P5FZrPlf4/z0N5nrrOd8UYyW/5DCfkP0JYeLrbM/9HOPPcR3SrGS+xjE59X1iMfMd9X2lvqRYFfPACIqJqSAIAAAA==
+   H4sIAAAAAAAAAO3bMQ7CMAwAQPo0BgQr4iP8f0IdGCpKISgNTnwnMcCUxK7jpOJwAID6TtO/RwDQJ/UTABhd9n7nOf/s6zDLvAZZ8yDSfOexfBrPPdB4WXcMEiO5AuUi7Qm1lNakrP3Ar6LUfJZG2ANHmEMkahrEtbaXltZANROgD85PMC5nLqjDs5SP/ggA4rpNr59azlPZd2htz/zPYKvPr/n8O0/sQ/6zlx72f/lPZvp/AHo02rnwsjKf2r8BtFBan9U/ICv1D4B3at55eP9FZqPlf4v70NZ3rqPd8UYyWv5DCfkPsC89XGyZ/6Odee49ulaMl9jHJj5L1iMfMd9W2lvqRYFvPABcdVquAIAAAA==
   </data>
  </layer>
  <layer name="collision" width="64" height="128" opacity="0.42">
