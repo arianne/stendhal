@@ -1,11 +1,7 @@
 package games.stendhal.server.entity.creature;
 
-/**
- * A Raid creature is a creature that doesn't make players killed by it to lose any XP, ATK or DEF.
- * 
- * @author miguel
- *
- */
+
+
 public class RaidCreature extends Creature {
 	/**
 	 * RaidCreature
