@@ -8,6 +8,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
@@ -113,7 +114,7 @@ public class TeleporterBehaviour implements TurnListener {
 					path.add(path.get(j));
 				}
 				logger.info(path);
-				speakerNPC.setPath(path, true);
+				speakerNPC.setPath(new FixedPath(path, true));
 				break;
 			}
 		}

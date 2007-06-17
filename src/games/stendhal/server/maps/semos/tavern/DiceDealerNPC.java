@@ -35,8 +35,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				// Ricardo doesn't move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

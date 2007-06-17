@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SellerBehaviour;
@@ -53,7 +54,7 @@ public class IL0_PostNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(7, 1));
 				nodes.add(new Path.Node(7, 4));
 				nodes.add(new Path.Node(11, 4));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

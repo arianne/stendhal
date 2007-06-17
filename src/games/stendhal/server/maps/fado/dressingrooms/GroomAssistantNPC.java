@@ -5,6 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(20, 9));
 				nodes.add(new Path.Node(20, 2));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

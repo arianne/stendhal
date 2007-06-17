@@ -19,6 +19,7 @@ import games.stendhal.server.maps.deathmatch.DeathmatchInfo;
 import games.stendhal.server.maps.deathmatch.DoneAction;
 import games.stendhal.server.maps.deathmatch.LeaveAction;
 import games.stendhal.server.maps.deathmatch.StartAction;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.Area;
 
@@ -76,7 +77,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 
 			@Override
 			protected void createPath() {
-				setPath(new ArrayList<Path.Node>(), false);
+				setPath(null);
 			}
 
 			@Override

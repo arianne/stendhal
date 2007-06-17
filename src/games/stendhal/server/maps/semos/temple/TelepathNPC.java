@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 public class TelepathNPC implements ZoneConfigurator {
@@ -46,7 +47,7 @@ public class TelepathNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(8, 13));
 				nodes.add(new Path.Node(7, 13));
 				nodes.add(new Path.Node(7, 18));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

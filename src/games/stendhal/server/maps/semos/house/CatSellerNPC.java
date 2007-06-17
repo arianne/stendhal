@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -38,7 +39,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(9, 7));
 				nodes.add(new Path.Node(9, 8));
 				nodes.add(new Path.Node(7, 8));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

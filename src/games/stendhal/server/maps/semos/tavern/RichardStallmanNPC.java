@@ -35,8 +35,7 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 			
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, true);
+				setPath(null);
 			}
 
 			@Override

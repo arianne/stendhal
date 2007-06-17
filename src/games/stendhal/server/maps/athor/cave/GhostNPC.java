@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -50,7 +51,7 @@ public class GhostNPC implements ZoneConfigurator {
                                 List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(104, 98));
 				nodes.add(new Path.Node(125, 98));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 			@Override
 		    protected void createDialog() {

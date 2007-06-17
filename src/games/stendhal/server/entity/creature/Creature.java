@@ -29,8 +29,8 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.pathfinder.Path.Node;
 import games.stendhal.server.rule.EntityManager;
 
 import java.awt.Rectangle;
@@ -446,14 +446,14 @@ public class Creature extends NPC {
 			destArea.translate(0, (int) (this.getY() - entityArea.getY()));
 
 			// is there a path to this enemy?
-			// List<Node> path = Path.searchPath(this, chosen, 20.0);
-			List<Node> path = Path.searchPath(this, getX(), getY(), destArea, 20.0);
+			// List<Path.Node> path = Path.searchPath(this, chosen, 20.0);
+			List<Path.Node> path = Path.searchPath(this, getX(), getY(), destArea, 20.0);
 			if ((path == null) || (path.size() == 0)) {
 				distances.remove(chosen);
 				chosen = null;
 			} else {
 				// set the path. if not setMovement() will search a new one
-				setPath(path, false);
+				setPath(new FixedPath(path, false));
 			}
 		}
 		// return the chosen enemy or null if we could not find one in reach

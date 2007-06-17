@@ -8,6 +8,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 /**
@@ -50,7 +51,7 @@ public class WomanNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(3, 5));
 				nodes.add(new Path.Node(5, 5));
 				nodes.add(new Path.Node(5, 3));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

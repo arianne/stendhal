@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -43,7 +44,7 @@ public class SoldierNPC implements ZoneConfigurator {
 				List<Path.Node> path = new LinkedList<Path.Node>();
 				path.add(new Path.Node(84, 108));
 				path.add(new Path.Node(84, 115));
-				setPath(path, true);
+				setPath(new FixedPath(path, true));
 			}
 
 			@Override

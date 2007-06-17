@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
@@ -36,7 +37,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(29, 5));
 				nodes.add(new Path.Node(29, 9));
 				nodes.add(new Path.Node(21, 9));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

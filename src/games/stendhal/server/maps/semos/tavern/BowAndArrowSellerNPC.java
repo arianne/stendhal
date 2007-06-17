@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -43,7 +44,7 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(29, 4));
 				nodes.add(new Path.Node(25, 4));
 				nodes.add(new Path.Node(25, 2));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

@@ -3,6 +3,7 @@ package games.stendhal.server.maps.semos.jail;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
 
@@ -40,7 +41,7 @@ public class JailKeeperNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(27, 14));
 				nodes.add(new Path.Node(27, 17));
 				nodes.add(new Path.Node(4, 17));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

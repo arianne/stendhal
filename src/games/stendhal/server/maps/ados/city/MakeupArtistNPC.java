@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.OutfitChangerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 			protected void createPath() {
 				// npc does not move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(new FixedPath(nodes, false));
 			}
 
 			@Override

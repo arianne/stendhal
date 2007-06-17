@@ -256,8 +256,7 @@ public class Blackjack extends AbstractQuest  {
 			@Override
 			protected void createPath() {
 				// Ramon doesn't move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

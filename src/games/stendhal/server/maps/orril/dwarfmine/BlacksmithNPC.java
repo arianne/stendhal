@@ -5,6 +5,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
@@ -48,7 +49,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(20, 9));
 				nodes.add(new Path.Node(20, 7));
 				nodes.add(new Path.Node(20, 10));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

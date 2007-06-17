@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -52,7 +53,7 @@ public class WitchNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(21, 8));
 				nodes.add(new Path.Node(21, 6));
 				nodes.add(new Path.Node(24, 6));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

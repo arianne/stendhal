@@ -11,6 +11,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 /**
@@ -52,7 +53,7 @@ public class GreeterNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(23, 28));
 				nodes.add(new Path.Node(23, 20));
 				nodes.add(new Path.Node(40, 20));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

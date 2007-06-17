@@ -4,6 +4,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -36,7 +37,7 @@ public class VergerNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(19, 3));
 				nodes.add(new Path.Node(19, 2));
 				nodes.add(new Path.Node(22, 2));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

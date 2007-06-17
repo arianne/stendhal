@@ -15,6 +15,7 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
@@ -177,7 +178,7 @@ public abstract class NPC extends RPEntity {
 			logger.debug("Creating path because (" + getX() + "," + getY() + ") distance(" + destEntity.getX() + ","
 			        + destEntity.getY() + ")>" + max);
 			List<Path.Node> path = Path.searchPath(this, destEntity, maxPathRadius);
-			setPath(path, false);
+			setPath(new FixedPath(path, false));
 		}
 	}
 
@@ -205,7 +206,7 @@ public abstract class NPC extends RPEntity {
 		List<Path.Node> path = new ArrayList<Path.Node>(1);
 		path.add(new Path.Node(x + dx, y + dy));
 
-		setPath(path, false);
+		setPath(new FixedPath(path, false));
 	}
 
 

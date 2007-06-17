@@ -10,6 +10,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
@@ -60,7 +61,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(24, 120));
 				nodes.add(new Path.Node(24, 111));
 				nodes.add(new Path.Node(34, 111));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 			@Override
 		    protected void createDialog() {

@@ -48,8 +48,7 @@ public class MeetBunny extends AbstractQuest {
 			@Override
 			protected void createPath() {
 				// npc does not move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

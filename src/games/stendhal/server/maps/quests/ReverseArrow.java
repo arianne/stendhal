@@ -288,8 +288,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			@Override
 			protected void createPath() {
 				// NPC doesn't move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

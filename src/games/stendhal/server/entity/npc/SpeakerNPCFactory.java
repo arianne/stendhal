@@ -12,6 +12,7 @@ import java.util.List;
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
 import games.stendhal.common.Direction;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 /**
@@ -202,7 +203,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		}
 		
 		List<Path.Node> path = getPath(ctx);
-		npc.setPath(path, path.size() > 0);
+		npc.setPath(new FixedPath(path, path.size() > 0));
 		npc.setDirection(getDirection(ctx));
 
 		createDialog(npc);

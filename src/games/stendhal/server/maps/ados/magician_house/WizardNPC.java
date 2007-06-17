@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
@@ -47,7 +48,7 @@ public class WizardNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(2, 8));
 				nodes.add(new Path.Node(2, 2));
 				nodes.add(new Path.Node(7, 2));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

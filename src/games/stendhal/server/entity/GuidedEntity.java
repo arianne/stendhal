@@ -99,7 +99,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 *				the start of the path when finished;
 	 *				If false, it will stop at the last
 	 *				node (and clear the path).
-	 * SOON: @deprecated
+	 * @deprecated
 	 */
 	public void setPath(final List<Path.Node> path, final boolean cycle) {
 		if((path != null) && !path.isEmpty()) {

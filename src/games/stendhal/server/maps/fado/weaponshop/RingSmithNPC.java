@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.Sign;
 import games.stendhal.server.entity.npc.ShopList;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -49,7 +50,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(16, 9));
 				nodes.add(new Path.Node(16, 13));
 				nodes.add(new Path.Node(18, 13));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

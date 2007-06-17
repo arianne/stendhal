@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -43,7 +44,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(7, 13));
 				nodes.add(new Path.Node(12, 13));
 				nodes.add(new Path.Node(12, 6));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

@@ -42,9 +42,8 @@ public class NunNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				// does not move
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

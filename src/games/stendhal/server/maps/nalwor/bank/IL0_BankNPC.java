@@ -8,6 +8,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 /**
@@ -43,8 +44,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override
@@ -80,7 +80,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(17, 30));
 				nodes.add(new Path.Node(17, 29));
 				nodes.add(new Path.Node(26, 29));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

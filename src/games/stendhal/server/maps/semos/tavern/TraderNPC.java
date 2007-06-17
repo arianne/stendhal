@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.SellerBehaviour;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -46,7 +47,7 @@ public class TraderNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(3, 15));
 				nodes.add(new Path.Node(5, 15));
 				nodes.add(new Path.Node(5, 13));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

@@ -6,6 +6,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -47,7 +48,7 @@ public class IronBuyerNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(45, 67));
 				nodes.add(new Path.Node(45, 71));
 				nodes.add(new Path.Node(45, 67));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

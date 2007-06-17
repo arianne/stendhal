@@ -10,6 +10,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
@@ -176,7 +177,7 @@ public class CreatureLogic {
 		if (logger.isDebugEnabled()) {
 			logger.debug(creature.getIDforDebug() + " Path is: " + nodes);
 		}
-		creature.setPath(nodes, true);
+		creature.setPath(new FixedPath(nodes, true));
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("generatepatrolpath;").append(time2).append("|");
@@ -361,7 +362,7 @@ public class CreatureLogic {
 			int nx = creature.getX() + nextDir.getdx();
 			int ny = creature.getY() + nextDir.getdy();
 			nodes.add(new Path.Node(nx, ny));
-			creature.setPath(nodes, false);
+			creature.setPath(new FixedPath(nodes, false));
 			//Path.followPath(creature);
 		}
 	}

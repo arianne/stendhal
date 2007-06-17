@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
@@ -32,7 +33,6 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		SpeakerNPC npc = new SpeakerNPC("Susi") {
 			@Override
 			protected void createPath() {
-				// npc does not move
 				List<Path.Node> nodes = new LinkedList<Path.Node>();
 				nodes.add(new Path.Node(95,119));
 				nodes.add(new Path.Node(95,112));
@@ -50,7 +50,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				nodes.add(new Path.Node(87,112));
 				nodes.add(new Path.Node(92,112));
 				nodes.add(new Path.Node(92,119));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 
 			}
 

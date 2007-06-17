@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
 
@@ -50,7 +51,7 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 				path.add(new Path.Node(72, 32));
 				path.add(new Path.Node(50, 32));
 				path.add(new Path.Node(50, 35));
-				setPath(path, true);
+				setPath(new FixedPath(path, true));
 			}
 
 			@Override

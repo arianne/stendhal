@@ -38,8 +38,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				// NPC does not move
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

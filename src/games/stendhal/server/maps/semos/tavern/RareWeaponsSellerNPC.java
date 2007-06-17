@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
@@ -45,7 +46,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(13, 2));
 				nodes.add(new Path.Node(13, 1));
 				nodes.add(new Path.Node(13, 2));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

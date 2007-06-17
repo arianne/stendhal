@@ -21,6 +21,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TutorialNotifier;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
@@ -130,7 +131,7 @@ public class MoveAction implements ActionListener {
 			if(!player.has("teleclickmode")) {
 				//Walk
 				List<Path.Node> path = Path.searchPath(player, x, y - 2);
-				player.setPath(path, false);
+				player.setPath(new FixedPath(path, false));
 			} else {
 				//Teleport
 				StendhalRPZone zone = player.getZone();

@@ -8,6 +8,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.util.WikipediaAccess;
 
@@ -44,7 +45,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(9, 26));
 				nodes.add(new Path.Node(20, 26));
 				nodes.add(new Path.Node(20, 9));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

@@ -14,6 +14,7 @@ import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
@@ -90,7 +91,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(58, 41));
 				nodes.add(new Path.Node(51, 41));
 				nodes.add(new Path.Node(51, 39));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override

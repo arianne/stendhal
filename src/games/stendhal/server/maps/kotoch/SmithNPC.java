@@ -33,8 +33,7 @@ public class SmithNPC implements ZoneConfigurator {
 			@Override
 			// he doesn't move.
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				setPath(nodes, false);
+				setPath(null);
 			}
 
 			@Override

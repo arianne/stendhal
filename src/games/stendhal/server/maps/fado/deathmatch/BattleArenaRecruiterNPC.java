@@ -8,6 +8,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -37,9 +38,10 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
+				// TODO: Determine if this is really a 'no path'
 				List<Path.Node> path = new LinkedList<Path.Node>();
 				path.add(new Path.Node(42, 38));
-				setPath(path, true);
+				setPath(new FixedPath(path, true));
 			}
 
 			@Override

@@ -7,6 +7,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
@@ -58,7 +59,7 @@ public class KidsNPCs implements ZoneConfigurator {
 					nodes.add(new Path.Node(46, 29));
 					nodes.add(new Path.Node(45, 29));
 					nodes.add(new Path.Node(45, 28));
-					setPath(nodes, true);
+					setPath(new FixedPath(nodes, true));
 				}
 
 				@Override

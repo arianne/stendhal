@@ -9,6 +9,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
 
 /**
@@ -58,7 +59,7 @@ public class WomanGhostNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(21, 1));
 				nodes.add(new Path.Node(21, 6));
 				nodes.add(new Path.Node(3, 6));
-				setPath(nodes, true);
+				setPath(new FixedPath(nodes, true));
 			}
 
 			@Override
