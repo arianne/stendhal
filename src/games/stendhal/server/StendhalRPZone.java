@@ -457,7 +457,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 						}
 						break;
 				}
-			} else if(clazz.contains("logic/creature/sheep")) {
+			} else if(clazz.contains("sheep.png")) {
 				Sheep sheep = new Sheep();
 				assignRPObjectID(sheep);
 				sheep.setX(x);

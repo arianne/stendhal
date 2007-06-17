@@ -24,17 +24,17 @@ public class GenerateMonsterUsage {
 	public static void main(String[] args) throws URISyntaxException, SAXException, IOException {
 		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml"));
 		loader.load();
-		
+
 		Map<String, Integer> count=new HashMap<String,Integer>();
 
 		CreaturesXMLLoader creatureLoader = CreaturesXMLLoader.get();
 		List<DefaultCreature> creatures = creatureLoader.load("data/conf/creatures.xml");
-		
+
 		for(DefaultCreature c: creatures) {
 			count.put(c.getCreatureName(), 0);
 		}
-				
-				
+
+
 		for(IRPZone zone: StendhalRPWorld.get()) {
 			for(CreatureRespawnPoint p: ((StendhalRPZone)zone).getRespawnPointList()) {
 				Creature c=p.getPrototypeCreature();
@@ -46,10 +46,11 @@ public class GenerateMonsterUsage {
 				count.put(c.getName(), creatureCount);
 			}
 		}
-		
+
 		for(Map.Entry<String, Integer> e: count.entrySet()) {
+			if(e.getValue()==0)
 			System.out.println(e.getKey()+";"+e.getValue());
 		}
-	
+
 	}
 }
