@@ -18,6 +18,7 @@ import marauroa.common.game.*;
 import games.stendhal.common.*;
 import games.stendhal.server.*;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TutorialNotifier;
@@ -55,7 +56,7 @@ public class MoveAction implements ActionListener {
 
 	class StopPushAction implements TurnListener {
 		RPEntity tostop;
-		
+
 		StopPushAction(RPEntity entity) {
 			tostop=entity;
 		}
@@ -73,18 +74,25 @@ public class MoveAction implements ActionListener {
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
+				/*
+				 * If object is a NPC we ignore the push action.
+				 */
+				if(object instanceof SpeakerNPC) {
+					return;
+				}
 
 				if (object instanceof RPEntity) {
 					RPEntity entity=(RPEntity)object;
-					if(player.nextTo(entity)) {
+					if(player.canPush(entity) && player.nextTo(entity)) {
 						Direction dir=player.getDirectionToward(entity);
-						
+
 						int x=entity.getX()+dir.getdx();
 						int y=entity.getY()+dir.getdy();
-						
+
 						if(!zone.collides(entity, x, y)) {
 							entity.set(x, y);
 							entity.notifyWorldAboutChanges();
+							player.onPush(entity);
 						}
 					}
 				}
@@ -115,7 +123,7 @@ public class MoveAction implements ActionListener {
 
 	private void moveTo(Player player, RPAction action) {
 		Log4J.startMethod(logger, "moveto");
-		
+
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
 			return;

@@ -985,7 +985,7 @@ public class Player extends RPEntity {
 	}
 
 	private static  class AntidoteEater implements TurnListener {
-		
+
 		WeakReference<Player> ref;
 		public AntidoteEater(Player player) {
 			ref = new WeakReference<Player>(player);
@@ -1006,16 +1006,16 @@ public class Player extends RPEntity {
 			if (obj instanceof AntidoteEater) {
 				AntidoteEater other = (AntidoteEater) obj;
 				return ref.get()== other.ref.get();
-				
+
 			}else{
 				return false;
 			}
-			
+
 		}
 
 		@Override
 		public int hashCode() {
-			
+
 			return ref.hashCode();
 		}
 	}
@@ -1046,7 +1046,7 @@ public class Player extends RPEntity {
 		public NoPetException() {
 			super();
 		}
-		
+
 		public NoPetException(String except) {
 		    super(except);
 		}
@@ -1388,7 +1388,7 @@ public class Player extends RPEntity {
 		}
 
 		Collections.sort(itemsToConsume);
-		
+
 		item.removeOne();
 	}
 
@@ -1510,6 +1510,26 @@ public class Player extends RPEntity {
 	  */
 	public boolean dropAll(String name) {
 		return drop(name, getNumberOfEquipped(name));
+	}
+
+	private int pushCounter=0;
+
+	/**
+	 * Called when player push entity.
+	 * The entity displacement is handled by the action itself.
+	 * @param entity
+	 */
+	public void onPush(RPEntity entity) {
+		pushCounter=StendhalRPRuleProcessor.get().getTurn();
+	}
+
+	/**
+	 * Return true if player can push entity.
+	 * @param entity
+	 * @return
+	 */
+	public boolean canPush(RPEntity entity) {
+		return (StendhalRPRuleProcessor.get().getTurn()-pushCounter>10);
 	}
 
 	@Override
