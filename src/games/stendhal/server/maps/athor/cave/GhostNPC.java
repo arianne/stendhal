@@ -49,8 +49,33 @@ public class GhostNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
                                 List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(104, 98));
-				nodes.add(new Path.Node(125, 98));
+				nodes.add(new Path.Node(65, 73));
+				nodes.add(new Path.Node(43, 73));
+				nodes.add(new Path.Node(43, 68));
+				nodes.add(new Path.Node(37, 68));
+				nodes.add(new Path.Node(37, 64));
+				nodes.add(new Path.Node(34, 64));
+				nodes.add(new Path.Node(34, 57));
+				nodes.add(new Path.Node(31, 57));
+				nodes.add(new Path.Node(31, 51));
+				nodes.add(new Path.Node(28, 51));
+				nodes.add(new Path.Node(28, 45));
+				nodes.add(new Path.Node(26, 45));
+				nodes.add(new Path.Node(26, 40));
+				nodes.add(new Path.Node(25, 40));
+				nodes.add(new Path.Node(25, 37));
+				nodes.add(new Path.Node(36, 37));
+				nodes.add(new Path.Node(36, 42));
+				nodes.add(new Path.Node(45, 42));
+				nodes.add(new Path.Node(45, 42));
+				nodes.add(new Path.Node(45, 45));
+				nodes.add(new Path.Node(61, 45));
+				nodes.add(new Path.Node(61, 53));
+				nodes.add(new Path.Node(63, 53));
+				nodes.add(new Path.Node(63, 57));
+				nodes.add(new Path.Node(64, 57));
+				nodes.add(new Path.Node(64, 65));
+				nodes.add(new Path.Node(65, 65));
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override
@@ -92,7 +117,7 @@ public class GhostNPC implements ZoneConfigurator {
 		ghost.put("class", "woman_005_npc");
 		// she is a ghost so she is see through
 		ghost.put("visibility",50);
-		ghost.set(104, 98);
+		ghost.set(65, 73);
 		// she has low HP
 		ghost.initHP(30);
 		zone.add(ghost);
