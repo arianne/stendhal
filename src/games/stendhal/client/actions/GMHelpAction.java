@@ -32,7 +32,7 @@ class GMHelpAction implements SlashAction  {
 		        "- /teleclickmode \t\t\t Makes you teleport to the location you double click",
 		        "- /ghostmode \t\t\t Makes yourself invisible and intangible",
 		        "- /alter <player> <attrib> <mode> <value> \tAlter stat <attrib> of <player> by the given amount; <mode> can be ADD, SUB, or SET. See /gmhelp_alter for details",
-		        "- /altercreature <id> name/atk/def/hp/xp \tChange all the values of the creature. Useful in raids."
+		        "- /altercreature <id> name/atk/def/hp/xp \tChange all the values of the creature. Useful in raids.run",
 		        "- /summon <creature|item> <x> <y> \tSummon the specified item or creature at co-ordinates <x>, <y> in the current zone",
 		        "- /summonat <player> <slot> <item> <amount> Summon the specified item into the specified slot of <player>; <amount> defaults to 1 if not specified",
 		        "- /invisible \t\t\tToggles whether or not you are invisible to creatures",
