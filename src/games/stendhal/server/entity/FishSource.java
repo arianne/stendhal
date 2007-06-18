@@ -62,7 +62,7 @@ public class FishSource extends Entity implements UseListener {
 			Player player= playerRef.get();
 			if (playerRef.get() != null) {
 				// check if the player is still standing next to this fish source
-				if (player.nextTo(getX(),getY(),0.25)) {
+				if (nextTo(player,0.25)) {
 					// roll the dice
 					if (isSuccessful(player)) {
 						Item fish = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
