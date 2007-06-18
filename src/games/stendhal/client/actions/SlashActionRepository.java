@@ -15,7 +15,7 @@ public class SlashActionRepository {
 	 * registers the available Action
 	 */
 	public static void register() {
-		
+
 		SlashAction msg = new MessageAction();
 		SlashAction supporta = new SupportAnswerAction();
 
@@ -23,6 +23,7 @@ public class SlashActionRepository {
 		actions.put("add", new AddBuddyAction());
 		actions.put("adminlevel", new AdminLevelAction());
 		actions.put("alter", new AlterAction());
+		actions.put("altercreature", new AlterCreatureAction());
 		actions.put("answer", new AnswerAction());
 		actions.put("away", new AwayAction());
 		actions.put("drop", new DropAction());
