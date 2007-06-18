@@ -121,7 +121,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Get the path list.
 	 */
 	public List<Path.Node> getPathList() {
-		return path.getNodeList();
+		return (path != null) ? path.getNodeList() : null;
 	}
 
 
@@ -129,7 +129,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Is the path a loop.
 	 */
 	public boolean isPathLoop() {
-		return path.isLoop();
+		return (path != null) ? path.isLoop() : false;
 	}
 
 
