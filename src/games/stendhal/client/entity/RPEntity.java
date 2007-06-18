@@ -602,6 +602,35 @@ public abstract class RPEntity extends ActiveEntity {
 		super.initialize(object);
 
 		/*
+		 * Base HP
+		 */
+		if (object.has("base_hp")) {
+			base_hp = object.getInt("base_hp");
+		} else {
+			base_hp = 0;
+		}
+
+		/*
+		 * HP
+		 */
+		if (object.has("hp")) {
+			hp = object.getInt("hp");
+		} else {
+			hp = 0;
+		}
+
+		/*
+		 * HP ratio
+		 */
+		if (hp >= base_hp) {
+			hp_base_hp = 1.0f;
+		} else if (hp <= 0) {
+			hp_base_hp = 0.0f;
+		} else {
+			hp_base_hp = hp / (float) base_hp;
+		}
+
+		/*
 		 * Public chat
 		 */
 		if (object.has("text")) {
@@ -885,13 +914,48 @@ public abstract class RPEntity extends ActiveEntity {
 				onHealed(changes.getInt("heal"));
 			}
 
+
+			boolean hpRatioChange = false;
+
 			/*
-			 * HP change
+			 * Base HP
 			 */
-			if (changes.has("hp") && object.has("hp")) {
-				int change = changes.getInt("hp") - object.getInt("hp");
-				if (change != 0) {
+			if (changes.has("base_hp")) {
+				base_hp = changes.getInt("base_hp");
+				hpRatioChange = true;
+			}
+
+			/*
+			 * HP
+			 */
+			if (changes.has("hp")) {
+				int newHP = changes.getInt("hp");
+				int change = newHP - hp;
+
+				hp = newHP;
+
+				// TODO: Remove has() check hack
+				if (object.has("hp") && (change != 0)) {
 					onHPChange(change);
+				}
+
+				hpRatioChange = true;
+			}
+
+			/*
+			 * HP ratio
+			 */
+			if(hpRatioChange) {
+				if (hp >= base_hp) {
+					hp_base_hp = 1.0f;
+				} else if (hp <= 0) {
+					hp_base_hp = 0.0f;
+				} else {
+					hp_base_hp = hp / (float) base_hp;
+				}
+
+				if(hp == 0) {
+					onDeath(lastAttacker);
 				}
 			}
 
@@ -982,30 +1046,6 @@ public abstract class RPEntity extends ActiveEntity {
 			 */
 			if (changes.has("class") || changes.has("name") || changes.has("title") || changes.has("type")) {
 				fireChange(PROP_TITLE);
-			}
-		}
-
-		if (changes.has("base_hp")) {
-			base_hp = changes.getInt("base_hp");
-		}
-
-		if (changes.has("hp")) {
-			hp = changes.getInt("hp");
-		}
-
-		if (changes.has("hp/base_hp")) {
-			hp_base_hp = (float) changes.getDouble("hp/base_hp");
-
-			if (hp_base_hp > 1.0f) {
-				hp_base_hp = 1.0f;
-			} else if (hp_base_hp < 0.0f) {
-				hp_base_hp = 0.0f;
-			}
-
-			if (!inAdd) {
-				if(hp_base_hp == 0.0f) {
-					onDeath(lastAttacker);
-				}
 			}
 		}
 

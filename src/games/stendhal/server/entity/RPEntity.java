@@ -125,6 +125,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.add("mana", RPClass.INT);
 			entity.add("base_mana", RPClass.INT);
 
+			// TODO: Remove just prior to DB Reset
 			entity.add("hp/base_hp", RPClass.FLOAT, RPClass.VOLATILE);
 			entity.add("base_hp", RPClass.SHORT, RPClass.PRIVATE);
 			entity.add("hp", RPClass.SHORT, RPClass.PRIVATE);
@@ -359,12 +360,6 @@ public abstract class RPEntity extends GuidedEntity {
 		if (has("base_mana")) {
 			mana = getInt("base_mana");
 		}
-
-		if (base_hp != 0) {
-			put("hp/base_hp", (double) hp / (double) base_hp);
-		} else {
-			put("hp/base_hp", 1);
-		}
 	}
 
 	public void setName(String name) {
@@ -475,12 +470,6 @@ public abstract class RPEntity extends GuidedEntity {
 	public void setBaseHP(int newhp) {
 		this.base_hp = newhp;
 		put("base_hp", newhp);
-
-		if (base_hp != 0) {
-			put("hp/base_hp", (double) hp / (double) base_hp);
-		} else {
-			put("hp/base_hp", 1);
-		}
 	}
 
 
@@ -502,12 +491,6 @@ public abstract class RPEntity extends GuidedEntity {
 	public void setHP(int hp) {
 		this.hp = hp;
 		put("hp", hp);
-
-		if (base_hp != 0) {
-			put("hp/base_hp", (double) hp / (double) base_hp);
-		} else {
-			put("hp/base_hp", 1);
-		}
 	}
 
 
