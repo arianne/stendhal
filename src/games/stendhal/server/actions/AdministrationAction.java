@@ -46,7 +46,7 @@ import marauroa.common.game.RPSlot;
 import org.apache.log4j.Logger;
 
 /**
- * Most /commands for admins are handled here. 
+ * Most /commands for admins are handled here.
  */
 public class AdministrationAction implements ActionListener {
 
@@ -68,6 +68,7 @@ public class AdministrationAction implements ActionListener {
 		StendhalRPRuleProcessor.register("teleportto", administration);
 		StendhalRPRuleProcessor.register("adminlevel", administration);
 		StendhalRPRuleProcessor.register("alter", administration);
+		StendhalRPRuleProcessor.register("altercreature", administration);
 		StendhalRPRuleProcessor.register("summon", administration);
 		StendhalRPRuleProcessor.register("summonat", administration);
 		StendhalRPRuleProcessor.register("invisible", administration);
@@ -92,19 +93,20 @@ public class AdministrationAction implements ActionListener {
 		REQUIRED_ADMIN_LEVELS.put("summon", 800);
 		REQUIRED_ADMIN_LEVELS.put("summonat", 800);
 		REQUIRED_ADMIN_LEVELS.put("alter", 900);
+		REQUIRED_ADMIN_LEVELS.put("altercreature", 900);
 		REQUIRED_ADMIN_LEVELS.put("super", 5000);
 	}
 
 	public static void registerCommandLevel(String command, int minLevel) {
 		REQUIRED_ADMIN_LEVELS.put(command, minLevel);
 	}
-	
+
 	public static int getLevelForCommand(String command) {
 		Integer val=REQUIRED_ADMIN_LEVELS.get(command);
 		if(val==null) {
 			return -1;
 		}
-		
+
 		return val;
 	}
 
@@ -164,6 +166,8 @@ public class AdministrationAction implements ActionListener {
 			onAdminLevel(player, action);
 		} else if (type.equals("alter")) {
 			onAlter(player, action);
+		} else if (type.equals("altercreature")) {
+			onAlterCreature(player, action);
 		} else if (type.equals("summon")) {
 			onSummon(player, action);
 		} else if (type.equals("summonat")) {
@@ -328,16 +332,16 @@ public class AdministrationAction implements ActionListener {
 					Log4J.finishMethod(logger, "onAdminLevel");
 					return;
 				}
-				
+
 				// Check level is on the range
 				int max=0;
-				
+
 				for(int level: REQUIRED_ADMIN_LEVELS.values()) {
 					if(level>max) {
 						max=level;
-					}					
+					}
 				}
-				
+
 				// If level is beyond max level, just set it to max.
 				if(newlevel>max) {
 					newlevel=max;
@@ -430,7 +434,7 @@ public class AdministrationAction implements ActionListener {
 						        + Grammar.suffix_s(action.get("target")) + " HP over its Base HP");
 						return;
 					}
-					
+
 					if (stat.equals("hp") && numberValue==0) {
 						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
 						        + Grammar.suffix_s(action.get("target")) + " HP to 0, making it so unkillable.");
@@ -475,6 +479,43 @@ public class AdministrationAction implements ActionListener {
 		Log4J.finishMethod(logger, "onAlter");
 	}
 
+	private void onAlterCreature(Player player, RPAction action) {
+		Log4J.startMethod(logger, "onAlterCreature");
+
+		if (action.has("target") && action.has("text")) {
+			Entity changed = getTarget(player, action);
+
+			if (changed == null) {
+				logger.debug("Entity not found");
+				player.sendPrivateText("Entity not found");
+				return;
+			}
+
+			/*
+			 * It will contain a string like: name/atk/def/hp/xp
+			 */
+			String stat = action.get("text");
+
+			String[] parts = stat.split("/");
+			if (changed instanceof Creature && parts.length == 5) {
+				Creature creature=(Creature)changed;
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "alter", action.get("target"), stat);
+
+				creature.setName(parts[0]);
+				creature.setATK(Integer.parseInt(parts[1]));
+				creature.setDEF(Integer.parseInt(parts[2]));
+				creature.initHP(Integer.parseInt(parts[3]));
+				creature.setXP(Integer.parseInt(parts[4]));
+
+				creature.update();
+				creature.notifyWorldAboutChanges();
+			} else {
+			}
+		}
+
+		Log4J.finishMethod(logger, "onAlterCreature");
+	}
+
 	private void onSummon(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onSummon");
 
@@ -497,13 +538,13 @@ public class AdministrationAction implements ActionListener {
 					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
 					entity = manager.getItem(type);
 				}
-				
+
 				if(entity==null) {
 					logger.info("onSummon: Entity \"" + type + "\" not found.");
 					player.sendPrivateText("onSummon: Entity \"" + type + "\" not found.");
 					return;
 				}
-				
+
 				zone.assignRPObjectID(entity);
 				StendhalRPAction.placeat(zone, entity, x, y);
 				zone.add(entity);
@@ -573,7 +614,7 @@ public class AdministrationAction implements ActionListener {
 
 	private void onGhostMode(Player player, RPAction action) {
 		Log4J.startMethod(logger, "onGhostMode");
-		
+
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
@@ -596,9 +637,9 @@ public class AdministrationAction implements ActionListener {
 				p.notifyOffline(player.getName());
 			}
 		}
-		
+
 		player.notifyWorldAboutChanges();
-		
+
 		Log4J.finishMethod(logger, "onGhostMode");
 	}
 
