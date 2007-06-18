@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
- * QUEST: Kill Dark Elves
+ * QUEST: Find Ghosts
  *
  * PARTICIPANTS:
  * - Carena
@@ -24,7 +24,7 @@ import java.util.LinkedList;
  * 
  * REWARD:
  * - base HP bonus of 50
- * - 5400 XP
+ * - 5000 XP
  * 
  * REPETITIONS:
  * - None.
