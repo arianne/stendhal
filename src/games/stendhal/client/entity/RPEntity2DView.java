@@ -367,12 +367,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void drawTop(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		Composite oldComposite = g2d.getComposite();
-		g2d.setComposite(entityComposite);
-
 		drawStatusBar(g2d, x, y);
-
-		g2d.setComposite(oldComposite);
 	}
 
 
