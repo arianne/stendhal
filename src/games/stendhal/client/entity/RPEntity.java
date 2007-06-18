@@ -440,8 +440,6 @@ public abstract class RPEntity extends ActiveEntity {
 
 		//playSound("punch-mix", 20, 60, 80);
 
-		addTextIndicator("-" + damage, Color.red);
-
 		boolean showAttackInfoForPlayer = (!User.isNull())
 		        && (this.equals(User.get()) || attacker.equals(User.get()));
 		showAttackInfoForPlayer = showAttackInfoForPlayer & (!stendhal.FILTER_ATTACK_MESSAGES);
