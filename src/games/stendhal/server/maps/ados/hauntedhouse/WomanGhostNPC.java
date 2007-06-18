@@ -64,11 +64,11 @@ public class WomanGhostNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Wooouhhhhhh!");
+				//addGreeting("Wooouhhhhhh!");
 				addJob("I can do nothing useful on this earthly world. I haunt this house now.");
 				addHelp("Here is a warning: if you die, you will become a ghost like me, partially visible and intangible. But if you can find your way out of the afterlife, you will be reborn.");
 				addGoodbye("Bye");
-				// To do: add interesting things
+				// remaining behaviour defined in games.stendhal.server.maps.quests.FindGhosts
 			}
 		};
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");
