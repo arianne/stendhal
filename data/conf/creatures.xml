@@ -167,6 +167,31 @@
     </ai>
   </creature>
 
+  <creature name="pigeon">
+    <type class="animal" subclass="pigeon" tileid="animal.png:23"/>
+    <description></description>
+    <attributes>
+      <atk value="19"/>
+      <def value="13"/>
+      <hp value="20"/>
+      <speed value="0.5"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="1"/>
+    <experience value="10"/>
+    <respawn value="900"/>
+    <drops>
+      <item value="meat" quantity="[1,2]" probability="50.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="monkey">
     <type class="animal" subclass="monkey" tileid="animal.png:15"/>
     <description></description>
@@ -349,7 +374,7 @@
   </creature>
 
   <creature name="babybear">
-    <type class="animal" subclass="babybear" tileid="animal.png:XXX"/>
+    <type class="animal" subclass="babybear" tileid="animal.png:21"/>
     <description></description>
     <attributes>
       <atk value="24"/>
@@ -378,7 +403,7 @@
   </creature>
 
   <creature name="panda">
-    <type class="animal" subclass="pandabear" tileid="animal.png:XXX"/>
+    <type class="animal" subclass="pandabear" tileid="animal.png:22"/>
     <description></description>
     <attributes>
       <atk value="24"/>
@@ -1229,7 +1254,7 @@
   </creature>
 
   <creature name="littlefairy">
-    <type class="human" subclass="littlefairy" tileid="human.png:XXX"/>
+    <type class="human" subclass="littlefairy" tileid="human_little.png:0"/>
     <description></description>
     <attributes>
       <atk value="70"/>
@@ -1724,7 +1749,7 @@
   </creature>
 
   <creature name="frogman">
-    <type class="frogman" subclass="frogman" tileid="frogman.png:XXX"/>
+    <type class="frogman" subclass="frogman" tileid="frogman.png:1"/>
     <description></description>
     <attributes>
       <atk value="83"/>
@@ -2243,7 +2268,7 @@
   </creature>
 
   <creature name="ogre_soldier">
-    <type class="giant" subclass="ogre_soldier" tileid="giant.png:XXX"/>
+    <type class="giant" subclass="ogre_soldier" tileid="giant.png:3"/>
     <description></description>
     <attributes>
       <atk value="103"/>
@@ -2574,7 +2599,7 @@
   </creature>
 
   <creature name="sheepman">
-    <type class="sheepman" subclass="sheepman" tileid="sheepman.png:XXX"/>
+    <type class="sheepman" subclass="sheepman" tileid="sheepman.png:3"/>
     <description></description>
     <attributes>
       <atk value="110"/>
@@ -2611,7 +2636,7 @@
   </creature>
 
   <creature name="elite_frogman">
-    <type class="frogman" subclass="caped_frogman" tileid="frogman.png:XXX"/>
+    <type class="frogman" subclass="caped_frogman" tileid="frogman.png:0"/>
     <description></description>
     <attributes>
       <atk value="112"/>
@@ -2637,7 +2662,7 @@
   </creature>
 
   <creature name="elder_skeleton">
-    <type class="undead" subclass="elder_skeleton" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="elder_skeleton" tileid="undead.png:7"/>
     <description></description>
     <attributes>
       <atk value="112"/>
@@ -2737,7 +2762,7 @@
   </creature>
 
   <creature name="littlewizard">
-    <type class="human" subclass="littlewizard" tileid="human.png:XXX"/>
+    <type class="human" subclass="littlewizard" tileid="human_little.png:1"/>
     <description></description>
     <attributes>
       <atk value="116"/>
@@ -2762,7 +2787,7 @@
   </creature>
 
   <creature name="duergar">
-    <type class="dwarf" subclass="duergar" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar" tileid="dwarf_duergar.png:6"/>
     <description></description>
     <attributes>
       <atk value="119"/>
@@ -2884,7 +2909,7 @@
   </creature>
 
   <creature name="armored_sheepman">
-    <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:XXX"/>
+    <type class="sheepman" subclass="armored_sheepman" tileid="sheepman.png:0"/>
     <description></description>
     <attributes>
       <atk value="123"/>
@@ -2949,7 +2974,7 @@
   </creature>
 
   <creature name="duergar_axeman">
-    <type class="dwarf" subclass="duergar_axe" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_axe" tileid="dwarf_duergar.png:0"/>
     <description></description>
     <attributes>
       <atk value="125"/>
@@ -2974,7 +2999,7 @@
   </creature>
 
   <creature name="superogre">
-    <type class="giant" subclass="superogre" tileid="giant.png:XXX"/>
+    <type class="giant" subclass="superogre" tileid="giant.png:4"/>
     <description></description>
     <attributes>
       <atk value="125"/>
@@ -3000,7 +3025,7 @@
   </creature>
 
   <creature name="wizard_frogman">
-    <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:XXX"/>
+    <type class="frogman" subclass="wizard_frogman" tileid="frogman.png:2"/>
     <description></description>
     <attributes>
       <atk value="129"/>
@@ -3150,7 +3175,7 @@
   </creature>
 
   <creature name="duergar_elder">
-    <type class="dwarf" subclass="duergar_elder" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_elder" tileid="dwarf_duergar.png:2"/>
     <description></description>
     <attributes>
       <atk value="125"/>
@@ -3207,7 +3232,7 @@
   </creature>
 
   <creature name="elder_sheepman">
-    <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:XXX"/>
+    <type class="sheepman" subclass="elder_sheepman" tileid="sheepman.png:1"/>
     <description></description>
     <attributes>
       <atk value="136"/>
@@ -3364,7 +3389,7 @@
   </creature>
 
   <creature name="duergar_elite">
-    <type class="dwarf" subclass="duergar_elite" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_elite" tileid="dwarf_duergar.png:3"/>
     <description></description>
     <attributes>
       <atk value="142"/>
@@ -3419,7 +3444,7 @@
   </creature>
 
   <creature name="invisible_man">
-    <type class="undead" subclass="invisible_man" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="invisible_man" tileid="undead_fallen.png:6"/>
     <description></description>
     <attributes>
       <atk value="144"/>
@@ -3448,7 +3473,7 @@
   </creature>
 
   <creature name="child_dark_elf">
-    <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:XXX"/>
+    <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
     <description></description>
     <attributes>
       <atk value="145"/>
@@ -3478,7 +3503,7 @@
   </creature>
 
   <creature name="elite_sheepman">
-    <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:XXX"/>
+    <type class="sheepman" subclass="elite_sheepman" tileid="sheepman.png:2"/>
     <description></description>
     <attributes>
       <atk value="136"/>
@@ -3635,7 +3660,7 @@
   </creature>
 
   <creature name="duergar_hero">
-    <type class="dwarf" subclass="duergar_hero" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_hero" tileid="dwarf_duergar.png:4"/>
     <description></description>
     <attributes>
       <atk value="151"/>
@@ -3907,7 +3932,7 @@
   </creature>
 
   <creature name="duergar_wizard">
-    <type class="dwarf" subclass="duergar_wizard" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_wizard" tileid="dwarf_duergar.png:7"/>
     <description></description>
     <attributes>
       <atk value="159"/>
@@ -4145,7 +4170,7 @@
   </creature>
 
   <creature name="fallen_warrior">
-    <type class="undead" subclass="fallen_warrior" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="fallen_warrior" tileid="undead_fallen.png:3"/>
     <description></description>
     <attributes>
       <atk value="165"/>
@@ -4363,7 +4388,7 @@
   </creature>
 
   <creature name="lich">
-    <type class="undead" subclass="lich" tileid="undead.png:7"/>
+    <type class="undead" subclass="lich" tileid="undead_fallen.png:7"/>
     <description></description>
     <attributes>
       <atk value="160"/>
@@ -4394,7 +4419,7 @@
   </creature>
 
   <creature name="duergar_black">
-    <type class="dwarf" subclass="duergar_black" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_black" tileid="dwarf_duergar.png:1"/>
     <description></description>
     <attributes>
       <atk value="172"/>
@@ -4855,7 +4880,7 @@
   </creature>
 
   <creature name="naga">
-    <type class="mutant" subclass="naga" tileid="mutant.png:2"/>
+    <type class="mutant" subclass="naga" tileid="naga.png:2"/>
     <description></description>
     <attributes>
       <atk value="190"/>
@@ -4882,7 +4907,7 @@
   </creature>
 
   <creature name="fallen_priest">
-    <type class="undead" subclass="fallen_priest" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="fallen_priest" tileid="undead_fallen.png:2"/>
     <description></description>
     <attributes>
       <atk value="192"/>
@@ -5037,7 +5062,7 @@
   </creature>
 
   <creature name="incorporeal_armor">
-    <type class="undead" subclass="incorporeal_armor" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="incorporeal_armor" tileid="undead_fallen.png:5"/>
     <description></description>
     <attributes>
       <atk value="198"/>
@@ -5095,7 +5120,7 @@
   </creature>
 
   <creature name="werewolf">
-    <type class="mutant" subclass="werewolf" tileid="mutant.png:3"/>
+    <type class="mutant" subclass="werewolf" tileid="mutant.png:2"/>
     <description></description>
     <attributes>
       <atk value="199"/>
@@ -5123,7 +5148,7 @@
   </creature>
 
   <creature name="duergar_king">
-    <type class="dwarf" subclass="duergar_king" tileid="duegar.png:XXX"/>
+    <type class="dwarf" subclass="duergar_king" tileid="dwarf_duergar.png:5"/>
     <description></description>
     <attributes>
       <atk value="200"/>
@@ -5148,7 +5173,7 @@
   </creature>
 
   <creature name="dead_lich">
-    <type class="undead" subclass="dead_lich" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="dead_lich" tileid="undead_fallen.png:0"/>
     <description></description>
     <attributes>
       <atk value="202"/>
@@ -5208,7 +5233,7 @@
   </creature>
 
   <creature name="high_naga">
-    <type class="mutant" subclass="high_naga" tileid="mutant.png:XXX"/>
+    <type class="mutant" subclass="high_naga" tileid="naga.png:1"/>
     <description></description>
     <attributes>
       <atk value="204"/>
@@ -5366,7 +5391,7 @@
   </creature>
 
   <creature name="fallen_high_priest">
-    <type class="undead" subclass="fallen_high_priest" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="fallen_high_priest" tileid="undead_fallen.png:1"/>
     <description></description>
     <attributes>
       <atk value="213"/>
@@ -5454,7 +5479,7 @@
   </creature>
 
   <creature name="armed_naga">
-    <type class="mutant" subclass="armed_naga" tileid="mutant.png:XXX"/>
+    <type class="mutant" subclass="armed_naga" tileid="naga.png:0"/>
     <description></description>
     <attributes>
       <atk value="216"/>
@@ -5589,7 +5614,7 @@
   </creature>
 
   <creature name="high_lich">
-    <type class="undead" subclass="high_lich" tileid="undead.png:XXX"/>
+    <type class="undead" subclass="high_lich" tileid="undead_fallen.png:4"/>
     <description></description>
     <attributes>
       <atk value="202"/>
@@ -5620,7 +5645,7 @@
   </creature>
 
   <creature name="dark_elf_ranger">
-    <type class="dark_elf" subclass="dark_elf_ranger" tileid="dark_elf.png:XXX"/>
+    <type class="dark_elf" subclass="dark_elf_ranger" tileid="dark_elf.png:11"/>
     <description></description>
     <attributes>
       <atk value="231"/>
@@ -5750,7 +5775,7 @@
   </creature>
 
   <creature name="armored_warrior">
-    <type class="human" subclass="armored_warrior" tileid="human.png:XXX"/>
+    <type class="human" subclass="armored_warrior" tileid="human_armored.png:0"/>
     <description></description>
     <attributes>
       <atk value="238"/>
@@ -5914,7 +5939,7 @@
   </creature>
 
   <creature name="armored_leader">
-    <type class="human" subclass="armorer_leader" tileid="human.png:XXX"/>
+    <type class="human" subclass="armorer_leader" tileid="human_armored.png:1"/>
     <description></description>
     <attributes>
       <atk value="264"/>
