@@ -402,7 +402,9 @@ public class StendhalRPAction {
 
 			if(attacker.heal(lifesteal, true) == 0) {
 				// If no effective healing, reduce damage
-				damage /= 2;
+				if(damage > 1) {
+					damage /= 2;
+				}
 			}
 
 			attacker.notifyWorldAboutChanges();
