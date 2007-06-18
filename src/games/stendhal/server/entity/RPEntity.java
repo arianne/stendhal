@@ -127,8 +127,8 @@ public abstract class RPEntity extends GuidedEntity {
 
 			// TODO: Remove just prior to DB Reset
 			entity.add("hp/base_hp", RPClass.FLOAT, RPClass.VOLATILE);
-			entity.add("base_hp", RPClass.SHORT, RPClass.PRIVATE);
-			entity.add("hp", RPClass.SHORT, RPClass.PRIVATE);
+			entity.add("base_hp", RPClass.SHORT);
+			entity.add("hp", RPClass.SHORT);
 
 			entity.add("atk", RPClass.SHORT, RPClass.PRIVATE);
 			entity.add("atk_xp", RPClass.INT, RPClass.PRIVATE);
