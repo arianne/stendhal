@@ -172,8 +172,10 @@ public class WellSource extends Entity implements UseListener {
 					// some feedback is needed.
 					if(player.isEquipped("money", 30)) {
 						player.drop("money",30);
-						player.sendPrivateText("You make a wish.");
+						player.sendPrivateText("You throw 30 coins into the well and make a wish.");
 						TurnNotifier.get().notifyInSeconds(DURATION, wish);
+					} else {
+						player.sendPrivateText("You need 30 coins to make a wish.");
 					}
 				}
 			}
