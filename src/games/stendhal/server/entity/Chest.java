@@ -12,13 +12,11 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.LootableSlot;
 import games.stendhal.server.events.UseListener;
 
 import java.util.Iterator;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;

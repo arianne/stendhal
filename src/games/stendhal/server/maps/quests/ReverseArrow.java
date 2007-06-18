@@ -16,7 +16,6 @@ import games.stendhal.server.events.LoginListener;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.EntityManager;
 
 import java.util.Collections;

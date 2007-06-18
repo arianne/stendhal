@@ -235,6 +235,7 @@ public class FixedPath extends Path {
 	 *
 	 * @return	<code>true</code> if there is no more path to follow.
 	 */
+	@Override
 	public boolean isFinished() {
 		return (currentGoal == null);
 	}

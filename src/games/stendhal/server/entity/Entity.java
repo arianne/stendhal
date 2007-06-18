@@ -17,7 +17,6 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 

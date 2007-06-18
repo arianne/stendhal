@@ -1,7 +1,5 @@
 package games.stendhal.server.maps.semos.townhall;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -10,7 +8,6 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
-import games.stendhal.server.pathfinder.Path;
 
 public class BoyNPC implements ZoneConfigurator {
 

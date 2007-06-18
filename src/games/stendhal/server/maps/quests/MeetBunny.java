@@ -9,10 +9,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.pathfinder.Path;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * QUEST: Meet the Easter Bunny anywhere around the World.

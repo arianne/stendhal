@@ -9,7 +9,6 @@ package games.stendhal.server.entity;
 //
 //
 
-import java.util.ArrayList;
 import java.util.List;
 
 import games.stendhal.server.pathfinder.FixedPath;

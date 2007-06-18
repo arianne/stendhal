@@ -13,7 +13,6 @@
 package games.stendhal.server.entity;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPClass;
 import org.apache.log4j.Logger;
 

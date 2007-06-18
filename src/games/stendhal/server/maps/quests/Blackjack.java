@@ -12,8 +12,6 @@ import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.pathfinder.Path;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;

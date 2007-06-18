@@ -5,7 +5,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 import java.util.Map;
-import games.stendhal.server.pathfinder.Path;
 
 public class ScriptingNPC extends SpeakerNPC {
 

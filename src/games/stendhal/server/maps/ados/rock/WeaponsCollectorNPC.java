@@ -4,11 +4,8 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.maps.ZoneConfigurator;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class WeaponsCollectorNPC implements ZoneConfigurator {
