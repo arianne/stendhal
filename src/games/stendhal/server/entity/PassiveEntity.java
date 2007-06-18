@@ -2,15 +2,29 @@ package games.stendhal.server.entity;
 
 import marauroa.common.game.*;
 
+/**
+ * An entity that doesn't move on it's own, but can be moved.
+ */
 public abstract class PassiveEntity extends Entity {
-
-	public PassiveEntity() throws AttributeNotFoundException {
-		super();
+	/**
+	 * Create a passive entity.
+	 */
+	public PassiveEntity() {
 	}
 
-	public PassiveEntity(RPObject object) throws AttributeNotFoundException {
+	/**
+	 * Create a passive entity.
+	 *
+	 * @param	object		The template object.
+	 */
+	public PassiveEntity(RPObject object) {
 		super(object);
 	}
+
+
+	//
+	// Entity
+	//
 
 	/**
 	 * Determine if this is an obstacle for another entity.

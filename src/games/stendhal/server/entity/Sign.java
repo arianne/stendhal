@@ -43,11 +43,20 @@ public class Sign extends Entity {
 		}
 	}
 
-	public Sign() throws AttributeNotFoundException {
-		super();
+
+	/**
+	 * Create a sign.
+	 */
+	public Sign() {
 		put("type", "sign");
 	}
 
+
+	/**
+	 * Set the sign text.
+	 *
+	 * @param	text		The sign text.
+	 */
 	public void setText(String text) {
 		put("text", text);
 	}
@@ -61,9 +70,11 @@ public class Sign extends Entity {
 		put("class", clazz);
 	}
 
+
+	// TODO: Add setObstacle() method for per-item config, rather than
+	// hard-coding class list.
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return !(has("class") && NON_OBSTACLE_CLASSES.contains(get("class")));
 	}
-
 }

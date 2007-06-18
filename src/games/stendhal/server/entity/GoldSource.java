@@ -27,13 +27,15 @@ import marauroa.common.game.RPObject;
  *
  */
 public class GoldSource extends Entity implements UseListener {
-
 	private static final String NEEDED_EQUIPMENT = "gold_pan";
+
 	private class Prospector implements TurnListener{
 		WeakReference<Player> playerRef;
+
 		public Prospector(Player bob) {
 			playerRef = new WeakReference<Player>(bob);
 		}
+
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Prospector) {
@@ -42,13 +44,20 @@ public class GoldSource extends Entity implements UseListener {
 			}else{
 				return false;
 			}
-			
 		}
+
 		@Override
 		public int hashCode() {
 			return super.hashCode();
 		}
-		
+
+		/**
+		 * This method is called when the turn number is reached.
+		 * NOTE: The <em>message</em> parameter is deprecated.
+		 *
+		 * @param	currentTurn	The current turn number.
+		 * @param	message		The string that was used.
+		 */
 		public void onTurnReached(int currentTurn, String message) {
 			Player player = playerRef.get();
 			// check if the player is still logged in
@@ -66,16 +75,16 @@ public class GoldSource extends Entity implements UseListener {
 				}
 			}
 		}
-		
 	}
+
 	private String itemName ="gold_nugget";
+
 	/**
 	 * The chance that prospecting is successful.
 	 */
 	private final static double FINDING_PROBABILITY = 0.1;
 
 	public GoldSource() {
-		super();
 		setDescription("You see something golden glittering.");
 		put("type", "gold_source");
 	}
@@ -114,6 +123,11 @@ public class GoldSource extends Entity implements UseListener {
 		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
+
+	//
+	// UseListener
+	//
+
 	/**
 	 * Is called when a player has started prospecting for gold.
 	 */
@@ -121,7 +135,6 @@ public class GoldSource extends Entity implements UseListener {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 			if (player.nextTo(this)) {
-
 				if (player.isEquipped(NEEDED_EQUIPMENT)) {
 					Prospector prospect = new Prospector(player);
 					// You can't start a new prospecting action before
@@ -140,12 +153,11 @@ public class GoldSource extends Entity implements UseListener {
 			}
 		}
 	}
+
 	/**
 	 * @return an int between 7 and 10 to represent seconds needed for prospecting
 	 */
 	private int getDuration() {
-		
 		return 7  + Rand.rand(4);
 	}
-
 }

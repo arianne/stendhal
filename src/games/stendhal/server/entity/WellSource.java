@@ -26,12 +26,13 @@ import marauroa.common.game.RPObject;
  *
  */
 public class WellSource extends Entity implements UseListener {
-
 	private class Wisher implements TurnListener{
 		WeakReference<Player> playerRef;
+
 		public Wisher(Player bob) {
 			playerRef = new WeakReference<Player>(bob);
 		}
+
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Wisher) {
@@ -40,13 +41,20 @@ public class WellSource extends Entity implements UseListener {
 			}else{
 				return false;
 			}
-			
 		}
+
 		@Override
 		public int hashCode() {
 			return super.hashCode();
 		}
-		
+
+		/**
+		 * This method is called when the turn number is reached.
+		 * NOTE: The <em>message</em> parameter is deprecated.
+		 *
+		 * @param	currentTurn	The current turn number.
+		 * @param	message		The string that was used.
+		 */
 		public void onTurnReached(int currentTurn, String message) {
 			Player player = playerRef.get();
 			// check if the player is still logged in
@@ -68,6 +76,7 @@ public class WellSource extends Entity implements UseListener {
 		}
 		
 	}
+
         private  String[] items = {"money", "wood", "iron_ore", "gold_nugget", "potion", "home_scroll", "greater_potion", "sapphire", "carbuncle", "horned_golden_helmet", "dark_dagger", "present"};
 
 	/**
@@ -82,7 +91,6 @@ public class WellSource extends Entity implements UseListener {
 	private final static int DURATION = 10;
 
 	public WellSource() {
-		super();
 		setDescription("You see a wishing well. Something in it catches your eye.");
 		put("type", "well_source");
 	}
@@ -142,5 +150,4 @@ public class WellSource extends Entity implements UseListener {
 			}
 		}
 	}
-
 }

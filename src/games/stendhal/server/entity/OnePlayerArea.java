@@ -26,8 +26,6 @@ import games.stendhal.server.events.MovementListener;
  * 
  */
 public class OnePlayerArea extends Entity implements MovementListener {
-
-	
 	/**
 	 * The area height.
 	 */

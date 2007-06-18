@@ -362,11 +362,21 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
+	/**
+	 * Set the entity's name.
+	 *
+	 * @param	name		The new name.
+	 */
 	public void setName(String name) {
 		this.name = name;
 		put("name", name);
 	}
 
+	/**
+	 * Get the entity's name.
+	 *
+	 * @return	The entity's name.
+	 */
 	@Override
 	public String getName() {
 		return name;
@@ -1178,6 +1188,16 @@ public abstract class RPEntity extends GuidedEntity {
 		return false;
 	}
 
+	/**
+	 * Determine if this entity is equiped with a minimum quantity of
+	 * an item.
+	 *
+	 * @param	name		The item name.
+	 * @param	amount		The minimum amount.
+	 *
+	 * @return	<code>true</code> if the item is equiped with the
+	 *		minimum number.
+	 */
 	public boolean isEquipped(String name, int amount) {
 		if (amount <= 0) {
 			return false;
@@ -1206,6 +1226,13 @@ public abstract class RPEntity extends GuidedEntity {
 		return false;
 	}
 
+	/**
+	 * Determine if this entity is equiped with an item.
+	 *
+	 * @param	name		The item name.
+	 *
+	 * @return	<code>true</code> if the item is equiped.
+	 */
 	public boolean isEquipped(String name) {
 		return isEquipped(name, 1);
 	}

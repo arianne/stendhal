@@ -27,8 +27,6 @@ import marauroa.common.game.RPClass;
  *
  */
 public class FishSource extends Entity implements UseListener {
-
-	
 	private static final String NEEDED_EQUIPMENT = "fishing_rod";
 
 	private class Fisher implements TurnListener{
@@ -36,6 +34,7 @@ public class FishSource extends Entity implements UseListener {
 		public Fisher(Player bob) {
 			playerRef = new WeakReference<Player>(bob);
 		}
+
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Fisher) {
@@ -46,11 +45,19 @@ public class FishSource extends Entity implements UseListener {
 			}
 			
 		}
+
 		@Override
 		public int hashCode() {
 			return super.hashCode();
 		}
-		
+
+		/**
+		 * This method is called when the turn number is reached.
+		 * NOTE: The <em>message</em> parameter is deprecated.
+		 *
+		 * @param	currentTurn	The current turn number.
+		 * @param	message		The string that was used.
+		 */
 		public void onTurnReached(int currentTurn, String message) {
 			Player player= playerRef.get();
 			if (playerRef.get() != null) {
@@ -69,8 +76,9 @@ public class FishSource extends Entity implements UseListener {
 		}
 		
 	}
+
 	private String itemName;
-	
+
 	/**
 	 * Calculates the probability that the given player catches a fish.
 	 * This is based on the player's fishing skills, however even
@@ -92,7 +100,6 @@ public class FishSource extends Entity implements UseListener {
 	}
 
 	public FishSource(String itemName) {
-		super();
 		this.itemName = itemName;
 		setDescription("There is something in the water.");
 		put("type", "fish_source");
@@ -114,6 +121,11 @@ public class FishSource extends Entity implements UseListener {
 		int random = Rand.roll1D100();
 		return random <= getSuccessProbability(player) * 100;
 	}
+
+
+	//
+	// UseListener
+	//
 
 	/**
 	 * Is called when a player has started fishing.
@@ -147,9 +159,6 @@ public class FishSource extends Entity implements UseListener {
 	 * @return an int between 5 and 8 to represent seconds needed for fishing
 	 */
 	private int getDuration() {
-		
 		return 5  + Rand.rand(4);
 	}
-
-
 }

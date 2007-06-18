@@ -29,7 +29,9 @@ import marauroa.common.game.RPSlot;
  * can take out items that another player put in.
  */
 public class Chest extends Entity implements UseListener {
-
+	/**
+	 * Whether the chest is open.
+	 */
 	private boolean open;
 
 	public static void generateRPClass() {
@@ -39,7 +41,7 @@ public class Chest extends Entity implements UseListener {
 		chest.addRPSlot("content", 30);
 	}
 
-	public Chest(RPObject object) throws AttributeNotFoundException {
+	public Chest(RPObject object) {
 		super(object);
 		put("type", "chest");
 
@@ -52,8 +54,7 @@ public class Chest extends Entity implements UseListener {
 		update();
 	}
 
-	public Chest() throws AttributeNotFoundException {
-		super();
+	public Chest() {
 		put("type", "chest");
 		open = false;
 
@@ -62,7 +63,10 @@ public class Chest extends Entity implements UseListener {
 		addSlot(slot);
 	}
 
-	
+
+	//
+	// Chest
+	//
 
 	@Override
 	public void update() {
@@ -73,18 +77,30 @@ public class Chest extends Entity implements UseListener {
 		}
 	}
 
+	/**
+	 * Open the chest.
+	 */
 	public void open() {
 		this.open = true;
 		put("open", "");
 	}
 
+	/**
+	 * Close the chest.
+	 */
 	public void close() {
 		this.open = false;
+
 		if (has("open")) {
 			remove("open");
 		}
 	}
 
+	/**
+	 * Determine if the chest is open.
+	 *
+	 * @return	<code>true</code> if the chest is open.
+	 */
 	public boolean isOpen() {
 		return open;
 	}
@@ -105,10 +121,13 @@ public class Chest extends Entity implements UseListener {
 		return content.iterator();
 	}
 
-	public void onUsed(RPEntity user) {
-		Player player = (Player) user;
 
-		if (player.nextTo(this)) {
+	//
+	// UseListener
+	//
+
+	public void onUsed(RPEntity user) {
+		if (user.nextTo(this)) {
 			if (isOpen()) {
 				close();
 			} else {
@@ -119,16 +138,25 @@ public class Chest extends Entity implements UseListener {
 		}
 	}
 
+
+	//
+	// Entity
+	//
+
 	@Override
 	public String describe() {
 		String text = "You see a chest.";
+
 		if (hasDescription()) {
 			text = getDescription();
 		}
+
 		text += " It is " + (isOpen() ? "open" : "closed") + ".";
+
 		if (isOpen()) {
 			text += " You can #inspect this item to see its contents.";
 		}
+
 		return (text);
 	}
 }

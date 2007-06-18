@@ -8,7 +8,14 @@ import marauroa.common.game.RPClass;
 
 
 public class Fire extends Entity implements UseListener {
+	/**
+	 * The entity width.
+	 */
 	private int width;
+
+	/**
+	 * The entity height.
+	 */
 	private int height;
 	
 	public static void generateRPClass() {
@@ -17,9 +24,8 @@ public class Fire extends Entity implements UseListener {
 		fire.add("width", RPClass.SHORT);
 		fire.add("height", RPClass.SHORT);
 	}
-	
+
 	public Fire(int width, int height) {
-		super();
 		setDescription("You see a flickering light. You are tented to touch it");
 		put("type", "fire");
 		put("width", width);
@@ -27,20 +33,45 @@ public class Fire extends Entity implements UseListener {
 		this.width = width;
 		this.height = height;
 	}
-	
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, width, height);
 
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height.
+	 */
+	public int getHeight() {
+		return height;
 	}
 
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width.
+	 */
+	public int getWidth() {
+		return width;
+	}
+
+
 	@Override
-    public boolean isObstacle(Entity entity) {
+	public void getArea(Rectangle2D rect, double x, double y) {
+		rect.setRect(x, y, getWidth(), getHeight());
+	}
+
+
+	@Override
+	public boolean isObstacle(Entity entity) {
 		return true;
-    }
+	}
+
+
+	//
+	// UseListener
+	//
 
 	public void onUsed(RPEntity user) {
-			user.sendPrivateText("No good idea!");
-    }
-
+		user.sendPrivateText("No good idea!");
+	}
 }

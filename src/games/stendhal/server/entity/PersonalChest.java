@@ -59,6 +59,13 @@ public class PersonalChest extends Chest {
 
 		TurnListener turnListener = new TurnListener() {
 
+			/**
+			 * This method is called when the turn number is reached.
+			 * NOTE: The <em>message</em> parameter is deprecated.
+			 *
+			 * @param	currentTurn	The current turn number.
+			 * @param	message		The string that was used.
+			 */
 			public void onTurnReached(int currentTurn, String message) {
 				if (attending != null) {
 					/* Can be replaced when we add Equip event */

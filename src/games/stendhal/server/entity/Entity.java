@@ -82,7 +82,10 @@ public abstract class Entity extends RPObject {
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
-		entity.add("description", RPClass.LONG_STRING, RPClass.HIDDEN); // Some things may have a textual description
+
+		// Some things may have a textual description
+		entity.add("description", RPClass.LONG_STRING, RPClass.HIDDEN);
+
 		entity.add("x", RPClass.SHORT);
 		entity.add("y", RPClass.SHORT);
 
@@ -90,7 +93,6 @@ public abstract class Entity extends RPObject {
 		 * If this is set, the client will discard/ignore entity
 		 */
 		entity.add("server-only", RPClass.FLAG, RPClass.VOLATILE);
-
 
 		/*
 		 * The current overlayed client effect.
@@ -104,7 +106,7 @@ public abstract class Entity extends RPObject {
 		entity.add("visibility", RPClass.INT, RPClass.VOLATILE);
 	}
 
-	public Entity(RPObject object) throws AttributeNotFoundException {
+	public Entity(RPObject object) {
 		super(object);
 
 		if(!has("visibility")) {
@@ -114,11 +116,10 @@ public abstract class Entity extends RPObject {
 		update();
 	}
 
-	public Entity() throws AttributeNotFoundException {
-		super();
+	public Entity() {
 	}
 
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		if (has("x")) {
 			x = getInt("x");
 		}
@@ -149,15 +150,27 @@ public abstract class Entity extends RPObject {
 		return description;
 	}
 
-	public void set(int x, int y) {
+	/**
+	 * Set the entity coordinates.
+	 *
+	 * @param	x		The X coordinate.
+	 * @param	y		The Y coordinate.
+	 */
+	public void set(final int x, final int y) {
 		setX(x);
 		setY(y);
 	}
 
-	public void setX(int x) {
+	/**
+	 * Set the entity X coordinate.
+	 *
+	 * @param	x		The X coordinate.
+	 */
+	public void setX(final int x) {
 		if ((x == this.x) && (x != 0)) {
 			return;
 		}
+
 		this.x = x;
 		put("x", x);
 	}
@@ -197,18 +210,34 @@ public abstract class Entity extends RPObject {
 	}
 
 
+	/**
+	 * Get the entity X coordinate.
+	 *
+	 * @return	The X coordinate.
+	 */
 	public int getX() {
 		return x;
 	}
 
-	public void setY(int y) {
+	/**
+	 * Set the entity Y coordinate.
+	 *
+	 * @param	y		The Y coordinate.
+	 */
+	public void setY(final int y) {
 		if ((y == this.y) && (y != 0)) {
 			return;
 		}
+
 		this.y = y;
 		put("y", y);
 	}
 
+	/**
+	 * Get the entity Y coordinate.
+	 *
+	 * @return	The Y coordinate.
+	 */
 	public int getY() {
 		return y;
 	}
@@ -477,8 +506,8 @@ public abstract class Entity extends RPObject {
 	 * @param x x 
 	 * @param y y
 	 */
-	public void getArea(Rectangle2D rect, double x, double y){
-		rect.setRect(x, y, 1,1);
+	public void getArea(final Rectangle2D rect, final double x, final double y) {
+		rect.setRect(x, y, 1.0, 1.0);
 	}
 		
 	/**
