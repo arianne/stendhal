@@ -2,6 +2,7 @@ package games.stendhal.server.entity;
 
 import java.lang.ref.WeakReference;
 
+import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
@@ -66,6 +67,18 @@ public class WellSource extends Entity implements UseListener {
 						String itemName = items[Rand.rand(items.length)];
 						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 						// TODO: player bind the better prizes below: horned_golden_helmet & dark_dagger
+						if(item.getName().equals("dark_dagger") || item.getName().equals("horned_golden_helmet")) {
+							/*
+							 * Bound powerful items.
+							 */
+							item.put("bound", player.getName());
+						} else if(item.getName().equals("money")) {
+							/*
+							 * Assign a random amount of money.
+							 */
+							((StackableItem)item).setQuantity(Rand.roll1D100());
+						}
+
 						player.equip(item, true);
 						player.sendPrivateText("You were lucky and found " + Grammar.a_noun(itemName));
 					} else {
@@ -77,8 +90,20 @@ public class WellSource extends Entity implements UseListener {
 
 	}
 
-	private String[] items = { "money", "wood", "iron_ore", "gold_nugget", "potion", "home_scroll", "greater_potion",
-			"sapphire", "carbuncle", "horned_golden_helmet", "dark_dagger", "present" };
+	private String[] items = {
+			"money",
+			"wood",
+			"iron_ore",
+			"gold_nugget",
+			"potion",
+			"home_scroll",
+			"greater_potion",
+			"sapphire",
+			"carbuncle",
+			"horned_golden_helmet",
+			"dark_dagger",
+			"present"
+			};
 
 	/**
 	 * The chance that wishing is successful.
