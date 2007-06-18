@@ -67,7 +67,6 @@ public class GhostNPC implements ZoneConfigurator {
 				nodes.add(new Path.Node(36, 37));
 				nodes.add(new Path.Node(36, 42));
 				nodes.add(new Path.Node(45, 42));
-				nodes.add(new Path.Node(45, 42));
 				nodes.add(new Path.Node(45, 45));
 				nodes.add(new Path.Node(61, 45));
 				nodes.add(new Path.Node(61, 53));
