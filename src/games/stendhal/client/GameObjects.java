@@ -144,10 +144,12 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	protected Entity add(final RPObject object) {
 		Entity entity = EntityFactory.createEntity(object);
 
-		// Discard view for now - Just force it's creation
-		entity.getView();
+		if(entity != null) {
+			// Discard view for now - Just force it's creation
+			entity.getView();
 
-		objects.put(FQID.create(object), entity);
+			objects.put(FQID.create(object), entity);
+		}
 
 		return entity;
 	}
@@ -177,14 +179,18 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 			Entity entity = add(object);
 
-			/*
-			 * Only non-contained objects are on screen
-			 */
-			if(!object.isContained()) {
-				GameScreen.get().addEntityView(entity.getView());
-			}
+			if(entity != null) {
+				/*
+				 * Only non-contained objects are on screen
+				 */
+				if(!object.isContained()) {
+					GameScreen.get().addEntityView(entity.getView());
+				}
 
-			logger.debug("added " + entity);
+				logger.debug("added " + entity);
+			} else {
+				logger.error("No entity for: " + object);
+			}
 		} else {
 			logger.debug("Discarding object: " + object);
 		}

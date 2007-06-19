@@ -25,6 +25,9 @@ import org.apache.log4j.Logger;
  * @author astridemma
  */
 public class EntityFactory {
+	private final static Logger logger = Log4J.getLogger(EntityFactory.class);
+
+
    protected EntityFactory(){
 	   
    }
@@ -55,6 +58,10 @@ public class EntityFactory {
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.
 				entityClass = EntityMap.getClass(type, null);
+
+				if(entityClass == null) {
+					return null;
+				}
 			}
 
 			Entity en = (Entity) entityClass.newInstance();
@@ -67,9 +74,7 @@ public class EntityFactory {
 			}
 			return en;
 		} catch (Exception e) {
-			
-			Logger logger = Log4J.getLogger(EntityFactory.class);
-			logger.error("cannot create entity for object " + object, e);
+			logger.error("Error creating entity for object: " + object, e);
 			return null;
 		}
 	}
