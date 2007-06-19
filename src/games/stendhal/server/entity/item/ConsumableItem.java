@@ -19,17 +19,17 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * 
+ *
  */
 
 /*
  * Note: this class has a natural ordering that is inconsistent with equals.
- * 
+ *
  * TODO: bug: calling consume() on a stack of ConsumableItems uses up all
  * items in the stack, not only a single one.
- * 
+ *
  * Quote from Player.java:
- * 
+ *
  * NOTE: We have a bug when consuming a stackableItem as when the first
  * item runs out the other ones also runs out. Perhaps this must be
  * fixed inside StackableItem itself
@@ -103,7 +103,7 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	public int compareTo(ConsumableItem other) {
-		
-		return getRegen()/getFrecuency() -other.getRegen()/other.getFrecuency();
+
+		return other.getRegen()/other.getFrecuency()-getRegen()/getFrecuency();
 	}
 }
