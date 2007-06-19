@@ -14,6 +14,8 @@ import org.junit.Test;
 
 public class ConsumableItemTest {
 	private static ConsumableItem c100_1;
+	private static ConsumableItem c4_5;
+	private static ConsumableItem c4_6;
 	private static ConsumableItem d100_1;
 	private static ConsumableItem c50_1;
 	private static ConsumableItem c100_2;
@@ -32,7 +34,12 @@ public class ConsumableItemTest {
 		c100_1 = new ConsumableItem(null, null, null, attributes );
 		assertEquals(100, c100_1.getRegen());
 		assertEquals(1, c100_1.getFrecuency());
-		
+		attributes.put("regen","4");
+		attributes.put("frequency","5");
+		c4_5 = new ConsumableItem(null, null, null, attributes );
+		attributes.put("regen","4");
+		attributes.put("frequency","6");
+		c4_6 = new ConsumableItem(null, null, null, attributes );
 		attributes.put("regen","100");
 		attributes.put("frequency","1");
 		d100_1 = new ConsumableItem(null, null, null, attributes );
@@ -50,26 +57,33 @@ public class ConsumableItemTest {
 @Test
 public void testlistsort()  {
 	LinkedList items = new LinkedList<ConsumableItem>();
+	items.add(c4_6);
 	items.add(c50_1);
 	items.add(c200_1);
 	items.add(c100_1);
+	items.add(c4_5);
+	
 	
 	Collections.sort(items);
-	assertEquals(2,items.indexOf(c50_1));
-	assertEquals(1,items.indexOf(c100_1));
 	assertEquals(0,items.indexOf(c200_1));
+	assertEquals(1,items.indexOf(c100_1));
+	assertEquals(2,items.indexOf(c50_1));
+	assertEquals(3,items.indexOf(c4_5));
+	assertEquals(4,items.indexOf(c4_6));
+	
+	
 }
 @Test
 public void testlistsort2()  {
-	LinkedList items = new LinkedList<ConsumableItem>();
+	LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
 	items.add(c50_1);
 	items.add(c200_1);
 	items.add(c100_1);
 	items.add(c100_2);
 	Collections.sort(items);
-	assertEquals(2,items.indexOf(c50_1));
-	assertEquals(1,items.indexOf(c100_1));
 	assertEquals(0,items.indexOf(c200_1));
+	assertEquals(1,items.indexOf(c100_1));
+	assertEquals(2,items.indexOf(c50_1));
 	assertEquals(3,items.indexOf(c100_2));
 }
 	@Test
