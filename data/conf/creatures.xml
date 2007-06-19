@@ -4176,19 +4176,18 @@
       <atk value="165"/>
       <def value="26"/>
       <hp value="402"/>
-      <speed value="1.0"/>
+      <speed value="0.9"/>
       <size value="1,2"/>
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
     <respawn value="1610"/>
     <drops>
-      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
-      <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
-      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+      <item value="greater_potion" quantity="[1,1]" probability="30.0"/>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="shadow_legs" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="0.05"/>
+      <item value="dark_dagger" quantity="[1,1]" probability="0.050"/>
     </drops>
     <equips>
     </equips>
@@ -4913,19 +4912,18 @@
       <atk value="192"/>
       <def value="30"/>
       <hp value="636"/>
-      <speed value="1.0"/>
+      <speed value="0.8"/>
       <size value="1,2"/>
     </attributes>
     <level value="74"/>
     <experience value="4790"/>
     <respawn value="2460"/>
     <drops>
-      <item value="greater_potion" quantity="[1,1]" probability="40.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="40.0"/>
       <item value="money" quantity="[10,90]" probability="100.0"/>
-      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
-      <item value="lich_cloak" quantity="[1,1]" probability="1.0"/>
-      <item value="golden_shield" quantity="[1,1]" probability="0.5"/>
-      <item value="soul_dagger" quantity="[1,1]" probability="0.0050"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="0.5"/>
+      <item value="chaos_cloak" quantity="[1,1]" probability="0.050"/>
     </drops>
     <equips>
     </equips>
@@ -5397,7 +5395,7 @@
       <atk value="213"/>
       <def value="32"/>
       <hp value="894"/>
-      <speed value="1.0"/>
+      <speed value="0.5"/>
       <size value="1,2"/>
     </attributes>
     <level value="91"/>
@@ -5408,7 +5406,7 @@
       <item value="money" quantity="[10,90]" probability="100.0"/>
       <item value="magic_plate_armor" quantity="[1,1]" probability="0.005"/>
       <item value="golden_twoside_axe" quantity="[1,1]" probability="2.5"/>
-      <item value="soul_dagger" quantity="[1,1]" probability="0.050"/>
+      <item value="demon_fire_sword" quantity="[1,1]" probability="0.0010"/>
     </drops>
     <equips>
     </equips>
