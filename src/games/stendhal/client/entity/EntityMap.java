@@ -58,7 +58,7 @@ public final class EntityMap {
 		register("plant_grower", null, "PlantGrower");
 		register("growing_entity_spawner", "items/grower/carrot_grower", "CarrotGrower");
 		register("growing_entity_spawner", null, "GrainField");
-		register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
+		//register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
 		register("gold_source", null, "GoldSource");
 		register("fish_source", null, "FishSource");
 		register("well_source", null, "WellSource");
@@ -66,8 +66,8 @@ public final class EntityMap {
 		register("area", null, "InvisibleEntity");
 
 		// TODO: Remove after a week [2007/05/29]
-		register("walk_blocker", null, "InvisibleEntity");
-		register("damaging_area", null, "InvisibleEntity");
+		//register("walk_blocker", null, "InvisibleEntity");
+		//register("damaging_area", null, "InvisibleEntity");
 
 		register("food", null, "SheepFood");
 		register("chest", null, "Chest");
