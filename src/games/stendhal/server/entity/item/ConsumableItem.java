@@ -104,6 +104,7 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 	 */
 	public int compareTo(ConsumableItem other) {
 
-		return other.getRegen()/other.getFrecuency()-getRegen()/getFrecuency();
+		float result=(float)other.getRegen()/(float)other.getFrecuency()-(float)getRegen()/(float)getFrecuency();
+		return (int)Math.signum(result);
 	}
 }
