@@ -6,20 +6,22 @@
 
 package games.stendhal.server.entity;
 
-import marauroa.common.game.AttributeNotFoundException;
+//
+//
+
+import games.stendhal.server.entity.area.AreaEntity;
 
 /**
  * An entity that just acts as an obsticle. This is a temporary workaround
  * to allow items to be placed, but not players/entities, until multi-level
  * collisions can be added.
  */
-public class WalkBlocker extends Entity {
-
+public class WalkBlocker extends AreaEntity {
 	/**
 	 * Create a walk blocker.
 	 */
-	public WalkBlocker() throws AttributeNotFoundException {
-		put("type", "walk_blocker");
+	public WalkBlocker() {
+		super(1, 1);
 	}
 
 	
