@@ -4,7 +4,9 @@ package games.stendhal.server.entity.item;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.junit.BeforeClass;
@@ -45,7 +47,31 @@ public class ConsumableItemTest {
 		attributes.put("frequency","2");
 		c100_2= new ConsumableItem(null, null, null, attributes );
 	}
-
+@Test
+public void testlistsort()  {
+	LinkedList items = new LinkedList<ConsumableItem>();
+	items.add(c50_1);
+	items.add(c200_1);
+	items.add(c100_1);
+	
+	Collections.sort(items);
+	assertEquals(2,items.indexOf(c50_1));
+	assertEquals(1,items.indexOf(c100_1));
+	assertEquals(0,items.indexOf(c200_1));
+}
+@Test
+public void testlistsort2()  {
+	LinkedList items = new LinkedList<ConsumableItem>();
+	items.add(c50_1);
+	items.add(c200_1);
+	items.add(c100_1);
+	items.add(c100_2);
+	Collections.sort(items);
+	assertEquals(2,items.indexOf(c50_1));
+	assertEquals(1,items.indexOf(c100_1));
+	assertEquals(0,items.indexOf(c200_1));
+	assertEquals(3,items.indexOf(c100_2));
+}
 	@Test
 	public void compareSGNxy_minSGNyx() {
 		//sgn(x.compareTo(y)) == -sgn(y.compareTo(x))
