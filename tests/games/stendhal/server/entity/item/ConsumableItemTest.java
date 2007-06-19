@@ -49,11 +49,11 @@ public class ConsumableItemTest {
 	@Test
 	public void compareSGNxy_minSGNyx() {
 		//sgn(x.compareTo(y)) == -sgn(y.compareTo(x))
-		assertTrue(c100_1.compareTo(c50_1)>0);
-		assertTrue(c50_1.compareTo(c100_1)<0);
+		assertTrue(c100_1.compareTo(c50_1)<0);
+		assertTrue(c50_1.compareTo(c100_1)>0);
 		assertTrue(Math.signum(c100_1.compareTo(c50_1))==-Math.signum(c50_1.compareTo(c100_1)));
-		assertTrue(c100_2.compareTo(c100_1)<0);
-		assertTrue(c100_1.compareTo(c100_2)>0);
+		assertTrue(c100_2.compareTo(c100_1)>0);
+		assertTrue(c100_1.compareTo(c100_2)<0);
 		assertTrue(Math.signum(c100_1.compareTo(c100_2))==-Math.signum(c100_2.compareTo(c100_1)));
 
 	}
@@ -61,13 +61,13 @@ public class ConsumableItemTest {
 	@Test
 	public void comparetransient() {
 //		(x.compareTo(y)>0 && y.compareTo(z)>0) implies x.compareTo(z)>0.
-		assertTrue(c50_1.compareTo(c100_1)<0);
-		assertTrue(c100_1.compareTo(c200_1)<0);
-		assertTrue(c50_1.compareTo(c200_1)<0);
+		assertTrue(c50_1.compareTo(c100_1)>0);
+		assertTrue(c100_1.compareTo(c200_1)>0);
+		assertTrue(c50_1.compareTo(c200_1)>0);
 
-		assertTrue(c200_1.compareTo(c100_1)>0);
-		assertTrue(c100_1.compareTo(c50_1)>0);
-		assertTrue(c200_1.compareTo(c50_1)>0);
+		assertTrue(c200_1.compareTo(c100_1)<0);
+		assertTrue(c100_1.compareTo(c50_1)<0);
+		assertTrue(c200_1.compareTo(c50_1)<0);
 		
 	}
 	@Test
