@@ -56,7 +56,7 @@ public class ConsumableItemTest {
 	}
 @Test
 public void testlistsort()  {
-	LinkedList items = new LinkedList<ConsumableItem>();
+	LinkedList<ConsumableItem> items = new LinkedList<ConsumableItem>();
 	items.add(c4_6);
 	items.add(c50_1);
 	items.add(c200_1);
@@ -95,7 +95,9 @@ public void testlistsort2()  {
 		assertTrue(c100_2.compareTo(c100_1)>0);
 		assertTrue(c100_1.compareTo(c100_2)<0);
 		assertTrue(Math.signum(c100_1.compareTo(c100_2))==-Math.signum(c100_2.compareTo(c100_1)));
-
+		assertTrue(c4_5.compareTo(c4_6)<0);
+		assertTrue(c4_6.compareTo(c4_5)>0);
+		assertTrue(Math.signum(c4_5.compareTo(c4_6))==-Math.signum(c4_6.compareTo(c4_5)));
 	}
 	
 	@Test
