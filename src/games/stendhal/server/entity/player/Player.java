@@ -38,6 +38,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -1334,43 +1335,25 @@ public class Player extends RPEntity {
 		}
 	}
 
+	public boolean isFull(){
+		return itemsToConsume.size() > 5 ;
+	}
 	public void consumeItem(ConsumableItem item) {
-		if ((item.getRegen() > 0) && (itemsToConsume.size() > 5) && !item.getName().contains("potion")) {
+		if (item.getQuantity()>1){
+			throw new IllegalArgumentException("consumeItem can only take one item at a time");
+		}
+		
+		if ((item.getRegen() > 0) && isFull() && !item.getName().contains("potion")) {
 			sendPrivateText("You can't consume anymore");
 			return;
 		}
-		if (item.isContained()) {
-			// We modify the base container if the object change.
-			RPObject base = item.getContainer();
 
-			while (base.isContained()) {
-				base = base.getContainer();
-			}
 
-			if (!nextTo((Entity) base)) {
-				logger.debug("Consumable item is too far");
-				return;
-			}
-		} else {
-			if (!nextTo(item)) {
-				logger.debug("Consumable item is too far");
-				return;
-			}
-		}
-
-		/*
-		 * NOTE: We have a bug when consuming a stackableItem as when the first
-		 * item runs out the other ones also runs out. Perhaps this must be
-		 * fixed inside StackableItem itself
-		 */
-		ConsumableItem soloItem = (ConsumableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getEntity(
-		        item.getName());
-
-		logger.debug("Consuming item: " + soloItem.getAmount());
-		if (soloItem.getRegen() > 0) {
+		logger.debug("Consuming item: " + item.getAmount());
+		if (item.getRegen() > 0) {
 			put("eating", 0);
-			itemsToConsume.add(soloItem);
-		} else if (soloItem.getRegen() == 0) { // if regen==0, it's an antidote
+			itemsToConsume.add(item);
+		} else if (item.getRegen() == 0) { // if regen==0, it's an antidote
 			poisonToConsume.clear();
 			isImmune = true;
 			// set a timer to remove the immunity effect after some time
@@ -1379,74 +1362,75 @@ public class Player extends RPEntity {
 			// restart the timer
 			TurnListener tl = new AntidoteEater(this);
 			notifier.dontNotify(tl);
-			notifier.notifyInTurns(soloItem.getAmount(), tl);
+			notifier.notifyInTurns(item.getAmount(), tl);
 		} else if (!isImmune) {
 			// Player was poisoned and is currently not immune
-			poison(soloItem);
+			poisonToConsume.add(item);
 		} else {
 			// Player was poisoned, but antidote saved it.
 		}
 
 		Collections.sort(itemsToConsume);
-
-		item.removeOne();
+		
 	}
 
 	public void consume(int turn) {
-		if (has("poisoned") && (poisonToConsume.size() == 0)) {
+		
+
+
+		if ( (poisonToConsume.size() == 0)) {
+			if (has("poisoned")){
+		
 			remove("poisoned");
-			notifyWorldAboutChanges();
-		}
-
-		if (has("eating") && (itemsToConsume.size() == 0)) {
-			remove("eating");
-			notifyWorldAboutChanges();
-		}
-
-		while (poisonToConsume.size() > 0) {
-			ConsumableItem poison = poisonToConsume.get(0);
-
-			if (turn % poison.getFrecuency() != 0) {
-				break;
+			
 			}
-
-			if (!poison.consumed()) {
-				int amount = poison.consume();
-				put("poisoned", amount);
-
-				damage(-amount, poison);
-
-				notifyWorldAboutChanges();
-				break;
-			} else {
-				poisonToConsume.remove(0);
-			}
-		}
-
-		while (itemsToConsume.size() > 0) {
-			ConsumableItem consumableItem = itemsToConsume.get(0);
-			logger.debug("Consuming item: " + consumableItem);
-
-			if (turn % consumableItem.getFrecuency() != 0) {
-				break;
-			}
-
-			if (!consumableItem.consumed()) {
-				logger.debug("Consumed item: " + consumableItem);
-				int amount = consumableItem.consume();
-				put("eating", amount);
-
-				if(heal(amount, true) == 0) {
-					itemsToConsume.clear();
+		}else{
+			int sum = 0;
+			int amount=0;
+			for (Iterator<ConsumableItem> it = poisonToConsume.iterator();it.hasNext();){
+				ConsumableItem poison = it.next();
+				if (turn%poison.getFrecuency() ==0){
+					if (poison.consumed()){
+						it.remove();
+						
+					}else{
+						amount = poison.consume();
+						damage(-amount, poison);
+						sum += amount;
+						put("poisoned", sum);
+						
+					}
 				}
-
-				notifyWorldAboutChanges();
-				break;
-			} else {
-				logger.debug("Consumed completly item: " + consumableItem);
-				itemsToConsume.remove(0);
+			
 			}
 		}
+		
+		Collections.sort(itemsToConsume);
+		if (itemsToConsume.size()>0){
+			ConsumableItem food = itemsToConsume.get(0);
+			if (food.consumed()){
+				itemsToConsume.remove(0);
+			}else{
+				if(turn % food.getFrecuency()==0){
+					logger.debug("Consumed item: " + food);
+					 int amount = food.consume();
+					put("eating", amount);
+					if(heal(amount, true) == 0) {
+					itemsToConsume.clear();
+					}
+	
+				
+				}
+			}
+			
+		}else{
+
+			if (has("eating")) {
+				remove("eating");
+				
+			}
+		}
+		notifyWorldAboutChanges();
 	}
 
 	// TODO: use the turn notifier for consumable items to get rid of Player.consume().

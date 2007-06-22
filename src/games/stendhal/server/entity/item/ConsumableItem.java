@@ -14,7 +14,10 @@ package games.stendhal.server.entity.item;
 
 import java.util.Map;
 
+import marauroa.common.game.RPObject;
+
 import games.stendhal.server.events.UseListener;
+import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
@@ -94,7 +97,25 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
-		player.consumeItem(this);
+		if (isContained()) {
+			// We modify the base container if the object change.
+			RPObject base = getContainer();
+
+			while (base.isContained()) {
+				base = base.getContainer();
+			}
+
+			if (!user.nextTo((Entity) base)) {
+				user.sendPrivateText("Consumable item is too far");
+				return;
+			}
+		} else {
+			if (!nextTo(user)) {
+				user.sendPrivateText("Consumable item is too far");
+				return;
+			}
+		}
+		player.consumeItem((ConsumableItem) splitOff(1));
 		player.notifyWorldAboutChanges();
 	}
 
