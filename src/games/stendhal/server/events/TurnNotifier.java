@@ -19,65 +19,6 @@ import org.apache.log4j.Logger;
  */
 public class TurnNotifier {
 
-	/**
-	 * Struct to store a pair of TurnListener and String.
-	 */
-	// TODO: get rid of this class after the message parameter is not used anymore
-	// this class uses lots of memory
-	public static class TurnEvent {
-
-		public TurnListener turnListener;
-
-		public String message;
-
-		public TurnEvent(TurnListener turnListener, String message) {
-			this.turnListener = turnListener;
-			this.message = message;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj) {
-				return true;
-			}
-			if (obj == null) {
-				return false;
-			}
-			
-			if (getClass() != obj.getClass()) { 
-				return false;
-			}
-			if (obj instanceof TurnEvent){
-			TurnEvent other = (TurnEvent) obj;
-		
-			try {
-				if (!turnListener.equals(other.turnListener)) {
-					return false;
-				}
-			} catch (ClassCastException e) {
-				return false;
-			}
-			
-			
-			if (message == null) {
-				return (other.message == null);
-			}
-			return (message.equals(other.message));
-			}
-			else return false;
-		}
-
-		@Override
-		public int hashCode() {
-			final int PRIME = 31;
-			int result = super.hashCode();
-			result = PRIME * result + ((message == null) ? 0 : message.hashCode());
-			result = PRIME * result + ((turnListener == null) ? 0 : turnListener.hashCode());
-			return result;
-		}
-		
-	}
-
 	private static Logger logger = Logger.getLogger(TurnNotifier.class);
 
 	/** The Singleton instance **/
@@ -90,7 +31,7 @@ public class TurnNotifier {
 	 * at this turn.
 	 * Turns at which no event should take place needn't be registered here.
 	 */
-	private Map<Integer, Set<TurnEvent>> register = new HashMap<Integer, Set<TurnEvent>>();
+	private Map<Integer, Set<TurnListener>> register = new HashMap<Integer, Set<TurnListener>>();
 
 	/** Used for multi-threading synchronization. **/
 	private final Object sync = new Object();
@@ -116,6 +57,7 @@ public class TurnNotifier {
 	 *
 	 * @param currentTurn currentTurn
 	 */
+	
 	public void logic(int currentTurn) {
 		// Note: It is OK to only synchronize the remove part
 		//       because notifyAtTurn will not allow registrations
@@ -125,17 +67,16 @@ public class TurnNotifier {
 		this.currentTurn = currentTurn;
 
 		// get and remove the set for this turn
-		Set<TurnEvent> set = null;
+		Set<TurnListener> set = null;
 		synchronized (sync) {
-			set = register.remove(new Integer(currentTurn));
+			set = register.remove(Integer.valueOf(currentTurn));
 		}
 
 		if (set != null) {
-			for (TurnEvent event : set) {
-				TurnListener turnListener = event.turnListener;
-				String message = event.message;
+			for (TurnListener event : set) {
+				TurnListener turnListener = event;
 				try {
-					turnListener.onTurnReached(currentTurn, message);
+					turnListener.onTurnReached(currentTurn, null);
 				} catch (RuntimeException e) {
 					logger.error(e, e);
 				}
@@ -148,6 +89,7 @@ public class TurnNotifier {
 	 *
 	 * @return number of the next turn
 	 */
+	
 	public int getNumberOfNextTurn() {
 		return this.currentTurn + 1;
 	}
@@ -158,24 +100,9 @@ public class TurnNotifier {
 	 * @param diff the number of turns to wait before notifying
 	 * @param turnListener the object to notify
 	 */
-	// internally uses old code for compatibility; will be rewritten after 
-	// the other method is not required by external classes anymore
-	@SuppressWarnings("deprecation")
+	
 	public void notifyInTurns(int diff, TurnListener turnListener) {
-		notifyInTurns(diff, turnListener, null);
-	}
-
-	/**
-	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
-	 * 
-	 * @param diff the number of turns to wait before notifying
-	 * @param turnListener the object to notify
-	 * @param message an object to pass to the event handler
-	 * @deprecated use notifyInTurns(int, TurnListener) with an anon inner class 
-	 */
-	@Deprecated
-	public void notifyInTurns(int diff, TurnListener turnListener, String message) {
-		notifyAtTurn(currentTurn + diff + 1, turnListener, message);
+			notifyAtTurn(currentTurn + diff + 1, turnListener);
 	}
 
 	/**
@@ -184,24 +111,8 @@ public class TurnNotifier {
 	 * @param sec the number of seconds to wait before notifying
 	 * @param turnListener the object to notify
 	 */
-	// internally uses old code for compatibility; will be rewritten after 
-	// the other method is not required by external classes anymore
-	@SuppressWarnings("deprecation")
 	public void notifyInSeconds(int sec, TurnListener turnListener) {
-		notifyInSeconds(sec, turnListener, null);
-	}
-
-	/**
-	 * Notifies the <i>turnListener</i> in <i>sec</i> seconds.
-	 * 
-	 * @param sec the number of seconds to wait before notifying
-	 * @param turnListener the object to notify
-	 * @param message an object to pass to the event handler
-	 * @deprecated use notifyInSeconds(int, TurnListener) with an anon inner class 
-	 */
-	@Deprecated
-	public void notifyInSeconds(int sec, TurnListener turnListener, String message) {
-		notifyInTurns(StendhalRPWorld.get().getTurnsInSeconds(sec), turnListener, message);
+				notifyInTurns(StendhalRPWorld.get().getTurnsInSeconds(sec), turnListener);
 	}
 
 	/**
@@ -210,37 +121,22 @@ public class TurnNotifier {
 	 * @param turn the number of the turn
 	 * @param turnListener the object to notify
 	 */
-	// internally uses old code for compatibility; will be rewritten after 
-	// the other method is not required by external classes anymore
-	@SuppressWarnings("deprecation")
+
 	public void notifyAtTurn(int turn, TurnListener turnListener) {
-		notifyAtTurn(turn, turnListener, null);
-	}
-
-	/**
-	 * Notifies the <i>turnListener</i> at turn number <i>turn</i>.
-	 * 
-	 * @param turn the number of the turn
-	 * @param turnListener the object to notify
-	 * @param message an object to pass to the event handler
-	 * @deprecated use notifyAtTurn(int, TurnListener) with an anon inner class 
-	 */
-	@Deprecated
-	public void notifyAtTurn(int turn, TurnListener turnListener, String message) {
 		if (turn <= currentTurn) {
 			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
 			return;
 		}
 		synchronized (sync) {
 			// do we have other events for this turn?
-			Integer turnInt = new Integer(turn);
-			Set<TurnEvent> set = register.get(turnInt);
+			Integer turnInt = Integer.valueOf(turn);
+			Set<TurnListener> set = register.get(turnInt);
 			if (set == null) {
-				set = new HashSet<TurnEvent>();
+				set = new HashSet<TurnListener>();
 				register.put(turnInt, set);
 			}
 			// add it to the list
-			set.add(new TurnEvent(turnListener, message));
+			set.add(turnListener);
 		}
 	}
 
@@ -250,36 +146,26 @@ public class TurnNotifier {
 	 *
 	 * @param turnListener
 	 */
- 	// internally uses old code for compatibility; will be rewritten after 
-	// the other method is not required by external classes anymore
-	@SuppressWarnings("deprecation")
+ 
 	public void dontNotify(TurnListener turnListener) {
-		dontNotify(turnListener, null);
-	}
-
-	/**
-	 * Forgets all registered notification entries for the given TurnListener
-	 * where the entry's message equals the given one.
-	 *
-	 * @param turnListener
-	 * @param message
-	 * @deprecated use dontNotify(TurnListener) with an anon inner class 
-	 */
-	@Deprecated
-	public void dontNotify(TurnListener turnListener, String message) {
 		// all events that are equal to this one should be forgotten.
-		TurnEvent turnEvent = new TurnEvent(turnListener, message);
-		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry : register.entrySet()) {
-			Set<TurnEvent> set = mapEntry.getValue();
+//		TurnEvent turnEvent = new TurnEvent(turnListener);
+		for (Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
+			Set<TurnListener> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
 			// set. This is to avoid ConcurrentModificationExceptions. 
-			Set<TurnEvent> toBeRemoved = new HashSet<TurnEvent>();
-			for (TurnEvent currentEvent : set) {
-				if (currentEvent.equals(turnEvent)) {
+			Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
+			for (TurnListener currentEvent : set) {
+				try{
+				if (currentEvent.equals(turnListener)) {
 					toBeRemoved.add(currentEvent);
 				}
+				}catch (ClassCastException cce){
+					//TODO: remove try catch after Marauroa 2.0 
+					//this should never happen but RPObject equals thorws it
+				}
 			}
-			for (TurnEvent event : toBeRemoved) {
+			for (TurnListener event : toBeRemoved) {
 				set.remove(event);
 			}
 		}
@@ -292,34 +178,23 @@ public class TurnNotifier {
 	 * @return the number of remaining turns, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
-	// internally uses old code for compatibility; will be rewritten after 
-	// the other method is not required by external classes anymore
-	@SuppressWarnings("deprecation")
+	
 	public int getRemainingTurns(TurnListener turnListener) {
-		return  getRemainingTurns(turnListener, null);
-	}
-	/**
-	 * Finds out how many turns will pass until the given TurnListener
-	 * will be notified with the given message.
-	 *
-	 * @param turnListener
-	 * @param message
-	 * @return the number of remaining turns, or -1 if the given TurnListener
-	 *         will not be notified with the given message.
-	 * @deprecated use getRemainingTurns(TurnListener) with an anon inner class 
-	 */
-	@Deprecated
-	public int getRemainingTurns(TurnListener turnListener, String message) {
 		// all events match that are equal to this.
-		TurnEvent turnEvent = new TurnEvent(turnListener, message);
+//		TurnEvent turnEvent = new TurnEvent(turnListener);
 		// the HashMap is unsorted, so we need to run through
 		// all of it.
 		List<Integer> matchingTurns = new ArrayList<Integer>();
-		for (Map.Entry<Integer, Set<TurnEvent>> mapEntry : register.entrySet()) {
-			Set<TurnEvent> set = mapEntry.getValue();
-			for (TurnEvent currentEvent : set) {
-				if (currentEvent.equals(turnEvent)) {
-					matchingTurns.add(mapEntry.getKey());
+		for (Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
+			Set<TurnListener> set = mapEntry.getValue();
+			for (TurnListener currentEvent : set) {
+				try {
+					if (currentEvent.equals(turnListener)) {
+						matchingTurns.add(mapEntry.getKey());
+					}
+				} catch (ClassCastException e) {
+//					TODO: remove try catch after Marauroa 2.0 
+					//this should never happen but RPObject equals thorws it
 				}
 			}
 		}
@@ -339,26 +214,10 @@ public class TurnNotifier {
 	 * @return the number of remaining seconds, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
-	// internally uses old code for compatibility; will be rewritten after 
-	// the other method is not required by external classes anymore
-	@SuppressWarnings("deprecation")
+	
 	public int getRemainingSeconds(TurnListener turnListener) {
-		return getRemainingSeconds(turnListener, null);
-	}
-
-	/**
-	 * Finds out how many seconds will pass until the given TurnListener
-	 * will be notified with the given message.
-	 *
-	 * @param turnListener
-	 * @param message
-	 * @return the number of remaining seconds, or -1 if the given TurnListener
-	 *         will not be notified with the given message.
-	 * @deprecated use getRemainingSeconds(TurnListener) with an anon inner class 
-	 */
-	@Deprecated
-	public int getRemainingSeconds(TurnListener turnListener, String message) {
-		return (getRemainingTurns(turnListener, message) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
+	
+		return (getRemainingTurns(turnListener) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
 	}
 
 	/**
@@ -366,7 +225,7 @@ public class TurnNotifier {
 	 *
 	 * @return eventList
 	 */
-	public Map<Integer, Set<TurnEvent>> getEventListForDebugging() {
+	public Map<Integer, Set<TurnListener>> getEventListForDebugging() {
 		 return register;
 	}
 	
