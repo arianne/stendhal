@@ -517,8 +517,8 @@ public class Creature extends NPC {
 
 	public void tryToPoison() {
 		if ((getAttackTarget() != null) && nextTo(getAttackTarget()) && aiProfiles.containsKey("poisonous")) {
-			// probability of poisoning is 1 %
 			int roll = Rand.roll1D100();
+			System.out.println("durkham forgot to change roll back to random back");
 			String[] poison = aiProfiles.get("poisonous").split(",");
 			int prob = Integer.parseInt(poison[0]);
 			String poisonType = poison[1];
@@ -530,11 +530,11 @@ public class Creature extends NPC {
 					logger.error("Creature unable to poisoning with " + poisonType);
 				} else {
 					RPEntity entity = getAttackTarget();
-
+					
 					if (entity instanceof Player) {
 						Player player = (Player) entity;
 
-						if (!player.isPoisoned() && player.poison(item)) {
+						if (player.poison(item)) {
 							StendhalRPRuleProcessor.get().addGameEvent(getName(), "poison", player.getName());
 
 							player.sendPrivateText("You have been poisoned by a " + getName());
