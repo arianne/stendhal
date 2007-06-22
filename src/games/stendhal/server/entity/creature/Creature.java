@@ -518,7 +518,6 @@ public class Creature extends NPC {
 	public void tryToPoison() {
 		if ((getAttackTarget() != null) && nextTo(getAttackTarget()) && aiProfiles.containsKey("poisonous")) {
 			int roll = Rand.roll1D100();
-			System.out.println("durkham forgot to change roll back to random back");
 			String[] poison = aiProfiles.get("poisonous").split(",");
 			int prob = Integer.parseInt(poison[0]);
 			String poisonType = poison[1];
