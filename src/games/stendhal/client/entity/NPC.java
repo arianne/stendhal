@@ -28,16 +28,6 @@ public class NPC extends RPEntity {
 	// Entity
 	//
 
-	/** 
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new NPC2DView(this);
-	}
-
 	/**
 	 * Get the ground area this entity occupies.
 	 *

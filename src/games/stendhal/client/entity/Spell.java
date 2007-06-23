@@ -54,19 +54,4 @@ public class Spell extends PassiveEntity {
 		}
 
 	}
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new Spell2DView(this);
-	}
 }

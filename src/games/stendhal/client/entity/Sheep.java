@@ -144,17 +144,6 @@ public class Sheep extends RPEntity {
 	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new Sheep2DView(this);
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.

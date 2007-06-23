@@ -48,19 +48,4 @@ public class FishSource extends Entity {
 		}
 
 	}
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new FishSource2DView(this);
-	}
 }

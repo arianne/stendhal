@@ -55,19 +55,4 @@ public class Item extends PassiveEntity {
 		}
 
 	}
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new Item2DView(this);
-	}
 }

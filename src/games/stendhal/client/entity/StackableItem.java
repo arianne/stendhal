@@ -53,21 +53,6 @@ public class StackableItem extends Item {
 
 
 	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new StackableItem2DView(this);
-	}
-
-
-	//
 	// RPObjectChangeListener
 	//
 

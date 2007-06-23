@@ -13,17 +13,4 @@
 package games.stendhal.client.entity;
 
 public class SheepFood extends Food {
-	//
-	// Entity
-	//
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new SheepFood2DView(this);
-	}
 }

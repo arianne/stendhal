@@ -62,17 +62,6 @@ public class Ring extends Item {
 	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new Ring2DView(this);
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.

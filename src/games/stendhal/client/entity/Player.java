@@ -116,17 +116,6 @@ public class Player extends RPEntity {
 	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new Player2DView(this);
-	}
-
-
-	/**
 	 * Get the area the entity occupies.
 	 *
 	 * @return	A rectange (in world coordinate units).

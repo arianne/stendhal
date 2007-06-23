@@ -55,17 +55,6 @@ public class WellSource extends Entity {
 	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new WellSource2DView(this);
-	}
-
-
-	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
 	 * @param	entity		The entity to check against.

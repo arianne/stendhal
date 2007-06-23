@@ -108,17 +108,6 @@ public class Chest extends Entity implements Inspectable {
 	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new Chest2DView(this);
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.

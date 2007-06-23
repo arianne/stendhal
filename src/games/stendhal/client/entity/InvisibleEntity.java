@@ -31,17 +31,6 @@ public class InvisibleEntity extends Entity {
 	//
 
 	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	@Override
-	protected Entity2DView createView() {
-		return new InvisibleEntity2DView(this);
-	}
-
-
-	/**
 	 * Get the entity height.
 	 *
 	 * @return	The height.

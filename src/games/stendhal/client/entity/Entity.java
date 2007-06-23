@@ -15,6 +15,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.StendhalUI;
 
 import games.stendhal.client.events.RPObjectChangeListener;
+import games.stendhal.client.gui.Entity2DViewFactory;
 import games.stendhal.client.sound.SoundSystem;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -524,7 +525,9 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @return	The on-screen view of this entity.
 	 */
-	protected abstract Entity2DView createView();
+	protected Entity2DView createView() {
+		return Entity2DViewFactory.get().create(this);
+	}
 
 
 	/**
