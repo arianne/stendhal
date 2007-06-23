@@ -19,7 +19,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 import marauroa.common.game.RPAction;
-import marauroa.common.game.RPObject;
 
 /** this container is used to drag the entities around */
 public class MoveableEntityContainer implements WtDraggable {
