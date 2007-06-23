@@ -2,8 +2,8 @@
 package games.stendhal.server.script;
 
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-import games.stendhal.server.events.TurnNotifier.TurnEvent;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.util.ObjectCounter;
 
@@ -25,7 +25,7 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 
 		TurnNotifier turnNotifier = TurnNotifier.get();
 		int currentTurn = turnNotifier.getCurrentTurnForDebugging();
-		Map<Integer, Set<TurnEvent>> events = turnNotifier.getEventListForDebugging();
+		Map<Integer, Set<TurnListener>> events = turnNotifier.getEventListForDebugging();
 		
 		for (Integer turn : events.keySet()) {
 
@@ -35,8 +35,8 @@ public class DumpTurnListenerEvents extends ScriptImpl {
 			}
 
 			// count classes
-			for (TurnEvent event : events.get(turn)) {
-				counter.add(event.turnListener.getClass());
+			for (TurnListener event : events.get(turn)) {
+				counter.add(event.getClass());
 			}
 		}
 
