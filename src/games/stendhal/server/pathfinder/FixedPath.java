@@ -239,4 +239,26 @@ public class FixedPath extends Path {
 	public boolean isFinished() {
 		return (currentGoal == null);
 	}
+
+
+	//
+	// Object
+	//
+
+	/**
+	 * Get the string representation.
+	 *
+	 * @return	The string representation.
+	 */
+	public String toString() {
+		StringBuffer sbuf = new StringBuffer();
+
+		sbuf.append("FixedPath[");
+		sbuf.append(nodes);
+		sbuf.append("@<");
+		sbuf.append(pos);
+		sbuf.append(">]");
+
+		return sbuf.toString();
+	}
 }

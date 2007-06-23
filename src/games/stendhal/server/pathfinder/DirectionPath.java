@@ -17,16 +17,32 @@ import games.stendhal.server.entity.ActiveEntity;
  */
 public class DirectionPath extends Path {
 	/**
+	 * The destination point.
+	 */
+	protected Node		destination;
+
+	/**
 	 * The movement direction.
 	 */
 	protected Direction	direction;
 
+	/**
+	 * Whether the path is finished.
+	 */
+	protected boolean	finished;
+
 
 	/**
 	 * Create an empty fixed path.
+	 *
+	 * @param	direction	The movement direction.
+	 * @param	destination	The destination point (or null).
 	 */
-	public DirectionPath(final Direction direction) {
+	public DirectionPath(final Direction direction, final Node destination) {
 		this.direction = direction;
+		this.destination = destination;
+
+		finished = false;
 	}
 
 
@@ -59,6 +75,21 @@ public class DirectionPath extends Path {
 	 */
 	@Override
 	public boolean follow(final ActiveEntity entity) {
+		if(finished) {
+			return false;
+		}
+
+		if(destination != null) {
+			/*
+			 * Reached the destination?
+			 */
+			if((destination.getX() == entity.getX()) && (destination.getY() == entity.getY())) {
+				finished = true;
+
+				return false;
+			}
+		}
+
 		entity.setDirection(direction);
 		return true;
 	}
@@ -72,7 +103,7 @@ public class DirectionPath extends Path {
 	 */
 	@Override
 	public Node getDestination() {
-		return null;
+		return destination;
 	}
 
 
@@ -83,6 +114,28 @@ public class DirectionPath extends Path {
 	 */
 	@Override
 	public boolean isFinished() {
-		return false;
+		return finished;
+	}
+
+
+	//
+	// Object
+	//
+
+	/**
+	 * Get the string representation.
+	 *
+	 * @return	The string representation.
+	 */
+	public String toString() {
+		StringBuffer sbuf = new StringBuffer();
+
+		sbuf.append("DirectionPath[");
+		sbuf.append(getDirection());
+		sbuf.append("->");
+		sbuf.append(getDestination());
+		sbuf.append(']');
+
+		return sbuf.toString();
 	}
 }
