@@ -127,6 +127,7 @@ public class DirectionPath extends Path {
 	 *
 	 * @return	The string representation.
 	 */
+	@Override
 	public String toString() {
 		StringBuffer sbuf = new StringBuffer();
 

@@ -250,6 +250,7 @@ public class FixedPath extends Path {
 	 *
 	 * @return	The string representation.
 	 */
+	@Override
 	public String toString() {
 		StringBuffer sbuf = new StringBuffer();
 
