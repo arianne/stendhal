@@ -8,6 +8,8 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
@@ -36,7 +38,23 @@ public class Item2DView extends Entity2DView {
 	 */
 	@Override
 	protected void buildRepresentation() {
-		setSprite(SpriteStore.get().getSprite(translate(getClassResourcePath())));
+		SpriteStore store = SpriteStore.get();
+		Sprite sprite = store.getSprite(translate(getClassResourcePath()));
+
+		/*
+		 * Items are always 1x1 (they need to fit in entity slots).
+		 * Extra columns are animation.
+		 * Extra rows are ignored.
+		 */
+		int width = sprite.getWidth();
+
+		if(width > GameScreen.SIZE_UNIT_PIXELS) {
+			setSprite(store.getAnimatedSprite(sprite, 0, width / GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, 100L, true));
+		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
+			setSprite(store.getSprite(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
+		} else {
+			setSprite(sprite);
+		}
 	}
 
 
