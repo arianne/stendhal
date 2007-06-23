@@ -16,7 +16,6 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
-import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Graphics;
@@ -67,18 +66,15 @@ public class EntityContainer extends WtPanel {
 		setCloseable(true);
 		shownSlot = null;
 
-		SpriteStore st = SpriteStore.get();
-		Sprite slotSprite = st.getSprite("data/gui/slot.png");
+		int spriteWidth = EntitySlot.getDefaultWidth();
+		int spriteHeight = EntitySlot.getDefaultHeight();
 
-		int spriteWidth = slotSprite.getWidth();
-		int spriteHeight = slotSprite.getHeight();
-
-		slotPanels = new ArrayList<EntitySlot>();
+		slotPanels = new ArrayList<EntitySlot>(width * height);
 
 		// add the slots
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				EntitySlot entitySlot = new EntitySlot(client, name, slotSprite, null, x * spriteWidth + x, y * spriteHeight + y);
+				EntitySlot entitySlot = new EntitySlot(client, name, null, x * spriteWidth + x, y * spriteHeight + y);
 				slotPanels.add(entitySlot);
 			}
 		}

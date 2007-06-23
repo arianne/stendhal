@@ -925,15 +925,6 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *         received the object, false when there is no droptarget found
 	 */
 	protected boolean checkDropped(int x, int y, WtDraggable droppedObject) {
-		// are we ourself a drop target
-		if (this instanceof WtDropTarget) {
-			// yep, so cast ourself to the interface, call the callback and
-			// return
-			WtDropTarget target = (WtDropTarget) this;
-			target.onDrop(droppedObject);
-			return true;
-		}
-
 		// translate point to client coordinates
 		x -= getClientX();
 		y -= getClientY();
@@ -948,6 +939,13 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				}
 			}
 		}
+
+		// are we ourself a drop target
+		if (this instanceof WtDropTarget) {
+			WtDropTarget target = (WtDropTarget) this;
+			return target.onDrop(x, y, droppedObject);
+		}
+
 		// no drop target found
 		return false;
 	}

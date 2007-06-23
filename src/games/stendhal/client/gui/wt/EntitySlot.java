@@ -23,11 +23,13 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -45,15 +47,18 @@ import marauroa.common.game.RPObject;
  * @author mtotz
  */
 public class EntitySlot extends WtPanel implements WtDropTarget {
-
-	/** the (background) sprite for this slot */
-	private Sprite graphic;
-
-	/** the content of the slot */
-	private RPObject content;
+	/**
+	 * The background surface sprite.
+	 */
+	private static final Sprite background;
 
 	/** the parent of the slot */
 	private Entity parent;
+
+	/**
+	 * The entity being held.
+	 */
+	private Entity entity;
 
 	/** need this to find the sprite for each RPObject */
 	private StendhalClient client;
@@ -64,70 +69,96 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** cached old quantity */
 	private int oldQuantity;
 
-	/** cached sprite for the entity */
-	private Sprite sprite;
-	
-	/** background sprite */
-	private Sprite background;
+	/** The placeholder sprite. */
+	private Sprite placeholder;
 
-	/** Creates a new instance of RPObjectSlot */
-	public EntitySlot(StendhalClient client, String name, Sprite graphic, Sprite background, int x, int y) {
-		super(name, x, y, graphic.getWidth(), graphic.getHeight());
-		this.graphic = graphic;
-		this.client = client;
-		this.background = background;
-		this.sprite = background;
+
+	static {
+		background = SpriteStore.get().getSprite("data/gui/slot.png");
 	}
 
-	/** */
+	/** Creates a new instance of RPObjectSlot */
+	public EntitySlot(StendhalClient client, String name, Sprite placeholder, int x, int y) {
+		super(name, x, y, background.getWidth(), background.getHeight());
+		this.client = client;
+		this.placeholder = placeholder;
+
+		entity = null;
+	}
+
+
+	public static int getDefaultHeight() {
+		return background.getHeight();
+	}
+
+
+	public static int getDefaultWidth() {
+		return background.getWidth();
+	}
+
+
+	/**
+	 * Set the parent entity.
+	 */
 	public void setParent(Entity parent) {
 		this.parent = parent;
 	}
 
 	/** called when an object is dropped. */
-	public boolean onDrop(WtDraggable droppedObject) {
-		if ((droppedObject instanceof MoveableEntityContainer) && (parent != null)) {
-			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
-
-			// Don't drag an item into the same slot
-			if (container != null && content != null)
-				if (container.getContent() == content.getID().getObjectID())
-					return false;
-
-			RPAction action = new RPAction();
-
-			// looks like an equip
-			action.put("type", "equip");
-			// fill 'moved from' parameters
-			container.fillRPAction(action);
-			// tell the server who we are
-			action.put("targetobject", parent.getID().getObjectID());
-			action.put("targetslot", getName());
-
-			client.send(action);
+	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
+		if(parent == null) {
+			return false;
 		}
 
-		return false;
+		if (!(droppedObject instanceof MoveableEntityContainer)) {
+			return false;
+		}
+
+		MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
+
+		// Don't drag an item into the same slot
+		if (container.getEntity() == entity) {
+			return false;
+		}
+
+		RPAction action = new RPAction();
+
+		// looks like an equip
+		action.put("type", "equip");
+
+		// fill 'moved from' parameters
+		container.fillRPAction(action);
+
+		// 'move to'
+		action.put("targetobject", parent.getID().getObjectID());
+		action.put("targetslot", getName());
+
+		client.send(action);
+
+		return true;
 	}
 
 	/** clears the content of this slot */
 	public void clear() {
-		content = null;
-		sprite = background;
+		setEntity(null);
 	}
 
 	/** adds an object to this slot, this replaces any previous content */
 	public void add(RPObject object) {
-		content = object;
+		setEntity(EntityFactory.createEntity(object));
+	}
 
-		Entity entity = EntityFactory.createEntity(object);
-
-		if(entity != null) {
-			sprite = entity.getView().getSprite();
-			entity.release();
-		} else {
-			sprite = null;
+	/**
+	 * Set the slot entity.
+	 *
+	 *
+	 */
+	public void setEntity(final Entity entity) {
+		if(this.entity != null) {
+			this.entity.release();
 		}
+
+		this.entity = entity;
 	}
 
 	/**
@@ -165,22 +196,28 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		Graphics childArea = super.draw(g);
 
 		// draw the background image
-		graphic.draw(childArea, 0, 0);
-		// draw the content (if there is any)
-		if (sprite != null) {
-			// be sure to center the sprite
+		background.draw(childArea, 0, 0);
+
+		// draw the entity (if there is any)
+		if (entity != null) {
+			Sprite sprite = entity.getView().getSprite();
+
+			// Center the object sprite
 			int x = (getWidth() - sprite.getWidth()) / 2;
 			int y = (getHeight() - sprite.getHeight()) / 2;
 			sprite.draw(childArea, x, y);
 
-			if (content != null) {
-				// draw the amount if this item is stackable
-				if (content.has("quantity")) {
-					int quantity = content.getInt("quantity");
-					checkQuantityImage(quantity);
-					quantityImage.draw(childArea, 0, 0);
-				}
+			if (entity instanceof StackableItem) {
+				int quantity = ((StackableItem) entity).getQuantity();
+
+				checkQuantityImage(quantity);
+				quantityImage.draw(childArea, 0, 0);
 			}
+		} else if (placeholder != null) {
+			// Center the placeholder sprite
+			int x = (getWidth() - placeholder.getWidth()) / 2;
+			int y = (getHeight() - placeholder.getHeight()) / 2;
+			placeholder.draw(childArea, x, y);
 		}
 
 		return childArea;
@@ -191,8 +228,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
-		if (content != null) {
-			return new MoveableEntityContainer(content, parent, getName(), sprite);
+		if (entity != null) {
+			return new MoveableEntityContainer(entity, parent, getName());
 		}
 
 		return null;
@@ -201,10 +238,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** right mouse button was clicked */
 	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
-		if (content != null) {
+		if (entity != null) {
 			// create the context menu
-
-			Entity entity = EntityFactory.createEntity(content);
 			CommandList list = new CommandList(getName(), entity.offeredActions(), entity);
 			list.setContext(parent.getID().getObjectID(), getName());
 			setContextMenu(list);
@@ -221,22 +256,18 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 
 		// click into an empty slot should be ignored
-		if (content == null) {
-			return (false);
+		if (entity == null) {
+			return false;
 		}
 
 		// moveto events are not the default for items in a bag
 		if (parent instanceof Player) {
-			Entity entity = EntityFactory.createEntity(content);
-			if (entity != null) {
-
-				entity.onAction(entity.defaultAction(), Integer.toString(parent.getID().getObjectID()), getName());
-				return (true);
-			}
-			return (false);
+			entity.onAction(entity.defaultAction(), Integer.toString(parent.getID().getObjectID()), getName());
+			return true;
 		}
 
-	
+		RPObject content = entity.getRPObject();
+
 		RPAction action = new RPAction();
 		action.put("type", "equip");
 		// source object and content from THIS container

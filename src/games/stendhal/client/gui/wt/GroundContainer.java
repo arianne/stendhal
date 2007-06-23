@@ -23,6 +23,7 @@ import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtDraggable;
+import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
 import java.awt.Point;
@@ -39,7 +40,7 @@ import marauroa.common.game.RPSlot;
  * 
  */
 
-public class GroundContainer extends WtPanel implements Inspector {
+public class GroundContainer extends WtPanel implements WtDropTarget, Inspector {
 	/** the game client */
 	private StendhalClient client;
 
@@ -67,63 +68,24 @@ public class GroundContainer extends WtPanel implements Inspector {
 		screen = ui.getScreen();
 	}
 
-	/**
-	 * 
-	 * drops an item to the ground
-	 * 
-	 */
-	@Override
-	protected boolean checkDropped(int x, int y, WtDraggable droppedObject) {
-		// check all childpanels
-		boolean dropped = super.checkDropped(x, y, droppedObject);
-
-		if (dropped) {
-			return true;
-		}
-		// is ot an entity?
-		if (droppedObject instanceof MoveableEntityContainer) {
-			MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
-			Point2D point = screen.translate(new Point2D.Double(x, y));
-			RPAction action = new RPAction();
-			if (container.isContained()) {
-				// looks like an drop
-				action.put("type", "drop");
-				// HACK: if ctrl is pressed, attempt to split stackables
-				if (ui.isCtrlDown()) {
-					action.put("quantity", "1");
-				}
-			} else {
-				// it is a displace
-				action.put("type", "displace");
-			}
-			// fill 'moved from' parameters
-			container.fillRPAction(action);
-
-			// tell the server where the item goes to
-			action.put("x", (int) point.getX());
-			action.put("y", (int) point.getY());
-			client.send(action);
-			return true;
-		}
-		// no valid item
-		return false;
-	}
 
 	/** drags an item from the ground */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
-
 		WtDraggable other = super.getDragged(x, y);
+
 		if (other != null) {
 			return other;
 		}
+
 		Point2D point = screen.translate(new Point2D.Double(x, y));
 		EntityView view = screen.getMovableEntityViewAt(point.getX(), point.getY());
 
 		// only Items can be dragged
 		if (view != null) {
-			return new MoveableEntityContainer(view.getEntity(), (int) point.getX(), (int) point.getY());
+			return new MoveableEntityContainer(view.getEntity());
 		}
+
 		return null;
 	}
 
@@ -226,6 +188,47 @@ public class GroundContainer extends WtPanel implements Inspector {
 			}
 		}
 
+		return true;
+	}
+
+
+	//
+	// WtDropTarget
+	//
+
+	/** called when an object is dropped. */
+	public boolean onDrop(final int x, final int y, WtDraggable droppedObject) {
+		// Not an entity?
+		if (!(droppedObject instanceof MoveableEntityContainer)) {
+			return false;
+		}
+
+		MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
+
+		RPAction action = new RPAction();
+
+		if(container.isContained()) {
+			// looks like an drop
+			action.put("type", "drop");
+		} else {
+			// it is a displace
+			action.put("type", "displace");
+		}
+
+		// HACK: if ctrl is pressed, attempt to split stackables
+		if (ui.isCtrlDown()) {
+			action.put("quantity", 1);
+		}
+
+		// fill 'moved from' parameters
+		container.fillRPAction(action);
+
+		// 'move to'
+		Point2D point = screen.translate(new Point2D.Double(x, y));
+		action.put("x", (int) point.getX());
+		action.put("y", (int) point.getY());
+
+		client.send(action);
 		return true;
 	}
 

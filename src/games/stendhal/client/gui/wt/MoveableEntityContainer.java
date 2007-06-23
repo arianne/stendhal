@@ -14,7 +14,6 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.wt.core.WtDraggable;
-import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -31,11 +30,8 @@ public class MoveableEntityContainer implements WtDraggable {
 	/** current y-pos of the dragged item */
 	private int y;
 
-	/** the sprite */
-	private Sprite sprite;
-
-	/** id of the moved object */
-	private int content;
+	/** The moved object */
+	private Entity entity;
 
 	/** parent(container) of the moved object, may be null */
 	private Entity parent;
@@ -43,36 +39,16 @@ public class MoveableEntityContainer implements WtDraggable {
 	/** the slot this item is in. makes only sense when parent is != null */
 	private String slot;
 
-	/** x-pos of the item on the ground */
-	private int objectx;
-
-	/** y-pos of the item on the ground */
-	private int objecty;
-
-	public Entity getEntity() {
-		return parent;
+	/** constuctor to use when the item is on the ground */
+	public MoveableEntityContainer(Entity entity) {
+		this(entity, null, null);
 	}
 
 	/** constuctor to use when the item is inside a container */
-	public MoveableEntityContainer(RPObject content, Entity parent, String slot, Sprite sprite) {
-		this.content = content.getID().getObjectID();
+	public MoveableEntityContainer(Entity entity, Entity parent, String slot) {
+		this.entity = entity;
 		this.parent = parent;
 		this.slot = slot;
-		this.sprite = sprite;
-	}
-
-	/** constuctor to use when the item is on the ground */
-	public MoveableEntityContainer(Entity content, int x, int y) {
-		this.content = content.getID().getObjectID();
-		this.objectx = x;
-		this.objecty = y;
-		this.parent = null;
-		this.sprite = content.getView().getSprite();
-	}
-
-	/** returns true when the item represented by this container is inside a slot */
-	public boolean isContained() {
-		return (parent != null);
 	}
 
 	/** fills the action with the appropiate 'move from' parameters */
@@ -81,13 +57,35 @@ public class MoveableEntityContainer implements WtDraggable {
 			// the item is inside a container
 			action.put("baseobject", parent.getID().getObjectID());
 			action.put("baseslot", slot);
-		} else {
-			// the item is on the ground
-			action.put("x", objectx);
-			action.put("y", objecty);
 		}
-		action.put("baseitem", content);
+
+		action.put("baseitem", entity.getID().getObjectID());
 	}
+
+
+	/**
+	 * Get the entity being moved.
+	 *
+	 * @return	The entity.
+	 */
+	public Entity getEntity() {
+		return entity;
+	}
+
+
+	/**
+	 * Determine if this is in a container slot.
+	 *
+	 * @return	<code>true</code> if the item is in a container.
+	 */
+	public boolean isContained() {
+		return (parent != null);
+	}
+
+
+	//
+	// WtDraggable
+	//
 
 	/** drag started */
 	public boolean dragStarted() {
@@ -110,11 +108,6 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * draws the entity
 	 */
 	public void drawDragged(Graphics g) {
-		sprite.draw(g, x, y);
+		entity.getView().getSprite().draw(g, x, y);
 	}
-
-	public int getContent() {
-		return content;
-	}
-
 }
