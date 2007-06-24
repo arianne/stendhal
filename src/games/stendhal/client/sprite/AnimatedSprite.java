@@ -51,6 +51,16 @@ public class AnimatedSprite implements Sprite {
 	protected long		nextFrame;
 
 	/**
+	 * Whether to loop after last frame.
+	 */
+	protected boolean	loop;
+
+	/**
+	 * The current sprite.
+	 */
+	protected Sprite	sprite;
+
+	/**
 	 * The sprite width.
 	 */
 	protected int		width;
@@ -90,7 +100,7 @@ public class AnimatedSprite implements Sprite {
 	 *				If less than one frame is given, or
 	 *				the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite [] frames, final long delay, boolean animating) throws IllegalArgumentException {
+	public AnimatedSprite(final Sprite [] frames, final long delay, final boolean animating) throws IllegalArgumentException {
 		this(frames, delay, true, null);
 	}
 
@@ -111,7 +121,7 @@ public class AnimatedSprite implements Sprite {
 	 *				If less than one frame is given, or
 	 *				the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite [] frames, final long delay, boolean animating, Object reference) throws IllegalArgumentException {
+	public AnimatedSprite(final Sprite [] frames, final long delay, final boolean animating, final Object reference) throws IllegalArgumentException {
 		if(frames.length == 0) {
 			throw new IllegalArgumentException("Must have at least one frame");
 		}
@@ -125,6 +135,8 @@ public class AnimatedSprite implements Sprite {
 		this.animating = animating;
 		this.reference = reference;
 
+		loop = true;
+
 		height = 0;
 		width = 0;
 
@@ -134,6 +146,7 @@ public class AnimatedSprite implements Sprite {
 		}
 
 		frameidx = 0;
+		sprite = frames[0];
 		nextFrame = System.currentTimeMillis() + delay;
 	}
 
@@ -153,24 +166,28 @@ public class AnimatedSprite implements Sprite {
 
 
 	/**
-	 * Get the current frame sprite.
-	 *
-	 * @return	The current frame.
+	 * Update the current frame sprite.
 	 */
-	protected Sprite getFrame() {
+	protected void update() {
 		if(animating) {
 			long now = System.currentTimeMillis();
 
 			if(nextFrame <= now) {
 				if(++frameidx >= frames.length) {
+					if(!loop) {
+						frameidx--;
+						sprite = null;
+						animating = false;
+						return;
+					}
+
 					frameidx = 0;
 				}
 
+				sprite = frames[frameidx];
 				nextFrame = now + delay;
 			}
 		}
-
-		return frames[frameidx];
 	}
 
 
@@ -202,11 +219,24 @@ public class AnimatedSprite implements Sprite {
 
 
 	/**
+	 * Determine if the animation loops.
+	 *
+	 * @return	<code>true</code> if animation loops.
+	 *
+	 * @see-also	#setLoop(boolean)
+	 */
+	public boolean isLoop() {
+		return loop;
+	}
+
+
+	/**
 	 * Reset the animation back to it's initial frame, and reset the
 	 * next frame time.
 	 */
 	public void reset() {
 		frameidx = 0;
+		sprite = frames[0];
 		nextFrame = System.currentTimeMillis() + delay;
 	}
 
@@ -216,8 +246,18 @@ public class AnimatedSprite implements Sprite {
 	 *
 	 * @param	animating	<code>true</code> if animating.
 	 */
-	public void setAnimating(boolean animating) {
+	public void setAnimating(final boolean animating) {
 		this.animating = animating;
+	}
+
+
+	/**
+	 * Set the animation loop state.
+	 *
+	 * @param	loop		<code>true</code> if animation loops.
+	 */
+	public void setLoop(final boolean loop) {
+		this.loop = loop;
 	}
 
 
@@ -266,7 +306,11 @@ public class AnimatedSprite implements Sprite {
 	 *            The y location at which to draw the sprite
 	 */
 	public void draw(final Graphics g, final int x, final int y) {
-		getFrame().draw(g, x, y);
+		update();
+
+		if(sprite != null) {
+			sprite.draw(g, x, y);
+		}
 	}
 
 	/**
@@ -288,7 +332,11 @@ public class AnimatedSprite implements Sprite {
 	 *            the height
 	 */
 	public void draw(final Graphics g, final int destx, final int desty, final int x, final int y, final int w, final int h) {
-		getFrame().draw(g, destx, desty, x, y, w, h);
+		update();
+
+		if(sprite != null) {
+			sprite.draw(g, destx, desty, x, y, w, h);
+		}
 	}
 
 	/**
