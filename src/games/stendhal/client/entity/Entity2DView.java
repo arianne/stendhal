@@ -52,6 +52,11 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	protected boolean	animatedChanged;
 
 	/**
+	 * Some model value changed.
+	 */
+	private boolean		changed;
+
+	/**
 	 * Model values affecting visual representation changed.
 	 */
 	protected boolean	representationChanged;
@@ -73,6 +78,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		entityComposite = AlphaComposite.SrcOver;
 		contained = false;
 		animatedChanged = false;
+		changed = false;
 		visibilityChanged = true;
 		representationChanged = false;
 
@@ -99,9 +105,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public void draw(final GameScreen screen) {
 		/*
-		 * Check for entity changes
+		 * Handle entity changes
 		 */
-		update();
+		if(changed) {
+			update();
+			changed = false;
+		}
 
 		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
 
@@ -111,8 +120,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 			try {
 				g2d.setComposite(entityComposite);
-			} finally {
 				draw(screen, g2d, r.x, r.y, r.width, r.height);
+			} finally {
 				g2d.setComposite(oldComposite);
 			}
 
@@ -189,8 +198,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 			try {
 				g2d.setComposite(entityComposite);
-			} finally {
 				drawTop(screen, g2d, r.x, r.y, r.width, r.height);
+			} finally {
 				g2d.setComposite(oldComposite);
 			}
 		}
@@ -423,6 +432,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public void entityChanged(final Entity entity, final Object property)
 	{
+		changed = true;
+
 		if(property == Entity.PROP_ANIMATED) {
 			animatedChanged = true;
 		} else if(property == Entity.PROP_TYPE) {
