@@ -9,9 +9,28 @@
 	<property file="build.ant.properties"/>
   
 	<property name="build_tests" value="${buildroot}/build_tests"/>
+
 	<property name="build_client" value="${buildroot}/build_client"/>
+	<property name="build_client_data" value="${buildroot}/build_client_data/"/>
+	<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data/"/>
+
 	<property name="build_server" value="${buildroot}/build_server"/>
 	<property name="build_server_maps" value="${buildroot}/build_server_maps"/>
+	<property name="build_server_script" value="${buildroot}/build_server_script/"/>
+	<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
+
+	<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
+
+	<property name="client_data" value="stendhal-data-${version}.jar"/>
+	<property name="client_jarname" value="stendhal-${version}.jar"/>
+	<property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
+	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
+	<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
+
+	<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
+
+	<property name="server_jarname" value="stendhal-server-${version}.jar"/>
+	<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
 
 	<target name="init">
 		<mkdir dir="${lib}"/>
@@ -68,10 +87,6 @@
 
 
 <target name="server_build" depends="init" description="Build JAR file for Stendhal server">
-		<property name="server_jarname" value="stendhal-server-${version}.jar"/>
-		<property name="maps_jarname" value="stendhal-maps-${version}.jar"/>
-		<property name="xmlconf_jarname" value="stendhal-xmlconf-${version}.jar"/>
-
 		<mkdir dir="${build_server}/"/>
 
 		<copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
@@ -122,7 +137,6 @@
 
 		<jar jarfile="${lib}/${maps_jarname}" basedir="${build_server_maps}"/>
 
-		<property name="build_server_xmlconf" value="${buildroot}/build_server_xmlconf/"/>
 		<mkdir dir="${build_server_xmlconf}/"/>
 
 		<copy todir="${build_server_xmlconf}/data/conf">
@@ -137,7 +151,6 @@
 
 		<jar jarfile="${lib}/${xmlconf_jarname}" basedir="${build_server_xmlconf}"/>
 
-		<property name="build_server_script" value="${buildroot}/build_server_script/"/>
 		<mkdir dir="${build_server_script}/"/>
 		<javac srcdir="${src}" destdir="${build_server_script}" debug="${javac.debug}" debuglevel="${javac.debuglevel}"  source="1.5" target="1.5" deprecation="${javac.deprecation}"
            includes="games/stendhal/server/script/**">
@@ -164,16 +177,12 @@
         
         <!-- Runs the client -->
         <target name="client_run" depends="client_build" description="Runs the client">
-            <property name="client_jarname" value="stendhal-${version}.jar"/>
-            <property name="client_data" value="stendhal-data-${version}.jar"/>
-            <property name="client_sound" value="stendhal-sound-data-${version}.jar"/>
-            
             <mkdir dir="run"/>
             
             <copy todir="run/">
                 <fileset file="build/lib/${client_jarname}"/>
                 <fileset file="build/lib/${client_data}"/>
-                <fileset file="build/lib/${client_sound}"/>
+                <fileset file="build/lib/${client_sound_data}"/>
                 <fileset file="libs/marauroa.jar"/>
                 <fileset file="libs/log4j.jar"/>
             </copy>
@@ -187,12 +196,6 @@
         <target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
         
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
-		<property name="client_jarname" value="stendhal-${version}.jar"/>
-		<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
-		<property name="client_data" value="stendhal-data-${version}.jar"/>
-		<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
-		<property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
-
 		<mkdir dir="${build_client}/"/>
 
 		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
@@ -236,7 +239,6 @@
 			</manifest>
 		</jar>
 
-		<property name="build_client_data" value="${buildroot}/build_client_data/"/>
 		<mkdir dir="${build_client_data}/"/>
 
 		<copy todir="${build_client_data}/data/sprites">
@@ -269,7 +271,6 @@
 		<copy todir="${build_client_data}/data/conf/" file="data/conf/log4j.properties"/>
 		<jar jarfile="${lib}/${client_data}" basedir="${build_client_data}"/>
 
-		<property name="build_client_sound_data" value="${buildroot}/build_client_sound_data/"/>
 		<mkdir dir="${build_client_sound_data}/"/>
 
 		<copy todir="${build_client_sound_data}/data/sounds">
@@ -444,7 +445,6 @@
 
 
 	<target name="rendermaps" description="Converts the *.tmx files to PNG images scaled 1:16">
-		<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
 		<mkdir dir="${build_tiled_convertmaps}/"/>
 
 		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}"
@@ -476,7 +476,6 @@
 	</target>
 
 	<target name="updatemaps" description="Load and save TMX files to fix tilesets changes.">
-		<property name="build_tiled_convertmaps" value="${buildroot}/build_tiled_convertmaps/"/>
 		<mkdir dir="${build_tiled_convertmaps}/"/>
 
 		<javac srcdir="${src}" destdir="${build_tiled_convertmaps}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" deprecation="${javac.deprecation}"
