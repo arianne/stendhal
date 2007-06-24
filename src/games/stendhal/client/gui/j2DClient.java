@@ -467,7 +467,8 @@ public class j2DClient extends StendhalUI {
 		final int frameLength = (int) (1000.0 / stendhal.FPS_LIMIT);
 		int fps = 0;
 		GameObjects gameObjects = client.getGameObjects();
-		long oldTime = System.nanoTime();
+		StaticGameLayers gameLayers = client.getStaticGameLayers();
+
 
 		// Clear the first screen
 		screen.clear();
@@ -476,6 +477,7 @@ public class j2DClient extends StendhalUI {
 
 		// keep looping until the game ends
 		long refreshTime = System.currentTimeMillis();
+		long lastFpsTime = refreshTime;
 		long lastMessageHandle = refreshTime;
 
 		gameRunning = true;
@@ -511,9 +513,6 @@ public class j2DClient extends StendhalUI {
 			logger.debug("Move objects");
 			gameObjects.move(delta);
 
-
-			StaticGameLayers gameLayers = client.getStaticGameLayers();
-
 			// create the map if there is none yet
 			if (gameLayers.changedArea()) {
 				CollisionDetection cd = gameLayers.getCollisionDetection();
@@ -535,7 +534,7 @@ public class j2DClient extends StendhalUI {
 
 			logger.debug("Query network");
 			if (client.loop(0)) {
-				lastMessageHandle = System.currentTimeMillis();
+				lastMessageHandle = refreshTime;
 			}
 
 
@@ -550,19 +549,21 @@ public class j2DClient extends StendhalUI {
 				directionRelease = null;
 			}
 
-			if (System.nanoTime() - oldTime > 1000000000) {
-				oldTime = System.nanoTime();
-				logger.debug("FPS: " + Integer.toString(fps));
-				long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
-				long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
+			if(logger.isDebugEnabled()) {
+				if ((refreshTime - lastFpsTime) >= 1000L) {
+					logger.debug("FPS: " + fps);
+					long freeMemory = Runtime.getRuntime().freeMemory() / 1024;
+					long totalMemory = Runtime.getRuntime().totalMemory() / 1024;
 
-				logger.debug("Total/Used memory: " + totalMemory + "/" + (totalMemory - freeMemory));
+					logger.debug("Total/Used memory: " + totalMemory + "/" + (totalMemory - freeMemory));
 
-				fps = 0;
+					fps = 0;
+					lastFpsTime = refreshTime;
+				}
 			}
 
-			// Shows a offline icon if no messages are recieved in 10 seconds.
-			if ((refreshTime - lastMessageHandle > 120000) || !client.getConnectionState()) {
+			// Shows a offline icon if no messages are recieved in 120 seconds.
+			if ((refreshTime - lastMessageHandle > 120000L) || !client.getConnectionState()) {
 				setOffline(true);
 			} else {
 				setOffline(false);
@@ -575,16 +576,15 @@ public class j2DClient extends StendhalUI {
 			long wait = frameLength + refreshTime - System.currentTimeMillis();
 
 			if (wait > 0) {
-				if (wait > 100) {
+				if (wait > 100L) {
 					logger.info("Waiting " + wait + " ms");
-					wait = 100;
+					wait = 100L;
 				}
 
 				try {
 					Thread.sleep(wait);
-				} catch (Exception e) {
+				} catch (InterruptedException e) {
 				}
-				;
 			}
 
 			logger.debug("End sleeping");
