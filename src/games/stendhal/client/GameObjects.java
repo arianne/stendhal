@@ -126,8 +126,13 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		return false;
 	}
 
-	/** Move objects based on the lapsus of time ellapsed since the last call. */
-	public void move(long delta) {
+	/**
+	 * Update objects based on the lapsus of time ellapsed since the
+	 * last call.
+	 *
+	 * @param	delta		The time since last update (in ms).
+	 */
+	public void update(int delta) {
 		for (Entity entity : objects.values()) {
 			entity.update(delta);
 		}

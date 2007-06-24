@@ -691,7 +691,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	delta		The time (in ms) since last call.
 	 */
-	public void update(final long delta) {
+	public void update(final int delta) {
 	}
 
 

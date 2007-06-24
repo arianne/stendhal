@@ -499,7 +499,7 @@ public class j2DClient extends StendhalUI {
 
 			screen.nextFrame();
 			long now = System.currentTimeMillis();
-			long delta = now - refreshTime;
+			int delta = (int) (now - refreshTime);
 			refreshTime = now;
 
 // MEMORY DEBUGGING:
@@ -511,7 +511,7 @@ public class j2DClient extends StendhalUI {
 //System.err.println("mem = " + (avgmemt / avgmemc) + "k");
 ////rt.gc();
 			logger.debug("Move objects");
-			gameObjects.move(delta);
+			gameObjects.update(delta);
 
 			// create the map if there is none yet
 			if (gameLayers.changedArea()) {

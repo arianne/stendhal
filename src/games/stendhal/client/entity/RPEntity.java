@@ -778,7 +778,7 @@ public abstract class RPEntity extends ActiveEntity {
 	 * @param	delta		The time (in ms) since last call.
 	 */
 	@Override
-	public void update(final long delta) {
+	public void update(final int delta) {
 		super.update(delta);
 
 		if(!textIndicators.isEmpty()) {
@@ -1188,7 +1188,7 @@ public abstract class RPEntity extends ActiveEntity {
 		/**
 		 * The age of the message (in ms).
 		 */
-		protected long		age;
+		protected int		age;
 
 		/**
 		 * The message text.
@@ -1206,7 +1206,7 @@ public abstract class RPEntity extends ActiveEntity {
 			this.text = text;
 			this.color = color;
 
-			age = 0L;
+			age = 0;
 		}
 
 
@@ -1221,7 +1221,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 *
 		 * @return	The new age (in milliseconds).
 		 */
-		public long addAge(long time) {
+		public int addAge(final int time) {
 			age += time;
 
 			return age;
@@ -1233,7 +1233,7 @@ public abstract class RPEntity extends ActiveEntity {
 		 *
 		 * @return	The age (in milliseconds).
 		 */
-		public long getAge() {
+		public int getAge() {
 			return age;
 		}
 

@@ -162,7 +162,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		while(iter.hasNext()) {
 			RPEntity.TextIndicator indicator = iter.next();
 
-			long age = indicator.getAge();
+			int age = indicator.getAge();
 			String text = indicator.getText();
 
 			int width = fm.stringWidth(text) + 2;

@@ -209,7 +209,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param	delta		The time (in ms) since last call.
 	 */
 	@Override
-	public void update(final long delta) {
+	public void update(final int delta) {
 		super.update(delta);
 
 		if (!stopped()) {
