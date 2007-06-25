@@ -14,8 +14,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import sun.reflect.Reflection;
-
 /**
  * Tests if the offeredActions contextMenu is provided with the right keywords
  * uses a MOCKEntitty and a MOCKRPObject for initialisation
@@ -195,6 +193,7 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected, list);
 		
 		//User exists
+		@SuppressWarnings("unused")
 		User user = new User();
 		list.clear();
 		expected = new ArrayList<String>();
