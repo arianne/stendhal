@@ -448,8 +448,8 @@ public class TileRenderer extends LayerRenderer {
 			return;			
 		}
 		
-		int x2 = x + w + 1;
-		int y2 = y + h + 1;
+		int x2 = Math.min(x + w + 1, getWidth());
+		int y2 = Math.min(y + h + 1, getHeight());
 
 		if(x > 0) {
 			x--;
@@ -461,14 +461,6 @@ public class TileRenderer extends LayerRenderer {
 			y--;
 		} else {
 			y = 0;
-		}
-
-		if(x2 >= getWidth()) {
-			x2 = getWidth() - 1;
-		}
-
-		if(y2 >= getHeight()) {
-			y2 = getHeight() - 1;
 		}
 
 		Graphics g = screen.expose();
