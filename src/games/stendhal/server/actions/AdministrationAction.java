@@ -618,7 +618,10 @@ public class AdministrationAction implements ActionListener {
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
-
+			
+			player.remove("invisible");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "off");
+			
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOnline(player.getName());
 			}
