@@ -4748,7 +4748,7 @@
     <type class="human" subclass="soldier_archer" tileid="human_soldier.png:0"/>
     <description></description>
     <attributes>
-      <atk value="184"/>
+      <atk value="144"/>
       <def value="29"/>
       <hp value="540"/>
       <speed value="1.0"/>
@@ -4763,11 +4763,14 @@
       <item value="composite_bow" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
+      <slot name="lhand" item="golden_arrow" quantity="10000"/>
+      <slot name="rhand" item="composite_bow" quantity="1"/>
     </equips>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -4873,7 +4876,7 @@
     <type class="human" subclass="soldier_elite_archer" tileid="human_soldier.png:3"/>
     <description></description>
     <attributes>
-      <atk value="189"/>
+      <atk value="149"/>
       <def value="29"/>
       <hp value="608"/>
       <speed value="1.0"/>
@@ -4889,11 +4892,14 @@
       <item value="composite_bow" quantity="[1,1]" probability="2.5"/>
     </drops>
     <equips>
+      <slot name="lhand" item="power_arrow" quantity="10000"/>
+      <slot name="rhand" item="composite_bow" quantity="1"/>
     </equips>
     <ai>
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="archer"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
