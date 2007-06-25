@@ -34,19 +34,18 @@ public class TileRenderer extends LayerRenderer {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileRenderer.class);
 
-	private TileStore tiles;
-
 	private int[] map;
 
 	private Sprite [] spriteMap;
 
+//	static {
+//		createAnimationMap();
+//	}
+
+
 	public TileRenderer() {
-		tiles = null;
 		map = null;
 		spriteMap = null;
-//		animatedTiles = new HashMap<Integer, List<Integer>>();
-
-		//createAnimateTiles();
 	}
 
 	/** Sets the data that will be rendered 
@@ -65,16 +64,14 @@ public class TileRenderer extends LayerRenderer {
 	
 	@Override
 	public void setTileset(TileStore tileset) {
-		tiles=tileset;
-
 		Sprite emptySprite = SpriteStore.get().getEmptySprite();
 
-		/*
-		 * Cache normal sprites
-		 */
-		spriteMap = new Sprite[map.length];
-
 		if(tileset != null) {
+			/*
+			 * Cache sprites
+			 */
+			spriteMap = new Sprite[map.length];
+
 			int i = spriteMap.length;
 
 			while(i-- != 0) {
@@ -98,16 +95,8 @@ public class TileRenderer extends LayerRenderer {
 				}
 			}
 		} else {
-			Arrays.fill(spriteMap, emptySprite);
+			spriteMap = null;
 		}
-	}
-
-//	private int get(int x, int y) {
-//		return map[y * width + x];
-//	}
-
-	private Sprite getTile(int x, int y) {
-		return spriteMap[(y * width) + x];
 	}
 
 
@@ -117,7 +106,7 @@ public class TileRenderer extends LayerRenderer {
 
 //	private Map<Integer, List<Integer>> animatedTiles;
 //
-//	private void addAnimatedTile(int tile, int[] tiles) {
+//	private static void addAnimatedTile(int tile, int[] tiles) {
 //		List<Integer> list = new LinkedList<Integer>();
 //		for (int num : tiles) {
 //			list.add(num);
@@ -126,7 +115,8 @@ public class TileRenderer extends LayerRenderer {
 //		animatedTiles.put(tile, list);
 //	}
 
-//	private void createAnimateTiles() {
+//	private static void createAnimationMap() {
+//		animatedTiles = new HashMap<Integer, List<Integer>>();
 //		// TODO: Broken. Animated tiles don't work now in this way.
 //		// Outside_0 = 0 - 479
 //		// Outside_1 = 480 - 959
@@ -454,7 +444,7 @@ public class TileRenderer extends LayerRenderer {
 	 */
 	@Override
 	public void draw(GameScreen screen, int x, int y, int w, int h) {
-		if(tiles==null) {
+		if(spriteMap == null) {
 			return;			
 		}
 		
