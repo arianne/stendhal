@@ -813,10 +813,9 @@ public abstract class RPEntity extends ActiveEntity {
 	        if (User.get().isAttacking()) {
 				list.add(ActionType.STOP_ATTACK.getRepresentation());
 			}
-		}
-
-		if(!User.isNull() && User.get()!=this) {
-	    	list.add(ActionType.PUSH.getRepresentation());
+	        if (User.get()!=this) {
+	        	list.add(ActionType.PUSH.getRepresentation());
+	        }
 		}
 	}
 
