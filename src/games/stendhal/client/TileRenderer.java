@@ -16,6 +16,8 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.tools.tiled.LayerDefinition;
 
+import java.awt.Graphics;
+import java.awt.Point;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -38,17 +40,11 @@ public class TileRenderer extends LayerRenderer {
 
 	private Sprite [] spriteMap;
 
-	private int frame;
-
-	private long delta;
-
 	public TileRenderer() {
 		tiles = null;
 		map = null;
 		spriteMap = null;
-		frame = 0;
 //		animatedTiles = new HashMap<Integer, List<Integer>>();
-		delta = System.currentTimeMillis();
 
 		//createAnimateTiles();
 	}
@@ -85,6 +81,17 @@ public class TileRenderer extends LayerRenderer {
 				int value = map[i];
 
 				if(value > 0) {
+// TODO: Map tiles that match <tileset>@<index>, with something like:
+//					String tsname = tileset.getTilesetName(value);
+//					int tsidx = tileset.getTilesetIndex(value);
+//
+//					Sprite asprite = getAnimation(tsname, tsidx);
+//					if(asprite != null) {
+//						spriteMap[i] = asprite;
+//					} else {
+//						spriteMap[i] = tileset.getTile(value);
+//					}
+
 					spriteMap[i] = tileset.getTile(value);
 				} else {
 					spriteMap[i] = emptySprite;
@@ -102,6 +109,11 @@ public class TileRenderer extends LayerRenderer {
 	private Sprite getTile(int x, int y) {
 		return spriteMap[(y * width) + x];
 	}
+
+
+// TODO:
+// Use <tileset>/<index> key, with tileset relevant index frames.
+// Perhaps with a Map<String> -> Map<Integer> -> int[]  tree.
 
 //	private Map<Integer, List<Integer>> animatedTiles;
 //
@@ -446,31 +458,45 @@ public class TileRenderer extends LayerRenderer {
 			return;			
 		}
 		
-		if (System.currentTimeMillis() - delta > 200) {
-			delta = System.currentTimeMillis();
-			frame++;
+		int x2 = x + w + 1;
+		int y2 = y + h + 1;
+
+		if(x > 0) {
+			x--;
+		} else {
+			x = 0;
 		}
 
-		for (int j = y - 1; j < y + h + 1; j++) {
-			for (int i = x - 1; i < x + w + 1; i++) {
-				if ((j >= 0) && (j < getHeight()) && (i >= 0) && (i < getWidth())) {
-					Sprite sprite = getTile(i, j);
-					
-					if(sprite==null) {
-						logger.warn("Null sprite at ("+i+","+j+")");
-						sprite=SpriteStore.get().getFailsafe();
-					}
+		if(y > 0) {
+			y--;
+		} else {
+			y = 0;
+		}
 
-// TODO: Apparently Broken [ 1708820 ], so safe to comment out until fixed:
-//
-//					if (animatedTiles.containsKey(value)) {
-//						List<Integer> list = (animatedTiles.get(value));
-//						value = list.get(frame % list.size());
-//					}
+		if(x2 >= getWidth()) {
+			x2 = getWidth() - 1;
+		}
 
-					screen.draw(sprite, i, j);
-				}
+		if(y2 >= getHeight()) {
+			y2 = getHeight() - 1;
+		}
+
+		Graphics g = screen.expose();
+		Point p = screen.convertWorldToScreen(x, y);
+
+		int sy = p.y;
+
+		for (int j = y; j < y2; j++) {
+			int mapidx = (j * width) + x;
+			int sx = p.x;
+
+			for (int i = x; i < x2; i++) {
+				spriteMap[mapidx].draw(g, sx, sy);
+				mapidx++;
+				sx += GameScreen.SIZE_UNIT_PIXELS;
 			}
+
+			sy += GameScreen.SIZE_UNIT_PIXELS;
 		}
 	}
 }
