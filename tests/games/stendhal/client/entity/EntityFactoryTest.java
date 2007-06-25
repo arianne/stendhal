@@ -59,7 +59,7 @@ public class EntityFactoryTest {
 
 	@Test
 	public final void grainfield() {
-		RPObject rp = new MockRPObject("grain_field", null, null);
+		RPObject rp = new MockRPObject("growing_entity_spawner", null, null);
 		rp.put("max_ripeness", 1);
 		rp.put("width", 1);
 		rp.put("height", 1);
@@ -154,12 +154,8 @@ public class EntityFactoryTest {
 
 	@Test
 	public final void invisibleEntity() {
-		RPObject rp = new MockRPObject("walk_blocker",  null);
+		RPObject rp = new MockRPObject("area",  null);
 		Entity en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a InvisibleEntity by now", InvisibleEntity.class, en.getClass());
-		 rp = new MockRPObject("damaging_area",  null);
-		 en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a InvisibleEntity by now", InvisibleEntity.class, en.getClass());
 	}
@@ -250,10 +246,6 @@ public class EntityFactoryTest {
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
-		rp = new MockRPObject("item",  "projectiles");
-		en = EntityFactory.createEntity(rp);
-		assertNotNull("entity should be created", en);
-		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
 		rp = new MockRPObject("item",  "resource");
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
@@ -262,7 +254,11 @@ public class EntityFactoryTest {
 		en = EntityFactory.createEntity(rp);
 		assertNotNull("entity should be created", en);
 		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
-
+		rp = new MockRPObject("item",  "jewellery");
+		en = EntityFactory.createEntity(rp);
+		assertNotNull("entity should be created", en);
+		assertEquals("we should have created a StackableItem by now", StackableItem.class, en.getClass());
+		
 	}
 	@Test
 	public final void portal() {

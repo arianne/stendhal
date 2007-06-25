@@ -23,7 +23,7 @@ public class PlayerTest {
 		List<String> expected = new ArrayList<String>();
 		expected.add("Look");
 		expected.add("Attack");
-		expected.add("Push");
+		//expected.add("Push");
 		
 		expected.add("Add to Buddies");
 		//expected.add("Manage Guilds");

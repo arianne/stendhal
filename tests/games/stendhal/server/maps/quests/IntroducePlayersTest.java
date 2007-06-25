@@ -22,6 +22,7 @@ import marauroa.common.game.RPObject.ID;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class IntroducePlayersTest {
@@ -92,7 +93,7 @@ public class IntroducePlayersTest {
 		en.step(player, "bye");
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testQuest() {
 		Player player;
