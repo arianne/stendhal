@@ -9,6 +9,7 @@ public class Box extends Item {
 	@Override
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
+		list.remove(ActionType.USE.getRepresentation());
 		list.add(ActionType.OPEN.getRepresentation());
 
 	}

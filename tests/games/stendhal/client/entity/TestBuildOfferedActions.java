@@ -9,9 +9,12 @@ import java.util.List;
 import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.RPObject;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import sun.reflect.Reflection;
 
 /**
  * Tests if the offeredActions contextMenu is provided with the right keywords
@@ -25,6 +28,12 @@ public class TestBuildOfferedActions {
 	public final void setUpBefore() throws Exception {
 		list = new ArrayList<String>();
 	}
+	
+	@After
+	public final void teardown() throws Exception {
+		User.setNull();
+	}
+	
 
 	@Test
 	public final void testEntity() {
@@ -38,11 +47,6 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected.toArray(), me.offeredActions());
 	}
 
-	/**
-	 * this one fails as Stendhalclient has no player when test is running
-	 * would be nice to have 
-	 * @throws Exception
-	 */
 	@Test
 	public final void testSheep() throws Exception {
 
@@ -166,18 +170,45 @@ public class TestBuildOfferedActions {
 		Assert.assertEquals(expected, list);
 	}
 
-//	@Test
-//	public final void testBox() {
-//		StendhalClient.get();
-//		Box box = new Box();
-//		List<String> expected = new ArrayList<String>();
-//		expected.add(ActionType.LOOK.getRepresentation());
-//		expected.add(ActionType.OPEN.getRepresentation());
-//		box.buildOfferedActions(list);
-//		Assert.assertNotNull(list);
-//		Assert.assertEquals(expected, list);
-//
-//	}
+	@Test
+	public final void testBox() {
+		StendhalClient.get();
+		Box box = new Box();
+		List<String> expected = new ArrayList<String>();
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.OPEN.getRepresentation());
+		box.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+
+	}
+	@Test
+	public final void testPlayer() {
+		StendhalClient.get();
+		Player player = new Player();
+		List<String> expected = new ArrayList<String>();
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.ATTACK.getRepresentation());
+		expected.add(ActionType.ADD_BUDDY.getRepresentation());
+		player.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+		
+		//User exists
+		User user = new User();
+		list.clear();
+		expected = new ArrayList<String>();
+		expected.add(ActionType.LOOK.getRepresentation());
+		expected.add(ActionType.ATTACK.getRepresentation());
+		expected.add(ActionType.PUSH.getRepresentation());
+		expected.add(ActionType.ADD_BUDDY.getRepresentation());
+		player.buildOfferedActions(list);
+		Assert.assertNotNull(list);
+		Assert.assertEquals(expected, list);
+
+	
+
+	}
 	@Test
 	public final void testGoldSource() {
 		StendhalClient.get();
