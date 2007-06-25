@@ -1058,7 +1058,9 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		if (isClosed()) {
 			return false;
 		}
-
+		if (isMinimized()) {
+			return false;
+		}
 		// translate point to client coordinates
 		Point p2 = p.getLocation();
 		p2.translate(-getClientX(), -getClientY());
