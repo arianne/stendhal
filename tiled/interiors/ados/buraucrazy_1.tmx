@@ -102,12 +102,12 @@
  </layer>
  <layer name="2_object" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGF5gLxDvg7KP0NnutUh4sIH1QLwDiNcB8XYg3jCwzsELQG4dbO4DuWkzAyRuNzEMPveBwDokTAgcJNLMY1C1x8h11CgYMWA3EO8ZaEeMglEwCkbBKAADACWzWJLgCwAA
+   H4sIAAAAAAAAAGNgGF5gLxDvg7KP0NnutUh4sIH1QLwDiNcB8XYg3jCwzsELQG4dbO4DuWkzAyRuNzEMPveBwDokTAgcJNLMY1C1x8h11CgYMWA3EO8ZaEeMgmEDJgy0AwiAiQPtgFEwCggAAH0v/DfgCwAA
   </data>
  </layer>
  <layer name="3_roof" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGD4gmEh1LUDcCsRtBMRgYDKF7hoFo2AUDH1AbPkyCkYBrUEmEJ8A4mwS5egFioD4NBCXkCiHDCZQ21FUBhMH2gGjYBQQAADaMBZx4AsAAA==
+   H4sIAAAAAAAAAGNgGD4gmEh1LUDcCsRtBMRgYDKF7hoFo2AUDH1AbPkyCkYBrUEmEJ8A4mwS5egFioD4NBCXkCg3CkbBKKAeAACCrLLU4AsAAA==
   </data>
  </layer>
  <layer name="objects" width="40" height="19">
@@ -115,12 +115,12 @@
    H4sIAAAAAAAAAO3JMQ0AAAgDsPl3hyMc7CHhat8m8GeODwBAt7WdziXgCwAA
   </data>
  </layer>
- <layer name="collision" width="40" height="19" visible="0" opacity="0.37">
+ <layer name="collision" width="40" height="19" opacity="0.37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2SSwoAMQhDvf/5eqDZF0efdkRhWsiiGJL4WSKyLo6hvRPezo/6a3XrX5mPaO41j0O1svzM/LrzUQ7t422Xf8+X5X3hTfrvyuftgWpFZh3RJPdDevBqlfvtzmdxqvJp/pPyEe9pb3K+yF1c2HgACQsdXeALAAA=
   </data>
  </layer>
- <layer name="protection" width="40" height="19" visible="0" opacity="0.24">
+ <layer name="protection" width="40" height="19" opacity="0.24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DAQkAAAwEoevf7/usx1Bw1VRV1RcPksw3oOALAAA=
   </data>
