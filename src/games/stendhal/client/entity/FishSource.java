@@ -14,8 +14,6 @@ package games.stendhal.client.entity;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * @author dine
  *
@@ -30,22 +28,5 @@ public class FishSource extends Entity {
 	protected void buildOfferedActions(List<String> list) {
 		super.buildOfferedActions(list);
 		list.add(ActionType.FISH.getRepresentation());
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		switch (at) {
-			case FISH:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
 	}
 }

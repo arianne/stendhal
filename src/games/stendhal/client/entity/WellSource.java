@@ -14,8 +14,6 @@ package games.stendhal.client.entity;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 /**
  * @author daniel
  *
@@ -31,24 +29,6 @@ public class WellSource extends Entity {
 		super.buildOfferedActions(list);
 		list.add(ActionType.WISH.getRepresentation());
 	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		switch (at) {
-			case WISH:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
-	}
-
 
 	//
 	// Entity
