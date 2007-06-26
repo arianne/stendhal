@@ -111,19 +111,16 @@ public class Minimap extends WtPanel {
 
 		Graphics2D mapgrapics = image.createGraphics();
 		Color freeColor = new Color(0.8f, 0.8f, 0.8f);
-		// Color freeColor = new Color(0.0f, 1.0f, 0.0f);
+		mapgrapics.setColor(freeColor );
+		mapgrapics.fillRect(0, 0, w * scale, h * scale);
 		Color blockedColor = new Color(1.0f, 0.0f, 0.0f);
+		mapgrapics.setColor(blockedColor);
 		for (int x = 0; x < w; x++) {
 			for (int y = 0; y < h; y++) {
-				boolean walkable = cd.walkable(x, y);
-				mapgrapics.setColor(walkable ? freeColor : blockedColor);
-				mapgrapics.fillRect(x * scale, y * scale, scale, scale);
-			}
-		}
-
-		for (Entity entity : client.getGameObjects()) {
-			if (entity instanceof SheepFood) {
-				mapgrapics.fillRect(((int) entity.getX()) * scale, ((int) entity.getY()) * scale, scale, scale);
+				if (!cd.walkable(x, y))
+				{
+					mapgrapics.fillRect(x * scale, y * scale, scale, scale);
+				}
 			}
 		}
 
