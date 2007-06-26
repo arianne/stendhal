@@ -124,8 +124,6 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.add("xp", RPClass.INT);
 			entity.add("mana", RPClass.INT);
 			entity.add("base_mana", RPClass.INT);
-                        entity.add("tangible", RPClass.FLAG);
-                        entity.add("visible", RPClass.FLAG);
 
 			// TODO: Remove just prior to DB Reset
 			entity.add("hp/base_hp", RPClass.FLOAT, RPClass.VOLATILE);
@@ -605,45 +603,6 @@ public abstract class RPEntity extends GuidedEntity {
 	public boolean isAttackable() {
 		return true;
 	}
-        
-        /**
-         * Gets the entity's visibility status
-         */
-        public boolean isVisible() {
-                if (has("visible")) return true;
-                return false;
-        }
-        
-        /**
-         * Sets the visibility status of the entity (like the swing component method
-         */
-        public void setVisible(boolean visible) {
-            if (visible) {
-                this.put("visible", "true");
-            } else {
-                this.remove("visible");
-            }
-        }
-        
-        /**
-         * Gets thet tangibility status of the entity
-         */
-        public boolean isTangible() {
-            if (has("tangible")) return true;
-            return false;
-        }
-        
-        /**
-         * Makes the rpentity tangible or not.
-         * If not, it will not collide with any objects. (like ghostmode)
-         */
-        public void setTangible(boolean tangible) {
-            if (tangible) {
-                this.put("tangible", "");
-            } else {
-                this.remove("tangible");
-            }
-        }
 
 	/** Modify the entity to order to attack the target entity */
 	public void attack(RPEntity target) {
