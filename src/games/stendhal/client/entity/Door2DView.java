@@ -88,39 +88,57 @@ public class Door2DView extends StateEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map) {
 		String name = door.getEntityClass();
 
-		Direction orientation = door.getOrientation();
-
-		if(orientation != null) {
-			switch(orientation) {
-				case LEFT:
-					name += "_w";
-					break;
-
-				case RIGHT:
-					name += "_e";
-					break;
-
-				case UP:
-					name += "_n";
-					break;
-
-				case DOWN:
-					name += "_s";
-					break;
-			}
-		}
-
 		SpriteStore store = SpriteStore.get();
-		Sprite tiles = store.getSprite(translate(name));
 
-		width = tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
-		height = tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS / 2;
+		if(name == null) {
+			Sprite emptySprite = store.getEmptySprite();
 
-		xoffset = -(width - 1.0) / 2.0;
-		yoffset = -(height - 1.0) / 2.0;
+			width = 1.0;
+			height = 1.0;
 
-		map.put(STATE_OPEN, store.getSprite(tiles, 0, 0, width, height));
-		map.put(STATE_CLOSED, store.getSprite(tiles, 0, 1, width, height));
+			xoffset = 0.0;
+			yoffset = 0.0;
+
+			map.put(STATE_OPEN, emptySprite);
+			map.put(STATE_CLOSED, emptySprite);
+		} else {
+			/*
+			 * TODO: Remove orientation adjustement on name
+			 * just prior to 0.62 release.
+			 */
+			Direction orientation = door.getOrientation();
+
+			if(orientation != null) {
+				switch(orientation) {
+					case LEFT:
+						name += "_w";
+						break;
+
+					case RIGHT:
+						name += "_e";
+						break;
+
+					case UP:
+						name += "_n";
+						break;
+
+					case DOWN:
+						name += "_s";
+						break;
+				}
+			}
+
+			Sprite tiles = store.getSprite(translate(name));
+
+			width = tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
+			height = tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS / 2;
+
+			xoffset = -(width - 1.0) / 2.0;
+			yoffset = -(height - 1.0) / 2.0;
+
+			map.put(STATE_OPEN, store.getSprite(tiles, 0, 0, width, height));
+			map.put(STATE_CLOSED, store.getSprite(tiles, 0, 1, width, height));
+		}
 	}
 
 
@@ -193,7 +211,9 @@ public class Door2DView extends StateEntity2DView {
 	{
 		super.entityChanged(entity, property);
 
-		if(property == Door.PROP_OPEN) {
+		if(property == Entity.PROP_CLASS) {
+			representationChanged = true;
+		} else if(property == Door.PROP_OPEN) {
 			stateChanged = true;
 		}
 	}
