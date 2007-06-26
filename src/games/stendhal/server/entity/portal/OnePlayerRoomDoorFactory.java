@@ -36,6 +36,6 @@ public class OnePlayerRoomDoorFactory extends DoorFactory {
 	 * @see		OnePlayerRoomDoor
 	 */
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		return new OnePlayerRoomDoor(getClass(ctx), getDirection(ctx));
+		return new OnePlayerRoomDoor(getClass(ctx));
 	}
 }

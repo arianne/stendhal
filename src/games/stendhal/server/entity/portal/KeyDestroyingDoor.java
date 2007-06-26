@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
 import marauroa.common.game.AttributeNotFoundException;
 
@@ -34,8 +33,8 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 *            through this door
 	 * @throws AttributeNotFoundException
 	 */
-	public KeyDestroyingDoor(String key, String clazz, Direction dir) {
-		this(key, clazz, dir, 1);
+	public KeyDestroyingDoor(String key, String clazz) {
+		this(key, clazz, 1);
 	}
 
 	/**
@@ -48,9 +47,9 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 *                       passing through the door
 	 * @throws AttributeNotFoundException
 	 */
-	public KeyDestroyingDoor(String key, String clazz, Direction dir, int requiredAmount)
-	        throws AttributeNotFoundException {
-		super(key, clazz, dir);
+	public KeyDestroyingDoor(String key, String clazz, int requiredAmount) {
+		super(key, clazz);
+
 		this.requiredAmount = requiredAmount;
 	}
 

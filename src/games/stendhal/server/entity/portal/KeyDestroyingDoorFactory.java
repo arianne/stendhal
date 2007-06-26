@@ -38,7 +38,7 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 	 */
 	@Override
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		return new KeyDestroyingDoor(getKey(ctx), getClass(ctx), getDirection(ctx));
+		return new KeyDestroyingDoor(getKey(ctx), getClass(ctx));
 	}
 
 	//
@@ -55,8 +55,7 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 
 		attrs = new java.util.HashMap<String, String>();
 		attrs.put("key", "magical_flute");
-		attrs.put("class", "music");
-		attrs.put("direction", "left");
+		attrs.put("class", "music_e");
 
 		ctx = new games.stendhal.common.ConfigurableFactoryContextImpl(attrs);
 

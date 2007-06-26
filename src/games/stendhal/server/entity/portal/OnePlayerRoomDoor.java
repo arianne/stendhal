@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
@@ -37,8 +36,8 @@ public class OnePlayerRoomDoor extends Door {
 	 * @param clazz clazz
 	 * @param dir   direction
 	 */
-	public OnePlayerRoomDoor(String clazz, Direction dir) {
-		super(clazz, dir);
+	public OnePlayerRoomDoor(String clazz) {
+		super(clazz);
 		TurnNotifier.get().notifyInTurns(60, new PeriodicOpener());
 	}
 

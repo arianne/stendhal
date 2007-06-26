@@ -209,8 +209,7 @@ East: Nalwor, Semos
   <portal x="69" y="37" ref="0">
    <destination zone="-2_orril_lich_palace" ref="0"/>
    <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <parameter name="class">skulldoor</parameter>
-    <parameter name="direction">down</parameter>
+    <parameter name="class">skulldoor_s</parameter>
     <parameter name="key">dungeon_silver_key</parameter>
    </implementation>
   </portal>
@@ -244,11 +243,10 @@ East: Nalwor, Semos
    <destination zone="-1_orril_castle_w" ref="0"/>
   </portal>
 
-  <portal x="54" y="52" ref="locked_outside">
+  <portal x="54" y="53" ref="locked_outside">
    <destination zone="-2_orril_lich_palace" ref="locked_inside_left"/>
    <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-    <parameter name="class">skulldoor</parameter>
-    <parameter name="direction">up</parameter>
+    <parameter name="class">skulldoor_n</parameter>
     <parameter name="key">lich_gold_key</parameter>
    </implementation>
   </portal>

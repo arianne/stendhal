@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TurnListener;
@@ -46,9 +45,6 @@ public abstract class Door extends Portal implements TurnListener {
 		door.add("class", RPClass.STRING);
 		door.add("locked", RPClass.STRING, RPClass.PRIVATE);
 		door.add("open", RPClass.FLAG);
-
-		// TODO: Change to 'orientation' on server & client
-		door.add("dir", RPClass.BYTE, RPClass.VOLATILE);
 	}
 
 	/**
@@ -57,10 +53,9 @@ public abstract class Door extends Portal implements TurnListener {
 	 * @param dir The direction in which one has to walk in order to pass
 	 *            through this door
 	 */
-	public Door(String clazz, Direction dir) {
+	public Door(String clazz) {
 		put("type", "door");
 		put("class", clazz);
-		put("dir", dir.get());
 
 		open = false;
 	}

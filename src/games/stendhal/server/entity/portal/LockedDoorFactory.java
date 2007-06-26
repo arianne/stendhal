@@ -60,6 +60,6 @@ public class LockedDoorFactory extends DoorFactory {
 	 * @see		LockedDoor
 	 */
 	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		return new LockedDoor(getKey(ctx), getClass(ctx), getDirection(ctx));
+		return new LockedDoor(getKey(ctx), getClass(ctx));
 	}
 }

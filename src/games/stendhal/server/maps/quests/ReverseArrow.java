@@ -206,8 +206,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * that notifies this script on sucessful usage.
 	 */
 	class NotifyingDoor extends OnePlayerRoomDoor {
-		NotifyingDoor(String clazz, Direction dir) {
-			super(clazz, dir);
+		NotifyingDoor(String clazz) {
+			super(clazz);
 		}
 
 		@Override
@@ -322,7 +322,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		// 0_semos_mountain_n2 at (95,101)
 		String entranceZoneName = "0_semos_mountain_n2"; 
 		entranceZone = StendhalRPWorld.get().getZone(entranceZoneName);
-		door = new NotifyingDoor("housedoor", Direction.DOWN);
+		door = new NotifyingDoor("housedoor");
 		entranceZone.assignRPObjectID(door);
 		door.setX(95);
 		door.setY(101);

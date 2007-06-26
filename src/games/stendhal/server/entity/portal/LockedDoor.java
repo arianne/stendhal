@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.entity.player.Player;
 
 /**
@@ -33,8 +32,8 @@ public class LockedDoor extends Door {
 	 * @param clazz class of door
 	 * @param dir   direction of door
 	 */
-	public LockedDoor(String key, String clazz, Direction dir) {
-		super(clazz, dir);
+	public LockedDoor(String key, String clazz) {
+		super(clazz);
 		put("locked", key);
 	}
 
