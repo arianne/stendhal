@@ -116,7 +116,7 @@ public class StackableItem2DView extends Item2DView {
 	 * Update representation.
 	 */
 	@Override
-	public void update() {
+	protected void update() {
 		super.update();
 
 		if(quantityChanged) {

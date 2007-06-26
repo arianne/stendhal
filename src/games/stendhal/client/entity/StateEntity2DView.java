@@ -131,7 +131,7 @@ public abstract class StateEntity2DView extends Entity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	public void update() {
+	protected void update() {
 		super.update();
 
 		if(stateChanged) {

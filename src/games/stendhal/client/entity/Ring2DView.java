@@ -123,7 +123,7 @@ public class Ring2DView extends Item2DView {
 	 * Handle updates.
 	 */
 	@Override
-	public void update() {
+	protected void update() {
 		super.update();
 
 		if(stateChanged) {

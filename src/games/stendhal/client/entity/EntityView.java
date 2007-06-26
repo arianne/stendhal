@@ -30,6 +30,15 @@ public interface EntityView {
 
 
 	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	public void onAction(final ActionType at, final String... params);
+
+
+	/**
 	 * Release any view resources. This view should not be used after
 	 * this is called.
 	 */

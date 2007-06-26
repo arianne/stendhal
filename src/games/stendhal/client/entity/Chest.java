@@ -40,22 +40,9 @@ public class Chest extends Entity implements Inspectable {
 	private boolean open;
 
 	/**
-	 * The slot content inspector.
-	 */
-	private Inspector inspector;
-
-	/**
 	 * The current content slot.
 	 */
 	private RPSlot content;
-
-	/**
-	 * The current content inspector.
-	 */
-	private EntityContainer wtEntityContainer;
-
-	/** true means the user requested to open this chest */
-	private boolean requestOpen;
 
 
 	/**
@@ -99,7 +86,7 @@ public class Chest extends Entity implements Inspectable {
 	 * @param	inspector	The inspector.
 	 */
 	public void setInspector(final Inspector inspector) {
-		this.inspector = inspector;
+		((Inspectable) getView()).setInspector(inspector);
 	}
 
 
@@ -123,25 +110,6 @@ public class Chest extends Entity implements Inspectable {
 		}
 
 		open = object.has("open");
-		requestOpen = false;
-	}
-
-
-	/**
-	 * Release this entity. This should clean anything that isn't
-	 * automatically released (such as unregister callbacks, cancel
-	 * external operations, etc).
-	 *
-	 * @see-also	#initialize(RPObject)
-	 */
-	@Override
-	public void release() {
-		if (wtEntityContainer != null) {
-			wtEntityContainer.destroy();
-			wtEntityContainer = null;
-		}
-
-		super.release();
 	}
 
 
@@ -161,13 +129,6 @@ public class Chest extends Entity implements Inspectable {
 
 		if (changes.has("open")) {
 			open = true;
-
-			// we're wanted to open this?
-			if (requestOpen) {
-				wtEntityContainer = inspector.inspectMe(this, content, wtEntityContainer);
-				requestOpen = false;
-			}
-
 			fireChange(PROP_OPEN);
 		}
 
@@ -190,13 +151,6 @@ public class Chest extends Entity implements Inspectable {
 
 		if (changes.has("open")) {
 			open = false;
-			requestOpen = false;
-
-			if (wtEntityContainer != null) {
-				wtEntityContainer.destroy();
-				wtEntityContainer = null;
-			}
-
 			fireChange(PROP_OPEN);
 		}
 	}
@@ -218,32 +172,6 @@ public class Chest extends Entity implements Inspectable {
 			list.add(ActionType.CLOSE.getRepresentation());
 		} else {
 			list.add(ActionType.OPEN.getRepresentation());
-		}
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at =handleAction(action);
-		switch (at) {
-			case INSPECT:
-				wtEntityContainer = inspector.inspectMe(this, content, wtEntityContainer);// inspect(this, content, 4, 5);
-				break;
-			case OPEN:
-			case CLOSE:
-				if (!open) {
-					// If it was closed, open it and inspect it...
-					requestOpen = true;
-				}
-
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-			default:
-				super.onAction(at, params);
-				break;
 		}
 	}
 }

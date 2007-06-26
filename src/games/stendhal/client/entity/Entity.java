@@ -475,48 +475,12 @@ public final byte[] ID_Token = new byte[0];
 
 	}
 
+
+	/**
+	 * TEMP - Transition to EntityView
+	 */
 	public void onAction(final ActionType at, final String... params) {
-		int id;
-		RPAction rpaction;
-		switch (at) {
-			case LOOK:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				id = getID().getObjectID();
-
-				if (params.length > 0) {
-					rpaction.put("baseobject", params[0]);
-					rpaction.put("baseslot", params[1]);
-					rpaction.put("baseitem", id);
-				} else {
-					rpaction.put("target", id);
-				}
-				at.send(rpaction);
-				break;
-			case ADMIN_INSPECT:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				id = getID().getObjectID();
-				rpaction.put("targetid", id);
-				at.send(rpaction);
-				break;
-			case ADMIN_DESTROY:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				id = getID().getObjectID();
-				rpaction.put("targetid", id);
-				at.send(rpaction);
-				break;
-			case ADMIN_ALTER:
-				id = getID().getObjectID();
-				StendhalUI.get().setChatLine("/alter #" + id + " ");
-				break;
-			default:
-
-				Log4J.getLogger(Entity.class).error(at.toString() + ": Action not processed");
-				break;
-		}
-
+		getView().onAction(at, params);
 	}
 
 

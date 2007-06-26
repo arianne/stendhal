@@ -9,8 +9,12 @@ package games.stendhal.client.entity;
 //
 //
 
+import marauroa.common.Log4J;
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.stendhal;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -465,6 +469,61 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public boolean isMovable() {
 		return false;
+	}
+
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	public void onAction(final ActionType at, final String... params) {
+		int id = getEntity().getID().getObjectID();
+		RPAction rpaction;
+
+		switch (at) {
+			case LOOK:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+
+				if (params.length != 0) {
+					rpaction.put("baseobject", params[0]);
+					rpaction.put("baseslot", params[1]);
+					rpaction.put("baseitem", id);
+				} else {
+					rpaction.put("target", id);
+				}
+
+				at.send(rpaction);
+				break;
+
+			case ADMIN_INSPECT:
+				rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("targetid", id);
+
+				at.send(rpaction);
+				break;
+
+			case ADMIN_DESTROY:
+				rpaction = new RPAction();
+				rpaction.put("type", at.toString());
+
+				rpaction.put("targetid", id);
+
+				at.send(rpaction);
+				break;
+
+			case ADMIN_ALTER:
+				StendhalUI.get().setChatLine("/alter #" + id + " ");
+				break;
+
+			default:
+				Log4J.getLogger(Entity2DView.class).error("Action not processed: " + at);
+				break;
+		}
 	}
 
 

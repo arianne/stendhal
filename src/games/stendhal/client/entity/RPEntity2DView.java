@@ -411,7 +411,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Handle updates.
 	 */
 	@Override
-	public void update() {
+	protected void update() {
 		super.update();
 
 		if(titleChanged) {

@@ -243,10 +243,10 @@ public class Pet2DView extends RPEntity2DView {
 
 
 	/**
-	 * Update representation.
+	 * Handle updates.
 	 */
 	@Override
-	public void update() {
+	protected void update() {
 		super.update();
 
 		if(ideaChanged) {

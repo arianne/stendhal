@@ -13,13 +13,16 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
+import marauroa.common.game.RPAction;
+
+import games.stendhal.client.gui.wt.EntityContainer;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * The 2D view of a chest.
  */
-public class Chest2DView extends StateEntity2DView {
+public class Chest2DView extends StateEntity2DView implements Inspectable {
 	/*
 	 * The closed state.
 	 */
@@ -35,6 +38,26 @@ public class Chest2DView extends StateEntity2DView {
 	 */
 	protected Chest		chest;
 
+	/**
+	 * The chest model open value changed.
+	 */
+	protected boolean	openChanged;
+
+	/**
+	 * The slot content inspector.
+	 */
+	private Inspector	inspector;
+
+	/**
+	 * Whether the user requested to open this chest.
+	 */
+	private boolean		requestOpen;
+
+	/**
+	 * The current content inspector.
+	 */
+	private EntityContainer	wtEntityContainer;
+
 
 	/**
 	 * Create a 2D view of a chest.
@@ -45,6 +68,22 @@ public class Chest2DView extends StateEntity2DView {
 		super(chest);
 
 		this.chest = chest;
+		openChanged = false;
+		requestOpen = false;
+	}
+
+
+	//
+	// Inspectable
+	//
+
+	/**
+	 * Set the content inspector for this entity.
+	 *
+	 * @param	inspector	The inspector.
+	 */
+	public void setInspector(final Inspector inspector) {
+		this.inspector = inspector;
 	}
 
 
@@ -109,6 +148,33 @@ public class Chest2DView extends StateEntity2DView {
 	}
 
 
+	/**
+	 * Handle updates.
+	 */
+	@Override
+	protected void update() {
+		super.update();
+
+		if(openChanged) {
+			if (chest.isOpen()) {
+				// we're wanted to open this?
+				if (requestOpen) {
+					wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer);
+				}
+			} else {
+
+				if(wtEntityContainer != null) {
+					wtEntityContainer.destroy();
+					wtEntityContainer = null;
+				}
+			}
+
+			requestOpen = false;
+			openChanged = false;
+		}
+	}
+
+
 	//
 	// EntityChangeListener
 	//
@@ -126,6 +192,63 @@ public class Chest2DView extends StateEntity2DView {
 
 		if(property == Chest.PROP_OPEN) {
 			stateChanged = true;
+			openChanged = true;
 		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at, final String... params) {
+		switch (at) {
+			case INSPECT:
+				wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer);
+				break;
+
+			case OPEN:
+				if (!chest.isOpen()) {
+					// If it was closed, open it and inspect it...
+					requestOpen = true;
+				}
+
+				/* no break */
+
+			case CLOSE:
+				RPAction rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", chest.getID().getObjectID());
+
+				at.send(rpaction);
+				break;
+
+			default:
+				super.onAction(at, params);
+				break;
+		}
+	}
+
+
+	/**
+	 * Release any view resources. This view should not be used after
+	 * this is called.
+	 */
+	@Override
+	public void release() {
+		if (wtEntityContainer != null) {
+			wtEntityContainer.destroy();
+			wtEntityContainer = null;
+		}
+
+		super.release();
 	}
 }
