@@ -101,7 +101,7 @@ public class Door extends Entity {
 		if (object.has("dir")) {
 			orientation = Direction.build(object.getInt("dir"));
 		} else {
-			orientation = Direction.STOP;
+			orientation = null;
 		}
 	}
 
@@ -160,7 +160,7 @@ public class Door extends Entity {
 		 * Orientation direction
 		 */
 		if (object.has("dir")) {
-			orientation = Direction.STOP;
+			orientation = null;
 			fireChange(PROP_ORIENTATION);
 		}
 	}

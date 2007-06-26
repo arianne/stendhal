@@ -13,6 +13,8 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
+import games.stendhal.common.Direction;
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
@@ -86,48 +88,36 @@ public class Door2DView extends StateEntity2DView {
 	protected void buildSprites(final Map<Object, Sprite> map) {
 		String name = door.getEntityClass();
 
-		switch(door.getOrientation()) {
-			case LEFT:
-				name += "_w";
-				xoffset = 0.0;
-				yoffset = -1.0;
-				width = 2.0;
-				height = 3.0;
-				break;
+		Direction orientation = door.getOrientation();
 
-			case RIGHT:
-				name += "_e";
-				xoffset = -1.0;
-				yoffset = -1.0;
-				width = 2.0;
-				height = 3.0;
-				break;
+		if(orientation != null) {
+			switch(orientation) {
+				case LEFT:
+					name += "_w";
+					break;
 
-			case UP:
-				name += "_n";
-				xoffset = -1.0;
-				yoffset = 0.0;
-				width = 3.0;
-				height = 2.0;
-				break;
+				case RIGHT:
+					name += "_e";
+					break;
 
-			case DOWN:
-				name += "_s";
-				xoffset = -1.0;
-				yoffset = -1.0;
-				width = 3.0;
-				height = 2.0;
-				break;
+				case UP:
+					name += "_n";
+					break;
 
-			default:
-				xoffset = 0.0;
-				yoffset = 0.0;
-				width = 1.0;
-				height = 1.0;
+				case DOWN:
+					name += "_s";
+					break;
+			}
 		}
 
 		SpriteStore store = SpriteStore.get();
 		Sprite tiles = store.getSprite(translate(name));
+
+		width = tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
+		height = tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS / 2;
+
+		xoffset = -(width - 1.0) / 2.0;
+		yoffset = -(height - 1.0) / 2.0;
 
 		map.put(STATE_OPEN, store.getSprite(tiles, 0, 0, width, height));
 		map.put(STATE_CLOSED, store.getSprite(tiles, 0, 1, width, height));
