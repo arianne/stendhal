@@ -8,6 +8,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 
 import games.stendhal.client.GameScreen;
@@ -17,10 +18,17 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+import org.apache.log4j.Logger;
+
 /**
  * The 2D view of an item.
  */
 public class Item2DView extends Entity2DView {
+	/**
+	 * Logger.
+	 */
+	private static final Logger logger = Log4J.getLogger(Item2DView.class);
+
 	/**
 	 * Create a 2D view of an item.
 	 *
@@ -53,7 +61,8 @@ public class Item2DView extends Entity2DView {
 		if(width > GameScreen.SIZE_UNIT_PIXELS) {
 			setSprite(store.getAnimatedSprite(sprite, 0, width / GameScreen.SIZE_UNIT_PIXELS, 1.0, 1.0, 100L, true));
 		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
-			setSprite(store.getSprite(sprite, 0, 0, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS));
+			setSprite(store.getSprite(sprite, 0, 0, 1.0, 1.0));
+			logger.info("WARNING: Multi-row item image for: " + getClassResourcePath());
 		} else {
 			setSprite(sprite);
 		}
