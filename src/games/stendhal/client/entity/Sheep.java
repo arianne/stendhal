@@ -99,28 +99,6 @@ public class Sheep extends RPEntity {
 		}
 	}
 
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at = handleAction(action);
-		switch (at) {
-			case OWN:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-
-				SoundMaster.play("sheep-2.wav",x,y);
-				break;
-
-			default:
-				SoundMaster.play((weight > 50) ?"sheep-2.wav":"sheep-1.wav",x,y);
-				super.onAction(at, params);
-				break;
-		}
-
-	}
-
 
 	/*
 	 * (non-Javadoc)

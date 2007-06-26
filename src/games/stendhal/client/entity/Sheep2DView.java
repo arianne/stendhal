@@ -14,7 +14,10 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
@@ -264,6 +267,38 @@ public class Sheep2DView extends RPEntity2DView {
 			ideaChanged = true;
 		} else if(property == Sheep.PROP_WEIGHT) {
 			stateChanged = true;
+		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at, final String... params) {
+		switch (at) {
+			case OWN:
+				SoundMaster.play("sheep-2.wav", sheep.getX(), sheep.getY());
+
+				RPAction rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", sheep.getID().getObjectID());
+
+				at.send(rpaction);
+				break;
+
+			default:
+				SoundMaster.play((sheep.getWeight() > 50) ? "sheep-2.wav" : "sheep-1.wav", sheep.getX(), sheep.getY());
+				super.onAction(at, params);
+				break;
 		}
 	}
 }
