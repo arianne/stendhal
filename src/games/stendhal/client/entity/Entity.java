@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.StendhalUI;
-
 import games.stendhal.client.events.RPObjectChangeListener;
 import games.stendhal.client.gui.Entity2DViewFactory;
 import games.stendhal.client.sound.SoundSystem;
@@ -22,8 +20,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 

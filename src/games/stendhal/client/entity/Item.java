@@ -14,8 +14,6 @@ package games.stendhal.client.entity;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 public class Item extends PassiveEntity {
 	@Override
 	public ActionType defaultAction() {

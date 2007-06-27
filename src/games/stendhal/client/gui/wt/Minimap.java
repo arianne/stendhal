@@ -23,7 +23,6 @@ import games.stendhal.client.entity.NPC;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Portal;
 import games.stendhal.client.entity.Sheep;
-import games.stendhal.client.entity.SheepFood;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;

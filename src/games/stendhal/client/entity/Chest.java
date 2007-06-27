@@ -12,11 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.gui.wt.EntityContainer;
-
 import java.util.List;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 

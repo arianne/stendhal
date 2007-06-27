@@ -20,8 +20,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-
 import marauroa.common.Log4J;
 
 import org.apache.log4j.Logger;
