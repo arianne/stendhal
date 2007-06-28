@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AnimalKeeperNPC implements ZoneConfigurator {
-	private NPCList npcs = NPCList.get();;
+	private NPCList npcs = NPCList.get();
 
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 

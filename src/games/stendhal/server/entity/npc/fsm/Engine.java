@@ -32,7 +32,7 @@ public class Engine {
 	private List<Transition> stateTransitionTable = new LinkedList<Transition>();
 
 	// current FSM state
-	private int currentState = ConversationStates.IDLE;;
+	private int currentState = ConversationStates.IDLE;
 
 	/**
 	 * Creates a new FSM.

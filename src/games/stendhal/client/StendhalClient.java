@@ -98,7 +98,7 @@ public class StendhalClient extends ariannexp {
 
 			whoplayers.removeAllElements();
 			for (int i=0;i<nombres.length;i++){
-				matcher = Pattern.compile("^([-_a-zA-Z0-9]+)\\([0-9]+\\)$").matcher(nombres[i]);;
+				matcher = Pattern.compile("^([-_a-zA-Z0-9]+)\\([0-9]+\\)$").matcher(nombres[i]);
 				if (matcher.find()) {
 					whoplayers.addElement(matcher.group(1));
 				}

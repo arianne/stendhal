@@ -38,7 +38,7 @@ public class ChatAction implements ActionListener {
 	private static final Logger logger = Log4J.getLogger(ChatAction.class);
 
 	// HashMap <players_name, last_message_time>
-	private Map<String, Long> last_msg = new HashMap<String, Long>();;
+	private Map<String, Long> last_msg = new HashMap<String, Long>();
 
 	/**
 	 * Registers actions

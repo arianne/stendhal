@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class WizardNPC implements ZoneConfigurator {
 
-	private NPCList npcs = NPCList.get();;
+	private NPCList npcs = NPCList.get();
 
 	private ShopList shops = ShopList.get();
 

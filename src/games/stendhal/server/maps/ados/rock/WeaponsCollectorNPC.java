@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class WeaponsCollectorNPC implements ZoneConfigurator {
 
-	private NPCList npcs = NPCList.get();;
+	private NPCList npcs = NPCList.get();
 
 	/**
 	 * Configure a zone.

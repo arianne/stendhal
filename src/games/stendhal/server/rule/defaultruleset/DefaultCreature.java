@@ -218,7 +218,7 @@ public class DefaultCreature {
 	}
 
 	public void setTileId(String val) {
-		tileid=val;;
+		tileid=val;
 	}
 
 	/** returns the class */

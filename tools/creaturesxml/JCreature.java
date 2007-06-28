@@ -967,7 +967,7 @@ public class JCreature extends javax.swing.JFrame {
 
     private int suggestedRespawnValue(int level) {
         int base=(int)Math.pow(10,level/100+1);
-        int respawn=((900+(level*level)/10+(level*level*level)/400)/base)*base;;
+        int respawn=((900+(level*level)/10+(level*level*level)/400)/base)*base;
         return respawn;
     }
     
@@ -980,7 +980,7 @@ public class JCreature extends javax.swing.JFrame {
         int def=(int)((4.2*Math.sqrt(level)+(level*level/100000.0)+7/(level+1)-level*0.08)/base*base);
         int hp=(int)(level*level*0.08+level*2+50);        
         int xp=((level*level*level/100+level*10)/base)*base;
-        int respawn=((900+(level*level)/10+(level*level*level)/400)/base)*base;;
+        int respawn=((900+(level*level)/10+(level*level*level)/400)/base)*base;
                 
         int pos=creatureList.getSelectedIndex();
         DefaultCreature actual = (DefaultCreature)filteredCreatures.get(pos);

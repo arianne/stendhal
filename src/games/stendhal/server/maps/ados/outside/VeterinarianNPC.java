@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class VeterinarianNPC implements ZoneConfigurator {
 
-	private NPCList npcs = NPCList.get();;
+	private NPCList npcs = NPCList.get();
 	private ShopList shops = ShopList.get();
 
 		/**

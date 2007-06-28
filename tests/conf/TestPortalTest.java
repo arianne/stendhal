@@ -15,7 +15,7 @@ public class TestPortalTest {
 		assertFalse(emptyPortal.isDestinationOf(null));
 		assertFalse(emptyPortal.isDestinationOf(emptyPortal));
 		TestPortal source = new TestPortal("1","source","1","target");
-		TestPortal target = new TestPortal("1","target","","");;
+		TestPortal target = new TestPortal("1","target","","");
 		assertFalse(emptyPortal.isDestinationOf(target));
 		assertTrue(target.isDestinationOf(source));
 		assertFalse(source.isDestinationOf(target));
