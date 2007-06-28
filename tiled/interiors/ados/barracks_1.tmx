@@ -62,7 +62,7 @@
  </tileset>
  <layer name="0_floor" width="40" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3DQQ0AAAwDoXvVv+QJGSSsmqqqqqqqqqo+f1wWI65AHwAA
+   H4sIAAAAAAAAAO3OsQkAMAwDQVXef+RUJgsETPAJrlPxlaQAAIDVeq+/W/oAuHrTHb/2AQAAsw5VmWnFQB8AAA==
   </data>
  </layer>
  <layer name="1_terrain" width="40" height="50">
