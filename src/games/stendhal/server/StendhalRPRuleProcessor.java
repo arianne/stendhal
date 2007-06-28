@@ -334,7 +334,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	public void removePlayerPrivateText(Player player) {
-		playersRmText.add(player);
+		playersRmPrivateText.add(player);
 	}
 
 	/**
@@ -416,6 +416,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** Notify it when a new turn happens */
 	synchronized public void beginTurn() {
 		Log4J.startMethod(logger, "beginTurn");
+		
 		long start = System.nanoTime();
 		int creatures = 0;
 		for (CreatureRespawnPoint point : respawnPoints) {
@@ -484,6 +485,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				}
 			}
 			playersRmText.clear();
+			playersRmPrivateText.clear();
 		} catch (Exception e) {
 			logger.error("error in beginTurn", e);
 		} finally {

@@ -54,6 +54,8 @@ import org.apache.log4j.Logger;
 
 public class Player extends RPEntity {
 
+	public static final String DEFAULT_DEAD_AREA = "int_afterlife";
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
@@ -301,7 +303,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public boolean isObstacle(Entity entity) {
-		if(get("zoneid").equals("int_afterlife") && entity instanceof Player) {
+		if(get("zoneid").equals(DEFAULT_DEAD_AREA) && entity instanceof Player) {
 			return false;
 		}
 
@@ -865,7 +867,7 @@ public class Player extends RPEntity {
 		// After a tangle with the grim reaper, give some karma
 		addKarma(200.0);
         // Penalize: Respawn on afterlive zone and
-		StendhalRPZone zone = world.getZone("int_afterlife");
+		StendhalRPZone zone = world.getZone(DEFAULT_DEAD_AREA);
 
 		zone.placeObjectAtEntryPoint(this);
 		StendhalRPAction.changeZone(this, zone);
@@ -1700,7 +1702,7 @@ public class Player extends RPEntity {
 		/*
 		 * If player enters afterlife, make them partially transparent
 		 */
-		if(zoneName.equals("int_afterlife")) {
+		if(zoneName.equals(DEFAULT_DEAD_AREA)) {
 			setVisibility(50);
 		}
 
@@ -1721,7 +1723,7 @@ public class Player extends RPEntity {
 		/*
 		 * If player leaves afterlife, make them normal
 		 */
-		if(zone.getID().getID().equals("int_afterlife")) {
+		if(zone.getID().getID().equals(DEFAULT_DEAD_AREA)) {
 			setVisibility(100);
 		}
 

@@ -63,7 +63,7 @@ public class TurnNotifier {
 		//       because notifyAtTurn will not allow registrations
 		//       for the current turn. So it is important to
 		//       adjust currentTurn before the loop.
-
+		
 		this.currentTurn = currentTurn;
 
 		// get and remove the set for this turn
