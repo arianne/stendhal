@@ -155,7 +155,6 @@ public class stendhal extends Thread {
 		//get size string
 		if (System.getProperty("stendhal.refactoringgui") != null) SCREEN_SIZE = "1000x480";
 		else SCREEN_SIZE="640x480";
-		System.setProperty("sun.java2d.pmoffscreen","false");
 		parseCommandlineArguments(args);
 		startLogSystem();
 		startSwingLookAndFeel();
