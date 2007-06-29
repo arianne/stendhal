@@ -93,19 +93,19 @@
  <tileset name="../../tileset/logic/creature/animal.png" firstgid="284" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="305" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="308" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/mutant.png" firstgid="312" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/mutant.png" firstgid="315" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mutant.png"/>
  </tileset>
- <tileset name="huge_animal.png" firstgid="316" tilewidth="32" tileheight="32">
+ <tileset name="huge_animal.png" firstgid="318" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="stairs.png" firstgid="326" tilewidth="32" tileheight="32">
+ <tileset name="stairs.png" firstgid="328" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="blood/floor_stain.png" firstgid="330" tilewidth="32" tileheight="32">
+ <tileset name="blood/floor_stain.png" firstgid="332" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/floor_stain.png"/>
  </tileset>
  <layer name="0_floor" width="18" height="18">
@@ -115,12 +115,12 @@
  </layer>
  <layer name="1_terrain" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLnAixGCiQESQCyJBUuRaKc0EMsgYZD9IFqWQnNgeNQc8szBlQ6kGRBxRIl75IBYHgtWIMEMcRLtHAWkAwBg8kZ3EAUAAA==
+   H4sIAAAAAAAAADNkYGBQpxAbALEmEAcCsS+ZOACINaDmeDOQD7xIMMeHEYKJMUcCiCWxYCkS3SMNxDJIGGQ/iJal0BwYHjWHPHNg6QCbObA4osQ9ckAsjwUrkGgOuWAwm+MPxD5kYj+oOfpArEYh1gNiAI8Y8rQQBQAA
   </data>
  </layer>
  <layer name="2_object" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAADNkYGBQpxAbALEmEAcCcRQQRwNxDBD7koADgFgDao43EMcCcRwQxzOQBrzQzMEHtgDxViqYQ657tgHxdiqYQy33jGRzkvCYk4RVB23dQ2tzxHGog/kVOW16MTIwuDHiNgeXWcS6xx+IfcjEflBz9IFYjUKsB8QAV9tK6hAFAAA=
+   H4sIAAAAAAAAAGNgoC6IAuJoII6h0JxYII4D4niKXYQbbAHirTQ0nxDYBsTbB9D+UYAASWTKDVUgjkMc5lfktOnDyMDgwYjbHFxmDUUAAFkLqKUQBQAA
   </data>
  </layer>
  <layer name="3_roof" width="18" height="18">
@@ -130,10 +130,10 @@
  </layer>
  <layer name="objects" width="18" height="18">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWajAPtAsqAI53crzfEw4lcoEsDf8vgMJPctEjruDEdIXEPAI6sHtwQBQAA
+   H4sIAAAAAAAAAGNgGAWajAPtAsqAM53crzfEw4lcoEsDf8vgMJPctEjruLEYIXEPAGjZUwoQBQAA
   </data>
  </layer>
- <layer name="collision" width="18" height="18" visible="0" opacity="0.52">
+ <layer name="collision" width="18" height="18" opacity="0.52">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNlYGAQpTFmoIJ+YgElekfNGTVn1Bzam0Pr8oYSDAAQI6L0EAUAAA==
   </data>

@@ -65,17 +65,17 @@
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYDQ82woJFh5l+bGrw4VH9w0e/FBCLk4glofq5gJiRTMwJxAABzXvfAAQAAA==
+   H4sIAAAAAAAAADNiYGAwGgRYDQ8eCfpH8SgeCAwAKIWzzgAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNggAATBgSIAuJoIM5mIB6YIrFjgDgWiHNI0G9GhJqJQDwFiKcSoTYOitHBNCCejkXcHIgtgNgSyk8C4hQs6mYA8Uws4vZA7ADEjlB+BhBnoamZDMSzgHgOHncTAguAeBEF+mHuIAcQCn93KMYHcIU/sQBX+FMDBAJxEBBH0sh8GFhMpLpcIM4D4nwy7SkD4nIgrsCjBgD010hbAAQAAA==
+   H4sIAAAAAAAAAKXQuQ5BQRiG4bE0ltbuOiwVKjWdRiGKEwk63IbYRSHcqLf4NZN/nDnjS55q5k0mUzTGpAMVkEUT1YQayEhfRsvEb48jTihZvb2psHfGRenb6KAr92aYK/0VN6XvoY+B3IuwsNoD7nh4vN+1J15/9N93hPRx/z8Uv+b6f9+5/j/ptH6EMSaBve/eVl9HRbHECmvlrCZ9HimHDbbYOc5z+AAHbr/vAAQAAA==
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGBxg0kA7YBSMghEIABOlw6gABAAA
+   H4sIAAAAAAAAAGNggAATBgSIAuJoIM5mIB6YIrFjgDgWiHNI0D+JBLWjYBSMAuoAAJ84m6kABAAA
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">

@@ -56,17 +56,17 @@
  </tileset>
  <layer name="0_floor" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAONhYGBgIhNzAzELEMsAsQSJWBqImaH6xYBYh0QsOqp/VP8w0S8FxOIkYkmofi4gZiQTcwIxANDC0AUABAAA
+   H4sIAAAAAAAAANNhYGDQGcWjeBSPSAwAK+nCOAAEAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANXOOQ7CMBCF4ZyIpQACPVSASMK+BTrgGgn3zl+MJQtmLKeg4EmfNE6ePE6S7xxwxEW4c2xOOOMq3DmUDlKMA52RdLrKv0GL92ndnuwusDZs5A19494JttgZ9tL5p6xQKbOWKWaYY+F9r5Epc+z+Wpm1LI357e3058/kxhyT4Q+6JW64t3yLywNPvAKdBkMuthkABAAA
+   H4sIAAAAAAAAAL3OuQoCMRCA4Xg0Hq23z+BR7Hr0WunirZ3aqa/h+t7+QoQhTJRYOPDBQPJvtmyMyf6ohDzaqAdqIWf7KjoYYmT8M7B3uqg4ffShcydS+p59e42Nx9b+Q1/pXzPGDnuPg71jPH3I/Ktf4K7sWj/BFDPMxTdSLJ095P1U2bU+EZ3cH+L99671K9HIXRu3j7/clxM7fRM1xREnnJWzhu2LyHhccMXNc17AE5OQcuIABAAA
   </data>
  </layer>
  <layer name="2_object" width="16" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUg0DnQDhgFo2AAAACGgOZxAAQAAA==
+   H4sIAAAAAAAAAGNgwASRQBwFxLFQDOMTC6KBOAaI46AYxh/MoHOgHTAKRsEAAAApGo0/AAQAAA==
   </data>
  </layer>
  <layer name="3_roof" width="16" height="16">
@@ -79,17 +79,17 @@
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>
  </layer>
- <layer name="objects" width="16" height="32">
+ <layer name="objects" width="16" height="32" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBQMVtA30A4YBaNgFAwIoEfeBwDJwr/ZAAgAAA==
   </data>
  </layer>
- <layer name="collision" width="16" height="16" opacity="0.44">
+ <layer name="collision" width="16" height="16" visible="0" opacity="0.44">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAJvIwMAwcZBhXIBcfaSaQ66bKVFLKqCn/olY2KT4iVj9lNpPDfdj04PLTHqkP1LVk4oBjwwo+QAEAAA=
   </data>
  </layer>
- <layer name="protection" width="16" height="16" opacity="0.69">
+ <layer name="protection" width="16" height="16" visible="0" opacity="0.69">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMVAAALq+17wAEAAA=
   </data>

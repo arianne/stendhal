@@ -92,17 +92,17 @@
  </tileset>
  <layer name="0_floor" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUgwEFnPBjsR3YHve1HD4dR+wfG3lH7R+0ftZ965pALBsp+ANyOnXMACAAA
+   H4sIAAAAAAAAAONgYGDgGMWjeBSP4lE8ikfxiMIA1hT3UAAIAAA=
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAOXUSQrCMBgF4JygnkHoBaziPG+ctc4jUigo6P33PjHZxPwm/lZc+OCD0sS+NjUV4hGPIYSpeD+e4ZzPMIM5o98nzgeQhbw8DuSxSge60IM+TBjd6jpUcpbfDmAII2a3ygnOH16DmyNc4Pqj/gjSkHoxpwBFg1JC92DrL0PFoKrNGzP7be//2/229+/aT2UBS1gR4/r6Z7TxGtQNGto86vnXsIEts981VP8O9nAgxpPa/1S/Wj99ve6Jhfv+b0JLaovnby73/2fbf/+SG9aj6CcACAAA
+   H4sIAAAAAAAAAMXUyUoEMRDG8XoBl4s6V3evjuK+jF7Gfd8VEdw30AcQvAheBB9Fvakv578xgyFUOpmeBgt+UHRS+Zg0PQURqc9oBaumb0HBWT/Bacp8MtOIHnRksIZ1dKNBOesCl55Ze6ZNfquIPgyYvmj6SpUxg1nMYdk8b1XOSqtyykx/YHYeC1i0nlWbn9QZzquc8dWD1T9G7D/EFa5zyn+y+ueI/UcSvrNBDCmGlb0vVv8akS9W/g1ulfURjCrGnH1LUtv7v8P9P+SH3n9svnjyN7CJLU++O9PrrI9jQjHp7PP9/m3sYDdjfmz58vewjwPPXF7fvy+/cn/ufSV1LPHffwlTxrT8/eeG8kNlz3ShvQadgbPe8I4PZaYZdTloSjnrE1/4VmZ+AAfG6jYACAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="16">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAJNgYGDgYyAOuOIQB+kXB2IJKBuGU4A4Fcq+BcS3gfgO1ByYHgEg1gBiUyTzcLHdcNivDsT8SGapQHEGEGdC2XeB+B4Q34eag6xHCYhL8fibEFBEM2stEK+HyoHY65D4uPRQAigxixr21yLZ30CE+moq298KxG1A3A7EHUSor6Gy/b0MCP9PIFFvDhDn4pCrQGL7Q+lqLOooif8CIC4kQl0V1O4aLHKk2v8AiU1ITxkQl0PZ2Owmx35kMBzy36j9lNmvBsTKFGBVJPuxmbUBiDcC8SYsesSAmJcKWBSPWTuBeBcQ78aiBwB4mi3WAAgAAA==
+   H4sIAAAAAAAAAGNgIB64kqAWHdwC4ttAfIcIc0xxsN0osP8uEN8D4vs4zCmlwGx0sBaI1yOx1yHxRwEDQzUNzGwD4nYi1dbQwH5agAoktj+UpkXYEQOqoHZTI+wekKC2DIjLoeyhEm+jYBQMFQAA0zY0XQAIAAA=
   </data>
  </layer>
  <layer name="3_roof" width="32" height="16">
@@ -115,12 +115,12 @@
    H4sIAAAAAAAAAGNgGAWjYBSMglEwCkYBrcDbgXYADgAAyzSvuQAIAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="16" opacity="0.52">
+ <layer name="collision" width="32" height="16" visible="0" opacity="0.52">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPvAwMDwYRTjxcgAmxw+faSYQy4gx6yBtJ9QGNMaEGM/sekBm1py3ECu/eSG5UDaT4/wJ+QeaqVBUvP9YLWfXECr+CdWLbXSP63xQNhJDAYAztAbmAAIAAA=
   </data>
  </layer>
- <layer name="protection" width="32" height="16" opacity="0.24">
+ <layer name="protection" width="32" height="16" visible="0" opacity="0.24">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAPvIwMDwcRSP4lE8ikfxKB7FIwoDAOwElowACAAA
   </data>
