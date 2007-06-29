@@ -108,10 +108,10 @@ South: Semos city
       <parameter name="class">signpost</parameter>
     </implementation>
   </entity>
-  <entity x="101" y="72">
+  <entity x="101" y="74">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
-  <entity x="102" y="72">
+  <entity x="102" y="74">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
  
