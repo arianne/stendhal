@@ -358,7 +358,7 @@ k*/object/witch_hut.png
 ./plant/grass.png
 ./plant/grass_2.png
 k/plant/grass_corners.png
-k/plant/grass_edges.png
+k*/plant/grass_edges.png
 ./plant/grass_mud.png
 k/plant/grasses.png
 ./plant/leaves.png
