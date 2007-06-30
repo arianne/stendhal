@@ -39,7 +39,7 @@ public class MeetKetteh extends AbstractQuest{
 							SpeakerNPC engine) {
 
 						Outfit outfit = player.getOutfit();
-                        if (outfit.getDress() == 0) {
+                        if (outfit.isNaked()) {
                             // The player is naked
                             engine.say("Who are you? Aiiieeeee!!! You're naked! Quickly, right-click on yourself and choose SET OUTFIT!\nShhh! Don't even think on clicking on the white bar at the bottom and writing to reply to me! And if you happen to talk to any of the other citizens, you'd better begin the conversation saying \"hi\". And don't be rude and just leave; say \"bye\" to end the conversation.\nAnd use Ctrl+Arrows to turn around and face me when I'm talking to you! Wait! I'm sure I've seen you with that fellow Nomyr, who's always peeking at the windows! Now use the arrow keys and get out of my room!");
                             player.setQuest("Ketteh", "seen_naked");

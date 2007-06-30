@@ -205,4 +205,13 @@ public class Outfit {
 		       (dress < 50) && (dress>=0) && 
 		       (base < 50) && (base>=0);
 	}
+
+	/**
+	 * Is outfit missing a dress?
+	 *
+	 * @return true if naked, false if dressed
+	 */
+	public boolean isNaked() {
+	    return (dress == null) || dress.equals(0);
+    }
 }
