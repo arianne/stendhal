@@ -11,8 +11,11 @@ import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 import marauroa.common.Log4J;
 import marauroa.common.game.RPObject;
@@ -21,9 +24,11 @@ import org.apache.log4j.Logger;
 
 public abstract class ScriptingSandbox {
 
-	private ArrayList<NPC> loadedNPCs = new ArrayList<NPC>();
-
-	private ArrayList<RPObject> loadedRPObjects = new ArrayList<RPObject>();
+	// loadedNPCs and loadedRPObject are Sets. They are implemented using
+	// maps because there are no WeakSets in Java. (In current Sun
+	// Java HashSet is implemented using HashMap anyway).
+	private Map<NPC, Object> loadedNPCs = new WeakHashMap<NPC, Object>();
+	private Map<RPObject, Object> loadedRPObjects = new WeakHashMap<RPObject, Object>();
 
 	private String exceptionMessage;
 
@@ -88,7 +93,7 @@ public abstract class ScriptingSandbox {
 			zone.assignRPObjectID(npc);
 			zone.add(npc);
 			StendhalRPRuleProcessor.get().addNPC(npc);
-			loadedNPCs.add(npc);
+			loadedNPCs.put(npc, null);
 			logger.info(filename + " added NPC: " + npc);
 		}
 	}
@@ -97,7 +102,7 @@ public abstract class ScriptingSandbox {
 		if (zone != null) {
 			zone.assignRPObjectID(object);
 			zone.add(object);
-			loadedRPObjects.add(object);
+			loadedRPObjects.put(object, null);
 			logger.info(filename + " added object: " + object);
 		}
 	}
@@ -122,10 +127,6 @@ public abstract class ScriptingSandbox {
 		return (item);
 	}
 
-	public List<RPObject> getCreatedRPObjects() {
-		return loadedRPObjects;
-	}
-
 	public Creature add(Creature template, int x, int y) {
 		Creature creature = template.getInstance();
 		if (zone != null) {
@@ -133,7 +134,7 @@ public abstract class ScriptingSandbox {
 			if (StendhalRPAction.placeat(zone, creature, x, y)) {
 				zone.add(creature);
 				StendhalRPRuleProcessor.get().addNPC(creature);
-				loadedNPCs.add(creature);
+				loadedNPCs.put(creature, null);
 				logger.info(filename + " added creature: " + creature);
 			} else {
 				logger.info(filename + " could not add a creature: " + creature);
@@ -199,11 +200,13 @@ public abstract class ScriptingSandbox {
     public void unload(Player player, String[] args) {
 		Log4J.startMethod(logger, "unload");
 
-		for (NPC npc : (List<NPC>) loadedNPCs.clone()) {
+		Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
+		for (NPC npc : setNPC) {
 			remove(npc);
 		}
 
-		for (RPObject object : (List<RPObject>) loadedRPObjects.clone()) {
+		Set<RPObject> setRPObject = new HashSet<RPObject>(loadedRPObjects.keySet());
+		for (RPObject object : setRPObject) {
 			remove(object);
 		}
 
