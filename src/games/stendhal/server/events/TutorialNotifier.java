@@ -119,7 +119,9 @@ public class TutorialNotifier {
 	 */
 	public static void aged(Player player, int age) {
 		if (age >= 15) {
-			process(player, TutorialEventType.TIMED_NAKED);
+			if (player.getOutfit().getDress() == null || player.getOutfit().getDress().intValue() == 0) {
+				process(player, TutorialEventType.TIMED_NAKED);
+			}
 		} else if (age >= 10) {
 			// TODO: activate this after password change is implemented
 			// process(player, TutorialEventType.TIMED_PASSWORD);
