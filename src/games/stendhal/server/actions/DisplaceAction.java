@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
+import java.util.List;
+
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.PassiveEntity;
@@ -56,7 +58,9 @@ public class DisplaceAction implements ActionListener {
 
 						PassiveEntity entity = (PassiveEntity) object;
 
-						if (player.nextTo(entity) && (player.squaredDistance(x, y) < 8 * 8)
+						if (player.nextTo(entity)
+								&& (!isItemBelowOtherPlayer(player, entity))
+								&& (player.squaredDistance(x, y) < 8 * 8)
 						        && !zone.simpleCollides(entity, x, y)) {
 							StendhalRPRuleProcessor.get()
 							        .addGameEvent(player.getName(), "displace", entity.get("type"));
@@ -76,5 +80,29 @@ public class DisplaceAction implements ActionListener {
 		}
 
 		Log4J.finishMethod(logger, "displace");
+	}
+
+
+
+	/**
+	 * Checks whether the item is below <b>another</b> player.
+	 * 
+	 * @param player the player doing the displacement
+	 * @param entity the entity beeing displaced
+	 * @return true, if it cannot be take; false otherwise
+	 */
+	private boolean isItemBelowOtherPlayer(Player player, PassiveEntity entity) {
+		// prevent taking of items which are below other players
+		List<Player> players = player.getZone().getPlayers();
+		for (Player otherPlayer : players) {
+			if (player.equals(otherPlayer)) {
+				continue;
+			}
+			if (otherPlayer.getArea().intersects(entity.getArea())) {
+				player.sendPrivateText("You cannot take items which are below other players");
+				return true;
+			}
+		}
+		return false;
 	}
 }
