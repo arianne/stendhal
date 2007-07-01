@@ -144,7 +144,7 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
-		super.draw(screen, g2d, x, y, width, height);
+		super.draw(screen, g2d, x -8, y, width, height);
 
 		if(player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);

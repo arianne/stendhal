@@ -9,6 +9,7 @@ package games.stendhal.client.entity;
 //
 //
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
@@ -17,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import marauroa.common.Log4J;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -118,5 +120,13 @@ public class NPC2DView extends RPEntity2DView {
 		if(property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		}
+	}
+
+
+	@Override
+	protected void draw(GameScreen screen, Graphics2D g2d, int x, int y,
+			int width, int height) {
+		
+		super.draw(screen, g2d, x-8, y, width, height);
 	}
 }
