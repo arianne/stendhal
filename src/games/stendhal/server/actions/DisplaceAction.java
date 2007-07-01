@@ -14,24 +14,32 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.entity.PassiveEntity;
-import games.stendhal.server.entity.RPEntity;
 import marauroa.common.Log4J;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Moving of items around on the ground
+ */
 public class DisplaceAction implements ActionListener {
 
 	private static final Logger logger = Log4J.getLogger(DisplaceAction.class);
 
+	/**
+	 * register this action
+	 */
 	public static void register() {
 		StendhalRPRuleProcessor.register("displace", new DisplaceAction());
 	}
 
+	/**
+	 * handle movement of items
+	 */
 	public void onAction(Player player, RPAction action) {
 		Log4J.startMethod(logger, "displace");
 		if (action.has("baseitem")) {
@@ -41,18 +49,7 @@ public class DisplaceAction implements ActionListener {
 			RPObject.ID targetid = new RPObject.ID(targetObject, zone.getID());
 			if (zone.has(targetid)) {
 				RPObject object = zone.get(targetid);
-				if (object instanceof RPEntity) /** Player, Creatures and NPCs */
-				{
-					RPEntity entity = (RPEntity) object;
-					if (player.nextTo(entity)) {
-						if (action.has("x") && action.has("y")) {
-							// int x=action.getInt("x");
-							// int y=action.getInt("y");
-
-							/** TODO: Code displace here */
-						}
-					}
-				} else if (object instanceof PassiveEntity) {
+				if (object instanceof PassiveEntity) {
 					if (action.has("x") && action.has("y")) {
 						int x = action.getInt("x");
 						int y = action.getInt("y");
