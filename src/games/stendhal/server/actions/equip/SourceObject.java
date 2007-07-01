@@ -103,6 +103,10 @@ class SourceObject extends MoveableObject {
 				}
 				item = (Item) entity;
 			}
+
+			if (isItemBelowOtherPlayer()) {
+				item = null;
+			}
 		}
 
 		if ((item instanceof Stackable) && action.has(EquipActionConsts.QUANTITY)) {
@@ -210,6 +214,27 @@ class SourceObject extends MoveableObject {
 
 		}
 		return temp;
+	}
+	
+
+	/**
+	 * Checks whether the item is below <b>another</b> player.
+	 * 
+	 * @return true, if it cannot be take; false otherwise
+	 */
+	private boolean isItemBelowOtherPlayer() {
+		// prevent taking of items which are below other players
+		List<Player> players = player.getZone().getPlayers();
+		for (Player otherPlayer : players) {
+			if (player.equals(otherPlayer)) {
+				continue;
+			}
+			if (otherPlayer.getArea().intersects(item.getArea())) {
+				player.sendPrivateText("You cannot take items which are below other players");
+				return true;
+			}
+		}
+		return false;
 	}
 }
 
