@@ -198,6 +198,17 @@ public class SpriteStore {
 
 
 	/**
+	 * Checks if a file exists.
+	 * 
+	 * @param ref the file name
+	 * @return
+	 */
+	public boolean existsSprite(String ref) {
+		URL url = getResourceURL(ref);
+		return url!=null;
+	}
+	
+	/**
 	 * Load a sprite from a resource reference.
 	 *
 	 * @param	ref		The image resource name.

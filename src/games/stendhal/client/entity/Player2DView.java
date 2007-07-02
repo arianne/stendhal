@@ -92,7 +92,7 @@ public class Player2DView extends RPEntity2DView {
 		try {
 			return store.getOutfit(player.getOutfit());
 		} catch (Exception e) {
-			logger.error("Cannot build outfit", e);
+			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
 		}
 	}
