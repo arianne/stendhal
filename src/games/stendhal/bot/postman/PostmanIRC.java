@@ -4,7 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 import org.jibble.pircbot.PircBot;
@@ -16,7 +17,7 @@ import org.jibble.pircbot.PircBot;
  */
 public class PostmanIRC extends PircBot {
 
-	private static Logger logger = Logger.getLogger(PostmanIRC.class);
+	private static Logger logger = Log4J.getLogger(PostmanIRC.class);
 
 	private Properties prop = new Properties();
 
