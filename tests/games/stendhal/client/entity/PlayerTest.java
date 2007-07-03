@@ -1,6 +1,7 @@
 package games.stendhal.client.entity;
 
 import static org.junit.Assert.assertEquals;
+
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;

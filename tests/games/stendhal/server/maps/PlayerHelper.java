@@ -8,7 +8,9 @@ import marauroa.common.game.RPSlot;
 public class PlayerHelper {
 	public static  void addEmptySlots(Player player) {
 		player.addSlot(new EntitySlot("bag"));
-		player.getSlot("bag").setCapacity(20);
+		
+		//BUG: Capacity can only be set at the RPClass.
+		//player.getSlot("bag").setCapacity(20);
 		player.addSlot(new EntitySlot("lhand"));
 		player.addSlot(new EntitySlot("rhand"));
 		player.addSlot(new EntitySlot("armor"));

@@ -1,7 +1,8 @@
 package games.stendhal.server.entity.item;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
@@ -12,8 +13,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import marauroa.common.game.AttributeNotFoundException;
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.game.RPObject;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

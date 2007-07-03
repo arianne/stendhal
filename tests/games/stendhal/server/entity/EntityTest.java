@@ -3,7 +3,6 @@ package games.stendhal.server.entity;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import games.stendhal.server.entity.player.Player;
-
 import marauroa.common.game.RPObject;
 
 import org.junit.Test;

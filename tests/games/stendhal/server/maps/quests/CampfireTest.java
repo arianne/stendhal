@@ -1,6 +1,9 @@
 package games.stendhal.server.maps.quests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.NPCList;
@@ -11,7 +14,6 @@ import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
 import games.stendhal.server.maps.MockStendlRPWorld;
 import games.stendhal.server.maps.PlayerHelper;
 import games.stendhal.server.maps.orril.river.CampingGirlNPC;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
