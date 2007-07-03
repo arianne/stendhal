@@ -21,7 +21,6 @@ import games.stendhal.server.actions.BuddyAction;
 import games.stendhal.server.actions.ChatAction;
 import games.stendhal.server.actions.CreateGuildAction;
 import games.stendhal.server.actions.DisplaceAction;
-import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.actions.FaceAction;
 import games.stendhal.server.actions.LookAction;
 import games.stendhal.server.actions.MoveAction;
@@ -31,7 +30,9 @@ import games.stendhal.server.actions.PlayersQuery;
 import games.stendhal.server.actions.QuestListAction;
 import games.stendhal.server.actions.StopAction;
 import games.stendhal.server.actions.UseAction;
+import games.stendhal.server.actions.equip.EquipmentAction;
 import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPC;
 import games.stendhal.server.entity.player.Player;
@@ -40,8 +41,11 @@ import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.events.LoginNotifier;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
+import games.stendhal.server.rule.RuleManager;
+import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.server.scripting.ScriptRunner;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,18 +53,25 @@ import java.util.Map;
 
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
-import marauroa.common.PropertyNotFoundException;
+import marauroa.common.Logger;
+import marauroa.common.crypto.Hash;
+import marauroa.common.game.AccountResult;
+import marauroa.common.game.CharacterResult;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
-import marauroa.server.createaccount.Result;
-import marauroa.server.game.IRPRuleProcessor;
-import marauroa.server.game.RPServerManager;
+import marauroa.common.game.RPSlot;
+import marauroa.common.game.Result;
 import marauroa.server.game.Statistics;
-import marauroa.server.game.Transaction;
-
-import org.apache.log4j.Logger;
+import marauroa.server.game.container.PlayerEntry;
+import marauroa.server.game.container.PlayerEntryContainer;
+import marauroa.server.game.db.DatabaseFactory;
+import marauroa.server.game.db.JDBCDatabase;
+import marauroa.server.game.db.Transaction;
+import marauroa.server.game.rp.IRPRuleProcessor;
+import marauroa.server.game.rp.RPServerManager;
+import marauroa.test.TestHelper;
 
 public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
@@ -253,8 +264,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 						logger.error("Error while loading extension: " + extension, ex);
 					}
 				}
-			} catch (PropertyNotFoundException ep) {
-				logger.info("No server extensions configured in ini file.");
+			} catch (Exception ep) {
+				logger.info("No server extensions configured in ini file.",ep);
 			}
 
 		} catch (Exception e) {
@@ -281,14 +292,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			return false;
 		}
 		return true;
-	}
-
-	public Result createAccount(String username, String password, String email) {
-		if (!isValidUsername(username)) {
-			return Result.FAILED_INVALID_CHARACTER_USED;
-		}
-		stendhalcreateaccount account = new stendhalcreateaccount();
-		return account.execute(username, password, email);
 	}
 
 	public void addNPC(NPC npc) {
@@ -380,19 +383,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		return npcsToRemove.add(npc);
 	}
 
-	public boolean onActionAdd(RPAction action, List<RPAction> actionList) {
+	public boolean onActionAdd(RPObject caster, RPAction action, List<RPAction> actionList) {
 		return true;
 	}
 
-	public boolean onIncompleteActionAdd(RPAction action, List<RPAction> actionList) {
-		return true;
-	}
-
-	public RPAction.Status execute(RPObject.ID id, RPAction action) {
-		Log4J.startMethod(logger, "execute");
-		RPAction.Status status = RPAction.Status.SUCCESS;
+	public void execute(RPObject caster, RPAction action) {
 		try {
-			Player player = (Player) StendhalRPWorld.get().get(id);
+			Player player = (Player) caster;
 			String type = action.get("type");
 			ActionListener actionListener = actionsMap.get(type);
 			if (actionListener == null) {
@@ -403,10 +400,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			}
 		} catch (Exception e) {
 			logger.error("cannot execute action " + action, e);
-		} finally {
-			Log4J.finishMethod(logger, "execute");
 		}
-		return status;
 	}
 
 	public int getTurn() {
@@ -415,8 +409,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/** Notify it when a new turn happens */
 	synchronized public void beginTurn() {
-		Log4J.startMethod(logger, "beginTurn");
-		
 		long start = System.nanoTime();
 		int creatures = 0;
 		for (CreatureRespawnPoint point : respawnPoints) {
@@ -490,12 +482,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			logger.error("error in beginTurn", e);
 		} finally {
 			logger.debug("Begin turn: " + (System.nanoTime() - start) / 1000000.0);
-			Log4J.finishMethod(logger, "beginTurn");
 		}
 	}
 
 	synchronized public void endTurn() {
-		Log4J.startMethod(logger, "endTurn");
 		long start = System.nanoTime();
 		int currentTurn = getTurn();
 		try {
@@ -511,14 +501,17 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			logger.error("error in endTurn", e);
 		} finally {
 			logger.debug("End turn: " + (System.nanoTime() - start) / 1000000.0 + " (" + (currentTurn % 5) + ")");
-			Log4J.finishMethod(logger, "endTurn");
 		}
 	}
 
 	synchronized public boolean onInit(RPObject object) throws RPObjectInvalidException {
-		Log4J.startMethod(logger, "onInit");
 		try {
+			PlayerEntry entry=PlayerEntryContainer.getContainer().get(object);			
+			
 			Player player = Player.create(object);
+			// TODO: This is a hack, it should use instead RPObjectFactory.
+			entry.object=player;
+			
 			playersRmText.add(player);
 			playersRmPrivateText.add(player);
 			players.add(player);
@@ -533,51 +526,140 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			LoginNotifier.get().onPlayerLoggedIn(player);
 			TutorialNotifier.login(player);
 
+			database.setOnlineStatus(player, true);
+
 			return true;
 		} catch (Exception e) {
 			logger.error("There has been a severe problem loading player " + object.get("#db_id"), e);
 			return false;
-		} finally {
-			Log4J.finishMethod(logger, "onInit");
 		}
 	}
 
-	synchronized public boolean onExit(RPObject.ID id) {
-		Log4J.startMethod(logger, "onExit");
+	synchronized public boolean onExit(RPObject object) {
 		try {
-			for (Player player : players) {
-				if (player.getID().equals(id)) {
-					if (wasKilled(player)) {
-						logger.info("Logged out shortly before death: Killing it now :)");
-						player.onDead(killerOf(player));
-					}
-
-					// Notify other players about this event
-					for (Player p : getPlayers()) {
-						p.notifyOffline(player.getName());
-					}
-					Player.destroy(player);
-					players.remove(player);
-					addGameEvent(player.getName(), "logout");
-					logger.debug("removed player " + player);
-					break;
-				}
+			Player player = (Player) object;
+			if (wasKilled(player)) {
+				logger.info("Logged out shortly before death: Killing it now :)");
+				player.onDead(killerOf(player));
 			}
+
+			// Notify other players about this event
+			for (Player p : getPlayers()) {
+				p.notifyOffline(player.getName());
+			}
+			
+			Player.destroy(player);
+			players.remove(player);
+			addGameEvent(player.getName(), "logout");
+			logger.debug("removed player " + player);
+			
 			return true;
 		} catch (Exception e) {
 			logger.error("error in onExit", e);
 			return true;
-		} finally {
-			Log4J.finishMethod(logger, "onExit");
 		}
 	}
 
-	synchronized public boolean onTimeout(RPObject.ID id) {
-		Log4J.startMethod(logger, "onTimeout");
-		try {
-			return onExit(id);
-		} finally {
-			Log4J.finishMethod(logger, "onTimeout");
+	synchronized public void onTimeout(RPObject object) {
+		/*
+		 * TODO: Check new syntax of onTimeout.
+		 *  It is expected to kickout the player, it can't fail.
+		 */
+		onExit(object);
+	}
+
+	public AccountResult createAccount(String username, String password, String email) {
+		if (!isValidUsername(username)) {
+			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
+
+		JDBCDatabase database=(JDBCDatabase) DatabaseFactory.getDatabase();
+		Transaction trans = database.getTransaction();
+		try {
+			trans.begin();
+
+			if (database.hasPlayer(trans, username)) {
+				logger.warn("Account already exist: " + username);
+				return new AccountResult(Result.FAILED_PLAYER_EXISTS, username);
+			}
+
+			database.addPlayer(trans, username, Hash.hash(password), email);
+
+			trans.commit();
+			return new AccountResult(Result.OK_CREATED, username);
+		} catch (SQLException e) {
+			try {
+				trans.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			TestHelper.fail();
+			return new AccountResult(Result.FAILED_EXCEPTION, username);
+		}
+    }
+
+	public CharacterResult createCharacter(String username, String character, RPObject template) {
+		JDBCDatabase database=(JDBCDatabase) DatabaseFactory.getDatabase();
+		Transaction trans = database.getTransaction();
+		
+		try {
+			if (database.hasCharacter(trans, username, character)) {
+				logger.warn("Character already exist: " + character);
+				return new CharacterResult(Result.FAILED_PLAYER_EXISTS, character, template);
+		}
+
+			/*
+			 * Create the player character object
+			 */
+			Player object = new Player(new RPObject());
+			object.setID(RPObject.INVALID_ID);
+
+			object.put("type", "player");
+			object.put("name", character);
+			object.put("outfit", new Outfit().getCode());
+			object.put("base_hp", 100);
+			object.put("hp", 100);
+			object.put("atk", 10);
+			object.put("atk_xp", 0);
+			object.put("def", 10);
+			object.put("def_xp", 0);
+			object.put("xp", 0);
+			
+			/*
+			 * TODO: Update the above to use Player and RPEntity methods.
+			 */
+			object.update();
+
+			RuleManager manager = RuleSetFactory.getRuleSet("default");
+
+			object.addSlot("armor");
+			Entity entity = manager.getEntityManager().getItem("leather_armor");
+			RPSlot slot = object.getSlot("armor");
+			slot.add(entity);
+
+			object.addSlot("rhand");
+			entity = manager.getEntityManager().getItem("club");
+			slot = object.getSlot("rhand");
+			slot.add(entity);
+
+			/*
+			 * Finally we add it to database.
+			 */			
+			database.addCharacter(trans, username, character, object);
+			return new CharacterResult(Result.OK_CREATED, character, object);
+		} catch (Exception e) {
+			try {
+				trans.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			logger.error("Can't create character",e);
+			TestHelper.fail();
+			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
+		}
+    }
+
+	public RPServerManager getRPManager() {
+	    return rpman;	    
 	}
 }
