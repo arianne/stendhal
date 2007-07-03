@@ -5188,7 +5188,7 @@
       <item value="money" quantity="[3,27]" probability="90.0"/>      
       <item value="stone_armor" quantity="[1,1]" probability="0.1"/>
       <item value="black_armor" quantity="[1,1]" probability="1.0E-4"/>
-      <item value="golden_horned_helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="horned_golden_helmet" quantity="[1,1]" probability="0.5"/>
     </drops>
     <equips>
     </equips>
