@@ -25,8 +25,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-import org.apache.log4j.Logger;
 
 /**
  * This listener handles all entity movements from a slot to
@@ -94,8 +94,6 @@ public class EquipmentAction implements ActionListener {
 
 	/** callback for the equip action */
 	private void onEquip(Player player, RPAction action) {
-		Log4J.startMethod(logger, "equip");
-
 		// get source and check it
 		SourceObject source = new SourceObject(action, player);
 		if (!source.isValid() || !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
@@ -143,13 +141,9 @@ public class EquipmentAction implements ActionListener {
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
 
 		player.updateItemAtkDef();
-
-		Log4J.finishMethod(logger, "equip");
 	}
 
 	private void onDrop(Player player, RPAction action) {
-		Log4J.startMethod(logger, "drop");
-
 		// get source and check it
 		SourceObject source = new SourceObject(action, player);
 		if (!source.isValid() || !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
@@ -181,8 +175,6 @@ public class EquipmentAction implements ActionListener {
 		int amount = source.getQuantity();
 		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
 		player.updateItemAtkDef();
-
-		Log4J.finishMethod(logger, "drop");
 	}
 
 

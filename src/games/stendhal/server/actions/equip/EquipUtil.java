@@ -1,19 +1,20 @@
 package games.stendhal.server.actions.equip;
 
-import java.util.List;
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.game.RPObject;
 
-import org.apache.log4j.Logger;
+import java.util.List;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 /**
  * Useful method to deal with equipable items
  */
 public class EquipUtil {
-	private static Logger logger = Logger.getLogger(EquipUtil.class);
+	private static Logger logger = Log4J.getLogger(EquipUtil.class);
 
 	/**
 	 * Gets the object for the given id. Returns null when the item is not

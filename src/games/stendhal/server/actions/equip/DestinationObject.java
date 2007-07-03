@@ -10,17 +10,17 @@ import games.stendhal.server.entity.slot.EntitySlot;
 import java.util.Iterator;
 import java.util.List;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * this encapsulates the equip/drop destination
  */
 class DestinationObject extends MoveableObject {
-	private static Logger logger = Logger.getLogger(DestinationObject.class);
+	private static Logger logger = Log4J.getLogger(DestinationObject.class);
 
 
 	/** true when this object is valid */
@@ -122,25 +122,30 @@ class DestinationObject extends MoveableObject {
 			// check if someone tried to put an item into itself (maybe
 			// through
 			// various levels of indirection)
-			if (rpslot.hasAsParent(entity.getID())) {
+			if (rpslot.hasAsParent(entity)) {
 				logger.warn("tried to put item " + entity.getID() + " into itself, equip rejected");
 				return false;
 			}
 
-			// not very accurate...the containment level of this slot
-			int depth = rpslot.getContainedDepth();
-
-			// count items in source item (if it is an container)
-			for (RPSlot sourceSlot : entity.slots()) {
-				depth += sourceSlot.getNumberOfContainedItems();
-			}
-
-			// check the maximum level of contained elements
-			if ((entity.slots().size() > 0) && (depth > EquipActionConsts.MAX_CONTAINED_DEPTH)) {
-				logger.warn("maximum contained depth (is: " + depth + " max: " + EquipActionConsts.MAX_CONTAINED_DEPTH
-				        + ") reached, equip rejected");
-				return false;
-			}
+			/*
+			 * TODO: Broken.
+			 * Marauroa 2.0 improved all the slot handling.
+			 * XXX: Recode.
+			 */
+//			// not very accurate...the containment level of this slot
+//			int depth = 0;
+//
+//			// count items in source item (if it is an container)
+//			for (RPSlot sourceSlot : entity.slots()) {
+//				depth += sourceSlot.();
+//			}
+//
+//			// check the maximum level of contained elements
+//			if ((entity.slots().size() > 0) && (depth > EquipActionConsts.MAX_CONTAINED_DEPTH)) {
+//				logger.warn("maximum contained depth (is: " + depth + " max: " + EquipActionConsts.MAX_CONTAINED_DEPTH
+//				        + ") reached, equip rejected");
+//				return false;
+//			}
 		} else {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
@@ -240,7 +245,6 @@ class DestinationObject extends MoveableObject {
 			// entity still there?
 			if (entity != null) {
 				// yep, so it is not stacked. simplay add it
-				rpslot.assignValidID(entity);
 				rpslot.add(entity);
 			}
 
