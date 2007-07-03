@@ -24,6 +24,8 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A sheep is a domestic animal that can be owned by a player.
@@ -83,10 +85,8 @@ public class Sheep extends DomesticAnimal {
 		try {
 			RPClass sheep = new RPClass("sheep");
 			sheep.isA("creature");
-			sheep.add("weight", Type.BYTE);
-// TODO: Needed?
-//			sheep.add("eat", Type.FLAG);
-		} catch (RPClass.SyntaxException e) {
+			sheep.addAttribute("weight", Type.BYTE);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}

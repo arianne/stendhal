@@ -26,6 +26,8 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A pet is a domestic animal that can be owned by a player.
@@ -65,9 +67,9 @@ public abstract class Pet extends DomesticAnimal {
 		try {
 			RPClass pet = new RPClass("pet");
 			pet.isA("creature");
-			pet.add("weight", Type.BYTE);
-			pet.add("eat", Type.FLAG);
-		} catch (RPClass.SyntaxException e) {
+			pet.addAttribute("weight", Type.BYTE);
+			pet.addAttribute("eat", Type.FLAG);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}

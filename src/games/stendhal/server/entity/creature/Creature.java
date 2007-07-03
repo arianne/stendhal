@@ -270,11 +270,7 @@ public class Creature extends NPC {
 	}
 
 	public RPObject.ID getIDforDebug() {
-		try {
-			return getID();
-		} catch (AttributeNotFoundException e) {
-			return INVALID_ID;
-		}
+		return getID();
 	}
 
 	public void setRespawnPoint(CreatureRespawnPoint point) {
@@ -576,7 +572,6 @@ public class Creature extends NPC {
 				((StackableItem) item).setQuantity(equipedItem.quantity);
 			}
 
-			slot.assignValidID(item);
 			slot.add(item);
 		}
 	}
