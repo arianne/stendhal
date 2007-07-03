@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 import org.jibble.pircbot.PircBot;
