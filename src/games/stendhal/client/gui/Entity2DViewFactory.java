@@ -9,22 +9,69 @@ package games.stendhal.client.gui;
 //
 //
 
+import games.stendhal.client.entity.Blood;
+import games.stendhal.client.entity.Blood2DView;
+import games.stendhal.client.entity.BossCreature;
+import games.stendhal.client.entity.BossCreature2DView;
+import games.stendhal.client.entity.Chest;
+import games.stendhal.client.entity.Chest2DView;
+import games.stendhal.client.entity.Corpse;
+import games.stendhal.client.entity.Corpse2DView;
+import games.stendhal.client.entity.Creature;
+import games.stendhal.client.entity.Creature2DView;
+import games.stendhal.client.entity.Door;
+import games.stendhal.client.entity.Door2DView;
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Entity2DView;
+import games.stendhal.client.entity.Fire;
+import games.stendhal.client.entity.Fire2DView;
+import games.stendhal.client.entity.FishSource;
+import games.stendhal.client.entity.FishSource2DView;
+import games.stendhal.client.entity.GoldSource;
+import games.stendhal.client.entity.GoldSource2DView;
+import games.stendhal.client.entity.GrainField;
+import games.stendhal.client.entity.GrainField2DView;
+import games.stendhal.client.entity.InvisibleEntity;
+import games.stendhal.client.entity.InvisibleEntity2DView;
+import games.stendhal.client.entity.Item;
+import games.stendhal.client.entity.Item2DView;
+import games.stendhal.client.entity.NPC;
+import games.stendhal.client.entity.NPC2DView;
+import games.stendhal.client.entity.Pet;
+import games.stendhal.client.entity.Pet2DView;
+import games.stendhal.client.entity.PlantGrower;
+import games.stendhal.client.entity.PlantGrower2DView;
+import games.stendhal.client.entity.Player;
+import games.stendhal.client.entity.Player2DView;
+import games.stendhal.client.entity.Ring;
+import games.stendhal.client.entity.Ring2DView;
+import games.stendhal.client.entity.Sheep;
+import games.stendhal.client.entity.Sheep2DView;
+import games.stendhal.client.entity.SheepFood;
+import games.stendhal.client.entity.SheepFood2DView;
+import games.stendhal.client.entity.Sign;
+import games.stendhal.client.entity.Sign2DView;
+import games.stendhal.client.entity.Spell;
+import games.stendhal.client.entity.Spell2DView;
+import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.StackableItem2DView;
+import games.stendhal.client.entity.WellSource;
+import games.stendhal.client.entity.WellSource2DView;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
-import games.stendhal.client.entity.*;
+import marauroa.common.Logger;
 
 /**
  *
  */
 public class Entity2DViewFactory { // implements EntityViewFactory {
 	/**
-	 * Logger.
+	 * Log4J.
 	 */
 	private static final Logger logger = Log4J.getLogger(Entity2DViewFactory.class);
 

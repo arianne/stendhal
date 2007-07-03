@@ -44,9 +44,12 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import marauroa.client.ariannexpTimeoutException;
+import marauroa.client.BannedAddressException;
+import marauroa.client.LoginFailedException;
+import marauroa.client.TimeoutException;
 import marauroa.common.Log4J;
 import marauroa.common.io.Persistence;
+import marauroa.common.net.InvalidVersionException;
 
 /**
  * Server login dialog.
@@ -101,8 +104,8 @@ public class LoginDialog extends JDialog {
 		//
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(new GridBagLayout());
-		contentPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(), BorderFactory
-		        .createEmptyBorder(5, 5, 5, 5)));
+		contentPane.setBorder(BorderFactory.createCompoundBorder(
+		        BorderFactory.createEtchedBorder(), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.LINE_START;
@@ -213,7 +216,6 @@ public class LoginDialog extends JDialog {
 		c.insets = new Insets(0, 20, 0, 0);
 		contentPane.add(savePasswordBox, c);
 
-
 		loginButton = new JButton();
 		loginButton.setText("Login to Server");
 		loginButton.setMnemonic(KeyEvent.VK_L);
@@ -237,7 +239,6 @@ public class LoginDialog extends JDialog {
 		 */
 		profiles = loadProfiles();
 		populateProfiles(profiles);
-
 
 		/*
 		 * Add this callback after everything is initialized
@@ -266,14 +267,14 @@ public class LoginDialog extends JDialog {
 			// intensifly@gmx.com
 
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(this, "That is not a valid port number. Please try again.", "Invalid port",
+			JOptionPane.showMessageDialog(this,
+			        "That is not a valid port number. Please try again.", "Invalid port",
 			        JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 
 		profile.setUser(usernameField.getText().trim());
 		profile.setPassword(new String(passwordField.getPassword()));
-
 
 		/*
 		 * Save profile?
@@ -282,7 +283,7 @@ public class LoginDialog extends JDialog {
 			profiles.add(profile);
 			populateProfiles(profiles);
 
-			if(savePasswordBox.isSelected()) {
+			if (savePasswordBox.isSelected()) {
 				saveProfiles(profiles);
 			} else {
 				String pw = profile.getPassword();
@@ -314,7 +315,7 @@ public class LoginDialog extends JDialog {
 		setEnabled(false);
 
 		try {
-			client.connect(profile.getHost(), profile.getPort(), true);
+			client.connect(profile.getHost(), profile.getPort());
 
 			// for each major connection milestone call step()
 			progressBar.step();
@@ -324,46 +325,52 @@ public class LoginDialog extends JDialog {
 			setEnabled(true);
 
 			Log4J.getLogger(LoginDialog.class).error("unable to connect to server", ex);
-			JOptionPane.showMessageDialog(this, "Unable to connect to server. Did you misspell the server name?");
+			JOptionPane.showMessageDialog(this,
+			        "Unable to connect to server. Did you misspell the server name?");
 			return;
 		}
 
 		try {
-			if (client.login(profile.getUser(), profile.getPassword()) == false) {
-				String result = client.getEvent();
+			client.login(profile.getUser(), profile.getPassword());
 
-				if (result == null) {
-					result = "Server is not available right now. The server "
-					        + "may be down or, if you are using a custom server, "
-					        + "you may have entered its name and port number incorrectly.";
-				}
+			progressBar.step();
+			progressBar.finish();
 
-				progressBar.cancel();
-				setEnabled(true);
-
-				JOptionPane.showMessageDialog(this, result, "Error Logging In", JOptionPane.ERROR_MESSAGE);
-			} else {
-				progressBar.step();
-				progressBar.finish();
-
-				setVisible(false);
-				owner.setVisible(false);
-				stendhal.doLogin = true;
-				client.setUserName(profile.getUser());
-			}
-		} catch (ariannexpTimeoutException ex) {
+			setVisible(false);
+			owner.setVisible(false);
+			stendhal.doLogin = true;
+			client.setAccountUsername(profile.getUser());
+		} catch (InvalidVersionException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this, "Server does not respond. The server may be down or, "
-			        + "if you are using a custom server, you may have entered "
-			        + "its name and port number incorrectly.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
-		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(this,
+			        "You are running an incompatible version of Stendhal. Please update",
+			        "Invalid version", JOptionPane.ERROR_MESSAGE);
+		} catch (TimeoutException e) {
 			progressBar.cancel();
 			setEnabled(true);
 
-			JOptionPane.showMessageDialog(this, "Stendhal cannot connect. Please check that your connection "
-			        + "is set up and active, then try again.", "Error Logging In", JOptionPane.ERROR_MESSAGE);
+			JOptionPane
+			        .showMessageDialog(
+			                this,
+			                "Server is not available right now. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
+			                "Error Logging In", JOptionPane.ERROR_MESSAGE);
+		} catch (LoginFailedException e) {
+			progressBar.cancel();
+			setEnabled(true);
+
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Login failed",
+			        JOptionPane.INFORMATION_MESSAGE);
+		} catch (BannedAddressException e) {
+			progressBar.cancel();
+			setEnabled(true);
+
+			JOptionPane
+			        .showMessageDialog(
+			                this,
+			                "You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+			                "IP Banned", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -386,7 +393,8 @@ public class LoginDialog extends JDialog {
 		} catch (FileNotFoundException fnfe) {
 			// Ignore
 		} catch (IOException ioex) {
-			JOptionPane.showMessageDialog(this, "An error occurred while loading your login information",
+			JOptionPane.showMessageDialog(this,
+			        "An error occurred while loading your login information",
 			        "Error Loading Login Information", JOptionPane.WARNING_MESSAGE);
 		}
 
@@ -459,7 +467,8 @@ public class LoginDialog extends JDialog {
 				os.close();
 			}
 		} catch (IOException ioex) {
-			JOptionPane.showMessageDialog(this, "An error occurred while saving your login information",
+			JOptionPane.showMessageDialog(this,
+			        "An error occurred while saving your login information",
 			        "Error Saving Login Information", JOptionPane.WARNING_MESSAGE);
 		}
 	}
@@ -470,7 +479,6 @@ public class LoginDialog extends JDialog {
 	protected void saveProfileStateCB() {
 		savePasswordBox.setEnabled(saveLoginBox.isSelected());
 	}
-
 
 	/**
 	 * Server connect thread runnable.

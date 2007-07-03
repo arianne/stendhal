@@ -12,13 +12,33 @@
  ***************************************************************************/
 package games.stendhal.client.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
-import games.stendhal.client.*;
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.stendhal;
 import games.stendhal.client.update.ClientGameConfiguration;
-import marauroa.client.*;
+
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+import marauroa.client.BannedAddressException;
+import marauroa.client.LoginFailedException;
+import marauroa.client.TimeoutException;
+import marauroa.common.game.AccountResult;
+import marauroa.common.net.InvalidVersionException;
 
 /**
  * Summary description for CreateAccountDialog
@@ -202,7 +222,7 @@ public class CreateAccountDialog extends JDialog {
 	}
 
 	private void createAccountButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
-		final String username = usernameField.getText();
+		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
 		final String passwordretype = new String(passwordField.getPassword());
 
@@ -238,7 +258,7 @@ public class CreateAccountDialog extends JDialog {
 				setVisible(false);//hide this screen when attempting to connect
 
 				try {
-					client.connect(server, finalPort, true);
+					client.connect(server, finalPort);
 					progressBar.step();//for each major connection milestone call step()
 				} catch (Exception ex) {
 					progressBar.cancel();//if something goes horribly just cancel the progressbar
@@ -252,60 +272,73 @@ public class CreateAccountDialog extends JDialog {
 				}
 
 				try {
-					if (client.createAccount(username, password, email) == false) {
-						String result = client.getEvent();
-						if (result == null) {
-							result = "The server is not responding. Please check that it is online, and that you supplied the correct details.";
-						}
+                	AccountResult result = client.createAccount(accountUsername, password, email);
+                	if (result.failed()) {
+                		/*
+                		 * If the account can't be created, show an error message and don't continue.
+                		 */
 						progressBar.cancel();
 						setVisible(true);
-						JOptionPane.showMessageDialog(owner, result, "Error Creating Account",
+    					JOptionPane.showMessageDialog(owner, 
+    							result.getResult().getText(),
+    							"Create account failed",
 						        JOptionPane.ERROR_MESSAGE);
-
-						return;
 					} else {
+
+						/*
+						 * Print username returned by server, as server can modify it at will
+						 * to match account names rules. 
+						 */
+
 						progressBar.step();
 						progressBar.finish();
-						client.setUserName(username);
+
+						// TODO: Check mental conflict bewteen username and account name.
+						// Be sure to fix all the variable names.
+						client.setAccountUsername(accountUsername);
+
+						/*
+						 * Once the account is created, login into server.
+						 */
+						client.login(accountUsername, password);
+						progressBar.step();
+						progressBar.finish();
+
+						setVisible(false);
+						owner.setVisible(false);
+
+						stendhal.doLogin = true;
 					}
-				} catch (ariannexpTimeoutException ex) {
+                } catch (TimeoutException e) {
 					progressBar.cancel();
 					setVisible(true);
 					JOptionPane.showMessageDialog(
 						owner,
 						"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-						"Error Creating Account", JOptionPane.ERROR_MESSAGE);
-				}
-
-				try {
-					if (client.login(username, password) == false) {
-						String result = client.getEvent();
-						if (result == null) {
-							result = "Unable to connect to server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.";
-						}
-						progressBar.cancel();
-						setVisible(true);
-						JOptionPane.showMessageDialog(owner, result, "Error Logging In", JOptionPane.ERROR_MESSAGE);
-					} else {
-						progressBar.step();
-						progressBar.finish();
-						//                        try {//wait just long enough for progress bar to close
-						//                            progressBar.m_run.join();
-						//                        }catch (InterruptedException ie) {}
-
-						setVisible(false);
-						owner.setVisible(false);
-						stendhal.doLogin = true;
-					}
-				} catch (ariannexpTimeoutException ex) {
+						"Error Creating Account", 
+						JOptionPane.ERROR_MESSAGE);
+                } catch (InvalidVersionException e) {
 					progressBar.cancel();
 					setVisible(true);
-					JOptionPane.showMessageDialog(
-						owner,
-						"Unable to connect to the server. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
-						"Error Logging In", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(owner, 
+							"You are running an incompatible version of Stendhal. Please update", 
+							"Invalid version",
+							JOptionPane.ERROR_MESSAGE);
+                } catch (BannedAddressException e) {
+					progressBar.cancel();
+					setVisible(true);
+					JOptionPane.showMessageDialog(owner, 
+							"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
+							"IP Banned",
+							JOptionPane.ERROR_MESSAGE);
+                } catch(LoginFailedException e) {
+					progressBar.cancel();
+					setVisible(true);
+					JOptionPane.showMessageDialog(owner, 
+							e.getMessage(), 
+							"Login failed", 
+							JOptionPane.INFORMATION_MESSAGE);
 				}
-
 			}
 		};
 		m_connectionThread.start();

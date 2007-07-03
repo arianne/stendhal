@@ -58,23 +58,23 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.net.URL;
+
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
@@ -490,7 +490,8 @@ public class j2DClient extends StendhalUI {
 //System.err.println("init mem = " + mem + "k");
 //}
 
-		while (gameRunning) {
+		boolean canExit=false;
+		while (!canExit) {
 			fps++;
 			// figure out what time it is right after the screen flip then
 			// later we can figure out how long we have been doing redrawing
@@ -588,19 +589,37 @@ public class j2DClient extends StendhalUI {
 			}
 
 			logger.debug("End sleeping");
+
+			if (!gameRunning) {
+				logger.info("Request logout");
+				try {
+					/*
+					 * We request server permision to logout.
+					 * Server can deny it. 
+					 */
+					if (client.logout()) {
+						canExit = true;
+					} else {
+						logger.warn("You can't logout now.");
+						gameRunning = true;
+					}
+				} catch (Exception e) {
+					/*
+					 * If we get a timeout exception we accept exit request.
+					 */
+					canExit = true;
+					e.printStackTrace();
+				}
+			}
 		}
+		// MEMORY DEBUGGING:
+		//{
+		//Runtime rt = Runtime.getRuntime();
+		////rt.gc();
+		//long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
+		//System.err.println("end mem = " + mem + "k");
+		//}
 
-		logger.info("Request logout");
-
-// MEMORY DEBUGGING:
-//{
-//Runtime rt = Runtime.getRuntime();
-////rt.gc();
-//long mem = (rt.totalMemory() - rt.freeMemory()) / 1024L;
-//System.err.println("end mem = " + mem + "k");
-//}
-
-		client.logout();
 		SoundSystem.get().exit();
 	}
 
@@ -800,12 +819,10 @@ public class j2DClient extends StendhalUI {
 	 * Shutdown the client. Save state and tell the main loop to stop.
 	 */
 	protected void shutdown() {
-		Log4J.startMethod(logger, "shutdown");
 		gameRunning = false;
 
 		// try to save the window configuration
 		WtWindowManager.getInstance().save();
-		Log4J.finishMethod(logger, "shutdown");
 	}
 
 
@@ -1110,7 +1127,7 @@ public class j2DClient extends StendhalUI {
 			if ((username != null) && (password != null) && (host != null) && (port != null)) {
 				StendhalClient client = StendhalClient.get();
 				try {
-					client.connect(host, Integer.parseInt(port), true);
+					client.connect(host, Integer.parseInt(port));
 					client.login(username, password);
 
 					new j2DClient(client);
