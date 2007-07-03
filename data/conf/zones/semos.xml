@@ -9,6 +9,12 @@
  <!--  Ground level -->
 
  <zone name="0_semos_mountain_n_w4" level="0" x="499616" y="499744" file="Level 0/semos/mountain_n_w4.tmx">
+  <portal x="61" y="38" ref="kikareukin_entrance">
+   <destination zone="1_kikareukin_cave" ref="entrance"/>
+  </portal>
+  <portal x="68" y="132" ref="kikareukin_exit">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
  </zone>
 
  <zone name="0_semos_mountain_n2_w2" level="0" x="499744" y="499744" file="Level 0/semos/mountain_n2_w2.tmx">

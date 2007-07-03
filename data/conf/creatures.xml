@@ -6377,4 +6377,43 @@
     </ai>
   </creature>
 
+ <creature name="dark_angel">
+    <type class="giant_human" subclass="dark_angel" tileid="giant_human.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="450"/>
+      <def value="56"/>
+      <hp value="12000"/>
+      <speed value="1.0"/>
+      <size value="3,4"/>
+    </attributes>
+    <level value="400"/>
+    <experience value="623000"/>
+    <respawn value="160000"/>
+    <drops>
+      <item value="mega_potion" quantity="[2,4]" probability="50.0"/>
+      <item value="giant_heart" quantity="[1,2]" probability="85.0"/>
+      <item value="money" quantity="[3000,30000]" probability="100.0"/>
+      <item value="magic_plate_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="black_legs" quantity="[1,1]" probability="4.0"/>
+      <item value="black_cloak" quantity="[1,1]" probability="4.0"/>
+      <item value="magic_chain_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="magic_twoside_axe" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Meet thy maker!"/>
+        <noise value="Mere mortals cannot challenge me!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="15,50"/>
+      <profile name="lifesteal" params="0.1"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 </creatures>
