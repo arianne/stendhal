@@ -12,18 +12,18 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import java.util.List;
-
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.List;
+
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * Moving of items around on the ground
@@ -43,7 +43,7 @@ public class DisplaceAction implements ActionListener {
 	 * handle movement of items
 	 */
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "displace");
+		
 		if (action.has("baseitem")) {
 			int targetObject = action.getInt("baseitem");
 
@@ -79,7 +79,7 @@ public class DisplaceAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "displace");
+		
 	}
 
 

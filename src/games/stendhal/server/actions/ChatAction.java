@@ -25,10 +25,9 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-import marauroa.server.game.Transaction;
-
-import org.apache.log4j.Logger;
+import marauroa.server.game.db.Transaction;
 
 /**
  * Processes /chat, /tell (/msg) and /support
@@ -75,7 +74,7 @@ public class ChatAction implements ActionListener {
 	}
 
 	private void onChat(Player player, RPAction action) {
-		Log4J.startMethod(logger, "chat");
+		
 		if (action.has("text")) {
 			String text = action.get("text");
 			player.put("text", text);
@@ -85,7 +84,7 @@ public class ChatAction implements ActionListener {
 			player.notifyWorldAboutChanges();
 			StendhalRPRuleProcessor.get().removePlayerText(player);
 		}
-		Log4J.finishMethod(logger, "chat");
+		
 	}
 
 	private void onAnswer(Player player, RPAction action) {
@@ -197,7 +196,7 @@ public class ChatAction implements ActionListener {
 	}
 
 	private void onSupport(Player player, RPAction action) {
-		Log4J.startMethod(logger, "support");
+		
 
 		if (action.has("text")) {
 			
@@ -232,7 +231,7 @@ public class ChatAction implements ActionListener {
 			player.notifyWorldAboutChanges();
 		}
 
-		Log4J.finishMethod(logger, "tell");
+		
 	}
 
 	/**

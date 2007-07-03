@@ -15,9 +15,8 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 public class StopAction implements ActionListener {
 
@@ -28,7 +27,7 @@ public class StopAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "stop");
+		
 
 		player.stop();
 
@@ -37,6 +36,6 @@ public class StopAction implements ActionListener {
 		}
 		player.notifyWorldAboutChanges();
 
-		Log4J.finishMethod(logger, "stop");
+		
 	}
 }

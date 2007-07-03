@@ -22,11 +22,10 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 public class UseAction implements ActionListener {
 
@@ -37,7 +36,7 @@ public class UseAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "use");
+		
 
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
@@ -101,7 +100,7 @@ public class UseAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "use");
+		
 	}
 	
 	private void invokeUseListener(Player player, RPObject object) {

@@ -15,8 +15,8 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-import org.apache.log4j.Logger;
 
 public class BuddyAction implements ActionListener {
 
@@ -58,7 +58,7 @@ public class BuddyAction implements ActionListener {
 		int duration;
 		String reason;
 
-		Log4J.startMethod(logger, "ignore");
+		
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -80,11 +80,11 @@ public class BuddyAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "ignore");
+		
 	}
 
 	private void onUnignore(Player player, RPAction action) {
-		Log4J.startMethod(logger, "unignore");
+		
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -94,11 +94,11 @@ public class BuddyAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "unignore");
+		
 	}
 
 	private void onRemoveBuddy(Player player, RPAction action) {
-		Log4J.startMethod(logger, "removeBuddy");
+		
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -111,6 +111,6 @@ public class BuddyAction implements ActionListener {
 			player.removeIgnore(who);
 		}
 
-		Log4J.finishMethod(logger, "removeBuddy");
+		
 	}
 }

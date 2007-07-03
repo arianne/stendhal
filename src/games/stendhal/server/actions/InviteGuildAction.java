@@ -6,13 +6,11 @@
 
 package games.stendhal.server.actions;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * Process guildl actions from client. (Invite)
@@ -20,7 +18,7 @@ import games.stendhal.server.entity.player.Player;
 public class InviteGuildAction implements ActionListener {
 
 	/**
-	 * Logger.
+	 * Log4J.
 	 */
 	private static final Logger logger = Log4J.getLogger(InviteGuildAction.class);
 
@@ -38,7 +36,7 @@ public class InviteGuildAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void inviteToGuild(Player player, RPAction action) {
-		Log4J.startMethod(logger, "inviteToGuild");
+		
 
 		//invites to guild
 		if (action.has("playername") && action.has("guildname")) {
@@ -71,7 +69,7 @@ public class InviteGuildAction implements ActionListener {
 		player.update();
 		player.notifyWorldAboutChanges();
 
-		Log4J.finishMethod(logger, "guild");
+		
 	}
 
 	/**

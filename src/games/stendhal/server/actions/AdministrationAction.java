@@ -13,8 +13,8 @@
 package games.stendhal.server.actions;
 
 import games.stendhal.common.Grammar;
-import games.stendhal.server.Jail;
 import games.stendhal.server.GagManager;
+import games.stendhal.server.Jail;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -25,11 +25,12 @@ import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.NPCList;
+import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.portal.Portal;
 import games.stendhal.server.rule.EntityManager;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -37,13 +38,15 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
+import marauroa.common.game.Definition.DefinitionClass;
+import marauroa.common.game.Definition.Type;
 
 /**
  * Most /commands for admins are handled here.
@@ -190,8 +193,6 @@ public class AdministrationAction implements ActionListener {
 	}
 
 	private void onSupportAnswer(Player player, RPAction action) {
-		Log4J.startMethod(logger, "supportanswer");
-
 		if (action.has("target") && action.has("text")) {
 			String message = player.getName() + " answers " + Grammar.suffix_s(action.get("target"))
 			        + " support question: " + action.get("text");
@@ -216,26 +217,18 @@ public class AdministrationAction implements ActionListener {
 				player.sendPrivateText(action.get("target") + " is not currently logged in.");
 			}
 		}
-
-		Log4J.finishMethod(logger, "supportanswer");
 	}
 
 	private void onTellEverybody(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onTellEverybody");
-
 		if (action.has("text")) {
 			String message = "Administrator SHOUTS: " + action.get("text");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "tellall", action.get("text"));
 
 			StendhalRPAction.shout(message);
 		}
-
-		Log4J.finishMethod(logger, "onTellEverybody");
 	}
 
 	private void onTeleport(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onTeleport");
-
 		if (action.has("target") && action.has("zone") && action.has("x") && action.has("y")) {
 			String name = action.get("target");
 			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
@@ -271,13 +264,9 @@ public class AdministrationAction implements ActionListener {
 			        zone.getID().getID(), Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
 		}
-
-		Log4J.finishMethod(logger, "onTeleport");
 	}
 
 	private void onTeleportTo(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onTeleportTo");
-
 		if (action.has("target")) {
 			String name = action.get("target");
 			RPEntity teleported = StendhalRPRuleProcessor.get().getPlayer(name);
@@ -301,12 +290,10 @@ public class AdministrationAction implements ActionListener {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto", action.get("target"),
 			        zone.getID().getID(), Integer.toString(x), Integer.toString(y));
 		}
-
-		Log4J.finishMethod(logger, "onTeleportTo");
 	}
 
 	private void onAdminLevel(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onAdminLevel");
+		
 
 		if (action.has("target")) {
 
@@ -329,7 +316,7 @@ public class AdministrationAction implements ActionListener {
 					newlevel = Integer.parseInt(action.get("newlevel"));
 				} catch (NumberFormatException e) {
 					player.sendPrivateText("The new adminlevel needs to be an Integer");
-					Log4J.finishMethod(logger, "onAdminLevel");
+					
 					return;
 				}
 
@@ -378,11 +365,11 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText(response);
 		}
 
-		Log4J.finishMethod(logger, "onAdminLevel");
+		
 	}
 
 	private void onAlter(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onAlter");
+		
 
 		if (action.has("target") && action.has("stat") && action.has("mode") && action.has("value")) {
 			Entity changed = getTarget(player, action);
@@ -410,12 +397,17 @@ public class AdministrationAction implements ActionListener {
 
 			boolean isNumerical = false;
 
-			byte type = clazz.getType(stat);
-			if ((type == RPClass.BYTE) || (type == RPClass.SHORT) || (type == RPClass.INT)) {
+			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
+			if(type==null) {				
+				player.sendPrivateText("Attribute you are altering is not defined in RPClass("+changed.getRPClass().getName()+")");
+				return;
+			}
+
+			if ((type.getType() == Type.BYTE) || (type.getType() == Type.SHORT) || (type.getType() == Type.INT)) {
 				isNumerical = true;
 			}
 
-			if (changed.getRPClass().hasAttribute(stat)) {
+			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE, stat)) {
 				String value = action.get("value");
 				String mode = action.get("mode");
 
@@ -441,18 +433,18 @@ public class AdministrationAction implements ActionListener {
 						return;
 					}
 
-					switch (type) {
-						case RPClass.BYTE:
+					switch (type.getType()) {
+						case BYTE:
 							if ((numberValue > Byte.MAX_VALUE) || (numberValue < Byte.MIN_VALUE)) {
 								return;
 							}
 							break;
-						case RPClass.SHORT:
+						case SHORT:
 							if ((numberValue > Short.MAX_VALUE) || (numberValue < Short.MIN_VALUE)) {
 								return;
 							}
 							break;
-						case RPClass.INT:
+						case INT:
 							if ((numberValue > Integer.MAX_VALUE) || (numberValue < Integer.MIN_VALUE)) {
 								return;
 							}
@@ -476,11 +468,11 @@ public class AdministrationAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "onAlter");
+		
 	}
 
 	private void onAlterCreature(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onAlterCreature");
+		
 
 		if (action.has("target") && action.has("text")) {
 			Entity changed = getTarget(player, action);
@@ -513,11 +505,11 @@ public class AdministrationAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "onAlterCreature");
+		
 	}
 
 	private void onSummon(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onSummon");
+		
 
 		if (action.has("creature") && action.has("x") && action.has("y")) {
 			StendhalRPZone zone = player.getZone();
@@ -551,11 +543,11 @@ public class AdministrationAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "onSummon");
+		
 	}
 
 	private void onSummonAt(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onSummonAt");
+		
 
 		if (action.has("target") && action.has("slot") && action.has("item")) {
 			String name = action.get("target");
@@ -596,11 +588,11 @@ public class AdministrationAction implements ActionListener {
 
 		}
 
-		Log4J.finishMethod(logger, "onSummonAt");
+		
 	}
 
 	private void onInvisible(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onInvisible");
+		
 
 		if (player.has("invisible")) {
 			player.remove("invisible");
@@ -609,11 +601,11 @@ public class AdministrationAction implements ActionListener {
 			player.put("invisible", "");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "on");
 		}
-		Log4J.finishMethod(logger, "onInvisible");
+		
 	}
 
 	private void onGhostMode(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onGhostMode");
+		
 
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
@@ -643,11 +635,11 @@ public class AdministrationAction implements ActionListener {
 
 		player.notifyWorldAboutChanges();
 
-		Log4J.finishMethod(logger, "onGhostMode");
+		
 	}
 
 	private void onTeleClickMode(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onTeleClickMode");
+		
 
 		if (player.has("teleclickmode")) {
 			player.remove("teleclickmode");
@@ -656,11 +648,11 @@ public class AdministrationAction implements ActionListener {
 			player.put("teleclickmode", "");
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleclickmode", "on");
 		}
-		Log4J.finishMethod(logger, "onTeleClickMode");
+		
 	}
 
 	private void onInspect(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onInspect");
+		
 
 		Entity target = getTarget(player, action);
 
@@ -723,11 +715,11 @@ public class AdministrationAction implements ActionListener {
 			st.append(target.toString());
 		}
 		player.sendPrivateText(st.toString());
-		Log4J.finishMethod(logger, "onInspect");
+		
 	}
 
 	private void onDestroy(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onDestroy");
+		
 
 		Entity inspected = getTarget(player, action);
 
@@ -769,11 +761,11 @@ public class AdministrationAction implements ActionListener {
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
 
-		Log4J.finishMethod(logger, "onDestroy");
+		
 	}
 
 	private void onJail(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onJail");
+		
 
 		if (action.has("target") && action.has("minutes")) {
 			String target = action.get("target");
@@ -793,11 +785,11 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText("Usage: /jail name minutes reason");
 		}
 
-		Log4J.finishMethod(logger, "onJail");
+		
 	}
 
 	private void onGag(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onGag");
+		
 
 		if (action.has("target") && action.has("minutes")) {
 			String target = action.get("target");
@@ -817,7 +809,7 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText("Usage: /gag name minutes reason");
 		}
 
-		Log4J.finishMethod(logger, "onGag");
+		
 	}
 
 	/**

@@ -1,11 +1,10 @@
 package games.stendhal.server.actions;
 
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.StendhalQuestSystem;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 
@@ -16,7 +15,7 @@ public class QuestListAction implements ActionListener {
 	}
 	public void onAction(Player player, RPAction action) {
 		
-		Log4J.startMethod(logger, "onAction");
+		
 
 		StringBuilder st = new StringBuilder();
 		if (action.has("target")){
@@ -28,7 +27,7 @@ public class QuestListAction implements ActionListener {
 		}
 		player.sendPrivateText(st.toString());
 		player.notifyWorldAboutChanges();
-		Log4J.finishMethod(logger, "onAction");
+		
 	}
 
 }

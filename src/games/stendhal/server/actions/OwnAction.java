@@ -22,10 +22,9 @@ import games.stendhal.server.pathfinder.Path.Node;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 public class OwnAction implements ActionListener {
 
@@ -36,7 +35,7 @@ public class OwnAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "own");
+		
 
 		// BUG: This features is potentially abusable right now. Consider
 		// removing it...
@@ -94,6 +93,6 @@ public class OwnAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "own");
+		
 	}
 }

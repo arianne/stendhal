@@ -22,9 +22,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 public class PlayersQuery implements ActionListener {
 
@@ -45,7 +44,7 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWho(Player player, RPAction action) {
-		Log4J.startMethod(logger, "who");
+		
 		
 		final int REQUIRED_LEVEL_TO_SEE_GHOST=AdministrationAction.getLevelForCommand("ghostmode");
 
@@ -74,7 +73,7 @@ public class PlayersQuery implements ActionListener {
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
-		Log4J.finishMethod(logger, "who");
+		
 	}
 
 	/**
@@ -95,7 +94,7 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWhere(Player player, RPAction action) {
-		Log4J.startMethod(logger, "where");
+		
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (action.has("target")) {
@@ -118,6 +117,6 @@ public class PlayersQuery implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "where");
+		
 	}
 }

@@ -16,9 +16,8 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 public class OutfitAction implements ActionListener {
 
@@ -29,7 +28,7 @@ public class OutfitAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "outfit");
+		
 
 		if (action.has("value")) {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
@@ -39,6 +38,6 @@ public class OutfitAction implements ActionListener {
 			}
 		}
 
-		Log4J.finishMethod(logger, "outfit");
+		
 	}
 }

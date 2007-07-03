@@ -12,11 +12,9 @@
  ***************************************************************************/
 package games.stendhal.server.actions;
 
-import org.apache.log4j.Logger;
-
-import marauroa.common.game.*;
-import games.stendhal.common.*;
-import games.stendhal.server.*;
+import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
@@ -28,6 +26,9 @@ import games.stendhal.server.pathfinder.Path;
 import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 public class MoveAction implements ActionListener {
 
@@ -41,7 +42,7 @@ public class MoveAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "move");
+		
 
 		String type = action.get("type");
 
@@ -101,7 +102,7 @@ public class MoveAction implements ActionListener {
     }
 
 	private void move(Player player, RPAction action) {
-		Log4J.startMethod(logger, "move");
+		
 
 		if (action.has("dir")) {
 			int dirval;
@@ -118,11 +119,11 @@ public class MoveAction implements ActionListener {
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
 
-		Log4J.finishMethod(logger, "move");
+		
 	}
 
 	private void moveTo(Player player, RPAction action) {
-		Log4J.startMethod(logger, "moveto");
+		
 
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
@@ -150,6 +151,6 @@ public class MoveAction implements ActionListener {
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
 
-		Log4J.finishMethod(logger, "moveto");
+		
 	}
 }
