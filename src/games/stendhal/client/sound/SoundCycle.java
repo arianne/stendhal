@@ -16,9 +16,11 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.SoundObject;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
+
 import javax.sound.sampled.DataLine;
-import org.apache.log4j.Logger;
+
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject.ID;
 
 /**

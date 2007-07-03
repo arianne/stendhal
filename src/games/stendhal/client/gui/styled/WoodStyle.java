@@ -9,15 +9,15 @@ package games.stendhal.client.gui.styled;
 //
 //
 
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
-
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * The wood style.

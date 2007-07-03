@@ -8,24 +8,23 @@ package games.stendhal.client.entity;
 //
 //
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-import java.util.Map;
-
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import marauroa.common.Log4J;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
+import java.util.Map;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * The 2D view of a grain field.
  */
 public class GrainField2DView extends StateEntity2DView {
 	/**
-	 * Logger.
+	 * Log4J.
 	 */
 	private static final Logger logger = Log4J.getLogger(RPEntity2DView.class);
 

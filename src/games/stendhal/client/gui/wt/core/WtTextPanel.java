@@ -19,6 +19,7 @@
 package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.common.StringFormatter;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;

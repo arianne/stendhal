@@ -24,8 +24,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * An ambient sound is a compound sound consisting of any number of loop sounds

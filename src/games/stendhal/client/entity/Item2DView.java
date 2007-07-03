@@ -8,9 +8,6 @@ package games.stendhal.client.entity;
 //
 //
 
-import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
-
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -18,14 +15,16 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of an item.
  */
 public class Item2DView extends Entity2DView {
 	/**
-	 * Logger.
+	 * Log4J.
 	 */
 	private static final Logger logger = Log4J.getLogger(Item2DView.class);
 

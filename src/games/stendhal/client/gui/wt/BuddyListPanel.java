@@ -9,6 +9,13 @@ package games.stendhal.client.gui.wt;
 //
 //
 
+import games.stendhal.client.StendhalClient;
+import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,18 +26,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPAction;
-import marauroa.common.game.RPSlot;
 
-import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
-import games.stendhal.client.gui.styled.WoodStyle;
-import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * A panel representing a buddy list.

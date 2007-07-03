@@ -14,9 +14,8 @@ import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * A cache of keyed sprites.

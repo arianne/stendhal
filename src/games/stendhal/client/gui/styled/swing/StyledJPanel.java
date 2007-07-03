@@ -9,13 +9,14 @@ package games.stendhal.client.gui.styled.swing;
 //
 //
 
-import java.awt.Font;
-import java.awt.Graphics;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-
 import games.stendhal.client.gui.styled.Style;
 import games.stendhal.client.sprite.Sprite;
+
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  * A styled JPanel.

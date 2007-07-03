@@ -870,7 +870,7 @@ logger.warn("!!! Not contained! - " + schanges);
         }
 	}
 
-	public void setUserName(String username) {
+	public void setAccountUsername(String username) {
 		userName=username;
 	}
 

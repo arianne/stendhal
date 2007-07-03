@@ -7,11 +7,12 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalUI;
-import java.awt.CardLayout;
-import javax.swing.JOptionPane;
-
-import games.stendhal.client.gui.styled.swing.StyledJButton;
 import games.stendhal.client.gui.styled.WoodStyle;
+import games.stendhal.client.gui.styled.swing.StyledJButton;
+
+import java.awt.CardLayout;
+
+import javax.swing.JOptionPane;
 
 /**
  *

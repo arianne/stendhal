@@ -9,6 +9,10 @@ package games.stendhal.client.gui.wt;
 //
 //
 
+import games.stendhal.client.gui.ManagedWindow;
+import games.stendhal.client.gui.wt.core.WtCloseListener;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
+
 import java.awt.Frame;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -16,13 +20,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.WindowConstants;
-
-import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.gui.wt.core.WtCloseListener;
-import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 /**
  * A base dialog that implements ManagedWindow.

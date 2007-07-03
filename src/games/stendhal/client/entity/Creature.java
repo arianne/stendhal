@@ -19,17 +19,14 @@ import games.stendhal.common.Rand;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 public class Creature extends RPEntity {
 	/**
@@ -461,7 +458,7 @@ public class Creature extends RPEntity {
 	 * @param	changes		The changes.
 	 */
 	@Override
-	public void onChangedAdded(final RPObject object, final RPObject changes) throws AttributeNotFoundException {
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
 
 		if (changes.has("width")) {

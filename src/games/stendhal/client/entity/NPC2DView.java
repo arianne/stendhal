@@ -9,26 +9,25 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.OutfitStore;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-
 import marauroa.common.Log4J;
-
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.OutfitStore;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
+import marauroa.common.Logger;
 
 /**
  * The 2D view of an NPC.
  */
 public class NPC2DView extends RPEntity2DView {
 	/**
-	 * Logger.
+	 * Log4J.
 	 */
 	private static final Logger logger = Log4J.getLogger(NPC2DView.class);
 

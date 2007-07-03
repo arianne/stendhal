@@ -1,13 +1,14 @@
 package games.stendhal.client.soundreview;
 
 import java.io.File;
-import org.w3c.dom.Document;
-import org.w3c.dom.*;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException; 
+import org.xml.sax.SAXParseException;
 
 public class ReadAndPrintXMLFile{
 

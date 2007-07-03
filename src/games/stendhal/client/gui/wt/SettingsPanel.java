@@ -22,8 +22,12 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.ManagedWindow;
-import games.stendhal.client.gui.wt.core.*;
+import games.stendhal.client.gui.wt.core.WtButton;
+import games.stendhal.client.gui.wt.core.WtClickListener;
+import games.stendhal.client.gui.wt.core.WtCloseListener;
+import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.common.CollisionDetection;
+
 import java.awt.GraphicsConfiguration;
 import java.awt.Point;
 import java.util.HashMap;

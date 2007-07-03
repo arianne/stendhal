@@ -1,16 +1,16 @@
 /* $Id$ */
 package games.stendhal.client.gui.login;
 
+import games.stendhal.client.gui.Encoder;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import games.stendhal.client.gui.Encoder;
 
 /**
  * User login profile list.

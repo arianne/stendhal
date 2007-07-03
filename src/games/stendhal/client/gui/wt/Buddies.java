@@ -18,11 +18,11 @@
 package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.styled.WoodStyle;
 import games.stendhal.client.gui.styled.swing.StyledJPopupMenu;
+import games.stendhal.client.gui.wt.core.WtPanel;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -30,9 +30,11 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+
 import javax.swing.JMenuItem;
-import marauroa.common.game.RPObject;
+
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**

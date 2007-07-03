@@ -1,6 +1,7 @@
 package games.stendhal.client.scripting;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * Interface used by client side scripts to interact with the game
@@ -9,7 +10,7 @@ import org.apache.log4j.Logger;
  */
 public class ClientScriptInterface {
 
-	private static Logger logger = Logger.getLogger(ClientScriptInterface.class);
+	private static Logger logger = Log4J.getLogger(ClientScriptInterface.class);
 
 	/**
 	 * handles a string command in the same way the chat line does

@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.soundreview.SoundMaster;
-
 import marauroa.common.game.RPObject;
 
 /**

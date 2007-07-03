@@ -9,15 +9,15 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.gui.wt.EntityContainer;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
-
-import games.stendhal.client.gui.wt.EntityContainer;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
 
 /**
  * The 2D view of a chest.

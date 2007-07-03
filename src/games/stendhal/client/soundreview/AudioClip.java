@@ -25,8 +25,7 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This is an audio clip.

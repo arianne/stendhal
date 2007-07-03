@@ -16,15 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * The 2D view of an animated entity.
  */
 public abstract class StateEntity2DView extends Entity2DView {
 	/**
-	 * Logger.
+	 * Log4J.
 	 */
 	private static final Logger logger = Log4J.getLogger(StateEntity2DView.class);
 

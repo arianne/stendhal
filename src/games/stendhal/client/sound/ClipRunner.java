@@ -24,9 +24,9 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
-import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * Cliprunner encapsulates a sound clip. This clip consists of one or more

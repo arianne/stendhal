@@ -1,9 +1,5 @@
 package games.stendhal.client.entity;
 
-import java.awt.Color;
-import java.awt.geom.Rectangle2D;
-import java.util.List;
-
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
@@ -11,7 +7,11 @@ import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
-import marauroa.common.game.AttributeNotFoundException;
+
+import java.awt.Color;
+import java.awt.geom.Rectangle2D;
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -226,7 +226,7 @@ public class User extends Player {
 
 
 	@Override
-    public void onChangedAdded(final RPObject base, final  RPObject diff) throws AttributeNotFoundException {
+    public void onChangedAdded(final RPObject base, final  RPObject diff) {
 		modificationCount++;
 		super.onChangedAdded(base, diff);
 

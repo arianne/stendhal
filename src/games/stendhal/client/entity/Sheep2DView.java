@@ -9,18 +9,18 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.soundreview.SoundMaster;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Direction;
+
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
-
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.soundreview.SoundMaster;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Direction;
 
 /**
  * The 2D view of a sheep.

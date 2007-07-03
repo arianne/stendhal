@@ -30,9 +30,8 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.soundreview.AudioClip;
 import games.stendhal.client.sprite.SpriteStore;
-
-
 import games.stendhal.common.MathHelper;
+
 import java.awt.geom.Point2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -53,7 +52,7 @@ import javax.sound.sampled.Mixer;
 import javax.sound.sampled.Mixer.Info;
 
 import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This sound system makes available a library of sounds which can be performed
