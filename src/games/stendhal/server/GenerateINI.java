@@ -104,7 +104,7 @@ public class GenerateINI {
 	private static RSAKey rsakey;
 
 	public static void main(String[] args) throws FileNotFoundException {
-		gameName = "test";
+		gameName = "stendhal";
 
 		/** Write configuration for database */
 		databaseImplementation = getDatabaseImplementation();
@@ -145,8 +145,7 @@ public class GenerateINI {
 	}
 
 	private static String getRSAKeyBits() {
-		System.out
-		        .print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
+		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
 		String keySize = getStringWithDefault(in, "512");
 		return keySize;
 	}
@@ -160,32 +159,37 @@ public class GenerateINI {
 	}
 
 	private static String getRuleProcessorImplementation() {
-		return "marauroa.test.MockRPRuleProcessor";
+		return "games.stendhal.server.StendhalRPRuleProcessor";
 	}
 
 	private static String getWorldImplementation() {
-		return "marauroa.test.MockRPWorld";
+		return "games.stendhal.server.StendhalRPWorld";
 	}
 
 	private static String getTCPPort() {
-		return "3217";
+		return "32160";
 	}
 
 	private static String getDatabaseImplementation() {
-		return "marauroa.server.game.db.JDBCDatabase";
+		return "games.stendhal.server.StendhalPlayerDatabase";
 	}
 
 	private static void write(PrintWriter out) {
 		out.println("# Generated .ini file for Test Game at " + new Date());
+		out.println("# Database and factory classes. Don't edit.");
 		out.println("database_implementation=" + databaseImplementation);
+		out.println("factory_implementation=marauroa.server.game.rp.RPObjectFactory");
 		out.println();
+		out.println("# Database information. Edit to match your configuration.");
 		out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/" + databaseName);
 		out.println("jdbc_class=com.mysql.jdbc.Driver");
 		out.println("jdbc_user=" + databaseUsername);
 		out.println("jdbc_pwd=" + databasePassword);
 		out.println();
+		out.println("# TCP port stendhald will use. ");
 		out.println("tcp_port=" + tcpPort);
 		out.println();
+		out.println("# World and RP configuration. Don't edit.");
 		out.println("world=" + worldImplementation);
 		out.println("ruleprocessor=" + ruleprocessorImplementation);
 		out.println();
@@ -193,9 +197,14 @@ public class GenerateINI {
 		out.println();
 		out.println("server_typeGame=" + gameName);
 		out.println("server_name=" + gameName + " Marauroa server");
-		out.println("server_version=0.01");
-		out
-		        .println("server_contact=https://sourceforge.net/tracker/?atid=514826&group_id=66537&func=browse");
+		out.println("server_version=0.70");
+		out.println("server_contact=https://sourceforge.net/tracker/?atid=514826&group_id=66537&func=browse");
+		out.println();
+		out.println("# Extensions configured on the server. Enable at will.");
+		out.println("#server_extension=groovy,http");
+		out.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
+		out.println("#http=games.stendhal.server.StendhalHttpServer");
+		out.println("#http.port=8080");
 		out.println();
 		out.println("statistics_filename=" + statisticsFilename);
 		out.println();
