@@ -21,12 +21,13 @@ import games.stendhal.server.pathfinder.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 public abstract class NPC extends RPEntity {
 
@@ -42,12 +43,12 @@ public abstract class NPC extends RPEntity {
 		try {
 			RPClass npc = new RPClass("npc");
 			npc.isA("rpentity");
-			npc.add("class", Type.STRING);
-			npc.add("subclass", Type.STRING);
-			npc.add("text", Type.LONG_STRING, Definition.VOLATILE);
-			npc.add("idea", Type.STRING, Definition.VOLATILE);
-			npc.add("outfit", Type.INT);
-		} catch (RPClass.SyntaxException e) {
+			npc.addAttribute("class", Type.STRING);
+			npc.addAttribute("subclass", Type.STRING);
+			npc.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
+			npc.addAttribute("idea", Type.STRING, Definition.VOLATILE);
+			npc.addAttribute("outfit", Type.INT);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
