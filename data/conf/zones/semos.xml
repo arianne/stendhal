@@ -1963,10 +1963,10 @@ Mature sheep wanted: please speak to Sato
 
  <!--  Level -7 -->
 
-<!--
- <zone name="-7_kanmararn_jail" level="-7" x="500160" y="500064" file="Level -7/kanmararn/jail.tmx">
+<!-- If we call it _jail, players can't move items around in it for security reasons -->
+ <zone name="-7_kanmararn_prison" level="-7" x="500160" y="500064" file="Level -7/kanmararn/jail.tmx">
  </zone>
--->
+
 
 
  <!--  Level 1 -->
