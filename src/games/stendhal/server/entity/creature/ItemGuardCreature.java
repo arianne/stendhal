@@ -19,8 +19,7 @@ import games.stendhal.server.entity.item.Item;
 import java.util.LinkedList;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * An ItemGuardCreature is a creature that is responsible for guarding a

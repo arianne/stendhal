@@ -1,7 +1,7 @@
 package games.stendhal.common;
 
-import java.util.Vector;
 import java.awt.Point;
+import java.util.Vector;
 
 public class Line {
 

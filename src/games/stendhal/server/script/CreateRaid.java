@@ -1,12 +1,12 @@
 package games.stendhal.server.script;
 
-import java.util.List;
-import java.util.Map;
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
+
+import java.util.List;
+import java.util.Map;
 
 
 public abstract class CreateRaid extends ScriptImpl {

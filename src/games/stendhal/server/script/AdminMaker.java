@@ -1,5 +1,6 @@
 package games.stendhal.server.script;
 
+import games.stendhal.common.Level;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
@@ -10,13 +11,13 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 import games.stendhal.server.scripting.ScriptingNPC;
 import games.stendhal.server.scripting.ScriptingSandbox;
-import games.stendhal.common.Level;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * Creates a portable NPC who gives ALL players powerful items,
@@ -31,7 +32,7 @@ import org.apache.log4j.Logger;
 
 public class AdminMaker extends ScriptImpl {
 
-	private static Logger logger = Logger.getLogger(AdminMaker.class);
+	private static Logger logger = Log4J.getLogger(AdminMaker.class);
 
 	protected class UpgradeAction extends SpeakerNPC.ChatAction {
 

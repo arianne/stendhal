@@ -26,7 +26,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * Represents a creature summon scroll.
@@ -35,7 +36,7 @@ public class SummonScroll extends InfoStringScroll {
 
 	private static final int MAX_ZONE_NPCS = 10;
 
-	private static final Logger logger = Logger.getLogger(SummonScroll.class);
+	private static final Logger logger = Log4J.getLogger(SummonScroll.class);
 
 	/**
 	 * Creates a new summon scroll

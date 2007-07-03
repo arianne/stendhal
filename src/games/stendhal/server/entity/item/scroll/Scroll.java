@@ -18,18 +18,19 @@ import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
+
 import java.util.Map;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * Represents a scroll.
  */
 public class Scroll extends StackableItem implements UseListener {
 
-	private static final Logger logger = Logger.getLogger(Scroll.class);
+	private static final Logger logger = Log4J.getLogger(Scroll.class);
 
 	/**
 	 * Creates a new scroll

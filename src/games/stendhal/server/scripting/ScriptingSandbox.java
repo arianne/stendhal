@@ -18,9 +18,8 @@ import java.util.Set;
 import java.util.WeakHashMap;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 public abstract class ScriptingSandbox {
 
@@ -198,7 +197,7 @@ public abstract class ScriptingSandbox {
 
 	@SuppressWarnings("unchecked")
     public void unload(Player player, String[] args) {
-		Log4J.startMethod(logger, "unload");
+		
 
 		Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 		for (NPC npc : setNPC) {
@@ -210,7 +209,7 @@ public abstract class ScriptingSandbox {
 			remove(object);
 		}
 
-		Log4J.finishMethod(logger, "unload");
+		
 	}
 
 	public boolean execute(Player player, String[] args) {

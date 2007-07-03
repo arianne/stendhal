@@ -11,9 +11,8 @@ import games.stendhal.server.StendhalServerExtension;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
 
@@ -59,7 +58,7 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 	}
 
 	private void onSpell(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onSpell");
+		
 
 		String usage = "Usage: #/spell <spellname>";
 		String text = "";
@@ -159,7 +158,7 @@ public class MagicExtn extends StendhalServerExtension implements ActionListener
 
 		player.sendPrivateText(text);
 
-		Log4J.finishMethod(logger, "onSpell");
+		
 	}
 
 }

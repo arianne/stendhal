@@ -1,16 +1,15 @@
 package games.stendhal.server.entity.player;
 
-import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Cat;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.player.Player.NoPetException;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import org.apache.log4j.Logger;
-
 public class PlayerPetManager {
-	private static Logger logger = Logger.getLogger(PlayerPetManager.class);
+	private static Logger logger = Log4J.getLogger(PlayerPetManager.class);
 	private Player player = null;
 	
 	PlayerPetManager(Player player) {
@@ -18,7 +17,7 @@ public class PlayerPetManager {
 	}
 	
 	void storePet(Pet pet) {
-		Log4J.startMethod(logger, "storePet");
+		
 		if (!player.hasSlot("#pets")) {
 			player.addSlot(new RPSlot("#pets"));
 		}
@@ -27,11 +26,11 @@ public class PlayerPetManager {
 		slot.clear();
 		slot.add(pet);
 		player.put("pet", pet.getID().getObjectID());
-		Log4J.finishMethod(logger, "storePet");
+		
 	}
 
 	public Pet retrievePet() throws NoPetException {
-		Log4J.startMethod(logger, "retrievePet");
+		
 		try {
 			if (player.hasSlot("#pets")) {
 				RPSlot slot = player.getSlot("#pets");
@@ -55,7 +54,7 @@ public class PlayerPetManager {
 
 			throw new NoPetException();
 		} finally {
-			Log4J.finishMethod(logger, "retrievePet");
+			
 		}
 	}
 

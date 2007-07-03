@@ -12,10 +12,10 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.util.HashSet;
 import java.util.List;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * Deep inspects a player and all his/her items
@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  * @author hendrik
  */
 public class BugInspect extends ScriptImpl implements TurnListener {
-	private static Logger logger = Logger.getLogger(BugInspect.class);
+	private static Logger logger = Log4J.getLogger(BugInspect.class);
 	private HashSet<String> seen = new HashSet<String>();
 	private boolean keepRunning = true;
 

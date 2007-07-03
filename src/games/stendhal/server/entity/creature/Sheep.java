@@ -17,12 +17,13 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.SheepFood;
+
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * A sheep is a domestic animal that can be owned by a player.
@@ -82,9 +83,9 @@ public class Sheep extends DomesticAnimal {
 		try {
 			RPClass sheep = new RPClass("sheep");
 			sheep.isA("creature");
-			sheep.add("weight", RPClass.BYTE);
+			sheep.add("weight", Type.BYTE);
 // TODO: Needed?
-//			sheep.add("eat", RPClass.FLAG);
+//			sheep.add("eat", Type.FLAG);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -94,7 +95,7 @@ public class Sheep extends DomesticAnimal {
 	 * Creates a new wild Sheep.
 	 * @throws AttributeNotFoundException
 	 */
-	public Sheep() throws AttributeNotFoundException {
+	public Sheep() {
 		this(null);
 	}
 
@@ -102,7 +103,7 @@ public class Sheep extends DomesticAnimal {
 	 * Creates a new Sheep that is owned by a player.
 	 * @throws AttributeNotFoundException
 	 */
-	public Sheep(Player owner) throws AttributeNotFoundException {
+	public Sheep(Player owner) {
 		super(owner);
 		put("type", "sheep");
 
@@ -124,7 +125,7 @@ public class Sheep extends DomesticAnimal {
 	 * @param owner The player who should own the sheep
 	 * @throws AttributeNotFoundException
 	 */
-	public Sheep(RPObject object, Player owner) throws AttributeNotFoundException {
+	public Sheep(RPObject object, Player owner) {
 		super(object, owner);
 
 		put("type", "sheep");
@@ -355,7 +356,7 @@ public class Sheep extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-		Log4J.startMethod(logger, "logic");
+		
 
 		hunger++;
 
@@ -400,7 +401,7 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		notifyWorldAboutChanges();
-		Log4J.finishMethod(logger, "logic");
+		
 	}
 
 

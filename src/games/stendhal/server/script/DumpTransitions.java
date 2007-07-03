@@ -11,7 +11,8 @@ import games.stendhal.server.scripting.ScriptImpl;
 import java.lang.reflect.Field;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * Dumps the transition table of an NPC for "dot" http://www.graphviz.org/
@@ -21,7 +22,7 @@ import org.apache.log4j.Logger;
  */
 public class DumpTransitions extends ScriptImpl {
 
-	private static Logger logger = Logger.getLogger(DumpTransitions.class);
+	private static Logger logger = Log4J.getLogger(DumpTransitions.class);
 
 	private StringBuilder dumpedTable = null;
 

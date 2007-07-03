@@ -11,7 +11,8 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * Manager for scripts written in Java.
@@ -20,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class ScriptInJava extends ScriptingSandbox {
 
-	private static Logger logger = Logger.getLogger(ScriptInJava.class);
+	private static Logger logger = Log4J.getLogger(ScriptInJava.class);
 
 	private Script script = null;
 

@@ -26,13 +26,13 @@ import games.stendhal.server.events.TurnNotifier;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 
@@ -55,11 +55,11 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
 		entity.isA("entity");
-		entity.add("class", RPClass.STRING);
-		entity.add("stage", RPClass.BYTE);
+		entity.add("class", Type.STRING);
+		entity.add("stage", Type.BYTE);
 
-		entity.add("name", RPClass.STRING);
-		entity.add("killer", RPClass.STRING);
+		entity.add("name", Type.STRING);
+		entity.add("killer", Type.STRING);
 
 		entity.addRPSlot("content", 4);
 	}
@@ -76,7 +76,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		}		
 	}
 
-	public Corpse(String clazz, int x, int y) throws AttributeNotFoundException {
+	public Corpse(String clazz, int x, int y) {
 		put("type", "corpse");
 		put("class", clazz);
 
@@ -102,7 +102,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	 *
 	 *
 	 */
-	public Corpse(RPEntity victim, Entity killer) throws AttributeNotFoundException {
+	public Corpse(RPEntity victim, Entity killer) {
 		this(victim, killer.getTitle());
 	}
 
@@ -114,7 +114,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	 *
 	 *
 	 */
-	public Corpse(RPEntity victim, String killerName) throws AttributeNotFoundException {
+	public Corpse(RPEntity victim, String killerName) {
 		put("type", "corpse");
 
 		if (victim.has("class")) {

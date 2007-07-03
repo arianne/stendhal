@@ -14,11 +14,14 @@ package games.stendhal.server.entity.creature;
 
 
 import games.stendhal.server.entity.player.Player;
+
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import org.apache.log4j.Logger;
+import marauroa.common.game.SyntaxException;
 
 /**
  * A cat is a domestic animal that can be owned by a player.
@@ -53,9 +56,9 @@ static{
 		try {
 			RPClass cat = new RPClass("cat");
 			cat.isA("pet");
-			//cat.add("weight", RPClass.BYTE);
-			//cat.add("eat", RPClass.FLAG);
-		} catch (RPClass.SyntaxException e) {
+			//cat.add("weight", Type.BYTE);
+			//cat.add("eat", Type.FLAG);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
@@ -64,7 +67,7 @@ static{
 	 * Creates a new wild Cat.
 	 * @throws AttributeNotFoundException
 	 */
-	public Cat() throws AttributeNotFoundException {
+	public Cat() {
 		this(null);
 	}
 
@@ -72,7 +75,7 @@ static{
 	 * Creates a new Cat that is owned by a player.
 	 * @throws AttributeNotFoundException
 	 */
-	public Cat(Player owner) throws AttributeNotFoundException {
+	public Cat(Player owner) {
 		super(owner);
 	        put("type", "cat");
 	        put("title","cat");
@@ -89,7 +92,7 @@ static{
 	 * @param owner The player who should own the cat
 	 * @throws AttributeNotFoundException
 	 */
-	public Cat(RPObject object, Player owner) throws AttributeNotFoundException {
+	public Cat(RPObject object, Player owner) {
 		super(object, owner);
 
 		put("type", "cat");

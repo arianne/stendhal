@@ -17,14 +17,14 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.GuidedEntity;
+
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 public abstract class Path {
 
@@ -195,7 +195,7 @@ public abstract class Path {
 			zone = entity.getZone();
 		}
 
-		// Log4J.startMethod(logger, "searchPath");
+		// 
 		//		long startTimeNano = System.nanoTime(); 
 		long startTime = System.currentTimeMillis();
 
@@ -260,7 +260,7 @@ public abstract class Path {
 			node = node.getParent();
 		}
 
-		// Log4J.finishMethod(logger, "searchPath");
+		// 
 		return list;
 	}
 

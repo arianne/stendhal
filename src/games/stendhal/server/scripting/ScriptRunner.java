@@ -16,9 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * ServerExtension to load groovy scripts
@@ -130,7 +129,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	}
 
 	public void onAction(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onScript");
+		
 
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
@@ -199,7 +198,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			}
 		}
 		player.sendPrivateText(text);
-		Log4J.finishMethod(logger, "onScript");
+		
 	}
 
 }

@@ -50,23 +50,23 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("item");
 		entity.isA("entity");
-		entity.add("class", RPClass.STRING); // class, sword/armor/...
-		entity.add("subclass", RPClass.STRING); // subclass, long sword/leather // armor/...
-		entity.add("name", RPClass.STRING); // name of item (ie 'Kings Sword')
-		entity.add("atk", RPClass.SHORT); // Some items have attack values
-		entity.add("rate", RPClass.SHORT); // Some items indicate how often you can attack.
-		entity.add("def", RPClass.SHORT); // Some items have defense values
-		entity.add("amount", RPClass.INT); // Some items(food) have amount of something (a bottle, a piece of meat).
-		entity.add("range", RPClass.SHORT); // Some items (range weapons, ammunition, missiles) have a range.
-		entity.add("regen", RPClass.INT); // Some items(food) have regeneration speed
-		entity.add("frequency", RPClass.INT); // Some items(food) have regeneration speed
-		entity.add("quantity", RPClass.INT); // Some items(Stackable) have quantity
-		entity.add("max_quantity", RPClass.INT); // Some items (Stackable) have maximum quantity
-		entity.add("min_level", RPClass.INT); // Some items have minimum level to prevent spoiling the fun for new players
-		entity.add("infostring", RPClass.STRING); // To store additional info with an item
-		entity.add("persistent", RPClass.SHORT); // Some items have individual values
-		entity.add("lifesteal", RPClass.FLOAT); // Some items have lifesteal values
-		entity.add("bound", RPClass.STRING); // Some items are quest rewards that other players don't deserve.
+		entity.add("class", Type.STRING); // class, sword/armor/...
+		entity.add("subclass", Type.STRING); // subclass, long sword/leather // armor/...
+		entity.add("name", Type.STRING); // name of item (ie 'Kings Sword')
+		entity.add("atk", Type.SHORT); // Some items have attack values
+		entity.add("rate", Type.SHORT); // Some items indicate how often you can attack.
+		entity.add("def", Type.SHORT); // Some items have defense values
+		entity.add("amount", Type.INT); // Some items(food) have amount of something (a bottle, a piece of meat).
+		entity.add("range", Type.SHORT); // Some items (range weapons, ammunition, missiles) have a range.
+		entity.add("regen", Type.INT); // Some items(food) have regeneration speed
+		entity.add("frequency", Type.INT); // Some items(food) have regeneration speed
+		entity.add("quantity", Type.INT); // Some items(Stackable) have quantity
+		entity.add("max_quantity", Type.INT); // Some items (Stackable) have maximum quantity
+		entity.add("min_level", Type.INT); // Some items have minimum level to prevent spoiling the fun for new players
+		entity.add("infostring", Type.STRING); // To store additional info with an item
+		entity.add("persistent", Type.SHORT); // Some items have individual values
+		entity.add("lifesteal", Type.FLOAT); // Some items have lifesteal values
+		entity.add("bound", Type.STRING); // Some items are quest rewards that other players don't deserve.
 	}
 
 	/**

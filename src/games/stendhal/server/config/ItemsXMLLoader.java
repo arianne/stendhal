@@ -1,15 +1,26 @@
 package games.stendhal.server.config;
 
-import java.io.*;
-import java.util.*;
-import org.xml.sax.*;
-import org.xml.sax.helpers.DefaultHandler;
-import javax.xml.parsers.SAXParserFactory;
+import games.stendhal.server.rule.defaultruleset.DefaultItem;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
-import org.apache.log4j.Logger;
+import javax.xml.parsers.SAXParserFactory;
+
 import marauroa.common.Log4J;
-import games.stendhal.server.rule.defaultruleset.DefaultItem;
+import marauroa.common.Logger;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 public class ItemsXMLLoader extends DefaultHandler {
 

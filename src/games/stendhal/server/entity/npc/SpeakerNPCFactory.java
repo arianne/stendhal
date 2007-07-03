@@ -6,14 +6,14 @@
 
 package games.stendhal.server.entity.npc;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
 import games.stendhal.common.Direction;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A base factory for <code>Sign</code> objects.

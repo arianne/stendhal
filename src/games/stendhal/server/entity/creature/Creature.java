@@ -41,13 +41,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 /**
  * Serverside representation of a creature.
@@ -106,16 +109,16 @@ public class Creature extends NPC {
 		try {
 			RPClass npc = new RPClass("creature");
 			npc.isA("npc");
-			npc.add("debug", RPClass.VERY_LONG_STRING, RPClass.VOLATILE);
-			npc.add("metamorphosis", RPClass.STRING, RPClass.VOLATILE);
-			npc.add("width", RPClass.FLOAT, RPClass.VOLATILE);
-			npc.add("height", RPClass.FLOAT, RPClass.VOLATILE);
-		} catch (RPClass.SyntaxException e) {
+			npc.addAttribute("debug", Type.VERY_LONG_STRING, Definition.VOLATILE);
+			npc.addAttribute("metamorphosis", Type.STRING, Definition.VOLATILE);
+			npc.addAttribute("width", Type.FLOAT, Definition.VOLATILE);
+			npc.addAttribute("height", Type.FLOAT, Definition.VOLATILE);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}
 
-	public Creature(RPObject object) throws AttributeNotFoundException {
+	public Creature(RPObject object) {
 		super(object);
 		creatureLogic = new CreatureLogic(this);
 
@@ -185,7 +188,7 @@ public class Creature extends NPC {
 	 * creates a new creature without properties. These must be set in the
 	 * deriving class
 	 */
-	public Creature() throws AttributeNotFoundException {
+	public Creature() {
 		super();
 		creatureLogic = new CreatureLogic(this);
 		put("type", "creature");
@@ -220,7 +223,7 @@ public class Creature extends NPC {
 	 */
 	public Creature(String clazz, String subclass, String name, int hp, int attack, int defense, int level, int xp,
 	        int width, int height, double baseSpeed, List<DropItem> dropItems, Map<String, String> aiProfiles,
-	        List<String> noises, int respawnTime, String description) throws AttributeNotFoundException {
+	        List<String> noises, int respawnTime, String description) {
 		this();
 
 		this.baseSpeed = baseSpeed;

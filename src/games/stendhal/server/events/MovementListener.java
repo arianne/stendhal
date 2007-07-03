@@ -9,9 +9,10 @@ package games.stendhal.server.events;
 //
 //
 
-import java.awt.geom.Rectangle2D;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
+
+import java.awt.geom.Rectangle2D;
 
 /**
  * Objects that monitor being moved over an area in a zone.

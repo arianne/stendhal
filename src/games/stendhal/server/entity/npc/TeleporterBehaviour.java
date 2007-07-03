@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * teleports the SpeakerNPC to a random location on the outside world
@@ -25,7 +26,7 @@ import org.apache.log4j.Logger;
  */
 public class TeleporterBehaviour implements TurnListener {
 
-	private static Logger logger = Logger.getLogger(TeleporterBehaviour.class);
+	private static Logger logger = Log4J.getLogger(TeleporterBehaviour.class);
 
 	private StendhalRPZone zone = null;
 

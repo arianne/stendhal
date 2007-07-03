@@ -32,9 +32,7 @@ import java.net.ServerSocket;
 
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
-
+import marauroa.common.Logger;
 import simple.http.PipelineHandler;
 import simple.http.PipelineHandlerFactory;
 import simple.http.ProtocolHandler;

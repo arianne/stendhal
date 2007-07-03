@@ -14,6 +14,7 @@ package games.stendhal.server.entity.spawner;
 
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnNotifier;
+
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPClass;
@@ -38,11 +39,11 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	public static void generateRPClass() {
 		RPClass grainFieldClass = new RPClass("growing_entity_spawner");
 		grainFieldClass.isA("plant_grower");
-		grainFieldClass.add("action_name", RPClass.STRING);
-		grainFieldClass.add("max_ripeness", RPClass.BYTE);
-		grainFieldClass.add("width", RPClass.BYTE);
-		grainFieldClass.add("height", RPClass.BYTE);
-		grainFieldClass.add("ripeness", RPClass.BYTE);
+		grainFieldClass.add("action_name", Type.STRING);
+		grainFieldClass.add("max_ripeness", Type.BYTE);
+		grainFieldClass.add("width", Type.BYTE);
+		grainFieldClass.add("height", Type.BYTE);
+		grainFieldClass.add("ripeness", Type.BYTE);
 	}
 
 	private void init(String clazz, String actionName, int maxRipeness, int width, int height) {

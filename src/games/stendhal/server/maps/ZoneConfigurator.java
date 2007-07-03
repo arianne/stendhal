@@ -6,8 +6,9 @@ package games.stendhal.server.maps;
 //
 //
 
-import java.util.Map;
 import games.stendhal.server.StendhalRPZone;
+
+import java.util.Map;
 
 /**
  * Zone post-configuration.

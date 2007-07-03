@@ -12,8 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * a finate state machine.

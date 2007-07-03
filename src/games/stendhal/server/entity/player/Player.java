@@ -23,9 +23,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.PassiveEntity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.RaidCreature;
 import games.stendhal.server.entity.creature.Sheep;
-import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
@@ -33,6 +33,7 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
+
 import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -43,14 +44,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 public class Player extends RPEntity {
 
@@ -225,7 +226,7 @@ public class Player extends RPEntity {
 		world.remove(player.getID());
 	}
 
-	public Player(RPObject object) throws AttributeNotFoundException {
+	public Player(RPObject object) {
 		super(object);
 		playerSheepManager = new PlayerSheepManager(this);
 		playerPetManager = new PlayerPetManager(this);
@@ -492,7 +493,7 @@ public class Player extends RPEntity {
 	 * contructor, sometimes before prereqs are initialized.
 	 */
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		super.update();
 
 		if(has("xp")) {
@@ -942,7 +943,7 @@ public class Player extends RPEntity {
 	}
 
 	public void removeSheep(Sheep sheep) {
-		Log4J.startMethod(logger, "removeSheep");
+		
 		if (has("sheep")) {
 			remove("sheep");
 		} else {
@@ -950,11 +951,11 @@ public class Player extends RPEntity {
 		}
 		StendhalRPRuleProcessor.get().removeNPC(sheep);
 
-		Log4J.finishMethod(logger, "removeSheep");
+		
 	}
 
 	public void removePet(Pet pet) {
-		Log4J.startMethod(logger, "removePet");
+		
 		if (has("pet")) {
 			remove("pet");
 		} else {
@@ -962,7 +963,7 @@ public class Player extends RPEntity {
 		}
 		StendhalRPRuleProcessor.get().removeNPC(pet);
 
-		Log4J.finishMethod(logger, "removePet");
+		
 	}
 	public boolean hasSheep() {
 		return has("sheep");
@@ -972,20 +973,20 @@ public class Player extends RPEntity {
 		return has("pet");
 	}
 	public void setPet(Pet pet) {
-		Log4J.startMethod(logger, "setPet");
+		
 		put("pet", pet.getID().getObjectID());
 
 		StendhalRPRuleProcessor.get().addNPC(pet);
 
-		Log4J.finishMethod(logger, "setPet");
+		
 	}
 	public void setSheep(Sheep sheep) {
-		Log4J.startMethod(logger, "setSheep");
+		
 		put("sheep", sheep.getID().getObjectID());
 
 		StendhalRPRuleProcessor.get().addNPC(sheep);
 
-		Log4J.finishMethod(logger, "setSheep");
+		
 	}
 
 	private static  class AntidoteEater implements TurnListener {
@@ -1753,4 +1754,10 @@ public class Player extends RPEntity {
 	public String toString() {
 		return "Player [" + getName() + ", " + hashCode() + "]";
 	}
+
+	public String getSentence() {
+		// TODO: Sentence here.
+	    return "";
+    }
+
 }

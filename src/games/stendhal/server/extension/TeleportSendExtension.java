@@ -9,9 +9,8 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * Stendhal TeleportSend Extenstion
@@ -58,7 +57,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 	}
 
 	private void onTeleportSend(Player admin, RPAction action) {
-		Log4J.startMethod(logger, "onTeleportSend");
+		
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(admin, CMD_NAME, true)) {
 			return;
 		}
@@ -101,7 +100,7 @@ public class TeleportSendExtension extends StendhalServerExtension implements Ac
 			admin.sendPrivateText(CMD_USAGE);
 		}
 
-		Log4J.finishMethod(logger, "onTeleportSend");
+		
 	}
 
 }

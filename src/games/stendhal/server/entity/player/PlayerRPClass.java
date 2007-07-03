@@ -18,8 +18,8 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.Outfit;
-import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.creature.Pet;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.slot.BankSlot;
@@ -38,12 +38,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Configuration;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * Handles the RPClass registration and updating old Player objects
@@ -51,7 +51,7 @@ import org.apache.log4j.Logger;
  */
 class PlayerRPClass {
 
-	private static Logger logger = Logger.getLogger(PlayerRPClass.class);
+	private static Logger logger = Log4J.getLogger(PlayerRPClass.class);
 
 	/** list of super admins read from admins.list */
 	private static List<String> adminNames = null;
@@ -122,82 +122,82 @@ lion_shield_+1 enhanced_lion_shield
 	static void generateRPClass() {
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
-		player.add("text", RPClass.LONG_STRING, RPClass.VOLATILE);
-		player.add("private_text", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+		player.add("text", Type.LONG_STRING, Definition.VOLATILE);
+		player.add("private_text", Type.LONG_STRING, (byte) (RPClass.PRIVATE | Definition.VOLATILE));
 
-		player.add("poisoned", RPClass.SHORT, RPClass.VOLATILE);
-		player.add("eating", RPClass.SHORT, RPClass.VOLATILE);
+		player.add("poisoned", Type.SHORT, Definition.VOLATILE);
+		player.add("eating", Type.SHORT, Definition.VOLATILE);
 
-		player.add("dead", RPClass.FLAG, RPClass.PRIVATE);
+		player.add("dead", Type.FLAG, Type.PRIVATE);
 
-		player.add("outfit", RPClass.INT);
-		player.add("outfit_org", RPClass.INT);
+		player.add("outfit", Type.INT);
+		player.add("outfit_org", Type.INT);
 
-		player.add("away", RPClass.LONG_STRING, RPClass.VOLATILE);
+		player.add("away", Type.LONG_STRING, Definition.VOLATILE);
 
 		// Use this for admin menus and usage.
-		player.add("admin", RPClass.FLAG);
-		player.add("adminlevel", RPClass.INT);
-		player.add("invisible", RPClass.FLAG, RPClass.HIDDEN);
-		player.add("ghostmode", RPClass.FLAG);
-		player.add("teleclickmode", RPClass.FLAG, RPClass.HIDDEN);
+		player.add("admin", Type.FLAG);
+		player.add("adminlevel", Type.INT);
+		player.add("invisible", Type.FLAG, Type.HIDDEN);
+		player.add("ghostmode", Type.FLAG);
+		player.add("teleclickmode", Type.FLAG, Type.HIDDEN);
 
-		player.add("release", RPClass.STRING, RPClass.HIDDEN);
+		player.add("release", Type.STRING, Type.HIDDEN);
 
-		player.add("age", RPClass.INT);
+		player.add("age", Type.INT);
 
 		// Store sheep at DB
-		player.addRPSlot("#flock", 1, RPClass.HIDDEN);
-		player.add("sheep", RPClass.INT);
+		player.addRPSlot("#flock", 1, Type.HIDDEN);
+		player.add("sheep", Type.INT);
 
 		// Store cat at DB
-		player.addRPSlot("#pets", 1, RPClass.HIDDEN);
-		player.add("pet", RPClass.INT);
-		player.add("cat", RPClass.INT);
+		player.addRPSlot("#pets", 1, Type.HIDDEN);
+		player.add("pet", Type.INT);
+		player.add("cat", Type.INT);
 
 		// Bank system
-		player.addRPSlot("bank", 30, RPClass.HIDDEN);
-		player.addRPSlot("bank_ados", 30, RPClass.HIDDEN);
-		player.addRPSlot("zaras_chest_ados", 30, RPClass.HIDDEN);
-		player.addRPSlot("bank_fado", 30, RPClass.HIDDEN);
-		player.addRPSlot("bank_nalwor", 30, RPClass.HIDDEN);
+		player.addRPSlot("bank", 30, Type.HIDDEN);
+		player.addRPSlot("bank_ados", 30, Type.HIDDEN);
+		player.addRPSlot("zaras_chest_ados", 30, Type.HIDDEN);
+		player.addRPSlot("bank_fado", 30, Type.HIDDEN);
+		player.addRPSlot("bank_nalwor", 30, Type.HIDDEN);
 
 		// Kills recorder - needed for quest
-		player.addRPSlot("!kills", 1, RPClass.HIDDEN);
+		player.addRPSlot("!kills", 1, Type.HIDDEN);
 
 		// We use this for the buddy system
-		player.addRPSlot("!buddy", 1, RPClass.PRIVATE);
-		player.addRPSlot("!ignore", 1, RPClass.HIDDEN);
-		player.add("online", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
-		player.add("offline", RPClass.LONG_STRING, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+		player.addRPSlot("!buddy", 1, Type.PRIVATE);
+		player.addRPSlot("!ignore", 1, Type.HIDDEN);
+		player.add("online", Type.LONG_STRING, (byte) (RPClass.PRIVATE | Definition.VOLATILE));
+		player.add("offline", Type.LONG_STRING, (byte) (RPClass.PRIVATE | Definition.VOLATILE));
 
-		player.addRPSlot("!quests", 1, RPClass.HIDDEN);
-		player.addRPSlot("!tutorial", 1, RPClass.HIDDEN);
+		player.addRPSlot("!quests", 1, Type.HIDDEN);
+		player.addRPSlot("!tutorial", 1, Type.HIDDEN);
 
-		player.add("karma", RPClass.FLOAT, RPClass.PRIVATE);
+		player.add("karma", Type.FLOAT, Type.PRIVATE);
 
-		player.addRPSlot("skills", 1, RPClass.HIDDEN);
+		player.addRPSlot("skills", 1, Type.HIDDEN);
 
 		// Non-removable while stored ones have values
-		player.addRPSlot("!skills", 1, (byte) (RPClass.HIDDEN | RPClass.VOLATILE));
+		player.addRPSlot("!skills", 1, (byte) (RPClass.HIDDEN | Definition.VOLATILE));
 
-		player.addRPSlot("!visited", 1, RPClass.HIDDEN);
+		player.addRPSlot("!visited", 1, Type.HIDDEN);
 
 		// This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
-		player.addRPSlot("spells", 9, RPClass.PRIVATE);
+		player.addRPSlot("spells", 9, Type.PRIVATE);
 
 		// The guild name
-		player.add("guild", RPClass.STRING);
+		player.add("guild", Type.STRING);
 
 		/*
 		 * TODO: Remove this one as it is repeated.
 		 * Correct one is ghostmode.
 		 */
 		// Does player have full ghostmode?
-		player.add("fullghostmode", RPClass.INT); // 0 for off, 1 for on
+		player.add("fullghostmode", Type.INT); // 0 for off, 1 for on
 
 		// Client side features
-		player.add("features", RPClass.LONG_STRING, RPClass.PRIVATE);
+		player.add("features", Type.LONG_STRING, Type.PRIVATE);
 
 	}
 

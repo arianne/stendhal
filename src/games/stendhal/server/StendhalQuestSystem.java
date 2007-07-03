@@ -1,18 +1,17 @@
 
 package games.stendhal.server;
 
+import games.stendhal.server.config.QuestsXMLLoader;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.quests.IQuest;
 import games.stendhal.server.maps.quests.QuestInfo;
-import games.stendhal.server.config.QuestsXMLLoader;
 
 import java.lang.reflect.Constructor;
 import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * Loads and manages all quests 

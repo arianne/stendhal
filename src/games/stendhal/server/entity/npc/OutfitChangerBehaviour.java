@@ -15,14 +15,17 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.*;
+import games.stendhal.server.events.LoginListener;
+import games.stendhal.server.events.LoginNotifier;
+import games.stendhal.server.events.TurnListener;
+import games.stendhal.server.events.TurnNotifier;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents the behaviour of a NPC who is able to sell outfits

@@ -16,16 +16,17 @@ import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPObject;
+import javax.management.AttributeNotFoundException;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPObject;
 
 public class StackableItem extends Item implements Stackable {
 
 	private int quantity = 1;
 
-	private static Logger logger = Logger.getLogger(StackableItem.class);
+	private static Logger logger = Log4J.getLogger(StackableItem.class);
 
 	public StackableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
@@ -44,7 +45,7 @@ public class StackableItem extends Item implements Stackable {
 	}
 
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		super.update();
 		if (has("quantity")) {
 			quantity = getInt("quantity");

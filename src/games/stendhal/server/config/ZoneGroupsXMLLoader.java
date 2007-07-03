@@ -10,19 +10,21 @@ package games.stendhal.server.config;
 //
 
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.LinkedList;
-import javax.xml.parsers.SAXParserFactory;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import org.apache.log4j.Logger;
-
-import marauroa.common.Log4J;
 
 /**
  * Load and configure zones via an XML configuration file.

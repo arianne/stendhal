@@ -5,6 +5,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
+
 import java.util.Map;
 
 public class RichardStallmanNPC implements ZoneConfigurator {

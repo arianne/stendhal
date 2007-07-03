@@ -1,7 +1,8 @@
 package games.stendhal.server.entity.portal;
 
 import games.stendhal.server.entity.RPEntity;
-import marauroa.common.game.AttributeNotFoundException;
+
+import javax.management.AttributeNotFoundException;
 
 /**
  * A KeyDestroyingDoor works just like a normal locked door, except that it

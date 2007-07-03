@@ -1,10 +1,10 @@
 package games.stendhal.server.script;
 
-import java.util.List;
-
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
+
+import java.util.List;
 
 /**
  * Kills the server the hard way without doing a normal shutdown.

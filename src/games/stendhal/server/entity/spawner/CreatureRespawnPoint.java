@@ -23,8 +23,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * RespawnPoints are points at which creatures can appear. Several creatures
@@ -118,7 +117,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * @param dead The creature that has died
 	 */
 	public void notifyDead(Creature dead) {
-		Log4J.startMethod(logger, "notifyDead");
+		
 
 		if (!respawning) {
 			// start respawning a new creature
@@ -127,7 +126,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		}
 
 		creatures.remove(dead);
-		Log4J.finishMethod(logger, "notifyDead");
+		
 	}
 
 	/**
@@ -159,7 +158,7 @@ public class CreatureRespawnPoint implements TurnListener {
 	 * Pops up a new creature.
 	 */
 	private void respawn() {
-		Log4J.startMethod(logger, "respawn");
+		
 		try {
 			// clone the prototype creature
 			Creature newentity = prototypeCreature.getInstance();
@@ -180,7 +179,7 @@ public class CreatureRespawnPoint implements TurnListener {
 		} catch (Exception e) {
 			logger.error("error respawning entity " + prototypeCreature, e);
 		} finally {
-			Log4J.finishMethod(logger, "respawn");
+			
 		}
 	}
 

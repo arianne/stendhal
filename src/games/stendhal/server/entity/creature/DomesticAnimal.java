@@ -19,10 +19,10 @@ import games.stendhal.server.entity.player.Player;
 
 import java.awt.geom.Rectangle2D;
 
-import org.apache.log4j.Logger;
+import javax.management.AttributeNotFoundException;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -46,7 +46,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * Creates a new wild DomesticAnimal.
 	 * @throws AttributeNotFoundException
 	 */
-	public DomesticAnimal() throws AttributeNotFoundException {
+	public DomesticAnimal() {
 		this(null);
 		put("title_type", "friend");
 	}
@@ -55,7 +55,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * Creates a new DomesticAnimal that is owned by a player.
 	 * @throws AttributeNotFoundException
 	 */
-	public DomesticAnimal(Player owner) throws AttributeNotFoundException {
+	public DomesticAnimal(Player owner) {
 		super();
 		this.owner = owner;
 		put("title_type", "friend");
@@ -69,7 +69,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * @param object
 	 * @throws AttributeNotFoundException
 	 */
-	public DomesticAnimal(RPObject object) throws AttributeNotFoundException {
+	public DomesticAnimal(RPObject object) {
 		super(object);
 		put("title_type", "friend");
 		if (object.has("title_type")) {
@@ -84,7 +84,7 @@ public abstract class DomesticAnimal extends Creature {
 	 * @param owner The player who should own the sheep
 	 * @throws AttributeNotFoundException
 	 */
-	public DomesticAnimal(RPObject object, Player owner) throws AttributeNotFoundException {
+	public DomesticAnimal(RPObject object, Player owner) {
 		this(object);
 		this.owner = owner;
 	}
@@ -107,7 +107,7 @@ public abstract class DomesticAnimal extends Creature {
 	}
 
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		super.update();
 		if (has("weight")) {
 			weight = getInt("weight");

@@ -9,14 +9,14 @@ package games.stendhal.server.pathfinder;
 //
 //
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.LinkedList;
-import org.apache.log4j.Logger;
-
 import games.stendhal.server.entity.ActiveEntity;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * A path using a fixed route.

@@ -16,6 +16,7 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+
 import java.util.Map;
 
 /**
@@ -23,7 +24,7 @@ import java.util.Map;
  */
 public class EmptyScroll extends Scroll {
 
-	//	private static final Logger logger = Logger.getLogger(EmptyScroll.class);
+	//	private static final Logger logger = Log4J.getLogger(EmptyScroll.class);
 
 	/**
 	 * Creates a new empty scroll

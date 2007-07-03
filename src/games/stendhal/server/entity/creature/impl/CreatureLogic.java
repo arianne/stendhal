@@ -17,10 +17,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 public class CreatureLogic {
-	private static Logger logger = Logger.getLogger(CreatureLogic.class);
+	private static Logger logger = Log4J.getLogger(CreatureLogic.class);
 
 	/**
 	 * the number of rounds the creature should wait when the path to the target
@@ -486,7 +487,7 @@ public class CreatureLogic {
 
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		// Log4J.startMethod(logger, "logic");
+		// 
 
 		logicHeal();
 		if (!logicSleep()) {
@@ -531,7 +532,7 @@ public class CreatureLogic {
 			creature.put("debug", debug.toString());
 		}
 		creature.notifyWorldAboutChanges();
-		//Log4J.finishMethod(logger, "logic");
+		//
 	}
 
 	/**

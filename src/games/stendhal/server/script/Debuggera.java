@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
 
 /**
  * code for abstract/int_admin_playground which creates a NPC to help testers.
@@ -248,7 +248,7 @@ public class Debuggera extends ScriptImpl {
 					player.sendPrivateText("Sorry, did not find a free spot in " + zoneName);
 				}
 			} catch (Exception e) {
-				Logger.getLogger(SightseeingAction.class).error(e, e);
+				Log4J.getLogger(SightseeingAction.class).error(e, e);
 			}
 
 			counter++;

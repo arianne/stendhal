@@ -21,7 +21,8 @@ import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 
-import marauroa.common.game.AttributeNotFoundException;
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
@@ -60,7 +61,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	protected int meanTurnsForRegrow;
 
 	public PassiveEntityRespawnPoint(RPObject object, String growingItemName, int meanTurnsForRegrow)
-	        throws AttributeNotFoundException {
+	        {
 		super(object);
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
@@ -70,7 +71,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		//update();
 	}
 
-	public PassiveEntityRespawnPoint(String growingItemName, int meanTurnsForRegrow) throws AttributeNotFoundException {
+	public PassiveEntityRespawnPoint(String growingItemName, int meanTurnsForRegrow) {
 		super();
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
@@ -82,7 +83,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	public static void generateRPClass() {
 		RPClass grower = new RPClass("plant_grower");
 		grower.isA("entity");
-		grower.add("class", RPClass.STRING);
+		grower.add("class", Type.STRING);
 	}
 
 	

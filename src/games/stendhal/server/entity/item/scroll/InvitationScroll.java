@@ -8,12 +8,13 @@ package games.stendhal.server.entity.item.scroll;
 //
 //
 
-import java.util.Map;
-import java.util.StringTokenizer;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
+
+import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * Represents an teleport scroll that acts as an invitation to an event.
@@ -23,7 +24,7 @@ import games.stendhal.server.util.TimeUtil;
 public class InvitationScroll extends TeleportScroll {
 
 	//	private static final Logger logger =
-	//				Logger.getLogger(InvitationScroll.class);
+	//				Log4J.getLogger(InvitationScroll.class);
 
 	/**
 	 * Creates a new invitation teleport scroll.

@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.npc;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Singleton class that contains inventory and prices of NPC stores.

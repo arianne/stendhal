@@ -1,10 +1,10 @@
 package games.stendhal.server.maps.deathmatch;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.util.Area;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Stores information about the place of the deathmatch.

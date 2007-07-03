@@ -21,9 +21,9 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.Map;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /**
  * A special ring that allows the owner to teleport to his or her spouse.
@@ -36,7 +36,7 @@ import org.apache.log4j.Logger;
  */
 public class WeddingRing extends Ring {
 
-	private static final Logger logger = Logger.getLogger(WeddingRing.class);
+	private static final Logger logger = Log4J.getLogger(WeddingRing.class);
 
 	/**
 	 * Creates a new wedding ring.

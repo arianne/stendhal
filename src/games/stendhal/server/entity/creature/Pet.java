@@ -13,17 +13,19 @@
 package games.stendhal.server.entity.creature;
 
 
-import java.util.Set;
-
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
+
+import java.util.Set;
+
+import javax.management.AttributeNotFoundException;
+
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
-import org.apache.log4j.Logger;
 
 /**
  * A pet is a domestic animal that can be owned by a player.
@@ -63,8 +65,8 @@ public abstract class Pet extends DomesticAnimal {
 		try {
 			RPClass pet = new RPClass("pet");
 			pet.isA("creature");
-			pet.add("weight", RPClass.BYTE);
-			pet.add("eat", RPClass.FLAG);
+			pet.add("weight", Type.BYTE);
+			pet.add("eat", Type.FLAG);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -74,7 +76,7 @@ public abstract class Pet extends DomesticAnimal {
 	 * Creates a new wild Pet.
 	 * @throws AttributeNotFoundException
 	 */
-	public Pet() throws AttributeNotFoundException {
+	public Pet() {
 		this(null);
 	}
 
@@ -82,7 +84,7 @@ public abstract class Pet extends DomesticAnimal {
 	 * Creates a new Pet that is owned by a player.
 	 * @throws AttributeNotFoundException
 	 */
-	public Pet(Player owner) throws AttributeNotFoundException {
+	public Pet(Player owner) {
 		super(owner);
 
 
@@ -103,7 +105,7 @@ public abstract class Pet extends DomesticAnimal {
 	 * @param owner The player who should own the pet
 	 * @throws AttributeNotFoundException
 	 */
-	public Pet(RPObject object, Player owner) throws AttributeNotFoundException {
+	public Pet(RPObject object, Player owner) {
 		super(object, owner);
 
 		hunger = 0;
@@ -191,7 +193,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-		Log4J.startMethod(logger, "logic");
+		
 
 		if (!isEnemyNear(20) && (owner == null)) // if there is no player near and none will see us... 
 		{
@@ -255,7 +257,7 @@ public abstract class Pet extends DomesticAnimal {
 		}
 
 		notifyWorldAboutChanges();
-		Log4J.finishMethod(logger, "logic");
+		
 	}
     // Should never be called
 	@Override

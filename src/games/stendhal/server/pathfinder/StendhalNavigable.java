@@ -1,9 +1,9 @@
 package games.stendhal.server.pathfinder;
 
-import java.awt.geom.Rectangle2D;
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
+
+import java.awt.geom.Rectangle2D;
 
 public class StendhalNavigable implements Navigable {
 

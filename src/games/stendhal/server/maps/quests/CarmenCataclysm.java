@@ -1,11 +1,11 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.Arrays;
-
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
-import games.stendhal.server.entity.npc.StandardInteraction;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.StandardInteraction;
+
+import java.util.Arrays;
 
 /**
  * QUEST: Carmen senses a Cataclysm

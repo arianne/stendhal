@@ -21,7 +21,10 @@
 
 package games.stendhal.server.pathfinder;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements

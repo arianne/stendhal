@@ -13,7 +13,7 @@
 package games.stendhal.common;
 
 import marauroa.common.Log4J;
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /** Utility class for getting the creature-level for some given exp. points. */
 public class Level {

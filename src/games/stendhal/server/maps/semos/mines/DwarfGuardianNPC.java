@@ -1,13 +1,13 @@
 package games.stendhal.server.maps.semos.mines;
 
-import java.util.Map;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
+
+import java.util.Map;
 
 public class DwarfGuardianNPC implements ZoneConfigurator {
 

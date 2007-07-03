@@ -12,17 +12,15 @@
  ***************************************************************************/
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.server.events.UseListener;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.StendhalRPWorld;
-
+import games.stendhal.server.events.UseListener;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
-
-import org.apache.log4j.Logger;
 
 public class Portal extends Entity implements UseListener {
 
@@ -41,7 +39,7 @@ public class Portal extends Entity implements UseListener {
 		try {
 			RPClass portal = new RPClass("portal");
 			portal.isA("entity");
-			portal.add("hidden", RPClass.FLAG);
+			portal.add("hidden", Type.FLAG);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}

@@ -42,9 +42,9 @@ public abstract class Door extends Portal implements TurnListener {
 	public static void generateRPClass() {
 		RPClass door = new RPClass("door");
 		door.isA("entity");
-		door.add("class", RPClass.STRING);
-		door.add("locked", RPClass.STRING, RPClass.PRIVATE);
-		door.add("open", RPClass.FLAG);
+		door.add("class", Type.STRING);
+		door.add("locked", Type.STRING, Type.PRIVATE);
+		door.add("open", Type.FLAG);
 	}
 
 	/**

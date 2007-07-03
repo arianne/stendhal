@@ -15,9 +15,8 @@ import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
-
-import org.apache.log4j.Logger;
 
 /**
  * @author intensifly
@@ -73,7 +72,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 	}
 
 	private void onMarry(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onMarry");
+		
 
 		String usage = "Usage: #/marry #<player1> #<player2>";
 		String text = "";
@@ -145,11 +144,11 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 
 		player.sendPrivateText(text);
 
-		Log4J.finishMethod(logger, "onMarry");
+		
 	}
 
 	private void onSpouse(Player player, RPAction action) {
-		Log4J.startMethod(logger, "onSpouse");
+		
 
 		if (player.hasQuest(SPOUSE)) {
 			Player teleported = null;
@@ -179,7 +178,7 @@ public class SpouseExtension extends StendhalServerExtension implements ActionLi
 			player.notifyWorldAboutChanges();
 		}
 
-		Log4J.finishMethod(logger, "onSpouse");
+		
 	}
 
 }

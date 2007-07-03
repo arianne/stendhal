@@ -1,17 +1,17 @@
 
 package games.stendhal.server.script;
 
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPRuleProcessor;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.scripting.ScriptImpl;
 
 import java.util.List;
 
-import marauroa.server.game.PlayerEntryContainer;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
+import marauroa.server.game.container.PlayerEntryContainer;
 
 /**
  * Logout a player
@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class LogoutPlayer extends ScriptImpl {
 
-	private static Logger logger = Logger.getLogger(LogoutPlayer.class);
+	private static Logger logger = Log4J.getLogger(LogoutPlayer.class);
 
 	@Override
 	public void execute(Player admin, List<String> args) {

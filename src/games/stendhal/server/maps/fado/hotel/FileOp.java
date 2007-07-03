@@ -14,8 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  *
@@ -35,7 +34,7 @@ public class FileOp {
 	}
 
 	public String readFile(String fileToRead) throws java.io.FileNotFoundException, IOException {
-		Log4J.startMethod(logger, "readFile");
+		
 
 		File file = new File(fileToRead);// a new file
 
@@ -84,7 +83,7 @@ public class FileOp {
 	 *@param text The text that will be written
 	 */
 	public void writeToFile(String file, String text) throws IOException, FileNotFoundException {
-		Log4J.startMethod(logger, "writeToFile");
+		
 
 		String oldText = null;
 		try {
@@ -110,7 +109,7 @@ public class FileOp {
 			ex.printStackTrace();
 		}
 
-		Log4J.finishMethod(logger, "writeToFile");
+		
 	}
 
 }
