@@ -265,7 +265,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					}
 				}
 			} catch (Exception ep) {
-				logger.info("No server extensions configured in ini file.",ep);
+				logger.info("No server extensions configured in ini file.");
 			}
 
 		} catch (Exception e) {
