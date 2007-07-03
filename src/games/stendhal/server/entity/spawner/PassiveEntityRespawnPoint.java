@@ -112,7 +112,8 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 */
 	protected void growNewFruit() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = getZone();
+		StendhalRPZone zone = world.getZone(getID().getZoneID());
+
 		// create a new grown item
 		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
 		grownItem.setPlantGrower(this);
