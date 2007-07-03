@@ -49,6 +49,7 @@ public class Sign extends Entity {
 	 * Create a sign.
 	 */
 	public Sign() {
+		setRPClass("sign");
 		put("type", "sign");
 	}
 

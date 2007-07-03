@@ -48,6 +48,7 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 * @param	height		The area height.
 	 */
 	public OnePlayerArea(int width, int height) {
+		setRPClass("entity");
 		put("type", "one_player_area");
 		put("server-only", "");
 

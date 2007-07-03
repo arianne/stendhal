@@ -51,6 +51,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	 * @param	amount		The amount of blood.
 	 */
 	public Blood(final String clazz, final int amount) {
+		setRPClass("blood");
 		put("type", "blood");
 		put("class", clazz);
 		put("amount", amount);

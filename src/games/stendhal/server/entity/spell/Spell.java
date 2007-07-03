@@ -70,6 +70,7 @@ public class Spell extends PassiveEntity implements EquipListener {
 	/** no public 'default' item */
 	private Spell() {
 		super();
+		setRPClass("spell");
 		put("type", "spell");
 		update();
 	}

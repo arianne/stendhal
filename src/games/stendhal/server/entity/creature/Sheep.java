@@ -105,6 +105,7 @@ public class Sheep extends DomesticAnimal {
 	 */
 	public Sheep(Player owner) {
 		super(owner);
+		setRPClass("sheep");
 		put("type", "sheep");
 
 		setATK(ATK);
@@ -128,6 +129,7 @@ public class Sheep extends DomesticAnimal {
 	public Sheep(RPObject object, Player owner) {
 		super(object, owner);
 
+		setRPClass("sheep");
 		put("type", "sheep");
 		hunger = 0;
 

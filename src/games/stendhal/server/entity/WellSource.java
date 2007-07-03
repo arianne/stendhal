@@ -118,12 +118,14 @@ public class WellSource extends Entity implements UseListener {
 
 	public WellSource() {
 		setDescription("You see a wishing well. Something in it catches your eye.");
+		setRPClass("well_source");
 		put("type", "well_source");
 	}
 
 	public WellSource(RPObject object) {
 		super(object);
 		setDescription("You see a wishing well. Something in it catches your eye.");
+		setRPClass("well_source");
 		put("type", "well_source");
 	}
 

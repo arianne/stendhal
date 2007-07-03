@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
-
 import games.stendhal.server.entity.player.Player;
 
 import javax.management.AttributeNotFoundException;
@@ -39,19 +38,18 @@ public class Cat extends Pet {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Cat.class);
 
-	
-	
-static{
-	 HP = 200;
+	static {
+		HP = 200;
 
-	 incHP = 6;
+		incHP = 6;
 
-	 ATK = 10;
+		ATK = 10;
 
-	 DEF = 30;
+		DEF = 30;
 
-	 XP = 0;
-}
+		XP = 0;
+	}
+
 	public static void generateRPClass() {
 		try {
 			RPClass cat = new RPClass("cat");
@@ -77,9 +75,10 @@ static{
 	 */
 	public Cat(Player owner) {
 		super(owner);
-	        put("type", "cat");
-	        put("title","cat");
-	        SPEED = 0.9;
+		setRPClass("cat");
+		put("type", "cat");
+		put("title", "cat");
+		SPEED = 0.9;
 
 		update();
 		logger.debug("Created Cat: " + this);
@@ -95,8 +94,8 @@ static{
 	public Cat(RPObject object, Player owner) {
 		super(object, owner);
 
+		setRPClass("cat");
 		put("type", "cat");
-
 
 		update();
 		logger.debug("Created Cat: " + this);

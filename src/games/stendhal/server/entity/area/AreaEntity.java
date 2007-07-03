@@ -44,6 +44,7 @@ public abstract class AreaEntity extends PassiveEntity {
 	 * @param	height		Height of this area
 	 */
 	public AreaEntity(int width, int height) {
+		setRPClass("area");
 		put("type", "area");
 
 		this.height = height;

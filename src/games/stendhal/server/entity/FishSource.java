@@ -102,6 +102,7 @@ public class FishSource extends Entity implements UseListener {
 	public FishSource(String itemName) {
 		this.itemName = itemName;
 		setDescription("There is something in the water.");
+		setRPClass("fish_source");
 		put("type", "fish_source");
 	}
 
