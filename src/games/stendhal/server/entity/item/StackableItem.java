@@ -16,8 +16,6 @@ import games.stendhal.server.StendhalRPWorld;
 
 import java.util.Map;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;

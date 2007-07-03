@@ -26,13 +26,12 @@ import games.stendhal.server.events.TurnNotifier;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Definition.Type;
 
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 
@@ -55,11 +54,11 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("corpse");
 		entity.isA("entity");
-		entity.add("class", Type.STRING);
-		entity.add("stage", Type.BYTE);
+		entity.addAttribute("class", Type.STRING);
+		entity.addAttribute("stage", Type.BYTE);
 
-		entity.add("name", Type.STRING);
-		entity.add("killer", Type.STRING);
+		entity.addAttribute("name", Type.STRING);
+		entity.addAttribute("killer", Type.STRING);
 
 		entity.addRPSlot("content", 4);
 	}
@@ -89,7 +88,9 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		put("stage", stage);
 
 		RPSlot slot = new LootableSlot(this);
-		slot.setCapacity(4);
+		
+		//BUG: Capacity is set at RPClass.
+		//slot.setCapacity(4);
 		addSlot(slot);
 	}
 
@@ -147,7 +148,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		put("stage", stage);
 
 		RPSlot slot = new LootableSlot(this);
-		slot.setCapacity(4);
 		addSlot(slot);
 	}
 
@@ -242,7 +242,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
-		content.assignValidID(entity);
 		content.add(entity);
 	}
 
