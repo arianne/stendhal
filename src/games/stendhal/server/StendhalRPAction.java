@@ -17,8 +17,8 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.creature.Pet;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -30,13 +30,13 @@ import games.stendhal.server.pathfinder.Path.Node;
 import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.List;
-import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
-import marauroa.common.game.RPObjectNotFoundException;
-import marauroa.server.game.NoRPZoneException;
-import marauroa.server.game.RPServerManager;
 
-import org.apache.log4j.Logger;
+import javax.management.AttributeNotFoundException;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPObjectNotFoundException;
+import marauroa.server.game.rp.RPServerManager;
 
 public class StendhalRPAction {
 
@@ -274,8 +274,7 @@ public class StendhalRPAction {
 	 * @throws NoRPZoneException
 	 * @throws RPObjectNotFoundException
 	 */
-	public static boolean attack(RPEntity attacker, RPEntity defender) throws AttributeNotFoundException,
-	        NoRPZoneException, RPObjectNotFoundException {
+	public static boolean attack(RPEntity attacker, RPEntity defender) throws RPObjectNotFoundException {
 		boolean result = false;
 
 		StendhalRPZone zone = attacker.getZone();
@@ -422,7 +421,7 @@ public class StendhalRPAction {
 	 * @deprecated	Use entity.applyMovement() directly.
 	 */
 	@Deprecated
-	public static void move(RPEntity entity) throws AttributeNotFoundException, NoRPZoneException {
+	public static void move(RPEntity entity) {
 		entity.applyMovement();
 	}
 
@@ -431,13 +430,9 @@ public class StendhalRPAction {
 	 * @param player
 	 * @throws AttributeNotFoundException
 	 */
-	public static void transferContent(Player player) throws AttributeNotFoundException {
-		Log4J.startMethod(logger, "transferContent");
-
+	public static void transferContent(Player player) {
 		StendhalRPZone zone = player.getZone();
-		rpman.transferContent(player.getID(), zone.getContents());
-
-		Log4J.finishMethod(logger, "transferContent");
+		rpman.transferContent(player, zone.getContents());
 	}
 
 
@@ -623,10 +618,7 @@ public class StendhalRPAction {
 	 * @throws AttributeNotFoundException
 	 * @throws NoRPZoneException
 	 */
-	public static void changeZone(Player player, StendhalRPZone zone) throws AttributeNotFoundException,
-	        NoRPZoneException {
-		Log4J.startMethod(logger, "changeZone");
-
+	public static void changeZone(Player player, StendhalRPZone zone) {
 		StendhalRPWorld world = StendhalRPWorld.get();
 
 		String destination = zone.getID().getID();
@@ -637,14 +629,17 @@ public class StendhalRPAction {
 
 		String source = player.getID().getZoneID();
 		
+		// TODO: FIX ME
+		// XXX: Refactor.
+		
 		if (player.hasSheep() && player.hasPet()) {
 			Sheep sheep = player.getSheep();
 			Pet pet = (Pet) world.get(player.getPet());
 			player.removeSheep(sheep);
 			player.removePet(pet);
-			world.changeZone(source, destination, sheep);
-			world.changeZone(source, destination, pet);
-			world.changeZone(source, destination, player);
+			world.changeZone(destination, sheep);
+			world.changeZone(destination, pet);
+			world.changeZone(destination, player);
 			player.setSheep(sheep);
 			player.setPet(pet);
 //			oldzone.removePlayerAndFriends(sheep);
@@ -653,8 +648,8 @@ public class StendhalRPAction {
 		else if (player.hasPet()) {
 			Pet pet = (Pet) world.get(player.getPet());
 			player.removePet(pet);
-			world.changeZone(source, destination, pet);
-			world.changeZone(source, destination, player);
+			world.changeZone(destination, pet);
+			world.changeZone(destination, player);
 			player.setPet(pet);
 //			oldzone.removePlayerAndFriends(cat);
 //			zone.addPlayerAndFriends(cat);
@@ -662,12 +657,13 @@ public class StendhalRPAction {
 		else if (player.hasSheep()) {
 			Sheep sheep = player.getSheep();
 			player.removeSheep(sheep);
-			world.changeZone(source, destination, sheep);
-			world.changeZone(source, destination, player);
+			world.changeZone(destination, sheep);
+			world.changeZone(destination, player);
 			player.setSheep(sheep);
 		}
-		else
-		        world.changeZone(source, destination, player);
+		else {
+		    world.changeZone(destination, player);
+		}
 
 		placeat(zone, player, player.getX(), player.getY());
 		player.stop();
@@ -692,7 +688,6 @@ public class StendhalRPAction {
 		 * There isn't any world.modify because there is already considered
 		 * inside the implicit world.add call at changeZone
 		 */
-		Log4J.finishMethod(logger, "changeZone");
 	}
 
 	/**
