@@ -47,7 +47,6 @@ import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
