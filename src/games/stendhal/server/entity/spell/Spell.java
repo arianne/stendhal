@@ -23,6 +23,7 @@ import java.util.Map;
 import javax.management.AttributeNotFoundException;
 
 import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.Type;
 
 /**
  * The Spell class. Based off the item code.
@@ -41,8 +42,8 @@ public class Spell extends PassiveEntity implements EquipListener {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("spell");
 		entity.isA("entity");
-		entity.add("class", Type.STRING); // the spell class (other purposes, just to code old code for now)
-		entity.add("name", Type.STRING); // name of spell (such as "heal")
+		entity.addAttribute("class", Type.STRING); // the spell class (other purposes, just to code old code for now)
+		entity.addAttribute("name", Type.STRING); // name of spell (such as "heal")
                 
 	}
 

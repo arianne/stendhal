@@ -20,11 +20,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A PassiveEntityRespawnPoint basically is a 1x1 area where a plant,
@@ -83,7 +81,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	public static void generateRPClass() {
 		RPClass grower = new RPClass("plant_grower");
 		grower.isA("entity");
-		grower.add("class", Type.STRING);
+		grower.addAttribute("class", Type.STRING);
 	}
 
 	

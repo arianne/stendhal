@@ -21,6 +21,8 @@ import games.stendhal.server.events.UseListener;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 public class Portal extends Entity implements UseListener {
 
@@ -39,8 +41,8 @@ public class Portal extends Entity implements UseListener {
 		try {
 			RPClass portal = new RPClass("portal");
 			portal.isA("entity");
-			portal.add("hidden", Type.FLAG);
-		} catch (RPClass.SyntaxException e) {
+			portal.addAttribute("hidden", Type.FLAG);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}

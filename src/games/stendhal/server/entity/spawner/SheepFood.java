@@ -15,11 +15,9 @@ package games.stendhal.server.entity.spawner;
 import games.stendhal.common.Grammar;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnNotifier;
-
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A regenerative source of food that can be eaten by sheep.
@@ -36,7 +34,7 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 	public static void generateRPClass() {
 		RPClass food = new RPClass("food");
 		food.isA("plant_grower");
-		food.add("amount", Type.BYTE);
+		food.addAttribute("amount", Type.BYTE);
 	}
 
 	public SheepFood(RPObject object) {
