@@ -20,14 +20,14 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Fire;
 import games.stendhal.server.entity.FishSource;
 import games.stendhal.server.entity.GoldSource;
-import games.stendhal.server.entity.WellSource;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.Sign;
+import games.stendhal.server.entity.WellSource;
 import games.stendhal.server.entity.area.AreaEntity;
-import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.creature.Cat;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.Pet;
+import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.npc.NPC;
@@ -47,13 +47,15 @@ import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
-import marauroa.server.game.RPWorld;
-
-import org.apache.log4j.Logger;
+import marauroa.common.game.Definition.DefinitionClass;
+import marauroa.common.game.Definition.Type;
+import marauroa.server.game.rp.RPWorld;
 
 public class StendhalRPWorld extends RPWorld {
 	/** the logger instance. */
@@ -87,20 +89,9 @@ public class StendhalRPWorld extends RPWorld {
 	protected StendhalRPWorld() {
 		super();
 
-		Log4J.startMethod(logger, "StendhalRPWorld");
 		createRPClasses();
 
-		// init language support
-//		String language = "en";
-//		try {
-//			language = Configuration.getConfiguration().get("language");
-//		} catch (Exception e) {
-//			// ignore
-//		}
-		//Translate.initLanguage(language);
-
 		ruleManager = RuleSetFactory.getRuleSet("default");
-		Log4J.finishMethod(logger, "StendhalRPWorld");
 		instance = this;
 	}
 
@@ -166,8 +157,6 @@ public class StendhalRPWorld extends RPWorld {
 	}
 
 	private void createRPClasses() {
-		Log4J.startMethod(logger, "createRPClasses");
-
 		Entity.generateRPClass();
 
 		// Entity sub-classes
@@ -210,39 +199,51 @@ public class StendhalRPWorld extends RPWorld {
 
 		// Chat action class
 		RPClass chatAction = new RPClass("chat");
-		chatAction.add("text", RPClass.LONG_STRING);
+		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
+		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
 
 		// Tell action class
 		chatAction = new RPClass("tell");
-		chatAction.add("text", RPClass.LONG_STRING);
-		chatAction.add("target", RPClass.STRING);
-
-		Log4J.finishMethod(logger, "createRPClasses");
+		chatAction.add(DefinitionClass.ATTRIBUTE, "type", Type.STRING);
+		chatAction.add(DefinitionClass.ATTRIBUTE, "text", Type.LONG_STRING);
+		chatAction.add(DefinitionClass.ATTRIBUTE, "target", Type.LONG_STRING);
 	}
 
 	@Override
-	public void onInit() throws Exception {
-		// create the pathfinder thread and start it
-		pathfinderThread = new PathfinderThread(this);
-		pathfinderThread.start();
+	public void onInit() {
+		try {
+			super.onInit();
+			
+			// create the pathfinder thread and start it
+			pathfinderThread = new PathfinderThread(this);
+			pathfinderThread.start();
 
-		ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml"));
+			ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml"));
 
-		loader.load();
+			loader.load();
 
-		/**
-		 * After all the zones has been loaded, check how many portals are
-		 * unpaired
-		 */
-		for (IRPZone zone : this) {
-			for (Portal portal : ((StendhalRPZone) zone).getPortals()) {
-				validatePortal(portal);
+			/**
+			 * After all the zones has been loaded, check how many portals are
+			 * unpaired
+			 */
+			for (IRPZone zone : this) {
+				for (Portal portal : ((StendhalRPZone) zone).getPortals()) {
+					validatePortal(portal);
+				}
 			}
+
+			// TODO: make sure this is the proper place for this + way to do this
+			// make sure that it is always initialized on server startup so that its LoginListener does not miss anyone.
+			GagManager.get();
+		} catch (Exception e) {
+			logger.fatal("Error on Init the server.", e);
 		}
-		
-		// TODO: make sure this is the proper place for this + way to do this
-		// make sure that it is always initialized on server startup so that its LoginListener does not miss anyone.
-		GagManager.get();
+	}
+
+	@Override
+	public void onFinish() {
+		super.onFinish();
+		StendhalRPRuleProcessor.get().addGameEvent("server system", "shutdown");
 	}
 
 	protected void validatePortal(Portal portal) {
@@ -424,11 +425,5 @@ public class StendhalRPWorld extends RPWorld {
 		}
 
 		return null;
-	}
-
-
-	@Override
-	public void onFinish() throws Exception {
-		StendhalRPRuleProcessor.get().addGameEvent("server system", "shutdown");
 	}
 }
