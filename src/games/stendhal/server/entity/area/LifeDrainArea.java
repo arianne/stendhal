@@ -12,9 +12,7 @@ import games.stendhal.server.entity.RPEntity;
 import java.util.Random;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * An area that drains an RPEntity of HP while over it.
@@ -47,7 +45,7 @@ public class LifeDrainArea extends OccupantArea {
 	 * @param	interval	How often damage is given while
 	 *				stationary (in turns).
 	 */
-	public LifeDrainArea(String name, int width, int height, int damage, int interval) throws AttributeNotFoundException {
+	public LifeDrainArea(String name, int width, int height, int damage, int interval) {
 		super(name, width, height, interval);
 
 		this.damage = damage;

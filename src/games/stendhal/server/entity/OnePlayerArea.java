@@ -9,11 +9,11 @@ package games.stendhal.server.entity;
 //
 //
 
-import java.awt.geom.Rectangle2D;
-import marauroa.common.game.AttributeNotFoundException;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
+
+import java.awt.geom.Rectangle2D;
 
 /**
  * An area that only allows one play at a time to enter.
@@ -47,7 +47,7 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 * @param	width		The area width.
 	 * @param	height		The area height.
 	 */
-	public OnePlayerArea(int width, int height) throws AttributeNotFoundException {
+	public OnePlayerArea(int width, int height) {
 		put("type", "one_player_area");
 		put("server-only", "");
 
@@ -197,7 +197,7 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	//	/**
 	//	 * Attribute(s) updated.
 	//	 */
-	//	public void update() throws AttributeNotFoundException {
+	//	public void update() {
 	//		StendhalRPZone	zone;
 	//
 	//

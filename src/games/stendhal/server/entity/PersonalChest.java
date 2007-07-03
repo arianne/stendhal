@@ -8,12 +8,11 @@ import games.stendhal.server.events.TurnNotifier;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-
-import org.apache.log4j.Logger;
 
 /**
  * A PersonalChest is a Chest that can be used by everyone, but shows
@@ -27,7 +26,7 @@ import org.apache.log4j.Logger;
  * TODO: fix this.
  */
 public class PersonalChest extends Chest {
-	private static Logger logger = Logger.getLogger(PersonalChest.class);
+	private static Logger logger = Log4J.getLogger(PersonalChest.class);
 
 	/**
 	 * The default bank slot name.
@@ -43,7 +42,7 @@ public class PersonalChest extends Chest {
 	/**
 	 * Create a personal chest using the default bank slot.
 	 */
-	public PersonalChest() throws AttributeNotFoundException {
+	public PersonalChest() {
 		this(DEFAULT_BANK);
 	}
 
@@ -52,7 +51,7 @@ public class PersonalChest extends Chest {
 	 *
 	 * @param	bankName	The name of the bank slot.
 	 */
-	public PersonalChest(String bankName) throws AttributeNotFoundException {
+	public PersonalChest(String bankName) {
 		this.bankName = bankName;
 
 		attending = null;

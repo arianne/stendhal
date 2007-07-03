@@ -1,14 +1,14 @@
 package games.stendhal.server.entity;
 
-import java.lang.ref.WeakReference;
-
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.events.UseListener;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import games.stendhal.server.events.UseListener;
+
+import java.lang.ref.WeakReference;
 
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;

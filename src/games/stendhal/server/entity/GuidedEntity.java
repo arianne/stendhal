@@ -9,10 +9,10 @@ package games.stendhal.server.entity;
 //
 //
 
-import java.util.List;
-
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Path;
+
+import java.util.List;
 
 import marauroa.common.game.RPObject;
 

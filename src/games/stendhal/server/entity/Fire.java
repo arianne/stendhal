@@ -5,6 +5,7 @@ import games.stendhal.server.events.UseListener;
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.Type;
 
 
 public class Fire extends Entity implements UseListener {
@@ -21,8 +22,8 @@ public class Fire extends Entity implements UseListener {
 	public static void generateRPClass() {
 		RPClass fire = new RPClass("fire");
 		fire.isA("entity");
-		fire.add("width", RPClass.SHORT);
-		fire.add("height", RPClass.SHORT);
+		fire.addAttribute("width", Type.SHORT);
+		fire.addAttribute("height", Type.SHORT);
 	}
 
 	public Fire(int width, int height) {

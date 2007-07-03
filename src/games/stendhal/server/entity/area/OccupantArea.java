@@ -19,7 +19,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.AttributeNotFoundException;
 import marauroa.common.game.IRPZone;
 
 /**
@@ -52,7 +51,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	 * @param	height		Height of this area
 	 * @param	interval	Standing action interval.
 	 */
-	public OccupantArea(String name, int width, int height, int interval) throws AttributeNotFoundException {
+	public OccupantArea(String name, int width, int height, int interval) {
 		super(width, height);
 
 		put("name", name);
@@ -198,7 +197,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	 * Handle object attribute change(s).
 	 */
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		StendhalRPZone zone;
 
 		/*

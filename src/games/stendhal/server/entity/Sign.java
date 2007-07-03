@@ -12,12 +12,14 @@
  ***************************************************************************/
 package games.stendhal.server.entity;
 
-import marauroa.common.Log4J;
-import marauroa.common.game.RPClass;
-import org.apache.log4j.Logger;
-
 import java.util.Arrays;
 import java.util.List;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.RPClass;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 
 public class Sign extends Entity {
 
@@ -35,9 +37,9 @@ public class Sign extends Entity {
 		try {
 			RPClass sign = new RPClass("sign");
 			sign.isA("entity");
-			sign.add("text", RPClass.LONG_STRING);
-			sign.add("class", RPClass.STRING);
-		} catch (RPClass.SyntaxException e) {
+			sign.addAttribute("text", Type.LONG_STRING);
+			sign.addAttribute("class", Type.STRING);
+		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
 	}

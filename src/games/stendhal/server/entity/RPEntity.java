@@ -34,14 +34,15 @@ import java.util.Map;
 import java.util.Set;
 
 import marauroa.common.Log4J;
-import marauroa.common.game.AttributeNotFoundException;
+import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SyntaxException;
+import marauroa.common.game.Definition.Type;
 import marauroa.server.game.Statistics;
-
-import org.apache.log4j.Logger;
 
 public abstract class RPEntity extends GuidedEntity {
 
@@ -118,47 +119,47 @@ public abstract class RPEntity extends GuidedEntity {
 		try {
 			RPClass entity = new RPClass("rpentity");
 			entity.isA("active_entity");
-			entity.add("name", RPClass.STRING);
-			entity.add("title", RPClass.STRING);
-			entity.add("level", RPClass.SHORT);
-			entity.add("xp", RPClass.INT);
-			entity.add("mana", RPClass.INT);
-			entity.add("base_mana", RPClass.INT);
+			entity.addAttribute("name", Type.STRING);
+			entity.addAttribute("title", Type.STRING);
+			entity.addAttribute("level", Type.SHORT);
+			entity.addAttribute("xp", Type.INT);
+			entity.addAttribute("mana", Type.INT);
+			entity.addAttribute("base_mana", Type.INT);
 
 			// TODO: Remove just prior to DB Reset
-			entity.add("hp/base_hp", RPClass.FLOAT, RPClass.VOLATILE);
-			entity.add("base_hp", RPClass.SHORT);
-			entity.add("hp", RPClass.SHORT);
+			entity.addAttribute("hp/base_hp", Type.FLOAT, Definition.VOLATILE);
+			entity.addAttribute("base_hp", Type.SHORT);
+			entity.addAttribute("hp", Type.SHORT);
 
-			entity.add("atk", RPClass.SHORT, RPClass.PRIVATE);
-			entity.add("atk_xp", RPClass.INT, RPClass.PRIVATE);
-			entity.add("def", RPClass.SHORT, RPClass.PRIVATE);
-			entity.add("def_xp", RPClass.INT, RPClass.PRIVATE);
-			entity.add("atk_item", RPClass.INT, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
-			entity.add("def_item", RPClass.INT, (byte) (RPClass.PRIVATE | RPClass.VOLATILE));
+			entity.addAttribute("atk", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute("atk_xp", Type.INT, Definition.PRIVATE);
+			entity.addAttribute("def", Type.SHORT, Definition.PRIVATE);
+			entity.addAttribute("def_xp", Type.INT, Definition.PRIVATE);
+			entity.addAttribute("atk_item", Type.INT, (byte) (Definition.PRIVATE | Definition.VOLATILE));
+			entity.addAttribute("def_item", Type.INT, (byte) (Definition.PRIVATE | Definition.VOLATILE));
 
-			entity.add("risk", RPClass.BYTE, RPClass.VOLATILE);
-			entity.add("damage", RPClass.INT, RPClass.VOLATILE);
-			entity.add("heal", RPClass.INT, RPClass.VOLATILE);
-			entity.add("target", RPClass.INT, RPClass.VOLATILE);
-			entity.add("title_type", RPClass.STRING, RPClass.VOLATILE);
+			entity.addAttribute("risk", Type.BYTE, Definition.VOLATILE);
+			entity.addAttribute("damage", Type.INT, Definition.VOLATILE);
+			entity.addAttribute("heal", Type.INT, Definition.VOLATILE);
+			entity.addAttribute("target", Type.INT, Definition.VOLATILE);
+			entity.addAttribute("title_type", Type.STRING, Definition.VOLATILE);
 
-			entity.addRPSlot("head", 1, RPClass.PRIVATE);
-			entity.addRPSlot("rhand", 1, RPClass.PRIVATE);
-			entity.addRPSlot("lhand", 1, RPClass.PRIVATE);
-			entity.addRPSlot("armor", 1, RPClass.PRIVATE);
-			entity.addRPSlot("finger", 1, RPClass.PRIVATE);
-			entity.addRPSlot("cloak", 1, RPClass.PRIVATE);
-			entity.addRPSlot("legs", 1, RPClass.PRIVATE);
-			entity.addRPSlot("feet", 1, RPClass.PRIVATE);
-			entity.addRPSlot("bag", 12, RPClass.PRIVATE);
-			entity.addRPSlot("keyring", 6, RPClass.PRIVATE);
-		} catch (RPClass.SyntaxException e) {
+			entity.addRPSlot("head", 1, Definition.PRIVATE);
+			entity.addRPSlot("rhand", 1, Definition.PRIVATE);
+			entity.addRPSlot("lhand", 1, Definition.PRIVATE);
+			entity.addRPSlot("armor", 1, Definition.PRIVATE);
+			entity.addRPSlot("finger", 1, Definition.PRIVATE);
+			entity.addRPSlot("cloak", 1, Definition.PRIVATE);
+			entity.addRPSlot("legs", 1, Definition.PRIVATE);
+			entity.addRPSlot("feet", 1, Definition.PRIVATE);
+			entity.addRPSlot("bag", 12, Definition.PRIVATE);
+			entity.addRPSlot("keyring", 6, Definition.PRIVATE);
+		} catch (SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
 
-	public RPEntity(RPObject object) throws AttributeNotFoundException {
+	public RPEntity(RPObject object) {
 		super(object);
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
@@ -167,7 +168,7 @@ public abstract class RPEntity extends GuidedEntity {
 		totalDamageReceived = 0;
 	}
 
-	public RPEntity() throws AttributeNotFoundException {
+	public RPEntity() {
 		super();
 		attackSources = new ArrayList<Entity>();
 		damageReceived = new HashMap<Entity, Integer>();
@@ -318,7 +319,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 
 	@Override
-	public void update() throws AttributeNotFoundException {
+	public void update() {
 		super.update();
 
 		if (has("name")) {

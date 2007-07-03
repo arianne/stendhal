@@ -1,6 +1,6 @@
 package games.stendhal.server.entity;
 
-import marauroa.common.game.*;
+import marauroa.common.game.RPObject;
 
 /**
  * An entity that doesn't move on it's own, but can be moved.

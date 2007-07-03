@@ -9,10 +9,12 @@ package games.stendhal.server.entity.area;
 //
 //
 
+import games.stendhal.server.entity.PassiveEntity;
+
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.game.RPClass;
-import games.stendhal.server.entity.PassiveEntity;
+import marauroa.common.game.Definition.Type;
 
 /**
  * A base area entity.
@@ -67,9 +69,9 @@ public abstract class AreaEntity extends PassiveEntity {
 		// MAYBEDO: rpclass.isA(Entity.RPCLASS)
 		rpclass.isA("entity");
 
-		rpclass.add("height", RPClass.SHORT);
-		rpclass.add("name", RPClass.STRING);
-		rpclass.add("width", RPClass.SHORT);
+		rpclass.addAttribute("height", Type.SHORT);
+		rpclass.addAttribute("name", Type.STRING);
+		rpclass.addAttribute("width", Type.SHORT);
 
 		return rpclass;
 	}

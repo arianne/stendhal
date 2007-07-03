@@ -9,19 +9,19 @@ package games.stendhal.server.entity;
 //
 //
 
-import java.awt.geom.Rectangle2D;
-import org.apache.log4j.Logger;
-
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.portal.Portal;
 
+import java.awt.geom.Rectangle2D;
+
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
+import marauroa.common.game.Definition.Type;
 
 /**
  * An entity that hase speed and direction.
@@ -159,8 +159,8 @@ public abstract class ActiveEntity extends Entity {
 		RPClass rpclass = new RPClass("active_entity");
 
 		rpclass.isA("entity");
-		rpclass.add("dir", RPClass.BYTE, RPClass.VOLATILE);
-		rpclass.add("speed", RPClass.FLOAT, RPClass.VOLATILE);
+		rpclass.addAttribute("dir", Type.BYTE, Definition.VOLATILE);
+		rpclass.addAttribute("speed", Type.FLOAT, Definition.VOLATILE);
 
 		return rpclass;
 	}

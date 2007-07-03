@@ -15,8 +15,8 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Rand;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
-
 import marauroa.common.game.RPClass;
+import marauroa.common.game.Definition.Type;
 
 /**
  * Represents a blood puddle that is left on the ground after an entity
@@ -31,8 +31,8 @@ public class Blood extends PassiveEntity implements TurnListener {
 	public static void generateRPClass() {
 		RPClass blood = new RPClass("blood");
 		blood.isA("entity");
-		blood.add("class", RPClass.STRING);
-		blood.add("amount", RPClass.BYTE);
+		blood.addAttribute("class", Type.STRING);
+		blood.addAttribute("amount", Type.BYTE);
 	}
 
 
