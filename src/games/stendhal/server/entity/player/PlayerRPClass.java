@@ -40,10 +40,12 @@ import java.util.List;
 import marauroa.common.Configuration;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.Definition.Type;
 
 /**
  * Handles the RPClass registration and updating old Player objects
@@ -122,82 +124,82 @@ lion_shield_+1 enhanced_lion_shield
 	static void generateRPClass() {
 		RPClass player = new RPClass("player");
 		player.isA("rpentity");
-		player.add("text", Type.LONG_STRING, Definition.VOLATILE);
-		player.add("private_text", Type.LONG_STRING, (byte) (RPClass.PRIVATE | Definition.VOLATILE));
+		player.addAttribute("text", Type.LONG_STRING, Definition.VOLATILE);
+		player.addAttribute("private_text", Type.LONG_STRING, (byte) (Definition.PRIVATE | Definition.VOLATILE));
 
-		player.add("poisoned", Type.SHORT, Definition.VOLATILE);
-		player.add("eating", Type.SHORT, Definition.VOLATILE);
+		player.addAttribute("poisoned", Type.SHORT, Definition.VOLATILE);
+		player.addAttribute("eating", Type.SHORT, Definition.VOLATILE);
 
-		player.add("dead", Type.FLAG, Type.PRIVATE);
+		player.addAttribute("dead", Type.FLAG, Definition.PRIVATE);
 
-		player.add("outfit", Type.INT);
-		player.add("outfit_org", Type.INT);
+		player.addAttribute("outfit", Type.INT);
+		player.addAttribute("outfit_org", Type.INT);
 
-		player.add("away", Type.LONG_STRING, Definition.VOLATILE);
+		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 
 		// Use this for admin menus and usage.
-		player.add("admin", Type.FLAG);
-		player.add("adminlevel", Type.INT);
-		player.add("invisible", Type.FLAG, Type.HIDDEN);
-		player.add("ghostmode", Type.FLAG);
-		player.add("teleclickmode", Type.FLAG, Type.HIDDEN);
+		player.addAttribute("admin", Type.FLAG);
+		player.addAttribute("adminlevel", Type.INT);
+		player.addAttribute("invisible", Type.FLAG, Definition.HIDDEN);
+		player.addAttribute("ghostmode", Type.FLAG);
+		player.addAttribute("teleclickmode", Type.FLAG, Definition.HIDDEN);
 
-		player.add("release", Type.STRING, Type.HIDDEN);
+		player.addAttribute("release", Type.STRING, Definition.HIDDEN);
 
-		player.add("age", Type.INT);
+		player.addAttribute("age", Type.INT);
 
 		// Store sheep at DB
-		player.addRPSlot("#flock", 1, Type.HIDDEN);
-		player.add("sheep", Type.INT);
+		player.addRPSlot("#flock", 1, Definition.HIDDEN);
+		player.addAttribute("sheep", Type.INT);
 
 		// Store cat at DB
-		player.addRPSlot("#pets", 1, Type.HIDDEN);
-		player.add("pet", Type.INT);
-		player.add("cat", Type.INT);
+		player.addRPSlot("#pets", 1, Definition.HIDDEN);
+		player.addAttribute("pet", Type.INT);
+		player.addAttribute("cat", Type.INT);
 
 		// Bank system
-		player.addRPSlot("bank", 30, Type.HIDDEN);
-		player.addRPSlot("bank_ados", 30, Type.HIDDEN);
-		player.addRPSlot("zaras_chest_ados", 30, Type.HIDDEN);
-		player.addRPSlot("bank_fado", 30, Type.HIDDEN);
-		player.addRPSlot("bank_nalwor", 30, Type.HIDDEN);
+		player.addRPSlot("bank", 30, Definition.HIDDEN);
+		player.addRPSlot("bank_ados", 30, Definition.HIDDEN);
+		player.addRPSlot("zaras_chest_ados", 30, Definition.HIDDEN);
+		player.addRPSlot("bank_fado", 30, Definition.HIDDEN);
+		player.addRPSlot("bank_nalwor", 30, Definition.HIDDEN);
 
 		// Kills recorder - needed for quest
-		player.addRPSlot("!kills", 1, Type.HIDDEN);
+		player.addRPSlot("!kills", 1, Definition.HIDDEN);
 
 		// We use this for the buddy system
-		player.addRPSlot("!buddy", 1, Type.PRIVATE);
-		player.addRPSlot("!ignore", 1, Type.HIDDEN);
-		player.add("online", Type.LONG_STRING, (byte) (RPClass.PRIVATE | Definition.VOLATILE));
-		player.add("offline", Type.LONG_STRING, (byte) (RPClass.PRIVATE | Definition.VOLATILE));
+		player.addRPSlot("!buddy", 1, Definition.PRIVATE);
+		player.addRPSlot("!ignore", 1, Definition.HIDDEN);
+		player.addAttribute("online", Type.LONG_STRING, (byte) (Definition.PRIVATE | Definition.VOLATILE));
+		player.addAttribute("offline", Type.LONG_STRING, (byte) (Definition.PRIVATE | Definition.VOLATILE));
 
-		player.addRPSlot("!quests", 1, Type.HIDDEN);
-		player.addRPSlot("!tutorial", 1, Type.HIDDEN);
+		player.addRPSlot("!quests", 1, Definition.HIDDEN);
+		player.addRPSlot("!tutorial", 1, Definition.HIDDEN);
 
-		player.add("karma", Type.FLOAT, Type.PRIVATE);
+		player.addAttribute("karma", Type.FLOAT, Definition.PRIVATE);
 
-		player.addRPSlot("skills", 1, Type.HIDDEN);
+		player.addRPSlot("skills", 1, Definition.HIDDEN);
 
 		// Non-removable while stored ones have values
-		player.addRPSlot("!skills", 1, (byte) (RPClass.HIDDEN | Definition.VOLATILE));
+		player.addRPSlot("!skills", 1, (byte) (Definition.HIDDEN | Definition.VOLATILE));
 
-		player.addRPSlot("!visited", 1, Type.HIDDEN);
+		player.addRPSlot("!visited", 1, Definition.HIDDEN);
 
 		// This is the RPSlot for the spells. It's main purpose is to let us add a GUI for the spells later on.
-		player.addRPSlot("spells", 9, Type.PRIVATE);
+		player.addRPSlot("spells", 9, Definition.PRIVATE);
 
 		// The guild name
-		player.add("guild", Type.STRING);
+		player.addAttribute("guild", Type.STRING);
 
 		/*
 		 * TODO: Remove this one as it is repeated.
 		 * Correct one is ghostmode.
 		 */
 		// Does player have full ghostmode?
-		player.add("fullghostmode", Type.INT); // 0 for off, 1 for on
+		player.addAttribute("fullghostmode", Type.INT); // 0 for off, 1 for on
 
 		// Client side features
-		player.add("features", Type.LONG_STRING, Type.PRIVATE);
+		player.addAttribute("features", Type.LONG_STRING, Definition.PRIVATE);
 
 	}
 
@@ -245,7 +247,6 @@ lion_shield_+1 enhanced_lion_shield
 			RPSlot slot = object.getSlot(slotName);
 			if (slot.size() == 0) {
 				RPObject singleObject = new RPObject();
-				slot.assignValidID(singleObject);
 				slot.add(singleObject);
 			}
 		}

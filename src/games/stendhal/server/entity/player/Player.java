@@ -44,14 +44,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
+import marauroa.common.game.SyntaxException;
 
 public class Player extends RPEntity {
 
@@ -134,7 +132,7 @@ public class Player extends RPEntity {
 	public static void generateRPClass() {
 		try {
 			PlayerRPClass.generateRPClass();
-		} catch (RPClass.SyntaxException e) {
+		} catch (SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
 	}
