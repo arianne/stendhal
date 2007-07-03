@@ -14,12 +14,13 @@ package games.stendhal.server.rule.defaultruleset;
 
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.item.Item;
+import games.stendhal.server.entity.item.Stackable;
 import games.stendhal.server.rule.ActionManager;
-import marauroa.common.game.RPSlot;
-import marauroa.common.game.RPObject;
+
 import java.util.List;
 
-import games.stendhal.server.entity.item.Stackable;
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * 
@@ -124,7 +125,6 @@ public class DefaultActionManager implements ActionManager {
 		if (rpslot.isFull()) {
 			return false;
 		} else {
-			rpslot.assignValidID(item);
 			rpslot.add(item);
 			entity.updateItemAtkDef();
 			return true;
