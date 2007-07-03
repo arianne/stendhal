@@ -1,23 +1,45 @@
-create table if not exists avatars
+create table if not exists character_stats
   (
-  object_id integer auto_increment not null,
   name varchar(32) not null,
-  outfit varchar(32),
-  level integer,
-  xp integer,
-  data blob,  
+  online boolean,
   
-  primary key(object_id)
+  admin int default 0,
+  sentence varchar(256),
+  age integer,
+  level integer,
+  outfit varchar(32),
+  xp integer,
+  money integer,
+  
+  married varchar(32),
+  
+  /* Attributes */
+  atk integer,
+  def integer,
+  hp integer,
+  karma integer,
+  
+  /* Equipment */
+  head varchar(32),
+  armor varchar(32),
+  lhand varchar(32),
+  rhand varchar(32),
+  legs varchar(32),
+  feet varchar(32),
+  cloak varchar(32),
+  
+  primary key(name)
   )
-  TYPE=INNODB;
+  TYPE=MYISAM;
   
   
 create table if not exists halloffame
   (
   id integer auto_increment not null,
   charname varchar(32) not null,
-  fametype CHAR(1) not null,
+  fametype char(1) not null,
   points integer not null,
 
   primary key(id)
-  ) TYPE=INNODB;
+  ) 
+  TYPE=MYISAM;
