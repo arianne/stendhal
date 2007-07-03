@@ -281,11 +281,35 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
 	protected void onAvailableCharacters(String[] characters) {
+		/*
+		 * Check we have characters and if not offer us to create one.
+		 */
+		if (characters.length > 0) {
 		try {
 			chooseCharacter(characters[0]);
 		} catch (Exception e) {
 			logger.error("StendhalClient::onAvailableCharacters", e);
 		}
+		} else {
+			RPObject template = new RPObject();
+			// TODO: Account Username can be != of Character username.
+			try {
+	            CharacterResult res = createCharacter(getAccountUsername(), template);
+            } catch (TimeoutException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            } catch (InvalidVersionException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            } catch (CreateCharacterFailedException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            } catch (BannedAddressException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+            }
+		}
+	
 	}
 
 	@Override
