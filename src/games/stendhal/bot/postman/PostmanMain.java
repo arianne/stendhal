@@ -19,12 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import marauroa.client.ariannexpTimeoutException;
-import marauroa.client.net.DefaultPerceptionListener;
+import marauroa.client.TimeoutException;
+import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.game.RPObject;
-import marauroa.common.net.MessageS2CPerception;
-import marauroa.common.net.TransferContent;
+import marauroa.common.net.message.MessageS2CPerception;
+import marauroa.common.net.message.TransferContent;
 
 /**
  * Starts Postman and connect to server.
@@ -43,15 +43,13 @@ public class PostmanMain extends Thread {
 
 	private String port;
 
-	private boolean tcp;
-
 	protected Postman postman = null;
 
 	protected long lastPerceptionTimestamp = 0;
 
 	protected Map<RPObject.ID, RPObject> world_objects;
 
-	protected marauroa.client.ariannexp clientManager;
+	protected marauroa.client.ClientFramework clientManager;
 
 	protected PerceptionHandler handler;
 
@@ -66,29 +64,61 @@ public class PostmanMain extends Thread {
 	 * @param t TCP?
 	 * @throws SocketException on an network error
 	 */
-	public PostmanMain(String h, String u, String p, String c, String P, boolean t) throws SocketException {
+	public PostmanMain(String h, String u, String p, String c, String P) throws SocketException {
 		host = h;
 		username = u;
 		password = p;
 		character = c;
 		port = P;
-		tcp = t;
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
-		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+		handler = new PerceptionHandler(new IPerceptionListener() {
+			public boolean onAdded(RPObject object) {
+				return false;
+            }
 
-			@Override
-			public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
+			public boolean onClear() {
+				return false;
+            }
+
+			public boolean onDeleted(RPObject object) {
+				return false;
+            }
+
+			public void onException(Exception exception, MessageS2CPerception perception) {
 				System.out.println(perception);
 				System.err.println(perception);
-				e.printStackTrace();
-				return 0;
-			}
+				exception.printStackTrace();
+            }
+
+			public boolean onModifiedAdded(RPObject object, RPObject changes) {
+	            return false;
+            }
+
+			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+	            return false;
+            }
+
+			public boolean onMyRPObject(RPObject added, RPObject deleted) {
+	            return false;
+            }
+
+			public void onPerceptionBegin(byte type, int timestamp) {
+            }
+
+			public void onPerceptionEnd(byte type, int timestamp) {
+            }
+
+			public void onSynced() {
+            }
+
+			public void onUnsynced() {
+            }
 
 		});
 
-		clientManager = new marauroa.client.ariannexp("games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ClientFramework("games/stendhal/log4j.properties") {
 
 			@Override
 			protected String getGameName() {
@@ -112,7 +142,7 @@ public class PostmanMain extends Thread {
 						}
 					}
 				} catch (Exception e) {
-					onError(3, "Exception while applying perception");
+					e.printStackTrace();
 				}
 			}
 
@@ -131,13 +161,6 @@ public class PostmanMain extends Thread {
 			}
 
 			@Override
-			protected void onError(int code, String reason) {
-				System.out.println(reason);
-				System.err.println(reason);
-				Runtime.getRuntime().halt(1);
-			}
-
-			@Override
 			protected void onAvailableCharacters(String[] characters) {
 				try {
 					chooseCharacter(character);
@@ -150,13 +173,18 @@ public class PostmanMain extends Thread {
 			protected void onTransfer(List<TransferContent> items) {
 				// do nothing
 			}
+
+			@Override
+            protected void onPreviousLogins(List<String> previousLogins) {
+	            // do nothing
+            }
 		};
 	}
 
 	@Override
 	public void run() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port), tcp);
+			clientManager.connect(host, Integer.parseInt(port));
 			clientManager.login(username, password);
 			PostmanIRC postmanIRC = new PostmanIRC(host);
 			postmanIRC.connect();
@@ -166,7 +194,7 @@ public class PostmanMain extends Thread {
 			System.err.println("Socket Exception");
 			Runtime.getRuntime().halt(1);
 			return;
-		} catch (ariannexpTimeoutException e) {
+		} catch (TimeoutException e) {
 			System.err.println("Cannot connect to Stendhal server. Server is down?");
 			// TODO: shutdown cleanly
 			//return;
@@ -181,25 +209,13 @@ public class PostmanMain extends Thread {
 		while (cond) {
 			clientManager.loop(0);
 
-			if ((lastPerceptionTimestamp > 0) && (lastPerceptionTimestamp + 10 * 1000 < System.currentTimeMillis())) {
+			if ((lastPerceptionTimestamp > 0) && (lastPerceptionTimestamp + 30 * 1000 < System.currentTimeMillis())) {
 				System.err.println("Timeout");
 				Runtime.getRuntime().halt(1);
 			}
 
 			try {
-				sleep(100);
-			} catch (InterruptedException e) {
-				// ignore
-			}
-		}
-
-		long start = System.currentTimeMillis();
-		while (clientManager.logout() == false) {
-			if (start + 5000 < System.currentTimeMillis()) {
-				Runtime.getRuntime().halt(2);
-			}
-			try {
-				sleep(100);
+				sleep(500);
 			} catch (InterruptedException e) {
 				// ignore
 			}
@@ -220,7 +236,6 @@ public class PostmanMain extends Thread {
 				String character = null;
 				String host = null;
 				String port = null;
-				boolean tcp = false;
 
 				while (i != args.length) {
 					if (args[i].equals("-u")) {
@@ -233,14 +248,12 @@ public class PostmanMain extends Thread {
 						host = args[i + 1];
 					} else if (args[i].equals("-P")) {
 						port = args[i + 1];
-					} else if (args[i].equals("-t")) {
-						tcp = true;
 					}
 					i++;
 				}
 
 				if ((username != null) && (password != null) && (character != null) && (host != null) && (port != null)) {
-					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port, tcp);
+					PostmanMain postmanMain = new PostmanMain(host, username, password, character, port);
 					postmanMain.start();
 					return;
 				}

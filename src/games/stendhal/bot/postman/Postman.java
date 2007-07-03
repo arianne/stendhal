@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import marauroa.client.ariannexp;
+import marauroa.client.ClientFramework;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -27,7 +27,7 @@ public class Postman implements Runnable {
 
 	private Properties messages = new Properties();
 
-	private ariannexp clientManager;
+	private ClientFramework clientManager;
 
 	private PostmanIRC postmanIRC;
 
@@ -37,7 +37,7 @@ public class Postman implements Runnable {
 	 * @param clientManager ClientManager
 	 * @param postmanIRC postmanIRC
 	 */
-	public Postman(ariannexp clientManager, PostmanIRC postmanIRC) {
+	public Postman(ClientFramework clientManager, PostmanIRC postmanIRC) {
 		this.clientManager = clientManager;
 		this.postmanIRC = postmanIRC;
 
