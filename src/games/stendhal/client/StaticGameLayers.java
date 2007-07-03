@@ -23,9 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.net.InputSerializer;
-
-import org.apache.log4j.Logger;
 
 /** This class stores the layers that make the floor and the buildings */
 
@@ -104,8 +103,6 @@ public class StaticGameLayers {
 	/** Add a new Layer to the set 
 	 * @throws ClassNotFoundException */
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
-		Log4J.startMethod(logger, "addLayer");
-
 		logger.debug("Layer name: " + name);
 
 		int i = name.indexOf('.');
@@ -124,7 +121,6 @@ public class StaticGameLayers {
 		 * area name.
 		 */
 
-		try {
 			if (layer.equals("collision")) {
 				/*
 				 * Add a collision layer.
@@ -177,9 +173,6 @@ public class StaticGameLayers {
 			}
 
 			valid = false;
-		} finally {
-			Log4J.finishMethod(logger, "addLayer");
-		}
 	}
 
 	public boolean collides(Rectangle2D shape) {
@@ -194,25 +187,19 @@ public class StaticGameLayers {
 
 	/** Removes all layers */
 	public void clear() {
-		Log4J.startMethod(logger, "clear");
 		layers.clear();
 		tilesets.clear();
 		collision = null;
 		area = null;
-		Log4J.finishMethod(logger, "clear");
 	}
 
 	/** Set the set of layers that is going to be rendered */
 	public void setRPZoneLayersSet(String area) {
-		Log4J.startMethod(logger, "setRPZoneLayersSet");
-
 		logger.info("Area: "+area);
 
 		this.area = area;
 		this.areaChanged = true;
 		valid = false;
-
-		Log4J.finishMethod(logger, "setRPZoneLayersSet");
 	}
 	
 

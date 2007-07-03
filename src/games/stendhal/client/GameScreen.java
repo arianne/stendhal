@@ -12,6 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Entity2DView;
+import games.stendhal.client.entity.Text;
+import games.stendhal.client.gui.wt.core.WtBaseframe;
+import games.stendhal.client.sprite.ImageSprite;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -25,8 +32,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.RenderingHints;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.Transparency;
 import java.awt.font.TextAttribute;
@@ -43,16 +50,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import games.stendhal.client.entity.Entity2DView;
-import games.stendhal.client.entity.Text;
-import games.stendhal.client.gui.wt.core.WtBaseframe;
-import games.stendhal.client.sprite.Sprite;
-import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.sprite.ImageSprite;
-
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
+import marauroa.common.Logger;
 
 /**
  * This class is an abstraction of the game screen, so that we can think of it
@@ -239,16 +238,12 @@ public class GameScreen {
 
 	/** Prepare screen for the next frame to be rendered and move it if needed */
 	public void nextFrame() {
-		Log4J.startMethod(logger, "nextFrame");
-
 		g.dispose();
 		strategy.show();
 
 		adjustView();
 
 		g = (Graphics2D) strategy.getDrawGraphics();
-
-		Log4J.finishMethod(logger, "nextFrame");
 	}
 
 
@@ -660,29 +655,21 @@ public class GameScreen {
 	 * Clear the screen.
 	 */
 	public void clear() {
-		Log4J.startMethod(logger, "clear");
-
 		views.clear();
 		texts.clear();
 		textsToRemove.clear();
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());
-
-		Log4J.finishMethod(logger, "clear");
 	}
 
 	/**
 	 * Removes all the text entities.
 	 */
 	public void clearTexts() {
-		Log4J.startMethod(logger, "clearText");
-
 		for (Iterator it = texts.iterator(); it.hasNext();) {
 			textsToRemove.add((Text) it.next());
 		}
-
-		Log4J.finishMethod(logger, "clearText");
 	}
 
 

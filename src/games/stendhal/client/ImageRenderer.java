@@ -12,12 +12,13 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.net.URL;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
+
+import java.awt.image.BufferedImage;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 
 /**
  * This class renders a layer based on a complete image

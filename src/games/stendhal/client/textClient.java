@@ -12,13 +12,17 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import java.net.*;
-import java.util.*;
+import java.net.SocketException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import marauroa.client.*;
-import marauroa.client.net.*;
-import marauroa.common.game.*;
-import marauroa.common.net.*;
+import marauroa.client.net.IPerceptionListener;
+import marauroa.client.net.PerceptionHandler;
+import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
+import marauroa.common.net.message.MessageS2CPerception;
+import marauroa.common.net.message.TransferContent;
 
 public class textClient extends Thread {
 
@@ -36,7 +40,7 @@ public class textClient extends Thread {
 
 	private Map<RPObject.ID, RPObject> world_objects;
 
-	private marauroa.client.ariannexp clientManager;
+	private marauroa.client.ClientFramework clientManager;
 
 	private PerceptionHandler handler;
 
@@ -49,17 +53,50 @@ public class textClient extends Thread {
 
 		world_objects = new HashMap<RPObject.ID, RPObject>();
 
-		handler = new PerceptionHandler(new DefaultPerceptionListener() {
+		handler = new PerceptionHandler(new IPerceptionListener() {
 
-			@Override
-			public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
-				e.printStackTrace();
-				System.out.println(perception);
-				return 0;
-			}
+			public boolean onAdded(RPObject object) {
+	            return false;
+            }
+
+			public boolean onClear() {
+	            return false;
+            }
+
+			public boolean onDeleted(RPObject object) {
+	            return false;
+            }
+
+			public void onException(Exception exception, MessageS2CPerception perception) {
+	            exception.printStackTrace();	            
+            }
+
+			public boolean onModifiedAdded(RPObject object, RPObject changes) {
+	            return false;
+            }
+
+			public boolean onModifiedDeleted(RPObject object, RPObject changes) {
+	            return false;
+            }
+
+			public boolean onMyRPObject(RPObject added, RPObject deleted) {
+	            return false;
+            }
+
+			public void onPerceptionBegin(byte type, int timestamp) {
+            }
+
+			public void onPerceptionEnd(byte type, int timestamp) {
+            }
+
+			public void onSynced() {
+            }
+
+			public void onUnsynced() {
+            }
 		});
 
-		clientManager = new marauroa.client.ariannexp("games/stendhal/log4j.properties") {
+		clientManager = new marauroa.client.ClientFramework("games/stendhal/log4j.properties") {
 
 			@Override
 			protected String getGameName() {
@@ -99,7 +136,7 @@ public class textClient extends Thread {
 						System.out.println("</World contents ------------------------------------->");
 					}
 				} catch (Exception e) {
-					onError(3, "Exception while applying perception");
+					e.printStackTrace();
 				}
 			}
 
@@ -143,9 +180,12 @@ public class textClient extends Thread {
 			}
 
 			@Override
-			protected void onError(int code, String reason) {
-				System.out.println(reason);
-			}
+            protected void onPreviousLogins(List<String> previousLogins) {
+				System.out.println("Previous logins");
+				for (String info_string : previousLogins) {
+					System.out.println(info_string);
+				}
+            }
 		};
 
 	}
@@ -153,14 +193,12 @@ public class textClient extends Thread {
 	@Override
 	public void run() {
 		try {
-			clientManager.connect(host, Integer.parseInt(port), true);
+			clientManager.connect(host, Integer.parseInt(port));
 			clientManager.login(username, password);
-		} catch (SocketException e) {
+		} catch (Exception e) {
+	        e.printStackTrace();
 			return;
-		} catch (ariannexpTimeoutException e) {
-			System.out.println("textClient can't connect to Stendhal server. Server is down?");
-			return;
-		}
+        }
 
 		boolean cond = true;
 
@@ -170,10 +208,6 @@ public class textClient extends Thread {
 				sleep(100);
 			} catch (InterruptedException e) {
 			}
-			;
-		}
-
-		while (clientManager.logout() == false) {
 			;
 		}
 	}

@@ -9,10 +9,12 @@ package games.stendhal.client;
 //
 //
 
-import java.awt.Color;
-import javax.swing.JPopupMenu;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.ManagedWindow;
+
+import java.awt.Color;
+
+import javax.swing.JPopupMenu;
 
 /**
  * A base class for the stendhal client UI (not GUI).

@@ -8,6 +8,7 @@
 package games.stendhal.client;
 
 import java.awt.Color;
+
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;

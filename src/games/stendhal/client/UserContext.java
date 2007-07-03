@@ -9,13 +9,14 @@ package games.stendhal.client;
 //
 //
 
-import java.util.HashMap;
-import marauroa.common.game.RPObject;
-import marauroa.common.game.RPSlot;
-
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
 import games.stendhal.client.events.RPObjectChangeListener;
+
+import java.util.HashMap;
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
 
 /**
  * The player user context. This class holds/manages the data for the user

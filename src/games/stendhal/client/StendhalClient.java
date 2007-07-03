@@ -37,27 +37,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
-import marauroa.client.ariannexp;
-import marauroa.client.net.DefaultPerceptionListener;
+
+import marauroa.client.ClientFramework;
+import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Log4J;
-import marauroa.common.game.RPAction;
+import marauroa.common.Logger;
 import marauroa.common.game.Perception;
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
-import marauroa.common.net.MessageS2CPerception;
-import marauroa.common.net.TransferContent;
-
-import org.apache.log4j.Logger;
+import marauroa.common.net.message.MessageS2CPerception;
+import marauroa.common.net.message.TransferContent;
 
 /**
- * This class is the glue to Marauroa, it extends ariannexp and allow us to
+ * This class is the glue to Marauroa, it extends ClientFramework and allow us to
  * easily connect to an marauroa server and operate it easily.
  *
  * This class should be limited to functionality independant of the UI
  * (that goes in StendhalUI or a subclass). 
  */
-public class StendhalClient extends ariannexp {
+public class StendhalClient extends ClientFramework {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(StendhalClient.class);
@@ -127,10 +127,6 @@ public class StendhalClient extends ariannexp {
 		gameObjects = GameObjects.createInstance(staticLayers);
 		userContext = new UserContext();
 
-//		listeners = new PerceptionListenerMulticaster();
-//		listeners.addListener(new StendhalPerceptionListener());
-
-//		handler = new PerceptionHandler(listeners);
 		handler = new PerceptionHandler(new StendhalPerceptionListener());
 
 		cache = new Cache();
@@ -138,17 +134,6 @@ public class StendhalClient extends ariannexp {
 
 		directions = new ArrayList<Direction>(2);
 	}
-
-
-// MAYBE NOT:
-//	public void addPerceptionListener(IPerceptionListener listener) {
-//		listeners.addListener(listener);
-//	}
-//
-//
-//	public void removePerceptionListener(IPerceptionListener listener) {
-//		listeners.removeListener(listener);
-//	}
 
 
 	@Override
@@ -181,20 +166,11 @@ public class StendhalClient extends ariannexp {
 	 * connect to the Stendhal game server and if successfull, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
 	 * server version equals the client's.
+	 * @throws IOException 
 	 */
 	@Override
-	public void connect(String host, int port) throws java.net.SocketException {
-		this.connect(host, port, true);
-	}
-
-	/**
-	 * connect to the Stendhal game server and if successfull, check, if the
-	 * server runs StendhalHttpServer extension. In that case it checks, if
-	 * server version equals the client's.
-	 */
-	@Override
-	public void connect(String host, int port, boolean protocol) throws java.net.SocketException {
-		super.connect(host, port, true);
+	public void connect(String host, int port) throws IOException {
+		super.connect(host, port);
 		// if connect was successfull try if server has http service, too
 		String testServer = "http://" + host + "/";
 		HttpClient httpClient = new HttpClient(testServer + "stendhal.version");
@@ -214,7 +190,6 @@ public class StendhalClient extends ariannexp {
 	@Override
 	protected void onPerception(MessageS2CPerception message) {
 		try {
-			Log4J.startMethod(logger, "onPerception");
 			if (logger.isDebugEnabled()) {
 				logger.debug("message: " + message);
 			}
@@ -250,15 +225,11 @@ public class StendhalClient extends ariannexp {
 		} catch (Exception e) {
 			logger.fatal("error processing message " + message, e);
 			System.exit(1);
-		} finally {
-			Log4J.finishMethod(logger, "onPerception");
 		}
 	}
 
 	@Override
 	protected List<TransferContent> onTransferREQ(List<TransferContent> items) {
-		Log4J.startMethod(logger, "onTransferREQ");
-
 		/** We clean the game object container */
 		logger.debug("CLEANING static object list");
 		staticLayers.clear();
@@ -286,7 +257,6 @@ public class StendhalClient extends ariannexp {
 				item.ack = true;
 			}
 		}
-		Log4J.finishMethod(logger, "onTransferREQ");
 
 		return items;
 	}
@@ -298,7 +268,6 @@ public class StendhalClient extends ariannexp {
 
 	@Override
 	protected void onTransfer(List<TransferContent> items) {
-		Log4J.startMethod(logger, "onTransfer");
 		for (TransferContent item : items) {
 			try {
 				cache.store(item, item.data);
@@ -308,19 +277,15 @@ public class StendhalClient extends ariannexp {
 				System.exit(2);
 			}
 		}
-		Log4J.finishMethod(logger, "onTransfer");
 	}
 
 	@Override
 	protected void onAvailableCharacters(String[] characters) {
-		Log4J.startMethod(logger, "onAvailableCharacters");
 		try {
 			chooseCharacter(characters[0]);
 		} catch (Exception e) {
 			logger.error("StendhalClient::onAvailableCharacters", e);
 		}
-
-		Log4J.finishMethod(logger, "onAvailableCharacters");
 	}
 
 	@Override
@@ -329,10 +294,9 @@ public class StendhalClient extends ariannexp {
 	}
 
 	@Override
-	protected void onError(int code, String reason) {
-		logger.error("got error code: " + code + " reason: " + reason);
-	}
-
+    protected void onPreviousLogins(List<String> previousLogins) {
+	    // TODO Auto-generated method stub	    
+    }
 
 	/**
 	 * Add an active player movement direction.
@@ -813,33 +777,28 @@ logger.warn("!!! Not contained! - " + schanges);
 	//
 	//
 
-	class StendhalPerceptionListener extends DefaultPerceptionListener {
+	class StendhalPerceptionListener implements IPerceptionListener {
 
-		@Override
 		public boolean onAdded(RPObject object) {
 			fireAdded(object, false);
 			return false;
 		}
 
-		@Override
 		public boolean onModifiedAdded(RPObject object, RPObject changes) {
 			dispatchModifyAdded(object, changes, false);
 			return true;
 		}
 
-		@Override
 		public boolean onModifiedDeleted(RPObject object, RPObject changes) {
 			dispatchModifyRemoved(object, changes, false);
 			return true;
 		}
 
-		@Override
 		public boolean onDeleted(RPObject object) {
 			dispatchRemoved(object, false);
 			return false;
 		}
 
-		@Override
 		public boolean onMyRPObject(RPObject added, RPObject deleted) {
 			try {
 				RPObject.ID id = null;
@@ -875,48 +834,40 @@ logger.warn("!!! Not contained! - " + schanges);
 			return true;
 		}
 
-		@Override
-		public int onTimeout() {
-			logger.debug("Request resync because of timeout");
-
-			StendhalUI.get().addEventLine("Timeout: Requesting synchronization", Color.gray);
-			resync();
-			return 0;
-		}
-
-		@Override
-		public int onSynced() {
+		public void onSynced() {
 			times = 0;
 
 			StendhalUI.get().setOffline(false);
 
 			logger.debug("Synced with server state.");
 			StendhalUI.get().addEventLine("Synchronized", Color.gray);
-			return 0;
 		}
 
 		private int times;
 
-		@Override
-		public int onUnsynced() {
+		public void onUnsynced() {
 			times++;
 
 			if (times > 3) {
 				logger.debug("Request resync");
 				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...", Color.gray);
-				resync();
 			}
-			return 0;
 		}
 
-		@Override
-		public int onException(Exception e, marauroa.common.net.MessageS2CPerception perception) {
+		public void onException(Exception e, marauroa.common.net.message.MessageS2CPerception perception) {
 			logger.error("perception caused an error: " + perception, e);
 			System.exit(-1);
-
-			// Never executed
-			return -1;
 		}
+
+		public boolean onClear() {
+	        return false;
+        }
+
+		public void onPerceptionBegin(byte type, int timestamp) {
+        }
+
+		public void onPerceptionEnd(byte type, int timestamp) {
+        }
 	}
 
 	public void setUserName(String username) {

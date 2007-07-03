@@ -22,9 +22,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
-
-import org.apache.log4j.Logger;
 
 /** This class stores the objects that exists on the World right now */
 public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
@@ -93,8 +92,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/** Removes all the object entities */
 	public void clear() {
-		Log4J.startMethod(logger, "clear");
-
 		// invalidate all entity objects
 		Iterator<Entity> it = iterator();
 
@@ -105,8 +102,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 		objects.clear();
 		GameScreen.get().clear();
-
-		Log4J.finishMethod(logger, "clear");
 	}
 
 	public boolean collides(Entity entity) {
@@ -170,8 +165,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	object		The object.
 	 */
 	public void onAdded(final RPObject object) {
-		Log4J.startMethod(logger, "onAdded");
-
 		if(!object.getRPClass().subclassOf("entity")) {
 			logger.warn("Non-entity object added: " + object);
 		}
@@ -199,8 +192,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		} else {
 			logger.debug("Discarding object: " + object);
 		}
-
-		Log4J.finishMethod(logger, "onAdded");
 	}
 
 
@@ -211,15 +202,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	changes		The changes.
 	 */
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
-		Log4J.startMethod(logger, "onChangedAdded");
-
 		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedAdded(object, changes);
 		}
-
-		Log4J.finishMethod(logger, "onChangedAdded");
 	}
 
 
@@ -247,15 +234,11 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	changes		The changes.
 	 */
 	public void onChangedRemoved(final RPObject object, final RPObject changes) {
-		Log4J.startMethod(logger, "onChangedRemoved");
-
 		Entity entity = objects.get(FQID.create(object));
 
 		if (entity != null) {
 			entity.onChangedRemoved(object, changes);
 		}
-
-		Log4J.finishMethod(logger, "onChangedRemoved");
 	}
 
 
@@ -282,8 +265,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	 * @param	object		The object.
 	 */
 	public void onRemoved(final RPObject object) {
-		Log4J.startMethod(logger, "onRemoved");
-
 		RPObject.ID id = object.getID();
 
 		logger.debug("removed " + id);
@@ -294,8 +275,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 			GameScreen.get().removeEntityView(entity.getView());
 			entity.release();
 		}
-
-		Log4J.finishMethod(logger, "onRemoved");
 	}
 
 	//

@@ -20,9 +20,9 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
 import java.io.InputStream;
-import marauroa.common.Log4J;
 
-import org.apache.log4j.Logger;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 
 /**
  * This is a helper class to render coherent tiles based on the tileset. This
@@ -49,7 +49,6 @@ public class TileRenderer extends LayerRenderer {
 	/** Sets the data that will be rendered 
 	 * @throws ClassNotFoundException */
 	public void setMapData(InputStream in) throws IOException, ClassNotFoundException {
-		Log4J.startMethod(logger, "setMapData");
 		LayerDefinition layer=LayerDefinition.decode(in);
 		width=layer.getWidth();
 		height=layer.getHeight();
@@ -57,7 +56,6 @@ public class TileRenderer extends LayerRenderer {
 		logger.debug("Layer("+layer.getName()+"): " +width+"x"+height);
 		
 		map=layer.expose();
-		Log4J.finishMethod(logger, "setMapData");
 	}
 	
 	@Override
