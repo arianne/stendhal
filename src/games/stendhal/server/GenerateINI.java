@@ -142,6 +142,8 @@ public class GenerateINI {
 		PrintWriter out = new PrintWriter(new FileOutputStream(filename));
 		write(out);
 		out.close();
+		
+		System.out.println(filename + " has been generated.");
 	}
 
 	private static String getRSAKeyBits() {
