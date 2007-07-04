@@ -86,7 +86,7 @@ public class PersonalChest extends Chest {
 						// from the player's bank slot
 						for (RPObject item : getBankSlot()) {
 							try {
-								content.add(cloneItem(item));
+								content.addPreservingId(cloneItem(item));
 							} catch (Exception e) {
 								logger.error("Cannot clone item " + item, e);
 							}

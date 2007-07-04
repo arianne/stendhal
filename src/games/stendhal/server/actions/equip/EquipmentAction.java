@@ -95,14 +95,24 @@ public class EquipmentAction implements ActionListener {
 	/** callback for the equip action */
 	private void onEquip(Player player, RPAction action) {
 		// get source and check it
+		logger.debug("Checking source object conditions: "+action);
 		SourceObject source = new SourceObject(action, player);
-		if (!source.isValid() || !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
-		        || !source.checkClass(validContainerClassesList)) {
-			// source is not valid
+		if (!source.isValid()) { 
 			logger.debug("Source is not valid");
 			return;
 		}
 
+		if(!source.checkDistance(player, EquipActionConsts.MAXDISTANCE)) {
+			logger.debug("Source is not valid: source too far from player.");
+			return;
+		}
+
+		if(!source.checkClass(validContainerClassesList)) {
+			logger.debug("Source is not valid: Not valid class");
+			return;
+		}
+
+		logger.debug("Getting entity name");
 		// is the entity unbound or bound to the right player?
 		Entity entity = source.getEntity();
 		String itemName = "entity";
@@ -112,18 +122,21 @@ public class EquipmentAction implements ActionListener {
 			itemName = "item";
 		}
 
+		logger.debug("Checking minimum level");
 		// check minimum level
 		if (entity.has("min_level") && player.getLevel() < entity.getInt("min_level")) {
 			player.sendPrivateText("You are not experienced enough to use this " + itemName);
 			return;
 		}
 
+		logger.debug("Checking if entity is bound");
 		if (entity.has("bound") && !player.getName().equals(entity.get("bound"))) {
 			player.sendPrivateText("This " + itemName + " is a special reward for " + entity.get("bound")
 			        + ". You do not deserve to use it.");
 			return;
 		}
 
+		logger.debug("Checking destination");
 		// get destination and check it
 		DestinationObject dest = new DestinationObject(action, player);
 		if (!dest.isValid() || !dest.checkDistance(player, EquipActionConsts.MAXDISTANCE) || !dest.checkClass(validContainerClassesList)) {
@@ -131,6 +144,8 @@ public class EquipmentAction implements ActionListener {
 			logger.debug("Destination is not valid");
 			return;
 		}
+		
+		logger.debug("Equip action agreed");
 
 		// looks good
 		source.moveTo(dest, player);
