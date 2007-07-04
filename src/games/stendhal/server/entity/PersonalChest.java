@@ -73,7 +73,7 @@ public class PersonalChest extends Chest {
 					bank.clear();
 
 					for (RPObject item : getSlot("content")) {
-						bank.add(item);
+						bank.addPreservingId(item);
 					}
 
 					RPSlot content = getSlot("content");
@@ -157,7 +157,11 @@ public class PersonalChest extends Chest {
 				content.clear();
 
 				for (RPObject item : getBankSlot()) {
-					content.add(item);
+					try {
+						content.addPreservingId(cloneItem(item));
+					} catch (Exception e) {
+						logger.error("Cannot clone item " + item, e);
+					}
 				}
 
 				open();
