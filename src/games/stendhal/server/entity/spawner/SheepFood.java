@@ -39,12 +39,14 @@ public class SheepFood extends PassiveEntityRespawnPoint {
 
 	public SheepFood(RPObject object) {
 		super(object, null, GROWING_RATE);
+		setRPClass("food");
 		put("type", "food");
 		update();
 	}
 
 	public SheepFood() {
 		super(null, GROWING_RATE);
+		setRPClass("food");
 		put("type", "food");
 	}
 

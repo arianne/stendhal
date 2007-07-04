@@ -66,7 +66,6 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		setDescription("It looks like there's " + Grammar.a_noun(growingItemName) + " sprout growing here.");
 
 		setRPClass("plant_grower");
-		setRPClass("plant_grower");
 		put("type", "plant_grower");
 		//update();
 	}

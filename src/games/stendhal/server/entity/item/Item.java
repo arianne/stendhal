@@ -96,6 +96,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	/** no public 'default' item */
 	private Item() {
 		super();
+		setRPClass("item");
 		put("type", "item");
 		possibleSlots = new LinkedList<String>();
 		update();
@@ -108,6 +109,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 */
 	public Item(Item item) {
 		super(item);
+		setRPClass("item");
 		possibleSlots = new ArrayList<String>(item.possibleSlots);
 	}
 

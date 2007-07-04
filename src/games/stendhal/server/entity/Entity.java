@@ -89,6 +89,9 @@ public abstract class Entity extends RPObject {
 		// Some things may have a textual description
 		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
 
+		// TODO: Try to remove this attribute later
+		entity.addAttribute("type", Type.STRING);
+		
 		entity.addAttribute("x", Type.SHORT);
 		entity.addAttribute("y", Type.SHORT);
 

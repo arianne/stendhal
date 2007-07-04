@@ -228,6 +228,7 @@ public class Player extends RPEntity {
 		super(object);
 		playerSheepManager = new PlayerSheepManager(this);
 		playerPetManager = new PlayerPetManager(this);
+		setRPClass("player");
 		put("type", "player");
 		// HACK: postman as NPC
 		if (object.has("name") && object.get("name").equals("postman")) {
