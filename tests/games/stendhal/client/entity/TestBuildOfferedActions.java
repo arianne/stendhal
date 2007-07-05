@@ -9,8 +9,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.RPObject;
 
 import org.junit.After;

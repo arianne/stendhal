@@ -8,19 +8,12 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
  * Process guild actions from client. (Remove)
  */
 public class RemoveFromGuildAction implements ActionListener {
-
-	/**
-	 * Log4J.
-	 */
-	private static final Logger logger = Log4J.getLogger(RemoveFromGuildAction.class);
 
 	/**
 	 * Registers action.
@@ -36,7 +29,7 @@ public class RemoveFromGuildAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void removeFromGuild(Player player, RPAction action) {
-		
+
 
 		if (player.get("guild") != null) {
 		    player.remove("guild");//resets guild
@@ -46,11 +39,11 @@ public class RemoveFromGuildAction implements ActionListener {
 		else {
 		    player.sendPrivateText("You are not in a guild!");
 		}
-                
+
 		player.update();
 		player.notifyWorldAboutChanges();
 
-		
+
 	}
 
 	/**

@@ -21,21 +21,17 @@ import games.stendhal.server.pathfinder.Path.Node;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class OwnAction implements ActionListener {
-
-	private static final Logger logger = Log4J.getLogger(OwnAction.class);
 
 	public static void register() {
 		StendhalRPRuleProcessor.register("own", new OwnAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 
 		// BUG: This features is potentially abusable right now. Consider
 		// removing it...
@@ -82,7 +78,7 @@ public class OwnAction implements ActionListener {
 							player.notifyWorldAboutChanges();
 						} else {
 							// There is no path between sheep and player so it
-							// is unreachable. But don't tell the player 
+							// is unreachable. But don't tell the player
 							// anything about pathfinding.
 							player.sendPrivateText("That sheep is too far away.");
 						}
@@ -93,6 +89,6 @@ public class OwnAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 }

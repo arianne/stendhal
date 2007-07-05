@@ -14,13 +14,10 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 public class BuddyAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(BuddyAction.class);
 
 	public static void register() {
 		BuddyAction buddy = new BuddyAction();
@@ -47,7 +44,7 @@ public class BuddyAction implements ActionListener {
 		String online = "0";
 		Player buddy=StendhalRPRuleProcessor.get().getPlayer(who);
 		if ( buddy!= null && !buddy.isGhost()) {
-			online = "1";			
+			online = "1";
 		}
 		player.setKeyedSlot("!buddy", "_" + who, online);
 
@@ -58,7 +55,7 @@ public class BuddyAction implements ActionListener {
 		int duration;
 		String reason;
 
-		
+
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -80,11 +77,11 @@ public class BuddyAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 
 	private void onUnignore(Player player, RPAction action) {
-		
+
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -94,11 +91,11 @@ public class BuddyAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 
 	private void onRemoveBuddy(Player player, RPAction action) {
-		
+
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -111,6 +108,6 @@ public class BuddyAction implements ActionListener {
 			player.removeIgnore(who);
 		}
 
-		
+
 	}
 }

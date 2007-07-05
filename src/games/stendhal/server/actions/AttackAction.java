@@ -17,21 +17,19 @@ import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class AttackAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(AttackAction.class);
 
 	public static void register() {
 		StendhalRPRuleProcessor.register("attack", new AttackAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
 
@@ -46,6 +44,6 @@ public class AttackAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 }

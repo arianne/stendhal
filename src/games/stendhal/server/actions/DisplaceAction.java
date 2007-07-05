@@ -20,8 +20,6 @@ import games.stendhal.server.entity.player.Player;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -29,8 +27,6 @@ import marauroa.common.game.RPObject;
  * Moving of items around on the ground
  */
 public class DisplaceAction implements ActionListener {
-
-	private static final Logger logger = Log4J.getLogger(DisplaceAction.class);
 
 	/**
 	 * register this action
@@ -43,7 +39,7 @@ public class DisplaceAction implements ActionListener {
 	 * handle movement of items
 	 */
 	public void onAction(Player player, RPAction action) {
-		
+
 		if (action.has("baseitem")) {
 			int targetObject = action.getInt("baseitem");
 
@@ -79,14 +75,14 @@ public class DisplaceAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 
 
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 * 
+	 *
 	 * @param player the player doing the displacement
 	 * @param entity the entity beeing displaced
 	 * @return true, if it cannot be take; false otherwise

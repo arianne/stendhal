@@ -11,8 +11,6 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -20,10 +18,6 @@ import marauroa.common.game.RPAction;
  */
 public class AwayAction implements ActionListener {
 
-	/**
-	 * Log4J.
-	 */
-	private static final Logger logger = Log4J.getLogger(AwayAction.class);
 
 	/**
 	 * Registers action.
@@ -39,7 +33,7 @@ public class AwayAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void onAway(Player player, RPAction action) {
-		
+
 
 		if (action.has("message")) {
 			player.put("away", action.get("message"));
@@ -50,7 +44,7 @@ public class AwayAction implements ActionListener {
 		player.resetAwayReplies();
 		player.notifyWorldAboutChanges();
 
-		
+
 	}
 
 	/**

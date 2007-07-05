@@ -17,22 +17,19 @@ import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class LookAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(LookAction.class);
 
 	public static void register() {
 		StendhalRPRuleProcessor.register("look", new LookAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 
 		StendhalRPWorld world = StendhalRPWorld.get();
 
@@ -111,6 +108,6 @@ public class LookAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 }

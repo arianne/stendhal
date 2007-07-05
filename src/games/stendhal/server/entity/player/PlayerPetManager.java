@@ -3,21 +3,18 @@ package games.stendhal.server.entity.player;
 import games.stendhal.server.entity.creature.Cat;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.player.Player.NoPetException;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerPetManager {
-	private static Logger logger = Log4J.getLogger(PlayerPetManager.class);
 	private Player player = null;
-	
+
 	PlayerPetManager(Player player) {
 		this.player = player;
 	}
-	
+
 	void storePet(Pet pet) {
-		
+
 		if (!player.hasSlot("#pets")) {
 			player.addSlot(new RPSlot("#pets"));
 		}
@@ -26,11 +23,11 @@ public class PlayerPetManager {
 		slot.clear();
 		slot.add(pet);
 		player.put("pet", pet.getID().getObjectID());
-		
+
 	}
 
 	public Pet retrievePet() throws NoPetException {
-		
+
 		try {
 			if (player.hasSlot("#pets")) {
 				RPSlot slot = player.getSlot("#pets");
@@ -44,7 +41,7 @@ public class PlayerPetManager {
 						pet = new Cat(object, player);
 					// } else if (object.get("type").equals("dog")) {
 					//	pet = new Dog(object, player);
-					// } 
+					// }
 					} else {
 						throw new NoPetException("Unknown type " + object.get("type"));
 					}
@@ -54,7 +51,7 @@ public class PlayerPetManager {
 
 			throw new NoPetException();
 		} finally {
-			
+
 		}
 	}
 

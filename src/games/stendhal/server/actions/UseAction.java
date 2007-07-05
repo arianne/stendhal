@@ -21,22 +21,18 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class UseAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(UseAction.class);
-
 	public static void register() {
 		StendhalRPRuleProcessor.register("use", new UseAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 
 		// When use is casted over something in a slot
 		if (action.has("baseitem") && action.has("baseobject") && action.has("baseslot")) {
@@ -100,9 +96,9 @@ public class UseAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
-	
+
 	private void invokeUseListener(Player player, RPObject object) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to

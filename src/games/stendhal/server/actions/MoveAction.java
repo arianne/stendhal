@@ -25,14 +25,10 @@ import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 public class MoveAction implements ActionListener {
-
-	private static final Logger logger = Log4J.getLogger(MoveAction.class);
 
 	public static void register() {
 		MoveAction move = new MoveAction();
@@ -42,7 +38,7 @@ public class MoveAction implements ActionListener {
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 
 		String type = action.get("type");
 
@@ -102,7 +98,7 @@ public class MoveAction implements ActionListener {
     }
 
 	private void move(Player player, RPAction action) {
-		
+
 
 		if (action.has("dir")) {
 			int dirval;
@@ -119,11 +115,11 @@ public class MoveAction implements ActionListener {
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
 
-		
+
 	}
 
 	private void moveTo(Player player, RPAction action) {
-		
+
 
 		if (!player.getZone().isMoveToAllowed()) {
 			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
@@ -151,6 +147,6 @@ public class MoveAction implements ActionListener {
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
 
-		
+
 	}
 }

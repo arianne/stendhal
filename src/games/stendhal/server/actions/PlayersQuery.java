@@ -21,13 +21,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 public class PlayersQuery implements ActionListener {
-
-	private static final Logger logger = Log4J.getLogger(PlayersQuery.class);
 
 	public static void register() {
 		PlayersQuery query = new PlayersQuery();
@@ -44,8 +40,8 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWho(Player player, RPAction action) {
-		
-		
+
+
 		final int REQUIRED_LEVEL_TO_SEE_GHOST=AdministrationAction.getLevelForCommand("ghostmode");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
@@ -59,7 +55,7 @@ public class PlayersQuery implements ActionListener {
 				amount++;
 			}
 		}
-		
+
 		online.append( amount+ " Players online: ");
 		for (Player p : getSortedPlayers()) {
 			if(!p.isGhost()  || player.getAdminLevel()>REQUIRED_LEVEL_TO_SEE_GHOST ) {
@@ -67,13 +63,13 @@ public class PlayersQuery implements ActionListener {
 				if (p.has("title")) {
 					playername=p.get("title");
 				}
-				
+
 				online.append(playername + "(" + (p.isGhost()?"!":"")+ p.getLevel() + ") ");
 			}
 		}
 		player.sendPrivateText(online.toString());
 		player.notifyWorldAboutChanges();
-		
+
 	}
 
 	/**
@@ -94,7 +90,7 @@ public class PlayersQuery implements ActionListener {
 	}
 
 	public void onWhere(Player player, RPAction action) {
-		
+
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (action.has("target")) {
@@ -117,6 +113,6 @@ public class PlayersQuery implements ActionListener {
 			}
 		}
 
-		
+
 	}
 }

@@ -2,21 +2,18 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.server.entity.creature.Sheep;
 import games.stendhal.server.entity.player.Player.NoSheepException;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerSheepManager {
-	private static Logger logger = Log4J.getLogger(PlayerSheepManager.class);
 	private Player player = null;
-	
+
 	PlayerSheepManager(Player player) {
 		this.player = player;
 	}
-	
+
 	void storeSheep(Sheep sheep) {
-		
+
 		if (!player.hasSlot("#flock")) {
 			player.addSlot(new RPSlot("#flock"));
 		}
@@ -25,11 +22,11 @@ public class PlayerSheepManager {
 		slot.clear();
 		slot.add(sheep);
 		player.put("sheep", sheep.getID().getObjectID());
-		
+
 	}
 
 	public Sheep retrieveSheep() throws NoSheepException {
-		
+
 		try {
 			if (player.hasSlot("#flock")) {
 				RPSlot slot = player.getSlot("#flock");
@@ -46,7 +43,7 @@ public class PlayerSheepManager {
 
 			throw new NoSheepException();
 		} finally {
-			
+
 		}
 	}
 

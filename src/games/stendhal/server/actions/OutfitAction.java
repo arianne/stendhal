@@ -15,20 +15,17 @@ package games.stendhal.server.actions;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 public class OutfitAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(OutfitAction.class);
 
 	public static void register() {
 		StendhalRPRuleProcessor.register("outfit", new OutfitAction());
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 
 		if (action.has("value")) {
 			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "outfit", action.get("value"));
@@ -38,6 +35,6 @@ public class OutfitAction implements ActionListener {
 			}
 		}
 
-		
+
 	}
 }

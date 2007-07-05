@@ -8,8 +8,6 @@ package games.stendhal.server.actions;
 
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.entity.player.Player;
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -17,10 +15,6 @@ import marauroa.common.game.RPAction;
  */
 public class CreateGuildAction implements ActionListener {
 
-	/**
-	 * Log4J.
-	 */
-	private static final Logger logger = Log4J.getLogger(CreateGuildAction.class);
 
 	/**
 	 * Registers action.
@@ -36,7 +30,7 @@ public class CreateGuildAction implements ActionListener {
 	 * @param	action		The action.
 	 */
 	protected void joinGuild(Player player, RPAction action) {
-		
+
 
                 //now we see if the player is in a guild. If not, put them in the requested one.
 		if (player.get("guild") != null) {
@@ -47,14 +41,14 @@ public class CreateGuildAction implements ActionListener {
 		    player.setDescription(description);
 		}
 		// done!
-		
+
 		//TODO: Add list of guilds and make them unique.
-		
-                
+
+
 		player.update();
 		player.notifyWorldAboutChanges();
 
-		
+
 	}
 
 	/**
