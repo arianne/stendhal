@@ -9,6 +9,8 @@ package games.stendhal.client.entity;
 //
 //
 
+import java.util.List;
+
 import marauroa.common.game.RPAction;
 
 /**
@@ -29,8 +31,29 @@ public class WellSource2DView extends AnimatedLoopEntity2DView {
 
 
 	//
+	// Entity2DView
+	//
+
+	@Override
+	protected void buildActions(List<String> list) {
+		super.buildActions(list);
+
+		list.add(ActionType.WISH.getRepresentation());
+	}
+
+
+	//
 	// EntityView
 	//
+
+	/**
+	 * Perform the default action.
+	 *
+	@Override
+	public void onAction() {
+		onAction(ActionType.WISH);
+	}
+
 
 	/**
 	 * Perform an action.
@@ -39,7 +62,7 @@ public class WellSource2DView extends AnimatedLoopEntity2DView {
 	 * @param	params		The parameters.
 	 */
 	@Override
-	public void onAction(final ActionType at, final String... params) {
+	public void onAction(final ActionType at) {
 		switch (at) {
 			case WISH:
 				RPAction rpaction = new RPAction();
@@ -51,7 +74,7 @@ public class WellSource2DView extends AnimatedLoopEntity2DView {
 				break;
 
 			default:
-				super.onAction(at, params);
+				super.onAction(at);
 				break;
 		}
 

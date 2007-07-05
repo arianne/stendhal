@@ -8,6 +8,8 @@ package games.stendhal.client.entity;
 //
 //
 
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -20,6 +22,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -269,6 +272,22 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	// Entity2DView
 	//
 
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		list.add(ActionType.ATTACK.getRepresentation());
+
+		if (!User.isNull() && User.get().isAttacking()) {
+			list.add(ActionType.STOP_ATTACK.getRepresentation());
+		}
+
+		// TODO: Remove in User2DView
+	        if (User.get() != rpentity) {
+	        	list.add(ActionType.PUSH.getRepresentation());
+		}
+	}
+
 	/**
 	 * Draw the entity.
 	 *
@@ -447,6 +466,65 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			titleChanged = true;
 		} else if(property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;
+		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform the default action.
+	 *
+	@Override
+	public void onAction() {
+		onAction(ActionType.LOOK);
+	}
+
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		RPAction rpaction;
+
+
+		switch (at) {
+			case ATTACK:
+				rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", rpentity.getID().getObjectID());
+
+				at.send(rpaction);
+				break;
+
+			case STOP_ATTACK:
+				rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("attack", "");
+
+				at.send(rpaction);
+				break;
+
+			case PUSH:
+				rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", rpentity.getID().getObjectID());
+
+				at.send(rpaction);
+				break;
+
+			default:
+				super.onAction(at);
+				break;
 		}
 	}
 }

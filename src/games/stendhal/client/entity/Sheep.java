@@ -99,23 +99,6 @@ public class Sheep extends RPEntity {
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
-	 */
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-
-		super.buildOfferedActions(list);
-		if (!(User.isNull())) {
-	        if (!User.get().hasSheep()) {
-				list.add(ActionType.OWN.getRepresentation());
-			}
-		}
-	}
-
-
 	//
 	// Entity
 	//

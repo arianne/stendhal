@@ -12,14 +12,27 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+//
+//
+
+import marauroa.common.game.RPObject;
+import marauroa.common.game.RPSlot;
+
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.gui.wt.EntityContainer;
 
+/**
+ * A corpse entity.
+ */
 public class Corpse extends PassiveEntity implements Inspectable {
+	/**
+	 * Content property.
+	 */
+	public static final Object	PROP_CONTENT		= new Object();
 
-	private Inspector _inspector;
-
-	private EntityContainer contentWindow;
+	/**
+	 * The current content slot.
+	 */
+	private RPSlot		content;
 
 
 	@Override
@@ -27,28 +40,32 @@ public class Corpse extends PassiveEntity implements Inspectable {
 		return ActionType.INSPECT;
 	}
 
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at=handleAction(action);
-		switch (at) {
-			case INSPECT:
-				contentWindow = _inspector.inspectMe(this, rpObject.getSlot("content"), contentWindow);
-				break;
 
-			default:
-				super.onAction(at, params);
-				break;
-		}
+	//
+	// Corpse
+	//
+
+	/**
+	 * Get the corpse contents.
+	 *
+	 * @return	The contents slot.
+	 */
+	public RPSlot getContent() {
+		return content;
 	}
 
-	// /** whether the inspect window is showing for this corpse. */
-	// public boolean isContentShowing(EntityContainer entityContainer) {
-	// return (entityContainer != null) && !contentWindow.isClosed();
-	// }
 
+	//
+	// Inspectable
+	//
+
+	/**
+	 * Set the content inspector for this entity.
+	 *
+	 * @param	inspector	The inspector.
+	 */
 	public void setInspector(final Inspector inspector) {
-		_inspector = inspector;
-
+		((Inspectable) getView()).setInspector(inspector);
 	}
 
 
@@ -77,5 +94,45 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	protected double getWidth() {
 		// TODO: Ugg - Don't couple visual size with logical size
 		return (double) getView().getSprite().getWidth() / GameScreen.SIZE_UNIT_PIXELS;
+	}
+
+
+	/**
+	 * Initialize this entity for an object.
+	 *
+	 * @param	object		The object.
+	 *
+	 * @see-also	#release()
+	 */
+	@Override
+	public void initialize(final RPObject object) {
+		super.initialize(object);
+
+		if (object.hasSlot("content")) {
+			content = object.getSlot("content");
+		} else {
+			content = null;
+		}
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.hasSlot("content")) {
+			content = changes.getSlot("content");
+			fireChange(PROP_CONTENT);
+		}
 	}
 }

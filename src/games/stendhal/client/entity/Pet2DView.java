@@ -9,14 +9,18 @@ package games.stendhal.client.entity;
 //
 //
 
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Direction;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -213,6 +217,16 @@ public class Pet2DView extends RPEntity2DView {
 	// Entity2DView
 	//
 
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		if (!User.isNull() && !User.get().hasPet()) {
+			list.add(ActionType.OWN.getRepresentation());
+		}
+	}
+
+
 	/**
 	 * Draw the entity.
 	 *
@@ -275,6 +289,34 @@ public class Pet2DView extends RPEntity2DView {
 			ideaChanged = true;
 		} else if(property == Pet.PROP_WEIGHT) {
 			stateChanged = true;
+		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+			case OWN:
+				RPAction rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+
+				rpaction.put("target", pet.getID().getObjectID());
+
+				at.send(rpaction);
+
+				//TODO: move to pet reaction, not user action
+				SoundMaster.play("pet-2.wav", pet.getX(), pet.getY());
+				break;
+
+			default:
+				SoundMaster.play((pet.getWeight() > 50) ? "pet-2.wav" : "pet-1.wav", pet.getX(), pet.getY());
+				super.onAction(at);
+				break;
 		}
 	}
 }

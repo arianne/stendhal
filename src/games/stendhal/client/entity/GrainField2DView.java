@@ -14,10 +14,12 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a grain field.
@@ -138,6 +140,14 @@ public class GrainField2DView extends StateEntity2DView {
 	// Entity2DView
 	//
 
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		list.add(ActionType.HARVEST.getRepresentation());
+	}
+
+
 	/**
 	 * Get the 2D area that is drawn in.
 	 *
@@ -183,6 +193,44 @@ public class GrainField2DView extends StateEntity2DView {
 			representationChanged = true;
 		} else if(property == GrainField.PROP_RIPENESS) {
 			stateChanged = true;
+		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform the default action.
+	 *
+	@Override
+	public void onAction() {
+		onAction(ActionType.HARVEST);
+	}
+
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+			case HARVEST:
+				RPAction rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", grainField.getID().getObjectID());
+
+				at.send(rpaction);
+				break;
+
+			default:
+				super.onAction(at);
+				break;
 		}
 	}
 }

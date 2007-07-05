@@ -11,6 +11,7 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -18,7 +19,7 @@ import java.awt.geom.Rectangle2D;
 /**
  * The 2D view of a corpse.
  */
-public class Corpse2DView extends Entity2DView {
+public class Corpse2DView extends Entity2DView implements Inspectable {
 	/**
 	 * The RP entity this view is for.
 	 */
@@ -33,6 +34,16 @@ public class Corpse2DView extends Entity2DView {
 	 * The corpse width.
 	 */
 	private double		width;
+
+	/**
+	 * The slot content inspector.
+	 */
+	private Inspector	inspector;
+
+	/**
+	 * The current content inspector.
+	 */
+	private EntityContainer wtEntityContainer;
 
 
 	/**
@@ -71,6 +82,20 @@ public class Corpse2DView extends Entity2DView {
 	 */
 	public double getWidth() {
 		return width;
+	}
+
+
+	//
+	// Inspectable
+	//
+
+	/**
+	 * Set the content inspector for this entity.
+	 *
+	 * @param	inspector	The inspector.
+	 */
+	public void setInspector(final Inspector inspector) {
+		this.inspector = inspector;
 	}
 
 
@@ -172,5 +197,49 @@ public class Corpse2DView extends Entity2DView {
 	@Override
 	public boolean isMovable() {
 		return true;
+	}
+
+
+	/**
+	 * Perform the default action.
+	 *
+	@Override
+	public void onAction() {
+		onAction(ActionType.INSPECT);
+	}
+
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+			case INSPECT:
+				wtEntityContainer = inspector.inspectMe(corpse, corpse.getContent(), wtEntityContainer);
+				break;
+
+			default:
+				super.onAction(at);
+				break;
+		}
+	}
+
+
+	/**
+	 * Release any view resources. This view should not be used after
+	 * this is called.
+	 */
+	@Override
+	public void release() {
+		if (wtEntityContainer != null) {
+			wtEntityContainer.destroy();
+			wtEntityContainer = null;
+		}
+
+		super.release();
 	}
 }

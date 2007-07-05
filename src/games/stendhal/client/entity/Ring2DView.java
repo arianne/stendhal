@@ -152,4 +152,17 @@ public class Ring2DView extends Item2DView {
 			stateChanged = true;
 		}
 	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform the default action.
+	 */
+	@Override
+	public void onAction() {
+		onAction(ActionType.LOOK);
+	}
 }

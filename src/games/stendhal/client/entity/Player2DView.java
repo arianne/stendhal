@@ -17,10 +17,12 @@ import games.stendhal.client.sprite.SpriteStore;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a player.
@@ -112,8 +114,7 @@ public class Player2DView extends RPEntity2DView {
 			return true;
 		}
 
-		// TODO: Find clean way to do in subclass [need User2DView?]
-		return (player == User.get());
+		return false;
 	}
 
 
@@ -135,6 +136,15 @@ public class Player2DView extends RPEntity2DView {
 	//
 	// Entity2DView
 	//
+
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		list.add(ActionType.ADD_BUDDY.getRepresentation());
+		//list.add(ActionType.JOIN_GUILD.getRepresentation());
+	}
+
 
 	/**
 	 * Draw the entity.
@@ -159,5 +169,37 @@ public class Player2DView extends RPEntity2DView {
 	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 2.0);
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		RPAction rpaction;
+
+
+		switch (at) {
+			case ADD_BUDDY:
+				rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", player.getName());
+
+				at.send(rpaction);
+				break;
+
+			default:
+				super.onAction(at);
+				break;
+		}
 	}
 }

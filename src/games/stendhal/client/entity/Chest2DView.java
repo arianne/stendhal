@@ -15,6 +15,7 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
@@ -122,6 +123,19 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 	// Entity2DView
 	//
 
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		if (chest.isOpen()) {
+			list.add(ActionType.INSPECT.getRepresentation());
+			list.add(ActionType.CLOSE.getRepresentation());
+		} else {
+			list.add(ActionType.OPEN.getRepresentation());
+		}
+	}
+
+
 	/**
 	 * Get the 2D area that is drawn in.
 	 *
@@ -202,13 +216,22 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 	//
 
 	/**
+	 * Perform the default action.
+	 *
+	@Override
+	public void onAction() {
+		onAction(ActionType.LOOK);
+	}
+
+
+	/**
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
 	 * @param	params		The parameters.
 	 */
 	@Override
-	public void onAction(final ActionType at, final String... params) {
+	public void onAction(final ActionType at) {
 		switch (at) {
 			case INSPECT:
 				wtEntityContainer = inspector.inspectMe(chest, chest.getContent(), wtEntityContainer);
@@ -232,7 +255,7 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 				break;
 
 			default:
-				super.onAction(at, params);
+				super.onAction(at);
 				break;
 		}
 	}

@@ -17,7 +17,6 @@ import games.stendhal.common.Rand;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** A Pet entity */
@@ -96,45 +95,6 @@ public class Pet extends RPEntity {
 		if (Rand.rand(100)<chance){
 		String token = weight > 50 ? soundnames[0][which]:soundnames[1][which];
 		SoundMaster.play(token,x,y);//playSound(token, 20, 35, chance);
-		}
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at = handleAction(action);
-		switch (at) {
-			case OWN:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-
-				SoundMaster.play("pet-2.wav",x,y);
-				break;
-
-			default:
-				SoundMaster.play((weight > 50) ?"pet-2.wav":"pet-1.wav",x,y);
-				super.onAction(at, params);
-				break;
-		}
-
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
-	 */
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-
-		super.buildOfferedActions(list);
-		if (!(User.isNull())) {
-	        if (!User.get().hasPet()) {
-				list.add(ActionType.OWN.getRepresentation());
-			}
 		}
 	}
 

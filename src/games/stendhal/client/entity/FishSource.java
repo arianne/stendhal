@@ -23,10 +23,4 @@ public class FishSource extends Entity {
 	public ActionType defaultAction() {
 		return ActionType.FISH;
 	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-		list.add(ActionType.FISH.getRepresentation());
-	}
 }

@@ -16,7 +16,6 @@ import games.stendhal.common.Direction;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**
@@ -174,37 +173,6 @@ public class Door extends Entity {
 			return ActionType.CLOSE;
 		} else {
 			return ActionType.OPEN;
-
-		}
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at =handleAction(action);
-		switch (at) {
-			case OPEN:
-			case CLOSE:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-
-			default:
-				super.onAction(at, params);
-				break;
-		}
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-
-		if (open) {
-			list.add(ActionType.CLOSE.getRepresentation());
-		} else {
-			list.add(ActionType.OPEN.getRepresentation());
 
 		}
 	}

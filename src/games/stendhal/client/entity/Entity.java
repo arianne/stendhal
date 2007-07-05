@@ -21,10 +21,11 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-public abstract class Entity implements RPObjectChangeListener {
+public class Entity implements RPObjectChangeListener {
 	/**
 	 * Animated property.
 	 */
@@ -167,6 +168,25 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
+	 * Fill the action with the entity's target info.
+	 * This will set the <code>baseobject</code>, and <code>baseslot</code> attributes.
+	 *
+	 * @param	action		The RP action.
+	 */
+	protected void fillTargetInfo(RPAction action) {
+		int id = rpObject.getID().getObjectID();
+
+		if(rpObject.isContained()) {
+			action.put("baseobject", rpObject.getContainer().getID().getObjectID());
+			action.put("baseslot", rpObject.getContainerSlot().getName());
+			action.put("baseitem", id);
+		} else {
+			action.put("target", id);
+		}
+	}
+
+
+	/**
 	 * Fire change to all registered listeners.
 	 *
 	 * @param	property	The changed property.
@@ -279,7 +299,6 @@ public final byte[] ID_Token = new byte[0];
 		} else {
 			return null;
 		}
-		
 	}
 
 
@@ -467,17 +486,28 @@ public final byte[] ID_Token = new byte[0];
 		return list.toArray(new String[list.size()]);
 	}
 
-	protected void buildOfferedActions(final List<String> list) {
-		list.add(ActionType.LOOK.getRepresentation());
 
+	/**
+	 * TEMP - Transition to Entity2DView.buildActions()
+	 */
+	protected void buildOfferedActions(final List<String> list) {
+		getView().buildActions(list);
 	}
 
 
 	/**
 	 * TEMP - Transition to EntityView
 	 */
-	public void onAction(final ActionType at, final String... params) {
-		getView().onAction(at, params);
+	public void onAction(final ActionType at) {
+		getView().onAction(at);
+	}
+
+
+	/**
+	 * TEMP
+	 */
+	public void onAction(final ActionType at, final String arg1, final String arg2) {
+		onAction(at);
 	}
 
 

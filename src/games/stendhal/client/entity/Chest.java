@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
@@ -104,6 +102,8 @@ public class Chest extends Entity implements Inspectable {
 
 		if (object.hasSlot("content")) {
 			content = object.getSlot("content");
+		} else {
+			content = null;
 		}
 
 		open = object.has("open");
@@ -158,17 +158,5 @@ public class Chest extends Entity implements Inspectable {
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.LOOK;
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-
-		if (open) {
-			list.add(ActionType.INSPECT.getRepresentation());
-			list.add(ActionType.CLOSE.getRepresentation());
-		} else {
-			list.add(ActionType.OPEN.getRepresentation());
-		}
 	}
 }

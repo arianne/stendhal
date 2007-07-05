@@ -30,6 +30,11 @@ import marauroa.common.game.RPObject;
 
 public class Creature extends RPEntity {
 	/**
+	 * Debug property.
+	 */
+	public final static Object	PROP_DEBUG		= new Object();
+
+	/**
 	 * Size property.
 	 */
 	public final static Object	PROP_SIZE		= new Object();
@@ -45,8 +50,10 @@ public class Creature extends RPEntity {
 		// no logging for Creature "sounds" in the client window
 	}
 
-	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(Creature.class);
+	/**
+	 * The current debug info.
+	 */
+	private String	debug;
 
 	/**
 	 * The current metamorphosis.
@@ -64,182 +71,20 @@ public class Creature extends RPEntity {
 	private double height;
 
 
-	// some debug props
-	/** should the path be hidden for this creature? */
-	public boolean hidePath = false;
-
-	/** display all debug messages for this creature in the game log */
-	public boolean watch = false;
-
-	/** the patrolpath */
-	private List<Node> patrolPath;
-
-	/** new path to the target */
-	private List<Node> targetMovedPath;
-
-	/** the path we got */
-	private List<Node> moveToTargetPath;
-
-
-	public List<Node> getPatrolPath() {
-		return patrolPath;
-	}
-
-	public List<Node> getTargetMovedPath() {
-		return targetMovedPath;
-	}
-
-	public List<Node> getMoveToTargetPath() {
-		return moveToTargetPath;
-	}
-
-	public boolean isPathHidden() {
-		return hidePath;
-	}
-
-
-	public List<Node> getPath(final String token) {
-		String[] values = token.replace(',', ' ').replace('(', ' ').replace(')', ' ').replace('[', ' ').replace(']',
-		        ' ').split(" ");
-		List<Node> list = new ArrayList<Node>();
-
-		int x = 0;
-		int pass = 1;
-
-		for (String value : values) {
-			if (value.trim().length() > 0) {
-				int val = Integer.parseInt(value.trim());
-				if (pass % 2 == 0) {
-					list.add(new Node(x, val));
-				} else {
-					x = val;
-				}
-				pass++;
-			}
-		}
-
-		return list;
-	}
-
-
-	protected void onDebug(String debug) {
-		if (!Debug.CREATURES_DEBUG_CLIENT) {
-			return;
-		}
-
-		patrolPath = null;
-		targetMovedPath = null;
-		moveToTargetPath = null;
-
-		if (watch) {
-			StendhalUI.get().addEventLine(getID() + " - " + debug);
-		}
-
-		String[] actions = debug.split("\\|");
-		// parse all actions
-		for (String action : actions) {
-			if (action.length() > 0) {
-				StringTokenizer tokenizer = new StringTokenizer(action, ";");
-
-				try {
-					String token = tokenizer.nextToken();
-					logger.debug("- creature action: " + token);
-					if (token.equals("sleep")) {
-						break;
-					} else if (token.equals("patrol")) {
-						patrolPath = getPath(tokenizer.nextToken());
-					} else if (token.equals("targetmoved")) {
-						targetMovedPath = getPath(tokenizer.nextToken());
-					} else if (token.equals("movetotarget")) {
-						moveToTargetPath = null;
-						String nextToken = tokenizer.nextToken();
-
-						if (nextToken.equals("blocked")) {
-							nextToken = tokenizer.nextToken();
-						}
-
-						if (nextToken.equals("waiting")) {
-							nextToken = tokenizer.nextToken();
-						}
-
-						if (nextToken.equals("newpath")) {
-							moveToTargetPath = null;
-							nextToken = tokenizer.nextToken();
-							if (nextToken.equals("blocked")) {
-								moveToTargetPath = null;
-							} else {
-								moveToTargetPath = getPath(nextToken);
-							}
-						}
-					}
-				} catch (Exception e) {
-					logger.warn("error parsing debug string '" + debug + "' actions [" + Arrays.asList(actions)
-					        + "] action '" + action + "'", e);
-				}
-			}
-		}
-	}
-
-
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.ATTACK;
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at = handleAction(action);
-		switch (at) {
-			case DEBUG_SHOW_PATH:
-				hidePath = false;
-				break;
-			case DEBUG_HIDE_PATH:
-				hidePath = true;
-				break;
-			case DEBUG_ENABLE_WATCH:
-				watch = true;
-				break;
-			case DEBUG_DISABLE_WATCH:
-				watch = false;
-				break;
-			default:
-				super.onAction(at, params);
-				break;
-		}
-	}
-
-	public class Node {
-		public int nodeX, nodeY;
-
-		public Node(final int x, final int y) {
-			this.nodeX = x;
-			this.nodeY = y;
-		}
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-		if (Debug.CREATURES_DEBUG_CLIENT) {
-			if (hidePath) {
-	            list.add(ActionType.DEBUG_SHOW_PATH.getRepresentation());
-            } else {
-	            list.add(ActionType.DEBUG_HIDE_PATH.getRepresentation());
-            }
-			if (watch) {
-				list.add(ActionType.DEBUG_DISABLE_WATCH.getRepresentation());
-			} else {
-				list.add(ActionType.DEBUG_ENABLE_WATCH.getRepresentation());
-			}
-
-		}
-
 	}
 
 
 	//
 	// Creature
 	//
+
+	public String getDebug() {
+		return debug;
+	}
+
 
 	/**
 	 * Get the metamorphosis in effect.
@@ -475,7 +320,8 @@ public class Creature extends RPEntity {
 		 * Debuging?
 		 */
 		if (changes.has("debug")) {
-			onDebug(changes.get("debug"));
+			debug = changes.get("debug");
+			fireChange(PROP_DEBUG);
 		}
 
 		if (changes.has("metamorphosis")) {

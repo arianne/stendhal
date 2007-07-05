@@ -18,6 +18,7 @@ import games.stendhal.common.Direction;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.Map;
 
 import marauroa.common.game.RPAction;
@@ -205,6 +206,16 @@ public class Sheep2DView extends RPEntity2DView {
 	// Entity2DView
 	//
 
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		if (!User.isNull() && !User.get().hasSheep()) {
+			list.add(ActionType.OWN.getRepresentation());
+		}
+	}
+
+
 	/**
 	 * Draw the entity.
 	 *
@@ -282,7 +293,7 @@ public class Sheep2DView extends RPEntity2DView {
 	 * @param	params		The parameters.
 	 */
 	@Override
-	public void onAction(final ActionType at, final String... params) {
+	public void onAction(final ActionType at) {
 		switch (at) {
 			case OWN:
 				SoundMaster.play("sheep-2.wav", sheep.getX(), sheep.getY());
@@ -297,7 +308,7 @@ public class Sheep2DView extends RPEntity2DView {
 
 			default:
 				SoundMaster.play((sheep.getWeight() > 50) ? "sheep-2.wav" : "sheep-1.wav", sheep.getX(), sheep.getY());
-				super.onAction(at, params);
+				super.onAction(at);
 				break;
 		}
 	}

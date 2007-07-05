@@ -16,7 +16,6 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**
@@ -202,30 +201,5 @@ public class GrainField extends Entity {
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.HARVEST;
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-
-		list.add(ActionType.HARVEST.getRepresentation());
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at=handleAction(action);
-		switch (at) {
-			case HARVEST:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-
-			default:
-				super.onAction(at, params);
-				break;
-		}
 	}
 }

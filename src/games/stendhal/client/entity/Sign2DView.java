@@ -9,15 +9,30 @@ package games.stendhal.client.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
+import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 /**
  * The 2D view of a sign.
  */
 public class Sign2DView extends Entity2DView {
+	/**
+	 * The sign color (dark green).
+	 */
+	private static final Color signColor = new Color(0x006400);
+
+	/**
+	 * The sign entity.
+	 */
+	private Sign		sign;
+
+
 	/**
 	 * Create a 2D view of a sign.
 	 *
@@ -25,12 +40,20 @@ public class Sign2DView extends Entity2DView {
 	 */
 	public Sign2DView(final Sign sign) {
 		super(sign);
+
+		this.sign = sign;
 	}
 
 
 	//
 	// Entity2DView
 	//
+
+	@Override
+	protected void buildActions(final List<String> list) {
+		list.add(ActionType.READ.getRepresentation());
+	}
+
 
 	/**
 	 * Build the visual representation of this entity.
@@ -103,6 +126,44 @@ public class Sign2DView extends Entity2DView {
 
 		if(property == Entity.PROP_CLASS) {
 			representationChanged = true;
+		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform the default action.
+	 */
+	@Override
+	public void onAction() {
+		onAction(ActionType.READ);
+	}
+
+
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+			case READ:
+				String text = sign.getText();
+
+				GameScreen.get().addText(
+					sign.getX(), sign.getY(), text, signColor, false);
+
+				if (text.contains("\n")) {
+					// The sign's text has multiple lines. Add a linebreak after
+					// "you read" so that it is easier readable.
+					StendhalUI.get().addEventLine("You read:\n\"" + text + "\"", signColor);
+				} else {
+					StendhalUI.get().addEventLine("You read: \"" + text + "\"", signColor);
+				}
+				break;
+
+			default:
+				super.onAction(at);
+				break;
 		}
 	}
 }

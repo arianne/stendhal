@@ -12,9 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.util.List;
-
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**
@@ -25,7 +22,7 @@ public class Portal extends InvisibleEntity {
 	/**
 	 * Whether the portal is hidden.
 	 */
-	private boolean hidden = false;
+	private boolean hidden;
 
 
 	@Override
@@ -34,39 +31,6 @@ public class Portal extends InvisibleEntity {
 			return ActionType.USE;
 		} else {
 			return null;
-		}
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at =handleAction(action);
-		switch (at) {
-			case USE:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-
-			default:
-				super.onAction(at, params);
-				break;
-		}
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		// do not call super method because we do not want the
-		// Look menu until some nice text are there to be looked
-		// at.
-		// super.buildOfferedActions(list);
-
-		if (!hidden) {
-			list.add(ActionType.USE.getRepresentation());
-			if (User.isAdmin()) {
-				list.remove(ActionType.ADMIN_ALTER.getRepresentation());
-			}
 		}
 	}
 
@@ -115,5 +79,41 @@ public class Portal extends InvisibleEntity {
 	@Override
 	public boolean isObstacle(final Entity entity) {
 		return false;
+	}
+
+
+	//
+	// RPObjectChangeListener
+	//
+
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
+
+		if (changes.has("hidden")) {
+			hidden = true;
+		}
+	}
+
+
+	/**
+	 * The object removed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
+	@Override
+	public void onChangedRemoved(final RPObject object, final RPObject changes) {
+		super.onChangedRemoved(object, changes);
+
+		if (changes.has("hidden")) {
+			hidden = false;
+		}
 	}
 }

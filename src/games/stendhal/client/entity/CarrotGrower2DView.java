@@ -1,5 +1,5 @@
 /*
- * @(#) games/stendhal/client/entity/FishSource2DView.java
+ * @(#) games/stendhal/client/entity/CarrotGrower2DView.java
  *
  * $Id$
  */
@@ -14,19 +14,16 @@ import java.util.List;
 import marauroa.common.game.RPAction;
 
 /**
- * The 2D view of a fish source.
+ * The 2D view of a grower.
  */
-public class FishSource2DView extends AnimatedLoopEntity2DView {
-	private static final int FRAME_COUNT = 32;
-
-
+public class CarrotGrower2DView extends GrainField2DView {
 	/**
-	 * Create a 2D view of food.
+	 * Create a 2D view of a grower.
 	 *
-	 * @param	fishSource	The entity to render.
+	 * @param	grower		The entity to render.
 	 */
-	public FishSource2DView(final FishSource fishSource) {
-		super(fishSource, FRAME_COUNT);
+	public CarrotGrower2DView(final CarrotGrower grower) {
+		super(grower);
 	}
 
 
@@ -36,9 +33,12 @@ public class FishSource2DView extends AnimatedLoopEntity2DView {
 
 	@Override
 	protected void buildActions(final List<String> list) {
+
 		super.buildActions(list);
 
-		list.add(ActionType.FISH.getRepresentation());
+		list.remove(ActionType.HARVEST.getRepresentation());
+
+		list.add(ActionType.PICK.getRepresentation());
 	}
 
 
@@ -46,25 +46,16 @@ public class FishSource2DView extends AnimatedLoopEntity2DView {
 	// EntityView
 	//
 
-	/**
-	 * Perform the default action.
-	 *
 	@Override
 	public void onAction() {
-		onAction(ActionType.FISH);
+		onAction(ActionType.PICK);
 	}
 
 
-	/**
-	 * Perform an action.
-	 *
-	 * @param	at		The action.
-	 * @param	params		The parameters.
-	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {
-			case FISH:
+			case PICK:
 				RPAction rpaction = new RPAction();
 
 				rpaction.put("type", at.toString());

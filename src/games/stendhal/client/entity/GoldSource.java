@@ -24,12 +24,6 @@ public class GoldSource extends Entity {
 		return ActionType.PROSPECT;
 	}
 
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-		list.add(ActionType.PROSPECT.getRepresentation());
-	}
-
 
 	//
 	// Entity

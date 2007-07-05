@@ -15,7 +15,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 
-import java.awt.Color;
 import java.util.List;
 
 import marauroa.common.game.RPObject;
@@ -31,44 +30,24 @@ public class Sign extends Entity {
 	 */
 	private String text;
 
-	// Give Signs same color on Screen and Log window. intensifly@gmx.com
-	private static final Color signColor = new Color(0x006400); // dark green
+
+	//
+	// Sign
+	//
+
+	/**
+	 * Get the sign text.
+	 *
+	 * @return	The sign text.
+	 */
+	public String getText() {
+		return text;
+	}
 
 
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.READ;
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		// we don't want "Look", we use "Read" instead.
-		// super.buildOfferedActions(list);
-		list.add(ActionType.READ.getRepresentation());
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// =handleAction(action);
-		switch (at) {
-			case READ:
-				GameScreen.get().addText(
-					getX(), getY(), text, signColor, false);
-
-				if (text.contains("\n")) {
-					// The sign's text has multiple lines. Add a linebreak after
-					// "you read" so that it is easier readable.
-					StendhalUI.get().addEventLine("You read:\n\"" + text + "\"", signColor);
-				} else {
-					StendhalUI.get().addEventLine("You read: \"" + text + "\"", signColor);
-				}
-				break;
-
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
 	}
 
 

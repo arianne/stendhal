@@ -30,12 +30,18 @@ public interface EntityView {
 
 
 	/**
+	 * Perform the default action.
+	 */
+	public void onAction();
+
+
+	/**
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
 	 * @param	params		The parameters.
 	 */
-	public void onAction(final ActionType at, final String... params);
+	public void onAction(ActionType at);
 
 
 	/**

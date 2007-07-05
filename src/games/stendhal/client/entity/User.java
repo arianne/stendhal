@@ -56,68 +56,6 @@ public class User extends Player {
 
 		WorldObjects.firePlayerMoved();
 		HearingArea.set(x, y);
-        if (GameScreen.get()!=null){
-        	GameScreen.get().place(x, y);
-        }
-	}
-
-	@Override
-    protected void buildOfferedActions(List<String> list) {
-	   
-	    super.buildOfferedActions(list);
-	    list.remove(ActionType.ADD_BUDDY.getRepresentation());
-	   	list.add(ActionType.SET_OUTFIT.getRepresentation());
-		
-	   	if (list.contains(ActionType.ATTACK.getRepresentation())) {
-				list.remove(ActionType.ATTACK.getRepresentation());
-			}
-		
-	   	if (rpObject.has("sheep")) {
-				list.add(ActionType.LEAVE_SHEEP.getRepresentation());
-			}
-	
-		
-	
-	   	if (rpObject.has("pet")) {
-	   		list.add(ActionType.LEAVE_PET.getRepresentation());
-	   	}
-
-	}
-	  
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-
-		// ActionType at =handleAction(action);
-		RPAction rpaction;
-		switch (at) {
-		    
-			/*case JOIN_GUILD:
-			    StendhalUI.get().ManageGuilds();
-			    break;*/
-			case SET_OUTFIT:
-				StendhalUI.get().chooseOutfit();
-				break;
-
-			case LEAVE_SHEEP:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				rpaction.put("target", "-1");
-				at.send(rpaction);
-				SoundMaster.play("sheep-2.wav",x,y);
-				break;
-				
-			case LEAVE_PET:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				rpaction.put("target", "-1");
-				at.send(rpaction);
-				SoundMaster.play("sheep-2.wav",x,y);
-				break;
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
 	}
 
 	private int modificationCount;
@@ -217,10 +155,6 @@ public class User extends Player {
 
 		if(object.has("features")) {
 			features.decode(object.get("features"));
-		}
-		if (GameScreen.get()!=null){
-			GameScreen.get().place(getX(), getY());
-			GameScreen.get().center();
 		}
       }
 

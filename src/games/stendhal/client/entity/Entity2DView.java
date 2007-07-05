@@ -22,8 +22,11 @@ import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
@@ -93,6 +96,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build the list of actions.
+	 *
+	 * @param	list		The list to populate.
+	 */
+	protected void buildActions(final List<String> list) {
+		list.add(ActionType.LOOK.getRepresentation());
+	}
+
 
 	/**
 	 * Rebuild the representation using the base entity.
@@ -221,6 +234,29 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param	height		The drawn entity height.
 	 */
 	protected void drawTop(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	}
+
+
+	/**
+	 * Get the list of actions.
+	 *
+	 * @return	The list of actions.
+	 */
+	public final String [] getActions() {
+		List<String> list = new ArrayList<String>();
+
+		buildActions(list);
+
+		/*
+		 * Special admin options
+		 */
+		if (User.isAdmin()) {
+			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
+			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
+			list.add(ActionType.ADMIN_ALTER.getRepresentation());
+		}
+
+		return list.toArray(new String[list.size()]);
 	}
 
 
@@ -473,12 +509,20 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
+	 * Perform the default action.
+	 */
+	public void onAction() {
+		onAction(ActionType.LOOK);
+	}
+
+
+	/**
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
 	 * @param	params		The parameters.
 	 */
-	public void onAction(final ActionType at, final String... params) {
+	public void onAction(final ActionType at) {
 		int id = getEntity().getID().getObjectID();
 		RPAction rpaction;
 
@@ -486,14 +530,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			case LOOK:
 				rpaction = new RPAction();
 				rpaction.put("type", at.toString());
-
-				if (params.length != 0) {
-					rpaction.put("baseobject", params[0]);
-					rpaction.put("baseslot", params[1]);
-					rpaction.put("baseitem", id);
-				} else {
-					rpaction.put("target", id);
-				}
+				getEntity().fillTargetInfo(rpaction);
 
 				at.send(rpaction);
 				break;
@@ -502,6 +539,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 				rpaction = new RPAction();
 
 				rpaction.put("type", at.toString());
+				//fillTargetInfo(rpaction);
 				rpaction.put("targetid", id);
 
 				at.send(rpaction);

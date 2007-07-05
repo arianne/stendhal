@@ -804,53 +804,6 @@ public abstract class RPEntity extends ActiveEntity {
 		return ActionType.LOOK;
 	}
 
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-		list.add(ActionType.ATTACK.getRepresentation());
-
-		if (!User.isNull()) {
-	        if (User.get().isAttacking()) {
-				list.add(ActionType.STOP_ATTACK.getRepresentation());
-			}
-	        if (User.get()!=this) {
-	        	list.add(ActionType.PUSH.getRepresentation());
-	        }
-		}
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at = handleAction(action);
-		RPAction rpaction;
-		switch (at) {
-			case ATTACK:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-				rpaction.put("target", id);
-				at.send(rpaction);
-				break;
-			case STOP_ATTACK:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				rpaction.put("attack", "");
-				at.send(rpaction);
-				break;
-			case PUSH:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int pushed_id = getID().getObjectID();
-				rpaction.put("target", pushed_id);
-				at.send(rpaction);
-				break;
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
-	}
-
 
 	//
 	// RPObjectChangeListener

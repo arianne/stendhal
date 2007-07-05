@@ -11,11 +11,19 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Blood2DView;
+import games.stendhal.client.entity.Blood2DView;
+import games.stendhal.client.entity.Blood2DView;
 import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.entity.BossCreature2DView;
+import games.stendhal.client.entity.Box;
+import games.stendhal.client.entity.Box2DView;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Chest2DView;
+import games.stendhal.client.entity.CarrotGrower;
+import games.stendhal.client.entity.CarrotGrower2DView;
 import games.stendhal.client.entity.Corpse;
+import games.stendhal.client.entity.Corpse2DView;
+import games.stendhal.client.entity.Corpse2DView;
 import games.stendhal.client.entity.Corpse2DView;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Creature2DView;
@@ -43,6 +51,8 @@ import games.stendhal.client.entity.PlantGrower;
 import games.stendhal.client.entity.PlantGrower2DView;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.Player2DView;
+import games.stendhal.client.entity.Portal;
+import games.stendhal.client.entity.Portal2DView;
 import games.stendhal.client.entity.Ring;
 import games.stendhal.client.entity.Ring2DView;
 import games.stendhal.client.entity.Sheep;
@@ -55,6 +65,8 @@ import games.stendhal.client.entity.Spell;
 import games.stendhal.client.entity.Spell2DView;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.StackableItem2DView;
+import games.stendhal.client.entity.User;
+import games.stendhal.client.entity.User2DView;
 import games.stendhal.client.entity.WellSource;
 import games.stendhal.client.entity.WellSource2DView;
 
@@ -168,6 +180,8 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 	protected void configure() {
 		register(Blood.class, Blood2DView.class);
 		register(BossCreature.class, BossCreature2DView.class);
+		register(Box.class, Box2DView.class);
+		register(CarrotGrower.class, CarrotGrower2DView.class);
 		register(Chest.class, Chest2DView.class);
 		register(Corpse.class, Corpse2DView.class);
 		register(Creature.class, Creature2DView.class);
@@ -182,12 +196,14 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		register(Pet.class, Pet2DView.class);
 		register(PlantGrower.class, PlantGrower2DView.class);
 		register(Player.class, Player2DView.class);
+		register(Portal.class, Portal2DView.class);
 		register(Ring.class, Ring2DView.class);
 		register(Sheep.class, Sheep2DView.class);
 		register(SheepFood.class, SheepFood2DView.class);
 		register(Sign.class, Sign2DView.class);
 		register(Spell.class, Spell2DView.class);
 		register(StackableItem.class, StackableItem2DView.class);
+		register(User.class, User2DView.class);
 		register(WellSource.class, WellSource2DView.class);
 	}
 

@@ -77,39 +77,6 @@ public class Player extends RPEntity {
 		addTextIndicator(((message != null) ? "Away" : "Back"), Color.blue);
 	}
 
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-
-		// ActionType at =handleAction(action);
-		RPAction rpaction;
-		switch (at) {
-			case ADD_BUDDY:
-				rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				rpaction.put("target", getName());
-				at.send(rpaction);
-				break;
-
-			default:
-				super.onAction(at, params);
-				break;
-		}
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.RPEntity#buildOfferedActions(java.util.List)
-	 */
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-
-		list.add(ActionType.ADD_BUDDY.getRepresentation());
-		//list.add(ActionType.JOIN_GUILD.getRepresentation());
-	}
-
 
 	//
 	// Entity

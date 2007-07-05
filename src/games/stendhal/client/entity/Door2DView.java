@@ -9,6 +9,8 @@ package games.stendhal.client.entity;
 //
 //
 
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -16,6 +18,7 @@ import games.stendhal.common.Direction;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -157,6 +160,19 @@ public class Door2DView extends StateEntity2DView {
 	// Entity2DView
 	//
 
+	@Override
+	protected void buildActions(final List<String> list) {
+		super.buildActions(list);
+
+		if (door.isOpen()) {
+			list.add(ActionType.CLOSE.getRepresentation());
+		} else {
+			list.add(ActionType.OPEN.getRepresentation());
+
+		}
+	}
+
+
 	/**
 	 * Get the 2D area that is drawn in.
 	 *
@@ -215,6 +231,36 @@ public class Door2DView extends StateEntity2DView {
 			representationChanged = true;
 		} else if(property == Door.PROP_OPEN) {
 			stateChanged = true;
+		}
+	}
+
+
+	//
+	// EntityView
+	//
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+			case OPEN:
+			case CLOSE:
+				RPAction rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				rpaction.put("target", door.getID().getObjectID());
+
+				at.send(rpaction);
+				break;
+
+			default:
+				super.onAction(at);
+				break;
 		}
 	}
 }

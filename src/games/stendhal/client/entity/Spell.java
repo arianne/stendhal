@@ -14,44 +14,9 @@ package games.stendhal.client.entity;
 
 import java.util.List;
 
-import marauroa.common.game.RPAction;
-
 public class Spell extends PassiveEntity {
 	@Override
 	public ActionType defaultAction() {
 		return ActionType.USE;
-	}
-
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-	}
-
-	@Override
-	public void onAction(final ActionType at, final String... params) {
-		// ActionType at =handleAction(action);
-
-		switch (at) {
-			case USE:
-				RPAction rpaction = new RPAction();
-				rpaction.put("type", at.toString());
-				int id = getID().getObjectID();
-
-				if (params.length > 0) {
-					rpaction.put("baseobject", params[0]);
-					rpaction.put("baseslot", params[1]);
-					rpaction.put("baseitem", id);
-				} else {
-					rpaction.put("target", id);
-				}
-
-				at.send(rpaction);
-				break;
-
-			default:
-				super.onAction(at, params);
-				break;
-		}
-
 	}
 }

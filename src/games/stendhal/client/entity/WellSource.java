@@ -24,11 +24,6 @@ public class WellSource extends Entity {
 		return ActionType.WISH;
 	}
 
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		super.buildOfferedActions(list);
-		list.add(ActionType.WISH.getRepresentation());
-	}
 
 	//
 	// Entity

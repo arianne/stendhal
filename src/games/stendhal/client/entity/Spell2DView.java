@@ -8,6 +8,8 @@ package games.stendhal.client.entity;
 //
 //
 
+import marauroa.common.game.RPAction;
+
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
@@ -111,5 +113,40 @@ public class Spell2DView extends Entity2DView {
 	@Override
 	public boolean isMovable() {
 		return true;
+	}
+
+
+	/**
+	 * Perform the default action.
+	 */
+	@Override
+	public void onAction() {
+		onAction(ActionType.USE);
+	}
+
+
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 * @param	params		The parameters.
+	 */
+	@Override
+	public void onAction(final ActionType at) {
+		switch (at) {
+			// TODO: Use 'Cast' instead??
+			case USE:
+				RPAction rpaction = new RPAction();
+
+				rpaction.put("type", at.toString());
+				getEntity().fillTargetInfo(rpaction);
+
+				at.send(rpaction);
+				break;
+
+			default:
+				super.onAction(at);
+				break;
+		}
 	}
 }
