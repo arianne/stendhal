@@ -53,59 +53,7 @@ public class PersonalChest extends Chest {
 	 */
 	public PersonalChest(String bankName) {
 		this.bankName = bankName;
-
 		attending = null;
-
-		TurnListener turnListener = new TurnListener() {
-
-			/**
-			 * This method is called when the turn number is reached.
-			 * NOTE: The <em>message</em> parameter is deprecated.
-			 *
-			 * @param	currentTurn	The current turn number.
-			 * @param	message		The string that was used.
-			 */
-			public void onTurnReached(int currentTurn, String message) {
-				if (attending != null) {
-					/* Can be replaced when we add Equip event */
-					/* Mirror chest content into player's bank slot */
-					RPSlot bank = getBankSlot();
-					bank.clear();
-
-					for (RPObject item : getSlot("content")) {
-						bank.addPreservingId(item);
-					}
-
-					RPSlot content = getSlot("content");
-					content.clear();
-
-					// if the player is next to the chest (and still logged in)
-					if (nextTo(attending) && zone.has(attending.getID())) {
-						// A hack to allow client update correctly the chest...
-						// by clearing the chest and copying the items back to it
-						// from the player's bank slot
-						for (RPObject item : getBankSlot()) {
-							try {
-								content.addPreservingId(cloneItem(item));
-							} catch (Exception e) {
-								logger.error("Cannot clone item " + item, e);
-							}
-						}
-
-					} else {
-
-						// If player is not next to depot, clean it.
-						content.clear();
-						close();
-						PersonalChest.this.notifyWorldAboutChanges();
-
-						attending = null;
-					}
-				}
-				TurnNotifier.get().notifyInTurns(0, this);
-			}
-		};
-		TurnNotifier.get().notifyInTurns(0, turnListener);
 	}
 
 
@@ -151,6 +99,58 @@ public class PersonalChest extends Chest {
 			if (isOpen()) {
 				close();
 			} else {
+				TurnListener turnListener = new TurnListener() {
+
+					/**
+					 * This method is called when the turn number is reached.
+					 * NOTE: The <em>message</em> parameter is deprecated.
+					 *
+					 * @param	currentTurn	The current turn number.
+					 * @param	message		The string that was used.
+					 */
+					public void onTurnReached(int currentTurn, String message) {
+						if (attending != null) {
+							/* Can be replaced when we add Equip event */
+							/* Mirror chest content into player's bank slot */
+							RPSlot bank = getBankSlot();
+							bank.clear();
+
+							for (RPObject item : getSlot("content")) {
+								bank.addPreservingId(item);
+							}
+
+							RPSlot content = getSlot("content");
+							content.clear();
+
+							// if the player is next to the chest (and still logged in)
+							if (nextTo(attending) && zone.has(attending.getID())) {
+								// A hack to allow client update correctly the chest...
+								// by clearing the chest and copying the items back to it
+								// from the player's bank slot
+								for (RPObject item : getBankSlot()) {
+									try {
+										content.addPreservingId(cloneItem(item));
+									} catch (Exception e) {
+										logger.error("Cannot clone item " + item, e);
+									}
+								}
+
+							} else {
+
+								// If player is not next to depot, clean it.
+								content.clear();
+								close();
+								PersonalChest.this.notifyWorldAboutChanges();
+
+								attending = null;
+							}
+
+						TurnNotifier.get().notifyInTurns(0, this);
+						}
+					}
+				};
+
+				TurnNotifier.get().notifyInTurns(0, turnListener);
 				attending = player;
 
 				RPSlot content = getSlot("content");
