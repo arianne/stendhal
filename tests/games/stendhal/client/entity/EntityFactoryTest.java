@@ -27,6 +27,7 @@ public class EntityFactoryTest {
 
 		public MockRPObject(String type, String eclass, String subclass) {
 			this(type,eclass);
+			if (subclass!=null)
 			super.put("subclass",subclass);
 		}
 
