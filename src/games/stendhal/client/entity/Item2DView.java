@@ -45,9 +45,9 @@ public class Item2DView extends Entity2DView {
 
 	@Override
 	protected void buildActions(final List<String> list) {
-		super.buildActions(list);
-
 		list.add(ActionType.USE.getRepresentation());
+
+		super.buildActions(list);
 	}
 
 
