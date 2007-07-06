@@ -15,18 +15,12 @@ import games.stendhal.client.soundreview.SoundMaster;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
  * The 2D view of a user.
  */
 public class User2DView extends Player2DView {
-	/**
-	 * The logger.
-	 */
-	private static final Logger logger = Log4J.getLogger(User2DView.class);
 
 	/**
 	 * The user entity.
