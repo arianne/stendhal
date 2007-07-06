@@ -21,7 +21,7 @@ import java.util.Map;
  * EntityMap registers the relationship between Type,eclass and java class of
  * entity Objects eclass represents a subtype of type EntityMap encapsulates the
  * implementation
- * 
+ *
  */
 public final class EntityMap {
 	protected EntityMap(){
@@ -29,7 +29,7 @@ public final class EntityMap {
 	private static Map<Pair<String, String>, Class> entityMap= new HashMap<Pair<String, String>, Class>();
 
 	static {
-		
+
 		try {
 			register();
 		} catch (ClassNotFoundException e) {
@@ -47,8 +47,8 @@ public final class EntityMap {
 		register("creature", "boss", "BossCreature");
 		register("creature", null, "Creature");
 
-		register("sheep", null, "Sheep");	
-		/* Not sure whether to register individual pets from child classes, 
+		register("sheep", null, "Sheep");
+		/* Not sure whether to register individual pets from child classes,
 		 * or the whole parent class Pet. suggestions welcome. */
 		register("cat", null, "Pet");
 		register("pet", null, "Pet");
@@ -64,10 +64,6 @@ public final class EntityMap {
 		register("well_source", null, "WellSource");
 
 		register("area", null, "InvisibleEntity");
-
-		// TODO: Remove after a week [2007/05/29]
-		//register("walk_blocker", null, "InvisibleEntity");
-		//register("damaging_area", null, "InvisibleEntity");
 
 		register("food", null, "SheepFood");
 		register("chest", null, "Chest");
@@ -88,17 +84,15 @@ public final class EntityMap {
 		register("item", "money", "StackableItem");
 		register("item", "missile", "StackableItem");
 		register("item", "ammunition", "StackableItem");
-		// TODO: remove this after release of 0.59
-		//register("item", "projectiles", "StackableItem");
-		
+
 		register("item", "resource", "StackableItem");
-		
+
 		register("item", "scroll", "StackableItem");
 		register("item","jewellery","StackableItem");
 
 		register("portal", null, "Portal");
 		register("door", null, "Door");
-		
+
 		register("fire",null,"Fire");
 	}
 
@@ -121,11 +115,10 @@ public final class EntityMap {
 	 * @param eclass
 	 *            the subtype of type such as book, drink, food , ,
 	 *            small_animal, huge_animal
-	 * 
+	 *
 	 * @return the java class of the Entity belonging to type and eclass
 	 */
 	public static Class getClass(final String type, final String eclass) {
 		return entityMap.get(new Pair<String, String>(type, eclass));
 	}
-
 }
