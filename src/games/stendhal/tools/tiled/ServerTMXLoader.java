@@ -46,7 +46,7 @@ public class ServerTMXLoader {
 		if (filename.indexOf("://") > 0 || filename.startsWith("file:")) {
 			url = filename;
 		} else {
-			url = (new File(filename)).toURL().toString();
+			url = (new File(filename)).toURI().toURL().toString();
 		}
 		return url;
 	}
