@@ -56,6 +56,10 @@ public class User extends Player {
 
 		WorldObjects.firePlayerMoved();
 		HearingArea.set(x, y);
+                
+                if (GameScreen.get()!=null){
+                        GameScreen.get().place(x, y);
+                }
 	}
 
 	private int modificationCount;
