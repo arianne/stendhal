@@ -4,15 +4,11 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.soundreview.HearingArea;
-import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
 
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
-
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 
@@ -25,17 +21,17 @@ public class User extends Player {
 	 */
 	private FeatureList	features;
 
-	
+
 	public static boolean isNull(){
-		
+
 		return _instance==null;
-		
+
 	}
-	
+
 	public static User get(){
 		return _instance;
 	}
-	
+
 
 	public User()  {
 		super();
@@ -56,7 +52,7 @@ public class User extends Player {
 
 		WorldObjects.firePlayerMoved();
 		HearingArea.set(x, y);
-                
+
                 if (GameScreen.get()!=null){
                         GameScreen.get().place(x, y);
                 }
@@ -75,7 +71,7 @@ public class User extends Player {
     //TODO: verify if OnAway is still to be usable or not
 	@Override
     protected void onAway(final String message) {
-	    
+
 	    super.onAway(message);
 	    StendhalUI.get().addEventLine(
 		        (message != null) ? "You have been marked as being away."
@@ -83,7 +79,7 @@ public class User extends Player {
     }
 
 	public static  boolean isAdmin() {
-		
+
 		if (isNull()) {
 	        return false;
         }
@@ -91,9 +87,9 @@ public class User extends Player {
 		if (me.rpObject== null) {
 	        return false;
         }
-		
+
 		return me.rpObject.has("adminlevel") && (me.rpObject.getInt("adminlevel") >= 600);
-	
+
 	}
 
 	public int getObjectID() {
@@ -116,12 +112,12 @@ public class User extends Player {
 
 	@Override
     public void onHealed(final int amount) {
-	   
+
 	    super.onHealed(amount);
-	   
+
 			StendhalUI.get().addEventLine(
 			        getTitle() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
-		
+
     }
 
 	/**
@@ -182,11 +178,11 @@ public class User extends Player {
 			features.clear();
 		}
     }
-	
+
 	/**
 	 * Returns true when the entity was modified since the
 	 * <i>oldModificationCount</i>.
-	 * 
+	 *
 	 * @param oldModificationCount
 	 *            the old modificationCount
 	 * @return true when the entity was modified, false otherwise
@@ -198,6 +194,6 @@ public class User extends Player {
 
 	public static void setNull() {
 		_instance =null;
-		
+
 	}
 }
