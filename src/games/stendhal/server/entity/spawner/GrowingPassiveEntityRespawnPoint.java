@@ -17,6 +17,8 @@ import games.stendhal.server.events.TurnNotifier;
 
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -29,6 +31,8 @@ import marauroa.common.game.Definition.Type;
  * @author daniel, hendrik
  */
 public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityRespawnPoint {
+
+	private static Logger logger = Log4J.getLogger(GrowingPassiveEntityRespawnPoint.class);
 
 	/** How long it takes for one regrowing step */
 	private static final int GROWING_RATE = 3000;
@@ -50,6 +54,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	private void init(String clazz, String actionName, int maxRipeness, int width, int height) {
 		this.maxRipeness = maxRipeness;
 		put("type", "growing_entity_spawner");
+		setRPClass("growing_entity_spawner");
 		put("class", clazz);
 		put("action_name", actionName);
 		put("max_ripeness", maxRipeness);
@@ -59,13 +64,13 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 
 	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String actionName, int maxRipeness,
 	        int width, int height) {
-		super(object, null, GROWING_RATE);
+		super(object, type, GROWING_RATE);
 		init(type, actionName, maxRipeness, width, height);
 		update();
 	}
 
 	public GrowingPassiveEntityRespawnPoint(String type, String actionName, int maxRipeness, int width, int height) {
-		super(null, GROWING_RATE);
+		super(type, GROWING_RATE);
 		init(type, actionName, maxRipeness, width, height);
 	}
 
@@ -88,11 +93,14 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 
 	@Override
 	protected void growNewFruit() {
-		setRipeness(ripeness + 1);
 		if (ripeness < maxRipeness) {
+			setRipeness(ripeness + 1);
+			
+			logger.info("Grow "+ripeness+" up to "+maxRipeness);
 			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
+			
+			notifyWorldAboutChanges();
 		}
-		notifyWorldAboutChanges();
 	}
 
 	@Override

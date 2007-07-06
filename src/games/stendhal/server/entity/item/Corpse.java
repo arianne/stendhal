@@ -76,6 +76,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	}
 
 	public Corpse(String clazz, int x, int y) {
+		setRPClass("corpse");
 		put("type", "corpse");
 		put("class", clazz);
 

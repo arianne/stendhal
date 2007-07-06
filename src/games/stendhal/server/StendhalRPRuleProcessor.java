@@ -410,23 +410,33 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/** Notify it when a new turn happens */
 	synchronized public void beginTurn() {
 		long start = System.nanoTime();
-		int creatures = 0;
-		for (CreatureRespawnPoint point : respawnPoints) {
-			creatures += point.size();
-		}
 
-		if (logger.isDebugEnabled()) {
+		if (logger.isInfoEnabled() && rpman.getTurn()%200==0) {
+			
+			int creatures = 0;
+			for (CreatureRespawnPoint point : respawnPoints) {
+				creatures += point.size();
+			}
+
 			int objects = 0;
 
 			for (IRPZone zone : StendhalRPWorld.get()) {
 				objects += zone.size();
 			}
 
-			logger.debug("lists: G:" + plantGrowers.size() + ",NPC:" + npcs.size() + ",P:" + players.size()
-			        + ",CR:" + creatures + ",OB:" + objects);
-
-			logger.debug("lists: NPC:" + npcsToAdd.size() + ",NPC:" + npcsToRemove.size() + ",P:"
-			        + playersRmText.size() + ",R:" + respawnPoints.size());
+			StringBuffer os=new StringBuffer();
+			os.append("entityToKill: "+entityToKill.size()+"\n");
+			os.append("npcs: "+npcs.size()+"\n");
+			os.append("npcsToAdd: "+npcsToAdd.size()+"\n");
+			os.append("npcsToRemove: "+npcsToRemove.size()+"\n");
+			os.append("plantGrowers: "+plantGrowers.size()+"\n");
+			os.append("players: "+players.size()+"\n");
+			os.append("playersRmText: "+playersRmText.size()+"\n");
+			os.append("playersRmPrivateText: "+playersRmPrivateText.size()+"\n");
+			os.append("respawnPoints: "+respawnPoints.size()+"\n");
+			os.append("creatures: "+creatures+"\n");
+			os.append("objects: "+objects+"\n");
+			logger.info(os);
 		}
 
 		try {

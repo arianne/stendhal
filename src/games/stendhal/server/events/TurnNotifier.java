@@ -72,11 +72,19 @@ public class TurnNotifier {
 		synchronized (sync) {
 			set = register.remove(Integer.valueOf(currentTurn));
 		}
+		
+		if (logger.isInfoEnabled()) {
+			StringBuffer os=new StringBuffer();
+			os.append("register: "+register.size()+"\n");
+			os.append("set: "+(set!=null?set.size():0)+"\n");
+			logger.info(os);
+		}
 
 		if (set != null) {
 			for (TurnListener event : set) {
 				TurnListener turnListener = event;
 				try {
+					logger.info(turnListener);
 					turnListener.onTurnReached(currentTurn, null);
 				} catch (RuntimeException e) {
 					logger.error(e, e);
@@ -124,10 +132,21 @@ public class TurnNotifier {
 	 */
 
 	public void notifyAtTurn(int turn, TurnListener turnListener) {
+		logger.info("Notify at "+turn+" by "+turnListener);
+		StringBuffer st=new StringBuffer();
+		
+		for(StackTraceElement e: Thread.currentThread().getStackTrace()) {
+			st.append(e);
+			st.append("\n");
+		}
+		
+		logger.info(st);
+		
 		if (turn <= currentTurn) {
 			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
 			return;
 		}
+		
 		synchronized (sync) {
 			// do we have other events for this turn?
 			Integer turnInt = Integer.valueOf(turn);

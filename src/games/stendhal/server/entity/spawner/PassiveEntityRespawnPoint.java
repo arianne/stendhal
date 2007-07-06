@@ -20,6 +20,9 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
+import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
@@ -38,6 +41,7 @@ import marauroa.common.game.Definition.Type;
  *
  */
 public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
+	private static Logger logger = Log4J.getLogger(PassiveEntityRespawnPoint.class);
 
 	/**
 	 * Is there still a fruit that has not yet been picked up? 
@@ -110,18 +114,22 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 * Creates a new fruit.
 	 */
 	protected void growNewFruit() {
-		StendhalRPWorld world = StendhalRPWorld.get();
-		StendhalRPZone zone = world.getZone(getID().getZoneID());
+		if (!hasPickableFruit) {
+			logger.info("Growing " + growingItemName);
 
-		// create a new grown item
-		Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
-		grownItem.setPlantGrower(this);
-		grownItem.setX(this.getX());
-		grownItem.setY(this.getY());
+			StendhalRPWorld world = StendhalRPWorld.get();
+			StendhalRPZone zone = world.getZone(getID().getZoneID());
 
-		zone.assignRPObjectID(grownItem);
-		zone.add(grownItem);
-		hasPickableFruit = true;
+			// create a new grown item
+			Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
+			grownItem.setPlantGrower(this);
+			grownItem.setX(this.getX());
+			grownItem.setY(this.getY());
+
+			zone.assignRPObjectID(grownItem);
+			zone.add(grownItem);
+			hasPickableFruit = true;
+		}
 	}
 
 	public void setToFullGrowth() {

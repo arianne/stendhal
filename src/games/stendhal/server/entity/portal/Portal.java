@@ -48,6 +48,7 @@ public class Portal extends Entity implements UseListener {
 	}
 
 	public Portal() {
+		setRPClass("portal");
 		put("type", "portal");
 		settedDestination = false;
 	}
