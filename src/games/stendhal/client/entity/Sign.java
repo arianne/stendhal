@@ -12,11 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
-import games.stendhal.client.StendhalUI;
-
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 
 public class Sign extends Entity {

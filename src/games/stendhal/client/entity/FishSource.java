@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.util.List;
-
 /**
  * @author dine
  *

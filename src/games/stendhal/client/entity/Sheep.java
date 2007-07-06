@@ -15,8 +15,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Rand;
 
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 
 /** A Sheep entity */

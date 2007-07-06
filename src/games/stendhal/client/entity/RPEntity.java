@@ -26,7 +26,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /**

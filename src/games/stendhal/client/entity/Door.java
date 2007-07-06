@@ -14,8 +14,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.common.Direction;
 
-import java.util.List;
-
 import marauroa.common.game.RPObject;
 
 /**

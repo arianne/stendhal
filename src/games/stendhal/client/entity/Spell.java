@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import java.util.List;
-
 public class Spell extends PassiveEntity {
 	@Override
 	public ActionType defaultAction() {

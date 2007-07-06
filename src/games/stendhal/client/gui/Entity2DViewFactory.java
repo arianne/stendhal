@@ -11,8 +11,6 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.entity.Blood;
 import games.stendhal.client.entity.Blood2DView;
-import games.stendhal.client.entity.Blood2DView;
-import games.stendhal.client.entity.Blood2DView;
 import games.stendhal.client.entity.BossCreature;
 import games.stendhal.client.entity.BossCreature2DView;
 import games.stendhal.client.entity.Box;
@@ -22,8 +20,6 @@ import games.stendhal.client.entity.Chest2DView;
 import games.stendhal.client.entity.CarrotGrower;
 import games.stendhal.client.entity.CarrotGrower2DView;
 import games.stendhal.client.entity.Corpse;
-import games.stendhal.client.entity.Corpse2DView;
-import games.stendhal.client.entity.Corpse2DView;
 import games.stendhal.client.entity.Corpse2DView;
 import games.stendhal.client.entity.Creature;
 import games.stendhal.client.entity.Creature2DView;

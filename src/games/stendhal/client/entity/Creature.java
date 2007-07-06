@@ -12,20 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.client.StendhalUI;
 import games.stendhal.client.soundreview.SoundMaster;
-import games.stendhal.common.Debug;
 import games.stendhal.common.Rand;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
 public class Creature extends RPEntity {

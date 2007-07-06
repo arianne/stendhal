@@ -17,9 +17,6 @@ import games.stendhal.client.StendhalUI;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
-
-import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
 /** A Player entity */
