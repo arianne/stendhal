@@ -209,7 +209,10 @@ public final byte[] ID_Token = new byte[0];
 	public Entity2DView getView() {
 		if(view == null) {
 			view = createView();
-			view.buildRepresentation();
+
+			if(view != null) {
+				view.buildRepresentation();
+			}
 		}
 
 		return view;
