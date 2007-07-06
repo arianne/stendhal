@@ -24,6 +24,7 @@ import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.common.Level;
 
 import java.awt.Graphics;
 import java.util.HashMap;
@@ -43,7 +44,7 @@ public class Character extends WtPanel {
 	private static final int PANEL_WIDTH = 170;
 
 	/** Panel height */
-	private static final int PANEL_HEIGHT = 265;
+	private static final int PANEL_HEIGHT = 285;
 
 	/** Height/width of slots */
 	private static final int SLOT_SIZE = 39; // estimate
@@ -119,7 +120,7 @@ public class Character extends WtPanel {
 		        ((SLOT_SIZE + SLOT_SPACING) * 4),
 		        170,
 		        100,
-		        "HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nMoney: $${money}");
+		        "HP: ${hp}/${maxhp}\nATK: ${atk}+${atkitem} (${atkxp})\nDEF: ${def}+${defitem} (${defxp})\nXP:${xp}\nNext Level: ${xptonextlevel}\nMoney: $${money}");
 		statsPanel.setFrame(false);
 		statsPanel.setTitleBar(false);
 		addChild(statsPanel);
@@ -191,6 +192,8 @@ public class Character extends WtPanel {
 		statsPanel.set("atkxp", playerEntity.getAtkXp());
 		statsPanel.set("defxp", playerEntity.getDefXp());
 		statsPanel.set("xp", playerEntity.getXp());
+		int level=Level.getLevel(playerEntity.getXp());
+		statsPanel.set("xptonextlevel", Level.getXP(level+1)-playerEntity.getXp());
 		statsPanel.set("money", money);
 
 		oldPlayerModificationCount = playerEntity.getModificationCount();
