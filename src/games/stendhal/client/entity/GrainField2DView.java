@@ -203,7 +203,7 @@ public class GrainField2DView extends StateEntity2DView {
 
 	/**
 	 * Perform the default action.
-	 *
+	 */
 	@Override
 	public void onAction() {
 		onAction(ActionType.HARVEST);
