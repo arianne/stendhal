@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests if the offeredActions contextMenu is provided with the right keywords
+ * Tests if the getActions() contextMenu is provided with the right keywords
  * uses a MOCKEntitty and a MOCKRPObject for initialisation
  */
 public class TestBuildOfferedActions {
@@ -44,7 +44,7 @@ public class TestBuildOfferedActions {
 		List<String> expected = new ArrayList<String>();
 		expected.add(ActionType.LOOK.getRepresentation());
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(expected.toArray(), me.offeredActions());
+		Assert.assertEquals(expected.toArray(), me.getView().getActions());
 	}
 
 	@Test
@@ -116,7 +116,7 @@ public class TestBuildOfferedActions {
 		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(new String[] { ActionType.PICK.getRepresentation(), ActionType.LOOK.getRepresentation() }, en.offeredActions());
+		Assert.assertEquals(new String[] { ActionType.PICK.getRepresentation(), ActionType.LOOK.getRepresentation() }, en.getView().getActions());
 	}
 	@Test
 	public final void testPlantGrower() throws Exception {
@@ -130,7 +130,7 @@ public class TestBuildOfferedActions {
 		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(new String[] { ActionType.LOOK.getRepresentation() }, en.offeredActions());
+		Assert.assertEquals(new String[] { ActionType.LOOK.getRepresentation() }, en.getView().getActions());
 	}
 	@Test
 	public final void testSalad() throws Exception {
@@ -148,7 +148,7 @@ public class TestBuildOfferedActions {
 		en.buildOfferedActions(list);
 		Assert.assertNotNull(list);
 		Assert.assertEquals(expected, list);
-		Assert.assertEquals(new String[] { ActionType.USE.getRepresentation(),ActionType.LOOK.getRepresentation() }, en.offeredActions());
+		Assert.assertEquals(new String[] { ActionType.USE.getRepresentation(),ActionType.LOOK.getRepresentation() }, en.getView().getActions());
 	}
 	@Test
 	public final void testDoor() throws Exception {

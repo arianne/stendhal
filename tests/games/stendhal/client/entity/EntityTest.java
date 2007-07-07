@@ -176,14 +176,14 @@ assertEquals(0,en.count);
 		Entity en = new MockEntity();
 		String[] str = new String[1];
 		str[0]="Look";
-		assertEquals(str, en.offeredActions());
+		assertEquals(str, en.getView().getActions());
 	}
 
 	@Test
 	public final void testBuildOfferedActions() {
 		Entity en = new MockEntity();
 		String [] expected = {"Look"};
-		assertEquals(expected, en.offeredActions());
+		assertEquals(expected, en.getView().getActions());
 	}
 
 	
