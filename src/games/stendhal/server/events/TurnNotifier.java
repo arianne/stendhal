@@ -132,18 +132,20 @@ public class TurnNotifier {
 	 */
 
 	public void notifyAtTurn(int turn, TurnListener turnListener) {
-		logger.info("Notify at "+turn+" by "+turnListener);
-		StringBuffer st=new StringBuffer();
-		
-		for(StackTraceElement e: Thread.currentThread().getStackTrace()) {
-			st.append(e);
-			st.append("\n");
+		if (logger.isDebugEnabled()) {
+			logger.info("Notify at " + turn + " by " + turnListener);
+			StringBuffer st = new StringBuffer();
+
+			for (StackTraceElement e : Thread.currentThread().getStackTrace()) {
+				st.append(e);
+				st.append("\n");
+			}
+
+			logger.info(st);
 		}
-		
-		logger.info(st);
-		
+
 		if (turn <= currentTurn) {
-			logger.error("requested turn " + turn + " is in the past. Current turn is " + currentTurn, new Throwable());
+			logger.error("requested turn " + turn + " is in the past. Current turn is "+ currentTurn, new Throwable());
 			return;
 		}
 		
