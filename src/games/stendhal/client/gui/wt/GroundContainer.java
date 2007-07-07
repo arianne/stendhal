@@ -115,12 +115,10 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		// for the clicked entity....
 		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 		if (view != null) {
-			Entity entity = view.getEntity();
-
 			if (ui.isCtrlDown()) {
-				entity.onAction(entity.defaultAction());
+				view.onAction();
 			} else if (ui.isShiftDown()) {
-				entity.onAction(ActionType.LOOK);
+				view.onAction(ActionType.LOOK);
 			}
 		}
 		return true;
@@ -146,11 +144,8 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
 
 		if (view != null) {
-			Entity entity = view.getEntity();
-
 			// ... do the default action
-			// String action = entity.defaultAction();
-			entity.onAction(entity.defaultAction());
+			view.onAction();
 		} else {
 			// moveto action
 			RPAction action = new RPAction();

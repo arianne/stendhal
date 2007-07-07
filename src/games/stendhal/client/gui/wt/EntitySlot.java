@@ -262,7 +262,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 		// moveto events are not the default for items in a bag
 		if (parent instanceof Player) {
-			entity.onAction(entity.defaultAction(), Integer.toString(parent.getID().getObjectID()), getName());
+			entity.getView().onAction();
 			return true;
 		}
 

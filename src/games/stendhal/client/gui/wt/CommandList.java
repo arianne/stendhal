@@ -81,11 +81,7 @@ public class CommandList extends WtPopupMenu {
 	/** an action has been chosen */
 	protected void doAction(String command) {
 		// tell the entity what happened
-		if (contained) {
-			entity.onAction(ActionType.getbyRep(command), baseObject, baseSlot);
-		} else {
-			entity.onAction(ActionType.getbyRep(command));
-		}
+		entity.getView().onAction(ActionType.getbyRep(command));
 	}
 
 	//
