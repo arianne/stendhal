@@ -553,18 +553,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 				// full fruits on server restart
 				plantGrower.setToFullGrowth();
 
-				/*
-				 * XXX - TEMP!!
-				 * Until all maps are fixed, set all sheep food
-				 * as a collision.
-				 */
-				if(clazz.contains("sheepfood")) {
-					if(!collisionMap.collides(x, y)) {
-						logger.warn("SheepFood@" + getID().getID() + "[" + x + "," + y + "] is not collision in map");
-
-						collisionMap.setCollide(plantGrower.getArea(x, y), true);
-					}
-				}
 			}
 		} catch (Exception e) {
 			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
