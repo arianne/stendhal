@@ -49,9 +49,20 @@ public class Sign2DView extends Entity2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
 	protected void buildActions(final List<String> list) {
 		list.add(ActionType.READ.getRepresentation());
+
+		super.buildActions(list);
+		// TODO: Allow a sign to be looked at in general, maybe like:
+		// "You see a sign, maybe it's worth reading."
+		list.remove(ActionType.LOOK.getRepresentation());
 	}
 
 

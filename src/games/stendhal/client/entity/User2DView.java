@@ -63,14 +63,22 @@ public class User2DView extends Player2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
 		list.remove(ActionType.ATTACK.getRepresentation());
 		list.remove(ActionType.ADD_BUDDY.getRepresentation());
+		list.remove(ActionType.PUSH.getRepresentation());
 
 	   	list.add(ActionType.SET_OUTFIT.getRepresentation());
+		//list.add(ActionType.JOIN_GUILD.getRepresentation());
 
 	   	if (user.hasSheep()) {
 			list.add(ActionType.LEAVE_SHEEP.getRepresentation());

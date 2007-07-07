@@ -39,15 +39,20 @@ public class Portal2DView extends InvisibleEntity2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
-	protected void buildActions(List<String> list) {
-		// Do not call super method because we do not want the
-		// Look menu until some nice text are there to be looked at.
-		//
-		// super.buildActions(list);
-
+	protected void buildActions(final List<String> list) {
 		if (!portal.isHidden()) {
 			list.add(ActionType.USE.getRepresentation());
+
+			super.buildActions(list);
+			// TODO: Give a portal some nice text to 'look' at.
+			list.remove(ActionType.LOOK.getRepresentation());
 		}
 	}
 

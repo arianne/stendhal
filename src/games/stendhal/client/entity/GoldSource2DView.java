@@ -34,11 +34,17 @@ public class GoldSource2DView extends AnimatedLoopEntity2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
-	protected void buildActions(List<String> list) {
-		super.buildActions(list);
-
+	protected void buildActions(final List<String> list) {
 		list.add(ActionType.PROSPECT.getRepresentation());
+
+		super.buildActions(list);
 	}
 
 

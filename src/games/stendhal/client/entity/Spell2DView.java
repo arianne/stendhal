@@ -14,6 +14,7 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 /**
  * The 2D view of a spell.
@@ -32,6 +33,20 @@ public class Spell2DView extends Entity2DView {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
+	@Override
+	protected void buildActions(final List<String> list) {
+		list.add(ActionType.USE.getRepresentation());
+
+		super.buildActions(list);
+	}
+
 
 	/**
 	 * Build the visual representation of this entity.

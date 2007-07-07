@@ -123,6 +123,12 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
@@ -208,19 +214,6 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 			stateChanged = true;
 			openChanged = true;
 		}
-	}
-
-
-	//
-	// EntityView
-	//
-
-	/**
-	 * Perform the default action.
-	 *
-	@Override
-	public void onAction() {
-		onAction(ActionType.LOOK);
 	}
 
 

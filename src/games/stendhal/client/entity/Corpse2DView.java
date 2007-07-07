@@ -15,6 +15,7 @@ import games.stendhal.client.gui.wt.EntityContainer;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 /**
  * The 2D view of a corpse.
@@ -102,6 +103,20 @@ public class Corpse2DView extends Entity2DView implements Inspectable {
 	//
 	// Entity2DView
 	//
+
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
+	@Override
+	protected void buildActions(final List<String> list) {
+		list.add(ActionType.INSPECT.getRepresentation());
+
+		super.buildActions(list);
+	}
+
 
 	/**
 	 * Build the visual representation of this entity.

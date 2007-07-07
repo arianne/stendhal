@@ -14,6 +14,7 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 
 /**
@@ -116,6 +117,17 @@ public class Ring2DView extends Item2DView {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+
+	/**
+	 * Reorder the actions list (if needed). Please use as last resort.
+	 *
+	 * @param	list		The list to reorder.
+	 */
+	protected void reorderActions(final List<String> list) {
+		list.remove(ActionType.LOOK.getRepresentation());
+		list.add(0, ActionType.LOOK.getRepresentation());
 	}
 
 

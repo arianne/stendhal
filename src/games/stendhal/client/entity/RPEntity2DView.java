@@ -272,21 +272,23 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		list.add(ActionType.ATTACK.getRepresentation());
-
 		if (!User.isNull() && User.get().isAttacking()) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
-		}
-
-		// TODO: Remove in User2DView
-	        if (User.get() != rpentity) {
-	        	list.add(ActionType.PUSH.getRepresentation());
+		} else {
+			list.add(ActionType.ATTACK.getRepresentation());
 		}
 	}
+
 
 	/**
 	 * Draw the entity.
@@ -467,19 +469,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		} else if(property == RPEntity.PROP_TITLE_TYPE) {
 			titleChanged = true;
 		}
-	}
-
-
-	//
-	// EntityView
-	//
-
-	/**
-	 * Perform the default action.
-	 *
-	@Override
-	public void onAction() {
-		onAction(ActionType.LOOK);
 	}
 
 

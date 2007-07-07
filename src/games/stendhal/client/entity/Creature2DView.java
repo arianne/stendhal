@@ -280,8 +280,14 @@ public class Creature2DView extends RPEntity2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
+	 *
+	 * @param	list		The list to populate.
+	 */
 	@Override
-	protected void buildActions(List<String> list) {
+	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
 		if (Debug.CREATURES_DEBUG_CLIENT) {
@@ -351,6 +357,18 @@ public class Creature2DView extends RPEntity2DView {
 	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
+	}
+
+
+	/**
+	 * Reorder the actions list (if needed). Please use as last resort.
+	 *
+	 * @param	list		The list to reorder.
+	 */
+	protected void reorderActions(final List<String> list) {
+		if(list.remove(ActionType.ATTACK.getRepresentation())) {
+			list.add(0, ActionType.ATTACK.getRepresentation());
+		}
 	}
 
 

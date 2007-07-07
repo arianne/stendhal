@@ -97,7 +97,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	//
 
 	/**
-	 * Build the list of actions.
+	 * Build a list of entity specific actions.
+	 * <strong>NOTE: The first entry should be the default.</strong>
 	 *
 	 * @param	list		The list to populate.
 	 */
@@ -255,6 +256,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			list.add(ActionType.ADMIN_ALTER.getRepresentation());
 		}
 
+		reorderActions(list);
+
 		return list.toArray(new String[list.size()]);
 	}
 
@@ -380,6 +383,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public boolean isContained() {
 		return contained;
+	}
+
+
+	/**
+	 * Reorder the actions list (if needed). Please use as last resort.
+	 *
+	 * @param	list		The list to reorder.
+	 */
+	protected void reorderActions(final List<String> list) {
 	}
 
 
