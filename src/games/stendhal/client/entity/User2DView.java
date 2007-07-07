@@ -11,7 +11,6 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
-import games.stendhal.client.soundreview.SoundMaster;
 
 import java.util.List;
 
@@ -150,9 +149,6 @@ public class User2DView extends Player2DView {
 				rpaction.put("target", -1);
 
 				at.send(rpaction);
-
-				//TODO: Move to sheep reaction, not user action
-				SoundMaster.play("sheep-2.wav", user.getX(), user.getY());
 				break;
 
 			default:
