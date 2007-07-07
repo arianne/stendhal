@@ -20,6 +20,7 @@ import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Chest;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
+import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtDraggable;
@@ -170,14 +171,15 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		// doubleclick is outside of all windows
 		Point2D point = screen.translate(p);
 
-		EntityView view = screen.getEntityViewAt(point.getX(), point.getY());
+		Entity2DView view = screen.getEntityViewAt(point.getX(), point.getY());
 
 		if (view != null) {
-			Entity entity = view.getEntity();
-
 			// ... show context menu (aka command list)
-			String[] actions = entity.offeredActions();
+			String[] actions = view.getActions();
+
 			if (actions.length > 0) {
+				Entity entity = view.getEntity();
+
 				CommandList list = new CommandList(entity.getType(), actions, entity);
 				ui.setContextMenu(list);
 			}

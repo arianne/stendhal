@@ -466,14 +466,6 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
-	 * TEMP - Transitioned to internal Entity2DView.getActions()
-	 */
-	public final String[] offeredActions() {
-		return getView().getActions();
-	}
-
-
-	/**
 	 * TEMP - Transitioned to internal Entity2DView.buildActions()
 	 */
 	protected void buildOfferedActions(final List<String> list) {
