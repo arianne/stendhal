@@ -45,11 +45,15 @@ public class CreatureLogic {
 
 
 	// creature will keep track of the logic so the client can display it
-	private StringBuilder debug = new StringBuilder(100);
+	private StringBuilder debug;
 
 	public CreatureLogic(Creature creature) {
 		this.creature = creature;
 		attackTurn = Rand.rand(5);
+
+		if (Debug.CREATURES_DEBUG_SERVER) {
+			debug = new StringBuilder(100);
+		}
 	}
 
 	private void logicHeal() {
