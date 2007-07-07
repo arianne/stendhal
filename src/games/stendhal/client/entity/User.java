@@ -1,6 +1,5 @@
 package games.stendhal.client.entity;
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.soundreview.HearingArea;
@@ -52,10 +51,6 @@ public class User extends Player {
 
 		WorldObjects.firePlayerMoved();
 		HearingArea.set(x, y);
-
-                if (GameScreen.get()!=null){
-                        GameScreen.get().place(x, y);
-                }
 	}
 
 	private int modificationCount;
