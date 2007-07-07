@@ -35,12 +35,6 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	private RPSlot		content;
 
 
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.INSPECT;
-	}
-
-
 	//
 	// Corpse
 	//

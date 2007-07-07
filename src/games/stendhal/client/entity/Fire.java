@@ -11,9 +11,4 @@ public class Fire extends Entity {
 	protected void buildOfferedActions(List<String> list) {
 		list.clear();
 	}
-
-	@Override
-	public ActionType defaultAction() {
-		return null;
-	}
 }

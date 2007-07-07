@@ -151,12 +151,4 @@ public class Chest extends Entity implements Inspectable {
 			fireChange(PROP_OPEN);
 		}
 	}
-
-	//
-	//
-
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.LOOK;
-	}
 }

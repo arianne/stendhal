@@ -25,16 +25,6 @@ public class Portal extends InvisibleEntity {
 	private boolean hidden;
 
 
-	@Override
-	public ActionType defaultAction() {
-		if (!hidden) {
-			return ActionType.USE;
-		} else {
-			return null;
-		}
-	}
-
-
 	//
 	// Portal
 	//

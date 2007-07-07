@@ -17,8 +17,4 @@ package games.stendhal.client.entity;
  *
  */
 public class FishSource extends Entity {
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.FISH;
-	}
 }

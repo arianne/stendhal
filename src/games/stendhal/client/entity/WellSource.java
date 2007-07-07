@@ -17,12 +17,6 @@ package games.stendhal.client.entity;
  *
  */
 public class WellSource extends Entity {
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.WISH;
-	}
-
-
 	//
 	// Entity
 	//

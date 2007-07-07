@@ -17,12 +17,6 @@ package games.stendhal.client.entity;
  *
  */
 public class GoldSource extends Entity {
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.PROSPECT;
-	}
-
-
 	//
 	// Entity
 	//

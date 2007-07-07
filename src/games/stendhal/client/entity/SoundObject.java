@@ -70,11 +70,6 @@ public class SoundObject extends InvisibleEntity {
 		return null;
 	}
 
-	// TODO: remove Soundobject from hierarchie
-	@Override
-	public ActionType defaultAction() {
-		return null;
-	}
 
 	public void setLocation(final Point2D position) {
 		x = position.getX();

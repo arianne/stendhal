@@ -7,9 +7,4 @@ public class CarrotGrower extends GrainField {
 	public CarrotGrower()  {
 		super(1, 1);
 	}
-
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.PICK;
-	}
 }

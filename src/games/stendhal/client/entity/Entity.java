@@ -465,28 +465,11 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
-	public ActionType defaultAction() {
-		return ActionType.LOOK;
-	}
-
+	/**
+	 * TEMP - Transitioned to internal Entity2DView.getActions()
+	 */
 	public final String[] offeredActions() {
-		List<String> list = new ArrayList<String>();
-		buildOfferedActions(list);
-		if (defaultAction() != null) {
-			list.remove(defaultAction().getRepresentation());
-			list.add(0, defaultAction().getRepresentation());
-		}
-
-		/*
-		 * Special admin options
-		 */
-		if (User.isAdmin()) {
-			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
-			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
-			list.add(ActionType.ADMIN_ALTER.getRepresentation());
-		}
-
-		return list.toArray(new String[list.size()]);
+		return getView().getActions();
 	}
 
 

@@ -172,14 +172,6 @@ assertEquals(0,en.count);
 
 	
 	@Test
-	
-	public final void testDefaultAction() {
-		Entity en = new MockEntity();
-		assertEquals(ActionType.LOOK, en.defaultAction());
-
-	}
-
-	@Test
 	public final void testOfferedActions() {
 		Entity en = new MockEntity();
 		String[] str = new String[1];

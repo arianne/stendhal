@@ -40,12 +40,6 @@ public class Sign extends Entity {
 	}
 
 
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.READ;
-	}
-
-
 	//
 	// RPObjectChangeListener
 	//

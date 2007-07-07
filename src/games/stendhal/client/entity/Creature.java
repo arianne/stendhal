@@ -62,12 +62,6 @@ public class Creature extends RPEntity {
 	private double height;
 
 
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.ATTACK;
-	}
-
-
 	//
 	// Creature
 	//

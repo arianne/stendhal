@@ -795,14 +795,6 @@ public abstract class RPEntity extends ActiveEntity {
 		}
 	}
 
-	//
-	//
-
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.LOOK;
-	}
-
 
 	//
 	// RPObjectChangeListener

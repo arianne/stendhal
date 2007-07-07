@@ -50,13 +50,6 @@ public class Ring extends Item {
 	}
 
 
-
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.LOOK;
-	}
-
-
 	//
 	// Entity
 	//

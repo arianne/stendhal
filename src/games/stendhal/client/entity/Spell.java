@@ -13,8 +13,4 @@
 package games.stendhal.client.entity;
 
 public class Spell extends PassiveEntity {
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.USE;
-	}
 }

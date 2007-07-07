@@ -161,17 +161,4 @@ public class Door extends Entity {
 			fireChange(PROP_ORIENTATION);
 		}
 	}
-
-	//
-	//
-
-	@Override
-	public ActionType defaultAction() {
-		if (open) {
-			return ActionType.CLOSE;
-		} else {
-			return ActionType.OPEN;
-
-		}
-	}
 }

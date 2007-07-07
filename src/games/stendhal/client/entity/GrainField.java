@@ -192,12 +192,4 @@ public class GrainField extends Entity {
 			fireChange(PROP_MAX_RIPENESS);
 		}
 	}
-
-	//
-	//
-
-	@Override
-	public ActionType defaultAction() {
-		return ActionType.HARVEST;
-	}
 }
