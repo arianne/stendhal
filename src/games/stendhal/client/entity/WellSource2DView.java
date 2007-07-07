@@ -54,7 +54,7 @@ public class WellSource2DView extends AnimatedLoopEntity2DView {
 
 	/**
 	 * Perform the default action.
-	 *
+	 */
 	@Override
 	public void onAction() {
 		onAction(ActionType.WISH);
@@ -65,7 +65,6 @@ public class WellSource2DView extends AnimatedLoopEntity2DView {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	@Override
 	public void onAction(final ActionType at) {

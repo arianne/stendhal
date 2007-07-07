@@ -217,7 +217,7 @@ public class Corpse2DView extends Entity2DView implements Inspectable {
 
 	/**
 	 * Perform the default action.
-	 *
+	 */
 	@Override
 	public void onAction() {
 		onAction(ActionType.INSPECT);
@@ -228,7 +228,6 @@ public class Corpse2DView extends Entity2DView implements Inspectable {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	@Override
 	public void onAction(final ActionType at) {

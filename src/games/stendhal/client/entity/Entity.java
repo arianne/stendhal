@@ -467,6 +467,7 @@ public final byte[] ID_Token = new byte[0];
 
 	/**
 	 * TEMP - Transitioned to internal Entity2DView.buildActions()
+	 * @deprecated	Use [view].getActions() public API.
 	 */
 	protected void buildOfferedActions(final List<String> list) {
 		getView().buildActions(list);
@@ -823,6 +824,5 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	@Deprecated 
 	public final void onRemoved(final RPObject object) {
-		
 	}
 }

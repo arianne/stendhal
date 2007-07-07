@@ -154,6 +154,11 @@ public class Sign2DView extends Entity2DView {
 	}
 
 
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {

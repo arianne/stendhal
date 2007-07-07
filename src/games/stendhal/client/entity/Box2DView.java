@@ -50,12 +50,20 @@ public class Box2DView extends Item2DView {
 	// EntityView
 	//
 
+	/**
+	 * Perform the default action.
+	 */
 	@Override
 	public void onAction() {
 		onAction(ActionType.OPEN);
 	}
 
 
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {

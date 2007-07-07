@@ -531,7 +531,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	public void onAction(final ActionType at) {
 		int id = getEntity().getID().getObjectID();

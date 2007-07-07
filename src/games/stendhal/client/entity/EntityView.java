@@ -39,7 +39,6 @@ public interface EntityView {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	public void onAction(ActionType at);
 

@@ -303,6 +303,11 @@ public class Pet2DView extends RPEntity2DView {
 	// EntityView
 	//
 
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {

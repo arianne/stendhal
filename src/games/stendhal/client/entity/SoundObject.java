@@ -108,18 +108,6 @@ public class SoundObject extends InvisibleEntity {
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see games.stendhal.client.entity.Entity#buildOfferedActions(java.util.List)
-	 */
-	@Override
-	protected void buildOfferedActions(List<String> list) {
-		list.clear();
-	}
-
-
-	
 	public DataLine playSound(String token, int volBot, int volTop, int chance) {
 		if (soundArray==null) {
 			soundInit();
@@ -135,5 +123,4 @@ public class SoundObject extends InvisibleEntity {
 		return null;
 
 	}
-
 }

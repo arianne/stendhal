@@ -115,6 +115,11 @@ public class User2DView extends Player2DView {
 	// EntityView
 	//
 
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 */
 	@Override
 	public void onAction(final ActionType at) {
 		RPAction rpaction;

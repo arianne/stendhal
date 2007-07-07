@@ -61,6 +61,9 @@ public class Portal2DView extends InvisibleEntity2DView {
 	// EntityView
 	//
 
+	/**
+	 * Perform the default action.
+	 */
 	@Override
 	public void onAction() {
 		if(!portal.isHidden()) {
@@ -69,6 +72,11 @@ public class Portal2DView extends InvisibleEntity2DView {
 	}
 
 
+	/**
+	 * Perform an action.
+	 *
+	 * @param	at		The action.
+	 */
 	@Override
 	public void onAction(final ActionType at) {
 		switch (at) {

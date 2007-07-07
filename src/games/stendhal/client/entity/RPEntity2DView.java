@@ -476,7 +476,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	@Override
 	public void onAction(final ActionType at) {

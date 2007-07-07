@@ -296,7 +296,6 @@ public class Sheep2DView extends RPEntity2DView {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	@Override
 	public void onAction(final ActionType at) {

@@ -171,7 +171,6 @@ public class Item2DView extends Entity2DView {
 	 * Perform an action.
 	 *
 	 * @param	at		The action.
-	 * @param	params		The parameters.
 	 */
 	@Override
 	public void onAction(final ActionType at) {
