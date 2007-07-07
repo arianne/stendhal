@@ -14,7 +14,6 @@ import marauroa.common.game.RPAction;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Direction;
 
 import java.awt.Graphics2D;
@@ -69,7 +68,7 @@ public class Pet2DView extends RPEntity2DView {
 	protected boolean	ideaChanged;
 
 	/**
-	 * Translate a resource name into it's sprite image path based on type of Pet 
+	 * Translate a resource name into it's sprite image path based on type of Pet
 	 *
 	 * @param	name		The resource name.
 	 *
@@ -320,12 +319,9 @@ public class Pet2DView extends RPEntity2DView {
 
 				at.send(rpaction);
 
-				//TODO: move to pet reaction, not user action
-				SoundMaster.play("pet-2.wav", pet.getX(), pet.getY());
 				break;
 
 			default:
-				SoundMaster.play((pet.getWeight() > 50) ? "pet-2.wav" : "pet-1.wav", pet.getX(), pet.getY());
 				super.onAction(at);
 				break;
 		}

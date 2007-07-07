@@ -10,7 +10,6 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.GameScreen;
-import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Direction;
@@ -301,8 +300,6 @@ public class Sheep2DView extends RPEntity2DView {
 	public void onAction(final ActionType at) {
 		switch (at) {
 			case OWN:
-				SoundMaster.play("sheep-2.wav", sheep.getX(), sheep.getY());
-
 				RPAction rpaction = new RPAction();
 
 				rpaction.put("type", at.toString());
@@ -312,7 +309,6 @@ public class Sheep2DView extends RPEntity2DView {
 				break;
 
 			default:
-				SoundMaster.play((sheep.getWeight() > 50) ? "sheep-2.wav" : "sheep-1.wav", sheep.getX(), sheep.getY());
 				super.onAction(at);
 				break;
 		}
