@@ -22,6 +22,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
+import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.User;
@@ -239,8 +240,10 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
 		if (entity != null) {
+			EntityView view = entity.getView();
+
 			// create the context menu
-			CommandList list = new CommandList(getName(), entity.getView().getActions(), entity);
+			CommandList list = new CommandList(getName(), view.getActions(), view);
 			setContextMenu(list);
 		}
 		return true;

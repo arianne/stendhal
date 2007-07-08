@@ -180,7 +180,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			if (actions.length > 0) {
 				Entity entity = view.getEntity();
 
-				CommandList list = new CommandList(entity.getType(), actions, entity);
+				CommandList list = new CommandList(entity.getType(), actions, view);
 				ui.setContextMenu(list);
 			}
 		}

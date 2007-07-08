@@ -238,31 +238,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
-	 * Get the list of actions.
-	 *
-	 * @return	The list of actions.
-	 */
-	public final String [] getActions() {
-		List<String> list = new ArrayList<String>();
-
-		buildActions(list);
-
-		/*
-		 * Special admin options
-		 */
-		if (User.isAdmin()) {
-			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
-			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
-			list.add(ActionType.ADMIN_ALTER.getRepresentation());
-		}
-
-		reorderActions(list);
-
-		return list.toArray(new String[list.size()]);
-	}
-
-
-	/**
 	 * Get the class resource sub-path. The is the base sprite image name,
 	 * relative to <code>translate()</code>.
 	 *
@@ -498,6 +473,31 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	//
 	// EntityView
 	//
+
+	/**
+	 * Get the list of actions.
+	 *
+	 * @return	The list of actions.
+	 */
+	public final String [] getActions() {
+		List<String> list = new ArrayList<String>();
+
+		buildActions(list);
+
+		/*
+		 * Special admin options
+		 */
+		if (User.isAdmin()) {
+			list.add(ActionType.ADMIN_INSPECT.getRepresentation());
+			list.add(ActionType.ADMIN_DESTROY.getRepresentation());
+			list.add(ActionType.ADMIN_ALTER.getRepresentation());
+		}
+
+		reorderActions(list);
+
+		return list.toArray(new String[list.size()]);
+	}
+
 
 	/**
 	 * Get the view's entity.

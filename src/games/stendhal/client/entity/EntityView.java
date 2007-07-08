@@ -14,6 +14,14 @@ package games.stendhal.client.entity;
  */
 public interface EntityView {
 	/**
+	 * Get the list of actions.
+	 *
+	 * @return	The list of actions.
+	 */
+	public String [] getActions();
+
+
+	/**
 	 * Get the view's entity.
 	 *
 	 * @return	The view's entity.
