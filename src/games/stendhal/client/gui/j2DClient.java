@@ -608,7 +608,7 @@ public class j2DClient extends StendhalUI {
 					 * If we get a timeout exception we accept exit request.
 					 */
 					canExit = true;
-					e.printStackTrace();
+					logger.error(e, e);
 				}
 			}
 		}
@@ -1132,7 +1132,7 @@ public class j2DClient extends StendhalUI {
 
 					new j2DClient(client);
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					logger.error(ex, ex);
 				}
 
 				return;

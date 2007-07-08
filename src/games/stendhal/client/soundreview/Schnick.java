@@ -13,8 +13,12 @@ import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 import java.util.Properties;
+
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 //TODO: delete me when new soundsystem works
 public class Schnick {
+	private static final Logger logger = Log4J.getLogger(Schnick.class);
 
 	public static InputStream getResourceStream(String name) throws IOException {
 		URL url = SpriteStore.get().getResourceURL(name);
@@ -46,17 +50,15 @@ public class Schnick {
 	    try {
 	        prop.load(getResourceStream("data/sounds/stensounds.properties"));
 	    } catch (IOException e) {
-	       
-	        e.printStackTrace();
+	        logger.error(e, e);
 	    }
+
 	    try {
 	        prop.storeToXML(new FileOutputStream(new File("data/sounds/stensounds.xml")),"autmatic");
 	    } catch (FileNotFoundException e) {
-	       
-	        e.printStackTrace();
+	        logger.error(e, e);
 	    } catch (IOException e) {
-	        
-	        e.printStackTrace();
+	        logger.error(e, e);
 	    }
     }
 
@@ -65,14 +67,11 @@ public class Schnick {
 		try {
 	        prop.loadFromXML(new FileInputStream(new File("data/sounds/stensounds.xml")));
         } catch (InvalidPropertiesFormatException e) {
-	        
-	        e.printStackTrace();
+	        logger.error(e, e);
         } catch (FileNotFoundException e) {
-	        
-	        e.printStackTrace();
+	        logger.error(e, e);
         } catch (IOException e) {
-	       
-	        e.printStackTrace();
+        	logger.error(e, e);
         }
     }
 

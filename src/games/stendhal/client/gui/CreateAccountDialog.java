@@ -37,6 +37,8 @@ import javax.swing.JTextField;
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
 import marauroa.client.TimeoutException;
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.AccountResult;
 import marauroa.common.net.InvalidVersionException;
 
@@ -47,6 +49,8 @@ import marauroa.common.net.InvalidVersionException;
 public class CreateAccountDialog extends JDialog {
 
 	private static final long serialVersionUID = 4436228792112530975L;
+	private static final Logger logger = Log4J.getLogger(CreateAccountDialog.class);
+
 
 	// Variables declaration
 	private JLabel usernameLabel;
@@ -266,7 +270,7 @@ public class CreateAccountDialog extends JDialog {
 					JOptionPane.showMessageDialog(owner,
 						"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
 
-					ex.printStackTrace();
+					logger.error(ex, ex);
 
 					return;
 				}

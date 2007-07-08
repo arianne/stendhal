@@ -72,7 +72,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 				fis.close();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e, e);
 		}
 
 		actual = lines.size();
@@ -100,7 +100,7 @@ public class StendhalChatLineListener implements ActionListener, KeyListener {
 			ps.close();
 			fo.close();
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(ex, ex);
 		}
 
 	}

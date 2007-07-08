@@ -54,6 +54,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 public class OutfitDialog extends JDialog {
@@ -61,6 +63,7 @@ public class OutfitDialog extends JDialog {
 	/** the logger instance. */
 	//  private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
 	private static final long serialVersionUID = 4628210176721975735L;
+	private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
 
 	/*
 	 * Edit these fields to add new outfits. 
@@ -670,7 +673,7 @@ public class OutfitDialog extends JDialog {
 							ImageIO.write((RenderedImage) image, "png", new File(
 							        "outfits\\" + name + ".png"));
 						} catch (Exception e) {
-							e.printStackTrace();
+							logger.error(e, e);
 						}
 					}
 				}

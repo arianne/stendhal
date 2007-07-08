@@ -54,10 +54,9 @@ public class SoundFileReader {
 		return url.openStream();
 	}
 	/**
-	 * @param prop
-	 *            the Property Object to load to
+	 * @param prop the Property Object to load to
 	 * @param url the Propertyfile
-	 * @throws IOException
+	 * @return Properties with name of the sound files
 	 */
 	public static Properties loadSoundProperties(Properties prop, String url) {
 		InputStream in1;
@@ -70,7 +69,7 @@ public class SoundFileReader {
 			prop.load(in1);
 			in1.close();
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// logger.error(e, e);
 		}
 		return prop;
 	}
