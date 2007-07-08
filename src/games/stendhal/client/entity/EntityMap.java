@@ -24,76 +24,72 @@ import java.util.Map;
  *
  */
 public final class EntityMap {
-	protected EntityMap(){
-	}
 	private static Map<Pair<String, String>, Class> entityMap= new HashMap<Pair<String, String>, Class>();
 
 	static {
-
-		try {
-			register();
-		} catch (ClassNotFoundException e) {
-
-			marauroa.common.Log4J.getLogger(EntityMap.class).error("register failed",e);
-		}
+		register();
 	}
 
 	/**
 	 * fills EntityMap with initial values
 	 */
-	private static void register() throws ClassNotFoundException {
-		register("player", null, "Player");
+	private static void register() {
+		register("player", null, Player.class);
 
-		register("creature", "boss", "BossCreature");
-		register("creature", null, "Creature");
+		register("creature", "boss", BossCreature.class);
+		register("creature", null, Creature.class);
 
-		register("sheep", null, "Sheep");
-		/* Not sure whether to register individual pets from child classes,
-		 * or the whole parent class Pet. suggestions welcome. */
-		register("cat", null, "Pet");
-		register("pet", null, "Pet");
+		register("sheep", null, Sheep.class);
 
-		register("npc", null, "NPC");
+		/*
+		 * Not sure whether to register individual pets from child
+		 * classes, or the whole parent class Pet.
+		 * suggestions welcome.
+		 */
+		register("cat", null, Pet.class);
+		register("pet", null, Pet.class);
 
-		register("plant_grower", null, "PlantGrower");
-		register("growing_entity_spawner", "items/grower/carrot_grower", "CarrotGrower");
-		register("growing_entity_spawner", null, "GrainField");
-		//register("grain_field", null, "GrainField"); // compatibility with server <= 0.56
-		register("gold_source", null, "GoldSource");
-		register("fish_source", null, "FishSource");
-		register("well_source", null, "WellSource");
+		register("npc", null, NPC.class);
 
-		register("area", null, "InvisibleEntity");
+		register("plant_grower", null, PlantGrower.class);
+		register("growing_entity_spawner", "items/grower/carrot_grower", CarrotGrower.class);
+		register("growing_entity_spawner", null, GrainField.class);
 
-		register("food", null, "SheepFood");
-		register("chest", null, "Chest");
+		register("gold_source", null, GoldSource.class);
+		register("fish_source", null, FishSource.class);
+		register("well_source", null, WellSource.class);
 
-		register("corpse", null, "Corpse");
+		register("area", null, InvisibleEntity.class);
 
-		register("blood", null, "Blood");
-		register("sign", null, "Sign");
-		register("blackboard", null, "Sign");
+		register("food", null, SheepFood.class);
+		register("chest", null, Chest.class);
 
-		register("item", null, "Item");
-		register("item", "box", "Box");
-		register("item", "ring", "Ring");
-		register("item", "drink", "StackableItem");
-		register("item", "food", "StackableItem");
-		register("item", "herb", "StackableItem");
-		register("item", "misc", "StackableItem");
-		register("item", "money", "StackableItem");
-		register("item", "missile", "StackableItem");
-		register("item", "ammunition", "StackableItem");
+		register("corpse", null, Corpse.class);
 
-		register("item", "resource", "StackableItem");
+		register("blood", null, Blood.class);
+		register("sign", null, Sign.class);
+		register("blackboard", null, Sign.class);
 
-		register("item", "scroll", "StackableItem");
-		register("item","jewellery","StackableItem");
+		register("item", null, Item.class);
+		register("item", "box", Box.class);
+		register("item", "ring", Ring.class);
+		register("item", "drink", StackableItem.class);
+		register("item", "food", StackableItem.class);
+		register("item", "herb", StackableItem.class);
+		register("item", "misc", StackableItem.class);
+		register("item", "money", StackableItem.class);
+		register("item", "missile", StackableItem.class);
+		register("item", "ammunition", StackableItem.class);
 
-		register("portal", null, "Portal");
-		register("door", null, "Door");
+		register("item", "resource", StackableItem.class);
 
-		register("fire",null,"Fire");
+		register("item", "scroll", StackableItem.class);
+		register("item", "jewellery",StackableItem.class);
+
+		register("portal", null, Portal.class);
+		register("door", null, Door.class);
+
+		register("fire", null, Fire.class);
 	}
 
 	/**
@@ -105,8 +101,8 @@ public final class EntityMap {
 	 * @param entityClass
 	 *            the java class of the Entity
 	 */
-	private static void register(final String type, final String eclass, final String entityClass) throws ClassNotFoundException {
-		entityMap.put(new Pair<String, String>(type, eclass), Class.forName("games.stendhal.client.entity." + entityClass));
+	private static void register(final String type, final String eclass, final Class entityClazz) {
+		entityMap.put(new Pair<String, String>(type, eclass), entityClazz);
 	}
 
 	/**
