@@ -65,6 +65,26 @@ public class Minimap extends WtPanel {
 	/** height of (scaled) minimap */
 	private int height;
 
+	/**
+	 * The view X offset.
+	 */
+	private int	panx;
+
+	/**
+	 * The view Y offset.
+	 */
+	private int	pany;
+
+	/**
+	 * The player X coordinate.
+	 */
+	private double	playerX;
+
+	/**
+	 * The player Y coordinate.
+	 */
+	private double	playerY;
+
 	/** minimap image */
 	private BufferedImage image;
 
@@ -137,28 +157,36 @@ public class Minimap extends WtPanel {
 		return true;
 	}
 
-	/**
-	 * Draws the minimap.
-	 *
-	 * @param g graphics object for the game main window
-	 */
-	@Override
-	protected void drawContent(Graphics clientg) {
-		super.drawContent(clientg);
 
-		if ((player == null) || (image == null)) {
+	/**
+	 * Update the player view coordinates.
+	 * TODO: Replace with listener based update later.
+	 */
+	private void updatePosition() {
+		playerX = player.getX();
+		playerY = player.getY() + 1.0;
+
+		updateView();
+	}
+
+
+	/**
+	 * Update the view pan. This should be done when the map size or
+	 * player position changes.
+	 */
+	private void updateView() {
+		panx = 0;
+		pany = 0;
+
+		if(image == null) {
 			return;
 		}
-
-		// now calculate how to pan the minimap
-		int panx = 0;
-		int pany = 0;
 
 		int w = image.getWidth();
 		int h = image.getHeight();
 
-		int xpos = (int) (player.getX() * scale) - width / 2;
-		int ypos = (int) ((player.getY() + 1) * scale) - width / 2;
+		int xpos = (int) ((playerX * scale) + 0.5) - width / 2;
+		int ypos = (int) ((playerY * scale) + 0.5) - width / 2;
 
 		if (w > width) {
 			// need to pan width
@@ -179,44 +207,60 @@ public class Minimap extends WtPanel {
 				pany = ypos;
 			}
 		}
+	}
+
+
+	/**
+	 * Draws the minimap.
+	 *
+	 * @param g graphics object for the game main window
+	 */
+	@Override
+	protected void drawContent(Graphics g) {
+		super.drawContent(g);
+
+		if ((player == null) || (image == null)) {
+			return;
+		}
+
+		// TODO: Update position via events instead
+		updatePosition();
+
+		Graphics vg = g.create();
+		vg.translate(-panx, -pany);
 
 		// draw minimap
-		clientg.drawImage(image, -panx, -pany, null);
+		vg.drawImage(image, 0, 0, null);
 
 		// Enabled with -Dstendhal.superman=x.
 		if (mininps && User.isAdmin()) {
 			// draw npcs (and creatures/sheeps)
-			clientg.translate(-panx, -pany);
-
 			for (Entity entity : client.getGameObjects()) {
-				drawNPC(clientg, entity);
+				drawNPC(vg, entity);
 			}
-
-			clientg.translate(panx, pany);
 		}
 
 		// draw players
-		Color playerColor = Color.WHITE;
 		for (Entity entity : client.getGameObjects()) {
 			if (entity instanceof Player) {
 				Player aPlayer = (Player) entity;
+
 				if(!aPlayer.isGhostMode()) {
-					drawCross(clientg, (int) (aPlayer.getX() * scale) - panx + 1, (int) ((aPlayer.getY() + 1) * scale)
-							- pany + 2, playerColor);
+					drawCross(vg, (int) ((aPlayer.getX() * scale) + 0.5), (int) (((aPlayer.getY() + 1.0) * scale) + 0.5), Color.WHITE);
 				}
 			} else if( entity instanceof Portal) {
 				Portal portal = (Portal) entity;
+
 				if (!portal.isHidden()) {
-					drawDot(clientg, (int) (entity.getX() * scale) - panx, (int) ((entity.getY()) * scale) - pany,
-							Color.WHITE);
+					drawDot(vg, (int) ((entity.getX() * scale) + 0.5), (int) ((entity.getY() * scale) + 0.5), Color.WHITE);
 				}
 			}
 		}
 
 		// draw myself
-		playerColor = Color.BLUE;
-		drawCross(clientg, (int) (player.getX() * scale) - panx + 1, (int) ((player.getY() + 1) * scale) - pany + 2,
-		        playerColor);
+		drawCross(vg, (int) ((playerX * scale) + 0.5), (int) ((playerY * scale) + 0.5), Color.BLUE);
+
+		vg.dispose();
 	}
 
 	/**
@@ -253,6 +297,9 @@ public class Minimap extends WtPanel {
 	/** draws a cross at the given position */
 	private void drawCross(Graphics g, int x, int y, Color color) {
 		int size = 2;
+
+		x += 1;
+		y += 2;
 
 		g.setColor(color);
 		g.drawLine(x - size, y, x + size, y);
@@ -294,8 +341,8 @@ public class Minimap extends WtPanel {
 		int w = image.getWidth();
 		int h = image.getHeight();
 
-		int xpos = (int) (player.getX() * scale) - width / 2;
-		int ypos = (int) ((player.getY() + 1) * scale) - width / 2;
+		int xpos = (int) (playerX * scale) - width / 2;
+		int ypos = (int) (playerY * scale) - width / 2;
 
 		if (w > width) {
 			// need to pan width
