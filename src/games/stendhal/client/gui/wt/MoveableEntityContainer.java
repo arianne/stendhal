@@ -19,6 +19,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 import marauroa.common.game.RPAction;
+import marauroa.common.game.RPObject;
 
 /** this container is used to drag the entities around */
 public class MoveableEntityContainer implements WtDraggable {
@@ -32,33 +33,32 @@ public class MoveableEntityContainer implements WtDraggable {
 	/** The moved object */
 	private Entity entity;
 
-	/** parent(container) of the moved object, may be null */
-	private Entity parent;
 
-	/** the slot this item is in. makes only sense when parent is != null */
-	private String slot;
-
-	/** constuctor to use when the item is on the ground */
-	public MoveableEntityContainer(Entity entity) {
-		this(entity, null, null);
-	}
-
-	/** constuctor to use when the item is inside a container */
-	public MoveableEntityContainer(Entity entity, Entity parent, String slot) {
+	/**
+	 * Create an entity drag container.
+	 *
+	 * @param	entity		The entity being moved.
+	 */
+	public MoveableEntityContainer(final Entity entity) {
 		this.entity = entity;
-		this.parent = parent;
-		this.slot = slot;
 	}
+
+
+	//
+	// MoveableEntityContainer
+	//
 
 	/** fills the action with the appropiate 'move from' parameters */
-	public void fillRPAction(RPAction action) {
-		if (parent != null) {
+	protected void fillRPAction(RPAction action) {
+		RPObject rpObject = entity.getRPObject();
+
+		if(rpObject.isContained()) {
 			// the item is inside a container
-			action.put("baseobject", parent.getID().getObjectID());
-			action.put("baseslot", slot);
+			action.put("baseobject", rpObject.getContainer().getID().getObjectID());
+			action.put("baseslot", rpObject.getContainerSlot().getName());
 		}
 
-		action.put("baseitem", entity.getID().getObjectID());
+		action.put("baseitem", rpObject.getID().getObjectID());
 	}
 
 
@@ -78,7 +78,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * @return	<code>true</code> if the item is in a container.
 	 */
 	public boolean isContained() {
-		return (parent != null);
+		return entity.getRPObject().isContained();
 	}
 
 

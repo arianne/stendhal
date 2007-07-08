@@ -24,25 +24,11 @@ public class CommandList extends WtPopupMenu {
 	/** the entity associated with the command list */
 	private Entity entity;
 
-	/** This flag will be true of the object is contained inside another one */
-	private boolean contained;
-
-	/** In case the item is contained the base object that contain it */
-	private String baseObject;
-
-	/**
-	 * In case the item is contained the slot of the base object that contains
-	 * it
-	 */
-	private String baseSlot;
-
 	/** creates a new CommandList */
 	public CommandList(String name, String[] items, Entity entity) {
 		super(name);
 
 		this.entity = entity;
-
-		this.contained = false;
 
 		populate(items);
 	}
@@ -72,11 +58,6 @@ public class CommandList extends WtPopupMenu {
 		}
 	}
 
-	public void setContext(int baseObject, String baseSlot) {
-		this.baseObject = Integer.toString(baseObject);
-		this.baseSlot = baseSlot;
-		this.contained = true;
-	}
 
 	/** an action has been chosen */
 	protected void doAction(String command) {

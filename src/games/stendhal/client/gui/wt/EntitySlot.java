@@ -229,7 +229,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
 		if (entity != null) {
-			return new MoveableEntityContainer(entity, parent, getName());
+			return new MoveableEntityContainer(entity);
 		}
 
 		return null;
@@ -241,7 +241,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		if (entity != null) {
 			// create the context menu
 			CommandList list = new CommandList(getName(), entity.getView().getActions(), entity);
-			list.setContext(parent.getID().getObjectID(), getName());
 			setContextMenu(list);
 		}
 		return true;
