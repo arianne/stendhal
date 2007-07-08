@@ -235,7 +235,7 @@ public class StendhalRPWorld extends RPWorld {
 			// make sure that it is always initialized on server startup so that its LoginListener does not miss anyone.
 			GagManager.get();
 		} catch (Exception e) {
-			logger.fatal("Error on Init the server.", e);
+			logger.error("Error on Init the server.", e);
 		}
 	}
 

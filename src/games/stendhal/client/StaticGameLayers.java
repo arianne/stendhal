@@ -108,7 +108,7 @@ public class StaticGameLayers {
 		int i = name.indexOf('.');
 
 		if(i == -1) {
-			logger.fatal("Old server, please upgrade");
+			logger.error("Old server, please upgrade");
 			return;
 		}
 
