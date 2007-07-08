@@ -55,7 +55,6 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		this.maxRipeness = maxRipeness;
 		setRPClass("growing_entity_spawner");
 		put("type", "growing_entity_spawner");
-		setRPClass("growing_entity_spawner");
 		put("class", clazz);
 		put("action_name", actionName);
 		put("max_ripeness", maxRipeness);
