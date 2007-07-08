@@ -199,14 +199,17 @@ public class Character extends WtPanel {
 		oldPlayerModificationCount = playerEntity.getModificationCount();
 	}
 
-	/** refreshes the player stats and draws them */
-	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
 
+	/**
+	 * Draw the panel contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
+	 */
+	@Override
+	protected void drawContent(Graphics g) {
 		refreshPlayerStats();
-		return super.draw(g);
+
+		super.drawContent(g);
 	}
 }

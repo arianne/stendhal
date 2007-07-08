@@ -84,16 +84,15 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 		registerCloseListener(this);
 	}
 
-	/** draws the MessageBox */
+
+	/**
+	 * Draw the messagebox contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
+	 */
 	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
-
-		// draw frame/title bar
-		Graphics clientArea = super.draw(g);
-
+	protected void drawContent(Graphics clientArea) {
 		// layout the buttons
 		if (!layedout) {
 			int lastHeight = textPanel.getLastHeight();
@@ -103,8 +102,9 @@ public class WtMessageBox extends WtPanel implements WtClickListener, WtCloseLis
 			layedout = true;
 		}
 
-		return clientArea;
+		super.drawContent(clientArea);
 	}
+
 
 	/** clicked a button */
 	public void onClick(String name, Point point) {

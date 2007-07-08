@@ -763,22 +763,17 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * 
 	 * @param g
 	 *            graphics where to render to
-	 * @return a graphics object for deriving classes to use. It is already
-	 *         clipped to the correct client region
 	 */
-	public Graphics draw(Graphics g) {
+	public void draw(Graphics g) {
 		// are we closed? then don't draw anything
 		if (isClosed()) {
-			return g;
+			return;
 		}
 
 		/*
 		 * Remove un/reparented children
 		 */
 		checkDisowned();
-
-		// get correct clipped graphics
-		Graphics panelGraphics = g.create(x, y, width, height);
 
 		// only draw something when we have a title bar or a frame
 		if (frame || titleBar) {
@@ -788,39 +783,58 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				image = recreatePanelImage(g);
 				cachedImage = image;
 			}
-			panelGraphics.drawImage(image, 0, 0, null);
+			g.drawImage(image, 0, 0, null);
 		}
 
+		// TODO: Find a clean way to do g.dispose() after g.create()'s
+
 		if (frame) {
-			panelGraphics = panelGraphics.create(FRAME_SIZE, FRAME_SIZE, width - (FRAME_SIZE * 2), height
-			        - (FRAME_SIZE * 2));
+			g = g.create(FRAME_SIZE, FRAME_SIZE, width - (FRAME_SIZE * 2), height - (FRAME_SIZE * 2));
 		}
+
 		if (titleBar) {
-			panelGraphics = panelGraphics.create(0, TITLEBAR_SIZE + 2, width - (FRAME_SIZE * 2), height
-			        - (FRAME_SIZE * 2) - TITLEBAR_SIZE - 2);
+			g = g.create(0, TITLEBAR_SIZE + 2, width - (FRAME_SIZE * 2), height - (FRAME_SIZE * 2) - TITLEBAR_SIZE - 2);
 		}
 
 		if (!minimized) {
-			// now draw the childs
-			drawChilds(panelGraphics);
+			drawContent(g);
 		}
-
-		return panelGraphics;
 	}
+
+
+	/**
+	 * Draw the panel contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
+	 */
+	protected void drawContent(Graphics g) {
+		drawChildren(g);
+	}
+
 
 	/** panels draw themselves */
 	public void drawDragged(Graphics g) {
 	}
 
 	/**
-	 * draws all childs
+	 * draws all children
 	 * 
 	 * @param clientArea
 	 *            Graphics object clipped to the client region.
 	 */
-	protected void drawChilds(Graphics clientArea) {
-		for (int i = 0; i < children.size(); i++) {
-			children.get(children.size() - i - 1).draw(clientArea);
+	protected void drawChildren(Graphics g) {
+		int i = children.size();
+
+		while(i-- != 0) {
+			WtPanel child = children.get(i);
+
+			// get correct clipped graphics
+			Graphics cg = g.create(child.getX(), child.getY(), child.getWidth(), child.getHeight());
+
+			child.draw(cg);
+
+			cg.dispose();
 		}
 	}
 

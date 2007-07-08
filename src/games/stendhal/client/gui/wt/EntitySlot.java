@@ -180,21 +180,16 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 	}
 
+
 	/**
-	 * draws the panel into the graphics object
-	 * 
-	 * @param g
-	 *            graphics where to render to
-	 * @return a graphics object for deriving classes to use. It is already
-	 *         clipped to the correct client region
+	 * Draw the panel contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
-
-		Graphics childArea = super.draw(g);
+	protected void drawContent(Graphics childArea) {
+		super.drawContent(childArea);
 
 		// draw the background image
 		background.draw(childArea, 0, 0);
@@ -220,8 +215,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			int y = (getHeight() - placeholder.getHeight()) / 2;
 			placeholder.draw(childArea, x, y);
 		}
-
-		return childArea;
 	}
 
 	/**

@@ -59,22 +59,23 @@ public class WtButton extends WtPanel {
 
 	}
 
-	/** draws the button */
-	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
 
-		Graphics clientArea = super.draw(g);
+	/**
+	 * Draw the button contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
+	 */
+	@Override
+	protected void drawContent(Graphics g) {
+		super.drawContent(g);
 
 		// draw the image if we have one
 		if (image != null) {
-			image.draw(clientArea, 0, 0);
+			image.draw(g, 0, 0);
 		}
-
-		return clientArea;
 	}
+
 
 	/** button is clicked */
 	@Override

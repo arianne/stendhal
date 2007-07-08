@@ -106,20 +106,15 @@ public class WtTextPanel extends WtPanel {
 		formatter.set(param, value);
 	}
 
-	/** draws the String */
+
+	/**
+	 * Draw the text contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
+	 */
 	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
-
-		// draw frame/title bar
-		Graphics clientArea = super.draw(g);
-
-		if (isMinimized()) {
-			// don't draw minimized windows
-			return clientArea;
-		}
+	protected void drawContent(Graphics clientArea) {
 
 		Font font = clientArea.getFont().deriveFont((float) fontSize);
 		// set font and color
@@ -177,7 +172,5 @@ public class WtTextPanel extends WtPanel {
 		} while (index >= 0);
 
 		lastHeight = pos;
-
-		return clientArea;
 	}
 }

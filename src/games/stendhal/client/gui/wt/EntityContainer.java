@@ -149,15 +149,15 @@ public class EntityContainer extends WtPanel {
 		rescanSlotContent();
 	}
 
+
 	/**
-	 * draws the panel. it also checks for modified slot content
+	 * Draw the panel contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
-
+	protected void drawContent(Graphics g) {
 		if ((parent != null) && (slotName != null) && !isClosed()) {
 			RPSlot rpslot = parent.getSlot(slotName);
 			// rescan the content if the size changes
@@ -176,7 +176,6 @@ public class EntityContainer extends WtPanel {
 			checkDistance();
 		}
 
-		return super.draw(g);
+		super.drawContent(g);
 	}
-
 }

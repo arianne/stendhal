@@ -143,21 +143,11 @@ public class Minimap extends WtPanel {
 	 * @param g graphics object for the game main window
 	 */
 	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
-
-		// draw frame and title
-		Graphics clientg = super.draw(g);
+	protected void drawContent(Graphics clientg) {
+		super.drawContent(clientg);
 
 		if ((player == null) || (image == null)) {
-			return g;
-		}
-
-		// don't draw the minimap when we're miminized
-		if (isMinimized()) {
-			return clientg;
+			return;
 		}
 
 		// now calculate how to pan the minimap
@@ -227,8 +217,6 @@ public class Minimap extends WtPanel {
 		playerColor = Color.BLUE;
 		drawCross(clientg, (int) (player.getX() * scale) - panx + 1, (int) ((player.getY() + 1) * scale) - pany + 2,
 		        playerColor);
-
-		return g;
 	}
 
 	/**

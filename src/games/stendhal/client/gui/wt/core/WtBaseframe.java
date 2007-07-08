@@ -107,10 +107,9 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	 * 
 	 * @param g
 	 *            graphics where to render to
-	 * @return same graphics object
 	 */
 	@Override
-	public synchronized Graphics draw(Graphics g) {
+	public synchronized void draw(Graphics g) {
 		// draw the stuff
 		super.draw(g);
 
@@ -121,8 +120,8 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 			dragg.translate(dragStartPoint.x, dragStartPoint.y);
 			// yep, draw it
 			draggedObject.drawDragged(dragg);
+			dragg.dispose();
 		}
-		return g;
 	}
 
 	/** stops the dragging operations */

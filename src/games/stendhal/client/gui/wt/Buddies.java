@@ -162,47 +162,45 @@ public class Buddies extends WtPanel {
 		}
 	}
 
-	/** refreshes the player stats and draws them */
+
+	/**
+	 * Draw the panel contents. This is only called while open and not
+	 * minimized.
+	 *
+	 * @param	g		The graphics context to draw with.
+	 */
 	@Override
-	public Graphics draw(Graphics g) {
-		if (isClosed()) {
-			return g;
-		}
+	protected void drawContent(Graphics g) {
+		super.drawContent(g);
 
-		Graphics clientg = super.draw(g);
+		int i = 0;
+		RPObject object = ui.getClient().getPlayer();
 
-		if (!isMinimized()) {
-			int i = 0;
-			RPObject object = ui.getClient().getPlayer();
+		if (object != null) {
+			RPSlot slot = object.getSlot("!buddy");
+			RPObject buddy = slot.getFirst();
+			buddies.clear();
 
-			if (object != null) {
-				RPSlot slot = object.getSlot("!buddy");
-				RPObject buddy = slot.getFirst();
-				buddies.clear();
+			for (String key : buddy) {
+				if (key.startsWith("_")) {
+					buddies.add(key.substring(1));
 
-				for (String key : buddy) {
-					if (key.startsWith("_")) {
-						buddies.add(key.substring(1));
-
-						if (buddy.getInt(key) == 0) {
-							clientg.setColor(Color.RED);
-							offline.draw(clientg, 3, 2 + i * 20);
-							clientg.drawString(key.substring(1), 24, 16 + i * 20);
-						} else {
-							clientg.setColor(Color.GREEN);
-							online.draw(clientg, 3, 2 + i * 20);
-							clientg.drawString(key.substring(1), 24, 16 + i * 20);
-						}
-
-						i++;
+					if (buddy.getInt(key) == 0) {
+						g.setColor(Color.RED);
+						offline.draw(g, 3, 2 + i * 20);
+						g.drawString(key.substring(1), 24, 16 + i * 20);
+					} else {
+						g.setColor(Color.GREEN);
+						online.draw(g, 3, 2 + i * 20);
+						g.drawString(key.substring(1), 24, 16 + i * 20);
 					}
+
+					i++;
 				}
 			}
-
-			resizeToFitClientArea(132, i * 20 + 3);
 		}
 
-		return clientg;
+		resizeToFitClientArea(132, i * 20 + 3);
 	}
 
 	//
