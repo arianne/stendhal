@@ -49,7 +49,7 @@ public class MoveableEntityContainer implements WtDraggable {
 	//
 
 	/** fills the action with the appropiate 'move from' parameters */
-	protected void fillRPAction(RPAction action) {
+	public void fillRPAction(RPAction action) {
 		RPObject rpObject = entity.getRPObject();
 
 		if(rpObject.isContained()) {
