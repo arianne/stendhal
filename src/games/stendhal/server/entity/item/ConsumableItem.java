@@ -21,21 +21,12 @@ import java.util.Map;
 
 import marauroa.common.game.RPObject;
 
-/**
- *
- */
-
 /*
+ * represents everything that can be consumed by RPentity.
+ * Including food, poison, antidote ..
+ *
  * Note: this class has a natural ordering that is inconsistent with equals.
  *
- * TODO: bug: calling consume() on a stack of ConsumableItems uses up all
- * items in the stack, not only a single one.
- *
- * Quote from Player.java:
- *
- * NOTE: We have a bug when consuming a stackableItem as when the first
- * item runs out the other ones also runs out. Perhaps this must be
- * fixed inside StackableItem itself
  */
 public class ConsumableItem extends StackableItem implements UseListener ,Comparable<ConsumableItem>{
 
@@ -95,6 +86,11 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 		return left == 0;
 	}
 
+	/**
+	 * verifies item is near to player.
+	 * if so splits one single item of and calls consumeItem of the player
+	 *
+	 **/
 	public void onUsed(RPEntity user) {
 		Player player = (Player) user;
 		if (isContained()) {
