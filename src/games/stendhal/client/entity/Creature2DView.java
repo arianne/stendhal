@@ -363,6 +363,7 @@ public class Creature2DView extends RPEntity2DView {
 	 *
 	 * @param	list		The list to reorder.
 	 */
+	@Override
 	protected void reorderActions(final List<String> list) {
 		if(list.remove(ActionType.ATTACK.getRepresentation())) {
 			list.add(0, ActionType.ATTACK.getRepresentation());

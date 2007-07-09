@@ -109,9 +109,9 @@ public class Ring2DView extends Item2DView {
 	 * Determines on top of which other entities this entity should be
 	 * drawn. Entities with a high Z index will be drawn on top of ones
 	 * with a lower Z index.
-	 * 
+	 *
 	 * Also, players can only interact with the topmost entity.
-	 * 
+	 *
 	 * @return	The drawing index.
 	 */
 	@Override
@@ -125,6 +125,7 @@ public class Ring2DView extends Item2DView {
 	 *
 	 * @param	list		The list to reorder.
 	 */
+	@Override
 	protected void reorderActions(final List<String> list) {
 		list.remove(ActionType.LOOK.getRepresentation());
 		list.add(0, ActionType.LOOK.getRepresentation());
