@@ -9,8 +9,6 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
-
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;

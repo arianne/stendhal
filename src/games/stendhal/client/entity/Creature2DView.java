@@ -19,7 +19,6 @@ import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Debug;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;

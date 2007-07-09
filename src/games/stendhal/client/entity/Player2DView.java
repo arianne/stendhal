@@ -9,7 +9,6 @@ package games.stendhal.client.entity;
 //
 //
 
-import games.stendhal.client.GameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;

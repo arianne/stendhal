@@ -100,18 +100,18 @@ public class ConversationStates {
 	public static final int QUEST_2_OFFERED = 65;
 
 	/**
-	 * The player has just started the quest. 
+	 * The player has just started the quest.
 	 */
 	public static final int QUEST_STARTED = 61;
 
 	/**
 	 * The player has brought a requested item, and the SpeakerNPC has asked if
-	 * it should be used for the quest. 
+	 * it should be used for the quest.
 	 */
 	public static final int QUEST_ITEM_BROUGHT = 62;
 
 	/**
-	 * The SpeakerNPC asks the player if the player has brought a requested item 
+	 * The SpeakerNPC asks the player if the player has brought a requested item
 	 */
 	public static final int QUEST_ITEM_QUESTION = 63;
 

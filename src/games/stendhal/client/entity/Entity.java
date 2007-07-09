@@ -18,7 +18,6 @@ import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import java.util.List;
 
 import marauroa.common.game.RPAction;

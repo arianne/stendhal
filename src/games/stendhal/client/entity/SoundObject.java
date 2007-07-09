@@ -29,7 +29,6 @@ import games.stendhal.common.Rand;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
 import java.util.Map;
 
 import javax.sound.sampled.DataLine;

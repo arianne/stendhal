@@ -33,43 +33,43 @@ public abstract class Entity extends RPObject {
 	/**
 	 * On the ground.
 	 */
-	public static final int	COLLISION_GROUND	= 0x01;
+	//public static final int	COLLISION_GROUND	= 0x01;
 
-	/**
-	 * Just above the ground.
-	 */
-	public static final int	COLLISION_LOWER		= 0x02;
-
-	/**
-	 * Table top level.
-	 */
-	public static final int	COLLISION_TABLETOP	= 0x04;
-
-	/**
-	 * About the middle of a single level interior.
-	 */
-	public static final int	COLLISION_MIDDLE	= 0x08;
-
-	/**
-	 * Just below a single level interior ceiling.
-	 */
-	public static final int	COLLISION_UPPER		= 0x10;
-
-	/**
-	 * Anything above first level interior.
-	 */
-	public static final int	COLLISION_MULTISTORY	= 0x20;
-
-	/**
-	 * Sky.
-	 */
-	public static final int	COLLISION_SKY		= 0x40;
-
-	/**
-	 * The area a player [normally] occupies.
-	 */
-	public static final int	COLLISION_PLAYER	=
-		(COLLISION_LOWER|COLLISION_TABLETOP|COLLISION_MIDDLE);
+//	/**
+//	 * Just above the ground.
+//	 */
+//	public static final int	COLLISION_LOWER		= 0x02;
+//
+//	/**
+//	 * Table top level.
+//	 */
+//	public static final int	COLLISION_TABLETOP	= 0x04;
+//
+//	/**
+//	 * About the middle of a single level interior.
+//	 */
+//	public static final int	COLLISION_MIDDLE	= 0x08;
+//
+//	/**
+//	 * Just below a single level interior ceiling.
+//	 */
+//	public static final int	COLLISION_UPPER		= 0x10;
+//
+//	/**
+//	 * Anything above first level interior.
+//	 */
+//	public static final int	COLLISION_MULTISTORY	= 0x20;
+//
+//	/**
+//	 * Sky.
+//	 */
+//	public static final int	COLLISION_SKY		= 0x40;
+//
+//	/**
+//	 * The area a player [normally] occupies.
+//	 */
+//	public static final int	COLLISION_PLAYER	=
+//		(COLLISION_LOWER|COLLISION_TABLETOP|COLLISION_MIDDLE);
 
 
 	private int x;
@@ -91,7 +91,7 @@ public abstract class Entity extends RPObject {
 
 		// TODO: Try to remove this attribute later
 		entity.addAttribute("type", Type.STRING);
-		
+
 		entity.addAttribute("x", Type.SHORT);
 		entity.addAttribute("y", Type.SHORT);
 
@@ -327,7 +327,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Calculates the squared distance between the two given rectangles,
-	 * i.e. the square of the minimal distance between a point in rect1 
+	 * i.e. the square of the minimal distance between a point in rect1
 	 * and a point in rect2.
 	 *
 	 * We're calculating the square because the square root operation
@@ -335,9 +335,9 @@ public abstract class Entity extends RPObject {
 	 * it doesn't matter if we compare the distances or the squares of
 	 * the distances (the square operation is strictly monotonous for positive
 	 * numbers).
-	 * 
+	 *
 	 * TODO: consider moving this to a class in games.stendhal.common
-	 * 
+	 *
 	 * @param rect1 The first rectangle.
 	 * @param rect2 The second rectangle.
 	 * @return The squared distance between the two rectangles.
@@ -346,18 +346,18 @@ public abstract class Entity extends RPObject {
 		int left1 = (int) rect1.getMinX();
 		// minus one because we want the distance of two 1x1 entities standing
 		// directly next to each other to be 1, not 0.
-		int right1 = (int) rect1.getMaxX() - 1; 
-		int top1 = (int) rect1.getMinY(); 
-		int bottom1 = (int) rect1.getMaxY() - 1; 
-		
-		int left2 = (int) rect2.getMinX(); 
-		int right2 = (int) rect2.getMaxX() - 1; 
-		int top2 = (int) rect2.getMinY(); 
-		int bottom2 = (int) rect2.getMaxY() - 1; 
+		int right1 = (int) rect1.getMaxX() - 1;
+		int top1 = (int) rect1.getMinY();
+		int bottom1 = (int) rect1.getMaxY() - 1;
+
+		int left2 = (int) rect2.getMinX();
+		int right2 = (int) rect2.getMaxX() - 1;
+		int top2 = (int) rect2.getMinY();
+		int bottom2 = (int) rect2.getMaxY() - 1;
 
 		int xDist = 0;
 		int yDist = 0;
-		
+
 		if (right1 < right2) {
 			if (right1 > left2) {
 				xDist = 0;
@@ -390,7 +390,7 @@ public abstract class Entity extends RPObject {
 		}
 		return xDist * xDist + yDist * yDist;
 	}
-	
+
 	/**
 	 * This returns square of the distance between this entity and the
 	 * given one.
@@ -399,7 +399,7 @@ public abstract class Entity extends RPObject {
 	 * it doesn't matter if we compare the distances or the squares of
 	 * the distances (the square operation is strictly monotonous for positive
 	 * numbers).
-	 * @param other the entity to which the distance should be calculated 
+	 * @param other the entity to which the distance should be calculated
 	 */
 	public double squaredDistance(Entity other) {
 		if ((!has("width") || getInt("width") == 1) && (!has("height") ||getInt("height") == 1)) {
@@ -443,7 +443,7 @@ public abstract class Entity extends RPObject {
 	 */
 	public boolean nextTo(int x, int y, double step) {
 		Rectangle2D thisArea = getArea();
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, 
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
 				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
 		return thisArea.contains(x, y);
 	}
@@ -476,7 +476,7 @@ public abstract class Entity extends RPObject {
 		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step, otherArea.getWidth() + step, otherArea
 		        .getHeight()
 		        + step);
-		
+
 		return thisArea.intersects(otherArea);
 	}
 
@@ -509,13 +509,13 @@ public abstract class Entity extends RPObject {
 	 * first parameter is modified.
 	 *
 	 * @param rect the area is stored into this paramter
-	 * @param x x 
+	 * @param x x
 	 * @param y y
 	 */
 	public void getArea(final Rectangle2D rect, final double x, final double y) {
 		rect.setRect(x, y, 1.0, 1.0);
 	}
-		
+
 	/**
 	 * Called when this object is added to a zone.
 	 *
@@ -535,7 +535,7 @@ public abstract class Entity extends RPObject {
 	/**
 	 * Notifies the StendhalRPWorld that this entity's attributes have
 	 * changed.
-	 * 
+	 *
 	 * TODO: Find a way to move this up to RPObject.
 	 */
 	public void notifyWorldAboutChanges() {
