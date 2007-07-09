@@ -117,8 +117,7 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
-	protected void drawPath(final GameScreen screen, final List<Node> path, final int delta) {
-		Graphics g2d = screen.expose();
+	protected void drawPath(final Graphics2D g2d, final List<Node> path, final int delta) {
 		Point p1 = screen.convertWorldToScreen(getX(), getY());
 
 		for (Node node : path) {
@@ -320,30 +319,30 @@ public class Creature2DView extends RPEntity2DView {
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final GameScreen screen, Graphics2D g2d, int x, int y, int width, int height) {
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
 		List<Node>	path;
 
 
-		super.draw(screen, g2d, x, y, width, height);
+		super.draw(g2d, x, y, width, height);
 
 		if (Debug.CREATURES_DEBUG_CLIENT && !hidePath) {
 			if ((path = getTargetMovedPath()) != null) {
 				int delta = GameScreen.SIZE_UNIT_PIXELS / 2;
 				g2d.setColor(Color.red);
-				drawPath(screen, path, GameScreen.SIZE_UNIT_PIXELS / 2);
+				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2);
 			}
 
 			if ((path = getPatrolPath()) != null) {
 				g2d.setColor(Color.green);
-				drawPath(screen, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
+				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 1);
 			}
 
 			if ((path = getMoveToTargetPath()) != null) {
 				g2d.setColor(Color.blue);
-				drawPath(screen, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
+				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
 			}
 		}
 	}

@@ -511,8 +511,10 @@ public class GameScreen {
 	 * Draw the screen entities.
 	 */
 	protected void drawEntities() {
+		Graphics2D g2d = expose();
+
 		for (Entity2DView view : views) {
-			view.draw(this);
+			view.draw(g2d);
 		}
 	}
 
@@ -521,8 +523,10 @@ public class GameScreen {
 	 * Draw the top portion screen entities (such as HP/title bars).
 	 */
 	protected void drawTopEntities() {
+		Graphics2D g2d = expose();
+
 		for (Entity2DView view : views) {
-			view.drawTop(this);
+			view.drawTop(g2d);
 		}
 	}
 

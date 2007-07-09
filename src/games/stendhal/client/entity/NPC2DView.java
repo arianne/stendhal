@@ -90,6 +90,12 @@ public class NPC2DView extends RPEntity2DView {
 	// Entity2DView
 	//
 
+	@Override
+	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
+		super.draw(g2d, x-8, y, width, height);
+	}
+
+
 	/**
 	 * Get the 2D area that is drawn in.
 	 *
@@ -119,13 +125,5 @@ public class NPC2DView extends RPEntity2DView {
 		if(property == Entity.PROP_CLASS) {
 			representationChanged = true;
 		}
-	}
-
-
-	@Override
-	protected void draw(GameScreen screen, Graphics2D g2d, int x, int y,
-			int width, int height) {
-		
-		super.draw(screen, g2d, x-8, y, width, height);
 	}
 }

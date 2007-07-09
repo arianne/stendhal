@@ -152,12 +152,11 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Draw the floating text indicators (floaters).
 	 *
-	 * @param	screen		The game screen.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
 	 */
-	protected void drawFloaters(final GameScreen screen, final Graphics2D g2d, final int x, final int y) {
+	protected void drawFloaters(final Graphics2D g2d, final int x, final int y) {
 		FontMetrics fm = g2d.getFontMetrics();
 
 		Iterator<RPEntity.TextIndicator> iter = rpentity.getTextIndicators();
@@ -293,7 +292,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
@@ -301,7 +299,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	height		The drawn entity height.
 	 */
 	@Override
-	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		Rectangle srect = screen.convertWorldToScreen(entity.getArea());
 
 		if (rpentity.isBeingAttacked()) {
@@ -335,7 +333,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			frameBladeStrike++;
 		}
 
-		super.draw(screen, g2d, x, y, width, height);
+		super.draw(g2d, x, y, width, height);
 
 		if (rpentity.isEating()) {
 			Rectangle2D rect = rpentity.getArea();
@@ -370,7 +368,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			}
 		}
 
-		drawFloaters(screen, g2d, x, y);
+		drawFloaters(g2d, x, y);
 	}
 
 
@@ -378,7 +376,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Draw the top layer parts of an entity. This will be on down after
 	 * all other game layers are rendered.
 	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
@@ -386,7 +383,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	height		The drawn entity height.
 	 */
 	@Override
-	protected void drawTop(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		drawStatusBar(g2d, x, y);
 	}
 

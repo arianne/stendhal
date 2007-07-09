@@ -224,11 +224,11 @@ public class Sheep2DView extends RPEntity2DView {
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics to drawn on.
 	 */
 	@Override
-	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		super.draw(screen, g2d, x, y, width, height);
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		super.draw(g2d, x, y, width, height);
 
 		if (ideaSprite != null) {
 			Rectangle2D rect = sheep.getArea();

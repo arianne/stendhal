@@ -11,6 +11,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameScreen;
 
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
@@ -43,10 +44,10 @@ public class InvisibleEntity2DView extends Entity2DView {
 	/**
 	 * Draw the entity (NOT!).
 	 *
-	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics to drawn on.
 	 */
 	@Override
-	public void draw(final GameScreen screen) {
+	public void draw(final Graphics2D g2d) {
 	}
 
 

@@ -68,6 +68,11 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	protected boolean	representationChanged;
 
 	/**
+	 * The game screen this is for.
+	 */
+	protected GameScreen	screen;
+
+	/**
 	 * The visibility value changed.
 	 */
 	protected boolean	visibilityChanged;
@@ -80,6 +85,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	public Entity2DView(final Entity entity) {
 		this.entity = entity;
+
+		// TODO: Pass this in
+		screen = GameScreen.get();
 
 		entityComposite = AlphaComposite.SrcOver;
 		contained = false;
@@ -118,9 +126,9 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics to drawn on.
 	 */
-	public void draw(final GameScreen screen) {
+	public void draw(final Graphics2D g2d) {
 		/*
 		 * Handle entity changes
 		 */
@@ -131,34 +139,36 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
 
-		if(screen.isInScreen(r)) {
-			Graphics2D g2d = screen.expose();
-			Composite oldComposite = g2d.getComposite();
-
-			try {
-				g2d.setComposite(entityComposite);
-				draw(screen, g2d, r.x, r.y, r.width, r.height);
-			} finally {
-				g2d.setComposite(oldComposite);
-			}
-
-			drawEffect(screen, g2d, r.x, r.y, r.width, r.height);
+		if(isContained()) {
+			r.setLocation(0, 0);
+		} else if(!screen.isInScreen(r)) {
+			return;
 		}
+
+		Composite oldComposite = g2d.getComposite();
+
+		try {
+			g2d.setComposite(entityComposite);
+			draw(g2d, r.x, r.y, r.width, r.height);
+		} finally {
+			g2d.setComposite(oldComposite);
+		}
+
+		drawEffect(g2d, r.x, r.y, r.width, r.height);
 	}
 
 
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
 	 * @param	width		The drawn entity width.
 	 * @param	height		The drawn entity height.
 	 */
-	protected void draw(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		drawEntity(screen, g2d, x, y, width, height);
+	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		drawEntity(g2d, x, y, width, height);
 
 		if (stendhal.SHOW_COLLISION_DETECTION) {
 			g2d.setColor(Color.blue);
@@ -174,28 +184,26 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Draw the effect part. This is drawn independent of the visibility
 	 * setting.
 	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
 	 * @param	width		The drawn entity width.
 	 * @param	height		The drawn entity height.
 	 */
-	protected void drawEffect(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void drawEffect(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 	}
 
 
 	/**
 	 * Draw the base entity part.
 	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
 	 * @param	width		The drawn entity width.
 	 * @param	height		The drawn entity height.
 	 */
-	protected void drawEntity(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		getSprite().draw(g2d, x, y);
 	}
 
@@ -204,21 +212,24 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * Draw the top layer parts of an entity. This will be on down after
 	 * all other game layers are rendered.
 	 *
-	 * @param	screen		The screen to drawn on.
+	 * @param	g2d		The graphics to drawn on.
 	 */
-	public void drawTop(final GameScreen screen) {
+	public void drawTop(final Graphics2D g2d) {
 		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
 
-		if(screen.isInScreen(r)) {
-			Graphics2D g2d = screen.expose();
-			Composite oldComposite = g2d.getComposite();
+		if(isContained()) {
+			r.setLocation(0, 0);
+		} else if(!screen.isInScreen(r)) {
+			return;
+		}
 
-			try {
-				g2d.setComposite(entityComposite);
-				drawTop(screen, g2d, r.x, r.y, r.width, r.height);
-			} finally {
-				g2d.setComposite(oldComposite);
-			}
+		Composite oldComposite = g2d.getComposite();
+
+		try {
+			g2d.setComposite(entityComposite);
+			drawTop(g2d, r.x, r.y, r.width, r.height);
+		} finally {
+			g2d.setComposite(oldComposite);
 		}
 	}
 
@@ -226,14 +237,13 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Draw the entity.
 	 *
-	 * @param	screen		The screen to drawn on.
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
 	 * @param	width		The drawn entity width.
 	 * @param	height		The drawn entity height.
 	 */
-	protected void drawTop(final GameScreen screen, final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 	}
 
 
