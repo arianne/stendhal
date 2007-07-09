@@ -70,9 +70,9 @@ public class StackableItem2DView extends Item2DView {
 
 		if (quantity <= 1) {
 			return null;
-		} else if(isContained() && (quantity > 99999999)) {
+		} else if(isContained() && (quantity > 9999999)) {
 			label = (quantity / 1000000) + "M";
-		} else if(isContained() && (quantity > 99999)) {
+		} else if(isContained() && (quantity > 9999)) {
 			label = (quantity / 1000) + "K";
 		} else {
 			label = Integer.toString(quantity);
@@ -96,7 +96,21 @@ public class StackableItem2DView extends Item2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (quantitySprite != null) {
-			quantitySprite.draw(g2d, x, y);
+			/*
+			 * NOTE: This has be calibrated to fit the size of
+			 * an entity slot visual.
+			 */
+			int qx;
+
+			if(isContained()) {
+				// Right alignment
+				qx = x + width + 5 - quantitySprite.getWidth();
+			} else {
+				// Center alignment
+				qx = x + (width - quantitySprite.getWidth()) / 2;
+			}
+
+			quantitySprite.draw(g2d, qx, y - 5);
 		}
 	}
 
@@ -109,6 +123,20 @@ public class StackableItem2DView extends Item2DView {
 	@Override
 	public Rectangle2D getDrawnArea() {
 		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
+	}
+
+
+	/**
+	 * Set whether this view is contained, and should render in a
+	 * compressed (it's defined) area without clipping anything important.
+	 *
+	 * @param	contained	<code>true</code> if contained.
+	 */
+	public void setContained(boolean contained) {
+		super.setContained(contained);
+
+		quantityChanged = true;
+		markChanged();
 	}
 
 

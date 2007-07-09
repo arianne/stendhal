@@ -50,7 +50,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Whether this view is contained.
 	 */
-	protected boolean	contained;
+	private boolean		contained;
 
 	/**
 	 * Model values affecting animation.
@@ -120,6 +120,15 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	protected void buildRepresentation() {
 		setSprite(SpriteStore.get().getSprite(translate(entity.getType())));
+	}
+
+
+	/**
+	 * Mark this as changed. This will force the <code>update()</code>
+	 * method to be called.
+	 */
+	protected void markChanged() {
+		changed = true;
 	}
 
 

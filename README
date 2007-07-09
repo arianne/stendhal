@@ -83,6 +83,8 @@ No warranties. But let us know if it doesn't work.
 Changelog
 ---------
 0.62
+- Entity slot item quantity is now right aligned
+- Entity slot item quantity supports million suffix (#####M)
 - Kikareukin islands floating in sky above Semos Mountain outdoor temple
 - Duergar dwarves are imprisoned under Kanmararn City
 - Creatures poison you again even if you are poisoned already

@@ -21,6 +21,7 @@ package games.stendhal.client.gui.wt;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Player;
@@ -34,6 +35,7 @@ import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 import marauroa.common.game.RPAction;
@@ -61,14 +63,15 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	private Entity entity;
 
-	/** need this to find the sprite for each RPObject */
+	/**
+	 * The entity view being held.
+	 */
+	private Entity2DView	view;
+
+	/**
+	 * The client.
+	 */
 	private StendhalClient client;
-
-	/** sprite for showing the quartity */
-	private Sprite quantityImage;
-
-	/** cached old quantity */
-	private int oldQuantity;
 
 	/** The placeholder sprite. */
 	private Sprite placeholder;
@@ -78,13 +81,16 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		background = SpriteStore.get().getSprite("data/gui/slot.png");
 	}
 
-	/** Creates a new instance of RPObjectSlot */
+
+	/**
+	 * Create an entity slot.
+	 */
 	public EntitySlot(StendhalClient client, String name, Sprite placeholder, int x, int y) {
 		super(name, x, y, background.getWidth(), background.getHeight());
 		this.client = client;
 		this.placeholder = placeholder;
 
-		entity = null;
+		view = null;
 	}
 
 
@@ -118,7 +124,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		MoveableEntityContainer container = (MoveableEntityContainer) droppedObject;
 
 		// Don't drag an item into the same slot
-		if (container.getEntity() == entity) {
+		if ((view != null) && (container.getEntity() == view.getEntity())) {
 			return false;
 		}
 
@@ -155,28 +161,15 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 *
 	 */
 	public void setEntity(final Entity entity) {
-		if(this.entity != null) {
-			this.entity.release();
+		if(view != null) {
+			view.release();
 		}
 
-		this.entity = entity;
-	}
-
-	/**
-	 * ensures that the quantity image is set
-	 */
-	private void checkQuantityImage(int quantity) {
-		if ((quantityImage == null) || (quantity != oldQuantity)) {
-			oldQuantity = quantity;
-			String quantityString;
-			if (quantity > 99999) {
-				// The client can't show more than 5 digits.
-				// This solution works for quantities up to 10 million - 1.
-				quantityString = (quantity / 1000) + "K";
-			} else {
-				quantityString = Integer.toString(quantity);
-			}
-			quantityImage = GameScreen.get().createString(quantityString, Color.white);
+		if(entity != null) {
+			view = entity.getView();
+			view.setContained(true);
+		} else {
+			view = null;
 		}
 	}
 
@@ -195,20 +188,15 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		background.draw(childArea, 0, 0);
 
 		// draw the entity (if there is any)
-		if (entity != null) {
-			Sprite sprite = entity.getView().getSprite();
+		if (view != null) {
+			// Center the entity view (assume 1x1 tile)
+			int x = (getWidth() - GameScreen.SIZE_UNIT_PIXELS) / 2;
+			int y = (getHeight() - GameScreen.SIZE_UNIT_PIXELS) / 2;
 
-			// Center the object sprite
-			int x = (getWidth() - sprite.getWidth()) / 2;
-			int y = (getHeight() - sprite.getHeight()) / 2;
-			sprite.draw(childArea, x, y);
-
-			if (entity instanceof StackableItem) {
-				int quantity = ((StackableItem) entity).getQuantity();
-
-				checkQuantityImage(quantity);
-				quantityImage.draw(childArea, 0, 0);
-			}
+			Graphics2D vg = (Graphics2D) childArea.create(0, 0, getWidth(), getHeight());
+			vg.translate(x, y);
+			view.draw(vg);
+			vg.dispose();
 		} else if (placeholder != null) {
 			// Center the placeholder sprite
 			int x = (getWidth() - placeholder.getWidth()) / 2;
@@ -222,8 +210,8 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 */
 	@Override
 	protected WtDraggable getDragged(int x, int y) {
-		if (entity != null) {
-			return new MoveableEntityContainer(entity);
+		if (view != null) {
+			return new MoveableEntityContainer(view.getEntity());
 		}
 
 		return null;
@@ -232,9 +220,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	/** right mouse button was clicked */
 	@Override
 	public synchronized boolean onMouseRightClick(Point p) {
-		if (entity != null) {
-			EntityView view = entity.getView();
-
+		if (view != null) {
 			// create the context menu
 			CommandList list = new CommandList(getName(), view.getActions(), view);
 			setContextMenu(list);
@@ -251,17 +237,17 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 
 		// click into an empty slot should be ignored
-		if (entity == null) {
+		if (view == null) {
 			return false;
 		}
 
 		// moveto events are not the default for items in a bag
 		if (parent instanceof Player) {
-			entity.getView().onAction();
+			view.onAction();
 			return true;
 		}
 
-		RPObject content = entity.getRPObject();
+		RPObject content = view.getEntity().getRPObject();
 
 		RPAction action = new RPAction();
 		action.put("type", "equip");
