@@ -13,26 +13,7 @@ import org.junit.Test;
 
 public class PlayerTest {
 
-	@Test
 
-	public final void testBuildOfferedActions() {
-		RPObject rpo = new RPObject();
-		rpo.put("type", "player");
-		rpo.put("outfit",0);
-		Player pl =new Player();
-		pl.initialize(rpo);
-		List<String> expected = new ArrayList<String>();
-		expected.add("Look");
-		expected.add("Attack");
-		//expected.add("Push");
-		
-		expected.add("Add to Buddies");
-		//expected.add("Manage Guilds");
-		ArrayList<String> list = new ArrayList<String>();
-		pl.buildOfferedActions(list);
-		Assert.assertNotNull(list);
-		Assert.assertEquals(expected, list);
-	}
 
 	@Test
 	public final void testGetHearingArea() {
