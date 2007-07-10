@@ -20,6 +20,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.gui.wt.core.WtTextPanel;
@@ -28,6 +29,7 @@ import games.stendhal.common.Level;
 
 import java.awt.Graphics;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import marauroa.common.game.RPObject;
@@ -162,11 +164,16 @@ public class Character extends WtPanel {
 			EntitySlot entitySlot = slotPanels.get(slotName);
 
 			if (entitySlot != null) {
-				entitySlot.clear();
 				entitySlot.setParent(playerEntity);
-				// found a gui element for this slot
-				for (RPObject content : slot) {
-					entitySlot.add(content);
+
+				Iterator<RPObject> iter = slot.iterator();
+
+				if(iter.hasNext()) {
+					RPObject object = iter.next();
+
+					entitySlot.setEntity(EntityFactory.createEntity(object));
+				} else {
+					entitySlot.setEntity(null);
 				}
 			}
 
@@ -176,7 +183,6 @@ public class Character extends WtPanel {
 					money += content.getInt("quantity");
 				}
 			}
-
 		}
 
 		int atkitem = playerEntity.getAtkItem();

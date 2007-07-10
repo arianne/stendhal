@@ -145,15 +145,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		return true;
 	}
 
-	/** clears the content of this slot */
-	public void clear() {
-		setEntity(null);
-	}
-
-	/** adds an object to this slot, this replaces any previous content */
-	public void add(RPObject object) {
-		setEntity(EntityFactory.createEntity(object));
-	}
 
 	/**
 	 * Set the slot entity.

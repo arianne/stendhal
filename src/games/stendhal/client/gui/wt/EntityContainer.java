@@ -14,6 +14,7 @@ package games.stendhal.client.gui.wt;
 
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
@@ -97,21 +98,35 @@ public class EntityContainer extends WtPanel {
 		}
 
 		RPSlot rpslot = parent.getSlot(slotName);
-		if (rpslot == null) return;  // TODO: fix the non existing "keyring slot" for old server
+
+		if (rpslot == null) {
+			/*
+			 * Clear all slots
+			 */
+			for (EntitySlot entitySlot : slotPanels) {
+				entitySlot.setEntity(null);
+			}
+
+		// TODO: fix the non existing "keyring slot" for old server
+			return;
+		}
+
 		shownSlot = (RPSlot) rpslot.clone();
 
-		Iterator<RPObject> it = (rpslot != null) ? shownSlot.iterator() : null;
+		Iterator<RPObject> it = shownSlot.iterator();
 
 		for (EntitySlot entitySlot : slotPanels) {
 			// be sure to update the name
 			entitySlot.setName(shownSlot.getName());
-			// remove old objects
-			entitySlot.clear();
+
 			// tell 'em the the parent
 			entitySlot.setParent(parent);
-			// add new rpobjects
-			if ((it != null) && it.hasNext()) {
-				entitySlot.add(it.next());
+
+			// Set the entity
+			if (it.hasNext()) {
+				entitySlot.setEntity(EntityFactory.createEntity(it.next()));
+			} else {
+				entitySlot.setEntity(null);
 			}
 		}
 	}
