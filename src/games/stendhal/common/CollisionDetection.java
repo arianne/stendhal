@@ -149,10 +149,10 @@ public class CollisionDetection {
 		double h = shape.getHeight();
 
 		// expand the collision check for partial moves
-		if ((x - Math.floor(x)) > 0.001) {
+		if ((x - (int)x) > 0.001) {
 			w += 1.0;
 		}
-		if ((y - Math.floor(y)) > 0.001) {
+		if ((y - (int)y) > 0.001) {
 			h += 1.0;
 		}
 
