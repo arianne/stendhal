@@ -229,7 +229,8 @@ East: Nalwor, Semos
 
  <!-- Level -2 -->
 
- <zone name="-2_kotoch_entrance" level="-2" x="500160" y="500032" file="Level -2/kotoch/entrance.tmx">
+ <zone name="-2_kotoch_entrance" level="-2" x="499744" y="500128" file="Level -2/kotoch/entrance.tmx">
+  <configurator class-name="games.stendhal.server.maps.kotoch.OrcSamanNPC"/>
  </zone>
 
  <zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256" file="Level -2/orril/dwarf_mine.tmx">
@@ -265,6 +266,25 @@ East: Nalwor, Semos
 
 
  <!-- Level -3 -->
+
+ <zone name="-3_kotoch_prison" level="-3" x="499744" y="500224" file="Level -3/kotoch/prison.tmx">
+  <portal x="15" y="10" ref="kotoch_lock_outside">
+   <destination zone="-3_kotoch_prison" ref="kotoch_lock_inside"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <parameter name="key">kotoch_prison_key</parameter>
+    <parameter name="rejected">You do not have the key to open the lock.</parameter>
+   </implementation>
+  </portal>
+  <portal x="15" y="8" ref="kotoch_lock_inside">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="15" y="9" ref="kotoch_exit_inside">
+   <destination zone="-3_kotoch_prison" ref="kotoch_exit_outside"/>
+  </portal>
+  <portal x="15" y="11" ref="kotoch_exit_outside">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+ </zone>
 
  <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352" file="Level -3/orril/dwarf_blacksmith.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC"/>
