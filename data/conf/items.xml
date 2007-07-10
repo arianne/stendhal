@@ -1300,11 +1300,11 @@
 
   <item name="club_of_thorns">
     <type class="club" subclass="club_of_thorns" tileid="-1"/>
-    <description>You see the club of thorns, The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
+    <description>You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="48"/>
       <lifesteal value="-0.1"/>
-      <rate value="8"/>
+      <rate value="7"/>
     </attributes>
     <weight value="8.0"/>
     <value value="691200"/>
@@ -2521,6 +2521,19 @@
   <item name="nalwor_bank_key">
     <type class="key" subclass="nalwor" tileid="-1"/>
     <description>You see a key to the customer room of Nalwor Bank.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
+  <item name="kotoch_prison_key">
+    <type class="key" subclass="copper" tileid="-1"/>
+    <description>You see an ancient copper key.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
     </attributes>
     <weight value="1.0"/>
