@@ -489,44 +489,54 @@ public class CreatureLogic {
 		}
 	}
 
+	private int turnToThink=0;
+	
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		// 
-
-		logicHeal();
-		if (!logicSleep()) {
-			return;
-		}
-
-		// are we attacked and we don't attack ourself?
-		if (creature.isAttacked() && (target == null)) {
-			logicWeAreNotAttackingButGotAttacked();
-		} else if ((target == null) || (!target.get("zoneid").equals(creature.get("zoneid")) && world.has(target.getID()))
-		        || !world.has(target.getID()) || target.has("invisible")) {
-			// no target or current target left the zone (or is dead) or target became invisible (admin)
-			logicForgetCurrentTarget();
-			logicFindNewTarget();
-		}
-
-		// now we check our current target
-		if (target == null) {
-			// No target, so patrol along
-			if ((aiState != AiState.PATROL) || !creature.hasPath()) {
-				logicCreatePatrolPath();
-				aiState = AiState.PATROL;
+		
+		/*
+		 * We only *think* once each 2 turns.
+		 * So we save CPU time.
+		 * TODO: Improve this in a event oriented way.
+		 */
+		if (turnToThink++ % 2 == 0) {
+			logicHeal();
+			if (!logicSleep()) {
+				return;
 			}
-			logicFollowPatrolPath();
-		} else if (creature.squaredDistance(target) > 18 * 18) {
-			logicStopAttackBecauseTargetOutOfReach();
-		} else if (creature.nextTo(target) && !creature.canDoRangeAttack(target)) {
-			logicAttack();
-		} else if (creature.canDoRangeAttack(target)) {
-			logicRangeAttack();
-		} else if (!target.stopped()) {
-			logicCreateNewPathToMovingTarget();
-		} else {
-			logicMoveToTargetAndAttack();
+
+			// are we attacked and we don't attack ourself?
+			if (creature.isAttacked() && (target == null)) {
+				logicWeAreNotAttackingButGotAttacked();
+			} else if ((target == null)
+			        || (!target.get("zoneid").equals(creature.get("zoneid")) && world.has(target
+			                .getID())) || !world.has(target.getID()) || target.has("invisible")) {
+				// no target or current target left the zone (or is dead) or target became invisible (admin)
+				logicForgetCurrentTarget();
+				logicFindNewTarget();
+			}
+
+			// now we check our current target
+			if (target == null) {
+				// No target, so patrol along
+				if ((aiState != AiState.PATROL) || !creature.hasPath()) {
+					logicCreatePatrolPath();
+					aiState = AiState.PATROL;
+				}
+				logicFollowPatrolPath();
+			} else if (creature.squaredDistance(target) > 18 * 18) {
+				logicStopAttackBecauseTargetOutOfReach();
+			} else if (creature.nextTo(target) && !creature.canDoRangeAttack(target)) {
+				logicAttack();
+			} else if (creature.canDoRangeAttack(target)) {
+				logicRangeAttack();
+			} else if (!target.stopped()) {
+				logicCreateNewPathToMovingTarget();
+			} else {
+				logicMoveToTargetAndAttack();
+			}
 		}
+
 
 		logicDoMove();
 		logicDoAttack();
