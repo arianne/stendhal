@@ -268,6 +268,7 @@ public abstract class Entity extends RPObject {
 		this.collisions = collisions;
 	}
 
+	private StendhalRPZone zone;
 
 	/**
 	 * Get the zone this entity is in.
@@ -275,11 +276,10 @@ public abstract class Entity extends RPObject {
 	 * @return	A zone, or <code>null</code> if not in one.
 	 */
 	public StendhalRPZone getZone() {
-		//
-		// POSSIBLE TODO: Use onAdded()/onRemoved() to grab a copy
+		// Use onAdded()/onRemoved() to grab a copy
 		// of the zone and save as a local variable.
-		//
-		return (StendhalRPZone) StendhalRPWorld.get().getRPZone(getID());
+		return zone;
+		
 	}
 
 	/**
@@ -522,6 +522,7 @@ public abstract class Entity extends RPObject {
 	 * @param	zone		The zone this was added to.
 	 */
 	public void onAdded(StendhalRPZone zone) {
+		this.zone=zone;
 	}
 
 	/**
