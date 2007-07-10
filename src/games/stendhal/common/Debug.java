@@ -56,7 +56,7 @@ public class Debug {
 	 * Log list sizes to find the memory leak.
 	 * It must be somewhere...
 	 */
-	public static boolean SHOW_LIST_SIZES = true;
+	public static boolean SHOW_LIST_SIZES = false;
 
 	/** no instance */
 	private Debug() {
