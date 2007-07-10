@@ -21,6 +21,7 @@ package games.stendhal.client.gui.wt.core;
 import games.stendhal.client.GameScreen;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -109,7 +110,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	 *            graphics where to render to
 	 */
 	@Override
-	public synchronized void draw(Graphics g) {
+	public synchronized void draw(Graphics2D g) {
 		// draw the stuff
 		super.draw(g);
 

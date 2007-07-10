@@ -24,6 +24,7 @@ import games.stendhal.common.Debug;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
@@ -764,7 +765,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param g
 	 *            graphics where to render to
 	 */
-	public void draw(Graphics g) {
+	public void draw(Graphics2D g) {
 		// are we closed? then don't draw anything
 		if (isClosed()) {
 			return;
@@ -789,11 +790,11 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 		// TODO: Find a clean way to do g.dispose() after g.create()'s
 
 		if (frame) {
-			g = g.create(FRAME_SIZE, FRAME_SIZE, width - (FRAME_SIZE * 2), height - (FRAME_SIZE * 2));
+			g = (Graphics2D) g.create(FRAME_SIZE, FRAME_SIZE, width - (FRAME_SIZE * 2), height - (FRAME_SIZE * 2));
 		}
 
 		if (titleBar) {
-			g = g.create(0, TITLEBAR_SIZE + 2, width - (FRAME_SIZE * 2), height - (FRAME_SIZE * 2) - TITLEBAR_SIZE - 2);
+			g = (Graphics2D) g.create(0, TITLEBAR_SIZE + 2, width - (FRAME_SIZE * 2), height - (FRAME_SIZE * 2) - TITLEBAR_SIZE - 2);
 		}
 
 		if (!minimized) {
@@ -808,7 +809,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 *
 	 * @param	g		The graphics context to draw with.
 	 */
-	protected void drawContent(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		drawChildren(g);
 	}
 
@@ -823,14 +824,14 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	 * @param clientArea
 	 *            Graphics object clipped to the client region.
 	 */
-	protected void drawChildren(Graphics g) {
+	protected void drawChildren(Graphics2D g) {
 		int i = children.size();
 
 		while(i-- != 0) {
 			WtPanel child = children.get(i);
 
 			// get correct clipped graphics
-			Graphics cg = g.create(child.getX(), child.getY(), child.getWidth(), child.getHeight());
+			Graphics2D cg = (Graphics2D) g.create(child.getX(), child.getY(), child.getWidth(), child.getHeight());
 
 			child.draw(cg);
 

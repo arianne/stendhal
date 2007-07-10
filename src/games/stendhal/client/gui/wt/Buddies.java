@@ -25,7 +25,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -170,7 +170,7 @@ public class Buddies extends WtPanel {
 	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		super.drawContent(g);
 
 		int i = 0;

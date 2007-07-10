@@ -27,7 +27,7 @@ import games.stendhal.client.gui.wt.core.WtTextPanel;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.common.Level;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -213,7 +213,7 @@ public class Character extends WtPanel {
 	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		refreshPlayerStats();
 
 		super.drawContent(g);

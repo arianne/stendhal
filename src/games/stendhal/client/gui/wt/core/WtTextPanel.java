@@ -114,7 +114,7 @@ public class WtTextPanel extends WtPanel {
 	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics clientArea) {
+	protected void drawContent(Graphics2D clientArea) {
 
 		Font font = clientArea.getFont().deriveFont((float) fontSize);
 		// set font and color

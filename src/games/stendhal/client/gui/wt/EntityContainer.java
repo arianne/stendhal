@@ -18,7 +18,7 @@ import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtPanel;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -172,7 +172,7 @@ public class EntityContainer extends WtPanel {
 	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		if ((parent != null) && (slotName != null) && !isClosed()) {
 			RPSlot rpslot = parent.getSlot(slotName);
 			// rescan the content if the size changes

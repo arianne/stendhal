@@ -216,7 +216,7 @@ public class Minimap extends WtPanel {
 	 * @param g graphics object for the game main window
 	 */
 	@Override
-	protected void drawContent(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		super.drawContent(g);
 
 		if ((player == null) || (image == null)) {

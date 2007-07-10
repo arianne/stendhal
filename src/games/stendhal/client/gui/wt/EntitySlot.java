@@ -172,7 +172,7 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics childArea) {
+	protected void drawContent(Graphics2D childArea) {
 		super.drawContent(childArea);
 
 		// draw the background image

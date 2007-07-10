@@ -20,7 +20,7 @@ package games.stendhal.client.gui.wt.core;
 
 import games.stendhal.client.sprite.Sprite;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 /**
@@ -67,7 +67,7 @@ public class WtButton extends WtPanel {
 	 * @param	g		The graphics context to draw with.
 	 */
 	@Override
-	protected void drawContent(Graphics g) {
+	protected void drawContent(Graphics2D g) {
 		super.drawContent(g);
 
 		// draw the image if we have one
