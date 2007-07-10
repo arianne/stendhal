@@ -1163,6 +1163,7 @@ public class GameScreen {
 				g2d.drawString(aStyledText.getIterator(), 3, 2 + i * 16 + 9);
 				g2d.drawString(aStyledText.getIterator(), 3, 2 + i * 16 + 11);
 			}
+			
 			g2d.setColor(textColor);
 
 			g2d.drawString(aStyledText.getIterator(), 2 + delta, 2 + i * 16 + 10);
