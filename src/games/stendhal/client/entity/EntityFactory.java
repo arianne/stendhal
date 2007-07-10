@@ -13,7 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalClient;
-import games.stendhal.client.StendhalUI;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;

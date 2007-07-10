@@ -22,10 +22,7 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Entity2DView;
-import games.stendhal.client.entity.EntityFactory;
-import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Player;
-import games.stendhal.client.entity.StackableItem;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
@@ -33,8 +30,6 @@ import games.stendhal.client.gui.wt.core.WtPanel;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
