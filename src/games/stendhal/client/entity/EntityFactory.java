@@ -28,7 +28,6 @@ public class EntityFactory {
 
 
    protected EntityFactory(){
-	   
    }
 	/**
 	 *  Create a Entity of the correct type depending of the arianne object
@@ -44,7 +43,7 @@ public class EntityFactory {
 				if (StendhalClient.get().getAccountUsername().equalsIgnoreCase(object.get("name"))){
 					User me = new User();
 					me.initialize(object);
-					return me;	
+					return me;
 				}
 			}
 
@@ -52,7 +51,7 @@ public class EntityFactory {
 			if (object.has("class")) {
 				eclass = object.get("class");
 			}
-			
+
 			Class entityClass = EntityMap.getClass(type, eclass);
 			if (entityClass == null) {
 				// If there is no entity, let's try without using class.
@@ -66,16 +65,10 @@ public class EntityFactory {
 			Entity en = (Entity) entityClass.newInstance();
 			en.initialize(object);
 
-			if (en instanceof Inspectable) {
-				if (StendhalUI.get()!=null) {
-	                ((Inspectable) en).setInspector(StendhalUI.get().getInspector());
-                }
-			}
 			return en;
 		} catch (Exception e) {
 			logger.error("Error creating entity for object: " + object, e);
 			return null;
 		}
 	}
-
 }

@@ -23,7 +23,7 @@ import games.stendhal.client.GameScreen;
 /**
  * A corpse entity.
  */
-public class Corpse extends PassiveEntity implements Inspectable {
+public class Corpse extends PassiveEntity {
 	/**
 	 * Content property.
 	 */
@@ -46,20 +46,6 @@ public class Corpse extends PassiveEntity implements Inspectable {
 	 */
 	public RPSlot getContent() {
 		return content;
-	}
-
-
-	//
-	// Inspectable
-	//
-
-	/**
-	 * Set the content inspector for this entity.
-	 *
-	 * @param	inspector	The inspector.
-	 */
-	public void setInspector(final Inspector inspector) {
-		((Inspectable) getView()).setInspector(inspector);
 	}
 
 

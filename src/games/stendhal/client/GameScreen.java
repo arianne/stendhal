@@ -13,6 +13,7 @@
 package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity2DView;
+import games.stendhal.client.entity.Inspectable;
 import games.stendhal.client.entity.Text;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.sprite.ImageSprite;
@@ -254,6 +255,10 @@ public class GameScreen {
 	 */
 	public void addEntityView(Entity2DView view) {
 		views.add(view);
+
+		if(view instanceof Inspectable) {
+			((Inspectable) view).setInspector(StendhalUI.get().getInspector());
+		}
 	}
 
 

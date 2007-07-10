@@ -18,7 +18,7 @@ import marauroa.common.game.RPSlot;
 /**
  * A chest entity.
  */
-public class Chest extends Entity implements Inspectable {
+public class Chest extends Entity {
 	/**
 	 * Content property.
 	 */
@@ -68,20 +68,6 @@ public class Chest extends Entity implements Inspectable {
 	 */
 	public boolean isOpen() {
 		return open;
-	}
-
-
-	//
-	// Inspectable
-	//
-
-	/**
-	 * Set the content inspector for this entity.
-	 *
-	 * @param	inspector	The inspector.
-	 */
-	public void setInspector(final Inspector inspector) {
-		((Inspectable) getView()).setInspector(inspector);
 	}
 
 
