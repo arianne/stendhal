@@ -21,6 +21,8 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 public class CreatureLogic {
+	private static int counter;
+	
 	private static Logger logger = Log4J.getLogger(CreatureLogic.class);
 
 	/**
@@ -48,6 +50,7 @@ public class CreatureLogic {
 	private StringBuilder debug;
 
 	public CreatureLogic(Creature creature) {
+		counter++;
 		this.creature = creature;
 		attackTurn = Rand.rand(5);
 
@@ -497,9 +500,10 @@ public class CreatureLogic {
 		/*
 		 * We only *think* once each 2 turns.
 		 * So we save CPU time.
+		 * Counter%2 makes that processing is split on turns so not all the creatures do it on the same one.
 		 * TODO: Improve this in a event oriented way.
 		 */
-		if (turnToThink++ % 2 == 0) {
+		if (turnToThink++ % 2 == (counter%2)) {
 			logicHeal();
 			if (!logicSleep()) {
 				return;
