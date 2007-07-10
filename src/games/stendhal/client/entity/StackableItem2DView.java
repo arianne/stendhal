@@ -132,6 +132,7 @@ public class StackableItem2DView extends Item2DView {
 	 *
 	 * @param	contained	<code>true</code> if contained.
 	 */
+	@Override
 	public void setContained(boolean contained) {
 		super.setContained(contained);
 
