@@ -104,6 +104,8 @@ public class Creature extends NPC {
 	private Map<String, String> aiProfiles;
 	
 	private CreatureLogic creatureLogic = null;
+	
+	private StendhalRPZone zone;
 
 	public static void generateRPClass() {
 		try {
@@ -379,7 +381,6 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	protected List<RPEntity> getEnemyList() {
-		StendhalRPZone zone = getZone();
 		if (aiProfiles.keySet().contains("offensive")) {
 			return zone.getPlayerAndFirends();
 		} else {
@@ -462,6 +463,9 @@ public class Creature extends NPC {
 	}
 
 	public boolean isEnemyNear(double range) {
+		/*
+		 * TODO: Improve. Compute only each X turns.
+		 */
 		int x = getX();
 		int y = getY();
 
@@ -470,7 +474,6 @@ public class Creature extends NPC {
 
 		List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.size() == 0) {
-			StendhalRPZone zone = getZone();
 			enemyList = zone.getPlayerAndFirends();
 		}
 
@@ -645,6 +648,14 @@ public class Creature extends NPC {
 
 	@Override
 	public void logic() {
+		/*
+		 * We just need to get it once on the whole creature live.
+		 * FIXME: Change once creatures cross zones.
+		 */
+		if(zone==null) {
+			zone=getZone();
+		}
+		
 		creatureLogic.logic();
 	}
 

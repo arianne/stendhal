@@ -73,7 +73,7 @@ public class TurnNotifier {
 			set = register.remove(Integer.valueOf(currentTurn));
 		}
 		
-		if (logger.isInfoEnabled()) {
+		if (logger.isDebugEnabled()) {
 			StringBuffer os=new StringBuffer();
 			os.append("register: "+register.size()+"\n");
 			os.append("set: "+(set!=null?set.size():0)+"\n");
@@ -84,7 +84,10 @@ public class TurnNotifier {
 			for (TurnListener event : set) {
 				TurnListener turnListener = event;
 				try {
-					logger.info(turnListener);
+					if (logger.isDebugEnabled()) {
+						logger.info(turnListener);
+					}
+					
 					turnListener.onTurnReached(currentTurn, null);
 				} catch (RuntimeException e) {
 					logger.error(e, e);

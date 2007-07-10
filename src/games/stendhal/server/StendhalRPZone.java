@@ -14,6 +14,7 @@ package games.stendhal.server;
 
 import games.stendhal.common.CRC;
 import games.stendhal.common.CollisionDetection;
+import games.stendhal.common.Debug;
 import games.stendhal.common.Line;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Blood;
@@ -695,7 +696,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public synchronized void add(RPObject object, Player player) throws RPObjectInvalidException {
 		super.add(object);
 
-		if (object instanceof Item) {
+		/*
+		 * This check is to avoid PassiveEntityRespawnPoint to make items grown and zone to 
+		 * make them dissappear.
+		 * FIXME: Change later to a proper event based system. 
+		 */
+		if (object instanceof Item && player!=null) {
 			Item item = (Item) object;
 			item.onPutOnGround(player);
 			itemsOnGround.add(item);
@@ -1110,4 +1116,29 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void addMap(String name, byte[] mapData) {
 		addToContent(name, mapData);
 	}
+	
+	private int i=0;
+
+	@Override
+	public void nextTurn() {		
+		super.nextTurn();
+		
+		i++;
+		
+		if (Debug.SHOW_LIST_SIZES && i%1000==0) {			
+			StringBuffer os=new StringBuffer("Name: "+this.getID());
+			os.append("blood: "+bloods.size()+"\n");
+			os.append("itemsOnGround: "+itemsOnGround.size()+"\n");
+			os.append("movementListeners: "+movementListeners.size()+"\n");
+			os.append("npcs: "+npcs.size()+"\n");
+			os.append("plantGrowers: "+plantGrowers.size()+"\n");
+			os.append("players: "+players.size()+"\n");
+			os.append("playersAndFriends: "+playersAndFriends.size()+"\n");
+			os.append("portals: "+portals.size()+"\n");
+			os.append("respawnPoints: "+respawnPoints.size()+"\n");
+			os.append("sheepFoods: "+sheepFoods.size()+"\n");
+			os.append("objects: "+objects.size()+"\n");
+			logger.info(os);
+		}	}
+	
 }

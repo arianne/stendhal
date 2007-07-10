@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server;
 
+import games.stendhal.common.Debug;
 import games.stendhal.common.Pair;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
@@ -411,8 +412,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	synchronized public void beginTurn() {
 		long start = System.nanoTime();
 
-		if (logger.isInfoEnabled() && rpman.getTurn()%200==0) {
-			
+		if (Debug.SHOW_LIST_SIZES && rpman.getTurn()%1000==0) {			
 			int creatures = 0;
 			for (CreatureRespawnPoint point : respawnPoints) {
 				creatures += point.size();

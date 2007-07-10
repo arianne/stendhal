@@ -33,7 +33,7 @@ So what are you waiting for?! A whole new world awaits...
 Current Version
 ---------------
 
-Version 0.61
+Version 0.70
 
 
 How to play
@@ -90,6 +90,8 @@ Changelog
 - Creatures poison you again even if you are poisoned already
 - Money sparkles
 - More new map artistry - notably grass
+- Fixed memory leak.
+- Speed up creature logic.
 
 0.61 June 22, 2007
 - Houses in Kobold City (Wofol) have opened their doors

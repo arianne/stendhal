@@ -51,6 +51,12 @@ public class Debug {
 	 * Just a try to get webstart work without additional rights
 	 */
 	public static boolean WEB_START_SANDBOX = false;
+	
+	/**
+	 * Log list sizes to find the memory leak.
+	 * It must be somewhere...
+	 */
+	public static boolean SHOW_LIST_SIZES = true;
 
 	/** no instance */
 	private Debug() {
