@@ -4,17 +4,17 @@
  *
  * Copyright 2004, Generation5. All Rights Reserved.
  *
- * This program is free software; you can redistribute it and/or modify it under 
- * the terms of the GNU General Public License as published by the Free Software 
- * Foundation; either version 2 of the License, or (at your option) any later 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later
  * version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License along with 
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple 
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
@@ -29,36 +29,36 @@ import java.util.Stack;
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
  * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
- * 
+ *
  * @author James Matthews
- * 
+ *
  */
 public class Pathfinder {
 
 	/**
 	 * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int PATH_NOT_FOUND = -1;
 
 	/**
 	 * Returned by <code>getStatus</code> if a path has been found.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int PATH_FOUND = 1;
 
 	/**
 	 * Returned by <code>getStatus</code> if the pathfinder is still running.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int IN_PROGRESS = 0;
 
 	/**
 	 * The current status of the pathfinder.
-	 * 
+	 *
 	 * @see #PATH_FOUND
 	 * @see #PATH_NOT_FOUND
 	 * @see #IN_PROGRESS
@@ -106,7 +106,7 @@ public class Pathfinder {
 
 	/**
 	 * Return the current status of the pathfinder.
-	 * 
+	 *
 	 * @return the pathfindre status.
 	 * @see #pathStatus
 	 */
@@ -172,7 +172,7 @@ public class Pathfinder {
 	/**
 	 * Sets the navigable to use in the pathfinder. The object must implement
 	 * the <code>Navigable</code> interface.
-	 * 
+	 *
 	 * @param map
 	 *            the map (or other Navigable object) to find a path through.
 	 */
@@ -182,7 +182,7 @@ public class Pathfinder {
 
 	/**
 	 * Sets the starting and goal points for the pathfinder.
-	 * 
+	 *
 	 * @param sx
 	 *            the start x-position.
 	 * @param sy
@@ -200,7 +200,7 @@ public class Pathfinder {
 	 * Set the starting and goal points for the pathfinder. This method uses
 	 * <code>Pathfinder.Node</code>'s <i>x</i> and <i>y</i> variables, the
 	 * pathfinder sets all the other necessary node parameters.
-	 * 
+	 *
 	 * @param start
 	 *            the start node.
 	 * @param goal
@@ -213,7 +213,7 @@ public class Pathfinder {
 
 	/**
 	 * Returns the start node.
-	 * 
+	 *
 	 * @return the start node.
 	 */
 	public Pathfinder.Node getStart() {
@@ -222,7 +222,7 @@ public class Pathfinder {
 
 	/**
 	 * Set the start node.
-	 * 
+	 *
 	 * @param start
 	 *            the start node.
 	 */
@@ -232,7 +232,7 @@ public class Pathfinder {
 
 	/**
 	 * Set the goal node.
-	 * 
+	 *
 	 * @param goal
 	 *            the goal node.
 	 */
@@ -242,7 +242,7 @@ public class Pathfinder {
 
 	/**
 	 * Returns the goal node.
-	 * 
+	 *
 	 * @return the goal node.
 	 */
 	public Pathfinder.Node getGoal() {
@@ -251,7 +251,7 @@ public class Pathfinder {
 
 	/**
 	 * Assigns the best node from the open list.
-	 * 
+	 *
 	 * @return the best node.
 	 */
 	protected Pathfinder.Node getBest() {
@@ -268,7 +268,7 @@ public class Pathfinder {
 
 	/**
 	 * Returns the current best node.
-	 * 
+	 *
 	 * @return the best node.
 	 */
 	public Pathfinder.Node getBestNode() {
@@ -277,7 +277,7 @@ public class Pathfinder {
 
 	/**
 	 * Create the children surrounding the current best node.
-	 * 
+	 *
 	 * @param node
 	 *            the node to create the children from.
 	 */
@@ -288,7 +288,7 @@ public class Pathfinder {
 	/**
 	 * Link the children to the parent node. This method may also update the
 	 * parent path if a shorter path is found.
-	 * 
+	 *
 	 * @param node
 	 *            the parent node.
 	 * @param child
@@ -334,7 +334,7 @@ public class Pathfinder {
 
 	/**
 	 * Add the new child to the open list, ordering by the f-value.
-	 * 
+	 *
 	 * @param node
 	 *            the node to add to the open list.
 	 */
@@ -345,7 +345,7 @@ public class Pathfinder {
 
 	/**
 	 * Update the parents for the new route.
-	 * 
+	 *
 	 * @param node
 	 *            the root node.
 	 */
@@ -389,20 +389,20 @@ public class Pathfinder {
 	// node) {
 	// Pathfinder.Node check = null;
 	// if (!iter.hasNext()) return null;
-	//        
+	//
 	// do {
 	// check = (Pathfinder.Node)iter.next();
 	// if (check.nodeNumber == node.nodeNumber)
 	// return check;
-	//            
+	//
 	// } while (iter.hasNext());
-	//        
+	//
 	// return null;
 	// }
-	//    
+	//
 	/**
 	 * Check the open list for a given node.
-	 * 
+	 *
 	 * @param node
 	 *            the node to check for.
 	 * @return the node, if found, otherwise null.
@@ -414,7 +414,7 @@ public class Pathfinder {
 
 	/**
 	 * Check the closed list for the given node.
-	 * 
+	 *
 	 * @param node
 	 *            the node to check for.
 	 * @return the node, if found, otherwise null.
@@ -426,7 +426,7 @@ public class Pathfinder {
 
 	/**
 	 * Return the open list.
-	 * 
+	 *
 	 * @return the open list.
 	 */
 	public PriorityQueue getOpen() {
@@ -435,7 +435,7 @@ public class Pathfinder {
 
 	/**
 	 * Return the closed list.
-	 * 
+	 *
 	 * @return the closed list.
 	 */
 	public HashMap getClosed() {
@@ -445,7 +445,7 @@ public class Pathfinder {
 	/**
 	 * The pathfinder node.
 	 */
-	public static class Node {
+	static class Node {
 
 		/**
 		 * The f-value.
@@ -492,19 +492,19 @@ public class Pathfinder {
 		/**
 		 * The default constructor.
 		 */
-		public Node() {
+		Node() {
 			this(-1, -1);
 		}
 
 		/**
 		 * The default constructor with positional information.
-		 * 
+		 *
 		 * @param xx
 		 *            the x-position of the node.
 		 * @param yy
 		 *            the y-position of the node.
 		 */
-		public Node(int xx, int yy) {
+		Node(int xx, int yy) {
 			x = xx;
 			y = yy;
 		}
@@ -523,17 +523,17 @@ public class Pathfinder {
 
 		/**
 		 * Add a child to the node.
-		 * 
+		 *
 		 * @param node
 		 *            the child node.
 		 */
-		public void addChild(Node node) {
+		void addChild(Node node) {
 			children[numChildren++] = node;
 		}
 
 		/**
 		 * Return the x-position of the node.
-		 * 
+		 *
 		 * @return the x-position of the node.
 		 */
 		public int getX() {
@@ -542,7 +542,7 @@ public class Pathfinder {
 
 		/**
 		 * Return the y-position of the node.
-		 * 
+		 *
 		 * @return the y-position of the node.
 		 */
 		public int getY() {
@@ -551,10 +551,10 @@ public class Pathfinder {
 
 		/**
 		 * Return the parent node.
-		 * 
+		 *
 		 * @return the parent node.
 		 */
-		public Node getParent() {
+		Node getParent() {
 			return parent;
 		}
 	}
