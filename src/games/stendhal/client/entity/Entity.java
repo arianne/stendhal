@@ -465,16 +465,6 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
-	 * TEMP - Transitioned to internal Entity2DView.buildActions()
-	 * @deprecated	Use [view].getActions() public API.
-	 */
-	@Deprecated
-	protected void buildOfferedActions(final List<String> list) {
-		getView().buildActions(list);
-	}
-
-
-	/**
 	 * Transition method. Create the screen view for this entity.
 	 *
 	 * @return	The on-screen view of this entity.
