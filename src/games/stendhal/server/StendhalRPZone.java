@@ -1070,7 +1070,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * creatures such as orcs.
 	 * @return a list of all players and friendly entities
 	 */
-	public List<RPEntity> getPlayerAndFirends() {
+	public List<RPEntity> getPlayerAndFriends() {
 		return playersAndFriends;
 	}
 

@@ -382,7 +382,7 @@ public class Creature extends NPC {
 	protected List<RPEntity> getEnemyList() {
 		StendhalRPZone zone = getZone();
 		if (aiProfiles.keySet().contains("offensive")) {
-			return zone.getPlayerAndFirends();
+			return zone.getPlayerAndFriends();
 		} else {
 			return getAttackingRPEntities();
 		}
@@ -472,7 +472,7 @@ public class Creature extends NPC {
 		List<RPEntity> enemyList = getEnemyList();
 		if (enemyList.size() == 0) {
 			StendhalRPZone zone = getZone();
-			enemyList = zone.getPlayerAndFirends();
+			enemyList = zone.getPlayerAndFriends();
 		}
 
 		for (RPEntity playerOrFriend : enemyList) {

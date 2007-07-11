@@ -93,7 +93,7 @@ public class OnePlayerArea extends Entity implements MovementListener {
 
 		area = getArea();
 
-		for (RPEntity zentity : getZone().getPlayerAndFirends()) {
+		for (RPEntity zentity : getZone().getPlayerAndFriends()) {
 			/*
 			 * Ignore same entity
 			 */
