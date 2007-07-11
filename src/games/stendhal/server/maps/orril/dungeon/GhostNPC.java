@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -48,15 +48,15 @@ public class GhostNPC implements ZoneConfigurator {
 			}
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(216, 126));
-				nodes.add(new Path.Node(200, 126));
-				nodes.add(new Path.Node(200, 119));
-				nodes.add(new Path.Node(216, 119));
-				nodes.add(new Path.Node(216, 121));
-				nodes.add(new Path.Node(200, 121));
-				nodes.add(new Path.Node(200, 123));
-				nodes.add(new Path.Node(216, 123));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(216, 126));
+				nodes.add(new Node(200, 126));
+				nodes.add(new Node(200, 119));
+				nodes.add(new Node(216, 119));
+				nodes.add(new Node(216, 121));
+				nodes.add(new Node(200, 121));
+				nodes.add(new Node(200, 123));
+				nodes.add(new Node(216, 123));
 				setPath(new FixedPath(nodes, true));
 			}
 			

@@ -9,7 +9,7 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.util.WikipediaAccess;
 
 import java.util.LinkedList;
@@ -40,11 +40,11 @@ public class LibrarianNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(9, 8));
-				nodes.add(new Path.Node(9, 26));
-				nodes.add(new Path.Node(20, 26));
-				nodes.add(new Path.Node(20, 9));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(9, 8));
+				nodes.add(new Node(9, 26));
+				nodes.add(new Node(20, 26));
+				nodes.add(new Node(20, 9));
 				setPath(new FixedPath(nodes, true));
 			}
 

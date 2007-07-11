@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,13 +36,13 @@ public class TeacherNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				List<Node> nodes = new LinkedList<Node>();
 				// from left
-				nodes.add(new Path.Node(3, 2));
+				nodes.add(new Node(3, 2));
 				// to right
-				nodes.add(new Path.Node(12, 2));
+				nodes.add(new Node(12, 2));
 				// to left
-				nodes.add(new Path.Node(3, 2));
+				nodes.add(new Node(3, 2));
 				setPath(new FixedPath(nodes, true));
 			}
 

@@ -10,7 +10,7 @@ import games.stendhal.common.ConfigurableFactory;
 import games.stendhal.common.ConfigurableFactoryContext;
 import games.stendhal.common.Direction;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -146,8 +146,8 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		
 	}
 	
-	protected List<Path.Node> getPath(ConfigurableFactoryContext ctx) {
-		List<Path.Node> result = new ArrayList<Path.Node>();
+	protected List<Node> getPath(ConfigurableFactoryContext ctx) {
+		List<Node> result = new ArrayList<Node>();
 		int i = 0;
 		boolean lastNode = false;
 		
@@ -158,7 +158,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 				String[] coords = s.split(",");
 				int x = Integer.parseInt(coords[0]);
 				int y = Integer.parseInt(coords[1]);
-				Path.Node node = new Path.Node(x, y);
+				Node node = new Node(x, y);
 				result.add(node);
 				i++;
 			} else {
@@ -202,7 +202,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 			npc.setDescription(description);
 		}
 		
-		List<Path.Node> path = getPath(ctx);
+		List<Node> path = getPath(ctx);
 		npc.setPath(new FixedPath(path, path.size() > 0));
 		npc.setDirection(getDirection(ctx));
 

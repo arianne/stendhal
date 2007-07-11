@@ -15,7 +15,7 @@ import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.rule.defaultruleset.DefaultEntityManager;
 
 import java.util.LinkedList;
@@ -83,14 +83,14 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(41, 39));
-				nodes.add(new Path.Node(51, 39));
-				nodes.add(new Path.Node(51, 45));
-				nodes.add(new Path.Node(58, 45));
-				nodes.add(new Path.Node(58, 41));
-				nodes.add(new Path.Node(51, 41));
-				nodes.add(new Path.Node(51, 39));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(41, 39));
+				nodes.add(new Node(51, 39));
+				nodes.add(new Node(51, 45));
+				nodes.add(new Node(58, 45));
+				nodes.add(new Node(58, 41));
+				nodes.add(new Node(51, 41));
+				nodes.add(new Node(51, 39));
 				setPath(new FixedPath(nodes, true));
 			}
 

@@ -39,7 +39,7 @@ import games.stendhal.server.entity.spawner.GrowingPassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.PassiveEntityRespawnPoint;
 import games.stendhal.server.entity.spawner.SheepFood;
 import games.stendhal.server.entity.spell.Spell;
-import games.stendhal.server.pathfinder.PathfinderThread;
+//import games.stendhal.server.pathfinder.PathfinderThread;
 import games.stendhal.server.rule.RuleManager;
 import games.stendhal.server.rule.RuleSetFactory;
 import games.stendhal.tools.tiled.LayerDefinition;
@@ -62,13 +62,13 @@ public class StendhalRPWorld extends RPWorld {
 
 	static {
 		MAPS_FOLDER = "data/maps/";
-		
+
 		if (StendhalRPWorld.class.getClassLoader().getResource("tiled/tileset/README") != null) {
 			logger.warn("Developing mode, loading maps from tiled/ instead of data/maps");
 			MAPS_FOLDER = "tiled/";
 		}
 	}
-	
+
 	public static String MAPS_FOLDER;
 
 	/**
@@ -79,8 +79,8 @@ public class StendhalRPWorld extends RPWorld {
 	/** The Singleton instance */
 	protected static StendhalRPWorld instance;
 
-	/** The pathfinder thread. */
-	private PathfinderThread pathfinderThread;
+//	/** The pathfinder thread. */
+//	private PathfinderThread pathfinderThread;
 
 	/** The rule system manager */
 	private RuleManager ruleManager;
@@ -104,7 +104,7 @@ public class StendhalRPWorld extends RPWorld {
 	/**
 	 * This method is a workaround for a groovy bug:
 	 * http://jira.codehaus.org/browse/GROOVY-1484
-	 * 
+	 *
 	 * Don't use it in Java code, only in Groovy.
 	 * Remove this method once the Groovy bug has been resolved.
 	 *
@@ -128,27 +128,27 @@ public class StendhalRPWorld extends RPWorld {
 		return seconds * 1000 / MILLISECONDS_PER_TURN;
 	}
 
-	/**
-	 * Returns the pathfinder. The return value is undefined until onInit() is
-	 * called.
-	 * 
-	 * @return the pathfinder
-	 */
-	public PathfinderThread getPathfinder() {
-		return pathfinderThread;
-	}
-
-	/**
-	 * checks if the pathfinder thread is still alive. If it is not, it is
-	 * restarted.
-	 */
-	public void checkPathfinder() {
-		if ((pathfinderThread == null) || !pathfinderThread.isAlive()) {
-			logger.error("Pathfinderthread died");
-			pathfinderThread = new PathfinderThread(this);
-			pathfinderThread.start();
-		}
-	}
+//	/**
+//	 * Returns the pathfinder. The return value is undefined until onInit() is
+//	 * called.
+//	 *
+//	 * @return the pathfinder
+//	 */
+//	public PathfinderThread getPathfinder() {
+//		return pathfinderThread;
+//	}
+//
+//	/**
+//	 * checks if the pathfinder thread is still alive. If it is not, it is
+//	 * restarted.
+//	 */
+//	public void checkPathfinder() {
+//		if ((pathfinderThread == null) || !pathfinderThread.isAlive()) {
+//			logger.error("Pathfinderthread died");
+//			pathfinderThread = new PathfinderThread(this);
+//			pathfinderThread.start();
+//		}
+//	}
 
 	/** returns the current rulemanager. */
 	public RuleManager getRuleManager() {
@@ -212,10 +212,10 @@ public class StendhalRPWorld extends RPWorld {
 	public void onInit() {
 		try {
 			super.onInit();
-			
+
 			// create the pathfinder thread and start it
-			pathfinderThread = new PathfinderThread(this);
-			pathfinderThread.start();
+//			pathfinderThread = new PathfinderThread(this);
+//			pathfinderThread.start();
 
 			ZoneGroupsXMLLoader loader = new ZoneGroupsXMLLoader(new URI("/data/conf/zones.xml"));
 
@@ -290,7 +290,7 @@ public class StendhalRPWorld extends RPWorld {
 	 *
 	 * Pathfinding code still uses this, but should use it's own XML
 	 * file for testing.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public StendhalRPZone addArea(String name, String content) throws Exception {
 		logger.info("Loading area: " + name);
@@ -329,7 +329,7 @@ public class StendhalRPWorld extends RPWorld {
 	/**
 	 * Creates a new house and add it to the zone. num is the unique idenfier
 	 * for portals x and y are the position of the door of the house.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void createHouse(StendhalRPZone zone, int x, int y) throws Exception {
 		Portal door = new Portal();

@@ -9,6 +9,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
@@ -108,7 +109,7 @@ public class TeleporterBehaviour implements TurnListener {
 		for (int i = 0; i < 10; i++) {
 			int tx = Rand.rand(zone.getWidth() - 4) + 2;
 			int ty = Rand.rand(zone.getHeight() - 5) + 2;
-			List<Path.Node> path = Path.searchPath(speakerNPC, tx, ty);
+			List<Node> path = Path.searchPath(speakerNPC, tx, ty);
 			if ((path != null) && (path.size() > 1)) {
 				// create path back
 				for (int j = path.size() - 1; j > 0; j--) {

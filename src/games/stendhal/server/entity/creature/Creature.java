@@ -30,6 +30,7 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.spawner.CreatureRespawnPoint;
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
 import games.stendhal.server.rule.EntityManager;
 
@@ -448,7 +449,7 @@ public class Creature extends NPC {
 
 			// is there a path to this enemy?
 			// List<Path.Node> path = Path.searchPath(this, chosen, 20.0);
-			List<Path.Node> path = Path.searchPath(this, getX(), getY(), destArea, 20.0);
+			List<Node> path = Path.searchPath(this, getX(), getY(), destArea, 20.0);
 			if ((path == null) || (path.size() == 0)) {
 				distances.remove(chosen);
 				chosen = null;
@@ -502,8 +503,8 @@ public class Creature extends NPC {
 	// TODO: Adapt for opaque 'Path' objects
 	public String pathToString() {
 		int pos = getPathPosition();
-		List<Path.Node> thePath = getPathList();
-		List<Path.Node> nodeList = thePath.subList(pos, thePath.size());
+		List<Node> thePath = getPathList();
+		List<Node> nodeList = thePath.subList(pos, thePath.size());
 
 		return nodeList.toString();
 	}

@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,15 +30,15 @@ public class HousewifeNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(4, 12)); // its around the table with
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(4, 12)); // its around the table with
 				// the beers and to the
 				// furnance
-				nodes.add(new Path.Node(15, 12));
-				nodes.add(new Path.Node(15, 12));
-				nodes.add(new Path.Node(15, 8));
-				nodes.add(new Path.Node(10, 8));
-				nodes.add(new Path.Node(10, 12));
+				nodes.add(new Node(15, 12));
+				nodes.add(new Node(15, 12));
+				nodes.add(new Node(15, 8));
+				nodes.add(new Node(10, 8));
+				nodes.add(new Node(10, 12));
 				setPath(new FixedPath(nodes, true));
 			}
 

@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,32 +47,32 @@ public class BakerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				List<Node> nodes = new LinkedList<Node>();
 				// to the well
-				nodes.add(new Path.Node(15, 2));
+				nodes.add(new Node(15, 2));
 				// to a barrel
-				nodes.add(new Path.Node(15, 7));
+				nodes.add(new Node(15, 7));
 				// to the baguette on the table
-				nodes.add(new Path.Node(13, 7));
+				nodes.add(new Node(13, 7));
 				// around the table
-				nodes.add(new Path.Node(13, 9));
-				nodes.add(new Path.Node(10, 9));
+				nodes.add(new Node(13, 9));
+				nodes.add(new Node(10, 9));
 				// to the sink
-				nodes.add(new Path.Node(10, 11));
+				nodes.add(new Node(10, 11));
 				// to the pizza/cake/whatever
-				nodes.add(new Path.Node(7, 11));
-				nodes.add(new Path.Node(7, 9));
+				nodes.add(new Node(7, 11));
+				nodes.add(new Node(7, 9));
 				// to the pot
-				nodes.add(new Path.Node(3, 9));
+				nodes.add(new Node(3, 9));
 				// towards the oven
-				nodes.add(new Path.Node(3, 3));
-				nodes.add(new Path.Node(5, 3));
+				nodes.add(new Node(3, 3));
+				nodes.add(new Node(5, 3));
 				// to the oven
-				nodes.add(new Path.Node(5, 2));
+				nodes.add(new Node(5, 2));
 				// one step back
-				nodes.add(new Path.Node(5, 3));
+				nodes.add(new Node(5, 3));
 				// towards the well
-				nodes.add(new Path.Node(15, 3));
+				nodes.add(new Node(15, 3));
 
 				setPath(new FixedPath(nodes, true));
 			}

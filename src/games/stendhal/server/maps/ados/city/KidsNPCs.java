@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,29 +36,29 @@ public class KidsNPCs implements ZoneConfigurator {
 	private void buildKids(StendhalRPZone zone) {
 		String[] names = { "Jens", "George", "Anna" };
 		String[] classes = { "kid3npc", "kid4npc", "kid5npc" };
-		Path.Node[] start = new Path.Node[] { new Path.Node(40, 28), new Path.Node(40, 40), new Path.Node(45, 28) };
+		Node[] start = new Node[] { new Node(40, 28), new Node(40, 40), new Node(45, 28) };
 		for (int i = 0; i < 3; i++) {
 			SpeakerNPC npc = new SpeakerNPC(names[i]) {
 
 				@Override
 				protected void createPath() {
-					List<Path.Node> nodes = new LinkedList<Path.Node>();
-					nodes.add(new Path.Node(40, 28));
-					nodes.add(new Path.Node(40, 31));
-					nodes.add(new Path.Node(34, 31));
-					nodes.add(new Path.Node(34, 35));
-					nodes.add(new Path.Node(39, 35));
-					nodes.add(new Path.Node(39, 40));
-					nodes.add(new Path.Node(40, 40));
-					nodes.add(new Path.Node(40, 38));
-					nodes.add(new Path.Node(45, 38));
-					nodes.add(new Path.Node(45, 42));
-					nodes.add(new Path.Node(51, 42));
-					nodes.add(new Path.Node(51, 36));
-					nodes.add(new Path.Node(46, 36));
-					nodes.add(new Path.Node(46, 29));
-					nodes.add(new Path.Node(45, 29));
-					nodes.add(new Path.Node(45, 28));
+					List<Node> nodes = new LinkedList<Node>();
+					nodes.add(new Node(40, 28));
+					nodes.add(new Node(40, 31));
+					nodes.add(new Node(34, 31));
+					nodes.add(new Node(34, 35));
+					nodes.add(new Node(39, 35));
+					nodes.add(new Node(39, 40));
+					nodes.add(new Node(40, 40));
+					nodes.add(new Node(40, 38));
+					nodes.add(new Node(45, 38));
+					nodes.add(new Node(45, 42));
+					nodes.add(new Node(51, 42));
+					nodes.add(new Node(51, 36));
+					nodes.add(new Node(46, 36));
+					nodes.add(new Node(46, 29));
+					nodes.add(new Node(45, 29));
+					nodes.add(new Node(45, 28));
 					setPath(new FixedPath(nodes, true));
 				}
 
@@ -80,7 +80,7 @@ public class KidsNPCs implements ZoneConfigurator {
 
 			zone.assignRPObjectID(npc);
 			npc.put("class", classes[i]);
-			npc.set(start[i].x, start[i].y);
+			npc.set(start[i].getX(), start[i].getY());
 			npc.setDirection(Direction.DOWN);
 			npc.initHP(100);
 			zone.add(npc);

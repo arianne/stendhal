@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -34,9 +34,9 @@ public class MayorNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(13, 2));
-				nodes.add(new Path.Node(19, 2));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(13, 2));
+				nodes.add(new Node(19, 2));
 				setPath(new FixedPath(nodes, true));
 			}
 

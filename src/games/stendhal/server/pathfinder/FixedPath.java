@@ -11,8 +11,6 @@ package games.stendhal.server.pathfinder;
 
 import games.stendhal.server.entity.ActiveEntity;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
@@ -21,7 +19,8 @@ import marauroa.common.Logger;
 /**
  * A path using a fixed route.
  */
-public class FixedPath extends Path {
+public class FixedPath {
+
 	/**
 	 * The logger.
 	 */
@@ -49,36 +48,6 @@ public class FixedPath extends Path {
 
 
 	/**
-	 * Create an empty fixed path.
-	 */
-	public FixedPath() {
-		this(new LinkedList<Node>());
-	}
-
-
-	/**
-	 * Create a fixed, non-looping, path from a list.
-	 * NOTE: The list is not copied, and should not be modified afterward.
-	 *
-	 * @param	nodes		A list of nodes to follow.
-	 */
-	public FixedPath(final List<Node> nodes) {
-		this(nodes, false);
-	}
-
-
-	/**
-	 * Create a fixed path from a list.
-	 *
-	 * @param	nodes		A list of nodes to follow.
-	 * @param	loop		Whether the path should loop.
-	 */
-	public FixedPath(final Node [] nodes, final boolean loop) {
-		this(Arrays.asList(nodes), loop);
-	}
-
-
-	/**
 	 * Create a fixed path from a list.
 	 * NOTE: The list is not copied, and should not be modified afterward.
 	 *
@@ -96,6 +65,7 @@ public class FixedPath extends Path {
 		} else {
 			currentGoal = null;
 		}
+
 	}
 
 
@@ -108,7 +78,7 @@ public class FixedPath extends Path {
 	 *
 	 * @param	node		The node to add.
 	 */
-	public void add(final Node node) {
+	 void add(final Node node) {
 		nodes.add(node);
 
 		if(currentGoal == null) {
@@ -172,7 +142,7 @@ public class FixedPath extends Path {
 	 * @return	<code>true</code> if something to follow,
 	 *		<code>false</code> if complete.
 	 */
-	@Override
+
 	public boolean follow(final ActiveEntity entity) {
 		/*
 		 * Without goals, we'll never get anywhere in life
@@ -208,7 +178,7 @@ public class FixedPath extends Path {
 				+ entity.getX() + "," + entity.getY() + ")");
 		}
 
-		faceto(entity, currentGoal.getX(), currentGoal.getY());
+		Path.faceto(entity, currentGoal.getX(), currentGoal.getY());
 
 		return true;
 	}
@@ -220,7 +190,7 @@ public class FixedPath extends Path {
 	 * @return	The destination node, or <code>null</code> if there
 	 *		is none (i.e. no path, or unbound/infinite movement).
 	 */
-	@Override
+
 	public Node getDestination() {
 		if(loop || nodes.isEmpty()) {
 			return null;
@@ -235,7 +205,7 @@ public class FixedPath extends Path {
 	 *
 	 * @return	<code>true</code> if there is no more path to follow.
 	 */
-	@Override
+
 	public boolean isFinished() {
 		return (currentGoal == null);
 	}

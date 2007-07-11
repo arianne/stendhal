@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,14 +43,14 @@ public class WomanNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(3, 3));
-				nodes.add(new Path.Node(16, 3));
-				nodes.add(new Path.Node(16, 6));
-				nodes.add(new Path.Node(3, 6));
-				nodes.add(new Path.Node(3, 5));
-				nodes.add(new Path.Node(5, 5));
-				nodes.add(new Path.Node(5, 3));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(3, 3));
+				nodes.add(new Node(16, 3));
+				nodes.add(new Node(16, 6));
+				nodes.add(new Node(3, 6));
+				nodes.add(new Node(3, 5));
+				nodes.add(new Node(5, 5));
+				nodes.add(new Node(5, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 

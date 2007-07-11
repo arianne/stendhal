@@ -10,6 +10,7 @@ package games.stendhal.server.entity;
 //
 
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
@@ -69,10 +70,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * and the entity starts at the first node (so the first node should
 	 * be its position, of course). The speed will be set to the default
 	 * for the entity.
-	 * 
+	 *
 	 * TODO: Change to accept just 'Path' after everything is converted
 	 *       to use opaque Path's rather than Node lists.
-	 * 
+	 *
 	 * @param	path		The path.
 	 */
 	public void setPath(final FixedPath path) {
@@ -108,19 +109,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 
 	/**
-	 * Get the path.
-	 *
-	 * @return	The path.
-	 */
-	public Path getPath() {
-		return path;
-	}
-
-
-	/**
 	 * Get the path list.
 	 */
-	public List<Path.Node> getPathList() {
+	public List<Node> getPathList() {
 		return (path != null) ? path.getNodeList() : null;
 	}
 

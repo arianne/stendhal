@@ -68,51 +68,13 @@ public abstract class Path {
 
 	public static int steps;
 
-	public static class Node {
-
-		public int x;
-
-		public int y;
-
-		public Node(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-
-
-		/**
-		 * Get the X coordinate.
-		 *
-		 * @return	The X coordinate.
-		 */
-		public int getX() {
-			return x;
-		}
-
-
-		/**
-		 * Get the Y coordinate.
-		 *
-		 * @return	The Y coordinate.
-		 */
-		public int getY() {
-			return y;
-		}
-
-
-		@Override
-		public String toString() {
-			return "(" + x + "," + y + ")";
-		}
-	}
-
-	/**
-	 * Sets the step-callback. This will be called after each step. <b>Note:
-	 * </b> This is a debug method and not part of the 'official api'.
-	 */
-	public static void setCallback(StepCallback callback) {
-		Path.callback = callback;
-	}
+//	/**
+//	 * Sets the step-callback. This will be called after each step. <b>Note:
+//	 * </b> This is a debug method and not part of the 'official api'.
+//	 */
+//	public static void setCallback(StepCallback callback) {
+//		Path.callback = callback;
+//	}
 
 	protected static void faceto(ActiveEntity entity, int x, int y) {
 		int rndx = x - entity.getX();
@@ -135,7 +97,7 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity
 	 * @param x
@@ -154,7 +116,7 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity
 	 * @param x
@@ -173,11 +135,11 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity
 	 * @param zone
-	 *            the zone, if null the current zone of entity is used. 			 
+	 *            the zone, if null the current zone of entity is used.
 	 * @param x
 	 *            start x
 	 * @param y
@@ -195,8 +157,8 @@ public abstract class Path {
 			zone = entity.getZone();
 		}
 
-		// 
-		//		long startTimeNano = System.nanoTime(); 
+		//
+		//		long startTimeNano = System.nanoTime();
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
@@ -215,7 +177,7 @@ public abstract class Path {
 		path.setNavigable(navMap);
 		path.setStart(new Pathfinder.Node(x, y));
 
-		/* 
+		/*
 		 * if the destination is an area
 		 * set the destination node for pathfinding to the center of the area
 		 */
@@ -260,7 +222,7 @@ public abstract class Path {
 			node = node.getParent();
 		}
 
-		// 
+		//
 		return list;
 	}
 
@@ -268,7 +230,7 @@ public abstract class Path {
 //	/**
 //	 * Finds a path for the Entity <code>entity</code> to the other Entity
 //	 * <code>dest</code>.
-//	 * 
+//	 *
 //	 * @param entity
 //	 *            the Entity (also start point)
 //	 * @param dest
@@ -289,7 +251,7 @@ public abstract class Path {
 	/**
 	 * Finds a path for the Entity <code>entity</code> to (or next to)
 	 * the other Entity <code>dest</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity (also start point)
 	 * @param dest
@@ -303,7 +265,7 @@ public abstract class Path {
 	/**
 	 * Finds a path for the Entity <code>entity</code> to the other Entity
 	 * <code>dest</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity (also start point)
 	 * @param dest
@@ -338,15 +300,15 @@ public abstract class Path {
 		int pos = entity.getPathPosition();
 		Node actual = path.get(pos);
 
-		if((actual.x == entity.getX()) && (actual.y == entity.getY())) {
-			logger.debug("Completed waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path");
+		if((actual.getX() == entity.getX()) && (actual.getY() == entity.getY())) {
+			logger.debug("Completed waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path");
 			pos++;
 			if (pos < path.size()) {
 				entity.setPathPosition(pos);
 				actual = path.get(pos);
-				logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path from ("
+				logger.debug("Moving to waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path from ("
 				        + entity.getX() + "," + entity.getY() + ")");
-				faceto(entity, actual.x, actual.y);
+				faceto(entity, actual.getX(), actual.getY());
 				return false;
 			} else {
 				if (entity.isPathLoop()) {
@@ -359,9 +321,9 @@ public abstract class Path {
 				return true;
 			}
 		} else {
-			logger.debug("Moving to waypoint(" + pos + ")(" + actual.x + "," + actual.y + ") on Path from ("
+			logger.debug("Moving to waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path from ("
 			        + entity.getX() + "," + entity.getY() + ")");
-			faceto(entity, actual.x, actual.y);
+			faceto(entity, actual.getX(), actual.getY());
 			return false;
 		}
 	}
@@ -381,7 +343,7 @@ public abstract class Path {
 //
 //		/**
 //		 * creates a new instance of SimplePathLister
-//		 * 
+//		 *
 //		 * @param entity
 //		 *            the entity the path belongs to
 //		 */

@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,19 +38,19 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> path = new LinkedList<Path.Node>();
-				path.add(new Path.Node(40, 35));
-				path.add(new Path.Node(40, 84));
-				path.add(new Path.Node(53, 84));
-				path.add(new Path.Node(53, 80));
-				path.add(new Path.Node(84, 80));
-				path.add(new Path.Node(84, 56));
-				path.add(new Path.Node(89, 56));
-				path.add(new Path.Node(89, 37));
-				path.add(new Path.Node(72, 37));
-				path.add(new Path.Node(72, 32));
-				path.add(new Path.Node(50, 32));
-				path.add(new Path.Node(50, 35));
+				List<Node> path = new LinkedList<Node>();
+				path.add(new Node(40, 35));
+				path.add(new Node(40, 84));
+				path.add(new Node(53, 84));
+				path.add(new Node(53, 80));
+				path.add(new Node(84, 80));
+				path.add(new Node(84, 56));
+				path.add(new Node(89, 56));
+				path.add(new Node(89, 37));
+				path.add(new Node(72, 37));
+				path.add(new Node(72, 32));
+				path.add(new Node(50, 32));
+				path.add(new Node(50, 35));
 				setPath(new FixedPath(path, true));
 			}
 

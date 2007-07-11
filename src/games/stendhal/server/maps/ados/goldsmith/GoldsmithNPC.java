@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.ProducerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,25 +39,25 @@ public class GoldsmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				List<Node> nodes = new LinkedList<Node>();
 				// to the oven
-				nodes.add(new Path.Node(5, 2));
+				nodes.add(new Node(5, 2));
 				// to a water
-				nodes.add(new Path.Node(5, 8));
-				nodes.add(new Path.Node(4, 8));
+				nodes.add(new Node(5, 8));
+				nodes.add(new Node(4, 8));
 				// to the table
-				nodes.add(new Path.Node(4, 11));
-				nodes.add(new Path.Node(3, 11));
-				nodes.add(new Path.Node(3, 12));
+				nodes.add(new Node(4, 11));
+				nodes.add(new Node(3, 11));
+				nodes.add(new Node(3, 12));
 				// to the bar
-				nodes.add(new Path.Node(8, 12));
-				nodes.add(new Path.Node(8, 9));
-				nodes.add(new Path.Node(14, 9));
+				nodes.add(new Node(8, 12));
+				nodes.add(new Node(8, 9));
+				nodes.add(new Node(14, 9));
 				// towards the shields
-				nodes.add(new Path.Node(14, 4));
-				nodes.add(new Path.Node(18, 4));
+				nodes.add(new Node(14, 4));
+				nodes.add(new Node(18, 4));
 				// to the starting point
-				nodes.add(new Path.Node(18, 2));
+				nodes.add(new Node(18, 2));
 
 				setPath(new FixedPath(nodes, true));
 			}

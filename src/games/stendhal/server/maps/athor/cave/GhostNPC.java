@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -48,33 +48,33 @@ public class GhostNPC implements ZoneConfigurator {
 			}
 			@Override
 			protected void createPath() {
-                                List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(65, 73));
-				nodes.add(new Path.Node(43, 73));
-				nodes.add(new Path.Node(43, 68));
-				nodes.add(new Path.Node(37, 68));
-				nodes.add(new Path.Node(37, 64));
-				nodes.add(new Path.Node(34, 64));
-				nodes.add(new Path.Node(34, 57));
-				nodes.add(new Path.Node(31, 57));
-				nodes.add(new Path.Node(31, 51));
-				nodes.add(new Path.Node(28, 51));
-				nodes.add(new Path.Node(28, 45));
-				nodes.add(new Path.Node(26, 45));
-				nodes.add(new Path.Node(26, 40));
-				nodes.add(new Path.Node(25, 40));
-				nodes.add(new Path.Node(25, 37));
-				nodes.add(new Path.Node(36, 37));
-				nodes.add(new Path.Node(36, 42));
-				nodes.add(new Path.Node(45, 42));
-				nodes.add(new Path.Node(45, 45));
-				nodes.add(new Path.Node(61, 45));
-				nodes.add(new Path.Node(61, 53));
-				nodes.add(new Path.Node(63, 53));
-				nodes.add(new Path.Node(63, 57));
-				nodes.add(new Path.Node(64, 57));
-				nodes.add(new Path.Node(64, 65));
-				nodes.add(new Path.Node(65, 65));
+                                List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(65, 73));
+				nodes.add(new Node(43, 73));
+				nodes.add(new Node(43, 68));
+				nodes.add(new Node(37, 68));
+				nodes.add(new Node(37, 64));
+				nodes.add(new Node(34, 64));
+				nodes.add(new Node(34, 57));
+				nodes.add(new Node(31, 57));
+				nodes.add(new Node(31, 51));
+				nodes.add(new Node(28, 51));
+				nodes.add(new Node(28, 45));
+				nodes.add(new Node(26, 45));
+				nodes.add(new Node(26, 40));
+				nodes.add(new Node(25, 40));
+				nodes.add(new Node(25, 37));
+				nodes.add(new Node(36, 37));
+				nodes.add(new Node(36, 42));
+				nodes.add(new Node(45, 42));
+				nodes.add(new Node(45, 45));
+				nodes.add(new Node(61, 45));
+				nodes.add(new Node(61, 53));
+				nodes.add(new Node(63, 53));
+				nodes.add(new Node(63, 57));
+				nodes.add(new Node(64, 57));
+				nodes.add(new Node(64, 65));
+				nodes.add(new Node(65, 65));
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override

@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -48,19 +48,19 @@ public class KidGhostNPC implements ZoneConfigurator {
 			}
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(34, 120));
-				nodes.add(new Path.Node(24, 120));
-				nodes.add(new Path.Node(24, 111));
-				nodes.add(new Path.Node(13, 111));
-				nodes.add(new Path.Node(13, 120));
-				nodes.add(new Path.Node(6, 120));
-				nodes.add(new Path.Node(6, 111));
-				nodes.add(new Path.Node(13, 111));
-				nodes.add(new Path.Node(13, 120));
-				nodes.add(new Path.Node(24, 120));
-				nodes.add(new Path.Node(24, 111));
-				nodes.add(new Path.Node(34, 111));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(34, 120));
+				nodes.add(new Node(24, 120));
+				nodes.add(new Node(24, 111));
+				nodes.add(new Node(13, 111));
+				nodes.add(new Node(13, 120));
+				nodes.add(new Node(6, 120));
+				nodes.add(new Node(6, 111));
+				nodes.add(new Node(13, 111));
+				nodes.add(new Node(13, 120));
+				nodes.add(new Node(24, 120));
+				nodes.add(new Node(24, 111));
+				nodes.add(new Node(34, 111));
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override

@@ -11,6 +11,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
 
 import java.awt.geom.Rectangle2D;
@@ -22,7 +23,7 @@ import marauroa.common.Logger;
 
 public class CreatureLogic {
 	private static int counter;
-	
+
 	private static Logger logger = Log4J.getLogger(CreatureLogic.class);
 
 	/**
@@ -41,7 +42,7 @@ public class CreatureLogic {
 	/** the number of rounds to wait for a path the target */
 	private int waitRounds;
 
-	private List<Path.Node> patrolPath;
+	private List<Node> patrolPath;
 
 	private int attackTurn;
 
@@ -145,7 +146,7 @@ public class CreatureLogic {
 	}
 
 	/**
-	 * Finds a new target to attack 
+	 * Finds a new target to attack
 	 */
 	private void logicFindNewTarget() {
 		// ...and find another target
@@ -170,18 +171,18 @@ public class CreatureLogic {
 		if (logger.isDebugEnabled()) {
 			logger.debug(creature.getIDforDebug() + " Creating Path for creature entity");
 		}
-		List<Path.Node> nodes = new LinkedList<Path.Node>();
+		List<Node> nodes = new LinkedList<Node>();
 		long time = System.nanoTime();
 		if (creature.getAIProfile("patrolling") != null) {
 
 			int size = patrolPath.size();
 
 			for (int i = 0; i < size; i++) {
-				Path.Node actual = patrolPath.get(i);
-				Path.Node next = patrolPath.get((i + 1) % size);
+				Node actual = patrolPath.get(i);
+				Node next = patrolPath.get((i + 1) % size);
 
-				nodes.addAll(Path.searchPath(creature, actual.x + creature.getX(), actual.y + creature.getY(), new Rectangle2D.Double(next.x
-				        + creature.getX(), next.y + creature.getY(), 1.0, 1.0)));
+				nodes.addAll(Path.searchPath(creature, actual.getX() + creature.getX(), actual.getY() + creature.getY(), new Rectangle2D.Double(next.getX()
+				        + creature.getX(), next.getY() + creature.getY(), 1.0, 1.0)));
 			}
 		}
 		long time2 = System.nanoTime() - time;
@@ -379,10 +380,10 @@ public class CreatureLogic {
 			// TODO: use pathfinder if creature is not a good position
 			logicAttack();
 		} else {
-			List<Path.Node> nodes = new LinkedList<Path.Node>();
+			List<Node> nodes = new LinkedList<Node>();
 			int nx = creature.getX() + nextDir.getdx();
 			int ny = creature.getY() + nextDir.getdy();
-			nodes.add(new Path.Node(nx, ny));
+			nodes.add(new Node(nx, ny));
 			creature.setPath(new FixedPath(nodes, false));
 			//Path.followPath(creature);
 		}
@@ -447,7 +448,7 @@ public class CreatureLogic {
 			if (!creature.hasPath()) {
 				// If creature is blocked, choose a new target
 				// TODO: if we are an archer and in range, creature is ok
-				//       don't get to near to the enemy. 
+				//       don't get to near to the enemy.
 				if (Debug.CREATURES_DEBUG_SERVER) {
 					debug.append(";blocked");
 				}
@@ -493,10 +494,10 @@ public class CreatureLogic {
 	}
 
 	private int turnToThink=0;
-	
+
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		
+
 		/*
 		 * We only *think* once each 2 turns.
 		 * So we save CPU time.
@@ -562,11 +563,11 @@ public class CreatureLogic {
 
 	public void createPath() {
 		/** TODO: Create paths in other way */
-		patrolPath = new LinkedList<Path.Node>();
-		patrolPath.add(new Path.Node(0, 0));
-		patrolPath.add(new Path.Node(-6, 0));
-		patrolPath.add(new Path.Node(-6, 6));
-		patrolPath.add(new Path.Node(0, 6));
+		patrolPath = new LinkedList<Node>();
+		patrolPath.add(new Node(0, 0));
+		patrolPath.add(new Node(-6, 0));
+		patrolPath.add(new Node(-6, 6));
+		patrolPath.add(new Node(0, 6));
 		resetAIState();
 	}
 }

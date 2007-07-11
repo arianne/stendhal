@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,9 +41,9 @@ public class SoldierNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> path = new LinkedList<Path.Node>();
-				path.add(new Path.Node(84, 108));
-				path.add(new Path.Node(84, 115));
+				List<Node> path = new LinkedList<Node>();
+				path.add(new Node(84, 108));
+				path.add(new Node(84, 115));
 				setPath(new FixedPath(path, true));
 			}
 

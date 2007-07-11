@@ -16,6 +16,7 @@ import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.pathfinder.FixedPath;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
 
 import java.util.ArrayList;
@@ -182,7 +183,7 @@ public abstract class NPC extends RPEntity {
 		} else if ((squaredDistance(destEntity.getX(), destEntity.getY()) > max)) {
 			logger.debug("Creating path because (" + getX() + "," + getY() + ") distance(" + destEntity.getX() + ","
 			        + destEntity.getY() + ")>" + max);
-			List<Path.Node> path = Path.searchPath(this, destEntity, maxPathRadius);
+			List<Node> path = Path.searchPath(this, destEntity, maxPathRadius);
 			setPath(new FixedPath(path, false));
 		}
 	}
@@ -208,8 +209,8 @@ public abstract class NPC extends RPEntity {
 		int dx = Rand.rand(dist2_1) - distance;
 		int dy = Rand.rand(dist2_1) - distance;
 
-		List<Path.Node> path = new ArrayList<Path.Node>(1);
-		path.add(new Path.Node(x + dx, y + dy));
+		List<Node> path = new ArrayList<Node>(1);
+		path.add(new Node(x + dx, y + dy));
 
 		setPath(new FixedPath(path, false));
 	}

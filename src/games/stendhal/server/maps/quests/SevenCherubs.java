@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,11 +85,11 @@ public class SevenCherubs extends AbstractQuest {
 			set(x, y);
 			initHP(100);
 
-			List<Path.Node> nodes = new LinkedList<Path.Node>();
-			nodes.add(new Path.Node(x, y));
-			nodes.add(new Path.Node(x - 2, y));
-			nodes.add(new Path.Node(x - 2, y - 2));
-			nodes.add(new Path.Node(x, y - 2));
+			List<Node> nodes = new LinkedList<Node>();
+			nodes.add(new Node(x, y));
+			nodes.add(new Node(x - 2, y));
+			nodes.add(new Node(x - 2, y - 2));
+			nodes.add(new Node(x, y - 2));
 			setPath(new FixedPath(nodes, true));
 		}
 

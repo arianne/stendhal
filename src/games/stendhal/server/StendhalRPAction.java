@@ -24,8 +24,8 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.TutorialNotifier;
+import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
-import games.stendhal.server.pathfinder.Path.Node;
 
 import java.awt.Rectangle;
 import java.awt.Shape;

@@ -6,7 +6,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -41,14 +41,14 @@ public class BlacksmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(20, 10));
-				nodes.add(new Path.Node(12, 10));
-				nodes.add(new Path.Node(12, 6));
-				nodes.add(new Path.Node(12, 9));
-				nodes.add(new Path.Node(20, 9));
-				nodes.add(new Path.Node(20, 7));
-				nodes.add(new Path.Node(20, 10));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(20, 10));
+				nodes.add(new Node(12, 10));
+				nodes.add(new Node(12, 6));
+				nodes.add(new Node(12, 9));
+				nodes.add(new Node(20, 9));
+				nodes.add(new Node(20, 7));
+				nodes.add(new Node(20, 10));
 				setPath(new FixedPath(nodes, true));
 			}
 
