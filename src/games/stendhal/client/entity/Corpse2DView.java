@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * The 2D view of a corpse.
  */
-public class Corpse2DView extends Entity2DView implements Inspectable {
+public class Corpse2DView extends Entity2DView {
 	/**
 	 * The RP entity this view is for.
 	 */
@@ -83,20 +83,6 @@ public class Corpse2DView extends Entity2DView implements Inspectable {
 	 */
 	public double getWidth() {
 		return width;
-	}
-
-
-	//
-	// Inspectable
-	//
-
-	/**
-	 * Set the content inspector for this entity.
-	 *
-	 * @param	inspector	The inspector.
-	 */
-	public void setInspector(final Inspector inspector) {
-		this.inspector = inspector;
 	}
 
 
@@ -176,6 +162,17 @@ public class Corpse2DView extends Entity2DView implements Inspectable {
 	@Override
 	public int getZIndex() {
 		return 5500;
+	}
+
+
+	/**
+	 * Set the content inspector for this entity.
+	 *
+	 * @param	inspector	The inspector.
+	 */
+	@Override
+	public void setInspector(final Inspector inspector) {
+		this.inspector = inspector;
 	}
 
 

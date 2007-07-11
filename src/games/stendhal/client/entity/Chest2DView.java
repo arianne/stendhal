@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
 /**
  * The 2D view of a chest.
  */
-public class Chest2DView extends StateEntity2DView implements Inspectable {
+public class Chest2DView extends StateEntity2DView {
 	/*
 	 * The closed state.
 	 */
@@ -71,20 +71,6 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 		this.chest = chest;
 		openChanged = false;
 		requestOpen = false;
-	}
-
-
-	//
-	// Inspectable
-	//
-
-	/**
-	 * Set the content inspector for this entity.
-	 *
-	 * @param	inspector	The inspector.
-	 */
-	public void setInspector(final Inspector inspector) {
-		this.inspector = inspector;
 	}
 
 
@@ -165,6 +151,17 @@ public class Chest2DView extends StateEntity2DView implements Inspectable {
 	@Override
 	public int getZIndex() {
 		return 5000;
+	}
+
+
+	/**
+	 * Set the content inspector for this entity.
+	 *
+	 * @param	inspector	The inspector.
+	 */
+	@Override
+	public void setInspector(final Inspector inspector) {
+		this.inspector = inspector;
 	}
 
 

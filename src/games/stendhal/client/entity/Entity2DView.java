@@ -390,17 +390,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
-	 * Set whether this view is contained, and should render in a
-	 * compressed (it's defined) area without clipping anything important.
-	 *
-	 * @param	contained	<code>true</code> if contained.
-	 */
-	public void setContained(boolean contained) {
-		this.contained = contained;
-	}
-
-
-	/**
 	 * Set the sprite's animation state (if applicable).
 	 *
 	 * @param	sprite		The sprite.
@@ -416,6 +405,26 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 				asprite.reset();
 			}
 		}
+	}
+
+
+	/**
+	 * Set whether this view is contained, and should render in a
+	 * compressed (it's defined) area without clipping anything important.
+	 *
+	 * @param	contained	<code>true</code> if contained.
+	 */
+	public void setContained(boolean contained) {
+		this.contained = contained;
+	}
+
+
+	/**
+	 * Set the content inspector for this entity (if needed).
+	 *
+	 * @param	inspector	The inspector.
+	 */
+	public void setInspector(final Inspector inspector) {
 	}
 
 
