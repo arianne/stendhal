@@ -129,10 +129,6 @@ public class FixedPath {
 	}
 
 
-	//
-	// Path
-	//
-
 	/**
 	 * Follow this path. This will face the entity into the proper
 	 * direction to reach it's next path goal.
