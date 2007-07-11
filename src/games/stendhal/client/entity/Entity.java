@@ -18,8 +18,6 @@ import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.List;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
@@ -64,7 +62,7 @@ public class Entity implements RPObjectChangeListener {
 	String[] moveSounds=null;
 	/** session wide instance identifier for this class
 	 * TODO: get rid of this only used by Soundsystem
-	 *  
+	 *
 	**/
 public final byte[] ID_Token = new byte[0];
 
@@ -366,7 +364,7 @@ public final byte[] ID_Token = new byte[0];
 		return rpObject.getRPClass().subclassOf(clazz);
 	}
 
-	
+
 	/**
 	 * @param user the current player's character
 	 * @return a double value representing the square of the distance in tiles
@@ -377,7 +375,7 @@ public final byte[] ID_Token = new byte[0];
 		return (User.get().getX() - getX()) * (User.get().getX() - getX())
 			+ (User.get().getY() - getY()) * (User.get().getY() - getY());
 	}
-	
+
 
 	/**
 	 * Returns the absolute world area (coordinates) to which audibility of
@@ -398,7 +396,7 @@ public final byte[] ID_Token = new byte[0];
 	 * expressed in coordinate units. This reflects an abstract capacity of this
 	 * unit to emit sounds and influences the result of
 	 * <code>getAudibleArea()</code>.
-	 * 
+	 *
 	 * @param range
 	 *            double audibility area radius in coordinate units
 	 */
@@ -812,7 +810,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @param	object		The object.
 	 * @deprecated Moving to different listener. Use release().
 	 */
-	@Deprecated 
+	@Deprecated
 	public final void onRemoved(final RPObject object) {
 	}
 }
