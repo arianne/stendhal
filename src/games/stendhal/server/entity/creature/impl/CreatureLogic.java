@@ -10,7 +10,6 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
-import games.stendhal.server.pathfinder.DirectionPath;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
@@ -208,7 +207,7 @@ public class CreatureLogic {
 			logger.debug(creature.getIDforDebug() + " Following path");
 		}
 		if (creature.hasPath()) {
-			creature.applyMovement();
+			Path.followPath(creature);
 		}
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("patrol;");
@@ -227,6 +226,7 @@ public class CreatureLogic {
 			logger.debug(creature.getIDforDebug() + " Attacker is too far. Creature stops attack");
 		}
 		target = null;
+		creature.clearPath();
 		creature.stopAttack();
 		creature.stop();
 
@@ -328,7 +328,7 @@ public class CreatureLogic {
 		}
 
 		if (creature.collides()) {
-			creature.stop();
+			creature.clearPath();
 		}
 
 		// the path can be the path to the target or the pseudo random move
@@ -336,11 +336,10 @@ public class CreatureLogic {
 			// TODO: FIXME - Remove path size assumption/dependency
 			if (creature.getPathList().size() == 1) {
 				// pseudo random move. complete it
-				if (creature.getPath().follow(creature)) {
+				if (!Path.followPath(creature)) {
 					return;
 				}
-
-				creature.stop();
+				creature.clearPath();
 			}
 		}
 
@@ -386,6 +385,7 @@ public class CreatureLogic {
 			int ny = creature.getY() + nextDir.getdy();
 			nodes.add(new Node(nx, ny));
 			creature.setPath(new FixedPath(nodes, false));
+			//Path.followPath(creature);
 		}
 	}
 
@@ -411,11 +411,13 @@ public class CreatureLogic {
 				debug.append(";blocked");
 			}
 			// invalidate the path and stop
-			creature.stop();
+			creature.clearPath();
 
 			// TODO: Use setRandomPath()?
 			// Try to fix the issue by moving randomly.
-			creature.setPath(new DirectionPath(Direction.rand(), null));
+			Direction dir = Direction.rand();
+			creature.setDirection(dir);
+			creature.setSpeed(creature.getBaseSpeed());
 
 			// wait some rounds so the path can be cleared by other
 			// creatures
@@ -431,9 +433,10 @@ public class CreatureLogic {
 			waitRounds--;
 		} else {
 			// Are we still patrolling?
-			if (creature.hasPath() && (aiState == AiState.PATROL)) {
+			// TODO: Adapt for opaque 'Path' objects
+			if (creature.isPathLoop() || (aiState == AiState.PATROL)) {
 				// yep, so clear the patrol path
-				creature.stop();
+				creature.clearPath();
 			}
 
 			creature.setMovement(target, 0, 0, 20.0);
@@ -454,6 +457,7 @@ public class CreatureLogic {
 				}
 
 				target = null;
+				creature.clearPath();
 				creature.stopAttack();
 				creature.stop();
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;

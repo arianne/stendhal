@@ -26,12 +26,8 @@ import java.util.List;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
-/**
- * An abstract notion of a movement path.
- *
- * TODO: Ideally, make an interface (if legacy methods are moved elsewhere).
- */
 public abstract class Path {
+
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Path.class);
 
@@ -71,6 +67,25 @@ public abstract class Path {
 	private static StepCallback callback;
 
 	public static int steps;
+
+	protected static void faceto(ActiveEntity entity, int x, int y) {
+		int rndx = x - entity.getX();
+		int rndy = y - entity.getY();
+
+		if (Math.abs(rndx) > Math.abs(rndy)) {
+			if (rndx < 0.0) {
+				entity.setDirection(Direction.LEFT);
+			} else {
+				entity.setDirection(Direction.RIGHT);
+			}
+		} else {
+			if (rndy < 0.0) {
+				entity.setDirection(Direction.UP);
+			} else {
+				entity.setDirection(Direction.DOWN);
+			}
+		}
+	}
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
@@ -240,6 +255,49 @@ public abstract class Path {
 		        .getY()) - 1, ((int) area.getWidth()) + 2, ((int) area.getHeight()) + 2), maxDistance);
 	}
 
+	/**
+	 * Follow the current path (if any) by pointing the direction toward
+	 * the next destination point.
+	 *
+	 * @param	entity		The entity to point.
+	 */
+	public static boolean followPath(final GuidedEntity entity) {
+		List<Node> path = entity.getPathList();
+
+		if (path == null) {
+			return true;
+		}
+
+		int pos = entity.getPathPosition();
+		Node actual = path.get(pos);
+
+		if((actual.getX() == entity.getX()) && (actual.getY() == entity.getY())) {
+			logger.debug("Completed waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path");
+			pos++;
+			if (pos < path.size()) {
+				entity.setPathPosition(pos);
+				actual = path.get(pos);
+				logger.debug("Moving to waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path from ("
+				        + entity.getX() + "," + entity.getY() + ")");
+				faceto(entity, actual.getX(), actual.getY());
+				return false;
+			} else {
+				if (entity.isPathLoop()) {
+					entity.setPathPosition(0);
+				} else {
+					entity.stop();
+					entity.clearPath();
+				}
+
+				return true;
+			}
+		} else {
+			logger.debug("Moving to waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path from ("
+			        + entity.getX() + "," + entity.getY() + ")");
+			faceto(entity, actual.getX(), actual.getY());
+			return false;
+		}
+	}
 
 	/** this callback is called after every A* step. */
 	public interface StepCallback {

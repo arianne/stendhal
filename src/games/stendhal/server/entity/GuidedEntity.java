@@ -15,8 +15,6 @@ import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
 
-import marauroa.common.Log4J;
-import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
 /**
@@ -24,14 +22,12 @@ import marauroa.common.game.RPObject;
  */
 public abstract class GuidedEntity extends ActiveEntity {
 	/**
-	 * The logger.
+	 * The path.
 	 */
-	private static final Logger logger = Log4J.getLogger(GuidedEntity.class);
+	private FixedPath	path;
 
-	/**
-	 * The current path.
-	 */
-	private Path		path;
+	/** current position in the path */
+	private int pathPosition;
 
 
 	/**
@@ -75,14 +71,18 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * be its position, of course). The speed will be set to the default
 	 * for the entity.
 	 *
+	 * TODO: Change to accept just 'Path' after everything is converted
+	 *       to use opaque Path's rather than Node lists.
+	 *
 	 * @param	path		The path.
 	 */
-	public void setPath(final Path path) {
+	public void setPath(final FixedPath path) {
 		if((path != null) && !path.isFinished()) {
 			this.path = path;
+			this.pathPosition = 0;
 
 			setSpeed(getBaseSpeed());
-			path.follow(this);
+			Path.followPath(this);
 		} else {
 			clearPath();
 		}
@@ -94,6 +94,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public void clearPath() {
 		this.path = null;
+		this.pathPosition = 0;
 	}
 
 
@@ -108,42 +109,34 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 
 	/**
-	 * Get the path.
-	 *
-	 * @return	The current path, or <code>null</code> if none.
+	 * Get the path list.
 	 */
-	public Path getPath() {
-		return path;
+	public List<Node> getPathList() {
+		return (path != null) ? path.getNodeList() : null;
 	}
 
 
 	/**
-	 * Get the path list.
-	 * TODO: Not depend on FixedPath's.
-	 *
-	 * @return	A list of path points.
+	 * Is the path a loop.
 	 */
-	public List<Node> getPathList() {
-		if(path instanceof FixedPath) {
-			return ((FixedPath) path).getNodeList();
-		} else {
-			return null;
-		}
+	public boolean isPathLoop() {
+		return (path != null) ? path.isLoop() : false;
 	}
 
 
 	/**
 	 * Get the path nodes position.
-	 * TODO: Not assume FixedPath's.
-	 *
-	 * @return	The current position in a fixed path.
 	 */
 	public int getPathPosition() {
-		if(path instanceof FixedPath) {
-			return ((FixedPath) path).getPosition();
-		} else {
-			return 0;
-		}
+		return pathPosition;
+	}
+
+
+	/**
+	 * Set the path nodes position.
+	 */
+	public void setPathPosition(int pathPos) {
+		this.pathPosition = pathPos;
 	}
 
 
@@ -157,27 +150,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	@Override
 	public void applyMovement() {
 		if (hasPath()) {
-			if(!path.follow(this)) {
-				stop();
-			}
-
+			Path.followPath(this);
 			notifyWorldAboutChanges();
-		} else if(!isStopped()) {
-			logger.debug("WARNING: Moving without path: " + this);
 		}
 
-		// TODO: Eventually only call super if a path is set,
-		// once GuidedEntity only uses Path for movement. 
 		super.applyMovement();
-	}
-
-
-	/**
-	 * Stops entity movement.
-	 */
-	@Override
-	public void stop() {
-		setPath(null);
-		super.stop();
 	}
 }

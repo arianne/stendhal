@@ -33,7 +33,6 @@ import games.stendhal.server.entity.item.StackableItem;
 import games.stendhal.server.events.TurnListener;
 import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
-import games.stendhal.server.pathfinder.DirectionPath;
 
 import java.awt.geom.Rectangle2D;
 import java.lang.ref.WeakReference;
@@ -284,8 +283,8 @@ public class Player extends RPEntity {
 		/*
 		 * For now just take last direction.
 		 *
-		 * TODO: Eventually try each (last-to-first) until a
-		 * non-blocked one is found (if any).
+		 * Eventually try each (last-to-first) until a non-blocked
+		 * one is found (if any).
 		 */
 		if ((size = directions.size()) != 0) {
 			direction = directions.get(size - 1);
@@ -296,7 +295,8 @@ public class Player extends RPEntity {
 				direction = direction.oppositeDirection();
 			}
 
-			setPath(new DirectionPath(direction, null));
+			setDirection(direction);
+			setSpeed(getBaseSpeed());
 		} else if (stopOnNone) {
 			stop();
 		}

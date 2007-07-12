@@ -19,7 +19,8 @@ import marauroa.common.Logger;
 /**
  * A path using a fixed route.
  */
-public class FixedPath extends Path {
+public class FixedPath {
+
 	/**
 	 * The logger.
 	 */
@@ -73,6 +74,20 @@ public class FixedPath extends Path {
 	//
 
 	/**
+	 * Add a node to the path.
+	 *
+	 * @param	node		The node to add.
+	 */
+	 void add(final Node node) {
+		nodes.add(node);
+
+		if(currentGoal == null) {
+			currentGoal = node;
+		}
+	}
+
+
+	/**
 	 * Get the current goal.
 	 *
 	 * @return	The current goal to reach, or <code>null</code>.
@@ -104,16 +119,6 @@ public class FixedPath extends Path {
 
 
 	/**
-	 * Get the path position.
-	 *
-	 * @return	The path position index to the current goal.
-	 */
-	public int getPosition() {
-		return pos;
-	}
-
-
-	/**
 	 * Determine if the path is an infinite loop.
 	 *
 	 * @return	<code>true</code> if the path loops when the last
@@ -124,10 +129,6 @@ public class FixedPath extends Path {
 	}
 
 
-	//
-	// Path
-	//
-
 	/**
 	 * Follow this path. This will face the entity into the proper
 	 * direction to reach it's next path goal.
@@ -137,7 +138,7 @@ public class FixedPath extends Path {
 	 * @return	<code>true</code> if something to follow,
 	 *		<code>false</code> if complete.
 	 */
-	@Override
+
 	public boolean follow(final ActiveEntity entity) {
 		/*
 		 * Without goals, we'll never get anywhere in life
@@ -173,7 +174,7 @@ public class FixedPath extends Path {
 				+ entity.getX() + "," + entity.getY() + ")");
 		}
 
-		entity.faceToward(currentGoal.getX(), currentGoal.getY());
+		Path.faceto(entity, currentGoal.getX(), currentGoal.getY());
 
 		return true;
 	}
@@ -185,7 +186,7 @@ public class FixedPath extends Path {
 	 * @return	The destination node, or <code>null</code> if there
 	 *		is none (i.e. no path, or unbound/infinite movement).
 	 */
-	@Override
+
 	public Node getDestination() {
 		if(loop || nodes.isEmpty()) {
 			return null;
@@ -200,7 +201,7 @@ public class FixedPath extends Path {
 	 *
 	 * @return	<code>true</code> if there is no more path to follow.
 	 */
-	@Override
+
 	public boolean isFinished() {
 		return (currentGoal == null);
 	}
