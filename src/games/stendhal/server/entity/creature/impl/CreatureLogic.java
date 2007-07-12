@@ -207,7 +207,7 @@ public class CreatureLogic {
 			logger.debug(creature.getIDforDebug() + " Following path");
 		}
 		if (creature.hasPath()) {
-			Path.followPath(creature);
+			creature.applyMovement();
 		}
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("patrol;");
@@ -226,7 +226,6 @@ public class CreatureLogic {
 			logger.debug(creature.getIDforDebug() + " Attacker is too far. Creature stops attack");
 		}
 		target = null;
-		creature.clearPath();
 		creature.stopAttack();
 		creature.stop();
 
@@ -328,7 +327,7 @@ public class CreatureLogic {
 		}
 
 		if (creature.collides()) {
-			creature.clearPath();
+			creature.stop();
 		}
 
 		// the path can be the path to the target or the pseudo random move
@@ -336,10 +335,11 @@ public class CreatureLogic {
 			// TODO: FIXME - Remove path size assumption/dependency
 			if (creature.getPathList().size() == 1) {
 				// pseudo random move. complete it
-				if (!Path.followPath(creature)) {
+				if (creature.getPath().follow(creature)) {
 					return;
 				}
-				creature.clearPath();
+
+				creature.stop();
 			}
 		}
 
@@ -385,7 +385,6 @@ public class CreatureLogic {
 			int ny = creature.getY() + nextDir.getdy();
 			nodes.add(new Node(nx, ny));
 			creature.setPath(new FixedPath(nodes, false));
-			//Path.followPath(creature);
 		}
 	}
 
@@ -411,7 +410,7 @@ public class CreatureLogic {
 				debug.append(";blocked");
 			}
 			// invalidate the path and stop
-			creature.clearPath();
+			creature.stop();
 
 			// TODO: Use setRandomPath()?
 			// Try to fix the issue by moving randomly.
@@ -433,10 +432,9 @@ public class CreatureLogic {
 			waitRounds--;
 		} else {
 			// Are we still patrolling?
-			// TODO: Adapt for opaque 'Path' objects
-			if (creature.isPathLoop() || (aiState == AiState.PATROL)) {
+			if (creature.hasPath() && (aiState == AiState.PATROL)) {
 				// yep, so clear the patrol path
-				creature.clearPath();
+				creature.stop();
 			}
 
 			creature.setMovement(target, 0, 0, 20.0);
@@ -457,7 +455,6 @@ public class CreatureLogic {
 				}
 
 				target = null;
-				creature.clearPath();
 				creature.stopAttack();
 				creature.stop();
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
