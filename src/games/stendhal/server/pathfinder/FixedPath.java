@@ -173,7 +173,7 @@ public class FixedPath extends Path {
 				+ entity.getX() + "," + entity.getY() + ")");
 		}
 
-		Path.faceto(entity, currentGoal.getX(), currentGoal.getY());
+		entity.faceToward(currentGoal.getX(), currentGoal.getY());
 
 		return true;
 	}

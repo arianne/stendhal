@@ -177,6 +177,17 @@ public abstract class ActiveEntity extends Entity {
 
 
 	/**
+	 * Face toward a point.
+	 *
+	 * @param	x		The target X coordinate.
+	 * @param	y		The target Y coordinate.
+	 */
+	public void faceToward(final int x, final int y) {
+		setDirection(getDirectionToward(x, y));
+	}
+
+
+	/**
 	 * Generate the RPClass (compatible with manual init/order).
 	 *
 	 * NOTE: This MUST be called during environment initialization.
@@ -206,7 +217,7 @@ public abstract class ActiveEntity extends Entity {
 	public Direction getDirectionToward(final Entity entity) {
 		Rectangle2D area = entity.getArea();
 
-		return getDirectionToward(area.getCenterX(), area.getCenterY());
+		return getDirectionToward((int) area.getCenterX(), (int) area.getCenterY());
 	}
 
 
@@ -218,20 +229,18 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @return	A facing direction.
 	 */
-	private Direction getDirectionToward(final double x, final double y) {
-		Rectangle2D area = getArea();
+	private Direction getDirectionToward(final int x, final int y) {
+		int dx = x - getX();
+		int dy = y - getY();
 
-		double rx = area.getCenterX();
-		double ry = area.getCenterY();
-
-		if (Math.abs(x - rx) > Math.abs(y - ry)) {
-			if (x - rx > 0) {
+		if (Math.abs(dx) > Math.abs(dy)) {
+			if (dx > 0) {
 				return Direction.RIGHT;
 			} else {
 				return Direction.LEFT;
 			}
 		} else {
-			if (y - ry > 0) {
+			if (dy > 0) {
 				return Direction.DOWN;
 			} else {
 				return Direction.UP;
@@ -247,6 +256,18 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	public double getSpeed() {
 		return speed;
+	}
+
+
+	/**
+	 * Determine if moving a direction would [currently] be blocked.
+	 *
+	 * @param	dir		The direction to test.
+	 *
+	 * @return	<code>true</code> if that direction is blocked.
+	 */
+	public boolean isDirectionBlocked(final Direction dir) {
+		return getZone().collides(this, getX() + dir.getdx(), getY() + dir.getdy());
 	}
 
 

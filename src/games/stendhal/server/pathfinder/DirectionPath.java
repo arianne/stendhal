@@ -82,6 +82,7 @@ public class DirectionPath extends Path {
 		if(destination != null) {
 			/*
 			 * Reached the destination?
+			 * TODO: Account for being "Pushed" off the path line
 			 */
 			if((destination.getX() == entity.getX()) && (destination.getY() == entity.getY())) {
 				finished = true;

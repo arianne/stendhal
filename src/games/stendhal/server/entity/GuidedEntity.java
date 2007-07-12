@@ -15,12 +15,19 @@ import games.stendhal.server.pathfinder.Path;
 
 import java.util.List;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
 
 /**
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
+	/**
+	 * The logger.
+	 */
+	private static final Logger logger = Log4J.getLogger(GuidedEntity.class);
+
 	/**
 	 * The current path.
 	 */
@@ -155,6 +162,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 			}
 
 			notifyWorldAboutChanges();
+		} else if(!isStopped()) {
+			logger.debug("WARNING: Moving without path: " + this);
 		}
 
 		// TODO: Eventually only call super if a path is set,

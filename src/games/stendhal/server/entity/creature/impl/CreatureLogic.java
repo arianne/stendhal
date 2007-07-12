@@ -10,6 +10,7 @@ import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.pathfinder.DirectionPath;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
@@ -414,9 +415,7 @@ public class CreatureLogic {
 
 			// TODO: Use setRandomPath()?
 			// Try to fix the issue by moving randomly.
-			Direction dir = Direction.rand();
-			creature.setDirection(dir);
-			creature.setSpeed(creature.getBaseSpeed());
+			creature.setPath(new DirectionPath(Direction.rand(), null));
 
 			// wait some rounds so the path can be cleared by other
 			// creatures

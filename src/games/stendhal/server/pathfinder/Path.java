@@ -72,25 +72,6 @@ public abstract class Path {
 
 	public static int steps;
 
-	protected static void faceto(ActiveEntity entity, int x, int y) {
-		int rndx = x - entity.getX();
-		int rndy = y - entity.getY();
-
-		if (Math.abs(rndx) > Math.abs(rndy)) {
-			if (rndx < 0.0) {
-				entity.setDirection(Direction.LEFT);
-			} else {
-				entity.setDirection(Direction.RIGHT);
-			}
-		} else {
-			if (rndy < 0.0) {
-				entity.setDirection(Direction.UP);
-			} else {
-				entity.setDirection(Direction.DOWN);
-			}
-		}
-	}
-
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
 	 *
