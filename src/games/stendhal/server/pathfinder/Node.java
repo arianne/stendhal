@@ -39,20 +39,4 @@ public class Node {
 	public String toString() {
 		return "(" + x + "," + y + ")";
 	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Node){
-			return ((Node)obj).x == x && ((Node)obj).y==y;
-		}
-		return false;
-	}
-
-
-	@Override
-	public int hashCode() {
-
-		return super.hashCode()^x^y;
-	}
 }

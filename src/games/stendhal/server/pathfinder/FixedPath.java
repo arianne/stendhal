@@ -60,11 +60,10 @@ public class FixedPath {
 
 		pos = 0;
 
-		if(nodes.isEmpty()) {
-			currentGoal = null;
-
-		} else {
+		if(!nodes.isEmpty()) {
 			currentGoal = nodes.get(0);
+		} else {
+			currentGoal = null;
 		}
 
 	}
@@ -93,7 +92,7 @@ public class FixedPath {
 	 *
 	 * @return	The current goal to reach, or <code>null</code>.
 	 */
-	 Node getCurrentGoal() {
+	public Node getCurrentGoal() {
 		return currentGoal;
 	}
 
@@ -114,7 +113,7 @@ public class FixedPath {
 	 *
 	 * @return	The nodes.
 	 */
-	Node [] getNodes() {
+	public Node [] getNodes() {
 		return (Node []) nodes.toArray(new Node[nodes.size()]);
 	}
 
@@ -188,7 +187,7 @@ public class FixedPath {
 	 *		is none (i.e. no path, or unbound/infinite movement).
 	 */
 
-	 Node getDestination() {
+	public Node getDestination() {
 		if(loop || nodes.isEmpty()) {
 			return null;
 		} else {

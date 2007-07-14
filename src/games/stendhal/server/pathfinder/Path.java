@@ -20,7 +20,6 @@ import games.stendhal.server.entity.GuidedEntity;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
-import java.util.LinkedList;
 import java.util.List;
 
 import marauroa.common.Log4J;
@@ -62,11 +61,6 @@ public abstract class Path {
 	 * @return	<code>true</code> if there is no more path to follow.
 	 */
 	public abstract boolean isFinished();
-
-
-	private static StepCallback callback;
-
-	public static int steps;
 
 	protected static void faceto(ActiveEntity entity, int x, int y) {
 		int rndx = x - entity.getX();
@@ -142,78 +136,28 @@ public abstract class Path {
 	 *            the maximum distance (air line) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, StendhalRPZone zone, int x, int y, Rectangle2D destination,
+	public static List<Node> searchPath(Entity sourceEntity, StendhalRPZone zone, int x, int y, Rectangle2D destination,
 	        double maxDistance, boolean withEntities) {
 
 		if (zone == null) {
-			zone = entity.getZone();
+			zone = sourceEntity.getZone();
 		}
 
 		//
 		//		long startTimeNano = System.nanoTime();
 		long startTime = System.currentTimeMillis();
 
-		Pathfinder path = new Pathfinder();
+        Pathfinder pathfinder = new Pathfinder(sourceEntity, zone, x, y, destination, maxDistance, withEntities);
 
-		StendhalNavigable navMap =
-			            new StendhalNavigable(entity, zone, x, y, destination, withEntities);
+        List<Node> resultPath = pathfinder.getPath();
+        if (logger.isDebugEnabled() && pathfinder.getStatus() == Pathfinder.PATH_NOT_FOUND)
+        {
+            logger.debug("Pathfinding aborted: " + zone.getID() + " " + sourceEntity.get("name")
+                + " (" + x + ", " + y + ") " + destination + " Pathfinding time: "
+                + (System.currentTimeMillis() - startTime));
+        }
 
-
-		// The most expensive path is the not existing path
-		if (navMap.unrechable()) {
-			return new LinkedList<Node>();
-		}
-
-		path.setNavigable(navMap);
-		path.setStart(new PathFinderNode(x, y));
-
-		/*
-		 * if the destination is an area
-		 * set the destination node for pathfinding to the center of the area
-		 */
-		if ((destination.getWidth() > 2) || (destination.getHeight() > 2)) {
-			path.setGoal(new PathFinderNode((int) (destination.getCenterX()), (int) (destination.getCenterY())));
-		} else {
-			path.setGoal(new PathFinderNode((int) destination.getX(), (int) destination.getY()));
-		}
-
-		steps = 0;
-		path.init();
-
-		while (path.getStatus() == Pathfinder.IN_PROGRESS) {
-			path.doStep();
-			steps++;
-			if (callback != null) {
-				callback.stepDone(path.getBestNode());
-			}
-		}
-
-		long endTime = System.currentTimeMillis();
-		if (false && logger.isDebugEnabled()) {
-			logger.debug("Route (" + x + "," + y + ")-(" + destination + ") S:" + steps + " OL:"
-			        + path.getOpen().size() + " CL:" + path.getClosed().size() + " in " + (endTime - startTime) + "ms");
-		}
-		// 		logger.info("status: " + path.getStatus());
-		if (path.getStatus() == Pathfinder.PATH_NOT_FOUND) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Pathfinding aborted: " + zone.getID() + " " + entity.get("name") + " (" + x + ", " + y
-				        + ") " + destination + " Pathfinding time: " + (System.currentTimeMillis() - startTime)
-				        + "  steps: " + steps);
-			}
-			return new LinkedList<Node>();
-		}
-		//		time = time + System.nanoTime() - startTimeNano;
-		//		counter++;
-
-		List<Node> list = new LinkedList<Node>();
-		PathFinderNode node = path.getBestNode();
-		while (node != null) {
-			list.add(0, new Node(node.getX(), node.getY()));
-			node = node.getParent();
-		}
-
-		//
-		return list;
+        return resultPath;
 	}
 
 
@@ -295,11 +239,5 @@ public abstract class Path {
 			faceto(entity, actual.getX(), actual.getY());
 			return false;
 		}
-	}
-
-	/** this callback is called after every A* step. */
-	public interface StepCallback {
-
-		public void stepDone(PathFinderNode lastNode);
 	}
 }

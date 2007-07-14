@@ -21,11 +21,43 @@
 
 package games.stendhal.server.pathfinder;
 
+import games.stendhal.common.CollisionDetection;
+import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.Entity;
+
+import java.awt.geom.Rectangle2D;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+import marauroa.common.game.RPObject;
+
+/*
+ * TODO
+ * - A* ist ziemlich gut, vielleicht koennte man:
+ *   1. Vorberechnungen f�r die komplette Zone machen
+ *      bzw. Vorberechnungen mit jedem Pfad und dann speichern
+ *   2. nicht erreichbare Teilzonen markieren, sodass man nicht jedesmal pr�fen muss,
+ *      sondern nur schauen ob Source oder Target damit kollidieren
+ *   3. den Pfad dynamisch berechnen, immer nur Teilabschnitte (niemals komplett vorher)
+ *      * Probleme wenn Ziel nicht erreichbar ist
+ *      * stoppe Berechnung von Teilpfad wenn Mindestl�nge erreicht
+ *      * berechne n�chsten Abschnitt wenn Ende erreicht
+ *      - Gesucht sehr schneller Algorithmus, welcher anzeigt ob Ziel erreichbar
+ *        (z.B. FloodFill [auf Bereich begrenzt] auf einer CollisionDetectionMap)
+ *        * diese Information k�nnte weiterverwendet werden und A* arbeitet nur
+ *          innerhalb der Maske
+ *
+ *   Idee:
+ *   - wenn sich der berechnete Pfad in Richtung des Ziels bewegt, dann gehe bis zum
+ *     n�chsten Hindernis/Ziel geradeaus, dann setze init Daten f�r neuen Startpunkt
+ *   - ab hier kann der Pfad aufgeteilt werden
+ *
+ */
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
  * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
@@ -33,412 +65,622 @@ import java.util.Stack;
  * @author James Matthews
  *
  */
-public class Pathfinder {
+public class Pathfinder
+{
+    /**
+     * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
+     *
+     * @see #getStatus
+     */
+    public static final int PATH_NOT_FOUND = -1;
 
-	/**
-	 * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
-	 *
-	 * @see #getStatus
-	 */
-	public static final int PATH_NOT_FOUND = -1;
+    /**
+     * Returned by <code>getStatus</code> if a path has been found.
+     *
+     * @see #getStatus
+     */
+    public static final int PATH_FOUND = 1;
 
-	/**
-	 * Returned by <code>getStatus</code> if a path has been found.
-	 *
-	 * @see #getStatus
-	 */
-	public static final int PATH_FOUND = 1;
+    /**
+     * Returned by <code>getStatus</code> if the pathfinder is still running.
+     *
+     * @see #getStatus
+     */
+    public static final int IN_PROGRESS = 0;
 
-	/**
-	 * Returned by <code>getStatus</code> if the pathfinder is still running.
-	 *
-	 * @see #getStatus
-	 */
-	public static final int IN_PROGRESS = 0;
+    /**
+     * The current status of the pathfinder.
+     *
+     * @see #PATH_FOUND
+     * @see #PATH_NOT_FOUND
+     * @see #IN_PROGRESS
+     */
+    private int pathStatus = IN_PROGRESS;
 
-	/**
-	 * The current status of the pathfinder.
-	 *
-	 * @see #PATH_FOUND
-	 * @see #PATH_NOT_FOUND
-	 * @see #IN_PROGRESS
-	 */
-	protected int pathStatus = IN_PROGRESS;
+    /**
+     * The open list.
+     */
+    private PriorityQueue<TreeNode> listOpen =
+        new PriorityQueue<TreeNode>(16, new Comparator<TreeNode>()
+        {
 
-	/**
-	 * The open list.
-	 */
-	protected PriorityQueue<PathFinderNode> listOpen = new PriorityQueue<PathFinderNode>(16,
-	        new Comparator<PathFinderNode>() {
+            public int compare(TreeNode o1, TreeNode o2)
+            {
+                return (int) Math.signum(o1.weight - o2.weight);
+            }
+        });
 
-		        public int compare(PathFinderNode o1, PathFinderNode o2) {
-			        return (int) Math.signum(o1.f - o2.f);
-		        }
-	        });
+    private HashMap<Integer, TreeNode> nodeRegistry = new HashMap<Integer, TreeNode>();
 
-	protected HashMap<Integer, PathFinderNode> hashOpen = new HashMap<Integer, PathFinderNode>();
+    /**
+     * The goal node.
+     */
+    private TreeNode nodeGoal = null;
 
-	/**
-	 * The closed list.
-	 */
-	protected HashMap<Integer, PathFinderNode> hashClosed = new HashMap<Integer, PathFinderNode>();
+    /**
+     * The start node.
+     */
+    private TreeNode nodeStart = null;
 
-	/**
-	 * The goal node.
-	 */
-	protected PathFinderNode nodeGoal = null;
+    /**
+     * The current best node. The best node is taken from the open list after
+     * every iteration of <code>doStep</code>.
+     */
+    private TreeNode nodeBest = null;
 
-	/**
-	 * The start node.
-	 */
-	protected PathFinderNode nodeStart = null;
+    /**
+     * The entity searching a path
+     */
+    private Entity entity;
 
-	/**
-	 * The current best node. The best node is taken from the open list after
-	 * every iteration of <code>doStep</code>.
-	 */
-	protected PathFinderNode nodeBest = null;
+    /**
+     * The zone a path is searched
+     */
+    private StendhalRPZone zone;
 
-	/**
-	 * The current navigable environment.
-	 */
-	protected Navigable navMap = null;
+    /**
+     * The goal
+     */
+    private Rectangle2D goalArea;
 
-	/**
-	 * Return the current status of the pathfinder.
-	 *
-	 * @return the pathfindre status.
-	 * @see #pathStatus
-	 */
-	public int getStatus() {
-		return pathStatus;
-	}
+    private boolean checkEntities;
 
-	/**
-	 * Iterate the pathfinder through one step.
-	 */
-	public void doStep() {
-		nodeBest = getBest();
-		if (nodeBest == null) {
-			pathStatus = PATH_NOT_FOUND;
-			return;
-		}
+    /**
+     * contains the collision data for entities
+     */
+    private CollisionDetection collisionMap;
 
-		if (navMap.reachedGoal(nodeBest)) {
-			pathStatus = PATH_FOUND;
-			return;
-		}
+    /**
+     * The maximum distance for the path. It is comared with the f value of the
+     * node The deafult is 40 The minimum for working pathfinding is
+     * heuristicFromStartNode + 1
+     */
+    private double maxDistance;
 
-		createChildren(nodeBest);
-	}
+//    private Rectangle maxBoundary;
 
-	/**
-	 * Initialize the pathfinder.
-	 */
-	public void init() {
-		listOpen.clear(); // Clear the open list
-		hashOpen.clear();
-		hashClosed.clear(); // Clear the closed list
+    public Pathfinder(Entity entity, StendhalRPZone zone, int startX, int startY,
+        Rectangle2D destination, double maxDist, boolean checkEntities)
+    {
+        this.entity = entity;
+        this.zone = zone;
+        this.goalArea = destination;
 
-		if ((nodeGoal == null) || (nodeStart == null)) {
-			throw new IllegalArgumentException("start/goal not yet set!");
-		}
-		if (navMap == null) {
-			throw new IllegalArgumentException("navigation map not set!");
-		}
+        this.nodeStart = new TreeNode(startX, startY);
+        this.nodeGoal = new TreeNode((int) (destination.getCenterX()), (int) (destination.getCenterY()));
 
-		// Initialize the node numbers
-		nodeStart.nodeNumber = navMap.createNodeID(nodeStart);
-		nodeGoal.nodeNumber = navMap.createNodeID(nodeGoal);
+        // calculate shortest distance and allow a variance of X percent
+        double startF = 1.1 * nodeStart.getHeuristic(nodeGoal) + 1;
+        this.maxDistance = Math.max(maxDist, startF);
 
-		nodeBest = null;
-		pathStatus = IN_PROGRESS;
-		nodeStart.g = 0;
-		nodeStart.h = navMap.getHeuristic(nodeGoal, nodeStart);
-		nodeStart.f = nodeStart.g + nodeStart.h;
-		nodeStart.reset();
+        /*
+        int minXBoundary = Math.max(0, Math.min(nodeStart.getX() - (int)(int)maxDistance, nodeGoal.getX() - (int)maxDistance));
+        int maxXBoundary = Math.min(zone.getWidth(), Math.max(nodeStart.getX() + (int)maxDistance, nodeGoal.getX() + (int)maxDistance));
+        int minYBoundary = Math.max(0, Math.min(nodeStart.getY() - (int)maxDistance, nodeGoal.getY() - (int)maxDistance));
+        int maxYBoundary = Math.min(zone.getHeight(), Math.max(nodeStart.getY() + (int)maxDistance, nodeGoal.getY() + (int)maxDistance));
 
-		listOpen.add(nodeStart);
-		hashOpen.put(nodeStart.nodeNumber, nodeStart);
-	}
+        this.maxBoundary = new Rectangle(minXBoundary, minYBoundary, (maxXBoundary-minXBoundary), (maxYBoundary-minYBoundary));
+        */
 
-	/**
-	 * Reset the pathfinder (just calls <code>init</code>).
-	 */
-	public void reset() {
-		init();
-	}
+        this.checkEntities = checkEntities;
 
-	/**
-	 * Sets the navigable to use in the pathfinder. The object must implement
-	 * the <code>Navigable</code> interface.
-	 *
-	 * @param map
-	 *            the map (or other Navigable object) to find a path through.
-	 */
-	public void setNavigable(Navigable map) {
-		navMap = map;
-	}
+        init();
+    }
 
-	/**
-	 * Sets the starting and goal points for the pathfinder.
-	 *
-	 * @param sx
-	 *            the start x-position.
-	 * @param sy
-	 *            the start y-position.
-	 * @param gx
-	 *            the goal x-position.
-	 * @param gy
-	 *            the goal y-position.
-	 */
-	public void setEndpoints(int sx, int sy, int gx, int gy) {
-		setEndpoints(new PathFinderNode(sx, sy), new PathFinderNode(gx, gy));
-	}
+    /**
+     * Initialize the pathfinder.
+     */
+    private void init()
+    {
+        listOpen.clear(); // Clear the open list
+        nodeRegistry.clear();
 
-	/**
-	 * Set the starting and goal points for the pathfinder. This method uses
-	 * <code>Pathfinder.Node</code>'s <i>x</i> and <i>y</i> variables, the
-	 * pathfinder sets all the other necessary node parameters.
-	 *
-	 * @param start
-	 *            the start node.
-	 * @param goal
-	 *            the goal node.
-	 */
-	public void setEndpoints(PathFinderNode start, PathFinderNode goal) {
-		nodeStart = start;
-		nodeGoal = goal;
-	}
+        nodeBest = null;
+        pathStatus = IN_PROGRESS;
 
-	/**
-	 * Returns the start node.
-	 *
-	 * @return the start node.
-	 */
-	public PathFinderNode getStart() {
-		return nodeStart;
-	}
+        listOpen.offer(nodeStart);
+        nodeRegistry.put(nodeStart.nodeNumber, nodeStart);
 
-	/**
-	 * Set the start node.
-	 *
-	 * @param start
-	 *            the start node.
-	 */
-	public void setStart(PathFinderNode start) {
-		nodeStart = start;
-	}
+        if (checkEntities)
+            createEntityCollisionMap();
+    }
 
-	/**
-	 * Set the goal node.
-	 *
-	 * @param goal
-	 *            the goal node.
-	 */
-	public void setGoal(PathFinderNode goal) {
-		nodeGoal = goal;
-	}
+    /**
+     * Return the current status of the pathfinder.
+     *
+     * @return the pathfinder status.
+     * @see #pathStatus
+     */
+    public int getStatus()
+    {
+        return pathStatus;
+    }
 
-	/**
-	 * Returns the goal node.
-	 *
-	 * @return the goal node.
-	 */
-	public PathFinderNode getGoal() {
-		return nodeGoal;
-	}
+    public final List<Node> getPath()
+    {
+        List<Node> list = new LinkedList<Node>();
+        /* */
+        if (unrechableGoal())
+            return list;
 
-	/**
-	 * Assigns the best node from the open list.
-	 *
-	 * @return the best node.
-	 */
-	protected PathFinderNode getBest() {
-		if (listOpen.size() == 0) {
-			return null;
-		}
-		PathFinderNode first = listOpen.poll();
-		hashOpen.remove(first.nodeNumber);
+        while (pathStatus == Pathfinder.IN_PROGRESS)
+        {
+            doStep();
+        }
 
-		hashClosed.put(first.nodeNumber, first);
+        if (pathStatus == Pathfinder.PATH_FOUND)
+        {
+            TreeNode node = nodeBest;
+            while (node != null)
+            {
+                list.add(0, new Node(node.getX(), node.getY()));
+                node = node.getParent();
+            }
+        }
+        /* */
 
-		return first;
-	}
+        return list;
+    }
 
-	/**
-	 * Returns the current best node.
-	 *
-	 * @return the best node.
-	 */
-	public PathFinderNode getBestNode() {
-		return nodeBest;
-	}
+    /**
+     * Iterate the pathfinder through one step.
+     */
+    private void doStep()
+    {
+        nodeBest = getBest();
+        if (nodeBest == null)
+        {
+            pathStatus = PATH_NOT_FOUND;
+            return;
+        }
 
-	/**
-	 * Create the children surrounding the current best node.
-	 *
-	 * @param node
-	 *            the node to create the children from.
-	 */
-	protected void createChildren(PathFinderNode node) {
-		navMap.createChildren(this, node);
-	}
+        if (reachedGoal(nodeBest))
+        {
+            pathStatus = PATH_FOUND;
+            return;
+        }
 
-	/**
-	 * Link the children to the parent node. This method may also update the
-	 * parent path if a shorter path is found.
-	 *
-	 * @param node
-	 *            the parent node.
-	 * @param child
-	 *            the the new child.
-	 */
-	public void linkChild(PathFinderNode node, PathFinderNode child) {
-		child.nodeNumber = Integer.valueOf(navMap.createNodeID(child));
+        nodeBest.createChildren();
+    }
 
-		double g = node.g + navMap.getCost(node, child);
+    /**
+     * Assigns the best node from the open list.
+     *
+     * @return the best node.
+     */
+    private TreeNode getBest()
+    {
+        if (listOpen.isEmpty())
+            return null;
 
-		PathFinderNode openCheck = checkOpen(child);
-		PathFinderNode closedCheck = checkClosed(child);
+        TreeNode first = listOpen.poll();
+        first.setOpen(false);
 
-		if (openCheck != null) {
-			node.addChild(openCheck);
+        return first;
+    }
 
-			if (g < openCheck.g) {
-				openCheck.parent = node;
-				openCheck.g = g;
-				openCheck.f = g + openCheck.h;
-			}
-		} else if (closedCheck != null) {
-			node.addChild(closedCheck);
+    /**
+     * cerates collision data for entities the positions with entities are only
+     * considered as not valid if they - are next to the start position or -
+     * have stopped
+     */
+    private void createEntityCollisionMap()
+    {
+        collisionMap = new CollisionDetection();
+        collisionMap.init(zone.getWidth(), zone.getHeight());
+        for (Iterator<RPObject> it = zone.iterator(); it.hasNext();)
+        {
+            Entity otherEntity = (Entity) it.next();
+            if (!entity.getID().equals(otherEntity.getID()) && otherEntity.isObstacle(entity)
+                && (otherEntity.stopped() || otherEntity.nextTo(nodeStart.getX(), nodeStart.getY(), 0.25)))
+            {
 
-			if (g < closedCheck.g) {
-				closedCheck.parent = node;
-				closedCheck.g = g;
-				closedCheck.f = g + closedCheck.h;
+                Rectangle2D area = otherEntity.getArea(otherEntity.getX(), otherEntity.getY());
+                collisionMap.setCollide(area, true);
+            }
+        }
+    }
 
-				updateParents(closedCheck);
-			}
-		} else {
-			child.parent = node;
-			child.g = g;
-			child.h = navMap.getHeuristic(nodeGoal, child);
-			child.f = child.g + child.h;
-			// child.nodeNumber = navMap.createNodeID(x,y);
+    /**
+     * checks if the goal is reached
+     *
+     * @param nodeBest
+     *            the currently best node
+     * @return true if the goal is reached
+     */
+    private boolean reachedGoal(TreeNode nodeBest)
+    {
+        return goalArea.contains(nodeBest.getX(), nodeBest.getY());
+    }
 
-			addToOpen(child);
-			node.addChild(child);
-		}
-	}
+    /**
+     * Checks if the goal is unreachable. Only the outer nodes of the goal are
+     * checked. There could be other reasons, why a goal is unreachable.
+     *
+     * @return true checks if the goal is unreachable
+     */
+    // TODO - move to node (am besten Area an Node �bergeben)
+    protected boolean unrechableGoal()
+    {
+        int w = (int) goalArea.getWidth() - 1;
+        int h = (int) goalArea.getHeight() - 1;
+        int x = (int) goalArea.getX();
+        int y = (int) goalArea.getY();
 
-	/**
-	 * Add the new child to the open list, ordering by the f-value.
-	 *
-	 * @param node
-	 *            the node to add to the open list.
-	 */
-	protected void addToOpen(PathFinderNode node) {
-		listOpen.offer(node);
-		hashOpen.put(node.nodeNumber, node);
-	}
+        for (int i = 0; i <= w; i++)
+            for (int j = 0; j <= h; j++)
+                if ((i == 0) || (j == 0) || (i == w) || (j == h))
+                    if (new TreeNode(x+i, y+j).isValid())
+                        return false;
 
-	/**
-	 * Update the parents for the new route.
-	 *
-	 * @param node
-	 *            the root node.
-	 */
-	protected void updateParents(PathFinderNode node) {
-		double g = node.g;
-		int c = node.numChildren;
-		Stack<PathFinderNode> nodeStack = new Stack<PathFinderNode>();
+        return true;
+    }
 
-		PathFinderNode kid = null;
-		for (int i = 0; i < c; i++) {
-			kid = node.children[i];
+    /**
+     * calculates the manhattan distance between to positions
+     *
+     * @param x1
+     *            x value for postion 1
+     * @param y1
+     *            y value for postion 1
+     * @param x2
+     *            x value for postion 2
+     * @param y2
+     *            y value for postion 2
+     * @return manhattan distance between to positions
+     */
+    private static int manhattanDistance(int x1, int y1, int x2, int y2)
+    {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
 
-			if (g + 1 < kid.g) {
-				kid.g = g + 1;
-				kid.f = kid.g + kid.h;
-				kid.parent = node;
+    /**
+     * calculates the square distance between to positions
+     *
+     * @param x1
+     *            x value for postion 1
+     * @param y1
+     *            y value for postion 1
+     * @param x2
+     *            x value for postion 2
+     * @param y2
+     *            y value for postion 2
+     * @return square distance between to positions
+     */
+    private static int squareDistance(int x1, int y1, int x2, int y2)
+    {
+        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+    }
 
-				nodeStack.push(kid);
-			}
-		}
+    /**
+     * The pathfinder node.
+     */
+    private class TreeNode {
 
-		PathFinderNode parent;
-		while (nodeStack.size() > 0) {
-			parent = nodeStack.pop();
-			c = parent.numChildren;
-			for (int i = 0; i < c; i++) {
-				kid = parent.children[i];
+        /**
+         * The f-value.
+         */
+        private double weight;
 
-				if (parent.g + 1 < kid.g) {
-					kid.g = parent.g + navMap.getCost(parent, kid);
-					kid.f = kid.g + kid.h;
-					kid.parent = parent;
+        /**
+         * The g-value.
+         */
+        private double g;
 
-					nodeStack.push(kid);
-				}
-			}
-		}
-	}
+        /**
+         * The x-position of the node.
+         */
+        private int x;
 
-	// private Pathfinder.Node checkList(ListIterator iter, Pathfinder.Node
-	// node) {
-	// Pathfinder.Node check = null;
-	// if (!iter.hasNext()) return null;
-	//
-	// do {
-	// check = (Pathfinder.Node)iter.next();
-	// if (check.nodeNumber == node.nodeNumber)
-	// return check;
-	//
-	// } while (iter.hasNext());
-	//
-	// return null;
-	// }
-	//
-	/**
-	 * Check the open list for a given node.
-	 *
-	 * @param node
-	 *            the node to check for.
-	 * @return the node, if found, otherwise null.
-	 */
-	protected PathFinderNode checkOpen(PathFinderNode node) {
-		return hashOpen.get(node.nodeNumber);
-		// return checkList(listOpen.listIterator(), node);
-	}
+        /**
+         * The y-position of the node.
+         */
+        private int y;
 
-	/**
-	 * Check the closed list for the given node.
-	 *
-	 * @param node
-	 *            the node to check for.
-	 * @return the node, if found, otherwise null.
-	 */
-	protected PathFinderNode checkClosed(PathFinderNode node) {
-		return hashClosed.get(node.nodeNumber);
-		// return checkList(listClosed.listIterator(), node);
-	}
+        /**
+         * The number of children the node has.
+         */
+        private int numChildren;
 
-	/**
-	 * Return the open list.
-	 *
-	 * @return the open list.
-	 */
-	public PriorityQueue getOpen() {
-		return listOpen;
-	}
+        /**
+         * The node identifier.
+         */
+        private Integer nodeNumber;
 
-	/**
-	 * Return the closed list.
-	 *
-	 * @return the closed list.
-	 */
-	public HashMap getClosed() {
-		return hashClosed;
-	}
+        /**
+         * The parent of the node.
+         */
+        private TreeNode parent;
+
+        private TreeNode[] children = new TreeNode[4];
+
+        private boolean open = true;
+
+        /**
+         * The default constructor with positional information.
+         *
+         * @param xx
+         *            the x-position of the node.
+         * @param yy
+         *            the y-position of the node.
+         */
+        public TreeNode(int xx, int yy) {
+            this.x = xx;
+            this.y = yy;
+
+            this.nodeNumber = createNodeID(x, y);
+
+            init();
+        }
+
+        /**
+         * Resets the node. This involves all f, g and h-values to 0 as well as
+         * removing all children.
+         */
+        private void init() {
+            this.weight = this.g = 0.0;
+
+            this.numChildren = 0;
+            for (int i = 0; i < 4; i++) {
+                this.children[i] = null;
+            }
+
+            this.open = true;
+        }
+
+        /**
+         * Add a child to the node.
+         *
+         * @param child
+         *            the child node.
+         */
+        private void addChild(TreeNode child)
+        {
+            this.children[numChildren++] = child;
+
+            updateChild(child);
+        }
+
+        /**
+         * Add a child to the node.
+         *
+         * @param child
+         *            the child node.
+         */
+        private void updateChild(TreeNode child)
+        {
+            child.parent = this;
+            child.g = this.g + 1;
+            child.weight = child.g + child.getHeuristic(nodeGoal);
+        }
+
+        /**
+         * Return the x-position of the node.
+         *
+         * @return the x-position of the node.
+         */
+        public int getX() {
+            return x;
+        }
+
+        /**
+         * Return the y-position of the node.
+         *
+         * @return the y-position of the node.
+         */
+        public int getY() {
+            return y;
+        }
+
+        /**
+         * Return the parent node.
+         *
+         * @return the parent node.
+         */
+        public TreeNode getParent() {
+            return parent;
+        }
+
+        /*
+         * calculates the heuristic for the move form node1 to node2 the right
+         * heuristic is very importand for A* - a over estimated heuristic will turn
+         * A* in to bsf - a under estimated heuristic will turn A* in to Dijkstra's
+         * so the manhattan distance seams to be the optimal heuristic here. But it
+         * has one disadvantage. It will expand to much. Sevreal nodes will have the
+         * same f value It will search the area of the size (abs(startX - goalX) +
+         * 1) * (abs(startY - goalY) + 1) So a tie-breaker is needed. 1% square
+         * distace seems to work fine. A* will prefer nodes closer to the goal.
+         */
+        public double getHeuristic(TreeNode nodeGoal)
+        {
+            double heuristic = manhattanDistance(x, y, nodeGoal.x, nodeGoal.y);
+            double tieBreaking = 0.01 * squareDistance(x, y, nodeGoal.x, nodeGoal.y);
+
+            return heuristic + tieBreaking;
+        }
+
+        public double getWeight()
+        {
+            return weight;
+        }
+
+        /**
+         * checks if the entity could stand on a position
+         *
+         * @param node
+         *            the position to be checked
+         * @return true if the the entity could stand on the position
+         */
+        public boolean isValid()
+        {
+            boolean result = !zone.simpleCollides(entity, x, y);
+            if (checkEntities && result)
+            {
+                Rectangle2D entityArea = entity.getArea(x, y);
+                result = !collisionMap.collides(entityArea);
+            }
+
+            return result;
+        }
+
+        /**
+         * checks if the entity could stand on a position
+         *
+         * @param node
+         *            the position to be checked
+         * @return true if the the entity could stand on the position
+         */
+        public boolean isValid(int x1, int y1)
+        {
+            boolean result = !zone.simpleCollides(entity, x1, y1);
+            if (checkEntities && result)
+            {
+                Rectangle2D entityArea = entity.getArea(x1, y1);
+                result = !collisionMap.collides(entityArea);
+            }
+
+            return result;
+        }
+
+        /**
+         * crates valid cild nodes, the cild nodes have to be - a valid position - a
+         * f value less than maxDistance (checked against the given node)
+         *
+         * @param node
+         *            the node
+         */
+        public void createChildren()
+        {
+            if (g < maxDistance)
+            {
+                linkChild(x - 1, y + 0);
+                linkChild(x + 1, y + 0);
+                linkChild(x + 0, y - 1);
+                linkChild(x + 0, y + 1);
+            }
+        }
+
+        /**
+         * Link the children to the parent node. This method may also update the
+         * parent path if a shorter path is found.
+         *
+         * @param parent
+         *            the parent node.
+         * @param child
+         *            the the new child.
+         */
+        private void linkChild(int x1, int y1)
+        {
+            if (!isValid(x1, y1))
+                return;
+
+            // search for original child node
+            TreeNode child = nodeRegistry.get(createNodeID(x1, y1));
+            if (child == null)
+            {
+                // if not found original child node then create a new one
+                child = new TreeNode(x1, y1);
+
+                addChild(child);
+
+                listOpen.offer(child);
+                child.setOpen(true);
+
+                nodeRegistry.put(child.nodeNumber, child);
+            }
+            else
+            {
+                // note:
+                // - working on closed nodes is stoped but they may own a better parent
+                //   so they will also be added to this node (parent)
+                if (child.g > (this.g + 1))
+                    updateChild(child);
+
+                // update parents for closed nodes only
+                if (!child.isOpen())
+                    updateSubTree(child);
+            }
+        }
+
+        /**
+         * Update the parents for the new route.
+         *
+         * @param node
+         *            the root node.
+         */
+        private void updateSubTree(TreeNode node)
+        {
+            int c = node.numChildren;
+            Stack<TreeNode> nodeStack = new Stack<TreeNode>();
+
+            nodeStack.push(node);
+
+            TreeNode parent,child;
+            while (nodeStack.size() > 0)
+            {
+                parent = nodeStack.pop();
+                c = parent.numChildren;
+                for (int i = 0; i < c; i++)
+                {
+                    child = parent.children[i];
+
+                    if (parent.g + 1 < child.g)
+                    {
+                        parent.updateChild(child);
+
+                        nodeStack.push(child);
+                    }
+                }
+            }
+        }
+
+        /**
+         * calculates the node id
+         *
+         * @param node
+         *            the node
+         * @return the id of the node
+         */
+        private int createNodeID(int x, int y)
+        {
+            return x + y * zone.getWidth();
+        }
+
+
+        public final boolean isOpen()
+        {
+            return open;
+        }
+
+
+        public final void setOpen(boolean open)
+        {
+            this.open = open;
+        }
+
+        public boolean equals(TreeNode obj)
+        {
+            return this.nodeNumber == obj.nodeNumber;
+        }
+    }
 }
