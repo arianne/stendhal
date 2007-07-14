@@ -1,8 +1,6 @@
 package games.stendhal.server.maps.kotoch;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Sign;
-
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
