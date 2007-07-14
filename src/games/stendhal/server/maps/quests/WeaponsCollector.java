@@ -36,20 +36,15 @@ import java.util.List;
 public class WeaponsCollector extends AbstractQuest {
 
 	private static final List<String> neededWeapons = Arrays.asList(
-		"axe",
 		"bardiche",
 		"battle_axe",
-		"biting_sword",
 		"broadsword",
 		"flail",
-		"golden_hammer",
 		"halberd",
-		"hammer",
 		"katana",
 		"golden_mace",
 		"scimitar",
 		"scythe",
-		"twoside_axe",
 		"war_hammer"
 	);
 	
