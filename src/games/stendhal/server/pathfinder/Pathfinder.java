@@ -68,36 +68,36 @@ public class Pathfinder {
 	/**
 	 * The open list.
 	 */
-	protected PriorityQueue<Pathfinder.Node> listOpen = new PriorityQueue<Pathfinder.Node>(16,
-	        new Comparator<Pathfinder.Node>() {
+	protected PriorityQueue<PathFinderNode> listOpen = new PriorityQueue<PathFinderNode>(16,
+	        new Comparator<PathFinderNode>() {
 
-		        public int compare(Pathfinder.Node o1, Pathfinder.Node o2) {
+		        public int compare(PathFinderNode o1, PathFinderNode o2) {
 			        return (int) Math.signum(o1.f - o2.f);
 		        }
 	        });
 
-	protected HashMap<Integer, Pathfinder.Node> hashOpen = new HashMap<Integer, Pathfinder.Node>();
+	protected HashMap<Integer, PathFinderNode> hashOpen = new HashMap<Integer, PathFinderNode>();
 
 	/**
 	 * The closed list.
 	 */
-	protected HashMap<Integer, Pathfinder.Node> hashClosed = new HashMap<Integer, Pathfinder.Node>();
+	protected HashMap<Integer, PathFinderNode> hashClosed = new HashMap<Integer, PathFinderNode>();
 
 	/**
 	 * The goal node.
 	 */
-	protected Pathfinder.Node nodeGoal = null;
+	protected PathFinderNode nodeGoal = null;
 
 	/**
 	 * The start node.
 	 */
-	protected Pathfinder.Node nodeStart = null;
+	protected PathFinderNode nodeStart = null;
 
 	/**
 	 * The current best node. The best node is taken from the open list after
 	 * every iteration of <code>doStep</code>.
 	 */
-	protected Pathfinder.Node nodeBest = null;
+	protected PathFinderNode nodeBest = null;
 
 	/**
 	 * The current navigable environment.
@@ -193,7 +193,7 @@ public class Pathfinder {
 	 *            the goal y-position.
 	 */
 	public void setEndpoints(int sx, int sy, int gx, int gy) {
-		setEndpoints(new Pathfinder.Node(sx, sy), new Pathfinder.Node(gx, gy));
+		setEndpoints(new PathFinderNode(sx, sy), new PathFinderNode(gx, gy));
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class Pathfinder {
 	 * @param goal
 	 *            the goal node.
 	 */
-	public void setEndpoints(Pathfinder.Node start, Pathfinder.Node goal) {
+	public void setEndpoints(PathFinderNode start, PathFinderNode goal) {
 		nodeStart = start;
 		nodeGoal = goal;
 	}
@@ -216,7 +216,7 @@ public class Pathfinder {
 	 *
 	 * @return the start node.
 	 */
-	public Pathfinder.Node getStart() {
+	public PathFinderNode getStart() {
 		return nodeStart;
 	}
 
@@ -226,7 +226,7 @@ public class Pathfinder {
 	 * @param start
 	 *            the start node.
 	 */
-	public void setStart(Pathfinder.Node start) {
+	public void setStart(PathFinderNode start) {
 		nodeStart = start;
 	}
 
@@ -236,7 +236,7 @@ public class Pathfinder {
 	 * @param goal
 	 *            the goal node.
 	 */
-	public void setGoal(Pathfinder.Node goal) {
+	public void setGoal(PathFinderNode goal) {
 		nodeGoal = goal;
 	}
 
@@ -245,7 +245,7 @@ public class Pathfinder {
 	 *
 	 * @return the goal node.
 	 */
-	public Pathfinder.Node getGoal() {
+	public PathFinderNode getGoal() {
 		return nodeGoal;
 	}
 
@@ -254,11 +254,11 @@ public class Pathfinder {
 	 *
 	 * @return the best node.
 	 */
-	protected Pathfinder.Node getBest() {
+	protected PathFinderNode getBest() {
 		if (listOpen.size() == 0) {
 			return null;
 		}
-		Pathfinder.Node first = listOpen.poll();
+		PathFinderNode first = listOpen.poll();
 		hashOpen.remove(first.nodeNumber);
 
 		hashClosed.put(first.nodeNumber, first);
@@ -271,7 +271,7 @@ public class Pathfinder {
 	 *
 	 * @return the best node.
 	 */
-	public Pathfinder.Node getBestNode() {
+	public PathFinderNode getBestNode() {
 		return nodeBest;
 	}
 
@@ -281,7 +281,7 @@ public class Pathfinder {
 	 * @param node
 	 *            the node to create the children from.
 	 */
-	protected void createChildren(Pathfinder.Node node) {
+	protected void createChildren(PathFinderNode node) {
 		navMap.createChildren(this, node);
 	}
 
@@ -294,13 +294,13 @@ public class Pathfinder {
 	 * @param child
 	 *            the the new child.
 	 */
-	public void linkChild(Pathfinder.Node node, Pathfinder.Node child) {
+	public void linkChild(PathFinderNode node, PathFinderNode child) {
 		child.nodeNumber = Integer.valueOf(navMap.createNodeID(child));
 
 		double g = node.g + navMap.getCost(node, child);
 
-		Pathfinder.Node openCheck = checkOpen(child);
-		Pathfinder.Node closedCheck = checkClosed(child);
+		PathFinderNode openCheck = checkOpen(child);
+		PathFinderNode closedCheck = checkClosed(child);
 
 		if (openCheck != null) {
 			node.addChild(openCheck);
@@ -338,7 +338,7 @@ public class Pathfinder {
 	 * @param node
 	 *            the node to add to the open list.
 	 */
-	protected void addToOpen(Pathfinder.Node node) {
+	protected void addToOpen(PathFinderNode node) {
 		listOpen.offer(node);
 		hashOpen.put(node.nodeNumber, node);
 	}
@@ -349,12 +349,12 @@ public class Pathfinder {
 	 * @param node
 	 *            the root node.
 	 */
-	protected void updateParents(Pathfinder.Node node) {
+	protected void updateParents(PathFinderNode node) {
 		double g = node.g;
 		int c = node.numChildren;
-		Stack<Pathfinder.Node> nodeStack = new Stack<Pathfinder.Node>();
+		Stack<PathFinderNode> nodeStack = new Stack<PathFinderNode>();
 
-		Pathfinder.Node kid = null;
+		PathFinderNode kid = null;
 		for (int i = 0; i < c; i++) {
 			kid = node.children[i];
 
@@ -367,7 +367,7 @@ public class Pathfinder {
 			}
 		}
 
-		Pathfinder.Node parent;
+		PathFinderNode parent;
 		while (nodeStack.size() > 0) {
 			parent = nodeStack.pop();
 			c = parent.numChildren;
@@ -407,7 +407,7 @@ public class Pathfinder {
 	 *            the node to check for.
 	 * @return the node, if found, otherwise null.
 	 */
-	protected Pathfinder.Node checkOpen(Pathfinder.Node node) {
+	protected PathFinderNode checkOpen(PathFinderNode node) {
 		return hashOpen.get(node.nodeNumber);
 		// return checkList(listOpen.listIterator(), node);
 	}
@@ -419,7 +419,7 @@ public class Pathfinder {
 	 *            the node to check for.
 	 * @return the node, if found, otherwise null.
 	 */
-	protected Pathfinder.Node checkClosed(Pathfinder.Node node) {
+	protected PathFinderNode checkClosed(PathFinderNode node) {
 		return hashClosed.get(node.nodeNumber);
 		// return checkList(listClosed.listIterator(), node);
 	}
@@ -440,122 +440,5 @@ public class Pathfinder {
 	 */
 	public HashMap getClosed() {
 		return hashClosed;
-	}
-
-	/**
-	 * The pathfinder node.
-	 */
-	static class Node {
-
-		/**
-		 * The f-value.
-		 */
-		public double f;
-
-		/**
-		 * The g-value.
-		 */
-		public double g;
-
-		/**
-		 * The h-value.
-		 */
-		public double h;
-
-		/**
-		 * The x-position of the node.
-		 */
-		protected int x;
-
-		/**
-		 * The y-position of the node.
-		 */
-		protected int y;
-
-		/**
-		 * The number of children the node has.
-		 */
-		public int numChildren;
-
-		/**
-		 * The node identifier.
-		 */
-		public Integer nodeNumber;
-
-		/**
-		 * The parent of the node.
-		 */
-		protected Node parent;
-
-		Node[] children = new Node[4];
-
-		/**
-		 * The default constructor.
-		 */
-		Node() {
-			this(-1, -1);
-		}
-
-		/**
-		 * The default constructor with positional information.
-		 *
-		 * @param xx
-		 *            the x-position of the node.
-		 * @param yy
-		 *            the y-position of the node.
-		 */
-		Node(int xx, int yy) {
-			x = xx;
-			y = yy;
-		}
-
-		/**
-		 * Resets the node. This involves all f, g and h-values to 0 as well as
-		 * removing all children.
-		 */
-		public void reset() {
-			f = g = h = 0.0;
-			numChildren = 0;
-			for (int i = 0; i < 4; i++) {
-				children[i] = null;
-			}
-		}
-
-		/**
-		 * Add a child to the node.
-		 *
-		 * @param node
-		 *            the child node.
-		 */
-		void addChild(Node node) {
-			children[numChildren++] = node;
-		}
-
-		/**
-		 * Return the x-position of the node.
-		 *
-		 * @return the x-position of the node.
-		 */
-		public int getX() {
-			return x;
-		}
-
-		/**
-		 * Return the y-position of the node.
-		 *
-		 * @return the y-position of the node.
-		 */
-		public int getY() {
-			return y;
-		}
-
-		/**
-		 * Return the parent node.
-		 *
-		 * @return the parent node.
-		 */
-		Node getParent() {
-			return parent;
-		}
 	}
 }

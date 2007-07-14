@@ -21,7 +21,6 @@
 
 package games.stendhal.server.pathfinder;
 
-import games.stendhal.server.pathfinder.Pathfinder.Node;
 
 /**
  * A simple interface to allow pathfinders like the A* algorithm to navigate
@@ -38,7 +37,7 @@ public interface Navigable {
 	 *            the node.
 	 * @return the validity of the node.
 	 */
-	public boolean isValid(Pathfinder.Node node);
+	public boolean isValid(PathFinderNode node);
 
 	/**
 	 * Return the cost to travel from node 1 (parent) to node 2 (child). Note
@@ -55,7 +54,7 @@ public interface Navigable {
 	 *            to.
 	 * @return the cost required to travel.
 	 */
-	public double getCost(Pathfinder.Node parent, Pathfinder.Node child);
+	public double getCost(PathFinderNode parent, PathFinderNode child);
 
 	/**
 	 * Return the estimated distance between the node 1 and node 2. This
@@ -71,7 +70,7 @@ public interface Navigable {
 	 *            the second node.
 	 * @return the (estimated) distance between the two nodes.
 	 */
-	public double getHeuristic(Pathfinder.Node n1, Pathfinder.Node n2);
+	public double getHeuristic(PathFinderNode n1, PathFinderNode n2);
 
 	/**
 	 * Checks if the calculated node can be considerd a goal. This way a "goal
@@ -81,10 +80,10 @@ public interface Navigable {
 	 *            the current best node
 	 * @return true when <i>nodeBest</i> can be considered a "goal"
 	 */
-	public boolean reachedGoal(Node nodeBest);
+	public boolean reachedGoal(PathFinderNode nodeBest);
 
-	public int createNodeID(Pathfinder.Node node);
+	public int createNodeID(PathFinderNode node);
 
-	public void createChildren(Pathfinder path, Pathfinder.Node node);
+	public void createChildren(Pathfinder path, PathFinderNode node);
 
 }

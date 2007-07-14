@@ -154,12 +154,10 @@ public abstract class Path {
 		long startTime = System.currentTimeMillis();
 
 		Pathfinder path = new Pathfinder();
-		StendhalNavigable navMap;
-		if (withEntities) {
-			navMap = new StendhalNavigableEntities(entity, zone, x, y, destination);
-		} else {
-			navMap = new StendhalNavigable(entity, zone, x, y, destination);
-		}
+
+		StendhalNavigable navMap =
+			            new StendhalNavigable(entity, zone, x, y, destination, withEntities);
+
 
 		// The most expensive path is the not existing path
 		if (navMap.unrechable()) {
@@ -167,16 +165,16 @@ public abstract class Path {
 		}
 
 		path.setNavigable(navMap);
-		path.setStart(new Pathfinder.Node(x, y));
+		path.setStart(new PathFinderNode(x, y));
 
 		/*
 		 * if the destination is an area
 		 * set the destination node for pathfinding to the center of the area
 		 */
 		if ((destination.getWidth() > 2) || (destination.getHeight() > 2)) {
-			path.setGoal(new Pathfinder.Node((int) (destination.getCenterX()), (int) (destination.getCenterY())));
+			path.setGoal(new PathFinderNode((int) (destination.getCenterX()), (int) (destination.getCenterY())));
 		} else {
-			path.setGoal(new Pathfinder.Node((int) destination.getX(), (int) destination.getY()));
+			path.setGoal(new PathFinderNode((int) destination.getX(), (int) destination.getY()));
 		}
 
 		steps = 0;
@@ -208,7 +206,7 @@ public abstract class Path {
 		//		counter++;
 
 		List<Node> list = new LinkedList<Node>();
-		Pathfinder.Node node = path.getBestNode();
+		PathFinderNode node = path.getBestNode();
 		while (node != null) {
 			list.add(0, new Node(node.getX(), node.getY()));
 			node = node.getParent();
@@ -302,6 +300,6 @@ public abstract class Path {
 	/** this callback is called after every A* step. */
 	public interface StepCallback {
 
-		public void stepDone(Pathfinder.Node lastNode);
+		public void stepDone(PathFinderNode lastNode);
 	}
 }
