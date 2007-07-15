@@ -154,7 +154,7 @@ k/ground/ground_2.png
 ./ground/mud.png
 ./ground/mud_2.png
 k*/ground/mud_patch.png
-k/ground/pothole.png
+k*/ground/pothole.png
 ./ground/spikes.png
 k/ground/square_patch.png
 k*/ground/square_paving.png
