@@ -12,7 +12,6 @@
  ***************************************************************************/
 package games.stendhal.server.pathfinder;
 
-import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
