@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.sprite.Tileset;
 import games.stendhal.tools.tiled.LayerDefinition;
 
 import java.awt.Graphics;
@@ -36,11 +37,6 @@ public class TileRenderer extends LayerRenderer {
 
 	private Sprite [] spriteMap;
 
-//	static {
-//		createAnimationMap();
-//	}
-
-
 	public TileRenderer() {
 		map = null;
 		spriteMap = null;
@@ -57,11 +53,15 @@ public class TileRenderer extends LayerRenderer {
 		
 		map=layer.expose();
 	}
-	
-	@Override
-	public void setTileset(TileStore tileset) {
-		Sprite emptySprite = SpriteStore.get().getEmptySprite();
 
+
+	/**
+	 * Set the tileset.
+	 *
+	 * @param	tileset		The tileset.
+	 */
+	@Override
+	public void setTileset(final Tileset tileset) {
 		if(tileset != null) {
 			/*
 			 * Cache sprites
@@ -71,48 +71,13 @@ public class TileRenderer extends LayerRenderer {
 			int i = spriteMap.length;
 
 			while(i-- != 0) {
-				int value = map[i];
-
-				if(value > 0) {
-// TODO: Map tiles that match <tileset>@<index>, with something like:
-//					String tsname = tileset.getTilesetName(value);
-//					int tsidx = tileset.getTilesetIndex(value);
-//
-//					Sprite asprite = getAnimation(tsname, tsidx);
-//					if(asprite != null) {
-//						spriteMap[i] = asprite;
-//					} else {
-//						spriteMap[i] = tileset.getTile(value);
-//					}
-
-					spriteMap[i] = tileset.getTile(value);
-				} else {
-					spriteMap[i] = emptySprite;
-				}
+				spriteMap[i] = tileset.getSprite(map[i]);
 			}
 		} else {
 			spriteMap = null;
 		}
 	}
 
-
-// TODO:
-// Use <tileset>/<index> key, with tileset relevant index frames.
-// Perhaps with a Map<String> -> Map<Integer> -> int[]  tree.
-
-//	private Map<Integer, List<Integer>> animatedTiles;
-//
-//	private static void addAnimatedTile(int tile, int[] tiles) {
-//		List<Integer> list = new LinkedList<Integer>();
-//		for (int num : tiles) {
-//			list.add(num);
-//		}
-//
-//		animatedTiles.put(tile, list);
-//	}
-
-//	private static void createAnimationMap() {
-//		animatedTiles = new HashMap<Integer, List<Integer>>();
 //		// TODO: Broken. Animated tiles don't work now in this way.
 //		// Outside_0 = 0 - 479
 //		// Outside_1 = 480 - 959
@@ -426,7 +391,6 @@ public class TileRenderer extends LayerRenderer {
 //		addAnimatedTile(4058, new int[] { 4058, 4079 });
 //		addAnimatedTile(4059, new int[] { 4059, 4080 });
 //		addAnimatedTile(4060, new int[] { 4060, 4081 });
-//	}
 
 
 	/**

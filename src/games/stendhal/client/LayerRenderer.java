@@ -12,6 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+//
+//
+
+import games.stendhal.client.sprite.Tileset;
+
 /**
  * This is a helper base class to render a layer
  */
@@ -60,5 +65,6 @@ public abstract class LayerRenderer {
 	 */
 	public abstract void draw(GameScreen screen, int x, int y, int w, int h);
 
-	public abstract void setTileset(TileStore store);
+	// TODO: Cleanly remove from this level
+	public abstract void setTileset(Tileset tileset);
 }

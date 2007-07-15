@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.Tileset;
 
 import java.awt.image.BufferedImage;
 import java.net.URL;
@@ -66,6 +67,6 @@ public class ImageRenderer extends LayerRenderer {
 
 
 	@Override
-	public void setTileset(TileStore store) {
+	public void setTileset(Tileset tilset) {
 	}
 }

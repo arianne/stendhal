@@ -14,145 +14,235 @@ package games.stendhal.client;
 
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
+import games.stendhal.client.sprite.SpriteTileset;
+import games.stendhal.client.sprite.Tileset;
+import games.stendhal.client.sprite.TilesetAnimationMap;
+import games.stendhal.client.sprite.TilesetGroupAnimationMap;
 import games.stendhal.tools.tiled.TileSetDefinition;
 
+import java.io.InputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.net.InputSerializer;
 
 /** It is class to get tiles from the tileset */
-public class TileStore extends SpriteStore {
+public class TileStore implements Tileset {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(TileStore.class);
 
-	private static class RangeFilename {
-		private static String BASE_FOLDER="data";
+	/**
+	 * The base directory for tileset resources.
+	 */
+	protected static String baseFolder = getResourceBase();
 
-		// Hack: Read the tileset directly from tiled/tileset if started from an IDE.
-		static {
-			if (SpriteStore.get().getResourceURL("tiled/tileset/README") != null) {
-				logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
-				BASE_FOLDER = "tiled";
-			}
+	/**
+	 * The tileset animation map.
+	 */
+	protected static TilesetGroupAnimationMap animationMap = createAnimationMap();
+
+	/**
+	 * A cache of loaded tilesets.
+	 * TODO: Better GC
+	 */
+	protected static Map<String, Tileset> tilesetsLoaded = new HashMap<String, Tileset>();
+
+	/**
+	 * The sprite store.
+	 */
+	protected SpriteStore		store;
+
+	/**
+	 * The tile sprites
+	 */
+	protected ArrayList<Sprite>	tiles;
+
+
+	/**
+	 * Create a tile store.
+	 */
+	public TileStore() {
+		this(SpriteStore.get());
+	}
+
+
+	/**
+	 * Create a tile store with a specific sprite store.
+	 *
+	 * @param	store		A sprite store.
+	 */
+	public TileStore(final SpriteStore store) {
+		this.store = store;
+
+		tiles = new ArrayList<Sprite>();
+		tiles.add(store.getEmptySprite());
+	}
+
+
+	//
+	// TileStore
+	//
+
+	/**
+	 * Add a tileset.
+	 *
+	 * @param	tsdef		The tileset definition.
+	 */
+	private void add(final TileSetDefinition tsdef) {
+		String ref = tsdef.getSource();
+		int baseindex = tsdef.getFirstGid();
+
+		/*
+		 * Strip off leading path info
+		 * TODO: Remove this earlier in the stage (server side?)
+		 */
+		if(ref.startsWith("../../")) {
+			ref = ref.substring(6);
 		}
 
-		int amount;
+		/*
+		 * Make sure we are the right size
+		 */
+		int mapsize = tiles.size();
 
-		String filename;
-
-		private Vector<Sprite> tileset;
-		boolean loaded;
-		
-		RangeFilename(String filename) {
-			this.amount = 0;
-			this.filename = filename;
-			this.tileset = new Vector<Sprite>();
-			this.loaded = false;
-		}
-
-		boolean isInRange(int i) {
-			if ((i >= 0) && (i < amount)) {
-				return true;
-			}
-
-			return false;
-		}
-
-		String getFilename() {
-			return filename;
-		}
-
-		public boolean isLoaded() {
-			return loaded;
-		}
-
-		@Override
-		public String toString() {
-			return BASE_FOLDER+filename + "[" + 0 + "," + amount + "]";
-		}
-		
-		public void map(int gid, Vector<Sprite> globaltileset) {
-			logger.debug("Loading "+filename+": "+(gid)+" to "+(gid+amount));
-
+		if(mapsize > baseindex) {
+			logger.error("Tileset base index mismatch (" + mapsize + " > " + baseindex + "): " + ref);
+		} else if(mapsize < baseindex) {
+			logger.debug("Tileset base index mismatch (" + mapsize + " < " + baseindex + "): " + ref);
 			/*
-			 * If needed increase vector size.
+			 * Pad missing entries
 			 */
-			if(gid+amount>=globaltileset.size()) {
-				globaltileset.setSize(gid+amount);
+			for(int i = mapsize; i < baseindex; i++) {
+				tiles.add(null);
 			}
-			
-			for(int i=0;i<amount;i++) {
-				globaltileset.set(gid+i,tileset.get(i));
-			}			
 		}
 
-		public void load() {
-			SpriteStore store = SpriteStore.get();
-			
-			Sprite tiles = store.getSprite(BASE_FOLDER+filename);
+		Tileset tileset = tilesetsLoaded.get(ref);
 
-			int idx = 0;
+		if(tileset == null) {
+			tileset = new SpriteTileset(store, baseFolder + ref);
+			tilesetsLoaded.put(ref, tileset);
+		}
 
-			/*
-			 * Set the correct size for the vector.
-			 */
-			tileset.setSize((tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS)*(tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS));
+		int size = tileset.getSize();
 
-			for (int j = 0; j < tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS; j++) {
-				for (int i = 0; i < tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS; i++) {
-					amount++;
+		tiles.ensureCapacity(baseindex + size);
 
-					Sprite tile = store.getTile(tiles, i * GameScreen.SIZE_UNIT_PIXELS, j * GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS, GameScreen.SIZE_UNIT_PIXELS);
+		for(int i = 0; i < size; i++) {
+			tiles.add(tileset.getSprite(i));
+		}
 
-					tileset.set(idx++, tile);
+		/*
+		 * Override the animated tiles (if any)
+		 */
+		TilesetAnimationMap tsam = animationMap.get(ref);
+
+		if(tsam != null) {
+			for(int i = 0; i < size; i++) {
+				Sprite sprite = tsam.getSprite(tileset, i);
+
+				if(sprite != null) {
+					tiles.set(baseindex + i, sprite);
 				}
 			}
-
-			loaded = true;
 		}
 	}
 
-	private Vector<Sprite> zoneTileset;
-	static private Map<String, RangeFilename> tilesetsLoaded=new HashMap<String, RangeFilename>();
 
-	public TileStore() {
-		super();
-		zoneTileset = new Vector<Sprite>();
-	}
-	
+	/**
+	 * Add tilesets.
+	 *
+	 * @param	in		The object stream.
+	 *
+	 * @throws	IOException
+	 * @throws	ClassNotFoundException
+	 */
 	public void addTilesets(InputSerializer in) throws IOException, ClassNotFoundException {
 		int amount=in.readInt();
 		
 		for(int i=0;i<amount;i++) {
 			TileSetDefinition tileset=(TileSetDefinition) in.readObject(new TileSetDefinition(null, -1));
-			RangeFilename range=add(tileset.getSource());
-			/*
-			 * We copy the sprites to the actual zone tileset.
-			 */
-			range.map(tileset.getFirstGid(), zoneTileset);			
+			add(tileset);
 		}
 	}
 
-	private RangeFilename add(String ref) {
-		ref = ref.replace("../../", "/");
 
-		RangeFilename range=tilesetsLoaded.get(ref);
-		if(range==null) {
-			range=new RangeFilename(ref);
-			range.load();		
-			tilesetsLoaded.put(ref, range);
+	/**
+	 * Create the tileset animation map.
+	 *
+	 * @return	A tileset animation map.
+	 */
+	protected static TilesetGroupAnimationMap createAnimationMap() {
+		TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
+
+		// !!!!
+		// !!!! TODO: Set this to a REAL config path (mblanch?)
+		// !!!!
+		URL url = SpriteStore.get().getResourceURL("tileset-animations.map");
+
+		if(url != null) {
+			try {
+				InputStream in = url.openStream();
+
+				try {
+					map.load(in);
+				} finally {
+					in.close();
+				}
+			} catch(IOException ex) {
+				logger.error("Error loading tileset animation map", ex);
+			}
 		}
-		
-		return range;
+
+		return map;
 	}
 
-	public Sprite getTile(int i) {
-		Sprite sprite = zoneTileset.get(i);
-		return sprite;
+
+	/**
+	 * Get the base directory for tileset resources.
+	 *
+	 * Hack: Read the tileset directly from tiled/tileset if started
+	 * from an IDE.
+	 */
+	private static String getResourceBase() {
+		String path = "data/";
+
+		if (SpriteStore.get().getResourceURL("tiled/tileset/README") != null) {
+			logger.warn("Developing mode, loading tileset from tiled/tileset instead of data/tileset");
+			path = "tiled/";
+		}
+
+		return path;
+	}
+
+
+	//
+	// Tileset
+	//
+
+	/**
+	 * Get the number of tiles.
+	 *
+	 * @return	The number of tiles.
+	 */
+	public int getSize() {
+		return tiles.size();
+	}
+
+
+	/**
+	 * Get the sprite for an index tile of the tileset.
+	 *
+	 * @param	index		The index with-in the tileset.
+	 *
+	 * @return	A sprite, or <code>null</code> if no mapped sprite.
+	 */
+	public Sprite getSprite(final int index) {
+		return tiles.get(index);
 	}
 }
