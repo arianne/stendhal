@@ -174,7 +174,7 @@ public class FixedPath {
 				+ entity.getX() + "," + entity.getY() + ")");
 		}
 
-		Path.faceto(entity, currentGoal.getX(), currentGoal.getY());
+		entity.faceto( currentGoal.getX(), currentGoal.getY());
 
 		return true;
 	}
