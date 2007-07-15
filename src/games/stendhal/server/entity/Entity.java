@@ -289,7 +289,7 @@ public abstract class Entity extends RPObject {
 	 *
 	 * @return true, if it stopped, false if it is moving
 	 */
-	public boolean isStopped() {
+	public boolean stopped() {
 		return true;
 	}
 

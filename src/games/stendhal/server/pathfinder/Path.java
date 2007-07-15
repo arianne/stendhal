@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.pathfinder;
 
+import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
@@ -61,7 +62,24 @@ public abstract class Path {
 	 */
 	public abstract boolean isFinished();
 
+	protected static void faceto(ActiveEntity entity, int x, int y) {
+		int rndx = x - entity.getX();
+		int rndy = y - entity.getY();
 
+		if (Math.abs(rndx) > Math.abs(rndy)) {
+			if (rndx < 0.0) {
+				entity.setDirection(Direction.LEFT);
+			} else {
+				entity.setDirection(Direction.RIGHT);
+			}
+		} else {
+			if (rndy < 0.0) {
+				entity.setDirection(Direction.UP);
+			} else {
+				entity.setDirection(Direction.DOWN);
+			}
+		}
+	}
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
@@ -203,7 +221,7 @@ public abstract class Path {
 				actual = path.get(pos);
 				logger.debug("Moving to waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path from ("
 				        + entity.getX() + "," + entity.getY() + ")");
-				entity.faceto(actual.getX(), actual.getY());
+				faceto(entity, actual.getX(), actual.getY());
 				return false;
 			} else {
 				if (entity.isPathLoop()) {
@@ -218,7 +236,7 @@ public abstract class Path {
 		} else {
 			logger.debug("Moving to waypoint(" + pos + ")(" + actual.getX() + "," + actual.getY() + ") on Path from ("
 			        + entity.getX() + "," + entity.getY() + ")");
-			entity.faceto(actual.getX(), actual.getY());
+			faceto(entity, actual.getX(), actual.getY());
 			return false;
 		}
 	}

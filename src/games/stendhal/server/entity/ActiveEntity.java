@@ -14,7 +14,6 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.portal.Portal;
 
-
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.Log4J;
@@ -28,8 +27,6 @@ import marauroa.common.game.Definition.Type;
  * An entity that hase speed and direction.
  */
 public abstract class ActiveEntity extends Entity {
-
-
 	/**
 	 * The logger.
 	 */
@@ -254,6 +251,18 @@ public abstract class ActiveEntity extends Entity {
 
 
 	/**
+	 * Determine if this entity is facing toward another entity.
+	 *
+	 * @param	entity		The target entity.
+	 *
+	 * @return	<code>true</code> if facing the other entity.
+	 */
+	public boolean isFacingToward(final Entity entity) {
+		return direction.equals(getDirectionToward(entity));
+	}
+
+
+	/**
 	 * Determine if this entity has move at least a whole tile.
 	 *
 	 * @return	<code>true</code> if moved a whole tile.
@@ -268,6 +277,17 @@ public abstract class ActiveEntity extends Entity {
 			return false;
 		}
 	}
+
+
+	/**
+	 * Determine if this entity is not moving.
+	 *
+	 * @return	<code>true</code> if it is stopped.
+	 */
+	public boolean isStopped() {
+		return (speed == 0.0);
+	}
+
 
 	/**
 	 * Determine if zone changes are currently allowed via normal means
@@ -357,13 +377,10 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * is this entity not moving
 	 *
-	 * @return true, if stopped, false if moving
+	 * @return true, if it stopped, false if it is moving
 	 */
 	@Override
-	public boolean isStopped() {
-		return (speed == 0.0);
-	}
-	public void faceto(int x, int y) {
-		setDirection(getDirectionToward(x, y));
+	public boolean stopped() {
+		return isStopped();
 	}
 }
