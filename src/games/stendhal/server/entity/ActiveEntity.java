@@ -364,21 +364,6 @@ public abstract class ActiveEntity extends Entity {
 		return (speed == 0.0);
 	}
 	public void faceto(int x, int y) {
-		int rndx = x - getX();
-		int rndy = y - getY();
-
-		if (Math.abs(rndx) > Math.abs(rndy)) {
-			if (rndx < 0.0) {
-				setDirection(Direction.LEFT);
-			} else {
-				setDirection(Direction.RIGHT);
-			}
-		} else {
-			if (rndy < 0.0) {
-				setDirection(Direction.UP);
-			} else {
-				setDirection(Direction.DOWN);
-			}
-		}
+		setDirection(getDirectionToward(x, y));
 	}
 }
