@@ -41,7 +41,7 @@ import marauroa.common.game.RPObject;
  * to be unique. Items can be dropped to this container when it is empty. Note
  * that the onDrop() method simply informs the server that the item was dropped.
  * Whatever the server decides will be the next content of this EntitySlot
- * 
+ *
  * @author mtotz
  */
 public class EntitySlot extends WtPanel implements WtDropTarget {
@@ -52,11 +52,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 
 	/** the parent of the slot */
 	private Entity parent;
-
-	/**
-	 * The entity being held.
-	 */
-	private Entity entity;
 
 	/**
 	 * The entity view being held.
