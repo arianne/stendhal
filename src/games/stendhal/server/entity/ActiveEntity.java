@@ -13,7 +13,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.pathfinder.EntityGuide;
+
 
 import java.awt.geom.Rectangle2D;
 
@@ -29,7 +29,7 @@ import marauroa.common.game.Definition.Type;
  */
 public abstract class ActiveEntity extends Entity {
 
-	protected volatile EntityGuide rex;
+
 	/**
 	 * The logger.
 	 */
