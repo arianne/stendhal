@@ -331,7 +331,7 @@ b*/item/furniture/table/wooden_pale.png
 ./item/gothic/slab.png
 b/item/pot/barrel.png
 b/item/pot/barrel_flat.png
-b/item/pot/barrel_tall.png
+b+k*/item/pot/barrel_tall.png
 ./item/pot/box.png
 b/item/pot/dark_barrel.png
 ./item/pot/huge_pot.png
