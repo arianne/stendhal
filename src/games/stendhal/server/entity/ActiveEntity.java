@@ -254,18 +254,6 @@ public abstract class ActiveEntity extends Entity {
 
 
 	/**
-	 * Determine if this entity is facing toward another entity.
-	 *
-	 * @param	entity		The target entity.
-	 *
-	 * @return	<code>true</code> if facing the other entity.
-	 */
-	public boolean isFacingToward(final Entity entity) {
-		return direction.equals(getDirectionToward(entity));
-	}
-
-
-	/**
 	 * Determine if this entity has move at least a whole tile.
 	 *
 	 * @return	<code>true</code> if moved a whole tile.
