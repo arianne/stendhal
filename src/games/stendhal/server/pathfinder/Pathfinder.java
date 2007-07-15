@@ -36,28 +36,6 @@ import java.util.Stack;
 
 import marauroa.common.game.RPObject;
 
-/*
- * TODO
- * - A* ist ziemlich gut, vielleicht koennte man:
- *   1. Vorberechnungen f�r die komplette Zone machen
- *      bzw. Vorberechnungen mit jedem Pfad und dann speichern
- *   2. nicht erreichbare Teilzonen markieren, sodass man nicht jedesmal pr�fen muss,
- *      sondern nur schauen ob Source oder Target damit kollidieren
- *   3. den Pfad dynamisch berechnen, immer nur Teilabschnitte (niemals komplett vorher)
- *      * Probleme wenn Ziel nicht erreichbar ist
- *      * stoppe Berechnung von Teilpfad wenn Mindestl�nge erreicht
- *      * berechne n�chsten Abschnitt wenn Ende erreicht
- *      - Gesucht sehr schneller Algorithmus, welcher anzeigt ob Ziel erreichbar
- *        (z.B. FloodFill [auf Bereich begrenzt] auf einer CollisionDetectionMap)
- *        * diese Information k�nnte weiterverwendet werden und A* arbeitet nur
- *          innerhalb der Maske
- *
- *   Idee:
- *   - wenn sich der berechnete Pfad in Richtung des Ziels bewegt, dann gehe bis zum
- *     n�chsten Hindernis/Ziel geradeaus, dann setze init Daten f�r neuen Startpunkt
- *   - ab hier kann der Pfad aufgeteilt werden
- *
- */
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
  * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
