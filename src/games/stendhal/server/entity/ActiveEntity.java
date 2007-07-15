@@ -13,6 +13,7 @@ import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.portal.Portal;
+import games.stendhal.server.pathfinder.EntityGuide;
 
 import java.awt.geom.Rectangle2D;
 
@@ -27,6 +28,8 @@ import marauroa.common.game.Definition.Type;
  * An entity that hase speed and direction.
  */
 public abstract class ActiveEntity extends Entity {
+
+	protected volatile EntityGuide rex;
 	/**
 	 * The logger.
 	 */
@@ -278,17 +281,6 @@ public abstract class ActiveEntity extends Entity {
 		}
 	}
 
-
-	/**
-	 * Determine if this entity is not moving.
-	 *
-	 * @return	<code>true</code> if it is stopped.
-	 */
-	public boolean isStopped() {
-		return (speed == 0.0);
-	}
-
-
 	/**
 	 * Determine if zone changes are currently allowed via normal means
 	 * (non-portal teleportation doesn't count).
@@ -377,10 +369,10 @@ public abstract class ActiveEntity extends Entity {
 	/**
 	 * is this entity not moving
 	 *
-	 * @return true, if it stopped, false if it is moving
+	 * @return true, if stopped, false if moving
 	 */
 	@Override
-	public boolean stopped() {
-		return isStopped();
+	public boolean isStopped() {
+		return (speed == 0.0);
 	}
 }

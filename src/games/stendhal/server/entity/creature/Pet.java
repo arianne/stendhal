@@ -238,7 +238,7 @@ public abstract class Pet extends DomesticAnimal {
 			moveToOwner();
 		}
 
-		if (!stopped()) {
+		if (!isStopped()) {
 			this.applyMovement();
 			
 			// /* if we collided with something we stop and clear the path */

@@ -217,7 +217,7 @@ public class Sheep extends DomesticAnimal {
 		 *  - Food not on the mind and hunger pains (every 10)
 		 */
 		if(hunting) {
-			if(!stopped()) {
+			if(!isStopped()) {
 				return true;
 			}
 		} else {
@@ -367,7 +367,7 @@ public class Sheep extends DomesticAnimal {
 		 */
 		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
 			moveToOwner();
-		} else if(stopped()) {
+		} else if(isStopped()) {
 			/*
 			 * Hungry?
 			 */
@@ -390,7 +390,7 @@ public class Sheep extends DomesticAnimal {
 
 		// TODO: Move to upper level logic()?, as it really seems to
 		// apply to all RPEntity's.
-		if (!stopped()) {
+		if (!isStopped()) {
 			applyMovement();
 
 			/*

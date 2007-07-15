@@ -292,7 +292,7 @@ public class Pathfinder
         {
             Entity otherEntity = (Entity) it.next();
             if (!entity.getID().equals(otherEntity.getID()) && otherEntity.isObstacle(entity)
-                && (otherEntity.stopped() || otherEntity.nextTo(nodeStart.getX(), nodeStart.getY(), 0.25)))
+                && (otherEntity.isStopped() || otherEntity.nextTo(nodeStart.getX(), nodeStart.getY(), 0.25)))
             {
 
                 Rectangle2D area = otherEntity.getArea(otherEntity.getX(), otherEntity.getY());

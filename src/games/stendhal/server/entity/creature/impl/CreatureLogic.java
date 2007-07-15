@@ -535,7 +535,7 @@ public class CreatureLogic {
 				logicAttack();
 			} else if (creature.canDoRangeAttack(target)) {
 				logicRangeAttack();
-			} else if (!target.stopped()) {
+			} else if (!target.isStopped()) {
 				logicCreateNewPathToMovingTarget();
 			} else {
 				logicMoveToTargetAndAttack();
