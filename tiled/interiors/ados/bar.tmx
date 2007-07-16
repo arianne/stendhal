@@ -109,7 +109,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2Wy0pDMRCGs3BdEBV04QVE6+0pBEFU1HpBEG9PofYVrNZ6ti50U6jW6wP4bs7gBMI4YzKxPT98JGcmJz8NP6cZdM4NCQwodeuavxgGxoB5YLYEFoAvAuej5D/nfqtN4x3wQMTUifSrwDJRjfiHeiS4ztmo1f2IniuE9x9J8Nd0BTSAa6XeYP1pYJWw+reAE1a7AZrArVJvKn0n+BcJ/qesdsFGrc77Of6F4J+rToa/E/yt+QvF/VsZ/tb8/ccfz+eM1XqZv01gC9ghtoO5p8b26GX+doG9CPvCPrnqxfcnVVIOLf4pedb0BDwT3Yj/pfvJLua1HqxNybMk3O8FeCXegn2134/Zzcmzpnfgg/gM6pbzT8lz6ruaf9uVq37kX8qllllL/mLC93zOu6xnyT9Kyl+KfM4wY3Whznv9OH8pl6n5K1ua/zpwBGzQGM4PIntq9wDp2fr78R5+HFmzZnjOOf+Yv/Y/LD3n3L9i/hb1wx+/A3jG0reD96T7l7+D3RNeBfUOg1pbmXNpvdB/EZgpmSXyHwcmAirseZJREWqWNWFvCvgGayviswAQAAA=
+   H4sIAAAAAAAAAL2Wy0pDMRCGs3BdEBV04QVE6+0pBEFU1HpBEG9PofYVrNZ6ti50U6jW6wP4bs7gBMI4YzKxPT985GQmJz8NP6cZdM4NCQwodeuavxgGxoB5YLYEFoAvAp9HyX/O/VabxjvggYipE+lXgWWiGvEP9UhwnbNRq/sRPVcI7z+S4K/pCmgA10q9wfrTwCph9W8BJ6x2AzSBW6XeVPpO8C8S/E9Z7YKNWp33c/wLwT9XnQx/J/hb8xeK+7cy/K35+48/ns8Zq/Uyf5vAFrBDbAfPnhrbo5f52wX2IuwL++SqF9+fVEk5tPin5FnTE/BMdCP+l+4nu5jXerA2Jc+ScL8X4JV4C/bVfj9mNyfPmt6BD+IzqFvOPyXPqe9q/m1XrvqRfymXWmYt+YsJ3/M577KeJf8oKX8p8jnDjNWFOu/14/ylXKbmr2xp/uvAEbBBY/h8ENlTuwdIc+vvx3v4cWTNmmGec/4xf+1/WJrn3L9i/hb1wx+/A3jG0reD96T7l7+D3RNeBfUOnf6dttZD/0VgpmSWyH8cmAiosPkkoyLULGvC3hTwDd2oYo4AEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
@@ -119,7 +119,7 @@
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3VuQ0AIAwDwOy/BgzKAiQV4hF3lRVZcpmIuZbcd+mH9wHgB/49wBtakqveSj3JVY/7DErZQcwAEAAA
+   H4sIAAAAAAAAAO3VsREAIAgEQfpvQwu1AQkwUGbcDS8heyL2RtJvmY/vA8AP/HuA3rKdrvZT2U5XOz0sL1DGiQAQAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
@@ -129,12 +129,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OsQkAMAgAQfffR1wvTQawECy8g+8/4pb8AQAAQFdtDwx4C45zNAAQAAA=
+   H4sIAAAAAAAAAO3XMQ0AAAgEsfdvCHssCGCGNjkRl/xSEwAAAGxd+MgGK6s3CQAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.31">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VXRKAIAiE9/7H8YS9l/ysIdDkzvAgIZ8K2gAwjk0Ngk8S853JG6VovjRfO8tVvsXx8NkYi/9GlXyt3615UYrgV9c/mu99kyJU8f78kS9xLL+Wg1nv1/hZ2nm3VvjZYurP5mM43fhZ6srv+v/xxM1qL41X9rVz/94z6M7XYjx9BjzXI/Upy7z7jwEXX79+ygAQAAA=
+   H4sIAAAAAAAAAO2VyxHAIAhE6b8cK0wBkc/iKjjJznCQIA9FzRCR8dvURPFpQr4jeVli87X51l5m+R4nwkdjPP6KKvnWeffmscTgV/efzY++SQxVvD9f5Gscz2/lQOq9jX9KO+9Whn9aSP/RfAinG/+UuvK7/n8icbPea+PMunauP7oH3flWTOScibzridSZ8a8aK0+lPfdepcoAEAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="32" visible="0" opacity="0.41">
