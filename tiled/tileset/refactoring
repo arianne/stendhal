@@ -163,7 +163,7 @@ k*/ground/square_paving.png
 k/ground/ice/corners.png
 k/ground/ice/edges.png
 ./ground/ice/glacier.png
-k/ground/ice/ice.png
+k*/ground/ice/ice.png
 K/ground/indoor/black_hole.png
 s/ground/indoor/blue_green.png
 K/ground/indoor/blue_hole.png
