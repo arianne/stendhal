@@ -14,6 +14,7 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.portal.Portal;
 
+
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.Log4J;
@@ -171,7 +172,7 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @param	entity		The entity to face toward.
 	 */
-	public void faceToward(final Entity entity) {
+	final public void faceToward(final Entity entity) {
 		setDirection(getDirectionToward(entity));
 	}
 
@@ -203,27 +204,20 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @return	A facing direction.
 	 */
-	public Direction getDirectionToward(final Entity entity) {
+	final public Direction getDirectionToward(final Entity entity) {
 		Rectangle2D area = entity.getArea();
 
-		return getDirectionToward(area.getCenterX(), area.getCenterY());
+		return getDirectionToward(area);
 	}
 
 
-	/**
-	 * Get the direction toward a point.
-	 *
-	 * @param	x		The target X coordinate.
-	 * @param	y		The target Y coordinate.
-	 *
-	 * @return	A facing direction.
-	 */
-	private Direction getDirectionToward(final double x, final double y) {
-		Rectangle2D area = getArea();
+final	Direction getDirectionToward(Rectangle2D area) {
 
-		double rx = area.getCenterX();
-		double ry = area.getCenterY();
 
+		double rx = getArea().getCenterX();
+		double ry = getArea().getCenterY();
+double x = area.getCenterX();
+double y = area.getCenterY();
 		if (Math.abs(x - rx) > Math.abs(y - ry)) {
 			if (x - rx > 0) {
 				return Direction.RIGHT;
@@ -238,6 +232,36 @@ public abstract class ActiveEntity extends Entity {
 			}
 		}
 	}
+
+//
+//	/**
+//	 * Get the direction toward a point.
+//	 *
+//	 * @param	x		The target X coordinate.
+//	 * @param	y		The target Y coordinate.
+//	 *
+//	 * @return	A facing direction.
+//	 */
+//	 Direction getDirectionToward(final double x, final double y) {
+//		Rectangle2D area = getArea();
+//
+//		double rx = area.getCenterX();
+//		double ry = area.getCenterY();
+//
+//		if (Math.abs(x - rx) > Math.abs(y - ry)) {
+//			if (x - rx > 0) {
+//				return Direction.RIGHT;
+//			} else {
+//				return Direction.LEFT;
+//			}
+//		} else {
+//			if (y - ry > 0) {
+//				return Direction.DOWN;
+//			} else {
+//				return Direction.UP;
+//			}
+//		}
+//	}
 
 
 	/**
@@ -385,7 +409,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 
-	public void faceto( int x, int y) {
+	final public void faceto( int x, int y) {
 		int rndx = x - getX();
 		int rndy = y - getY();
 
