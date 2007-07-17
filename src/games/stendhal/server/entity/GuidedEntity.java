@@ -24,11 +24,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	/**
 	 * The path.
 	 */
-	private FixedPath	path;
+	private FixedPath path;
 
 	/** current position in the path */
 	private int pathPosition;
-
 
 	/**
 	 * Create a guided entity.
@@ -36,11 +35,11 @@ public abstract class GuidedEntity extends ActiveEntity {
 	public GuidedEntity() {
 	}
 
-
 	/**
 	 * Create a guided entity.
-	 *
-	 * @param	object		The source object.
+	 * 
+	 * @param object
+	 *            The source object.
 	 */
 	public GuidedEntity(final RPObject object) {
 		super(object);
@@ -48,36 +47,35 @@ public abstract class GuidedEntity extends ActiveEntity {
 		update();
 	}
 
-
 	//
 	// TEMP for Transition
 	//
 
 	/**
 	 * Get the normal movement speed.
-	 *
-	 * @return	The normal speed when moving.
+	 * 
+	 * @return The normal speed when moving.
 	 */
 	public abstract double getBaseSpeed();
-
 
 	//
 	// GuidedEntity
 	//
 
 	/**
-	 * Set a path for this entity to follow. Any previous path is cleared
-	 * and the entity starts at the first node (so the first node should
-	 * be its position, of course). The speed will be set to the default
-	 * for the entity.
-	 *
-	 * TODO: Change to accept just 'Path' after everything is converted
-	 *       to use opaque Path's rather than Node lists.
-	 *
-	 * @param	path		The path.
+	 * Set a path for this entity to follow. Any previous path is cleared and
+	 * the entity starts at the first node (so the first node should be its
+	 * position, of course). The speed will be set to the default for the
+	 * entity.
+	 * 
+	 * TODO: Change to accept just 'Path' after everything is converted to use
+	 * opaque Path's rather than Node lists.
+	 * 
+	 * @param path
+	 *            The path.
 	 */
 	public void setPath(final FixedPath path) {
-		if((path != null) && !path.isFinished()) {
+		if ((path != null) && !path.isFinished()) {
 			this.path = path;
 			this.pathPosition = 0;
 
@@ -88,7 +86,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 		}
 	}
 
-
 	/**
 	 * Clear the entity's path.
 	 */
@@ -97,16 +94,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 		this.pathPosition = 0;
 	}
 
-
 	/**
 	 * Determine if the entty has a path.
-	 *
-	 * @return	<code>true</code> if there is a path.
+	 * 
+	 * @return <code>true</code> if there is a path.
 	 */
 	public boolean hasPath() {
 		return (path != null);
 	}
-
 
 	/**
 	 * Get the path list.
@@ -115,14 +110,12 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return (path != null) ? path.getNodeList() : null;
 	}
 
-
 	/**
 	 * Is the path a loop.
 	 */
 	public boolean isPathLoop() {
 		return (path != null) ? path.isLoop() : false;
 	}
-
 
 	/**
 	 * Get the path nodes position.
@@ -131,14 +124,12 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return pathPosition;
 	}
 
-
 	/**
 	 * Set the path nodes position.
 	 */
 	public void setPathPosition(int pathPos) {
 		this.pathPosition = pathPos;
 	}
-
 
 	//
 	// ActiveEntity

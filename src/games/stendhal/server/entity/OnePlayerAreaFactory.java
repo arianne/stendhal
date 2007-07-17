@@ -23,49 +23,57 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the area height from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The height.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The height.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the attribute is missing.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getHeight(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		String s;
 
 		if ((s = ctx.getAttribute("height")) == null) {
-			throw new IllegalArgumentException("Required attribute 'height' missing");
+			throw new IllegalArgumentException(
+					"Required attribute 'height' missing");
 		}
 
 		try {
 			return Integer.parseInt(s);
 		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid 'height' attribute: " + s);
+			throw new IllegalArgumentException("Invalid 'height' attribute: "
+					+ s);
 		}
 	}
 
 	/**
 	 * Extract the area width from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The width.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The width.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the attribute is missing.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getWidth(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		String s;
 
 		if ((s = ctx.getAttribute("width")) == null) {
-			throw new IllegalArgumentException("Required attribute 'width' missing");
+			throw new IllegalArgumentException(
+					"Required attribute 'width' missing");
 		}
 
 		try {
 			return Integer.parseInt(s);
 		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid 'width' attribute: " + s);
+			throw new IllegalArgumentException("Invalid 'width' attribute: "
+					+ s);
 		}
 	}
 
@@ -75,20 +83,21 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a damaging area.
-	 *
-	 * @param	ctx		Configuration context.
-	 *
-	 * @return	A OnePlayerArea.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value sutable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		OnePlayerArea
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A OnePlayerArea.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value sutable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see OnePlayerArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		return new OnePlayerArea(getWidth(ctx), getHeight(ctx));
 	}
 }

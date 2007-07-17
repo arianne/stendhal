@@ -27,11 +27,11 @@ public class Sign extends Entity {
 	private static final Logger logger = Log4J.getLogger(Sign.class);
 
 	/**
-	 * Classes of signs that players, NPCs etc. can walk over
-	 * and where you can put items on if they are not placed
-	 * on a collision tile.
+	 * Classes of signs that players, NPCs etc. can walk over and where you can
+	 * put items on if they are not placed on a collision tile.
 	 */
-	private static final List<String> NON_OBSTACLE_CLASSES = Arrays.asList("book_blue", "book_red", "transparent");
+	private static final List<String> NON_OBSTACLE_CLASSES = Arrays.asList(
+			"book_blue", "book_red", "transparent");
 
 	public static void generateRPClass() {
 		try {
@@ -44,7 +44,6 @@ public class Sign extends Entity {
 		}
 	}
 
-
 	/**
 	 * Create a sign.
 	 */
@@ -53,25 +52,26 @@ public class Sign extends Entity {
 		put("type", "sign");
 	}
 
-
 	/**
 	 * Set the sign text.
-	 *
-	 * @param	text		The sign text.
+	 * 
+	 * @param text
+	 *            The sign text.
 	 */
 	public void setText(String text) {
 		put("text", text);
 	}
 
 	/**
-	 * States what type of sign this should be. This defines how
-	 * it will look like in the client.
-	 * @param clazz The sign class, e.g. "default" or "signpost".
+	 * States what type of sign this should be. This defines how it will look
+	 * like in the client.
+	 * 
+	 * @param clazz
+	 *            The sign class, e.g. "default" or "signpost".
 	 */
 	public void setClass(String clazz) {
 		put("class", clazz);
 	}
-
 
 	// TODO: Add setObstacle() method for per-item config, rather than
 	// hard-coding class list.

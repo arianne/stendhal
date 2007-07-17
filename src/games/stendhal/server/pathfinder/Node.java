@@ -14,26 +14,23 @@ public class Node {
 		this.y = y;
 	}
 
-
 	/**
 	 * Get the X coordinate.
-	 *
-	 * @return	The X coordinate.
+	 * 
+	 * @return The X coordinate.
 	 */
 	public int getX() {
 		return x;
 	}
 
-
 	/**
 	 * Get the Y coordinate.
-	 *
-	 * @return	The Y coordinate.
+	 * 
+	 * @return The Y coordinate.
 	 */
 	public int getY() {
 		return y;
 	}
-
 
 	@Override
 	public String toString() {

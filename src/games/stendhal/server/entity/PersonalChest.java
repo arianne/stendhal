@@ -15,15 +15,14 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 /**
- * A PersonalChest is a Chest that can be used by everyone, but shows
- * different contents depending on the player who is currently using
- * it. Thus, a player can put in items into this chest and be sure that
- * nobody else will be able to take them out.
+ * A PersonalChest is a Chest that can be used by everyone, but shows different
+ * contents depending on the player who is currently using it. Thus, a player
+ * can put in items into this chest and be sure that nobody else will be able to
+ * take them out.
  * 
- * Caution: each PersonalChest must be placed in such a way that only one
- * player can stand next to it at a time, to prevent other players from
- * stealing while the owner is looking at his items.
- * TODO: fix this.
+ * Caution: each PersonalChest must be placed in such a way that only one player
+ * can stand next to it at a time, to prevent other players from stealing while
+ * the owner is looking at his items. TODO: fix this.
  */
 public class PersonalChest extends Chest {
 	private static Logger logger = Log4J.getLogger(PersonalChest.class);
@@ -48,20 +47,21 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Create a personal chest using a specific bank slot.
-	 *
-	 * @param	bankName	The name of the bank slot.
+	 * 
+	 * @param bankName
+	 *            The name of the bank slot.
 	 */
 	public PersonalChest(String bankName) {
 		this.bankName = bankName;
 		attending = null;
 	}
 
-
 	/**
 	 * Copies an item
 	 * 
 	 * 
-	 * @param item item to copy
+	 * @param item
+	 *            item to copy
 	 * @return copy
 	 * @throws SecurityException
 	 * @throws NoSuchMethodException
@@ -70,7 +70,10 @@ public class PersonalChest extends Chest {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	private RPObject cloneItem(RPObject item) throws SecurityException, NoSuchMethodException, IllegalArgumentException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	private RPObject cloneItem(RPObject item) throws SecurityException,
+			NoSuchMethodException, IllegalArgumentException,
+			InstantiationException, IllegalAccessException,
+			InvocationTargetException {
 		Class clazz = item.getClass();
 		Constructor ctor = clazz.getConstructor(clazz);
 		Item clone = (Item) ctor.newInstance(item);
@@ -79,8 +82,8 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Get the slot that holds items for this chest.
-	 *
-	 * @return	A per-player/per-bank slot.
+	 * 
+	 * @return A per-player/per-bank slot.
 	 */
 	protected RPSlot getBankSlot() {
 		/*
@@ -104,9 +107,11 @@ public class PersonalChest extends Chest {
 					/**
 					 * This method is called when the turn number is reached.
 					 * NOTE: The <em>message</em> parameter is deprecated.
-					 *
-					 * @param	currentTurn	The current turn number.
-					 * @param	message		The string that was used.
+					 * 
+					 * @param currentTurn
+					 *            The current turn number.
+					 * @param message
+					 *            The string that was used.
 					 */
 					public void onTurnReached(int currentTurn, String message) {
 						if (attending != null) {
@@ -122,16 +127,22 @@ public class PersonalChest extends Chest {
 							RPSlot content = getSlot("content");
 							content.clear();
 
-							// if the player is next to the chest (and still logged in)
-							if (nextTo(attending) && zone.has(attending.getID())) {
-								// A hack to allow client update correctly the chest...
-								// by clearing the chest and copying the items back to it
+							// if the player is next to the chest (and still
+							// logged in)
+							if (nextTo(attending)
+									&& zone.has(attending.getID())) {
+								// A hack to allow client update correctly the
+								// chest...
+								// by clearing the chest and copying the items
+								// back to it
 								// from the player's bank slot
 								for (RPObject item : getBankSlot()) {
 									try {
-										content.addPreservingId(cloneItem(item));
+										content
+												.addPreservingId(cloneItem(item));
 									} catch (Exception e) {
-										logger.error("Cannot clone item " + item, e);
+										logger.error("Cannot clone item "
+												+ item, e);
 									}
 								}
 
@@ -145,7 +156,7 @@ public class PersonalChest extends Chest {
 								attending = null;
 							}
 
-						TurnNotifier.get().notifyInTurns(0, this);
+							TurnNotifier.get().notifyInTurns(0, this);
 						}
 					}
 				};

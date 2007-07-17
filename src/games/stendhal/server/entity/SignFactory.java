@@ -23,19 +23,22 @@ public class SignFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the message text from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The message text.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is missing.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The message text.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the attribute is missing.
 	 */
-	protected String getText(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getText(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		String s;
 
 		if ((s = ctx.getAttribute("text")) == null) {
-			throw new IllegalArgumentException("Required attribute 'text' missing");
+			throw new IllegalArgumentException(
+					"Required attribute 'text' missing");
 		}
 
 		return s;
@@ -47,20 +50,21 @@ public class SignFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a damaging area.
-	 *
-	 * @param	ctx		Configuration context.
-	 *
-	 * @return	A Sign.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value sutable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		Sign
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A Sign.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value sutable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see Sign
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		Sign sign = new Sign();
 
 		sign.setText(getText(ctx));

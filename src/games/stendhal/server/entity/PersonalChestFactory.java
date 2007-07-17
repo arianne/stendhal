@@ -23,15 +23,17 @@ public class PersonalChestFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the slot name from a context.
-	 *
-	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The slot name.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is invalid.
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * 
+	 * @return The slot name.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
-	protected String getSlot(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getSlot(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		String s;
 
 		if ((s = ctx.getAttribute("slot")) == null) {
@@ -47,20 +49,21 @@ public class PersonalChestFactory implements ConfigurableFactory {
 
 	/**
 	 * Create a personal chest.
-	 *
-	 * @param	ctx		Configuration context.
-	 *
-	 * @return	A PersonalChest.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value sutable for
-	 *				meaningful user interpretation.
-	 *
-	 * @see		PersonalChest
+	 * 
+	 * @param ctx
+	 *            Configuration context.
+	 * 
+	 * @return A PersonalChest.
+	 * 
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value sutable for meaningful user
+	 *             interpretation.
+	 * 
+	 * @see PersonalChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		return new PersonalChest(getSlot(ctx));
 	}
 }

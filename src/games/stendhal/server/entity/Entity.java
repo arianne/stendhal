@@ -33,44 +33,42 @@ public abstract class Entity extends RPObject {
 	/**
 	 * On the ground.
 	 */
-	//public static final int	COLLISION_GROUND	= 0x01;
-
-//	/**
-//	 * Just above the ground.
-//	 */
-//	public static final int	COLLISION_LOWER		= 0x02;
-//
-//	/**
-//	 * Table top level.
-//	 */
-//	public static final int	COLLISION_TABLETOP	= 0x04;
-//
-//	/**
-//	 * About the middle of a single level interior.
-//	 */
-//	public static final int	COLLISION_MIDDLE	= 0x08;
-//
-//	/**
-//	 * Just below a single level interior ceiling.
-//	 */
-//	public static final int	COLLISION_UPPER		= 0x10;
-//
-//	/**
-//	 * Anything above first level interior.
-//	 */
-//	public static final int	COLLISION_MULTISTORY	= 0x20;
-//
-//	/**
-//	 * Sky.
-//	 */
-//	public static final int	COLLISION_SKY		= 0x40;
-//
-//	/**
-//	 * The area a player [normally] occupies.
-//	 */
-//	public static final int	COLLISION_PLAYER	=
-//		(COLLISION_LOWER|COLLISION_TABLETOP|COLLISION_MIDDLE);
-
+	// public static final int COLLISION_GROUND = 0x01;
+	// /**
+	// * Just above the ground.
+	// */
+	// public static final int COLLISION_LOWER = 0x02;
+	//
+	// /**
+	// * Table top level.
+	// */
+	// public static final int COLLISION_TABLETOP = 0x04;
+	//
+	// /**
+	// * About the middle of a single level interior.
+	// */
+	// public static final int COLLISION_MIDDLE = 0x08;
+	//
+	// /**
+	// * Just below a single level interior ceiling.
+	// */
+	// public static final int COLLISION_UPPER = 0x10;
+	//
+	// /**
+	// * Anything above first level interior.
+	// */
+	// public static final int COLLISION_MULTISTORY = 0x20;
+	//
+	// /**
+	// * Sky.
+	// */
+	// public static final int COLLISION_SKY = 0x40;
+	//
+	// /**
+	// * The area a player [normally] occupies.
+	// */
+	// public static final int COLLISION_PLAYER =
+	// (COLLISION_LOWER|COLLISION_TABLETOP|COLLISION_MIDDLE);
 
 	private int x;
 
@@ -106,8 +104,8 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("effect", Type.STRING, Definition.VOLATILE);
 
 		/*
-		 * The visibility of the entity drawn on client (0-100).
-		 * 0=Invisible, 100=Solid. Useful when mixed with effect.
+		 * The visibility of the entity drawn on client (0-100). 0=Invisible,
+		 * 100=Solid. Useful when mixed with effect.
 		 */
 		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
 	}
@@ -115,7 +113,7 @@ public abstract class Entity extends RPObject {
 	public Entity(RPObject object) {
 		super(object);
 
-		if(!has("visibility")) {
+		if (!has("visibility")) {
 			put("visibility", 100);
 		}
 
@@ -158,9 +156,11 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity coordinates.
-	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * 
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 */
 	public void set(final int x, final int y) {
 		setX(x);
@@ -169,8 +169,9 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity X coordinate.
-	 *
-	 * @param	x		The X coordinate.
+	 * 
+	 * @param x
+	 *            The X coordinate.
 	 */
 	public void setX(final int x) {
 		if ((x == this.x) && (x != 0)) {
@@ -183,8 +184,8 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity name.
-	 *
-	 * @return	The entity's name, or <code>null</code> if undefined.
+	 * 
+	 * @return The entity's name, or <code>null</code> if undefined.
 	 */
 	public String getName() {
 		if (has("name")) {
@@ -196,8 +197,8 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the nicely formatted entity title/name.
-	 *
-	 * @return	The title, or <code>null</code> if unknown.
+	 * 
+	 * @return The title, or <code>null</code> if unknown.
 	 */
 	public String getTitle() {
 		if (has("title")) {
@@ -215,11 +216,10 @@ public abstract class Entity extends RPObject {
 		}
 	}
 
-
 	/**
 	 * Get the entity X coordinate.
-	 *
-	 * @return	The X coordinate.
+	 * 
+	 * @return The X coordinate.
 	 */
 	public int getX() {
 		return x;
@@ -227,8 +227,9 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Set the entity Y coordinate.
-	 *
-	 * @param	y		The Y coordinate.
+	 * 
+	 * @param y
+	 *            The Y coordinate.
 	 */
 	public void setY(final int y) {
 		if ((y == this.y) && (y != 0)) {
@@ -241,28 +242,27 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the entity Y coordinate.
-	 *
-	 * @return	The Y coordinate.
+	 * 
+	 * @return The Y coordinate.
 	 */
 	public int getY() {
 		return y;
 	}
 
-
 	/**
 	 * Get the collision areas for this entity.
-	 *
-	 * @return	A collision mask.
+	 * 
+	 * @return A collision mask.
 	 */
 	public int getCollisions() {
 		return collisions;
 	}
 
-
 	/**
 	 * Set the collision areas for this entity.
-	 *
-	 * @param	collisions	A collision mask.
+	 * 
+	 * @param collisions
+	 *            A collision mask.
 	 */
 	public void setCollisions(int collisions) {
 		this.collisions = collisions;
@@ -272,21 +272,21 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Get the zone this entity is in.
-	 *
-	 * @return	A zone, or <code>null</code> if not in one.
+	 * 
+	 * @return A zone, or <code>null</code> if not in one.
 	 */
 	public StendhalRPZone getZone() {
 		// Use onAdded()/onRemoved() to grab a copy
 		// of the zone and save as a local variable.
 		return zone;
-		
+
 	}
 
 	/**
 	 * is this entity not moving
-	 *
+	 * 
 	 * TODO: Remove after the StendhalNavigableEntities dependancy is gone
-	 *
+	 * 
 	 * @return true, if it stopped, false if it is moving
 	 */
 	public boolean stopped() {
@@ -299,6 +299,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * TODO: docu
+	 * 
 	 * @return ???
 	 */
 	public boolean collides() {
@@ -307,8 +308,8 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether an entity is a ghost (non physically interactive).
-	 *
-	 * @return	<code>true</code> if in ghost mode.
+	 * 
+	 * @return <code>true</code> if in ghost mode.
 	 */
 	public boolean isGhost() {
 		return has("ghostmode");
@@ -316,33 +317,36 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>true</code> if not a ghost.
+	 * 
+	 * @param entity
+	 *            The entity to check against.
+	 * 
+	 * @return <code>true</code> if not a ghost.
 	 */
 	public boolean isObstacle(Entity entity) {
 		return !isGhost();
 	}
 
 	/**
-	 * Calculates the squared distance between the two given rectangles,
-	 * i.e. the square of the minimal distance between a point in rect1
-	 * and a point in rect2.
-	 *
-	 * We're calculating the square because the square root operation
-	 * would be expensive. As long as we only need to compare distances,
-	 * it doesn't matter if we compare the distances or the squares of
-	 * the distances (the square operation is strictly monotonous for positive
-	 * numbers).
-	 *
+	 * Calculates the squared distance between the two given rectangles, i.e.
+	 * the square of the minimal distance between a point in rect1 and a point
+	 * in rect2.
+	 * 
+	 * We're calculating the square because the square root operation would be
+	 * expensive. As long as we only need to compare distances, it doesn't
+	 * matter if we compare the distances or the squares of the distances (the
+	 * square operation is strictly monotonous for positive numbers).
+	 * 
 	 * TODO: consider moving this to a class in games.stendhal.common
-	 *
-	 * @param rect1 The first rectangle.
-	 * @param rect2 The second rectangle.
+	 * 
+	 * @param rect1
+	 *            The first rectangle.
+	 * @param rect2
+	 *            The second rectangle.
 	 * @return The squared distance between the two rectangles.
 	 */
-	private static int squaredDistanceBetween(Rectangle2D rect1, Rectangle2D rect2) {
+	private static int squaredDistanceBetween(Rectangle2D rect1,
+			Rectangle2D rect2) {
 		int left1 = (int) rect1.getMinX();
 		// minus one because we want the distance of two 1x1 entities standing
 		// directly next to each other to be 1, not 0.
@@ -392,17 +396,18 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * This returns square of the distance between this entity and the
-	 * given one.
-	 * We're calculating the square because the square root operation
-	 * would be expensive. As long as we only need to compare distances,
-	 * it doesn't matter if we compare the distances or the squares of
-	 * the distances (the square operation is strictly monotonous for positive
-	 * numbers).
-	 * @param other the entity to which the distance should be calculated
+	 * This returns square of the distance between this entity and the given
+	 * one. We're calculating the square because the square root operation would
+	 * be expensive. As long as we only need to compare distances, it doesn't
+	 * matter if we compare the distances or the squares of the distances (the
+	 * square operation is strictly monotonous for positive numbers).
+	 * 
+	 * @param other
+	 *            the entity to which the distance should be calculated
 	 */
 	public double squaredDistance(Entity other) {
-		if ((!has("width") || getInt("width") == 1) && (!has("height") ||getInt("height") == 1)) {
+		if ((!has("width") || getInt("width") == 1)
+				&& (!has("height") || getInt("height") == 1)) {
 			// This doesn't work properly if the other entity is larger
 			// than 1x1, but it is faster.
 			return squaredDistance(other.x, other.y);
@@ -411,50 +416,61 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * This returns square of the distance from this entity to a specific
-	 * point.
-	 * We're calculating the square because the square root operation
-	 * would be expensive. As long as we only need to compare distances,
-	 * it doesn't matter if we compare the distances or the squares of
-	 * the distances (the square operation is strictly monotonous for positive
-	 * numbers).
-	 * @param x The horizontal coordinate of the point
-	 * @param y The vertical coordinate of the point
+	 * This returns square of the distance from this entity to a specific point.
+	 * We're calculating the square because the square root operation would be
+	 * expensive. As long as we only need to compare distances, it doesn't
+	 * matter if we compare the distances or the squares of the distances (the
+	 * square operation is strictly monotonous for positive numbers).
+	 * 
+	 * @param x
+	 *            The horizontal coordinate of the point
+	 * @param y
+	 *            The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
-		if ((!has("width") || getInt("width") == 1) && (!has("height") || getInt("height") == 1)) {
+		if ((!has("width") || getInt("width") == 1)
+				&& (!has("height") || getInt("height") == 1)) {
 			// This doesn't work properly if this entity is larger
 			// than 1x1, but it is faster.
 			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
 		}
 		Rectangle2D thisArea = getArea();
-		// for 1x2 size creatures the destArea, needs bo be one up (this sucks badly)
-		thisArea = new Rectangle2D.Double(thisArea.getX(), this.getY(), thisArea.getWidth(), thisArea.getHeight());
+		// for 1x2 size creatures the destArea, needs bo be one up (this sucks
+		// badly)
+		thisArea = new Rectangle2D.Double(thisArea.getX(), this.getY(),
+				thisArea.getWidth(), thisArea.getHeight());
 
 		return squaredDistanceBetween(thisArea, new Rectangle(x, y, 1, 1));
 	}
 
 	/**
 	 * Checks whether a certain point is near this entity.
-	 * @param x The point's x coordinate
-	 * @param y The point's y coordinate
-	 * @param step The maximum distance
+	 * 
+	 * @param x
+	 *            The point's x coordinate
+	 * @param y
+	 *            The point's y coordinate
+	 * @param step
+	 *            The maximum distance
 	 * @return true iff the point is at most <i>step</i> steps away
 	 */
 	public boolean nextTo(int x, int y, double step) {
 		Rectangle2D thisArea = getArea();
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
-				thisArea.getWidth() + 2 * step, thisArea.getHeight() + 2 * step);
+		thisArea
+				.setRect(thisArea.getX() - step, thisArea.getY() - step,
+						thisArea.getWidth() + 2 * step, thisArea.getHeight()
+								+ 2 * step);
 		return thisArea.contains(x, y);
 	}
 
 	/**
-	 * Checks whether the given entity is directly next to this entity.
-	 * This method may be optimized over using nextTo(entity, 0.25).
-	 *
-	 * @param	entity		The entity
-	 *
-	 * @return	<code>true</code> if the entity is next to this.
+	 * Checks whether the given entity is directly next to this entity. This
+	 * method may be optimized over using nextTo(entity, 0.25).
+	 * 
+	 * @param entity
+	 *            The entity
+	 * 
+	 * @return <code>true</code> if the entity is next to this.
 	 */
 	public boolean nextTo(Entity entity) {
 		// For now call old code (just a convenience function)
@@ -463,28 +479,28 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Checks whether the given entity is near this entity.
-	 * @param entity the entity
-	 * @param step The maximum distance
+	 * 
+	 * @param entity
+	 *            the entity
+	 * @param step
+	 *            The maximum distance
 	 * @return true iff the entity is at most <i>step</i> steps away
 	 */
 	public boolean nextTo(Entity entity, double step) {
 		Rectangle2D thisArea = getArea();
 		Rectangle2D otherArea = entity.getArea();
-		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step, thisArea.getWidth() + step, thisArea
-		        .getHeight()
-		        + step);
-		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step, otherArea.getWidth() + step, otherArea
-		        .getHeight()
-		        + step);
+		thisArea.setRect(thisArea.getX() - step, thisArea.getY() - step,
+				thisArea.getWidth() + step, thisArea.getHeight() + step);
+		otherArea.setRect(otherArea.getX() - step, otherArea.getY() - step,
+				otherArea.getWidth() + step, otherArea.getHeight() + step);
 
 		return thisArea.intersects(otherArea);
 	}
 
-
 	/**
 	 * Get the area this object currently occupies.
-	 *
-	 * @return	A rectangular area.
+	 * 
+	 * @return A rectangular area.
 	 */
 	public Rectangle2D getArea() {
 		return getArea(getX(), getY());
@@ -492,9 +508,11 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * returns the area used by this entity
-	 *
-	 * @param ex x
-	 * @param ey y
+	 * 
+	 * @param ex
+	 *            x
+	 * @param ey
+	 *            y
 	 * @return rectangle for the used area
 	 */
 	public Rectangle2D getArea(double ex, double ey) {
@@ -504,13 +522,16 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * returns the area used by this entity. Note for performance reasons
-	 * the Rectangle is not returned as new object but the one supplied as
-	 * first parameter is modified.
-	 *
-	 * @param rect the area is stored into this paramter
-	 * @param x x
-	 * @param y y
+	 * returns the area used by this entity. Note for performance reasons the
+	 * Rectangle is not returned as new object but the one supplied as first
+	 * parameter is modified.
+	 * 
+	 * @param rect
+	 *            the area is stored into this paramter
+	 * @param x
+	 *            x
+	 * @param y
+	 *            y
 	 */
 	public void getArea(final Rectangle2D rect, final double x, final double y) {
 		rect.setRect(x, y, 1.0, 1.0);
@@ -518,25 +539,26 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * Called when this object is added to a zone.
-	 *
-	 * @param	zone		The zone this was added to.
+	 * 
+	 * @param zone
+	 *            The zone this was added to.
 	 */
 	public void onAdded(StendhalRPZone zone) {
-		this.zone=zone;
+		this.zone = zone;
 	}
 
 	/**
 	 * Called when this object is being removed from a zone.
-	 *
-	 * @param	zone		The zone this will be removed from.
+	 * 
+	 * @param zone
+	 *            The zone this will be removed from.
 	 */
 	public void onRemoved(StendhalRPZone zone) {
 	}
 
 	/**
-	 * Notifies the StendhalRPWorld that this entity's attributes have
-	 * changed.
-	 *
+	 * Notifies the StendhalRPWorld that this entity's attributes have changed.
+	 * 
 	 * TODO: Find a way to move this up to RPObject.
 	 */
 	public void notifyWorldAboutChanges() {
@@ -545,7 +567,7 @@ public abstract class Entity extends RPObject {
 
 	/**
 	 * describes the entity (if a players looks at it)
-	 *
+	 * 
 	 * @return description from the players point of view
 	 */
 	public String describe() {
@@ -559,9 +581,12 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * returns the name or something that can be used to identify the entity for the player
-	 *
-	 * @param definite true for "the" and false for "a/an" in case the entity has no name
+	 * returns the name or something that can be used to identify the entity for
+	 * the player
+	 * 
+	 * @param definite
+	 *            true for "the" and false for "a/an" in case the entity has no
+	 *            name
 	 * @return name
 	 */
 	public String getDescriptionName(boolean definite) {
@@ -587,11 +612,11 @@ public abstract class Entity extends RPObject {
 		}
 	}
 
-
 	/**
 	 * Set the entity's visibility.
-	 *
-	 * @param	visibility	The visibility (0-100).
+	 * 
+	 * @param visibility
+	 *            The visibility (0-100).
 	 */
 	public void setVisibility(final int visibility) {
 		put("visibility", visibility);

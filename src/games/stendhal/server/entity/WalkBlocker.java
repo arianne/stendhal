@@ -12,8 +12,8 @@ package games.stendhal.server.entity;
 import games.stendhal.server.entity.area.AreaEntity;
 
 /**
- * An entity that just acts as an obsticle. This is a temporary workaround
- * to allow items to be placed, but not players/entities, until multi-level
+ * An entity that just acts as an obsticle. This is a temporary workaround to
+ * allow items to be placed, but not players/entities, until multi-level
  * collisions can be added.
  */
 public class WalkBlocker extends AreaEntity {
@@ -24,13 +24,13 @@ public class WalkBlocker extends AreaEntity {
 		super(1, 1);
 	}
 
-	
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>true</code> if the other entity is an RPEntity.
+	 * 
+	 * @param entity
+	 *            The entity to check against.
+	 * 
+	 * @return <code>true</code> if the other entity is an RPEntity.
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {

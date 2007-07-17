@@ -13,24 +13,24 @@ import java.lang.ref.WeakReference;
 import marauroa.common.game.RPClass;
 
 /**
- * A fish source is a spot where a player can fish.
- * He needs a fishing rod, time and luck.
- * Before he catches fish he needs to make a license.
+ * A fish source is a spot where a player can fish. He needs a fishing rod, time
+ * and luck. Before he catches fish he needs to make a license.
  * 
- * Fishing takes 8 seconds; during this time, the player keep standing
- * next to the fish source. In fact, the player only has to be there
- * when the prospecting action has finished. Therefore, make sure that two
- * fish sources are always at least 8 sec of walking away from each other,
- * so that the player can't fish at several sites simultaneously.
+ * Fishing takes 8 seconds; during this time, the player keep standing next to
+ * the fish source. In fact, the player only has to be there when the
+ * prospecting action has finished. Therefore, make sure that two fish sources
+ * are always at least 8 sec of walking away from each other, so that the player
+ * can't fish at several sites simultaneously.
  * 
  * @author dine
- *
+ * 
  */
 public class FishSource extends Entity implements UseListener {
 	private static final String NEEDED_EQUIPMENT = "fishing_rod";
 
-	private class Fisher implements TurnListener{
+	private class Fisher implements TurnListener {
 		WeakReference<Player> playerRef;
+
 		public Fisher(Player bob) {
 			playerRef = new WeakReference<Player>(bob);
 		}
@@ -38,12 +38,12 @@ public class FishSource extends Entity implements UseListener {
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Fisher) {
-				Fisher new_name = (Fisher)obj ;
-				return playerRef.get()==new_name.playerRef.get();
-			}else{
+				Fisher new_name = (Fisher) obj;
+				return playerRef.get() == new_name.playerRef.get();
+			} else {
 				return false;
 			}
-			
+
 		}
 
 		@Override
@@ -52,20 +52,24 @@ public class FishSource extends Entity implements UseListener {
 		}
 
 		/**
-		 * This method is called when the turn number is reached.
-		 * NOTE: The <em>message</em> parameter is deprecated.
-		 *
-		 * @param	currentTurn	The current turn number.
-		 * @param	message		The string that was used.
+		 * This method is called when the turn number is reached. NOTE: The
+		 * <em>message</em> parameter is deprecated.
+		 * 
+		 * @param currentTurn
+		 *            The current turn number.
+		 * @param message
+		 *            The string that was used.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
-			Player player= playerRef.get();
+			Player player = playerRef.get();
 			if (playerRef.get() != null) {
-				// check if the player is still standing next to this fish source
-				if (nextTo(player,0.25)) {
+				// check if the player is still standing next to this fish
+				// source
+				if (nextTo(player, 0.25)) {
 					// roll the dice
 					if (isSuccessful(player)) {
-						Item fish = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
+						Item fish = StendhalRPWorld.get().getRuleManager()
+								.getEntityManager().getItem(itemName);
 						player.equip(fish, true);
 						player.sendPrivateText("You caught a fish.");
 					} else {
@@ -74,15 +78,16 @@ public class FishSource extends Entity implements UseListener {
 				}
 			}
 		}
-		
+
 	}
 
 	private String itemName;
 
 	/**
-	 * Calculates the probability that the given player catches a fish.
-	 * This is based on the player's fishing skills, however even
-	 * players with no skills at all have a 5 % probability of success.
+	 * Calculates the probability that the given player catches a fish. This is
+	 * based on the player's fishing skills, however even players with no skills
+	 * at all have a 5 % probability of success.
+	 * 
 	 * @param player
 	 * @return
 	 */
@@ -106,23 +111,20 @@ public class FishSource extends Entity implements UseListener {
 		put("type", "fish_source");
 	}
 
-
 	public static void generateRPClass() {
 		RPClass grower = new RPClass("fish_source");
 		grower.isA("entity");
 	}
 
 	/**
-	 * Decides randomly if a prospecting action should be
-	 * successful.
-	 * @return true iff the prospecting player should get
-	 *         a fish. 
+	 * Decides randomly if a prospecting action should be successful.
+	 * 
+	 * @return true iff the prospecting player should get a fish.
 	 */
 	private boolean isSuccessful(Player player) {
 		int random = Rand.roll1D100();
 		return random <= getSuccessProbability(player) * 100;
 	}
-
 
 	//
 	// UseListener
@@ -146,20 +148,21 @@ public class FishSource extends Entity implements UseListener {
 
 						// some feedback is needed.
 						player.sendPrivateText("You have started fishing.");
-						TurnNotifier.get().notifyInSeconds(getDuration(), fisher);
+						TurnNotifier.get().notifyInSeconds(getDuration(),
+								fisher);
 					}
 				} else {
-					player.sendPrivateText("You need a fishing rod for fishing.");
+					player
+							.sendPrivateText("You need a fishing rod for fishing.");
 				}
 			}
 		}
 	}
 
-
 	/**
 	 * @return an int between 5 and 8 to represent seconds needed for fishing
 	 */
 	private int getDuration() {
-		return 5  + Rand.rand(4);
+		return 5 + Rand.rand(4);
 	}
 }

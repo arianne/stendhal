@@ -14,13 +14,13 @@ public abstract class PassiveEntity extends Entity {
 
 	/**
 	 * Create a passive entity.
-	 *
-	 * @param	object		The template object.
+	 * 
+	 * @param object
+	 *            The template object.
 	 */
 	public PassiveEntity(RPObject object) {
 		super(object);
 	}
-
 
 	//
 	// Entity
@@ -28,10 +28,11 @@ public abstract class PassiveEntity extends Entity {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>false</code>.
+	 * 
+	 * @param entity
+	 *            The entity to check against.
+	 * 
+	 * @return <code>false</code>.
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {

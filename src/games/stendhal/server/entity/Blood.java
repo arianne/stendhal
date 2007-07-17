@@ -19,8 +19,8 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
 /**
- * Represents a blood puddle that is left on the ground after an entity
- * was injured or killed.
+ * Represents a blood puddle that is left on the ground after an entity was
+ * injured or killed.
  */
 public class Blood extends PassiveEntity implements TurnListener {
 	/**
@@ -35,7 +35,6 @@ public class Blood extends PassiveEntity implements TurnListener {
 		blood.addAttribute("amount", Type.BYTE);
 	}
 
-
 	/**
 	 * Create a blood entity.
 	 */
@@ -43,12 +42,13 @@ public class Blood extends PassiveEntity implements TurnListener {
 		this("red", Rand.rand(4));
 	}
 
-
 	/**
 	 * Create a blood entity.
-	 *
-	 * @param	clazz		The class of blood.
-	 * @param	amount		The amount of blood.
+	 * 
+	 * @param clazz
+	 *            The class of blood.
+	 * @param amount
+	 *            The amount of blood.
 	 */
 	public Blood(final String clazz, final int amount) {
 		setRPClass("blood");
@@ -59,32 +59,32 @@ public class Blood extends PassiveEntity implements TurnListener {
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);
 	}
 
-
 	//
 	// Entity
 	//
 
 	/**
 	 * Get the entity description.
-	 *
-	 * @return	The description text.
+	 * 
+	 * @return The description text.
 	 */
 	@Override
 	public String describe() {
 		return ("You see a pool of blood.");
 	}
 
-
 	//
 	// TurnListener
 	//
 
 	/**
-	 * This method is called when the turn number is reached.
-	 * NOTE: The <em>message</em> parameter is deprecated.
-	 *
-	 * @param	currentTurn	The current turn number.
-	 * @param	message		The string that was used.
+	 * This method is called when the turn number is reached. NOTE: The
+	 * <em>message</em> parameter is deprecated.
+	 * 
+	 * @param currentTurn
+	 *            The current turn number.
+	 * @param message
+	 *            The string that was used.
 	 */
 	public void onTurnReached(int currentTurn, String message) {
 		getZone().remove(this);

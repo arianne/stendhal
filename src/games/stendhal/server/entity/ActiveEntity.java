@@ -14,7 +14,6 @@ import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.portal.Portal;
 
-
 import java.awt.geom.Rectangle2D;
 
 import marauroa.common.Log4J;
@@ -36,18 +35,17 @@ public abstract class ActiveEntity extends Entity {
 	/*
 	 * The facing direction
 	 */
-	private Direction	direction;
+	private Direction direction;
 
 	/**
 	 * The current speed.
 	 */
-	private double		speed;
+	private double speed;
 
 	/**
 	 * The amount of uncommited tile movement.
 	 */
-	private double		movementOffset;
-
+	private double movementOffset;
 
 	/**
 	 * Create an active entity.
@@ -58,11 +56,11 @@ public abstract class ActiveEntity extends Entity {
 		movementOffset = 0.0;
 	}
 
-
 	/**
 	 * Create an active entity.
-	 *
-	 * @param	object		The source object.
+	 * 
+	 * @param object
+	 *            The source object.
 	 */
 	public ActiveEntity(final RPObject object) {
 		super(object);
@@ -72,7 +70,6 @@ public abstract class ActiveEntity extends Entity {
 
 		update();
 	}
-
 
 	//
 	// ActiveEntity
@@ -105,9 +102,10 @@ public abstract class ActiveEntity extends Entity {
 			// TODO: Break the Player dependency
 			// For now isZoneChangeAllowed() should return false
 			// with non-Player entity's.
-			if(isZoneChangeAllowed()) {
+			if (isZoneChangeAllowed()) {
 				if (zone.leavesZone(this, nx, ny)) {
-					logger.debug("Leaving zone from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+					logger.debug("Leaving zone from (" + x + "," + y + ") to ("
+							+ nx + "," + ny + ")");
 					StendhalRPAction.decideChangeZone(this, nx, ny);
 					stop();
 					notifyWorldAboutChanges();
@@ -117,7 +115,7 @@ public abstract class ActiveEntity extends Entity {
 				// TODO: If Player becomes 1x1, remove "+ 1"
 				Portal portal = zone.getPortal(nx, ny + 1);
 
-				if(portal != null) {
+				if (portal != null) {
 					logger.debug("Using portal " + portal);
 					// TODO: Generalize parameter type
 					portal.onUsed((RPEntity) this);
@@ -133,7 +131,8 @@ public abstract class ActiveEntity extends Entity {
 			}
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("Moving from (" + x + "," + y + ") to (" + nx + "," + ny + ")");
+				logger.debug("Moving from (" + x + "," + y + ") to (" + nx
+						+ "," + ny + ")");
 			}
 
 			set(nx, ny);
@@ -150,11 +149,10 @@ public abstract class ActiveEntity extends Entity {
 		notifyWorldAboutChanges();
 	}
 
-
 	/**
 	 * Define the RPClass.
-	 *
-	 * @return	The configured RPClass.
+	 * 
+	 * @return The configured RPClass.
 	 */
 	private static RPClass createRPClass() {
 		RPClass rpclass = new RPClass("active_entity");
@@ -166,43 +164,41 @@ public abstract class ActiveEntity extends Entity {
 		return rpclass;
 	}
 
-
 	/**
 	 * Face toward an entity.
-	 *
-	 * @param	entity		The entity to face toward.
+	 * 
+	 * @param entity
+	 *            The entity to face toward.
 	 */
 	final public void faceToward(final Entity entity) {
 		setDirection(getDirectionToward(entity));
 	}
 
-
 	/**
 	 * Generate the RPClass (compatible with manual init/order).
-	 *
+	 * 
 	 * NOTE: This MUST be called during environment initialization.
 	 */
 	public static void generateRPClass() {
 		createRPClass();
 	}
 
-
 	/**
 	 * Get the current facing direction.
-	 *
-	 * @return	The facing direction.
+	 * 
+	 * @return The facing direction.
 	 */
 	public Direction getDirection() {
 		return direction;
 	}
 
-
 	/**
 	 * Get the direction toward an entity.
-	 *
-	 * @param	entity		The target entity.
-	 *
-	 * @return	A facing direction.
+	 * 
+	 * @param entity
+	 *            The target entity.
+	 * 
+	 * @return A facing direction.
 	 */
 	final public Direction getDirectionToward(final Entity entity) {
 		Rectangle2D area = entity.getArea();
@@ -210,14 +206,12 @@ public abstract class ActiveEntity extends Entity {
 		return getDirectionToward(area);
 	}
 
-
-final	Direction getDirectionToward(Rectangle2D area) {
-
+	final Direction getDirectionToward(Rectangle2D area) {
 
 		double rx = getArea().getCenterX();
 		double ry = getArea().getCenterY();
-double x = area.getCenterX();
-double y = area.getCenterY();
+		double x = area.getCenterX();
+		double y = area.getCenterY();
 		if (Math.abs(x - rx) > Math.abs(y - ry)) {
 			if (x - rx > 0) {
 				return Direction.RIGHT;
@@ -233,68 +227,66 @@ double y = area.getCenterY();
 		}
 	}
 
-//
-//	/**
-//	 * Get the direction toward a point.
-//	 *
-//	 * @param	x		The target X coordinate.
-//	 * @param	y		The target Y coordinate.
-//	 *
-//	 * @return	A facing direction.
-//	 */
-//	 Direction getDirectionToward(final double x, final double y) {
-//		Rectangle2D area = getArea();
-//
-//		double rx = area.getCenterX();
-//		double ry = area.getCenterY();
-//
-//		if (Math.abs(x - rx) > Math.abs(y - ry)) {
-//			if (x - rx > 0) {
-//				return Direction.RIGHT;
-//			} else {
-//				return Direction.LEFT;
-//			}
-//		} else {
-//			if (y - ry > 0) {
-//				return Direction.DOWN;
-//			} else {
-//				return Direction.UP;
-//			}
-//		}
-//	}
-
+	//
+	// /**
+	// * Get the direction toward a point.
+	// *
+	// * @param x The target X coordinate.
+	// * @param y The target Y coordinate.
+	// *
+	// * @return A facing direction.
+	// */
+	// Direction getDirectionToward(final double x, final double y) {
+	// Rectangle2D area = getArea();
+	//
+	// double rx = area.getCenterX();
+	// double ry = area.getCenterY();
+	//
+	// if (Math.abs(x - rx) > Math.abs(y - ry)) {
+	// if (x - rx > 0) {
+	// return Direction.RIGHT;
+	// } else {
+	// return Direction.LEFT;
+	// }
+	// } else {
+	// if (y - ry > 0) {
+	// return Direction.DOWN;
+	// } else {
+	// return Direction.UP;
+	// }
+	// }
+	// }
 
 	/**
 	 * Get the current speed.
-	 *
-	 * @return	The current speed, or <code>0.0</code> if stopped.
+	 * 
+	 * @return The current speed, or <code>0.0</code> if stopped.
 	 */
 	public double getSpeed() {
 		return speed;
 	}
 
-
 	/**
 	 * Determine if this entity is facing toward another entity.
-	 *
-	 * @param	entity		The target entity.
-	 *
-	 * @return	<code>true</code> if facing the other entity.
+	 * 
+	 * @param entity
+	 *            The target entity.
+	 * 
+	 * @return <code>true</code> if facing the other entity.
 	 */
 	public boolean isFacingToward(final Entity entity) {
 		return direction.equals(getDirectionToward(entity));
 	}
 
-
 	/**
 	 * Determine if this entity has move at least a whole tile.
-	 *
-	 * @return	<code>true</code> if moved a whole tile.
+	 * 
+	 * @return <code>true</code> if moved a whole tile.
 	 */
 	protected boolean isMoveCompleted() {
 		movementOffset += getSpeed();
 
-		if(movementOffset >= 1.0) {
+		if (movementOffset >= 1.0) {
 			movementOffset -= 1.0;
 			return true;
 		} else {
@@ -302,45 +294,46 @@ double y = area.getCenterY();
 		}
 	}
 
-
 	/**
 	 * Determine if this entity is not moving.
-	 *
-	 * @return	<code>true</code> if it is stopped.
+	 * 
+	 * @return <code>true</code> if it is stopped.
 	 */
 	public boolean isStopped() {
 		return (speed == 0.0);
 	}
 
-
 	/**
 	 * Determine if zone changes are currently allowed via normal means
 	 * (non-portal teleportation doesn't count).
-	 *
-	 * @return	<code>true</code> if the entity can change zones.
+	 * 
+	 * @return <code>true</code> if the entity can change zones.
 	 */
 	protected boolean isZoneChangeAllowed() {
 		return false;
 	}
 
-
 	/**
 	 * Notify of intra-zone movement.
-	 *
-	 * @param	oldX		The old X coordinate.
-	 * @param	oldY		The old Y coordinate.
-	 * @param	newX		The new X coordinate.
-	 * @param	newY		The new Y coordinate.
+	 * 
+	 * @param oldX
+	 *            The old X coordinate.
+	 * @param oldY
+	 *            The old Y coordinate.
+	 * @param newX
+	 *            The new X coordinate.
+	 * @param newY
+	 *            The new Y coordinate.
 	 */
 	protected void onMoved(int oldX, int oldY, int newX, int newY) {
 		getZone().notifyMovement(this, oldX, oldY, newX, newY);
 	}
 
-
 	/**
 	 * Set the facing direction.
-	 *
-	 * @param	dir		The facing direction.
+	 * 
+	 * @param dir
+	 *            The facing direction.
 	 */
 	public void setDirection(final Direction dir) {
 		if (dir == this.direction) {
@@ -351,11 +344,11 @@ double y = area.getCenterY();
 		put("dir", direction.get());
 	}
 
-
 	/**
 	 * Set the movement speed.
-	 *
-	 * @param	speed		The new speed.
+	 * 
+	 * @param speed
+	 *            The new speed.
 	 */
 	public void setSpeed(final double speed) {
 		if (speed == this.speed) {
@@ -366,7 +359,6 @@ double y = area.getCenterY();
 		put("speed", speed);
 	}
 
-
 	/**
 	 * Stops entity movement.
 	 */
@@ -374,7 +366,6 @@ double y = area.getCenterY();
 		setSpeed(0.0);
 		movementOffset = 0.0;
 	}
-
 
 	//
 	// Entity
@@ -393,14 +384,13 @@ double y = area.getCenterY();
 		}
 	}
 
-
 	//
 	// <Compat>
 	//
 
 	/**
 	 * is this entity not moving
-	 *
+	 * 
 	 * @return true, if it stopped, false if it is moving
 	 */
 	@Override
@@ -408,8 +398,7 @@ double y = area.getCenterY();
 		return isStopped();
 	}
 
-
-	final public void faceto( int x, int y) {
+	final public void faceto(int x, int y) {
 		int rndx = x - getX();
 		int rndy = y - getY();
 

@@ -16,15 +16,15 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 
 /**
- * A well source is a spot where a player can make a wish to gain an item.
- * He needs time and luck.
- *
- * Wishing takes 10 seconds; during this time, the player keep standing
- * next to the well source. At every well are two sources next to each other,
- * so the player can actually make 2 wishes at once.
- *
+ * A well source is a spot where a player can make a wish to gain an item. He
+ * needs time and luck.
+ * 
+ * Wishing takes 10 seconds; during this time, the player keep standing next to
+ * the well source. At every well are two sources next to each other, so the
+ * player can actually make 2 wishes at once.
+ * 
  * @author kymara (based on FishSource by daniel)
- *
+ * 
  */
 public class WellSource extends Entity implements UseListener {
 	private class Wisher implements TurnListener {
@@ -50,37 +50,46 @@ public class WellSource extends Entity implements UseListener {
 		}
 
 		/**
-		 * This method is called when the turn number is reached.
-		 * NOTE: The <em>message</em> parameter is deprecated.
-		 *
-		 * @param	currentTurn	The current turn number.
-		 * @param	message		The string that was used.
+		 * This method is called when the turn number is reached. NOTE: The
+		 * <em>message</em> parameter is deprecated.
+		 * 
+		 * @param currentTurn
+		 *            The current turn number.
+		 * @param message
+		 *            The string that was used.
 		 */
 		public void onTurnReached(int currentTurn, String message) {
 			Player player = playerRef.get();
 			// check if the player is still logged in
 			if (player != null) {
-				// check if the player is still standing next to this well source
+				// check if the player is still standing next to this well
+				// source
 				if (nextTo(player, 0.25)) {
 					// roll the dice
 					if (isSuccessful(player)) {
 						String itemName = items[Rand.rand(items.length)];
-						Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
-						// TODO: player bind the better prizes below: horned_golden_helmet & dark_dagger
-						if(item.getName().equals("dark_dagger") || item.getName().equals("horned_golden_helmet")) {
+						Item item = StendhalRPWorld.get().getRuleManager()
+								.getEntityManager().getItem(itemName);
+						// TODO: player bind the better prizes below:
+						// horned_golden_helmet & dark_dagger
+						if (item.getName().equals("dark_dagger")
+								|| item.getName()
+										.equals("horned_golden_helmet")) {
 							/*
 							 * Bound powerful items.
 							 */
 							item.put("bound", player.getName());
-						} else if(item.getName().equals("money")) {
+						} else if (item.getName().equals("money")) {
 							/*
 							 * Assign a random amount of money.
 							 */
-							((StackableItem)item).setQuantity(Rand.roll1D100());
+							((StackableItem) item)
+									.setQuantity(Rand.roll1D100());
 						}
 
 						player.equip(item, true);
-						player.sendPrivateText("You were lucky and found " + Grammar.a_noun(itemName));
+						player.sendPrivateText("You were lucky and found "
+								+ Grammar.a_noun(itemName));
 					} else {
 						player.sendPrivateText("Your wish didn't come true.");
 					}
@@ -90,20 +99,9 @@ public class WellSource extends Entity implements UseListener {
 
 	}
 
-	private String[] items = {
-			"money",
-			"wood",
-			"iron_ore",
-			"gold_nugget",
-			"potion",
-			"home_scroll",
-			"greater_potion",
-			"sapphire",
-			"carbuncle",
-			"horned_golden_helmet",
-			"dark_dagger",
-			"present"
-			};
+	private String[] items = { "money", "wood", "iron_ore", "gold_nugget",
+			"potion", "home_scroll", "greater_potion", "sapphire", "carbuncle",
+			"horned_golden_helmet", "dark_dagger", "present" };
 
 	/**
 	 * The chance that wishing is successful.
@@ -111,8 +109,8 @@ public class WellSource extends Entity implements UseListener {
 	private final static double FINDING_PROBABILITY = 0.05;
 
 	/**
-	 * How long it takes to wish at a well (in seconds)
-	 * TODO: randomize this number a bit.
+	 * How long it takes to wish at a well (in seconds) TODO: randomize this
+	 * number a bit.
 	 */
 	private final static int DURATION = 10;
 
@@ -136,10 +134,11 @@ public class WellSource extends Entity implements UseListener {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>false</code>.
+	 * 
+	 * @param entity
+	 *            The entity to check against.
+	 * 
+	 * @return <code>false</code>.
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {
@@ -147,14 +146,14 @@ public class WellSource extends Entity implements UseListener {
 	}
 
 	/**
-	 * Decides randomly if a wishing action should be
-	 * successful.
-	 * @return true iff the wishing player should get
-	 *         a prize.
+	 * Decides randomly if a wishing action should be successful.
+	 * 
+	 * @return true iff the wishing player should get a prize.
 	 */
 	private boolean isSuccessful(Player player) {
 		int random = Rand.roll1D100();
-		return random <= (FINDING_PROBABILITY + player.useKarma(FINDING_PROBABILITY)) * 100;
+		return random <= (FINDING_PROBABILITY + player
+				.useKarma(FINDING_PROBABILITY)) * 100;
 	}
 
 	/**
@@ -170,14 +169,17 @@ public class WellSource extends Entity implements UseListener {
 				if (TurnNotifier.get().getRemainingTurns(wish) == -1) {
 					player.faceToward(this);
 					player.notifyWorldAboutChanges();
-					// remove 30 money from player as they throw a coin into the well
+					// remove 30 money from player as they throw a coin into the
+					// well
 					// some feedback is needed.
-					if(player.isEquipped("money", 30)) {
-						player.drop("money",30);
-						player.sendPrivateText("You throw 30 coins into the well and make a wish.");
+					if (player.isEquipped("money", 30)) {
+						player.drop("money", 30);
+						player
+								.sendPrivateText("You throw 30 coins into the well and make a wish.");
 						TurnNotifier.get().notifyInSeconds(DURATION, wish);
 					} else {
-						player.sendPrivateText("You need 30 coins to make a wish.");
+						player
+								.sendPrivateText("You need 30 coins to make a wish.");
 					}
 				}
 			}

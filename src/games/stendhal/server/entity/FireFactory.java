@@ -10,23 +10,29 @@ public class FireFactory implements ConfigurableFactory {
 
 	/**
 	 * Extract the height/widthfrom a context.
-	 *
-	 * @param ctx  The configuration context.
-	 * @param dim "height" / "width"
+	 * 
+	 * @param ctx
+	 *            The configuration context.
+	 * @param dim
+	 *            "height" / "width"
 	 * @return height or width
-	 * @throws IllegalArgumentException if the attribute is invalid.
+	 * @throws IllegalArgumentException
+	 *             if the attribute is invalid.
 	 */
-	protected int getSize(ConfigurableFactoryContext ctx, String dim) throws IllegalArgumentException {
+	protected int getSize(ConfigurableFactoryContext ctx, String dim)
+			throws IllegalArgumentException {
 		String value = ctx.getAttribute(dim);
 
 		if (value == null) {
-			throw new IllegalArgumentException("Required attribute '" + dim + "' missing");
+			throw new IllegalArgumentException("Required attribute '" + dim
+					+ "' missing");
 		}
 
 		return Integer.parseInt(value);
 	}
 
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
 		return new Fire(getSize(ctx, "width"), getSize(ctx, "height"));
 	}
 }

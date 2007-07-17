@@ -7,7 +7,6 @@ import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
-
 public class Fire extends Entity implements UseListener {
 	/**
 	 * The entity width.
@@ -18,7 +17,7 @@ public class Fire extends Entity implements UseListener {
 	 * The entity height.
 	 */
 	private int height;
-	
+
 	public static void generateRPClass() {
 		RPClass fire = new RPClass("fire");
 		fire.isA("entity");
@@ -36,38 +35,33 @@ public class Fire extends Entity implements UseListener {
 		this.height = height;
 	}
 
-
 	/**
 	 * Get the entity height.
-	 *
-	 * @return	The height.
+	 * 
+	 * @return The height.
 	 */
 	public int getHeight() {
 		return height;
 	}
 
-
 	/**
 	 * Get the entity width.
-	 *
-	 * @return	The width.
+	 * 
+	 * @return The width.
 	 */
 	public int getWidth() {
 		return width;
 	}
-
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
 		rect.setRect(x, y, getWidth(), getHeight());
 	}
 
-
 	@Override
 	public boolean isObstacle(Entity entity) {
 		return true;
 	}
-
 
 	//
 	// UseListener

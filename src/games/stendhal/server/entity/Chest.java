@@ -23,9 +23,9 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
 /**
- * A chest is an unmovable container. It can be opened and closed. While
- * it is open, every player can put items in and take them out later. A player
- * can take out items that another player put in.
+ * A chest is an unmovable container. It can be opened and closed. While it is
+ * open, every player can put items in and take them out later. A player can
+ * take out items that another player put in.
  */
 public class Chest extends Entity implements UseListener {
 	/**
@@ -47,10 +47,10 @@ public class Chest extends Entity implements UseListener {
 
 		if (!hasSlot("content")) {
 			RPSlot slot = new LootableSlot(this);
-			
+
 			// BUG: Slot capacity is set at the RPClass.
-			//slot.set.setCapacity(4);
-			
+			// slot.set.setCapacity(4);
+
 			addSlot(slot);
 		}
 
@@ -65,11 +65,10 @@ public class Chest extends Entity implements UseListener {
 		RPSlot slot = new LootableSlot(this);
 
 		// BUG: Slot capacity is set at the RPClass.
-		//slot.set.setCapacity(4);
-		
+		// slot.set.setCapacity(4);
+
 		addSlot(slot);
 	}
-
 
 	//
 	// Chest
@@ -105,8 +104,8 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Determine if the chest is open.
-	 *
-	 * @return	<code>true</code> if the chest is open.
+	 * 
+	 * @return <code>true</code> if the chest is open.
 	 */
 	public boolean isOpen() {
 		return open;
@@ -127,7 +126,6 @@ public class Chest extends Entity implements UseListener {
 		return content.iterator();
 	}
 
-
 	//
 	// UseListener
 	//
@@ -143,7 +141,6 @@ public class Chest extends Entity implements UseListener {
 			notifyWorldAboutChanges();
 		}
 	}
-
 
 	//
 	// Entity

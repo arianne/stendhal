@@ -4,9 +4,9 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * A chest that is for decoration purpose only. The player cannot open
- * it. If he tries, the nearby NPC will tell him to get away.
- *
+ * A chest that is for decoration purpose only. The player cannot open it. If he
+ * tries, the nearby NPC will tell him to get away.
+ * 
  * @author hendrik
  */
 public class NPCOwnedChest extends Chest {
@@ -15,8 +15,9 @@ public class NPCOwnedChest extends Chest {
 
 	/**
 	 * Creates a new NPCOwnedChest
-	 *
-	 * @param npc SpeakerNPC
+	 * 
+	 * @param npc
+	 *            SpeakerNPC
 	 */
 	public NPCOwnedChest(SpeakerNPC npc) {
 		this.npc = npc;
