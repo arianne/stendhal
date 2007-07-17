@@ -113,7 +113,7 @@ public abstract class NPC extends RPEntity {
 //	 * searched and saved. If the destination is less than min <code>min</code>
 //	 * the path is removed.
 //	 * <p>
-//	 * 
+//	 *
 //	 * @param destEntity
 //	 *            the destination entity
 //	 * @param min
@@ -131,7 +131,7 @@ public abstract class NPC extends RPEntity {
 //	 * searched and saved. If the destination is less than min <code>min</code>
 //	 * the path is removed.
 //	 * <p>
-//	 * 
+//	 *
 //	 * @param destEntity
 //	 *            the destination entity
 //	 * @param min
@@ -161,7 +161,7 @@ public abstract class NPC extends RPEntity {
 	 * <b>Note:</b> When the distance to the destination is less than
 	 * <code>min</code> the path is removed. <b>Warning:</b> The pathfinder
 	 * is not asynchonous, so this thread is blocked until a path is found.
-	 * 
+	 *
 	 * @param destEntity
 	 *            the destination entity
 	 * @param min
@@ -186,14 +186,6 @@ public abstract class NPC extends RPEntity {
 			List<Node> path = Path.searchPath(this, destEntity, maxPathRadius);
 			setPath(new FixedPath(path, false));
 		}
-	}
-
-
-	/**
-	 * Set a random destination as a path and start moving.
-	 */
-	public void setRandomPath() {
-		setRandomPathFrom(getX(), getY(), 10);
 	}
 
 
