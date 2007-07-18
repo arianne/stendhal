@@ -86,7 +86,7 @@ public class Creature extends NPC {
 
 	private int height;
 
-	/** Ths list of item names this creature may drop 
+	/** Ths list of item names this creature may drop
 	 *  Note; per default this list is shared with all creatures
 	 *  of that class*/
 	protected List<DropItem> dropsItems;
@@ -103,7 +103,7 @@ public class Creature extends NPC {
 	private int respawnTime;
 
 	private Map<String, String> aiProfiles;
-	
+
 	private CreatureLogic creatureLogic = null;
 
 	public static void generateRPClass() {
@@ -254,7 +254,7 @@ public class Creature extends NPC {
 		put("x", 0);
 		put("y", 0);
 		put("width", width);
-		put("height", height);		
+		put("height", height);
 		setDescription(description);
 		setATK(attack);
 		setDEF(defense);
@@ -332,7 +332,7 @@ public class Creature extends NPC {
 	public boolean isAttackable() {
 		return true;
 	}
-	
+
 	@Override
 	public void onDead(Entity killer) {
 		if (point != null) {
@@ -380,9 +380,8 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	protected List<RPEntity> getEnemyList() {
-		StendhalRPZone zone = getZone();
 		if (aiProfiles.keySet().contains("offensive")) {
-			return zone.getPlayerAndFriends();
+			return getZone().getPlayerAndFriends();
 		} else {
 			return getAttackingRPEntities();
 		}
@@ -425,6 +424,8 @@ public class Creature extends NPC {
 				}
 			}
 		}
+
+
 
 		// now choose the nearest enemy for which there is a path
 		RPEntity chosen = null;
@@ -501,13 +502,13 @@ public class Creature extends NPC {
 
 	/** returns a string-repesentation of the path */
 	// TODO: Adapt for opaque 'Path' objects
-	public String pathToString() {
-		int pos = getPathPosition();
-		List<Node> thePath = getPathList();
-		List<Node> nodeList = thePath.subList(pos, thePath.size());
-
-		return nodeList.toString();
-	}
+//	public String pathToString() {
+//		int pos = getPathPosition();
+//		List<Node> thePath = getPathList();
+//		List<Node> nodeList = thePath.subList(pos, thePath.size());
+//
+//		return nodeList.toString();
+//	}
 
 	/** need to recalculate the ai when we stop the attack */
 	@Override
@@ -531,7 +532,7 @@ public class Creature extends NPC {
 					logger.error("Creature unable to poisoning with " + poisonType);
 				} else {
 					RPEntity entity = getAttackTarget();
-					
+
 					if (entity instanceof Player) {
 						Player player = (Player) entity;
 
@@ -551,7 +552,7 @@ public class Creature extends NPC {
 	 * heal itself on its own. If it is used, an injured animal will heal
 	 * itself by up to <i>amount</i> hitpoints every <i>frequency</i> turns.
 	 * @param amount The number of hitpoints that can be restored at a time
-	 * @param frequency The number of turns between healings  
+	 * @param frequency The number of turns between healings
 	 */
 	public void healSelf(int amount, int frequency) {
 		if ((StendhalRPRuleProcessor.get().getTurn() % frequency == 0) && (getHP() > 0)) {
@@ -666,4 +667,6 @@ public class Creature extends NPC {
 			say(noises.get(pos));
 		}
 	}
+
+
 }

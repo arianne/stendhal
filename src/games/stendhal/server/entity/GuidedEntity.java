@@ -10,10 +10,10 @@ package games.stendhal.server.entity;
 //
 
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
-import games.stendhal.server.pathfinder.Path;
 
-import java.util.List;
+
+import games.stendhal.server.pathfinder.EntityGuide;
+
 
 import marauroa.common.game.RPObject;
 
@@ -21,13 +21,7 @@ import marauroa.common.game.RPObject;
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
-	/**
-	 * The path.
-	 */
-	private FixedPath path;
-
-	/** current position in the path */
-	private int pathPosition;
+	private EntityGuide guide = new EntityGuide();
 
 	/**
 	 * Create a guided entity.
@@ -37,7 +31,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Create a guided entity.
-	 * 
+	 *
 	 * @param object
 	 *            The source object.
 	 */
@@ -53,7 +47,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 
 	/**
 	 * Get the normal movement speed.
-	 * 
+	 *
 	 * @return The normal speed when moving.
 	 */
 	public abstract double getBaseSpeed();
@@ -67,20 +61,20 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * the entity starts at the first node (so the first node should be its
 	 * position, of course). The speed will be set to the default for the
 	 * entity.
-	 * 
+	 *
 	 * TODO: Change to accept just 'Path' after everything is converted to use
 	 * opaque Path's rather than Node lists.
-	 * 
+	 *
 	 * @param path
 	 *            The path.
 	 */
 	public void setPath(final FixedPath path) {
 		if ((path != null) && !path.isFinished()) {
-			this.path = path;
-			this.pathPosition = 0;
+			guide.path = path;
+			guide.pathPosition = 0;
 
 			setSpeed(getBaseSpeed());
-			Path.followPath(this);
+			followPath();
 		} else {
 			clearPath();
 		}
@@ -90,45 +84,43 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Clear the entity's path.
 	 */
 	public void clearPath() {
-		this.path = null;
-		this.pathPosition = 0;
+		guide.clearPath();
+
 	}
 
 	/**
 	 * Determine if the entty has a path.
-	 * 
+	 *
 	 * @return <code>true</code> if there is a path.
 	 */
 	public boolean hasPath() {
-		return (path != null);
+		return (guide.path != null);
 	}
 
-	/**
-	 * Get the path list.
-	 */
-	public List<Node> getPathList() {
-		return (path != null) ? path.getNodeList() : null;
+
+	public int getPathsize() {
+		return guide.getPathsize();
 	}
 
 	/**
 	 * Is the path a loop.
 	 */
 	public boolean isPathLoop() {
-		return (path != null) ? path.isLoop() : false;
+		return (guide.path  != null) ? guide.path .isLoop() : false;
 	}
 
 	/**
 	 * Get the path nodes position.
 	 */
 	public int getPathPosition() {
-		return pathPosition;
+		return guide.pathPosition;
 	}
 
 	/**
 	 * Set the path nodes position.
 	 */
 	public void setPathPosition(int pathPos) {
-		this.pathPosition = pathPos;
+		guide.pathPosition = pathPos;
 	}
 
 	//
@@ -141,10 +133,21 @@ public abstract class GuidedEntity extends ActiveEntity {
 	@Override
 	public void applyMovement() {
 		if (hasPath()) {
-			Path.followPath(this);
+			followPath();
 			notifyWorldAboutChanges();
 		}
 
 		super.applyMovement();
 	}
+
+	public boolean followPath() {
+		return guide.followPath(this);
+	}
+
+public 	EntityGuide getGuide() {
+		return guide;
+	}
+
+
+
 }

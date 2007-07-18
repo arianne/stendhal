@@ -48,44 +48,44 @@ import marauroa.common.game.RPObject;
  * erreichbar (z.B. FloodFill [auf Bereich begrenzt] auf einer
  * CollisionDetectionMap) * diese Information k�nnte weiterverwendet werden und
  * A* arbeitet nur innerhalb der Maske
- * 
+ *
  * Idee: - wenn sich der berechnete Pfad in Richtung des Ziels bewegt, dann gehe
  * bis zum n�chsten Hindernis/Ziel geradeaus, dann setze init Daten f�r neuen
  * Startpunkt - ab hier kann der Pfad aufgeteilt werden
- * 
+ *
  */
 /**
  * Implements the A* algorithm. Pathing can be done on any class that implements
  * the <code>Navigable</code> interface. See org.generation5.ai.Navigable.
- * 
+ *
  * @author James Matthews
- * 
+ *
  */
-public class Pathfinder {
+class Pathfinder {
 	/**
 	 * Returned by <code>getStatus</code> if a path <i>cannot</i> be found.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int PATH_NOT_FOUND = -1;
 
 	/**
 	 * Returned by <code>getStatus</code> if a path has been found.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int PATH_FOUND = 1;
 
 	/**
 	 * Returned by <code>getStatus</code> if the pathfinder is still running.
-	 * 
+	 *
 	 * @see #getStatus
 	 */
 	public static final int IN_PROGRESS = 0;
 
 	/**
 	 * The current status of the pathfinder.
-	 * 
+	 *
 	 * @see #PATH_FOUND
 	 * @see #PATH_NOT_FOUND
 	 * @see #IN_PROGRESS
@@ -151,8 +151,7 @@ public class Pathfinder {
 	private double maxDistance;
 
 	// private Rectangle maxBoundary;
-
-	public Pathfinder(Entity entity, StendhalRPZone zone, int startX,
+    Pathfinder(Entity entity, StendhalRPZone zone, int startX,
 			int startY, Rectangle2D destination, double maxDist,
 			boolean checkEntities) {
 		this.entity = entity;
@@ -176,7 +175,7 @@ public class Pathfinder {
 		 * (int)maxDistance, nodeGoal.getY() - (int)maxDistance)); int
 		 * maxYBoundary = Math.min(zone.getHeight(), Math.max(nodeStart.getY() +
 		 * (int)maxDistance, nodeGoal.getY() + (int)maxDistance));
-		 * 
+		 *
 		 * this.maxBoundary = new Rectangle(minXBoundary, minYBoundary,
 		 * (maxXBoundary-minXBoundary), (maxYBoundary-minYBoundary));
 		 */
@@ -205,7 +204,7 @@ public class Pathfinder {
 
 	/**
 	 * Return the current status of the pathfinder.
-	 * 
+	 *
 	 * @return the pathfinder status.
 	 * @see #pathStatus
 	 */
@@ -255,7 +254,7 @@ public class Pathfinder {
 
 	/**
 	 * Assigns the best node from the open list.
-	 * 
+	 *
 	 * @return the best node.
 	 */
 	private TreeNode getBest() {
@@ -292,7 +291,7 @@ public class Pathfinder {
 
 	/**
 	 * checks if the goal is reached
-	 * 
+	 *
 	 * @param nodeBest
 	 *            the currently best node
 	 * @return true if the goal is reached
@@ -304,7 +303,7 @@ public class Pathfinder {
 	/**
 	 * Checks if the goal is unreachable. Only the outer nodes of the goal are
 	 * checked. There could be other reasons, why a goal is unreachable.
-	 * 
+	 *
 	 * @return true checks if the goal is unreachable
 	 */
 	// TODO - move to node (am besten Area an Node �bergeben)
@@ -325,7 +324,7 @@ public class Pathfinder {
 
 	/**
 	 * calculates the manhattan distance between to positions
-	 * 
+	 *
 	 * @param x1
 	 *            x value for postion 1
 	 * @param y1
@@ -342,7 +341,7 @@ public class Pathfinder {
 
 	/**
 	 * calculates the square distance between to positions
-	 * 
+	 *
 	 * @param x1
 	 *            x value for postion 1
 	 * @param y1
@@ -403,7 +402,7 @@ public class Pathfinder {
 
 		/**
 		 * The default constructor with positional information.
-		 * 
+		 *
 		 * @param xx
 		 *            the x-position of the node.
 		 * @param yy
@@ -435,7 +434,7 @@ public class Pathfinder {
 
 		/**
 		 * Add a child to the node.
-		 * 
+		 *
 		 * @param child
 		 *            the child node.
 		 */
@@ -447,7 +446,7 @@ public class Pathfinder {
 
 		/**
 		 * Add a child to the node.
-		 * 
+		 *
 		 * @param child
 		 *            the child node.
 		 */
@@ -459,7 +458,7 @@ public class Pathfinder {
 
 		/**
 		 * Return the x-position of the node.
-		 * 
+		 *
 		 * @return the x-position of the node.
 		 */
 		public int getX() {
@@ -468,7 +467,7 @@ public class Pathfinder {
 
 		/**
 		 * Return the y-position of the node.
-		 * 
+		 *
 		 * @return the y-position of the node.
 		 */
 		public int getY() {
@@ -477,7 +476,7 @@ public class Pathfinder {
 
 		/**
 		 * Return the parent node.
-		 * 
+		 *
 		 * @return the parent node.
 		 */
 		public TreeNode getParent() {
@@ -509,7 +508,7 @@ public class Pathfinder {
 
 		/**
 		 * checks if the entity could stand on a position
-		 * 
+		 *
 		 * @param node
 		 *            the position to be checked
 		 * @return true if the the entity could stand on the position
@@ -526,7 +525,7 @@ public class Pathfinder {
 
 		/**
 		 * checks if the entity could stand on a position
-		 * 
+		 *
 		 * @param node
 		 *            the position to be checked
 		 * @return true if the the entity could stand on the position
@@ -544,7 +543,7 @@ public class Pathfinder {
 		/**
 		 * crates valid cild nodes, the cild nodes have to be - a valid position -
 		 * a f value less than maxDistance (checked against the given node)
-		 * 
+		 *
 		 * @param node
 		 *            the node
 		 */
@@ -560,7 +559,7 @@ public class Pathfinder {
 		/**
 		 * Link the children to the parent node. This method may also update the
 		 * parent path if a shorter path is found.
-		 * 
+		 *
 		 * @param parent
 		 *            the parent node.
 		 * @param child
@@ -598,7 +597,7 @@ public class Pathfinder {
 
 		/**
 		 * Update the parents for the new route.
-		 * 
+		 *
 		 * @param node
 		 *            the root node.
 		 */
@@ -626,7 +625,7 @@ public class Pathfinder {
 
 		/**
 		 * calculates the node id
-		 * 
+		 *
 		 * @param node
 		 *            the node
 		 * @return the id of the node

@@ -13,7 +13,6 @@
 package games.stendhal.server.pathfinder;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.ActiveEntity;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.GuidedEntity;
 
@@ -33,35 +32,12 @@ public abstract class Path {
 	// Path
 	//
 
-	/**
-	 * Follow this path.
-	 * 
-	 * @param entity
-	 *            The entity to direct along the path.
-	 * 
-	 * @return <code>true</code> if something to follow, <code>false</code>
-	 *         if complete.
-	 */
-	public abstract boolean follow(ActiveEntity entity);
 
-	/**
-	 * Get the final destination point.
-	 * 
-	 * @return The destination node, or <code>null</code> if there is none
-	 *         (i.e. no path, or unbound/infinite movement).
-	 */
-	public abstract Node getDestination();
 
-	/**
-	 * Determine if the path has finished.
-	 * 
-	 * @return <code>true</code> if there is no more path to follow.
-	 */
-	public abstract boolean isFinished();
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity
 	 * @param x
@@ -82,7 +58,7 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity
 	 * @param x
@@ -92,7 +68,7 @@ public abstract class Path {
 	 * @param destination
 	 *            the destination area
 	 * @param maxDistance
-	 *            the maximum distance (air line) a possible path may be
+	 *            the maximum distance (as the crow flies) a possible path may be
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
 	public static List<Node> searchPath(Entity entity, int x, int y,
@@ -102,7 +78,7 @@ public abstract class Path {
 
 	/**
 	 * Finds a path for the Entity <code>entity</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity
 	 * @param zone
@@ -147,21 +123,21 @@ public abstract class Path {
 	/**
 	 * Finds a path for the Entity <code>entity</code> to (or next to) the
 	 * other Entity <code>dest</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity (also start point)
 	 * @param dest
 	 *            the destination Entity
 	 * @return a list with the path nodes or an empty list if no path is found
 	 */
-	public static List<Node> searchPath(Entity entity, Entity dest) {
+	static List<Node> searchPath(Entity entity, Entity dest) {
 		return searchPath(entity, dest, -1.0);
 	}
 
 	/**
 	 * Finds a path for the Entity <code>entity</code> to the other Entity
 	 * <code>dest</code>.
-	 * 
+	 *
 	 * @param entity
 	 *            the Entity (also start point)
 	 * @param dest
@@ -186,12 +162,12 @@ public abstract class Path {
 	/**
 	 * Follow the current path (if any) by pointing the direction toward the
 	 * next destination point.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to point.
 	 */
-	public static boolean followPath(final GuidedEntity entity) {
-		List<Node> path = entity.getPathList();
+	static boolean followPath(final GuidedEntity entity) {
+		List<Node> path = entity.getGuide().path.getNodeList();
 
 		if (path == null) {
 			return true;

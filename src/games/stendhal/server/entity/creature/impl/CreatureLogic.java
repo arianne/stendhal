@@ -207,13 +207,13 @@ public class CreatureLogic {
 			logger.debug(creature.getIDforDebug() + " Following path");
 		}
 		if (creature.hasPath()) {
-			Path.followPath(creature);
+			creature.followPath();
 		}
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			debug.append("patrol;");
-			// TODO: Adapt for opaque 'Path' object
-			debug.append(creature.pathToString());
-			debug.append('|');
+//			debug.append("patrol;");
+//			// TODO: Adapt for opaque 'Path' object
+//			debug.append(creature.pathToString());
+//			debug.append('|');
 		}
 	}
 
@@ -260,13 +260,13 @@ public class CreatureLogic {
 		waitRounds = 0; // clear waitrounds
 		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
 		if (Debug.CREATURES_DEBUG_SERVER) {
-			List path = creature.getPathList();
-			if (path != null) {
-				debug.append("targetmoved;");
-				// TODO: Adapt for opaque 'Path' objects
-				debug.append(creature.pathToString());
-				debug.append("|");
-			}
+//			List path = creature.getPathList();
+//			if (path != null) {
+//				debug.append("targetmoved;");
+//				// TODO: Adapt for opaque 'Path' objects
+//				debug.append(creature.pathToString());
+//				debug.append("|");
+//			}
 		}
 	}
 
@@ -334,9 +334,9 @@ public class CreatureLogic {
 		// the path can be the path to the target or the pseudo random move
 		if (creature.hasPath()) {
 			// TODO: FIXME - Remove path size assumption/dependency
-			if (creature.getPathList().size() == 1) {
+			if (creature.getPathsize() == 1) {
 				// pseudo random move. complete it
-				if (!Path.followPath(creature)) {
+				if (!creature.followPath()) {
 					return;
 				}
 				creature.clearPath();
@@ -462,11 +462,11 @@ public class CreatureLogic {
 				creature.stop();
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
 			} else {
-				if (Debug.CREATURES_DEBUG_SERVER) {
-					debug.append(';');
-					// TODO: Adapt for opaque 'Path' object
-					debug.append(creature.getPathList());
-				}
+//				if (Debug.CREATURES_DEBUG_SERVER) {
+//					debug.append(';');
+//					// TODO: Adapt for opaque 'Path' object
+//					debug.append(creature.getPathList());
+//				}
 			}
 		}
 
