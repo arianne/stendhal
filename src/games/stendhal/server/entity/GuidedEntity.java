@@ -73,15 +73,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * @param path
 	 *            The path.
 	 */
-	public void setPath(final FixedPath path) {
+	public final void setPath(final FixedPath path) {
 		if ((path != null) && !path.isFinished()) {
+			setSpeed(getBaseSpeed());
 			guide.path = path;
 			guide.pathPosition = 0;
-
-			setSpeed(getBaseSpeed());
-			followPath();
+			guide.followPath(this);
 		} else {
-			clearPath();
+			guide.clearPath();
 		}
 	}
 
