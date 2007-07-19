@@ -61,12 +61,17 @@ public class TeleporterBehaviour implements TurnListener {
 	private void listZones() {
 		Iterator itr = StendhalRPWorld.get().iterator();
 		zones = new ArrayList<StendhalRPZone>();
+		List<String> badZones = new ArrayList<String>();
+		badZones.add("0_nalwor_city");
+		badZones.add("0_orril_castle");
+		badZones.add("0_ados_swamp");
+		badZones.add("0_ados_outside_w");
+		badZones.add("0_ados_wall_n");
 		while (itr.hasNext()) {
 			StendhalRPZone aZone = (StendhalRPZone) itr.next();
 			String zoneName = aZone.getID().getID();
-			if (zoneName.startsWith("0") && !zoneName.equals("0_nalwor_city") && !zoneName.equals("0_orril_castle")
-			        && !zoneName.equals("0_ados_swamp") && !zoneName.equals("0_ados_outside_w")
-			        && !zoneName.equals("0_ados_wall_n")) {
+			if (zoneName.startsWith("0") && !badZones.contains(zoneName))
+			{
 				zones.add(aZone);
 			}
 		}
