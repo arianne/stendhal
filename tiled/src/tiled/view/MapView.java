@@ -25,6 +25,7 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -322,7 +323,6 @@ public abstract class MapView
    * 
    * @param rect the rectangle (in pixel coordinate space)
    * @param layer the layer
-   * @param zoom zoom level (to convert pixels to tiles)
    * @return list of tiles in the rectangle
    */
   public abstract List<Point> getSelectedTiles(Rectangle rect, int layer);
@@ -332,7 +332,17 @@ public abstract class MapView
    * @param g graphics context
    * @param tile the tile
    */
-  public abstract void drawTileHighlight(Graphics g, Point tile);
+  public void drawTileHighlight(Graphics g, Point tile)
+  {
+    drawTilesHighlight(g, Arrays.asList(new Point[] {tile}));
+  }
+
+  /**
+   * draws a frame around the tile.
+   * @param g graphics context
+   * @param tile the tile
+   */
+  public abstract void drawTilesHighlight(Graphics g, List<Point> tiles);
   
   /**
    * Draws the tilegroup to a BufferedImage. 

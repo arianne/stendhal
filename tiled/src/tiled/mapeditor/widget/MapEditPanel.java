@@ -26,6 +26,7 @@ import java.util.Properties;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.Scrollable;
 
 import tiled.core.Map;
 import tiled.mapeditor.MapEditor;
@@ -42,7 +43,7 @@ import tiled.view.MapView;
  * 
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class MapEditPanel extends JPanel implements MouseListener, MouseMotionListener
+public class MapEditPanel extends JPanel implements MouseListener, MouseMotionListener, Scrollable
 {
   private static final long serialVersionUID = 1L;
 
@@ -133,17 +134,14 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
       if (p != null && dragInProgress && dragType == DragType.SELECT && dragStartPoint != null)
       {
         g.setColor(Color.BLUE);
-        Rectangle rect = Util.getRectangle(p,dragStartPoint); 
+        Rectangle rect = Util.getRectangle(p,dragStartPoint);
         g.drawRect(rect.x, rect.y,rect.width,rect.height);
       }
       
       List<Point> points = mapEditor.getSelectedTiles();
       
       g.setColor(Color.YELLOW);
-      for (Point tile: points)
-      {
-        mapView.drawTileHighlight(g,tile);
-      }
+      mapView.drawTilesHighlight(g,points);
     }
   }
 
@@ -159,8 +157,7 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
       }
     }
   }
-  
-  
+
   /** returns the prefered size of the panel */
   public Dimension getPreferredSize()
   {
@@ -369,6 +366,40 @@ public class MapEditPanel extends JPanel implements MouseListener, MouseMotionLi
     DRAW,
     SELECT;
   }
+
+  public Dimension getPreferredScrollableViewportSize()
+  {
+    return getMaximumSize();
+  }
+
+  public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction)
+  {
+    return orientation < 0 ? visibleRect.height : visibleRect.width;
+  }
+
+  public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction)
+  {
+    Point scale = mapView.tileToScreenCoords(new Point(1, 1));
+    return orientation < 0 ? scale.y : scale.x;
+  }
   
+  public boolean getScrollableTracksViewportHeight()
+  {
+    return false;
+  }
+
+  public boolean getScrollableTracksViewportWidth()
+  {
+    return false;
+  }
+
+  /**
+   * notifies the panel that the mapview size was changed
+   */
+  public void notifyZoom()
+  {
+    setSize(getPreferredSize());
+    repaint();
+  }
   
 }

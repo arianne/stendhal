@@ -48,7 +48,7 @@ public class ZoomNormalAction extends AbstractAction
     {
       mapEditor.mapView.zoomNormalize();
       mapEditor.statusBar.setZoom(mapEditor.mapView.getScale());
-      mapEditor.mapEditPanel.repaint();
+      mapEditor.mapEditPanel.notifyZoom();
     }
   }
 }

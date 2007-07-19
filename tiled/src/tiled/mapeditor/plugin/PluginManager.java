@@ -67,9 +67,9 @@ public class PluginManager
     plugins = new HashMap<Class,List<Class>>();
     
     // buildin plugins
-    addPlugin(MapReaderPlugin.class, MapReader.class);
     addPlugin(MapReaderPlugin.class, StendReader.class);
     addPlugin(MapReaderPlugin.class, XStendReader.class);
+    addPlugin(MapReaderPlugin.class, MapReader.class);
     
     addPlugin(MapWriterPlugin.class, StendWriter.class);
     addPlugin(MapWriterPlugin.class, XStendWriter.class);

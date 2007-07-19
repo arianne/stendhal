@@ -204,16 +204,18 @@ public class TilePalettePanel extends JPanel implements MouseInputListener
         }
         tileAt++;
       }
+
       // draw selected tiles
-      g.setColor(Color.YELLOW);
+      Graphics2D g2d = (Graphics2D) g.create();
+      g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.5f));
+      g2d.setColor(Color.YELLOW);
 
       for (StatefulTile tile : selectedTiles)
       {
         int id = tile.tile.getId();
         int x = id % tilesPerRow;
         int y = id / tilesPerRow;
-        g.drawRect(x * twidth - 1, y * theight    , tile.tile.getWidth() + 1,tile.tile.getHeight() + 1);
-        g.drawRect(x * twidth    , y * theight + 1, tile.tile.getWidth() - 1,tile.tile.getHeight() - 1);
+        g2d.fillRect(x * twidth - 1, y * theight    , tile.tile.getWidth() + 1,tile.tile.getHeight() + 1);
       }
       
       // drag selection rectangle

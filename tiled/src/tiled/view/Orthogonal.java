@@ -319,16 +319,23 @@ public class Orthogonal extends MapView
   }
 
   /**
-   * draws a frame around the tile.
+   * highlights the tiles.
    * @param g graphics context
    * @param tile the tile
    */
-  public void drawTileHighlight(Graphics g, Point tile)
+  @Override
+  public void drawTilesHighlight(Graphics g, List<Point> tiles)
   {
-    Point p = tileToScreenCoords(tile);
-    Dimension tsize = getTileSize(zoom, padding);
-    g.drawRect(p.x, p.y, tsize.width, tsize.height);
+    Graphics2D g2d = (Graphics2D) g.create();
+    g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.5f));
+    for (Point tile : tiles)
+    {
+      Point p = tileToScreenCoords(tile);
+      Dimension tsize = getTileSize(zoom, padding);
+      g2d.fillRect(p.x, p.y, tsize.width, tsize.height);
+    }
   }
+  
   
   /**
    * Draws the tilegroup to a BufferedImage. 
@@ -375,6 +382,4 @@ public class Orthogonal extends MapView
     
     return image;
   }
-
-
 }
