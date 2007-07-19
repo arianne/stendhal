@@ -231,18 +231,6 @@ public abstract class Pet extends DomesticAnimal {
 
 		if (!stopped()) {
 			this.applyMovement();
-
-			// /* if we collided with something we stop and clear the path */
-			if (collides()) {
-				stop();
-				clearPath();
-
-				// move randomly, hoping we find a way by chance
-				moveRandomly();
-				if (hunger > 50) { // ignore food-movement for a short time
-					hunger = hunger - 5;
-				}
-			}
 		}
 
 		if (getHP() < getBaseHP()) {

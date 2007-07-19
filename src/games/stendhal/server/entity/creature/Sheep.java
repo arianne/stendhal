@@ -378,14 +378,6 @@ public class Sheep extends DomesticAnimal {
 		// apply to all RPEntity's.
 		if (!stopped()) {
 			applyMovement();
-
-			/*
-			 * If we collided with something we stop and clear
-			 * the path
-			 */
-			if (collides()) {
-				clearPath();
-			}
 		}
 
 		notifyWorldAboutChanges();
