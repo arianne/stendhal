@@ -147,20 +147,4 @@ public abstract class DomesticAnimal extends Creature {
 		corpse.add(food);
 	}
 
-
-	//
-	// ActiveEntity
-	//
-
-	/**
-	 * Apply movement and process it's reactions.
-	 */
-	@Override
-	public void applyMovement() {
-		super.applyMovement();
-
-		if(collides()) {
-			stop();
-		}
-	}
 }
