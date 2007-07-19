@@ -163,6 +163,9 @@ public class MainMenu extends JMenuBar implements ActionListener
     JMenu tilesetMenu = new JMenu("Tilesets");
     tilesetMenu.add(new TMenuItem(mapEditor.newTilesetAction));
     tilesetMenu.add(new TMenuItem(mapEditor.importTilesetAction));
+    JCheckBoxMenuItem treeTilesetChooser = new JCheckBoxMenuItem(mapEditor.treeTilesetChooserAction);
+    treeTilesetChooser.setSelected(true);
+    tilesetMenu.add(treeTilesetChooser);
     tilesetMenu.addSeparator();
     tilesetMenu.add(new TMenuItem(mapEditor.tilesetManagerAction));
     

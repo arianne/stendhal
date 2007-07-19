@@ -71,7 +71,9 @@ import tiled.mapeditor.widget.LayerEditPanel;
 import tiled.mapeditor.widget.MainMenu;
 import tiled.mapeditor.widget.MapEditPanel;
 import tiled.mapeditor.widget.StatusBar;
+import tiled.mapeditor.widget.TilesetChooser;
 import tiled.mapeditor.widget.TilesetChooserTabbedPane;
+import tiled.mapeditor.widget.TilesetChooserTree;
 import tiled.mapeditor.widget.ToolBar;
 import tiled.util.TiledConfiguration;
 import tiled.util.Util;
@@ -120,8 +122,9 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
   public MainMenu             mainMenu;
   public ToolBar              toolBar;
   public LayerEditPanel       layerEditPanel;
-  public TilesetChooserTabbedPane tilePalettePanel;
+  public TilesetChooser       tilePalettePanel;
   public MapEditPanel         mapEditPanel;
+  private JSplitPane          baseSplit;
 
   private JPanel              mainPanel;
 
@@ -169,6 +172,7 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
   public Action               moveLayerUpAction;
   public Action               moveLayerDownAction;
   public Action               toggleGridAction;
+  public Action               treeTilesetChooserAction;
 
   public MapEditor()
   {
@@ -221,6 +225,7 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
     moveLayerUpAction = new MoveLayerUpAction(this);
     moveLayerDownAction = new MoveLayerDownAction(this);
     toggleGridAction = new ToggleGridAction(this);
+    treeTilesetChooserAction = new TreeTilesetChooserAction(this);
 
     // Create our frame
     appFrame = new JFrame(TITLE);
@@ -271,8 +276,8 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
     JSplitPane mainSplit = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, false,mapScrollPane, layerEditPanel);
     mainSplit.setResizeWeight(1.0);
 
-    tilePalettePanel = new TilesetChooserTabbedPane(this);
-    JSplitPane baseSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false,mainSplit, tilePalettePanel);
+    tilePalettePanel = new TilesetChooserTree(this);
+    baseSplit = new JSplitPane(JSplitPane.VERTICAL_SPLIT, false,mainSplit, tilePalettePanel);
     baseSplit.setOneTouchExpandable(true);
     baseSplit.setResizeWeight(0.9);
 
@@ -1304,5 +1309,23 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
   public void clearSelectedTiles()
   {
     getSelectedTiles().clear();
+  }
+
+  /**
+   * switches between a tabbed tileset chooser and a treelike view 
+   * @param enableTreeview true, shows the tree; false, shows the tabbed pane 
+   */
+  public void toggleTreeTilesetChooser(boolean enableTreeview)
+  {
+    if (enableTreeview)
+    {
+      tilePalettePanel = new TilesetChooserTree(this);
+    }
+    else
+    {
+      tilePalettePanel = new TilesetChooserTabbedPane(this);
+    }
+    tilePalettePanel.setMap(getCurrentMap());
+    baseSplit.setRightComponent(tilePalettePanel);
   }
 }

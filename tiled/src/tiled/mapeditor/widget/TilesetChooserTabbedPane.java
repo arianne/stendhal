@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
@@ -31,21 +32,24 @@ import tiled.mapeditor.util.TileSelectionEvent;
 import tiled.mapeditor.util.TileSelectionListener;
 
 /**
- * Shows one tabs for each Tileset  
+ * Shows one tab for each Tileset  
  * @author Matthias Totz <mtotz@users.sourceforge.net>
  */
-public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelectionListener
+public class TilesetChooserTabbedPane extends TilesetChooser implements TileSelectionListener
 {
   private static final long serialVersionUID = -2997343048462435218L;
   /** list of the tilesets for the current map */
   private List<TilePalettePanel> tilePanels;
-  private MapEditor mapEditor;
+
+  private JTabbedPane pane;
 
   /** */
   public TilesetChooserTabbedPane(MapEditor mapEditor)
   {
-    super();
-    this.mapEditor = mapEditor;
+    super(mapEditor);
+    pane = new JTabbedPane();
+    setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
+    add(pane);
   }
 
   /** sets the tilesets to display */
@@ -60,7 +64,7 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
   private void recreateUI(List<TileSet> tilesets)
   {
     // remove all tabs
-    removeAll();
+    pane.removeAll();
     tilePanels = new ArrayList<TilePalettePanel>();
 
     if (tilesets != null)
@@ -73,12 +77,12 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
           TilePalettePanel tilePanel = new TilePalettePanel(mapEditor,tileset);
           tilePanels.add(tilePanel);
           JScrollPane paletteScrollPane = new JScrollPane(tilePanel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-          addTab(tileset.getName(), paletteScrollPane);
+          pane.addTab(tileset.getName(), paletteScrollPane);
         }
       }
       Dimension minSize = getMinimumSize();
       minSize.height = 0;
-      setMinimumSize(minSize);
+      pane.setMinimumSize(minSize);
     }
   }
 
@@ -116,12 +120,11 @@ public class TilesetChooserTabbedPane extends JTabbedPane implements TileSelecti
   {
     if (currentMap == null)
     {
-      removeAll();
+      pane.removeAll();
     }
     else
     {
       setTilesets(currentMap.getTilesets());
     }
   }
-  
 }
