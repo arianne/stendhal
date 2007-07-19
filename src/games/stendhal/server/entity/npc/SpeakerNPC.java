@@ -24,7 +24,7 @@ import marauroa.common.Logger;
  *   ConversationStates for often-used states.
  * * Input is the text that the player says to the SpeakerNPC.
  * * Output is the text that the SpeakerNPC answers.
- * 
+ *
  * See examples to understand how it works. RULES:
  * * State 0 (IDLE) is both the start state and the state that
  *   will end the conversation between the player and the SpeakerNPC.
@@ -33,38 +33,38 @@ import marauroa.common.Logger;
  * * State -1 (ANY) is a wildcard and is used to jump from any state
  *   whenever the trigger is active.
  * * States from 2 to 100 are reserved for special behaviours and quests.
- * 
+ *
  * Example how it works: First we need to create a message to greet the player
  * and attend it. We add a hi event:
- * 
+ *
  * add(ConversationStates.IDLE,
  *     ConversationPhrases.GREETING_MESSAGES,
  *     ConversationStates.ATTENDING,
  *     "Welcome, player!",
  *     null)
- * 
+ *
  * Once the NPC is in the IDLE state and hears the word "hi", it will say
  * "Welcome player!" and move to ATTENDING.
- * 
+ *
  * Now let's add some options when player is in ATTENDING_STATE, like job,
  * offer, buy, sell, etc.
- * 
+ *
  * add(ConversationStates.ATTENDING,
  *     ConversationPhrases.JOB_MESSAGES,
  *     ConversationStates.ATTENDING,
  *     "I work as a part time example showman",
  *     null)
- * 
+ *
  * add(ConversationStates.ATTENDING_STATE,
  *     "offer",
  *     ConversationStates.ATTENDING_STATE,
  *     "I sell best quality swords",
  *     null)
- * 
+ *
  * Ok, two new events: job and offer, they go from ATTENDING state to
  * ATTENDING state, because after reacting to "job" or "offer", the NPC can
  * directly react to one of these again.
- * 
+ *
  * add(ConversationStates.ATTENDING,
  *     "buy",
  *     ConversationStates.BUY_PRICE_OFFERED,
@@ -80,32 +80,32 @@ import marauroa.common.Logger;
  *             }
  *         }
  *     });
- * 
+ *
  * Now the hard part. We listen to "buy", so we need to process the text, and
  * for that we use the ChatAction class, we create a new class that will handle
  * the event. Also see that we move to a new state, BUY_PRICE_OFFERED (20).
  * The player is then replying to a question, so we only expect two possible
  * replies: yes or no.
- * 
+ *
  * add(ConversationStates.BUY_PRICE_OFFERED,
  *     ConversationPhrases.YES_MESSAGES,
  *     ConversationStates.ATTENDING,
  *     "Sorry, I changed my mind. I won't sell anything.",
  *     null);
  *      // See SellerBehaviour.java for a working example.
- * 
+ *
  * Whatever the reply is, return to ATTENDING state so we can listen to new
  * things.
- * 
+ *
  * Finally we want to finish the conversation, so whatever state we are, we want
  * to finish a conversation with "Bye!".
- * 
+ *
  * add(ConversationStates.ANY,
  *     ConversationPhrases.GOODBYE_MESSAGES,
  *     ConversationStates.IDLE,
  *     "Bye!",
  *     null);
- * 
+ *
  * We use the state ANY (-1) as a wildcard, so if the input text is "bye" the
  * transition happens, no matter in which state the FSM really is, with the
  * exception of the IDLE state.
@@ -113,11 +113,6 @@ import marauroa.common.Logger;
 public class SpeakerNPC extends NPC {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SpeakerNPC.class);
-
-	/**
-	 * The normal walking speed.
-	 */
-	private static final double	BASE_SPEED		= 0.2;
 
 	private Engine engine = new Engine(this);
 
@@ -152,7 +147,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * The player who is currently talking to the NPC, or null if the NPC
-	 * is currently not taking part in a conversation. 
+	 * is currently not taking part in a conversation.
 	 */
 	private Player attending;
 
@@ -162,6 +157,7 @@ public class SpeakerNPC extends NPC {
 	 * @param name The NPC's name. Please note that names should be unique.
 	 */
 	public SpeakerNPC(String name) {
+		BASE_SPEED=0.2;
 		createPath();
 
 		lastMessageTurn = 0;
@@ -195,7 +191,7 @@ public class SpeakerNPC extends NPC {
 	 * standing nearby the NPC. Nearby means that they are standing
 	 * less than <i>range</i> squares away horizontally and
 	 * less than <i>range</i> squares away vertically.
-	 * 
+	 *
 	 * Why is range a double, not an int? Maybe someone wanted to
 	 * implement a circle instead of the rectangle we're having now.
 	 * -- mort (DHerding@gmx.de)
@@ -320,9 +316,9 @@ public class SpeakerNPC extends NPC {
 		} else if (attending != null) {
 			// If the player is too far away
 			if ((attending.squaredDistance(this) > 8 * 8)
-			// or if the player fell asleep ;) 
+			// or if the player fell asleep ;)
 			        || (StendhalRPRuleProcessor.get().getTurn() - lastMessageTurn > playerChatTimeout)) {
-				// we force him to say bye to NPC :)  
+				// we force him to say bye to NPC :)
 				if (goodbyeMessage != null) {
 					say(goodbyeMessage);
 				}
@@ -332,7 +328,7 @@ public class SpeakerNPC extends NPC {
 			}
 		}
 
-		// now look for nearest player only if there's an initChatAction 
+		// now look for nearest player only if there's an initChatAction
 		if (!isTalking() && (initChatAction != null)) {
 			Player nearest = getNearestPlayer(7);
 			if (nearest != null) {
@@ -449,7 +445,7 @@ public class SpeakerNPC extends NPC {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public void add(int state, List<String> triggers, int nextState, String reply, ChatAction action) {
 		for (String trigger : triggers) {
@@ -609,7 +605,7 @@ public class SpeakerNPC extends NPC {
 
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
-	 * special outfits. 
+	 * special outfits.
 	 * @param behaviour The behaviour (which includes a pricelist).
 	 * @param command The action needed to get the outfit, e.g. "buy", "lend".
 	 * @param offer Defines if the NPC should react to the word "offer".
@@ -639,17 +635,4 @@ public class SpeakerNPC extends NPC {
 	}
 
 
-	//
-	// RPEntity
-	//
-
-	/**
-	 * Get the normal movement speed.
-	 *
-	 * @return	The normal speed when moving.
-	 */
-	@Override
-	public double getBaseSpeed() {
-		return BASE_SPEED;
-	}
 }

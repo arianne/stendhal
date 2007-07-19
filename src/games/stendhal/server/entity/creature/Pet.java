@@ -33,7 +33,7 @@ import marauroa.common.game.Definition.Type;
  * A pet is a domestic animal that can be owned by a player.
  * Ideally it eats meat from the ground.
  * They move faster than sheep
- * Ideally pets attack weak animals for you 
+ * Ideally pets attack weak animals for you
  */
 /**
  * @author kymara
@@ -43,8 +43,6 @@ public abstract class Pet extends DomesticAnimal {
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Pet.class);
-	/* Default Settings*/
-	protected double SPEED = 0.5;
 
 	/**
 	 * The weight at which the pet will stop eating.
@@ -88,6 +86,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public Pet(Player owner) {
 		super(owner);
+		BASE_SPEED= 0.5;
 
 
 		setATK(ATK);
@@ -109,7 +108,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public Pet(RPObject object, Player owner) {
 		super(object, owner);
-
+		BASE_SPEED= 0.5;
 		hunger = 0;
 	}
 
@@ -140,7 +139,7 @@ public abstract class Pet extends DomesticAnimal {
 	 *         given range
 	 */
 	private Item getNearestFood(double range) {
-		
+
 		Set<Item> items = getZone().getItemsOnGround();
 		double squaredDistance = range * range; // This way we save several sqrt operations
         Item chosen=null;
@@ -151,19 +150,19 @@ public abstract class Pet extends DomesticAnimal {
 						squaredDistance = this.squaredDistance(i);
 					}
 			}
-			
-		}
-	
 
-		
+		}
+
+
+
 		return chosen;
 	}
 
 	 boolean canEat(Item i) {
-		
+
 			return "meat".equals(i.getItemSubclass());
-		
-		
+
+
 	 }
 
 	private void eat(Item food) {
@@ -179,15 +178,7 @@ public abstract class Pet extends DomesticAnimal {
 	// RPEntity
 	//
 
-	/**
-	 * Get the normal movement speed.
-	 *
-	 * @return	The normal speed when moving.
-	 */
-	@Override
-	public double getBaseSpeed() {
-		return SPEED;
-	}
+
 
 
 	/**
@@ -195,9 +186,9 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-		
 
-		if (!isEnemyNear(20) && (owner == null)) // if there is no player near and none will see us... 
+
+		if (!isEnemyNear(20) && (owner == null)) // if there is no player near and none will see us...
 		{
 			stop();
 
@@ -240,7 +231,7 @@ public abstract class Pet extends DomesticAnimal {
 
 		if (!stopped()) {
 			this.applyMovement();
-			
+
 			// /* if we collided with something we stop and clear the path */
 			if (collides()) {
 				stop();
@@ -259,7 +250,7 @@ public abstract class Pet extends DomesticAnimal {
 		}
 
 		notifyWorldAboutChanges();
-		
+
 	}
     // Should never be called
 	@Override

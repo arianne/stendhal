@@ -21,12 +21,14 @@ import marauroa.common.game.RPObject;
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
+	protected double BASE_SPEED ;
 	private EntityGuide guide = new EntityGuide();
 
 	/**
 	 * Create a guided entity.
 	 */
 	public GuidedEntity() {
+		BASE_SPEED = 0;
 	}
 
 	/**
@@ -37,7 +39,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public GuidedEntity(final RPObject object) {
 		super(object);
-
+		BASE_SPEED=0;
 		update();
 	}
 
@@ -50,7 +52,10 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 *
 	 * @return The normal speed when moving.
 	 */
-	public abstract double getBaseSpeed();
+	final public double getBaseSpeed(){
+		return BASE_SPEED;
+
+	}
 
 	//
 	// GuidedEntity

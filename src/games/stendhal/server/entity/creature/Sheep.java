@@ -29,7 +29,7 @@ import marauroa.common.game.Definition.Type;
 
 /**
  * A sheep is a domestic animal that can be owned by a player.
- * It eats berries from bushes and can be sold. 
+ * It eats berries from bushes and can be sold.
  */
 /**
  * @author Daniel Herding
@@ -40,10 +40,7 @@ public class Sheep extends DomesticAnimal {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sheep.class);
 
-	/**
-	 * The normal walking speed.
-	 */
-	private static final double	BASE_SPEED		= 0.25;
+
 
 	/**
 	 * The amount of hunger that indicates hungry.
@@ -112,7 +109,7 @@ public class Sheep extends DomesticAnimal {
 		setDEF(DEF);
 		setXP(XP);
 		initHP(HP);
-
+		BASE_SPEED=0.25;
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
 		update();
@@ -343,22 +340,11 @@ public class Sheep extends DomesticAnimal {
 	//
 
 	/**
-	 * Get the normal movement speed.
-	 *
-	 * @return	The normal speed when moving.
-	 */
-	@Override
-	public double getBaseSpeed() {
-		return BASE_SPEED;
-	}
-
-
-	/**
 	 * Determines what the sheep shall do next.
 	 */
 	@Override
 	public void logic() {
-		
+
 
 		hunger++;
 
@@ -403,7 +389,7 @@ public class Sheep extends DomesticAnimal {
 		}
 
 		notifyWorldAboutChanges();
-		
+
 	}
 
 

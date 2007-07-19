@@ -59,11 +59,6 @@ public class Player extends RPEntity {
 	private static final Logger logger = Log4J.getLogger(Player.class);
 
 	/**
-	 * The normal walking speed.
-	 */
-	private static final double	BASE_SPEED		= 1.0;
-
-	/**
 	 * The base log for karma use.
 	 */
 	private static final double KARMA_BASELOG = Math.log(10.0);
@@ -243,7 +238,7 @@ public class Player extends RPEntity {
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
-
+		BASE_SPEED=1.0;
 		update();
 	}
 
@@ -942,7 +937,7 @@ public class Player extends RPEntity {
 	}
 
 	public void removeSheep(Sheep sheep) {
-		
+
 		if (has("sheep")) {
 			remove("sheep");
 		} else {
@@ -950,11 +945,11 @@ public class Player extends RPEntity {
 		}
 		StendhalRPRuleProcessor.get().removeNPC(sheep);
 
-		
+
 	}
 
 	public void removePet(Pet pet) {
-		
+
 		if (has("pet")) {
 			remove("pet");
 		} else {
@@ -962,7 +957,7 @@ public class Player extends RPEntity {
 		}
 		StendhalRPRuleProcessor.get().removeNPC(pet);
 
-		
+
 	}
 	public boolean hasSheep() {
 		return has("sheep");
@@ -972,20 +967,20 @@ public class Player extends RPEntity {
 		return has("pet");
 	}
 	public void setPet(Pet pet) {
-		
+
 		put("pet", pet.getID().getObjectID());
 
 		StendhalRPRuleProcessor.get().addNPC(pet);
 
-		
+
 	}
 	public void setSheep(Sheep sheep) {
-		
+
 		put("sheep", sheep.getID().getObjectID());
 
 		StendhalRPRuleProcessor.get().addNPC(sheep);
 
-		
+
 	}
 
 	private static  class AntidoteEater implements TurnListener {
@@ -1345,7 +1340,7 @@ public class Player extends RPEntity {
 		if (item.getQuantity()>1){
 			throw new IllegalArgumentException("consumeItem can only take one item at a time");
 		}
-		
+
 		if ((item.getRegen() > 0) && isFull() && !item.getName().contains("potion")) {
 			sendPrivateText("You can't consume anymore");
 			return;
@@ -1374,18 +1369,18 @@ public class Player extends RPEntity {
 		}
 
 		Collections.sort(itemsToConsume);
-		
+
 	}
 
 	public void consume(int turn) {
-		
+
 
 
 		if ( (poisonToConsume.size() == 0)) {
 			if (has("poisoned")){
-		
+
 			remove("poisoned");
-			
+
 			}
 		}else{
 			int sum = 0;
@@ -1395,19 +1390,19 @@ public class Player extends RPEntity {
 				if (turn%poison.getFrecuency() ==0){
 					if (poison.consumed()){
 						it.remove();
-						
+
 					}else{
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
 						put("poisoned", sum);
-						
+
 					}
 				}
-			
+
 			}
 		}
-		
+
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size()>0){
 			ConsumableItem food = itemsToConsume.get(0);
@@ -1421,16 +1416,16 @@ public class Player extends RPEntity {
 					if(heal(amount, true) == 0) {
 					itemsToConsume.clear();
 					}
-	
-				
+
+
 				}
 			}
-			
+
 		}else{
 
 			if (has("eating")) {
 				remove("eating");
-				
+
 			}
 		}
 		notifyWorldAboutChanges();
@@ -1586,21 +1581,6 @@ public class Player extends RPEntity {
 	 */
 	public PlayerPetManager getPlayerPetManager() {
 		return playerPetManager;
-	}
-
-
-	//
-	// RPEntity
-	//
-
-	/**
-	 * Get the normal movement speed.
-	 *
-	 * @return	The normal speed when moving.
-	 */
-	@Override
-	public double getBaseSpeed() {
-		return BASE_SPEED;
 	}
 
 

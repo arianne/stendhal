@@ -78,9 +78,6 @@ public class Creature extends NPC {
 
 	private CreatureRespawnPoint point;
 
-	/** The base speed of this creature */
-	private double baseSpeed;
-
 	/** size in width of a tile */
 	private int width;
 
@@ -139,7 +136,7 @@ public class Creature extends NPC {
 	public Creature(Creature copy) {
 		this();
 
-		this.baseSpeed = copy.baseSpeed;
+		this.BASE_SPEED = copy.BASE_SPEED;
 		this.width = copy.width;
 		this.height = copy.height;
 
@@ -229,7 +226,7 @@ public class Creature extends NPC {
 	        List<String> noises, int respawnTime, String description) {
 		this();
 
-		this.baseSpeed = baseSpeed;
+		this.BASE_SPEED = baseSpeed;
 		this.width = width;
 		this.height = height;
 
@@ -500,16 +497,6 @@ public class Creature extends NPC {
 		return false;
 	}
 
-	/** returns a string-repesentation of the path */
-	// TODO: Adapt for opaque 'Path' objects
-//	public String pathToString() {
-//		int pos = getPathPosition();
-//		List<Node> thePath = getPathList();
-//		List<Node> nodeList = thePath.subList(pos, thePath.size());
-//
-//		return nodeList.toString();
-//	}
-
 	/** need to recalculate the ai when we stop the attack */
 	@Override
 	public void stopAttack() {
@@ -632,18 +619,6 @@ public class Creature extends NPC {
 	public void init() {
 		// do nothing
 	}
-
-
-	/**
-	 * Get the normal movement speed.
-	 *
-	 * @return	The normal speed when moving.
-	 */
-	@Override
-	public double getBaseSpeed() {
-		return baseSpeed;
-	}
-
 
 	@Override
 	public void logic() {

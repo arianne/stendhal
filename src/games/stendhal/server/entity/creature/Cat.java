@@ -26,7 +26,7 @@ import marauroa.common.game.SyntaxException;
  * A cat is a domestic animal that can be owned by a player.
  * Ideally it eats meat from the ground.
  * They move much faster than sheep
- * Ideally cats attack rats for you 
+ * Ideally cats attack rats for you
  */
 /**
  * @author kymara
@@ -78,7 +78,7 @@ public class Cat extends Pet {
 		setRPClass("cat");
 		put("type", "cat");
 		put("title", "cat");
-		SPEED = 0.9;
+		BASE_SPEED = 0.9;
 
 		update();
 		logger.debug("Created Cat: " + this);
@@ -96,7 +96,7 @@ public class Cat extends Pet {
 
 		setRPClass("cat");
 		put("type", "cat");
-
+		BASE_SPEED = 0.9;
 		update();
 		logger.debug("Created Cat: " + this);
 	}
