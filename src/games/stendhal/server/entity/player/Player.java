@@ -179,9 +179,13 @@ public class Player extends RPEntity {
 		try {
 			if (player.hasSheep()) {
 				Sheep sheep = player.getSheep();
-				player.playerSheepManager.storeSheep(sheep);
-				StendhalRPRuleProcessor.get().removeNPC(sheep);
 				world.remove(sheep.getID());
+				StendhalRPRuleProcessor.get().removeNPC(sheep);
+				
+				/*
+				 * NOTE: Once the sheep is stored there is no more trace of zoneid.
+				 */
+				player.playerSheepManager.storeSheep(sheep);
 			} else {
 				// Bug on pre 0.20 released
 				if (player.hasSlot("#flock")) {

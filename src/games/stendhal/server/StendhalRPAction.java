@@ -572,6 +572,7 @@ public class StendhalRPAction {
 						// Call placeat for the sheep on the same spot as the 
 						// player to ensure that there will be a path between the
 						// player and his/her sheep.
+						sheep.put("zoneid", entity.get("zoneid"));
 						placeat(zone, sheep, nx, ny);
 						sheep.clearPath();
 						sheep.stop();
@@ -601,6 +602,7 @@ public class StendhalRPAction {
 						// Call placeat for the pet on the same spot as the 
 						// player to ensure that there will be a path between the
 						// player and his/her cat.
+						pet.put("zoneid", entity.get("zoneid"));
 						placeat(zone, pet, nx, ny); 
 						pet.clearPath();
 						pet.stop();
