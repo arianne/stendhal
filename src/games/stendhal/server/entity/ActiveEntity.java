@@ -79,21 +79,17 @@ public abstract class ActiveEntity extends Entity {
 	 * Apply movement and process it's reactions.
 	 */
 	public void applyMovement() {
-		if (stopped()) {
-			return;
-		}
+		//even if we could we would not move;
+		if (speed== 0) 	return;
+		if (direction== Direction.STOP) return;
 
 		setCollides(false);
 
 		int x = getX();
 		int y = getY();
+		int nx = x + direction.getdx();
+		int ny = y + direction.getdy();
 
-		Direction dir = getDirection();
-		int dx = dir.getdx();
-		int dy = dir.getdy();
-
-		int nx = x + dx;
-		int ny = y + dy;
 
 		StendhalRPZone zone = getZone();
 		boolean collision = zone.collides(this, nx, ny);
@@ -225,35 +221,6 @@ public abstract class ActiveEntity extends Entity {
 		}
 	}
 
-	//
-	// /**
-	// * Get the direction toward a point.
-	// *
-	// * @param x The target X coordinate.
-	// * @param y The target Y coordinate.
-	// *
-	// * @return A facing direction.
-	// */
-	// Direction getDirectionToward(final double x, final double y) {
-	// Rectangle2D area = getArea();
-	//
-	// double rx = area.getCenterX();
-	// double ry = area.getCenterY();
-	//
-	// if (Math.abs(x - rx) > Math.abs(y - ry)) {
-	// if (x - rx > 0) {
-	// return Direction.RIGHT;
-	// } else {
-	// return Direction.LEFT;
-	// }
-	// } else {
-	// if (y - ry > 0) {
-	// return Direction.DOWN;
-	// } else {
-	// return Direction.UP;
-	// }
-	// }
-	// }
 
 	/**
 	 * Get the current speed.
