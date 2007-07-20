@@ -13,7 +13,7 @@
 package games.stendhal.server;
 
 import games.stendhal.common.Debug;
-import games.stendhal.common.Pair;
+import marauroa.common.Pair;
 import games.stendhal.server.actions.ActionListener;
 import games.stendhal.server.actions.AdministrationAction;
 import games.stendhal.server.actions.AttackAction;
@@ -92,12 +92,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	private RPServerManager rpman;
 
 	/**
-	 * A list of all players who are currently logged in. 
+	 * A list of all players who are currently logged in.
 	 */
 	private List<Player> players;
 
 	/**
-	 * ??? 
+	 * ???
 	 */
 	private List<Player> playersRmText;
 	private List<Player> playersRmPrivateText;
@@ -110,7 +110,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	/**
 	 * A list of RPEntities that were killed in the current turn, together with
-	 * the Entity that killed it.  
+	 * the Entity that killed it.
 	 */
 	private List<Pair<RPEntity, Entity>> entityToKill;
 
@@ -147,7 +147,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	protected StendhalRPRuleProcessor() {
-		
+
 	}
 
 	private void init() {
@@ -223,18 +223,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * 
+	 *
 	 * Set the context where the actions are executed.
 	 * Load/Run optional StendhalServerExtension(s) as defined in marauroa.ini file
 	 * example:
 	 *  groovy=games.stendhal.server.scripting.StendhalGroovyRunner
 	 *  myservice=games.stendhal.server.MyService
 	 *  server_extension=groovy,myservice
-	 * if no server_extension property is found, only the groovy extension is loaded 
+	 * if no server_extension property is found, only the groovy extension is loaded
 	 * to surpress loading groovy extension use
 	 *  server_extension=
 	 * in the properties file.
-	 * 
+	 *
 	 * @param rpman
 	 */
 	public void setContext(RPServerManager rpman) {
@@ -304,7 +304,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * Checks whether the given RPEntity has been killed this turn.  
+	 * Checks whether the given RPEntity has been killed this turn.
 	 * @param entity The entity to check.
 	 * @return true if the given entity has been killed this turn.
 	 */
@@ -320,7 +320,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	/**
 	 * Returns the entity which has killed the given RPEntity this
 	 * turn.
-	 * @param entity The killed RPEntity. 
+	 * @param entity The killed RPEntity.
 	 * @return The killer, or null if the given RPEntity hasn't been
 	 *         killed this turn.
 	 */
@@ -350,7 +350,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/**
-	 * Finds an online player with a specific name. 
+	 * Finds an online player with a specific name.
 	 * @param name The player's name
 	 * @return The player, or null if no player with the given name is
 	 *         currently online.
@@ -363,7 +363,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			String playername=player.getName();
 			if (player.has("title")) {
 				playername=player.get("title");
-			} 
+			}
 
 			if (playername.equals(name)) {
 				return player;
@@ -371,7 +371,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 		return null;
 	}
-	
+
 	public List<PassiveEntityRespawnPoint> getPlantGrowers() {
 		return plantGrowers;
 	}
@@ -412,7 +412,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	synchronized public void beginTurn() {
 		long start = System.nanoTime();
 
-		if (Debug.SHOW_LIST_SIZES && rpman.getTurn()%1000==0) {			
+		if (Debug.SHOW_LIST_SIZES && rpman.getTurn()%1000==0) {
 			int creatures = 0;
 			for (CreatureRespawnPoint point : respawnPoints) {
 				creatures += point.size();
@@ -471,7 +471,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 					logger.error("Error in player logic", e);
 				}
 			}
-			
+
 			for (NPC npc : npcs) {
 				try {
 					npc.logic();
@@ -516,16 +516,16 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	synchronized public boolean onInit(RPObject object) throws RPObjectInvalidException {
 		try {
-			PlayerEntry entry=PlayerEntryContainer.getContainer().get(object);			
-			
+			PlayerEntry entry=PlayerEntryContainer.getContainer().get(object);
+
 			Player player = Player.create(object);
 			// TODO: This is a hack, it should use instead RPObjectFactory.
 			entry.object=player;
-			
+
 			playersRmText.add(player);
 			playersRmPrivateText.add(player);
 			players.add(player);
-			
+
 			if(!player.isGhost()) {
 				// Notify other players about this event
 				for (Player p : getPlayers()) {
@@ -557,12 +557,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			for (Player p : getPlayers()) {
 				p.notifyOffline(player.getName());
 			}
-			
+
 			Player.destroy(player);
 			players.remove(player);
 			addGameEvent(player.getName(), "logout");
 			logger.debug("removed player " + player);
-			
+
 			return true;
 		} catch (Exception e) {
 			logger.error("error in onExit", e);
@@ -611,7 +611,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public CharacterResult createCharacter(String username, String character, RPObject template) {
 		JDBCDatabase database=(JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
-		
+
 		try {
 			if (database.hasCharacter(trans, username, character)) {
 				logger.warn("Character already exist: " + character);
@@ -634,7 +634,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			object.put("def", 10);
 			object.put("def_xp", 0);
 			object.put("xp", 0);
-			
+
 			/*
 			 * TODO: Update the above to use Player and RPEntity methods.
 			 */
@@ -654,7 +654,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			/*
 			 * Finally we add it to database.
-			 */			
+			 */
 			database.addCharacter(trans, username, character, object);
 			return new CharacterResult(Result.OK_CREATED, character, object);
 		} catch (Exception e) {
@@ -670,6 +670,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
     }
 
 	public RPServerManager getRPManager() {
-	    return rpman;	    
+	    return rpman;
 	}
 }

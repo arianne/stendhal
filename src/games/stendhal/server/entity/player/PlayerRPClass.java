@@ -14,7 +14,6 @@ package games.stendhal.server.entity.player;
 
 import games.stendhal.common.Debug;
 import games.stendhal.server.StendhalRPAction;
-import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.actions.AdministrationAction;
@@ -403,7 +402,7 @@ lion_shield_+1 enhanced_lion_shield
 				}
 
 				world.add(sheep);
-				
+
 				/*
 				 * Sheep needs to be added to the NPC list.
 				 */
@@ -450,7 +449,7 @@ lion_shield_+1 enhanced_lion_shield
 
 				StendhalRPAction.placeat(zone, pet, x, y);
 //				zone.addPlayerAndFriends(cat);
-		}		
+		}
 		StendhalRPAction.placeat(zone, player, x, y);
 //		zone.addPlayerAndFriends(player);
 

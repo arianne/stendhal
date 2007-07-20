@@ -12,10 +12,10 @@
 
 package games.stendhal.client.entity;
 
-import games.stendhal.common.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import marauroa.common.Pair;
 
 /**
  * EntityMap registers the relationship between Type,eclass and java class of

@@ -1,6 +1,6 @@
 package games.stendhal.server.maps.quests;
 
-import games.stendhal.common.Pair;
+import marauroa.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.Sign;
@@ -30,7 +30,7 @@ public class DiceGambling extends AbstractQuest {
 				null, // 0 - can't happen
 				null, // 1 - can't happen
 				null, // 2 - can't happen
-				// secret consolation prize for throwing three ones ;) 
+				// secret consolation prize for throwing three ones ;)
 				new Pair<String, String>("fire_sword", "Dude, you are one unlucky guy! I feel so sorry for you! Here, take this fire sword."), // 3
 				null, // 4 - no prize
 				null, // 5 - no prize
@@ -51,9 +51,9 @@ public class DiceGambling extends AbstractQuest {
 				);
 
 		ricardo.setPrizes(prizes);
-		
+
 		StendhalRPZone zone = ricardo.getZone();
-		
+
 		Sign blackboard = new Sign();
 		zone.assignRPObjectID(blackboard);
 		blackboard.set(25, 0);
@@ -64,7 +64,7 @@ public class DiceGambling extends AbstractQuest {
 		}
 		blackboard.setText(prizelistBuffer.toString());
 		zone.add(blackboard);
-		
+
 		blackboard = new Sign();
 		zone.assignRPObjectID(blackboard);
 		blackboard.set(26, 0);
@@ -76,14 +76,14 @@ public class DiceGambling extends AbstractQuest {
 		blackboard.setText(prizelistBuffer.toString());
 		zone.add(blackboard);
 
-		
+
 		ricardo.add(ConversationStates.ATTENDING,
 					"play",
 					null,
 					ConversationStates.QUESTION_1,
 					"In order to play, you have to stake " + STAKE + " gold. Do you want to pay?",
 					null);
-		
+
 		ricardo.add(ConversationStates.QUESTION_1,
 					ConversationPhrases.YES_MESSAGES,
 					null,
@@ -102,7 +102,7 @@ public class DiceGambling extends AbstractQuest {
 							}
 						}
 					});
-		
+
 		ricardo.add(ConversationStates.QUESTION_1,
 					"no",
 					null,

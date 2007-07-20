@@ -1,6 +1,6 @@
 package games.stendhal.tools;
 
-import games.stendhal.common.Pair;
+import marauroa.common.Pair;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPWorld;
@@ -159,7 +159,7 @@ public class BalanceRPGame {
 		// "+player.getLegs().getDefense()+"\tBoots:
 		// "+player.getBoots().getDefense());
 		// }
-		//    
+		//
 		// System.exit(0);
 
 		StringBuffer st = new StringBuffer("Creatures done: \n");

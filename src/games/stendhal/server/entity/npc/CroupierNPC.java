@@ -1,6 +1,6 @@
 package games.stendhal.server.entity.npc;
 
-import games.stendhal.common.Pair;
+import marauroa.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.Item;
@@ -20,7 +20,7 @@ public abstract class CroupierNPC extends SpeakerNPC {
 	private static final int CLEAR_PLAYING_AREA_TIME = 10;
 
 	/**
-	 * The area on which the dice have to be thrown.  
+	 * The area on which the dice have to be thrown.
 	 */
 	private Area playingArea;
 
