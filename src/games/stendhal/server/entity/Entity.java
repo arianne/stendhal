@@ -225,7 +225,7 @@ public abstract class Entity extends RPObject {
 		return true;
 	}
 
-	public void setCollides(boolean collides) {
+	protected void setCollides(boolean collides) {
 		this.collides = collides;
 	}
 
