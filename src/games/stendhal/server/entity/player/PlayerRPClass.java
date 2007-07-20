@@ -445,6 +445,10 @@ lion_shield_+1 enhanced_lion_shield
 
 				world.add(pet);
 
+				/*
+				 * Sheep needs to be added to the NPC list.
+				 */
+				StendhalRPRuleProcessor.get().addNPC(pet);
 				player.setPet(pet);
 
 				StendhalRPAction.placeat(zone, pet, x, y);

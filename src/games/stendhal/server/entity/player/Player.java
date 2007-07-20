@@ -192,15 +192,7 @@ public class Player extends RPEntity {
 					player.removeSlot("#flock");
 				}
 			}
-		} catch (Exception e) /**
-		 * No idea how but some players get a sheep but
-		 * they don't have it really. Me thinks that it
-		 * is a player that has been running for a while
-		 * the game and was kicked of server because
-		 * shutdown on a pre 1.00 version of Marauroa.
-		 * We shouldn't see this anymore.
-		 */
-		{
+		} catch (Exception e) {
 			logger.error("Pre 1.00 Marauroa sheep bug. (player = " + player.getName() + ")", e);
 
 			if (player.has("sheep")) {
@@ -213,9 +205,12 @@ public class Player extends RPEntity {
 		}
 		if (player.hasPet()) {
 			Pet pet = (Pet) world.remove(player.getPet());
-			player.playerPetManager.storePet(pet);
 			StendhalRPRuleProcessor.get().removeNPC(pet);
-			world.remove(pet.getID());
+
+			/*
+			 * NOTE: Once the pet is stored there is no more trace of zoneid.
+			 */
+			player.playerPetManager.storePet(pet);
 		}
 		player.stop();
 		player.stopAttack();
