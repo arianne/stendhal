@@ -16,6 +16,12 @@ import games.stendhal.server.entity.GuidedEntity;
  */
 public class EntityGuide {
 
+	private GuidedEntity blindman;
+	
+	public void guideMe(GuidedEntity ge){
+		blindman =ge;
+	}
+	
 	/**
 	 * The path.
 	 */
