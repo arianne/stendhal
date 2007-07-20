@@ -344,8 +344,6 @@ public class Sheep extends DomesticAnimal {
 	 */
 	@Override
 	public void logic() {
-
-
 		hunger++;
 
 		/*
