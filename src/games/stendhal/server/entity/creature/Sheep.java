@@ -128,7 +128,9 @@ public class Sheep extends DomesticAnimal {
 
 		setRPClass("sheep");
 		put("type", "sheep");
+		BASE_SPEED=0.25;
 		hunger = 0;
+		timingAdjust = Rand.rand(10);
 
 		update();
 		logger.debug("Created Sheep: " + this);
