@@ -399,11 +399,18 @@ public class StendhalRPAction {
 			// 0.5f is used for rounding
 			int lifesteal = (int) (damage * sumLifesteal / sumAll + 0.5f);
 
-			if(attacker.heal(lifesteal, true) == 0) {
-				// If no effective healing, reduce damage
-				if(damage > 1) {
-					damage /= 2;
+			if (lifesteal >= 0) {
+				if (attacker.heal(lifesteal, true) == 0) {
+					// If no effective healing, reduce damage
+					if (damage > 1) {
+						damage /= 2;
+					}
 				}
+			} else {
+				/*
+				 * Negative lifesteal means that we hurt ourselves.
+				 */
+				attacker.damage(-lifesteal, attacker);
 			}
 
 			attacker.notifyWorldAboutChanges();
