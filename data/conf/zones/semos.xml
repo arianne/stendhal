@@ -1965,6 +1965,18 @@ Mature sheep wanted: please speak to Sato
 
 <!-- If we call it _jail, players can't move items around in it for security reasons -->
  <zone name="-7_kanmararn_prison" level="-7" x="500160" y="500064" file="Level -7/kanmararn/jail.tmx">
+  <configurator class-name="games.stendhal.server.maps.semos.kanmararn.DwarfGuardNPC"/>
+  <configurator class-name="games.stendhal.server.maps.semos.kanmararn.DuergarKingCreature"/>
+  <portal x="11" y="18" ref="jail_lock_outside">
+   <destination zone="-7_kanmararn_prison" ref="jail_lock_inside"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="rejected">You do not have the key to open the lock.</parameter>
+   </implementation>
+  </portal>
+  <portal x="11" y="22" ref="jail_lock_inside">
+   <destination zone="-7_kanmararn_prison" ref="jail_lock_outside"/>
+  </portal>
  </zone>
 
 

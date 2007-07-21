@@ -172,6 +172,20 @@ public class ShopList {
 		shops.add("boots&helm", "magic_chain_helmet", 8000);		
 		shops.add("boots&helm", "black_helmet", 10000);
 
+		// buy axes (woodcutter)
+		shops.add("buyaxe", "halberd", 2000);
+		shops.add("buyaxe", "golden_twoside_axe", 4000);
+		shops.add("buyaxe", "magic_twoside_axe", 6000);
+		shops.add("buyaxe", "durin_axe", 8000);
+		shops.add("buyaxe", "black_scythe", 9000);		
+                shops.add("buyaxe", "chaos_axe", 10000);
+                shops.add("buyaxe", "black_halberd", 12000);
+
+                // buy chaos items (scared dwarf)
+                shops.add("buychaos", "chaos_legs", 8000);
+                shops.add("buychaos", "chaos_sword", 12000);
+		shops.add("buychaos", "chaos_shield", 15000);
+		shops.add("buychaos", "chaos_armor", 20000);
 	}
 
 	static private ShopList instance;

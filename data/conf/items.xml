@@ -2544,6 +2544,20 @@
     </equipable>
   </item>
 
+  <item name="kanmararn_prison_key">
+    <type class="key" subclass="blue" tileid="-1"/>
+    <description>You see a key which matches the locks in the Kanmararn prison.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
+
   <item name="fado_hotel_key_001">
     <type class="key" subclass="hotel" tileid="-1"/>
     <description>You see a key to room #001 in the Fado Hotel.</description>
