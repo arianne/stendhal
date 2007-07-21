@@ -697,9 +697,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 		super.add(object);
 
 		/*
-		 * This check is to avoid PassiveEntityRespawnPoint to make items grown and zone to 
+		 * This check is to avoid PassiveEntityRespawnPoint to make items grown and zone to
 		 * make them dissappear.
-		 * FIXME: Change later to a proper event based system. 
+		 * FIXME: Change later to a proper event based system.
 		 */
 		if (object instanceof Item && player!=null) {
 			Item item = (Item) object;
@@ -893,11 +893,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		if (collisionMap.collides(area)) {
 			return true;
-		} else if (!checkObjects) {
-			return false;
-		} else {
+		}
+
+		if (checkObjects) {
 			return collidesObjects(entity, area);
 		}
+
+		return false;
 	}
 
 	private boolean collidesObjects(Entity entity, Rectangle2D area) {
@@ -1120,16 +1122,16 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public void addMap(String name, byte[] mapData) {
 		addToContent(name, mapData);
 	}
-	
+
 	private int i=0;
 
 	@Override
-	public void nextTurn() {		
+	public void nextTurn() {
 		super.nextTurn();
-		
+
 		i++;
-		
-		if (Debug.SHOW_LIST_SIZES && i%1000==0) {			
+
+		if (Debug.SHOW_LIST_SIZES && i%1000==0) {
 			StringBuffer os=new StringBuffer("Name: "+this.getID());
 			os.append("blood: "+bloods.size()+"\n");
 			os.append("itemsOnGround: "+itemsOnGround.size()+"\n");
@@ -1144,5 +1146,5 @@ public class StendhalRPZone extends MarauroaRPZone {
 			os.append("objects: "+objects.size()+"\n");
 			logger.info(os);
 		}	}
-	
+
 }
