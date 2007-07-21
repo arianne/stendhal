@@ -896,23 +896,27 @@ public class StendhalRPZone extends MarauroaRPZone {
 		} else if (!checkObjects) {
 			return false;
 		} else {
-			// For every other object in this zone, check whether it's in the
-			// way.
-			Rectangle2D otherArea = new Rectangle.Double();
-			for (RPObject other : objects.values()) {
-				Entity otherEntity = (Entity) other;
+			return collidesObjects(entity, area);
+		}
+	}
 
-				if (otherEntity.isObstacle(entity)) {
-					// There is something the entity couldn't stand upon.
-					// Check if it's in the way.
-					otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
-					if (area.intersects(otherArea) && !entity.getID().equals(otherEntity.getID())) {
-						return true;
-					}
+	private boolean collidesObjects(Entity entity, Rectangle2D area) {
+		// For every other object in this zone, check whether it's in the
+		// way.
+		Rectangle2D otherArea = new Rectangle.Double();
+		for (RPObject other : objects.values()) {
+			Entity otherEntity = (Entity) other;
+
+			if (otherEntity.isObstacle(entity)) {
+				// There is something the entity couldn't stand upon.
+				// Check if it's in the way.
+				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
+				if (area.intersects(otherArea) && !entity.getID().equals(otherEntity.getID())) {
+					return true;
 				}
 			}
-			return false;
 		}
+		return false;
 	}
 
 	/**
