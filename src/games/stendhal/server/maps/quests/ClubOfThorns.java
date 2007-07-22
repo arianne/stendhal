@@ -40,8 +40,12 @@ public class ClubOfThorns extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						if (!player.isQuestCompleted("club_thorns")) {
+						if (!player.hasQuest("club_thorns")) {
 							engine.say("Make revenge! Kill de Mountain Orc Chief! unnerstand?");
+						}
+						else if (!player.isQuestCompleted("club_thorns")) {
+							engine.say("Make revenge! #Kill Mountain Orc Chief!");
+							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
 							engine.say("Saman has revenged! dis Good!");
 							engine.setCurrentState(ConversationStates.ATTENDING);
