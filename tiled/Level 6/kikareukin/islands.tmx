@@ -90,9 +90,6 @@
  <tileset name="Untitled" firstgid="362" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="363" tilewidth="0" tileheight="0">
-  <image source="../../../../../tile-images"/>
- </tileset>
  <tileset name="clouds" firstgid="363" tilewidth="32" tileheight="32">
   <image source="../../tileset/sky/cloud/clouds.png"/>
  </tileset>
