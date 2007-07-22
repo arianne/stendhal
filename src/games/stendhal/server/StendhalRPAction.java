@@ -100,7 +100,7 @@ public class StendhalRPAction {
 	/**
 	 * Calculates the damage that will be done in a distance attack (bow
 	 * and arrows, spear, etc.).
-	 * @param attacker The RPEntity that did the distance attack. 
+	 * @param attacker The RPEntity that did the distance attack.
 	 * @param defender The RPEntity that was hit.
 	 * @param damage The damage that would have been done if there would
 	 *               be no modifiers for distance attacks.
@@ -118,7 +118,7 @@ public class StendhalRPAction {
 		        * (1.0 - distance / maxrangeSquared));
 
 	}
-	
+
 	/**
 	 * Is called when the given attacker has hit the given defender.
 	 * Determines how much hitpoints the defender will lose, based on the
@@ -132,7 +132,7 @@ public class StendhalRPAction {
 	public static int damageDone(RPEntity attacker, RPEntity defender) {
 
 		float weapon = attacker.getItemAtk();
-		
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("attacker has " + attacker.getATK() + " and uses a weapon of " + weapon);
 		}
@@ -246,11 +246,11 @@ public class StendhalRPAction {
 	/**
 	 * Returns the attack rate, the lower the better.
 	 * @param attacker
-	 * @return 
+	 * @return
 	 */
 	public static int getAttackRate(RPEntity attacker) {
 		List<Item> weapons=attacker.getWeapons();
-		
+
 		if(weapons.isEmpty()) {
 			return 5;
 		}
@@ -261,10 +261,10 @@ public class StendhalRPAction {
 				best=res;
 			}
 		}
-		
+
 		return best;
 	}
-	
+
 	/**
 	 * Lets the attacker try to attack the defender.
 	 * @param attacker The attacking RPEntity.
@@ -293,7 +293,7 @@ public class StendhalRPAction {
 			// Find out if he can attack from the distance.
 			if (attacker.canDoRangeAttack(defender)) {
 				// TODO: Should different weapons have different ranges??
-	
+
 				// Check line of view to see if there is any obstacle.
 				if (zone.collidesOnLine(attacker.getX(), attacker.getY(), defender.getX(), defender.getY())) {
 					return false;
@@ -308,7 +308,7 @@ public class StendhalRPAction {
 					projectilesItem = attacker.getMissileIfNotHoldingOtherWeapon();
 				}
 				// Creatures can attack without having projectiles, but players
-				// will lose a projectile for each shot. 
+				// will lose a projectile for each shot.
 				if (projectilesItem != null) {
 					projectilesItem.removeOne();
 				}
@@ -327,7 +327,7 @@ public class StendhalRPAction {
 			attacker.incATKXP();
 		}
 
-		// Throw dices to determine if the attacker has missed the defender   
+		// Throw dices to determine if the attacker has missed the defender
 		boolean beaten = riskToHit(attacker, defender);
 
 		if (beaten) {
@@ -380,7 +380,7 @@ public class StendhalRPAction {
 			sumAll = 1;
 			String value = ((Creature) attacker).getAIProfile("lifesteal");
 			if (value == null) {
-				// The creature doesn't steal life. 
+				// The creature doesn't steal life.
 				return damage;
 			}
 			sumLifesteal = Float.parseFloat(value);
@@ -416,20 +416,6 @@ public class StendhalRPAction {
 			attacker.notifyWorldAboutChanges();
 		}
 		return damage;
-	}
-
-	/**
-	 * Lets the given entity move forwards (into the direction it is currently
-	 * facing). This can lead to a zone change or the usage of a portal.
-	 * @param entity The entity that should move
-	 * @throws AttributeNotFoundException
-	 * @throws NoRPZoneException
-     *
-	 * @deprecated	Use entity.applyMovement() directly.
-	 */
-	@Deprecated
-	public static void move(RPEntity entity) {
-		entity.applyMovement();
 	}
 
 	/**
@@ -477,7 +463,7 @@ public class StendhalRPAction {
 
 
 	/**
-	 * Places an entity at a specified position in a specified zone. If this point is 
+	 * Places an entity at a specified position in a specified zone. If this point is
 	 * occupied the entity is moved slightly.
 	 *
 	 * @param zone   zone to place the entity in
@@ -516,7 +502,7 @@ public class StendhalRPAction {
 				checkPath = false;
 			}
 
-			// We cannot place the entity on the orginal spot. Let's search 
+			// We cannot place the entity on the orginal spot. Let's search
 			// for a new destination up to maxDestination tiles in every way.
 			final int maxDestination = 20;
 
@@ -539,7 +525,7 @@ public class StendhalRPAction {
 								}
 
 								// We verify that there is a walkable path between the original
-								// spot and the new destination. This is to prevent players to 
+								// spot and the new destination. This is to prevent players to
 								// enter not allowed places by logging in on top of other players.
 								// Or monsters to spawn on the other side of a wall.
 
@@ -576,7 +562,7 @@ public class StendhalRPAction {
 				if (player.hasSheep()) {
 					try {
 						Sheep sheep = player.getSheep();
-						// Call placeat for the sheep on the same spot as the 
+						// Call placeat for the sheep on the same spot as the
 						// player to ensure that there will be a path between the
 						// player and his/her sheep.
 						sheep.put("zoneid", entity.get("zoneid"));
@@ -606,11 +592,11 @@ public class StendhalRPAction {
 				if (player.hasPet()) {
 						//Note there is now a better getSheep method so there should also be a better getPet method
 						Pet pet = (Pet) StendhalRPWorld.get().get(player.getPet());
-						// Call placeat for the pet on the same spot as the 
+						// Call placeat for the pet on the same spot as the
 						// player to ensure that there will be a path between the
 						// player and his/her cat.
 						pet.put("zoneid", entity.get("zoneid"));
-						placeat(zone, pet, nx, ny); 
+						placeat(zone, pet, nx, ny);
 						pet.clearPath();
 						pet.stop();
 				}
@@ -637,10 +623,10 @@ public class StendhalRPAction {
 		player.clearPath();
 
 		String source = player.getID().getZoneID();
-		
+
 		// TODO: FIX ME
 		// XXX: Refactor.
-		
+
 		if (player.hasSheep() && player.hasPet()) {
 			Sheep sheep = player.getSheep();
 			Pet pet = (Pet) world.get(player.getPet());
