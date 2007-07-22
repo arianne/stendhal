@@ -8,26 +8,26 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Jailed Dwarf
- * 
+ *
  * PARTICIPANTS:
  * - Hunel, the guard of the Dwarf Kingdom's Prison
- * 
+ *
  * STEPS:
  * - You see Hunel locked in the cell
  * - You get the key by killing the Duergar King
  * - You speak to Hunel when you have the key.
  * - Hunel wants to stay in, he is afraid.
  * - You can then sell chaos equipment to Hunel.
- * 
+ *
  * REWARD:
  * - 2000 XP
  * - everlasting place to sell chaos equipment
- * 
+ *
  * REPETITIONS:
  * - None.
  */
 public class JailedDwarf extends AbstractQuest {
-	
+
 	private static final String QUEST_SLOT = "jailed_dwarf";
 
 	@Override
@@ -62,10 +62,11 @@ public class JailedDwarf extends AbstractQuest {
 				}
 			}
 		});
-		
+
 	}
 
 
+	@Override
 	public void addToWorld() {
 		super.addToWorld();
 		step_1();
