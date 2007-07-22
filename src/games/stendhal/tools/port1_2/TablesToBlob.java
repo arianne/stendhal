@@ -203,7 +203,7 @@ public class TablesToBlob {
 			System.out.println("Porting: " + object.get("name"));
 
 			long p2 = System.currentTimeMillis();
-			db.addCharacter(trans, object.get("name"), object.get("name"), object);
+			db.storeCharacter(trans, object.get("name"), object.get("name"), object);
 			trans.commit();
 			long p3 = System.currentTimeMillis();
 
