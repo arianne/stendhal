@@ -149,10 +149,8 @@ public abstract class ActiveEntity extends Entity {
 
 
 	private boolean handlePortal(Portal portal) {
-		if (!(portal instanceof OneWayPortalDestination))
 		if(isZoneChangeAllowed()){
 			logger.debug("Using portal " + portal);
-			// TODO: Generalize parameter type
 		 return portal.onUsed((RPEntity) this);
 		}
 		return false;
