@@ -69,11 +69,11 @@ public class OutfitDialog extends JDialog {
 	 * Edit these fields to add new outfits. 
 	 * Note that it counts from 0 and this is the total number here
 	 */
-	private static final int HEAD_OUTFITS = 20;
+	private static final int HEAD_OUTFITS = 21;
 
-	private static final int CLOTHES_OUTFIT = 35;
+	private static final int CLOTHES_OUTFIT = 45;
 
-	private static final int HAIR_OUTFITS = 35;
+	private static final int HAIR_OUTFITS = 37;
 
 	private static final int BODY_OUTFITS = 14;
 
