@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<map version="0.99b" orientation="orthogonal" width="32" height="64" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/ground/brown_paving.png" firstgid="1" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/brown_paving.png"/>
+ </tileset>
+ <tileset name="../../tileset/building/wall/int_wall_pale.png" firstgid="3" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_pale.png"/>
+ </tileset>
+ <tileset name="../../tileset/building/wall/int_wall_purple.png" firstgid="19" tilewidth="32" tileheight="32">
+  <image source="../../tileset/building/wall/int_wall_purple.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/armor/weapons_rack.png" firstgid="39" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/weapons_rack.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/armor/armor.png" firstgid="57" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/armor.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/chair/wooden_pale.png" firstgid="61" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/chair/wooden_pale.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/light/dark_torch.png" firstgid="65" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/dark_torch.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/statue/metal_and_stone.png" firstgid="73" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/statue/metal_and_stone.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/table/long_front_on.png" firstgid="79" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/table/long_front_on.png"/>
+ </tileset>
+ <tileset name="../../tileset/ground/square_paving.png" firstgid="82" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/square_paving.png"/>
+ </tileset>
+ <tileset name="../../tileset/logic/collision.png" firstgid="83" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="../../tileset/logic/creature/human_evil.png" firstgid="84" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/human_evil.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/armor/sword_rack.png" firstgid="88" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/armor/sword_rack.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/other/stick.png" firstgid="92" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/other/stick.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/light/iron_lamp.png" firstgid="94" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/iron_lamp.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/light/flames.png" firstgid="97" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/light/flames.png"/>
+ </tileset>
+ <tileset name="../../tileset/item/furniture/statue/grey_stone.png" firstgid="99" tilewidth="32" tileheight="32">
+  <image source="../../tileset/item/furniture/statue/grey_stone.png"/>
+ </tileset>
+ <tileset name="../../tileset/ground/ground_2.png" firstgid="103" tilewidth="32" tileheight="32">
+  <image source="../../tileset/ground/ground_2.png"/>
+ </tileset>
+ <layer name="0_floor" width="32" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WywmAMBBF0diiZdh/AeI+SAwz5OO58NYnkM2Uoqdj0Pj82f0zcfzv/uj/X81v6Q/+VRmfz+fz+Xx+pv/Wzn7L2/jr+JHjz+9njs+P9Hvbza/dOr33D5/P5/P39aNbxb8BmVsgxgAgAAA=
+  </data>
+ </layer>
+ <layer name="1_terrain" width="32" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2YS0vEMBDHAz4uiosnn3iRva/i6+beeqt6VRZy0e//EXYCBkKYyabJTCZF//Cn3Wm2v6ZJJ48TY8y+og/BN+BLJTv+OXgEDyZfIxGn7kGV93wt/fPr+VaZX6Oe+VaZ30K7+N+ZsVo+lZ84NCTuX/P+bWa5W/AF4RbtfwZegPcQ1/LfwGskFvMPiP97/pSxL9Q7EQufKYdfotcEP5QU3+kDeaYwNgrzudq/VNrvP+5rWJ/I4ZfkP4zlY+Eztex/WEySn6M58znGX8n8G3/rcUwy/6Ty7zr4/ZfyjwY/VK/559TQ63/p+f/S5K3/pSQ1/+VQ7/wfImYb8aXVC790/OHia2kOfKvMl1QvfM78H99rSFzjrn9qr6PF/kdqr0Ni/wPjU3MdTJ6/At+Dn8FP4BekrC/zAL77PX+MypbyuVTK58r/mvUfKviubV27+7Z1R6wPfIK/kHOvUj5H/tm11kvxuVTD3wTxDVI2jFPHOdffKa439h6ounPwa8XJT42j2PVS/rWZNmamfDWRf2zyx8pcH03gbwGT+tM9ACAAAA==
+  </data>
+ </layer>
+ <layer name="2_object" width="32" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
+  </data>
+ </layer>
+ <layer name="3_roof" width="32" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2WXQrCMAzHdxsdfuwQ0icvoCDzQe9/BlPQl5LUfq7L+v9BaGhDS5YsyTCsgyvJJdKew0Tag3zmxu8/G79fC3zX9rwC93JJqU+h+WES7/8H8qMcMb0PhIO+rwPECXAs1X9r1V/kNUilp/m/5n9Sa/5tyVK58Rb2MPuXBfO/TE91sFdK1mf3LuM5A+tgRzKSnElOJJPH5kCy/+pHwVYbW6j/OT7Y2Nq4/2JrVy6uN5I7o+dSoi5ory0PQedspFU7rh+cX1v13cXXR7lzoI8PWu47iAAgAAA=
+  </data>
+ </layer>
+ <layer name="4_roof_add" width="32" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3WMQ6AIAwFUK6leBm9/yFYSQM6qCHoe0tJ+EMhHZoS3HOMbuCj/Ctn9tENAADwKPsdPWaDvzDrAPCeXJ2Xi8waai8/m/iOrZHJ4a6VgRkU+RCE0AAgAAA=
+  </data>
+ </layer>
+ <layer name="objects" width="32" height="64" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3YwQkAIQwEQIs8r/9S7n/gSyFrmKlgBdkYx4AsszrAhrc6QKCnOgDQgi4B/ry7OMWM4QbuKWRL/cvSHcCKfuAWHXf/jmcizwfYP1IqACAAAA==
+  </data>
+ </layer>
+ <layer name="collision" width="32" height="64" visible="0" opacity="0.36">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO2WSw7AIAhEuaP3v0t3XTSoCIOgZRJi4icPKGIbEbWy16Tq7dXMr3DRKr6dbzl/Q/xe/B1+ZY6fOmtIfzW9T8tYXUPzEX0/G19SH+i3z4OvVXa+Z+4lfKkPf+dX/fvpZL4kvwi+V/1V/yn+qXxUX/C+A1L+6toOZef36gtdG1HKwo/yIUv8mflRvWmHsvCRPnDv32gNzdbYbXyEv5q9Wj5Klvgj+Ug26vvP/j24PZH5t8SPkoU/6pPf+dF4avxEfD1xZ7gRwbcKyZ/lYnY/V/hoO4X/AKIQH/AAIAAA
+  </data>
+ </layer>
+ <layer name="protection" width="32" height="64">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ43oAAAAAAAAACAdwOUmfTYACAAAA==
+  </data>
+ </layer>
+</map>
