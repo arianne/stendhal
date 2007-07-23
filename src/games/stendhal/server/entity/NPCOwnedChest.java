@@ -6,7 +6,7 @@ import games.stendhal.server.entity.player.Player;
 /**
  * A chest that is for decoration purpose only. The player cannot open it. If he
  * tries, the nearby NPC will tell him to get away.
- * 
+ *
  * @author hendrik
  */
 public class NPCOwnedChest extends Chest {
@@ -15,7 +15,7 @@ public class NPCOwnedChest extends Chest {
 
 	/**
 	 * Creates a new NPCOwnedChest
-	 * 
+	 *
 	 * @param npc
 	 *            SpeakerNPC
 	 */
@@ -24,11 +24,13 @@ public class NPCOwnedChest extends Chest {
 	}
 
 	@Override
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		Player player = (Player) user;
 
 		if (player.nextTo(this)) {
 			npc.say("Hey " + user.getName() + ", that is my chest.");
+			return true;
 		}
+		return false;
 	}
 }

@@ -65,7 +65,7 @@ public class Scroll extends StackableItem implements UseListener {
 		return (getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass()));
 	}
 
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		RPObject base = this;
 
 		// Find the top container
@@ -78,8 +78,10 @@ public class Scroll extends StackableItem implements UseListener {
 				this.removeOne();
 				user.notifyWorldAboutChanges();
 			}
+			return true;
 		} else {
 			logger.debug("Scroll is too far away");
+			return false;
 		}
 	}
 

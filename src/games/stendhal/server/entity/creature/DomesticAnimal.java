@@ -147,4 +147,16 @@ public abstract class DomesticAnimal extends Creature {
 		corpse.add(food);
 	}
 
+	@Override
+	protected void handleObjectCollision() {
+		stop();
+		clearPath();
+	}
+
+	@Override
+	protected void handleSimpleCollission(int nx, int ny) {
+		stop();
+		clearPath();
+	}
+
 }

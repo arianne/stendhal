@@ -3,7 +3,7 @@ package games.stendhal.server.events;
 import games.stendhal.server.entity.RPEntity;
 
 /**
- * Implementing classes will be called back when a player uses them. 
+ * Implementing classes will be called back when a player uses them.
  */
 public interface UseListener {
 
@@ -12,5 +12,5 @@ public interface UseListener {
 	 *
 	 * @param user the RPEntity who uses the object
 	 */
-	public void onUsed(RPEntity user);
+	public boolean onUsed(RPEntity user);
 }

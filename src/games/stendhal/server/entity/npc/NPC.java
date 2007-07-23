@@ -15,6 +15,7 @@ package games.stendhal.server.entity.npc;
 import games.stendhal.common.Rand;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.pathfinder.FixedPath;
 import games.stendhal.server.pathfinder.Node;
 import games.stendhal.server.pathfinder.Path;
@@ -218,5 +219,29 @@ public abstract class NPC extends RPEntity {
 	@Override
 	public boolean isAttackable() {
 		return false;
+	}
+
+	@Override
+	protected void dropItemsOn(Corpse corpse) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void logic() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void handleObjectCollision() {
+		// TODO Auto-generated method stub
+		super.handleObjectCollision();
+	}
+
+	@Override
+	protected void handleSimpleCollission(int nx, int ny) {
+		// TODO Auto-generated method stub
+		super.handleSimpleCollission(nx, ny);
 	}
 }

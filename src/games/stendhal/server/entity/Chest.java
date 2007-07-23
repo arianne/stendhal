@@ -104,7 +104,7 @@ public class Chest extends Entity implements UseListener {
 
 	/**
 	 * Determine if the chest is open.
-	 * 
+	 *
 	 * @return <code>true</code> if the chest is open.
 	 */
 	public boolean isOpen() {
@@ -130,7 +130,7 @@ public class Chest extends Entity implements UseListener {
 	// UseListener
 	//
 
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		if (user.nextTo(this)) {
 			if (isOpen()) {
 				close();
@@ -139,7 +139,9 @@ public class Chest extends Entity implements UseListener {
 			}
 
 			notifyWorldAboutChanges();
+			return true;
 		}
+		return false;
 	}
 
 	//

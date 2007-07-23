@@ -18,13 +18,13 @@ import marauroa.common.game.RPObject;
 /**
  * A well source is a spot where a player can make a wish to gain an item. He
  * needs time and luck.
- * 
+ *
  * Wishing takes 10 seconds; during this time, the player keep standing next to
  * the well source. At every well are two sources next to each other, so the
  * player can actually make 2 wishes at once.
- * 
+ *
  * @author kymara (based on FishSource by daniel)
- * 
+ *
  */
 public class WellSource extends Entity implements UseListener {
 	private class Wisher implements TurnListener {
@@ -52,7 +52,7 @@ public class WellSource extends Entity implements UseListener {
 		/**
 		 * This method is called when the turn number is reached. NOTE: The
 		 * <em>message</em> parameter is deprecated.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            The current turn number.
 		 * @param message
@@ -134,10 +134,10 @@ public class WellSource extends Entity implements UseListener {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to check against.
-	 * 
+	 *
 	 * @return <code>false</code>.
 	 */
 	@Override
@@ -147,7 +147,7 @@ public class WellSource extends Entity implements UseListener {
 
 	/**
 	 * Decides randomly if a wishing action should be successful.
-	 * 
+	 *
 	 * @return true iff the wishing player should get a prize.
 	 */
 	private boolean isSuccessful(Player player) {
@@ -159,7 +159,7 @@ public class WellSource extends Entity implements UseListener {
 	/**
 	 * Is called when a player has started wishing.
 	 */
-	public void onUsed(RPEntity entity) {
+	public boolean onUsed(RPEntity entity) {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 			if (player.nextTo(this)) {
@@ -184,5 +184,6 @@ public class WellSource extends Entity implements UseListener {
 				}
 			}
 		}
+		return false;
 	}
 }

@@ -19,7 +19,7 @@ import marauroa.common.game.RPSlot;
  * contents depending on the player who is currently using it. Thus, a player
  * can put in items into this chest and be sure that nobody else will be able to
  * take them out.
- * 
+ *
  * Caution: each PersonalChest must be placed in such a way that only one player
  * can stand next to it at a time, to prevent other players from stealing while
  * the owner is looking at his items. TODO: fix this.
@@ -47,7 +47,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Create a personal chest using a specific bank slot.
-	 * 
+	 *
 	 * @param bankName
 	 *            The name of the bank slot.
 	 */
@@ -58,8 +58,8 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Copies an item
-	 * 
-	 * 
+	 *
+	 *
 	 * @param item
 	 *            item to copy
 	 * @return copy
@@ -82,7 +82,7 @@ public class PersonalChest extends Chest {
 
 	/**
 	 * Get the slot that holds items for this chest.
-	 * 
+	 *
 	 * @return A per-player/per-bank slot.
 	 */
 	protected RPSlot getBankSlot() {
@@ -93,7 +93,7 @@ public class PersonalChest extends Chest {
 	}
 
 	@Override
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		Player player = (Player) user;
 
 		zone = player.getZone();
@@ -101,13 +101,14 @@ public class PersonalChest extends Chest {
 		if (player.nextTo(this)) {
 			if (isOpen()) {
 				close();
+				return true;
 			} else {
 				TurnListener turnListener = new TurnListener() {
 
 					/**
 					 * This method is called when the turn number is reached.
 					 * NOTE: The <em>message</em> parameter is deprecated.
-					 * 
+					 *
 					 * @param currentTurn
 					 *            The current turn number.
 					 * @param message
@@ -178,6 +179,8 @@ public class PersonalChest extends Chest {
 				open();
 			}
 			notifyWorldAboutChanges();
+			return true;
 		}
+		return false;
 	}
 }

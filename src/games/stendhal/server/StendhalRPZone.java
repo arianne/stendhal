@@ -902,9 +902,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return false;
 	}
 
-	private boolean collidesObjects(Entity entity, Rectangle2D area) {
+	public boolean collidesObjects(Entity entity, Rectangle2D area) {
 		// For every other object in this zone, check whether it's in the
 		// way.
+		return getCollidingObject(entity, area)!=null;
+	}
+
+	private Entity getCollidingObject(Entity entity, Rectangle2D area) {
 		Rectangle2D otherArea = new Rectangle.Double();
 		for (RPObject other : objects.values()) {
 			Entity otherEntity = (Entity) other;
@@ -914,11 +918,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 				// Check if it's in the way.
 				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
 				if (area.intersects(otherArea) && !entity.getID().equals(otherEntity.getID())) {
-					return true;
+					return otherEntity;
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 
 	/**

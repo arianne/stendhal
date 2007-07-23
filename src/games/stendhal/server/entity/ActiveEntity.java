@@ -12,6 +12,7 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
 
 import java.awt.geom.Rectangle2D;
@@ -92,35 +93,27 @@ public abstract class ActiveEntity extends Entity {
 
 
 		StendhalRPZone zone = getZone();
-		boolean collision = zone.collides(this, nx, ny);
-
-		if (collision) {
-			// TODO: Break the Player dependency
-			// For now isZoneChangeAllowed() should return false
-			// with non-Player entity's.
-			if (isZoneChangeAllowed()) {
-				if (zone.leavesZone(this, nx, ny)) {
-					logger.debug("Leaving zone from (" + x + "," + y + ") to ("
-							+ nx + "," + ny + ")");
-					StendhalRPAction.decideChangeZone(this, nx, ny);
-					stop();
-					notifyWorldAboutChanges();
-					return;
-				}
-
-				// TODO: If Player becomes 1x1, remove "+ 1"
-				Portal portal = zone.getPortal(nx, ny + 1);
-
-				if (portal != null) {
-					logger.debug("Using portal " + portal);
-					// TODO: Generalize parameter type
-					portal.onUsed((RPEntity) this);
-					return;
-				}
-			}
+		if (zone.simpleCollides(this, nx, ny)){
+			handleSimpleCollission(nx,ny);
+			return;
+		}
+		Portal p = zone.getPortal(nx, ny+1);
+		if (  p  != null){
+		 if (handlePortal(p)) {
+			 return;
+		 }
 		}
 
-		if (!collision || isGhost()) {
+
+		if (isGhost()){
+			if (isMoveCompleted()){
+			move(x, y, nx, ny);
+			return;
+			}
+		}
+		boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
+
+		if (!collision ) {
 			if (!isMoveCompleted()) {
 				logger.debug(get("type") + ") move not completed");
 				return;
@@ -131,17 +124,66 @@ public abstract class ActiveEntity extends Entity {
 						+ "," + ny + ")");
 			}
 
-			set(nx, ny);
-			onMoved(x, y, nx, ny);
+			move(x, y, nx, ny);
 		} else {
 			/* Collision */
 			if (logger.isDebugEnabled()) {
 				logger.debug("Collision at (" + nx + "," + ny + ")");
 			}
-
-			setCollides(true);
+			handleObjectCollision();
 		}
 
+		notifyWorldAboutChanges();
+	}
+
+	protected void handleObjectCollision() {
+
+
+		setCollides(true);
+	}
+
+	private void move(int x, int y, int nx, int ny) {
+		set(nx, ny);
+		onMoved(x, y, nx, ny);
+	}
+
+
+	private boolean handlePortal(Portal portal) {
+		if (!(portal instanceof OneWayPortalDestination))
+		if(isZoneChangeAllowed()){
+			logger.debug("Using portal " + portal);
+			// TODO: Generalize parameter type
+		 return portal.onUsed((RPEntity) this);
+		}
+		return false;
+	}
+
+	/**
+	 * a simplecollission is from tiled collission layer
+	 * or the edge of the map.
+	 * @param ny
+	 * @param nx
+	 *
+	 */
+	protected void handleSimpleCollission(int nx, int ny) {
+		if (isZoneChangeAllowed()){
+			if (getZone().leavesZone(this, nx, ny)) {
+				handleLeaveZone(nx, ny);
+				return;
+			}
+		}
+ if (isGhost()){
+	 move(getX(), getY(), nx, ny);
+ }else{
+		setCollides(true);
+ }
+}
+
+	protected void handleLeaveZone(int nx, int ny) {
+		logger.debug("Leaving zone from (" + getX() + "," + getY() + ") to ("
+				+ nx + "," + ny + ")");
+		StendhalRPAction.decideChangeZone(this, nx, ny);
+		stop();
 		notifyWorldAboutChanges();
 	}
 

@@ -31,11 +31,11 @@ import marauroa.common.game.Definition.Type;
  * a fruit or another non-moving thing grows. This growing thing is a
  * pickable Item (e.g. a mushroom, an apple); by extending this class,
  * it can also grow something special (e.g. SheepFood).
- * 
+ *
  * PassiveEntityRespawnPoint are currently invisible (fully transparent)
  * on the client side. Extend GrowingPassiveEntityRespawnPoint and implement
- * UseListener if grown item should not be dragable without special interaction. 
- * 
+ * UseListener if grown item should not be dragable without special interaction.
+ *
  * @author Daniel Herding
  *
  */
@@ -43,7 +43,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	private static Logger logger = Log4J.getLogger(PassiveEntityRespawnPoint.class);
 
 	/**
-	 * Is there still a fruit that has not yet been picked up? 
+	 * Is there still a fruit that has not yet been picked up?
 	 */
 	private boolean hasPickableFruit;
 
@@ -89,13 +89,13 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		grower.addAttribute("class", Type.STRING);
 	}
 
-	
+
 
 	/**
 	 * Is called when a fruit has been picked from this plant grower.
-	 * 
+	 *
 	 * @param picked The fruit that has been picked. Use null for subclasses
-	 *               of PlantGrower that don't use items as fruits. 
+	 *               of PlantGrower that don't use items as fruits.
 	 */
 	public void onFruitPicked(Item picked) {
 		hasPickableFruit = false;
@@ -114,7 +114,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 	 */
 	protected void growNewFruit() {
 		if (!hasPickableFruit) {
-			logger.info("Growing " + growingItemName);
+			logger.debug("Growing " + growingItemName);
 
 			StendhalRPWorld world = StendhalRPWorld.get();
 			StendhalRPZone zone = world.getZone(getID().getZoneID());

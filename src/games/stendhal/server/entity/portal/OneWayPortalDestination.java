@@ -41,7 +41,7 @@ public class OneWayPortalDestination extends Portal {
 	}
 
 	@Override
-	public void onUsed(RPEntity user) {
-		// Does nothing
+	public boolean onUsed(RPEntity user) {
+		return false;
 	}
 }

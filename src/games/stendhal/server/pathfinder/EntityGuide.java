@@ -3,6 +3,7 @@ package games.stendhal.server.pathfinder;
 import games.stendhal.server.entity.GuidedEntity;
 
 
+
 /**
  * the guide dog of an Entity.
  * this class takes the goals where an Entity shall move to via a path.
@@ -17,11 +18,11 @@ import games.stendhal.server.entity.GuidedEntity;
 public class EntityGuide {
 
 	private GuidedEntity blindman;
-	
+
 	public void guideMe(GuidedEntity ge){
 		blindman =ge;
 	}
-	
+
 	/**
 	 * The path.
 	 */

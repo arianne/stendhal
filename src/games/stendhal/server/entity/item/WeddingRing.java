@@ -29,9 +29,9 @@ import marauroa.common.game.RPObject;
  * A special ring that allows the owner to teleport to his or her spouse.
  * The spouse's name is engraved into the ring. Technically, the name is
  * stored in the item's infostring.
- * 
+ *
  * Wedding rings should always be bound to the owner.
- * 
+ *
  * @author daniel
  */
 public class WeddingRing extends Ring {
@@ -60,7 +60,7 @@ public class WeddingRing extends Ring {
 	}
 
 	@Override
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		RPObject base = this;
 		// Find the top container
 		while (base.isContained()) {
@@ -69,13 +69,15 @@ public class WeddingRing extends Ring {
 
 		if (user instanceof Player && user.nextTo((Entity) base)) {
 			teleportToSpouse((Player) user);
+			return true;
 		}
+		return false;
 	}
 
 	/**
 	 * Teleports the given player to his/her spouse, but only if the spouse
 	 * is also wearing the wedding ring.
-	 * 
+	 *
 	 * @param player The ring's owner.
 	 */
 	private void teleportToSpouse(Player player) {

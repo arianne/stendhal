@@ -377,10 +377,7 @@ public class Sheep extends DomesticAnimal {
 		// TODO: Move to upper level logic()?, as it really seems to
 		// apply to all RPEntity's.
 			applyMovement();
-if (collides()){
-	stop();
-	clearPath();
-}
+
 		notifyWorldAboutChanges();
 
 	}

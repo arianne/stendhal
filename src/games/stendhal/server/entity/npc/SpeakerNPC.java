@@ -311,7 +311,7 @@ public class SpeakerNPC extends NPC {
 			if(getAttending() != null) {
 				setAttending(null);
 			}
-
+			if (hasPath()) setSpeed(BASE_SPEED);
 			applyMovement();
 		} else if (attending != null) {
 			// If the player is too far away
@@ -632,6 +632,16 @@ public class SpeakerNPC extends NPC {
 
 	public Engine getEngine() {
 		return engine;
+	}
+
+	@Override
+	protected void handleObjectCollision() {
+		stop();
+	}
+
+	@Override
+	protected void handleSimpleCollission(int nx, int ny) {
+		stop();
 	}
 
 

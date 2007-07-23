@@ -52,7 +52,7 @@ public class Box extends Item implements UseListener {
 		super(item);
 	}
 
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		// TODO: clean up duplicated code with other Item subclasses.
 		if (this.isContained()) {
 			// We modify the base container if the object change.
@@ -64,12 +64,12 @@ public class Box extends Item implements UseListener {
 
 			if (!user.nextTo((Entity) base)) {
 				logger.debug("Consumable item is too far");
-				return;
+				return false;
 			}
 		} else {
 			if (!user.nextTo(this)) {
 				logger.debug("Consumable item is too far");
-				return;
+				return false;
 			}
 		}
 
@@ -77,10 +77,13 @@ public class Box extends Item implements UseListener {
 		String name = getName();
 		if (name.equals("present")) {
 			usePresent(player);
+			return true;
 		} else if (name.equals("basket")) {
 			useBasket(player);
+			return true;
 		} else {
 			player.sendPrivateText("What a strange box! You don't know how to open it.");
+			return false;
 		}
 	}
 
@@ -104,7 +107,7 @@ public class Box extends Item implements UseListener {
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(itemName);
 		if (itemName == "easter_egg") {
 			item.put("bound", player.getName());
-			// item.put("infostring", Bunny); 
+			// item.put("infostring", Bunny);
 			// it'd be nice to store the fact that these came from Bunny?
 		}
 		player.sendPrivateText("Congratulations, you've got " + Grammar.a_noun(itemName));

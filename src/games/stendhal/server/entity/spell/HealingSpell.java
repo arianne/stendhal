@@ -61,7 +61,7 @@ public class HealingSpell extends Spell implements UseListener {
 	// UseListener
 	//
 
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		Player player = (Player) user;
 
 		if (player.getMana() >= 25) {
@@ -80,8 +80,10 @@ public class HealingSpell extends Spell implements UseListener {
 			// saves changes (last because the stats are refreshed by default on zone change)
 			player.update();
 			player.notifyWorldAboutChanges();
+			return true;
 		} else {
 			player.sendPrivateText("You do not have enough mana to cast this spell.");
 		}
+		return false;
 	}
 }

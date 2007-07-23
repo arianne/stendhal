@@ -23,7 +23,7 @@ import marauroa.common.game.RPObject;
  * A grain field can be harvested by players who have a scythe.
  * After that, it will slowly regrow; there are several regrowing
  * steps in which the graphics will change to show the progress.
- * 
+ *
  * @author daniel
  */
 public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseListener {
@@ -60,20 +60,24 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 	/**
 	 * Is called when a player tries to harvest this grain field.
 	 */
-	public void onUsed(RPEntity entity) {
+	public boolean onUsed(RPEntity entity) {
 		if (entity.nextTo(this)) {
 			if (getRipeness() == RIPE) {
 				if (entity.isEquipped("old_scythe") || entity.isEquipped("scythe")) {
 					onFruitPicked(null);
 					Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("grain");
 					entity.equip(grain, true);
+					return true;
 				} else if (entity instanceof Player) {
 					((Player) entity).sendPrivateText("You need a scythe to harvest grain fields.");
+					return false;
 				}
 			} else if (entity instanceof Player) {
 				((Player) entity).sendPrivateText("This grain is not yet ripe enough to harvest.");
+				return false;
 			}
 		}
+		return false;
 	}
 
 }

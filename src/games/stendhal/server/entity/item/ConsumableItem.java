@@ -91,7 +91,7 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 	 * if so splits one single item of and calls consumeItem of the player
 	 *
 	 **/
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		Player player = (Player) user;
 		if (isContained()) {
 			// We modify the base container if the object change.
@@ -103,16 +103,17 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 
 			if (!user.nextTo((Entity) base)) {
 				user.sendPrivateText("Consumable item is too far");
-				return;
+				return false;
 			}
 		} else {
 			if (!nextTo(user)) {
 				user.sendPrivateText("Consumable item is too far");
-				return;
+				return false;
 			}
 		}
 		player.consumeItem((ConsumableItem) splitOff(1));
 		player.notifyWorldAboutChanges();
+		return true;
 	}
 
 	/*

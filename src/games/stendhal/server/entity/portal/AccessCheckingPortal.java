@@ -90,12 +90,13 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * Use the portal, if allowed.
 	 */
 	@Override
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		if (isAllowed(user)) {
-			super.onUsed(user);
+			return super.onUsed(user);
 		} else {
 			user.stop();
 			rejected(user);
+			return false;
 		}
 	}
 

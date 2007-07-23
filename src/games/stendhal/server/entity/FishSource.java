@@ -15,15 +15,15 @@ import marauroa.common.game.RPClass;
 /**
  * A fish source is a spot where a player can fish. He needs a fishing rod, time
  * and luck. Before he catches fish he needs to make a license.
- * 
+ *
  * Fishing takes 8 seconds; during this time, the player keep standing next to
  * the fish source. In fact, the player only has to be there when the
  * prospecting action has finished. Therefore, make sure that two fish sources
  * are always at least 8 sec of walking away from each other, so that the player
  * can't fish at several sites simultaneously.
- * 
+ *
  * @author dine
- * 
+ *
  */
 public class FishSource extends Entity implements UseListener {
 	private static final String NEEDED_EQUIPMENT = "fishing_rod";
@@ -54,7 +54,7 @@ public class FishSource extends Entity implements UseListener {
 		/**
 		 * This method is called when the turn number is reached. NOTE: The
 		 * <em>message</em> parameter is deprecated.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            The current turn number.
 		 * @param message
@@ -87,7 +87,7 @@ public class FishSource extends Entity implements UseListener {
 	 * Calculates the probability that the given player catches a fish. This is
 	 * based on the player's fishing skills, however even players with no skills
 	 * at all have a 5 % probability of success.
-	 * 
+	 *
 	 * @param player
 	 * @return
 	 */
@@ -118,7 +118,7 @@ public class FishSource extends Entity implements UseListener {
 
 	/**
 	 * Decides randomly if a prospecting action should be successful.
-	 * 
+	 *
 	 * @return true iff the prospecting player should get a fish.
 	 */
 	private boolean isSuccessful(Player player) {
@@ -133,7 +133,7 @@ public class FishSource extends Entity implements UseListener {
 	/**
 	 * Is called when a player has started fishing.
 	 */
-	public void onUsed(RPEntity entity) {
+	public boolean onUsed(RPEntity entity) {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 			if (player.nextTo(this)) {
@@ -157,6 +157,7 @@ public class FishSource extends Entity implements UseListener {
 				}
 			}
 		}
+		return false;
 	}
 
 	/**

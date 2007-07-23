@@ -37,7 +37,7 @@ public class Fire extends Entity implements UseListener {
 
 	/**
 	 * Get the entity height.
-	 * 
+	 *
 	 * @return The height.
 	 */
 	public int getHeight() {
@@ -46,7 +46,7 @@ public class Fire extends Entity implements UseListener {
 
 	/**
 	 * Get the entity width.
-	 * 
+	 *
 	 * @return The width.
 	 */
 	public int getWidth() {
@@ -67,7 +67,8 @@ public class Fire extends Entity implements UseListener {
 	// UseListener
 	//
 
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		user.sendPrivateText("No good idea!");
+		return true;
 	}
 }

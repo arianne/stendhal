@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * This is a common ring.
  * Other rings can extend this one and implement onUsed.
- * 
+ *
  * @author miguel
  */
 public class Ring extends Item implements UseListener {
@@ -44,8 +44,9 @@ public class Ring extends Item implements UseListener {
 	public Ring(Ring item) {
 		super(item);
 	}
-	
-	public void onUsed(RPEntity user) {
+
+	public boolean onUsed(RPEntity user) {
+		return false;
 	}
 
 

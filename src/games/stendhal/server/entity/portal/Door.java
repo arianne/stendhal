@@ -75,7 +75,7 @@ public abstract class Door extends Portal implements TurnListener {
 	}
 
 	/**
-	 * Opens the door. 
+	 * Opens the door.
 	 */
 	public void open() {
 		open = true;
@@ -84,7 +84,7 @@ public abstract class Door extends Portal implements TurnListener {
 	}
 
 	/**
-	 * Closes the door. 
+	 * Closes the door.
 	 */
 	protected void close() {
 		this.open = false;
@@ -115,7 +115,7 @@ public abstract class Door extends Portal implements TurnListener {
 	 * teleport (if the door is now open)
 	 */
 	@Override
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		if (mayBeOpened((Player) user)) {
 			TurnNotifier turnNotifier = TurnNotifier.get();
 			if (isOpen()) {
@@ -131,16 +131,17 @@ public abstract class Door extends Portal implements TurnListener {
 			turnNotifier.notifyInTurns(TURNS_TO_STAY_OPEN, this);
 
 			// use it
-			super.onUsed(user);
+			return super.onUsed(user);
 
 		} else { // player may not use it
 			if (isOpen()) {
 				// close now to make visible that the entity is not allowed
 				// to pass
 				close();
-				return;
+				return false;
 			}
 		}
+		return false;
 	}
 
 	@Override

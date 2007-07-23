@@ -43,7 +43,8 @@ public class MapScroll extends Scroll {
 	}
 
 	@Override
-	public void onUsed(RPEntity user) {
+	public boolean onUsed(RPEntity user) {
 		// maps are scrolls without any special actions
+		return true;
 	}
 }

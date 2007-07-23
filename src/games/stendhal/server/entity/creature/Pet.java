@@ -229,9 +229,7 @@ public abstract class Pet extends DomesticAnimal {
 			moveToOwner();
 		}
 
-		if (!stopped()) {
-			this.applyMovement();
-		}
+		this.applyMovement();
 
 		if (getHP() < getBaseHP()) {
 			healSelf(incHP, 100);

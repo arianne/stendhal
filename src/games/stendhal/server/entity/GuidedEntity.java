@@ -86,7 +86,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 		}
 	}
 
-	
+
 	public final void setTempPath(final FixedPath path){
 		if ((path != null) && !path.isFinished()) {
 			setSpeed(getBaseSpeed());
@@ -96,9 +96,9 @@ public abstract class GuidedEntity extends ActiveEntity {
 		} else {
 			guide.clearPath();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Clear the entity's path.
 	 */
@@ -166,6 +166,12 @@ public abstract class GuidedEntity extends ActiveEntity {
 public 	EntityGuide getGuide() {
 		return guide;
 	}
+
+@Override
+protected void handleObjectCollision() {
+	stop();
+	clearPath();
+}
 
 
 

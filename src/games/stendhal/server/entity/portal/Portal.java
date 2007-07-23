@@ -153,8 +153,8 @@ public class Portal extends Entity implements UseListener {
 		return true;
 	}
 
-	public void onUsed(RPEntity user) {
-		usePortal((Player) user);
+	public boolean onUsed(RPEntity user) {
+		return usePortal((Player) user);
 	}
 
 	public void onUsedBackwards(RPEntity user) {

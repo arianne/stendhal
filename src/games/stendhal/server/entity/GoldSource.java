@@ -16,15 +16,15 @@ import marauroa.common.game.RPObject;
 /**
  * A gold source is a spot where a player can prospect for gold nuggets. He
  * needs a gold pan, time and luck.
- * 
+ *
  * Prospecting takes 10 seconds; during this time, the player keep standing next
  * to the gold source. In fact, the player only has to be there when the
  * prospecting action has finished. Therefore, make sure that two gold sources
  * are always at least 5 sec of walking away from each other, so that the player
  * can't prospect for gold at several sites simultaneously.
- * 
+ *
  * @author daniel
- * 
+ *
  */
 public class GoldSource extends Entity implements UseListener {
 	private static final String NEEDED_EQUIPMENT = "gold_pan";
@@ -54,7 +54,7 @@ public class GoldSource extends Entity implements UseListener {
 		/**
 		 * This method is called when the turn number is reached. NOTE: The
 		 * <em>message</em> parameter is deprecated.
-		 * 
+		 *
 		 * @param currentTurn
 		 *            The current turn number.
 		 * @param message
@@ -108,10 +108,10 @@ public class GoldSource extends Entity implements UseListener {
 
 	/**
 	 * Determine if this is an obstacle for another entity.
-	 * 
+	 *
 	 * @param entity
 	 *            The entity to check against.
-	 * 
+	 *
 	 * @return <code>false</code>.
 	 */
 	@Override
@@ -121,7 +121,7 @@ public class GoldSource extends Entity implements UseListener {
 
 	/**
 	 * Decides randomly if a prospecting action should be successful.
-	 * 
+	 *
 	 * @return true iff the prospecting player should get a nugget.
 	 */
 	private boolean isSuccessful(Player player) {
@@ -137,7 +137,7 @@ public class GoldSource extends Entity implements UseListener {
 	/**
 	 * Is called when a player has started prospecting for gold.
 	 */
-	public void onUsed(RPEntity entity) {
+	public boolean onUsed(RPEntity entity) {
 		if (entity instanceof Player) {
 			Player player = (Player) entity;
 			if (player.nextTo(this)) {
@@ -161,6 +161,7 @@ public class GoldSource extends Entity implements UseListener {
 				}
 			}
 		}
+		return false;
 	}
 
 	/**

@@ -89,7 +89,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				}
 			});
 			//     0
-			//   1 2 3 
+			//   1 2 3
 			// 4 5 6 7 8
 
 			// get the position of the topmost token
@@ -148,7 +148,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 * Teleports the player out
 	 */
 	protected class FinishNotifier implements TurnListener {
-		private boolean reset; 
+		private boolean reset;
 		private Player player;
 		public FinishNotifier(boolean reset, Player player) {
 			this.player = player;
@@ -211,9 +211,11 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		}
 
 		@Override
-		public void onUsed(RPEntity user) {
-			super.onUsed(user);
+		public boolean onUsed(RPEntity user) {
+			boolean success;
+			success= super.onUsed(user);
 			start((Player) user);
+			return success;
 		}
 
 		@Override
@@ -222,7 +224,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			finish(true, (Player) user);
 		}
 	}
-	
+
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
@@ -315,12 +317,12 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		npc.set(20, 7);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
-		zone.add(npc); 
+		zone.add(npc);
 	}
-	
+
 	private void step1CreateDoors() {
 		// 0_semos_mountain_n2 at (95,101)
-		String entranceZoneName = "0_semos_mountain_n2"; 
+		String entranceZoneName = "0_semos_mountain_n2";
 		entranceZone = StendhalRPWorld.get().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor");
 		entranceZone.assignRPObjectID(door);
@@ -344,7 +346,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		sign.setX(96);
 		sign.setY(102);
 		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
-		entranceZone.add(sign);		
+		entranceZone.add(sign);
 	}
 
 	public void onLoggedIn(Player player) {
@@ -414,11 +416,11 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			door.open();
 		}
 	}
-	
+
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
-		
+
 		LoginNotifier.get().addListener(this);
 
 		step_1();
