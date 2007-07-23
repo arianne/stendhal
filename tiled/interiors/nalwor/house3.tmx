@@ -72,16 +72,16 @@
  <tileset name="../../tileset/logic/creature/elf.png" firstgid="162" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="171" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/vegetable.png" firstgid="177" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/vegetable.png" firstgid="178" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <tileset name="../../tileset/logic/item/resources.png" firstgid="188" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/item/resources.png" firstgid="189" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/resources.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="190" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="191" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="20" height="20">
@@ -111,12 +111,12 @@
  </layer>
  <layer name="objects" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGP5g40A7gIpgORCvGGhHjAKagkVQPApoA/bgkVtJN1cgwFIamLmOBmZiAwDOQ40aQAYAAA==
+   H4sIAAAAAAAAAGNgGP5g00A7gIpgORCvGGhHjAKagkVQPApoA/bikVtJN1cgwFIamLmeBmZiAwC7Nq2GQAYAAA==
   </data>
  </layer>
  <layer name="collision" width="20" height="20" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAANvHwMCwbwhhQmAfGnsfGptYc4ixhxz3kWIWtc2jBFDbTGLMI8U+WvuXUkCP9DcYzKKXefRIf5SYR0gtue4jpZykZTkMwwDoJIm7QAYAAA==
+   H4sIAAAAAAAAANvPwMCwfwhhQmA/Gns/GptYc4ixhxz3kWIWtc2jBFDbTGLMI8U+WvuXUkCP9DcYzKKXefRIf5SYR0gtue4jpZykZTkMwwAnCCBPQAYAAA==
   </data>
  </layer>
  <layer name="protection" width="20" height="20">

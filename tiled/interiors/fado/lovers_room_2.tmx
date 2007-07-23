@@ -105,13 +105,13 @@
  <tileset name="../../tileset/plant/indoor/flowering_plant.png" firstgid="512" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flowering_plant.png"/>
  </tileset>
- <tileset name="../../tileset/plant/vine.png" firstgid="513" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/plant/vine.png" firstgid="514" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/vine.png" trans="ff00ff"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="514" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="515" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="vegetable.png" firstgid="515" tilewidth="32" tileheight="32">
+ <tileset name="vegetable.png" firstgid="516" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
  <layer name="0_floor" width="25" height="25">
@@ -131,7 +131,7 @@
  </layer>
  <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWkAEYm2tuxmRG/fDQjdkxNMGrH8APUTrv3geH4AIgfIoUnobRLCLwA6n8JxK9oEEfo7qWFXY+AZj0G4icjNI2NgsEF9lAxHWIrP0Dm72Wknj3Yyo+9jKj0KEAFALSY+uHECQAA
+   H4sIAAAAAAAAAGNgGAWkACYm2tuxmRG/fDQjdkxNMGrH8APUTrv3geH4AIgfIoUnobRLCLwA6n8JxK9oEEfo7qWFXY+AZj0G4icjNI2NgsEF9lAxHWIrP0Dm72Wknj3Yyo+9jKj0KEAFACmKk1nECQAA
   </data>
  </layer>
  <layer name="4_roof_add" width="25" height="25">
@@ -141,12 +141,12 @@
  </layer>
  <layer name="objects" width="25" height="25" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAUDDZiZBtoFlIGh7v5RMApGwSgYBQMDeGlcf8DMp7U9AwUAaMDWqcQJAAA=
+   H4sIAAAAAAAAAGNgGAUDDViYBtoFlIGh7v5RMApGwSgYBQMD+Ghcf8DMp7U9AwUAWzcTbsQJAAA=
   </data>
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2USw7AIAhEDfc/dFcmhAwIdmDTkpBW+TynakXWkgHftt/t3E2tfuo8ZFnGqd7rd2O61tP7hpHRzNDhsVg6Ii2TjA77CsPGsuvp2JPTHWB+q+isotxoHPVEsa49/xlcRuX/jPpkGdV1TzMsC+UyGN6dtLGKRzq6/QHPTlEIxAkAAA==
+   H4sIAAAAAAAAAO2USw7AIAhETb3/nbsyIQRGsAMbS0Ja5fOcqp3PGLPBl613PXdSK58yz7IoY1fv9TsxWevp/cKIaGbo8FgsHUhLJ6PCbmHoWHQ9FXuyuwPMb4XOqpWLxqinFava85/BZWT+z1afKCO77m6GZlm5DIZ3J3Us40hHtb/AfrT/xAkAAA==
   </data>
  </layer>
  <layer name="protection" width="25" height="25">
