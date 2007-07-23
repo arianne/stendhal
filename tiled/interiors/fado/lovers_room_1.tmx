@@ -66,9 +66,6 @@
  <tileset name="../../tileset/logic/collision.png" firstgid="158" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Untitled" firstgid="159" tilewidth="0" tileheight="0">
-  <image source="../../../../../tiled-0.6.1"/>
- </tileset>
  <tileset name="vegetable.png" firstgid="159" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
