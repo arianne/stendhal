@@ -286,6 +286,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());
 		}
+
+		list.add(ActionType.PUSH.getRepresentation());
 	}
 
 
