@@ -12,7 +12,6 @@ package games.stendhal.server.entity;
 import games.stendhal.common.Direction;
 import games.stendhal.server.StendhalRPAction;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.portal.OneWayPortalDestination;
 import games.stendhal.server.entity.portal.Portal;
 
 import java.awt.geom.Rectangle2D;
