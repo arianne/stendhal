@@ -63,6 +63,12 @@
  <tileset name="sink" firstgid="150" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/sink/dark_front_on.png"/>
  </tileset>
+ <tileset name="collision" firstgid="156" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
+ <tileset name="portal" firstgid="157" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png"/>
+ </tileset>
  <layer name="0_floor" width="15" height="20">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAABNnYGCQIANLAbE0EMsAMS8JWBaIlaB6eYCYiQQsSEDvZCCeSqZeSuwd1UtdvSVAXEqm3gogrhwi/i0D4nIy9VYBcfUAx68CEAtgwSo4xBWhepWBWJUMrAbEAOpKUmCwBAAA
@@ -80,7 +86,7 @@
  </layer>
  <layer name="3_roof" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgoAx0AnEXEr+FBL3dQNxDof2jYBSMgpEDAHQTqw6wBAAA
+   H4sIAAAAAAAAAGNgoAx0AnEXEr+FBL3dQNxDof3DEUQAceRAO2IUjIJBCABS9WFFsAQAAA==
   </data>
  </layer>
  <layer name="4_roof_add" width="15" height="20">
@@ -90,12 +96,12 @@
  </layer>
  <layer name="objects" width="15" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMgqEBAGlKTgywBAAA
+   H4sIAAAAAAAAAGNgGAWjYBSMAuqBhTQ0GwB2sK8SsAQAAA==
   </data>
  </layer>
- <layer name="collision" width="15" height="20">
+ <layer name="collision" width="15" height="20" opacity="0.46">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjYBSMgqEBAGlKTgywBAAA
+   H4sIAAAAAAAAAJvDwMAwZxBidECsOlyAVH1z0Nik2kmpe8m1NwKK6W0vIb3EmDXY3DxY9ZKSb5D14NJLCiA279KqXAAA9Pe/IbAEAAA=
   </data>
  </layer>
  <layer name="protection" width="15" height="20">
