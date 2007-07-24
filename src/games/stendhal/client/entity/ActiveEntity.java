@@ -102,7 +102,7 @@ public abstract class ActiveEntity extends Entity {
 
 	/**
 	 * compares to floating point values
-	 * 
+	 *
 	 * @param d1
 	 *            first value
 	 * @param d2
@@ -119,7 +119,7 @@ public abstract class ActiveEntity extends Entity {
 	 * calculates the movement if the server an client are out of sync. for some
 	 * miliseconds. (server turns are not exactly 300 ms) Most times this will
 	 * slow down the client movement
-	 * 
+	 *
 	 * @param clientPos
 	 *            the postion the client has calculated
 	 * @param serverPos
@@ -139,7 +139,7 @@ public abstract class ActiveEntity extends Entity {
 
 		this.dx = direction.getdx() * speed;
 		this.dy = direction.getdy() * speed;
-		
+
 
 		if ((Direction.LEFT.equals(direction)) || (Direction.RIGHT.equals(direction))) {
 			this.y = y;
@@ -222,7 +222,7 @@ public abstract class ActiveEntity extends Entity {
 			x += (dx * step);
 			y += (dy * step);
 
-			if (GameObjects.getInstance().collides(this)) {
+			if (!User.get().isGhostMode() && GameObjects.getInstance().collides(this)) {
 				x = oldX;
 				y = oldY;
 			} else {
