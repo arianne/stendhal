@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.User;
 import games.stendhal.common.CollisionDetection;
 import games.stendhal.tools.tiled.LayerDefinition;
 
@@ -100,7 +101,7 @@ public class StaticGameLayers {
 		return height;
 	}
 
-	/** Add a new Layer to the set 
+	/** Add a new Layer to the set
 	 * @throws ClassNotFoundException */
 	public void addLayer(String name, InputStream in) throws IOException, ClassNotFoundException {
 		logger.debug("Layer name: " + name);
@@ -114,10 +115,10 @@ public class StaticGameLayers {
 
 		String area = name.substring(0, i);
 		String layer = name.substring(i + 1);
-		
+
 		/**
-		 * TODO: 
-		 * Encode area name into the data sent from server, so it is simpler to encode the 
+		 * TODO:
+		 * Encode area name into the data sent from server, so it is simpler to encode the
 		 * area name.
 		 */
 
@@ -178,7 +179,7 @@ public class StaticGameLayers {
 	public boolean collides(Rectangle2D shape) {
 		validate();
 
-		if(collision != null) {
+		if(collision != null && !User.get().isGhostMode()) {
 			return collision.collides(shape);
 		}
 
@@ -201,7 +202,7 @@ public class StaticGameLayers {
 		this.areaChanged = true;
 		valid = false;
 	}
-	
+
 
 	protected void validate() {
 		if(valid == true) {
@@ -267,9 +268,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the CollisionDetection Layer for the current map
-	 * 
+	 *
 	 */
 	public CollisionDetection getCollisionDetection() {
 		validate();
@@ -278,9 +279,9 @@ public class StaticGameLayers {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the current area/map
-	 * 
+	 *
 	 */
 	public String getArea() {
 		return area;
