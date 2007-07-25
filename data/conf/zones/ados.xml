@@ -942,12 +942,15 @@ Southeast: Docks
    <portal x="42" y="93" ref="town_hall_entrance">
      <destination zone="int_ados_town_hall" ref="entrance"/>
    </portal>
-  <portal x="17" y="39" ref="castle_left_entrance">
-     <destination zone="int_castle_entrance" ref="entraceleft"/>
+  <portal x="17" y="40" ref="castle_left_entrance">
+     <destination zone="int_castle_entrance" ref="entranceleft"/>
    </portal>
-  <portal x="18" y="39" ref="castle_right_entrance">
+  <portal x="18" y="40" ref="castle_centre_entrance">
      <destination zone="int_castle_entrance" ref="entranceright"/>
-   </portal>    
+   </portal>
+    <portal x="19" y="40" ref="castle_right_entrance">
+     <destination zone="int_castle_entrance" ref="entranceright"/>
+   </portal>
    </zone>
    
    <zone name="0_ados_swamp" level="0" x="500640" y="500128" file="Level 0/ados/swamp.tmx">
