@@ -130,7 +130,7 @@ public class Creature extends NPC {
 
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
-		aiProfiles = new HashMap<String, String>();
+		setAiProfiles(new HashMap<String, String>());
 	}
 
 	public Creature(Creature copy) {
@@ -149,7 +149,7 @@ public class Creature extends NPC {
 		}
 		// this.dropItemInstances is ignored;
 
-		this.aiProfiles = copy.aiProfiles;
+		this.setAiProfiles(copy.getAiProfiles());
 		this.noises = copy.noises;
 
 		this.respawnTime = copy.respawnTime;
@@ -198,7 +198,7 @@ public class Creature extends NPC {
 
 		dropsItems = new ArrayList<DropItem>();
 		dropItemInstances = new ArrayList<Item>();
-		aiProfiles = new HashMap<String, String>();
+		setAiProfiles(new HashMap<String, String>());
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class Creature extends NPC {
 		}
 		// this.dropItemInstances is ignored;
 
-		this.aiProfiles = aiProfiles;
+		this.setAiProfiles(aiProfiles);
 		this.noises = noises;
 
 		this.respawnTime = respawnTime;
@@ -271,6 +271,15 @@ public class Creature extends NPC {
 
 	public RPObject.ID getIDforDebug() {
 		return getID();
+	}
+
+	private void setAiProfiles(Map<String, String> aiProfiles) {
+		this.aiProfiles = aiProfiles;
+		creatureLogic.setHealer(aiProfiles.get("heal"));
+	}
+
+	private Map<String, String> getAiProfiles() {
+		return aiProfiles;
 	}
 
 	public void setRespawnPoint(CreatureRespawnPoint point) {
@@ -377,7 +386,7 @@ public class Creature extends NPC {
 	 * @return list of enemies
 	 */
 	protected List<RPEntity> getEnemyList() {
-		if (aiProfiles.keySet().contains("offensive")) {
+		if (getAiProfiles().keySet().contains("offensive")) {
 			return getZone().getPlayerAndFriends();
 		} else {
 			return getAttackingRPEntities();
@@ -506,9 +515,9 @@ public class Creature extends NPC {
 
 
 	public void tryToPoison() {
-		if ((getAttackTarget() != null) && nextTo(getAttackTarget()) && aiProfiles.containsKey("poisonous")) {
+		if ((getAttackTarget() != null) && nextTo(getAttackTarget()) && getAiProfiles().containsKey("poisonous")) {
 			int roll = Rand.roll1D100();
-			String[] poison = aiProfiles.get("poisonous").split(",");
+			String[] poison = getAiProfiles().get("poisonous").split(",");
 			int prob = Integer.parseInt(poison[0]);
 			String poisonType = poison[1];
 
@@ -594,7 +603,7 @@ public class Creature extends NPC {
 
 	@Override
 	public boolean canDoRangeAttack(RPEntity target) {
-		if (aiProfiles.containsKey("archer")) {
+		if (getAiProfiles().containsKey("archer")) {
 			// The creature can shoot, but only if the target is at most
 			// 7 tiles away.
 			// TODO: make the max distance configurable via creatures.xml.
@@ -610,7 +619,7 @@ public class Creature extends NPC {
 	 * @return value or null if undefined
 	 */
 	public String getAIProfile(String key) {
-		return aiProfiles.get(key);
+		return getAiProfiles().get(key);
 	}
 
 	/**

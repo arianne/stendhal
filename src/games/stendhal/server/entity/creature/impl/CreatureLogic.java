@@ -33,7 +33,9 @@ public class CreatureLogic {
 	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 9;
 
 	private Creature creature;
-
+	
+	private Healingbehaviour healer = Healingbehaviour.get(null);
+	
 	private RPEntity target;
 
 	/** the current (logic)state */
@@ -57,17 +59,6 @@ public class CreatureLogic {
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug = new StringBuilder(100);
-		}
-	}
-
-	private void logicHeal() {
-		if (creature.getAIProfile("heal") != null) {
-			if (creature.getHP() < creature.getBaseHP()) {
-				String[] healingAttributes = creature.getAIProfile("heal").split(",");
-				int amount = Integer.parseInt(healingAttributes[0]);
-				int frequency = Integer.parseInt(healingAttributes[1]);
-				creature.healSelf(amount, frequency);
-			}
 		}
 	}
 
@@ -497,7 +488,7 @@ public class CreatureLogic {
 
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();
-
+		healer.heal(creature);
 		/*
 		 * We only *think* once each 2 turns.
 		 * So we save CPU time.
@@ -505,7 +496,7 @@ public class CreatureLogic {
 		 * TODO: Improve this in a event oriented way.
 		 */
 		if (turnToThink++ % 2 == (counter%2)) {
-			logicHeal();
+
 			if (!logicSleep()) {
 				return;
 			}
@@ -569,5 +560,9 @@ public class CreatureLogic {
 		patrolPath.add(new Node(-6, 6));
 		patrolPath.add(new Node(0, 6));
 		resetAIState();
+	}
+
+	public void setHealer(String aiprofile) {
+		this.healer = Healingbehaviour.get(aiprofile);
 	}
 }
