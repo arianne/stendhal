@@ -66,6 +66,9 @@
  <tileset name="../../tileset/item/furniture/other/stick.png" firstgid="116" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/stick.png"/>
  </tileset>
+ <tileset name="../../tileset/logic/portal.png" firstgid="118" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/portal.png" trans="ff00ff"/>
+ </tileset>
  <layer name="0_floor" width="32" height="64">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3XoREAIAwEwdAilv77oACQyQDDitMrYj4tIpqkL+uF8c/ekn+/Pzbx+Xw+n8/nV/qZ8fmv+dk/H/8tX9K5dvsncxPx+Xw+n89fmwBxctEAIAAA
@@ -73,7 +76,7 @@
  </layer>
  <layer name="1_terrain" width="32" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2YPU/DMBCGT6KwABJi4atsiLl8qlPplq2lfwAkpAxAlw79//iEI51c27F9/kggr/QqqeP6SWL7cvYIAEaFfCx8WcjXwvug18JQXnnWN7WB9c8s/Bwa+P3kfxTm+8h2r319/13lvzuWufAxPpliXQzR+Hdh8E1CPhD+nsYnwueZ+DodDPyk/CoB3zcuc/lLT14I35TXvAi/ZuDbhPx5IX5Xnp/qTVNHV4Zqyz+7/v5RKwY7Bp8rzvzLxU+lkPiLc44b86hC+Nwxz+ED8GOOjq9bl59q+CExzyX/N63PbzX/wTk/97yHNr5OOfPfUvoLfDq+Yq5/cug/89vifw7FHn8l+BwN/F0+zbfU+B8zF3PZ/0i9J2Lb/7DtiXwJfxu8Vhimumvw73+aE81ajlQzwzmHH0N95dfSW3JtqxxT8ivJd9VE+Fn4TvhBeAph3x/6/ieyPfS98KNkTB3bqhn80DhE+ygk/4w5/pYM/qf83TwP9gX2wRP89gP2SdMXuvHYrGO445+jvvM3pLyG3XvaKHWouO+ftt1wF+Qcr1VKPXXOrAL5Y/D7Xtt85ck/AvdvtasPhX8AbzclpwAgAAA=
+   H4sIAAAAAAAAAO2YO0/DMBDHT6KwABJi4VU2xFye6lS6ZWvpFwAJKQPQpUO/P3fCkU6u7di+OE4gf+mvpI7rX+LH+TECgFEmH6MvM/kavY8uYFcLQxpY8rry28qg/GeKn0sDv5/8j8z8ELneta/131X+u2eazrfFP1usa0I8/l1YfJOQD4y/Z/AJ+rwlvkkHAz8pv0jAD43LUv4ykBfDt61rXtCvLfBdIv48E78r38/1ZshjSiPVrT+7Xv+klYDdBF8qyfhri59KMfGXxpw05nHF8KV9XsIHkMccE9+0Lz818GNins/637Y/vzX8h8b8PPAd6vi517+59Bf4vH/F7n9y6T/z6+J/G2q6/+XgSzTww+J/k2sxn/OP1GcirvMP15nIF/rb4rXGsOVdQ3j78zXRrObKNbPcS/hNqK/8UnnLnm21a0p+ofi+mqCf0XfoB/QU4uYfXv8TVR75Hv2oGFPPskoBPzYO8TaKWX822f+WAv6n+l19D7UFtcET/LYDtUnVFqb+WO1jpP1for7zNyy9hN132mh5uKT1z8uuuAt2T88KLZ8+ZlaR/DGEzdcuXwXyj8B/rvb1IfoHYpHcWAAgAAA=
   </data>
  </layer>
  <layer name="2_object" width="32" height="64">
@@ -83,7 +86,7 @@
  </layer>
  <layer name="3_roof" width="32" height="64">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XbwrDIAzFe5t1/+gp1i+7wgbZp+0AvT9TZpkUC4nGWd37QWiRNLE8+7Rdtz2uK+MXYX6IUZgPtgUV7v8Q5FKuSTCRzBWkcWeOcbD+tOZ1GsD/gDYkyB0z9G/R6/Cd1sONOWaBrnXQqk45zxbgCxXuX+ueiPMvDyrc319fmv8/IC9a529SqhNLrf4Gwvi+vPR/Tc9uxf/B/zIF7qdQojLSvWNn4myiN3EwMUTUCNXsXexNHF2PIbEuh1jv8DVK8Z9nwrMavNx1fh+rhdXg1H10sJrMWvxiPYLyLNdzzr0b6PIGt7M4/gAgAAA=
+   H4sIAAAAAAAAAO2XXQ6DIBCEuU21P/EU9aVXaJPtU3sA759CiqkxaFhYROh8yUZD1l3M4IBK5eXqGLsxctfyXfTMfLAvKHP/JyOXUk3CE85cQRwPz7E5S/635HUSwP+ANMTI7RP0r9Hr8J2Ww91zzABdy6BWnVKeLcAPyty/hD0R599wKHP/6foK/f8B2yN1/iahOqGU4G9gHV//l/TsWvwf/C+D435wJQrD3TsOOi46Gh1HHV1ADVfNxkar42R7dJF1fQj1jqlGMf7zinhWgre9ju9jtDAanNVXB6PJqMUW6xHkZ76eU+7dQJYPLC//CwAgAAA=
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="64">
@@ -93,12 +96,12 @@
  </layer>
  <layer name="objects" width="32" height="64" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Y0Q2AMAgFQIZsu/8oDmA1qY1B4t0E74fwIIInRnYAeFHLDkBZPTsAJ+aZHfoOAFy767526BqdFWoxs8Cf+X/yNW4PZg61NPh6ACAAAA==
+   H4sIAAAAAAAAAO3Y0Q2AIAxAQYZUh3F6B5CYaCqteDcADz4IDa3xxBa0zh60jr5+ZH9J7o/y9/4b1uwNcDLqPjOnqHkHAGZ0Nfv23tDs+b9yf8TMWvn8+vpf69+9s9nnB4jk/5Nq/N/RcwDA/cHtACAAAA==
   </data>
  </layer>
- <layer name="collision" width="32" height="64" visible="0" opacity="0.44">
+ <layer name="collision" width="32" height="64" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WXQ7AIAiDvaP3v8vejcOf0qooidnilK8whssppXzxqJnX/N/aFl9hj38m30uzIn7L/6n535Vf8zWbf3ZukN6s1PD4MfmM+ptZj/DR/KA5UPBb+x/f1tPq75HiV/NRY/Qgb/5K9kg9szQ8PsZvnR87xD/6zJPN7jE9Gk7m5597a86Tj9jN/Cj1j+yPEH80vtVP1Gcv+58M0dCrj+1/Rfy382tacnFV8JVxllxU14pvoEe7qga93kGPLwYfzUEkvjXH5o/Wiic/yvgAYYLQrgAgAAA=
+   H4sIAAAAAAAAAO2WYQ6AIAiFvaP3v0t/mwtCHzwVZXM1Ur8HEVZLKfXw0dqXb8QvzdXYLLv8Pflemhnxa/vvmv9V+T197M2X1kXmZrQvszVcfk5+RP2NzEf4aH7QHDD4f+svX9cj7eFR/6vFz+ajFtGDvPkz2T31HKXh8jH+3/mxSvzSsyhj9RiLhp35VbjXfJ58xE7mZ6l/ZH2G+DPwrf2fffZG/5MhGqz6ovefEf/p/C8ttbky+Mw4Wy6qa8Y3YNHOqkGvd2DZK4KP5iATX/NF83trxZOfZTxsF5WwACAAAA==
   </data>
  </layer>
  <layer name="protection" width="32" height="64">
