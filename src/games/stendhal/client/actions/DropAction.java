@@ -4,8 +4,6 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.entity.User;
 
-import java.awt.Color;
-
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
 
@@ -52,7 +50,7 @@ class DropAction implements SlashAction  {
 				return true;
 			}
 		}
-		StendhalUI.get().addEventLine("You don't have any " + itemName, Color.black);
+		StendhalUI.get().addEventLine("You don't have any " + itemName);
 		return true;
 	}
 

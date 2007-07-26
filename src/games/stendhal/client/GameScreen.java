@@ -14,6 +14,7 @@ package games.stendhal.client;
 
 import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.Text;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -609,6 +610,17 @@ public class GameScreen {
 	 */
 	public void setOffline(boolean offline) {
 		this.offline = offline;
+	}
+
+
+	/**
+	 * Add a text bubble.
+	 *
+	 *
+	 *
+	 */
+	public void addText(double x, double y, String text, NotificationType type, boolean isTalking) {
+		addText(x, y, text, ((j2DClient) StendhalUI.get()).getNotificationColor(type), isTalking);
 	}
 
 

@@ -14,6 +14,7 @@ package games.stendhal.client.entity;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.stendhal;
@@ -445,8 +446,10 @@ public abstract class RPEntity extends ActiveEntity {
 
 		if (stendhal.SHOW_EVERYONE_ATTACK_INFO || showAttackInfoForPlayer) {
 			StendhalUI.get().addEventLine(
-			        getTitle() + " suffers " + Grammar.quantityplnoun(damage, "point") + " of damage from "
-			                + attacker.getTitle(), Color.RED);
+				getTitle() + " suffers "
+				+ Grammar.quantityplnoun(damage, "point")
+				+ " of damage from " + attacker.getTitle(),
+				NotificationType.NEGATIVE);
 		}
 	}
 
@@ -506,7 +509,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 			StendhalUI.get().addEventLine(
 			        getTitle() + " is poisoned, losing " + Grammar.quantityplnoun(amount, "health point") + ".",
-			        Color.red);
+				NotificationType.NEGATIVE);
 		}
 	}
 
@@ -516,15 +519,19 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// Called when entity listen to text from talker
 	public void onPrivateListen(final String text) {
-		Color color = Color.darkGray;
+		NotificationType type;
+
 
 		// TODO: replace this with its own RPEvent type after port to Marauroa 2.0
 		if (text.startsWith("Tutorial: ")) {
-			color = new Color(172, 0, 172);
+			type = NotificationType.TUTORIAL;
+		} else {
+			type = NotificationType.PRIVMSG;
 		}
+
 		StendhalClient.get().generateWhoPlayers(text);
-		StendhalUI.get().addEventLine(text, color);
-		GameScreen.get().addText(getX(), getY(), text.replace("|", ""), color, false);
+		StendhalUI.get().addEventLine(text, type);
+		GameScreen.get().addText(getX(), getY(), text.replace("|", ""), type, false);
 	}
 
 	// When this entity stops attacking
@@ -1047,13 +1054,13 @@ public abstract class RPEntity extends ActiveEntity {
 
 					StendhalUI.get().addEventLine( getTitle() + " earns "
 							+ Grammar.quantityplnoun(amount, "experience point")
-							+ ".", Color.blue);
+							+ ".", NotificationType.SIGNIFICANT_POSITIVE);
 				} else if(amount<0) {
 					addTextIndicator(""+amount, Color.pink);
 
 					StendhalUI.get().addEventLine( getTitle() + " loses "
 							+ Grammar.quantityplnoun(amount, "experience point")
-							+ ".", Color.red);
+							+ ".", NotificationType.SIGNIFICANT_NEGATIVE);
 				}
 			}
 		}
@@ -1063,7 +1070,7 @@ public abstract class RPEntity extends ActiveEntity {
 				String text = getTitle() + " reaches Level " + getLevel();
 
 				GameScreen.get().addText(getX(), getY(), GameScreen.get().createString(text, Color.green), 0);
-				StendhalUI.get().addEventLine(text, Color.green);
+				StendhalUI.get().addEventLine(text, NotificationType.SIGNIFICANT_POSITIVE);
 			}
 		}
 	}

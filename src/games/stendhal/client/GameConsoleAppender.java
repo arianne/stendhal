@@ -7,8 +7,6 @@
 
 package games.stendhal.client;
 
-import java.awt.Color;
-
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;
@@ -34,7 +32,7 @@ public class GameConsoleAppender extends AppenderSkeleton {
 			}
 		}
 
-		StendhalUI.get().addEventLine(buf.toString(), Color.GRAY);
+		StendhalUI.get().addEventLine(buf.toString(), NotificationType.CLIENT);
 	}
 
 	public void close() {

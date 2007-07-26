@@ -1,8 +1,8 @@
 package games.stendhal.client.actions;
 
+import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
 
-import java.awt.Color;
 
 /**
  * Display command usage.
@@ -40,7 +40,7 @@ class GMHelpAction implements SlashAction  {
 		        "- /destroy <entity> \t\t\tDestroy an entity completely" };
 
 		for (String line : lines) {
-			StendhalUI.get().addEventLine(line, Color.gray);
+			StendhalUI.get().addEventLine(line, NotificationType.CLIENT);
 		}
 
 		return true;

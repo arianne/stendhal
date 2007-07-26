@@ -1,12 +1,12 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.StendhalUI;
+import games.stendhal.client.NotificationType;
 import games.stendhal.client.WorldObjects;
 import games.stendhal.client.soundreview.HearingArea;
 import games.stendhal.common.FeatureList;
 import games.stendhal.common.Grammar;
 
-import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPObject;
 
@@ -63,15 +63,19 @@ public class User extends Player {
 	public long getModificationCount() {
 		return modificationCount;
 	}
-    //TODO: verify if OnAway is still to be usable or not
-	@Override
-    protected void onAway(final String message) {
 
+
+	@Override
+	protected void onAway(final String message) {
 	    super.onAway(message);
+
 	    StendhalUI.get().addEventLine(
-		        (message != null) ? "You have been marked as being away."
-		                : "You are no longer marked as being away.", Color.orange);
-    }
+		        (message != null)
+				? "You have been marked as being away."
+		                : "You are no longer marked as being away.",
+			NotificationType.INFORMATION);
+	}
+
 
 	public static  boolean isAdmin() {
 
@@ -111,7 +115,7 @@ public class User extends Player {
 	    super.onHealed(amount);
 
 			StendhalUI.get().addEventLine(
-			        getTitle() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", Color.green);
+			        getTitle() + " heals " + Grammar.quantityplnoun(amount, "health point") + ".", NotificationType.POSITIVE);
 
     }
 
@@ -174,14 +178,14 @@ public class User extends Player {
 			if (changes.has("online")) {
 				String[] players = changes.get("online").split(",");
 				for (String playerName : players) {
-					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
+					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", NotificationType.INFORMATION);
 				}
 			}
 
 			if (changes.has("offline")) {
 				String[] players = changes.get("offline").split(",");
 				for (String playername : players) {
-					StendhalUI.get().addEventLine(playername + " has left Stendhal.", Color.orange);
+					StendhalUI.get().addEventLine(playername + " has left Stendhal.", NotificationType.INFORMATION);
 				}
 			}
 		}

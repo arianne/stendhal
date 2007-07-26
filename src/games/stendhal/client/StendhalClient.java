@@ -210,6 +210,8 @@ public class StendhalClient extends ClientFramework {
 				staticLayers.setRPZoneLayersSet(zoneid);
 				screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
 
+				// TODO: Move to GameScreen, and delete
+				//       Color code from this class.
 				/** And finally place player in screen */
 				Graphics2D g = screen.expose();
 				g.setColor(Color.BLACK);
@@ -855,7 +857,7 @@ logger.warn("!!! Not contained! - " + schanges);
 			StendhalUI.get().setOffline(false);
 
 			logger.debug("Synced with server state.");
-			StendhalUI.get().addEventLine("Synchronized", Color.gray);
+			StendhalUI.get().addEventLine("Synchronized", NotificationType.CLIENT);
 		}
 
 		private int times;
@@ -865,7 +867,7 @@ logger.warn("!!! Not contained! - " + schanges);
 
 			if (times > 3) {
 				logger.debug("Request resync");
-				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...", Color.gray);
+				StendhalUI.get().addEventLine("Unsynced: Resynchronizing...", NotificationType.CLIENT);
 			}
 		}
 

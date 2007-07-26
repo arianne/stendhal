@@ -11,13 +11,17 @@ package games.stendhal.client;
 
 /**
  * A logical notification type, which can be mapped to UI specific contexts.
- * This would be similar to logic styles vs. physical styles in HTML.
+ * This would be similar to logical styles vs. physical styles in HTML.
  */
 public enum NotificationType {
+	CLIENT("client"),
 	INFORMATION("information"),
 	NEGATIVE("negative"),
 	NORMAL("normal"),
 	POSITIVE("positive"),
+	PRIVMSG("privmsg"),
+	SIGNIFICANT_NEGATIVE("significant_negative"),
+	SIGNIFICANT_POSITIVE("significant_positive"),
 	TUTORIAL("tutorial");
 
 	/**

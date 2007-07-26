@@ -80,11 +80,15 @@ import marauroa.common.game.RPObject;
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
 
-	protected final static Color COLOR_NORMAL	= Color.black;
-	protected final static Color COLOR_INFORMATION	= Color.cyan;
-	protected final static Color COLOR_NEGATIVE	= Color.red;
-	protected final static Color COLOR_POSITIVE	= Color.green;
-	protected final static Color COLOR_TUTORIAL	= new Color(172, 0, 172);
+	protected final static Color COLOR_CLIENT = Color.gray;
+	protected final static Color COLOR_INFORMATION = Color.orange;
+	protected final static Color COLOR_NORMAL = Color.black;
+	protected final static Color COLOR_NEGATIVE = Color.red;
+	protected final static Color COLOR_POSITIVE = Color.green;
+	protected final static Color COLOR_PRIVMSG = Color.darkGray;
+	protected final static Color COLOR_SIGNIFICANT_NEGATIVE	= Color.pink;
+	protected final static Color COLOR_SIGNIFICANT_POSITIVE	= Color.cyan;
+	protected final static Color COLOR_TUTORIAL = new Color(172, 0, 172);
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -640,6 +644,9 @@ public class j2DClient extends StendhalUI {
 	 */
 	public Color getNotificationColor(NotificationType type) {
 		switch(type) {
+			case CLIENT:
+				return COLOR_CLIENT;
+
 			case INFORMATION:
 				return COLOR_INFORMATION;
 
@@ -651,6 +658,15 @@ public class j2DClient extends StendhalUI {
 
 			case POSITIVE:
 				return COLOR_POSITIVE;
+
+			case PRIVMSG:
+				return COLOR_PRIVMSG;
+
+			case SIGNIFICANT_NEGATIVE:
+				return COLOR_SIGNIFICANT_NEGATIVE;
+
+			case SIGNIFICANT_POSITIVE:
+				return COLOR_SIGNIFICANT_POSITIVE;
 
 			case TUTORIAL:
 				return COLOR_TUTORIAL;
