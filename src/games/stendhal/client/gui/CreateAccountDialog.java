@@ -228,7 +228,7 @@ public class CreateAccountDialog extends JDialog {
 	private void createAccountButton_actionPerformed(ActionEvent e, boolean saveLoginBoxStatus) {
 		final String accountUsername = usernameField.getText();
 		final String password = new String(passwordField.getPassword());
-		final String passwordretype = new String(passwordField.getPassword());
+		final String passwordretype = new String(passwordretypeField.getPassword());
 
 		if (!password.equals(passwordretype)) {
 			JOptionPane.showMessageDialog(owner, "The passwords do not match. Please retype both.",
@@ -259,17 +259,17 @@ public class CreateAccountDialog extends JDialog {
 			@Override
 			public void run() {
 				progressBar.start();//intialize progress bar
-				setVisible(false);//hide this screen when attempting to connect
+				setEnabled(false);//disable this screen when attempting to connect
 
 				try {
 					client.connect(server, finalPort);
 					progressBar.step();//for each major connection milestone call step()
 				} catch (Exception ex) {
 					progressBar.cancel();//if something goes horribly just cancel the progressbar
-					setVisible(true);
+					setEnabled(true);
 					JOptionPane.showMessageDialog(owner,
 						"Stendhal cannot connect to the Internet. Please check that your connection is set up and active, then try again.");
-
+					
 					logger.error(ex, ex);
 
 					return;
@@ -282,7 +282,7 @@ public class CreateAccountDialog extends JDialog {
                 		 * If the account can't be created, show an error message and don't continue.
                 		 */
 						progressBar.cancel();
-						setVisible(true);
+    					setEnabled(true);
     					JOptionPane.showMessageDialog(owner, 
     							result.getResult().getText(),
     							"Create account failed",
@@ -308,14 +308,14 @@ public class CreateAccountDialog extends JDialog {
 						progressBar.step();
 						progressBar.finish();
 
-						setVisible(false);
+						setEnabled(false);
 						owner.setVisible(false);
 
 						stendhal.doLogin = true;
 					}
                 } catch (TimeoutException e) {
 					progressBar.cancel();
-					setVisible(true);
+					setEnabled(true);
 					JOptionPane.showMessageDialog(
 						owner,
 						"Unable to connect to server to create your account. The server may be down or, if you are using a custom server, you may have entered its name and port number incorrectly.",
@@ -323,21 +323,21 @@ public class CreateAccountDialog extends JDialog {
 						JOptionPane.ERROR_MESSAGE);
                 } catch (InvalidVersionException e) {
 					progressBar.cancel();
-					setVisible(true);
+					setEnabled(true);
 					JOptionPane.showMessageDialog(owner, 
 							"You are running an incompatible version of Stendhal. Please update", 
 							"Invalid version",
 							JOptionPane.ERROR_MESSAGE);
                 } catch (BannedAddressException e) {
 					progressBar.cancel();
-					setVisible(true);
+					setEnabled(true);
 					JOptionPane.showMessageDialog(owner, 
 							"You IP is banned. If you think this is not right. Please send a Support request to http://sourceforge.net/tracker/?func=add&group_id=1111&atid=201111",
 							"IP Banned",
 							JOptionPane.ERROR_MESSAGE);
                 } catch(LoginFailedException e) {
 					progressBar.cancel();
-					setVisible(true);
+					setEnabled(true);
 					JOptionPane.showMessageDialog(owner, 
 							e.getMessage(), 
 							"Login failed", 
