@@ -114,23 +114,6 @@ public class Player extends RPEntity {
 				onAway(away);
 			}
 		}
-
-		// The first time we ignore it.
-		if (object != null) {
-			if (changes.has("online")) {
-				String[] players = changes.get("online").split(",");
-				for (String playerName : players) {
-					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
-				}
-			}
-
-			if (changes.has("offline")) {
-				String[] players = changes.get("offline").split(",");
-				for (String playername : players) {
-					StendhalUI.get().addEventLine(playername + " has left Stendhal.", Color.orange);
-				}
-			}
-		}
 	}
 
 	/**

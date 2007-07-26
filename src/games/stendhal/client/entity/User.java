@@ -154,15 +154,38 @@ public class User extends Player {
       }
 
 
+	/**
+	 * The object added/changed attribute(s).
+	 *
+	 * @param	object		The base object.
+	 * @param	changes		The changes.
+	 */
 	@Override
-    public void onChangedAdded(final RPObject base, final  RPObject diff) {
+	public void onChangedAdded(final RPObject object, final RPObject changes) {
+		super.onChangedAdded(object, changes);
 		modificationCount++;
-		super.onChangedAdded(base, diff);
 
-		if(diff.has("features")) {
-			features.decode(diff.get("features"));
+		if(changes.has("features")) {
+			features.decode(changes.get("features"));
 		}
-    }
+
+		// The first time we ignore it.
+		if (object != null) {
+			if (changes.has("online")) {
+				String[] players = changes.get("online").split(",");
+				for (String playerName : players) {
+					StendhalUI.get().addEventLine(playerName + " has joined Stendhal.", Color.orange);
+				}
+			}
+
+			if (changes.has("offline")) {
+				String[] players = changes.get("offline").split(",");
+				for (String playername : players) {
+					StendhalUI.get().addEventLine(playername + " has left Stendhal.", Color.orange);
+				}
+			}
+		}
+	}
 
 	@Override
     public void onChangedRemoved(final RPObject base, final RPObject diff) {
