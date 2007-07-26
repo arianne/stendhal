@@ -14,6 +14,7 @@ package games.stendhal.client.gui;
 
 import games.stendhal.client.GameObjects;
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.NotificationType;
 import games.stendhal.client.StaticGameLayers;
 import games.stendhal.client.StendhalClient;
 import games.stendhal.client.StendhalUI;
@@ -78,6 +79,12 @@ import marauroa.common.game.RPObject;
 
 /** The main class that create the screen and starts the arianne client. */
 public class j2DClient extends StendhalUI {
+
+	protected final static Color COLOR_NORMAL	= Color.black;
+	protected final static Color COLOR_INFORMATION	= Color.cyan;
+	protected final static Color COLOR_NEGATIVE	= Color.red;
+	protected final static Color COLOR_POSITIVE	= Color.green;
+	protected final static Color COLOR_TUTORIAL	= new Color(172, 0, 172);
 
 	private static final long serialVersionUID = 3356310866399084117L;
 
@@ -346,7 +353,7 @@ public class j2DClient extends StendhalUI {
 		// I hope that it discourages its use without the risks of unabdateable
 		// clients being distributed
 		if (!stendhal.SCREEN_SIZE.equals("640x480")) {
-			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, Color.RED);
+			addEventLine("Using window size cheat: " + stendhal.SCREEN_SIZE, NotificationType.NEGATIVE);
 		}
 
 		frame.setLocation(new Point(20, 20));
@@ -621,6 +628,37 @@ public class j2DClient extends StendhalUI {
 		//}
 
 		SoundSystem.get().exit();
+	}
+
+
+	/**
+	 * Get the color that is tied to a notification type.
+	 *
+	 * @param	type		The notification type.
+	 *
+	 * @return	The appropriete color.
+	 */
+	public Color getNotificationColor(NotificationType type) {
+		switch(type) {
+			case INFORMATION:
+				return COLOR_INFORMATION;
+
+			case NEGATIVE:
+				return COLOR_NEGATIVE;
+
+			case NORMAL:
+				return COLOR_NORMAL;
+
+			case POSITIVE:
+				return COLOR_POSITIVE;
+
+			case TUTORIAL:
+				return COLOR_TUTORIAL;
+
+			default:
+				logger.warn("Unknown notification type: " + type);
+				return COLOR_NORMAL;
+		}
 	}
 
 
@@ -902,7 +940,7 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public void addEventLine(String text) {
-		gameLog.addLine(text);
+		addEventLine("", text, NotificationType.NORMAL);
 	}
 
 
@@ -912,7 +950,7 @@ public class j2DClient extends StendhalUI {
 	 */
 	@Override
 	public void addEventLine(String header, String text) {
-		gameLog.addLine(header, text);
+		addEventLine(header, text, NotificationType.NORMAL);
 	}
 
 
@@ -931,8 +969,18 @@ public class j2DClient extends StendhalUI {
 	 *
 	 */
 	@Override
-	public void addEventLine(String header, String text, Color color) {
-		gameLog.addLine(header, text, color);
+	public void addEventLine(final String text, final NotificationType type) {
+		addEventLine("", text, type);
+	}
+
+
+	/**
+	 * Add an event line.
+	 *
+	 */
+	@Override
+	public void addEventLine(final String header, final String text, final NotificationType type) {
+		gameLog.addLine(header, text, getNotificationColor(type));
 	}
 
 

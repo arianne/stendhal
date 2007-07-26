@@ -63,6 +63,7 @@ public abstract class StendhalUI {
 	/**
 	 * Add an event line.
 	 *
+	 * TODO: Change all calls to this to use NotificationType form
 	 */
 	public abstract void addEventLine(String text, Color color);
 
@@ -70,7 +71,14 @@ public abstract class StendhalUI {
 	 * Add an event line.
 	 *
 	 */
-	public abstract void addEventLine(String header, String text, Color color);
+	public abstract void addEventLine(String text, NotificationType type);
+
+	/**
+	 * Add an event line.
+	 *
+	 */
+	public abstract void addEventLine(String header, String text, NotificationType type);
+
 
 	/**
 	 * Initiate outfit selection by the user.
