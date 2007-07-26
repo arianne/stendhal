@@ -20,6 +20,7 @@ public enum NotificationType {
 	NORMAL("normal"),
 	POSITIVE("positive"),
 	PRIVMSG("privmsg"),
+	RESPONSE("response"),
 	SIGNIFICANT_NEGATIVE("significant_negative"),
 	SIGNIFICANT_POSITIVE("significant_positive"),
 	TUTORIAL("tutorial");

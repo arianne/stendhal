@@ -82,10 +82,11 @@ public class j2DClient extends StendhalUI {
 
 	protected final static Color COLOR_CLIENT = Color.gray;
 	protected final static Color COLOR_INFORMATION = Color.orange;
-	protected final static Color COLOR_NORMAL = Color.black;
 	protected final static Color COLOR_NEGATIVE = Color.red;
+	protected final static Color COLOR_NORMAL = Color.black;
 	protected final static Color COLOR_POSITIVE = Color.green;
 	protected final static Color COLOR_PRIVMSG = Color.darkGray;
+	protected final static Color COLOR_RESPONSE = new Color(0x006400);
 	protected final static Color COLOR_SIGNIFICANT_NEGATIVE	= Color.pink;
 	protected final static Color COLOR_SIGNIFICANT_POSITIVE	= Color.cyan;
 	protected final static Color COLOR_TUTORIAL = new Color(172, 0, 172);
@@ -662,6 +663,9 @@ public class j2DClient extends StendhalUI {
 			case PRIVMSG:
 				return COLOR_PRIVMSG;
 
+			case RESPONSE:
+				return COLOR_RESPONSE;
+
 			case SIGNIFICANT_NEGATIVE:
 				return COLOR_SIGNIFICANT_NEGATIVE;
 
@@ -967,16 +971,6 @@ public class j2DClient extends StendhalUI {
 	@Override
 	public void addEventLine(String header, String text) {
 		addEventLine(header, text, NotificationType.NORMAL);
-	}
-
-
-	/**
-	 * Add an event line.
-	 *
-	 */
-	@Override
-	public void addEventLine(String text, Color color) {
-		gameLog.addLine(text, color);
 	}
 
 

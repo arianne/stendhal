@@ -10,10 +10,10 @@ package games.stendhal.client.entity;
 //
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
@@ -22,11 +22,6 @@ import java.util.List;
  * The 2D view of a sign.
  */
 public class Sign2DView extends Entity2DView {
-	/**
-	 * The sign color (dark green).
-	 */
-	private static final Color signColor = new Color(0x006400);
-
 	/**
 	 * The sign entity.
 	 */
@@ -166,14 +161,14 @@ public class Sign2DView extends Entity2DView {
 				String text = sign.getText();
 
 				GameScreen.get().addText(
-					sign.getX(), sign.getY(), text, signColor, false);
+					sign.getX(), sign.getY(), text, NotificationType.RESPONSE, false);
 
 				if (text.contains("\n")) {
 					// The sign's text has multiple lines. Add a linebreak after
 					// "you read" so that it is easier readable.
-					StendhalUI.get().addEventLine("You read:\n\"" + text + "\"", signColor);
+					StendhalUI.get().addEventLine("You read:\n\"" + text + "\"", NotificationType.RESPONSE);
 				} else {
-					StendhalUI.get().addEventLine("You read: \"" + text + "\"", signColor);
+					StendhalUI.get().addEventLine("You read: \"" + text + "\"", NotificationType.RESPONSE);
 				}
 				break;
 

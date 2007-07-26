@@ -12,8 +12,6 @@ package games.stendhal.client;
 import games.stendhal.client.entity.Inspector;
 import games.stendhal.client.gui.ManagedWindow;
 
-import java.awt.Color;
-
 import javax.swing.JPopupMenu;
 
 /**
@@ -59,13 +57,6 @@ public abstract class StendhalUI {
 	 *
 	 */
 	public abstract void addEventLine(String header, String text);
-
-	/**
-	 * Add an event line.
-	 *
-	 * TODO: Change all calls to this to use NotificationType form
-	 */
-	public abstract void addEventLine(String text, Color color);
 
 	/**
 	 * Add an event line.
