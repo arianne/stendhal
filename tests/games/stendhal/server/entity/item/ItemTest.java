@@ -208,7 +208,7 @@ assertEquals("name1", mo.getName());
 	@Test
 	public void testToString() {
 		Item mo = new Item("name1","myClass","mySubclass",new HashMap<String, String>());
-		assertEquals("Item, RPObject with Attributes of Class(item): [type=item][class=myClass][name=name1][subclass=mySubclass] and RPSlots ",mo.toString());
+		assertEquals("Item, RPObject with Attributes of Class(item): [type=item][class=myClass][name=name1][subclass=mySubclass] and RPSlots  and RPLink  and RPEvents ",mo.toString());
 	}
 
 	@Test
