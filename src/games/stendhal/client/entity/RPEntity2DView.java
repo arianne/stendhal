@@ -11,6 +11,8 @@ package games.stendhal.client.entity;
 import marauroa.common.game.RPAction;
 
 import games.stendhal.client.GameScreen;
+import games.stendhal.client.StendhalUI;
+import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sprite.AnimatedSprite;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -172,7 +174,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 			int tx = x + 20 - (width / 2);
 			int ty = y - (int) (age * 5L / 300L);
 
-			screen.drawOutlineString(g2d, indicator.getColor(), text, tx, ty + 10);
+			Color color = ((j2DClient) StendhalUI.get()).getNotificationColor(indicator.getType());
+
+			screen.drawOutlineString(g2d, color, text, tx, ty + 10);
 		}
 	}
 

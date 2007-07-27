@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
+import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPObject;
@@ -71,7 +71,7 @@ public class Player extends RPEntity {
 	 *				if no-longer away.
 	 */
 	protected void onAway(final String message) {
-		addTextIndicator(((message != null) ? "Away" : "Back"), Color.blue);
+		addTextIndicator(((message != null) ? "Away" : "Back"), NotificationType.INFORMATION);
 	}
 
 

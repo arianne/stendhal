@@ -172,10 +172,10 @@ public abstract class RPEntity extends ActiveEntity {
 	 * Create/add a text indicator message.
 	 *
 	 * @param	text		The text message.
-	 * @param	color		The color of the text.
+	 * @param	type		The indicator type.
 	 */
-	protected void addTextIndicator(final String text, final Color color) {
-		textIndicators.add(new TextIndicator(text, color));
+	protected void addTextIndicator(final String text, final NotificationType type) {
+		textIndicators.add(new TextIndicator(text, type));
 		fireChange(PROP_TEXT_INDICATORS);
 	}
 
@@ -485,9 +485,9 @@ public abstract class RPEntity extends ActiveEntity {
 	public void onHPChange(final int amount) {
 		if (distanceToUser() < 15 * 15) {
 			if(amount > 0) {
-				addTextIndicator("+" + amount, Color.green);
+				addTextIndicator("+" + amount, NotificationType.POSITIVE);
 			} else {
-				addTextIndicator(String.valueOf(amount), Color.red);
+				addTextIndicator(String.valueOf(amount), NotificationType.NEGATIVE);
 			}
 		}
 	}
@@ -1050,13 +1050,13 @@ public abstract class RPEntity extends ActiveEntity {
 			if (distanceToUser() < 15 * 15) {
 				int amount=(changes.getInt("xp") - object.getInt("xp"));
 				if(amount>0) {
-					addTextIndicator("+" + amount, Color.cyan);
+					addTextIndicator("+" + amount, NotificationType.SIGNIFICANT_POSITIVE);
 
 					StendhalUI.get().addEventLine( getTitle() + " earns "
 							+ Grammar.quantityplnoun(amount, "experience point")
 							+ ".", NotificationType.SIGNIFICANT_POSITIVE);
 				} else if(amount<0) {
-					addTextIndicator(""+amount, Color.pink);
+					addTextIndicator(""+amount, NotificationType.SIGNIFICANT_NEGATIVE);
 
 					StendhalUI.get().addEventLine( getTitle() + " loses "
 							+ Grammar.quantityplnoun(amount, "experience point")
@@ -1131,11 +1131,6 @@ public abstract class RPEntity extends ActiveEntity {
 
 	public static class TextIndicator {
 		/**
-		 * The text color.
-		 */
-		protected Color		color;
-
-		/**
 		 * The age of the message (in ms).
 		 */
 		protected int		age;
@@ -1145,16 +1140,21 @@ public abstract class RPEntity extends ActiveEntity {
 		 */
 		protected String	text;
 
+		/**
+		 * The indicator type.
+		 */
+		protected NotificationType	type;
+
 
 		/**
 		 * Create a floating message.
 		 *
 		 * @param	text		The text to drawn.
-		 * @param	color		The text color.
+		 * @param	type		The indicator type.
 		 */
-		public TextIndicator(final String text, final Color color) {
+		public TextIndicator(final String text, final NotificationType type) {
 			this.text = text;
-			this.color = color;
+			this.type = type;
 
 			age = 0;
 		}
@@ -1189,22 +1189,22 @@ public abstract class RPEntity extends ActiveEntity {
 
 
 		/**
-		 * Get the text color.
-		 *
-		 * @return	The text color.
-		 */
-		public Color getColor() {
-			return color;
-		}
-
-
-		/**
 		 * Get the text message.
 		 *
 		 * @return	The text message.
 		 */
 		public String getText() {
 			return text;
+		}
+
+
+		/**
+		 * Get the indicator type.
+		 *
+		 * @return	The indicator type.
+		 */
+		public NotificationType getType() {
+			return type;
 		}
 	}
 }
