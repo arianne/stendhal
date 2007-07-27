@@ -13,8 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.NotificationType;
-import games.stendhal.client.StendhalUI;
-
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import marauroa.common.game.RPObject;
