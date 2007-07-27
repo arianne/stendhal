@@ -16,12 +16,12 @@ import games.stendhal.client.StendhalClient;
 import games.stendhal.client.stendhal;
 import games.stendhal.client.update.ClientGameConfiguration;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -34,12 +34,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-import javax.swing.text.AbstractDocument.DefaultDocumentEvent;
 
 import marauroa.client.BannedAddressException;
 import marauroa.client.LoginFailedException;
@@ -372,6 +369,8 @@ public class CreateAccountDialog extends JDialog {
 			}
 			if (ok) {
 				super.insertString(offs, lower, a);
+			} else {
+				Toolkit.getDefaultToolkit().beep();
 			}
 		}
 	}
