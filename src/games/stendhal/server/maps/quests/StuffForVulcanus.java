@@ -60,9 +60,11 @@ public class StuffForVulcanus extends AbstractQuest {
 				if (!player.hasQuest(QUEST_SLOT)) {
 					engine.say("I once forged the most powerful of swords. I can do it again for you. Are you interested?");
 				} else if (player.isQuestCompleted(QUEST_SLOT)) {
-					engine.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");	  
+					engine.say("Oh! I am so tired. Look for me later. I need a few years of relaxing.");
+					engine.setCurrentState(ConversationStates.ATTENDING);
 				} else { 
 					engine.say("Why are you bothering me when you haven't completed your quest yet?");
+					engine.setCurrentState(ConversationStates.ATTENDING);
 				}
 			}
 		});
