@@ -312,7 +312,13 @@ public class ZonesXMLLoader extends DefaultHandler {
 					zone.remove(oportal);
 				}
 			}
-
+			
+			// Fix PortalBugs; blocked portals
+			if (zone.collides(portal.getX(), portal.getY())) {
+				logger.warn("Unblocking blocked portal: " + portal);
+				zone.collisionMap.setCollide(portal.getArea(), false);
+			}
+			
 			zone.add(portal);
 		} catch (IllegalArgumentException ex) {
 			logger.error("Error with portal factory", ex);
