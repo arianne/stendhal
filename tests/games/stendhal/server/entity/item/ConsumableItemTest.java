@@ -26,33 +26,33 @@ public class ConsumableItemTest {
 		attributes.put("amount","1");
 		attributes.put("regen","200");
 		attributes.put("frequency","1");
-		c200_1= new ConsumableItem(null, null, null, attributes );
-		
-		
+		c200_1= new ConsumableItem("","","", attributes );
+
+
 		attributes.put("regen","100");
 		attributes.put("frequency","1");
-		c100_1 = new ConsumableItem(null, null, null, attributes );
+		c100_1 = new ConsumableItem("","","", attributes );
 		assertEquals(100, c100_1.getRegen());
 		assertEquals(1, c100_1.getFrecuency());
 		attributes.put("regen","4");
 		attributes.put("frequency","5");
-		c4_5 = new ConsumableItem(null, null, null, attributes );
+		c4_5 = new ConsumableItem("","","", attributes );
 		attributes.put("regen","4");
 		attributes.put("frequency","6");
-		c4_6 = new ConsumableItem(null, null, null, attributes );
+		c4_6 = new ConsumableItem("","","", attributes );
 		attributes.put("regen","100");
 		attributes.put("frequency","1");
-		d100_1 = new ConsumableItem(null, null, null, attributes );
-		
+		d100_1 = new ConsumableItem("","","", attributes );
+
 		attributes.put("regen","50");
 		attributes.put("frequency","1");
-		c50_1= new ConsumableItem(null, null, null, attributes );
+		c50_1= new ConsumableItem("","","", attributes );
 		assertEquals(50, c50_1.getRegen());
 		assertEquals(1, c50_1.getFrecuency());
-		
+
 		attributes.put("regen","100");
 		attributes.put("frequency","2");
-		c100_2= new ConsumableItem(null, null, null, attributes );
+		c100_2= new ConsumableItem("","","", attributes );
 	}
 @Test
 public void testlistsort()  {
@@ -62,16 +62,16 @@ public void testlistsort()  {
 	items.add(c200_1);
 	items.add(c100_1);
 	items.add(c4_5);
-	
-	
+
+
 	Collections.sort(items);
 	assertEquals(0,items.indexOf(c200_1));
 	assertEquals(1,items.indexOf(c100_1));
 	assertEquals(2,items.indexOf(c50_1));
 	assertEquals(3,items.indexOf(c4_5));
 	assertEquals(4,items.indexOf(c4_6));
-	
-	
+
+
 }
 @Test
 public void testlistsort2()  {
@@ -99,7 +99,7 @@ public void testlistsort2()  {
 		assertTrue(c4_6.compareTo(c4_5)>0);
 		assertTrue(Math.signum(c4_5.compareTo(c4_6))==-Math.signum(c4_6.compareTo(c4_5)));
 	}
-	
+
 	@Test
 	public void comparetransient() {
 //		(x.compareTo(y)>0 && y.compareTo(z)>0) implies x.compareTo(z)>0.
@@ -110,7 +110,7 @@ public void testlistsort2()  {
 		assertTrue(c200_1.compareTo(c100_1)<0);
 		assertTrue(c100_1.compareTo(c50_1)<0);
 		assertTrue(c200_1.compareTo(c50_1)<0);
-		
+
 	}
 	@Test
 	public void compare_xy_sgnxz_sgnyz() {
@@ -120,13 +120,13 @@ public void testlistsort2()  {
 				==Math.signum(c100_2.compareTo(c100_1)));
 
 	}
-	@Test 
+	@Test
 	public void compareTO_Equals() {
 //		(x.compareTo(y)==0) == (x.equals(y)).
 		assertEquals(0,c100_1.compareTo(d100_1));
 		assertEquals(0,d100_1.compareTo(c100_1));
 		assertEquals(0,c100_1.compareTo(c100_1));
 	}
-		
+
 
 }

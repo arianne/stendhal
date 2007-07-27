@@ -55,7 +55,7 @@ public class ZooFoodTest {
 		Player player;
 		player= new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
-	
+
 		SpeakerNPC npc = NPCList.get().get("Katinka");
 		assertNotNull(npc);
 		Engine en1 = npc.getEngine();
@@ -65,7 +65,7 @@ public class ZooFoodTest {
 		en1.step(player, "bye");
 		assertFalse(npc.isTalking());
 		assertEquals("Goodbye!", npc.get("text"));
-		
+
 		 npc = NPCList.get().get("Dr. Feelgood");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
@@ -75,31 +75,31 @@ public class ZooFoodTest {
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		assertEquals("Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?", npc.get("text"));
-		
+
 	}
 	@Test
 	public void testDoQuest() {
 		Player player;
 		player= new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
-	
+
 		SpeakerNPC katinkaNpc = NPCList.get().get("Katinka");
 		assertNotNull(katinkaNpc);
 		Engine enKatinka = katinkaNpc.getEngine();
 		SpeakerNPC feelgoodNpc = NPCList.get().get("Dr. Feelgood");
 		assertNotNull(feelgoodNpc);
 		Engine enFeelgood = feelgoodNpc.getEngine();
-		enKatinka.step(player, "hi");	
+		enKatinka.step(player, "hi");
 		assertEquals("Welcome to the Ados Wildlife Refuge! We rescue animals from being slaughtered by evil adventurers. But we need help... maybe you could do a #task for us?", katinkaNpc.get("text"));
-		
-		enKatinka.step(player, "task");	
+
+		enKatinka.step(player, "task");
 		assertEquals("Our tigers, lions and bears are hungry. We need 10 pieces of ham to feed them. Can you help us?", katinkaNpc.get("text"));
 
-		enKatinka.step(player, "yes");	
+		enKatinka.step(player, "yes");
 		assertTrue(player.hasQuest("zoo_food"));
 		assertEquals("Okay, but please don't let the poor animals suffer too long! Bring me the pieces of ham as soon as you get them.", katinkaNpc.get("text"));
-		
-		enKatinka.step(player, "bye");	
+
+		enKatinka.step(player, "bye");
 		assertEquals("Goodbye!", katinkaNpc.get("text"));
 		assertTrue(player.hasQuest("zoo_food"));
 		assertEquals("start",player.getQuest("zoo_food"));
@@ -111,38 +111,38 @@ public class ZooFoodTest {
 		assertFalse(feelgoodNpc.isTalking());
 		assertEquals("Sorry, can't stop to chat. The animals are all sick because they don't have enough food. See yourself out, won't you?", feelgoodNpc.get("text"));
 		// bother katinka again
-		enKatinka.step(player, "hi");	
+		enKatinka.step(player, "hi");
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?", katinkaNpc.get("text"));
 		enKatinka.step(player, "yes");	//lie
 		assertEquals("*sigh* I SPECIFICALLY said that we need 10 pieces of ham!", katinkaNpc.get("text"));
-		enKatinka.step(player, "bye");	
+		enKatinka.step(player, "bye");
 		assertEquals("Goodbye!", katinkaNpc.get("text"));
 		//equip player with to less needed stuff
-		StackableItem ham =  new StackableItem("ham",null,null,null);
+		StackableItem ham =  new StackableItem("ham","","",null);
 		ham.setQuantity(5);
 		ham.setID(new ID(2,"testzone"));
 		player.getSlot("bag").add(ham);
 		assertEquals(5,player.getNumberOfEquipped("ham"));
-		
+
 		// bother katinka again
-		enKatinka.step(player, "hi");	
+		enKatinka.step(player, "hi");
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?", katinkaNpc.get("text"));
 		enKatinka.step(player, "yes");	//lie
 		assertEquals("*sigh* I SPECIFICALLY said that we need 10 pieces of ham!", katinkaNpc.get("text"));
-		enKatinka.step(player, "bye");	
+		enKatinka.step(player, "bye");
 		assertEquals("Goodbye!", katinkaNpc.get("text"));
 		//equip player with to  needed stuff
-		StackableItem ham2 =  new StackableItem("ham",null,null,null);
+		StackableItem ham2 =  new StackableItem("ham","","",null);
 		ham2.setQuantity(5);
 		ham2.setID(new ID(3,"testzone"));
 		player.getSlot("bag").add(ham2);
 		assertEquals(10,player.getNumberOfEquipped("ham"));
 		//		bring stuff to katinka
-		enKatinka.step(player, "hi");	
+		enKatinka.step(player, "hi");
 		assertEquals("Welcome back! Have you brought the 10 pieces of ham?", katinkaNpc.get("text"));
-		enKatinka.step(player, "yes");	
+		enKatinka.step(player, "yes");
 		assertEquals("Thank you! You have rescued our rare animals.", katinkaNpc.get("text"));
-		enKatinka.step(player, "bye");	
+		enKatinka.step(player, "bye");
 		assertEquals("Goodbye!", katinkaNpc.get("text"));
 		assertEquals("done",player.getQuest("zoo_food"));
 		//feelgood is reacting
@@ -150,11 +150,11 @@ public class ZooFoodTest {
 	    assertTrue(feelgoodNpc.isTalking());
 		assertEquals("Hello! Now that the animals have enough food, they don't get sick that easily, and I have time for other things. How can I help you?", feelgoodNpc.get("text"));
 		enFeelgood.step(player, "offers");
-		
+
 		assertEquals("I sell antidote, minor_potion, potion, and greater_potion.", feelgoodNpc.get("text"));
 		enFeelgood.step(player,"bye");
 		assertEquals("Bye!", feelgoodNpc.get("text"));
-		
-	
+
+
 	}
 }

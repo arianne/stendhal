@@ -23,10 +23,10 @@ public class FishSourceTest {
 		MockStendlRPWorld.get();
 	}
 
-	
+
 	@Test
 	public void testOnUsed() {
-		
+
 		FishSource fs = new FishSource("somefish");
 		Player player = new Player(new RPObject());
 		player.setName("bob");
@@ -34,7 +34,7 @@ public class FishSourceTest {
 		fs.onUsed(player);
 		assertEquals("You need a fishing rod for fishing.", player.get("private_text"));
 		player.remove("private_text");
-		StackableItem fishingRod =  new StackableItem("fishing_rod",null,null,null);
+		StackableItem fishingRod =  new StackableItem("fishing_rod","","",null);
 		fishingRod.setQuantity(1);
 		fishingRod.setID(new ID(2,"testzone"));
 		player.getSlot("bag").add(fishingRod);
@@ -50,8 +50,8 @@ public class FishSourceTest {
 		player2.getSlot("bag").add(fishingRod);
 		fs.onUsed(player2);
 		assertEquals("You have started fishing.", player2.get("private_text"));
-		
+
 	}
 
-	
+
 }

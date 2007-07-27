@@ -84,7 +84,7 @@ public class CampfireTest {
 		assertEquals("Okay. You can find wood in the forest north of here. Come back when you get ten pieces of wood!", npc.get("text"));
 		en.step(player,"bye");
 		assertEquals("Bye.", npc.get("text"));
-		StackableItem wood =  new StackableItem("wood",null,null,null);
+		StackableItem wood =  new StackableItem("wood","","",null);
 		wood.setQuantity(10);
 		wood.setID(new ID(2,"testzone"));
 		player.getSlot("bag").add(wood);

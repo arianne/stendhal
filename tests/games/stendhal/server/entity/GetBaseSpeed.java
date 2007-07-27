@@ -46,6 +46,8 @@ class MockStendhalRPWorld extends StendhalRPWorld{
     @Override
     protected void initialize() {
     }
-
+    @Override
+	public void modify(RPObject object) {
+	}
 }
 }

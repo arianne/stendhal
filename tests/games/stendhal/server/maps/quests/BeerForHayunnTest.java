@@ -68,7 +68,7 @@ public class BeerForHayunnTest {
 		en.step(player, "bye");
 		assertFalse(hayunn.isTalking());
 		assertEquals("start",player.getQuest("beer_hayunn"));
-		StackableItem beer =  new StackableItem("beer",null,null,null);
+		StackableItem beer =  new StackableItem("beer","","",null);
 		beer.setQuantity(1);
 		beer.setID(new ID(2,"testzone"));
 		player.getSlot("bag").add(beer);
