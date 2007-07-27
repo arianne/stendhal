@@ -614,13 +614,21 @@ public class GameScreen {
 
 
 	/**
+	 * Helper to get notification type color.
+	 */
+	protected Color getNotificationColor(NotificationType type) {
+		return ((j2DClient) StendhalUI.get()).getNotificationColor(type);
+	}
+
+
+	/**
 	 * Add a text bubble.
 	 *
 	 *
 	 *
 	 */
 	public void addText(double x, double y, String text, NotificationType type, boolean isTalking) {
-		addText(x, y, text, ((j2DClient) StendhalUI.get()).getNotificationColor(type), isTalking);
+		addText(x, y, text, getNotificationColor(type), isTalking);
 	}
 
 
@@ -934,6 +942,28 @@ public class GameScreen {
 		sprite.draw(g, sx, sy);
 	}
 
+
+	/**
+	 * Create a sprite representation of some text.
+	 *
+	 * @param	text		The text.
+	 * @param	type		The type.
+	 *
+	 * @return	A sprite.
+	 */
+	public Sprite createString(final String text, final NotificationType type) {
+		return createString(text, getNotificationColor(type));
+	}
+
+
+	/**
+	 * Create a sprite representation of some text.
+	 *
+	 * @param	text		The text.
+	 * @param	color		The text color.
+	 *
+	 * @return	A sprite.
+	 */
 	public Sprite createString(String text, Color textColor) {
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice()
 		        .getDefaultConfiguration();

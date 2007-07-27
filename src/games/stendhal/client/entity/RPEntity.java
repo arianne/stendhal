@@ -22,7 +22,6 @@ import games.stendhal.client.soundreview.SoundMaster;
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
 
-import java.awt.Color;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -585,7 +584,7 @@ public abstract class RPEntity extends ActiveEntity {
 			}
 
 			GameScreen.get().addText(
-				getX(), getY(), /* getTitle()+" says: "+ */ line, Color.black, true);
+				getX(), getY(), line, NotificationType.NORMAL, true);
 		}
 	}
 
@@ -1069,7 +1068,7 @@ public abstract class RPEntity extends ActiveEntity {
 			if (distanceToUser() < 15 * 15) {
 				String text = getTitle() + " reaches Level " + getLevel();
 
-				GameScreen.get().addText(getX(), getY(), GameScreen.get().createString(text, Color.green), 0);
+				GameScreen.get().addText(getX(), getY(), GameScreen.get().createString(text, NotificationType.SIGNIFICANT_POSITIVE), 0);
 				StendhalUI.get().addEventLine(text, NotificationType.SIGNIFICANT_POSITIVE);
 			}
 		}
