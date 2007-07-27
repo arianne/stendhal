@@ -42,6 +42,9 @@
  <tileset name="Untitled" firstgid="112" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/brown.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="117" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/small_animal.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2SMQoAIAgAbe+5/p92oRK1IrjhVu9EVUT0U3rRnJbwexoind0QbfA2rvzZG2X8N50Vd6xy2zknfy2yR9V/RBt23tNtHvcrPwAAAADAjAGSUEjiABAAAA==
@@ -69,7 +72,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3OQREAIAwEsRpl+NS/Bv4YOJgmBnar4E+dHiBqD+8DANxWeoDnHdcEIoAAEAAA
+   H4sIAAAAAAAAAGNgGAXUApUD7YARBlIG2gEDAEbTGALEj3D7BwMop4MdlKb5Cqq4YhTgA6Pl0igYBZSB0XKKPECPOmgoglgqmTOaLocvAABHIBHtABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.46">
