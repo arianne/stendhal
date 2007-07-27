@@ -4906,6 +4906,35 @@
     </ai>
   </creature>
 
+  <creature name="winged_blue_imp">
+    <type class="demon" subclass="winged_blue_imp" tileid="demon.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="201"/>
+      <def value="35"/>
+      <hp value="500"/>
+      <speed value="0.8"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="70"/>
+    <experience value="4130"/>
+    <respawn value="2250"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="30.0"/>
+      <item value="poison" quantity="[1,2]" probability="40.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="poisonous" params="15,poison"/>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="dark_elf_general">
     <type class="dark_elf" subclass="dark_elf_general" tileid="dark_elf.png:3"/>
     <description></description>
@@ -5214,7 +5243,7 @@
   </creature>
 
   <creature name="oni_priest">
-    <type class="undead" subclass="oni_priest" tileid="oni.png:2"/>
+    <type class="oni" subclass="oni_priest" tileid="oni.png:2"/>
     <description></description>
     <attributes>
       <atk value="197"/>
@@ -5575,6 +5604,40 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
+
+  <creature name="baby_angel">
+    <type class="fairy" subclass="baby_angel" tileid="fairy.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="215"/>
+      <def value="36"/>
+      <hp value="700"/>
+      <speed value="0.9"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="90"/>
+    <experience value="8190"/>
+    <respawn value="3530"/>
+    <drops>
+      <item value="money" quantity="[30,60]" probability="100.0"/>
+      <item value="potion" quantity="[1,6]" probability="40.0"/>
+      <item value="empty_scroll" quantity="[1,2]" probability="5.0"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="I want to grow to be mighty!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
 
   <creature name="giant_dwarf">
     <type class="huge_animal" subclass="giant_dwarf" tileid="huge_animal.png:9"/>
