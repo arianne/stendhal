@@ -14,6 +14,7 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.common.Grammar;
 import games.stendhal.common.Rand;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.CroupierNPC;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.player.Player;
@@ -60,10 +61,10 @@ public class Dice extends Item {
 	 * the CroupierNPC is lost. That's why we store the croupier's name
 	 * in the item's infostring. This method will read out that infostring
 	 * and set the croupier to the NPC with that name.
-	 * 
+	 *
 	 * I tried to do this in the constructor, but somehow it didn't work:
 	 * the item somehow seems to not have an infostring while the constructor
-	 * is running.  
+	 * is running.
 	 */
 	private void updateCroupierNPC() {
 		if ((croupierNPC == null) && has("infostring")) {
@@ -114,5 +115,13 @@ public class Dice extends Item {
 	public String describe() {
 
 		return "You see a set of dice. The top faces are " + getTopFacesString() + ".";
+	}
+
+	@Override
+	public StendhalRPZone getZone() {
+		if (croupierNPC!=null){
+			return croupierNPC.getZone();
+		}
+		return super.getZone();
 	}
 }
