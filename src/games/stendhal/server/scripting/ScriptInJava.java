@@ -52,10 +52,10 @@ public class ScriptInJava extends ScriptingSandbox {
 	private void newInstance() throws MalformedURLException, ClassNotFoundException, SecurityException,
 	        NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException,
 	        InstantiationException {
-		// Create new class loader 
+		// Create new class loader
 		// with current dir as CLASSPATH
 		File file = new File("./data/script");
-		ClassLoader loader = new URLClassLoader(new URL[] { file.toURI().toURL() });
+		ClassLoader loader = new URLClassLoader(new URL[] { file.toURL() });
 		// load class through new loader
 		Class aClass = loader.loadClass(classname);
 		script = (Script) aClass.newInstance();
