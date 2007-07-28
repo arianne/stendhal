@@ -147,11 +147,6 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	protected StendhalRPRuleProcessor() {
-
-	}
-
-	private void init() {
-		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 		players = new LinkedList<Player>();
 		playersRmText = new LinkedList<Player>();
 		playersRmPrivateText = new LinkedList<Player>();
@@ -161,6 +156,11 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		npcsToAdd = new LinkedList<NPC>();
 		npcsToRemove = new LinkedList<NPC>();
 		entityToKill = new LinkedList<Pair<RPEntity, Entity>>();
+
+	}
+
+	private void init() {
+		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
 		registerActions();
 		instance = this;
 		addGameEvent("server system", "startup");
