@@ -108,11 +108,6 @@ public class Pet2DView extends RPEntity2DView {
 			return null;
 		}
 
-		// TODO: Remove 'stop' idea on server side if not needed
-		if(idea.equals("stop")) {
-			return null;
-		}
-
 		return SpriteStore.get().getSprite("data/sprites/ideas/" + idea + ".png");
 	}
 
@@ -241,11 +236,7 @@ public class Pet2DView extends RPEntity2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (ideaSprite != null) {
-			Rectangle2D rect = pet.getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getY();
-			// TODO: Use pixel coords given
-			screen.draw(ideaSprite, sx - 0.25, sy - 0.25);
+			ideaSprite.draw(g2d, x + width - 8, y - 8);
 		}
 	}
 
@@ -314,11 +305,9 @@ public class Pet2DView extends RPEntity2DView {
 				RPAction rpaction = new RPAction();
 
 				rpaction.put("type", at.toString());
-
 				rpaction.put("target", pet.getID().getObjectID());
 
 				at.send(rpaction);
-
 				break;
 
 			default:

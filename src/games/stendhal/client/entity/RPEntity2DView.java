@@ -325,12 +325,50 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		}
 
 		if (rpentity.isAttacking() && rpentity.isBeingStruck()) {
-			Rectangle2D rect = rpentity.getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-
 			if (frameBladeStrike < 3) {
-				screen.draw(bladeStrikeSprites.get(getState())[frameBladeStrike], sx - 1.5, sy - 3.3);
+				Sprite sprite = bladeStrikeSprites.get(getState())[frameBladeStrike];
+
+				int sw = sprite.getWidth();
+				int sh = sprite.getHeight();
+
+				int sx;
+				int sy;
+
+				/*
+				 * Align swipe image to be 16 px past the
+				 * facing edge, centering in other axis.
+				 *
+				 * Swipe image is 3x4 tiles, but really only
+				 * uses partial areas. Adjust positions to
+				 * match (or fix images to be uniform/centered).
+				 */
+				switch(rpentity.getDirection()) {
+					case UP:
+						sx = x + ((width - sw) / 2) + 16;
+						sy = y - 16 - 32;
+						break;
+
+					case DOWN:
+						sx = x + ((width - sw) / 2);
+						sy = y + height - sh + 16;
+						break;
+
+					case LEFT:
+						sx = x - 16;
+						sy = y + ((height - sh) / 2) - 16;
+						break;
+
+					case RIGHT:
+						sx = x + width - sw + 16;
+						sy = y + ((height - sh) / 2) - 8;
+						break;
+
+					default:
+						sx = x + ((width - sw) / 2);
+						sy = y + ((height - sh) / 2);
+				}
+
+				sprite.draw(g2d, sx, sy);
 			} else {
 				rpentity.doneStriking();
 				frameBladeStrike = 0;
@@ -342,36 +380,37 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		super.draw(g2d, x, y, width, height);
 
 		if (rpentity.isEating()) {
-			Rectangle2D rect = rpentity.getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-			screen.draw(eatingSprite, sx - 0.75, sy - 0.25);
+			eatingSprite.draw(g2d, x + (width / 2) - 8, y + height - 8);
 		}
 
 		if (rpentity.isPoisoned()) {
-			Rectangle2D rect = rpentity.getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
-			screen.draw(poisonedSprite, sx - 1.25, sy - 0.25);
+			poisonedSprite.draw(g2d, x - 8, y + height - 8);
 		}
 
 		if (rpentity.isDefending()) {
 			// Draw bottom right combat icon
-			Rectangle2D rect = rpentity.getArea();
-			double sx = rect.getMaxX();
-			double sy = rect.getMaxY();
+			int sx = x + width - 8;
+			int sy = y + height - 8;
 
 			switch (rpentity.getResolution()) {
 				case BLOCKED:
-					screen.draw(blockedSprite, sx - 0.25, sy - 0.25);
+					blockedSprite.draw(g2d, sx, sy);
 					break;
+
 				case MISSED:
-					screen.draw(missedSprite, sx - 0.25, sy - 0.25);
+					missedSprite.draw(g2d, sx, sy);
 					break;
+
 				case HIT:
-					screen.draw(hitSprite, sx - 0.25, sy - 0.25);
+					hitSprite.draw(g2d, sx, sy);
 					break;
 			}
+		}
+
+		// Enable this to debug entity view area
+		if(false) {
+			g2d.setColor(Color.cyan);
+			g2d.drawRect(x, y, width, height);
 		}
 
 		drawFloaters(g2d, x, y);
