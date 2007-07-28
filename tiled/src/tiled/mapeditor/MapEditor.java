@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -64,6 +63,7 @@ import tiled.mapeditor.dialog.ResizeDialog;
 import tiled.mapeditor.dialog.SearchDialog;
 import tiled.mapeditor.plugin.PluginClassLoader;
 import tiled.mapeditor.undo.UndoStack;
+import tiled.mapeditor.util.ActionManager;
 import tiled.mapeditor.util.MapChangeListener;
 import tiled.mapeditor.util.MapChangedEvent;
 import tiled.mapeditor.util.MapEventAdapter;
@@ -96,7 +96,7 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
   public static final int     PS_MOVEOBJ       = 7;
 
   /** current release version */
-  public static final String VERSION          = "0.0.1";
+  public static final String VERSION          = "0.0.2";
   public static final String TITLE            = "Stendhal Mapeditor";
 
   public MapView              mapView;
@@ -104,10 +104,6 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
   private MapEventAdapter     mapEventAdapter;
   public PluginClassLoader    pluginLoader;
   public TiledConfiguration   configuration;
-
-  int                         currentPointerState;
-
-  boolean                     bMouseIsDown     = false;
 
   private List<Point>         selectedTiles;
   public  Map                 currentMap;
@@ -134,45 +130,9 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
   public JFrame               appFrame;
 
   private AboutDialog         aboutDialog;
-
-  // Actions
-  public Action               zoomInAction;
-  public Action               zoomOutAction;
-  public Action               zoomNormalAction;
-  public Action               undoAction;
-  public Action               redoAction;
-  public Action               rot90Action;
-  public Action               rot180Action;
-  public Action               rot270Action;
-  public Action               flipHorAction;
-  public Action               flipVerAction;
-  public Action               copyAction;
-  public Action               cutAction;
-  public Action               pasteAction;
-  public Action               selectAllAction;
-  public Action               inverseAction;
-  public Action               cancelSelectionAction;
-  public Action               openMapAction;
-  public Action               closeMapAction;
-  public Action               saveMapAction;
-  public Action               saveMapAsAction;
-  public Action               saveMapAsImageAction;
-  public Action               newMapAction;
-  public Action               exitApplicationAction;
-  public Action               newTilesetAction;
-  public Action               importTilesetAction;
-  public Action               tilesetManagerAction;
-  public Action               mapPropertiesAction;
-  public Action               layerPropertiesAction;
-  public Action               createSingleLayerBrushAction;
-  public Action               createMultiLayerBrushAction;
-  public Action               addLayerAction;
-  public Action               delLayerAction;
-  public Action               duplicateLayerAction;
-  public Action               moveLayerUpAction;
-  public Action               moveLayerDownAction;
-  public Action               toggleGridAction;
-  public Action               treeTilesetChooserAction;
+  
+  /** keeps track of all swing actions */
+  public ActionManager       actionManager;
 
   public MapEditor()
   {
@@ -180,8 +140,6 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
     configuration = TiledConfiguration.getInstance();
 
     undoStack = new UndoStack(this);
-//    undoSupport = new UndoableEditSupport();
-//    undoSupport.addUndoableEditListener(new UndoAdapter());
 
     mapEventAdapter = new MapEventAdapter();
 
@@ -189,43 +147,7 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
     setBrush(ShapeBrush.makeRectBrush(1,1));
 
     // Create the actions
-    zoomInAction = new ZoomInAction(this);
-    zoomOutAction = new ZoomOutAction(this);
-    zoomNormalAction = new ZoomNormalAction(this);
-    undoAction = new UndoAction(this);
-    redoAction = new RedoAction(this);
-    rot90Action = new LayerTransformAction(this, MapLayer.ROTATE_90);
-    rot180Action = new LayerTransformAction(this, MapLayer.ROTATE_180);
-    rot270Action = new LayerTransformAction(this, MapLayer.ROTATE_270);
-    flipHorAction = new LayerTransformAction(this, MapLayer.MIRROR_HORIZONTAL);
-    flipVerAction = new LayerTransformAction(this, MapLayer.MIRROR_VERTICAL);
-    copyAction = new CopyAction(this);
-    pasteAction = new PasteAction(this);
-    cutAction = new CutAction(this);
-    selectAllAction = new SelectAllAction(this);
-    cancelSelectionAction = new CancelSelectionAction(this);
-    inverseAction = new InverseSelectionAction(this);
-    openMapAction = new OpenAction(this);
-    closeMapAction = new CloseAction(this);
-    saveMapAction = new SaveMapAction(this,false);
-    saveMapAsAction = new SaveMapAction(this,true);
-    saveMapAsImageAction = new SaveAsImageAction(this);
-    newMapAction = new NewMapAction(this);
-    exitApplicationAction = new ExitApplicationAction(this);
-    newTilesetAction = new NewTilesetAction(this);
-    importTilesetAction = new ImportTilesetAction(this);
-    tilesetManagerAction = new TilesetManagerAction(this);
-    mapPropertiesAction = new MapPropertiesAction(this);
-    layerPropertiesAction = new LayerPropertiesAction(this);
-    createSingleLayerBrushAction = new CreateSingleLayerBrushAction(this);
-    createMultiLayerBrushAction = new CreateMultiLayerBrushAction(this);
-    addLayerAction = new AddLayerAction(this);
-    delLayerAction = new DelLayerAction(this);
-    duplicateLayerAction = new DuplicateLayerAction(this);
-    moveLayerUpAction = new MoveLayerUpAction(this);
-    moveLayerDownAction = new MoveLayerDownAction(this);
-    toggleGridAction = new ToggleGridAction(this);
-    treeTilesetChooserAction = new TreeTilesetChooserAction(this);
+    actionManager = new ActionManager(this);
 
     // Create our frame
     appFrame = new JFrame(TITLE);
@@ -1169,8 +1091,8 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
       updateBuilder();
     }
 
-    zoomInAction.setEnabled(mapLoaded);
-    zoomOutAction.setEnabled(mapLoaded);
+    actionManager.getAction(ZoomInAction.class).setEnabled(mapLoaded);
+    actionManager.getAction(ZoomOutAction.class).setEnabled(mapLoaded);
 
     undoStack.discardAllEdits();
     updateLayerTable();

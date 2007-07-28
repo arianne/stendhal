@@ -27,7 +27,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import tiled.core.MapLayer;
 import tiled.mapeditor.MapEditor;
+import tiled.mapeditor.actions.*;
 import tiled.mapeditor.util.MapEventAdapter;
 
 /**
@@ -65,10 +67,10 @@ public class MainMenu extends JMenuBar implements ActionListener
     super();
     this.mapEditor = mapEditor;
 
-    JMenuItem save        = new TMenuItem(mapEditor.saveMapAction);
-    JMenuItem saveAs      = new TMenuItem(mapEditor.saveMapAsAction);
-    JMenuItem saveAsImage = new TMenuItem(mapEditor.saveMapAsImageAction);
-    JMenuItem close       = new TMenuItem(mapEditor.closeMapAction);
+    JMenuItem save        = new TMenuItem(mapEditor.actionManager.getAction(SaveMapAction.class, false));
+    JMenuItem saveAs      = new TMenuItem(mapEditor.actionManager.getAction(SaveMapAction.class, true));
+    JMenuItem saveAsImage = new TMenuItem(mapEditor.actionManager.getAction(SaveAsImageAction.class));
+    JMenuItem close       = new TMenuItem(mapEditor.actionManager.getAction(CloseAction.class));
     
     recentMenu = new JMenu("Open Recent");
     
@@ -78,35 +80,35 @@ public class MainMenu extends JMenuBar implements ActionListener
     mapEventAdapter.addListener(close);
     
     JMenu fileMenu = new JMenu("File");
-    fileMenu.add(new TMenuItem(mapEditor.newMapAction));
-    fileMenu.add(new TMenuItem(mapEditor.openMapAction));    
+    fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(NewMapAction.class)));
+    fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(OpenAction.class)));    
     fileMenu.add(recentMenu);
     fileMenu.add(save);
     fileMenu.add(saveAs);
     fileMenu.add(saveAsImage);
     fileMenu.addSeparator();
     fileMenu.add(close);
-    fileMenu.add(new TMenuItem(mapEditor.exitApplicationAction));
+    fileMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ExitApplicationAction.class)));
     
-    undoMenuItem = new TMenuItem(mapEditor.undoAction);
-    redoMenuItem = new TMenuItem(mapEditor.redoAction);
+    undoMenuItem = new TMenuItem(mapEditor.actionManager.getAction(UndoAction.class));
+    redoMenuItem = new TMenuItem(mapEditor.actionManager.getAction(RedoAction.class));
     undoMenuItem.setEnabled(false);
     redoMenuItem.setEnabled(false);
     
-    TMenuItem copyMenuItem = new TMenuItem(mapEditor.copyAction);
-    TMenuItem cutMenuItem = new TMenuItem(mapEditor.cutAction);
-    TMenuItem pasteMenuItem = new TMenuItem(mapEditor.pasteAction);
+    TMenuItem copyMenuItem = new TMenuItem(mapEditor.actionManager.getAction(CopyAction.class));
+    TMenuItem cutMenuItem = new TMenuItem(mapEditor.actionManager.getAction(CutAction.class));
+    TMenuItem pasteMenuItem = new TMenuItem(mapEditor.actionManager.getAction(PasteAction.class));
     copyMenuItem.setEnabled(false);
     cutMenuItem.setEnabled(false);
     pasteMenuItem.setEnabled(false);
     
     JMenu transformSub = new JMenu("Transform");
-    transformSub.add(new TMenuItem(mapEditor.rot90Action, true));
-    transformSub.add(new TMenuItem(mapEditor.rot180Action, true));
-    transformSub.add(new TMenuItem(mapEditor.rot270Action, true));
+    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_90), true));
+    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_180), true));
+    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.ROTATE_270), true));
     transformSub.addSeparator();
-    transformSub.add(new TMenuItem(mapEditor.flipHorAction, true));
-    transformSub.add(new TMenuItem(mapEditor.flipVerAction, true));
+    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.MIRROR_HORIZONTAL), true));
+    transformSub.add(new TMenuItem(mapEditor.actionManager.getAction(LayerTransformAction.class, MapLayer.MIRROR_VERTICAL), true));
     mapEventAdapter.addListener(transformSub);
     
     JMenu editMenu = new JMenu("Edit");
@@ -132,18 +134,18 @@ public class MainMenu extends JMenuBar implements ActionListener
     mapMenu.add(createMenuItem("Resize", null, "Modify map dimensions"));
     mapMenu.add(createMenuItem("Search", null,"Search for/Replace tiles"));
     mapMenu.addSeparator();
-    mapMenu.add(new TMenuItem(mapEditor.mapPropertiesAction));
+    mapMenu.add(new TMenuItem(mapEditor.actionManager.getAction(MapPropertiesAction.class)));
     mapEventAdapter.addListener(mapMenu);
     
     
-    JMenuItem layerAdd = new TMenuItem(mapEditor.addLayerAction);
-    layerClone = new TMenuItem(mapEditor.duplicateLayerAction);
-    layerDel =   new TMenuItem(mapEditor.delLayerAction);
-    layerUp =    new TMenuItem(mapEditor.moveLayerUpAction);
-    layerDown =  new TMenuItem(mapEditor.moveLayerDownAction);
+    JMenuItem layerAdd = new TMenuItem(mapEditor.actionManager.getAction(AddLayerAction.class));
+    layerClone = new TMenuItem(mapEditor.actionManager.getAction(DuplicateLayerAction.class));
+    layerDel =   new TMenuItem(mapEditor.actionManager.getAction(DelLayerAction.class));
+    layerUp =    new TMenuItem(mapEditor.actionManager.getAction(MoveLayerUpAction.class));
+    layerDown =  new TMenuItem(mapEditor.actionManager.getAction(MoveLayerDownAction.class));
     layerMerge = createMenuItemWithThisAsActionListener("Merge Down", null, "Merge current layer onto next lower", "shift control M");
     layerMergeAll = createMenuItemWithThisAsActionListener("Merge All", null, "Merge all layers",null);
-    JMenuItem layerProperties = new TMenuItem(mapEditor.layerPropertiesAction);
+    JMenuItem layerProperties = new TMenuItem(mapEditor.actionManager.getAction(LayerPropertiesAction.class));
 
     mapEventAdapter.addListener(layerAdd);
     
@@ -161,30 +163,30 @@ public class MainMenu extends JMenuBar implements ActionListener
     layerMenu.add(layerProperties);
 
     JMenu tilesetMenu = new JMenu("Tilesets");
-    tilesetMenu.add(new TMenuItem(mapEditor.newTilesetAction));
-    tilesetMenu.add(new TMenuItem(mapEditor.importTilesetAction));
-    JCheckBoxMenuItem treeTilesetChooser = new JCheckBoxMenuItem(mapEditor.treeTilesetChooserAction);
+    tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(NewTilesetAction.class)));
+    tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ImportTilesetAction.class)));
+    JCheckBoxMenuItem treeTilesetChooser = new JCheckBoxMenuItem(mapEditor.actionManager.getAction(TreeTilesetChooserAction.class));
     treeTilesetChooser.setSelected(true);
     tilesetMenu.add(treeTilesetChooser);
     tilesetMenu.addSeparator();
-    tilesetMenu.add(new TMenuItem(mapEditor.tilesetManagerAction));
+    tilesetMenu.add(new TMenuItem(mapEditor.actionManager.getAction(TilesetManagerAction.class)));
     
     
     JMenu selectMenu = new JMenu("Select");
-    selectMenu.add(new TMenuItem(mapEditor.selectAllAction, true));
-    selectMenu.add(new TMenuItem(mapEditor.cancelSelectionAction, true));
-    selectMenu.add(new TMenuItem(mapEditor.inverseAction, true));
+    selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(SelectAllAction.class), true));
+    selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(CancelSelectionAction.class), true));
+    selectMenu.add(new TMenuItem(mapEditor.actionManager.getAction(InverseSelectionAction.class), true));
     
-    gridMenuItem = new JCheckBoxMenuItem(mapEditor.toggleGridAction);
+    gridMenuItem = new JCheckBoxMenuItem(mapEditor.actionManager.getAction(ToggleGridAction.class));
 
     coordinatesMenuItem = new JCheckBoxMenuItem("Show Coordinates");
     coordinatesMenuItem.addActionListener(mapEditor);
     coordinatesMenuItem.setToolTipText("Toggle tile coordinates");
     
     JMenu viewMenu = new JMenu("View");
-    viewMenu.add(new TMenuItem(mapEditor.zoomInAction));
-    viewMenu.add(new TMenuItem(mapEditor.zoomOutAction));
-    viewMenu.add(new TMenuItem(mapEditor.zoomNormalAction));
+    viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomInAction.class)));
+    viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomOutAction.class)));
+    viewMenu.add(new TMenuItem(mapEditor.actionManager.getAction(ZoomNormalAction.class)));
     viewMenu.addSeparator();
     viewMenu.add(gridMenuItem);
     viewMenu.add(coordinatesMenuItem);

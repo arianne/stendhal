@@ -30,6 +30,10 @@ import javax.swing.JToolBar;
 
 import tiled.core.Map;
 import tiled.mapeditor.MapEditor;
+import tiled.mapeditor.actions.CreateMultiLayerBrushAction;
+import tiled.mapeditor.actions.CreateSingleLayerBrushAction;
+import tiled.mapeditor.actions.ZoomInAction;
+import tiled.mapeditor.actions.ZoomOutAction;
 import tiled.mapeditor.util.MapEventAdapter;
 
 /**
@@ -73,8 +77,8 @@ public class ToolBar extends JToolBar implements ActionListener
     eyedButton = createToggleButton(iconEyed, "eyed", "Eye dropper");
     moveButton = createToggleButton(iconMove, "move", "Move layer");
     brushMenu = new BrushMenu(mapEditor);
-    brushButton = new JButton(mapEditor.createSingleLayerBrushAction);
-    brushExtButton = new JButton(mapEditor.createMultiLayerBrushAction);
+    brushButton = new JButton(mapEditor.actionManager.getAction(CreateSingleLayerBrushAction.class));
+    brushExtButton = new JButton(mapEditor.actionManager.getAction(CreateMultiLayerBrushAction.class));
 
     mapEventAdapter.addListener(moveButton);
     mapEventAdapter.addListener(paintButton);
@@ -87,8 +91,8 @@ public class ToolBar extends JToolBar implements ActionListener
     add(eraseButton);
     add(eyedButton);
     addSeparator();
-    add(new TButton(mapEditor.zoomInAction));
-    add(new TButton(mapEditor.zoomOutAction));
+    add(new TButton(mapEditor.actionManager.getAction(ZoomInAction.class)));
+    add(new TButton(mapEditor.actionManager.getAction(ZoomOutAction.class)));
     addSeparator();
     
     add(brushMenu);

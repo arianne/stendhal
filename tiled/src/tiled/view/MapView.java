@@ -180,7 +180,6 @@ public abstract class MapView implements MapChangeListener
         Rectangle r = dirtyMinimap;
         dirtyMinimap = null;
         updateMinimapImage(r);
-        System.out.println("redrawn dirty minimap "+r);
       }
     }
     

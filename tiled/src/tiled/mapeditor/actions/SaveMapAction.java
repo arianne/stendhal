@@ -47,6 +47,14 @@ public class SaveMapAction extends AbstractAction
     this.mapEditor = mapEditor;
     this.withDialog = withDialog;
   }
+  
+  /** constructor for the action manager */
+  public SaveMapAction(MapEditor mapEditor, Object[] params)
+  {
+    // note: no checks. the only parameter should be a boolean :)
+    this(mapEditor, ((Boolean) params[0]).booleanValue() );
+  }
+  
 
   public void actionPerformed(ActionEvent e)
   {

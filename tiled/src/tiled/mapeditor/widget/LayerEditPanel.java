@@ -35,6 +35,11 @@ import javax.swing.event.TableModelListener;
 import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.mapeditor.MapEditor;
+import tiled.mapeditor.actions.AddLayerAction;
+import tiled.mapeditor.actions.DelLayerAction;
+import tiled.mapeditor.actions.DuplicateLayerAction;
+import tiled.mapeditor.actions.MoveLayerDownAction;
+import tiled.mapeditor.actions.MoveLayerUpAction;
 import tiled.mapeditor.brush.Brush;
 import tiled.mapeditor.util.LayerTableModel;
 import tiled.mapeditor.util.MapEventAdapter;
@@ -107,11 +112,11 @@ public class LayerEditPanel extends JPanel implements ListSelectionListener, Cha
     sliderPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE,sliderPanel.getPreferredSize().height));
 
     // Layer buttons
-    layerAddButton = createButton(mapEditor.addLayerAction);
-    layerDelButton = createButton(mapEditor.delLayerAction);
-    layerCloneButton = createButton(mapEditor.duplicateLayerAction);
-    layerUpButton = createButton(mapEditor.moveLayerUpAction);
-    layerDownButton = createButton(mapEditor.moveLayerDownAction);
+    layerAddButton = createButton(mapEditor.actionManager.getAction(AddLayerAction.class));
+    layerDelButton = createButton(mapEditor.actionManager.getAction(DelLayerAction.class));
+    layerCloneButton = createButton(mapEditor.actionManager.getAction(DuplicateLayerAction.class));
+    layerUpButton = createButton(mapEditor.actionManager.getAction(MoveLayerUpAction.class));
+    layerDownButton = createButton(mapEditor.actionManager.getAction(MoveLayerDownAction.class));
 
     mapEventAdapter.addListener(layerAddButton);
 

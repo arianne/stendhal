@@ -70,6 +70,14 @@ public class LayerTransformAction extends AbstractAction
         break;
     }
   }
+  
+  /** constructor for the action manager */
+  public LayerTransformAction(MapEditor mapEditor, Object[] params)
+  {
+    // note: no checks. the only parameter should be an int :)
+    this(mapEditor, ((Integer) params[0]).intValue() );
+  }
+  
 
   public void actionPerformed(ActionEvent evt)
   {
