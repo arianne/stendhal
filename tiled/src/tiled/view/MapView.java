@@ -33,13 +33,15 @@ import tiled.core.Map;
 import tiled.core.Tile;
 import tiled.core.TileGroup;
 import tiled.core.TileLayer;
+import tiled.mapeditor.util.MapChangeListener;
+import tiled.mapeditor.util.MapChangedEvent;
 import tiled.util.TiledConfiguration;
 
 /**
  * Base class for all views
  * @author mtotz
  */
-public abstract class MapView
+public abstract class MapView implements MapChangeListener
 {
   /** default zoom level for the minimap */
   protected static final double DEFAULT_MINIMAP_ZOOM = 0.0625;
@@ -60,6 +62,9 @@ public abstract class MapView
   /** padding between the tiles */
   protected int padding;
   
+  /** dirty region of the minimap (will be redrawn the next time it is displayed) */
+  protected Rectangle dirtyMinimap;
+  
   public MapView()
   {
     // get the background color
@@ -78,7 +83,13 @@ public abstract class MapView
   /** sets the map */
   public void setMap(Map map)
   {
+    if (this.map != null)
+    {
+      this.map.removeMapChangeListener(this);
+    }
+    
     this.map = map;
+    map.addMapChangeListener(this);
   }
 
   /** size of the view (in pixel) */
@@ -150,17 +161,29 @@ public abstract class MapView
    */
   public Image getMinimap()
   {
-    if (minimapImage == null && map != null)
+    if (map != null)
     {
-      // lazy minimap image creation
-      minimapImage = prepareMinimapImage();
-      // update the image
-      Rectangle all = new Rectangle(0,0,map.getWidth(),map.getHeight());
-      Graphics g = minimapImage.createGraphics();
-      g.setColor(Color.BLACK);
-      g.fillRect(0,0,minimapImage.getWidth(),minimapImage.getHeight());
-      updateMinimapImage(all);
+      if (minimapImage == null)
+      {
+        // lazy minimap image creation
+        minimapImage = prepareMinimapImage();
+        // update the image
+        Rectangle all = new Rectangle(0,0,map.getWidth(),map.getHeight());
+        Graphics g = minimapImage.createGraphics();
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,minimapImage.getWidth(),minimapImage.getHeight());
+        updateMinimapImage(all);
+      }
+      
+      if (dirtyMinimap != null)
+      {
+        Rectangle r = dirtyMinimap;
+        dirtyMinimap = null;
+        updateMinimapImage(r);
+        System.out.println("redrawn dirty minimap "+r);
+      }
     }
+    
     return minimapImage;
   }
 
@@ -269,6 +292,26 @@ public abstract class MapView
   {
     return padding;
   }
+  
+  /** 
+   * mapchange events updates the minimap
+   */
+  public void mapChanged(MapChangedEvent e)
+  {
+    Rectangle r = e.getModifiedRegion();
+    if (r == null)
+      return;
+    // update the dirty region
+    if (dirtyMinimap == null)
+    {
+      dirtyMinimap = r;
+    }
+    else
+    {
+      dirtyMinimap = dirtyMinimap.union(r);
+    }
+  }
+  
 
   /**
    * Prepares the minimap. The view can use the <i>DEFAULT_MINIMAP_ZOOM</i>.
