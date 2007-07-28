@@ -89,9 +89,18 @@ public class NPC2DView extends RPEntity2DView {
 	// Entity2DView
 	//
 
+	/**
+	 * Draw the entity.
+	 *
+	 * @param	g2d		The graphics context.
+	 * @param	x		The drawn X coordinate.
+	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn entity width.
+	 * @param	height		The drawn entity height.
+	 */
 	@Override
-	protected void draw(Graphics2D g2d, int x, int y, int width, int height) {
-		super.draw(g2d, x-8, y, width, height);
+	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+		super.drawEntity(g2d, x - 8, y, width, height);
 	}
 
 
