@@ -18,7 +18,7 @@ public class EntityTest {
 		assertEquals(1, pl.getX());
 		assertEquals(1, pl.getY());
 		assertTrue(en.nextTo(pl,0.25));
-		assertTrue(en.nextTo(pl.getX(),pl.getY(),0.25));
+		assertTrue("Player at (1,1) is next to 2,2",en.nextTo(pl.getX(),pl.getY(),0.25));
 		
 		pl.set(2,1);
 		assertTrue(en.nextTo(pl,0.25));

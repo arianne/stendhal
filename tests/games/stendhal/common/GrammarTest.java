@@ -88,7 +88,7 @@ public class GrammarTest {
 	public void testA_noun() {
 		assertEquals("An eater", Grammar.A_noun("eater"));
 		assertEquals("A money", Grammar.A_noun("money"));
-		
+
 	}
 
 	@Test
@@ -226,9 +226,9 @@ public class GrammarTest {
 		Assert.assertEquals("bags of flour", Grammar.plural("bag of flour")); //
 		Assert.assertEquals("nuggets of iron ore", Grammar.plural("nugget of iron ore")); //
 		Assert.assertEquals("bars of iron", Grammar.plural("bar of iron")); //
-		Assert.assertEquals("golden gm tokens", Grammar.plural("golden gm token")); // Token spelt wrong 
-		Assert.assertEquals("silvery gm tokens", Grammar.plural("silvery gm token")); // Token spelt wrong 
-		Assert.assertEquals("bronze gm tokens", Grammar.plural("bronze gm token")); // Token spelt wrong 
+		Assert.assertEquals("golden gm tokens", Grammar.plural("golden gm token")); // Token spelt wrong
+		Assert.assertEquals("silvery gm tokens", Grammar.plural("silvery gm token")); // Token spelt wrong
+		Assert.assertEquals("bronze gm tokens", Grammar.plural("bronze gm token")); // Token spelt wrong
 		Assert.assertEquals("tokens", Grammar.plural("token"));
 		Assert.assertEquals("notes", Grammar.plural("note"));
 		Assert.assertEquals("coupons", Grammar.plural("coupon"));
@@ -247,6 +247,7 @@ public class GrammarTest {
 	/**
 	 * Tests pluralisation of creatures
 	 */
+	@Test
 	public void testPluralCreatures() {
 		Assert.assertEquals("deer", Grammar.plural("deer"));
 		Assert.assertEquals("crabs", Grammar.plural("crab"));
@@ -353,8 +354,8 @@ public class GrammarTest {
 		Assert.assertEquals("1 loaf of #bread", Grammar.quantityplnoun(1,"#bread"));
 		Assert.assertEquals("2 loaves of #bread", Grammar.quantityplnoun(2,"#bread"));
 
-	
+
 	}
-	
-	
+
+
 }

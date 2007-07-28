@@ -9,6 +9,7 @@ public class MockStendhalRPRuleProcessor extends StendhalRPRuleProcessor {
 	public static StendhalRPRuleProcessor get() {
 		if (instance == null) {
 			instance = new MockStendhalRPRuleProcessor();
+			
 		}
 		
 	
