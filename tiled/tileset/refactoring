@@ -228,8 +228,8 @@ K*/item/armor/armor.png
 ./item/blood/floor_stain.png
 ./item/blood/floor_stains_2.png
 k*/item/blood/nsew_stains.png
-./item/candle/candelbra.png
-./item/candle/lamp.png
+b*/item/candle/candelbra.png
+b*/item/candle/lamp.png
 ./item/chest/large.png
 ./item/chest/small.png
 ./item/chest/small_2.png
@@ -282,7 +282,7 @@ b*/item/furniture/crockery/knife_spoon.png
 b*/item/furniture/other/drawer_with_mirror.png
 ./item/furniture/other/piano.png
 z*./item/furniture/other/stick.png
-./item/furniture/other/warmer.png
+b*/item/furniture/other/warmer.png
 ./item/furniture/other/green.png
 ./item/furniture/other/tools_rack.png
 ./item/furniture/picture/large_island.png
