@@ -14,8 +14,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.game.RPObject;
 
 import org.junit.After;
