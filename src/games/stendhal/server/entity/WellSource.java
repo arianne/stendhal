@@ -118,6 +118,8 @@ public class WellSource extends Entity implements UseListener {
 		setDescription("You see a wishing well. Something in it catches your eye.");
 		setRPClass("well_source");
 		put("type", "well_source");
+
+		setObstacle(false);
 	}
 
 	public WellSource(RPObject object) {
@@ -125,6 +127,8 @@ public class WellSource extends Entity implements UseListener {
 		setDescription("You see a wishing well. Something in it catches your eye.");
 		setRPClass("well_source");
 		put("type", "well_source");
+
+		setObstacle(false);
 	}
 
 	public static void generateRPClass() {
@@ -132,18 +136,6 @@ public class WellSource extends Entity implements UseListener {
 		grower.isA("entity");
 	}
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param entity
-	 *            The entity to check against.
-	 *
-	 * @return <code>false</code>.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return false;
-	}
 
 	/**
 	 * Decides randomly if a wishing action should be successful.

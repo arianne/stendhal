@@ -32,6 +32,11 @@ public abstract class Entity extends RPObject {
 
 	private boolean collides;
 
+	/**
+	 * Whether this will collide with other entities.
+	 */
+	private boolean obstacle;
+
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
 
@@ -40,6 +45,11 @@ public abstract class Entity extends RPObject {
 
 		// TODO: Try to remove this attribute later
 		entity.addAttribute("type", Type.STRING);
+
+		/*
+		 * Entity is an obstacle.
+		 */
+		entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
 
 		entity.addAttribute("x", Type.SHORT);
 		entity.addAttribute("y", Type.SHORT);
@@ -64,14 +74,18 @@ public abstract class Entity extends RPObject {
 	public Entity(RPObject object) {
 		super(object);
 
+		setObstacle(true);
+
 		if (!has("visibility")) {
-			put("visibility", 100);
+			setVisibility(100);
 		}
 
 		update();
 	}
 
 	public Entity() {
+		setObstacle(true);
+		setVisibility(100);
 	}
 
 	public void update() {
@@ -81,6 +95,8 @@ public abstract class Entity extends RPObject {
 		if (has("y")) {
 			y = getInt("y");
 		}
+
+		obstacle = has("obstacle");
 	}
 
 	public boolean hasDescription() {
@@ -248,6 +264,18 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
+	 * Determine if this is an obstacle for other entities in general.
+	 *
+	 * @param entity
+	 *            The entity to check against.
+	 *
+	 * @return <code>true</code> if an obstacle.
+	 */
+	protected boolean isObstacle() {
+		return obstacle;
+	}
+
+	/**
 	 * Determine if this is an obstacle for another entity.
 	 *
 	 * @param entity
@@ -256,7 +284,23 @@ public abstract class Entity extends RPObject {
 	 * @return <code>true</code> if not a ghost.
 	 */
 	public boolean isObstacle(Entity entity) {
-		return !isGhost();
+		return isObstacle() && !isGhost();
+	}
+
+
+	/**
+	 * Set this entity as an obstacle.
+	 *
+	 * @param	obstacle	<code>true</code> if an obstacle.
+	 */
+	public void setObstacle(boolean obstacle) {
+		this.obstacle = obstacle;
+
+		if(obstacle) {
+			put("obstacle", "");
+		} else if(has("obstacle")) {
+			remove("obstacle");
+		}
 	}
 
 	/**

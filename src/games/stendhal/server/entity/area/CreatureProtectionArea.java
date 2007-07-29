@@ -57,6 +57,7 @@ public class CreatureProtectionArea extends AreaEntity {
 		super(width, height);
 
 		put("server-only", "");
+		setObstacle(false);
 
 		this.defaultBlocked = defaultBlocked;
 
@@ -148,7 +149,7 @@ public class CreatureProtectionArea extends AreaEntity {
 		 * Only applies to Creature's
 		 */
 		if (!(entity instanceof Creature)) {
-			return false;
+			return super.isObstacle(entity);
 		}
 
 		return matchesCriteria((Creature) entity, defaultBlocked);

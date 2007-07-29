@@ -10,6 +10,7 @@ public abstract class PassiveEntity extends Entity {
 	 * Create a passive entity.
 	 */
 	public PassiveEntity() {
+		setObstacle(false);
 	}
 
 	/**
@@ -20,22 +21,7 @@ public abstract class PassiveEntity extends Entity {
 	 */
 	public PassiveEntity(RPObject object) {
 		super(object);
-	}
 
-	//
-	// Entity
-	//
-
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 * 
-	 * @param entity
-	 *            The entity to check against.
-	 * 
-	 * @return <code>false</code>.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return false;
+		setObstacle(false);
 	}
 }

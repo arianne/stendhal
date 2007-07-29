@@ -40,12 +40,6 @@ public class KidGhostNPC implements ZoneConfigurator {
 	}
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ghost = new SpeakerNPC("Ben") {
-
-		      	//  he has no collisions
-			@Override
-			public boolean isObstacle(Entity entity) {
-			        return false;
-			}
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
@@ -97,6 +91,8 @@ public class KidGhostNPC implements ZoneConfigurator {
 
 		};
 		ghost.setDescription("You see a ghostly figure of a small boy.");
+		ghost.setObstacle(false);
+
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
 		ghost.put("class", "kid7npc");

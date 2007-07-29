@@ -29,10 +29,13 @@ public class Fire extends Entity implements UseListener {
 		setDescription("You see a flickering light. You are tempted to touch it.");
 		setRPClass("fire");
 		put("type", "fire");
+
 		put("width", width);
 		put("height", height);
 		this.width = width;
 		this.height = height;
+
+		setObstacle(true);
 	}
 
 	/**
@@ -58,10 +61,6 @@ public class Fire extends Entity implements UseListener {
 		rect.setRect(x, y, getWidth(), getHeight());
 	}
 
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return true;
-	}
 
 	//
 	// UseListener

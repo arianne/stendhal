@@ -71,16 +71,19 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		setRPClass("plant_grower");
 		put("type", "plant_grower");
 		//update();
+
+		setObstacle(false);
 	}
 
 	public PassiveEntityRespawnPoint(String growingItemName, int meanTurnsForRegrow) {
-		super();
 		this.growingItemName = growingItemName;
 		this.meanTurnsForRegrow = meanTurnsForRegrow;
 		setDescription("It looks like there's " + Grammar.a_noun(growingItemName) + " sprout growing here.");
 
 		setRPClass("plant_grower");
 		put("type", "plant_grower");
+
+		setObstacle(false);
 	}
 
 	public static void generateRPClass() {
@@ -88,7 +91,6 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		grower.isA("entity");
 		grower.addAttribute("class", Type.STRING);
 	}
-
 
 
 	/**
@@ -139,18 +141,6 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		TurnNotifier.get().dontNotify(this);
 	}
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>false</code>.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		// The player can walk over the PlantGrower.
-		return false;
-	}
 
 	public void onTurnReached(int currentTurn, String message) {
 		growNewFruit();

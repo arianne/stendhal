@@ -253,22 +253,6 @@ public abstract class RPEntity extends GuidedEntity {
 		return 0.0;
 	}
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param entity
-	 *            The entity to check against.
-	 *
-	 * @return <code>true</code> if the other entity is an RPEntity.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		if (isGhost()) {
-			return false;
-		}
-
-		return (entity instanceof RPEntity);
-	}
 
 	/**
 	 * Heal this entity completely.

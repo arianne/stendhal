@@ -50,6 +50,8 @@ public class Sign extends Entity {
 	public Sign() {
 		setRPClass("sign");
 		put("type", "sign");
+
+		setObstacle(true);
 	}
 
 	/**
@@ -71,12 +73,8 @@ public class Sign extends Entity {
 	 */
 	public void setClass(String clazz) {
 		put("class", clazz);
-	}
 
-	// TODO: Add setObstacle() method for per-item config, rather than
-	// hard-coding class list.
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return !(has("class") && NON_OBSTACLE_CLASSES.contains(get("class")));
+		// TODO: Set directly where setClass() is called
+		setObstacle(!NON_OBSTACLE_CLASSES.contains(clazz));
 	}
 }

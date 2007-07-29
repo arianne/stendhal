@@ -36,12 +36,6 @@ public class WomanGhostNPC implements ZoneConfigurator {
 	}
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC woman = new SpeakerNPC("Carena") {
-
-		      	//  she has no collisions
-			@Override
-			public boolean isObstacle(Entity entity) {
-			        return false;
-			}
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
@@ -72,11 +66,13 @@ public class WomanGhostNPC implements ZoneConfigurator {
 			}
 		};
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");
+		woman.setObstacle(false);
+
 		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.put("class", "woman_011_npc");
 		// She is a ghost so she is see through
-		woman.put("visibility",40);
+		woman.setVisibility(40);
 		woman.set(3, 3);
 		// She has low HP
 		woman.initHP(30);

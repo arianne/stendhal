@@ -40,12 +40,6 @@ public class GhostNPC implements ZoneConfigurator {
 	}
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC ghost = new SpeakerNPC("Goran") {
-
-		      	//  he has no collisions
-			@Override
-			public boolean isObstacle(Entity entity) {
-			        return false;
-			}
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
@@ -94,11 +88,13 @@ public class GhostNPC implements ZoneConfigurator {
 			
 		};
 		ghost.setDescription("You see a ghostly figure of a man. He appears to have died in battle.");
+		ghost.setObstacle(false);
+
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
 		ghost.put("class", "deadmannpc");
 		// he is a ghost so he is see through
-		ghost.put("visibility",70);
+		ghost.setVisibility(70);
 		ghost.set(216, 126);
 		// he has low HP
 		ghost.initHP(30);

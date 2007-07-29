@@ -22,6 +22,8 @@ public class WalkBlocker extends AreaEntity {
 	 */
 	public WalkBlocker() {
 		super(1, 1);
+
+		setObstacle(false);
 	}
 
 	/**
@@ -30,10 +32,15 @@ public class WalkBlocker extends AreaEntity {
 	 * @param entity
 	 *            The entity to check against.
 	 * 
-	 * @return <code>true</code> if the other entity is an RPEntity.
+	 * @return <code>true</code> if the other entity is an RPEntity,
+	 *		otherwise the default.
 	 */
 	@Override
 	public boolean isObstacle(Entity entity) {
-		return (entity instanceof RPEntity);
+		if(entity instanceof RPEntity) {
+			return true;
+		}
+
+		return super.isObstacle(entity);
 	}
 }

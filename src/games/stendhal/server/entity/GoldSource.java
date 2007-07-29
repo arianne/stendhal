@@ -92,6 +92,8 @@ public class GoldSource extends Entity implements UseListener {
 		setDescription("You see something golden glittering.");
 		setRPClass("gold_source");
 		put("type", "gold_source");
+
+		setObstacle(false);
 	}
 
 	public GoldSource(RPObject object) {
@@ -99,6 +101,8 @@ public class GoldSource extends Entity implements UseListener {
 		setDescription("You see something golden glittering.");
 		setRPClass("gold_source");
 		put("type", "gold_source");
+
+		setObstacle(false);
 	}
 
 	public static void generateRPClass() {
@@ -106,18 +110,6 @@ public class GoldSource extends Entity implements UseListener {
 		grower.isA("entity");
 	}
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param entity
-	 *            The entity to check against.
-	 *
-	 * @return <code>false</code>.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return false;
-	}
 
 	/**
 	 * Decides randomly if a prospecting action should be successful.

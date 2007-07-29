@@ -28,17 +28,6 @@ public class OneWayPortalDestination extends Portal {
 		return true; // Always loaded
 	}
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>false</code>.
-	 */
-	@Override
-	public boolean isObstacle(Entity entity) {
-		return false;
-	}
 
 	@Override
 	public boolean onUsed(RPEntity user) {
