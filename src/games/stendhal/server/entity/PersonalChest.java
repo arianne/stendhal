@@ -101,7 +101,6 @@ public class PersonalChest extends Chest {
 		if (player.nextTo(this)) {
 			if (isOpen()) {
 				close();
-				return true;
 			} else {
 				TurnListener turnListener = new TurnListener() {
 
