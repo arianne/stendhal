@@ -325,7 +325,7 @@ b/item/furniture/table/square_pale.png
 b/item/furniture/table/wooden.png
 b*/item/furniture/table/wooden_pale.png
 ./item/furniture/table/wooden_rectangular.png
-./item/furniture/table/brick_base.png
+b*/item/furniture/table/brick_base.png
 ./item/gothic/coffin.png
 ./item/gothic/large_gravestone.png
 ./item/gothic/slab.png
