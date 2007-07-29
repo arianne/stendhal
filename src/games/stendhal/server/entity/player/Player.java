@@ -859,9 +859,14 @@ public class Player extends RPEntity {
 		setHP(getBaseHP());
 
 		returnToOriginalOutfit();
-		// After a tangle with the grim reaper, give some karma
-		addKarma(200.0);
-        // Penalize: Respawn on afterlive zone and
+
+		// After a tangle with the grim reaper, give some karma,
+		// but limit abuse
+		if(getKarma() < 75.0) {
+			addKarma(100.0);
+		}
+
+		// Penalize: Respawn on afterlive zone and
 		StendhalRPZone zone = world.getZone(DEFAULT_DEAD_AREA);
 
 		zone.placeObjectAtEntryPoint(this);
