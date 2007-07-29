@@ -117,6 +117,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	 *
 	 */
 	public Corpse(RPEntity victim, String killerName) {
+		setRPClass("corpse");
 		put("type", "corpse");
 
 		if (victim.has("class")) {
