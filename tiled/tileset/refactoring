@@ -343,7 +343,7 @@ F/item/pot/pot_on_metal.png
 F/item/pot/pot_on_stone.png
 b*/item/pot/pot_purple.png
 K*/item/pot/pot_tall.png
-b/item/pot/small_barrel.png
+b*/item/pot/small_barrel.png
 ./item/raised_square.png
 ./object/arrows.png
 k*/object/castle.png
