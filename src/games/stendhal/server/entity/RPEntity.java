@@ -887,9 +887,9 @@ public abstract class RPEntity extends GuidedEntity {
 			// Find out if the player killed this RPEntity on his own, but
 			// don't overwrite solo with shared.
 			if (damageDone == totalDamageReceived) {
-				killer.setKill(getName(), "solo");
+				killer.setSoloKill(getName());
 			} else if (!killer.hasKilledSolo(getName())) {
-				killer.setKill(getName(), "shared");
+				killer.setSharedKill(getName());
 			}
 			killer.notifyWorldAboutChanges();
 		}

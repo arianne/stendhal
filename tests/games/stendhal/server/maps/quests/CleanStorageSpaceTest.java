@@ -30,21 +30,21 @@ public class CleanStorageSpaceTest {
 		MockStendlRPWorld.get();
 		HousewifeNPC eonna = new HousewifeNPC();
 		eonna.configureZone(new StendhalRPZone("testzone"),null);
-	
+
 		CleanStorageSpace cf = new CleanStorageSpace();
 		cf.addToWorld();
 	}
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
+
 	}
-	
+
 	@Test
 	public void testHiAndbye() {
 		Player player;
 		player= new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
-	
+
 		SpeakerNPC npc = NPCList.get().get("Eonna");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
@@ -61,14 +61,14 @@ public class CleanStorageSpaceTest {
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
 	}
-	
+
 	@Test
 	public void doQuest() {
 		Player player;
 		player= new Player(new RPObject());
-		
+
 		PlayerHelper.addEmptySlots(player);
-	
+
 		SpeakerNPC npc = NPCList.get().get("Eonna");
 		assertNotNull(npc);
 		Engine en = npc.getEngine();
@@ -86,14 +86,14 @@ public class CleanStorageSpaceTest {
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
-		player.setKill("rat", "solo");
+		player.setSoloKill("rat");
 		assertTrue(player.hasKilled("rat"));
-		player.setKill("caverat", "shared");
-		player.setKill("snake", "shared");
+		player.setSharedKill("caverat");
+		player.setSharedKill("snake");
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("A hero at last! Thank you!", npc.get("text"));
-		
+
 		assertEquals("done",player.getQuest("clean_storage"));
 	}
 

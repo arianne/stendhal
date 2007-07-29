@@ -5,7 +5,7 @@ import games.stendhal.server.entity.player.Player;
 import marauroa.common.Log4J;
 
 /**
- * An creature that will only reward the specified player 
+ * An creature that will only reward the specified player
  *
  * @author hendrik
  */
@@ -54,12 +54,12 @@ public class DeathMatchCreature extends Creature {
 			// Find out if the player killed this RPEntity on his own, but
 			// don't overwrite solo with shared.
 			if (damageReceivedByPlayer == totalDamageReceived) {
-				player.setKill(getName(), "solo");
-			} else if (!player.hasKilledSolo(getName())) {
-				player.setKill(getName(), "shared");
+				player.setSoloKill(getName());
+			} else {
+				player.setSharedKill(getName());
 			}
 			player.notifyWorldAboutChanges();
-			
+
 		} else {
 			Log4J.getLogger(DeathMatchCreature.class).error(damageReceived);
 		}

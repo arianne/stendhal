@@ -181,7 +181,7 @@ public class Player extends RPEntity {
 				Sheep sheep = player.getSheep();
 				world.remove(sheep.getID());
 				StendhalRPRuleProcessor.get().removeNPC(sheep);
-				
+
 				/*
 				 * NOTE: Once the sheep is stored there is no more trace of zoneid.
 				 */
@@ -1236,12 +1236,12 @@ public class Player extends RPEntity {
 	 * @return true iff this player has ever killed this creature on his own.
 	 */
 	public boolean hasKilledSolo(String name) {
-		String	info;
+		String	info= getKeyedSlot("!kills", name);
 
-		if((info = getKeyedSlot("!kills", name)) == null) {
+		if(info  == null) {
 			return false;
 		}
-		return info.equals("solo");
+		return "solo".equals(info);
 	}
 
 	/**
@@ -1268,30 +1268,32 @@ public class Player extends RPEntity {
 	 * Stores in which way the player has killed a creature with the given
 	 * name.
 	 *
-	 * This should not be called with mode "shared" if this player has already
-	 * killed the creature solo.
-	 *
 	 * @param The name of the killed creature.
 	 * @param mode either "solo", "shared", or null.
 	 */
-	public void setKill(String name, String mode) {
+	private void setKill(String name, String mode) {
 		setKeyedSlot("!kills", name, mode);
 	}
 
 	/**
-	 * ???
-	 * @return ???
-	 */
-	public List<String> getKills() {
-		RPSlot slot = getSlot("!kills");
-		RPObject kills = slot.iterator().next();
-		List<String> killsList = new LinkedList<String>();
-		for (String k : kills) {
-			if (!k.equals("id") && !k.equals("zoneid")) {
-				killsList.add(k);
-			}
+	 * Stores that the player has killed 'name' solo.
+	 * Overwrites shared kills of 'name'
+	 *
+	 **/
+	public void setSoloKill(String name) {
+	   setKill(name, "solo");
+	}
+
+	/**
+	 * Stores that the player has killed 'name' with help of others.
+	 * Does not overwrite solo kills of 'name'
+	 *
+	 **/
+	public void setSharedKill(String name) {
+		if (!hasKilledSolo(getName())){
+			setKill(name, "shared");
 		}
-		return killsList;
+
 	}
 
 	/**
