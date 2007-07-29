@@ -1290,7 +1290,7 @@ public class Player extends RPEntity {
 	 *
 	 **/
 	public void setSharedKill(String name) {
-		if (!hasKilledSolo(getName())){
+		if (!hasKilledSolo(name)){
 			setKill(name, "shared");
 		}
 
