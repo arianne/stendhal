@@ -53,7 +53,7 @@ public class Map extends MultilayerPlane
   /** the map type */
   private int               orientation = MDO_ORTHO;
   /** change listeners */
-  private EventListenerList mapChangeListeners;
+  private java.util.Map<MapChangedEvent.Type, EventListenerList> mapChangeListeners;
   /** map properties */
   private Properties        properties;
   /**
@@ -79,7 +79,7 @@ public class Map extends MultilayerPlane
    */
   private void init()
   {
-    mapChangeListeners = new EventListenerList();
+    mapChangeListeners = new Hashtable<MapChangedEvent.Type, EventListenerList>();
     properties = new Properties();
     tilesets = new ArrayList<TileSet>();
     userBrushes = new ArrayList<TileGroup>();
@@ -92,19 +92,29 @@ public class Map extends MultilayerPlane
    * @param l
    * @see MapChangeListener#mapChanged(MapChangedEvent)
    */
-  public void addMapChangeListener(MapChangeListener l)
+  public void addMapChangeListener(MapChangedEvent.Type type, MapChangeListener l)
   {
-    mapChangeListeners.add(MapChangeListener.class, l);
+    EventListenerList listener = mapChangeListeners.get(type);
+    if (listener == null)
+    {
+      listener = new EventListenerList();
+      mapChangeListeners.put(type, listener);
+    }
+    
+    listener.add(MapChangeListener.class, l);
   }
 
   /**
-   * Removes a change listener.
+   * Removes a change listener (all types).
    * 
    * @param l
    */
   public void removeMapChangeListener(MapChangeListener l)
   {
-    mapChangeListeners.remove(MapChangeListener.class, l);
+    for (EventListenerList list : mapChangeListeners.values())
+    {
+      list.remove(MapChangeListener.class, l);
+    }
   }
 
   /**
@@ -120,13 +130,17 @@ public class Map extends MultilayerPlane
    */
   public void fireMapChanged(MapChangedEvent event)
   {
-    MapChangeListener[] listeners = mapChangeListeners.getListeners(MapChangeListener.class);
-    if (listeners.length == 0)
-      return;
-
-    for (MapChangeListener listener : listeners)
+    EventListenerList listenerList = mapChangeListeners.get(event.getType());
+    if (listenerList != null)
     {
-      listener.mapChanged(event);
+      MapChangeListener[] listeners = listenerList.getListeners(MapChangeListener.class);
+      if (listeners.length > 0)
+      {
+        for (MapChangeListener listener : listeners)
+        {
+          listener.mapChanged(event);
+        }
+      }
     }
   }
   
@@ -444,11 +458,11 @@ public class Map extends MultilayerPlane
   public int getTileHeightMax()
   {
     int maxHeight = tileHeight;
-    Iterator itr = tilesets.iterator();
+    Iterator<TileSet> itr = tilesets.iterator();
 
     while (itr.hasNext())
     {
-      int height = ((TileSet) itr.next()).getTileHeightMax();
+      int height = itr.next().getTileHeightMax();
       if (height > maxHeight)
       {
         maxHeight = height;

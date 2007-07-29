@@ -90,7 +90,7 @@ public class BrushMenu extends JPanel implements MapChangeListener
     this.map = map;
     if (map != null)
     {
-      map.addMapChangeListener(this);
+      map.addMapChangeListener(MapChangedEvent.Type.BRUSHES, this);
       updateBrushes();
     }
   }

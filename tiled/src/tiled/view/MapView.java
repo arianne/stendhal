@@ -89,7 +89,7 @@ public abstract class MapView implements MapChangeListener
     }
     
     this.map = map;
-    map.addMapChangeListener(this);
+    map.addMapChangeListener(MapChangedEvent.Type.TILES, this);
   }
 
   /** size of the view (in pixel) */

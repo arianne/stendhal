@@ -27,8 +27,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -50,7 +48,8 @@ import tiled.core.Map;
 import tiled.core.MapLayer;
 import tiled.core.StatefulTile;
 import tiled.io.MapHelper;
-import tiled.mapeditor.actions.*;
+import tiled.mapeditor.actions.ZoomInAction;
+import tiled.mapeditor.actions.ZoomOutAction;
 import tiled.mapeditor.brush.Brush;
 import tiled.mapeditor.brush.ShapeBrush;
 import tiled.mapeditor.builder.Builder;
@@ -83,7 +82,7 @@ import tiled.view.Orthogonal;
 /**
  * The main class for the Tiled Map Editor.
  */
-public class MapEditor implements ActionListener, MouseListener, MouseMotionListener, MapChangeListener, ComponentListener
+public class MapEditor implements ActionListener, MapChangeListener, ComponentListener
 {
   // Constants and the like
   public static final int     PS_POINT         = 0;
@@ -1064,6 +1063,12 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
 
   public void setCurrentMap(Map newMap)
   {
+    if (currentMap != null)
+    {
+      currentMap.removeMapChangeListener(this);
+    }
+    
+    
     currentMap = newMap;
     boolean mapLoaded = (currentMap != null);
 
@@ -1084,7 +1089,9 @@ public class MapEditor implements ActionListener, MouseListener, MouseMotionList
       setCurrentPointerState(PS_PAINT);
       setCurrentLayer(0);
 
-      currentMap.addMapChangeListener(this);
+      currentMap.addMapChangeListener(MapChangedEvent.Type.BRUSHES, this);
+      currentMap.addMapChangeListener(MapChangedEvent.Type.LAYERS, this);
+      currentMap.addMapChangeListener(MapChangedEvent.Type.TILESETS, this);
       statusBar.setMap(currentMap);
       statusBar.setZoom(mapEditPanel.getMapView().getScale());
       
