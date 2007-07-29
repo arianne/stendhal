@@ -333,7 +333,7 @@ b/item/pot/barrel.png
 b/item/pot/barrel_flat.png
 b+k*/item/pot/barrel_tall.png
 b*/item/pot/box.png
-b/item/pot/dark_barrel.png
+b+k*/item/pot/dark_barrel.png
 ./item/pot/huge_pot.png
 b*/item/pot/pot_burgundy.png
 K*/item/pot/pot_golden.png
