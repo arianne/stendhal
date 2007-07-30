@@ -69,6 +69,9 @@
  <tileset name="Untitled" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="173" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/oni.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2XTU/CQBCGF1T8wG8E1EhCIBiv6F1PQqIQ/gB/AfHABTUa/4gnfijvprNhMpkt1rSQxjZ5Dt3ZeZ/Ndi5tG2PaKSEH8kvYTNC/BQrg2sM22E/YXwc/Hmox+GcKf/WHZfl4BSPwAsb07r59U/iHBPc3zGIGfFlypjYYWo9dPzfBt78J8bdMMAMnJphFLUvO6i7llomJ6JmwGndrfneG32TZc+6Q/8yTK7MlUfbIfdWU+OMkbf6we41CnP4n8Aym4I14p7XeCvx9cAs+wCO4B5+0Nlixv0P8V/8DsQ7/F+gS32vwa6TJX2P+eubP/Jk/dP8FuGRcMa9Wi9tv91fAIShRzx2h1ZLwu38L18P9shbFvyfuT6MoHLbnlNBqvNc9Ms/6D+jeOO5/Uq4fk8P2HAlkjfe5R8ubAzCXlmkAEAAA
@@ -96,7 +99,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAGNgGAWjYBSgg3VEqFkPxdQwaxSMglEwCgYarMPBHizmjYJRAAJrcbBHwcgAtIp/aps7mk5HwWAGADdKh9AAEAAA
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.56">

@@ -132,6 +132,9 @@
  <tileset name="Untitled" firstgid="303" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/entrance/blue_green_face_2.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="311" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/oni.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2Wy05CMRCGR1TEG5FEojEhwRiiW3gJ914O4IudZ/CycaMujO/im/g3Z0yaOp121HM0hMWXcMr0/4a2FMZENDbyHsGaY2UFtMADuAV3zD2PuffWavSvgzZ4FPxubAPs1OwfgoIpmc/nwQL73d6fZPh7ZDsDLndVoOXhng+p2vszxT+i6gz0gvkxXJ+bnNt3/aCZCTilr/TZXQbuMhgbca2U4We5Pjvs3xfy6uZA8RcZSJ/fMifmz8mJ7b9lju8fZuQ8gWfwovilmlgPoT/V9ys4B2+KX6qJcUzVXZHrn4IJuFb8Us3S/3P/HNxw9sx77TMLauZGf+z8TwVXLrF1KAO/9v3/bb/1/mnS3+T6Dyjv/qnDXyz92X7HJbgyeC94jpYZ+lO/f5Z1SN1/0vn7D36tB+I1zYESbs1v+T/z3fqUvwl8/xY4apht9u+C7h+xBz4AzgjgYQAQAAA=
@@ -159,12 +162,12 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAGNgGAWjgDxgwQjBo2AUDAQwZ4TgUTC8ALFxSkr8j6aTUTCUADXr1dE6mnhAy7AajQfiAXJ5bU1GuCHrGS37R8EowA4AAXNRBAAQAAA=
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.4">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2VQQrAIAwE7Yf8//M8FYKQmt1EqLgLwcvoKGLsT2udrDfs/EzNucnvRf6z/ZF1Vqk+067Iz99rhsn47cgy8uN+y3h8hGH8MxPpI0yv/OLYyC+//Hk/+kdWvn/LI35kj6f4kar2V+dv/ltrAIRcCY8AEAAA
+   H4sIAAAAAAAAAO3VUQrAIAwDUHch73+8fQ2KUDRJB4oJlP3EPcdw609rnZwv7HplxtzkZ7F/tr9yn1mqn+mv2Offq9JR/HhlO/ZxP3ay/kqH8cfO7HuVdRSfjX379nUf/UdWnv/YR3xkj6f4yFT71dnNv3VeYGrNFwAQAAA=
   </data>
  </layer>
  <layer name="protection" width="32" height="32">
