@@ -191,6 +191,38 @@ East: Nalwor, Semos
   </entity>
  </zone>
 
+<zone name="0_orril_river_s2_w" level="0" x="499744" y="500512" file="Level 0/orril/river_s2_w.tmx">
+ <configurator class-name="games.stendhal.server.maps.orril.river.WoodCutterNPC" />
+  <entity x="63" y="82">
+    <implementation class-name="games.stendhal.server.entity.Sign">
+      <parameter name="text">
+I buy good axes:
+halberd            2000 
+golden twoside axe 4000 
+magic twoside axe  6000
+durin axe          8000
+black scythe       9000
+chaos axe         10000
+black halberd     12000
+          Signed, Woody
+      </parameter>
+      <parameter name="class">signpost</parameter>
+    </implementation>
+  </entity>
+  <portal x="60" y="80" ref="woodcutter_entrance">
+   <destination zone="int_orril_woodcutter_lodge" ref="entrance"/>
+  </portal>
+ </zone>
+
+ <zone name="int_orril_woodcutter_lodge" file="interiors/orril/woodcutter_lodge.tmx">
+  <portal x="7" y="18" ref="entrance">
+   <destination zone="0_orril_river_s2_w" ref="woodcutter_entrance"/>
+  </portal>
+ </zone>
+
+
+<zone name="0_orril_river_s2" level="0" x="499872" y="500512" file="Level 0/orril/river_s2.tmx">
+</zone>
 
  <!-- Level -1 -->
 
