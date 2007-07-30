@@ -73,6 +73,11 @@ public final byte[] ID_Token = new byte[0];
 	protected double y;
 
 	/**
+	 * Whether an obstacle.
+	 */
+	protected boolean	obstacle;
+
+	/**
 	 * The entity visibility.
 	 */
 	protected int		visibility;
@@ -528,6 +533,11 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		/*
+		 * Obstacle
+		 */
+		obstacle = object.has("obstacle");
+
+		/*
 		 * Visibility
 		 */
 		if(object.has("visibility")) {
@@ -573,7 +583,7 @@ public final byte[] ID_Token = new byte[0];
 	 *		entity's area.
 	 */
 	public boolean isObstacle(final Entity entity) {
-		return (entity != this);
+		return (obstacle && (entity != this));
 	}
 
 
@@ -706,6 +716,13 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		/*
+		 * Obstacle
+		 */
+		if(changes.has("obstacle")) {
+			obstacle = true;
+		}
+
+		/*
 		 * Entity visibility
 		 */
 		if(changes.has("visibility")) {
@@ -780,6 +797,13 @@ public final byte[] ID_Token = new byte[0];
 			type = null;
 			fireChange(PROP_TYPE);
 			fireChange(PROP_TITLE);
+		}
+
+		/*
+		 * Obstacle
+		 */
+		if(changes.has("obstacle")) {
+			obstacle = false;
 		}
 
 		/*
