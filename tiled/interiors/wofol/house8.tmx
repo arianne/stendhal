@@ -60,13 +60,13 @@
  <tileset name="Unbenannt" firstgid="129" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/piano.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="132" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="135" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="134" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="137" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="137" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="140" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -81,7 +81,7 @@
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAUNDPhBKgH5RiBuAuJmLHJpBPTiAq1AnI5FvA6I64kQwwYo0YsNtGIRa6eyvZToxeY+YgGx9nZQoJeeoAUNDzQAAB6nbViEAwAA
+   H4sIAAAAAAAAAGNgQAUNQJzKQD5IwyLWCMRNQNyMR18HEKdjEW8B4lYgbsMiVwfE9USIYQOU6MUGOrCIdVHZXkr0YnMfsYBYe7sp0EtP0I6GBxoAAGUIsjeEAwAA
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
@@ -96,15 +96,15 @@
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFyglww9nVQyh56gZ4D0UhsMF38QAlU0NBsA+AopQoQDAAA=
+   H4sIAAAAAAAAAGNgGFxgAhl6eqhkDj1B/wDppTYYLv4gBKpoaDYAge3cRYQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtlYGCoHUBMDKhFogmZgctcaurF50Zi7BwsbsYFyLWX2v6lxM2kqCU2ndIqDwAAxM2qpYQDAAA=
+   H4sIAAAAAAAAAKtlYGCoHUBMCJBqBi5zqakXlztJcftgcDMuQK691PYvJW4mRS2xaYxWeQAALarIOYQDAAA=
   </data>
  </layer>
- <layer name="protection" width="15" height="15" visible="0">
+ <layer name="protection" width="15" height="15">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBQMJAAA7Ly31YQDAAA=
   </data>
