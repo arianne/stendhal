@@ -623,7 +623,7 @@ in roaches.
  </zone>
 
  <zone name="int_castle_left" file="interiors/ados/castle_left.tmx">
-
+  <configurator class-name="games.stendhal.server.maps.ados.castle.JesterNPC" />
    <!-- bottom corridor -->
   <portal x="31" y="35" ref="bottom1">
    <destination zone="int_castle_entrance" ref="left1"/>
