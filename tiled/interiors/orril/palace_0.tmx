@@ -66,6 +66,9 @@
  <tileset name="torch" firstgid="168" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/light/torch_top.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="172" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/collision.png"/>
+ </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO2XTU/CQBCGF1T8wG8E1EhCIBiv6F1PQqIQ/gB/AfHABTUa/4gnfijvprNhMpkt1rSQxjZ5Dt3ZeZ/Ndi5tG2PaKSEH8kvYTNC/BQrg2sM22E/YXwc/Hmox+GcKf/WHZfl4BSPwAsb07r59U/iHBPc3zGIGfFlypjYYWo9dPzfBt78J8bdMMAMnJphFLUvO6i7llomJ6JmwGndrfneG32TZc+6Q/8yTK7MlUfbIfdWU+OMkbf6we41CnP4n8Aym4I14p7XeCvx9cAs+wCO4B5+0Nlixv0P8V/8DsQ7/F+gS32vwa6TJX2P+eubP/Jk/dP8FuGRcMa9Wi9tv91fAIShRzx2h1ZLwu38L18P9shbFvyfuT6MoHLbnlNBqvNc9Ms/6D+jeOO5/Uq4fk8P2HAlkjfe5R8ubAzCXlmkAEAAA
@@ -83,12 +86,12 @@
  </layer>
  <layer name="3_roof" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAWjgHQQDMQhUBxKR3sTgTgJi3gyEKfQwf5UIE7DIp4OxBl0sH8UjIKRCHDle3RAq3IAV75HB6PlwCgYBaNgFIyCUTAKBjsAAPtRj2sAEAAA
+   H4sIAAAAAAAAAGNgGAWjABMsISAfDMQhUBxKoVmkgEQgTsIingzEKVS0BxdIBeI0LOLpQJxBB/tHwSgYiQBXvkcHtCoHcOV7dDBaDoyCUTAKqA1Gy79RMApGAbUBAM6zZ4AAEAAA
   </data>
  </layer>
  <layer name="4_roof_add" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO3MIQEAAAgDsPfXBCbAHQqxBVgCbZ5eAAAA3CzOUlZpABAAAA==
   </data>
  </layer>
  <layer name="objects" width="32" height="32">
@@ -96,9 +99,9 @@
    H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
   </data>
  </layer>
- <layer name="collision" width="32" height="32">
+ <layer name="collision" width="32" height="32" opacity="0.56">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3BAQ0AAADCoPdPbQ8HFAAAAPBuEQAcxwAQAAA=
+   H4sIAAAAAAAAAO2TUQoAIQhEvf9ZOuT+LpHbTI5sUgNCkMxTs2Zm7Uap8KRmqPhsbTPP/g7JZWpA+Uj/GfxRDRGv9xt5fbGaeaEzzdLl+39qdI5wvHOEz/zJLH4kj31/tE7Wb3X/onuy6/yr8FGp9k+tXfl/z/90/pdPRl6V/evzmTvE73Q+6rsSaj9lPFxEwwUAEAAA
   </data>
  </layer>
  <layer name="protection" width="32" height="32">
