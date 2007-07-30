@@ -37,9 +37,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 	
-	private int width;
-	private int height;
-
 	/** Time (in seconds) until a corpse disappears. */
 	private static final int DEGRADATION_TIMEOUT = 15 * 60; // 3 minutes
 
@@ -64,7 +61,8 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	}
 	
 	private void decideSize(String clazz) {
-		width=height=1;
+		int width = 1;
+		int height = 1;
 		
 		if (clazz.equals("giant_animal") || clazz.equals("giant_human") || clazz.equals("huge_animal")) {
 			width=height=2;
@@ -73,6 +71,9 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		} else if (clazz.equals("enormous_creature")) {
 			width=height=16;
 		}		
+
+		setWidth(width);
+		setHeight(height);
 	}
 
 	public Corpse(String clazz, int x, int y) {
@@ -157,11 +158,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	//
 	// Corpse
 	//
-
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y){
-		rect.setRect(x, y, width,height);
-	}
 
 	private void modify() {
 		if (isContained()) {

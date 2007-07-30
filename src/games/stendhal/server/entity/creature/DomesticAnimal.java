@@ -56,12 +56,14 @@ public abstract class DomesticAnimal extends Creature {
 	 * @throws AttributeNotFoundException
 	 */
 	public DomesticAnimal(Player owner) {
-		super();
 		this.owner = owner;
 		put("title_type", "friend");
 
 		put("x", 0);
 		put("y", 0);
+
+		setWidth(1);
+		setHeight(1);
 	}
 
 	/**
@@ -72,8 +74,17 @@ public abstract class DomesticAnimal extends Creature {
 	public DomesticAnimal(RPObject object) {
 		super(object);
 		put("title_type", "friend");
+
 		if (object.has("title_type")) {
 			put("title_type", object.get("title_type"));
+		}
+
+		if (!has("width")) {
+			setWidth(1);
+		}
+
+		if (!has("height")) {
+			setHeight(1);
 		}
 	}
 
@@ -89,14 +100,6 @@ public abstract class DomesticAnimal extends Creature {
 		this.owner = owner;
 	}
 
-	/**
-	 * Returns a rectangle of size 1x1, located at the animal's current
-	 * position. Override this if the animal is larger than 1x1.
-	 */
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
 
 	public void setOwner(Player owner) {
 		this.owner = owner;

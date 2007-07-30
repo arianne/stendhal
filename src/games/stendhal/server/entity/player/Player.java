@@ -229,6 +229,9 @@ public class Player extends RPEntity {
 			put("title_type", "npc");
 		}
 
+		setWidth(1);
+		setHeight(1);
+
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();
 		directions = new ArrayList<Direction>();
@@ -789,7 +792,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1, 1, 1);
+		rect.setRect(x, y + 1.0, getWidth(), getHeight());
 	}
 
 	@Override

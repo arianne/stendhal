@@ -8,21 +8,9 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
 public class Fire extends Entity implements UseListener {
-	/**
-	 * The entity width.
-	 */
-	private int width;
-
-	/**
-	 * The entity height.
-	 */
-	private int height;
-
 	public static void generateRPClass() {
 		RPClass fire = new RPClass("fire");
 		fire.isA("entity");
-		fire.addAttribute("width", Type.SHORT);
-		fire.addAttribute("height", Type.SHORT);
 	}
 
 	public Fire(int width, int height) {
@@ -30,35 +18,10 @@ public class Fire extends Entity implements UseListener {
 		setRPClass("fire");
 		put("type", "fire");
 
-		put("width", width);
-		put("height", height);
-		this.width = width;
-		this.height = height;
+		setWidth(width);
+		setHeight(height);
 
 		setObstacle(true);
-	}
-
-	/**
-	 * Get the entity height.
-	 *
-	 * @return The height.
-	 */
-	public int getHeight() {
-		return height;
-	}
-
-	/**
-	 * Get the entity width.
-	 *
-	 * @return The width.
-	 */
-	public int getWidth() {
-		return width;
-	}
-
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, getWidth(), getHeight());
 	}
 
 

@@ -63,10 +63,6 @@ public abstract class Door extends Portal implements TurnListener {
 		open = false;
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, 1, 1);
-	}
 
 	@Override
 	public void update() {

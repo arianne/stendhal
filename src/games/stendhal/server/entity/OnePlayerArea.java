@@ -10,6 +10,7 @@ package games.stendhal.server.entity;
 //
 
 import games.stendhal.server.StendhalRPZone;
+import games.stendhal.server.entity.area.AreaEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 
@@ -25,17 +26,7 @@ import java.awt.geom.Rectangle2D;
  * is that used for fast (but unreliable) check.
  * 
  */
-public class OnePlayerArea extends Entity implements MovementListener {
-	/**
-	 * The area height.
-	 */
-	protected int height;
-
-	/**
-	 * The area width.
-	 */
-	protected int width;
-
+public class OnePlayerArea extends AreaEntity implements MovementListener {
 	// /**
 	// * The entity ID currently in the area (if any).
 	// */
@@ -50,16 +41,11 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	 *            The area height.
 	 */
 	public OnePlayerArea(int width, int height) {
-		setRPClass("area");
-		put("type", "area");
+		super(width, height);
+
 		put("server-only", "");
 
-		this.width = width;
-		this.height = height;
-
 		// occupant = null;
-
-		setObstacle(false);
 	}
 
 	//
@@ -133,21 +119,6 @@ public class OnePlayerArea extends Entity implements MovementListener {
 	//
 	// Entity
 	//
-
-	/**
-	 * Get the entity's area.
-	 * 
-	 * @param rect
-	 *            The rectangle to fill in.
-	 * @param x
-	 *            The X coordinate.
-	 * @param y
-	 *            The Y coordinate.
-	 */
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, width, height);
-	}
 
 	/**
 	 * Checks whether players, NPC's, etc. can walk over this entity.

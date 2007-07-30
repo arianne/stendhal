@@ -78,11 +78,6 @@ public class Creature extends NPC {
 
 	private CreatureRespawnPoint point;
 
-	/** size in width of a tile */
-	private int width;
-
-	private int height;
-
 	/** Ths list of item names this creature may drop
 	 *  Note; per default this list is shared with all creatures
 	 *  of that class*/
@@ -109,8 +104,6 @@ public class Creature extends NPC {
 			npc.isA("npc");
 			npc.addAttribute("debug", Type.VERY_LONG_STRING, Definition.VOLATILE);
 			npc.addAttribute("metamorphosis", Type.STRING, Definition.VOLATILE);
-			npc.addAttribute("width", Type.FLOAT, Definition.VOLATILE);
-			npc.addAttribute("height", Type.FLOAT, Definition.VOLATILE);
 		} catch (SyntaxException e) {
 			logger.error("cannot generate RPClass", e);
 		}
@@ -137,8 +130,8 @@ public class Creature extends NPC {
 		this();
 
 		this.BASE_SPEED = copy.BASE_SPEED;
-		this.width = copy.width;
-		this.height = copy.height;
+		setWidth((int) copy.getWidth());
+		setHeight((int) copy.getHeight());
 
 		/** Creatures created with this function will share their
 		 *  dropsItems with any other creature of that kind. If you want
@@ -160,8 +153,6 @@ public class Creature extends NPC {
 
 		put("x", 0);
 		put("y", 0);
-		put("width", copy.get("width"));
-		put("height", copy.get("height"));
 		setDescription(copy.getDescription());
 		setATK(copy.getATK());
 		setDEF(copy.getDEF());
@@ -227,8 +218,9 @@ public class Creature extends NPC {
 		this();
 
 		this.BASE_SPEED = baseSpeed;
-		this.width = width;
-		this.height = height;
+
+		setWidth(width);
+		setHeight(height);
 
 		/** Creatures created with this function will share their
 		 *  dropItems with any other creature of that kind. If you want
@@ -250,8 +242,6 @@ public class Creature extends NPC {
 
 		put("x", 0);
 		put("y", 0);
-		put("width", width);
-		put("height", height);
 		setDescription(description);
 		setATK(attack);
 		setDEF(defense);
@@ -371,11 +361,12 @@ public class Creature extends NPC {
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		if ((width == 1) && (height == 2)) {
+		// TODO: Remove need for this hack
+		if ((getWidth() == 1) && (getHeight() == 2)) {
 			// The size 1,2 is a bit special... :)
-			rect.setRect(x, y + 1, 1, 1);
+			rect.setRect(x, y + 1.0, 1.0, 1.0);
 		} else {
-			rect.setRect(x, y, width, height);
+			super.getArea(rect, x, y);
 		}
 	}
 
@@ -632,14 +623,6 @@ public class Creature extends NPC {
 	@Override
 	public void logic() {
 		creatureLogic.logic();
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
 	}
 
 	/**

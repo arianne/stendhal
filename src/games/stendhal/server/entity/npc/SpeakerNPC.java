@@ -165,6 +165,9 @@ public class SpeakerNPC extends NPC {
 		setName(name);
 		createDialog();
 		put("title_type", "npc");
+
+		setWidth(1);
+		setHeight(1);
 	}
 
 	protected void createPath(){
@@ -183,7 +186,7 @@ public class SpeakerNPC extends NPC {
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1.0, 1.0, 1.0);
+		rect.setRect(x, y + 1.0, getWidth(), getHeight());
 	}
 
 	/**

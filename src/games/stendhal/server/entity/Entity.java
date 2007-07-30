@@ -19,16 +19,34 @@ import games.stendhal.server.StendhalRPZone;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
+import marauroa.common.Log4J;
+import marauroa.common.Logger;
 import marauroa.common.game.Definition;
 import marauroa.common.game.RPClass;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 public abstract class Entity extends RPObject {
+	/**
+	 * The logger.
+	 */
+	private static final Logger logger = Log4J.getLogger(Entity.class);
 
 	private int x;
 
 	private int y;
+
+	/**
+	 * The width (in world units).
+	 * Using double instead of int to avoid type convertion in getArea().
+	 */
+	private double width;
+
+	/**
+	 * The height (in world units).
+	 * Using double instead of int to avoid type convertion in getArea().
+	 */
+	private double height;
 
 	private boolean collides;
 
@@ -55,6 +73,12 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("y", Type.SHORT);
 
 		/*
+		 * The size of the entity (in world units).
+		 */
+		entity.addAttribute("width", Type.SHORT, Definition.VOLATILE);
+		entity.addAttribute("height", Type.SHORT, Definition.VOLATILE);
+
+		/*
 		 * If this is set, the client will discard/ignore entity
 		 */
 		entity.addAttribute("server-only", Type.FLAG, Definition.VOLATILE);
@@ -76,6 +100,14 @@ public abstract class Entity extends RPObject {
 
 		setObstacle(true);
 
+		if(!has("width")) {
+			setWidth(1);
+		}
+
+		if(!has("height")) {
+			setHeight(1);
+		}
+
 		if (!has("visibility")) {
 			setVisibility(100);
 		}
@@ -86,14 +118,25 @@ public abstract class Entity extends RPObject {
 	public Entity() {
 		setObstacle(true);
 		setVisibility(100);
+		setWidth(1);
+		setHeight(1);
 	}
 
 	public void update() {
 		if (has("x")) {
 			x = getInt("x");
 		}
+
 		if (has("y")) {
 			y = getInt("y");
+		}
+
+		if(has("height")) {
+			height = getInt("height");
+		}
+
+		if(has("width")) {
+			width = getInt("width");
 		}
 
 		obstacle = has("obstacle");
@@ -382,8 +425,7 @@ public abstract class Entity extends RPObject {
 	 *            the entity to which the distance should be calculated
 	 */
 	public double squaredDistance(Entity other) {
-		if ((!has("width") || getInt("width") == 1)
-				&& (!has("height") || getInt("height") == 1)) {
+		if((getWidth() < 1.1) && (getHeight() < 1.1)) {
 			// This doesn't work properly if the other entity is larger
 			// than 1x1, but it is faster.
 			return squaredDistance(other.x, other.y);
@@ -404,8 +446,7 @@ public abstract class Entity extends RPObject {
 	 *            The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
-		if ((!has("width") || getInt("width") == 1)
-				&& (!has("height") || getInt("height") == 1)) {
+		if((getWidth() < 1.1) && (getHeight() < 1.1)) {
 			// This doesn't work properly if this entity is larger
 			// than 1x1, but it is faster.
 			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
@@ -510,7 +551,7 @@ public abstract class Entity extends RPObject {
 	 *            y
 	 */
 	public void getArea(final Rectangle2D rect, final double x, final double y) {
-		rect.setRect(x, y, 1.0, 1.0);
+		rect.setRect(x, y, getWidth(), getHeight());
 	}
 
 	/**
@@ -520,6 +561,10 @@ public abstract class Entity extends RPObject {
 	 *            The zone this was added to.
 	 */
 	public void onAdded(StendhalRPZone zone) {
+		if(this.zone != null) {
+			logger.error("Entity added while in another zone: " + this);
+		}
+
 		this.zone = zone;
 	}
 
@@ -530,6 +575,11 @@ public abstract class Entity extends RPObject {
 	 *            The zone this will be removed from.
 	 */
 	public void onRemoved(StendhalRPZone zone) {
+		if(this.zone != zone) {
+			logger.error("Entity removed from wrong zone: " + this);
+		}
+
+		this.zone = null;
 	}
 
 	/**
@@ -588,6 +638,38 @@ public abstract class Entity extends RPObject {
 		}
 	}
 
+
+	/**
+	 * Get the entity height.
+	 *
+	 * @return	The height (in world units).
+	 */
+	public double getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the entity width.
+	 *
+	 * @return	The width (in world units).
+	 */
+	public double getWidth() {
+		return width;
+	}
+
+
+	/**
+	 * Set the entity height.
+	 *
+	 * @param	height		The height (in world units).
+	 */
+	protected void setHeight(int height) {
+		this.height = height;
+		put("height", height);
+	}
+
+
 	/**
 	 * Set the entity's visibility.
 	 *
@@ -596,5 +678,16 @@ public abstract class Entity extends RPObject {
 	 */
 	public void setVisibility(final int visibility) {
 		put("visibility", visibility);
+	}
+
+
+	/**
+	 * Set the entity width.
+	 *
+	 * @param	width		The width (in world units).
+	 */
+	protected void setWidth(int width) {
+		this.width = width;
+		put("width", width);
 	}
 }

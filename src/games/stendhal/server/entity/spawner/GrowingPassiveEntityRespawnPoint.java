@@ -46,8 +46,6 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		grainFieldClass.isA("plant_grower");
 		grainFieldClass.addAttribute("action_name", Type.STRING);
 		grainFieldClass.addAttribute("max_ripeness", Type.BYTE);
-		grainFieldClass.addAttribute("width", Type.BYTE);
-		grainFieldClass.addAttribute("height", Type.BYTE);
 		grainFieldClass.addAttribute("ripeness", Type.BYTE);
 	}
 
@@ -58,8 +56,9 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		put("class", clazz);
 		put("action_name", actionName);
 		put("max_ripeness", maxRipeness);
-		put("width", width);
-		put("height", height);
+
+		setWidth(width);
+		setHeight(height);
 	}
 
 	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String actionName, int maxRipeness,
@@ -105,7 +104,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + getInt("height") - 1, 1, 1);
+		rect.setRect(x, y + getHeight() - 1.0, 1.0, 1.0);
 	}
 
 	@Override

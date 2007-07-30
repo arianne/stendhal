@@ -9,7 +9,7 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import games.stendhal.server.entity.PassiveEntity;
+import games.stendhal.server.entity.Entity;
 
 import java.awt.geom.Rectangle2D;
 
@@ -19,22 +19,12 @@ import marauroa.common.game.Definition.Type;
 /**
  * A base area entity.
  */
-public abstract class AreaEntity extends PassiveEntity {
+public abstract class AreaEntity extends Entity {
 // MAYBEDO (if Entity.RPCLASS added):
 //	/**
 //	 * The RPClass.
 //	 */
 //	public final static RPClass	RPCLASS		= createRPClass();
-
-	/**
-	 * The height.
-	 */
-	protected int height;
-
-	/**
-	 * The width
-	 */
-	protected int width;
 
 
 	/**
@@ -47,11 +37,10 @@ public abstract class AreaEntity extends PassiveEntity {
 		setRPClass("area");
 		put("type", "area");
 
-		this.height = height;
-		this.width = width;
+		setWidth(width);
+		setHeight(height);
 
-		put("width", width);
-		put("height", height);
+		setObstacle(false);
 	}
 
 
@@ -69,10 +58,7 @@ public abstract class AreaEntity extends PassiveEntity {
 
 		// MAYBEDO: rpclass.isA(Entity.RPCLASS)
 		rpclass.isA("entity");
-
-		rpclass.addAttribute("height", Type.SHORT);
 		rpclass.addAttribute("name", Type.STRING);
-		rpclass.addAttribute("width", Type.SHORT);
 
 		return rpclass;
 	}
@@ -85,39 +71,5 @@ public abstract class AreaEntity extends PassiveEntity {
 	 */
 	public static void generateRPClass() {
 		createRPClass();
-	}
-
-
-	//
-	// Entity
-	//
-
-	/**
-	 * Get the entity's area.
-	 *
-	 * @param	rect		The rectangle to fill in.
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
-	 */
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y, width, height);
-	}
-
-
-	/**
-	 * Handle object attribute change(s).
-	 */
-	@Override
-	public void update() {
-		super.update();
-
-		if(has("height")) {
-			height = getInt("height");
-		}
-
-		if(has("width")) {
-			width = getInt("width");
-		}
 	}
 }
