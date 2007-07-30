@@ -303,7 +303,8 @@ public class SpriteStore {
 		Sprite tile = cache.get(reference);
 
 		if(tile == null) {
-			tile = new TileSprite(sprite, x, y, width, height, reference);
+			tile = sprite.createRegion(x, y, width, height, reference);
+//			tile = new TileSprite(sprite, x, y, width, height, reference);
 
 			if(reference != null) {
 				cache.add(reference, tile);
