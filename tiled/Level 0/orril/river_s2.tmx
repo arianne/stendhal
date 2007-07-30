@@ -60,6 +60,9 @@
  <tileset name="../../tileset/logic/creature/fairy.png" firstgid="660" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/fairy.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="664" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/item/resources.png"/>
+ </tileset>
  <layer name="0_floor" width="128" height="128">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3TORKCQBBAUbSKRA4A3j/3jJaB6SzQw7C84EVaVDe/mYZhmKCxJaH3bHc2Z9q8A/7z+/2VMG+YPzVXjZI9I5+1V9/crKkue1rz7nN3dWQl+25tfOb3Q9mNXKXxeIAZaNdlrHDmPUufdZR7r+mylzPPHrlrxI303o929xHR95nQe3fa0//eUv1r7mLNc1rfW8RMV/omWrwP1t9N1L313g0AAAAAAAAAAAAAAAAAAAAAAAAAAODv84jTexf0R3/0R3/0R3/0R3/0R3/0BwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIO8LDu1IsQAAAQA=
@@ -82,12 +85,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3bSw6DMAwFQMT9d1Xb61Ys2FQVFSgJsT1zAhYmH/tlWQAAAAAAAObwXO/+AqC6l3UIgETsa8AI7vIAfTnTAQBAXPomAGTysK/BZf4fdmoBAACIRG4JADhr9pyE8w0AAAAAwG9bxlXOFQCgj9ln6UAs8i/0ZM9q0x/RYwEAACLSc+DI+099qB+gBWsJAEA8ZqMAADCX7xzoqDO7/ClZqGUAyEUPm7uoPaAiax+t6dMAAAAAAJV5dw8AgLk5AAAAQF3mhQBQh/e5AGTzAZG9n3cAAAEA
+   H4sIAAAAAAAAAO3cMQ6AIAwAQOP/N6PxucbB0cGECrR3LzCxQm0LywIAAAAAADCGfe39BEB1h3UIgETsa8Af/MsDxJLTAQDAvNRNAMhks6+lcHqPXfh+eIgFAABgJuaWAIBs5DcAAAC8MVtHJPEFzOCecTXnCgAQw50DQEvmXyBWi/qIGgsAAAAAAABQgd4oANCKc7gQQ84O3zj/AwC5yIfpRewBFVn7aE2dBhiZ3iYAAAAQzb2zAADomwMAAADUpV8IAHU4nwtANhcE4Et1AAABAA==
   </data>
  </layer>
- <layer name="collision" width="128" height="256" visible="0" opacity="0.37">
+ <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3Zy27cSAwF0P7/P/YuKwNBo+XWo4qXJZ0DEFkklkheduyZ/Lxerx+llJpYf0n39uTqYvX+j3pavhwnYwAAAABgRf6/JQBHpP+93L/F5qTzW+0G7nZz6exWy/+O0vm5jV7SmbmBrHRe8q+Xzsht5KQzSFdCpxnS+09XtY5zpDN4SvavEz0mZknn0m0fR6TnHjF7uv8OOzgrPbcbyN5Hei73n91ReqZPc1XeQ3r2Gflv7fTTczr0m5TOdMYuv+VcNX+1s5+VznXVz3+/VuafIP99c97V2RnTGXf6DK3syu5k+2zyR/b3dGTnT8vzCTMesUL+1d+r3ECfnaSyf1L+nSXzdzO10tm5gZx0ZvLPSmfWtZ6kcp/pXN3Ad/KX/8xdpnP9q8fR2XeYqUPf3fYycldb0vOMmkv+56Tn6Zz/qOd22dGW9FxHZky9u9seRpjV96zZkztfKf+9Xy//YztfJfuV80/0PGLvK6q659F779LH6tK5yz9r1g5n7r7THXZwZaaZO5yx/8p8t2bq5Orc8t/3rq7ulv+eviuyf39P0qw9jnr2p3fNuKdq3Xro9FlaPf8Rz624i1XzH/Vs5u5xZv5n37Wy1W5b/sdU7WrvO7vN862n7tnP2Ed1XZm7+mu7qdx9xzsYJf3+s6p3Ovvv01Vz4Lyn3sJdPwezv7/cwZ1n/dT/kZkSu+n4ffSp+W89a9Seqn42PfOeO9zCyPy/Pb+quvS4qhkzdN5rMv/Zu+6o42foTp/9Ln3M0vHvgK1nJaTfvyL5c5f8V5fen/yz3vdXvc/Vft67m+r8R/3M7xa2HdlLZf6js3cD48l/u3euW/kGnubsfo98nRvoS/7PVpH/+5+fkb3bOGd2/k/I5Qkzrsr3lufy88V8nXcm/2cZ+d8Zo2+kc293ULXfqz8rd+vtLjrvuHNvK6ve6wo1c4ejXX13eterZLxl9Xenc5B/9t3pHFbIPtnXSs9fKdO9knNU7Cedm/zln76Prd9P96zqbuBdulclf5XJ/le6Z1WX9V/S8yj5q+x9pHtW+Rt4NehbyV9lbyLdp8rfwKtBr0r+KnsH6T5V/gZeDXpV8lf12af7VJncXw16VfJXmex/pXtW83Pf+2fUmjVCegZVl3+6X5XLP91rev5vZj///3esKJEJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAHv8A/a+mrwAAAgA=
+   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
   </data>
  </layer>
  <layer name="protection" width="128" height="128">
