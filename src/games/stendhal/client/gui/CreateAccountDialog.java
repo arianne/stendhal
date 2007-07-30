@@ -362,7 +362,7 @@ public class CreateAccountDialog extends JDialog {
 			boolean ok = true;
 			for (int i = 0; i < lower.length(); i++) {
 				char chr = str.charAt(i);
-				if (chr < 'a' || chr > 'z') {
+				if ((chr < 'a' || chr > 'z') && (chr < '0' || chr > '9')) {
 					ok = false;
 					break;
 				}
