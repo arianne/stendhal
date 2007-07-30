@@ -1,7 +1,6 @@
 package games.stendhal.server.maps.orril.dungeon;
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;

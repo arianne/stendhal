@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.portal;
 
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 
 /**
