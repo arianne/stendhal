@@ -243,6 +243,18 @@ public class TileStore implements Tileset {
 	 * @return	A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final int index) {
-		return tiles.get(index);
+		if(index >= tiles.size()) {
+			logger.error("Accessing unassigned sprite at: " + index);
+			return store.getEmptySprite();
+		}
+
+		Sprite sprite = tiles.get(index);
+
+		if(sprite == null) {
+			logger.error("Accessing unassigned sprite at: " + index);
+			return store.getEmptySprite();
+		}
+
+		return sprite;
 	}
 }
