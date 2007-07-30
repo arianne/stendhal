@@ -3272,6 +3272,36 @@
     </ai>
   </creature>
 
+  <creature name="imperial_defender">
+    <type class="human" subclass="imperial_defender" tileid="human_imperial.png:5"/>
+    <description></description>
+    <attributes>
+      <atk value="80"/>
+      <def value="30"/>
+      <hp value="400"/>
+      <speed value="0.7"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="36"/>
+    <experience value="810"/>
+    <respawn value="1220"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="plate_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.3"/>
+      <item value="unicorn_shield" quantity="[1,1]" probability="2.0"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="bandit">
     <type class="human" subclass="bandit" tileid="human_evil.png:1"/>
     <description></description>
@@ -3337,6 +3367,36 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="albino_elf_swordsman">
+    <type class="albino_elf" subclass="albino_elf_swordsman" tileid="albino_elf.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="135"/>
+      <def value="22"/>
+      <hp value="250"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="38"/>
+    <experience value="920"/>
+    <respawn value="1160"/>
+    <drops>
+      <item value="money" quantity="[4,40]" probability="100.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="golden_helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="broadsword" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="coward"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -3428,6 +3488,37 @@
     <ai>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_archer">
+    <type class="human" subclass="imperial_archer" tileid="human_imperial.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="90"/>
+      <def value="18"/>
+      <hp value="180"/>
+      <speed value="0.8"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="40"/>
+    <experience value="900"/>
+    <respawn value="1400"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="steel_arrow" quantity="[1,15]" probability="5.0"/>
+      <item value="longbow" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="steel_arrow" quantity="10000"/>
+      <slot name="rhand" item="longbow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -3548,6 +3639,67 @@
     </ai>
   </creature>
 
+  <creature name="albino_elf_archer">
+    <type class="albino_elf" subclass="albino_elf_archer" tileid="albino_elf.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="100"/>
+      <def value="18"/>
+      <hp value="150"/>
+      <speed value="0.9"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="42"/>
+    <experience value="960"/>
+    <respawn value="1430"/>
+    <drops>
+      <item value="money" quantity="[10,30]" probability="90.0"/>
+      <item value="studded_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="steel_arrow" quantity="[1,5]" probability="5.0"/>
+      <item value="wooden_bow" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="steel_arrow" quantity="10000"/>
+      <slot name="rhand" item="wooden_bow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_priest">
+    <type class="human" subclass="imperial_priest" tileid="human_imperial.png:12"/>
+    <description></description>
+    <attributes>
+      <atk value="96"/>
+      <def value="25"/>
+      <hp value="300"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="42"/>
+    <experience value="1100"/>
+    <respawn value="1420"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="10.0"/>
+      <item value="antidote" quantity="[1,2]" probability="2.0"/>
+      <item value="staff" quantity="[1,1]" probability="3.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="child_dark_elf">
     <type class="dark_elf" subclass="baby_drow" tileid="dark_elf.png:10"/>
     <description></description>
@@ -3611,6 +3763,36 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_elite_guardian">
+    <type class="human" subclass="imperial_elite_guardian" tileid="human_imperial.png:7"/>
+    <description></description>
+    <attributes>
+      <atk value="110"/>
+      <def value="26"/>
+      <hp value="380"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="43"/>
+    <experience value="1100"/>
+    <respawn value="1420"/>
+    <drops>
+      <item value="money" quantity="[5,40]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="black_armor" quantity="[1,1]" probability="0.0001"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="1.0"/>
+      <item value="biting_sword" quantity="[1,1]" probability="1.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -4014,6 +4196,37 @@
     </ai>
   </creature>
 
+  <creature name="imperial_scientist">
+    <type class="human" subclass="imperial_scientist" tileid="human_imperial.png:13"/>
+    <description></description>
+    <attributes>
+      <atk value="130"/>
+      <def value="44"/>
+      <hp value="480"/>
+      <speed value="0.9"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="50"/>
+    <experience value="1750"/>
+    <respawn value="1460"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="potion" quantity="[2,4]" probability="8.0"/>
+      <item value="stone_cloak" quantity="[1,1]" probability="5.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="2.0"/>
+      <item value="dark_dagger" quantity="[1,1]" probability="0.05"/>
+      <item value="soul_dagger" quantity="[1,1]" probability="0.0002"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="mountain_orc_hunter">
     <type class="orc" subclass="orc_hunter" tileid="mountain_orc.png:1"/>
     <description></description>
@@ -4313,6 +4526,64 @@
     </ai>
   </creature>
 
+  <creature name="albino_elf_magician">
+    <type class="albino_elf" subclass="albino_elf_magician" tileid="albino_elf.png:2"/>
+    <description></description>
+    <attributes>
+      <atk value="160"/>
+      <def value="23"/>
+      <hp value="500"/>
+      <speed value="0.7"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="55"/>
+    <experience value="2210"/>
+    <respawn value="1500"/>
+    <drops>
+      <item value="greater_potion" quantity="[1,2]" probability="20.0"/>
+      <item value="money" quantity="[10,70]" probability="100.0"/>
+      <item value="empty_scroll" quantity="[1,2]" probability="10.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="10,60"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_high_priest">
+    <type class="human" subclass="imperial_high_priest" tileid="human_imperial.png:9"/>
+    <description></description>
+    <attributes>
+      <atk value="110"/>
+      <def value="42"/>
+      <hp value="580"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="55"/>
+    <experience value="2420"/>
+    <respawn value="1920"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="potion" quantity="[1,2]" probability="10.0"/>
+      <item value="greater_antidote" quantity="[1,2]" probability="2.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="7.0"/>
+      <item value="dark_dagger" quantity="[1,1]" probability="0.1"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="assassin">
     <type class="human" subclass="assassin" tileid="human_evil.png:0"/>
     <description></description>
@@ -4372,6 +4643,35 @@
       </says>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="albino_elf_queen">
+    <type class="albino_elf" subclass="albino_elf_queen" tileid="albino_elf.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="150"/>
+      <def value="36"/>
+      <hp value="700"/>
+      <speed value="0.9"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="58"/>
+    <experience value="2700"/>
+    <respawn value="1800"/>
+    <drops>
+      <item value="money" quantity="[30,60]" probability="100.0"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="0.5"/>
+      <item value="drow_sword" quantity="[1,1]" probability="0.01"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="10,30"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -4564,6 +4864,37 @@
     </ai>
   </creature>
 
+  <creature name="albino_elf_king">
+    <type class="albino_elf" subclass="albino_elf_king" tileid="albino_elf.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="160"/>
+      <def value="32"/>
+      <hp value="675"/>
+      <speed value="0.8"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="60"/>
+    <experience value="2800"/>
+    <respawn value="1900"/>
+    <drops>
+      <item value="money" quantity="[30,60]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.5"/>
+      <item value="shadow_boots" quantity="[1,1]" probability="1.0"/>
+      <item value="shadow_helmet" quantity="[1,1]" probability="0.35"/>
+      <item value="great_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="mountain_orc_chief">
     <type class="orc" subclass="orc_chief" tileid="mountain_orc.png:0"/>
     <description></description>
@@ -4591,6 +4922,37 @@
       <profile name="brave"/>
       <profile name="offensive"/>
       <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_archer_leader">
+    <type class="human" subclass="imperial_archer_leader" tileid="human_imperial.png:1"/>
+    <description></description>
+    <attributes>
+      <atk value="126"/>
+      <def value="25"/>
+      <hp value="500"/>
+      <speed value="0.9"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="61"/>
+    <experience value="2870"/>
+    <respawn value="2000"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="power_arrow" quantity="[1,10]" probability="5.0"/>
+      <item value="composite_bow" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="power_arrow" quantity="10000"/>
+      <slot name="rhand" item="composite_bow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -4724,6 +5086,37 @@
     </ai>
   </creature>
 
+  <creature name="imperial_elite_archer">
+    <type class="human" subclass="imperial_elite_archer" tileid="human_imperial.png:6"/>
+    <description></description>
+    <attributes>
+      <atk value="130"/>
+      <def value="27"/>
+      <hp value="600"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="64"/>
+    <experience value="3300"/>
+    <respawn value="2000"/>
+    <drops>
+      <item value="money" quantity="[5,53]" probability="100.0"/>
+      <item value="power_arrow" quantity="[1,10]" probability="5.0"/>
+      <item value="crossbow" quantity="[1,1]" probability="1.5"/>
+    </drops>
+    <equips>
+      <slot name="lhand" item="power_arrow" quantity="10000"/>
+      <slot name="rhand" item="composite_bow" quantity="1"/>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
   <creature name="dark_elf_knight">
     <type class="dark_elf" subclass="dark_elf_knight" tileid="dark_elf.png:4"/>
     <description></description>
@@ -4783,6 +5176,36 @@
       <profile name="lifesteal" params="1"/>
       <profile name="human"/>
       <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_leader">
+    <type class="human" subclass="imperial_leader" tileid="human_imperial.png:11"/>
+    <description></description>
+    <attributes>
+      <atk value="180"/>
+      <def value="27"/>
+      <hp value="600"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="65"/>
+    <experience value="3390"/>
+    <respawn value="1420"/>
+    <drops>
+      <item value="money" quantity="[5,30]" probability="100.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="0.4"/>
+      <item value="shadow_shield" quantity="[1,1]" probability="0.07"/>
+      <item value="claymore" quantity="[1,1]" probability="3.0"/>
+      <item value="morning_star" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -5091,6 +5514,66 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="archer"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_knight">
+    <type class="human" subclass="imperial_knight" tileid="human_imperial.png:10"/>
+    <description></description>
+    <attributes>
+      <atk value="180"/>
+      <def value="32"/>
+      <hp value="500"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="72"/>
+    <experience value="4000"/>
+    <respawn value="3000"/>
+    <drops>
+      <item value="money" quantity="[30,80]" probability="100.0"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.008"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="magic_plate_shield" quantity="[1,1]" probability="0.05"/>
+      <item value="demon_fire_sword" quantity="[1,1]" probability="0.002"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_chief">
+    <type class="human" subclass="imperial_chief" tileid="human_imperial.png:3"/>
+    <description></description>
+    <attributes>
+      <atk value="185"/>
+      <def value="30"/>
+      <hp value="600"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="72"/>
+    <experience value="4100"/>
+    <respawn value="3490"/>
+    <drops>
+      <item value="money" quantity="[5,33]" probability="100.0"/>
+      <item value="golden_armor" quantity="[1,1]" probability="3.0"/>
+      <item value="chaos_boots" quantity="[1,1]" probability="0.08"/>
+      <item value="horned_golden_helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="fire_sword" quantity="[1,1]" probability="0.5"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
       <profile name="patrolling"/>
     </ai>
   </creature>
@@ -5450,6 +5933,40 @@
     </ai>
   </creature>
 
+  <creature name="imperial_commander">
+    <type class="human" subclass="imperial_commander" tileid="human_imperial.png:4"/>
+    <description></description>
+    <attributes>
+      <atk value="225"/>
+      <def value="30"/>
+      <hp value="400"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="82"/>
+    <experience value="6330"/>
+    <respawn value="2990"/>
+    <drops>
+      <item value="money" quantity="[30,80]" probability="100.0"/>
+      <item value="horned_golden_helmet" quantity="[1,1]" probability="1.0"/>
+      <item value="shadow_cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="magic_plate_shield" quantity="[1,1]" probability="0.05"/>
+      <item value="demon_fire_sword" quantity="[1,1]" probability="0.001"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Our troops will crush you!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="heal" params="5,20"/>
+    </ai>
+  </creature>
+
   <creature name="mithrilbourgh_lieutenant">
     <type class="human" subclass="soldier_lieutenant" tileid="human_soldier.png:6"/>
     <description></description>
@@ -5760,6 +6277,39 @@
     </ai>
   </creature>
 
+  <creature name="imperial_general">
+    <type class="human" subclass="imperial_general" tileid="human_imperial.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="225"/>
+      <def value="31"/>
+      <hp value="700"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="93"/>
+    <experience value="8980"/>
+    <respawn value="5000"/>
+    <drops>
+      <item value="money" quantity="[30,80]" probability="100.0"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.3"/>
+      <item value="golden_cloak" quantity="[1,1]" probability="2.0"/>
+      <item value="demon_fire_sword" quantity="[1,1]" probability="0.02"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="Our troops will crush you!"/>
+      </says>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="heal" params="5,20"/>
+    </ai>
+  </creature>
+
   <creature name="armed_naga">
     <type class="mutant" subclass="armed_naga" tileid="naga.png:0"/>
     <description></description>
@@ -5964,6 +6514,41 @@
     </ai>
   </creature>
 
+  <creature name="emperor_dalmung">
+    <type class="human" subclass="emperor_dalmung" tileid="human_imperial.png:0"/>
+    <description></description>
+    <attributes>
+      <atk value="210"/>
+      <def value="32"/>
+      <hp value="1100"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="108"/>
+    <experience value="13000"/>
+    <respawn value="5300"/>
+    <drops>
+      <item value="money" quantity="[80,130]" probability="100.0"/>
+      <item value="greater_potion" quantity="[2,5]" probability="30.0"/>
+      <item value="chaos_sword" quantity="[1,1]" probability="1.0"/>
+      <item value="black_boots" quantity="[1,1]" probability="0.1"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.5"/>
+      <item value="black_shield" quantity="[1,1]" probability="0.03"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="My empire is undefeatable!"/>
+      </says>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="heal" params="5,30"/>
+      <profile name="lifesteal" params="0.1"/>
+    </ai>
+  </creature>
+
   <creature name="chaos_dragonrider">
     <type class="chaos" subclass="chaos_dragonrider" tileid="chaos.png:1"/>
     <description></description>
@@ -6113,6 +6698,38 @@
       <profile name="offensive"/>
       <profile name="human"/>
       <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="imperial_general_giant">
+    <type class="giant_human" subclass="imperial_general_giant" tileid="giant_human.png:8"/>
+    <description></description>
+    <attributes>
+      <atk value="280"/>
+      <def value="32"/>
+      <hp value="1100"/>
+      <speed value="1.0"/>
+      <size value="3,4"/>
+    </attributes>
+    <level value="116"/>
+    <experience value="16100"/>
+    <respawn value="6400"/>
+    <drops>
+      <item value="money" quantity="[30,80]" probability="100.0"/>
+      <item value="greater_potion" quantity="[2,4]" probability="60.0"/>
+      <item value="giant_heart" quantity="[1,1]" probability="80.0"/>
+      <item value="black_helmet" quantity="[1,1]" probability="0.01"/>
+      <item value="black_cloak" quantity="[1,1]" probability="0.005"/>
+      <item value="great_sword" quantity="[1,1]" probability="2.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <profile name="brave"/>
+      <profile name="offensive"/>
+      <profile name="human"/>
+      <profile name="patrolling"/>
+      <profile name="heal" params="5,40"/>
     </ai>
   </creature>
 
@@ -6277,6 +6894,72 @@
         <noise value="Gnomes! Run away!"/>
         <noise value="You may steal my money but you'll never take my heart!"/>
       </says>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="5,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="dark_elf_master">
+    <type class="dark_elf" subclass="dark_elf_master" tileid="dark_elf.png:12"/>
+    <description></description>
+    <attributes>
+      <atk value="300"/>
+      <def value="35"/>
+      <hp value="900"/>
+      <speed value="1.0"/>
+      <size value="1,2"/>
+    </attributes>
+    <level value="138"/>
+    <experience value="25800"/>
+    <respawn value="10300"/>
+    <drops>
+      <item value="money" quantity="[30,200]" probability="100.0"/>
+      <item value="greater_potion" quantity="[1,2]" probability="50.0"/>
+      <item value="greater_poison" quantity="[1,2]" probability="75.0"/>
+      <item value="shadow_armor" quantity="[1,1]" probability="5.0"/>
+      <item value="black_sword" quantity="[1,1]" probability="0.05"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
+      <says>
+        <noise value="You will never see the light again!"/>
+        <noise value="Darkness will fall upon you!"/>
+      </says>
+      <profile name="poisonous" params="15,greater_poison"/>
+      <profile name="brave"/>
+      <profile name="animal"/>
+      <profile name="offensive"/>
+      <profile name="heal" params="10,50"/>
+      <profile name="patrolling"/>
+    </ai>
+  </creature>
+
+  <creature name="twin_headed_dragon">
+    <type class="huge_animal" subclass="twin_head_dragon" tileid="huge_animal.png:10"/>
+    <description></description>
+    <attributes>
+      <atk value="270"/>
+      <def value="35"/>
+      <hp value="1900"/>
+      <speed value="1.0"/>
+      <size value="3,4"/>
+    </attributes>
+    <level value="139"/>
+    <experience value="26100"/>
+    <respawn value="11000"/>
+    <drops>
+      <item value="mega_potion" quantity="[1,2]" probability="80.0"/>
+      <item value="money" quantity="[30,200]" probability="100.0"/>
+      <item value="sapphire" quantity="[2,5]" probability="10.0"/>
+      <item value="blue_dragon_cloak" quantity="[1,1]" probability="5.0"/>
+    </drops>
+    <equips>
+    </equips>
+    <ai>
       <profile name="brave"/>
       <profile name="animal"/>
       <profile name="offensive"/>
@@ -6798,5 +7481,4 @@
       <profile name="patrolling"/>
     </ai>
   </creature>
-
 </creatures>
