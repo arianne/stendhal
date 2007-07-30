@@ -74,17 +74,17 @@
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2XTU/CQBCGF1T8wG8E1EhCIBiv6F1PQqIQ/gB/AfHABTUa/4gnfijvprNhMpkt1rSQxjZ5Dt3ZeZ/Ndi5tG2PaKSEH8kvYTNC/BQrg2sM22E/YXwc/Hmox+GcKf/WHZfl4BSPwAsb07r59U/iHBPc3zGIGfFlypjYYWo9dPzfBt78J8bdMMAMnJphFLUvO6i7llomJ6JmwGndrfneG32TZc+6Q/8yTK7MlUfbIfdWU+OMkbf6we41CnP4n8Aym4I14p7XeCvx9cAs+wCO4B5+0Nlixv0P8V/8DsQ7/F+gS32vwa6TJX2P+eubP/Jk/dP8FuGRcMa9Wi9tv91fAIShRzx2h1ZLwu38L18P9shbFvyfuT6MoHLbnlNBqvNc9Ms/6D+jeOO5/Uq4fk8P2HAlkjfe5R8ubAzCXlmkAEAAA
+   H4sIAAAAAAAAAO2XS27CMBCGXSiUlld5lYKIFFEVdUvZwwq4RA/Bgk0LAnERVhyUsTIWo9E4JSgPRSTSt4jH83+WM5uMlVLjlPAA5P7hMUJ/ASgCIwtPQCVivwscLTgh+E8Ct/r9smysLO/6238w/w9C/UN1mQFbFp+pPEHq0evvyvv2Xz7+T+XNQEN5syhl8Vl9xtwOsmY9a1KjbslvznBNlj5nCf1tSy7P5gTZw/d1U+IPk7T5/e41CGH6zSz/An/IhqzH4f8GtsAcmAI7XIvbv0Du1T9DkvDvgSVySMAvkSa/Q/xu5s/8md93fw/oEwbEK9XC9uv9b0ANaGHPBJFqUfjNv4XpoX5eC+J/YfcnUWYO3dNEpBrtNQ/P0/4q3hvF/E/y9Vd06J46g9don3mkvDPjevglABAAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAXkglVQPAqoCxZB6cV41IQBcTgUR1BoFgyUkShObbPKiRDPBOIsLGqygTiHRLPQQQWJ4vgANc0aBfQDfTjY9DKvFwebXECqeQPtf1wAV75HB+jlwFADIz3+B9r/xIImKppFKWijollDLf4JxcNQS/+4AHr5hyvO6V3+dVDZvIHO/wMd/wPtfxDQBGItKthNrnnaQKxDRfvxmQcA2JLe3AAQAAA=
+   H4sIAAAAAAAAAGNgGAXkglVQPAqoC3KBOA+I8/GoCQPicCiOoNAsGCjDoacMu3Kqm1WOQ085kppMIM7CojcbiHNINAsdVJAojg9Q06xRQD/Qh4NNL/N6cbBhwAuIvbGIg8R8yDAPHRByry8evf5kmEcsgOV7QvajlwPUBqT6n1RAKL5ItX+oxf9A+58QgNnfRKT91AbY/N9GRfuHWvwjx8NwSP+4AHr514ZFzUCUfx1o9lMKqJ1fqR3/pAJqp39SATnmaQKxFhXsJtc8bSDWoaL9+MwDAOes1TUAEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGJpgCRJeOgD2lyCxSwfAflqDKQTkg4E4BIpDKTSLFJAIxElYxJOBOIWK9uACqUCchkU8HYgz6GD/KBgFIxHgyvfogFblAK58jw5Gy4FRMApGAbXBaPk3CkbBKKA2AABtLXiAABAAAA==
+   H4sIAAAAAAAAAGNgGJpgCRJeOgD2lyCxSwfAflqDKQTkg4E4BIpDKTQLHSyC0ouxyCUCcRIW8WQgTiHRLHJAKhCnYRFPB+IMKtkxCkbBKEAFuPI9OsBVDlAKcOV7dDBaDoyCUTAKqA1Gy79RMApGAbUBAPzv9fMAEAAA
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
