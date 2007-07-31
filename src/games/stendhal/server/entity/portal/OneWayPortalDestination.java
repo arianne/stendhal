@@ -11,6 +11,7 @@ public class OneWayPortalDestination extends Portal {
 
 	public OneWayPortalDestination() {
 		put("hidden", "");
+		setResistance(0);
 	}
 
 	/**
