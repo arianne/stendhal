@@ -4044,6 +4044,22 @@
     </equipable>
   </item>
 
+  <item name="nihonto">
+    <type class="sword" subclass="nihonto" tileid="-1"/>
+    <description>You see a samurai's nihonto sword with a razor sharp blade.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="20"/>
+      <rate value="4"/>
+    </attributes>
+    <weight value="4.0"/>
+    <value value="90535"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
   <item name="orc_sword">
     <type class="sword" subclass="orc_sword" tileid="-1"/>
     <description>You see an orc sword which has a heavy and deadly appearance.</description>
