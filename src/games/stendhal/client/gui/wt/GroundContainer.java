@@ -118,11 +118,14 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		if (view != null) {
 			if (ui.isCtrlDown()) {
 				view.onAction();
+				return true;
 			} else if (ui.isShiftDown()) {
 				view.onAction(ActionType.LOOK);
+				return true;
 			}
 		}
-		return true;
+		
+		return false;
 	}
 
 	@Override
@@ -147,6 +150,7 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 		if (view != null) {
 			// ... do the default action
 			view.onAction();
+			return true;
 		} else {
 			// moveto action
 			RPAction action = new RPAction();
@@ -157,7 +161,6 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 			// TODO: let action do this
 			return true;
 		}
-		return true;
 	}
 
 	/** process right click */
@@ -183,9 +186,10 @@ public class GroundContainer extends WtPanel implements WtDropTarget, Inspector 
 				CommandList list = new CommandList(entity.getType(), actions, view);
 				ui.setContextMenu(list);
 			}
+			return true;
 		}
-
-		return true;
+		
+		return false;
 	}
 
 

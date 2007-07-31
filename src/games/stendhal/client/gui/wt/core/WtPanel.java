@@ -1036,15 +1036,7 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 				Point point = p2.getLocation();
 				point.translate(-panel.getX(), -panel.getY());
 				// click the child
-				panel.onMouseClick(point);
-
-				// bail out when we're closed during a callback
-				if (isClosed()) {
-					break;
-				}
-
-				// click processed
-				return true;
+				return panel.onMouseClick(point);
 			}
 		}
 		// click not processed

@@ -58,6 +58,12 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	/** a flag for tracking ContextMenu changes */
 	private boolean recreatedContextMenu;
 
+	/** true if the last single click was handled; it can't be a part of a double click */
+	private boolean lastClickWasHandled;
+
+	/** the time at which a mouse button was last pressed */
+	private long timeOfLastMousePress = System.currentTimeMillis();
+
 	/** Creates the Frame from the given GameScreen instance */
 	public WtBaseframe(GameScreen screen) {
 		super("baseframe", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
@@ -155,6 +161,8 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			rightMouseButtonPressed = true;
 		}
+		
+		timeOfLastMousePress = System.currentTimeMillis();
 	}
 
 	/** Invoked when a mouse button has been released on a component. */
@@ -167,8 +175,21 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 		if (e.getButton() == MouseEvent.BUTTON3) {
 			rightMouseButtonPressed = false;
 		}
+		
+		// Handle as a click if the button wasn't held for > a second
+		if ((System.currentTimeMillis() - timeOfLastMousePress) < 1000) {
+			onMouseClick(e);
+			timeOfLastMousePress = 0;
+		}
 	}
 
+	/**
+	 * Java's official mouseClick handler; we don't use this because it doesn't
+	 * register clicks while the mouse is moving at all.
+	 */
+	public synchronized void mouseClicked(MouseEvent e) {
+	}
+	
 	/**
 	 * Invoked when the mouse button has been clicked (pressed and released) on
 	 * a component. This event is propagated to all childs.
@@ -176,7 +197,7 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	 * @param e
 	 *            the mouse event
 	 */
-	public synchronized void mouseClicked(MouseEvent e) {
+	public void onMouseClick(MouseEvent e) {
 		Point p = e.getPoint();
 		recreatedContextMenu = false;
 
@@ -189,9 +210,13 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 
 		else if (e.getButton() == MouseEvent.BUTTON1) {
 			if (e.getClickCount() == 1) {
-				onMouseClick(p);
-			} else if (e.getClickCount() == 2) {
-				onMouseDoubleClick(p);
+				lastClickWasHandled = onMouseClick(p);
+			} 
+			else if (e.getClickCount() >= 2) {
+				if (lastClickWasHandled)
+					lastClickWasHandled = onMouseClick(p);
+				else
+					lastClickWasHandled = onMouseDoubleClick(p);
 			}
 		} else if (e.getButton() == MouseEvent.BUTTON3) {
 			// no double rightclick supported
