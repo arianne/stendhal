@@ -594,6 +594,17 @@ public abstract class RPEntity extends ActiveEntity {
 	//
 
 	/**
+	 * Get the resistance this has on other entities (0-100).
+	 *
+	 * @return	The resistance, or 0 if in ghostmode.
+	 */
+	@Override
+	public int getResistance() {
+		return (isGhostMode() ? 0 : super.getResistance());
+	}
+
+
+	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.

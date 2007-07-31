@@ -73,9 +73,9 @@ public final byte[] ID_Token = new byte[0];
 	protected double y;
 
 	/**
-	 * Whether an obstacle.
+	 * Amount of entity-to-entity resistance (0-100).
 	 */
-	protected boolean	obstacle;
+	protected int		resistance;
 
 	/**
 	 * The entity visibility.
@@ -455,6 +455,28 @@ public final byte[] ID_Token = new byte[0];
 
 
 	/**
+	 * Get the resistance this has on other entities (0-100).
+	 *
+	 * @return	The resistance.
+	 */
+	public int getResistance() {
+		return resistance;
+	}
+
+
+	/**
+	 * Get the amount of resistance between this and another entity (0-100).
+	 *
+	 * @param	entity		The entity to check against.
+	 *
+	 * @return	The effective resistance.
+	 */
+	public int getResistance(final Entity entity) {
+		return ((getResistance() * entity.getResistance()) / 100);
+	}
+
+
+	/**
 	 * returns the slot with the specified name or null if the entity does not
 	 * have this slot
 	 */
@@ -533,9 +555,13 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		/*
-		 * Obstacle
+		 * Resistance
 		 */
-		obstacle = object.has("obstacle");
+		if(object.has("resistance")) {
+			resistance = object.getInt("resistance");
+		} else {
+			resistance = 0;
+		}
 
 		/*
 		 * Visibility
@@ -583,7 +609,9 @@ public final byte[] ID_Token = new byte[0];
 	 *		entity's area.
 	 */
 	public boolean isObstacle(final Entity entity) {
-		return (obstacle && (entity != this));
+		// >= 30% resistance = stall on client (simulates resistance)
+		// TODO: Check is self check is needed here, or obsolete
+		return ((entity != this) && (getResistance(entity) >= 30));
 	}
 
 
@@ -716,10 +744,10 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		/*
-		 * Obstacle
+		 * Resistance
 		 */
-		if(changes.has("obstacle")) {
-			obstacle = true;
+		if(changes.has("resistance")) {
+			resistance = changes.getInt("resistance");
 		}
 
 		/*
@@ -800,10 +828,10 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		/*
-		 * Obstacle
+		 * Resistance
 		 */
-		if(changes.has("obstacle")) {
-			obstacle = false;
+		if(changes.has("resistance")) {
+			resistance = 0;
 		}
 
 		/*

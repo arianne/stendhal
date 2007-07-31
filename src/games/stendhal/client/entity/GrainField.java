@@ -168,21 +168,6 @@ public class GrainField extends Entity {
 	}
 
 
-	/**
-	 * Determine if this is an obstacle for another entity.
-	 *
-	 * @param	entity		The entity to check against.
-	 *
-	 * @return	<code>true</code> the entity can not enter this
-	 *		entity's area.
-	 */
-	public boolean isObstacle(final Entity entity) {
-		// Hack! Used to simulate resistence
-		// TODO: Use resistence attribute instead
-		return true;
-	}
-
-
 	//
 	// RPObjectChangeListener
 	//
