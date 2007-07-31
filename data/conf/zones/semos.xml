@@ -196,7 +196,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <!-- writing on the wooden arch -->
@@ -205,7 +206,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="25" y="49">
@@ -213,7 +215,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="26" y="49">
@@ -221,7 +224,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="27" y="49">
@@ -229,7 +233,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
 

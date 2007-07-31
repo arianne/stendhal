@@ -73,6 +73,13 @@ public class EntityFactoryHelper {
 									+ entity.getClass().getName());
 				}
 			}
+
+			/*
+			 * Sync the internal state
+			 */
+			if(!attributes.isEmpty()) {
+				entity.update();
+			}
 		}
 
 		return entity;
