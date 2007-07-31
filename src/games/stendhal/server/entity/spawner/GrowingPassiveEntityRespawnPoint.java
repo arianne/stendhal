@@ -64,12 +64,14 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String actionName, int maxRipeness,
 	        int width, int height) {
 		super(object, type, GROWING_RATE);
+		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 		update();
 	}
 
 	public GrowingPassiveEntityRespawnPoint(String type, String actionName, int maxRipeness, int width, int height) {
 		super(type, GROWING_RATE);
+		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 	}
 

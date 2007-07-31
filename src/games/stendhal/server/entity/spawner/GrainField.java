@@ -33,11 +33,13 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 
 	public GrainField(RPObject object) {
 		super(object, "grain_field", "Harvest", RIPE, 1, 2);
+		setResistance(80);
 		update();
 	}
 
 	public GrainField() {
 		super("grain_field", "Harvest", RIPE, 1, 2);
+		setResistance(80);
 	}
 
 	@Override
@@ -69,11 +71,11 @@ public class GrainField extends GrowingPassiveEntityRespawnPoint implements UseL
 					entity.equip(grain, true);
 					return true;
 				} else if (entity instanceof Player) {
-					((Player) entity).sendPrivateText("You need a scythe to harvest grain fields.");
+					entity.sendPrivateText("You need a scythe to harvest grain fields.");
 					return false;
 				}
 			} else if (entity instanceof Player) {
-				((Player) entity).sendPrivateText("This grain is not yet ripe enough to harvest.");
+				entity.sendPrivateText("This grain is not yet ripe enough to harvest.");
 				return false;
 			}
 		}

@@ -61,6 +61,8 @@ public class DamagingArea extends OccupantArea {
 		this.probability = probability;
 
 		rand = new Random();
+
+		setResistance(50);
 	}
 
 	//

@@ -51,6 +51,8 @@ public class LifeDrainArea extends OccupantArea {
 		this.damage = damage;
 
 		rand = new Random();
+
+		setResistance(50);
 	}
 
 	//
