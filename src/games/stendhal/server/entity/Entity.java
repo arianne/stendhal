@@ -51,9 +51,9 @@ public abstract class Entity extends RPObject {
 	private boolean collides;
 
 	/**
-	 * Whether this will collide with other entities.
+	 * Amount of resistance this has with other entities (0-100).
 	 */
-	private boolean obstacle;
+	private int resistance;
 
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("entity");
@@ -66,8 +66,15 @@ public abstract class Entity extends RPObject {
 
 		/*
 		 * Entity is an obstacle.
+		 * Replaced by resistance (short lived).
 		 */
 		entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
+
+		/**
+		 * Resistance to other entities (0-100).
+		 * 0=Phantom, 100=Obstacle.
+		 */
+		entity.addAttribute("resistance", Type.BYTE, Definition.VOLATILE);
 
 		entity.addAttribute("x", Type.SHORT);
 		entity.addAttribute("y", Type.SHORT);
@@ -89,8 +96,8 @@ public abstract class Entity extends RPObject {
 		entity.addAttribute("effect", Type.STRING, Definition.VOLATILE);
 
 		/*
-		 * The visibility of the entity drawn on client (0-100). 0=Invisible,
-		 * 100=Solid. Useful when mixed with effect.
+		 * The visibility of the entity drawn on client (0-100).
+		 * 0=Invisible, 100=Solid. Useful when mixed with effect.
 		 */
 		entity.addAttribute("visibility", Type.INT, Definition.VOLATILE);
 	}
@@ -98,14 +105,16 @@ public abstract class Entity extends RPObject {
 	public Entity(RPObject object) {
 		super(object);
 
-		setObstacle(true);
-
 		if(!has("width")) {
 			setWidth(1);
 		}
 
 		if(!has("height")) {
 			setHeight(1);
+		}
+
+		if (!has("resistance")) {
+			setResistance(100);
 		}
 
 		if (!has("visibility")) {
@@ -116,7 +125,7 @@ public abstract class Entity extends RPObject {
 	}
 
 	public Entity() {
-		setObstacle(true);
+		setResistance(100);
 		setVisibility(100);
 		setWidth(1);
 		setHeight(1);
@@ -139,7 +148,19 @@ public abstract class Entity extends RPObject {
 			width = getInt("width");
 		}
 
-		obstacle = has("obstacle");
+		if(has("resistance")) {
+			resistance = getInt("resistance");
+
+			// TODO: Remove after 2007-08-15
+			if(resistance > 95) {
+				put("obstacle", "");
+			} else if(has("obstacle")) {
+				remove("obstacle");
+			}
+		} else {
+			resistance = has("obstacle") ? 100 : 0;
+			put("resistance", resistance);
+		}
 	}
 
 	public boolean hasDescription() {
@@ -297,6 +318,27 @@ public abstract class Entity extends RPObject {
 		return collides;
 	}
 
+
+	/**
+	 * Get the resistance this has on other entities (0-100).
+	 *
+	 * @return	The amount of resistance, or 0 if in ghostmode.
+	 */
+	public int getResistance() {
+		return (isGhost() ? 0 : resistance);
+	}
+
+
+	/**
+	 * Get the resistance between this and another entity (0-100).
+	 *
+	 * @return	The amount of combined resistance.
+	 */
+	public int getResistance(final Entity entity) {
+		return ((getResistance() * entity.getResistance()) / 100);
+	}
+
+
 	/**
 	 * Checks whether an entity is a ghost (non physically interactive).
 	 *
@@ -306,17 +348,6 @@ public abstract class Entity extends RPObject {
 		return has("ghostmode");
 	}
 
-	/**
-	 * Determine if this is an obstacle for other entities in general.
-	 *
-	 * @param entity
-	 *            The entity to check against.
-	 *
-	 * @return <code>true</code> if an obstacle.
-	 */
-	protected boolean isObstacle() {
-		return obstacle;
-	}
 
 	/**
 	 * Determine if this is an obstacle for another entity.
@@ -324,27 +355,25 @@ public abstract class Entity extends RPObject {
 	 * @param entity
 	 *            The entity to check against.
 	 *
-	 * @return <code>true</code> if not a ghost.
+	 * @return <code>true</code> if very high resistance.
 	 */
 	public boolean isObstacle(Entity entity) {
-		return isObstacle() && !isGhost();
+		// > 95% combined resistance = obstacle
+		return (getResistance(entity) > 95);
 	}
 
 
 	/**
 	 * Set this entity as an obstacle.
 	 *
+	 * TODO: Change calls to setResistance([0|100])
+	 *
 	 * @param	obstacle	<code>true</code> if an obstacle.
 	 */
 	public void setObstacle(boolean obstacle) {
-		this.obstacle = obstacle;
-
-		if(obstacle) {
-			put("obstacle", "");
-		} else if(has("obstacle")) {
-			remove("obstacle");
-		}
+		setResistance(obstacle ? 100 : 0);
 	}
+
 
 	/**
 	 * Calculates the squared distance between the two given rectangles, i.e.
@@ -667,6 +696,24 @@ public abstract class Entity extends RPObject {
 	protected void setHeight(int height) {
 		this.height = height;
 		put("height", height);
+	}
+
+
+	/**
+	 * Set resistance this has with other entities.
+	 *
+	 * @param	resistance	The amount of resistance (0-100).
+	 */
+	public void setResistance(int resistance) {
+		this.resistance = resistance;
+		put("resistance", resistance);
+
+		// TODO: Remove after 2007-08-15
+		if(resistance > 95) {
+			put("obstacle", "");
+		} else if(has("obstacle")) {
+			remove("obstacle");
+		}
 	}
 
 
