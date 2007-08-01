@@ -110,8 +110,8 @@ public class Player2DView extends RPEntity2DView {
 		try {
                 	//try to get the correct size of the player outfit
 			Sprite sp = store.getOutfit(player.getOutfit());
-			height = (psp.getHeight()/4)/32;
-                        width = (psp.getWidth()/3)/32;
+			height = (sp.getHeight()/4)/32;
+                        width = (sp.getWidth()/3)/32;
                         if (width == 1.0) width = 1.5;
 			logger.info("Drawing player with width of " + width + " and height of " + height + ".");
 			return sp;
