@@ -192,10 +192,6 @@ lion_shield_+1 enhanced_lion_shield
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
 
-		//player dimensions
-		player.addAttribute("width", Type.INT, Definition.VOLATILE);
-		player.addAttribute("height", Type.INT, Definition.VOLATILE);
-
 		/*
 		 * TODO: Remove this one as it is repeated.
 		 * Correct one is ghostmode.
