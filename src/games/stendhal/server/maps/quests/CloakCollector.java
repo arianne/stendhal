@@ -30,7 +30,7 @@ import java.util.List;
  * - 2500 XP
  * 
  * REPETITIONS:
- * - once the quest is complete, she asks for a blue dragon cloak, from athor island.
+ * - None.
  */
 public class CloakCollector extends AbstractQuest {
 
