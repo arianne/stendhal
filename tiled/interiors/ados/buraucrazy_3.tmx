@@ -89,10 +89,10 @@
  </layer>
  <layer name="3_roof" width="40" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQIBpDMSDeBLU5mMxG5dd8XjkppNgZwIQJwFxMhCnQMVysaibAMQFWMyG8ZugeAKSuaS4g1IwkY52jYJRQC5wAeKZQOw20A6BghIgLgXiMijfF4jnALH/gLkIFZQDcQUQVw60Q0bBoAX48hS18lsbEHcCcTsQdwBxFwl68eWpwZbfRsEoGIkAADc9wMbgCwAA
+   H4sIAAAAAAAAAGNgQIBpDMSDeBLU5mMxG5dd8XjkppNgZwIQJwFxMhCnQMVysaibAMQFWMyG8ZuAuBmqDmYuKe6gFEyko12jYBSQC1yAeCYQuw20Q6CgBIhLgbgMyvcF4jlA7D9gLkIF5UBcAcSVA+2QUTBoAb48Ra381gbEnUDcDsQdQNxFgl58eWqw5bdRMApGIgAAcGFedeALAAA=
   </data>
  </layer>
- <layer name="objects" width="40" height="19">
+ <layer name="objects" width="40" height="19" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3OQREAAAgDoPWPYVJT7HwICUj4Yq4DAADULYQc/WrgCwAA
   </data>
