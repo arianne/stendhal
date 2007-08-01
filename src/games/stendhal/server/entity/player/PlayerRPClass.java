@@ -134,7 +134,7 @@ lion_shield_+1 enhanced_lion_shield
 
 		player.addAttribute("outfit", Type.INT);
 		player.addAttribute("outfit_org", Type.INT);
-		player.addAttribute("outfit_path", Type.STRING);
+		//player.addAttribute("outfit_path", Type.STRING);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 

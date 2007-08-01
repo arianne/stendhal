@@ -108,15 +108,13 @@ public class Player2DView extends RPEntity2DView {
 		SpriteStore st = SpriteStore.get();
 
 		try {
-			if (player.getOutfitPath() != null && player.getOutfitPath().endsWith(".png")) {
-                        	Sprite psp =  st.getSprite(player.getOutfitPath());
-                            	height = (psp.getHeight()/4)/32;
-                            	width = (psp.getWidth()/3)/32;
-                            	if (width == 1.0) width = 1.5;
-				logger.info("Drawing player with width of " + width + " and height of " + height + ".");
-                            	return psp;
-                        }
-			return store.getOutfit(player.getOutfit());
+                	//try to get the correct size of the player outfit
+			Sprite sp = store.getOutfit(player.getOutfit());
+			height = (psp.getHeight()/4)/32;
+                        width = (psp.getWidth()/3)/32;
+                        if (width == 1.0) width = 1.5;
+			logger.info("Drawing player with width of " + width + " and height of " + height + ".");
+			return sp;
 		} catch (Exception e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
