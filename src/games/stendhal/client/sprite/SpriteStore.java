@@ -219,8 +219,13 @@ public class SpriteStore {
 		BufferedImage sourceImage = null;
 
 		try {
-			URL url = getResourceURL(ref);
-			
+			URL url;
+			if (!ref.startsWith("http://")) {
+                                url = getResourceURL(ref);
+                        } else {
+                        	logger.info("Loading sprite from a URL...");
+                        	url = new URL(ref);
+                        }
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 				return getFailsafe();

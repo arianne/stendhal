@@ -37,6 +37,21 @@ public class Player extends RPEntity {
 		away = null;
 	}
 
+	
+	/**
+       *  The path to the player's outfit (eg. if they want to use something that isn't in /data/sprites/outfits...). Can be a URL to a web address.
+       */
+        private String outfitPath = "data/sprites/outfit/player_base_0.png"; //default
+	
+	/**
+	 * The height of the player
+	 */
+	private double height = 0;
+	
+	/**
+	 * The width of the player
+	 */
+	private double width = 0;
 
 	//
 	// Player
@@ -71,11 +86,36 @@ public class Player extends RPEntity {
 	protected void onAway(final String message) {
 		addTextIndicator(((message != null) ? "Away" : "Back"), NotificationType.INFORMATION);
 	}
+	
+	/**
+        * Gets the outfit path
+        * @return  The path to the outfit the player is using
+        */
+        public String getOutfitPath() {
+            return outfitPath;
+        }
 
 
 	//
 	// Entity
 	//
+	
+	/**
+        * Gets the player's height. 
+        * @return height The height of the player
+        */
+        protected double getHeight() {
+            return height;
+        }
+	
+        
+        /**
+       * Gets the width of the player
+       * @return the width of the player
+       */
+        protected double getWidth() {
+            return width;
+        }
 
 	/**
 	 * Get the area the entity occupies.
@@ -112,6 +152,20 @@ public class Player extends RPEntity {
 				onAway(away);
 			}
 		}
+		
+		if (changes.has("outfit_path")) {
+                	if (!object.has("outfit_path") || !object.get("outfit_path").equals(changes.get("outfit_path"))) {
+				outfitPath = changes.get("outfit_path");
+			}
+                }
+		
+		if (changes.has("height") && !object.has("height")|| changes.has("height") && object.has("height") && !object.get("height").equals(changes.get("height"))) {
+			height = changes.getInt("height");
+                }
+                
+                if (changes.has("width") && !object.has("width") || changes.has("width") && object.has("width") && !object.get("width").equals(changes.get("width"))) {
+			width = changes.getInt("width");
+                }
 	}
 
 	/**
@@ -129,5 +183,22 @@ public class Player extends RPEntity {
 			fireChange(PROP_AWAY);
 			onAway(null);
 		}
+		
+		if (changes.has("height")) {
+                    if (!object.has("height")) {
+                        height = 0;
+                    }
+                }
+                
+                if (changes.has("width")) {
+                    if (!object.has("width")) {
+                        width = 0;
+                    }
+                }
+		
+		if (changes.has("outfit_path")) {
+			outfitPath = null;
+		}
+			
 	}
 }

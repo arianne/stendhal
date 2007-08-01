@@ -40,8 +40,17 @@ public class Player2DView extends RPEntity2DView {
 	/**
 	 * The player entity.
 	 */
-	private Player	player;
-
+	private Player player;
+	
+	/**
+	 * The height of the player
+	 */
+	private double height = 2.0; //default
+	
+	/**
+	 * The width of the player
+	 */
+	private double width = 1.5; //default
 
 	static {
 		awaySprite = SpriteStore.get().getAnimatedSprite("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0, 2000L, true);
@@ -63,6 +72,14 @@ public class Player2DView extends RPEntity2DView {
 	//
 	// RPEntity2DView
 	//
+        
+        /**
+       * Gets the width of the player
+       * @return the width of the player
+       */
+        protected double getWidth() {
+            return width;
+        }
 
 	/**
 	 * Draw the entity status bar.
@@ -88,8 +105,17 @@ public class Player2DView extends RPEntity2DView {
 	@Override
 	protected Sprite getAnimationSprite() {
 		OutfitStore store = OutfitStore.get();
+		SpriteStore st = SpriteStore.get();
 
 		try {
+			if (player.getOutfitPath() != null && player.getOutfitPath().endsWith(".png")) {
+                        	Sprite psp =  st.getSprite(player.getOutfitPath());
+                            	height = (psp.getHeight()/4)/32;
+                            	width = (psp.getWidth()/3)/32;
+                            	if (width == 1.0) width = 1.5;
+				logger.info("Drawing player with width of " + width + " and height of " + height + ".");
+                            	return psp;
+                        }
 			return store.getOutfit(player.getOutfit());
 		} catch (Exception e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
@@ -128,7 +154,9 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
-		buildSprites(map, 1.5, 2.0);
+		// this method is run first *so* we re-run getAnimationSprite() to have it set the height and width vars
+		getAnimationSprite();
+		buildSprites(map, width, height);
 	}
 
 
@@ -188,7 +216,7 @@ public class Player2DView extends RPEntity2DView {
 	 */
 	@Override
 	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.0, 2.0);
+		return new Rectangle.Double(getX(), getY(), width, height);
 	}
 
 
