@@ -41,7 +41,7 @@ public class Player extends RPEntity {
 	 * The height of the player
 	 */
 	private double height = 0;
-	
+
 	/**
 	 * The width of the player
 	 */
@@ -85,21 +85,23 @@ public class Player extends RPEntity {
 	//
 	// Entity
 	//
-	
+
 	/**
-        * Gets the player's height. 
+        * Gets the player's height.
         * @return height The height of the player
         */
-        protected double getHeight() {
+        @Override
+		protected double getHeight() {
             return height;
         }
-	
-        
+
+
         /**
        * Gets the width of the player
        * @return the width of the player
        */
-        protected double getWidth() {
+        @Override
+		protected double getWidth() {
             return width;
         }
 
@@ -138,11 +140,11 @@ public class Player extends RPEntity {
 				onAway(away);
 			}
 		}
-		
+
 		if (changes.has("height") && !object.has("height")|| changes.has("height") && object.has("height") && !object.get("height").equals(changes.get("height"))) {
 			height = changes.getInt("height");
                 }
-                
+
                 if (changes.has("width") && !object.has("width") || changes.has("width") && object.has("width") && !object.get("width").equals(changes.get("width"))) {
 			width = changes.getInt("width");
                 }
@@ -163,18 +165,18 @@ public class Player extends RPEntity {
 			fireChange(PROP_AWAY);
 			onAway(null);
 		}
-		
+
 		if (changes.has("height")) {
                     if (!object.has("height")) {
                         height = 0;
                     }
                 }
-                
+
                 if (changes.has("width")) {
                     if (!object.has("width")) {
                         width = 0;
                     }
                 }
-			
+
 	}
 }
