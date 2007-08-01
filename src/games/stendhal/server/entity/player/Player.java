@@ -327,6 +327,15 @@ public class Player extends RPEntity {
 	}
 
 	/**
+	 * Gets the relative path to the outfit to be loaded for this player.
+	 *
+	 * @return	The relative path to the player's outfit or <code>null</code> if none has been set.
+	 */
+	public String getOutfitPath() {
+		return has("outfit_path") ? get("outfit_path") : null;
+	}
+
+	/**
 	 * Check if another player should be notified that this player is
 	 * away. This assumes the player has already been checked for away.
 	 * Players will be reminded once an hour.
@@ -745,6 +754,16 @@ public class Player extends RPEntity {
 		}
 	}
 
+	/**
+	 * Sets the relative path to the player's outfit. 
+	 * Can be a URL to an image on the web or a local image.
+	 *
+	 * @param	outfitPath	The relative outfit path.
+	 */
+	public void setOutfitPath(String outfitPath) {
+		put("outfit_path", outfitPath);
+	}
+
 
 	/**
 	 * Sends a message that only this player can read.
@@ -792,7 +811,7 @@ public class Player extends RPEntity {
 
 	@Override
 	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1.0, getWidth(), getHeight());
+		rect.setRect(x, y + 1.0, getInt("width"), getInt("height"));
 	}
 
 	@Override

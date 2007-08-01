@@ -134,6 +134,7 @@ lion_shield_+1 enhanced_lion_shield
 
 		player.addAttribute("outfit", Type.INT);
 		player.addAttribute("outfit_org", Type.INT);
+		player.addAttribute("outfit_path", Type.STRING);
 
 		player.addAttribute("away", Type.LONG_STRING, Definition.VOLATILE);
 
@@ -190,6 +191,10 @@ lion_shield_+1 enhanced_lion_shield
 
 		// The guild name
 		player.addAttribute("guild", Type.STRING);
+
+		//player dimensions
+		player.addAttribute("width", Type.INT, Definition.VOLATILE);
+		player.addAttribute("height", Type.INT, Definition.VOLATILE);
 
 		/*
 		 * TODO: Remove this one as it is repeated.
@@ -287,6 +292,9 @@ lion_shield_+1 enhanced_lion_shield
 		if (object.has("!skills")) {
 			object.remove("!skills");
 		}
+
+		if (!object.has("height")) object.put("height", 2);
+                if (!object.has("width")) object.put("width", 1);
 
 	}
 
