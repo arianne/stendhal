@@ -981,6 +981,7 @@ Holy mackerel! These chips are tasty.
 
     <!--for the admin house -->
    <zone name="int_semos_house" file="interiors/semos/house.tmx">
+   <configurator class-name="games.stendhal.server.maps.semos.house.FlowerSellerNPC"/>
    <configurator class-name="games.stendhal.server.maps.semos.house.CatSellerNPC"/>
       <entity x="6" y="10">
        <implementation class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC">
