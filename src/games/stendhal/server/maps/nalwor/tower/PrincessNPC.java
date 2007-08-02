@@ -53,12 +53,12 @@ public class PrincessNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createDialog() {
-				addGreeting("Hail to thee.");
+				addGreeting("Hail to thee, human.");
 				addJob("I'm a princess. What can I do?");
 				addHelp("A persistent person could do a #task for me.");
-				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.IDLE,
+				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
 				        "I don't trade. My parents would have considered it beneath me.", null);
- 				addGoodbye("Goodbye, stranger");
+ 				addGoodbye("Goodbye, strange one.");
 			}
 		};
 		npc.setDescription("You see a beautiful but forlorn High Elf.");
