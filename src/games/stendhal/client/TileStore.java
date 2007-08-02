@@ -180,10 +180,7 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap createAnimationMap() {
 		TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		// !!!!
-		// !!!! TODO: Set this to a REAL config path (mblanch?)
-		// !!!!
-		URL url = SpriteStore.get().getResourceURL("tileset-animations.map");
+		URL url = SpriteStore.get().getResourceURL("data/tileset/animation.seq");
 
 		if(url != null) {
 			try {
