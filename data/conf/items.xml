@@ -2419,6 +2419,20 @@
     </equipable>
   </item>
 
+  <item name="rhosyd">
+    <type class="herb" subclass="exotic_flower" tileid="-1"/>
+    <description>You see a beautiful and rare rhosyd flower.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="emerald">
     <type class="jewellery" subclass="emerald" tileid="-1"/>
     <description>You see an emerald, a precious gemstone.</description>
