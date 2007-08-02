@@ -30,15 +30,6 @@ public class GrainField extends Entity {
 	 */
 	public final static Object	PROP_RIPENESS		= new Object();
 
-	/**
-	 * The entity width.
-	 */
-	private int width;
-
-	/**
-	 * The entity height.
-	 */
-	private int height;
 
 	/**
 	 * Current ripeness.
@@ -55,19 +46,6 @@ public class GrainField extends Entity {
 	 * Create a grain field.
 	 */
 	public GrainField()  {
-		this(1, 2);
-	}
-
-
-	/**
-	 * Create a grain field.
-	 *
-	 * @param	width		The entity width.
-	 * @param	height		The entity height.
-	 */
-	public GrainField(final int width, final int height)  {
-		this.width = width;
-		this.height = height;
 	}
 
 
@@ -111,28 +89,6 @@ public class GrainField extends Entity {
 
 
 	/**
-	 * Get the entity height.
-	 *
-	 * @return	The entity height.
-	 */
-	@Override
-	public double getHeight() {
-		return height;
-	}
-
-
-	/**
-	 * Get the entity width.
-	 *
-	 * @return	The entity width.
-	 */
-	@Override
-	public double getWidth() {
-		return width;
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
@@ -142,16 +98,6 @@ public class GrainField extends Entity {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
-
-		// default values are for compatibility to server <= 0.56
-
-		if (object.has("width")) {
-			width = object.getInt("width");
-		}
-
-		if (object.has("height")) {
-			height = object.getInt("height");
-		}
 
 		if (object.has("ripeness")) {
 			ripeness = object.getInt("ripeness");

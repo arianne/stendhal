@@ -26,11 +26,6 @@ public class Creature extends RPEntity {
 	public final static Object	PROP_DEBUG		= new Object();
 
 	/**
-	 * Size property.
-	 */
-	public final static Object	PROP_SIZE		= new Object();
-
-	/**
 	 * Metamorphosis property.
 	 */
 	public final static Object	PROP_METAMORPHOSIS	= new Object();
@@ -50,16 +45,6 @@ public class Creature extends RPEntity {
 	 * The current metamorphosis.
 	 */
 	private String	metamorphosis;
-
-	/**
-	 * The entity width.
-	 */
-	private double width;
-
-	/**
-	 * The entity height.
-	 */
-	private double height;
 
 
 	//
@@ -93,32 +78,11 @@ public class Creature extends RPEntity {
 	@Override
 	public Rectangle2D getArea() {
 		// Hack for human like creatures
-		if ((Math.abs(width - 1) < .1) && (Math.abs(height - 2) < .1)) {
-			return new Rectangle.Double(getX(), getY() + 1, 1, 1);
+		if ((Math.abs(getWidth() - 1.0) < 0.1) && (Math.abs(getHeight() - 2.0) < 0.1)) {
+			return new Rectangle.Double(getX(), getY() + 1.0, 1.0, 1.0);
 		}
 
 		return super.getArea();
-	}
-
-
-	/**
-	 * Get the entity height.
-	 *
-	 * @return	The height.
-	 */
-	@Override
-	public double getHeight() {
-		return height;
-	}
-
-	/**
-	 * Get the entity width.
-	 *
-	 * @return	The width.
-	 */
-	@Override
-	public double getWidth() {
-		return width;
 	}
 
 
@@ -132,18 +96,6 @@ public class Creature extends RPEntity {
 	@Override
 	public void initialize(final RPObject object) {
 		super.initialize(object);
-
-		if(object.has("height")) {
-			height = object.getDouble("height");
-		} else {
-			height = 1.0;
-		}
-
-		if(object.has("width")) {
-			width = object.getDouble("width");
-		} else {
-			width = 1.5;
-		}
 
 		String type = getType();
 
@@ -290,16 +242,6 @@ public class Creature extends RPEntity {
 	@Override
 	public void onChangedAdded(final RPObject object, final RPObject changes) {
 		super.onChangedAdded(object, changes);
-
-		if (changes.has("width")) {
-			width = changes.getDouble("width");
-			fireChange(PROP_SIZE);
-		}
-
-		if (changes.has("height")) {
-			height = changes.getDouble("height");
-			fireChange(PROP_SIZE);
-		}
 
 		/*
 		 * Debuging?

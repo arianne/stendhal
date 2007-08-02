@@ -44,6 +44,11 @@ public class Entity implements RPObjectChangeListener {
 	public final static Object	PROP_POSITION	= new Object();
 
 	/**
+	 * Size property.
+	 */
+	public final static Object	PROP_SIZE	= new Object();
+
+	/**
 	 * Title property.
 	 */
 	public final static Object	PROP_TITLE	= new Object();
@@ -71,6 +76,16 @@ public final byte[] ID_Token = new byte[0];
 
 	/** The current y location of this entity */
 	protected double y;
+
+	/**
+	 * The entity width.
+	 */
+	private double		width;
+
+	/**
+	 * The entity height.
+	 */
+	private double		height;
 
 	/**
 	 * Amount of entity-to-entity resistance (0-100).
@@ -247,7 +262,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @return	The height.
 	 */
 	protected double getHeight() {
-		return 1.0;
+		return height;
 	}
 
 
@@ -353,7 +368,7 @@ public final byte[] ID_Token = new byte[0];
 	 * @return	The width.
 	 */
 	protected double getWidth() {
-		return 1.0;
+		return width;
 	}
 
 
@@ -534,6 +549,21 @@ public final byte[] ID_Token = new byte[0];
 			subclazz = object.get("subclass");
 		} else {
 			subclazz = null;
+		}
+
+		/*
+		 * Size
+		 */
+		if(object.has("height")) {
+			height = object.getDouble("height");
+		} else {
+			height = 1.0;
+		}
+
+		if(object.has("width")) {
+			width = object.getDouble("width");
+		} else {
+			width = 1.0;
 		}
 
 		/*
@@ -727,6 +757,25 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		/*
+		 * Size
+		 */
+		boolean sizeChange = false;
+
+		if (changes.has("width")) {
+			width = changes.getDouble("width");
+			sizeChange = true;
+		}
+
+		if (changes.has("height")) {
+			height = changes.getDouble("height");
+			sizeChange = true;
+		}
+
+		if(sizeChange) {
+			fireChange(PROP_SIZE);
+		}
+
+		/*
 		 * Title
 		 */
 		if (changes.has("title")) {
@@ -808,6 +857,25 @@ public final byte[] ID_Token = new byte[0];
 		if (changes.has("subclass")) {
 			subclazz = null;
 			fireChange(PROP_CLASS);
+		}
+
+		/*
+		 * Size
+		 */
+		boolean sizeChange = false;
+
+		if (changes.has("width")) {
+			width = 1.0;
+			sizeChange = true;
+		}
+
+		if (changes.has("height")) {
+			height = 1.0;
+			sizeChange = true;
+		}
+
+		if(sizeChange) {
+			fireChange(PROP_SIZE);
 		}
 
 		/*

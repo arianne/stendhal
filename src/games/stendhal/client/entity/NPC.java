@@ -35,7 +35,7 @@ public class NPC extends RPEntity {
 	 */
 	@Override
 	public Rectangle2D getArea() {
-		return new Rectangle.Double(getX(), getY() + 1, getWidth(), getHeight());
+		return new Rectangle.Double(getX(), getY() + 1.0, getWidth(), getHeight());
 	}
 
 

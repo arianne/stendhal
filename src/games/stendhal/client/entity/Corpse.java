@@ -54,30 +54,6 @@ public class Corpse extends PassiveEntity {
 	//
 
 	/**
-	 * Get the entity height.
-	 *
-	 * @return	The height.
-	 */
-	@Override
-	protected double getHeight() {
-		//TODO: Ugg - Don't couple visual size with logical size
-		return (double) getView().getSprite().getHeight() / GameScreen.SIZE_UNIT_PIXELS;
-	}
-
-
-	/**
-	 * Get the entity width.
-	 *
-	 * @return	The width.
-	 */
-	@Override
-	protected double getWidth() {
-		// TODO: Ugg - Don't couple visual size with logical size
-		return (double) getView().getSprite().getWidth() / GameScreen.SIZE_UNIT_PIXELS;
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.
