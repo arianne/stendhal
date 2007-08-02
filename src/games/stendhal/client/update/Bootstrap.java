@@ -192,7 +192,7 @@ public class Bootstrap {
 				try {
 					classLoader.loadClass(className);
 					classLoader.loadClass("marauroa.common.Logger");
-					classLoader.loadClass("marauroa.client.ariannexp");
+					classLoader.loadClass("marauroa.client.ClientFramework");
 					if (classLoader.getResource(ClientGameConfiguration.get("GAME_ICON")) == null) {
 						throw new ClassNotFoundException(ClientGameConfiguration.get("GAME_ICON"));
 					}
