@@ -63,16 +63,6 @@ public class Creature2DView extends RPEntity2DView {
 	/** the path we got */
 	private List<Node> moveToTargetPath;
 
-	/*
-	 * The drawn height.
-	 */
-	protected double	height;
-
-	/*
-	 * The drawn width.
-	 */
-	protected double	width;
-
 
 	/**
 	 * Create a 2D view of a creature.
@@ -83,8 +73,6 @@ public class Creature2DView extends RPEntity2DView {
 		super(creature);
 
 		this.creature = creature;
-
-		updateSize();
 	}
 
 
@@ -128,16 +116,6 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
-	/**
-	 * Get the height.
-	 *
-	 * @return	The height in tile units.
-	 */
-	public double getHeight() {
-		return height;
-	}
-
-
 	public List<Node> getPatrolPath() {
 		return patrolPath;
 	}
@@ -150,16 +128,6 @@ public class Creature2DView extends RPEntity2DView {
 
 	public List<Node> getMoveToTargetPath() {
 		return moveToTargetPath;
-	}
-
-
-	/**
-	 * Get the width.
-	 *
-	 * @return	The width in tile units.
-	 */
-	public double getWidth() {
-		return width;
 	}
 
 
@@ -222,25 +190,26 @@ public class Creature2DView extends RPEntity2DView {
 	}
 
 
-	/**
-	 * Set the appropriete drawn size based on the creature.
-	 * <strong>NOTE: This is called from the constructor.</strong>
-	 */
-	protected void updateSize() {
-		width = entity.getWidth();
-		height = entity.getHeight();
-
-		// Hack for human like creatures
-		if ((Math.abs(width - 1.0) < 0.1) && (Math.abs(height - 2.0) < 0.1)) {
-			width = 1.5;
-			height = 2.0;
-		}
-	}
-
-
 	//
 	// RPEntity2DView
 	//
+
+	/**
+	 * Populate named state sprites.
+	 *
+	 * @param	map		The map to populate.
+	 * @param	tiles		The master sprite.
+	 * @param	width		The image width in tile units.
+	 * @param	height		The image height in tile units.
+	 */
+	@Override
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
+		this.width = width;
+		this.height = height;
+
+		super.buildSprites(map, tiles, width, height);
+	}
+
 
 	/**
 	 * Get the full directional animation tile set for this entity.
@@ -256,21 +225,6 @@ public class Creature2DView extends RPEntity2DView {
 		}
 
 		return SpriteStore.get().getSprite(translate(resource));
-	}
-
-
-	//
-	// StateEntity2DView
-	//
-
-	/**
-	 * Populate named state sprites.
-	 *
-	 * @param	map		The map to populate.
-	 */
-	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
-		buildSprites(map, getWidth(), getHeight());
 	}
 
 
@@ -305,17 +259,6 @@ public class Creature2DView extends RPEntity2DView {
 
 
 	/**
-	 * Build the visual representation of this entity.
-	 * This builds all the animation sprites and sets the default frame.
-	 */
-	@Override
-	protected void buildRepresentation() {
-		updateSize();
-		super.buildRepresentation();
-	}
-
-
-	/**
 	 * Draw the entity.
 	 *
 	 * @param	g2d		The graphics to drawn on.
@@ -344,17 +287,6 @@ public class Creature2DView extends RPEntity2DView {
 				drawPath(g2d, path, GameScreen.SIZE_UNIT_PIXELS / 2 + 2);
 			}
 		}
-	}
-
-
-	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), getWidth(), getHeight());
 	}
 
 

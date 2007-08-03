@@ -41,16 +41,7 @@ public class Player2DView extends RPEntity2DView {
 	 * The player entity.
 	 */
 	private Player player;
-	
-	/**
-	 * The height of the player
-	 */
-	private double height = 2.0; //default
-	
-	/**
-	 * The width of the player
-	 */
-	private double width = 1.5; //default
+
 
 	static {
 		awaySprite = SpriteStore.get().getAnimatedSprite("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0, 2000L, true);
@@ -72,14 +63,6 @@ public class Player2DView extends RPEntity2DView {
 	//
 	// RPEntity2DView
 	//
-        
-        /**
-       * Gets the width of the player
-       * @return the width of the player
-       */
-        protected double getWidth() {
-            return width;
-        }
 
 	/**
 	 * Draw the entity status bar.
@@ -87,13 +70,14 @@ public class Player2DView extends RPEntity2DView {
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn width.
 	 */
 	@Override
-	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y) {
+	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y, final int width) {
 		/*
 		 * Shift bar slightly to avoid overlap with smaller entities
 		 */
-		super.drawStatusBar(g2d, x, y + 6);
+		super.drawStatusBar(g2d, x, y + 6, width);
 	}
 
 
@@ -105,16 +89,9 @@ public class Player2DView extends RPEntity2DView {
 	@Override
 	protected Sprite getAnimationSprite() {
 		OutfitStore store = OutfitStore.get();
-		SpriteStore st = SpriteStore.get();
 
 		try {
-                	//try to get the correct size of the player outfit
-			Sprite sp = store.getOutfit(player.getOutfit());
-			height = (sp.getHeight()/4)/32;
-                        width = (sp.getWidth()/3)/32;
-                        if (width == 1.0) width = 1.5;
-			logger.info("Drawing player with width of " + width + " and height of " + height + ".");
-			return sp;
+			return store.getOutfit(player.getOutfit());
 		} catch (Exception e) {
 			logger.warn("Cannot build outfit. Setting failsafe outfit.", e);
 			return store.getFailsafeOutfit();
@@ -138,23 +115,6 @@ public class Player2DView extends RPEntity2DView {
 		}
 
 		return false;
-	}
-
-
-	//
-	// StateEntity2DView
-	//
-
-	/**
-	 * Populate named state sprites.
-	 *
-	 * @param	map		The map to populate.
-	 */
-	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
-		// this method is run first *so* we re-run getAnimationSprite() to have it set the height and width vars
-		getAnimationSprite();
-		buildSprites(map, width, height);
 	}
 
 
@@ -189,32 +149,6 @@ public class Player2DView extends RPEntity2DView {
 		if(player.isAway()) {
 			awaySprite.draw(g2d, x + (width * 3 / 4), y - 10);
 		}
-	}
-
-
-	/**
-	 * Draw the entity.
-	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn entity width.
-	 * @param	height		The drawn entity height.
-	 */
-	@Override
-	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		super.drawEntity(g2d, x - 8, y, width, height);
-	}
-
-
-	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), width, height);
 	}
 
 

@@ -71,51 +71,6 @@ public class NPC2DView extends RPEntity2DView {
 
 
 	//
-	// AnimatedEntity2DView
-	//
-
-	/**
-	 * Populate named state sprites.
-	 *
-	 * @param	map		The map to populate.
-	 */
-	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
-		buildSprites(map, 1.5, 2.0);
-	}
-
-
-	//
-	// Entity2DView
-	//
-
-	/**
-	 * Draw the entity.
-	 *
-	 * @param	g2d		The graphics context.
-	 * @param	x		The drawn X coordinate.
-	 * @param	y		The drawn Y coordinate.
-	 * @param	width		The drawn entity width.
-	 * @param	height		The drawn entity height.
-	 */
-	@Override
-	protected void drawEntity(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		super.drawEntity(g2d, x - 8, y, width, height);
-	}
-
-
-	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.5, 2.0);
-	}
-
-
-	//
 	// EntityChangeListener
 	//
 

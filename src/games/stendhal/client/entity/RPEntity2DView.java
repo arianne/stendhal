@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -62,6 +63,26 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	private Sprite		titleSprite;
 
+	/*
+	 * The drawn height.
+	 */
+	protected double	height;
+
+	/*
+	 * The drawn width.
+	 */
+	protected double	width;
+
+	/**
+	 * The X alignment offset.
+	 */
+	protected double	xoffset;
+
+	/**
+	 * The Y alignment offset.
+	 */
+	protected double	yoffset;
+
 
 	static {
 		SpriteStore st = SpriteStore.get();
@@ -92,6 +113,9 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		titleSprite = createTitleSprite();
 		titleChanged = false;
+
+		xoffset = 0.0;
+		yoffset = 0.0;
 	}
 
 
@@ -100,19 +124,39 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	//
 
 	/**
-	 * Populate named state sprites.
+	 * Populate keyed state sprites.
 	 *
 	 * @param	map		The map to populate.
+	 * @param	tiles		The master sprite.
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
-	protected void buildSprites(final Map<Object, Sprite> map, final double width, final double height) {
-		Sprite tiles = getAnimationSprite();
-
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
 		map.put(STATE_UP, getAnimatedWalk(tiles, 0, width, height));
 		map.put(STATE_RIGHT, getAnimatedWalk(tiles, 1, width, height));
 		map.put(STATE_DOWN, getAnimatedWalk(tiles, 2, width, height));
 		map.put(STATE_LEFT, getAnimatedWalk(tiles, 3, width, height));
+	}
+
+
+	/**
+	 * Calculate sprite image offset.
+	 * Sub-classes may override this to change alignment.
+	 *
+	 * @param	swidth		The sprite width (in world units).
+	 * @param	sheight		The sprite height (in world units).
+	 * @param	ewidth		The entity width (in world units).
+	 * @param	eheight		The entity height (in world units).
+	 */
+	protected void calculateOffset(final double swidth, final double sheight, final double ewidth, final double eheight) {
+		/*
+		 * X alignment centered, Y alignment bottom
+		 */
+		xoffset = (ewidth - swidth) / 2.0;
+
+		// TODO: Fix (y+1 entity hack is causing interference)
+		//yoffset = sheight - eheight;
+		yoffset = 0.0;
 	}
 
 
@@ -186,21 +230,25 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn width.
 	 */
-	protected void drawHPbar(final Graphics2D g2d, final int x, final int y) {
+	protected void drawHPbar(final Graphics2D g2d, final int x, final int y, final int width) {
+		int bx = x + ((width - 32) / 2);
+		int by = y - 3;
+
 		float hpRatio = rpentity.getHPRatio();
 
 		float r = Math.min((1.0f - hpRatio) * 2.0f, 1.0f);
 		float g = Math.min(hpRatio * 2.0f, 1.0f);
 
 		g2d.setColor(Color.gray);
-		g2d.fillRect(x, y - 3, 32, 3);
+		g2d.fillRect(bx, by, 32, 3);
 
 		g2d.setColor(new Color(r, g, 0.0f));
-		g2d.fillRect(x, y - 3, (int) (hpRatio * 32.0), 3);
+		g2d.fillRect(bx, by, (int) (hpRatio * 32.0), 3);
 
 		g2d.setColor(Color.black);
-		g2d.drawRect(x, y - 3, 32, 3);
+		g2d.drawRect(bx, by, 32, 3);
 	}
 
 
@@ -211,10 +259,11 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn width.
 	 */
-	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y) {
-		drawTitle(g2d, x, y);
-		drawHPbar(g2d, x, y);
+	protected void drawStatusBar(final Graphics2D g2d, final int x, final int y, final int width) {
+		drawTitle(g2d, x, y, width);
+		drawHPbar(g2d, x, y, width);
 	}
 
 
@@ -224,10 +273,14 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	g2d		The graphics context.
 	 * @param	x		The drawn X coordinate.
 	 * @param	y		The drawn Y coordinate.
+	 * @param	width		The drawn width.
 	 */
-	protected void drawTitle(final Graphics2D g2d, int x, int y) {
+	protected void drawTitle(final Graphics2D g2d, int x, int y, final int width) {
 		if (titleSprite != null) {
-			titleSprite.draw(g2d, x, y - 3 - titleSprite.getHeight());
+			int tx = x + ((width - titleSprite.getWidth()) / 2);
+			int ty = y - 3 - titleSprite.getHeight();
+
+			titleSprite.draw(g2d, tx, ty);
 		}
 	}
 
@@ -260,6 +313,46 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
+	 * Get the height.
+	 *
+	 * @return	The height in tile units.
+	 */
+	public double getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the number of tiles in the X axis of the base sprite.
+	 *
+	 * @return	The number of tiles.
+	 */
+	protected int getTilesX() {
+		return 3;
+	}
+
+
+	/**
+	 * Get the number of tiles in the Y axis of the base sprite.
+	 *
+	 * @return	The number of tiles.
+	 */
+	protected int getTilesY() {
+		return 4;
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width in tile units.
+	 */
+	public double getWidth() {
+		return width;
+	}
+
+
+	/**
 	 * Determine is the user can see this entity while in ghostmode.
 	 *
 	 * @return	<code>true</code> if the client user can see this
@@ -267,6 +360,35 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected boolean isVisibleGhost() {
 		return false;
+	}
+
+
+	//
+	// StateEntity2DView
+	//
+
+	/**
+	 * Populate keyed state sprites.
+	 *
+	 * @param	map		The map to populate.
+	 */
+	protected void buildSprites(final Map<Object, Sprite> map) {
+		Sprite tiles = getAnimationSprite();
+
+		double tw = (double) tiles.getWidth() / getTilesX();
+		double th = (double) tiles.getHeight() / getTilesY();
+
+		/*
+		 * Round to the nearest 0.5 world units to adjust for
+		 * slightly wrong sized PNG files.
+		 */
+		width = Math.round(tw / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
+		height = Math.round(th / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
+
+		buildSprites(map, tiles, width, height);
+
+		Rectangle2D area = rpentity.getArea();
+		calculateOffset(width, height, area.getWidth(), area.getHeight());
 	}
 
 
@@ -428,7 +550,18 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		drawStatusBar(g2d, x, y);
+		drawStatusBar(g2d, x, y, width);
+	}
+
+
+	/**
+	 * Get the 2D area that is drawn in.
+	 *
+	 * @return	The 2D area this draws in.
+	 */
+	@Override
+	public Rectangle2D getDrawnArea() {
+		return new Rectangle.Double(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
 	}
 
 
@@ -451,6 +584,28 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		} else {
 			return super.getVisibility();
 		}
+	}
+
+
+	/**
+	 * Get the X offset alignment adjustment.
+	 *
+	 * @return	The X offset (in world units).
+	 */
+	@Override
+	protected double getXOffset() {
+		return xoffset;
+	}
+
+
+	/**
+	 * Get the Y offset alignment adjustment.
+	 *
+	 * @return	The Y offset (in world units).
+	 */
+	@Override
+	protected double getYOffset() {
+		return yoffset;
 	}
 
 

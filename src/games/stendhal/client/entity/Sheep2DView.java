@@ -109,13 +109,12 @@ public class Sheep2DView extends RPEntity2DView {
 	 * Populate named state sprites.
 	 *
 	 * @param	map		The map to populate.
+	 * @param	tiles		The master sprite.
 	 * @param	width		The image width in tile units.
 	 * @param	height		The image height in tile units.
 	 */
 	@Override
-	protected void buildSprites(final Map<Object, Sprite> map, final double width, final double height) {
-		Sprite tiles = getAnimationSprite();
-
+	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
 		SpriteStore store = SpriteStore.get();
 
 		map.put(STATE_UP,
@@ -141,6 +140,17 @@ public class Sheep2DView extends RPEntity2DView {
 
 		map.put(STATE_BIG_LEFT,
 			store.getAnimatedSprite(tiles, 7, 3, width, height, 100L, false));
+	}
+
+
+	/**
+	 * Get the number of tiles in the Y axis of the base sprite.
+	 *
+	 * @return	The number of tiles.
+	 */
+	@Override
+	protected int getTilesY() {
+		return 8;
 	}
 
 
@@ -181,21 +191,6 @@ public class Sheep2DView extends RPEntity2DView {
 
 
 	//
-	// StateEntity2DView
-	//
-
-	/**
-	 * Populate named state sprites.
-	 *
-	 * @param	map		The map to populate.
-	 */
-	@Override
-	protected void buildSprites(final Map<Object, Sprite> map) {
-		buildSprites(map, 1.0, 1.0);
-	}
-
-
-	//
 	// Entity2DView
 	//
 
@@ -227,17 +222,6 @@ public class Sheep2DView extends RPEntity2DView {
 		if (ideaSprite != null) {
 			ideaSprite.draw(g2d, x + width - 8, y - 8);
 		}
-	}
-
-
-	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
 	}
 
 

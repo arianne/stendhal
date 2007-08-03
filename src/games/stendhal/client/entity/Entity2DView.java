@@ -335,12 +335,32 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
+	 * Get the X offset alignment adjustment.
+	 *
+	 * @return	The X offset (in world units).
+	 */
+	protected double getXOffset() {
+		return 0.0;
+	}
+
+
+	/**
 	 * Get the entity's Y coordinate.
 	 *
 	 * @return	The Y coordinate.
 	 */
 	protected double getY() {
 		return entity.getY();
+	}
+
+
+	/**
+	 * Get the Y offset alignment adjustment.
+	 *
+	 * @return	The Y offset (in world units).
+	 */
+	protected double getYOffset() {
+		return 0.0;
 	}
 
 
