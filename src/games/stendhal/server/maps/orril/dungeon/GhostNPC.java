@@ -8,7 +8,7 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -41,18 +41,18 @@ public class GhostNPC implements ZoneConfigurator {
 		SpeakerNPC ghost = new SpeakerNPC("Goran") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(216, 126));
-				nodes.add(new Node(200, 126));
-				nodes.add(new Node(200, 119));
-				nodes.add(new Node(216, 119));
-				nodes.add(new Node(216, 121));
-				nodes.add(new Node(200, 121));
-				nodes.add(new Node(200, 123));
-				nodes.add(new Node(216, 123));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(216, 126));
+				nodes.add(new Path.Node(200, 126));
+				nodes.add(new Path.Node(200, 119));
+				nodes.add(new Path.Node(216, 119));
+				nodes.add(new Path.Node(216, 121));
+				nodes.add(new Path.Node(200, 121));
+				nodes.add(new Path.Node(200, 123));
+				nodes.add(new Path.Node(216, 123));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 			@Override
 		    protected void createDialog() {
 			    add(ConversationStates.IDLE,
@@ -77,17 +77,17 @@ public class GhostNPC implements ZoneConfigurator {
 							    npc.say("Remember my name ... " + npc.getName() +
 							            " ... " + npc.getName() + " ...");
 							    player.addXP(100);
-							}    
+							}
 							else {
 							    npc.say("Let the dead rest in peace");
 							}
 						}
 					});
 			}
-			
+
 		};
 		ghost.setDescription("You see a ghostly figure of a man. He appears to have died in battle.");
-		ghost.setObstacle(false);
+		//ghost.setObstacle(false);
 
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);

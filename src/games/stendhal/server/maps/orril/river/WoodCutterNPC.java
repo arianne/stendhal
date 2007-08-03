@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,17 +42,17 @@ public class WoodCutterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(55, 83));
-				nodes.add(new Node(68, 83));
-				nodes.add(new Node(68, 83));
-				nodes.add(new Node(68, 70));
-				nodes.add(new Node(57, 70));
-				nodes.add(new Node(57, 75));
-				nodes.add(new Node(57, 74));
-				nodes.add(new Node(53, 74));
-				nodes.add(new Node(53, 81));
-				nodes.add(new Node(55, 81));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(55, 83));
+				nodes.add(new Path.Node(68, 83));
+				nodes.add(new Path.Node(68, 83));
+				nodes.add(new Path.Node(68, 70));
+				nodes.add(new Path.Node(57, 70));
+				nodes.add(new Path.Node(57, 75));
+				nodes.add(new Path.Node(57, 74));
+				nodes.add(new Path.Node(53, 74));
+				nodes.add(new Path.Node(53, 81));
+				nodes.add(new Path.Node(55, 81));
 				setPath(new FixedPath(nodes, true));
 			}
 

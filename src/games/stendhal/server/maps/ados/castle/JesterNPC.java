@@ -7,7 +7,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,16 +38,16 @@ public class JesterNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 56));
-				nodes.add(new Node(8, 44));
-				nodes.add(new Node(20, 44));
-				nodes.add(new Node(20, 34));
-				nodes.add(new Node(10, 34));
-				nodes.add(new Node(10, 9));
-				nodes.add(new Node(20, 9));
-				nodes.add(new Node(20, 44));
-				nodes.add(new Node(8, 44));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(8, 56));
+				nodes.add(new Path.Node(8, 44));
+				nodes.add(new Path.Node(20, 44));
+				nodes.add(new Path.Node(20, 34));
+				nodes.add(new Path.Node(10, 34));
+				nodes.add(new Path.Node(10, 9));
+				nodes.add(new Path.Node(20, 9));
+				nodes.add(new Path.Node(20, 44));
+				nodes.add(new Path.Node(8, 44));
 				setPath(new FixedPath(nodes, true));
 			}
 

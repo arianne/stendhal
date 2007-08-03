@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -37,21 +37,21 @@ public class WomanGhostNPC implements ZoneConfigurator {
 		SpeakerNPC woman = new SpeakerNPC("Carena") {
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 3));
-				nodes.add(new Node(16, 3));
-				nodes.add(new Node(16, 13));
-				nodes.add(new Node(3, 13));
-				nodes.add(new Node(3, 25));
-				nodes.add(new Node(11, 25));
-				nodes.add(new Node(11, 6));
-				nodes.add(new Node(23, 6));
-				nodes.add(new Node(23, 28));
-				nodes.add(new Node(29, 28));
-				nodes.add(new Node(29, 1));
-				nodes.add(new Node(21, 1));
-				nodes.add(new Node(21, 6));
-				nodes.add(new Node(3, 6));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(3, 3));
+				nodes.add(new Path.Node(16, 3));
+				nodes.add(new Path.Node(16, 13));
+				nodes.add(new Path.Node(3, 13));
+				nodes.add(new Path.Node(3, 25));
+				nodes.add(new Path.Node(11, 25));
+				nodes.add(new Path.Node(11, 6));
+				nodes.add(new Path.Node(23, 6));
+				nodes.add(new Path.Node(23, 28));
+				nodes.add(new Path.Node(29, 28));
+				nodes.add(new Path.Node(29, 1));
+				nodes.add(new Path.Node(21, 1));
+				nodes.add(new Path.Node(21, 6));
+				nodes.add(new Path.Node(3, 6));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -65,7 +65,7 @@ public class WomanGhostNPC implements ZoneConfigurator {
 			}
 		};
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");
-		woman.setObstacle(false);
+		//woman.setObstacle(false);
 
 		npcs.add(woman);
 		zone.assignRPObjectID(woman);

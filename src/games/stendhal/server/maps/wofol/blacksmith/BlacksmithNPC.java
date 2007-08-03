@@ -5,7 +5,7 @@ import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * Configure Wofol Blacksmith (-1_semos_mine_nw).
- * 
+ *
  * @author kymara
  */
 public class BlacksmithNPC implements ZoneConfigurator {
@@ -39,13 +39,13 @@ public class BlacksmithNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(22, 7));
-				nodes.add(new Node(22, 6));
-				nodes.add(new Node(17, 6));
-				nodes.add(new Node(17, 1));
-				nodes.add(new Node(8, 1));
-				nodes.add(new Node(8, 7));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(22, 7));
+				nodes.add(new Path.Node(22, 6));
+				nodes.add(new Path.Node(17, 6));
+				nodes.add(new Path.Node(17, 1));
+				nodes.add(new Path.Node(8, 1));
+				nodes.add(new Path.Node(8, 7));
 				setPath(new FixedPath(nodes, true));
 			}
 

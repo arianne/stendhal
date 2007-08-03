@@ -2,17 +2,10 @@ package games.stendhal.server.maps.semos.house;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
-
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +18,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-        	
+
         	new TeleporterBehaviour(buildSemosHouseArea(zone), "Flowers! Get your fresh flowers here!");
 	}
 
@@ -59,9 +52,9 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 	}
 	//@Override  <--- this indicates the method exists in the super class which it doesnt
 //	public void addToWorld() {
-//		//super.addToWorld(); cannot be called from super as super doe not have the class  
+//		//super.addToWorld(); cannot be called from super as super doe not have the class
 //		buildSemosHouseArea();
-//		
+//
 //	}
 
 }

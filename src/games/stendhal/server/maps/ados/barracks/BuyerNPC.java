@@ -10,7 +10,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,13 +42,13 @@ public class BuyerNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(45, 48));
-				nodes.add(new Node(29, 48));
-				nodes.add(new Node(29, 56));
-				nodes.add(new Node(45, 56));
-				nodes.add(new Node(19, 56));
-				nodes.add(new Node(19, 48));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(45, 48));
+				nodes.add(new Path.Node(29, 48));
+				nodes.add(new Path.Node(29, 56));
+				nodes.add(new Path.Node(45, 56));
+				nodes.add(new Path.Node(19, 56));
+				nodes.add(new Path.Node(19, 48));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -64,7 +64,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
 				        ConversationStates.ATTENDING,
 				        "Oh, thanks but no thanks. I don't need anything.", null);
-				addBuyer(new BuyerBehaviour(shops.get("buyrare3")), false); 
+				addBuyer(new BuyerBehaviour(shops.get("buyrare3")), false);
 				addGoodbye("Goodbye, comrade.");
 			}
 		};
