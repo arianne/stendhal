@@ -81,17 +81,6 @@ public class Food2DView extends StateEntity2DView {
 	//
 
 	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
-	}
-
-
-	/**
 	 * Determines on top of which other entities this entity should be
 	 * drawn. Entities with a high Z index will be drawn on top of ones
 	 * with a lower Z index.

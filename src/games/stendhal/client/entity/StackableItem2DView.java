@@ -116,17 +116,6 @@ public class StackableItem2DView extends Item2DView {
 
 
 	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX(), getY(), 1.0, 1.0);
-	}
-
-
-	/**
 	 * Set whether this view is contained, and should render in a
 	 * compressed (it's defined) area without clipping anything important.
 	 *

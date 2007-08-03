@@ -106,8 +106,8 @@ public class Door2DView extends StateEntity2DView {
 		} else {
 			Sprite tiles = store.getSprite(translate(name));
 
-			width = tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
-			height = tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS / 2;
+			width = (double) tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
+			height = (double) tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS / 2.0;
 
 			xoffset = -(width - 1.0) / 2.0;
 			yoffset = -(height - 1.0) / 2.0;
@@ -153,13 +153,46 @@ public class Door2DView extends StateEntity2DView {
 
 
 	/**
-	 * Get the 2D area that is drawn in.
+	 * Get the height.
 	 *
-	 * @return	The 2D area this draws in.
+	 * @return	The height in tile units.
 	 */
 	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX() + xoffset, getY() + yoffset, width, height);
+	public double getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width in tile units.
+	 */
+	@Override
+	public double getWidth() {
+		return width;
+	}
+
+
+	/**
+	 * Get the X offset alignment adjustment.
+	 *
+	 * @return	The X offset (in world units).
+	 */
+	@Override
+	protected double getXOffset() {
+		return xoffset;
+	}
+
+
+	/**
+	 * Get the Y offset alignment adjustment.
+	 *
+	 * @return	The Y offset (in world units).
+	 */
+	@Override
+	protected double getYOffset() {
+		return yoffset;
 	}
 
 

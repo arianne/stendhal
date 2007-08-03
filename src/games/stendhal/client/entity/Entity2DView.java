@@ -298,10 +298,23 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 	/**
 	 * Get the 2D area that is drawn in.
+	 * NOTE: This only covers the area for the main sprite.
 	 *
 	 * @return	The 2D area this draws in.
 	 */
-	public abstract Rectangle2D getDrawnArea();
+	public Rectangle2D getDrawnArea() {
+		return new Rectangle.Double(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
+	}
+
+
+	/**
+	 * Get the height.
+	 *
+	 * @return	The height (in world units).
+	 */
+	public double getHeight() {
+		return 1.0;
+	}
 
 
 	/**
@@ -321,6 +334,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	protected int getVisibility() {
 		return entity.getVisibility();
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width (in world units).
+	 */
+	public double getWidth() {
+		return 1.0;
 	}
 
 

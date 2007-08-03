@@ -555,17 +555,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
-	 * Get the 2D area that is drawn in.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	@Override
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
-	}
-
-
-	/**
 	 * Get the entity's visibility.
 	 *
 	 * @return	The visibility value (0-100).
