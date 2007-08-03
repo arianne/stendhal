@@ -135,10 +135,10 @@
  </layer>
  <layer name="collision" width="18" height="18" opacity="0.52">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAABNlYGAQpTFmoIJ+YgElekfNGTVn1Bzam0Pr8oYSDAAQI6L0EAUAAA==
+   H4sIAAAAAAAAABNlYGAQHeSYFECJ3lFzRs0ZKeaQaxYt8uhgwgAJtsNfEAUAAA==
   </data>
  </layer>
- <layer name="protection" width="18" height="18" opacity="0.31">
+ <layer name="protection" width="18" height="18" visible="0" opacity="0.31">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAWjYBSMglEAAgCc28dnEAUAAA==
   </data>

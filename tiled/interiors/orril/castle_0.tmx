@@ -135,7 +135,7 @@
  <tileset name="../../tileset/logic/creature/giant.png" firstgid="346" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="349" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="351" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -170,7 +170,7 @@
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.51">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WSw7DIAxE24Pm/teosqiEkAF/xiY4HolFGxjmFeP0+n4+V43huLU7QyQrVwiPnULkLv7iL34/fs8+VvzjNf/PKy8v/nb/necfyd+ufQq/1OOU+kfl9uZHqr/T2tx9nZ7Cf2uVXVpPp/G3elv99yp+H/7VPdL2dOtY7d0+fyv/28+/+Gm+4qfnRNcSSp7nj86FZh/tNZojzYvMlI1f49f7au49Zy+Nsp+/1KP4sZmKv+7/U86fmvMmfo5HBn5pTRT/vv4nzTvba5WBm9eiJ56/lB/ZS7x+A0l9aXwtmazienjwn6Tij+GP6mfWXNT3yH1Gn3cJ8f7j7tP6tt95iJs3Kz9Xkfzo+l+t759T82f81BxL1pP632hONmXi12T04N/1/zeS36tXjrw8apDrLXmO6utR/dLrzJCZLL6rdTN/6X3Pxm/Ja1Gm+kf05Az8s97J8bO8FyS9W6Mn1D8qOyqvRQh+bg7KX8rAyYmq/1mGkY8kO7WO+m1XeS3S3HckPyKvRRnv/47612RHeETUP7XGYx/02L1/DXr8AOIiB/AAQAAA
+   H4sIAAAAAAAAAO2WSw7DIAxE25Pm/reosqiEkAF/xiY4HolFGxjmFeP0+n4+V43huLU7QyQrVwiPnULkLv7iL34/fs8+VvzjNf/PKy8v/nb/necfyd+ufQq/1OOU+kfl9uZHqr/T2tx9nZ7Cf2uVXVpPp/G3elv99yp+H/7VPdL2dOtY7d0+fyv/28+/+Gm+4qfnRNcSSp7nj86FZh/tNZojzYvMlI1f49f7au49Zy+Nsp+/1KP4sZmKv+7/U86fmvMmfo5HBn5pTRT/vv4nzTvba5WBm9eiJ56/lB/ZS7x+A0l9aXwtmazienjwn6Tij+GP6mfWXNT3yH1Gn3cJ8f7j7tP6tt95iJs3Kz9Xkfzo+l+t759T82f81BxL1pP632hONmXi12T04N/1/zeS36tXjrw8apDrLXmO6utR/dLrzJCZLL6rdTN/6X3Pxm/Ja1Gm+kf05Az8s97J8bO8FyS9W6Mn1D8qOyqvRQh+bg7KX8rAyYmq/1mGkY8kO7WO+m1XeS3S3HckPyKvRRnv/47612RHeETUP7XGYx/02L1/DXr8AEOh1mAAQAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="64">
