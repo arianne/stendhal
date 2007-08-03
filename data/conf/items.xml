@@ -1300,11 +1300,11 @@
 
   <item name="club_of_thorns">
     <type class="club" subclass="club_of_thorns" tileid="-1"/>
-    <description>You see the club of thorns, The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
+    <description>You see the club of thorns. The thorns are full with blood of tortured humans. It is hugely powerful but will drain your life to use it.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="48"/>
       <lifesteal value="-0.1"/>
-      <rate value="8"/>
+      <rate value="7"/>
     </attributes>
     <weight value="8.0"/>
     <value value="691200"/>
@@ -2419,6 +2419,20 @@
     </equipable>
   </item>
 
+  <item name="rhosyd">
+    <type class="herb" subclass="exotic_flower" tileid="-1"/>
+    <description>You see a beautiful and rare rhosyd flower.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="emerald">
     <type class="jewellery" subclass="emerald" tileid="-1"/>
     <description>You see an emerald, a precious gemstone.</description>
@@ -2530,6 +2544,33 @@
       <slot name="keyring"/>
     </equipable>
   </item>
+
+  <item name="kotoch_prison_key">
+    <type class="key" subclass="copper" tileid="-1"/>
+    <description>You see an ancient copper key.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
+  <item name="kanmararn_prison_key">
+    <type class="key" subclass="blue" tileid="-1"/>
+    <description>You see a key which matches the locks in the Kanmararn prison.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="keyring"/>
+    </equipable>
+  </item>
+
 
   <item name="fado_hotel_key_001">
     <type class="key" subclass="hotel" tileid="-1"/>
@@ -3765,6 +3806,21 @@
     </equipable>
   </item>
 
+  <item name="lucky_charm">
+    <type class="special" subclass="lucky_charm" tileid="-1"/>
+    <description/>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+    </attributes>
+    <weight value="1.0"/>
+    <value value="100000"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="keyring"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
   <item name="golden_gm_token">
     <type class="special" subclass="GM_tokend_gold2" tileid="-1"/>
     <description/>
@@ -3995,6 +4051,22 @@
     </attributes>
     <weight value="4.0"/>
     <value value="51200"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+    </equipable>
+  </item>
+
+  <item name="nihonto">
+    <type class="sword" subclass="nihonto" tileid="-1"/>
+    <description>You see a samurai's nihonto sword with a razor sharp blade.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <atk value="20"/>
+      <rate value="4"/>
+    </attributes>
+    <weight value="4.0"/>
+    <value value="90535"/>
     <equipable>
       <slot name="bag"/>
       <slot name="lhand"/>

@@ -196,7 +196,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <!-- writing on the wooden arch -->
@@ -205,7 +206,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="25" y="49">
@@ -213,7 +215,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="26" y="49">
@@ -221,7 +224,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="27" y="49">
@@ -229,7 +233,8 @@ South: Or'ril castle
     <parameter name="text">
      Welcome to Semos
     </parameter>
-    <parameter name="class">transparent</parameter>
+    <attribute name="class">transparent</attribute>
+    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
 
@@ -976,6 +981,7 @@ Holy mackerel! These chips are tasty.
 
     <!--for the admin house -->
    <zone name="int_semos_house" file="interiors/semos/house.tmx">
+   <configurator class-name="games.stendhal.server.maps.semos.house.FlowerSellerNPC"/>
    <configurator class-name="games.stendhal.server.maps.semos.house.CatSellerNPC"/>
       <entity x="6" y="10">
        <implementation class-name="games.stendhal.server.maps.semos.house.AdminHelpNPC">
@@ -1965,6 +1971,18 @@ Mature sheep wanted: please speak to Sato
 
 <!-- If we call it _jail, players can't move items around in it for security reasons -->
  <zone name="-7_kanmararn_prison" level="-7" x="500160" y="500064" file="Level -7/kanmararn/jail.tmx">
+  <configurator class-name="games.stendhal.server.maps.semos.kanmararn.DwarfGuardNPC"/>
+  <configurator class-name="games.stendhal.server.maps.semos.kanmararn.DuergarKingCreature"/>
+  <portal x="11" y="18" ref="jail_lock_outside">
+   <destination zone="-7_kanmararn_prison" ref="jail_lock_inside"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <parameter name="key">kanmararn_prison_key</parameter>
+    <parameter name="rejected">You do not have the key to open the lock.</parameter>
+   </implementation>
+  </portal>
+  <portal x="11" y="22" ref="jail_lock_inside">
+   <destination zone="-7_kanmararn_prison" ref="jail_lock_outside"/>
+  </portal>
  </zone>
 
 

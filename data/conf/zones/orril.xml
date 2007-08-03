@@ -191,7 +191,101 @@ East: Nalwor, Semos
   </entity>
  </zone>
 
+<zone name="0_orril_river_s2_w" level="0" x="499744" y="500512" file="Level 0/orril/river_s2_w.tmx">
+ <configurator class-name="games.stendhal.server.maps.orril.river.WoodCutterNPC" />
+  <entity x="63" y="82">
+    <implementation class-name="games.stendhal.server.entity.Sign">
+      <parameter name="text">
+I buy good axes:
+halberd            2000 
+golden twoside axe 4000 
+magic twoside axe  6000
+durin axe          8000
+black scythe       9000
+chaos axe         10000
+black halberd     12000
+          Signed, Woody
+      </parameter>
+      <parameter name="class">signpost</parameter>
+    </implementation>
+  </entity>
+  <portal x="60" y="80" ref="woodcutter_entrance">
+   <destination zone="int_orril_woodcutter_lodge" ref="entrance"/>
+  </portal>
+ </zone>
 
+ <zone name="int_orril_woodcutter_lodge" file="interiors/orril/woodcutter_lodge.tmx">
+  <portal x="7" y="18" ref="entrance">
+   <destination zone="0_orril_river_s2_w" ref="woodcutter_entrance"/>
+  </portal>
+ </zone>
+
+
+<zone name="0_orril_river_s2" level="0" x="499872" y="500512" file="Level 0/orril/river_s2.tmx">
+  <portal x="65" y="68" ref="palace_entrance_left">
+   <destination zone="int_orril_palace_0" ref="entrance1_right"/>
+  </portal>
+  <portal x="75" y="68" ref="palace_entrance_right">
+   <destination zone="int_orril_palace_0" ref="entrance2_right"/>
+  </portal>
+</zone>
+
+ <zone name="int_orril_palace_0" file="interiors/orril/palace_0.tmx">
+  <portal x="5" y="30" ref="entrance1_left">
+   <destination zone="0_orril_river_s2" ref="palace_entrance_left"/>
+  </portal>
+  <portal x="6" y="30" ref="entrance1_right">
+   <destination zone="0_orril_river_s2" ref="palace_entrance_left"/>
+  </portal>
+  <portal x="25" y="30" ref="entrance2_left">
+   <destination zone="0_orril_river_s2" ref="palace_entrance_right"/>
+  </portal>
+  <portal x="26" y="30" ref="entrance2_right">
+   <destination zone="0_orril_river_s2" ref="palace_entrance_right"/>
+  </portal>
+  <portal x="6" y="4" ref="upstairs_left">
+   <destination zone="int_orril_palace_1" ref="downstairs_left"/>
+  </portal>
+  <portal x="25" y="4" ref="upstairs_right">
+   <destination zone="int_orril_palace_1" ref="downstairs_right"/>
+  </portal>
+  <portal x="3" y="7" ref="magic_portal1">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="4" y="7" ref="magic_portal2">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+ </zone>
+
+ <zone name="int_orril_palace_1" file="interiors/orril/palace_1.tmx">
+  <portal x="6" y="4" ref="downstairs_left">
+   <destination zone="int_orril_palace_0" ref="upstairs_left"/>
+  </portal>
+  <portal x="25" y="4" ref="downstairs_right">
+   <destination zone="int_orril_palace_0" ref="upstairs_right"/>
+  </portal>
+  <portal x="15" y="0" ref="upstairs_left">
+   <destination zone="int_orril_palace_2" ref="downstairs_left"/>
+  </portal>
+  <portal x="16" y="0" ref="upstairs_right">
+   <destination zone="int_orril_palace_2" ref="downstairs_right"/>
+  </portal>
+ </zone>
+
+ <zone name="int_orril_palace_2" file="interiors/orril/palace_2.tmx">
+  <portal x="15" y="0" ref="downstairs_left">
+   <destination zone="int_orril_palace_1" ref="upstairs_left"/>
+  </portal>
+  <portal x="16" y="0" ref="downstairs_right">
+   <destination zone="int_orril_palace_1" ref="upstairs_right"/>
+  </portal>
+  <portal x="3" y="7" ref="magic_portal1">
+   <destination zone="int_orril_palace_0" ref="magic_portal1"/>
+  </portal>
+  <portal x="4" y="7" ref="magic_portal2">
+   <destination zone="int_orril_palace_0" ref="magic_portal2"/>
+  </portal>
+ </zone>
  <!-- Level -1 -->
 
  <zone name="-1_kotoch_entrance" level="-1" x="499744" y="500128" file="Level -1/kotoch/entrance.tmx">
@@ -229,7 +323,8 @@ East: Nalwor, Semos
 
  <!-- Level -2 -->
 
- <zone name="-2_kotoch_entrance" level="-2" x="500160" y="500032" file="Level -2/kotoch/entrance.tmx">
+ <zone name="-2_kotoch_entrance" level="-2" x="499744" y="500128" file="Level -2/kotoch/entrance.tmx">
+  <configurator class-name="games.stendhal.server.maps.kotoch.OrcSamanNPC"/>
  </zone>
 
  <zone name="-2_orril_dwarf_mine" level="-2" x="499680" y="500256" file="Level -2/orril/dwarf_mine.tmx">
@@ -265,6 +360,25 @@ East: Nalwor, Semos
 
 
  <!-- Level -3 -->
+
+ <zone name="-3_kotoch_prison" level="-3" x="499744" y="500224" file="Level -3/kotoch/prison.tmx">
+  <portal x="15" y="10" ref="kotoch_lock_outside">
+   <destination zone="-3_kotoch_prison" ref="kotoch_lock_inside"/>
+   <implementation class-name="games.stendhal.server.entity.portal.KeyedPortal">
+    <parameter name="key">kotoch_prison_key</parameter>
+    <parameter name="rejected">You do not have the key to open the lock.</parameter>
+   </implementation>
+  </portal>
+  <portal x="15" y="8" ref="kotoch_lock_inside">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+  <portal x="15" y="9" ref="kotoch_exit_inside">
+   <destination zone="-3_kotoch_prison" ref="kotoch_exit_outside"/>
+  </portal>
+  <portal x="15" y="11" ref="kotoch_exit_outside">
+   <implementation class-name="games.stendhal.server.entity.portal.OneWayPortalDestination"/>
+  </portal>
+ </zone>
 
  <zone name="-3_orril_dwarf_blacksmith" level="-3" x="499712" y="500352" file="Level -3/orril/dwarf_blacksmith.tmx">
   <configurator class-name="games.stendhal.server.maps.orril.dwarfmine.BlacksmithNPC"/>

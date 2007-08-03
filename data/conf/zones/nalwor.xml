@@ -306,7 +306,7 @@
     <destination zone="int_nalwor_bank" ref="upstairs"/>
    </portal>
  </zone> 
-<!-- tower commented out till quest is ready
+
  <zone name="int_nalwor_tower_0" file="interiors/nalwor/tower_0.tmx">
   <portal x="9" y="18" ref="entrance">
     <destination zone="0_nalwor_city" ref="tower_entrance"/>
@@ -336,7 +336,7 @@
 
  <zone name="int_nalwor_tower_3" file="interiors/nalwor/tower_3.tmx">
    <portal x="17" y="14" ref="downstairs">
-    <destination zone="int_nalwor_tower_3" ref="upstairs"/>
+    <destination zone="int_nalwor_tower_2" ref="upstairs"/>
    </portal>
    <portal x="2" y="4" ref="upstairs">
     <destination zone="int_nalwor_tower_4" ref="downstairs"/>
@@ -362,10 +362,11 @@
   </zone>
 
  <zone name="int_nalwor_tower_6" file="interiors/nalwor/tower_6.tmx">
+  <configurator class-name="games.stendhal.server.maps.nalwor.tower.PrincessNPC" />
    <portal x="17" y="4" ref="downstairs">
     <destination zone="int_nalwor_tower_5" ref="upstairs"/>
    </portal>
-  </zone> -->
+  </zone> 
 
  
  <zone name="0_nalwor_city" level="0" x="500256" y="500256" file="Level 0/nalwor/city.tmx">
@@ -405,10 +406,9 @@
   <portal x="59" y="95" ref="house3_entrance">
    <destination zone="int_nalwor_house3" ref="entrance"/>
   </portal>
- <!-- tower commented out till quest is ready 
   <portal x="62" y="85" ref="tower_entrance">
    <destination zone="int_nalwor_tower_0" ref="entrance"/>
-  </portal> -->
+  </portal> 
   <portal x="84" y="81" ref="house4_entrance">
    <destination zone="int_nalwor_house4" ref="entrance"/>
   </portal>
