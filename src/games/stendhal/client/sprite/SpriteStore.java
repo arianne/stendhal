@@ -22,8 +22,9 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Log4J;
-import marauroa.common.Logger;
 
 /**
  * A resource manager for sprites in the game. Its often quite important how
@@ -156,7 +157,7 @@ public class SpriteStore {
 		for (int i = 0; i < frameCount; i++) {
 			animatedSprite[i] = getTile(animImage, i * pixelWidth, row * pixelHeight, pixelWidth, pixelHeight);
 		}
-		
+
 		return animatedSprite;
 	}
 
@@ -199,7 +200,7 @@ public class SpriteStore {
 
 	/**
 	 * Checks if a file exists.
-	 * 
+	 *
 	 * @param ref the file name
 	 * @return
 	 */
@@ -207,7 +208,7 @@ public class SpriteStore {
 		URL url = getResourceURL(ref);
 		return url!=null;
 	}
-	
+
 	/**
 	 * Load a sprite from a resource reference.
 	 *

@@ -17,8 +17,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import org.apache.log4j.Logger;
+
 import marauroa.common.Log4J;
-import marauroa.common.Logger;
+
 
 /**
  * A group of tileset animation maps. This might normally be called
@@ -213,7 +215,7 @@ public class TilesetGroupAnimationMap {
 	 *
 	 * @param	in		The input stream.
 	 *
-	 * @throws	IOException	If an I/O error occured. 
+	 * @throws	IOException	If an I/O error occured.
 	 *
 	 * @see-also	#clear()
 	 */
