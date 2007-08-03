@@ -1,16 +1,15 @@
 package games.stendhal.server.maps.ados.hauntedhouse;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.Entity;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Path;
+import games.stendhal.server.pathfinder.Node;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Builds a female Ghost NPC
@@ -36,29 +35,23 @@ public class WomanGhostNPC implements ZoneConfigurator {
 	}
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
 		SpeakerNPC woman = new SpeakerNPC("Carena") {
-
-		      	//  she has no collisions
-			@Override
-			public boolean isObstacle(Entity entity) {
-			        return false;
-			}
 			@Override
 			protected void createPath() {
-				List<Path.Node> nodes = new LinkedList<Path.Node>();
-				nodes.add(new Path.Node(3, 3));
-				nodes.add(new Path.Node(16, 3));
-				nodes.add(new Path.Node(16, 13));
-				nodes.add(new Path.Node(3, 13));
-				nodes.add(new Path.Node(3, 25));
-				nodes.add(new Path.Node(11, 25));
-				nodes.add(new Path.Node(11, 6));
-				nodes.add(new Path.Node(23, 6));
-				nodes.add(new Path.Node(23, 28));
-				nodes.add(new Path.Node(29, 28));
-				nodes.add(new Path.Node(29, 1));
-				nodes.add(new Path.Node(21, 1));
-				nodes.add(new Path.Node(21, 6));
-				nodes.add(new Path.Node(3, 6));
+				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(3, 3));
+				nodes.add(new Node(16, 3));
+				nodes.add(new Node(16, 13));
+				nodes.add(new Node(3, 13));
+				nodes.add(new Node(3, 25));
+				nodes.add(new Node(11, 25));
+				nodes.add(new Node(11, 6));
+				nodes.add(new Node(23, 6));
+				nodes.add(new Node(23, 28));
+				nodes.add(new Node(29, 28));
+				nodes.add(new Node(29, 1));
+				nodes.add(new Node(21, 1));
+				nodes.add(new Node(21, 6));
+				nodes.add(new Node(3, 6));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -72,11 +65,13 @@ public class WomanGhostNPC implements ZoneConfigurator {
 			}
 		};
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");
+		woman.setObstacle(false);
+
 		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.put("class", "woman_011_npc");
 		// She is a ghost so she is see through
-		woman.put("visibility",40);
+		woman.setVisibility(40);
 		woman.set(3, 3);
 		// She has low HP
 		woman.initHP(30);

@@ -59,7 +59,7 @@ public class ImageSprite implements Sprite {
 	 * @param	image		The image that is this sprite.
 	 * @param	reference	The sprite reference, or null.
 	 */
-	public ImageSprite(Image image, String reference) {
+	public ImageSprite(Image image, Object reference) {
 		this.image = image;
 		this.reference = reference;
 	}
@@ -169,6 +169,53 @@ public class ImageSprite implements Sprite {
 	}
 
 	/**
+	 * Create a sub-region of this sprite.
+	 * <strong>NOTE: This does not use caching.</strong>
+	 *
+	 * @param	x		The starting X coordinate.
+	 * @param	y		The starting Y coordinate.
+	 * @param	width		The region width.
+	 * @param	height		The region height.
+	 * @param	ref		The sprite reference.
+	 *
+	 * @return	A new sprite.
+	 */
+	public Sprite createRegion(final int x, final int y, final int width, final int height, final Object ref) {
+		int iwidth = getWidth();
+		int iheight = getHeight();
+
+		if((x >= iwidth) || (y >= iheight)) {
+			/*
+			 * Outside of image (nothing to draw)
+			 */
+			return new EmptySprite(width, height, ref);
+
+// TODO: Figure out if this can be resurected without *horrible* performance
+//		} else if(image instanceof BufferedImage) {
+//			/*
+//			 * BufferedImage allows shared sub-images
+//			 */
+//			return new ImageSprite(((BufferedImage) image).getSubimage(x, y, Math.min(width, iwidth - x), Math.min(height, iheight - y)), ref);
+//		} else {
+//			/*
+//			 * Virtual region
+//			 */
+//			return new TileSprite(this, x, y, width, height, ref);
+		}
+
+		/*
+		 * Full copy method (the memory hog)
+		 */
+		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
+
+		Image image = gc.createCompatibleImage(width, height, Transparency.BITMASK);
+
+		draw(image.getGraphics(), 0, 0, x, y, width, height);
+
+		return new ImageSprite(image, reference);
+	}
+
+	/**
 	 * Draw the sprite onto the graphics context provided
 	 * 
 	 * @param g
@@ -224,6 +271,7 @@ public class ImageSprite implements Sprite {
 	public Object getReference() {
 		return reference;
 	}
+
 
 	/**
 	 * Get the width of the drawn sprite

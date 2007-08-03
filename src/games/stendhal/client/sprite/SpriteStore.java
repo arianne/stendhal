@@ -9,6 +9,8 @@ package games.stendhal.client.sprite;
 //
 //
 
+import games.stendhal.client.GameScreen;
+
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
@@ -17,13 +19,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 
 import marauroa.common.Log4J;
-
-import org.apache.log4j.Logger;
-
-import games.stendhal.client.GameScreen;
+import marauroa.common.Logger;
 
 /**
  * A resource manager for sprites in the game. Its often quite important how
@@ -219,8 +219,13 @@ public class SpriteStore {
 		BufferedImage sourceImage = null;
 
 		try {
-			URL url = getResourceURL(ref);
-			
+			URL url;
+			if (!ref.startsWith("http://")) {
+                                url = getResourceURL(ref);
+                        } else {
+                        	logger.info("Loading sprite from a URL...");
+                        	url = new URL(ref);
+                        }
 			if (url == null) {
 				logger.error("Can't find ref: " + ref);
 				return getFailsafe();
@@ -303,7 +308,8 @@ public class SpriteStore {
 		Sprite tile = cache.get(reference);
 
 		if(tile == null) {
-			tile = new TileSprite(sprite, x, y, width, height, reference);
+			tile = sprite.createRegion(x, y, width, height, reference);
+//			tile = new TileSprite(sprite, x, y, width, height, reference);
 
 			if(reference != null) {
 				cache.add(reference, tile);

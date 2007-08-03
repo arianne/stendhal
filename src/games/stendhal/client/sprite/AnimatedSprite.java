@@ -296,6 +296,22 @@ public class AnimatedSprite implements Sprite {
 	}
 
 	/**
+	 * Create a sub-region of this sprite.
+	 * <strong>NOTE: This does not use caching.</strong>
+	 *
+	 * @param	x		The starting X coordinate.
+	 * @param	y		The starting Y coordinate.
+	 * @param	width		The region width.
+	 * @param	height		The region height.
+	 * @param	ref		The sprite reference.
+	 *
+	 * @return	A new sprite.
+	 */
+	public Sprite createRegion(final int x, final int y, final int width, final int height, final Object ref) {
+		return new TileSprite(this, x, y, width, height, ref);
+	}
+
+	/**
 	 * Draw the sprite onto the graphics context provided.
 	 * 
 	 * @param g
