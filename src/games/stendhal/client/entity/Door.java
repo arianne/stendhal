@@ -12,8 +12,6 @@
  ***************************************************************************/
 package games.stendhal.client.entity;
 
-import games.stendhal.common.Direction;
-
 import marauroa.common.game.RPObject;
 
 /**
@@ -26,19 +24,9 @@ public class Door extends Entity {
 	public final static Object	PROP_OPEN		= new Object();
 
 	/**
-	 * Orientation property.
-	 */
-	public final static Object	PROP_ORIENTATION	= new Object();
-
-	/**
 	 * Whether the door is open.
 	 */
 	private boolean open;
-
-	/**
-	 * The walk-through direction.
-	 */
-	private Direction orientation;
 
 
 	/**
@@ -51,16 +39,6 @@ public class Door extends Entity {
 	//
 	// Door
 	//
-
-	/**
-	 * Get the walk-through direction.
-	 *
-	 * @return	The orientation direction, or <code>null</code>.
-	 */
-	public Direction getOrientation() {
-		return orientation;
-	}
-
 
 	/**
 	 * Check if the door is open.
@@ -91,15 +69,6 @@ public class Door extends Entity {
 		 * Open state
 		 */
 		open = object.has("open");
-
-		/*
-		 * Orientation direction
-		 */
-		if (object.has("dir")) {
-			orientation = Direction.build(object.getInt("dir"));
-		} else {
-			orientation = null;
-		}
 	}
 
 
@@ -124,14 +93,6 @@ public class Door extends Entity {
 			open = true;
 			fireChange(PROP_OPEN);
 		}
-
-		/*
-		 * Orientation direction
-		 */
-		if (changes.has("dir")) {
-			orientation = Direction.build(changes.getInt("dir"));
-			fireChange(PROP_ORIENTATION);
-		}
 	}
 
 
@@ -151,14 +112,6 @@ public class Door extends Entity {
 		if (changes.has("open")) {
 			open = false;
 			fireChange(PROP_OPEN);
-		}
-
-		/*
-		 * Orientation direction
-		 */
-		if (object.has("dir")) {
-			orientation = null;
-			fireChange(PROP_ORIENTATION);
 		}
 	}
 }

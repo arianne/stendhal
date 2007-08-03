@@ -14,7 +14,6 @@ import marauroa.common.game.RPAction;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
-import games.stendhal.common.Direction;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
@@ -105,32 +104,6 @@ public class Door2DView extends StateEntity2DView {
 			map.put(STATE_OPEN, emptySprite);
 			map.put(STATE_CLOSED, emptySprite);
 		} else {
-			/*
-			 * TODO: Remove orientation adjustement on name
-			 * just prior to 0.62 release.
-			 */
-			Direction orientation = door.getOrientation();
-
-			if(orientation != null) {
-				switch(orientation) {
-					case LEFT:
-						name += "_w";
-						break;
-
-					case RIGHT:
-						name += "_e";
-						break;
-
-					case UP:
-						name += "_n";
-						break;
-
-					case DOWN:
-						name += "_s";
-						break;
-				}
-			}
-
 			Sprite tiles = store.getSprite(translate(name));
 
 			width = tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
