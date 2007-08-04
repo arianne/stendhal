@@ -53,12 +53,10 @@ public class StendhalQuestSystem {
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
-		loadQuest("ClubOfThorns");
 		loadQuest("DailyItemQuest");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
 		//loadQuest("DiogenesCataclysm");
-		loadQuest("ElfPrincess");
 		loadQuest("FindGhosts");
 		loadQuest("FishermansLicenseQuiz");
 		loadQuest("FishermansLicenseCollector");
@@ -66,7 +64,6 @@ public class StendhalQuestSystem {
 		//loadQuest("HayunnCataclysm");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
-		loadQuest("JailedDwarf");
 		loadQuest("LearnAboutKarma");
 		loadQuest("LookBookforCeryl");
 		loadQuest("LookUpQuote");
