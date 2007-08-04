@@ -43,7 +43,6 @@ import marauroa.client.net.IPerceptionListener;
 import marauroa.client.net.PerceptionHandler;
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
-import marauroa.common.game.CharacterResult;
 import marauroa.common.game.Perception;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
@@ -297,7 +296,8 @@ public class StendhalClient extends ClientFramework {
 			RPObject template = new RPObject();
 			// TODO: Account Username can be != of Character username.
 			try {
-	            CharacterResult res = createCharacter(getAccountUsername(), template);
+	            createCharacter(getAccountUsername(), template);
+	            // TODO: check result of createCharacter
             } catch (Exception e) {
 	            e.printStackTrace();
             }
