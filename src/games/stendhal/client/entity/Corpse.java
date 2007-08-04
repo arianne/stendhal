@@ -18,8 +18,6 @@ package games.stendhal.client.entity;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
-import games.stendhal.client.GameScreen;
-
 /**
  * A corpse entity.
  */

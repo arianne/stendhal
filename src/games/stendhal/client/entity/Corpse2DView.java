@@ -13,8 +13,6 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 import games.stendhal.client.gui.wt.EntityContainer;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 /**
@@ -71,7 +69,8 @@ public class Corpse2DView extends Entity2DView {
 	 *
 	 * @return	The height in tile units.
 	 */
-	public double getHeight() {
+	@Override
+    public double getHeight() {
 		return height;
 	}
 
@@ -81,7 +80,8 @@ public class Corpse2DView extends Entity2DView {
 	 *
 	 * @return	The width in tile units.
 	 */
-	public double getWidth() {
+	@Override
+    public double getWidth() {
 		return width;
 	}
 

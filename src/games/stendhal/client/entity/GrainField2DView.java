@@ -12,8 +12,6 @@ import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +62,8 @@ public class GrainField2DView extends StateEntity2DView {
 	 *
 	 * @return	The height in tile units.
 	 */
-	public double getHeight() {
+	@Override
+    public double getHeight() {
 		return grainField.getHeight();
 	}
 
@@ -74,7 +73,8 @@ public class GrainField2DView extends StateEntity2DView {
 	 *
 	 * @return	The width in tile units.
 	 */
-	public double getWidth() {
+	@Override
+    public double getWidth() {
 		return grainField.getWidth();
 	}
 

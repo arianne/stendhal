@@ -14,8 +14,6 @@ import games.stendhal.client.sprite.Sprite;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 /**
  * The 2D view of a stackable item.

@@ -6,11 +6,6 @@
 
 package games.stendhal.client.entity;
 
-//
-//
-
-import marauroa.common.game.RPObject;
-
 /**
  * An generic entity that is not drawn.
  */

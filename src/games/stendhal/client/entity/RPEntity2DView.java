@@ -317,7 +317,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @return	The height in tile units.
 	 */
-	public double getHeight() {
+	@Override
+    public double getHeight() {
 		return height;
 	}
 
@@ -347,7 +348,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @return	The width in tile units.
 	 */
-	public double getWidth() {
+	@Override
+    public double getWidth() {
 		return width;
 	}
 
@@ -372,7 +374,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 *
 	 * @param	map		The map to populate.
 	 */
-	protected void buildSprites(final Map<Object, Sprite> map) {
+	@Override
+    protected void buildSprites(final Map<Object, Sprite> map) {
 		Sprite tiles = getAnimationSprite();
 
 		double tw = (double) tiles.getWidth() / getTilesX();

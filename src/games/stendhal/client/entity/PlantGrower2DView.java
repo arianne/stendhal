@@ -5,12 +5,6 @@
  */
 package games.stendhal.client.entity;
 
-//
-//
-
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
-
 /**
  * The 2D view of a plant grower.
  */

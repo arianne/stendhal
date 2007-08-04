@@ -14,8 +14,6 @@ import games.stendhal.client.NotificationType;
 import games.stendhal.client.StendhalUI;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 /**

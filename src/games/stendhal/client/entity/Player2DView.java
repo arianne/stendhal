@@ -14,11 +14,7 @@ import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.List;
-import java.util.Map;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPAction;

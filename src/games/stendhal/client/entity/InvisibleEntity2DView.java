@@ -10,8 +10,6 @@ package games.stendhal.client.entity;
 //
 
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 
 /**
  * The 2D view of an invisible entity.

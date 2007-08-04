@@ -12,8 +12,6 @@ package games.stendhal.client.entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.Rectangle;
-import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 /**
