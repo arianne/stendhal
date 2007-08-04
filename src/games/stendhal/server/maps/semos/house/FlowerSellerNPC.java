@@ -1,18 +1,12 @@
 package games.stendhal.server.maps.semos.house;
 
-import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.StendhalRPWorld;
-import games.stendhal.server.entity.npc.ConversationPhrases;
-import games.stendhal.server.entity.npc.ConversationStates;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.NPCList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.entity.npc.TeleporterBehaviour;
-import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.maps.ZoneConfigurator;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
