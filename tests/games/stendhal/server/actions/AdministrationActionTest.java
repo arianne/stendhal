@@ -87,7 +87,6 @@ public class AdministrationActionTest {
 		aa.onAction(pl,new RPAction());
 		assertEquals("Sorry, command \"null\" is unknown.", pl.get("private_text"));
 		pl = new Player(new RPObject());
-		Player otherpl = new Player(new RPObject());
 
 		pl.put("adminlevel", 5000);
 		RPAction action = new RPAction();
@@ -97,9 +96,6 @@ public class AdministrationActionTest {
 		aa.onAction(pl,action);
 
 		assertEquals("Sorry, command \"null\" is unknown.", pl.get("private_text"));
-
-	//	assertEquals("Sorry, command \"null\" is unknown.", pl.get("private_text"));
-
 	}
 
 }
