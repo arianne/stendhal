@@ -120,7 +120,7 @@ South: Semos city
   <entity x="102" y="74">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
- 
+
  </zone>
 
  <zone name="0_semos_plains_ne" level="0" x="500128" y="499872" file="Level 0/semos/plains_ne.tmx">
@@ -197,7 +197,6 @@ South: Or'ril castle
      Welcome to Semos
     </parameter>
     <attribute name="class">transparent</attribute>
-    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <!-- writing on the wooden arch -->
@@ -207,7 +206,6 @@ South: Or'ril castle
      Welcome to Semos
     </parameter>
     <attribute name="class">transparent</attribute>
-    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="25" y="49">
@@ -216,7 +214,6 @@ South: Or'ril castle
      Welcome to Semos
     </parameter>
     <attribute name="class">transparent</attribute>
-    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="26" y="49">
@@ -225,7 +222,6 @@ South: Or'ril castle
      Welcome to Semos
     </parameter>
     <attribute name="class">transparent</attribute>
-    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
   <entity x="27" y="49">
@@ -234,7 +230,6 @@ South: Or'ril castle
      Welcome to Semos
     </parameter>
     <attribute name="class">transparent</attribute>
-    <attribute name="resistance">0</attribute>
    </implementation>
   </entity>
 
@@ -1096,7 +1091,7 @@ Mature sheep wanted: please speak to Sato
   <entity x="45" y="70">
     <implementation class-name="games.stendhal.server.entity.WellSource"/>
   </entity>
- 
+
  </zone>
 
  <!--  Level -1 -->

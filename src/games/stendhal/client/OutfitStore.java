@@ -131,13 +131,7 @@ public class OutfitStore {
 	 * @return	The sprite, or <code>null</code>.
 	 */
 	public Sprite getBaseSprite(int index) {
-		String ref="data/sprites/outfit/player_base_" + index + ".png";
-		
-		if(!store.existsSprite(ref)) {
-			return null;
-		}
-		
-		return store.getSprite(ref);
+		return store.getSprite("data/sprites/outfit/player_base_" + index + ".png");
 	}
 
 
@@ -150,13 +144,7 @@ public class OutfitStore {
 	 */
 	public Sprite getDressSprite(int index) {
 		if (index==0) return getEmptySprite();
-
-		String ref="data/sprites/outfit/dress_" + index + ".png";
-		if(!store.existsSprite(ref)) {
-			return null;
-		}
-		
-		return store.getSprite(ref);
+		return store.getSprite("data/sprites/outfit/dress_" + index + ".png");
 	}
 
 
@@ -190,13 +178,7 @@ public class OutfitStore {
 	 */
 	public Sprite getHairSprite(int index) {
 		if (index==0) return  getEmptySprite();
-
-		String ref="data/sprites/outfit/hair_" + index + ".png";
-		if(!store.existsSprite(ref)) {
-			return null;
-		}
-
-		return store.getSprite(ref);
+		return store.getSprite("data/sprites/outfit/hair_" + index + ".png");
 	}
 
 
@@ -208,12 +190,7 @@ public class OutfitStore {
 	 * @return	The sprite, or <code>null</code>.
 	 */
 	public Sprite getHeadSprite(int index) {
-		String ref="data/sprites/outfit/head_" + index + ".png";
-		if(!store.existsSprite(ref)) {
-			return null;
-		}
-
-		return store.getSprite(ref);
+		return store.getSprite("data/sprites/outfit/head_" + index + ".png");
 	}
 
 
