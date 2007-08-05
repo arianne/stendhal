@@ -172,6 +172,7 @@ public class StendhalFirstScreen extends JFrame {
 		setTitle(ClientGameConfiguration.get("GAME_NAME") + " " + stendhal.VERSION
 		        + " - a multiplayer online game using Arianne");
 		this.setLocation(new Point(100, 100));
+		this.setResizable(false);
 
 		URL url = SpriteStore.get().getResourceURL(ClientGameConfiguration.get("GAME_ICON"));
 		this.setIconImage(new ImageIcon(url).getImage());
