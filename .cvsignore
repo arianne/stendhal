@@ -26,3 +26,4 @@ build.ant-private.properties
 keystore.ksX
 .byecycle
 marauroa-prod.ini
+server.ini
