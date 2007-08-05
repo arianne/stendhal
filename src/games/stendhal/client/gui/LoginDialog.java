@@ -219,6 +219,7 @@ public class LoginDialog extends JDialog {
 		loginButton = new JButton();
 		loginButton.setText("Login to Server");
 		loginButton.setMnemonic(KeyEvent.VK_L);
+		this.rootPane.setDefaultButton(loginButton);
 
 		loginButton.addActionListener(new ActionListener() {
 
@@ -256,6 +257,10 @@ public class LoginDialog extends JDialog {
 	private void loginButton_actionPerformed(ActionEvent e) {
 		Profile profile;
 
+		// If this window isn't enabled, we shouldn't act.
+		if (!isEnabled())
+			return;
+		
 		profile = new Profile();
 
 		profile.setHost((serverField.getText()).trim());

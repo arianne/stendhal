@@ -135,6 +135,7 @@ public class CreateAccountDialog extends JDialog {
 		//
 		createAccountButton.setText("Create Account");
 		createAccountButton.setMnemonic(KeyEvent.VK_C);
+		this.rootPane.setDefaultButton(createAccountButton);
 		createAccountButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -235,6 +236,10 @@ public class CreateAccountDialog extends JDialog {
 		final String password = new String(passwordField.getPassword());
 		final String passwordretype = new String(passwordretypeField.getPassword());
 
+		// If this window isn't enabled, we shouldn't act.
+		if (!this.isEnabled())
+			return;
+		
 		if (!password.equals(passwordretype)) {
 			JOptionPane.showMessageDialog(owner, "The passwords do not match. Please retype both.",
 			        "Password Mismatch", JOptionPane.WARNING_MESSAGE);
