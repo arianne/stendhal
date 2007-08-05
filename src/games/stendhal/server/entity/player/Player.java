@@ -835,18 +835,25 @@ public class Player extends RPEntity {
 		poisonToConsume.clear();
 
 		if (!(killer instanceof RaidCreature)) {
-			Item emeraldRing = getFirstEquipped("emerald_ring");
 
-			if (emeraldRing != null && emeraldRing.getInt("amount") > 0) {
+			List<Item> ringList = getAllEquipped("emerald_ring");
+			boolean eRingUsed = false;
+			
+			for (Item emeraldRing : ringList) {
+				int amount = emeraldRing.getInt("amount");
+				if (amount > 0) {
+					// We broke the emerald ring.
+					emeraldRing.put("amount", amount - 1);
+					eRingUsed = true;
+					break;
+				}
+			}
+			
+			if (eRingUsed) {
 				// Penalize: 1% less experience if wearing that ring
 				setXP((int) (getXP() * 0.99));
 				setATKXP((int) (getATKXP() * 0.99));
 				setDEFXP((int) (getDEFXP() * 0.99));
-
-				/*
-				 * We broke now the emerald ring.
-				 */
-				emeraldRing.put("amount", 0);
 			} else {
 				// Penalize: 10% less experience
 				setXP((int) (getXP() * 0.9));
