@@ -72,7 +72,7 @@ public class CreditsDialog extends JDialog {
 		//		this.setResizable(false);
 		//		this.pack();
 		if (owner != null) {
-			this.setLocationRelativeTo(owner);
+			this.setLocation(owner.getX()+25, owner.getY()+25);
 			this.setSize(owner.getSize());
 		} else {
 			this.setLocationByPlatform(true);
