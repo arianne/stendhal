@@ -63,6 +63,8 @@ public class ScrollerPanel extends JPanel {
 
 	private int lineHeight;
 
+	private boolean scrollingStarted = false;
+
 	/**
 	 * creates an ScrollerPane wich scrolls the given text and using defaults
 	 * for the other attributes.
@@ -114,6 +116,7 @@ public class ScrollerPanel extends JPanel {
 			public void componentResized(ComponentEvent e) {
 				if (!t.isRunning()) {
 					resetTextPos();
+					scrollingStarted = true;
 					t.start();
 					logger.debug("start scrolling");
 				}
@@ -124,19 +127,21 @@ public class ScrollerPanel extends JPanel {
 	@Override
 	public void paint(Graphics g) {
 		int width;
-		// super.paint( g );
-		Graphics2D g2d = (Graphics2D) g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setBackground(backgroundColor);
-		g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
-		GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f, this.getHeight() / 2, textColor, true);
-		g2d.setPaint(gp);
-		g2d.setFont(font);
-		FontMetrics metrics = g2d.getFontMetrics();
-		for (int i = 0, n = text.length; i < n; i++) {
-			width = metrics.stringWidth(text[i]);
-			g2d.drawString(text[i], this.getWidth() / 2 - width / 2, textPos
-			        + ((metrics.getHeight() + lineSpacing) * i));
+		if (scrollingStarted){
+			// super.paint( g );
+			Graphics2D g2d = (Graphics2D) g;
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+			g2d.setBackground(backgroundColor);
+			g2d.clearRect(0, 0, this.getWidth(), this.getHeight());
+			GradientPaint gp = new GradientPaint(0f, 0f, backgroundColor, 0f, this.getHeight() / 2, textColor, true);
+			g2d.setPaint(gp);
+			g2d.setFont(font);
+			FontMetrics metrics = g2d.getFontMetrics();
+			for (int i = 0, n = text.length; i < n; i++) {
+				width = metrics.stringWidth(text[i]);
+				g2d.drawString(text[i], this.getWidth() / 2 - width / 2, textPos
+				        + ((metrics.getHeight() + lineSpacing) * i));
+			}
 		}
 	}
 
@@ -156,7 +161,7 @@ public class ScrollerPanel extends JPanel {
 	 * reset the textposition
 	 */
 	private void resetTextPos() {
-		textPos = this.getHeight() + font.getSize() + lineSpacing;
+		textPos = this.getHeight() - (lineSpacing + lineHeight)*2;
 	}
 
 	/**
