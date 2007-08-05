@@ -23,7 +23,6 @@
 
 	<property name="client_data" value="stendhal-data-${version}.jar"/>
 	<property name="client_jarname" value="stendhal-${version}.jar"/>
-	<property name="client_prefilled_cache" value="stendhal-prefilled-cache-${version}.jar"/>
 	<property name="client_sound_data" value="stendhal-sound-data-${version}.jar"/>
 	<property name="client_starter_jarname" value="stendhal-starter-${version}.jar"/>
 
@@ -235,7 +234,7 @@
 			<fileset dir="${build_client}"/>
 			<manifest>
 				<attribute name="Main-Class" value="games.stendhal.client.update.Starter"/>
-				<attribute name="Class-path" value="log4j.jar marauroa.jar ${client_data} ${client_sound_data}"/>
+				<attribute name="Class-path" value="lib/log4j.jar lib/marauroa.jar lib/${client_data} lib/${client_sound_data}"/>
 			</manifest>
 		</jar>
 
@@ -361,11 +360,12 @@
 
 	<target name="dist_client_binary" depends="client_build">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${log4j_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${marauroa_jar}"/>
+		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_sound_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_sound_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
@@ -377,11 +377,12 @@
 
 	<target name="dist_client_no_sound_binary">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
+		<mkdir dir="${buildroot}/stendhal-${version}/lib"/>
 
-		<copy todir="${buildroot}/stendhal-${version}" file="${log4j_jar}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_data}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${log4j_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${marauroa_jar}"/>
+		<copy todir="${buildroot}/stendhal-${version}/lib" file="${lib}/${client_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}/doc">
 			<fileset dir="doc"/>
 		</copy>
