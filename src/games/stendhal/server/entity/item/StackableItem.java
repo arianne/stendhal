@@ -84,12 +84,14 @@ public class StackableItem extends Item implements Stackable {
 			        get("name"));
 
 			newItem.setQuantity(amountToSplitOff);
-			if (has("infostring")) {
-				newItem.put("infostring", get("infostring"));
+
+			String[] attributesToCopyOnSplit = new String[]{"infostring", "description", "bound"};
+			for (String attribute : attributesToCopyOnSplit) {
+				if (has(attribute)) {
+					newItem.put(attribute, get(attribute));
+				}
 			}
-			if (has("description")) {
-				newItem.put("description", get("description"));
-			}
+
 			sub(amountToSplitOff);
 
 			if (quantity > 0) {
