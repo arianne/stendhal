@@ -429,7 +429,9 @@ private void offerKnifeStep() {
 	        new SpeakerNPC.ChatCondition() {
 		        @Override
 		        public boolean fire(Player player, String text, SpeakerNPC npc) {
-			        return !player.hasQuest(QUEST_SLOT)||player.isQuestCompleted(QUEST_SLOT)||player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("food_brought") || player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("start")||player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("meat")||player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("ham")||player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("cheese");
+		        	final List<String> NOT_COVERED_LIST =  Arrays.asList("food_brought", "start", "meat", "ham", "cheese", "rejected");
+			        return !player.hasQuest(QUEST_SLOT) || player.isQuestCompleted(QUEST_SLOT)
+			        	|| (player.hasQuest(QUEST_SLOT) && NOT_COVERED_LIST.contains(player.getQuest(QUEST_SLOT)));
 		        }
 	        },
 	        ConversationStates.ATTENDING,
