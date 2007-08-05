@@ -101,7 +101,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 
 		objects.clear();
-		GameScreen.get().clear();
+		GameScreen.get().removeAll();
 	}
 
 	public boolean collides(Entity entity) {

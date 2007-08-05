@@ -88,7 +88,13 @@ public class StendhalClient extends ClientFramework {
 	private UserContext	userContext;
 
 	public Vector <String> whoplayers;
-	
+
+	/**
+	 * The amount of content yet to be transfered.
+	 */
+	private int contentToLoad = 0;
+
+
 	public void generateWhoPlayers(String text){
 		
 		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(text);
@@ -207,14 +213,6 @@ public class StendhalClient extends ClientFramework {
 
 				String zoneid = message.getRPZoneID().getID();
 				staticLayers.setRPZoneLayersSet(zoneid);
-				screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
-
-				// TODO: Move to GameScreen, and delete
-				//       Color code from this class.
-				/** And finally place player in screen */
-				Graphics2D g = screen.expose();
-				g.setColor(Color.BLACK);
-				g.fill(new Rectangle(0, 0, j2DClient.SCREEN_WIDTH, j2DClient.SCREEN_HEIGHT));
 			}
 
 			/** This code emulate a perception loss. */
@@ -240,6 +238,8 @@ public class StendhalClient extends ClientFramework {
 		// the wrong variable name???
 		gameObjects.clear();
 
+		contentToLoad = 0;
+
 		for (TransferContent item : items) {
 
 			InputStream is = cache.getItem(item);
@@ -258,14 +258,37 @@ public class StendhalClient extends ClientFramework {
 				logger.debug("Content " + item.name + " is NOT on cache. We have to transfer");
 				item.ack = true;
 			}
+
+			if(item.ack) {
+				contentToLoad++;
+			}
+		}
+
+		/*
+		 * All done, or onTransfer() yet to be called?
+		 */
+		if(contentToLoad == 0) {
+			staticLayers.invalidate();
+			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
+			screen.clear();
 		}
 
 		return items;
 	}
 
+
+	/**
+	 * Determine if we are in the middle of transfering new content.
+	 *
+	 * @return	<code>true</code> if more content is to be transfered.
+	 */
+	public boolean isInTransfer() {
+		return (contentToLoad != 0);
+	}
+
+
 	private void contentHandling(String name, InputStream in) throws IOException, ClassNotFoundException {
 		staticLayers.addLayer(name, in);
-		screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
 	}
 
 	@Override
@@ -278,6 +301,22 @@ public class StendhalClient extends ClientFramework {
 				logger.fatal("onTransfer", e);
 				System.exit(2);
 			}
+		}
+
+		contentToLoad -= items.size();
+
+		/*
+		 * Sanity check
+		 */
+		if(contentToLoad < 0) {
+			logger.warn("More data transfer than expected");
+			contentToLoad = 0;
+		}
+
+		if(contentToLoad == 0) {
+			staticLayers.invalidate();
+			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
+			screen.clear();
 		}
 	}
 

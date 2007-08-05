@@ -678,13 +678,19 @@ public class GameScreen {
 
 
 	/**
-	 * Clear the screen.
+	 * Remove all objects from the screen.
 	 */
-	public void clear() {
+	public void removeAll() {
 		views.clear();
 		texts.clear();
 		textsToRemove.clear();
+	}
 
+
+	/**
+	 * Clear the screen.
+	 */
+	public void clear() {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());
 	}

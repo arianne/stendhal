@@ -200,6 +200,14 @@ public class StaticGameLayers {
 
 		this.area = area;
 		this.areaChanged = true;
+		invalidate();
+	}
+
+
+	/**
+	 * Invalidate any cached settings.
+	 */
+	public void invalidate() {
 		valid = false;
 	}
 
