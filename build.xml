@@ -349,11 +349,11 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${server_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${maps_jarname}"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="${lib}/${xmlconf_jarname}"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="AUTHORS"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="BUGS"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="COPYING"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="LICENSE"/>
-		<copy todir="${buildroot}/stendhal-server-${version}" file="README"/>
+		
+		<copy todir="${buildroot}/stendhal-server-${version}/doc">
+			<fileset dir="doc"/>
+		</copy>
+		<copy todir="${buildroot}/stendhal-server-${version}" file="README.txt"/>
 		<zip destfile="${buildroot}/stendhal-server-${version}.zip"
 			basedir="${buildroot}/stendhal-server-${version}"/>
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
@@ -366,11 +366,10 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_sound_data}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
+		<copy todir="${buildroot}/stendhal-${version}/doc">
+			<fileset dir="doc"/>
+		</copy>
+		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
          	basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
@@ -383,11 +382,10 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="${marauroa_jar}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_jarname}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_data}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
+		<copy todir="${buildroot}/stendhal-${version}/doc">
+			<fileset dir="doc"/>
+		</copy>
+		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<zip destfile="${buildroot}/stendhal-${version}.zip"
 			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
@@ -396,11 +394,10 @@
 	<target name="dist_client_starter">
 		<mkdir dir="${buildroot}/stendhal-${version}"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="${lib}/${client_starter_jarname}"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="AUTHORS"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="BUGS"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
-		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
+		<copy todir="${buildroot}/stendhal-${version}/doc">
+			<fileset dir="doc"/>
+		</copy>
+		<copy todir="${buildroot}/stendhal-${version}" file="README.txt"/>
 		<zip destfile="${buildroot}/stendhal-starter-${version}.zip"
 			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
@@ -428,11 +425,10 @@
 
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.xml"/>
 		<copy todir="${buildroot}/stendhal-${version}-src" file="build.ant.properties"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="AUTHORS"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="BUGS"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="COPYING"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="LICENSE"/>
-		<copy todir="${buildroot}/stendhal-${version}-src" file="README"/>
+		<copy todir="${buildroot}/stendhal-server-${version}-src/doc">
+			<fileset dir="doc"/>
+		</copy>
+		<copy todir="${buildroot}/stendhal-server-${version}-src" file="README.txt"/>
 
 		<tar destfile="${buildroot}/stendhal-${version}-src.tar.gz" compression="gzip">
 			<tarfileset dir="${buildroot}/stendhal-${version}-src" prefix="stendhal-${version}">
