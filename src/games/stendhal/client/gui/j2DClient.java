@@ -386,6 +386,7 @@ public class j2DClient extends StendhalUI {
 // Not currently used (maybe later?)
 //		fx = new FXLayer(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+		frame.toFront();
 
 		// create the baseframe
 		baseframe = new WtBaseframe(screen);
