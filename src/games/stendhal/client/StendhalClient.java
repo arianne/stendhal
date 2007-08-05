@@ -271,6 +271,7 @@ public class StendhalClient extends ClientFramework {
 			staticLayers.invalidate();
 			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
 			screen.clear();
+			screen.center();
 		}
 
 		return items;
@@ -317,6 +318,7 @@ public class StendhalClient extends ClientFramework {
 			staticLayers.invalidate();
 			screen.setMaxWorldSize(staticLayers.getWidth(), staticLayers.getHeight());
 			screen.clear();
+			screen.center();
 		}
 	}
 
