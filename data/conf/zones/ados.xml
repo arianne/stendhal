@@ -466,6 +466,7 @@ in roaches.
    </zone> 
 
    <zone name="int_ados_bar" file="interiors/ados/bar.tmx">
+    <configurator class-name="games.stendhal.server.maps.ados.bar.BarMaidNPC" />
      <portal x="15" y="30" ref="bar_entrance">
 	<destination zone="0_ados_city" ref="bar"/>
      </portal>
