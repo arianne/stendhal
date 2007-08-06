@@ -9,7 +9,7 @@ import games.stendhal.server.entity.npc.ShopList;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.maps.ZoneConfigurator;
 import games.stendhal.server.pathfinder.FixedPath;
-import games.stendhal.server.pathfinder.Node;
+import games.stendhal.server.pathfinder.Path;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,18 +41,18 @@ public class BarMaidNPC implements ZoneConfigurator {
 
 			@Override
 			protected void createPath() {
-				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 26));
-				nodes.add(new Node(3, 26));
-				nodes.add(new Node(3, 12));
-				nodes.add(new Node(20, 12));
-				nodes.add(new Node(20, 17));
-				nodes.add(new Node(28, 17));
-				nodes.add(new Node(28, 6));
-				nodes.add(new Node(12, 6));
-				nodes.add(new Node(12, 12));
-				nodes.add(new Node(3, 12));
-				nodes.add(new Node(3, 26));
+				List<Path.Node> nodes = new LinkedList<Path.Node>();
+				nodes.add(new Path.Node(8, 26));
+				nodes.add(new Path.Node(3, 26));
+				nodes.add(new Path.Node(3, 12));
+				nodes.add(new Path.Node(20, 12));
+				nodes.add(new Path.Node(20, 17));
+				nodes.add(new Path.Node(28, 17));
+				nodes.add(new Path.Node(28, 6));
+				nodes.add(new Path.Node(12, 6));
+				nodes.add(new Path.Node(12, 12));
+				nodes.add(new Path.Node(3, 12));
+				nodes.add(new Path.Node(3, 26));
 				setPath(new FixedPath(nodes, true));
 			}
 

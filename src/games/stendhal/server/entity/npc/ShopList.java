@@ -1,8 +1,8 @@
 package games.stendhal.server.entity.npc;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Singleton class that contains inventory and prices of NPC stores.
@@ -21,6 +21,13 @@ public class ShopList {
 		shops.add("food&drinks", "carrot", 10);
 		shops.add("food&drinks", "meat", 40);
 		shops.add("food&drinks", "ham", 80);
+
+		shops.add("buyfood", "cheese", 5);
+		shops.add("buyfood", "meat", 10);		
+		shops.add("buyfood", "spinach", 15);
+		shops.add("buyfood", "ham", 20);
+		shops.add("buyfood", "flour", 25);
+		shops.add("buyfood", "porcini", 30);
 
 		shops.add("healing", "antidote", 50);
 		shops.add("healing", "minor_potion", 100);
