@@ -152,7 +152,7 @@ public abstract class RPEntity extends GuidedEntity {
 			entity.addRPSlot("legs", 1, RPClass.PRIVATE);
 			entity.addRPSlot("feet", 1, RPClass.PRIVATE);
 			entity.addRPSlot("bag", 12, RPClass.PRIVATE);
-			entity.addRPSlot("keyring", 6, RPClass.PRIVATE);
+			entity.addRPSlot("keyring", 8, RPClass.PRIVATE);
 		} catch (RPClass.SyntaxException e) {
 			logger.error("cannot generateRPClass", e);
 		}
