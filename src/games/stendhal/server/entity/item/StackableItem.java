@@ -85,7 +85,7 @@ public class StackableItem extends Item implements Stackable {
 
 			newItem.setQuantity(amountToSplitOff);
 
-			String[] attributesToCopyOnSplit = new String[]{"infostring", "description", "bound"};
+			String[] attributesToCopyOnSplit = new String[]{"infostring", "description", "bound", "persistent", "amount", "frequency", "regen", "atk", "range"};
 			for (String attribute : attributesToCopyOnSplit) {
 				if (has(attribute)) {
 					newItem.put(attribute, get(attribute));
@@ -126,7 +126,21 @@ public class StackableItem extends Item implements Stackable {
 
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
-
-		return getItemClass().equals(otheri.getItemClass()) && getItemSubclass().equals(otheri.getItemSubclass());
+		
+		if (!getItemClass().equals(otheri.getItemClass()) || !getItemSubclass().equals(otheri.getItemSubclass()))
+			return false;
+		
+		// TODO: look at InfoStringScroll.java
+		
+		String[] importantAttributes = new String[]{"infostring", "description", "bound", "persistent", "amount", "frequency", "regen", "atk", "range"};
+		for (String iAtt : importantAttributes)
+		{
+			if (!has(iAtt) && !otheri.has(iAtt))
+				continue;
+			if (has(iAtt) && otheri.has(iAtt) && get(iAtt).equals(otheri.get(iAtt)))
+				continue;
+			return false;
+		}
+		return true;
 	}
 }
