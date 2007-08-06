@@ -474,8 +474,17 @@ public class Player extends RPEntity {
 		 * Clip to grandularity
 		 */
 		score = ((int) (score / granularity)) * granularity;
+		
+		/*
+		 *with a lucky charm you use up less karma to be just as lucky
+		 */
 
-		karma -= score;
+		if (this.isEquipped("lucky_charm")){
+		    karma -= 0.5*score;
+		}
+		else {
+		    karma -= score;
+		}
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("karma given: " + score);
