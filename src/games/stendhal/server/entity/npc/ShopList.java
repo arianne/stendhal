@@ -22,6 +22,13 @@ public class ShopList {
 		shops.add("food&drinks", "meat", 40);
 		shops.add("food&drinks", "ham", 80);
 
+		shops.add("buyfood", "cheese", 5);
+		shops.add("buyfood", "meat", 10);		
+		shops.add("buyfood", "spinach", 15);
+		shops.add("buyfood", "ham", 20);
+		shops.add("buyfood", "flour", 25);
+		shops.add("buyfood", "porcini", 30);
+
 		shops.add("healing", "antidote", 50);
 		shops.add("healing", "minor_potion", 100);
 		shops.add("healing", "potion", 250);
