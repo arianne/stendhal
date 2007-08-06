@@ -472,7 +472,15 @@ public class Player extends RPEntity {
 		 */
 		score = ((int) (score / granularity)) * granularity;
 
-		karma -= score;
+		/*
+		 * with a lucky charm you use up less karma to be just as lucky
+		 */
+		if (this.isEquipped("lucky_charm")){
+		    karma -= 0.5*score;
+		}
+		else {
+		    karma -= score;
+		}
 
 		if (logger.isDebugEnabled()) {
 			logger.debug("karma given: " + score);
