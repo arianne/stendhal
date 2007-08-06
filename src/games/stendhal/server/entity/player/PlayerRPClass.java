@@ -60,7 +60,7 @@ class PlayerRPClass {
 	private static boolean firstWelcomeException = true;
 
 	/** these items should be bound */
-	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet");
+	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet", "lucky_charm", "soup");
 
 	/*
 	 *
