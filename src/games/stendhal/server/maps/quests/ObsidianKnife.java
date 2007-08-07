@@ -158,7 +158,7 @@ public class ObsidianKnife extends AbstractQuest {
 						if (player.drop(text, REQUIRED_FOOD)) {
 							player.addKarma(35.0);
 							player.addXP(1000);
-							npc.say("Great! you brought the " + text + "!");
+							npc.say("Great! You brought the " + text + "!");
 							player.setQuest(QUEST_SLOT, "food_brought");
 							player.notifyWorldAboutChanges();
 							npc.setCurrentState(ConversationStates.ATTENDING);
@@ -384,7 +384,7 @@ private void offerKnifeStep() {
 			        }
 		        },
 		        ConversationStates.ATTENDING,
-			"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a + " + FISH + " and a piece of obsidian. In the meantime if I can #help you, just say the word.",
+			"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a " + FISH + " and a piece of obsidian. In the meantime if I can #help you, just say the word.",
 		       null);
 		
 		npc.add(ConversationStates.IDLE,
