@@ -54,7 +54,7 @@ public class TeleporterBehaviour implements TurnListener {
 	}
 
 	/**
-	 * Creates an ArrayList of "outside" zones for bunny.
+	 * Creates an ArrayList of "outside" zones for NPC.
 	 */
 	private void listZones() {
 		Iterator itr = StendhalRPWorld.get().iterator();
@@ -74,10 +74,10 @@ public class TeleporterBehaviour implements TurnListener {
 		// Say bye
 		speakerNPC.say("Bye.");
 
-		// We make bunny to stop speaking to anyone.
+		// We make NPC to stop speaking to anyone.
 		speakerNPC.setCurrentState(ConversationStates.IDLE);
 
-		// remove bunny from old zone
+		// remove NPC from old zone
 		zone = speakerNPC.getZone();
 		zone.remove(speakerNPC);
 
@@ -97,9 +97,9 @@ public class TeleporterBehaviour implements TurnListener {
 				zone.add(speakerNPC);
 				StendhalRPRuleProcessor.get().addNPC(speakerNPC);
 				found = true;
-				logger.debug("Placing bunny at " + zone.getID().getID() + " " + x + " " + y);
+				logger.debug("Placing teleporting NPC at " + zone.getID().getID() + " " + x + " " + y);
 			} else {
-				logger.info("Cannot place bunny at " + zone.getID().getID() + " " + x + " " + y);
+			    logger.info("Cannot place teleporting NPC at " + zone.getID().getID() + " " + x + " " + y);
 			}
 		}
 
