@@ -107,7 +107,14 @@ public class LayerDefinition implements Serializable {
 	 * @param tileId the tile code to set ( Use 0 for none ).
 	 */
 	public void set(int x, int y, int tileId) {
-		data[y*width+x]=tileId;
+        int offset=4*(x+y*width);
+
+        raw[0+offset] = (byte)(tileId & 0xFF);
+        raw[1+offset] = (byte)((tileId >>> 8) & 0xFF);
+        raw[2+offset] = (byte)((tileId >>> 16) & 0xFF);
+        raw[3+offset] = (byte)((tileId >>> 24) & 0xFF);
+        
+        data[y*width+x] = tileId;
 	}
 
 	/**
