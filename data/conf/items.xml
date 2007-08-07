@@ -2,10 +2,10 @@
 <items>
   <item name="wooden_arrow">
     <type class="ammunition" subclass="wooden_arrow" tileid="-1"/>
-    <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance.</description>
+    <description>You see a wooden arrow. With a supply of arrows in one hand and a bow in the other you can attack from a distance. Range 2.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="1"/>
-      <range value="0"/>
+      <range value="2"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -19,10 +19,10 @@
 
   <item name="steel_arrow">
     <type class="ammunition" subclass="steel_arrow" tileid="-1"/>
-    <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer.</description>
+    <description>You see a shining steel arrow. With plenty of these, and a good bow, you'll be a formidable archer. Range 3.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="3"/>
-      <range value="1"/>
+      <range value="2"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -36,10 +36,10 @@
 
   <item name="golden_arrow">
     <type class="ammunition" subclass="golden_arrow" tileid="-1"/>
-    <description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker.</description>
+    <description>You see a golden arrow.  With a fist full of these and a good bow, you will surely take down your enemies quicker. Range 3.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="4"/>
-      <range value="2"/>
+      <range value="3"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -53,10 +53,10 @@
 
   <item name="power_arrow">
     <type class="ammunition" subclass="power_arrow" tileid="-1"/>
-    <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow</description>
+    <description>You see a power arrow.  The sting of this arrow will surely defeat your enemies, when equipped with a bow. Range 4.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="6"/>
-      <range value="3"/>
+      <range value="4"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -3029,10 +3029,10 @@
 
   <item name="dart">
     <type class="missile" subclass="dart" tileid="-1"/>
-    <description>You see a dart.</description>
+    <description>You see a dart. Its range is 2, so you'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="2"/>
-      <range value="1"/>
+      <range value="2"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -3046,10 +3046,10 @@
 
   <item name="power_dart">
     <type class="missile" subclass="dart" tileid="-1"/>
-    <description>You see a power dart.</description>
+    <description>You see a power dart. Its range is 2, so you'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results. </description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="4"/>
-      <range value="1"/>
+      <range value="2"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -3063,10 +3063,10 @@
 
   <item name="shuriken">
     <type class="missile" subclass="shuriken" tileid="-1"/>
-    <description>You see a shuriken.</description>
+    <description>You see a shuriken. Its range is 2, so you'll need to be close before you can use it as a missile. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="6"/>
-      <range value="1"/>
+      <range value="2"/>
       <quantity value="1"/>
     </attributes>
     <weight value="0.1"/>
@@ -3080,7 +3080,7 @@
 
   <item name="wooden_spear">
     <type class="missile" subclass="wooden_spear" tileid="-1"/>
-    <description>You see a wooden spear. With that primitive but powerful weapon you can fight from a distance.</description>
+    <description>You see a wooden spear. You can attack at a distance with this primitive weapon, which has a range of 4. Stand square on, not diagonally, for the best results.</description>
     <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
       <atk value="10"/>
       <range value="4"/>
@@ -3112,7 +3112,7 @@
 
   <item name="wooden_bow">
     <type class="ranged" subclass="wooden_bow" tileid="-1"/>
-    <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance.</description>
+    <description>You see a wooden bow. With this in one hand, and wooden arrows in the other, you may be able to attack from a distance. The range is 3.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="12"/>
       <range value="3"/>
@@ -3128,7 +3128,7 @@
 
   <item name="longbow">
     <type class="ranged" subclass="longbow" tileid="-1"/>
-    <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack.</description>
+    <description>You see a longbow. Equipped with this, and a supply of arrows, you will have an effective ranged attack. The range is 4.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="14"/>
       <range value="4"/>
@@ -3144,7 +3144,7 @@
 
   <item name="composite_bow">
     <type class="ranged" subclass="composite_bow" tileid="-1"/>
-    <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack.</description>
+    <description>You see a composite bow. It's better strung than most bows, for excellent ranged attack. The range is 5.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="15"/>
       <range value="5"/>
@@ -3160,7 +3160,7 @@
 
   <item name="crossbow">
     <type class="ranged" subclass="crossbow" tileid="-1"/>
-    <description/>
+ <description>You see a crossbow. The attack is high but it only has a short range, of 3.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="17"/>
       <range value="3"/>
@@ -3176,7 +3176,7 @@
 
   <item name="hunter_crossbow">
     <type class="ranged" subclass="hunter_crossbow" tileid="-1"/>
-    <description/>
+ <description>You see a hunter crossbow. The attack is very high but it only has a short range, of 4.</description>
     <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
       <atk value="21"/>
       <range value="4"/>
