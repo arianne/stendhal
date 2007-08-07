@@ -185,9 +185,9 @@ public class Player extends RPEntity {
 		try {
 			if (player.hasSheep()) {
 				Sheep sheep = player.getSheep();
-				player.playerSheepManager.storeSheep(sheep);
 				StendhalRPRuleProcessor.get().removeNPC(sheep);
 				world.remove(sheep.getID());
+				player.playerSheepManager.storeSheep(sheep);
 			} else {
 				// Bug on pre 0.20 released
 				if (player.hasSlot("#flock")) {
@@ -215,9 +215,9 @@ public class Player extends RPEntity {
 		}
 		if (player.hasPet()) {
 			Pet pet = (Pet) world.remove(player.getPet());
-			player.playerPetManager.storePet(pet);
 			StendhalRPRuleProcessor.get().removeNPC(pet);
 			world.remove(pet.getID());
+			player.playerPetManager.storePet(pet);
 		}
 		player.stop();
 		player.stopAttack();
