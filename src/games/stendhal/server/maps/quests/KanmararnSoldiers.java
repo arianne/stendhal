@@ -366,7 +366,7 @@ public class KanmararnSoldiers extends AbstractQuest {
 		// Add a refiller to automatically fill the corpse of unlucky Charles
 		CorpseRefiller charlesRefiller = new CorpseRefiller(charles,
 				"note",
-				"You read: \"IOU 250 gold. (signed) McPegleg\"");
+				"You read: \"IOU 250 money. (signed) McPegleg\"");
 		charlesRefiller.start();
 
 		// Now we create the corpse of the fourth NPC
