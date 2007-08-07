@@ -158,7 +158,7 @@ public class ObsidianKnife extends AbstractQuest {
 						if (player.drop(text, REQUIRED_FOOD)) {
 							player.addKarma(35.0);
 							player.addXP(1000);
-							npc.say("Great! you brought the " + text + "!");
+							npc.say("Great! You brought the " + text + "!");
 							player.setQuest(QUEST_SLOT, "food_brought");
 							player.notifyWorldAboutChanges();
 							npc.setCurrentState(ConversationStates.ATTENDING);
