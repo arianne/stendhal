@@ -75,6 +75,9 @@
  <tileset name="../../tileset/logic/creature/human_evil.png" firstgid="166" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/human_evil.png"/>
  </tileset>
+ <tileset name="Untitled" firstgid="172" tilewidth="32" tileheight="32">
+  <image source="../../tileset/logic/creature/undead.png"/>
+ </tileset>
  <layer name="0_floor" width="96" height="32">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAO3DMQ0AAAwEoVvev+Xa6AAJq6aqqqqqqqqqqqqqqr5+CWqqOwAwAAA=
@@ -100,9 +103,9 @@
    H4sIAAAAAAAAAO3VOQ4AIAgEQH7r8f8H2FjZ2JgQ4kyzDckSGiIAAAAAyNB2ziN5Y2QvAHyr3UdK9VTXd55/wf0AAAAAAKhoAYz88sAAMAAA
   </data>
  </layer>
- <layer name="objects" width="96" height="32" visible="0">
+ <layer name="objects" width="96" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3aUQqAIBAFQO9/jaA6ZvRZH0FkK+7OHEAXQdcntgbAG8voAopak8zxl5lrh1ltowuABLL3r73TONnX6eRMBYjTqz/BXYU7CwAAMbwVAdG+ZtremVjGhmf2yJW/bFDTATqSJJYAMAAA
+   H4sIAAAAAAAAAO3aywmAMAwA0O6/hqDoBI7nWUHEGuzvvXvbkEOTlKYEwBtT6QAGNXdyRpS9dABAWkoHAB1oqfbmWIP2qT1P+pK2qWf0xp30LKo+wVXtPQsAAO3wXgH8bfu4PnomrmnG/pob7sltPm+cZ/6ywZgOqkN9DAAwAAA=
   </data>
  </layer>
  <layer name="collision" width="96" height="32" visible="0" opacity="0.31">
