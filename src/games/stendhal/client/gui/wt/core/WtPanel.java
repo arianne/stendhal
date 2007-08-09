@@ -378,6 +378,8 @@ public class WtPanel implements ManagedWindow, WtDraggable {
 	/** sets the text in the titlebar */
 	public void setTitletext(String text) {
 		this.titleText = text;
+		// refresh cached panel image
+		cachedImage = null;
 	}
 
 	/** returns wether the panel has a frame */
