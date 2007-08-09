@@ -216,7 +216,6 @@ public class Player extends RPEntity {
 		if (player.hasPet()) {
 			Pet pet = (Pet) world.remove(player.getPet());
 			StendhalRPRuleProcessor.get().removeNPC(pet);
-			world.remove(pet.getID());
 			player.playerPetManager.storePet(pet);
 		}
 		player.stop();
@@ -474,7 +473,7 @@ public class Player extends RPEntity {
 		 * Clip to grandularity
 		 */
 		score = ((int) (score / granularity)) * granularity;
-		
+
 		/*
 		 *with a lucky charm you use up less karma to be just as lucky
 		 */
@@ -1354,7 +1353,7 @@ public class Player extends RPEntity {
 		if (item.getQuantity()>1){
 			throw new IllegalArgumentException("consumeItem can only take one item at a time");
 		}
-		
+
 		if ((item.getRegen() > 0) && isFull() && !item.getName().contains("potion")) {
 			sendPrivateText("You can't consume anymore");
 			return;
@@ -1383,18 +1382,18 @@ public class Player extends RPEntity {
 		}
 
 		Collections.sort(itemsToConsume);
-		
+
 	}
 
 	public void consume(int turn) {
-		
+
 
 
 		if ( (poisonToConsume.size() == 0)) {
 			if (has("poisoned")){
-		
+
 			remove("poisoned");
-			
+
 			}
 		}else{
 			int sum = 0;
@@ -1404,19 +1403,19 @@ public class Player extends RPEntity {
 				if (turn%poison.getFrecuency() ==0){
 					if (poison.consumed()){
 						it.remove();
-						
+
 					}else{
 						amount = poison.consume();
 						damage(-amount, poison);
 						sum += amount;
 						put("poisoned", sum);
-						
+
 					}
 				}
-			
+
 			}
 		}
-		
+
 		Collections.sort(itemsToConsume);
 		if (itemsToConsume.size()>0){
 			ConsumableItem food = itemsToConsume.get(0);
@@ -1430,16 +1429,16 @@ public class Player extends RPEntity {
 					if(heal(amount, true) == 0) {
 					itemsToConsume.clear();
 					}
-	
-				
+
+
 				}
 			}
-			
+
 		}else{
 
 			if (has("eating")) {
 				remove("eating");
-				
+
 			}
 		}
 		notifyWorldAboutChanges();
