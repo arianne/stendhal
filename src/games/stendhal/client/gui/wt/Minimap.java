@@ -217,8 +217,7 @@ public class Minimap extends WtPanel {
 			} else if( entity instanceof Portal) {
 				Portal portal = (Portal) entity;
 				if (!portal.isHidden()) {
-					drawDot(clientg, (int) (entity.getX() * scale) - panx, (int) ((entity.getY()) * scale) - pany,
-							Color.WHITE);
+					drawDot(clientg, entity, Color.WHITE);
 				}
 			}
 		}
@@ -264,20 +263,32 @@ public class Minimap extends WtPanel {
 
 	/** draws a cross at the given position */
 	private void drawCross(Graphics g, int x, int y, Color color) {
-		int size = 2;
+		int scale_2 = scale / 2;
+
+		int size = scale_2 + 2;
+
+		x += scale_2;
+		y += scale_2;
 
 		g.setColor(color);
 		g.drawLine(x - size, y, x + size, y);
 		g.drawLine(x, y + size, x, y - size);
 	}
 
-	private void drawDot(Graphics g, int x, int y, Color color) {
-		int size = 2;
+	private void drawDot(final Graphics g, final Entity entity, final Color color) {
+		Rectangle2D area = entity.getArea();
+
+		int x = ((int) (area.getX() + 0.5)) * scale;
+		int y = ((int) (area.getY() + 0.5)) * scale;
+
+		int width =  (((int) area.getWidth()) * scale) - 1;
+		int height = (((int) area.getHeight()) * scale) - 1;
 
 		g.setColor(color);
-		g.fillRect(x, y, size, size);
+		g.fillRect(x, y, width, height);
+
 		g.setColor(Color.BLACK);
-		g.drawRect(x-1, y-1, size+1, size+1);
+		g.drawRect(x, y, width, height);
 	}
 
 	/**
