@@ -43,6 +43,6 @@ public class Deathmatch implements ZoneConfigurator {
 		Area arena = new Area(zone, shape);
 		AdosDeathmatch deathmatch = new AdosDeathmatch(zoneName, zone, arena);
 		deathmatch.createHelmet(102, 75);
-		deathmatch.createNPC("Thanatos", 98, 75);
+		deathmatch.createNPC("Thanatos", 98, 76);
 	}
 }
