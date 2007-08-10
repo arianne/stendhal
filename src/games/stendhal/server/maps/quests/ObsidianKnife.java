@@ -1,8 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-import java.util.Arrays;
-import java.util.List;
-
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Item;
@@ -11,6 +8,9 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.util.TimeUtil;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * QUEST: The Obsidian Knife
@@ -235,7 +235,8 @@ for (String name : NAMES) {
 			    	npc.say("Ah, the mountain dwarf! Hope he enjoys the gem_book.");
 			    	Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("book_blue");
 					item.put("bound", player.getName());
-					player.equip(item, true);	    	
+					player.equip(item, true);
+					player.setQuest(QUEST_SLOT, "got_book");
 				}
 			}
 		);
@@ -262,7 +263,7 @@ private void bringBookStep() {
 		        @Override
 		        public boolean fire(Player player, String text, SpeakerNPC npc) {
 			        return player.hasQuest(QUEST_SLOT)
-			                && player.getQuest(QUEST_SLOT).equals("seeking_book")
+			                && player.getQuest(QUEST_SLOT).equals("got_book")
 			        	    && player.isEquipped("book_blue");
 		        }
 	        },
@@ -285,8 +286,7 @@ private void bringBookStep() {
 		        @Override
 		        public boolean fire(Player player, String text, SpeakerNPC npc) {
 			        return player.hasQuest(QUEST_SLOT)
-			                && player.getQuest(QUEST_SLOT).equals("seeking_book")
-			        	    && !player.isEquipped("book_blue");
+				    && (player.getQuest(QUEST_SLOT).equals("seeking_book")||player.getQuest(QUEST_SLOT).equals("got_book"))&& !player.isEquipped("book_blue");
 		        }
 	        },
 	        ConversationStates.ATTENDING,
@@ -316,7 +316,7 @@ private void offerKnifeStep() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 				        String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-				        long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
+				        long delay = REQUIRED_DAYS * 60 /** 60 * 24 */* 1000; // milliseconds in REQUIRED_DAYS days
 				        long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 				                - System.currentTimeMillis();
 				        if (timeRemaining > 0L) {
@@ -337,7 +337,7 @@ private void offerKnifeStep() {
 				"obsidian",
 				null,
 				ConversationStates.QUEST_2_OFFERED,
-				 "That book says that the black gem, obsidian, can be used to make a very sharp cutting edge. Fascinating! If you bring me some I'll make a #knife for you.", 
+				 "That book says that the black gem, obsidian, can be used to make a very sharp cutting edge. Fascinating! If you slay a black dragon to bring it, I'll make a #knife for you.", 
 			    null);
 		
 		npc.add(ConversationStates.QUEST_2_OFFERED,
@@ -347,14 +347,14 @@ private void offerKnifeStep() {
 				 "I'll make an obsidian knife if you can get the gem which makes the blade. Bring a " + FISH + " so that I can make the bone handle, too.", 
 			    null);
 
-		// player says hi to NPC when equipped with the fish and the gem		
+		// player says hi to NPC when equipped with the fish and the gem and he's killed a black dragon		
 		npc.add(ConversationStates.IDLE,
 				ConversationPhrases.GREETING_MESSAGES,
 		        new SpeakerNPC.ChatCondition() {
 			        @Override
 			        public boolean fire(Player player, String text, SpeakerNPC npc) {
 				        return player.hasQuest(QUEST_SLOT)
-				                && player.getQuest(QUEST_SLOT).equals("knife_offered")
+				                && player.getQuest(QUEST_SLOT).equals("knife_offered") && player.hasKilled("black_dragon")
 				        	    && player.isEquipped("obsidian")&& player.isEquipped(FISH);
 			        }
 		        },
@@ -371,6 +371,21 @@ private void offerKnifeStep() {
 			        }
 		         }
 		       );
+		// player says hi to NPC when equipped with the fish and the gem and he's not killed a black dragon		
+		npc.add(ConversationStates.IDLE,
+				ConversationPhrases.GREETING_MESSAGES,
+		        new SpeakerNPC.ChatCondition() {
+			        @Override
+			        public boolean fire(Player player, String text, SpeakerNPC npc) {
+				        return player.hasQuest(QUEST_SLOT)
+				                && player.getQuest(QUEST_SLOT).equals("knife_offered") && !player.hasKilled("black_dragon")
+				        	    && player.isEquipped("obsidian")&& player.isEquipped(FISH);
+			        }
+		        },
+		        ConversationStates.ATTENDING,
+"Didn't you hear me properly? I told you to go slay a black dragon for the obsidian, not buy it! How do I know this isn't a fake gem? *grumble* I'm not making a special knife for someone who is scared to face a dragon.",
+		       null);
+
 
 		//  player says hi to NPC when not equipped with the fish and the gem
 		npc.add(ConversationStates.IDLE,
@@ -384,7 +399,7 @@ private void offerKnifeStep() {
 			        }
 		        },
 		        ConversationStates.ATTENDING,
-			"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a " + FISH + " and a piece of obsidian. In the meantime if I can #help you, just say the word.",
+			"Hello again. Don't forget I offered to make that obsidian knife, if you bring me a " + FISH + " and a piece of obsidian from a black dragon you killed. In the meantime if I can #help you, just say the word.",
 		       null);
 		
 		npc.add(ConversationStates.IDLE,
