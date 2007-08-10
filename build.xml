@@ -7,7 +7,7 @@
 	-->
 	<property file="build.ant-private.properties"/>
 	<property file="build.ant.properties"/>
-  
+
 	<property name="build_tests" value="${buildroot}/build_tests"/>
 
 	<property name="build_client" value="${buildroot}/build_client"/>
@@ -46,9 +46,9 @@
 			byline="true"/>
 		<replaceregexp file="web/html/stendhal.version"
 			match=".*"
-			replace="${version}"		
+			replace="${version}"
 			byline="true"/>
-		
+
 		<!-- Update location of resources -->
 		<replaceregexp file="${src}/games/stendhal/client/update/game-default.properties"
 			match="GAME_NAME=.*"
@@ -66,7 +66,7 @@
 			match="UPDATE_VERSION_CHECK=.*"
 			replace="UPDATE_VERSION_CHECK=${version_server}"
 			byline="true"/>
-		
+
 		<replaceregexp file="stendhal.jnlp"
 			match="-0\..*\.jar&quot;"
 			replace="-${version}.jar&quot;"
@@ -93,7 +93,7 @@
 		<copy todir="${build_server}/games/stendhal/server/" file="${src}/games/stendhal/server/stendhal_init.sql"/>
 
 		<javac srcdir="${src}" destdir="${build_server}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/server/**, games/stendhal/common/**" 
+           includes="games/stendhal/server/**, games/stendhal/common/**"
            excludes="games/stendhal/server/maps/**, games/stendhal/server/script/**, games/stendhal/client/**, games/stendhal/tools/**">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf8"/>
@@ -173,12 +173,12 @@
         <target name="jar" depends="client_build, server_build" description="Builds Client and Server">
             <echo>Built client and server for NetBeans.</echo>
         </target>
-        
-        
+
+
         <!-- Runs the client -->
         <target name="client_run" depends="client_build" description="Runs the client">
             <mkdir dir="run"/>
-            
+
             <copy todir="run/">
                 <fileset file="build/lib/${client_jarname}"/>
                 <fileset file="build/lib/${client_data}"/>
@@ -186,22 +186,22 @@
                 <fileset file="libs/marauroa.jar"/>
                 <fileset file="libs/log4j.jar"/>
             </copy>
-            <exec command="java -Xmx256m -cp run/ -jar run/${client_jarname}"/>            
+            <exec command="java -Xmx256m -cp run/ -jar run/${client_jarname}"/>
             <!-- we've run the program, so delete the jars -->
             <delete dir="run/"/>
-    
+
         </target>
-        
+
         <!-- Netbeans won't let you choose ant options, so this does it for us-->
         <target name="run" depends="client_run"  description="Runs client for netbeans trick"/>
-        
+
 	<target name="client_build" depends="init" description="Build JAR file for Stendhal client">
 		<mkdir dir="${build_client}/"/>
        	<copy todir="${build_client}/games/stendhal/client/gui/" file="${src}/games/stendhal/client/gui/credits.txt"/>
 
 
 		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.5" target="1.5" deprecation="${javac.deprecation}"
-           includes="games/stendhal/client/**, games/stendhal/common/**" 
+           includes="games/stendhal/client/**, games/stendhal/common/**"
            excludes="games/stendhal/server/**, games/stendhal/tools/**, games/stendhal/client/update/Starter.java">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="utf-8"/>
@@ -212,8 +212,8 @@
 				<pathelement path="${junit_jar}"/>
 			</classpath>
 		</javac>
-		
-		<!-- compile Starter.java for Java 1.2. So we will be able to 
+
+		<!-- compile Starter.java for Java 1.2. So we will be able to
   		 display a dialogbox if running on an old Java Version -->
 		<javac srcdir="${src}" destdir="${build_client}" debug="${javac.debug}" debuglevel="${javac.debuglevel}" source="1.2" target="1.2" deprecation="${javac.deprecation}"
            includes="games/stendhal/client/update/Starter.java">
@@ -285,7 +285,7 @@
 	</target>
 
 	<target name="docs" depends="server_build, client_build" description="Build javadocs for Stendhal">
-		<javadoc packagenames="games.stendhal.*"           
+		<javadoc packagenames="games.stendhal.*"
            defaultexcludes="yes"
            destdir="${docs}"
            author="true"
@@ -306,7 +306,7 @@
        <available file="keystore.ks"/>
       </not>
     </condition>
-	
+
 	<target name="sign_jars" depends="server_build, client_build" unless="exclude.signing">
 		<signjar alias="${keystore.alias}" keystore="keystore.ks" storepass="${keystore.password}">
 			<fileset dir="${lib}">
@@ -356,7 +356,7 @@
 		<copy todir="${buildroot}/stendhal-server-${version}" file="COPYING"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="LICENSE"/>
 		<copy todir="${buildroot}/stendhal-server-${version}" file="README"/>
-		<zip destfile="${buildroot}/stendhal-server-${version}.zip" 
+		<zip destfile="${buildroot}/stendhal-server-${version}.zip"
 			basedir="${buildroot}/stendhal-server-${version}"/>
 		<delete dir="${buildroot}/stendhal-server-${version}"/>
 	</target>
@@ -373,7 +373,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
-		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip" 
+		<zip destfile="${buildroot}/stendhal-FULL-${version}.zip"
          	basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
@@ -390,7 +390,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
-		<zip destfile="${buildroot}/stendhal-${version}.zip" 
+		<zip destfile="${buildroot}/stendhal-${version}.zip"
 			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
@@ -403,7 +403,7 @@
 		<copy todir="${buildroot}/stendhal-${version}" file="COPYING"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="LICENSE"/>
 		<copy todir="${buildroot}/stendhal-${version}" file="README"/>
-		<zip destfile="${buildroot}/stendhal-starter-${version}.zip" 
+		<zip destfile="${buildroot}/stendhal-starter-${version}.zip"
 			basedir="${buildroot}/stendhal-${version}"/>
 		<delete dir="${buildroot}/stendhal-${version}"/>
 	</target>
@@ -502,6 +502,7 @@
 		<mapupdater>
 			<fileset dir="tiled/">
 				<include name="Level */**/*.tmx"/>
+				<include name="interiors/**/*.tmx"/>
 			</fileset>
 		</mapupdater>
 	</target>
@@ -547,5 +548,5 @@
 			</fileset>
 		</xmlvalidate>
 	</target>
-        
+
 </project>
