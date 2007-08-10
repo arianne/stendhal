@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Map;
 
 /**
- * Ados Wall North population
+ * Ados Wall North population - Deathmatch
  *
  * @author hendrik
  */
@@ -26,13 +26,7 @@ public class Deathmatch implements ZoneConfigurator {
 	}
 
 	/**
-	 * Creatures a soldier telling people a story, why Ados is so empty.
-	 *
-	 * @param zone StendhalRPZone
-	 */
-
-	/**
-	 * Creatures the Deathmatch referee.
+	 * Creates the Deathmatch referee.
 	 *
 	 * @param zone StendhalRPZone
 	 */
@@ -43,6 +37,6 @@ public class Deathmatch implements ZoneConfigurator {
 		Area arena = new Area(zone, shape);
 		AdosDeathmatch deathmatch = new AdosDeathmatch(zoneName, zone, arena);
 		deathmatch.createHelmet(102, 75);
-		deathmatch.createNPC("Thanatos", 98, 75);
+		deathmatch.createNPC("Thanatos", 98, 76);
 	}
 }
