@@ -513,18 +513,18 @@ public class j2DClient extends StendhalUI {
 			logger.debug("Move objects");
 			gameObjects.update(delta);
 
- 			if(!client.isInTransfer()) {
-				// create the map if there is none yet
-				if (gameLayers.changedArea()) {
-					CollisionDetection cd = gameLayers.getCollisionDetection();
-					if (cd != null) {
-						gameLayers.resetChangedArea();
-						settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
-					}
+			// create the map if there is none yet
+			if (gameLayers.changedArea()) {
+				CollisionDetection cd = gameLayers.getCollisionDetection();
+				if (cd != null) {
+					gameLayers.resetChangedArea();
+					settings.updateMinimap(cd, screen.expose().getDeviceConfiguration(), gameLayers.getArea());
 				}
+			}
 
-				settings.setPlayer(User.get());
+			settings.setPlayer(User.get());
 
+ 			if(!client.isInTransfer()) {
 				if (frame.getState() != Frame.ICONIFIED) {
 					logger.debug("Draw screen");
 					screen.draw(baseframe);
