@@ -147,16 +147,16 @@
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="344" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/mummy.png" firstgid="356" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/mummy.png" firstgid="357" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mummy.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="358" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="359" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="365" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="366" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Sin nombre" firstgid="366" tilewidth="32" tileheight="32">
+ <tileset name="Sin nombre" firstgid="367" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead_fallen.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -186,12 +186,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dOw6DMAwAUDgnU1FZGLr1/oipTIhP0jjkvRMggRzHdkLXAQAAAAAAAAAAPNvUl34CoKSXGBDK4H0QnLyBK0bfDQAAAAAAAEASs/4rAABw0DvT/sFc6HM5XxKL2X1SyhW7rQk/YihQ0pncX7yC9PTvAADasuZ/ckAAaMNe7TXXTAYAAAAAAFCG2j9XmdHPw/+7AAC4w30dwJaYUAc1FgBqY+0CiEO/HwAAIAY1M2pmdhkAAAAAAKANH30hAIC/+8rBAAAAAACAhi2MOLHbAAABAA==
+   H4sIAAAAAAAAAO3dOw6DMAwAUDgnU5HKwtCt50dMZUJ8ksYh750ACeQ4thO6DgAAAAAAAAAA4NmmvvQTACW9xIBQBu+D4OQNXDH6bgAAAAAAAACSmPVfAQCAg96Z9g/mQp/L+ZJYzO6TUq7YbU34EUOBks7k/uIVpKd/BwDQljX/kwMCQBv2aq+5ZjIAAAAAAIAy1P65yox+Hv7fBQDAHe7rALbEhDqosQBQG2sXQBz6/QAAADGomVEzs8sAAAAAAABt+OgLAQD83VcOBgAAAAAANGwBuVa1SAAAAQA=
   </data>
  </layer>
  <layer name="collision" width="128" height="128" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2W0WrEMAwE2w++/3/tU6Hk6otjS96VPYKBEhxF3hH0Xt9fXy8AAAAAAAAAAAAAAAAAAAAAABMqlTqrauxe6nydoN5L7QTv+lL7wb2+1J5wry+1r2r+d7yX2plLRur5lfugvo8iE/W8LjnsksVJd2UHcJ+xB+p58c8OZN1RPaNzNtWz2vFOyh1Qz4t/dgD/2h1Qz4p//ONftwPqOTPuVPmOq/NSz7hqB6reF/+x/qveG/+x/iPv75oj/vMyWFWZWaldOuUeNcPsnK338e+xA6vq0/dO95/pxcV/b+E/3lEl/781Mqfak+seVPQ/Umo/rnuA//2IymWnUjtx3QH870tELjuU2kNl/zvsgNqD8w7s7l+dvwuz2VQsdeaOrMoFx4BPAAAAD/g/uz/8pj4b/J8N/s8G/2eD/7PB/9ng/2zwD3e7oZ4D8A/4B/wD/k8n+nf6aI32U+dXmZmK7jfaU51hVa4ZrnCV0VOdY1WuGe5a6pxduWaUmX/Ps8zvQ7z/u55Rrj6dGe0J7xlluMro+eR76oydueaU4SqjJ/7xj/86/lsOR3s+3Td1zq70+Hia62zhX+M/y1V0z5HvqXN2ZdRPr6vR/it6wvP8VK4yesLz/EZdtd594mqm1Dm7Mlurevb2bZ1X5+xKhitlT/yP+Y98b7bwv96/wlVGz9ZZdc6uKF2N9Bz9jjpnVzJdXc/1PLvrif+a/qN64v9s/5E9YT7XKqXO2ZX/8mk9q7o36oydyci2da7n2V3Pv7s4MyOs9R/Rc+Y76pxdyXIV3XP2DuqcXclyFd3v7g53f4Nmr7LOgzf4Pxv8nw3+zwb/e+JQGbOpc61CVMYZrjJ6QkzG13dne+G/jvuMwj/+8Y9//OMf//jP8P/k7AlEVGQflf+ed3fEqfCPf/zjH//4xz/+8Y9/VT+1FwAAAAAAAACoyQ9xt4v/AAABAA==
+   H4sIAAAAAAAAAO2W0WrEMAwE2x++/3/sU6Hk6otjS96VPYKBEhxF3hH0Xt9fXy8AAAAAAAAAAAAAAAAAAAAAABMqlTqrauxe6nydoN5L7QTv+lL7wb2+1J5wry+1r2r+d7yX2plLRur5lfugvo8iE/W8LjnsksVJd2UHcJ+xB+p58c8OZN1RPaNzNtWz2vFOyh1Qz4t/dgD/2h1Qz4p//ONftwPqOTPuVPmOq/NSz7hqB6reF/+x/qveG/+x/iPv75oj/vMyWFWZWaldOuUeNcPsnK338e+xA6vq0/dO95/pxcV/b+E/3lEl/781Mqfak+seVPQ/Umo/rnuA//2IymWnUjtx3QH870tELjuU2kNl/zvsgNqD8w7s7l+dvwuz2VQsdeaOrMoFx4BPAAAAD/g/uz/8pj4b/J8N/s8G/2eD/7PB/9ng/2zwD3e7oZ4D8A/4B/wD/k8n+nf6aI32U+dXmZmK7jfaU51hVa4ZrnCV0VOdY1WuGe5a6pxduWaUmX/Ps8zvQ7z/u55Rrj6dGe0J7xlluMro+eR76oydueaU4SqjJ/7xj/86/lsOR3s+3Td1zq70+Hia62zhX+M/y1V0z5HvqXN2ZdRPr6vR/it6wvP8VK4yesLz/EZdtd594mqm1Dm7Mlurevb2bZ1X5+xKhitlT/yP+Y98b7bwv96/wlVGz9ZZdc6uKF2N9Bz9jjpnVzJdXc/1PLvrif+a/qN64v9s/5E9YT7XKqXO2ZX/8mk9q7o36oydyci2da7n2V3Pv7s4MyOs9R/Rc+Y76pxdyXIV3XP2DuqcXclyFd3v7g53f4Nmr7LOgzf4Pxv8nw3+zwb/e+JQGbOpc61CVMYZrjJ6QkzG13dne+G/jvuMwj/+8Y9//OMf//jP8P/k7AlEVGQflf+ed3fEqfCPf/zjH//4xz/+8Y9/VT+1FwAAAAAAAACoyQ+JAalyAAABAA==
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

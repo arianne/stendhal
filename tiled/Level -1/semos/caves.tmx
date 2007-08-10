@@ -42,16 +42,16 @@
  <tileset name="../../tileset/logic/creature/huge_animal.png" firstgid="160" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/animal.png" firstgid="170" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/animal.png" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="194" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="196" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/giant_human.png" firstgid="201" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/giant_human.png" firstgid="203" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/giant_human.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="208" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="213" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -81,12 +81,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3dwQ2AIBAEQPovxI+W4UersgETfYCHdzMVbAS8TTShNQAAAAAAAAAAAKpaogMAAEBBW3QAAIZ6es+bA/Wc0QEA+Jx5DwBQ0x4dAAAAAAAAJuQ/CgAYz7zlb+zZcTxbAKAHnQIAIBf9DgDIQKcBAIC+dGyoIfNZP6IDAMBPZO4DAAAAwL01OgAwlDMOADzRF3J4s46+BwMA5OeudAAAAAAAAAAAAAAAAABgVhf9+smIAAABAA==
+   H4sIAAAAAAAAAO3dwQ2AIBAEQPovxJ+W4UeLsgETfYCHdzMVbAS8TTShNQAAAAAAAAAAAKpaogMAAEBBW3QAAIZ6es+bA/Wc0QEA+Jx5DwBQ0x4dAAAAAAAAJuQ/CgAYz7zlb+zZcTxbAKAHnQIAIBf9DgDIQKcBAIC+dGyoIfNZP6IDAMBPZO4DAAAAwL01OgAwlDMOADzRF3J4s46+BwMA5OeudAAAAAAAAAAAAAAAAABgVhdkJn1FAAABAA==
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2SUU7EUAzEev/T7ZH4AQmhXUHbJJ4sHsniB6gz8x7HcTxEREREREREREREPjkb2leY3b+Hdhf3l9nNn4W+R9jtv35KPlOh7xT3F/ff2nGyW0XIDbb1uc33TLbuT2Sb95nvb9g/Idv3734Hd70SN/+e9P2rfDrvSunqSpL373DruInqqeIbdzueuq3arfKGiX66dkjcvsKrq5uzrndC3fiO+//VN/HNdW+Rtn/X9pMQN18N9d0uHxrq3qshv93ls2V/8t1VOlSG3m+qgwSHSo+K0Btu7D3Jg/qu22e4UHe7/TWn6W/Te7379mfciO/Sm5HbU/dPuqR2kLA/7fzlTfdCdzC9Pe2b2A3t6fbu731cT7Rf5/Zb75vuinZ0e7Yz2s/9+c5ox+rtt9yU1B3t6P58d7Rn1fbp96T19+x3aOe72yfesrlHynmrexpV2eY76ZxMZTa5TvhuoTIbHCd8t1KVRKcJ13ehIoTL1b+l+07mbqjtr7jTXSdzN9PbX3Wme06mIh3fIP7nf6UyFf+325nuO5Gf/VzN3Y0m3y7deSJ0CGe68zTIkN5072lMJ8WZ7j2J7qR70/2n0JGN3vQOKdzNJtekW9LY1Fl36C22dbrN90zoXbb0utH5bOht0ruk3Sffwm+he/iv+6e8B/puqjfaO+Ud0PeS3dG+7u/+7u8bIN8AfSvdH+3q/myHtKf7sz3Sju7P90h7uj/bJe3o/jNdvuqWdnR/vk/akXoD9J1JfdKOxBugb0zqknYk3gB9X1KPtKOw+x8BnsK+AdpR3F/cX+Y2fxXaXbjtjwB/cX/h9j8CbhB2/yPgDuG2PwJuEfcX9xf3l/k3QN8h7i+z74B2lv43QTuIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIPOMDdtn3cQAAAQA=
+   H4sIAAAAAAAAAO2SUU7EUAzEev/77X34AQmhXUHbJJ4sHsniB6gz8x7HcTxEREREREREREREPjkb2leY3b+Hdhf3l9nNn4W+R9jtv35KPlOh7xT3F/ff2nGyW0XIDbb1uc33TLbuT2Sb95nvb9g/Idv3734Hd70SN/+e9P2rfDrvSunqSpL373DruInqqeIbdzueuq3arfKGiX66dkjcvsKrq5uzrndC3fiO+//VN/HNdW+Rtn/X9pMQN18N9d0uHxrq3qshv93ls2V/8t1VOlSG3m+qgwSHSo+K0Btu7D3Jg/qu22e4UHe7/TWn6W/Te7379mfciO/Sm5HbU/dPuqR2kLA/7fzlTfdCdzC9Pe2b2A3t6fbu731cT7Rf5/Zb75vuinZ0e7Yz2s/9+c5ox+rtt9yU1B3t6P58d7Rn1fbp96T19+x3aOe72yfesrlHynmrexpV2eY76ZxMZTa5TvhuoTIbHCd8t1KVRKcJ13ehIoTL1b+l+07mbqjtr7jTXSdzN9PbX3Wme06mIh3fIP7nf6UyFf+325nuO5Gf/VzN3Y0m3y7deSJ0CGe68zTIkN5072lMJ8WZ7j2J7qR70/2n0JGN3vQOKdzNJtekW9LY1Fl36C22dbrN90zoXbb0utH5bOht0ruk3Sffwm+he/iv+6e8B/puqjfaO+Ud0PeS3dG+7u/+7u8bIN8AfSvdH+3q/myHtKf7sz3Sju7P90h7uj/bJe3o/jNdvuqWdnR/vk/akXoD9J1JfdKOxBugb0zqknYk3gB9X1KPtKOw+x8BnsK+AdpR3F/cX+Y2fxXaXbjtjwB/cX/h9j8CbhB2/yPgDuG2PwJuEfcX9xf3l/k3QN8h7i+z74B2lv43QTuIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIPOMDabBNSgAAAQA=
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

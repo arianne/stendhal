@@ -30,9 +30,6 @@
  <tileset name="Unbenannt" firstgid="76" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/shelve/dark_bookshelf_2.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="82" tilewidth="0" tileheight="0">
-  <image source="../../../../stendhal_mapeditor"/>
- </tileset>
  <tileset name="Unbenannt" firstgid="82" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/statue/bird.png"/>
  </tileset>

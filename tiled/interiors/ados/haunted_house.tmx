@@ -90,25 +90,25 @@
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="272" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/animal.png" firstgid="284" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/animal.png" firstgid="285" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="308" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="309" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/mutant.png" firstgid="315" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/mutant.png" firstgid="316" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/mutant.png"/>
  </tileset>
- <tileset name="huge_animal.png" firstgid="318" tilewidth="32" tileheight="32">
+ <tileset name="huge_animal.png" firstgid="322" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/huge_animal.png"/>
  </tileset>
- <tileset name="stairs.png" firstgid="328" tilewidth="32" tileheight="32">
+ <tileset name="stairs.png" firstgid="334" tilewidth="32" tileheight="32">
   <image source="../../tileset/building/stairs/stairs.png"/>
  </tileset>
- <tileset name="blood/nsew_stains.png" firstgid="332" tilewidth="32" tileheight="32">
+ <tileset name="blood/nsew_stains.png" firstgid="338" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/nsew_stains.png"/>
  </tileset>
- <tileset name="blood/floor_stain.png" firstgid="336" tilewidth="32" tileheight="32">
+ <tileset name="blood/floor_stain.png" firstgid="342" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/blood/floor_stain.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
@@ -118,12 +118,12 @@
  </layer>
  <layer name="1_terrain" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2WW07CQBSGpw/sAURBERBexL5gIgkm8FakwiZAZRXqm7oyLxtQ2AiUhL9hJmkmB2FmekHTSb5M05P/fO0009ZmjJ0RPIIn8Lyh7tMEl/z4Ati/1Cn8TB0MQV/iBbyCN6ImuAItMAA1opeoU9lgpsfMhqPRSycTpT8LcgQHMfnz4JDg6A/438EH+ARfiv42uAYFUCQ43rGf6hD+Duga9voGP2AKZop++ZlV+Fzic9mgl07mHjxITGL0j8BY4i4m/0mgfsrnEts+VPwZSz0Tpt8ks29+i5P6U/+++ed8XibkX2zJRr3/hV+875Lyb1qH/37/nnQdcfvFCPrdwFpE7Rf7ziMTyX3/HGu9Dkn5b4j/j1v/vAGuRi+RaYBqCJxr9PIzKyXXf4kAEAAA
+   H4sIAAAAAAAAAO3WW07CQBgF4OmDexBEuaO+gH2RBBNM4E0Bq3ENXHQVwpuwMtANCGxEa+JpnEmayQ91ZmiLhEm+DMnk/AdKCrUZY6eEFxjCaMW55xKq/PUF2GvOKV7mHO6hLXmFMUyIM6EGV+DAGTFLnFNZf+aWma0bjVk6mTD7DyFBSEbUfwQpwvE/6J/CDN7gXbG/DtdwAmlC5o/zVJfob0DTcNYHzGEBS8V++Tsr8j3H94LBLJ3MAJ4kzxH2d6En6UfUn/Wd5/meY8FLpf/AUs9sst8ks239Frfv3/dvW/8n379j6v8KyIZ9/4t+8XsXV/+q67Drn9+V3kfU/WL5+x991yLsfnHfuWQivv8/x/q9DnH1PxDPH3fQMtDRmCUyFShtQFljlpf5ATbUD1cAEAAA
   </data>
  </layer>
  <layer name="2_object" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2V2UrEMBhGMy6M+gRuo76Q4LXr4IU6Po27Xqh37ruiowiCoKC3Li/jjMsZSaEG0ya2aebCDw4tbf7/pCRthTDLBmxKtgxrbDIIQzCsub8NO5JdB/4RGIWxFHq1Q4ekM4V+tumCbklBXvuAz9pJzo//W427waO/EXeTR7+rPMEzvMCrxl8P65/H3RLjz6cwvyTrX4JphWZNzbml3yQTMKkwZdmjXtc/l4G7lh7olfSFrmf1/meVS7iKGTPu0H8Ntw77r8IarEf47xy5Z2A2xJzG7yrzsBBi0YNfGPjvNfVv8viewB/3/DdCv/8rf/Ta+KMS/Ovi/neu/K142yz94W9FUn9FOV5A2aJ+CZZDrFj6q4rfV0z9RYuee7APBxFjgveuGjFG9ZvO4RCO4BgeDGuC9LMfB37Zk0VhPocTOIUzeLT0/+dnvgDFCbP0ABAAAA==
+   H4sIAAAAAAAAAO2V2UrEMBhGMy6M+gRuo76T4IXr4IU6Po27Xqh37ruiowiCoKC3Li/jjMsZSaEG0ya2aebCDw4tbf7/pCRthTDLBmxKtgxrbDIIQzCsub8NO5JdB/4RGIWxFHq1Q4ekM4V+tumCbklBXvuAz9pJzo//W427waO/EXeTR7+rPMEzvMCrxl8P65/H3RLjz6cwvyTrX4JphWZNzbml3yQTMKkwZdmjXtc/l4G7lh7olfSFrmf1/meVS7iKGTPu0H8Ntw77r8IarEf47xy5Z2A2xJzG7yrzsBBi0YNfGPjvNfVv8viewB/3/DdCv/8rf/Ta+KMS/Ovi/neu/K142yz94W9FUn9FOV5A2aJ+CZZDrFj6q4rfV0z9RYuee7APBxFjgveuGjFG9ZvO4RCO4BgeDGuC9LMfB37Zk0VhPocTOIUzeLT0/+dnvgCOAG7AABAAAA==
   </data>
  </layer>
  <layer name="3_roof" width="32" height="32">
@@ -133,7 +133,7 @@
  </layer>
  <layer name="objects" width="32" height="32">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGLzAgnGgXTB4AN9oWJAMNMgIM14i9BCjZhQMTyBKozQ1CkbBYACE0rf8EEnLo/XlKEAHQyXtktNuGSmAnPp3MACbIepuaoPRPt3gAgBEV5KYABAAAA==
+   H4sIAAAAAAAAAGNgGLzAknGgXTB4AN9oWJAMNMkIM14i9BCjZhQMTyBKozQ1CkbBYACE0rfCEEnLo/XlKEAHQyXtktNuGSmAnPp3MADbIepuaoPRPt3gAgBOVfdkABAAAA==
   </data>
  </layer>
  <layer name="collision" width="32" height="32" opacity="0.52">

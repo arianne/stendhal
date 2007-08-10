@@ -81,7 +81,7 @@
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="221" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="233" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="234" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -116,7 +116,7 @@
  </layer>
  <layer name="collision" width="64" height="64" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO1UbY5DIQj0/jf1Fvu3MSIzMKC7WxLT9hXmA/DNMcYc+Zibg+SgR4GB4K88n7933706le5u/2x4GK/7R/rwmcPkK3V1+FfsS+VcKr0yHLf8K/AtnFf9q3bA08lw3PKfxZgHHNa/ai4d/ncRyWHy1N6jfFYgOTuurB6Ff5R7zbHqIviohhf8e3XW/yd8VMMt7xaGioPVofTe2WOkB9V6qvjQ6PLvcav5kF4g+RX8XfumntGai+pH8W76R317O2X1BfV/qweeD8a/FRk8Rn/UL8M7Bo6TmYGHxfJFgrkzrJ7M3erwn52Z+l56zzt2v9N/BYdVG8FUa2N5dnlR//PwPNoDlX/F3iMzjuB7oe6Bqn+ID4X/V/rBeme0vtoDhj+jc5e/w3rZP5p/CvVeqfbay4vucQbTymX2zMNFNXr9QiKzh1kcrx7BZvNRzcg8vGdMKPxXn4rIzvPFPjB1r/hneX6jfzS6/KMc3f4R3mhdVKf1f5V3DztSo9Sq3I8Izm3/Sk6F/xnAUOzoqqHLv6X3pv8dvwKD2YGoX2UPspH1EJmxtY9dodjZzH53vRPG4HUr3h07XUhtJk6Yqh6s9UqdJ0z0LjHzqJoDqy3DXXFvMxoYTcy+sjoUGqo5snv61/xH+Co0jlGHjXqp2hl23h3+K7SrfTO4TG2GJ4txylVgIjVRHmR2Xu3uk91NJpD66pmzc2L1n8KbRVT7XL5HcDJ7tsNAsaOnEjvin8Xr0P3q+e/+v+d7fgAiu+dSAEAAAA==
+   H4sIAAAAAAAAAO1UbY5DIQj0/kf1FPu3MSIzMKC7WxLT9hXmA/DNMcYc+Zibg+SgR4GB4K88n7933706le5u/2x4GK/7R/rwmcPkK3V1+FfsS+VcKr0yHLf8K/AtnFf9q3bA08lw3PKfxZgHHNa/ai4d/ncRyWHy1N6jfFYgOTuurB6Ff5R7zbHqIviohhf8e3XW/yd8VMMt7xaGioPVofTe2WOkB9V6qvjQ6PLvcav5kF4g+RX8XfumntGai+pH8W76R317O2X1BfV/qweeD8a/FRk8Rn/UL8M7Bo6TmYGHxfJFgrkzrJ7M3erwn52Z+l56zzt2v9N/BYdVG8FUa2N5dnlR//PwPNoDlX/F3iMzjuB7oe6Bqn+ID4X/V/rBeme0vtoDhj+jc5e/w3rZP5p/CvVeqfbay4vucQbTymX2zMNFNXr9QiKzh1kcrx7BZvNRzcg8vGdMKPxXn4rIzvPFPjB1r/hneX6jfzS6/KMc3f4R3mhdVKf1f5V3DztSo9Sq3I8Izm3/Sk6F/xnAUOzoqqHLv6X3pv8dvwKD2YGoX2UPspH1EJmxtY9dodjZzH53vRPG4HUr3h07XUhtJk6Yqh6s9UqdJ0z0LjHzqJoDqy3DXXFvMxoYTcy+sjoUGqo5snv61/xH+Co0jlGHjXqp2hl23h3+K7SrfTO4TG2GJ4txylVgIjVRHmR2Xu3uk91NJpD66pmzc2L1n8KbRVT7XL5HcDJ7tsNAsaOnEjvin8Xr0P3q+e/+v+d7fgDIFXB8AEAAAA==
   </data>
  </layer>
  <layer name="protection" width="64" height="64">

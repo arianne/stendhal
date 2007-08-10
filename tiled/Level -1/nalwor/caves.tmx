@@ -24,10 +24,10 @@
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="83" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/animal.png" firstgid="95" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/animal.png" firstgid="96" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/animal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="119" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="120" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="128" height="128">
@@ -57,12 +57,12 @@
  </layer>
  <layer name="objects" width="128" height="128">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3YKxKAMAwFQA6HwcMBuP8lGByC4Z+mwK6tiXhJ2zQNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8GVDdgGcNmYXAITqN85K9r9ZA+UceY/pSUo5kjV/CM7osgugCnJQv4y3hlwAAGvsQN5la599h90DUaIy+zcRPVrr/K+1rmhtdgEPcZ9c95UMcN1TGdjrw7/O2bcyG5jJAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALA0AU0c650AAAEA
+   H4sIAAAAAAAAAO3YKxKAMAwFQA6HwcMFuP8hGByC4Z+mwK6tiXhJ2zQNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8GVDdgGcNmYXAITqN85K9r9ZA+UceY/pSUo5kjV/CM7osgugCnJQv4y3hlwAAGvsQN5la599h90DUaIy+zcRPVrr/K+1rmhtdgEPcZ9c95UMcN1TGdjrw7/O2bcyG5jJAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALA0ARki7OgAAAEA
   </data>
  </layer>
  <layer name="collision" width="128" height="128" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO3SQQoDMQwEwf31fj+H/CAEWparoe5m5Pd5nhcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGP8Wv3u7U6q3mqjU6t322JD9YYn21a952m2Vu96ihuqN57stuq9p7m5evsJ9K2+g/vPqL7H6bZU77jBhuoNmfmn6h3QP6pv6C+01XfzF9rqW/kLbfV9/IO2+i7+QVt9D3+grb6FP9BW32Ga26r3nuqW6p0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApvsA6Rvr7gAAAQA=
+   H4sIAAAAAAAAAO3SQQoDMQwEwX32Pj+H/CAEWparoe5m5Pd5nhcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGP8Wv3u7U6q3mqjU6t322JD9YYn21a952m2Vu96ihuqN57stuq9p7m5evsJ9K2+g/vPqL7H6bZU77jBhuoNmfmn6h3QP6pv6C+01XfzF9rqW/kLbfV9/IO2+i7+QVt9D3+grb6FP9BW32Ga26r3nuqW6p0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAApvsATfYeYwAAAQA=
   </data>
  </layer>
  <layer name="protection" width="128" height="128">

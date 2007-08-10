@@ -90,7 +90,7 @@
  <tileset name="../../tileset/logic/creature/undead.png" firstgid="265" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/undead.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="277" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="278" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="64" height="64">
@@ -125,7 +125,7 @@
  </layer>
  <layer name="collision" width="64" height="64" visible="0" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAO2UW67DIAxEexfR/W+1X5EQwvg1HpzcWEKVHLDnDKbfv8/n+653BdYVp3V0YV/FnI/26eZzNDI9MlpZ7J49kT5VeqM1KmbkqpvRi9DPOO+NLPv4HjL6K2ewkj9TL6MBoRk9+56aCB0IzejaXe+f4eXLn58b9Gyy/WB72cUrNn/Us4zfuz0RfkZU9MvwW2ozoqpP5Z3vaq3m1Kpv/obUGOHX3lqnheS/E7fEhvTqTsvC9FR2jV+adW1+UMFi9/Aj2az7qtmlPgjGbM1qbotWRK1T/Jk+KA0n+K01d7kq/rmvl9/DpTHM360aGHePCKueCL+n1wl+j54Ik7en1M/jjdfjyL5MIO8f9e6892bRxeCv8sDKX+U/6j0he3XgP7F2/P/JA68vkjd39G3Hn43TbFF+pAdIH8ZaqF6WM5baDB8qelTxr/Ld+K1nrPzS3p0+ZES91PKW+poWLc9k1zgjfbT9q/OeHlFdrPeFCPb7r66P4vb624Vf63PKywp9jIXmvBs/2+fTOl7+vvxP9khiY/4Hd+S/vq32PYUfGSd0svhXc8Ji13R666zqZmbh9Iwi+Od64z5rjsFvyUf5rX5LnnXg32kZ946/iGDNffRdzHlEROc/2gtRZ9S9y0ueWeYMOVezBkRPlEarDikXffeRWRtzPz9oWrgAQAAA
+   H4sIAAAAAAAAAO2UW67DIAxEezfR/S+1X5EQwvg1HpzcWEKVHLDnDKbfv8/n+653BdYVp3V0YV/FnI/26eZzNDI9MlpZ7J49kT5VeqM1KmbkqpvRi9DPOO+NLPv4HjL6K2ewkj9TL6MBoRk9+56aCB0IzejaXe+f4eXLn58b9Gyy/WB72cUrNn/Us4zfuz0RfkZU9MvwW2ozoqpP5Z3vaq3m1Kpv/obUGOHX3lqnheS/E7fEhvTqTsvC9FR2jV+adW1+UMFi9/Aj2az7qtmlPgjGbM1qbotWRK1T/Jk+KA0n+K01d7kq/rmvl9/DpTHM360aGHePCKueCL+n1wl+j54Ik7en1M/jjdfjyL5MIO8f9e6892bRxeCv8sDKX+U/6j0he3XgP7F2/P/JA68vkjd39G3Hn43TbFF+pAdIH8ZaqF6WM5baDB8qelTxr/Ld+K1nrPzS3p0+ZES91PKW+poWLc9k1zgjfbT9q/OeHlFdrPeFCPb7r66P4vb624Vf63PKywp9jIXmvBs/2+fTOl7+vvxP9khiY/4Hd+S/vq32PYUfGSd0svhXc8Ji13R666zqZmbh9Iwi+Od64z5rjsFvyUf5rX5LnnXg32kZ946/iGDNffRdzHlEROc/2gtRZ9S9y0ueWeYMOVezBkRPlEarDikXffeRWRtzP8ZLVCwAQAAA
   </data>
  </layer>
  <layer name="protection" width="64" height="64">
