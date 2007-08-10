@@ -112,6 +112,15 @@ public class TutorialNotifier {
 	}
 
 	/**
+	 * player got poisoned
+	 *
+	 * @param player Player
+	 */
+	public static void poisoned(Player player) {
+		process(player, TutorialEventType.FIRST_POISONED);
+	}
+
+	/**
 	 * a player who stayed another minute in game
 	 *
 	 * @param player Player

@@ -1342,6 +1342,7 @@ public class Player extends RPEntity {
 		} else {
 			// put("poisoned", "0");
 			poisonToConsume.add(item);
+			TutorialNotifier.poisoned(this);	
 			return true;
 		}
 	}
