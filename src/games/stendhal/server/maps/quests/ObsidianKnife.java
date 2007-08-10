@@ -70,16 +70,16 @@ public class ObsidianKnife extends AbstractQuest {
 		npc.add(ConversationStates.ATTENDING,
 				ConversationPhrases.QUEST_MESSAGES,
 				null,
-		        ConversationStates.QUEST_ITEM_QUESTION,
+		        ConversationStates.ATTENDING,
 		        null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 				        if (!player.hasQuest(QUEST_SLOT) || /*player.hasQuest(QUEST_SLOT)&&*/player.getQuest(QUEST_SLOT).equals("rejected")) {
 					        npc.say("You know, it's hard to get food round here. I don't have any #supplies for next year.");
+						npc.setCurrentState(ConversationStates.QUEST_ITEM_QUESTION);
 				        } else if (player.isQuestCompleted(QUEST_SLOT)) {
 					        npc.say("I'm inspired to work again! I'm making things for Wrvil now. Thanks for getting me interested in forging again.");
-					        npc.setCurrentState(ConversationStates.ATTENDING);
 				        } else if (player.hasQuest(QUEST_SLOT)&&player.getQuest(QUEST_SLOT).equals("food_brought")){
 				        	npc.say("Now I'm less worried about food I've realised I'm bored. There's a #book I'd love to read.");
 				        	npc.setCurrentState(ConversationStates.QUEST_ITEM_BROUGHT);
