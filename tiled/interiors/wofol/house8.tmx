@@ -81,7 +81,7 @@
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAUNQJzKQD5IwyLWCMRNQNyMR18bEKdjEW/Bo6cOiOuJEKO2XmygDYtYB5XtpUQvNvcRC4i1t5MCvfQErWh4oAEAROBzwIQDAAA=
+   H4sIAAAAAAAAAGNgQAUNQJzKQD5IwyLWCMRNBPS1AXE6FvFmIG7BoacOiOuJEKO2XmygDYtYB5XtpUQvNvcRC4i1t5MCvfQErWh4oAEAjjNb4YQDAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
@@ -101,7 +101,7 @@
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtlYGCoHUBMCJBqBi5zqakXlztJcftgcDMuQK691PYvJW4mRS2xaYxWeQAALarIOYQDAAA=
+   H4sIAAAAAAAAAKtlYGCoHUBMCCCrI8YMXOZSUy8udxJr52BxMy5Arr3U9i8lbiZFLbHplFZ5AAAJ51+0hAMAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="15">
