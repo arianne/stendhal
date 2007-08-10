@@ -657,24 +657,14 @@ public class GameScreen {
 
 
 	/**
-	 * Remove all objects from the screen.
-	 */
-	public void removeAll() {
-		Log4J.startMethod(logger, "removeAll");
-
-		views.clear();
-		texts.clear();
-		textsToRemove.clear();
-
-		Log4J.finishMethod(logger, "removeAll");
-	}
-
-
-	/**
 	 * Clear the screen.
 	 */
 	public void clear() {
 		Log4J.startMethod(logger, "clear");
+
+		views.clear();
+		texts.clear();
+		textsToRemove.clear();
 
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());

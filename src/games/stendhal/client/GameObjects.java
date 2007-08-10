@@ -104,7 +104,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		}
 
 		objects.clear();
-		GameScreen.get().removeAll();
+		GameScreen.get().clear();
 
 		Log4J.finishMethod(logger, "clear");
 	}

@@ -524,15 +524,13 @@ public class j2DClient extends StendhalUI {
 
 			settings.setPlayer(User.get());
 
- 			if(!client.isInTransfer()) {
-				if (frame.getState() != Frame.ICONIFIED) {
-					logger.debug("Draw screen");
-					screen.draw(baseframe);
-				}
-
-				// TODO: only draw it if it is required to save cpu time
-				// fx.draw(screen.expose());
+			if (frame.getState() != Frame.ICONIFIED) {
+				logger.debug("Draw screen");
+				screen.draw(baseframe);
 			}
+
+			// TODO: only draw it if it is required to save cpu time
+			// fx.draw(screen.expose());
 
 			logger.debug("Query network");
 			if (client.loop(0)) {

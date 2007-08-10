@@ -84,14 +84,6 @@ public class StaticGameLayers {
 		width = 0.0;
 		area = null;
 		areaChanged = true;
- 		invalidate();
- 	}
- 
- 
- 	/**
- 	 * Invalidate any cached settings.
- 	 */
- 	public void invalidate() {
 		valid = true;
 	}
 
