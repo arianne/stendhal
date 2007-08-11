@@ -1,0 +1,79 @@
+/*
+ * @(#) games/stendhal/client/gui/j2d/entity/AnimatedLoopEntity2DView.java
+ *
+ * $Id$
+ */
+
+package games.stendhal.client.gui.j2d.entity;
+
+//
+//
+
+import games.stendhal.client.entity.Entity;
+import games.stendhal.client.sprite.Sprite;
+import games.stendhal.client.sprite.SpriteStore;
+
+/**
+ * The 2D view of an entity that always loops images.
+ */
+public class AnimatedLoopEntity2DView extends Entity2DView {
+	/**
+	 * The number of frames.
+	 */
+	protected int	frames;
+
+
+	/**
+	 * Create a 2D view of an animated loop visual.
+	 *
+	 * @param	entity		The entity to render.
+	 */
+	public AnimatedLoopEntity2DView(final Entity entity, final int frames) {
+		super(entity);
+
+		this.frames = frames;
+	}
+
+
+	//
+	// AnimatedLoopEntity2DView
+	//
+
+	/**
+	 * Populate animation.
+	 */
+	protected Sprite getAnimatedSprite() {
+		String resource = translate(entity.getType());
+
+		return SpriteStore.get().getAnimatedSprite(resource, 0, frames, 1.0, 1.0, 100L, true);
+	}
+
+
+	//
+	// Entity2DView
+	//
+
+	/**
+	 * Build the visual representation of this entity.
+	 * This the animation sprite.
+	 */
+	@Override
+	protected void buildRepresentation() {
+		setSprite(getAnimatedSprite());
+	}
+
+
+	/**
+	 * Determines on top of which other entities this entity should be
+	 * drawn. Entities with a high Z index will be drawn on top of ones
+	 * with a lower Z index.
+	 * 
+	 * Also, players can only interact with the topmost entity.
+	 * 
+	 * @return	The drawing index.
+	 */
+	@Override
+	public int getZIndex() {
+		return 3000;
+	}
+}

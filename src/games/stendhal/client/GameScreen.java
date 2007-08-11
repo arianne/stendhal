@@ -12,9 +12,9 @@
  ***************************************************************************/
 package games.stendhal.client;
 
-import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
+import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;

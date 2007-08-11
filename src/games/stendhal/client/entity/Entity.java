@@ -13,7 +13,8 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.events.RPObjectChangeListener;
-import games.stendhal.client.gui.Entity2DViewFactory;
+import games.stendhal.client.gui.j2d.entity.Entity2DViewFactory;
+import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
@@ -190,7 +191,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @param	action		The RP action.
 	 */
-	protected void fillTargetInfo(RPAction action) {
+	public void fillTargetInfo(RPAction action) {
 		int id = rpObject.getID().getObjectID();
 
 		if(rpObject.isContained()) {
@@ -228,7 +229,7 @@ public final byte[] ID_Token = new byte[0];
 			view = createView();
 
 			if(view != null) {
-				view.buildRepresentation();
+				view.createRepresentation();
 			}
 		}
 
@@ -261,7 +262,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @return	The height.
 	 */
-	protected double getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
@@ -367,7 +368,7 @@ public final byte[] ID_Token = new byte[0];
 	 *
 	 * @return	The width.
 	 */
-	protected double getWidth() {
+	public double getWidth() {
 		return width;
 	}
 
