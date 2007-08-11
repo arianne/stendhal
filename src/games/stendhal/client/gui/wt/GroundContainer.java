@@ -22,7 +22,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityView;
 import games.stendhal.client.entity.Entity2DView;
 import games.stendhal.client.entity.Inspector;
-import games.stendhal.client.entity.Text;
+import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
 import games.stendhal.client.gui.wt.core.WtPanel;
