@@ -9,9 +9,9 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
-import games.stendhal.common.ConfigurableFactoryContext;
 import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.config.factory.ConfigurableFactory;
+import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 /**
  * A base factory for <code>OccupantArea</code> objects.

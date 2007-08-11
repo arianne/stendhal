@@ -9,8 +9,8 @@ package games.stendhal.server.entity.area;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
-import games.stendhal.common.ConfigurableFactoryContext;
+import games.stendhal.server.config.factory.ConfigurableFactory;
+import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 import java.util.StringTokenizer;
 

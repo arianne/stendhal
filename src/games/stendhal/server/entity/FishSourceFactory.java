@@ -1,7 +1,7 @@
 package games.stendhal.server.entity;
 
-import games.stendhal.common.ConfigurableFactory;
-import games.stendhal.common.ConfigurableFactoryContext;
+import games.stendhal.server.config.factory.ConfigurableFactory;
+import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 /**
  * A factory for <code>FishSource</code> objects.

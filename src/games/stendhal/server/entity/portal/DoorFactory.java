@@ -9,8 +9,8 @@ package games.stendhal.server.entity.portal;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
-import games.stendhal.common.ConfigurableFactoryContext;
+import games.stendhal.server.config.factory.ConfigurableFactory;
+import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 /**
  * A base factory for <code>Door</code> objects.

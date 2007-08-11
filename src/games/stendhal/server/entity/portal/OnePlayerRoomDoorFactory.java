@@ -9,7 +9,7 @@ package games.stendhal.server.entity.portal;
 //
 //
 
-import games.stendhal.common.ConfigurableFactoryContext;
+import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 /**
  * A factory for <code>OnePlayerRoomDoor</code> objects.

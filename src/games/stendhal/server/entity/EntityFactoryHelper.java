@@ -9,9 +9,9 @@ package games.stendhal.server.entity;
 //
 //
 
-import games.stendhal.common.ConfigurableFactory;
-import games.stendhal.common.ConfigurableFactoryContextImpl;
-import games.stendhal.common.ConfigurableFactoryHelper;
+import games.stendhal.server.config.factory.ConfigurableFactory;
+import games.stendhal.server.config.factory.ConfigurableFactoryContextImpl;
+import games.stendhal.server.config.factory.ConfigurableFactoryHelper;
 
 import java.util.Map;
 
