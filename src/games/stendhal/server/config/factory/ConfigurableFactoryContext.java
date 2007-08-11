@@ -34,6 +34,25 @@ public class ConfigurableFactoryContext {
 	}
 
 	/**
+	 * Extracts a boolean value from a string
+	 * 
+	 * @param name  name of the attribute (only used for error handling)
+	 * @param value value to parse
+	 * @return the parsed value
+	 * @throws IllegalArgumentException in case the value is not a valid boolean
+	 */
+	private static boolean extractBooleanFromString(String name, String value) throws IllegalArgumentException {
+		if (value.equals("true")) {
+			return true;
+		}
+
+		if (value.equals("false")) {
+			return false;
+		}
+		throw new IllegalArgumentException("Invalid '" + name + "' attribute value: '" + value + "' should be 'true' or 'false'");
+	}
+	
+	/**
 	 * gets an attribute.
 	 *
 	 * @param  name          the attribute name.
@@ -41,7 +60,35 @@ public class ConfigurableFactoryContext {
 	 * @return the value of  the attribute
 	 * @throws IllegalArgumentException in case the value is not a valid integer
 	 */
-	protected int getInt(String name, int defaultValue) throws IllegalArgumentException {
+	public boolean getBoolean(String name, boolean defaultValue) throws IllegalArgumentException {
+		String value = attributes.get(name);
+		if (value == null) {
+			return defaultValue;
+		}
+
+		return extractBooleanFromString(name, value);
+	}
+
+	/**
+	 * gets an attribute.
+	 *
+	 * @param  name          the attribute name.
+	 * @return the value of  the attribute
+	 * @throws IllegalArgumentException in case the value is not a valid integer or is missing
+	 */
+	public boolean getRequiredBoolean(String name) throws IllegalArgumentException {
+		String value = this.getRequiredString(name);
+		return extractBooleanFromString(name, value);
+	}
+	/**
+	 * gets an attribute.
+	 *
+	 * @param  name          the attribute name.
+	 * @param  defaultValue  the default value it case it is not defined
+	 * @return the value of  the attribute
+	 * @throws IllegalArgumentException in case the value is not a valid integer
+	 */
+	public int getInt(String name, int defaultValue) throws IllegalArgumentException {
 		String value = attributes.get(name);
 		if (value == null) {
 			return defaultValue;
@@ -50,7 +97,7 @@ public class ConfigurableFactoryContext {
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid '" + name + "' attribute: " + value);
+			throw new IllegalArgumentException("Invalid '" + name + "' attribute value: " + value + " is not a valid integer.");
 		}
 	}
 
@@ -61,12 +108,12 @@ public class ConfigurableFactoryContext {
 	 * @return the value of  the attribute
 	 * @throws IllegalArgumentException in case the value is not a valid integer or is missing
 	 */
-	protected int getRequiredInt(String name) throws IllegalArgumentException {
+	public int getRequiredInt(String name) throws IllegalArgumentException {
 		String value = this.getRequiredString(name);
 		try {
 			return Integer.parseInt(value);
 		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid '" + name + "' attribute: " + value);
+			throw new IllegalArgumentException("Invalid '" + name + "' attribute value: " + value + " is not a valid integer.");
 		}
 	}
 
@@ -77,7 +124,7 @@ public class ConfigurableFactoryContext {
 	 * @param  defaultValue  the default value it case it is not defined
 	 * @return the value of  the attribute
 	 */
-	protected String getString(String name, String defaultValue) {
+	public String getString(String name, String defaultValue) {
 		String value = attributes.get(name);
 		if (value == null) {
 			return defaultValue;
@@ -92,7 +139,7 @@ public class ConfigurableFactoryContext {
 	 * @return the value of  the attribute
 	 * @throws IllegalArgumentException in case is missing
 	 */
-	protected String getRequiredString(String name) throws IllegalArgumentException {
+	public String getRequiredString(String name) throws IllegalArgumentException {
 		String value = attributes.get(name);
 		if (value == null) {
 			throw new IllegalArgumentException("Missing required attribute " + name);
