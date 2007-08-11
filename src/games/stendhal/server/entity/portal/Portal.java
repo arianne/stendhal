@@ -34,7 +34,7 @@ public class Portal extends Entity implements UseListener {
 
 	private boolean settedDestination;
 
-	private Object reference;
+	private Object identifier;
 
 	private String destinationZone;
 
@@ -68,8 +68,8 @@ public class Portal extends Entity implements UseListener {
 	 *
 	 * @param	reference	A reference tag.
 	 */
-	public void setReference(Object reference) {
-		this.reference = reference;
+	public void setIdentifier(Object reference) {
+		this.identifier = reference;
 	}
 
 	/**
@@ -77,8 +77,8 @@ public class Portal extends Entity implements UseListener {
 	 *
 	 * @return identifier
 	 */
-	public Object getReference() {
-		return reference;
+	public Object getIdentifier() {
+		return identifier;
 	}
 
 

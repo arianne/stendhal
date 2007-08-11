@@ -193,7 +193,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public Portal getPortal(Object reference) {
 		for (Portal portal : portals) {
-			if (portal.getReference().equals(reference)) {
+			if (portal.getIdentifier().equals(reference)) {
 				return portal;
 			}
 		}
@@ -273,9 +273,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 	private int maxPortalNumber = 64;
 
 	public Object assignPortalID(Portal portal) {
-		portal.setReference(new Integer(++maxPortalNumber));
+		portal.setIdentifier(new Integer(++maxPortalNumber));
 
-		return portal.getReference();
+		return portal.getIdentifier();
 	}
 
 	public void setEntryPoint(int x, int y) {
@@ -636,7 +636,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				portal.setDestination(zone.getID().getID(), zone.assignPortalID(target));
 			}
 
-			target.setDestination(getID().getID(), portal.getReference());
+			target.setDestination(getID().getID(), portal.getIdentifier());
 
 			logger.debug("Portals LINKED");
 			logger.debug(portal);

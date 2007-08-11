@@ -348,7 +348,7 @@ public class StendhalRPWorld extends RPWorld {
 		portal.setDestination(zone.getID().getID(), dest);
 		portal.setX(7);
 		portal.setY(14);
-		portal.setReference(new Integer(0));
+		portal.setIdentifier(new Integer(0));
 		house.assignRPObjectID(portal);
 		house.add(portal);
 

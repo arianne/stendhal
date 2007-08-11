@@ -297,7 +297,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			zone.assignRPObjectID(portal);
 
 			portal.set(pdesc.getX(), pdesc.getY());
-			portal.setReference(pdesc.getReference());
+			portal.setIdentifier(pdesc.getReference());
 
 			if ((reference = pdesc.getDestinationReference()) != null) {
 				portal.setDestination(pdesc.getDestinationZone(), reference);
