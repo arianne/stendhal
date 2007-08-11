@@ -21,7 +21,9 @@ class CreateGuildAction implements SlashAction  {
 
 		action.put("type", "joinguild");
                 action.put("guildname", params[0]);
-		if (remainder.length() != 0) action.put("guilddescription", remainder);
+		if (remainder.length() != 0) {
+			action.put("guilddescription", remainder);
+		}
 		
 
 		StendhalClient.get().send(action);

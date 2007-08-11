@@ -21,14 +21,16 @@ public class EntityFactoryTest {
 
 		MockRPObject(String type, String eclass) {
 			super.put("type", type);
-			if (eclass!=null)
-			super.put("class",eclass);
+			if (eclass!=null) {
+				super.put("class",eclass);
+			}
 		}
 
 		public MockRPObject(String type, String eclass, String subclass) {
 			this(type,eclass);
-			if (subclass!=null)
-			super.put("subclass",subclass);
+			if (subclass!=null) {
+				super.put("subclass",subclass);
+			}
 		}
 
 

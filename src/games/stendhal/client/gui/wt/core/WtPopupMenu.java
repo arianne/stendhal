@@ -108,8 +108,9 @@ public abstract class WtPopupMenu extends StyledJPopupMenu {
 					redirectEvent(ev);
 			}
 
-			if (!ev.isConsumed())
+			if (!ev.isConsumed()) {
 				super.processMenuKeyEvent(ev);
+			}
 		}
 	}
 }

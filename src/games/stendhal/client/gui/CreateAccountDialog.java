@@ -237,8 +237,9 @@ public class CreateAccountDialog extends JDialog {
 		final String passwordretype = new String(passwordretypeField.getPassword());
 
 		// If this window isn't enabled, we shouldn't act.
-		if (!this.isEnabled())
+		if (!this.isEnabled()) {
 			return;
+		}
 		
 		if (!password.equals(passwordretype)) {
 			JOptionPane.showMessageDialog(owner, "The passwords do not match. Please retype both.",

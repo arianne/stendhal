@@ -160,7 +160,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	private void init() {
-		database = (StendhalPlayerDatabase) StendhalPlayerDatabase.getDatabase();
+		database = StendhalPlayerDatabase.getDatabase();
 		registerActions();
 		instance = this;
 		addGameEvent("server system", "startup");

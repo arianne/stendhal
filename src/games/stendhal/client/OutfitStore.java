@@ -149,7 +149,9 @@ public class OutfitStore {
 	 * @return	The sprite, or <code>null</code>.
 	 */
 	public Sprite getDressSprite(int index) {
-		if (index==0) return getEmptySprite();
+		if (index==0) {
+			return getEmptySprite();
+		}
 
 		String ref="data/sprites/outfit/dress_" + index + ".png";
 		if(!store.existsSprite(ref)) {
@@ -189,7 +191,9 @@ public class OutfitStore {
 	 * @return	The sprite, or <code>null</code>.
 	 */
 	public Sprite getHairSprite(int index) {
-		if (index==0) return  getEmptySprite();
+		if (index==0) {
+			return  getEmptySprite();
+		}
 
 		String ref="data/sprites/outfit/hair_" + index + ".png";
 		if(!store.existsSprite(ref)) {

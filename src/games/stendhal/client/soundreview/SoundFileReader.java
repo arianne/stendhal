@@ -78,7 +78,9 @@ public class SoundFileReader {
 		byte[] data;
 		
 		String soundbase = SoundFileReader.soundprops.getProperty("soundbase");
-		if (soundbase == null) return null;
+		if (soundbase == null) {
+			return null;
+		}
 		if (!soundbase.endsWith("/")) {
 			soundbase = soundbase + "/";
 		}

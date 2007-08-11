@@ -89,12 +89,13 @@ public class Marriage extends AbstractQuest {
 		new SpeakerNPC.ChatAction() {
 		    @Override
 			public void fire(Player player, String text, SpeakerNPC engine) {
-			    if (!player.hasQuest(QUEST_SLOT))
-			        engine.say("The great quest of all life is to be #married.");
-			    else if (player.isQuestCompleted(QUEST_SLOT))
-			        engine.say("I hope you are enjoying married life.");	  
-			    else
-			        engine.say("Haven't you organised your wedding yet?");
+			    if (!player.hasQuest(QUEST_SLOT)) {
+					engine.say("The great quest of all life is to be #married.");
+				} else if (player.isQuestCompleted(QUEST_SLOT)) {
+					engine.say("I hope you are enjoying married life.");
+				} else {
+					engine.say("Haven't you organised your wedding yet?");
+				}
 			}
 		});
 	nun.add(ConversationStates.ATTENDING,

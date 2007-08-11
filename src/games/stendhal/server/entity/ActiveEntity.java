@@ -80,8 +80,12 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	public void applyMovement() {
 		//even if we could we would not move;
-		if (speed== 0) 	return;
-		if (direction== Direction.STOP) return;
+		if (speed== 0) {
+			return;
+		}
+		if (direction== Direction.STOP) {
+			return;
+		}
 
 		setCollides(false);
 

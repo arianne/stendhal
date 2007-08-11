@@ -198,8 +198,9 @@ class Pathfinder {
 		listOpen.offer(nodeStart);
 		nodeRegistry.put(nodeStart.nodeNumber, nodeStart);
 
-		if (checkEntities)
+		if (checkEntities) {
 			createEntityCollisionMap();
+		}
 	}
 
 	/**
@@ -215,8 +216,9 @@ class Pathfinder {
 	public final List<Node> getPath() {
 		List<Node> list = new LinkedList<Node>();
 		/* */
-		if (unrechableGoal())
+		if (unrechableGoal()) {
 			return list;
+		}
 
 		while (pathStatus == Pathfinder.IN_PROGRESS) {
 			doStep();
@@ -258,8 +260,9 @@ class Pathfinder {
 	 * @return the best node.
 	 */
 	private TreeNode getBest() {
-		if (listOpen.isEmpty())
+		if (listOpen.isEmpty()) {
 			return null;
+		}
 
 		TreeNode first = listOpen.poll();
 		first.setOpen(false);
@@ -313,11 +316,15 @@ class Pathfinder {
 		int x = (int) goalArea.getX();
 		int y = (int) goalArea.getY();
 
-		for (int i = 0; i <= w; i++)
-			for (int j = 0; j <= h; j++)
-				if ((i == 0) || (j == 0) || (i == w) || (j == h))
-					if (new TreeNode(x + i, y + j).isValid())
+		for (int i = 0; i <= w; i++) {
+			for (int j = 0; j <= h; j++) {
+				if ((i == 0) || (j == 0) || (i == w) || (j == h)) {
+					if (new TreeNode(x + i, y + j).isValid()) {
 						return false;
+					}
+				}
+			}
+		}
 
 		return true;
 	}
@@ -566,8 +573,9 @@ class Pathfinder {
 		 *            the the new child.
 		 */
 		private void linkChild(int x1, int y1) {
-			if (!isValid(x1, y1))
+			if (!isValid(x1, y1)) {
 				return;
+			}
 
 			// search for original child node
 			TreeNode child = nodeRegistry.get(createNodeID(x1, y1));
@@ -586,12 +594,14 @@ class Pathfinder {
 				// - working on closed nodes is stoped but they may own a better
 				// parent
 				// so they will also be added to this node (parent)
-				if (child.g > (this.g + 1))
+				if (child.g > (this.g + 1)) {
 					updateChild(child);
+				}
 
 				// update parents for closed nodes only
-				if (!child.isOpen())
+				if (!child.isOpen()) {
 					updateSubTree(child);
+				}
 			}
 		}
 

@@ -127,18 +127,21 @@ public class StackableItem extends Item implements Stackable {
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
 		
-		if (!getItemClass().equals(otheri.getItemClass()) || !getItemSubclass().equals(otheri.getItemSubclass()))
+		if (!getItemClass().equals(otheri.getItemClass()) || !getItemSubclass().equals(otheri.getItemSubclass())) {
 			return false;
+		}
 		
 		// TODO: look at InfoStringScroll.java
 		
 		String[] importantAttributes = new String[]{"infostring", "description", "bound", "persistent", "amount", "frequency", "regen", "atk", "range"};
 		for (String iAtt : importantAttributes)
 		{
-			if (!has(iAtt) && !otheri.has(iAtt))
+			if (!has(iAtt) && !otheri.has(iAtt)) {
 				continue;
-			if (has(iAtt) && otheri.has(iAtt) && get(iAtt).equals(otheri.get(iAtt)))
+			}
+			if (has(iAtt) && otheri.has(iAtt) && get(iAtt).equals(otheri.get(iAtt))) {
 				continue;
+			}
 			return false;
 		}
 		return true;

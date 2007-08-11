@@ -73,15 +73,15 @@ static public char[] encode(byte[] data)
         boolean quad = false;
         boolean trip = false;
 
-        int val = (0xFF & (int) data[i]);
+        int val = (0xFF & data[i]);
         val <<= 8;
         if ((i+1) < data.length) {
-            val |= (0xFF & (int) data[i+1]);
+            val |= (0xFF & data[i+1]);
             trip = true;
         }
         val <<= 8;
         if ((i+2) < data.length) {
-            val |= (0xFF & (int) data[i+2]);
+            val |= (0xFF & data[i+2]);
             quad = true;
         }
         out[index+3] = alphabet[(quad? (val & 0x3F): 64)];
@@ -118,8 +118,9 @@ static public byte[] decode(char[] data)
     int tempLen = data.length;
     for( int ix=0; ix<data.length; ix++ )
     {
-        if( (data[ix] > 255) || codes[ data[ix] ] < 0 )
-            --tempLen;  // ignore non-valid chars and padding
+        if( (data[ix] > 255) || codes[ data[ix] ] < 0 ) {
+			--tempLen;  // ignore non-valid chars and padding
+		}
     }
     // calculate required length:
     //  -- 3 bytes for every 4 valid base64 chars
@@ -127,8 +128,12 @@ static public byte[] decode(char[] data)
     //     or plus 1 byte if there are 2 extra.
 
     int len = (tempLen / 4) * 3;
-    if ((tempLen % 4) == 3) len += 2;
-    if ((tempLen % 4) == 2) len += 1;
+    if ((tempLen % 4) == 3) {
+		len += 2;
+	}
+    if ((tempLen % 4) == 2) {
+		len += 1;
+	}
 
     byte[] out = new byte[len];
 
@@ -185,10 +190,18 @@ static private char[] alphabet =
 //
 static private byte[] codes = new byte[256];
 static {
-    for (int i=0; i<256; i++) codes[i] = -1;
-    for (int i = 'A'; i <= 'Z'; i++) codes[i] = (byte)(     i - 'A');
-    for (int i = 'a'; i <= 'z'; i++) codes[i] = (byte)(26 + i - 'a');
-    for (int i = '0'; i <= '9'; i++) codes[i] = (byte)(52 + i - '0');
+    for (int i=0; i<256; i++) {
+		codes[i] = -1;
+	}
+    for (int i = 'A'; i <= 'Z'; i++) {
+		codes[i] = (byte)(     i - 'A');
+	}
+    for (int i = 'a'; i <= 'z'; i++) {
+		codes[i] = (byte)(26 + i - 'a');
+	}
+    for (int i = '0'; i <= '9'; i++) {
+		codes[i] = (byte)(52 + i - '0');
+	}
     codes['+'] = 62;
     codes['/'] = 63;
 }
@@ -210,8 +223,11 @@ public static void main(String[] args)
         System.exit(0);
     }
     for (int i=0; i<args.length; i++) {
-        if ("-decode".equalsIgnoreCase(args[i])) decode = true;
-        else if ("-d".equalsIgnoreCase(args[i])) decode = true;
+        if ("-decode".equalsIgnoreCase(args[i])) {
+			decode = true;
+		} else if ("-d".equalsIgnoreCase(args[i])) {
+			decode = true;
+		}
     }
 
     String filename = args[args.length-1];
@@ -245,7 +261,9 @@ private static byte[] readBytes(File file)
         int count;
         byte[] buf = new byte[16384];
         while ((count=is.read(buf)) != -1) {
-            if (count > 0) baos.write(buf, 0, count);
+            if (count > 0) {
+				baos.write(buf, 0, count);
+			}
         }
         is.close();
     }
@@ -264,7 +282,9 @@ private static char[] readChars(File file)
         int count;
         char[] buf = new char[16384];
         while ((count=in.read(buf)) != -1) {
-            if (count > 0) caw.write(buf, 0, count);
+            if (count > 0) {
+				caw.write(buf, 0, count);
+			}
         }
         in.close();
     }

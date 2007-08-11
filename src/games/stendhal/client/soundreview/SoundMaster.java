@@ -36,10 +36,11 @@ private static SoundFileMap sfm=null;
 	
 	
 	public static AudioClip play(String soundName,double x, double y,boolean loop){
-		if (!(x==0&&y==0))
-		if (HearingArea.contains(x, y)){
-			
-			return play(soundName);
+		if (!(x==0&&y==0)) {
+			if (HearingArea.contains(x, y)){
+				
+				return play(soundName);
+			}
 		}
 		return null;
 	}
@@ -50,7 +51,9 @@ private static SoundFileMap sfm=null;
 
 	}
 	public static  AudioClip play(String soundName, boolean shallLoop) {
-		if(isMute) return null;
+		if(isMute) {
+			return null;
+		}
 		if (soundName == null) {
 	        return  null;
         }
@@ -72,7 +75,7 @@ private static SoundFileMap sfm=null;
 if (cl!=null){
 	
 			cl.addLineListener(cliplisten);
-			playingClips.putIfAbsent((Object)cl, cl);
+			playingClips.putIfAbsent(cl, cl);
 			if (shallLoop){
 				cl.loop(Clip.LOOP_CONTINUOUSLY);
 			}else{

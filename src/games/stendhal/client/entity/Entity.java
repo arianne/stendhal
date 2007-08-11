@@ -392,7 +392,9 @@ public final byte[] ID_Token = new byte[0];
 	 *  or Double.Positiveinfinity if User is null
 	 */
 	public double distanceToUser() {
-		if (User.isNull()) return Double.POSITIVE_INFINITY;
+		if (User.isNull()) {
+			return Double.POSITIVE_INFINITY;
+		}
 		return (User.get().getX() - getX()) * (User.get().getX() - getX())
 			+ (User.get().getY() - getY()) * (User.get().getY() - getY());
 	}

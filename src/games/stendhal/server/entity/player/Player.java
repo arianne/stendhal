@@ -1748,8 +1748,12 @@ public class Player extends RPEntity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (getClass() != obj.getClass()) return false;
+		if (this == obj) {
+			return true;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		Player other = (Player) obj;
 		return this.getName().equals(other.getName());
 	}

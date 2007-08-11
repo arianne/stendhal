@@ -152,8 +152,11 @@ public class stendhal extends Thread {
 	 */
 	public static void main(String args[]) {
 		//get size string
-		if (System.getProperty("stendhal.refactoringgui") != null) SCREEN_SIZE = "1000x480";
-		else SCREEN_SIZE="640x480";
+		if (System.getProperty("stendhal.refactoringgui") != null) {
+			SCREEN_SIZE = "1000x480";
+		} else {
+			SCREEN_SIZE="640x480";
+		}
 		parseCommandlineArguments(args);
 		startLogSystem();
 		startSwingLookAndFeel();

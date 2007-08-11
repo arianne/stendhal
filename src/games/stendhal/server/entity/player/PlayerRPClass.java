@@ -289,8 +289,12 @@ lion_shield_+1 enhanced_lion_shield
 			object.remove("!skills");
 		}
 
-		if (!object.has("height")) object.put("height", 2);
-                if (!object.has("width")) object.put("width", 1);
+		if (!object.has("height")) {
+			object.put("height", 2);
+		}
+                if (!object.has("width")) {
+					object.put("width", 1);
+				}
 
 	}
 

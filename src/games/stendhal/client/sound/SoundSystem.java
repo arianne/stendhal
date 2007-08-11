@@ -461,7 +461,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			// get sound library filepath
 			String soundBase = prop.getProperty("soundbase", "data/sounds/");
 		
-		if (prop.isEmpty()) return;
+		if (prop.isEmpty()) {
+			return;
+		}
 			Enumeration<Object> maps = prop.keys();
 			// read all load-permitted sounds listed in properties
 			// from soundfile into cache map
@@ -731,8 +733,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * @return the singleton instance of the Stendhal sound system.
 	 */
 	public static SoundSystem get() {
-		if (singleton == null)
+		if (singleton == null) {
 			singleton = new SoundSystem();
+		}
 		return singleton;
 	}
 

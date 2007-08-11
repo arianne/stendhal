@@ -118,8 +118,9 @@ public class Soup extends AbstractQuest {
 			//return player.isQuestCompleted(QUEST_SLOT);
 			boolean questdone = player.hasQuest(QUEST_SLOT)
 			    && player.getQuest(QUEST_SLOT).startsWith("done");
-			if (!questdone)
-			    return false; // we haven't done the quest yet
+			if (!questdone) {
+				return false; // we haven't done the quest yet
+			}
 			
 			String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 			long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
@@ -139,8 +140,9 @@ public class Soup extends AbstractQuest {
 			//return player.isQuestCompleted(QUEST_SLOT);
 			boolean questdone = player.hasQuest(QUEST_SLOT)
 			    && player.getQuest(QUEST_SLOT).startsWith("done");
-			if (!questdone)
-			    return false; // we haven't done the quest yet
+			if (!questdone) {
+				return false; // we haven't done the quest yet
+			}
 			
 			String[] tokens = player.getQuest(QUEST_SLOT).split(";");
 			long delay = REQUIRED_MINUTES * 60 * 1000; // minutes -> milliseconds
@@ -337,9 +339,10 @@ public class Soup extends AbstractQuest {
 					player.notifyWorldAboutChanges();
 					npc.setCurrentState(ConversationStates.ATTENDING);
 				    }
-				} else
-				    npc.say("Don't take me for a fool, traveller. You don't have "
+				} else {
+					npc.say("Don't take me for a fool, traveller. You don't have "
 					    + Grammar.a_noun(text) + " with you.");
+				}
 			    } else {
 				npc.say("You brought me that ingredient already.");
 			    }

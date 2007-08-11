@@ -197,8 +197,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 			/*
 			 * Hack! Need to update list when changes arrive
 			 */
-			if(nbuddies.isVisible())
+			if(nbuddies.isVisible()) {
 				nbuddies.update();
+			}
 		}
 
 		// check if the player object has changed.
@@ -216,8 +217,9 @@ public class SettingsPanel extends WtPanel implements WtClickListener, WtCloseLi
 		/*
 		 * Hack! Need to update when changes arrive
 		 */
-		if(keyring.isVisible())
+		if(keyring.isVisible()) {
 			keyring.update();
+		}
 	}
 
 	/** a button was clicked */

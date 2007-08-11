@@ -762,22 +762,22 @@ public class StendhalRPZone extends MarauroaRPZone {
 		 * Eventually move to <Entity>.onRemoved().
 		 */
 		if(object instanceof PassiveEntityRespawnPoint) {
-			plantGrowers.remove((PassiveEntityRespawnPoint) object);
+			plantGrowers.remove(object);
 		}
 
 		if (object instanceof Blood) {
-			bloods.remove((Blood) object);
+			bloods.remove(object);
 		} else if (object instanceof Player) {
-			players.remove((Player) object);
-			playersAndFriends.remove((Player) object);
+			players.remove(object);
+			playersAndFriends.remove(object);
 		} else if (object instanceof AttackableCreature) {
-			npcs.remove((AttackableCreature) object);
-			playersAndFriends.remove((AttackableCreature) object);
+			npcs.remove(object);
+			playersAndFriends.remove(object);
 		} else if (object instanceof Sheep) {
-			playersAndFriends.remove((Sheep) object);
-			npcs.remove((Sheep)object);
+			playersAndFriends.remove(object);
+			npcs.remove(object);
 		} else if (object instanceof SheepFood) {
-			sheepFoods.remove((SheepFood) object);
+			sheepFoods.remove(object);
 		} else if (object instanceof SpeakerNPC) {
 			/*
 			 * BUG: I am not sure this works as expected as npcs
@@ -787,9 +787,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 			 * TODO: Move NPC (and all entity) handling to
 			 * zone scoped/managed/dispatched.
 			 */
-			npcs.remove((SpeakerNPC) object);
+			npcs.remove(object);
 		} else if (object instanceof Portal) {
-			portals.remove((Portal) object);
+			portals.remove(object);
 		}
 
 		super.remove(id);

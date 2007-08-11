@@ -19,8 +19,12 @@ public class TestPortal {
 		destName="";
 	}
 	boolean isDestinationOf(TestPortal source) {
-		if (source==null) return false;
-		if (source.destName =="" || source.destZone=="") return false;
+		if (source==null) {
+			return false;
+		}
+		if (source.destName =="" || source.destZone=="") {
+			return false;
+		}
 		return this.name.equals(source.destName) && this.zone.equals(source.destZone);
 		
 	}

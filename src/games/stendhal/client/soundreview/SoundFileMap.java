@@ -39,10 +39,11 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
         if (byteArray==null){
         	
         	byteArray = sfr.getData((String) key);
-        	if (byteArray!=null)
-        	put((String) key, byteArray);
+        	if (byteArray!=null) {
+				put((String) key, byteArray);
 //        	else
 //        		System.out.println(key+ "not found in filesystem");
+			}
         }
 		return byteArray;
 	}

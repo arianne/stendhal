@@ -11,7 +11,6 @@ package games.stendhal.client.gui.j2d.entity;
 
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.ActionType;
-import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.sprite.Sprite;

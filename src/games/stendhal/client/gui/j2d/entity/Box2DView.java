@@ -13,7 +13,6 @@ import java.util.List;
 
 import games.stendhal.client.entity.ActionType;
 import games.stendhal.client.entity.Box;
-import games.stendhal.client.entity.Entity;
 import marauroa.common.game.RPAction;
 
 /**

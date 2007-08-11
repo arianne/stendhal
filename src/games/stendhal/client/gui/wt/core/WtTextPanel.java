@@ -122,7 +122,7 @@ public class WtTextPanel extends WtPanel {
 
 		String text = formatter.toString();
 
-		FontMetrics metrics = ((Graphics2D) clientArea).getFontMetrics();
+		FontMetrics metrics = (clientArea).getFontMetrics();
 
 		int index;
 		int oldIndex = 0;

@@ -213,10 +213,11 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 				lastClickWasHandled = onMouseClick(p);
 			} 
 			else if (e.getClickCount() >= 2) {
-				if (lastClickWasHandled)
+				if (lastClickWasHandled) {
 					lastClickWasHandled = onMouseClick(p);
-				else
+				} else {
 					lastClickWasHandled = onMouseDoubleClick(p);
+				}
 			}
 		} else if (e.getButton() == MouseEvent.BUTTON3) {
 			// no double rightclick supported

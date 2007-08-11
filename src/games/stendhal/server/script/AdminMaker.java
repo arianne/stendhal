@@ -124,8 +124,9 @@ public class AdminMaker extends ScriptImpl {
 				i = new Random().nextInt(DESTINATIONS.size());
 			}
 			i++;
-			if(i >= DESTINATIONS.size())
+			if(i >= DESTINATIONS.size()) {
 				i = 0;
+			}
 			player.setQuest(TELE_QUEST_SLOT, "" + i);
 			Destination picked = DESTINATIONS.get(i);
 			

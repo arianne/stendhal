@@ -133,12 +133,13 @@ public static void main(String[] args) {
 			
 				@Override
 				public void windowClosing(java.awt.event.WindowEvent e) {
-					if (animations!=null)
-					for (int i =0 ; i < animations.length; i++)
-					{
-						if (animations[i]!=null){
-					        animations[i].stopAnimation();
-					        animations[i].tearDown();
+					if (animations!=null) {
+						for (int i =0 ; i < animations.length; i++)
+						{
+							if (animations[i]!=null){
+						        animations[i].stopAnimation();
+						        animations[i].tearDown();
+							}
 						}
 					}
 					 
@@ -217,10 +218,14 @@ public static void main(String[] args) {
 							BufferedImage buf=null;
 							try {
 								File file = new File(  e.getNewLeadSelectionPath().getLastPathComponent().toString());
-								  if (file.isDirectory()) return;
+								  if (file.isDirectory()) {
+									return;
+								}
 								  
 								buf = ImageIO.read( file ) ;
-						     if (buf==null) return;
+						     if (buf==null) {
+								return;
+							}
 							} catch (IOException e1) {
 								//should never happen;
 								e1.printStackTrace();

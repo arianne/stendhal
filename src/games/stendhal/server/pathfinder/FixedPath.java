@@ -112,7 +112,7 @@ public class FixedPath {
 	 * @return The nodes.
 	 */
 	public Node[] getNodes() {
-		return (Node[]) nodes.toArray(new Node[nodes.size()]);
+		return nodes.toArray(new Node[nodes.size()]);
 	}
 
 	/**

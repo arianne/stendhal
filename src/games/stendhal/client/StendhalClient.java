@@ -15,16 +15,12 @@ package games.stendhal.client;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.events.BuddyChangeListener;
 import games.stendhal.client.events.FeatureChangeListener;
-import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.sound.SoundSystem;
 import games.stendhal.client.update.HttpClient;
 import games.stendhal.client.update.Version;
 import games.stendhal.common.Debug;
 import games.stendhal.common.Direction;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;

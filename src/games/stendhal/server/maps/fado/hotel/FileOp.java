@@ -66,9 +66,9 @@ public class FileOp {
 				return null; //returns null if file does not exist
 			}
 		}
-		if (file.exists())
+		if (file.exists()) {
 			return textFromFile;
-		else {
+		} else {
 			logger.error("File not found: " + fileToRead);
 			return null; //if we get past the other ifs, this should catch a null string.
 

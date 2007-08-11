@@ -45,7 +45,9 @@ public class PlayersQuery implements ActionListener {
 		final int REQUIRED_LEVEL_TO_SEE_GHOST=AdministrationAction.getLevelForCommand("ghostmode");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
-		if (player.has("title")) rules.addGameEvent(player.get("title"), "who");
+		if (player.has("title")) {
+			rules.addGameEvent(player.get("title"), "who");
+		}
 		rules.addGameEvent(player.getName(), "who");
 
 		StringBuilder online = new StringBuilder();

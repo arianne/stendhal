@@ -258,8 +258,9 @@ public class LoginDialog extends JDialog {
 		Profile profile;
 
 		// If this window isn't enabled, we shouldn't act.
-		if (!isEnabled())
+		if (!isEnabled()) {
 			return;
+		}
 		
 		profile = new Profile();
 

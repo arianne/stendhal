@@ -169,13 +169,15 @@ public class InternalManagedDialog implements ManagedWindow {
 		titleLabel.setOpaque(false);
 		titleLabel.setBorder(BorderFactory.createEmptyBorder());
 
-		if((font = style.getFont()) != null)
+		if((font = style.getFont()) != null) {
 			font = titleLabel.getFont();
+		}
 
 		titleLabel.setFont(font.deriveFont(Font.BOLD));
 
-		if((color = style.getForeground()) != null)
+		if((color = style.getForeground()) != null) {
 			titleLabel.setForeground(color);
+		}
 
 		titlebar.add(titleLabel);
 
@@ -399,11 +401,12 @@ public class InternalManagedDialog implements ManagedWindow {
 		WtCloseListener []	listeners;
 
 
-		listeners = (WtCloseListener []) closeListeners.toArray(
+		listeners = closeListeners.toArray(
 			new WtCloseListener[closeListeners.size()]);
 
-		for(WtCloseListener l : listeners)
+		for(WtCloseListener l : listeners) {
 			l.onClose(getName());
+		}
 	}
 
 
@@ -632,8 +635,9 @@ public class InternalManagedDialog implements ManagedWindow {
 		/*
 		 * Notify close listeners
 		 */
-		if(!visible)
+		if(!visible) {
 			fireCloseListeners();
+		}
 	}
 
 	//

@@ -48,8 +48,9 @@ public class GenerateMonsterUsage {
 		}
 
 		for(Map.Entry<String, Integer> e: count.entrySet()) {
-			if(e.getValue()==0)
-			System.out.println(e.getKey()+";"+e.getValue());
+			if(e.getValue()==0) {
+				System.out.println(e.getKey()+";"+e.getValue());
+			}
 		}
 
 	}

@@ -98,8 +98,9 @@ public class GagManager implements LoginListener {
 	 * @return true, if it is gagged, false otherwise.
 	 */
 	public static boolean isGagged(Player player) {
-		if(player.hasQuest("gag"))
+		if(player.hasQuest("gag")) {
 			return true;
+		}
 		return false;
 	}
 	
@@ -110,8 +111,9 @@ public class GagManager implements LoginListener {
 	 * @return true, if the gag expired and was removed or was already removed. false, if the player still has time to serve.
 	 */
 	private boolean tryExpire(Player player) {
-		if(!isGagged(player))
+		if(!isGagged(player)) {
 			return true;
+		}
 		
 		// allow for an error of 10 seconds
 		if(getTimeRemaining(player) < (10L * 1000L)) {
@@ -123,8 +125,9 @@ public class GagManager implements LoginListener {
 	}
 
 	public void onLoggedIn(Player player) {
-		if(!isGagged(player))
+		if(!isGagged(player)) {
 			return;
+		}
 		
 		if (!tryExpire(player)) {
 			SetupNotifier(player);
@@ -159,8 +162,9 @@ public class GagManager implements LoginListener {
 	 * @return time remaining in miliseconds
 	 */
 	public long getTimeRemaining(Player criminal) {
-		if(!isGagged(criminal))
+		if(!isGagged(criminal)) {
 			return 0L;
+		}
 		long expireDate = Long.parseLong(criminal.getQuest("gag"));
 		long timeRemaining = expireDate - System.currentTimeMillis();
 		return timeRemaining;

@@ -55,8 +55,9 @@ public class FindGhosts extends AbstractQuest {
 		List<String> doneList = Arrays.asList(done);
 		List<String> result = new LinkedList<String>();
 		for (String name : NEEDED_SPIRITS) {
-	        if (!doneList.contains(name)) 
-		    	result.add(name);
+	        if (!doneList.contains(name)) {
+				result.add(name);
+			}
 	    }
 	    
 	    return result;
