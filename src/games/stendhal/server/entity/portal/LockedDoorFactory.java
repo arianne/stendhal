@@ -21,24 +21,16 @@ public class LockedDoorFactory extends DoorFactory {
 	//
 
 	/**
-	 * Extract the door key from a context.
+	 * Extract the portal key from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The key name.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the class attribute is missing.
+	 * @throws	IllegalArgumentException If the class attribute is missing.
 	 */
 	protected String getKey(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("key")) == null) {
-			throw new IllegalArgumentException("Required attribute 'key' missing");
-		}
-
-		return s;
+		return ctx.getRequiredString("key");
 	}
+
 
 	//
 	// ConfigurableFactory

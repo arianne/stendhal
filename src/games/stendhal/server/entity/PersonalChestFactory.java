@@ -6,9 +6,6 @@
 
 package games.stendhal.server.entity;
 
-//
-//
-
 import games.stendhal.server.config.factory.ConfigurableFactory;
 import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
@@ -24,23 +21,12 @@ public class PersonalChestFactory implements ConfigurableFactory {
 	/**
 	 * Extract the slot name from a context.
 	 * 
-	 * @param ctx
-	 *            The configuration context.
-	 * 
+	 * @param ctx The configuration context.
 	 * @return The slot name.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the attribute is invalid.
+	 * @throws IllegalArgumentException If the attribute is invalid.
 	 */
-	protected String getSlot(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("slot")) == null) {
-			return PersonalChest.DEFAULT_BANK;
-		}
-
-		return s;
+	protected String getSlot(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return ctx.getString("slot", PersonalChest.DEFAULT_BANK);
 	}
 
 	//

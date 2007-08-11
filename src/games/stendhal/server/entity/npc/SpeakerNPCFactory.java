@@ -35,40 +35,23 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * Extract the NPC name from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The message text.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is missing.
+	 * @return	The name
+	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
 	protected String getName(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("name")) == null) {
-			throw new IllegalArgumentException("Required attribute 'name' missing");
-		}
-
-		return s;
+		return ctx.getRequiredString("name");
 	}
 	
 	/**
 	 * Extract the NPC class (i.e. its visual appearance) from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
-	 * @return	The message text.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is missing.
+	 * @return	The class.
+	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
 	protected String getClass(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
+		return ctx.getRequiredString("class");
 
-		if ((s = ctx.getAttribute("class")) == null) {
-			throw new IllegalArgumentException("Required attribute 'class' missing");
-		}
-
-		return s;
 	}
 
 	/**
@@ -79,14 +62,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return	The hitpoints.
 	 */
 	protected int getHP(ConfigurableFactoryContext ctx) {
-		String s;
-
-		s = ctx.getAttribute("hp");
-		if (s == null) {
-			return 100;
-		} else {
-			return Integer.parseInt(s);
-		}
+		return ctx.getInt("hp", 100);
 	}
 
 	/**
@@ -97,14 +73,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return	The level of experience.
 	 */
 	protected int getLevel(ConfigurableFactoryContext ctx) {
-		String s;
-
-		s = ctx.getAttribute("level");
-		if (s == null) {
-			return 0;
-		} else {
-			return Integer.parseInt(s);
-		}
+		return ctx.getInt("level", 0);
 	}
 
 	/**
@@ -117,7 +86,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 *          be used.
 	 */
 	protected String getDescription(ConfigurableFactoryContext ctx) {
-		return ctx.getAttribute("description");
+		return ctx.getString("description", null);
 	}
 
 	/**
@@ -128,9 +97,8 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return	The hitpoints.
 	 */
 	protected Direction getDirection(ConfigurableFactoryContext ctx) {
-		String s;
-
-		s = ctx.getAttribute("direction");
+		// TODO: improve error handling
+		String s = ctx.getString("direction", "down");
 		if (s == null || s.equals("down")) {
 			return Direction.DOWN;
 		} else if (s.equals("left")){
@@ -152,8 +120,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 		boolean lastNode = false;
 		
 		do {
-			String s;
-			s = ctx.getAttribute("node" + i);
+			String s = ctx.getString("node" + i, null);
 			if (s != null) {
 				String[] coords = s.split(",");
 				int x = Integer.parseInt(coords[0]);

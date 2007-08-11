@@ -37,14 +37,11 @@ public abstract class AccessCheckingPortalFactory implements ConfigurableFactory
 	 * Extract the rejected message from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The rejected message, or <code>null</code> if none.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the class attribute is missing.
+	 * @throws	IllegalArgumentException If the class attribute is missing.
 	 */
 	protected String getRejectedMessage(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		return ctx.getAttribute("rejected");
+		return ctx.getString("rejected", null);
 	}
 
 

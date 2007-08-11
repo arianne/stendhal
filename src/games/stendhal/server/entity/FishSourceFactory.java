@@ -11,24 +11,12 @@ public class FishSourceFactory implements ConfigurableFactory {
 	/**
 	 * Extract the species name from a context.
 	 * 
-	 * @param ctx
-	 *            The configuration context.
-	 * 
+	 * @param ctx The configuration context.
 	 * @return The species name.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the attribute is invalid.
+	 * @throws IllegalArgumentException If the attribute is invalid.
 	 */
-	protected String getSpecies(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("species")) == null) {
-			throw new IllegalArgumentException(
-					"Required attribute 'species' missing");
-		}
-
-		return s;
+	protected String getSpecies(ConfigurableFactoryContext ctx)	throws IllegalArgumentException {
+		return ctx.getRequiredString("species");
 	}
 
 	//

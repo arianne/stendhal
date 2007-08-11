@@ -6,9 +6,6 @@
 
 package games.stendhal.server.entity.portal;
 
-//
-//
-
 import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 /**
@@ -23,54 +20,22 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * Extract the maximum player level from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The level.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the level attribute is invalid.
+	 * @throws	IllegalArgumentException If the level attribute is invalid.
 	 */
 	protected int getMaximumLevel(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-		int level;
-
-		if ((s = ctx.getAttribute("maximum-level")) != null) {
-			try {
-				level = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
-				throw new IllegalArgumentException("Invalid maximum-level: " + s);
-			}
-		} else {
-			level = LevelCheckingPortal.DEFAULT_MAX;
-		}
-
-		return level;
+		return ctx.getInt("maximum-level", LevelCheckingPortal.DEFAULT_MAX);
 	}
 
 	/**
 	 * Extract the minimum player level from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The level.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the level attribute is invalid.
+	 * @throws	IllegalArgumentException If the level attribute is invalid.
 	 */
 	protected int getMinimumLevel(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-		int level;
-
-		if ((s = ctx.getAttribute("minimum-level")) != null) {
-			try {
-				level = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
-				throw new IllegalArgumentException("Invalid minimum-level: " + s);
-			}
-		} else {
-			level = LevelCheckingPortal.DEFAULT_MIN;
-		}
-
-		return level;
+		return ctx.getInt("maximum-level", LevelCheckingPortal.DEFAULT_MIN);
 	}
 
 

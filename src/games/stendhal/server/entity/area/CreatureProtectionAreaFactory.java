@@ -125,53 +125,24 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 * Extract the area height from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The height.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is invalid.
+	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
 	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("height")) == null) {
-			return 1;
-		}
-
-		try {
-			return Integer.parseInt(s);
-		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid 'height' attribute: " + s);
-		}
+		return ctx.getInt("height", 1);
 	}
 
 	/**
 	 * Extract the area width from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The width.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is invalid.
+	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
 	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("width")) == null) {
-			return 1;
-		}
-
-		try {
-			return Integer.parseInt(s);
-		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid 'width' attribute: " + s);
-		}
+		return ctx.getInt("width", 1);
 	}
 
-	//
-	// ConfigurableFactory
-	//
 
 	/**
 	 * Create a damaging area.

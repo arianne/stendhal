@@ -24,20 +24,11 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * Extract the quest name from a context.
 	 *
 	 * @param	ctx		The configuration context.
-	 *
 	 * @return	The quest name.
-	 *
-	 * @throws	IllegalArgumentException
-	 *				If the quest attribute is missing.
+	 * @throws	IllegalArgumentException If the quest attribute is missing.
 	 */
 	protected String getQuest(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("quest")) == null) {
-			throw new IllegalArgumentException("Required attribute 'quest' missing");
-		}
-
-		return s;
+		return ctx.getRequiredString("quest");
 	}
 
 

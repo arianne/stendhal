@@ -26,26 +26,15 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	/**
 	 * Extract the NPC from a context.
 	 * 
-	 * @param ctx
-	 *            The configuration context.
-	 * 
+	 * @param ctx The configuration context.
 	 * @return The NPC.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the attribute is invalid or missing.
+	 * @throws IllegalArgumentException If the attribute is invalid or missing.
 	 */
-	protected SpeakerNPC getNPC(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
-		String s;
-		SpeakerNPC npc;
-
-		if ((s = ctx.getAttribute("npc")) == null) {
-			throw new IllegalArgumentException(
-					"Required attribute 'npc' missing");
-		}
-
-		if ((npc = NPCList.get().get(s)) == null) {
-			throw new IllegalArgumentException("Unknown NPC: " + s);
+	protected SpeakerNPC getNPC(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		String npcName = ctx.getRequiredString("npc");
+		SpeakerNPC npc = NPCList.get().get(npcName);
+		if (npc == null) {
+			throw new IllegalArgumentException("Unknown NPC: " + npcName);
 		}
 
 		return npc;
@@ -70,8 +59,7 @@ public class NPCOwnedChestFactory implements ConfigurableFactory {
 	 * 
 	 * @see NPCOwnedChest
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
 		return new NPCOwnedChest(getNPC(ctx));
 	}
 }

@@ -17,69 +17,28 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
  */
 public class OnePlayerAreaFactory implements ConfigurableFactory {
 
-	//
-	// OnePlayerAreaFactory
-	//
-
 	/**
-	 * Extract the area height from a context.
-	 * 
-	 * @param ctx
-	 *            The configuration context.
-	 * 
-	 * @return The height.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the attribute is missing.
+	 * Extract the height from context
+	 *
+	 * @param	ctx		The configuration context.
+	 * @return	The height, 1 if unspecified.
+	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("height")) == null) {
-			throw new IllegalArgumentException(
-					"Required attribute 'height' missing");
-		}
-
-		try {
-			return Integer.parseInt(s);
-		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid 'height' attribute: "
-					+ s);
-		}
+	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return ctx.getInt("height", 1);
+	}
+	
+	/**
+	 * Extract the width from context
+	 *
+	 * @param	ctx		The configuration context.
+	 * @return	The width, 1 if unspecified.
+	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 */
+	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		return ctx.getInt("width", 1);
 	}
 
-	/**
-	 * Extract the area width from a context.
-	 * 
-	 * @param ctx
-	 *            The configuration context.
-	 * 
-	 * @return The width.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If the attribute is missing.
-	 */
-	protected int getWidth(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
-		String s;
-
-		if ((s = ctx.getAttribute("width")) == null) {
-			throw new IllegalArgumentException(
-					"Required attribute 'width' missing");
-		}
-
-		try {
-			return Integer.parseInt(s);
-		} catch (NumberFormatException ex) {
-			throw new IllegalArgumentException("Invalid 'width' attribute: "
-					+ s);
-		}
-	}
-
-	//
-	// ConfigurableFactory
-	//
 
 	/**
 	 * Create a damaging area.
