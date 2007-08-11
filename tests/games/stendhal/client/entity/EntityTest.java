@@ -13,31 +13,17 @@ import org.junit.Test;
 
 public class EntityTest {
 
-	public class MockEntity2DView extends Entity2DView {
-
-		public MockEntity2DView(Entity entity) {
-			super(entity);
-			
-		}
-
-		@Override
-		public Rectangle2D getDrawnArea() {
-			
-			return null;
-		}
-
-	}
 
 	@Test
 	public final void testEntity() {
 		Entity en = new MockEntity();
-		
+
 		assertEquals(0.0,en.getX());
 		assertEquals(0.0,en.getY());
-	
-		
+
+
 	}
-	
+
 	@Test
 	public final void testInitialize() {
      MockEntity en;
@@ -50,14 +36,14 @@ assertEquals(0,en.count);
 	 en.initialize(rpo);
 	 assertEquals("onPosition should only be called once ",1,en.count);
 	}
-	
-	
+
+
 	@Test
 	public final void testEntityRPObject() {
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "bob");
-		
+
 		Entity en = new MockEntity();
 		en.initialize(rpo);
 		assertEquals("hugo", en.getType());
@@ -74,7 +60,7 @@ assertEquals(0,en.count);
 
 	@Test
 	public final void testGetID() {
-		
+
 		RPObject rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.setID(new ID(1, "woohoo"));
@@ -94,7 +80,7 @@ assertEquals(0,en.count);
 		en = new MockEntity();
 		en.initialize(rpo);
 		assertEquals("_hugo", en.getType());
-		
+
 		rpo = new RPObject();
 		rpo.put("type", "hugo");
 		rpo.put("name", "ragnarok");
@@ -115,26 +101,26 @@ assertEquals(0,en.count);
 
 
 
-	
+
 
 	@Test
 	public final void testDistance() {
 		Entity en = new MockEntity();
-		User.setNull(); 
+		User.setNull();
 		User to=null;
 		assertEquals(Double.POSITIVE_INFINITY, en.distanceToUser());
 		to = new User();
-		
+
  		en.x=3;
  		en.y=4;
 		assertEquals(3.0, en.getX());
 		assertEquals(4.0, en.getY());
 		assertEquals(25.0, en.distanceToUser());
 		assertEquals(0.0, to.distanceToUser());
-		
+
 	}
 
-	
+
 	@Test
 	public final void testGetSprite() {
 		Entity en;
@@ -167,10 +153,10 @@ assertEquals(0,en.count);
 	public final void testGetSlot() {
 		Entity en = new MockEntity();
 		assertEquals(null,en.getSlot(""));
-		
+
 	}
 
-	
+
 	@Test
 	public final void testOfferedActions() {
 		Entity en = new MockEntity();
@@ -186,10 +172,10 @@ assertEquals(0,en.count);
 		assertEquals(expected, en.getView().getActions());
 	}
 
-	
+
 	private class MockEntity extends Entity {
  int count=0;
-	
+
 		public MockEntity() {
 			rpObject = new RPObject();
 			rpObject.put("type", "entity");
@@ -200,17 +186,14 @@ assertEquals(0,en.count);
 			return null;
 		}
 
-		@Override
-		protected Entity2DView createView() {
-			return new MockEntity2DView(this);
-		}
+
 
 		@Override
 		protected void onPosition(double x, double y) {
 			count++;
 			super.onPosition(x, y);
-			
+
 		}
-		
+
 	}
 }
