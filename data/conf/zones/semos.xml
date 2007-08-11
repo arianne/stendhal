@@ -753,6 +753,8 @@ Holy mackerel! These chips are tasty.
    </zone>
 
    <zone name="int_semos_bank" file="interiors/semos/bank.tmx">
+    <configurator class-name="games.stendhal.server.maps.semos.jail.NoTeleport"/>
+   
     <entity x="9" y="22">
       <implementation class-name="games.stendhal.server.maps.semos.bank.CustomerAdvisorNPC">
         <parameter name="name">Dagobert</parameter>
