@@ -57,7 +57,7 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 		attrs.put("key", "magical_flute");
 		attrs.put("class", "music_e");
 
-		ctx = new games.stendhal.server.config.factory.ConfigurableFactoryContextImpl(attrs);
+		ctx = new ConfigurableFactoryContext(attrs);
 
 		// Object's toString() blows up because it requires world
 		System.out.println("door: " + factory.create(ctx).getClass());

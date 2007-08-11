@@ -10,7 +10,7 @@ package games.stendhal.server.entity;
 //
 
 import games.stendhal.server.config.factory.ConfigurableFactory;
-import games.stendhal.server.config.factory.ConfigurableFactoryContextImpl;
+import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 import games.stendhal.server.config.factory.ConfigurableFactoryHelper;
 
 import java.util.Map;
@@ -51,7 +51,7 @@ public class EntityFactoryHelper {
 			return null;
 		}
 
-		obj = factory.create(new ConfigurableFactoryContextImpl(parameters));
+		obj = factory.create(new ConfigurableFactoryContext(parameters));
 
 		if (!(obj instanceof Entity)) {
 			throw new IllegalArgumentException(obj.getClass().getName()
