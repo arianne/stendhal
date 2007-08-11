@@ -894,6 +894,15 @@ Holy mackerel! These chips are tasty.
      <attribute name="description">Place your item here to trade. Both walk around to make the exchange.</attribute>
     </entity>
 
+   <entity x="32" y="1">
+     <implementation class-name="games.stendhal.server.entity.area.NoLoginArea">
+      <parameter name="name">deathmatch spikes</parameter>
+      <parameter name="width">15</parameter>
+      <parameter name="height">8</parameter>
+      <parameter name="new-x">29</parameter>
+      <parameter name="new-y">8</parameter>
+     </implementation>
+   </entity>
    </zone>
 
    <zone name="int_semos_townhall" file="interiors/semos/townhall.tmx">
