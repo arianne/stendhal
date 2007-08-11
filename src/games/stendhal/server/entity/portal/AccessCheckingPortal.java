@@ -6,8 +6,6 @@
 
 package games.stendhal.server.entity.portal;
 
-//
-//
 
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.events.TurnListener;
@@ -23,7 +21,6 @@ public abstract class AccessCheckingPortal extends Portal {
 	 */
 	protected String	rejectMessage;
 
-
 	/**
 	 * Creates an access checking portal.
 	 *
@@ -34,10 +31,6 @@ public abstract class AccessCheckingPortal extends Portal {
 	}
 
 
-	//
-	// AccessCheckingPortal
-	//
-
 	/**
 	 * Determine if this portal can be used.
 	 *
@@ -46,7 +39,6 @@ public abstract class AccessCheckingPortal extends Portal {
 	 * @return	<code>true<code> if the user can use the portal.
 	 */
 	protected abstract boolean isAllowed(RPEntity user);
-
 
 	/**
 	 * Called when the user is rejected.
@@ -60,7 +52,6 @@ public abstract class AccessCheckingPortal extends Portal {
 		}
 	}
 
-
 	/**
 	 * Wrapper to send a message to a user, without getting lost.
 	 *
@@ -71,7 +62,6 @@ public abstract class AccessCheckingPortal extends Portal {
 		TurnNotifier.get().notifyInTurns(0, new SendMessage(user, text));
 	}
 
-
 	/**
 	 * Set the rejection message.
 	 *
@@ -80,11 +70,6 @@ public abstract class AccessCheckingPortal extends Portal {
 	public void setRejectedMessage(String rejectMessage) {
 		this.rejectMessage = rejectMessage;
 	}
-
-
-	//
-	// Entity
-	//
 
 	/**
 	 * Use the portal, if allowed.
@@ -100,10 +85,7 @@ public abstract class AccessCheckingPortal extends Portal {
 		}
 	}
 
-	//
-	//
-
-	/*
+	/**
 	 * A turn listener that sends a user message. Once sendPrivateText()
 	 * is fixed (via a queue or something) to always work, this can go
 	 * away.
@@ -119,15 +101,12 @@ public abstract class AccessCheckingPortal extends Portal {
 		 * Create a message sending turn listener.
 		 *
 		 * @param	user		The user to send to.
+		 * @param   text        Message to send
 		 */
 		public SendMessage(RPEntity user, String text) {
 			this.user = user;
 			this.text = text;
 		}
-
-		//
-		// TurnListener
-		//
 
 		/**
 		 * This method is called when the turn number is reached.

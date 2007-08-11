@@ -36,7 +36,9 @@ public abstract class Door extends Portal implements TurnListener {
 	 */
 	private static final int TURNS_TO_STAY_OPEN = 9; /* 3 seconds */
 
-	/** Whether or not the door is currently open */
+	/**
+	 * Whether or not the door is currently open
+	 */
 	private boolean open;
 
 	public static void generateRPClass() {
@@ -49,9 +51,8 @@ public abstract class Door extends Portal implements TurnListener {
 
 	/**
 	 * Creates a new door.
+	 *
 	 * @param clazz The class. Responsible for how this door looks like.
-	 * @param dir The direction in which one has to walk in order to pass
-	 *            through this door
 	 */
 	public Door(String clazz) {
 		setRPClass("door");

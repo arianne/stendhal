@@ -30,7 +30,6 @@ public class LockedDoor extends Door {
 	 *
 	 * @param key   name of required key
 	 * @param clazz class of door
-	 * @param dir   direction of door
 	 */
 	public LockedDoor(String key, String clazz) {
 		super(clazz);

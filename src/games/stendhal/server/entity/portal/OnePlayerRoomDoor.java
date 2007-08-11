@@ -34,7 +34,6 @@ public class OnePlayerRoomDoor extends Door {
 	 * Creates a new OnePlayerRoomDoor
 	 *
 	 * @param clazz clazz
-	 * @param dir   direction
 	 */
 	public OnePlayerRoomDoor(String clazz) {
 		super(clazz);

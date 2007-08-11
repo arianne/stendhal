@@ -2,8 +2,6 @@ package games.stendhal.server.entity.portal;
 
 import games.stendhal.server.entity.RPEntity;
 
-import javax.management.AttributeNotFoundException;
-
 /**
  * A KeyDestroyingDoor works just like a normal locked door, except that it
  * destroys the key item when used. By using the requiredAmount parameter,
@@ -30,9 +28,6 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 * uses it.
 	 * @param key The name of the item that is required to use the door
 	 * @param clazz The class. Responsible for how this door looks like.
-	 * @param dir The direction in which one has to walk in order to pass
-	 *            through this door
-	 * @throws AttributeNotFoundException
 	 */
 	public KeyDestroyingDoor(String key, String clazz) {
 		this(key, clazz, 1);
@@ -42,11 +37,8 @@ public class KeyDestroyingDoor extends LockedDoor {
 	 * Creates a new KeyDestroying door.
 	 * @param key The name of the item that is required to use the door
 	 * @param clazz The class. Responsible for how this door looks like.
-	 * @param dir The direction in which one has to walk in order to pass
-	 *            through this door
 	 * @param requiredAmount The number of key items that are destroyed while
 	 *                       passing through the door
-	 * @throws AttributeNotFoundException
 	 */
 	public KeyDestroyingDoor(String key, String clazz, int requiredAmount) {
 		super(key, clazz);

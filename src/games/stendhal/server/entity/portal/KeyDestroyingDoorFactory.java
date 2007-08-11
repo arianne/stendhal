@@ -6,10 +6,6 @@
 
 package games.stendhal.server.entity.portal;
 
-//
-//
-
-import games.stendhal.server.config.factory.ConfigurableFactory;
 import games.stendhal.server.config.factory.ConfigurableFactoryContext;
 
 /**
@@ -17,9 +13,6 @@ import games.stendhal.server.config.factory.ConfigurableFactoryContext;
  */
 public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 
-	//
-	// ConfigurableFactory
-	//
 
 	/**
 	 * Create a locked door.
@@ -41,25 +34,5 @@ public class KeyDestroyingDoorFactory extends LockedDoorFactory {
 		return new KeyDestroyingDoor(getKey(ctx), getClass(ctx));
 	}
 
-	//
-	//
 
-	public static void main(String[] args) throws Exception {
-		ConfigurableFactory factory;
-		java.util.Map<String, String> attrs;
-		ConfigurableFactoryContext ctx;
-
-		factory = games.stendhal.server.config.factory.ConfigurableFactoryHelper
-		        .getFactory("games.stendhal.server.entity.portal.KeyDestroyingDoor");
-		//		factory = games.stendhal.common.ConfigurableFactoryHelper.getFactory("games.stendhal.server.entity.portal.OneWayPortalDestination");
-
-		attrs = new java.util.HashMap<String, String>();
-		attrs.put("key", "magical_flute");
-		attrs.put("class", "music_e");
-
-		ctx = new ConfigurableFactoryContext(attrs);
-
-		// Object's toString() blows up because it requires world
-		System.out.println("door: " + factory.create(ctx).getClass());
-	}
 }
