@@ -24,6 +24,9 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
+/**
+ * A portal which teleports the player to another portal if used.
+ */
 public class Portal extends Entity implements UseListener {
 
 	/** the logger instance. */
@@ -47,6 +50,9 @@ public class Portal extends Entity implements UseListener {
 		}
 	}
 
+	/**
+	 * Creates a new portal
+	 */
 	public Portal() {
 		setRPClass("portal");
 		put("type", "portal");
@@ -54,13 +60,6 @@ public class Portal extends Entity implements UseListener {
 		settedDestination = false;
 	}
 
-	/**
-	 * @deprecated	Use setReference().
-	 */
-	@Deprecated
-	public void setNumber(int number) {
-		setReference(new Integer(number));
-	}
 
 	/**
 	 * Set the portal reference to identify this specific portal with-in
@@ -73,19 +72,17 @@ public class Portal extends Entity implements UseListener {
 		this.reference = reference;
 	}
 
+	/**
+	 * gets the identifier of this portal
+	 *
+	 * @return identifier
+	 */
 	public Object getReference() {
 		return reference;
 	}
 
-	/**
-	 * @deprecated	Use setDestination(String, Object).
-	 */
-	@Deprecated
-	public void setDestination(String zone, int number) {
-		setDestination(zone, new Integer(number));
-	}
 
-	/*
+	/**
 	 * Set the destination portal zone and reference. The reference should
 	 * match the same type/value as that passed to setReference() in the
 	 * corresponding portal.
@@ -111,8 +108,6 @@ public class Portal extends Entity implements UseListener {
 		return settedDestination;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Portal at " + get("zoneid") + "[" + getX() + "," + getY() + "]";
@@ -121,6 +116,7 @@ public class Portal extends Entity implements UseListener {
 	/**
 	 * Use the portal.
 	 *
+	 * @param player the Player who wants to use this portal 
 	 * @return	<code>true</code> if the portal worked,
 	 *		<code>false</code> otherwise.
 	 */
@@ -158,6 +154,12 @@ public class Portal extends Entity implements UseListener {
 		return usePortal((Player) user);
 	}
 
+	/**
+	 * if this portal is the destination of another portal used
+	 *
+	 * @param user the player who used the other portal teleporting to us
+	 */
+	@SuppressWarnings("unused")
 	public void onUsedBackwards(RPEntity user) {
 		// do nothing
 	}
