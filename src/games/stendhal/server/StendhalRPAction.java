@@ -175,8 +175,8 @@ public class StendhalRPAction {
 			// spear.
 			damage = applyDistanceAttackModifiers(attacker, defender, damage);
 		}
-		// limit damage to target hp
-		return Math.min(damage, defender.getHP());
+
+		return damage;
 	}
 
 	/**
@@ -340,6 +340,9 @@ public class StendhalRPAction {
 			int damage = damageDone(attacker, defender);
 			if (damage > 0) {
 				damage = handleLifesteal(attacker, weapons, damage);
+
+				// limit damage to target HP
+				damage = Math.min(damage, defender.getHP());
 
 				defender.onDamaged(attacker, damage);
 				attacker.put("damage", damage);
