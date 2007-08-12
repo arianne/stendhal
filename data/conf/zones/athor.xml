@@ -446,10 +446,10 @@ You get your stake back when there is a draw. If you win, you get the double of 
     <portal x="60" y="66" ref="under_pool">
       <destination zone="0_athor_island" ref="pool"/>
     </portal>
-    <portal x="123" y="118" ref="labyrinth_locked_door">
+    <portal x="124" y="118" ref="labyrinth_locked_door">
       <destination zone="-1_athor_island_e" ref="labyrinth2"/>
       <implementation class-name="games.stendhal.server.entity.portal.LockedDoor">
-        <parameter name="class">skulldoor_e</parameter>
+        <parameter name="class">skulldoor_w</parameter>
         <parameter name="key">minotaur_key</parameter>
       </implementation>
     </portal>
