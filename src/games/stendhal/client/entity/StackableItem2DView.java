@@ -61,7 +61,7 @@ public class StackableItem2DView extends Item2DView {
 	 * @return	A sprite representing the quantity,
 	 *		or <code>null</code> for none.
 	 */
-	protected Sprite getQuantitySprite() {
+	public Sprite getQuantitySprite() {
 		int	quantity;
 		String	label;
 

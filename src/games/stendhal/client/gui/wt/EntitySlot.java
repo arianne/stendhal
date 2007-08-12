@@ -24,6 +24,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.EntityFactory;
 import games.stendhal.client.entity.Player;
 import games.stendhal.client.entity.StackableItem;
+import games.stendhal.client.entity.StackableItem2DView;
 import games.stendhal.client.entity.User;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 import games.stendhal.client.gui.wt.core.WtDropTarget;
@@ -162,24 +163,6 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 	}
 
 	/**
-	 * ensures that the quantity image is set
-	 */
-	private void checkQuantityImage(int quantity) {
-		if ((quantityImage == null) || (quantity != oldQuantity)) {
-			oldQuantity = quantity;
-			String quantityString;
-			if (quantity > 99999) {
-				// The client can't show more than 5 digits.
-				// This solution works for quantities up to 10 million - 1.
-				quantityString = (quantity / 1000) + "K";
-			} else {
-				quantityString = Integer.toString(quantity);
-			}
-			quantityImage = GameScreen.get().createString(quantityString, Color.white);
-		}
-	}
-
-	/**
 	 * draws the panel into the graphics object
 	 * 
 	 * @param g
@@ -208,10 +191,11 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 			sprite.draw(childArea, x, y);
 
 			if (entity instanceof StackableItem) {
-				int quantity = ((StackableItem) entity).getQuantity();
-
-				checkQuantityImage(quantity);
-				quantityImage.draw(childArea, 0, 0);
+				StackableItem2DView view = ((StackableItem2DView)((StackableItem) entity).getView());
+				quantityImage = view.getQuantitySprite();
+				if (quantityImage != null) {
+					quantityImage.draw(childArea, 0, 0);
+				}
 			}
 		} else if (placeholder != null) {
 			// Center the placeholder sprite
