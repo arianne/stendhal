@@ -129,14 +129,14 @@
  <tileset name="vegetable.png" firstgid="217" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/item/vegetable.png"/>
  </tileset>
- <layer name="0_floor" width="25" height="25" visible="0">
+ <layer name="0_floor" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAONiYGDgIgEzkKgehoVpiEeCHRJALE6EGYTUjQQ7hkucj9ox8uyApXtS6VE7Ru0YCXYMxXxOLFZBw8TqAwDWuV3CxAkAAA==
   </data>
  </layer>
  <layer name="1_terrain" width="25" height="25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2VTUtCQRSG589kCgaV/QERrIQ2ZQVK+NUvaBktCgrMsnbmR1+6iXRRQi37b75DM3AYZuaeC3N94MG7OGce7vXCXRFCrCZoGmbEPzvCTgqeOEw5dvR5c7hOGruWuar6bcKW4akxY6LPow0f5/DM8IKxF6cRlyEcwecEGy/wA76RRh6W1G+oxqvRkBQDna8b5n1I9hi7l/CKMfcOx3Ai4v0fx/Aa3qhrH59wCmekscbsxCVLGgWPHHz7ulH0yMG3v8xnlSS0sR8xK9+lGqzDhoh+t/R5y74PF+Z3ZaD0zWh+mA36XWnDW9iBd44Zyq+lEfWM72EXPsDHiFkNbRzAMjxk7nKhjaPAZ39ZGpJKwMY3/CONbeZeznHtQzY24CbTHnxS9pk7W3ABIi4aUsQJAAA=
+   H4sIAAAAAAAAAL2Vy0oDMRSG8zKtCha8vYAIbS248QpKsWqfoMviQkGh2qo775fajWgXKtSl7+YfTOAQkjMnkOkHH53FOfmY6cAUlFITOToJp9Q/VeWnCOsBi4Ede943nCGNZc/cjvndhweOTWfGxZ5HGxxt2HI8FOzFNGK5hw/wMcfGE3yDL6SxCGvmN1Xj2WloyonOtw33PjQrgt0jeCyY68NXOFBx/8cWPIGn5prjHX7AIWmUhJ1YpkljiVECt28bZUYJ3P44n1We0MZqxqx+l3ZhA+6p7HfLnjfu+wjhflfujNyMZSRs0O9KB57Bc9gNzFB+PI2sZ9yDF/ASXmXMWmhjDa4L92KgjQ24mfDsT09Ds52w8QV/SaMi3JsPXHPoxiycE3oNb4y3wp0F+AeBqCAdxAkAAA==
   </data>
  </layer>
  <layer name="2_object" width="25" height="25">
@@ -144,7 +144,7 @@
    H4sIAAAAAAAAAGNgQAXrkdiHoPQxID4KZZ9C459FUn8BzayNSOwDSOwNDJjgBBAfx8OHgYto/E1I7M1Y1FMD0MpceoKZdLDjMo3NvwTEV2lsBwhcoYMd9IiPUTB8QOxAO2AUjIJRMCgBAF4de2HECQAA
   </data>
  </layer>
- <layer name="3_roof" width="25" height="25" visible="0">
+ <layer name="3_roof" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAAGNgGAVDDVQBcREarhm1AyuoBeJSNFxPZTtGwfAE1+hgXiAR+mKgdBwRaokxbxSMglEw+MA0IJ4OxTNI0AcAmgjCH8QJAAA=
   </data>
@@ -161,7 +161,7 @@
  </layer>
  <layer name="collision" width="25" height="25" opacity="0.25">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAL2VXQrAIAyDe/8Tepy9FrE/ydIWZAwSv0xXPWZ2FoY9nubeK++r/HyZ9qWLskX+KouiphjImioZah6zdyoG4p1iIJ7JfeiyFN/InDObedFi52f03f64tR19V/u3kDyZJ7sb2D5n+r3KwzK8J2IqapKx8V9t9XnE6p45iOcD6YiOdMQJAAA=
+   H4sIAAAAAAAAAL1VQQ7AIAjj/y/0ObsSg0C7QhMzTVpbdegxs7PQLPiaG1faCH6+jBvxXtle+iqLAlMeyJ4qPdR+zNmpPBDtlAeimTyHrpdijcw9s5kXBTs/w+/Wx83t8Lvcv0DyZJrsbWDrnKn3Kg/r4TV3X4lJj43/aqvOX17dOwfRfIFnjZnECQAA
   </data>
  </layer>
  <layer name="protection" width="25" height="25" visible="0">
