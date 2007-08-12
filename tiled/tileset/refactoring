@@ -233,8 +233,8 @@ b*/item/candle/lamp.png
 b*/item/chest/large.png
 b*/item/chest/small.png
 b*/item/chest/small_2.png
-./item/chest/wooden_dark.png
-./item/chest/wooden_pale.png
+b*/item/chest/wooden_dark.png
+b*/item/chest/wooden_pale.png
 k*/item/corpse/huge_animal.png
 ./item/corpse/skeleton.png
 ./item/corpse/skull_dark.png
