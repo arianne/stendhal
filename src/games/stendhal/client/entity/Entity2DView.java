@@ -82,7 +82,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		entityComposite = AlphaComposite.SrcOver;
 		contained = false;
 		animatedChanged = false;
-		changed = false;
+		changed = true;
 		visibilityChanged = true;
 		representationChanged = false;
 
