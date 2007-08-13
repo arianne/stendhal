@@ -350,7 +350,7 @@ public class Player extends RPEntity {
 			}
 		}
 
-		awayReplies.put(name, new Long(now));
+		awayReplies.put(name, now);
 		return true;
 	}
 
@@ -846,7 +846,7 @@ public class Player extends RPEntity {
 
 			List<Item> ringList = getAllEquipped("emerald_ring");
 			boolean eRingUsed = false;
-			
+
 			for (Item emeraldRing : ringList) {
 				int amount = emeraldRing.getInt("amount");
 				if (amount > 0) {
@@ -856,7 +856,7 @@ public class Player extends RPEntity {
 					break;
 				}
 			}
-			
+
 			if (eRingUsed) {
 				// Penalize: 1% less experience if wearing that ring
 				setXP((int) (getXP() * 0.99));
@@ -1751,11 +1751,11 @@ public class Player extends RPEntity {
 		if (this == obj) {
 			return true;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
+		if (obj  instanceof Player) {
+			Player other = (Player) obj; ;
+			return this.getName().equals(other.getName());
 		}
-		Player other = (Player) obj;
-		return this.getName().equals(other.getName());
+		return false;
 	}
 
 	@Override
