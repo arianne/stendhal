@@ -1,76 +1,76 @@
 <?xml version="1.0"?>
 <map version="0.99b" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
  <tileset name="wall" firstgid="1" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/wall/int_blue_green.png"/>
+  <image source="../../tileset/building/wall/int_blue_green.png"/>
  </tileset>
  <tileset name="wall2" firstgid="17" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/wall/int_green_blue_2.png"/>
+  <image source="../../tileset/building/wall/int_green_blue_2.png"/>
  </tileset>
  <tileset name="wall3" firstgid="25" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/wall/int_green_blue.png"/>
+  <image source="../../tileset/building/wall/int_green_blue.png"/>
  </tileset>
  <tileset name="entrance" firstgid="41" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/entrance/blue_green.png"/>
+  <image source="../../tileset/building/entrance/blue_green.png"/>
  </tileset>
  <tileset name="ground" firstgid="49" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/ground/greenGround2.png"/>
+  <image source="../../tileset/ground/greenGround2.png"/>
  </tileset>
  <tileset name="water" firstgid="50" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/ground/water/turbulent_water.png"/>
+  <image source="../../tileset/ground/water/turbulent_water.png"/>
  </tileset>
  <tileset name="waterfall" firstgid="53" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/ground/water/waterfall.png"/>
+  <image source="../../tileset/ground/water/waterfall.png"/>
  </tileset>
  <tileset name="randstein" firstgid="74" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/ground/green_paving.png"/>
+  <image source="../../tileset/ground/green_paving.png"/>
  </tileset>
  <tileset name="thron" firstgid="83" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/item/furniture/chair/throne.png"/>
+  <image source="../../tileset/item/furniture/chair/throne.png"/>
  </tileset>
  <tileset name="carpet2" firstgid="89" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/item/furniture/carpet/carpets.png"/>
+  <image source="../../tileset/item/furniture/carpet/carpets.png"/>
  </tileset>
  <tileset name="statue" firstgid="97" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/item/furniture/statue/sea_horse.png"/>
+  <image source="../../tileset/item/furniture/statue/sea_horse.png"/>
  </tileset>
  <tileset name="stairs" firstgid="109" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/stairs/blue_stone.png"/>
+  <image source="../../tileset/building/stairs/blue_stone.png"/>
  </tileset>
  <tileset name="curtain" firstgid="112" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/item/furniture/curtain/red_gold_drawn.png"/>
+  <image source="../../tileset/item/furniture/curtain/red_gold_drawn.png"/>
  </tileset>
  <tileset name="plant" firstgid="118" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/plant/indoor/pot_plant.png"/>
+  <image source="../../tileset/plant/indoor/pot_plant.png"/>
  </tileset>
  <tileset name="kamin" firstgid="121" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/decoration/fireplace.png"/>
+  <image source="../../tileset/building/decoration/fireplace.png"/>
  </tileset>
  <tileset name="seerose" firstgid="130" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/plant/flower/daisy_white.png"/>
+  <image source="../../tileset/plant/flower/daisy_white.png"/>
  </tileset>
  <tileset name="bush" firstgid="138" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/plant/bush/bushes.png"/>
+  <image source="../../tileset/plant/bush/bushes.png"/>
  </tileset>
  <tileset name="arrows" firstgid="148" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/object/arrows.png"/>
+  <image source="../../tileset/object/arrows.png"/>
  </tileset>
  <tileset name="paving" firstgid="158" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/ground/brown_paving.png"/>
+  <image source="../../tileset/ground/brown_paving.png"/>
  </tileset>
  <tileset name="big_entrance" firstgid="160" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/building/entrance/blue_green_big.png" trans="ffffff"/>
+  <image source="../../tileset/building/entrance/blue_green_big.png" trans="ffffff"/>
  </tileset>
  <tileset name="curtain_wall" firstgid="164" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/item/furniture/curtain/red_gold_drawn_wall.png" trans="ffffff"/>
+  <image source="../../tileset/item/furniture/curtain/red_gold_drawn_wall.png" trans="ffffff"/>
  </tileset>
  <tileset name="torch" firstgid="168" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/item/furniture/light/torch_top.png"/>
+  <image source="../../tileset/item/furniture/light/torch_top.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="172" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/logic/collision.png"/>
+  <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <tileset name="Untitled" firstgid="173" tilewidth="32" tileheight="32">
-  <image source="../../../../../workspace2/stendhal/tiled/tileset/logic/creature/oni.png"/>
+  <image source="../../tileset/logic/creature/oni.png"/>
  </tileset>
  <layer name="0_floor" width="32" height="32">
   <data encoding="base64" compression="gzip">
