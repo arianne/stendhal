@@ -316,7 +316,7 @@ private void offerKnifeStep() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
 				        String[] tokens = player.getQuest(QUEST_SLOT).split(";");
-				        long delay = REQUIRED_DAYS * 60 /** 60 * 24 */* 1000; // milliseconds in REQUIRED_DAYS days
+				        long delay = REQUIRED_DAYS * 60 * 60 * 24 * 1000; // milliseconds in REQUIRED_DAYS days
 				        long timeRemaining = (Long.parseLong(tokens[1]) + delay)
 				                - System.currentTimeMillis();
 				        if (timeRemaining > 0L) {
