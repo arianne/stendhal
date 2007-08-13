@@ -360,18 +360,18 @@ public class UserContext implements RPObjectChangeListener {
 
 			String buddyName = key.substring(1);
 
-			Boolean online = (changes.getInt(key) != 0)
-				? Boolean.TRUE : Boolean.FALSE;
+			Boolean online = (changes.getInt(key) != 0);
+
 
 			if(!buddies.containsKey(buddyName)) {
 				buddies.put(buddyName, online);
 				fireBuddyAdded(buddyName);
 
-				if(online == Boolean.TRUE) {
+				if(online) {
 					fireBuddyOnline(buddyName);
 				}
 			} else if(buddies.get(buddyName) != online) {
-				if(online == Boolean.TRUE) {
+				if(online) {
 					fireBuddyOnline(buddyName);
 				} else {
 					fireBuddyOffline(buddyName);
