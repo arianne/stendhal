@@ -103,7 +103,7 @@ public class Grammar {
 			return a_noun(noun);
 		}
 	}
-	
+
 	/**
 	 * "a [noun]" or "an [noun]", depending on the first syllable
 	 *
@@ -146,7 +146,7 @@ public class Grammar {
 
 	public static String fullform(String noun) {
 		String result;
-		String lowString=noun.toLowerCase(); 
+		String lowString=noun.toLowerCase();
 			result = lowString.replace("#","");
 		if (result.equals("meat") || result.equals("ham") || result.equals("cheese") || result.equals("wood")
 		        || result.equals("paper") || result.equals("iron")) {
@@ -176,7 +176,7 @@ public class Grammar {
 		} else {
 			result = lowString;
 		}
-		
+
 		return result;
 	}
 
@@ -307,7 +307,7 @@ public class Grammar {
 	}
 
 	/**
-	 * Returns either the plural or singular form of the given noun, 
+	 * Returns either the plural or singular form of the given noun,
 	 * depending on the quantity; also prefixes the quantity
 	 *
 	 * @param quantity The quantity to examine
@@ -346,8 +346,6 @@ public class Grammar {
 	 * @return first, second, third, ...
 	 */
 	public static String ordered(int n) {
-		if ((n <= 0) || (n > 3)) {
-		}
 		switch (n) {
 			case 1:
 				return "first";
@@ -366,7 +364,7 @@ public class Grammar {
 	 * Helper function to nicely formulate an enumeration of a collection.
 	 * For example, for a collection containing the 3 elements x, y, z,
 	 * returns the string "x, y, and z".
-	 * @param collection The collection whose elements should be enumerated 
+	 * @param collection The collection whose elements should be enumerated
 	 * @return A nice String representation of the collection
 	 */
 	public static String enumerateCollection(Collection<String> collection) {
