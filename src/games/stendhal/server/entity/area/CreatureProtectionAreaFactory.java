@@ -34,14 +34,14 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 */
 	protected void defineCreatures(CreatureProtectionArea area, ConfigurableFactoryContext ctx)
 	        throws IllegalArgumentException {
-		String s;
+		String s = ctx.getString("rules",null);
 		String clazz;
 		String subclazz;
 		boolean blocked;
 		StringTokenizer st;
 		int i;
 
-		if ((s = ctx.getAttribute("rules")) == null) {
+		if (s  == null) {
 			return;
 		}
 
@@ -104,9 +104,9 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	 *				If the attribute is invalid.
 	 */
 	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s;
+		String s = ctx.getString("default",null);
 
-		if ((s = ctx.getAttribute("default")) == null) {
+		if (s == null) {
 			return true;
 		}
 
