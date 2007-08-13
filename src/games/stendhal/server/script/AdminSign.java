@@ -65,12 +65,12 @@ public class AdminSign extends ScriptImpl {
 			}
 			sign.setText(sb.toString().trim().replace("|", "\n"));
 
-			// add sign to game 
+			// add sign to game
 			sandbox.add(sign);
 
 			// put it into our storage for later "list" or "del" commands
 			signcounter++;
-			storage.put(new Integer(signcounter), sign);
+			storage.put(Integer.valueOf(signcounter), sign);
 		} else {
 			// syntax error, print help text
 			sandbox
@@ -94,9 +94,9 @@ public class AdminSign extends ScriptImpl {
 			sandbox.privateText(player, "Please specify a number");
 			return;
 		}
-		Sign sign = storage.get(new Integer(i));
+		Sign sign = storage.get(Integer.valueOf(i));
 		if (sign != null) {
-			storage.remove(new Integer(i));
+			storage.remove(Integer.valueOf(i));
 			sandbox.remove(sign);
 			StringBuilder sb = new StringBuilder();
 			sb.append("Removed sign ");
@@ -130,7 +130,7 @@ public class AdminSign extends ScriptImpl {
 
 		int i = 1;
 		while (i <= signcounter) {
-			Sign sign = storage.get(new Integer(i));
+			Sign sign = storage.get(Integer.valueOf(i));
 			if (sign != null) {
 				sb.append("\r\n");
 				sb.append(i);
