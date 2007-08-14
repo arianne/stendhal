@@ -47,7 +47,7 @@ public class Starter {
 			// a class-load-time dependency.
 
 			// get class and create an object of it
-			Class<?> clazz = Class.forName("games.stendhal.client.update.Bootstrap");
+			Class clazz = Class.forName("games.stendhal.client.update.Bootstrap");
 			Object object = clazz.newInstance();
 
 			// get param values of boot method
@@ -62,6 +62,7 @@ public class Starter {
 			}
 
 			// get method and invoke it
+			// IGNORE THIS WARNING BECAUSE THIS CODE NEEDS TO BE COMPILED FOR OLDER JREs.
 			Method method = clazz.getMethod("boot", paramTypes);
 			method.invoke(object, params);
 		} catch (Exception e) {
