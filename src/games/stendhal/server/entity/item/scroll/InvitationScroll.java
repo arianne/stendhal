@@ -11,7 +11,6 @@ package games.stendhal.server.entity.item.scroll;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.player.Player;
-import games.stendhal.server.util.TimeUtil;
 
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -22,9 +21,6 @@ import java.util.StringTokenizer;
  * As they are by invitation, it ignores destination zone anti-teleport rules.
  */
 public class InvitationScroll extends TeleportScroll {
-
-	//	private static final Logger logger =
-	//				Log4J.getLogger(InvitationScroll.class);
 
 	/**
 	 * Creates a new invitation teleport scroll.
@@ -46,6 +42,7 @@ public class InvitationScroll extends TeleportScroll {
 	public InvitationScroll(InvitationScroll item) {
 		super(item);
 	}
+
 
 	/**
 	 * Try to teleport to a marked scroll infostring style place.
@@ -109,12 +106,7 @@ public class InvitationScroll extends TeleportScroll {
 			return false;
 		}
 
-		//		String dest = StendhalRPZone.get().getGatheringLocation(
-		//			get("infostring"));
-		String dest = null;
-
-		// TODO: implement me
-
+		String dest=get("infostring");
 		if (dest == null) {
 			player.sendPrivateText("You do not recognize the event.");
 
@@ -131,43 +123,15 @@ public class InvitationScroll extends TeleportScroll {
 	 */
 	@Override
 	public String describe() {
-		StringBuffer sbuf;
-		int secondsTill;
-
 		/*
 		 * Base description (set by creator?)
 		 */
 		if (hasDescription()) {
-			sbuf = new StringBuffer(getDescription());
+			return getDescription();
 		} else {
-			sbuf = new StringBuffer("An invitation to an event.");
+			return "An invitation to an event.";
 		}
 
-		/*
-		 * When is it?
-		 */
-		if (has("infostring")) {
-			//			secondsTill = StendhalRPZone.get().getGatheringTime(
-			//				get("infostring"));
-			secondsTill = Integer.MIN_VALUE;
 
-			if (secondsTill != Integer.MIN_VALUE) {
-				sbuf.append(" This event ");
-
-				if (secondsTill < 0) {
-					sbuf.append("happened ");
-					TimeUtil.approxTimeUntil(-secondsTill);
-					sbuf.append(" ago.");
-				} else if (secondsTill > 0) {
-					sbuf.append("starts in ");
-					TimeUtil.approxTimeUntil(secondsTill);
-					sbuf.append('.');
-				} else {
-					sbuf.append("is happening now.");
-				}
-			}
-		}
-
-		return sbuf.toString();
 	}
 }
