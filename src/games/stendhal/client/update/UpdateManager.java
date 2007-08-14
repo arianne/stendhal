@@ -175,11 +175,13 @@ public class UpdateManager {
 	/**
 	 * returns the list of all files to download for transitive update
 	 *
+	 * @param startVersion the version to start the path at
 	 * @return list of files
 	 */
-	private List<String> getFilesToUpdate(String version) {
+	private List<String> getFilesToUpdate(String startVersion) {
 		List<String> res = new LinkedList<String>();
 
+		String version = startVersion;
 		while (true) {
 			String list = updateProp.getProperty("update-file-list." + version);
 			if (list == null) {

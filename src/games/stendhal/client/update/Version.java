@@ -9,6 +9,7 @@ package games.stendhal.client.update;
  */
 public class Version {
 
+	/** Version Number */
 	public static final String VERSION = "0.70";
 
 	/**
@@ -91,6 +92,13 @@ public class Version {
 		return 0;
 	}
 
+	/**
+	 * Checks wether theses version of stendhal are compatible
+	 *
+	 * @param v1 one version string
+	 * @param v2 another version string
+	 * @return true, iff the first two components are equal
+	 */
 	public static boolean checkCompatibility(String v1, String v2) {
 		String ev1 = cut(v1, 2);
 		String ev2 = cut(v2, 2);
