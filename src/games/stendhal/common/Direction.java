@@ -13,11 +13,11 @@
 package games.stendhal.common;
 
 public enum Direction {
-	STOP(0,0,0), UP(1,0,-1), RIGHT(2,1,0), DOWN(3,0,1), LEFT(4,-1,0);
+	STOP(0, 0, 0), UP(1, 0, -1), RIGHT(2, 1, 0), DOWN(3, 0, 1), LEFT(4, -1, 0);
 
 	private final int val;
-	private final int _dx;
-	private final int _dy;
+	private final int dx;
+	private final int dy;
 
 	public static Direction build(int val) {
 		switch (val) {
@@ -40,11 +40,11 @@ public enum Direction {
 	}
 
 	public int getdx() {
-		return _dx;
+		return dx;
 	}
 
 	public int getdy() {
-		return _dy;
+		return dy;
 	}
 
 	public static Direction rand() {
@@ -53,8 +53,8 @@ public enum Direction {
 
 	Direction(int val, int dx, int dy) {
 		this.val = val;
-		this._dx=dx;
-		this._dy=dy;
+		this.dx = dx;
+		this.dy = dy;
 	}
 
 	public int get() {

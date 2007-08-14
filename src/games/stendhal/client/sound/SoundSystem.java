@@ -501,7 +501,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 						loudness = 100;
 						pos = value.lastIndexOf(',');
 						if (pos != -1) {
-							loudness = MathHelper.parseInt_default(value.substring(pos + 1), 100);
+							loudness = MathHelper.parseIntDefault(value.substring(pos + 1), 100);
 						}
 
 						// investigate sample status

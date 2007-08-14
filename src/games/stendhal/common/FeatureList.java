@@ -15,8 +15,7 @@ import java.util.HashMap;
  * A list of [enabled] features.
  */
 public class FeatureList {
-	protected HashMap<String, String>	list;
-
+	protected HashMap<String, String> list;
 
 	/**
 	 * Create a list of [enabled] features.
@@ -24,7 +23,6 @@ public class FeatureList {
 	public FeatureList() {
 		list = new HashMap<String, String>();
 	}
-
 
 	//
 	// FeatureList
@@ -37,7 +35,6 @@ public class FeatureList {
 		list.clear();
 	}
 
-
 	/**
 	 * Read an encoded features list.
 	 *
@@ -45,31 +42,30 @@ public class FeatureList {
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 */
 	public void decode(String encoded) {
-		int	len;
-		int	pos;
-		int	epos;
-		int	cpos;
-		String	name;
-		String	value;
-
+		int len;
+		int pos;
+		int epos;
+		int cpos;
+		String name;
+		String value;
 
 		list.clear();
 
 		len = encoded.length();
 		pos = 0;
 
-		while(pos < len) {
-			if((cpos = encoded.indexOf(':', pos)) == -1) {
+		while (pos < len) {
+			if ((cpos = encoded.indexOf(':', pos)) == -1) {
 				cpos = len;
 			}
 
-			if(((epos = encoded.indexOf('=', pos)) == -1) || (epos > cpos)) {
+			if (((epos = encoded.indexOf('=', pos)) == -1) || (epos > cpos)) {
 				epos = cpos;
 			}
 
 			name = encoded.substring(pos, epos);
 
-			if(epos < cpos) {
+			if (epos < cpos) {
 				value = encoded.substring(epos + 1, cpos);
 			} else {
 				value = "";
@@ -81,7 +77,6 @@ public class FeatureList {
 		}
 	}
 
-
 	/**
 	 * Build an encoded features list.
 	 *
@@ -89,82 +84,78 @@ public class FeatureList {
 	 * <em>name</em>[<code>=</code><em>value</em>][<code>:</code><em>name</em>[<code>=</code><em>value</em>]...]
 	 */
 	public String encode() {
-		StringBuffer	sbuf;
-
+		StringBuffer sbuf;
 
 		sbuf = new StringBuffer();
 
-		for(String name : list.keySet()) {
+		for (String name : list.keySet()) {
 			String value = list.get(name);
 
-			if(sbuf.length() != 0) {
+			if (sbuf.length() != 0) {
 				sbuf.append(':');
 			}
 
 			sbuf.append(name);
 
-			if(value.length() != 0) {
+			if (value.length() != 0) {
 				sbuf.append('=');
 				sbuf.append(value);
 			}
 		}
 
-
 		return sbuf.toString();
 	}
-
 
 	/**
 	 * Get a feature value.
 	 *
-	 * @return	A feature value, or <code>null</code> if not-enabled.
+	 * @return A feature value, or <code>null</code> if not-enabled.
 	 */
 	public String get(String name) {
 		return list.get(name);
 	}
 
-
 	/**
 	 * Determine if a feature is enabled.
 	 *
-	 * @return	<code>true</code> is a feature is enabled.
+	 * @return <code>true</code> is a feature is enabled.
 	 */
 	public boolean has(String name) {
 		return list.containsKey(name);
 	}
 
-
 	/**
 	 * Enable/disable a feature.
 	 *
-	 * @param	name		The feature mnemonic.
-	 * @param	enabled		Flag indicating if enabled.
+	 * @param name
+	 *            The feature mnemonic.
+	 * @param enabled
+	 *            Flag indicating if enabled.
 	 *
-	 * @return	<code>true</code> if the list changed,
-	 *		<code>false<code> otherwise.
+	 * @return <code>true</code> if the list changed,
+	 *         <code>false<code> otherwise.
 	 */
 	public boolean set(String name, boolean enabled) {
 		return set(name, enabled ? "" : null);
 	}
 
-
 	/**
-	 * Set/remove a feature.
-	 * <strong>NOTE: The names and values MUST NOT contain <code>=</code>
-	 * (equals), or <code>:</code> (colon).
+	 * Set/remove a feature. <strong>NOTE: The names and values MUST NOT contain
+	 * <code>=</code> (equals), or <code>:</code> (colon).
 	 *
-	 * @param	name		The feature mnemonic.
-	 * @param	value		The feature value,
-	 *				or <code>null</code> to disable.
+	 * @param name
+	 *            The feature mnemonic.
+	 * @param value
+	 *            The feature value, or <code>null</code> to disable.
 	 *
-	 * @return	<code>true</code> if the list changed,
-	 *		<code>false<code> otherwise.
+	 * @return <code>true</code> if the list changed,
+	 *         <code>false<code> otherwise.
 	 */
 	public boolean set(String name, String value) {
-		if(value != null) {
+		if (value != null) {
 			list.put(name, value);
 		} else {
-			if(list.remove(name) == null) {
+			if (list.remove(name) == null) {
 				return false;
 			}
 		}

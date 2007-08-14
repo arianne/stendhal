@@ -45,7 +45,7 @@ public class Plague extends ScriptImpl {
 			if (args.size() == 1) {
 				sandbox.add(creature, x, y);
 			} else {
-				int k = MathHelper.parseInt_default(args.get(0), 1);
+				int k = MathHelper.parseIntDefault(args.get(0), 1);
 				if (k <= MAX_RING_COUNT) {
 					for (int dx = -k; dx <= k; dx++) {
 						for (int dy = -k; dy <= k; dy++) {

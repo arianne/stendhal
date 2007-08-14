@@ -60,11 +60,11 @@ public class CollisionDetection {
 		double w = shape.getWidth();
 		double h = shape.getHeight();
 
-		if ((x < 0) || (x/* +w */>= width)) {
+		if ((x < 0) || (x/* +w */ >= width)) {
 			return;
 		}
 
-		if ((y < 0) || (y/* +h */>= height)) {
+		if ((y < 0) || (y/* +h */ >= height)) {
 			return;
 		}
 
@@ -83,22 +83,22 @@ public class CollisionDetection {
 	public void setCollisionData(LayerDefinition collisionLayer) {
 		/* First we build the int array. */
 		collisionLayer.build();
-		
-		width=collisionLayer.getWidth();
-		height=collisionLayer.getHeight();
-				
+
+		width = collisionLayer.getWidth();
+		height = collisionLayer.getHeight();
+
 		blocked = new boolean[width * height];
-		for(int y=0;y<height;y++) {
-			for(int x=0;x<width;x++) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				/* NOTE:
 				 * Right now our collision detection system is binary, so
 				 * something or is blocked or is not.
 				 */
-				blocked[x+y*width]=(collisionLayer.getTileAt(x, y)!=0);
+				blocked[x + y * width] = (collisionLayer.getTileAt(x, y) != 0);
 			}
 		}
     }
-	
+
 	/** Print the area around the (x,y) useful for debugging */
 	public void printaround(int x, int y, int size) {
 		for (int j = y - size; j < y + size; j++) {
@@ -106,7 +106,7 @@ public class CollisionDetection {
 				if ((j >= 0) && (j < height) && (i >= 0) && (i < width)) {
 					if ((j == y) && (i == x)) {
 						System.out.print("O");
-					} else if (blocked[j * width + i] == false) {
+					} else if (!blocked[j * width + i]) {
 						System.out.print(".");
 					} else {
 						System.out.print("X");
@@ -127,11 +127,11 @@ public class CollisionDetection {
 		// double w=shape.getWidth();
 		// double h=shape.getHeight();
 
-		if ((x < 0) || (x/* +w */>= width)) {
+		if ((x < 0) || (x/* +w */ >= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */>= height)) {
+		if ((y < 0) || (y/* +h */ >= height)) {
 			return true;
 		}
 
@@ -149,18 +149,18 @@ public class CollisionDetection {
 		double h = shape.getHeight();
 
 		// expand the collision check for partial moves
-		if ((x - (int)x) > 0.001) {
+		if ((x - (int) x) > 0.001) {
 			w += 1.0;
 		}
-		if ((y - (int)y) > 0.001) {
+		if ((y - (int) y) > 0.001) {
 			h += 1.0;
 		}
 
-		if ((x < 0) || (x/* +w */>= width)) {
+		if ((x < 0) || (x/* +w */ >= width)) {
 			return true;
 		}
 
-		if ((y < 0) || (y/* +h */>= height)) {
+		if ((y < 0) || (y/* +h */ >= height)) {
 			return true;
 		}
 

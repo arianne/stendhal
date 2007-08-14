@@ -26,7 +26,8 @@ public class Grammar {
 	/**
 	 * "it" or "them", depending on the quantity
 	 *
-	 * @param quantity The quantity to examine
+	 * @param quantity
+	 *            The quantity to examine
 	 * @return Either "it" or "them" as appropriate
 	 */
 	public static String itthem(int quantity) {
@@ -36,7 +37,8 @@ public class Grammar {
 	/**
 	 * "It" or "Them", depending on the quantity
 	 *
-	 * @param quantity The quantity to examine
+	 * @param quantity
+	 *            The quantity to examine
 	 * @return Either "It" or "Them" as appropriate
 	 */
 	public static String ItThem(int quantity) {
@@ -48,7 +50,8 @@ public class Grammar {
 	/**
 	 * "it" or "they", depending on the quantity
 	 *
-	 * @param quantity The quantity to examine
+	 * @param quantity
+	 *            The quantity to examine
 	 * @return Either "it" or "they" as appropriate
 	 */
 	public static String itthey(int quantity) {
@@ -58,7 +61,8 @@ public class Grammar {
 	/**
 	 * "It" or "They", depending on the quantity
 	 *
-	 * @param quantity The quantity to examine
+	 * @param quantity
+	 *            The quantity to examine
 	 * @return Either "It" or "They" as appropriate
 	 */
 	public static String ItThey(int quantity) {
@@ -70,7 +74,8 @@ public class Grammar {
 	/**
 	 * "is" or "are", depending on the quantity
 	 *
-	 * @param quantity The quantity to examine
+	 * @param quantity
+	 *            The quantity to examine
 	 * @return Either "is" or "are" as appropriate
 	 */
 	public static String isare(int quantity) {
@@ -80,7 +85,8 @@ public class Grammar {
 	/**
 	 * "Is" or "Are", depending on the quantity
 	 *
-	 * @param quantity The quantity to examine
+	 * @param quantity
+	 *            The quantity to examine
 	 * @return Either "Is" or "Are" as appropriate
 	 */
 	public static String IsAre(int quantity) {
@@ -92,8 +98,10 @@ public class Grammar {
 	/**
 	 * Prefixes a noun with an article.
 	 *
-	 * @param noun nount
-	 * @param definite true for "the", false for a/an
+	 * @param noun
+	 *            nount
+	 * @param definite
+	 *            true for "the", false for a/an
 	 * @return noun with article
 	 */
 	public static String article_noun(String noun, boolean definite) {
@@ -107,7 +115,8 @@ public class Grammar {
 	/**
 	 * "a [noun]" or "an [noun]", depending on the first syllable
 	 *
-	 * @param noun The noun to examine
+	 * @param noun
+	 *            The noun to examine
 	 * @return Either "a [noun]" or "an [noun]" as appropriate
 	 */
 	public static String a_noun(String noun) {
@@ -132,8 +141,10 @@ public class Grammar {
 	/**
 	 * adds a prefix unless it was already added
 	 *
-	 * @param noun   the noun (which may already start with the specified prefix
-	 * @param prefix prefix to add
+	 * @param noun
+	 *            the noun (which may already start with the specified prefix
+	 * @param prefix
+	 *            prefix to add
 	 * @return noun starting with prefix
 	 */
 	private static String addPrefixIfNotAlreadyThere(String prefix, String noun) {
@@ -146,10 +157,11 @@ public class Grammar {
 
 	public static String fullform(String noun) {
 		String result;
-		String lowString=noun.toLowerCase();
-			result = lowString.replace("#","");
-		if (result.equals("meat") || result.equals("ham") || result.equals("cheese") || result.equals("wood")
-		        || result.equals("paper") || result.equals("iron")) {
+		String lowString = noun.toLowerCase();
+		result = lowString.replace("#", "");
+		if (result.equals("meat") || result.equals("ham")
+				|| result.equals("cheese") || result.equals("wood")
+				|| result.equals("paper") || result.equals("iron")) {
 			result = addPrefixIfNotAlreadyThere("piece of ", lowString);
 		} else if (result.endsWith(" ore") || result.endsWith("_ore")) {
 			result = addPrefixIfNotAlreadyThere("nugget of ", lowString);
@@ -159,19 +171,22 @@ public class Grammar {
 			result = addPrefixIfNotAlreadyThere("sheaf of ", lowString);
 		} else if (result.equals("bread")) {
 			result = addPrefixIfNotAlreadyThere("loaf of ", lowString);
-		} else if (result.equals("beer") || result.equals("wine") || result.endsWith("poison") || result.equals("antidote")) {
+		} else if (result.equals("beer") || result.equals("wine")
+				|| result.endsWith("poison") || result.equals("antidote")) {
 			result = addPrefixIfNotAlreadyThere("bottle of ", lowString);
 		} else if (result.equals("money")) {
-			// TODO: fix this (going back to money as workaround because /drop 1 coin does not work
+			// TODO: fix this (going back to money as workaround because /drop 1
+			// coin does not work
 			// enoun = "coin";
 		} else if (result.startsWith("book_") || result.startsWith("book ")) {
 			result = result.substring(5) + " book";
 		} else if (result.equals("arandula")) {
 			result = addPrefixIfNotAlreadyThere("sprig of ", lowString);
-		} else if ((result.indexOf("_armor") > -1) || (result.indexOf(" armor") > -1)) {
+		} else if ((result.indexOf("_armor") > -1)
+				|| (result.indexOf(" armor") > -1)) {
 			result = addPrefixIfNotAlreadyThere("suit of ", lowString);
-		} else if (result.endsWith("_legs") || result.endsWith(" legs") || result.endsWith("_boots")
-		        || result.endsWith(" boots")) {
+		} else if (result.endsWith("_legs") || result.endsWith(" legs")
+				|| result.endsWith("_boots") || result.endsWith(" boots")) {
 			result = addPrefixIfNotAlreadyThere("pair of ", lowString);
 		} else {
 			result = lowString;
@@ -183,7 +198,8 @@ public class Grammar {
 	/**
 	 * "A [noun]" or "An [noun]", depending on the first syllable
 	 *
-	 * @param noun The noun to examine
+	 * @param noun
+	 *            The noun to examine
 	 * @return Either "A [noun]" or "An [noun]" as appropriate
 	 */
 	public static String A_noun(String noun) {
@@ -195,7 +211,8 @@ public class Grammar {
 	/**
 	 * "[noun]'s" or "[noun]'", depending on the last character
 	 *
-	 * @param noun The noun to examine
+	 * @param noun
+	 *            The noun to examine
 	 * @return Either "[noun]'s" or "[noun]'" as appropriate
 	 */
 	public static String suffix_s(String noun) {
@@ -209,45 +226,51 @@ public class Grammar {
 	/**
 	 * Returns the plural form of the given noun
 	 *
-	 * @param noun The noun to examine
+	 * @param noun
+	 *            The noun to examine
 	 * @return An appropriate plural form
 	 */
 	public static String plural(String noun) {
 		String enoun = fullform(noun);
 		String postfix = "";
 		int position = enoun.indexOf('+');
-		if (position != -1){
-			postfix = enoun.substring(position-1);
-			enoun = enoun.substring(0, position-1);
+		if (position != -1) {
+			postfix = enoun.substring(position - 1);
+			enoun = enoun.substring(0, position - 1);
 		}
 		try {
 			// in "of"-phrases pluralize only the first part
 			if (enoun.indexOf(" of ") > -1) {
-				return plural(enoun.substring(0, enoun.indexOf(" of "))) + enoun.substring(enoun.indexOf(" of "))
-				        + postfix;
+				return plural(enoun.substring(0, enoun.indexOf(" of ")))
+						+ enoun.substring(enoun.indexOf(" of ")) + postfix;
 
 				// first of all handle words which do not change
-			} else if (enoun.endsWith("sheep") || enoun.endsWith("money") || enoun.endsWith("dice")
-			        || enoun.equals("deer")) {
+			} else if (enoun.endsWith("sheep") || enoun.endsWith("money")
+					|| enoun.endsWith("dice") || enoun.equals("deer")) {
 				return enoun + postfix;
 
 				// ok and now all the special cases
 			} else if (enoun.endsWith("staff") || enoun.endsWith("chief")) {
 				return enoun + "s" + postfix;
-			} else if (enoun.endsWith("f") && ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
+			} else if (enoun.endsWith("f")
+					&& ("aeiourl".indexOf(enoun.charAt(enoun.length() - 2)) > -1)) {
 				return enoun.substring(0, enoun.length() - 1) + "ves" + postfix;
 			} else if (enoun.endsWith("fe")) {
 				return enoun.substring(0, enoun.length() - 2) + "ves" + postfix;
 			} else if (enoun.endsWith("house")) {
 				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("ouse") && ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
+			} else if (enoun.endsWith("ouse")
+					&& ("mMlL".indexOf(enoun.charAt(enoun.length() - 5)) > -1)) {
 				return enoun.substring(0, enoun.length() - 5) + "ice" + postfix;
 			} else if (enoun.endsWith("oose") && !(enoun.endsWith("caboose"))) {
-				return enoun.substring(0, enoun.length() - 5) + "eese" + postfix;
+				return enoun.substring(0, enoun.length() - 5) + "eese"
+						+ postfix;
 			} else if (enoun.endsWith("ooth")) {
-				return enoun.substring(0, enoun.length() - 5) + "eeth" + postfix;
+				return enoun.substring(0, enoun.length() - 5) + "eeth"
+						+ postfix;
 			} else if (enoun.endsWith("foot")) {
-				return enoun.substring(0, enoun.length() - 5) + "feet" + postfix;
+				return enoun.substring(0, enoun.length() - 5) + "feet"
+						+ postfix;
 			} else if (enoun.endsWith("child")) {
 				return enoun + "ren" + postfix;
 			} else if (enoun.endsWith("eau")) {
@@ -256,34 +279,42 @@ public class Grammar {
 				return enoun + "es" + postfix;
 			} else if (enoun.endsWith("ium")) {
 				return enoun.substring(0, enoun.length() - 3) + "a" + postfix;
-			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha") || enoun.endsWith("larva")) {
+			} else if (enoun.endsWith("alga") || enoun.endsWith("hypha")
+					|| enoun.endsWith("larva")) {
 				return enoun + "e" + postfix;
 			} else if ((enoun.length() > 3) && enoun.endsWith("us")
-			        && !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
+					&& !(enoun.endsWith("lotus") || enoun.endsWith("wumpus"))) {
 				return enoun.substring(0, enoun.length() - 3) + "i" + postfix;
-			} else if (enoun.endsWith("man") && !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
+			} else if (enoun.endsWith("man")
+					&& !(enoun.endsWith("shaman") || enoun.endsWith("human"))) {
 				return enoun.substring(0, enoun.length() - 3) + "men" + postfix;
 			} else if (enoun.endsWith("rtex")) {
-				return enoun.substring(0, enoun.length() - 3) + "ices" + postfix;
+				return enoun.substring(0, enoun.length() - 3) + "ices"
+						+ postfix;
 			} else if (enoun.endsWith("trix")) {
 				return enoun.substring(0, enoun.length() - 2) + "ces" + postfix;
 			} else if (enoun.endsWith("sis")) {
 				return enoun.substring(0, enoun.length() - 2) + "es" + postfix;
-				/*} else if (enoun.endsWith("erinys") || enoun.endsWith("cyclops")) {
-				 return enoun.substring(0, enoun.length() - 2) + "es" + postfix;*/
+				/*
+				 * } else if (enoun.endsWith("erinys") ||
+				 * enoun.endsWith("cyclops")) { return enoun.substring(0,
+				 * enoun.length() - 2) + "es" + postfix;
+				 */
 			} else if (enoun.endsWith("mumak")) {
 				return enoun + "il" + postfix;
 			} else if (enoun.endsWith("djinni") || enoun.endsWith("efreeti")) {
 				return enoun.substring(0, enoun.length() - 2) + postfix;
 			} else if (enoun.endsWith("ch") || enoun.endsWith("sh")
-			        || ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
+					|| ("zxs".indexOf(enoun.charAt(enoun.length() - 1)) > -1)) {
 				return enoun + "es" + postfix;
-			} else if (enoun.endsWith("y") && consonant_p(enoun.charAt(enoun.length() - 2))) {
+			} else if (enoun.endsWith("y")
+					&& consonant_p(enoun.charAt(enoun.length() - 2))) {
 				return enoun.substring(0, enoun.length() - 1) + "ies" + postfix;
 			} else if (enoun.endsWith("porcini") || (enoun.endsWith("porcino"))) {
 				return enoun.substring(0, enoun.length() - 1) + "i" + postfix;
 			} else {
-				// no special case matched, so use the boring default plural rule
+				// no special case matched, so use the boring default plural
+				// rule
 				return enoun + "s" + postfix;
 			}
 		} catch (StringIndexOutOfBoundsException e) {
@@ -295,10 +326,13 @@ public class Grammar {
 	}
 
 	/**
-	 * Returns either the plural or singular form of the given noun, depending on the quantity
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity
 	 *
-	 * @param quantity The quantity to examine
-	 * @param noun The noun to examine
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
 	 * @return Either "[noun]" or plural("[noun]") as appropriate
 	 */
 	public static String plnoun(int quantity, String noun) {
@@ -307,12 +341,15 @@ public class Grammar {
 	}
 
 	/**
-	 * Returns either the plural or singular form of the given noun,
-	 * depending on the quantity; also prefixes the quantity
+	 * Returns either the plural or singular form of the given noun, depending
+	 * on the quantity; also prefixes the quantity
 	 *
-	 * @param quantity The quantity to examine
-	 * @param noun The noun to examine
-	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as appropriate
+	 * @param quantity
+	 *            The quantity to examine
+	 * @param noun
+	 *            The noun to examine
+	 * @return Either "[quantity] [noun]" or "[quantity]" + plural("[noun]") as
+	 *         appropriate
 	 */
 	public static String quantityplnoun(int quantity, String noun) {
 		return "" + quantity + " " + plnoun(quantity, noun);
@@ -321,7 +358,8 @@ public class Grammar {
 	/**
 	 * Is the character a vowel?
 	 *
-	 * @param c The character to examine
+	 * @param c
+	 *            The character to examine
 	 * @return true if c is a vowel, false otherwise
 	 */
 	protected static boolean vowel_p(char c) {
@@ -332,7 +370,8 @@ public class Grammar {
 	/**
 	 * Is the character a consonant?
 	 *
-	 * @param c The character to examine
+	 * @param c
+	 *            The character to examine
 	 * @return true if c is a consonant, false otherwise
 	 */
 	protected static boolean consonant_p(char c) {
@@ -342,29 +381,33 @@ public class Grammar {
 	/**
 	 * first, second, third, ...
 	 *
-	 * @param n a number
+	 * @param n
+	 *            a number
 	 * @return first, second, third, ...
 	 */
 	public static String ordered(int n) {
 		switch (n) {
-			case 1:
-				return "first";
-			case 2:
-				return "second";
-			case 3:
-				return "third";
-			default:
-				logger.error("Gramar.ordered not implemented for: " + n, new Throwable());
-				return Integer.toString(n);
+		case 1:
+			return "first";
+		case 2:
+			return "second";
+		case 3:
+			return "third";
+		default:
+			logger.error("Gramar.ordered not implemented for: " + n,
+					new Throwable());
+			return Integer.toString(n);
 
 		}
 	}
 
 	/**
-	 * Helper function to nicely formulate an enumeration of a collection.
-	 * For example, for a collection containing the 3 elements x, y, z,
-	 * returns the string "x, y, and z".
-	 * @param collection The collection whose elements should be enumerated
+	 * Helper function to nicely formulate an enumeration of a collection. For
+	 * example, for a collection containing the 3 elements x, y, z, returns the
+	 * string "x, y, and z".
+	 *
+	 * @param collection
+	 *            The collection whose elements should be enumerated
 	 * @return A nice String representation of the collection
 	 */
 	public static String enumerateCollection(Collection<String> collection) {

@@ -74,7 +74,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 	 *             integer, the amount will be set to 1.
 	 */
 	public void setAmount(String text) {
-		setAmount(MathHelper.parseInt_default(text, 1));
+		setAmount(MathHelper.parseIntDefault(text, 1));
 	}
 
 	/**
@@ -107,7 +107,7 @@ public abstract class MerchantBehaviour extends Behaviour {
 			return amount * getUnitPrice(chosenItem);
 		}
 	}
-	
+
 	public int getAmount() {
 		return amount;
 	}

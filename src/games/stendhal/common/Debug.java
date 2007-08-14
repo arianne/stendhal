@@ -45,7 +45,7 @@ public class Debug {
 	 * This emulates perception losses. Never make this true and commit it to
 	 * CVS
 	 */
-	public static final boolean EMULATE_PERCEPTION_LOSS=false;
+	public static final boolean EMULATE_PERCEPTION_LOSS = false;
 
 	/**
 	 * Just a try to get webstart work without additional rights
