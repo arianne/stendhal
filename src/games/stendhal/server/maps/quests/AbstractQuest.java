@@ -22,7 +22,7 @@ public abstract class AbstractQuest implements IQuest {
 	/** NPCList * */
 	protected NPCList npcs = NPCList.get();
 
-	private static final List<String> emptyList = new ArrayList<String>();
+	private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
 	public void init(String name) {
 		this.name = name;
@@ -42,12 +42,12 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public List<String> getHint(Player player) {
-		return emptyList;
+		return EMPTY_LIST;
 	}
 
 	public List<String> getHistory(Player player) {
 		// TODO this method should be abstact after all quests are converted
-		return emptyList;
+		return EMPTY_LIST;
 	}
 	public boolean isCompleted(Player player) {
 		return player.hasQuest(slotName)

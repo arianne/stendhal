@@ -26,13 +26,13 @@ public class DBValues {
 	/**
 	 *  dbValue[0] is mute and dbValue[100] is loudest
 	 */
-	private static final float[] dBValues = new float[101];
+	private static final float[] DB_VALUES = new float[101];
 
 	static {
 		// init our volume -> decibel map
 		for (int i = 0; i < 101; i++) {
 			double level = ((double) i) / 100;
-			dBValues[i] = (float) (Math.log(level) / Math.log(10.0) * 20.0);
+			DB_VALUES[i] = (float) (Math.log(level) / Math.log(10.0) * 20.0);
 
 		}
 	}
@@ -52,7 +52,7 @@ public class DBValues {
 		if (volume > 100) {
 			volume = 100;
 		}
-		return dBValues[volume];
+		return DB_VALUES[volume];
 	}
 
 }

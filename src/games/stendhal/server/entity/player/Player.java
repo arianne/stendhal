@@ -66,7 +66,7 @@ public class Player extends RPEntity {
 	/**
 	 * A random generator (for karma payout).
 	 */
-	private static final Random karmaRand = new Random();
+	private static final Random KARMA_RANDOMIZER = new Random();
 
 	/**
 	 * The number of minutes that this player has been logged in on the
@@ -465,7 +465,7 @@ public class Player extends RPEntity {
 		/*
 		 * Give at least 20% of possible payout
 		 */
-		score = (0.2 + (karmaRand.nextDouble() * 0.8)) * limit;
+		score = (0.2 + (KARMA_RANDOMIZER.nextDouble() * 0.8)) * limit;
 
 		/*
 		 * Clip to grandularity

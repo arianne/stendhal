@@ -1,13 +1,13 @@
 /*
  *  SoundSystem in games.stendhal.client
  *  file: SoundSystem.java
- * 
+ *
  *  Project stendhal
  *  @author Janet Hunt
  *  Created 25.12.2005
- * 
+ *
  *  Copyright (c) 2005 by Jane Hunt
- * 
+ *
  This program is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
@@ -86,18 +86,18 @@ import marauroa.common.Logger;
  * Library sound names, as used in the interface, are related to sample names in
  * the definition file. The location of the database may be also defined in the
  * definition file under property "soundbase".
- * 
+ *
  * @author Jane Hunt
  */
 public class SoundSystem implements WorldObjects.WorldListener {
 
 	private static final String INT_SEMOS_BLACKSMITH = "int_semos_blacksmith";
 
-	private static final String _0_SEMOS_ROAD_E = "0_semos_road_e";
+	private static final String ZERO_SEMOS_ROAD_E = "0_semos_road_e";
 
-	private static final String _0_SEMOS_CITY = "0_semos_city";
+	private static final String ZERO_SEMOS_CITY = "0_semos_city";
 
-	private static final String _0_SEMOS_VILLAGE_W = "0_semos_village_w";
+	private static final String ZERO_SEMOS_VILLAGE_W = "0_semos_village_w";
 
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(SoundSystem.class);
@@ -132,7 +132,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Plays a sound of the given name from the library of this sound system.
-	 * 
+	 *
 	 * @param name
 	 *            token of sound
 	 * @param volBot
@@ -166,7 +166,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Plays a sound of the given name from the library of this sound system.
-	 * 
+	 *
 	 * @param name
 	 *            token of sound
 	 * @param volume
@@ -181,7 +181,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Plays a sound of the given name from the library of this sound system by
 	 * setting volume to a random value between volBot and volTop.
-	 * 
+	 *
 	 * @param name
 	 *            token of sound
 	 * @param volBot
@@ -197,7 +197,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Plays a sound subject to a random performance chance.
-	 * 
+	 *
 	 * @param chance
 	 *            0..100 % chance value
 	 * @param name
@@ -220,7 +220,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * Plays a sound bound to a given map position, possibly restricted by an
 	 * audibility area confinement. The sound volume is automatically adjusted
 	 * to reflect the player's map position and hearing range.
-	 * 
+	 *
 	 * @param where
 	 *            map position expressed in zone's coordinate system
 	 * @param audibility
@@ -239,7 +239,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 */
 //	 static DataLine playMapSound(Point2D where, Rectangle2D audibility, String name, int volBot, int volTop,
 //	        int chance) {
-//		
+//
 //		double distance;
 //		double maxDist;
 //		int fogVolume;
@@ -254,11 +254,11 @@ public class SoundSystem implements WorldObjects.WorldListener {
 //			return null;
 //		}
 //
-//		
+//
 //		if (User.isNull()) {
 //			return null;
 //		}
-//		
+//
 //		Rectangle2D playerHearing= User.get().getHearingArea();
 //		// exclusion cases
 //		if (!playerHearing.contains(where) || ((audibility != null) && !audibility.contains(User.get().getX(),User.get().getY()))) {
@@ -276,8 +276,8 @@ public class SoundSystem implements WorldObjects.WorldListener {
 //		return get().playSoundIntern(name, volBot, volTop, DBValues.getDBValue(fogVolume));
 //	} // playMapSound
 
-	/** plays (?) and registers an ambient sound 
-	 * @param ambient the sound to be registered 
+	/** plays (?) and registers an ambient sound
+	 * @param ambient the sound to be registered
 	 * */
 	void playAmbientSound(AmbientSound ambient) {
 
@@ -289,9 +289,9 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	} // playAmbientSound
 
 	/**
-	 * removes the ambient sound from the internal list. 
+	 * removes the ambient sound from the internal list.
 	 * It should already be stopped.
-	 
+
 	 * @param ambient the ambient sound to be removed
 	 */
 	static void stopAmbientSound(AmbientSound ambient) {
@@ -319,7 +319,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	 * entity at a given time. If an sound cycle is started while a previous
 	 * cycle is defined for the entity, the previous cycle is discarded and any
 	 * ongoing sound performance stopped.
-	 * 
+	 *
 	 * @param entity
 	 *            the game object that makes the sound
 	 * @param token
@@ -338,7 +338,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		SoundSystem sys=get();
 		SoundCycle cycle;
 		SoundCycle c1;
-		
+
 
 		if (!(sys.isOperative())) {
 			return null;
@@ -366,7 +366,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Stops execution of the sound cycle for a specific map entity. This will
 	 * interrupt any ongoing sound performance immediately.
-	 * 
+	 *
 	 * @param entity_ID
 	 *            byte[] identity token of the map entity
 	 */
@@ -387,7 +387,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Loads a junk of data from the jar soundfile and returns it as a byte
 	 * array.
-	 * 
+	 *
 	 * @param name
 	 * @return the data in the Zipentry
 	 * @throws IOException
@@ -408,7 +408,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Whether the parameter sound is available in this sound system.
-	 * 
+	 *
 	 * @param name token of sound
 	 * @return true, iif it is available
 	 */
@@ -419,7 +419,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Obtains a resource input stream. Fetches currently from the main
 	 * program's classloader.
-	 * 
+	 *
 	 * @param name
 	 * @return InputStream
 	 * @throws IOException
@@ -427,7 +427,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	public static InputStream getResourceStream(String name) throws IOException {
 		URL url = SpriteStore.get().getResourceURL(name);
 		if (url == null) {
-	
+
 			return null;
 		}
 		return url.openStream();
@@ -435,7 +435,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	private void init() {
 
-		
+
 		String hstr;
 		int loaded;
 		/**
@@ -460,7 +460,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 			// get sound library filepath
 			String soundBase = prop.getProperty("soundbase", "data/sounds/");
-		
+
 		if (prop.isEmpty()) {
 			return;
 		}
@@ -470,7 +470,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 			failedCounted = 0;
 			loaded = 0;
 			count = 0;
-			
+
 			for (String key=(String) maps.nextElement();maps.hasMoreElements(); key = (String) maps.nextElement()) {
 				byte[] soundData;
 				String value;
@@ -564,14 +564,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 		}
 	} // init
 
-	//	 
+	//
 
-	// (do not load when ",x" trailing path; 
+	// (do not load when ",x" trailing path;
 	// always load when "." in
 	// name)
 
 	/**
-	 * A key/value pair is assumed valid if 	
+	 * A key/value pair is assumed valid if
 	 * <ul>
 	 *    <li>key starts with "sfx." <b>and </b></li>
 	 *    <li>key does not end with ",x"</li>
@@ -673,7 +673,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Returns the actual state of the global Mute switch of this sound system.
-	 * 
+	 *
 	 * @return <b>true</b> if and only if Mute is ON (silent)
 	 */
 	public boolean isMute() {
@@ -683,7 +683,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Sets a global volume level for all sounds played with this sound system.
 	 * The volume value ranges between 0 (silent) and 100 (loudest).
-	 * 
+	 *
 	 * @param volume
 	 *            0 .. 100
 	 */
@@ -713,14 +713,14 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/**
 	 * Returns the current value of this sound system's voume setting.
-	 * 
+	 *
 	 * @return volume ranging 0 (silent) .. 100 (loudest)
 	 */
 	public int getVolume() {
 		return volumeSetting;
 	}
 
-	/** 
+	/**
 	 * Whether the sound system has been initialized and is ready to operate.
 	 *
 	 * @return true, iff the sound system was initialized
@@ -755,7 +755,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	/**
 	 * Transfers the contents of the input stream to the output stream until the
 	 * end of input stream is reached.
-	 * 
+	 *
 	 * @param input
 	 * @param output
 	 * @param bufferSize
@@ -782,11 +782,11 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		hstr = "-- SoundSys: ZONE ENTERED: " + zone;
 		logger.debug(hstr);
-		
+
 		actualZone = zone;
 
 		// 0_SEMOS_VILLAGE
-		if (zone.equals(SoundSystem._0_SEMOS_VILLAGE_W)) {
+		if (zone.equals(SoundSystem.ZERO_SEMOS_VILLAGE_W)) {
 			// global ambient
 			ambient = new AmbientSound("semos-village-overall-1", 10);
 			ambient.addLoop("wind-loop-1", 25, 0);
@@ -822,7 +822,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		}
 		// 0_SEMOS_CITY
-		else if (zone.equals(SoundSystem._0_SEMOS_CITY)) {
+		else if (zone.equals(SoundSystem.ZERO_SEMOS_CITY)) {
 			// blackbirds
 			baseAmb = AmbientStore.getAmbient("blackbirds-1");
 
@@ -875,7 +875,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 		}
 		// 0_SEMOS_ROAD_ADOS
-		else if (zone.equals(SoundSystem._0_SEMOS_ROAD_E)) {
+		else if (zone.equals(SoundSystem.ZERO_SEMOS_ROAD_E)) {
 			// creaking tree and wind
 			baseAmb = AmbientStore.getAmbient("wind-tree-1");
 
@@ -947,7 +947,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/*
 	 * Overridden:
-	 * 
+	 *
 	 * @see games.stendhal.client.WorldObjects.WorldListener#zoneLeft(java.lang.String)
 	 */
 	public void zoneLeft(String zone) {
@@ -960,7 +960,7 @@ public class SoundSystem implements WorldObjects.WorldListener {
 
 	/*
 	 * Overridden:
-	 * 
+	 *
 	 * @see games.stendhal.client.WorldObjects.WorldListener#playerMoved(games.stendhal.client.entity.Player)
 	 */
 	public void playerMoved() {
@@ -973,15 +973,15 @@ public class SoundSystem implements WorldObjects.WorldListener {
 	                		a.performPlayerMoved();
 	                	}
 	                }
-                }		
+                }
 			}
 		}
-		
+
 	}
 
 //	 static DataLine playMapSound(double x, double y, Rectangle2D audibleArea, String token, int volBot, int volTop, int chance) {
-//	  return  playMapSound(new Point2D.Double(x,y),audibleArea, token,  volBot,  volTop,  chance); 
-//	    
+//	  return  playMapSound(new Point2D.Double(x,y),audibleArea, token,  volBot,  volTop,  chance);
+//
 //    }
 
 }

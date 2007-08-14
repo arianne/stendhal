@@ -14,27 +14,27 @@ import java.util.List;
 
 /**
  * QUEST: Cloak Collector
- * 
+ *
  * PARTICIPANTS:
  * - Josephine, a young woman who live in Ados/Fado
- * 
+ *
  * STEPS:
  * - Josephine asks you to bring her a cloak in every colour available on the mainland
  * - You bring cloaks to Josephine
  * - Repeat until Josephine received all cloaks. (Of course you can
  *   bring several cloaks at the same time.)
  * - Josephine gives you a reward
- * 
+ *
  * REWARD:
  * - black cloak
  * - 2500 XP
- * 
+ *
  * REPETITIONS:
  * - None.
  */
 public class CloakCollector extends AbstractQuest {
 
-	private static final List<String> neededcloaks = Arrays.asList("cloak", "elf_cloak", "dwarf_cloak", "blue_elf_cloak", "stone_cloak","green_dragon_cloak", "bone_dragon_cloak", "lich_cloak", "vampire_cloak","blue_dragon_cloak");
+	private static final List<String> NEEDEDCLOAKS = Arrays.asList("cloak", "elf_cloak", "dwarf_cloak", "blue_elf_cloak", "stone_cloak","green_dragon_cloak", "bone_dragon_cloak", "lich_cloak", "vampire_cloak","blue_dragon_cloak");
 
 	/**
 	 * Returns a list of the names of all cloaks that the given player
@@ -51,7 +51,7 @@ public class CloakCollector extends AbstractQuest {
 			doneText = "";
 		}
 		List<String> done = Arrays.asList(doneText.split(";"));
-		for (String cloak : neededcloaks) {
+		for (String cloak : NEEDEDCLOAKS) {
 			if (!done.contains(cloak)) {
 				if (hash) {
 					cloak = "#" + cloak;
@@ -66,7 +66,7 @@ public class CloakCollector extends AbstractQuest {
 		SpeakerNPC npc = npcs.get("Josephine");
 
 		// player says hi before starting the quest
-		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -131,10 +131,10 @@ public class CloakCollector extends AbstractQuest {
 					player.addKarma(-5.0);
 				}
 		});
- 
+
 
 		// player asks about an individual cloak
-		for (String cloak : neededcloaks) {
+		for (String cloak : NEEDEDCLOAKS) {
 		    npc.add(ConversationStates.QUEST_OFFERED, cloak, null, ConversationStates.QUEST_OFFERED, null,
 			   new SpeakerNPC.ChatAction() {
 				@Override
@@ -177,7 +177,7 @@ public class CloakCollector extends AbstractQuest {
 		npc.add(ConversationStates.QUESTION_1, ConversationPhrases.YES_MESSAGES, null,
 			ConversationStates.QUESTION_1, "Great! What #cloaks did you bring?", null);
 
-		for (String cloak : neededcloaks) {
+		for (String cloak : NEEDEDCLOAKS) {
 			npc.add(ConversationStates.QUESTION_1, cloak, null, ConversationStates.QUESTION_1, null, new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC engine) {
@@ -210,12 +210,12 @@ public class CloakCollector extends AbstractQuest {
 				}
 			});
 		}
-	
+
 		npc.add(ConversationStates.QUESTION_1, "",
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
-					return !neededcloaks.contains(text);
+					return !NEEDEDCLOAKS.contains(text);
 				}
 			},
 			ConversationStates.QUESTION_1, "That's not a real cloak...", null);
@@ -248,7 +248,7 @@ public class CloakCollector extends AbstractQuest {
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return player.isQuestCompleted("cloaks_collector");
 				}
-			}, 
+			},
 			ConversationStates.ATTENDING, "Hi again, lovely. The cloaks still look great. Thanks!", null);
 	}
 

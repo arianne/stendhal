@@ -21,13 +21,13 @@ public class SoundEffectMap {
 	/**
 	 *  the singleton instance initated by default
 	 */
-	private static final SoundEffectMap _instance = new SoundEffectMap();
+	private static final SoundEffectMap INSTANCE = new SoundEffectMap();
 
 	/**
 	 * @return the singleton instance 
 	 */
 	static SoundEffectMap getInstance() {
-		return _instance;
+		return INSTANCE;
 	}
 
 	/**

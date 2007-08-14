@@ -16,7 +16,7 @@ public class GenerateINI {
 	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
 	/** The name of the output file */
-	final static String filename = "server.ini";
+	final static String FILENAME = "server.ini";
 
 	/**
 	 * reads a String from the input. When no String is choosen the defaultValue
@@ -139,11 +139,11 @@ public class GenerateINI {
 		System.out.println("Using key of " + keySize + " bits.");
 		System.out.println("Please wait while the key is generated.");
 		rsakey = RSAKey.generateKey(Integer.valueOf(keySize));
-		PrintWriter out = new PrintWriter(new FileOutputStream(filename));
+		PrintWriter out = new PrintWriter(new FileOutputStream(FILENAME));
 		write(out);
 		out.close();
 
-		System.out.println(filename + " has been generated.");
+		System.out.println(FILENAME + " has been generated.");
 	}
 
 	private static String getRSAKeyBits() {

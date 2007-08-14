@@ -62,7 +62,7 @@ class PlayerRPClass {
 	private static boolean firstWelcomeException = true;
 
 	/** these items should be bound */
-	private static final List<String> itemsToBind = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet", "lucky_charm", "soup");
+	private static final List<String> ITEMS_TO_BIND = Arrays.asList("dungeon_silver_key", "lich_gold_key", "trophy_helmet", "lucky_charm", "soup");
 
 	/*
 	 *
@@ -82,7 +82,7 @@ golden_helmet_+3 horned_golden_helmet
 longbow_+1 composite_bow
 lion_shield_+1 enhanced_lion_shield
 	 */
-	private static final List<String> itemNamesOld = Arrays.asList(
+	private static final List<String> ITEM_NAMES_OLD = Arrays.asList(
 			"flail_+2",
 			"leather_armor_+1",
 			"leather_cuirass_+1",
@@ -100,7 +100,7 @@ lion_shield_+1 enhanced_lion_shield
 			"longbow_+1",
 			"lion_shield_+1");
 
-	private static final List<String> itemNamesNew = Arrays.asList(
+	private static final List<String> ITEM_NAMES_NEW = Arrays.asList(
 			"morning_star",
 			"leather_scale_armor",
 			"pauldroned_leather_cuirass",
@@ -514,8 +514,8 @@ lion_shield_+1 enhanced_lion_shield
 
 					// handle renamed items
 					String name = item.get("name");
-					if (itemNamesOld.indexOf(name) > -1) {
-						name = itemNamesNew.get(itemNamesOld.indexOf(name));
+					if (ITEM_NAMES_OLD.indexOf(name) > -1) {
+						name = ITEM_NAMES_NEW.get(ITEM_NAMES_OLD.indexOf(name));
 					}
 
 					Item entity = world.getRuleManager().getEntityManager().getItem(name);
@@ -587,7 +587,7 @@ lion_shield_+1 enhanced_lion_shield
 			return;
 		}
 
-		if (itemsToBind.contains(item.getName())) {
+		if (ITEMS_TO_BIND.contains(item.getName())) {
 			item.put("bound", player.getName());
 		}
 	}

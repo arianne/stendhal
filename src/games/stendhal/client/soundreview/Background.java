@@ -6,43 +6,43 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Background {
-    
+
 	private static final String INT_SEMOS_BLACKSMITH = "int_semos_blacksmith";
 
-	private static final String _0_SEMOS_ROAD_E = "0_semos_road_e";
+	private static final String ZERO_SEMOS_ROAD_E = "0_semos_road_e";
 
-	private static final String _0_SEMOS_CITY = "0_semos_city";
+	private static final String ZERO_SEMOS_CITY = "0_semos_city";
 
-	private static final String _0_SEMOS_VILLAGE_W = "0_semos_village_w";
-	
+	private static final String ZERO_SEMOS_VILLAGE_W = "0_semos_village_w";
+
 	private LinkedList<Sound> sounds;
 
-	
+
 	public Background(String name) {
 	this.clips= new   LinkedList<AudioClip>();
 	this.sounds= new   LinkedList<Sound>();
 	if (INT_SEMOS_BLACKSMITH.equals(name)){
 		 initSemosBlacksmith();
-	 } else if (_0_SEMOS_ROAD_E.equals(name)){
+	 } else if (ZERO_SEMOS_ROAD_E.equals(name)){
 		 initSemosRoad();
-	 } else if (  _0_SEMOS_CITY.equals(name)){
+	 } else if (  ZERO_SEMOS_CITY.equals(name)){
 		 initSemosCity();
-	 } else if (  _0_SEMOS_VILLAGE_W.equals(name)){
+	 } else if (  ZERO_SEMOS_VILLAGE_W.equals(name)){
 		 initSemosVillage();
 	 } else{
 		// TODO handle System.out.println("no Background for zone:"+ name);
 	 }
-		
+
 	}
-	
+
 	private void initSemosVillage() {
-		
-		
+
+
 	}
 
 	private void initSemosCity() {
-	
-		
+
+
 	}
 
 	private void initSemosRoad() {
@@ -68,33 +68,33 @@ public class Background {
 //		ambient.addLoop("forgefire-2", 50, 0);
 //		ambient.addLoop("forgefire-3", 50, 0);
 //		playAmbientSound(ambient);
-		
+
 	}
 
 	private void addSound(String string, int i, int j, boolean b) {
 		sounds.add(new Sound(string,i,j,b));
-		
+
 	}
 
-	List<AudioClip> clips;	
+	List<AudioClip> clips;
 	public void addSound(String soundFileName,int x , int y){
-		
+
 		sounds.add(new Sound(soundFileName,x,y));
 	}
-	
+
 	public void run(){
 		for (Sound sound  : sounds){
-			
+
 				clips.add(sound.play());
-			
+
 		}
 	}
-	
+
 	public void stop(){
 		for (AudioClip ac  : clips){
-			
+
 			ac.stop();
-		
+
 	    }
 	}
 
