@@ -188,23 +188,19 @@ public class DefaultCreature {
 	/** returns a creature-instance */
 	public Creature getCreature() {
         Collections.sort(dropsItems, new Comparator<DropItem>() {
-            
+
             public int compare(DropItem o1, DropItem o2) {
                 if(o1.probability < o2.probability) {
                 	return -1;
                 } else if(o1.probability > o2.probability) {
-                	return 1;                	
+                	return 1;
                 } else {
                 	return 0;
                 }
             }
-            
-            @Override
-            public boolean equals(Object obj) {
-                return true;
-            }
+
         });
-        
+
 		Creature creature = new Creature(clazz, subclass, name, hp, atk, def, level, xp, width, height, speed,
 		        dropsItems, aiProfiles, creatureSays, respawn, description);
 		creature.equip(equipsItems);
