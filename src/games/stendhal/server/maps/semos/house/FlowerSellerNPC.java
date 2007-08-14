@@ -19,11 +19,11 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 	private NPCList npcs = NPCList.get();
 
 	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
-        	
-        	new TeleporterBehaviour(buildSemosHouseArea(zone), "Flowers! Get your fresh flowers here!");
+
+        	new TeleporterBehaviour(buildSemosHouseArea(), "Flowers! Get your fresh flowers here!");
 	}
 
-	private SpeakerNPC buildSemosHouseArea(StendhalRPZone zone) {
+	private SpeakerNPC buildSemosHouseArea() {
 
 	    SpeakerNPC rose = new SpeakerNPC("Rose Leigh"){
 	                @Override
@@ -44,18 +44,13 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 		rose.initHP(100);
 
 		// start in int_semos_house
-		zone = StendhalRPWorld.get().getZone("int_semos_house");
+		StendhalRPZone	zone = StendhalRPWorld.get().getZone("int_semos_house");
 		zone.assignRPObjectID(rose);
 		rose.set(5, 5);
 		zone.add(rose);
 
 		return rose;
 	}
-	//@Override  <--- this indicates the method exists in the super class which it doesnt
-//	public void addToWorld() {
-//		//super.addToWorld(); cannot be called from super as super doe not have the class  
-//		buildSemosHouseArea();
-//		
-//	}
+
 
 }
