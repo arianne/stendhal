@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class GetBaseSpeed {
-RPWorld rpworld ;
+
 	@Before
 	public void setUp() throws Exception {
   new MockStendhalRPWorld();
