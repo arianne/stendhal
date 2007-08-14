@@ -353,10 +353,10 @@ public class Grammar {
 				return "second";
 			case 3:
 				return "third";
-			default: {
+			default:
 				logger.error("Gramar.ordered not implemented for: " + n, new Throwable());
 				return Integer.toString(n);
-			}
+
 		}
 	}
 

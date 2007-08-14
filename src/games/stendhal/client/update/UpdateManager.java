@@ -73,20 +73,20 @@ public class UpdateManager {
 		}
 
 		switch (versionState) {
-			case CURRENT: {
+			case CURRENT:
 				System.out.println("Current Version");
 				break;
-			}
-			case ERROR: {
+
+			case ERROR:
 				UpdateGUIDialogs.messageBox("An error occured while trying to update");
 				break;
-			}
-			case OUTDATED: {
+
+			case OUTDATED:
 				UpdateGUIDialogs
 				        .messageBox("Sorry, your client is too outdated for the update to work. Please download the current version.");
 				break;
-			}
-			case INITIAL_DOWNLOAD: {
+
+			case INITIAL_DOWNLOAD:
 				List<String> files = getFilesForFirstDownload();
 				String version = updateProp.getProperty("init.version");
 				// just check if there is already an update for the inital version
@@ -104,28 +104,28 @@ public class UpdateManager {
 					System.exit(1);
 				}
 				break;
-			}
-			case UPDATE_NEEDED: {
-				String version = Version.VERSION;
-				List<String> files = getFilesToUpdate(version);
-				List<String> filesToAddToClasspath = new ArrayList<String>(files);
+
+			case UPDATE_NEEDED:
+				version = Version.VERSION;
+				files = getFilesToUpdate(version);
+				filesToAddToClasspath = new ArrayList<String>(files);
 				removeAlreadyExistingFiles(files);
-				int updateSize = getSizeOfFilesToUpdate(files);
+				updateSize = getSizeOfFilesToUpdate(files);
 				if (UpdateGUIDialogs.askForDownload(updateSize, true)) {
 					if (downloadFiles(files, updateSize)) {
 						updateClasspathConfig(filesToAddToClasspath);
 					}
 				}
 				break;
-			}
-			case UNKOWN: {
+
+			case UNKOWN:
 				System.out.println("Unkown state of update");
 				break;
-			}
-			default: {
+
+			default:
 				System.out.println("Internal Error on Update");
 				break;
-			}
+
 		}
 	}
 
@@ -197,7 +197,7 @@ public class UpdateManager {
 
 	/**
 	 * calculates the sum of the file sizes
-	 *  
+	 *
 	 * @param files list of files
 	 * @return total size of download
 	 */

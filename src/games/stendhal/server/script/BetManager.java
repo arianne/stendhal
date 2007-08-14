@@ -33,7 +33,7 @@ import marauroa.common.Logger;
  * <pre>bet 50 ham on fire
  * bet 5 cheese on water</pre>
  * The NPC retrieves the items from the player and registers the bet.</p>
- * 
+ *
  * <p>The game master starts the action closing the betting time:
  * <pre>/script BetManager.class action</pre></p>
  *
@@ -42,10 +42,10 @@ import marauroa.common.Logger;
  *
  * <p>The NPC will than tell all players the results and give it to winners:
  * <pre>mort bet 50 ham on fire and won an additional 50 ham
- * hendrik lost 5 cheese betting on water</pre></p>   
- * 
- * Note: Betting is possible in "idle conversation state" to enable 
- * interaction of a large number of players in a short time. (The last 
+ * hendrik lost 5 cheese betting on water</pre></p>
+ *
+ * Note: Betting is possible in "idle conversation state" to enable
+ * interaction of a large number of players in a short time. (The last
  * time i did a show-fight i was losing count because there where more
  * than 15 players)
  *
@@ -113,7 +113,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	}
 
 	/**
-	 * current state 
+	 * current state
 	 */
 	private enum State {
 		/** i now nothing */
@@ -285,7 +285,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	}
 
 	// ------------------------------------------------------------------------
-	//                 scripting stuff and game master control                
+	//                 scripting stuff and game master control
 	// ------------------------------------------------------------------------
 
 	@Override
@@ -337,8 +337,8 @@ public class BetManager extends ScriptImpl implements TurnListener {
 
 		int idx = commands.indexOf(args.get(0));
 		switch (idx) {
-			case 0: // accept #fire #water 
-			{
+			case 0: // accept #fire #water
+
 				if (state != State.IDLE) {
 					admin.sendPrivateText("accept command is only valid in state IDLE. But i am in " + state
 					        + " now.\n");
@@ -352,10 +352,10 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				        + " wins. If he loses, you will lose your 5 cheese.");
 				state = State.ACCEPTING_BETS;
 				break;
-			}
 
-			case 1: // action 
-			{
+
+			case 1: // action
+
 				if (state != State.ACCEPTING_BETS) {
 					admin.sendPrivateText("action command is only valid in state ACCEPTING_BETS. But i am in " + state
 					        + " now.\n");
@@ -364,10 +364,10 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				npc.say("Ok, Let the fun begin! I will not accept bets anymore.");
 				state = State.ACTION;
 				break;
-			}
+
 
 			case 2: // winner #fire
-			{
+
 				if (state != State.ACTION) {
 					admin.sendPrivateText("winner command is only valid in state ACTION. But i am in " + state
 					        + " now.\n");
@@ -381,7 +381,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 				npc.say("And the winner is ... " + winner + ".");
 				TurnNotifier.get().notifyInTurns(WAIT_TIME_BETWEEN_WINNER_ANNOUNCEMENTS, this);
 				break;
-			}
+
 		}
 	}
 }
