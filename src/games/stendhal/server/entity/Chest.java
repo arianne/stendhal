@@ -156,13 +156,10 @@ public class Chest extends Entity implements UseListener {
 			text = getDescription();
 		}
 
-
-
 		if (isOpen()) {
 			text += " It is open.";
 			text += " You can #inspect this item to see its contents.";
-		}
-		else{
+		} else {
 			text += " It is closed.";
 		}
 
