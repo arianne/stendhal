@@ -27,7 +27,7 @@ class SourceObject extends MoveableObject {
 
 	/** optional, parent item */
 	private Entity parent;
-	
+
 	private int quantity = 0;
 
 	/** interprets the given action */
@@ -81,7 +81,7 @@ class SourceObject extends MoveableObject {
 				player.sendPrivateText("There is no such item in the " + slot + " of " + parent.getDescriptionName(true));
 				return;
 			}
-			
+
 			if (!(baseSlot instanceof EntitySlot) || (!((EntitySlot) baseSlot).isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
 				player.sendPrivateText("The " + slot + " of " + parent.getDescriptionName(true) + " is too far away.");
@@ -119,10 +119,10 @@ class SourceObject extends MoveableObject {
 			}
 		}
 	}
-	
+
 	/** moves this entity to the destination */
 	public boolean moveTo(DestinationObject dest, Player player) {
-		if ((!(item instanceof EquipListener)) || (!((EquipListener) item).canBeEquippedIn(dest.slot))) {
+		if (!((EquipListener) item).canBeEquippedIn(dest.slot)) {
 			// give some feedback
 			player.sendPrivateText("You can't carry this " + item.getName() + " on your " + dest.slot);
 			logger.warn("tried to equip an entity into disallowed slot: " + item.getClass() + "; equip rejected");
@@ -218,7 +218,7 @@ class SourceObject extends MoveableObject {
 
 	/**
 	 * Checks whether the item is below <b>another</b> player.
-	 * 
+	 *
 	 * @return true, if it cannot be take; false otherwise
 	 */
 	private boolean isItemBelowOtherPlayer() {
