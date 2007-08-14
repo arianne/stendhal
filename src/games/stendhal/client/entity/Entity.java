@@ -27,46 +27,50 @@ public class Entity implements RPObjectChangeListener {
 	/**
 	 * Animated property.
 	 */
-	public final static Object	PROP_ANIMATED	= new Object();
+	public static final Object	PROP_ANIMATED	= new Object();
 
 	/**
 	 * Entity class/subclass property.
 	 */
-	public final static Object	PROP_CLASS	= new Object();
+	public static final Object	PROP_CLASS	= new Object();
 
 	/**
 	 * Name property.
 	 */
-	public final static Object	PROP_NAME	= new Object();
+	public static final Object	PROP_NAME	= new Object();
 
 	/**
 	 * Position property.
 	 */
-	public final static Object	PROP_POSITION	= new Object();
+	public static final Object	PROP_POSITION	= new Object();
 
 	/**
 	 * Size property.
 	 */
-	public final static Object	PROP_SIZE	= new Object();
+	public static final Object	PROP_SIZE	= new Object();
 
 	/**
 	 * Title property.
 	 */
-	public final static Object	PROP_TITLE	= new Object();
+	public static final Object	PROP_TITLE	= new Object();
 
 	/**
 	 * Type property.
 	 */
-	public final static Object	PROP_TYPE	= new Object();
+	public static final Object	PROP_TYPE	= new Object();
 
 	/**
 	 * Visibility property.
 	 */
-	public final static Object	PROP_VISIBILITY	= new Object();
+	public static final Object	PROP_VISIBILITY	= new Object();
 
 
-	String[] moveSounds=null;
-	/** session wide instance identifier for this class
+	/**
+	 *  an array of sounds.
+	 *  out of these randomnly chosen sounds are played while moving.
+	 */
+	protected String[] moveSounds = null;
+	/** session wide instance identifier for this class.
 	 * TODO: get rid of this only used by Soundsystem
 	 *
 	**/
@@ -267,9 +271,13 @@ public final byte[] ID_Token = new byte[0];
 	}
 
 
-	/** Returns the represented arianne object id */
-	public RPObject.ID getID() {
-		return rpObject != null ? rpObject.getID() : null;
+	/** @return the represented arianne object id. */
+	public final RPObject.ID getID() {
+		if (rpObject == null)	{
+			return null;
+		} else {
+			return  rpObject.getID();
+		}
 	}
 
 
