@@ -21,7 +21,7 @@ public class GenerateINI {
 	/**
 	 * reads a String from the input. When no String is choosen the defaultValue
 	 * is used.
-	 * 
+	 *
 	 * @param input
 	 *            the buffered input, usually System.in
 	 * @param defaultValue
@@ -46,7 +46,7 @@ public class GenerateINI {
 	/**
 	 * reads a String from the input. When no String is choosen the errorMessage
 	 * is is displayed and the application is terminated.
-	 * 
+	 *
 	 * @param input
 	 *            the input stream, usually System.in
 	 */
@@ -59,7 +59,7 @@ public class GenerateINI {
 			System.exit(1);
 		}
 
-		if (ret.length() == 0) {
+		if (ret==null||ret.length() == 0) {
 			System.out.println(errorMessage);
 			System.out.println("Terminating...");
 			System.exit(1);
@@ -69,7 +69,7 @@ public class GenerateINI {
 
 	/**
 	 * makes the first letter of the source uppercase
-	 * 
+	 *
 	 * @param source
 	 *            the string
 	 * @return *T*he string, with first letter is upper case.
@@ -142,7 +142,7 @@ public class GenerateINI {
 		PrintWriter out = new PrintWriter(new FileOutputStream(filename));
 		write(out);
 		out.close();
-		
+
 		System.out.println(filename + " has been generated.");
 	}
 
