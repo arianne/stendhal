@@ -30,7 +30,7 @@ Rectangle area;
 
 		assertEquals(5,ae.getX());
 		assertEquals(5,ae.getY());
-		area = new Rectangle(4,4,1,1);;		assertEquals(Direction.UP, ae.getDirectionToward(area));
+		area = new Rectangle(4,4,1,1);		assertEquals(Direction.UP, ae.getDirectionToward(area));
 		area = new Rectangle(5,4,1,1);		assertEquals(Direction.UP, ae.getDirectionToward(area));
 		area = new Rectangle(6,4,1,1);		assertEquals(Direction.UP, ae.getDirectionToward(area));
 

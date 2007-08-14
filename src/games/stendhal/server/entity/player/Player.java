@@ -1752,7 +1752,7 @@ public class Player extends RPEntity {
 			return true;
 		}
 		if (obj  instanceof Player) {
-			Player other = (Player) obj; ;
+			Player other = (Player) obj;
 			return this.getName().equals(other.getName());
 		}
 		return false;

@@ -68,7 +68,7 @@ public class textClient extends Thread {
             }
 
 			public void onException(Exception exception, MessageS2CPerception perception) {
-	            exception.printStackTrace();	            
+	            exception.printStackTrace();
             }
 
 			public boolean onModifiedAdded(RPObject object, RPObject changes) {
@@ -208,7 +208,6 @@ public class textClient extends Thread {
 				sleep(100);
 			} catch (InterruptedException e) {
 			}
-			;
 		}
 	}
 

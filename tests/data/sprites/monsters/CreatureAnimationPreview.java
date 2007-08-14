@@ -256,7 +256,7 @@ public class CreatureAnimationPreview {
 									e1.printStackTrace();
 									return;
 								}
-								;
+
 
 								getImageViewerSwing1().setImage(buf);
 								if (animations == null) {

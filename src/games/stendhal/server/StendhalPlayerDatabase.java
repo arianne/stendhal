@@ -34,7 +34,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 	        configureDatabase();
         } catch (SQLException e) {
         	throw new NoDatabaseConfException(e);
-        }		
+        }
 	}
 
 	private void configureDatabase() throws SQLException {
@@ -94,7 +94,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 		super.addCharacter(transaction, username, character, player);
 
 		/*
-		 * Here goes the stendhal specific code. 
+		 * Here goes the stendhal specific code.
 		 */
 		try {
 			Connection connection = ((JDBCTransaction) transaction).getConnection();
@@ -161,7 +161,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			        + "', "
 			        + "'"
 			        + StringChecker.escapeSQLString(cloak) + "'" + ")";
-			;
+
 			logger.debug("storeCharacter is running: " + query);
 			stmt.executeUpdate(query);
 			stmt.close();
@@ -177,13 +177,13 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 		super.storeCharacter(transaction, username, character, player);
 
 		/*
-		 * Here goes the stendhal specific code. 
+		 * Here goes the stendhal specific code.
 		 */
 		try {
 			Connection connection = ((JDBCTransaction) transaction).getConnection();
 		Statement stmt = connection.createStatement();
 
-			Player instance=(Player)player;			
+			Player instance=(Player)player;
 
 			String head=null;
 			String armor=null;
@@ -229,7 +229,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			  cloak=item.getName();
 			}
 
-			
+
 			// first try an update
 			String query = "UPDATE character_stats SET "+
 			   "sentence='" + StringChecker.escapeSQLString(instance.getSentence())+"', "+
@@ -244,7 +244,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			   "def=" + instance.getDEF()+", "+
 			   "hp=" + instance.getBaseHP()+", "+
 			   "karma=" + (int)instance.getKarma()+", "+
-			   
+
 			   "head='" + StringChecker.escapeSQLString(head)+"', "+
 			   "armor='" + StringChecker.escapeSQLString(armor)+"', "+
 			   "lhand='" + StringChecker.escapeSQLString(lhand)+"', "+
@@ -255,7 +255,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			   " WHERE name='" + StringChecker.escapeSQLString(player.get("name"))+"'";
 			logger.debug("storeCharacter is running: "+query);
 			int count = stmt.executeUpdate(query);
-			
+
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
 				query = "INSERT INTO character_stats (name, online, admin, sentence, age, level, outfit, xp, money, atk, def, hp, karma, " +
@@ -281,7 +281,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 				   "'"+StringChecker.escapeSQLString(feet)+"', "+
 				   "'"+StringChecker.escapeSQLString(cloak)+"'"+
 				   ")";
-;
+
 				logger.debug("storeCharacter is running: "+query);
 				stmt.executeUpdate(query);
 			}
@@ -294,8 +294,8 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 
 	/*
 	 * TODO: Remove once the above is done.
-	 * 
-	 * 
+	 *
+	 *
 	@Override
 	public synchronized int storeRPObject(Transaction trans, RPObject object) throws SQLException {
 		Connection connection = ((JDBCTransaction) trans).getConnection();
@@ -383,7 +383,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 
 	/**
 	 * This method returns an instance of PlayerDatabase
-	 * 
+	 *
 	 * @return A shared instance of PlayerDatabase
 	 */
 	public static StendhalPlayerDatabase getDatabase() {
@@ -403,7 +403,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 	class PlayerIterator implements Iterator<RPObject> {
 		private ResultSet result;
 		private Transaction trans;
-		
+
 		public PlayerIterator() throws SQLException {
 			trans=getTransaction();
 			Connection connection = trans.getConnection();
@@ -436,9 +436,9 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 		public void remove() {
 			throw new UnsupportedOperationException();
         }
-		
+
 	}
-	
+
 	public Iterator<RPObject> iterator() {
 		try {
 	        return new PlayerIterator();
@@ -485,7 +485,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 	 * @param playername name of the player
 	 * @param fametype   type of the hall of fame
 	 * @param points     points to store
-	 * @throws SQLException 
+	 * @throws SQLException
 	 * @throws GenericDatabaseException in case of an database error
 	 */
 	public void setHallOfFamePoints(Transaction trans, String playername, String fametype, int points) throws SQLException {
@@ -498,7 +498,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 			        + "' WHERE charname='" + StringChecker.escapeSQLString(playername) + "' AND fametype='"
 			        + StringChecker.escapeSQLString(fametype) + "';";
 			int count = stmt.executeUpdate(query);
-			
+
 			if (count == 0) {
 				// no row was modified, so we need to do an insert
 				query = "INSERT INTO halloffame (charname, fametype, points) VALUES ('" + StringChecker.escapeSQLString(playername)
