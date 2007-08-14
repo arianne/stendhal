@@ -59,7 +59,6 @@ public class SeamstressNPC implements ZoneConfigurator {
 				addGoodbye("Bye, thanks for stepping in.");
 
 				Sign board = new Sign();
-				board = new Sign();
 				zone.assignRPObjectID(board);
 				board.set(16, 8);
 				board.setClass("book_blue");
