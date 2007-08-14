@@ -117,8 +117,7 @@ public class StaticGameLayers {
 		String layer = name.substring(i + 1);
 
 		/**
-		 * TODO:
-		 * Encode area name into the data sent from server, so it is simpler to encode the
+		 * TODO: Encode area name into the data sent from server, so it is simpler to encode the
 		 * area name.
 		 */
 
@@ -165,7 +164,6 @@ public class StaticGameLayers {
 				}
 
 				if (content == null) {
-					//TODO: XXX
 					content = new TileRenderer();
 					((TileRenderer) content).setMapData(in);
 				}

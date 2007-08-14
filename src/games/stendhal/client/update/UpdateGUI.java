@@ -26,9 +26,9 @@ public class UpdateGUI extends JFrame {
 	private JEditorPane jEditorPane = null;
 
 	/**
-	 * This method initializes jPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes jPanel
+	 *
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel() {
 		if (jPanel == null) {
@@ -42,9 +42,9 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jProgressBar	
-	 * 	
-	 * @return javax.swing.JProgressBar	
+	 * This method initializes jProgressBar
+	 *
+	 * @return javax.swing.JProgressBar
 	 */
 	private JProgressBar getJProgressBar() {
 		if (jProgressBar == null) {
@@ -55,9 +55,9 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes jButton
+	 *
+	 * @return javax.swing.JButton
 	 */
 	private JButton getJButton() {
 		if (jButton == null) {
@@ -69,9 +69,9 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jButton1	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes jButton1
+	 *
+	 * @return javax.swing.JButton
 	 */
 	private JButton getJButton1() {
 		if (jButton1 == null) {
@@ -82,9 +82,9 @@ public class UpdateGUI extends JFrame {
 	}
 
 	/**
-	 * This method initializes jEditorPane	
-	 * 	
-	 * @return javax.swing.JEditorPane	
+	 * This method initializes jEditorPane
+	 *
+	 * @return javax.swing.JEditorPane
 	 */
 	private JEditorPane getJEditorPane() {
 		if (jEditorPane == null) {
@@ -101,7 +101,6 @@ public class UpdateGUI extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 
 			public void run() {
@@ -131,7 +130,7 @@ public class UpdateGUI extends JFrame {
 
 	/**
 	 * This method initializes jContentPane
-	 * 
+	 *
 	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJContentPane() {

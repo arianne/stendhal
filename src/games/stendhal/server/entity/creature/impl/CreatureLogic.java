@@ -33,9 +33,9 @@ public class CreatureLogic {
 	protected static final int WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED = 9;
 
 	private Creature creature;
-	
+
 	private Healingbehaviour healer = Healingbehaviour.get(null);
-	
+
 	private RPEntity target;
 
 	/** the current (logic)state */
@@ -324,7 +324,7 @@ public class CreatureLogic {
 
 		// the path can be the path to the target or the pseudo random move
 		if (creature.hasPath()) {
-			// TODO: FIXME - Remove path size assumption/dependency
+			// TODO: Remove path size assumption/dependency
 			if (creature.getPathsize() == 1) {
 				// pseudo random move. complete it
 				if (!creature.followPath()) {

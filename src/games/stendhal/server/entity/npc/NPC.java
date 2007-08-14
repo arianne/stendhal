@@ -223,25 +223,23 @@ public abstract class NPC extends RPEntity {
 
 	@Override
 	protected void dropItemsOn(Corpse corpse) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void logic() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void handleObjectCollision() {
-		// TODO Auto-generated method stub
+
 		super.handleObjectCollision();
 	}
 
 	@Override
 	protected void handleSimpleCollission(int nx, int ny) {
-		// TODO Auto-generated method stub
+
 		super.handleSimpleCollission(nx, ny);
 	}
 }

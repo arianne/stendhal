@@ -51,7 +51,7 @@ import marauroa.common.net.message.TransferContent;
  * easily connect to an marauroa server and operate it easily.
  *
  * This class should be limited to functionality independant of the UI
- * (that goes in StendhalUI or a subclass). 
+ * (that goes in StendhalUI or a subclass).
  */
 public class StendhalClient extends ClientFramework {
 
@@ -92,7 +92,7 @@ public class StendhalClient extends ClientFramework {
 
 
 	public void generateWhoPlayers(String text){
-		
+
 		Matcher matcher = Pattern.compile("^[0-9]+ Players online:( .+)$").matcher(text);
 
 		if (matcher.find()) {
@@ -106,10 +106,10 @@ public class StendhalClient extends ClientFramework {
 				}
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	public static StendhalClient get() {
 		if (client == null) {
 			client = new StendhalClient(LOG4J_PROPERTIES);
@@ -168,7 +168,7 @@ public class StendhalClient extends ClientFramework {
 	 * connect to the Stendhal game server and if successfull, check, if the
 	 * server runs StendhalHttpServer extension. In that case it checks, if
 	 * server version equals the client's.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@Override
 	public void connect(String host, int port) throws IOException {
@@ -339,7 +339,7 @@ public class StendhalClient extends ClientFramework {
 	            e.printStackTrace();
             }
 		}
-	
+
 	}
 
 	@Override
@@ -349,7 +349,7 @@ public class StendhalClient extends ClientFramework {
 
 	@Override
     protected void onPreviousLogins(List<String> previousLogins) {
-	    // TODO Auto-generated method stub	    
+
     }
 
 	/**

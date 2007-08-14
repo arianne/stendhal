@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Abstract class for quests. This is a default implementation of IQuest.
- * 
+ *
  * @author hendrik
  */
 public abstract class AbstractQuest implements IQuest {
@@ -57,7 +57,6 @@ public abstract class AbstractQuest implements IQuest {
 	}
 
 	public boolean isRepeatable(Player player) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

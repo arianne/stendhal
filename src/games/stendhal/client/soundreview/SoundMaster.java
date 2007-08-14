@@ -33,20 +33,20 @@ private static SoundFileMap sfm=null;
 	public static AudioClip play(String soundName,double x, double y){
 		return play(soundName, x, y, false);
 	}
-	
-	
+
+
 	public static AudioClip play(String soundName,double x, double y,boolean loop){
 		if (!(x==0&&y==0)) {
 			if (HearingArea.contains(x, y)){
-				
+
 				return play(soundName);
 			}
 		}
 		return null;
 	}
-	
+
 	 public static AudioClip play(String soundName) {
-		boolean shallLoop=false; 
+		boolean shallLoop=false;
 		return play(soundName, shallLoop);
 
 	}
@@ -69,31 +69,31 @@ private static SoundFileMap sfm=null;
 		AudioClip ac = new AudioClip(AudioSystem.getMixer(null),  o, 100);
 
 		Clip cl;
-		
+
 			cl = ac.openLine();
-			
+
 if (cl!=null){
-	
+
 			cl.addLineListener(cliplisten);
 			playingClips.putIfAbsent(cl, cl);
 			if (shallLoop){
 				cl.loop(Clip.LOOP_CONTINUOUSLY);
 			}else{
-				
-			
+
+
 
 			cl.start();
 			}
-			
+
 			return ac;
-			
+
 }
 		} catch (UnsupportedAudioFileException e) {
-			
+
 		} catch (IOException e) {
-			
+
 		} catch (LineUnavailableException e) {
-			
+
 		}
 		return null;
 	}
@@ -102,53 +102,53 @@ if (cl!=null){
 		// dont remove this please astriddemma 12.04.2007
 		public void update(LineEvent event) {
 			if (event.getType().equals(LineEvent.Type.START)) {
-				
+
             }
 			if (event.getType().equals(LineEvent.Type.CLOSE)) {
             }
 			if (event.getType().equals(LineEvent.Type.STOP)) {
 				event.getLine().close();
-				
+
 				playingClips.remove(event.getLine());
             }
-			
+
 			if (event.getType().equals(LineEvent.Type.OPEN)) {
-	            
+
             }
 		}
 
 	}
 
 	public void playerMoved() {
-		// TODO Auto-generated method stub
-		
+
+
 	}
 	//commented for release
 	public void zoneEntered(String zoneName) {
 //		System.out.println(zoneName);
 //		bg = new Background(zoneName);
 //		bg.run();
-		
-		
+
+
 	}
 	public void zoneLeft(String zoneName) {
 //		System.out.println(zoneName);
 //		bg.stop();
 //		bg=null;
-		
+
 	}
 	public static void setMute(boolean on) {
-		
+
 		if (on){
 		Enumeration<Line> enu = playingClips.elements();
 		while (enu.hasMoreElements()){
 			Line lin = 	enu.nextElement();
 			lin.close();
-			
+
 		}
 		}
 		isMute=on;
-		
-		
+
+
 	}
 }

@@ -393,8 +393,7 @@ public class StendhalRPWorld extends RPWorld {
 	/**
 	 * Find the zone that would contain an entity at global coordinates.
 	 *
-	 * TODO:
-	 * This is likely broken for entity larger than 2x2,
+	 * TODO: This is likely broken for entity larger than 2x2,
 	 * because parts of them will exist in multiple zones
 	 * (and not in collision)
 	 *
