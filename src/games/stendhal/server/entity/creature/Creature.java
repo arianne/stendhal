@@ -428,10 +428,10 @@ public class Creature extends NPC {
 		RPEntity chosen = null;
 		while ((chosen == null) && (distances.size() > 0)) {
 			double shortestDistance = Double.MAX_VALUE;
-			for (RPEntity enemy : distances.keySet()) {
-				double distance = distances.get(enemy).doubleValue();
+			for (Map.Entry<RPEntity, Double> enemy : distances.entrySet()) {
+				double distance = enemy.getValue();
 				if (distance < shortestDistance) {
-					chosen = enemy;
+					chosen = enemy.getKey();
 					shortestDistance = distance;
 				}
 			}
