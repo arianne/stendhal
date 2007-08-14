@@ -26,7 +26,7 @@ import marauroa.common.game.IRPZone;
  * moving in, or standing in it's space.
  */
 public class OccupantArea extends AreaEntity implements MovementListener, TurnListener {
-	
+
 	/**
 	 * How often an action is done while stationary (in turns).
 	 */
@@ -87,7 +87,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 	 *
 	 */
 	public boolean isOccupant(RPEntity entity) {
-		return targets.contains(entity);
+		return targets.contains(entity.getID());
 	}
 
 
