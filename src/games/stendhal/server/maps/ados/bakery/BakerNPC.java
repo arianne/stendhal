@@ -80,10 +80,10 @@ public class BakerNPC implements ZoneConfigurator {
 
 				// Arlindo makes pies if you bring him flour, meat, carrot and a mushroom
 				Map<String, Integer> requiredResources = new HashMap<String, Integer>();
-				requiredResources.put("flour", new Integer(2));
-				requiredResources.put("meat", new Integer(2));
-				requiredResources.put("carrot", new Integer(1));
-				requiredResources.put("button_mushroom", new Integer(1));
+				requiredResources.put("flour", Integer.valueOf(2));
+				requiredResources.put("meat", Integer.valueOf(2));
+				requiredResources.put("carrot", Integer.valueOf(1));
+				requiredResources.put("button_mushroom", Integer.valueOf(1));
 
 				ProducerBehaviour behaviour = new ProducerBehaviour("arlindo_make_pie", "make", "pie",
 				        requiredResources, 7 * 60);
