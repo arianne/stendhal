@@ -66,7 +66,7 @@ class SoundCycle extends Thread implements Cloneable {
 	 * Creates a sound cycle for a game entity. Depending on whether <code>
 	 * entity</code>
 	 * is void, this cycle is global or object-bound.
-	 * 
+	 *
 	 * @param entity
 	 *            the game entity to which this cycle is bound; if <b>null</b>
 	 *            then a global cycle is created
@@ -136,7 +136,7 @@ class SoundCycle extends Thread implements Cloneable {
 
 		hstr = "  ** terminating cycle sound: " + token + " / entity=" + hstr;
 		logger.debug(hstr);
-		
+
 
 		if (dataline != null) {
 			dataline.stop();
@@ -163,7 +163,7 @@ class SoundCycle extends Thread implements Cloneable {
 		if (!isAlive()) {
 			hstr = "  ** starting cycle sound: " + token + " / entity=?";
 			logger.debug(hstr);
-			
+
 			executing = true;
 			try {
 				start();
@@ -204,6 +204,7 @@ class SoundCycle extends Thread implements Cloneable {
 					logger.debug("- start cyclic sound for entity: " + o.getType());
 					dataline = ((SoundObject) o).playSound(token, volBot, volTop, chance);
 				} else {
+					//FIXME: could be origin for sound dont stop bug
 					SoundSystem.stopSoundCycle(ID_Token);
 					terminate();
 				}
