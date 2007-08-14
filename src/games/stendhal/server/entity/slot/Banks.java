@@ -15,7 +15,7 @@ public enum Banks {
 	/** bank in Nalwor */
 	NALWOR("bank_nalwor");
 
-	private String slotName = null;
+	private String slotName;
 
 	/**
 	 * create a new TutorialEventType

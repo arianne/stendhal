@@ -47,16 +47,16 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	private static final int OFFSET_Y = 10;
 
 	// "static" data
-	protected StendhalRPZone zone = null;
-	protected SpeakerNPC npc = null;
-	protected List<Token> tokens = null;
-	private OnePlayerRoomDoor door = null;
-	private StendhalRPZone entranceZone = null;
+	protected StendhalRPZone zone ;
+	protected SpeakerNPC npc;
+	protected List<Token> tokens ;
+	private OnePlayerRoomDoor door ;
+	private StendhalRPZone entranceZone;
 
 	// quest instance data
-	private int moveCount = 0;
-	protected Player player = null;
-	private Timer timer = null;
+	private int moveCount ;
+	protected Player player;
+	private Timer timer;
 
 	/**
 	 * Checks the result

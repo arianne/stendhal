@@ -13,7 +13,7 @@ import marauroa.common.game.RPObject;
 
 public class User extends Player {
 
-	private static User _instance=null ;
+	private static User _instance;
 
 	/**
 	 * Client features.

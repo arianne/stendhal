@@ -12,9 +12,9 @@ package games.stendhal.common;
 
 /**
  * Gathers all Debug constants in one place
- * 
+ *
  * @author mtotz
- * 
+ *
  * TODO: Reemplaze with a XML configuration file?
  */
 public class Debug {
@@ -45,18 +45,18 @@ public class Debug {
 	 * This emulates perception losses. Never make this true and commit it to
 	 * CVS
 	 */
-	public static final boolean EMULATE_PERCEPTION_LOSS = false;
+	public static final boolean EMULATE_PERCEPTION_LOSS=false;
 
 	/**
 	 * Just a try to get webstart work without additional rights
 	 */
-	public static boolean WEB_START_SANDBOX = false;
-	
+	public static boolean WEB_START_SANDBOX;
+
 	/**
 	 * Log list sizes to find the memory leak.
 	 * It must be somewhere...
 	 */
-	public static boolean SHOW_LIST_SIZES = false;
+	public static boolean SHOW_LIST_SIZES;
 
 	/** no instance */
 	private Debug() {

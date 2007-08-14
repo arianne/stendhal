@@ -47,7 +47,7 @@ public class ShouterMain {
 
 	private String port;
 
-	protected long lastPerceptionTimestamp = 0;
+	protected long lastPerceptionTimestamp;
 
 	protected Map<RPObject.ID, RPObject> world_objects;
 

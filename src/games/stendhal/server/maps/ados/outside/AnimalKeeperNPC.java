@@ -27,12 +27,12 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 	private static class AdosAttackableCreature extends AttackableCreature implements TurnListener {
 
-		private static long lastShoutTime = 0;
+		private static long lastShoutTime;
 
-		private String cryForHelp = null;
+		private String cryForHelp ;
 
 		/**
-		 * An attackable creature that will cause Katinka to shout if it 
+		 * An attackable creature that will cause Katinka to shout if it
 		 * is killed by a monster.
 		 *
 		 * @param copy template creature

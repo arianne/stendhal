@@ -120,9 +120,9 @@ public class Player extends RPEntity {
 	 */
 	protected HashMap<String, Long> awayReplies;
 
-	private PlayerSheepManager playerSheepManager = null;
+	private PlayerSheepManager playerSheepManager;
 
-	private PlayerPetManager playerPetManager = null;
+	private PlayerPetManager playerPetManager;
 
 	public static void generateRPClass() {
 		try {
@@ -1519,7 +1519,7 @@ public class Player extends RPEntity {
 		return drop(name, getNumberOfEquipped(name));
 	}
 
-	private int pushCounter=0;
+	private int pushCounter;
 
 	/**
 	 * Called when player push entity.

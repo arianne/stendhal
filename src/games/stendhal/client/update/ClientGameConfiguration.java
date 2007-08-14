@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public class ClientGameConfiguration {
 
-	private static ClientGameConfiguration instance = null;
+	private static ClientGameConfiguration instance;
 
 	private Properties gameConfig;
 

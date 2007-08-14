@@ -15,10 +15,10 @@ class BehaviourAdder {
 
 	private static final Logger logger = Log4J.getLogger(BehaviourAdder.class);
 
-	private Engine engine = null;
+	private Engine engine ;
 
 	@Deprecated
-	private SpeakerNPC speakerNPC = null;
+	private SpeakerNPC speakerNPC ;
 
 	/**
 	 * creats a BehaviourAdder
@@ -68,7 +68,7 @@ class BehaviourAdder {
 					        behaviour.chosenItem = item;
 							if (amount > 1000) {
 								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + text);
-								amount = 1; 
+								amount = 1;
 							}
 					        behaviour.setAmount(amount);
 
@@ -88,7 +88,7 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Thanks.", 
+		        ConversationStates.ATTENDING, "Thanks.",
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
@@ -141,7 +141,7 @@ class BehaviourAdder {
 					        behaviour.chosenItem = item;
 							if (amount > 1000) {
 								logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + engine.getName() + " saying " + text);
-								amount = 1; 
+								amount = 1;
 							}
 					        behaviour.setAmount(amount);
 					        int price = behaviour.getCharge(player);
@@ -160,7 +160,7 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.SELL_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, "Thanks.", 
+		        ConversationStates.ATTENDING, "Thanks.",
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
@@ -199,7 +199,7 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.HEAL_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null, 
+		        ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC engine) {
@@ -228,7 +228,7 @@ class BehaviourAdder {
 
 	/**
 	 * Makes this NPC an outfit changer, i.e. someone who can give players
-	 * special outfits. 
+	 * special outfits.
 	 * @param behaviour The behaviour (which includes a pricelist).
 	 * @param command The action needed to get the outfit, e.g. "buy", "lend".
 	 * @param offer Defines if the NPC should react to the word "offer".
@@ -283,7 +283,7 @@ class BehaviourAdder {
 		        });
 
 		engine.add(ConversationStates.BUY_PRICE_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null, 
+		        ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
@@ -335,7 +335,7 @@ class BehaviourAdder {
 			}
 		);
 
-		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
@@ -344,18 +344,18 @@ class BehaviourAdder {
 			},
 			ConversationStates.ATTENDING, thisWelcomeMessage, null);
 
-		engine.add(ConversationStates.ATTENDING, behaviour.getProductionActivity(), 
+		engine.add(ConversationStates.ATTENDING, behaviour.getProductionActivity(),
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return !player.hasQuest(behaviour.getQuestSlot()) || player.isQuestCompleted(behaviour.getQuestSlot());
 				}
 			},
-			ConversationStates.ATTENDING, null, 
+			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
-	
+
 					String[] words = text.split(" ");
 					int amount = 1;
 					if (words.length > 1) {
@@ -363,7 +363,7 @@ class BehaviourAdder {
 					}
 					if (amount > 1000) {
 						logger.warn("Decreasing very large amount of " + amount + " to 1 for player " + player.getName() + " talking to " + npc.getName() + " saying " + text);
-						amount = 1; 
+						amount = 1;
 					}
 					if (behaviour.askForResources(npc, player, amount)) {
 						npc.setCurrentState(ConversationStates.PRODUCTION_OFFERED);
@@ -373,7 +373,7 @@ class BehaviourAdder {
 		);
 
 		engine.add(ConversationStates.PRODUCTION_OFFERED, ConversationPhrases.YES_MESSAGES, null,
-		        ConversationStates.ATTENDING, null, 
+		        ConversationStates.ATTENDING, null,
 		        new SpeakerNPC.ChatAction() {
 			        @Override
 			        public void fire(Player player, String text, SpeakerNPC npc) {
@@ -392,7 +392,7 @@ class BehaviourAdder {
 					return player.hasQuest(behaviour.getQuestSlot()) && !player.isQuestCompleted(behaviour.getQuestSlot());
 				}
 			},
-			ConversationStates.ATTENDING, null, 
+			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {
@@ -402,14 +402,14 @@ class BehaviourAdder {
 			}
 		);
 
-		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, 
+		engine.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 			new SpeakerNPC.ChatCondition() {
 				@Override
 				public boolean fire(Player player, String text, SpeakerNPC engine) {
 					return player.hasQuest(behaviour.getQuestSlot()) && !player.isQuestCompleted(behaviour.getQuestSlot());
 				}
-			}, 
-			ConversationStates.ATTENDING, null, 
+			},
+			ConversationStates.ATTENDING, null,
 			new SpeakerNPC.ChatAction() {
 				@Override
 				public void fire(Player player, String text, SpeakerNPC npc) {

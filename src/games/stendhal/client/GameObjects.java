@@ -38,7 +38,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 	/**
 	 * holds the reference to the singeton instance
 	 */
-	private static GameObjects instance = null;
+	private static GameObjects instance;
 
 	/**
 	 * @param collisionMap
@@ -67,7 +67,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 
 	/**
 	 * constructor
-	 * 
+	 *
 	 * @param collisionMap
 	 *            =layers that make floor and building
 	 */

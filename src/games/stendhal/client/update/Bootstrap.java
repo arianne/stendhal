@@ -25,13 +25,13 @@ import javax.swing.JOptionPane;
  */
 public class Bootstrap {
 
-	private String pathSep = null;
+	private String pathSep;
 
-	private String jarFolder = null;
+	private String jarFolder ;
 
-	private Properties bootProp = null;
+	private Properties bootProp ;
 
-	private Properties bootPropOrg = null;
+	private Properties bootPropOrg ;
 
 	/**
 	 * An URLClassLoader with does load its classes first and only delegates
@@ -102,10 +102,10 @@ public class Bootstrap {
 	void init() {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
-		
+
 		String stendhal=ClientGameConfiguration.get("GAME_NAME").toLowerCase();
 		System.out.println("GAME: " + stendhal);
-		
+
 		jarFolder = System.getProperty("user.home") + pathSep + stendhal + pathSep + "jar" + pathSep;
 		File folder = new File(jarFolder);
 		if (!folder.exists()) {
@@ -165,9 +165,9 @@ public class Bootstrap {
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
-		private String className = null;
+		private String className;
 
-		private String[] args = null;
+		private String[] args ;
 
 		/**
 		 * Creates a PrivilagedBoot object
@@ -325,7 +325,7 @@ public class Bootstrap {
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
 		} else if (e instanceof LinkageError) {
-			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?", 
+			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
 					"Stendhal", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
 				bootProp.remove("load");

@@ -47,13 +47,12 @@ public class Creature2DView extends RPEntity2DView {
 	/**
 	 * Should the path be hidden for this creature?
 	 */
-	public boolean hidePath = false;
-
+	public boolean hidePath;
 	/**
 	 * Whether to display all debug messages for this creature in the
 	 * game log.
 	 */
-	public boolean watch = false;
+	public boolean watch;
 
 	/** the patrolpath */
 	private List<Node> patrolPath;

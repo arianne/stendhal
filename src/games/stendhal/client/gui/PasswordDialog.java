@@ -127,7 +127,7 @@ public class PasswordDialog extends javax.swing.JFrame {
 	checkPass(newPass.getPassword(), newPassRepeat.getPassword());//not used
     }//GEN-LAST:event_newPassKeyTyped
 
-    private boolean clear = false;
+    private boolean clear ;
     private void currrentPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_currrentPassMouseClicked
 	if (!clear) {
 	    currrentPass.setText("");

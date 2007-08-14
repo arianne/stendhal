@@ -58,7 +58,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	private static Logger logger = Log4J.getLogger(BetManager.class);
 
 	/** the NPC */
-	protected ScriptingNPC npc = null;
+	protected ScriptingNPC npc;
 
 	/** current state */
 	protected State state = State.IDLE;
@@ -70,7 +70,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 	protected List<String> targets = new ArrayList<String>();
 
 	/** winner (in state State.PAYING_BETS) */
-	protected String winner = null;
+	protected String winner;
 
 	/**
 	 * Stores information about a bet
@@ -80,16 +80,16 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		// use player name instead of player object
 		// because player may reconnect during the show
 		/** name of player */
-		String playerName = null;
+		String playerName;
 
 		/** target of bet */
-		String target = null;
+		String target;
 
 		/** name of item */
-		String itemName = null;
+		String itemName;
 
 		/** amount */
-		int amount = 0;
+		int amount ;
 
 		/**
 		 * converts the bet into a string

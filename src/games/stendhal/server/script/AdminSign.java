@@ -20,7 +20,7 @@ public class AdminSign extends ScriptImpl {
 
 	private Map<Integer, Sign> storage = new HashMap<Integer, Sign>();
 
-	private int signcounter = 0;
+	private int signcounter;
 
 	/**
 	 * adds a sign

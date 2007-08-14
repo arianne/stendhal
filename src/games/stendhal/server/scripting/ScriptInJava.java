@@ -23,9 +23,9 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	private static Logger logger = Log4J.getLogger(ScriptInJava.class);
 
-	private Script script = null;
+	private Script script ;
 
-	private String classname = null;
+	private String classname ;
 
 	/**
 	 * Creates a new script written in Java.

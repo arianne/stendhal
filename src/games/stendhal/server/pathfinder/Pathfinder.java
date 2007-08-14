@@ -108,18 +108,18 @@ class Pathfinder {
 	/**
 	 * The goal node.
 	 */
-	private TreeNode nodeGoal = null;
+	private TreeNode nodeGoal;
 
 	/**
 	 * The start node.
 	 */
-	private TreeNode nodeStart = null;
+	private TreeNode nodeStart;
 
 	/**
 	 * The current best node. The best node is taken from the open list after
 	 * every iteration of <code>doStep</code>.
 	 */
-	private TreeNode nodeBest = null;
+	private TreeNode nodeBest;
 
 	/**
 	 * The entity searching a path

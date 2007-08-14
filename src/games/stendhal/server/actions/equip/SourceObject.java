@@ -28,7 +28,7 @@ class SourceObject extends MoveableObject {
 	/** optional, parent item */
 	private Entity parent;
 
-	private int quantity = 0;
+	private int quantity;
 
 	/** interprets the given action */
 	// TODO: split this method into parts (and move the checks out of the constructor)

@@ -68,7 +68,7 @@ public class StendhalClient extends ClientFramework {
 
 	private GameObjects gameObjects;
 
-	private static StendhalClient client=null;
+	private static StendhalClient client;
 
 	private Cache cache;
 
@@ -88,7 +88,7 @@ public class StendhalClient extends ClientFramework {
 	/**
 	 * The amount of content yet to be transfered.
 	 */
-	private int contentToLoad = 0;
+	private int contentToLoad;
 
 
 	public void generateWhoPlayers(String text){

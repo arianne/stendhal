@@ -13,17 +13,17 @@ public class UpdateGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	private JPanel jContentPane = null;
+	private JPanel jContentPane;
 
-	private JPanel jPanel = null;
+	private JPanel jPanel;
 
-	private JProgressBar jProgressBar = null;
+	private JProgressBar jProgressBar;
 
-	private JButton jButton = null;
+	private JButton jButton;
 
-	private JButton jButton1 = null;
+	private JButton jButton1;
 
-	private JEditorPane jEditorPane = null;
+	private JEditorPane jEditorPane;
 
 	/**
 	 * This method initializes jPanel

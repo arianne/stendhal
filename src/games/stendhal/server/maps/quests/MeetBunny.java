@@ -31,8 +31,8 @@ import games.stendhal.server.entity.player.Player;
 public class MeetBunny extends AbstractQuest {
 	private static final String QUEST_SLOT = "meet_bunny_07";
 	/** the Bunny NPC */
-	protected SpeakerNPC bunny = null;
-	private StendhalRPZone zone = null;
+	protected SpeakerNPC bunny ;
+	private StendhalRPZone zone;
 
 	@Override
 	public void init(String name) {

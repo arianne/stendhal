@@ -15,7 +15,7 @@ import marauroa.common.Logger;
 
 /**
  * Other classes can register here to be notified at some time in the future.
- * 
+ *
  * @author hendrik, daniel
  */
 public class TurnNotifier {
@@ -23,7 +23,7 @@ public class TurnNotifier {
 	private static Logger logger = Log4J.getLogger(TurnNotifier.class);
 
 	/** The Singleton instance **/
-	private static TurnNotifier instance = null;
+	private static TurnNotifier instance;
 
 	private int currentTurn = -1;
 
@@ -58,13 +58,13 @@ public class TurnNotifier {
 	 *
 	 * @param currentTurn currentTurn
 	 */
-	
+
 	public void logic(int currentTurn) {
 		// Note: It is OK to only synchronize the remove part
 		//       because notifyAtTurn will not allow registrations
 		//       for the current turn. So it is important to
 		//       adjust currentTurn before the loop.
-		
+
 		this.currentTurn = currentTurn;
 
 		// get and remove the set for this turn
@@ -72,7 +72,7 @@ public class TurnNotifier {
 		synchronized (sync) {
 			set = register.remove(Integer.valueOf(currentTurn));
 		}
-		
+
 		if (logger.isDebugEnabled()) {
 			StringBuffer os=new StringBuffer();
 			os.append("register: "+register.size()+"\n");
@@ -87,7 +87,7 @@ public class TurnNotifier {
 					if (logger.isDebugEnabled()) {
 						logger.info(turnListener);
 					}
-					
+
 					turnListener.onTurnReached(currentTurn, null);
 				} catch (RuntimeException e) {
 					logger.error(e, e);
@@ -101,25 +101,25 @@ public class TurnNotifier {
 	 *
 	 * @return number of the next turn
 	 */
-	
+
 	public int getNumberOfNextTurn() {
 		return this.currentTurn + 1;
 	}
 
 	/**
 	 * Notifies the <i>turnListener</i> in <i>diff</i> turns.
-	 * 
+	 *
 	 * @param diff the number of turns to wait before notifying
 	 * @param turnListener the object to notify
 	 */
-	
+
 	public void notifyInTurns(int diff, TurnListener turnListener) {
 			notifyAtTurn(currentTurn + diff + 1, turnListener);
 	}
 
 	/**
 	 * Notifies the <i>turnListener</i> in <i>sec</i> seconds.
-	 * 
+	 *
 	 * @param sec the number of seconds to wait before notifying
 	 * @param turnListener the object to notify
 	 */
@@ -129,7 +129,7 @@ public class TurnNotifier {
 
 	/**
 	 * Notifies the <i>turnListener</i> at turn number <i>turn</i>.
-	 * 
+	 *
 	 * @param turn the number of the turn
 	 * @param turnListener the object to notify
 	 */
@@ -151,7 +151,7 @@ public class TurnNotifier {
 			logger.error("requested turn " + turn + " is in the past. Current turn is "+ currentTurn, new Throwable());
 			return;
 		}
-		
+
 		synchronized (sync) {
 			// do we have other events for this turn?
 			Integer turnInt = Integer.valueOf(turn);
@@ -171,14 +171,14 @@ public class TurnNotifier {
 	 *
 	 * @param turnListener
 	 */
- 
+
 	public void dontNotify(TurnListener turnListener) {
 		// all events that are equal to this one should be forgotten.
 //		TurnEvent turnEvent = new TurnEvent(turnListener);
 		for (Map.Entry<Integer, Set<TurnListener>> mapEntry : register.entrySet()) {
 			Set<TurnListener> set = mapEntry.getValue();
 			// We don't remove directly, but first store in this
-			// set. This is to avoid ConcurrentModificationExceptions. 
+			// set. This is to avoid ConcurrentModificationExceptions.
 			Set<TurnListener> toBeRemoved = new HashSet<TurnListener>();
 			for (TurnListener currentEvent : set) {
 				try{
@@ -186,7 +186,7 @@ public class TurnNotifier {
 					toBeRemoved.add(currentEvent);
 				}
 				}catch (ClassCastException cce){
-					//TODO: remove try catch after Marauroa 2.0 
+					//TODO: remove try catch after Marauroa 2.0
 					//this should never happen but RPObject equals thorws it
 				}
 			}
@@ -203,7 +203,7 @@ public class TurnNotifier {
 	 * @return the number of remaining turns, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
-	
+
 	public int getRemainingTurns(TurnListener turnListener) {
 		// all events match that are equal to this.
 //		TurnEvent turnEvent = new TurnEvent(turnListener);
@@ -218,7 +218,7 @@ public class TurnNotifier {
 						matchingTurns.add(mapEntry.getKey());
 					}
 				} catch (ClassCastException e) {
-//					TODO: remove try catch after Marauroa 2.0 
+//					TODO: remove try catch after Marauroa 2.0
 					//this should never happen but RPObject equals thorws it
 				}
 			}
@@ -239,9 +239,9 @@ public class TurnNotifier {
 	 * @return the number of remaining seconds, or -1 if the given TurnListener
 	 *         will not be notified with the given message.
 	 */
-	
+
 	public int getRemainingSeconds(TurnListener turnListener) {
-	
+
 		return (getRemainingTurns(turnListener) * StendhalRPWorld.MILLISECONDS_PER_TURN) / 1000;
 	}
 
@@ -253,7 +253,7 @@ public class TurnNotifier {
 	public Map<Integer, Set<TurnListener>> getEventListForDebugging() {
 		 return register;
 	}
-	
+
 	/**
 	 * Returns the current turn. Note this is only for debugging TurnNotifier
 	 *

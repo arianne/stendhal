@@ -9,14 +9,14 @@ import java.util.List;
  * Other classes can register here to be notified when a player logs in.
  *
  * It is the responsibility of the LoginListener to determine which
- * players are of interest for it, and to store this information persistently. 
- * 
+ * players are of interest for it, and to store this information persistently.
+ *
  * @author daniel
  */
 public class LoginNotifier {
 
 	/** The Singleton instance **/
-	private static LoginNotifier instance = null;
+	private static LoginNotifier instance;
 
 	/**
 	 * This Map maps each player name to the set of all events that will
@@ -50,7 +50,7 @@ public class LoginNotifier {
 	public void addListener(LoginListener listener) {
 		listeners.add(listener);
 	}
-	
+
 	/**
 	 * removes a LoginListener
 	 *
@@ -59,7 +59,7 @@ public class LoginNotifier {
 	public void removeListener(LoginListener listener) {
 		listeners.remove(listener);
 	}
-	
+
 	/**
 	 * This method is invoked by Player.create().
 	 *

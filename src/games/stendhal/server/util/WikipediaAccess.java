@@ -12,28 +12,28 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Gets the first text paragraph from the specified Wikipedia article using
  * the MediaWiki bot api.
- * 
+ *
  * You can invoke the parser either inline using the method parse() or start
- * it in a new thread. 
+ * it in a new thread.
  *
  * TODO: handle redirects (but take care, there might be two redirects that
  * point to each other).
- * 
+ *
  * @author hendrik
  */
 public class WikipediaAccess extends DefaultHandler implements Runnable {
 
-	private String title = null;
+	private String title;
 
 	private StringBuilder text = new StringBuilder();
 
 	/** used by the parser to detect the right tag */
-	private boolean isContent = false;
+	private boolean isContent;
 
 	/** was the parsing completed */
-	private boolean finished = false;
+	private boolean finished;
 
-	private String error = null;
+	private String error ;
 
 	/**
 	 * creates a new WikipeidaAccess

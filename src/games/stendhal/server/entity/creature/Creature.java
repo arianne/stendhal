@@ -96,7 +96,7 @@ public class Creature extends NPC {
 
 	private Map<String, String> aiProfiles;
 
-	private CreatureLogic creatureLogic = null;
+	private CreatureLogic creatureLogic;
 
 	public static void generateRPClass() {
 		try {

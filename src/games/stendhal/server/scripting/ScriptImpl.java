@@ -12,7 +12,7 @@ import java.util.List;
 public class ScriptImpl implements Script {
 
 	/** all modifications must be done using this object to be undoable on unload */
-	protected ScriptingSandbox sandbox = null;
+	protected ScriptingSandbox sandbox;
 
 	public void execute(Player admin, List<String> args) {
 		// do nothing

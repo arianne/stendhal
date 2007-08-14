@@ -29,11 +29,11 @@ public class TeleporterBehaviour implements TurnListener {
 
 	private static Logger logger = Log4J.getLogger(TeleporterBehaviour.class);
 
-	private StendhalRPZone zone = null;
+	private StendhalRPZone zone;
 
-	private ArrayList<StendhalRPZone> zones = null;
+	private ArrayList<StendhalRPZone> zones;
 
-	private SpeakerNPC speakerNPC = null;
+	private SpeakerNPC speakerNPC;
 
 	/**
 	 * Creates a new TeleporterBehaviour

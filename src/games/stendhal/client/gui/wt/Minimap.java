@@ -89,7 +89,7 @@ public class Minimap extends WtPanel {
 	private BufferedImage image;
 
 	/** list of players */
-	private Player player = null;
+	private Player player;
 
 	private StendhalClient client;
 

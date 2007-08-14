@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
  * @author  timothyb89
  */
 public class BuyWindowContent extends javax.swing.JPanel {
-    
+
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -1607102841664745919L;
 
@@ -29,40 +29,40 @@ public class BuyWindowContent extends javax.swing.JPanel {
      * The UI.
      */
     protected StendhalUI ui;
-    
+
     /**
      *The card name for CardLayout
      */
     private String card = "intro";
-    
+
     /**
      *The string to be built
      */
-    private String buildMe = null;
-    
+    private String buildMe;
+
     /**
      *the amount of items
      */
-    private int amount = 0;
-    
-     
+    private int amount;
+
+
     /**
      *If there is an extra option, are we using it (only buy at this point)
      */
-    private boolean buying = false;
-    
+    private boolean buying;
+
     /**
      *Our managedWindow
      */
     BuyWindow bw;
-        
+
     /** Creates new form BuyWindowContent */
     public BuyWindowContent(StendhalUI ui, BuyWindow bw) {
 	this.ui = ui;
 	this.bw = bw;
 	initComponents();
     }
-    
+
     /**
      *The hashmap is used to take an item name (such as "Knife ($15)") and translates it into something an NPC can understand (such as, simply, 'knife')
      */
@@ -259,7 +259,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	buying = false;
 	buildMe = null;
 	itemAmount.setValue(0);
-	
+
 	//set card
 	CardLayout cl = (CardLayout)(mainPanel.getLayout());
 	cl.show(mainPanel, card);
@@ -286,7 +286,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
     }//GEN-LAST:event_npc_chooserValueChanged
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-	
+
 	/**
 	 *CardLayout stuff
 	 */
@@ -296,17 +296,17 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	    card = String.valueOf(npc_chooser.getSelectedValue());
 	    // == Set cards (officially) here ==
 	    if (card.toLowerCase().contains("xin")) {
-		card = "xin";         
+		card = "xin";
 		System.out.println("Choose shop xin"); //for debug
 	    }
 	    else if (card.toLowerCase().contains("food")) {
 		card = "food&drink";
 		System.out.println("Choose shop food&drink"); //for debug
 	    }
-	    
+
 	    cl.show(mainPanel, card); //show the card
-	    
-	    
+
+
 	} else if (card.contains("xin")) {
 	      if (xinSell.getSelectedValue() != null) {
 		buildMe = String.valueOf(xinSell.getSelectedValue());
@@ -314,21 +314,21 @@ public class BuyWindowContent extends javax.swing.JPanel {
 		buildMe = String.valueOf(xinBuy.getSelectedValue()); //not getSelectedValues for a reason...
 		buying = true;
 	    }
-	    
+
 	    card = "amountChooser";
 	    cl.show(mainPanel, card);
 	} else if (card.contains("food")) {
 	    buildMe = String.valueOf(foodList.getSelectedValue());
 	    card = "amountChooser";
 	    cl.show(mainPanel, card);
-	    
+
 	} else if (card.contains("potions")) {
 	    buildMe = String.valueOf(potionList.getSelectedValue());
 	    card = "amontChooser";
 	    cl.show(mainPanel, card);
 	} else if (card.contains("amount")) {
 	    amount = Integer.parseInt(String.valueOf(itemAmount.getValue()));
-	    
+
 	    //finish
 	    String final_msg = null;
 	    if (buying) {
@@ -340,18 +340,18 @@ public class BuyWindowContent extends javax.swing.JPanel {
 	    final_msg += " " +String.valueOf(amount);
 	    //now for the item name...
 	    final_msg += " " + buildMe;
-	    
+
 	    //set the chat bar
 	    ui.setChatLine(final_msg);
 	    //ui.setChatLine("test");
 	    ui.addEventLine("Please tell an NPC what is now in your chat bar.");
 	    JOptionPane.showMessageDialog(null, "Please tell an NPC what is now in you chat bar.");
 	    bw.setVisible(false);
-	    
+
 	}
-	
-	
-	
+
+
+
     }//GEN-LAST:event_nextButtonActionPerformed
 //    /**
 //     *Adds items to the items hashmap
@@ -376,7 +376,7 @@ public class BuyWindowContent extends javax.swing.JPanel {
 //	items.put("Chain Armor ($29)", "chain_armor");
 //	items.put("Chain Helmet ($25)", "chain_helmet");
 //	items.put("Chain Legs ($27)", "chain_legs");
-//	
+//
 //	// food&drink shop
 //	items.put("Beer ($10)", "beer");
 //	items.put("Wine ($15)", "wine");
@@ -387,9 +387,9 @@ public class BuyWindowContent extends javax.swing.JPanel {
 //	items.put("Meat ($40)", "meat");
 //	items.put("Ham ($80)", "ham");
 //	 */ //commented for other fix
-//	    
+//
 //    }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel amountChooser;
     private javax.swing.JList foodList;
@@ -417,5 +417,5 @@ public class BuyWindowContent extends javax.swing.JPanel {
     private javax.swing.JList xinSell;
     private javax.swing.JPanel xin_weapons;
     // End of variables declaration//GEN-END:variables
-    
+
 }

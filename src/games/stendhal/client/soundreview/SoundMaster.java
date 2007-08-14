@@ -16,8 +16,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class SoundMaster implements Runnable,WorldListener {
-private static SoundFileMap sfm=null;
-	private static Cliplistener cliplisten=null;
+private static SoundFileMap sfm;
+	private static Cliplistener cliplisten;
 	private static boolean isMute;
 	public static ConcurrentHashMap<Object, Line> playingClips= new ConcurrentHashMap<Object, Line>();
 

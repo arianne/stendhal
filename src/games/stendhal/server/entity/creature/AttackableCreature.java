@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class AttackableCreature extends Creature {
 
-	private RPEntity master = null;
+	private RPEntity master;
 
 	/**
 	 * AttackableCreature

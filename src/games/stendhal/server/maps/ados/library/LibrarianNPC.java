@@ -93,9 +93,9 @@ public class LibrarianNPC implements ZoneConfigurator {
 
 	protected class WikipediaWaiter implements TurnListener {
 
-		private WikipediaAccess access = null;
+		private WikipediaAccess access;
 
-		private SpeakerNPC npc = null;
+		private SpeakerNPC npc;
 
 		public WikipediaWaiter(SpeakerNPC npc, WikipediaAccess access) {
 			this.npc = npc;

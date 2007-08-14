@@ -22,7 +22,7 @@ public class PostmanIRC extends PircBot {
 
 	private Properties prop = new Properties();
 
-	private String gameServer = null;
+	private String gameServer ;
 
 	/**
 	 * Creates a new PostmanIRC
@@ -41,10 +41,10 @@ public class PostmanIRC extends PircBot {
 	/**
 	 * Postman IRC bot.
 	 *
-	 * @throws IrcException 
-	 * @throws IOException 
-	 * @throws NickAlreadyInUseException 
-	 * @throws InterruptedException 
+	 * @throws IrcException
+	 * @throws IOException
+	 * @throws NickAlreadyInUseException
+	 * @throws InterruptedException
 	 */
 	public void connect() throws NickAlreadyInUseException, IOException, IrcException, InterruptedException {
 		if (Boolean.parseBoolean(prop.getProperty("irc"))) {

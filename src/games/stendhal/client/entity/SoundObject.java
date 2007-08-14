@@ -1,14 +1,14 @@
 /*
  *  SoundObject in games.stendhal.client.entity
  *  file: SoundObject.java
- * 
+ *
  *  Project stendhal
  *  @author Jane Hunt
  *  Created 21.01.2006
  *  Version
- * 
- This program is free software. You can use, redistribute and/or modify it under 
- the terms of the GNU General Public License as published by the Free Software 
+ *
+ This program is free software. You can use, redistribute and/or modify it under
+ the terms of the GNU General Public License as published by the Free Software
  Foundation, version 2 of the License.
 
  This program is distributed in the hope that it will be useful, but WITHOUT
@@ -38,10 +38,10 @@ public class SoundObject extends InvisibleEntity {
 	private String name;
 
 	private int volume;
-	 Map<String, String[]> soundArray = null;
-	
+	 Map<String, String[]> soundArray;
+
 	private void soundInit(){
-		soundArray = Sound.soundArray; 
+		soundArray = Sound.soundArray;
 	}
 
 	public SoundObject() {
@@ -52,10 +52,10 @@ public class SoundObject extends InvisibleEntity {
 		super();
 		this.x = x;
 		this.y = y;
-		
+
 	}
 
-	
+
 
 	public SoundObject(final Point2D soundPos,final  int radius) {
 		x = soundPos.getX();
@@ -113,10 +113,10 @@ public class SoundObject extends InvisibleEntity {
 		}
 		if (Rand.rand(100)<chance){
 			if (soundArray.containsKey(token)){
-				
+
 				SoundMaster.play(soundArray.get(token)[Rand.rand(soundArray.get(token).length)],x,y);
 
-				
+
 			}
 		}
 		return null;

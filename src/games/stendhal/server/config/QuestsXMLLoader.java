@@ -27,7 +27,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(QuestsXMLLoader.class);
 
-	private Map<String, QuestInfo> questInfos = null;
+	private Map<String, QuestInfo> questInfos;
 
 	// used while parsing the XML structure
 	private String name;

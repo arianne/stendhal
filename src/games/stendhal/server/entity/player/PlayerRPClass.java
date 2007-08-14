@@ -56,7 +56,7 @@ class PlayerRPClass {
 	private static Logger logger = Log4J.getLogger(PlayerRPClass.class);
 
 	/** list of super admins read from admins.list */
-	private static List<String> adminNames = null;
+	private static List<String> adminNames;
 
 	/** only log the first exception while reading welcome URL */
 	private static boolean firstWelcomeException = true;

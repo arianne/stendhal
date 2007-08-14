@@ -30,11 +30,11 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 
 	private NPCList npcs = NPCList.get();
 
-	private StendhalRPZone zone = null;
+	private StendhalRPZone zone;
 
-	private Area arena = null;
+	private Area arena ;
 
-	private DeathmatchInfo deathmatchInfo = null;
+	private DeathmatchInfo deathmatchInfo;
 
 	public AdosDeathmatch() {
 		// constructor for quest system
@@ -46,7 +46,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
 		zone.setTeleportAllowed(false);
 		DeathmatchInfo.add(deathmatchInfo);
-		
+
 		LoginNotifier.get().addListener(this);
 	}
 

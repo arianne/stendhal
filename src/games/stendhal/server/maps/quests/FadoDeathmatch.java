@@ -30,11 +30,11 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 
 	private NPCList npcs = NPCList.get();
 
-	private StendhalRPZone zone = null;
+	private StendhalRPZone zone;
 
-	private Area arena = null;
+	private Area arena ;
 
-	private DeathmatchInfo deathmatchInfo = null;
+	private DeathmatchInfo deathmatchInfo;
 
 	public FadoDeathmatch() {
 		// constructor for quest system
@@ -46,7 +46,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
 		zone.setTeleportAllowed(false);
 		DeathmatchInfo.add(deathmatchInfo);
-		
+
 		LoginNotifier.get().addListener(this);
 	}
 
@@ -133,7 +133,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
-		
+
 		// We create another NPC
 		SpeakerNPC npc1 = new SpeakerNPC("Marcelo") {
 
@@ -156,7 +156,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 				addJob("I'm the battle arena assistant. Tell me if you need #help with anything. Talk to #Brutus or #Thonaton if you need anything else.");
 				addHelp("I can't help you too much, but you can talk to Brutus or Thonatun if you need help.");
 				addGoodbye("I hope you enjoy the Battle Arena!");
-			
+
 			}
 		};
 

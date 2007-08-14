@@ -6,7 +6,7 @@ package games.stendhal.server.events;
  * @author hendrik
  */
 public enum TutorialEventType {
-	
+
 	FIRST_LOGIN   ("Hi, welcome to Stendhal. You can move around using the arrow keys."),
 	FIRST_MOVE    ("Please walk south (down) to go out of this building into the city."),
 	VISIT_SEMOS_CITY ("You can talk to Monogenes a little south west (down left) by saying \"hi\". Or you can walk a bit more south to fight some creatures in the dungeons"),
@@ -16,12 +16,12 @@ public enum TutorialEventType {
 	FIRST_KILL ("Double click on the Corpse and drag the items with the mouse over your bag and drop them there."),
 	FIRST_POISONED ("You've just been poisoned. If you didn't drink poison, it was probably a poisonous creature attacking you. Kill poisonous creatures quickly, as you lose more HP each time you are poisoned."),
 	FIRST_PLAYER ("Have you noticed that this name is printed in white? It is another real human player"),
-	FIRST_DEATH ("Oh, you have just died. But fortunately death is not permanent in this world."), 
+	FIRST_DEATH ("Oh, you have just died. But fortunately death is not permanent in this world."),
 	TIMED_HELP ("There is a manual with many pictures on the first screen before you login."),
 	TIMED_NAKED ("Oh, aren't you feeling cold? Right click on yourself and choose \"Set Outfit\" to get dressed."),
 	TIMED_PASSWORD ("Remember to keep your password completely secret, never tell it to another friend, player, or even admin.");
-	
-	private String message = null;
+
+	private String message;
 
 	/**
 	 * create a new TutorialEventType

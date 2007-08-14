@@ -23,9 +23,9 @@ public class Engine {
 
 	// TODO: remove this dependency cicle, this is just here to simplify refactoring
 	// TODO: later: remove dependency on games.stendhal.server.entity.npc.* and Player
-	private SpeakerNPC speakerNPC = null;
+	private SpeakerNPC speakerNPC;
 
-	private int maxState = 0;
+	private int maxState;
 
 	// FSM state transition table
 	private List<Transition> stateTransitionTable = new LinkedList<Transition>();
@@ -42,7 +42,7 @@ public class Engine {
 		if (speakerNPC==null){
 			throw new IllegalArgumentException("speakerNpc must not be null");
 		}
-			
+
 		this.speakerNPC = speakerNPC;
 	}
 

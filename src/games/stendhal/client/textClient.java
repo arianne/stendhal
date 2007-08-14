@@ -36,7 +36,7 @@ public class textClient extends Thread {
 
 	private String port;
 
-	private static boolean ShowWorld = false;
+	private static boolean ShowWorld;
 
 	private Map<RPObject.ID, RPObject> world_objects;
 

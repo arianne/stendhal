@@ -8,13 +8,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * An creature that will only target enemies which are within a specified area. 
+ * An creature that will only target enemies which are within a specified area.
  *
  * @author hendrik
  */
 public class ArenaCreature extends Creature {
 
-	private Shape arena = null;
+	private Shape arena ;
 
 	/**
 	 * ArenaCreature

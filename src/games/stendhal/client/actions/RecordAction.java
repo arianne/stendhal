@@ -14,7 +14,7 @@ public class RecordAction implements SlashAction  {
 
 	private static final Logger logger = Log4J.getLogger(RecordAction.class);
 
-	private ScriptRecorder recorder = null;
+	private ScriptRecorder recorder;
 
 	/**
 	 * Execute a chat command.
@@ -32,7 +32,7 @@ public class RecordAction implements SlashAction  {
 
 		final String name = params[0];
 
-		if (!"stop".equals(name)) { 
+		if (!"stop".equals(name)) {
 			try {
 				recorder = new ScriptRecorder(name);
 				recorder.start();

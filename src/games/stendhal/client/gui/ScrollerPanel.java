@@ -59,16 +59,16 @@ public class ScrollerPanel extends JPanel {
 
 	private Color backgroundColor;
 
-	private Dimension prefferedSize = null;
+	private Dimension prefferedSize;
 
 	private int lineHeight;
 
-	private boolean scrollingStarted = false;
+	private boolean scrollingStarted;
 
 	/**
 	 * creates an ScrollerPane wich scrolls the given text and using defaults
 	 * for the other attributes.
-	 * 
+	 *
 	 * @param text the text araay whis should be scrolled - one string per line
 	 *             is scrolled
 	 */
@@ -79,7 +79,7 @@ public class ScrollerPanel extends JPanel {
 	/**
 	 * creates an ScrollerPane wich scrolls the given text and uses the given
 	 * attributes
-	 * 
+	 *
 	 * @param text the text araay whis should be scrolled - one string per line is scrolled
 	 * @param font the font which is rendered
 	 * @param lineSpacing the gap between the lines

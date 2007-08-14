@@ -16,15 +16,15 @@ import java.util.Properties;
  */
 public class UpdateManager {
 
-	private String jarFolder = null;
+	private String jarFolder ;
 
-	private Properties bootProp = null;
+	private Properties bootProp ;
 
-	private String serverFolder = null;
+	private String serverFolder ;
 
-	private Properties updateProp = null;
+	private Properties updateProp ;
 
-	private UpdateProgressBar updateProgressBar = null;
+	private UpdateProgressBar updateProgressBar;
 
 	/**
 	 * Connects to the server and loads a Property object which contains

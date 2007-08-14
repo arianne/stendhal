@@ -78,25 +78,25 @@ public class OutfitDialog extends JDialog {
 	private static final int BODY_OUTFITS = 14;
 
 	// to keep the sprites to show
-	private Sprite[] hairs = null;
+	private Sprite[] hairs ;
 
-	private Sprite[] heads = null;
+	private Sprite[] heads ;
 
-	private Sprite[] bodies = null;
+	private Sprite[] bodies ;
 
-	private Sprite[] clothes = null;
+	private Sprite[] clothes;
 
 	// current selected parts index
 	private int hairs_index = 1;
 
-	private int heads_index = 0;
+	private int heads_index;
 
-	private int bodies_index = 0;
+	private int bodies_index;
 
-	private int clothes_index = 0;
+	private int clothes_index;
 
 	// to handle the draws update
-	private Timer timer = null;
+	private Timer timer ;
 
 	// 0 for animation UP, 1 RIGHT, 2 DOWN and 3 LEFT
 	private int animation = 2;

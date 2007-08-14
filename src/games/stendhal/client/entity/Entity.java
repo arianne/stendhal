@@ -69,7 +69,7 @@ public class Entity implements RPObjectChangeListener {
 	 *  an array of sounds.
 	 *  out of these randomnly chosen sounds are played while moving.
 	 */
-	protected String[] moveSounds = null;
+	protected String[] moveSounds;
 	/** session wide instance identifier for this class.
 	 * TODO: get rid of this only used by Soundsystem
 	 *
@@ -150,7 +150,7 @@ public final byte[] ID_Token = new byte[0];
 	 * in onChangedAdded() from other initialize() hack.
 	 * TODO: Need to fix it all to work right, but not now.
 	 */
-	protected boolean inAdd = false;
+	protected boolean inAdd;
 
 
 	Entity() {

@@ -30,9 +30,9 @@ public class stendhal extends Thread {
 
 	private static final Logger logger = Log4J.getLogger(stendhal.class);
 
-	public static boolean doLogin = false;
+	public static boolean doLogin ;
 
-	public static String STENDHAL_FOLDER = null;
+	public static String STENDHAL_FOLDER;
 
 	// detect web start sandbox and init STENDHAL_FOLDER otherwise
 	static {

@@ -174,7 +174,7 @@ assertEquals(0,en.count);
 
 
 	private class MockEntity extends Entity {
- int count=0;
+		int count;
 
 		public MockEntity() {
 			rpObject = new RPObject();

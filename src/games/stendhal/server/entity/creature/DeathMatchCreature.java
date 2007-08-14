@@ -11,8 +11,8 @@ import marauroa.common.Log4J;
  */
 public class DeathMatchCreature extends Creature {
 
-	private int points = 0;
-	private Player player = null;
+	private int points;
+	private Player player;
 
 	/**
 	 * DeathCreature

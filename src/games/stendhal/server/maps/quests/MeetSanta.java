@@ -31,14 +31,14 @@ import games.stendhal.server.entity.player.Player;
 public class MeetSanta extends AbstractQuest {
 	private static final String QUEST_SLOT = "meet_santa_07";
 	/** the Santa NPC */
-	protected SpeakerNPC santa = null;
-	private StendhalRPZone zone = null;
+	protected SpeakerNPC santa;
+	private StendhalRPZone zone;
 
 	@Override
 	public void init(String name) {
 		super.init(name, QUEST_SLOT);
 	}
-	
+
 	private SpeakerNPC createSanta() {
 		santa = new SpeakerNPC("Santa") {
 			@Override

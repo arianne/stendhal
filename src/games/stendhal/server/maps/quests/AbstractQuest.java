@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class AbstractQuest implements IQuest {
 
 	/** The internal name of this quest. (e.g used to read quest.xml) */
-	protected String name = null;
+	protected String name;
 
 	/** The slot-name in !quests */
 	protected String slotName = "XXX"; // TODO init it in the quest-classes

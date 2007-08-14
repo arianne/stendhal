@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
  */
 public class ImageRenderer extends LayerRenderer {
 
-	Sprite mySprite = null;
+	Sprite mySprite;
 
 	public ImageRenderer(URL url) {
 		try {

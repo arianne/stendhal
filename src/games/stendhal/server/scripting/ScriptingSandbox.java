@@ -33,7 +33,7 @@ public abstract class ScriptingSandbox {
 
 	private StendhalRPZone zone;
 
-	private String filename = null;
+	private String filename ;
 
 	private static final Logger logger = Log4J.getLogger(ScriptingSandbox.class);
 
@@ -197,7 +197,7 @@ public abstract class ScriptingSandbox {
 
 	@SuppressWarnings("unchecked")
     public void unload(Player player, String[] args) {
-		
+
 
 		Set<NPC> setNPC = new HashSet<NPC>(loadedNPCs.keySet());
 		for (NPC npc : setNPC) {
@@ -209,7 +209,7 @@ public abstract class ScriptingSandbox {
 			remove(object);
 		}
 
-		
+
 	}
 
 	public boolean execute(Player player, String[] args) {

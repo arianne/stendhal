@@ -30,7 +30,7 @@ import java.util.Map;
  * A healing spell. It restores the user to full HP (for now).
  */
 public class HealingSpell extends Spell implements UseListener {
-	public int healAmount = 0;
+	public int healAmount;
 
 	HealingSpell(String name, Map<String, String> attributes) {
 		super(name, attributes);

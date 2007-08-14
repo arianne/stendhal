@@ -57,7 +57,7 @@ public abstract class Pet extends DomesticAnimal {
 
 	 protected static int DEF = 20;
 
-	 protected static int XP = 0;
+	 protected static int XP;
 
 	protected int hunger;
 

@@ -14,8 +14,8 @@ import marauroa.common.game.RPAction;
  * Parses the input in the chat box and invokes the appropriate action.
  */
 public class ChatLineParser {
-	private static ChatLineParser instance = null;
-	private RecordAction recordAction = null;
+	private static ChatLineParser instance;
+	private RecordAction recordAction;
 
 	// hide constructor (Singleton)
 	private ChatLineParser() {
@@ -23,7 +23,7 @@ public class ChatLineParser {
 		SlashActionRepository.register();
 
 		recordAction = (RecordAction) SlashActionRepository.get("record");
-		
+
 	}
 
 
@@ -72,7 +72,7 @@ public class ChatLineParser {
 		if (recordAction.getRecorder() != null) {
 			recordAction.getRecorder().recordChatLine(text);
 		}
-		
+
 		if (text.charAt(0) != '/') {
 			// Chat command. The most frequent one.
 			RPAction chat = new RPAction();

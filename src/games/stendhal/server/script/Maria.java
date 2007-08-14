@@ -16,7 +16,7 @@ import marauroa.common.Logger;
 
 /**
  * Creates a portable NPC which sell foods&drinks at meetings.
- * 
+ *
  * As admin use /script Maria.class to sommon her right next to you. Please put
  * her back in int_admin_playground after use.
  */
@@ -26,7 +26,7 @@ public class Maria extends ScriptImpl {
 
 	class MargaretCouponAction extends SpeakerNPC.ChatAction {
 
-		private ScriptingSandbox sandbox = null;
+		private ScriptingSandbox sandbox;
 
 		public MargaretCouponAction(ScriptingSandbox sandbox) {
 			this.sandbox = sandbox;

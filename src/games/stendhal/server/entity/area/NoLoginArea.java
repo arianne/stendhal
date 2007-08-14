@@ -22,8 +22,8 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 	 * The logger instance.
 	 */
 	private static final Logger logger = Log4J.getLogger(NoLoginArea.class);
-	private int newX = 0;
-	private int newY = 0;
+	private int newX;
+	private int newY;
 
 
 	/**

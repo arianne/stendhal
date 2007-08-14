@@ -15,9 +15,9 @@ import marauroa.common.game.IRPZone;
  */
 public class Area {
 
-	private IRPZone zone = null;
+	private IRPZone zone;
 
-	private Shape shape = null;
+	private Shape shape;
 
 	/**
 	 * Create a new Area

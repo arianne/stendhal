@@ -28,7 +28,7 @@ import marauroa.common.Log4J;
  */
 public class Debuggera extends ScriptImpl {
 
-	boolean debuggeraEnabled = false;
+	boolean debuggeraEnabled;
 
 	class AdminCondition extends SpeakerNPC.ChatCondition {
 		@Override
@@ -38,7 +38,7 @@ public class Debuggera extends ScriptImpl {
 	}
 
 	class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
-		boolean enabled = false;
+		boolean enabled ;
 
 		public DebuggeraEnablerAction(boolean enable) {
 			this.enabled = enable;
@@ -114,13 +114,13 @@ public class Debuggera extends ScriptImpl {
 //
 //		private int destIdx = 0;
 
-		private int counter = 0;
+		private int counter ;
 
 		private int inversedSpeed = 3;
 
-		private int textCounter = 0;
+		private int textCounter;
 
-		private boolean beamed = false;
+		private boolean beamed;
 
 		// syntax-error:  private final String[] MAGIC_PHRASE = {"Across the land,", "Across the sea.", "Friends forever,", "We will always be."};
 
@@ -208,7 +208,7 @@ public class Debuggera extends ScriptImpl {
 
 		private List<String> zones;
 
-		private int counter = 0;
+		private int counter;
 
 		public SightseeingAction(ScriptingSandbox sandbox, StendhalRPWorld world) {
 		//	this.sandbox = sandbox;

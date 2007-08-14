@@ -7,11 +7,11 @@ package games.stendhal.client.update;
  */
 public class ClasspathEntry implements Comparable<ClasspathEntry> {
 
-	private String filename = null;
+	private String filename;
 
-	private String type = null;
+	private String type ;
 
-	private String version = null;
+	private String version;
 
 	/**
 	 * create a classpath entry

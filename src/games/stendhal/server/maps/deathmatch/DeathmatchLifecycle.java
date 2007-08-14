@@ -25,7 +25,7 @@ public enum DeathmatchLifecycle {
 
 	private static Logger logger = Log4J.getLogger(DeathmatchLifecycle.class);
 
-	private String questString = null;
+	private String questString;
 
 	private DeathmatchLifecycle(String questString) {
 		this.questString = questString;

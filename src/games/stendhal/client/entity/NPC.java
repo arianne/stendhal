@@ -63,7 +63,7 @@ public class NPC extends RPEntity {
 				moveSounds = new String[2];
 				moveSounds[0]="giggle-1.wav";
 				moveSounds[1]="giggle-2.wav";
-			
+
 				//SoundSystem.startSoundCycle(this, "Carmen-patrol", 60000, 20, 50, 75);
 			} else if (name.equals("Nishiya")) {
 				moveSounds = new String[3];
@@ -76,7 +76,7 @@ public class NPC extends RPEntity {
 				moveSounds[0]="hiccup-1.aiff";
 				moveSounds[1]="hiccup-2.wav";
 				moveSounds[2]="hiccup-3.wav";
-				
+
 				//SoundSystem.startSoundCycle(this, "Margaret-patrol", 30000, 10, 30, 70);
 			} else if (name.equals("Sato")) {
 				moveSounds= new String[1];
@@ -86,7 +86,7 @@ public class NPC extends RPEntity {
 		}
 	}
 
-	private long soundWait = 0L;
+	private long soundWait;
 
 	/**
 	 * When the entity's position changed.
@@ -99,7 +99,7 @@ public class NPC extends RPEntity {
 		super.onPosition(x, y);
 
 		if(soundWait < System.currentTimeMillis()&&Rand.rand(1000)<5) {
-			
+
 			try {
 				SoundMaster.play(moveSounds[Rand.rand(moveSounds.length)], x, y);
 			} catch(NullPointerException e){

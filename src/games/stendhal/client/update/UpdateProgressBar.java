@@ -20,11 +20,11 @@ public class UpdateProgressBar extends JFrame implements HttpClient.ProgressList
 
 	private int max = 100;
 
-	private int sizeOfLastFiles = 0;
+	private int sizeOfLastFiles;
 
-	private JPanel contentPane = null;
+	private JPanel contentPane;
 
-	private JProgressBar progressBar = null;
+	private JProgressBar progressBar;
 
 	/**
 	 * Creates update progress bar

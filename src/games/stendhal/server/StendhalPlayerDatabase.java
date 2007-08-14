@@ -379,7 +379,7 @@ public class StendhalPlayerDatabase extends JDBCDatabase implements Iterable<RPO
 		return object_id;
 	}*/
 
-	private static StendhalPlayerDatabase playerDatabase = null;
+	private static StendhalPlayerDatabase playerDatabase;
 
 	/**
 	 * This method returns an instance of PlayerDatabase

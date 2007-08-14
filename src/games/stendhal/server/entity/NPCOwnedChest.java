@@ -11,7 +11,7 @@ import games.stendhal.server.entity.player.Player;
  */
 public class NPCOwnedChest extends Chest {
 
-	private SpeakerNPC npc = null;
+	private SpeakerNPC npc;
 
 	/**
 	 * Creates a new NPCOwnedChest

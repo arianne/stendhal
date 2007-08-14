@@ -484,7 +484,7 @@ public class CreatureLogic {
 		}
 	}
 
-	private int turnToThink=0;
+	private int turnToThink;
 
 	public void logic() {
 		StendhalRPWorld world = StendhalRPWorld.get();

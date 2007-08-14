@@ -7,7 +7,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 
 public class PlayerPetManager {
-	private Player player = null;
+	private Player player;
 
 	PlayerPetManager(Player player) {
 		this.player = player;

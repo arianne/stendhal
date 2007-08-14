@@ -19,17 +19,17 @@ import java.util.Properties;
  */
 public class HttpClient {
 
-	private String urlString = null;
+	private String urlString;
 
-	private HttpURLConnection connection = null;
+	private HttpURLConnection connection;
 
-	private InputStream is = null;
+	private InputStream is;
 
-	private ProgressListener progressListener = null;
+	private ProgressListener progressListener;
 
 	private int timeout = 1500; // 1.5 seconds
 
-	private boolean tryVeryHard = false;
+	private boolean tryVeryHard;
 
 	/**
 	 * An interface to notify some other parts of the program about
@@ -45,7 +45,7 @@ public class HttpClient {
 		public void onDownloading(int downloadedBytes);
 
 		/**
-		 * completed download of this file 
+		 * completed download of this file
 		 *
 		 * @param downloadedBytes completed download
 		 */
@@ -82,7 +82,7 @@ public class HttpClient {
 	}
 
 	/**
-	 * connects to the server and opens a stream. 
+	 * connects to the server and opens a stream.
 	 */
 	private void openInputStream() {
 		// try very hard to download updates from sourceforge as they have

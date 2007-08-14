@@ -111,27 +111,27 @@ public class CreatureAnimationPreview {
 		(new CreatureAnimationPreview()).getJFrame().setVisible(true);
 	}
 
-	private JFrame jFrame = null; // @jve:decl-index=0:visual-constraint="141,108"
+	private JFrame jFrame;
 
-	private JSplitPane jSplitPane = null;
+	private JSplitPane jSplitPane;
 
-	private JScrollPane jScrollPane = null;
+	private JScrollPane jScrollPane;
 
-	private FileTree jTree = null;
+	private FileTree jTree;
 
-	private JPanel jPanel = null;
+	private JPanel jPanel;
 
-	private ImageViewerSwing imageViewerSwing = null;
+	private ImageViewerSwing imageViewerSwing;
 
-	private ImageViewerSwing imageViewerSwing1 = null;
+	private ImageViewerSwing imageViewerSwing1;
 
-	private ImageViewerSwing imageViewerSwing2 = null;
+	private ImageViewerSwing imageViewerSwing2;
 
-	private ImageViewerSwing imageViewerSwing3 = null;
+	private ImageViewerSwing imageViewerSwing3;
 
-	private ImageViewerSwing imageViewerSwing4 = null;
+	private ImageViewerSwing imageViewerSwing4;
 
-	private AnimationRunner[] animations = null;
+	private AnimationRunner[] animations ;
 
 	/**
 	 * This method initializes jFrame

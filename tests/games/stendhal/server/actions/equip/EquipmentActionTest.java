@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class EquipmentActionTest {
 	private static final String ZONE_NAME = "0_semos_city";
-	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx"; 
+	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx";
 
 	/**
 	 * A mock player used for testing.
@@ -27,7 +27,7 @@ public class EquipmentActionTest {
 	 * @author hendrik
 	 */
 	private static class MockPlayer extends Player {
-		private String privateText = null;
+		private String privateText;
 
 		/**
 		 * Creates a new mock player and puts it into the world
@@ -57,7 +57,7 @@ public class EquipmentActionTest {
 
 	/**
 	 * initialize the world
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@BeforeClass
 	public static void buildWorld() throws Exception {
@@ -76,7 +76,7 @@ public class EquipmentActionTest {
 		drop.put("baseobject", player.getID().getObjectID());
 		drop.put("baseslot", "nonExistingSlotXXXXXX");
 		drop.put("baseitem", -1);
-		
+
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
 		Assert.assertTrue("error message on invalid slot", player.getPrivateText() != null);
@@ -100,7 +100,7 @@ player.setName("bob");
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
 		System.err.println(player.getPrivateText());
-		
+
 		Assert.assertTrue("error message on invalid item", player.getPrivateText() != null);
 	}
 }

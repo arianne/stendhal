@@ -10,7 +10,7 @@ import java.util.List;
  * @author hendrik
  */
 public class BankSlot extends PlayerSlot {
-	private Banks bank = null;
+	private Banks bank;
 
 	/**
 	 * creates a new keyed slot
@@ -44,5 +44,5 @@ public class BankSlot extends PlayerSlot {
 		return super.isReachableForTakingThingsOutOfBy(entity);
 	}
 
-	
+
 }

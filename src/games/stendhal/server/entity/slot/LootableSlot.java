@@ -8,7 +8,7 @@ import games.stendhal.server.entity.Entity;
  * @author hendrik
  */
 public class LootableSlot extends PlayerSlot {
-	private Entity owner = null;
+	private Entity owner;
 
 	/**
 	 * creates a new lootable slot
@@ -24,5 +24,5 @@ public class LootableSlot extends PlayerSlot {
 	public boolean isReachableForTakingThingsOutOfBy(Entity entity) {
 		return entity.nextTo(owner);
 	}
-	
+
 }

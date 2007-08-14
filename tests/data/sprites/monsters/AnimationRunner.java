@@ -10,15 +10,15 @@ import javax.swing.Timer;
 
 public class AnimationRunner implements ActionListener  {
 	Timer timer;
-	BufferedImage[] frames=null;
-	ImageViewerSwing ivs = null;
-	
-	int currentframe=0;
+	BufferedImage[] frames;
+	ImageViewerSwing ivs ;
+
+	int currentframe;
 	private int number_of_frames;
 	public AnimationRunner(ImageViewerSwing ivs) {
-	    
+
 	    this.ivs = ivs;
-	   
+
         timer = new Timer(200, this);
 	}
         //Set up the components in the GUI.
@@ -27,25 +27,25 @@ public class AnimationRunner implements ActionListener  {
     	this.frames= frames;
     	 number_of_frames = frames.length;
         timer.start();
-     
-   
+
+
     }
     public synchronized void stopAnimation() {
-    
+
         timer.stop();
-  
-    
+
+
 
 
 }
 	public void actionPerformed(ActionEvent e) {
 		ivs.setImage(frames[currentframe]);
 		currentframe++;
-		
+
 		if (currentframe==number_of_frames){
 			currentframe=0;
 		}
-		
+
 	}
 	public void tearDown(){
 		timer.removeActionListener(this);

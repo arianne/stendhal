@@ -9,11 +9,11 @@ import java.util.Date;
  */
 class DeathmatchState {
 
-	private DeathmatchLifecycle lifecycleState = null;
+	private DeathmatchLifecycle lifecycleState ;
 
-	private int level = 0;
+	private int level ;
 
-	private long date = 0;
+	private long date ;
 
 	/**
 	 * creates a start state

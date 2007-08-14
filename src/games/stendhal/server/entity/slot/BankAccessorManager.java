@@ -12,9 +12,9 @@ import java.util.List;
  * @author hendrik
  */
 public class BankAccessorManager {
-	private static BankAccessorManager instance = null;
-	private HashMap<Banks, List<Entity>> accessors = null;
-	
+	private static BankAccessorManager instance;
+	private HashMap<Banks, List<Entity>> accessors ;
+
 	private BankAccessorManager() {
 		// hide constructor; Singleton patern
 		accessors = new HashMap<Banks, List<Entity>>();
@@ -27,7 +27,7 @@ public class BankAccessorManager {
 	 */
 	public static BankAccessorManager get() {
 		if (instance == null) {
-			instance = new BankAccessorManager(); 
+			instance = new BankAccessorManager();
 		}
 		return instance;
 	}
@@ -60,7 +60,7 @@ public class BankAccessorManager {
 		}
 		return bankAccess;
 	}
-	
+
 	/**
 	 * gets the list of accessors for think bank
 	 *

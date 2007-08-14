@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class Token extends Item {
 
-	private TokenMoveListener tokenMoveListener = null;
+	private TokenMoveListener tokenMoveListener;
 
 	/**
 	 * a listener that will be notified on token move
@@ -40,7 +40,7 @@ public class Token extends Item {
 
 	/**
 	 * Create a new token
-	 * 
+	 *
 	 * @param name name of item
 	 * @param clazz class (or type) of item
 	 * @param subclass subclass of this item

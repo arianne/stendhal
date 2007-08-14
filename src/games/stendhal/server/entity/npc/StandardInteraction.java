@@ -1,5 +1,5 @@
 /* $Id$
- * 
+ *
  */
 package games.stendhal.server.entity.npc;
 
@@ -10,7 +10,7 @@ import games.stendhal.server.util.Area;
  * This is a collection of standard actions and conditions. Although most of
  * them are very simply in normal Java-code, they are annoying in Groovy because
  * anon classes are not supported.
- * 
+ *
  * @author hendrik
  */
 public class StandardInteraction {
@@ -58,7 +58,7 @@ public class StandardInteraction {
 	 */
 	public static class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
-		private Area area = null;
+		private Area area ;
 
 		public PlayerInAreaCondition(Area area) {
 			this.area = area;
@@ -76,7 +76,7 @@ public class StandardInteraction {
 	 */
 	public static class Not extends SpeakerNPC.ChatCondition {
 
-		private SpeakerNPC.ChatCondition condition = null;
+		private SpeakerNPC.ChatCondition condition ;
 
 		/**
 		 * Creates a new "not"-condition
@@ -95,7 +95,7 @@ public class StandardInteraction {
 	}
 
 	/**
-	 * This condition returns always true. Use it in a quest file to override 
+	 * This condition returns always true. Use it in a quest file to override
 	 * behaviour defined in the map file
 	 */
 	public static class AllwaysTrue extends SpeakerNPC.ChatCondition {
@@ -115,7 +115,7 @@ public class StandardInteraction {
 	 */
 	public static class QuestStartedCondition extends SpeakerNPC.ChatCondition {
 
-		private String questname = null;
+		private String questname;
 
 		public QuestStartedCondition(String questname) {
 			this.questname = questname;
@@ -132,7 +132,7 @@ public class StandardInteraction {
 	 */
 	public static class QuestNotStartedCondition extends SpeakerNPC.ChatCondition {
 
-		private String questname = null;
+		private String questname;
 
 		public QuestNotStartedCondition(String questname) {
 			this.questname = questname;
@@ -149,7 +149,7 @@ public class StandardInteraction {
 	 */
 	public static class QuestCompletedCondition extends SpeakerNPC.ChatCondition {
 
-		private String questname = null;
+		private String questname;
 
 		public QuestCompletedCondition(String questname) {
 			this.questname = questname;
@@ -166,7 +166,7 @@ public class StandardInteraction {
 	 */
 	public static class QuestNotCompletedCondition extends SpeakerNPC.ChatCondition {
 
-		private String questname = null;
+		private String questname;
 
 		public QuestNotCompletedCondition(String questname) {
 			this.questname = questname;
@@ -183,9 +183,9 @@ public class StandardInteraction {
 	 */
 	public static class QuestInStateCondition extends SpeakerNPC.ChatCondition {
 
-		private String questname = null;
+		private String questname;
 
-		private String state = null;
+		private String state;
 
 		public QuestInStateCondition(String questname, String state) {
 			this.questname = questname;
@@ -203,9 +203,9 @@ public class StandardInteraction {
 	 */
 	public static class QuestNotInStateCondition extends SpeakerNPC.ChatCondition {
 
-		private String questname = null;
+		private String questname;
 
-		private String state = null;
+		private String state;
 
 		public QuestNotInStateCondition(String questname, String state) {
 			this.questname = questname;
@@ -223,9 +223,9 @@ public class StandardInteraction {
 	 */
 	public static class SetQuestAction extends SpeakerNPC.ChatAction {
 
-		private String questname = null;
+		private String questname;
 
-		private String state = null;
+		private String state;
 
 		public SetQuestAction(String questname, String state) {
 			this.questname = questname;
