@@ -39,34 +39,34 @@
  <tileset name="Unbenannt" firstgid="106" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="108" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="109" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/bush/blue_green.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="109" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="110" tilewidth="32" tileheight="32">
   <image source="../../tileset/ground/rock/green_crystal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="118" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="119" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="125" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="126" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="126" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="127" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/bed/side_on.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="128" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="129" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/picture/projectleader.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="129" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="130" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/furniture/other/piano.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="133" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="134" tilewidth="32" tileheight="32">
   <image source="../../tileset/item/pot/barrel.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="135" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="136" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_vase.png"/>
  </tileset>
- <tileset name="Unbenannt" firstgid="138" tilewidth="32" tileheight="32">
+ <tileset name="Unbenannt" firstgid="139" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/kobold.png"/>
  </tileset>
  <layer name="0_floor" width="15" height="15">
@@ -81,7 +81,7 @@
  </layer>
  <layer name="2_object" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgQAUNQJzKQD5IwyLWCMRNBPS1AXE6FvFmIG7BoacOiOuJEKO2XmygDYtYB5XtpUQvNvcRC4i1t5MCvfQErWh4oAEAjjNb4YQDAAA=
+   H4sIAAAAAAAAAGNgQAWNQJzKQD5IwyLWBMTNBPS1A3E6FvEWIG7FoaceiBuIEKO2XmygHYtYJ5XtpUQvNvcRC4i1t4sCvfQEbWh4oAEA+lslaIQDAAA=
   </data>
  </layer>
  <layer name="3_roof" width="15" height="15">
@@ -96,12 +96,12 @@
  </layer>
  <layer name="objects" width="15" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGFygjww9XVQyh56gd4D0UhsMF38QAlU0NBsA7+05nYQDAAA=
+   H4sIAAAAAAAAAGNgGFygnww93VQyh56gb4D0UhsMF38QAtU0NBsAtZuASoQDAAA=
   </data>
  </layer>
  <layer name="collision" width="15" height="15" opacity="0.44">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAKtlYGCoHUBMCCCrI8YMXOZSUy8udxJr52BxMy5Arr3U9i8lbiZFLbHplFZ5AAAJ51+0hAMAAA==
+   H4sIAAAAAAAAAKtjYGCoG0BMCCCrI8YMXOZSUy8udxJr52BxMy5Arr3U9i8lbiZFLbHplFZ5AACHM1GUhAMAAA==
   </data>
  </layer>
  <layer name="protection" width="15" height="15">

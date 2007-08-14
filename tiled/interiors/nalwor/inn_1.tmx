@@ -69,13 +69,13 @@
  <tileset name="../../tileset/plant/indoor/flower_baskets.png" firstgid="153" tilewidth="32" tileheight="32">
   <image source="../../tileset/plant/indoor/flower_baskets.png"/>
  </tileset>
- <tileset name="../../tileset/logic/portal.png" firstgid="155" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/portal.png" firstgid="156" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/portal.png"/>
  </tileset>
- <tileset name="../../tileset/logic/creature/elf.png" firstgid="162" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/creature/elf.png" firstgid="163" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/creature/elf.png"/>
  </tileset>
- <tileset name="../../tileset/logic/collision.png" firstgid="171" tilewidth="32" tileheight="32">
+ <tileset name="../../tileset/logic/collision.png" firstgid="172" tilewidth="32" tileheight="32">
   <image source="../../tileset/logic/collision.png"/>
  </tileset>
  <layer name="0_floor" width="35" height="17">
@@ -105,12 +105,12 @@
  </layer>
  <layer name="objects" width="35" height="17">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAGNgGAX4wPyBdsAooCtYCsW0tmM4guHqr1EwcGA0TY2CoQIAL+ZyoEwJAAA=
+   H4sIAAAAAAAAAGNgGAX4wIKBdsAooCtYBsW0tmM4guHqr1EwcGA0TY2CoQIAujXISEwJAAA=
   </data>
  </layer>
  <layer name="collision" width="35" height="17" opacity="0.37">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAFvNwMCwehTjxMgAnzwyn9ZqcLkHG6CXGkLhRyhs8ZlBKB6o7VZi3UyOPDn2kOsnephBi3DDpYZa5pBiF740SQ01o24Zem7B5jZ8fErUkOMeWgBC4TeKGRgAi2oPbUwJAAA=
+   H4sIAAAAAAAAAFvDwMCwZhTjxMgAnzwyn9ZqcLkHG6CXGkLhRyhs8ZlBKB6o7VZi3UyOPDn2kOsnephBi3DDpYZa5pBiF740SQ01o24Zem7B5jZ8fErUkOMeWgBC4TeKGRgA6I5L20wJAAA=
   </data>
  </layer>
  <layer name="protection" width="35" height="17">
