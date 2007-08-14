@@ -40,7 +40,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 
 	private String entryName;
 
-	public static void main(String argv[]) {
+	public static void main(String[] argv) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
 			System.exit(1);
@@ -154,7 +154,7 @@ public class QuestsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char buf[], int offset, int len) {
+	public void characters(char[] buf, int offset, int len) {
 		text.append((new String(buf, offset, len)).trim() + " ");
 	}
 }

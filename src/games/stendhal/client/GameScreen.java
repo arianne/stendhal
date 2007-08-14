@@ -937,7 +937,7 @@ public class GameScreen {
 		if (sprite != null) {
 			int spritew = sprite.getWidth() + 2;
 			int spriteh = sprite.getHeight() + 2;
-	
+
 			if (((p.x >= -spritew) && (p.x < sw)) && ((p.y >= -spriteh) && (p.y < sh))) {
 				sprite.draw(g, p.x, p.y);
 			}
@@ -1176,7 +1176,7 @@ public class GameScreen {
 				g2d.drawRoundRect(10, 0, ((lineLengthPixels < width) ? lineLengthPixels : width) + 3,
 				        16 * numLines - 1, 4, 4);
 			} else {
-				float dash[] = { 4, 2 };
+				float[] dash = { 4, 2 };
 				BasicStroke newStroke = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 1, dash, 0);
 				Stroke oldStroke = g2d.getStroke();
 				g2d.setStroke(newStroke);
@@ -1208,7 +1208,7 @@ public class GameScreen {
 				g2d.drawString(aStyledText.getIterator(), 3, 2 + i * 16 + 9);
 				g2d.drawString(aStyledText.getIterator(), 3, 2 + i * 16 + 11);
 			}
-			
+
 			g2d.setColor(textColor);
 
 			g2d.drawString(aStyledText.getIterator(), 2 + delta, 2 + i * 16 + 10);

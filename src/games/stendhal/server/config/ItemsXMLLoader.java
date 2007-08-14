@@ -53,7 +53,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 
 	protected Class implementation;
 
-	public static void main(String argv[]) {
+	public static void main(String[] argv) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
 			System.exit(1);
@@ -190,7 +190,7 @@ public class ItemsXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char buf[], int offset, int len) {
+	public void characters(char[] buf, int offset, int len) {
 		text = text + (new String(buf, offset, len)).trim();
 	}
 }

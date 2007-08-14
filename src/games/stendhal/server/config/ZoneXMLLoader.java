@@ -47,7 +47,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 		}
 	}
 
-	public static void main(String argv[]) {
+	public static void main(String[] argv) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
 			System.exit(1);
@@ -63,7 +63,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 	}
 
 	private ZoneXMLLoader() {
-		// hide constructor; this is a Singleton 
+		// hide constructor; this is a Singleton
 	}
 
 	private static ZoneXMLLoader instance;
@@ -146,7 +146,7 @@ public class ZoneXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char buf[], int offset, int len) {
+	public void characters(char[] buf, int offset, int len) {
 		if (st != null) {
 			st.append(buf, offset, len);
 		}

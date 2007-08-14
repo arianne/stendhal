@@ -160,7 +160,7 @@ public class j2DClient extends StendhalUI {
 
 	public j2DClient(StendhalClient client) {
 		super(client);
-		
+
 		setDefault(this);
 
 		frame = new JFrame();
@@ -176,7 +176,7 @@ public class j2DClient extends StendhalUI {
 
 
 		// When the user tries to close the window, don't close immediately,
-		// but show a confirmation dialog. 
+		// but show a confirmation dialog.
 		frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 
@@ -202,8 +202,8 @@ public class j2DClient extends StendhalUI {
 
 		/*
 		 * Setup our rendering canvas
-		 */		
-		
+		 */
+
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 		    canvas = new Canvas();
 		    canvas.setBounds(200, 0, 600, SCREEN_HEIGHT);// A bit repetitive... oh well
@@ -291,7 +291,7 @@ public class j2DClient extends StendhalUI {
 			content.add(gameLog);
 			frame.pack();
 		} else if (System.getProperty("stendhal.onewindowtitle") != null || System.getProperty("stendhal.refactoringguiui") != null) {
-		    	JLabel header = new JLabel();	
+		    	JLabel header = new JLabel();
 			header.setText("Game Chat and Events Log");
 			header.setFont(new java.awt.Font("Dialog", 3, 14));
 			content.add(header);
@@ -318,7 +318,7 @@ public class j2DClient extends StendhalUI {
 
 			dialog.pack();
 
-			
+
 			/*
 			 * Move tracker
 			 */
@@ -610,7 +610,7 @@ public class j2DClient extends StendhalUI {
 				try {
 					/*
 					 * We request server permision to logout.
-					 * Server can deny it. 
+					 * Server can deny it.
 					 */
 					if (client.logout()) {
 						canExit = true;
@@ -721,7 +721,7 @@ public class j2DClient extends StendhalUI {
 			return;
 		}
 
-		
+
 		switch (e.getKeyCode()) {
 			case KeyEvent.VK_L:
 				if(e.isControlDown()) {
@@ -1164,7 +1164,7 @@ public class j2DClient extends StendhalUI {
 	//
 	//
 
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		if (args.length > 0) {
 			int i = 0;
 			String port = null;

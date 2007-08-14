@@ -82,7 +82,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 
 	private boolean attributes;
 
-	public static void main(String argv[]) {
+	public static void main(String[] argv) {
 		if (argv.length != 1) {
 			System.err.println("Usage: cmd filename");
 			System.exit(1);
@@ -116,11 +116,11 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			SAXParser saxParser = factory.newSAXParser();
 
 			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
-			
+
 			if (is == null) {
 				is = new File(ref).toURL().openStream();
 			}
-				
+
 			if (is == null) {
 				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
 			}
@@ -250,7 +250,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 				logger.error("Corrupt XML file: Bad tileid for creature("+name+")");
 				return;
 			}
-			
+
 			DefaultCreature creature = new DefaultCreature(clazz, subclass, name, tileid);
 			creature.setRPStats(hp, atk, def, speed);
 			creature.setLevel(level, xp);
@@ -281,7 +281,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char buf[], int offset, int len) {
+	public void characters(char[] buf, int offset, int len) {
 		text = text + (new String(buf, offset, len)).trim() + " ";
 	}
 }

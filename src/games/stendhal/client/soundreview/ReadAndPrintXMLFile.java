@@ -12,7 +12,7 @@ import org.xml.sax.SAXParseException;
 
 public class ReadAndPrintXMLFile{
 
-    public static void main (String argv []){
+	public static void main (String[] argv){
     try {
 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -21,7 +21,7 @@ public class ReadAndPrintXMLFile{
 
             // normalize text representation
             doc.getDocumentElement ().normalize ();
-            System.out.println ("Root element of the doc is " + 
+            System.out.println ("Root element of the doc is " +
                  doc.getDocumentElement().getNodeName());
 
 
@@ -37,7 +37,7 @@ public class ReadAndPrintXMLFile{
 
 
         }catch (SAXParseException err) {
-        System.out.println ("** Parsing error" + ", line " 
+        System.out.println ("** Parsing error" + ", line "
              + err.getLineNumber () + ", uri " + err.getSystemId ());
         System.out.println(" " + err.getMessage ());
 

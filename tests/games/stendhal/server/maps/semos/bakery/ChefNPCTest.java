@@ -39,10 +39,10 @@ public class ChefNPCTest {
 	public void setUp() throws Exception {
 		npc = new SpeakerNPC("chef");
 		ChefNPC  cnpc = new ChefNPC();
-		
+
 		en = npc.getEngine();
 		cnpc.createDialog(npc);
-		
+
 		 player = new Player(new RPObject());
 		 player.setName("bob");
 		 PlayerHelper.addEmptySlots(player);
@@ -61,12 +61,12 @@ public class ChefNPCTest {
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
-		
+
 	}
 	@Test
 	public void testHiAndMakeNoStuff() {
-		
-		
+
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
@@ -79,8 +79,8 @@ public class ChefNPCTest {
 	}
 	@Test
 	public void testHiAndMakeWithStuffSingle() {
-		
-	
+
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
@@ -98,16 +98,16 @@ public class ChefNPCTest {
 		assertEquals(2,player.getNumberOfEquipped("cheese"));
 		assertEquals(1,player.getNumberOfEquipped("bread"));
 		assertEquals(1,player.getNumberOfEquipped("ham"));
-		
+
 		en.step(player, "make");
 		assertTrue(npc.isTalking());
 		assertEquals("I need you to fetch me 1 loaf of #bread, 2 pieces of #cheese, and 1 piece of #ham for this job. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
-		String questStatus[] = player.getQuest("leander_make_sandwiches").split(";");
+		String[] questStatus = player.getQuest("leander_make_sandwiches").split(";");
 		String[] expected ={"1","sandwich",""};
 		assertEquals(expected[0],questStatus[0]); //amount
 		assertEquals(expected[1],questStatus[1]); //item
-		
+
 		assertTrue(npc.isTalking());
 		assertEquals("OK, I will make 1 sandwich for you, but that will take some time. Please come back in 3 minutes.", npc.get("text"));
 		assertEquals(0,player.getNumberOfEquipped("cheese"));
@@ -116,15 +116,15 @@ public class ChefNPCTest {
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		player.setQuest("leander_make_sandwiches","1;;0");
-		
+
 		en.step(player, "hi");
 		assertEquals("Welcome back! I'm done with your order. Here you have 1 sandwich.", npc.get("text"));
 		assertEquals(1,player.getNumberOfEquipped("sandwich"));
 	}
 	@Test
 	public void testHiAndMakeWithStuffMultiple() {
-		
-		
+
+
 		en.step(player, "hi");
 		assertTrue(npc.isTalking());
 		assertEquals("Hallo! Glad to see you in my kitchen where I make #pizza and #sandwiches.", npc.get("text"));
@@ -143,16 +143,16 @@ public class ChefNPCTest {
 		assertEquals(4,player.getNumberOfEquipped("cheese"));
 		assertEquals(2,player.getNumberOfEquipped("bread"));
 		assertEquals(2,player.getNumberOfEquipped("ham"));
-		
+
 		en.step(player, "make 2 sandwiches");
 		assertTrue(npc.isTalking());
 		assertEquals("I need you to fetch me 2 pieces of #ham, 4 pieces of #cheese, and 2 loaves of #bread for this job. Do you have it?", npc.get("text"));
 		en.step(player, "yes");
-		String questStatus[] = player.getQuest("leander_make_sandwiches").split(";");
+		String[] questStatus = player.getQuest("leander_make_sandwiches").split(";");
 		String[] expected ={"2","sandwich",""};
 		assertEquals(expected[0],questStatus[0]); //amount
 		assertEquals(expected[1],questStatus[1]); //item
-		
+
 		assertTrue(npc.isTalking());
 		assertEquals("OK, I will make 2 sandwich for you, but that will take some time. Please come back in 6 minutes.", npc.get("text"));
 		assertEquals(0,player.getNumberOfEquipped("cheese"));
@@ -161,11 +161,11 @@ public class ChefNPCTest {
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		player.setQuest("leander_make_sandwiches","2;;0");
-		
+
 		en.step(player, "hi");
 		assertEquals("Welcome back! I'm done with your order. Here you have 2 sandwiches.", npc.get("text"));
 		assertEquals(2,player.getNumberOfEquipped("sandwich"));
 	}
 
-	
+
 }

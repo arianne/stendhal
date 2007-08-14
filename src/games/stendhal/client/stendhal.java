@@ -140,8 +140,8 @@ public class stendhal extends Thread {
 	 * @param client StendhalClient
 	 */
 	private static void startGameGUI(StendhalClient client) {
-		
-		
+
+
 		new j2DClient(client);
 	}
 
@@ -150,7 +150,7 @@ public class stendhal extends Thread {
 	 *
 	 * @param args command line arguments
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		//get size string
 		if (System.getProperty("stendhal.refactoringgui") != null) {
 			SCREEN_SIZE = "1000x480";
@@ -171,6 +171,6 @@ public class stendhal extends Thread {
 		sm.init();
 		Thread th = new Thread(sm);
 		th.start();
-		
+
 	}
 }

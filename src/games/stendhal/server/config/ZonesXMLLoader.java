@@ -655,7 +655,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void characters(char buf[], int offset, int len) {
+	public void characters(char[] buf, int offset, int len) {
 		content.append(buf, offset, len);
 	}
 

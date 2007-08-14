@@ -25,11 +25,11 @@ public class GuildManager extends javax.swing.JFrame {
 	initComponents();
 	client = StendhalClient.get();
     }
-    
+
     private StendhalClient client;
-    
+
     private User playerEntity;
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -145,9 +145,9 @@ public class GuildManager extends javax.swing.JFrame {
 	//erase text
 	guildTextBoxCreate.setText("");
     }//GEN-LAST:event_guildTextBoxCreateMouseClicked
-    
-    
-    /** 
+
+
+    /**
      * Create guild
      */
     private void createGuild(String guildname) {
@@ -162,7 +162,7 @@ public class GuildManager extends javax.swing.JFrame {
 	rpaction.put("value", guildname);
 	client.send(rpaction);
     }
-    
+
     /**
      * Invite to guild
      */
@@ -172,18 +172,18 @@ public class GuildManager extends javax.swing.JFrame {
 	    JOptionPane.showMessageDialog(null, "It seems that you are running this standalone. Please from it from the normal Stendhal game.");
 	    return;
 	}
-	
+
 	RPAction action = new RPAction();
 	action.put("type", "inviteGuild");
 	action.put("playername", user);
 	action.put("guildname", guildName);
 	client.send(action);
     }
-    
-    /** 
+
+    /**
      *Remove player from guild
      */
-    private void removeFromGuild(String user) { //we shouldn't seed that string, but.... 
+    private void removeFromGuild(String user) { //we shouldn't seed that string, but....
 	if (client == null) {
 	    // If running standalone, give an error
 	    JOptionPane.showMessageDialog(null, "It seems that you are running this standalone. Please from it from the normal Stendhal game.");
@@ -193,21 +193,21 @@ public class GuildManager extends javax.swing.JFrame {
 	 remove.put("type", "removeFromGuild");
 	 //remove.put("", ""); //we don't need this. I'll just leave it here anyway...
 	 client.send(remove);
-	 
+
     }
-    
-    
+
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 	java.awt.EventQueue.invokeLater(new Runnable() {
 	    public void run() {
 		new GuildManager().setVisible(true);
 	    }
 	});
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField guildTextBoxCreate;
     private javax.swing.JTextField invitePlayerName;
@@ -221,5 +221,5 @@ public class GuildManager extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
-    
+
 }

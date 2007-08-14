@@ -36,7 +36,7 @@ import marauroa.common.game.Definition.Type;
 public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
 
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
-	
+
 	/** Time (in seconds) until a corpse disappears. */
 	private static final int DEGRADATION_TIMEOUT = 15 * 60; // 3 minutes
 
@@ -59,18 +59,18 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 		entity.addRPSlot("content", 4);
 	}
-	
+
 	private void decideSize(String clazz) {
 		int width = 1;
 		int height = 1;
-		
+
 		if (clazz.equals("giant_animal") || clazz.equals("giant_human") || clazz.equals("huge_animal")) {
 			width=height=2;
 		} else if (clazz.equals("mythical_animal") || clazz.equals("boss")) {
 			width=height=6;
 		} else if (clazz.equals("enormous_creature")) {
 			width=height=16;
-		}		
+		}
 
 		setWidth(width);
 		setHeight(height);
@@ -90,7 +90,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		put("stage", stage);
 
 		RPSlot slot = new LootableSlot(this);
-		
+
 		//BUG: Capacity is set at RPClass.
 		//slot.setCapacity(4);
 		addSlot(slot);
@@ -126,7 +126,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		} else {
 			put("class", victim.get("type"));
 		}
-		
+
 		decideSize(get("class"));
 
 		if ((killerName != null) && (victim instanceof Player)) {
@@ -138,7 +138,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		}
 
 		// Consider rewriting this section once we get corpses larger
-		// than 2x2. 
+		// than 2x2.
 		//
 		// TODO: decideSize() has been called, width/height are set.
 		//       Center corpse area on victim area.
@@ -196,7 +196,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		if (!decDegradation(currentTurn)) {
 			if (isContained()) {
 				// We modify the base container if the object change.
-				
+
 
 				StendhalRPWorld.get().modify(getBase());
 
@@ -230,8 +230,8 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 			stage = newStage;
 			put("stage", stage);
 
-			// Mark this object as modified if it has been added to the 
-			// world already. 
+			// Mark this object as modified if it has been added to the
+			// world already.
 			if (has("zoneid")) {
 				modify();
 			}
@@ -259,7 +259,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	@Override
 	public String describe() {
-		String stageText[] = { "new", "fresh", "cold", "slightly rotten", "rotten", "very rotten" };
+		String[] stageText = { "new", "fresh", "cold", "slightly rotten", "rotten", "very rotten" };
 		String text = "You see the " + stageText[stage] + " corpse of ";
 		if (hasDescription()) {
 			text = getDescription();

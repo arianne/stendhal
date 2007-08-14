@@ -66,7 +66,7 @@ public class OutfitDialog extends JDialog {
 	private static final Logger logger = Log4J.getLogger(OutfitDialog.class);
 
 	/*
-	 * Edit these fields to add new outfits. 
+	 * Edit these fields to add new outfits.
 	 * Note that it counts from 0 and this is the total number here
 	 */
 	private static final int HEAD_OUTFITS = 21;
@@ -106,7 +106,7 @@ public class OutfitDialog extends JDialog {
 	public OutfitDialog(Frame parent, String title, int outfit) {
 		this(parent,title,outfit, HAIR_OUTFITS, HEAD_OUTFITS, BODY_OUTFITS, CLOTHES_OUTFIT);
 	}
-			
+
 	/** Creates new form SetOutfitGameDialog
 	 *
 	 * @param title a String with the title for the dialog
@@ -169,20 +169,20 @@ public class OutfitDialog extends JDialog {
 		g.setColor(Color.WHITE);
 		g.fillRect(2, 2, 48, 64);
 	}
-       
+
         /**
          * draws a hair images from an outfit code
          */
         private void drawHair(int code, Graphics g) {
         	clean(g);
-            SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+            SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
         }
         /**
          * draws a head from  the outfit code
          */
         private void drawHead(int code, Graphics g) {
         	clean(g);
-        	  SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        	  SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
         }
 
         /**
@@ -190,26 +190,26 @@ public class OutfitDialog extends JDialog {
          */
         private void drawDress(int code, Graphics g) {
         	clean(g);
-            SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+            SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
         }
-        
+
         /**
          * draws a base from an outfit code
          */
         private void drawBase(int code, Graphics g) {
         	clean(g);
-        	  SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+        	  SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
          }
-        
+
 	/**
 	 * draws final player
 	 */
 	private void drawFinalPlayer(Graphics g) {
 		clean(g);
-       SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
-        SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
-        SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
-        SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);        
+       SpriteStore.get().getSprites(OutfitStore.get().getBaseSprite(bodies_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+        SpriteStore.get().getSprites(OutfitStore.get().getDressSprite(clothes_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+        SpriteStore.get().getSprites(OutfitStore.get().getHeadSprite(heads_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
+        SpriteStore.get().getSprites(OutfitStore.get().getHairSprite(hairs_index), animation, 3, 1.5, 2)[1].draw(g, 2, 2);
       }
 
 	/** This method is called from within the constructor to
@@ -682,7 +682,7 @@ public class OutfitDialog extends JDialog {
 	}
 
 	//  public OutfitDialog(Frame parent, String title, int outfit, int total_hairs, int total_heads, int total_bodies, int total_clothes) {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		//TODO: the outfit is hardcoded because I was not able to find a way of iterating the jar resources to find the existing outfits. :(
 		new OutfitDialog(null, "Stendhal - Choose outfit", 0).generateAllOutfits();
 	}

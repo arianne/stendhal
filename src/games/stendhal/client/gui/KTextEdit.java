@@ -28,7 +28,7 @@ public class KTextEdit extends JPanel {
 
 	private static final long serialVersionUID = -698232821850852452L;
 	private static final Logger logger = Log4J.getLogger(KTextEdit.class);
-	
+
 	private static final int TEXT_SIZE = 11;
 
 	private static final Color HEADER_COLOR = Color.gray;
@@ -158,7 +158,7 @@ public class KTextEdit extends JPanel {
 			System.err.println("Couldn't insert initial text.");
 		}
 	}
-	
+
 	private void insertNewline() {
 		Document doc = textPane.getDocument();
 		try {
@@ -177,11 +177,11 @@ public class KTextEdit extends JPanel {
 	public void addLine(String line) {
 		addLine(line, Color.black);
 	}
-	
+
 	private void scrollToBottom() {
 		// This didn't scroll all the way down. :(
 		// textPane.setCaretPosition(textPane.getDocument().getLength());
-		
+
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
 
 		try {
@@ -189,18 +189,18 @@ public class KTextEdit extends JPanel {
 			// before we have scrolled down.
 			SwingUtilities.invokeAndWait(new Runnable() {
 				public void run() {
-					vbar.setValue(vbar.getMaximum());					
+					vbar.setValue(vbar.getMaximum());
 				}
 			});
 		} catch (Exception e) {
-			logger.error(e, e);					
+			logger.error(e, e);
 		}
 	}
 
 
 	/**
 	 * The implemented method
-	 * 
+	 *
 	 * @param header
 	 *            a string with the header name
 	 * @param line
@@ -215,12 +215,12 @@ public class KTextEdit extends JPanel {
 		// was at the bottom before.
 		// There were some bugs, so it is disabled until there is time to fix it.
 		boolean useNewCode = false;
-		
+
 		// Determine whether the scrollbar is currently at the very bottom
 		// position. We will only auto-scroll down if the user is not currently
 		// reading old texts (like IRC clients do).
 		final JScrollBar vbar = scrollPane.getVerticalScrollBar();
-		
+
 		boolean autoScroll = (vbar.getValue() + vbar.getVisibleAmount() == vbar.getMaximum());
 //		System.out.println();
 //		System.out.println(line);
@@ -271,7 +271,7 @@ public class KTextEdit extends JPanel {
 	/**
 	 * Da main to make unit tests
 	 */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		/*
 		 * BUG: This short example doesn't work. It doesn't throw any exception
 		 * or anything. It just doesn't work. If you remove all teh edit.addLine

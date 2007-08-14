@@ -111,7 +111,7 @@ public class PasswordDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
-	if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) { 
+	if (checkPass(newPass.getPassword(), newPassRepeat.getPassword())) {
 	    //check for server password and see if that is accepted
 	    JOptionPane.showMessageDialog(null, "Passwords Match"); // remove this- just for testing.
 	} else {
@@ -134,26 +134,26 @@ public class PasswordDialog extends javax.swing.JFrame {
 	    clear = true;
 	}
     }//GEN-LAST:event_currrentPassMouseClicked
-    
-    
+
+
     /**
      * Checks to see if the two new passwords match
      */
     boolean checkPass(char[] pwField_One, char[] pwField_Two) {
 	return new String(pwField_One).equals(new String(pwField_Two));
     }
-    
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 	java.awt.EventQueue.invokeLater(new Runnable() {
 	    public void run() {
 		new PasswordDialog().setVisible(true);
 	    }
 	});
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptButton;
     private javax.swing.JButton cancelButton;
@@ -167,5 +167,5 @@ public class PasswordDialog extends javax.swing.JFrame {
     private javax.swing.JPasswordField newPass;
     private javax.swing.JPasswordField newPassRepeat;
     // End of variables declaration//GEN-END:variables
-    
+
 }

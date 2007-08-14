@@ -23,7 +23,7 @@ import marauroa.common.Log4J;
 
 /**
  * code for abstract/int_admin_playground which creates a NPC to help testers.
- * 
+ *
  * @author hendrik
  */
 public class Debuggera extends ScriptImpl {
@@ -159,11 +159,11 @@ public class Debuggera extends ScriptImpl {
 							break;
 						default:
 							// Teleport to a near by spot
-							
+
 							StendhalRPZone zone = sandbox.getZone(player);
 							int x = player.getX();
 							int y = player.getY();
-							int tele_offsets[][] = {{7,7},{7,-7},{-7,7},{-7,-7}};
+							int[][] tele_offsets = {{7,7},{7,-7},{-7,7},{-7,-7}};
 							Random random = new Random();
 
 							for(int i = 0; i < 3; i++) {
@@ -172,7 +172,7 @@ public class Debuggera extends ScriptImpl {
 									break;
 								}
 							}
-							
+
 							inversedSpeed = 1;
 							beamed = true;
 							break;
@@ -234,9 +234,9 @@ public class Debuggera extends ScriptImpl {
 				String zoneName = zones.get(counter);
 				StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
 
-				int tele_xy[][] = {{5,5},{50,50},{20,20},{100,100},{100,5}};
+				int[][] tele_xy = {{5,5},{50,50},{20,20},{100,100},{100,5}};
 				boolean found_spot = false;
-				
+
 				for(int i = 0; i < tele_xy.length; i++) {
 					if(player.teleport(zone, tele_xy[i][0], tele_xy[i][1], null, null)) {
 						player.sendPrivateText("Welcome in " + zoneName);
@@ -271,26 +271,26 @@ public class Debuggera extends ScriptImpl {
 		sandbox.setZone(myZone);
 		int x = 4;
 		int y = 11;
-		
+
 		// If this script is executed by an admin, Debuggera will be placed next to him/her.
 		if (admin != null) {
 			sandbox.setZone(sandbox.getZone(admin));
 			x = admin.getX() + 1;
 			y = admin.getY();
 		}
-		
+
 		// Set zone and position
 		npc.set(x, y);
 		npc.setDirection(Direction.DOWN);
 		sandbox.add(npc);
 
-		// 
+		//
 		npc.add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), null, ConversationStates.IDLE, "My mom said, i am not allowed to talk to strangers.", null);
 		npc.behave("bye", "Bye.");
 
 		// Greating and admins may enable or disable her
 		npc.add(ConversationStates.IDLE, Arrays.asList("hi", "hello", "greetings", "hola"), new AdminCondition(), ConversationStates.ATTENDING, "Hi, game master. Do you think i am #crazy?", null);
-		/*    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null); 
+		/*    npc.add(ConversationStates.IDLE, [ "hi","hello","greetings","hola" ], new AdminCondition(), ConversationStates.QUESTION_1, "May I talk to strangers?", null);
 		 npc.add(ConversationStates.QUESTION_1, SpeakerNPC.YES_MESSAGES, new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(true));
 		 npc.add(ConversationStates.QUESTION_1, "no", new AdminCondition(), ConversationStates.ATTENDING, null, new DebuggeraEnablerAction(false));
 		 */
@@ -325,17 +325,17 @@ public class Debuggera extends ScriptImpl {
 	 but keep the old.
 	 One is silver,
 	 And the other gold,
-	
+
 	 You help me,
 	 And I'll help you.
 	 And together,
 	 We will see it through.
-	
+
 	 The sky is blue,
 	 The Earth Earth is green.
 	 I can help,
 	 To keep it clean.
-	
+
 	 */
 
 }

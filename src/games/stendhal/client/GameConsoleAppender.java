@@ -13,7 +13,7 @@ import org.apache.log4j.spi.ThrowableInformation;
 
 /**
  * Log4J appender which logs to the game console
- * 
+ *
  * @author Matthias Totz
  */
 public class GameConsoleAppender extends AppenderSkeleton {
@@ -25,7 +25,7 @@ public class GameConsoleAppender extends AppenderSkeleton {
 		ThrowableInformation ti = loggingEvent.getThrowableInformation();
 
 		if (ti != null) {
-			String cause[] = ti.getThrowableStrRep();
+			String[] cause = ti.getThrowableStrRep();
 
 			for (String line : cause) {
 				buf.append(line).append('\n');
