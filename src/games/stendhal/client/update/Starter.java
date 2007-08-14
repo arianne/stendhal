@@ -47,7 +47,7 @@ public class Starter {
 			// a class-load-time dependency.
 
 			// get class and create an object of it
-			Class clazz = Class.forName("games.stendhal.client.update.Bootstrap");
+			Class<?> clazz = Class.forName("games.stendhal.client.update.Bootstrap");
 			Object object = clazz.newInstance();
 
 			// get param values of boot method
