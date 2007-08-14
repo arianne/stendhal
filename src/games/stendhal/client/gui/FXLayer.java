@@ -52,20 +52,16 @@ public class FXLayer {
 
 	public void draw(Graphics2D screen) {
 		switch (mode) {
-			case NIGHT: {
+			case NIGHT:
 				g.setColor(new Color(0, 0, 150));
 				break;
-			}
-			case OVERCAST: {
+			case OVERCAST:
 				g.setColor(Color.black);
 				break;
-			}
-			case DISABLED: {
+			case DISABLED:
 				return;
-			}
-			default: {
+			default:
 				return;
-			}
 		}
 
 		g.fillRect(0, 0, width, height);
