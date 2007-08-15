@@ -74,7 +74,7 @@ public class PersonalChest extends Chest {
 			NoSuchMethodException, IllegalArgumentException,
 			InstantiationException, IllegalAccessException,
 			InvocationTargetException {
-		Class clazz = item.getClass();
+		Class<?> clazz = item.getClass();
 		Constructor ctor = clazz.getConstructor(clazz);
 		Item clone = (Item) ctor.newInstance(item);
 		return clone;

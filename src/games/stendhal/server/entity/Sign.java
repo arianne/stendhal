@@ -21,6 +21,10 @@ import marauroa.common.game.RPClass;
 import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
+/**
+ * A sign which is placed on the ground and can be right clicked by 
+ * players to be read.
+ */
 public class Sign extends Entity {
 
 	/** the logger instance. */

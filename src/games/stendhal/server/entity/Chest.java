@@ -40,6 +40,11 @@ public class Chest extends Entity implements UseListener {
 		chest.addRPSlot("content", 30);
 	}
 
+	/**
+	 * Creates a new chest
+	 *
+	 * @param object RPObject
+	 */
 	public Chest(RPObject object) {
 		super(object);
 		setRPClass("chest");
@@ -57,6 +62,9 @@ public class Chest extends Entity implements UseListener {
 		update();
 	}
 
+	/**
+	 * Creates a new chest
+	 */
 	public Chest() {
 		setRPClass("chest");
 		put("type", "chest");
@@ -111,6 +119,11 @@ public class Chest extends Entity implements UseListener {
 		return open;
 	}
 
+	/**
+	 * adds an passive entity (like an item) to the chest
+	 *
+	 * @param entity entity to add
+	 */
 	public void add(PassiveEntity entity) {
 		RPSlot content = getSlot("content");
 		content.add(entity);
@@ -121,6 +134,11 @@ public class Chest extends Entity implements UseListener {
 		return getSlot("content").size();
 	}
 
+	/**
+	 * Returns the content
+	 *
+	 * @return iterator for the content
+	 */
 	public Iterator<RPObject> getContent() {
 		RPSlot content = getSlot("content");
 		return content.iterator();

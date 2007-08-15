@@ -68,13 +68,14 @@ public class Outfit {
 	 *            pair for dress, and the fourth pair for base.
 	 */
 	public Outfit(int code) {
-		this.base = code % 100;
-		code /= 100;
-		this.dress = code % 100;
-		code /= 100;
-		this.head = code % 100;
-		code /= 100;
-		this.hair = code;
+		int remainder = code;
+		this.base = remainder % 100;
+		remainder /= 100;
+		this.dress = remainder % 100;
+		remainder /= 100;
+		this.head = remainder % 100;
+		remainder /= 100;
+		this.hair = remainder;
 	}
 
 	/**
