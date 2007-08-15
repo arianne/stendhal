@@ -22,22 +22,22 @@ public class EntityFactoryHelper {
 	/**
 	 * Create an entity using a [logical] class name, and apply optional
 	 * attribute values.
-	 * 
+	 *
 	 * @param className
 	 *            A base class name to load.
 	 * @param parameters
 	 *            A collection of factory parameters.
 	 * @param attributes
 	 *            A collection of entity attributes, or <code>null</code>.
-	 * 
+	 *
 	 * @return A new entity, or <code>null</code> if allowed by the factory
 	 *         type.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             If there is a problem with the attributes. The exception
 	 *             message should be a value sutable for meaningful user
 	 *             interpretation.
-	 * 
+	 *
 	 * @see-also ConfigurableFactory
 	 */
 	public static Entity create(String className,
@@ -46,8 +46,8 @@ public class EntityFactoryHelper {
 		ConfigurableFactory factory;
 		Object obj;
 		Entity entity;
-
-		if ((factory = ConfigurableFactoryHelper.getFactory(className)) == null) {
+		factory = ConfigurableFactoryHelper.getFactory(className);
+		if (factory == null) {
 			return null;
 		}
 

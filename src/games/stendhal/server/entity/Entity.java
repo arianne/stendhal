@@ -105,11 +105,11 @@ public abstract class Entity extends RPObject {
 	public Entity(RPObject object) {
 		super(object);
 
-		if(!has("width")) {
+		if (!has("width")) {
 			setWidth(1);
 		}
 
-		if(!has("height")) {
+		if (!has("height")) {
 			setHeight(1);
 		}
 
@@ -140,21 +140,21 @@ public abstract class Entity extends RPObject {
 			y = getInt("y");
 		}
 
-		if(has("height")) {
+		if (has("height")) {
 			height = getInt("height");
 		}
 
-		if(has("width")) {
+		if (has("width")) {
 			width = getInt("width");
 		}
 
-		if(has("resistance")) {
+		if (has("resistance")) {
 			resistance = getInt("resistance");
 
 			// TODO: Remove after 2007-08-15
-			if(resistance > 95) {
+			if (resistance > 95) {
 				put("obstacle", "");
-			} else if(has("obstacle")) {
+			} else if (has("obstacle")) {
 				remove("obstacle");
 			}
 		} else {
@@ -318,26 +318,23 @@ public abstract class Entity extends RPObject {
 		return collides;
 	}
 
-
 	/**
 	 * Get the resistance this has on other entities (0-100).
 	 *
-	 * @return	The amount of resistance, or 0 if in ghostmode.
+	 * @return The amount of resistance, or 0 if in ghostmode.
 	 */
 	public int getResistance() {
 		return (isGhost() ? 0 : resistance);
 	}
 
-
 	/**
 	 * Get the resistance between this and another entity (0-100).
 	 *
-	 * @return	The amount of combined resistance.
+	 * @return The amount of combined resistance.
 	 */
 	public int getResistance(final Entity entity) {
 		return ((getResistance() * entity.getResistance()) / 100);
 	}
-
 
 	/**
 	 * Checks whether an entity is a ghost (non physically interactive).
@@ -347,7 +344,6 @@ public abstract class Entity extends RPObject {
 	public boolean isGhost() {
 		return has("ghostmode");
 	}
-
 
 	/**
 	 * Determine if this is an obstacle for another entity.
@@ -362,18 +358,17 @@ public abstract class Entity extends RPObject {
 		return (getResistance(entity) > 95);
 	}
 
-
 	/**
 	 * Set this entity as an obstacle.
 	 *
 	 * TODO: Change calls to setResistance([0|100])
 	 *
-	 * @param	obstacle	<code>true</code> if an obstacle.
+	 * @param obstacle
+	 *            <code>true</code> if an obstacle.
 	 */
 	public void setObstacle(boolean obstacle) {
 		setResistance(obstacle ? 100 : 0);
 	}
-
 
 	/**
 	 * Calculates the squared distance between the two given rectangles, i.e.
@@ -454,7 +449,7 @@ public abstract class Entity extends RPObject {
 	 *            the entity to which the distance should be calculated
 	 */
 	public double squaredDistance(Entity other) {
-		if((getWidth() < 1.1) && (getHeight() < 1.1)) {
+		if ((getWidth() < 1.1) && (getHeight() < 1.1)) {
 			// This doesn't work properly if the other entity is larger
 			// than 1x1, but it is faster.
 			return squaredDistance(other.x, other.y);
@@ -475,7 +470,7 @@ public abstract class Entity extends RPObject {
 	 *            The vertical coordinate of the point
 	 */
 	public double squaredDistance(int x, int y) {
-		if((getWidth() < 1.1) && (getHeight() < 1.1)) {
+		if ((getWidth() < 1.1) && (getHeight() < 1.1)) {
 			// This doesn't work properly if this entity is larger
 			// than 1x1, but it is faster.
 			return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y);
@@ -590,7 +585,7 @@ public abstract class Entity extends RPObject {
 	 *            The zone this was added to.
 	 */
 	public void onAdded(StendhalRPZone zone) {
-		if(this.zone != null) {
+		if (this.zone != null) {
 			logger.error("Entity added while in another zone: " + this);
 		}
 
@@ -604,7 +599,7 @@ public abstract class Entity extends RPObject {
 	 *            The zone this will be removed from.
 	 */
 	public void onRemoved(StendhalRPZone zone) {
-		if(this.zone != zone) {
+		if (this.zone != zone) {
 			logger.error("Entity removed from wrong zone: " + this);
 		}
 
@@ -645,8 +640,8 @@ public abstract class Entity extends RPObject {
 	 * @return name
 	 */
 	public String getDescriptionName(boolean definite) {
-		String name = null;
-		if ((name = getName()) != null) {
+		String name = getName();
+		if (name != null) {
 			return name;
 		} else if (has("subclass")) {
 			return Grammar.article_noun(get("subclass"), definite);
@@ -667,55 +662,52 @@ public abstract class Entity extends RPObject {
 		}
 	}
 
-
 	/**
 	 * Get the entity height.
 	 *
-	 * @return	The height (in world units).
+	 * @return The height (in world units).
 	 */
 	public double getHeight() {
 		return height;
 	}
 
-
 	/**
 	 * Get the entity width.
 	 *
-	 * @return	The width (in world units).
+	 * @return The width (in world units).
 	 */
 	public double getWidth() {
 		return width;
 	}
 
-
 	/**
 	 * Set the entity height.
 	 *
-	 * @param	height		The height (in world units).
+	 * @param height
+	 *            The height (in world units).
 	 */
 	protected void setHeight(int height) {
 		this.height = height;
 		put("height", height);
 	}
 
-
 	/**
 	 * Set resistance this has with other entities.
 	 *
-	 * @param	resistance	The amount of resistance (0-100).
+	 * @param resistance
+	 *            The amount of resistance (0-100).
 	 */
 	public void setResistance(int resistance) {
 		this.resistance = resistance;
 		put("resistance", resistance);
 
 		// TODO: Remove after 2007-08-15
-		if(resistance > 95) {
+		if (resistance > 95) {
 			put("obstacle", "");
-		} else if(has("obstacle")) {
+		} else if (has("obstacle")) {
 			remove("obstacle");
 		}
 	}
-
 
 	/**
 	 * Set the entity's visibility.
@@ -727,11 +719,11 @@ public abstract class Entity extends RPObject {
 		put("visibility", visibility);
 	}
 
-
 	/**
 	 * Set the entity width.
 	 *
-	 * @param	width		The width (in world units).
+	 * @param width
+	 *            The width (in world units).
 	 */
 	protected void setWidth(int width) {
 		this.width = width;
