@@ -18,26 +18,28 @@ import java.lang.reflect.InvocationTargetException;
 public class ConfigurableFactoryHelper {
 
 	/**
-	 * A class type safe wrapper for a ConfigurableFactory that takes
-	 * a desired target class and returns <code>null</code> if the factory
-	 * returns an incompatible object. This allows the called to cast
-	 * the return values without worrying about ClassCastExceptions.
+	 * A class type safe wrapper for a ConfigurableFactory that takes a desired
+	 * target class and returns <code>null</code> if the factory returns an
+	 * incompatible object. This allows the called to cast the return values
+	 * without worrying about ClassCastExceptions.
 	 *
-	 * @param	factory		Object factory.
-	 * @param	ctx		Configuration context.
-	 * @param	clazz		The target class.
+	 * @param factory
+	 *            Object factory.
+	 * @param ctx
+	 *            Configuration context.
+	 * @param clazz
+	 *            The target class.
 	 *
-	 * @return	A new object, or <code>null</code> if allowed by
-	 *		the factory type, or of the wrong class.
+	 * @return A new object, or <code>null</code> if allowed by the factory
+	 *         type, or of the wrong class.
 	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value sutable for
-	 *				meaningful user interpretation.
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value sutable for meaningful user
+	 *             interpretation.
 	 */
-	public static Object create(ConfigurableFactory factory, ConfigurableFactoryContext ctx, Class clazz)
-	        throws IllegalArgumentException {
+	public static Object create(ConfigurableFactory factory,
+			ConfigurableFactoryContext ctx, Class clazz) {
 		Object obj;
 
 		obj = factory.create(ctx);
@@ -50,33 +52,31 @@ public class ConfigurableFactoryHelper {
 	 * </p>
 	 *
 	 * <p>
-	 * This will attempt to create a factory for the class in the
-	 * following order:
+	 * This will attempt to create a factory for the class in the following
+	 * order:
 	 * <ul>
-	 *  <li>If a class named <em>&lt;class-name&gt</em><code>Factory</code>
-	 *      exists and implements <code>ConfigurableFactory</code>,
-	 *      return an instance of it.
+	 * <li>If a class named <em>&lt;class-name&gt</em><code>Factory</code>
+	 * exists and implements <code>ConfigurableFactory</code>, return an
+	 * instance of it.
 	 *
-	 *  <li>If a class named <em>&lt;class-name&gt</em> exists and
-	 *      implements <code>ConfigurableFactory</code>, return an
-	 *      instance of it.
+	 * <li>If a class named <em>&lt;class-name&gt</em> exists and implements
+	 * <code>ConfigurableFactory</code>, return an instance of it.
 	 *
-	 *  <li>If a class named <em>&lt;class-name&gt</em> exists and
-	 *      accepts a constructor with ConfigurableFactoryContext,
-	 *	return a factory that creates an instance with that
-	 *	constructor when used.
+	 * <li>If a class named <em>&lt;class-name&gt</em> exists and accepts a
+	 * constructor with ConfigurableFactoryContext, return a factory that
+	 * creates an instance with that constructor when used.
 	 *
-	 *  <li>If a class named <em>&lt;class-name&gt</em> exists and
-	 *      has a default constructor, return a factory that creates
-	 *      an instance with that constructor when used.
+	 * <li>If a class named <em>&lt;class-name&gt</em> exists and has a
+	 * default constructor, return a factory that creates an instance with that
+	 * constructor when used.
 	 *
-	 *  <li>Returns <code>null</code>,
+	 * <li>Returns <code>null</code>,
 	 * </ul>
 	 *
-	 * @param	className	A base class name to load.
+	 * @param className
+	 *            A base class name to load.
 	 *
-	 * @return	A factory, or <code>null</code> if no valid class
-	 *		was found.
+	 * @return A factory, or <code>null</code> if no valid class was found.
 	 */
 	public static ConfigurableFactory getFactory(String className) {
 		Class clazz;
@@ -93,9 +93,12 @@ public class ConfigurableFactoryHelper {
 				try {
 					return (ConfigurableFactory) clazz.newInstance();
 				} catch (InstantiationException ex) {
-					throw new IllegalArgumentException("Class is not instantiatable: " + clazz.getName(), ex);
+					throw new IllegalArgumentException(
+							"Class is not instantiatable: " + clazz.getName(),
+							ex);
 				} catch (IllegalAccessException ex) {
-					throw new IllegalArgumentException("Unable to access class: " + clazz.getName(), ex);
+					throw new IllegalArgumentException(
+							"Unable to access class: " + clazz.getName(), ex);
 				}
 			}
 		} catch (ClassNotFoundException ex) {
@@ -115,18 +118,21 @@ public class ConfigurableFactoryHelper {
 				try {
 					return (ConfigurableFactory) clazz.newInstance();
 				} catch (InstantiationException ex) {
-					throw new IllegalArgumentException("Class is not instantiatable: " + className, ex);
+					throw new IllegalArgumentException(
+							"Class is not instantiatable: " + className, ex);
 				} catch (IllegalAccessException ex) {
-					throw new IllegalArgumentException("Unable to access class: " + className, ex);
+					throw new IllegalArgumentException(
+							"Unable to access class: " + className, ex);
 				}
 			}
 
 			/*
-			 * Look for <Class>(ConfigurableFactoryContext)
-			 * constructor.
+			 * Look for <Class>(ConfigurableFactoryContext) constructor.
 			 */
 			try {
-				return new ACFactory(clazz.getConstructor(new Class[] { ConfigurableFactoryContext.class }));
+				return new ACFactory(
+						clazz
+								.getConstructor(new Class[] { ConfigurableFactoryContext.class }));
 			} catch (NoSuchMethodException ex) {
 				// Fall through
 			}
@@ -170,16 +176,19 @@ public class ConfigurableFactoryHelper {
 		// ConfigurableFactory
 		//
 
-		public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		public Object create(ConfigurableFactoryContext ctx) {
 			try {
 				return cnstr.newInstance(new Object[] { ctx });
 			} catch (InstantiationException ex) {
-				throw new IllegalArgumentException("Class is not instantiatable: "
-				        + cnstr.getDeclaringClass().getName(), ex);
+				throw new IllegalArgumentException(
+						"Class is not instantiatable: "
+								+ cnstr.getDeclaringClass().getName(), ex);
 			} catch (IllegalAccessException ex) {
-				throw new IllegalArgumentException("Unable to access class: " + cnstr.getDeclaringClass().getName(), ex);
+				throw new IllegalArgumentException("Unable to access class: "
+						+ cnstr.getDeclaringClass().getName(), ex);
 			} catch (InvocationTargetException ex) {
-				throw new IllegalArgumentException("Error creating class: " + cnstr.getDeclaringClass().getName(), ex);
+				throw new IllegalArgumentException("Error creating class: "
+						+ cnstr.getDeclaringClass().getName(), ex);
 			}
 		}
 	}
@@ -199,13 +208,15 @@ public class ConfigurableFactoryHelper {
 		// ConfigurableFactory
 		//
 
-		public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+		public Object create(ConfigurableFactoryContext ctx) {
 			try {
 				return clazz.newInstance();
 			} catch (InstantiationException ex) {
-				throw new IllegalArgumentException("Class is not instantiatable: " + clazz.getName(), ex);
+				throw new IllegalArgumentException(
+						"Class is not instantiatable: " + clazz.getName(), ex);
 			} catch (IllegalAccessException ex) {
-				throw new IllegalArgumentException("Unable to access class: " + clazz.getName(), ex);
+				throw new IllegalArgumentException("Unable to access class: "
+						+ clazz.getName(), ex);
 			}
 		}
 	}

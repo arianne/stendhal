@@ -25,5 +25,5 @@ public interface ConfigurableFactory {
 	 *				should be a value sutable for
 	 *				meaningful user interpretation.
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException;
+	Object create(ConfigurableFactoryContext ctx);
 }

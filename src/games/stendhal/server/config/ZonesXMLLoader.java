@@ -124,10 +124,12 @@ public class ZonesXMLLoader extends DefaultHandler {
 	/**
 	 * Load a group of zones into a world.
 	 *
-	 * @throws	SAXException	If a SAX error occured.
-	 * @throws	IOException	If an I/O error occured.
-	 * @throws	FileNotFoundException
-	 *				If the resource was not found.
+	 * @throws SAXException
+	 *             If a SAX error occured.
+	 * @throws IOException
+	 *             If an I/O error occured.
+	 * @throws FileNotFoundException
+	 *             If the resource was not found.
 	 */
 	public void load() throws SAXException, IOException {
 		InputStream in = getClass().getResourceAsStream(uri.getPath());
@@ -146,10 +148,13 @@ public class ZonesXMLLoader extends DefaultHandler {
 	/**
 	 * Load a group of zones into a world using a config file.
 	 *
-	 * @param	in		The config file stream.
+	 * @param in
+	 *            The config file stream.
 	 *
-	 * @throws	SAXException	If a SAX error occured.
-	 * @throws	IOException	If an I/O error occured.
+	 * @throws SAXException
+	 *             If a SAX error occured.
+	 * @throws IOException
+	 *             If an I/O error occured.
 	 */
 	protected void load(InputStream in) throws SAXException, IOException {
 		SAXParser saxParser;
@@ -188,8 +193,9 @@ public class ZonesXMLLoader extends DefaultHandler {
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalMapStructure zonedata=null;
-				zonedata=ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
+				StendhalMapStructure zonedata = null;
+				zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER
+						+ zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
@@ -209,23 +215,27 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 	}
 
-	private static final String[] REQUIRED_LAYERS = {"0_floor", "1_terrain", "2_object", "3_roof", "objects", "collision", "protection"};
+	private static final String[] REQUIRED_LAYERS = { "0_floor", "1_terrain",
+			"2_object", "3_roof", "objects", "collision", "protection" };
+
 	private boolean verifyMap(ZoneDesc zdesc, StendhalMapStructure zonedata) {
 		for (String layer : REQUIRED_LAYERS) {
 			if (!zonedata.hasLayer(layer)) {
-				logger.error("Required layer " + layer + " missing in zone " + zdesc.getFile());
+				logger.error("Required layer " + layer + " missing in zone "
+						+ zdesc.getFile());
 				return false;
 			}
 		}
 		return true;
-    }
+	}
 
 	/**
 	 * Configure a zone.
 	 *
 	 *
 	 */
-	protected static void configureZone(StendhalRPZone zone, ConfiguratorDesc cdesc) {
+	protected static void configureZone(StendhalRPZone zone,
+			ConfiguratorDesc cdesc) {
 		String className;
 		Class clazz;
 		Object obj;
@@ -262,7 +272,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 * Apply class
 		 */
 		if (obj instanceof ZoneConfigurator) {
-			logger.info("Configuring zone [" + zone.getID().getID() + "] with: " + className);
+			logger.info("Configuring zone [" + zone.getID().getID()
+					+ "] with: " + className);
 
 			((ZoneConfigurator) obj).configureZone(zone, cdesc.getParameters());
 		} else {
@@ -288,7 +299,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 
 		try {
-			portal = (Portal) EntityFactoryHelper.create(className, pdesc.getParameters(), pdesc.getAttributes());
+			portal = (Portal) EntityFactoryHelper.create(className, pdesc
+					.getParameters(), pdesc.getAttributes());
 			if (portal == null) {
 				logger.warn("Unable to create portal: " + className);
 
@@ -300,7 +312,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			portal.set(pdesc.getX(), pdesc.getY());
 			portal.setIdentifier(pdesc.getReference());
 			reference = pdesc.getDestinationReference();
-			if (reference  != null) {
+			if (reference != null) {
 				portal.setDestination(pdesc.getDestinationZone(), reference);
 			}
 
@@ -316,8 +328,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			// Fix PortalBugs; blocked portals
 			if (zone.simpleCollides(portal, portal.getX(), portal.getY())) {
-					logger.warn("Unblocking blocked portal: " + portal);
-					zone.collisionMap.setCollide(portal.getArea(), false);
+				logger.warn("Unblocking blocked portal: " + portal);
+				zone.collisionMap.setCollide(portal.getArea(), false);
 			}
 
 			zone.add(portal);
@@ -332,17 +344,18 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 */
 	protected static void configureEntity(StendhalRPZone zone, EntityDesc edesc) {
-		String className=edesc.getImplementation();
+		String className = edesc.getImplementation();
 		Entity entity;
 
-		if (className  == null) {
-			logger.error("Entity without factory at " + zone.getID().getID() + "[" + edesc.getX() + "," + edesc.getY()
-			        + "]");
+		if (className == null) {
+			logger.error("Entity without factory at " + zone.getID().getID()
+					+ "[" + edesc.getX() + "," + edesc.getY() + "]");
 			return;
 		}
 
 		try {
-			entity = EntityFactoryHelper.create(className, edesc.getParameters(), edesc.getAttributes());
+			entity = EntityFactoryHelper.create(className, edesc
+					.getParameters(), edesc.getAttributes());
 			if (entity == null) {
 				logger.warn("Unable to create entity: " + className);
 
@@ -360,12 +373,13 @@ public class ZonesXMLLoader extends DefaultHandler {
 	}
 
 	/**
-	 * Load zone data and create a zone from it.
-	 * Most of this should be moved directly into ZoneXMLLoader.
+	 * Load zone data and create a zone from it. Most of this should be moved
+	 * directly into ZoneXMLLoader.
 	 *
 	 *
 	 */
-	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata) throws SAXException, IOException {
+	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata)
+			throws SAXException, IOException {
 		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
@@ -381,10 +395,12 @@ public class ZonesXMLLoader extends DefaultHandler {
 			zone.addLayer(name + ".4_roof_add", layer);
 		}
 
-		zone.addCollisionLayer(name + ".collision", zonedata.getLayer("collision"));
-		zone.addProtectionLayer(name + ".protection", zonedata.getLayer("protection"));
+		zone.addCollisionLayer(name + ".collision", zonedata
+				.getLayer("collision"));
+		zone.addProtectionLayer(name + ".protection", zonedata
+				.getLayer("protection"));
 
-		if(desc.isInterior()) {
+		if (desc.isInterior()) {
 			zone.setPosition();
 		} else {
 			zone.setPosition(desc.getLevel(), desc.getX(), desc.getY());
@@ -402,7 +418,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 	//
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName,
+			Attributes attrs) {
 		String s;
 		int level;
 		int x;
@@ -415,7 +432,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			// Ignore
 		} else if (qName.equals("zone")) {
 			zone = attrs.getValue("name");
-			if ( zone == null) {
+			if (zone == null) {
 				logger.warn("Unnamed zone");
 				return;
 			}
@@ -449,7 +466,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				try {
 					x = Integer.parseInt(s);
 				} catch (NumberFormatException ex) {
-					logger.warn("Zone [" + zone + "] has invalid x coordinate: " + s);
+					logger.warn("Zone [" + zone
+							+ "] has invalid x coordinate: " + s);
 					return;
 				}
 				s = attrs.getValue("y");
@@ -461,7 +479,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				try {
 					y = Integer.parseInt(s);
 				} catch (NumberFormatException ex) {
-					logger.warn("Zone [" + zone + "] has invalid y coordinate: " + s);
+					logger.warn("Zone [" + zone
+							+ "] has invalid y coordinate: " + s);
 					return;
 				}
 			}
@@ -479,7 +498,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			}
 		} else if (qName.equals("entity")) {
 			s = attrs.getValue("x");
-			if ( s == null) {
+			if (s == null) {
 				logger.warn("Entity without 'x' coordinate");
 				return;
 			}
@@ -680,7 +699,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length != 1) {
-			System.err.println("Usage: java " + ZonesXMLLoader.class.getName() + " <filename>");
+			System.err.println("Usage: java " + ZonesXMLLoader.class.getName()
+					+ " <filename>");
 			System.exit(1);
 		}
 
@@ -689,7 +709,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 		try {
 			loader.load();
 		} catch (org.xml.sax.SAXParseException ex) {
-			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
+			System.err.print("Source " + args[0] + ":" + ex.getLineNumber()
+					+ "<" + ex.getColumnNumber() + ">");
 
 			throw ex;
 		}
@@ -702,7 +723,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 * A zone descriptor.
 	 */
 	protected static class ZoneDesc {
-		public static final int	UNSET	= Integer.MIN_VALUE;
+		public static final int UNSET = Integer.MIN_VALUE;
 
 		protected String name;
 
@@ -812,7 +833,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	/**
 	 * A zone setup descriptor.
 	 */
-	protected static abstract class ZoneSetupDesc {
+	protected abstract static class ZoneSetupDesc {
 
 		protected HashMap<String, String> parameters;
 
@@ -888,7 +909,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 		protected String className;
 
 		protected HashMap<String, String> attributes;
-
 
 		public EntityDesc(int x, int y) {
 			this.x = x;
