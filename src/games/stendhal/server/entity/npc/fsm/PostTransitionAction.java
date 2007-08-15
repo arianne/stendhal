@@ -17,5 +17,5 @@ public interface PostTransitionAction {
 	 * @param text   text he/she said
 	 * @param engine the NPC doing the transition
 	 */
-	public void fire(Player player, String text, SpeakerNPC engine);
+	void fire(Player player, String text, SpeakerNPC engine);
 }

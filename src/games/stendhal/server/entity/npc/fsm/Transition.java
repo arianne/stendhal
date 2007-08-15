@@ -16,7 +16,7 @@ public class Transition {
 	/** The state where this transition leads to */
 	private int nextState;
 
-	/** 
+	/**
 	 * The string a player's text must either start with or equal to
 	 * in order to trigger this transition
 	 */
@@ -91,7 +91,7 @@ public class Transition {
 
 	/**
 	 * Checks whether this transition's condition is fulfilled.
-	 * 
+	 *
 	 * @param player
 	 * @param text the text the player said
 	 * @param npc

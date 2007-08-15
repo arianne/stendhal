@@ -39,7 +39,7 @@ public class Engine {
 	 * @param speakerNPC the speaker npc for which this FSM is created
 	 */
 	public Engine(SpeakerNPC speakerNPC) {
-		if (speakerNPC==null){
+		if (speakerNPC == null) {
 			throw new IllegalArgumentException("speakerNpc must not be null");
 		}
 

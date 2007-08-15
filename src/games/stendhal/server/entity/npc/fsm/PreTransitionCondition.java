@@ -18,5 +18,5 @@ public interface PreTransitionCondition {
 	 * @param engine the NPC doing the transition
 	 * @return true, if the transition is possible, false otherwise
 	 */
-	public boolean fire(Player player, String text, SpeakerNPC engine);
+	boolean fire(Player player, String text, SpeakerNPC engine);
 }
