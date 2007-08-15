@@ -25,13 +25,13 @@ import javax.swing.JOptionPane;
  */
 public class Bootstrap {
 
-	private String pathSep;
+	private String pathSep = null;
 
-	private String jarFolder ;
+	private String jarFolder = null;
 
-	private Properties bootProp ;
+	private Properties bootProp = null;
 
-	private Properties bootPropOrg ;
+	private Properties bootPropOrg = null;
 
 	/**
 	 * An URLClassLoader with does load its classes first and only delegates
@@ -50,7 +50,7 @@ public class Bootstrap {
 		}
 
 		@Override
-		protected synchronized Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
+		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
 			if (clazz == null) {
@@ -102,10 +102,10 @@ public class Bootstrap {
 	void init() {
 		// discover folder for .jar-files
 		pathSep = System.getProperty("file.separator");
-
+		
 		String stendhal=ClientGameConfiguration.get("GAME_NAME").toLowerCase();
 		System.out.println("GAME: " + stendhal);
-
+		
 		jarFolder = System.getProperty("user.home") + pathSep + stendhal + pathSep + "jar" + pathSep;
 		File folder = new File(jarFolder);
 		if (!folder.exists()) {
@@ -165,9 +165,9 @@ public class Bootstrap {
 	 */
 	private class PrivilegedBoot<T> implements PrivilegedAction<T> {
 
-		private String className;
+		private String className = null;
 
-		private String[] args ;
+		private String[] args = null;
 
 		/**
 		 * Creates a PrivilagedBoot object
@@ -202,7 +202,7 @@ public class Bootstrap {
 				}
 
 				// start update handling
-				Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				Class<?> clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 			} catch (SecurityException e) {
@@ -236,7 +236,7 @@ public class Bootstrap {
 
 			try {
 				ClassLoader classLoader = createClassloader();
-				Class clazz = classLoader.loadClass(className);
+				Class<?> clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
@@ -297,7 +297,7 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				Class clazz = Class.forName(className);
+				Class<?> clazz = Class.forName(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {
@@ -325,7 +325,7 @@ public class Bootstrap {
 		if (e instanceof OutOfMemoryError) {
 			JOptionPane.showMessageDialog(null, "Sorry, an OutOfMemoryError occured. Please restart Stendhal.");
 		} else if (e instanceof LinkageError) {
-			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?",
+			int res = JOptionPane.showConfirmDialog(null, "Sorry an error occured because of an inconsistant update state. (Note: Krakow Mobile - a game derived of Stendhal - is known to have a bug which causes their updates to be merged into Stendhal). Delete update files so that they are downloaded again after you restart Stendhal?", 
 					"Stendhal", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			if (res == JOptionPane.YES_OPTION) {
 				bootProp.remove("load");
