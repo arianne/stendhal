@@ -241,7 +241,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 			return;
 		}
 
-		if(handleAdded(rpentity)) {
+		if (handleAdded(rpentity)) {
 			handleMovement(rpentity);
 			addTarget(rpentity);
 		}
@@ -274,7 +274,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 			return;
 		}
 
-		if(targets.contains(rpentity.getID())) {
+		if (targets.contains(rpentity.getID())) {
 			handleMovement(rpentity);
 			removeTarget(rpentity);
 			handleRemoved(rpentity);
@@ -302,7 +302,7 @@ public class OccupantArea extends AreaEntity implements MovementListener, TurnLi
 
 		RPEntity rpentity = (RPEntity) entity;
 
-		if(targets.contains(rpentity.getID())) {
+		if (targets.contains(rpentity.getID())) {
 			handleMovement(rpentity);
 		}
 	}

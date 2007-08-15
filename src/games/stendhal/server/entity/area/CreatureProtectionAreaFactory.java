@@ -26,22 +26,24 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	/**
 	 * Configure an area's criteria rules.
 	 *
-	 * @param	area		The area to configure.
-	 * @param	ctx		The configuration context.
+	 * @param area
+	 *            The area to configure.
+	 * @param ctx
+	 *            The configuration context.
 	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is invalid.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
-	protected void defineCreatures(CreatureProtectionArea area, ConfigurableFactoryContext ctx)
-	        throws IllegalArgumentException {
-		String s = ctx.getString("rules",null);
+	protected void defineCreatures(CreatureProtectionArea area,
+			ConfigurableFactoryContext ctx) {
+		String s = ctx.getString("rules", null);
 		String clazz;
 		String subclazz;
 		boolean blocked;
 		StringTokenizer st;
 		int i;
 
-		if (s  == null) {
+		if (s == null) {
 			return;
 		}
 
@@ -52,7 +54,7 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 			s = st.nextToken();
 
 			/*
-			 * Possible with "   "?
+			 * Possible with " "?
 			 */
 			if (s.length() == 0) {
 				continue;
@@ -70,10 +72,10 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 			}
 
 			/*
-			 * <class>
-			 * <class>:<subclass>
+			 * <class> <class>:<subclass>
 			 */
-			if ((i = s.indexOf(':')) != -1) {
+			i = s.indexOf(':');
+			if (i != -1) {
 				clazz = s.substring(0, i);
 				subclazz = s.substring(i + 1);
 
@@ -96,15 +98,17 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	/**
 	 * Extract the default action from a context.
 	 *
-	 * @param	ctx		The configuration context.
+	 * @param ctx
+	 *            The configuration context.
 	 *
-	 * @return	The default action.
+	 * @return The default action.
 	 *
-	 * @throws	IllegalArgumentException
-	 *				If the attribute is invalid.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
-	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
-		String s = ctx.getString("default",null);
+	protected boolean getBlockedDefault(ConfigurableFactoryContext ctx)
+			throws IllegalArgumentException {
+		String s = ctx.getString("default", null);
 
 		if (s == null) {
 			return true;
@@ -124,45 +128,49 @@ public class CreatureProtectionAreaFactory implements ConfigurableFactory {
 	/**
 	 * Extract the area height from a context.
 	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The height.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The height.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getHeight(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
 	/**
 	 * Extract the area width from a context.
 	 *
-	 * @param	ctx		The configuration context.
-	 * @return	The width.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
+	 * @param ctx
+	 *            The configuration context.
+	 * @return The width.
+	 * @throws IllegalArgumentException
+	 *             If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getWidth(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
-
 
 	/**
 	 * Create a damaging area.
 	 *
-	 * @param	ctx		Configuration context.
+	 * @param ctx
+	 *            Configuration context.
 	 *
-	 * @return	A CreatureProtectionArea.
+	 * @return A CreatureProtectionArea.
 	 *
-	 * @throws	IllegalArgumentException
-	 *				If there is a problem with the
-	 *				attributes. The exception message
-	 *				should be a value sutable for
-	 *				meaningful user interpretation.
+	 * @throws IllegalArgumentException
+	 *             If there is a problem with the attributes. The exception
+	 *             message should be a value sutable for meaningful user
+	 *             interpretation.
 	 *
-	 * @see		CreatureProtectionArea
+	 * @see CreatureProtectionArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) {
 		CreatureProtectionArea area;
 
-		area = new CreatureProtectionArea(getWidth(ctx), getHeight(ctx), getBlockedDefault(ctx));
+		area = new CreatureProtectionArea(getWidth(ctx), getHeight(ctx),
+				getBlockedDefault(ctx));
 
 		defineCreatures(area, ctx);
 

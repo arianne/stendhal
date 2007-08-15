@@ -15,10 +15,10 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * @return	The height, 1 if unspecified.
 	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getHeight(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
-	
+
 	/**
 	 * Extract the width from context
 	 *
@@ -26,21 +26,21 @@ public class NoLoginAreaFactory implements ConfigurableFactory {
 	 * @return	The width, 1 if unspecified.
 	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getWidth(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
 
-	protected int getNewX(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getNewX(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("new-x");
 	}
 
-	protected int getNewY(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getNewY(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("new-y");
 	}
 
 
-	public NoLoginArea create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public NoLoginArea create(ConfigurableFactoryContext ctx) {
 		return new NoLoginArea(getWidth(ctx), getHeight(ctx), getNewX(ctx), getNewY(ctx));
 	}
 }

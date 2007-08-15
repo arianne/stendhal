@@ -21,7 +21,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @return OccupantArea
 	 * @throws IllegalArgumentException in case of an invalid configuration
 	 */
-	protected abstract OccupantArea createArea(ConfigurableFactoryContext ctx) throws IllegalArgumentException;
+	protected abstract OccupantArea createArea(ConfigurableFactoryContext ctx);
 
 
 	/**
@@ -31,7 +31,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @return	The entity's name.
 	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
-	protected String getName(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getName(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("name");
 	}
 
@@ -42,7 +42,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @return	The width, 1 if unspecified.
 	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getWidth(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
@@ -53,7 +53,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @return	The height, 1 if unspecified.
 	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getHeight(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
 
@@ -65,7 +65,7 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @return	The stationary interval (in turns).
 	 * @throws	IllegalArgumentException if the attribute is missing.
 	 */
-	protected int getInterval(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getInterval(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredInt("interval");
 	}
 
@@ -76,12 +76,12 @@ public abstract class OccupantAreaFactory implements ConfigurableFactory {
 	 * @return	The flag to only affect players.
 	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected boolean getPlayersOnly(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredBoolean("players-only");
 	}
 
 
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) {
 		OccupantArea area;
 
 		area = createArea(ctx);

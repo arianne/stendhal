@@ -20,12 +20,12 @@ public class LifeDrainAreaFactory extends OccupantAreaFactory {
 	 * @return	The maximum damage amount.
 	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
-	protected int getDamage(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getDamage(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("maximum-damage", 0);
 	}
 
 	@Override
-	protected OccupantArea createArea(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected OccupantArea createArea(ConfigurableFactoryContext ctx) {
 		return new LifeDrainArea(getName(ctx), getWidth(ctx), getHeight(ctx), getDamage(ctx), getInterval(ctx));
 	}
 }

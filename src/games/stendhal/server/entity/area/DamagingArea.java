@@ -161,7 +161,7 @@ public class DamagingArea extends OccupantArea {
 	 */
 	@Override
 	protected boolean handleAdded(RPEntity entity) {
-		if(!super.handleAdded(entity)) {
+		if (!super.handleAdded(entity)) {
 			return false;
 		}
 

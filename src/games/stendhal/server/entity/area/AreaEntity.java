@@ -10,7 +10,6 @@ package games.stendhal.server.entity.area;
 //
 
 import games.stendhal.server.entity.Entity;
-
 import marauroa.common.game.RPClass;
 import marauroa.common.game.Definition.Type;
 
