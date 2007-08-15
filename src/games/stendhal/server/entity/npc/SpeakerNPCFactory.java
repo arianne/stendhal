@@ -19,13 +19,13 @@ import java.util.List;
  * A base factory for <code>Sign</code> objects.
  */
 public class SpeakerNPCFactory implements ConfigurableFactory {
-	
+
 	/**
 	 * Creates a new SpeakerNPC. Override this if you want to use a
 	 * subclass of SpeakerNPC.
-	 * 
+	 *
 	 * @param name The NPC name.
-	 * @return An object of class SpeakerNPC or a subclass. 
+	 * @return An object of class SpeakerNPC or a subclass.
 	 */
 	protected SpeakerNPC instantiate(String name) {
 		return new SpeakerNPC(name);
@@ -38,10 +38,10 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return	The name
 	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
-	protected String getName(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getName(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("name");
 	}
-	
+
 	/**
 	 * Extract the NPC class (i.e. its visual appearance) from a context.
 	 *
@@ -49,7 +49,7 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return	The class.
 	 * @throws	IllegalArgumentException If the attribute is missing.
 	 */
-	protected String getClass(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getClass(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("class");
 
 	}
@@ -97,13 +97,13 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 * @return	The hitpoints.
 	 */
 	protected Direction getDirection(ConfigurableFactoryContext ctx) {
-		// TODO: improve error handling
+		// TODO: improve error handling make use of valueOf
 		String s = ctx.getString("direction", "down");
-		if (s == null || s.equals("down")) {
+		if (s.equals("down")) {
 			return Direction.DOWN;
-		} else if (s.equals("left")){
+		} else if (s.equals("left")) {
 			return Direction.LEFT;
-		} else if (s.equals("up")){
+		} else if (s.equals("up")) {
 			return Direction.UP;
 		} else {
 			return Direction.RIGHT;
@@ -111,14 +111,14 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	}
 
 	protected void createDialog(SpeakerNPC npc) {
-		
+
 	}
-	
+
 	protected List<Node> getPath(ConfigurableFactoryContext ctx) {
 		List<Node> result = new ArrayList<Node>();
 		int i = 0;
 		boolean lastNode = false;
-		
+
 		do {
 			String s = ctx.getString("node" + i, null);
 			if (s != null) {
@@ -132,11 +132,11 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 				lastNode = true;
 			}
 		}
-		while (! lastNode);
-		
+		while (!lastNode);
+
 		return result;
 	}
-	
+
 	//
 	// ConfigurableFactory
 	//
@@ -156,19 +156,19 @@ public class SpeakerNPCFactory implements ConfigurableFactory {
 	 *
 	 * @see		games.stendhal.server.entity.npc.SpeakerNPC
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) {
 		SpeakerNPC npc = instantiate(getName(ctx));
 
 		npc.put("class", getClass(ctx));
 		npc.setBaseHP(100);
 		npc.setHP(getHP(ctx));
 		npc.setLevel(getLevel(ctx));
-		
+
 		String description = getDescription(ctx);
 		if (description != null) {
 			npc.setDescription(description);
 		}
-		
+
 		List<Node> path = getPath(ctx);
 		npc.setPath(new FixedPath(path, path.size() > 0));
 		npc.setDirection(getDirection(ctx));

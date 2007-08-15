@@ -29,7 +29,7 @@ public class StandardInteraction {
 		 * @param text   the text he said
 		 * @param engine the NPC
 		 */
-		public void setChatInfo(Player player, String text, SpeakerNPC engine);
+		void setChatInfo(Player player, String text, SpeakerNPC engine);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class StandardInteraction {
 	 */
 	public static class PlayerInAreaCondition extends SpeakerNPC.ChatCondition {
 
-		private Area area ;
+		private Area area;
 
 		public PlayerInAreaCondition(Area area) {
 			this.area = area;
@@ -76,7 +76,7 @@ public class StandardInteraction {
 	 */
 	public static class Not extends SpeakerNPC.ChatCondition {
 
-		private SpeakerNPC.ChatCondition condition ;
+		private SpeakerNPC.ChatCondition condition;
 
 		/**
 		 * Creates a new "not"-condition
