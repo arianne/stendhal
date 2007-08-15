@@ -39,8 +39,8 @@ public class GoldSource extends Entity implements UseListener {
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Prospector) {
-				Prospector new_name = (Prospector) obj;
-				return playerRef.get() == new_name.playerRef.get();
+				Prospector newName = (Prospector) obj;
+				return playerRef.get() == newName.playerRef.get();
 			} else {
 				return false;
 			}
@@ -86,7 +86,7 @@ public class GoldSource extends Entity implements UseListener {
 	/**
 	 * The chance that prospecting is successful.
 	 */
-	private final static double FINDING_PROBABILITY = 0.1;
+	private static final double FINDING_PROBABILITY = 0.1;
 
 	public GoldSource() {
 		setDescription("You see something golden glittering.");
