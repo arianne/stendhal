@@ -22,7 +22,6 @@ import marauroa.common.game.RPSlot;
 class DestinationObject extends MoveableObject {
 	private static Logger logger = Log4J.getLogger(DestinationObject.class);
 
-
 	/** true when this object is valid */
 	private boolean valid;
 
@@ -40,9 +39,11 @@ class DestinationObject extends MoveableObject {
 		super(player);
 		valid = false;
 		// droppped into another item
-		if (action.has(EquipActionConsts.TARGET_OBJECT) && action.has(EquipActionConsts.TARGET_SLOT)) {
+		if (action.has(EquipActionConsts.TARGET_OBJECT)
+				&& action.has(EquipActionConsts.TARGET_SLOT)) {
 			// get base item and slot
-			parent = EquipUtil.getEntityFromId(player, action.getInt(EquipActionConsts.TARGET_OBJECT));
+			parent = EquipUtil.getEntityFromId(player, action
+					.getInt(EquipActionConsts.TARGET_OBJECT));
 
 			// check slot
 			if (parent == null) {
@@ -54,8 +55,10 @@ class DestinationObject extends MoveableObject {
 			slot = action.get(EquipActionConsts.TARGET_SLOT);
 
 			// is the container a player and not the current one?
-			if ((parent instanceof Player) && !parent.getID().equals(player.getID())) {
-				logger.warn("trying to drop an item into another players inventory");
+			if ((parent instanceof Player)
+					&& !parent.getID().equals(player.getID())) {
+				logger
+						.warn("trying to drop an item into another players inventory");
 				// trying to drop an item into another players inventory
 				return;
 			}
@@ -65,14 +68,15 @@ class DestinationObject extends MoveableObject {
 				logger.warn("Parent don't have slot: " + action);
 				return;
 			}
-			
+
 			// ok, action is valid
 			valid = true;
 			return;
 		}
 
 		// dropped to the ground
-		if (action.has(EquipActionConsts.GROUND_X) && action.has(EquipActionConsts.GROUND_Y)) {
+		if (action.has(EquipActionConsts.GROUND_X)
+				&& action.has(EquipActionConsts.GROUND_Y)) {
 			x = action.getInt(EquipActionConsts.GROUND_X);
 			y = action.getInt(EquipActionConsts.GROUND_Y);
 			valid = true;
@@ -87,7 +91,9 @@ class DestinationObject extends MoveableObject {
 
 		if (parent != null) {
 			RPSlot rpslot = parent.getSlot(slot);
-			if (!(rpslot instanceof EntitySlot) || (!((EntitySlot) rpslot).isReachableForTakingThingsOutOfBy(player))) {
+			if (!(rpslot instanceof EntitySlot)
+					|| (!((EntitySlot) rpslot)
+							.isReachableForTakingThingsOutOfBy(player))) {
 				logger.warn("Unreachable slot");
 				return false;
 			}
@@ -123,39 +129,44 @@ class DestinationObject extends MoveableObject {
 			// through
 			// various levels of indirection)
 			if (rpslot.hasAsParent(entity)) {
-				logger.warn("tried to put item " + entity.getID() + " into itself, equip rejected");
+				logger.warn("tried to put item " + entity.getID()
+						+ " into itself, equip rejected");
 				return false;
 			}
 
 			/*
-			 * TODO: Broken.
-			 * Marauroa 2.0 improved all the slot handling.
-			 * XXX: Recode.
+			 * TODO: Broken. Marauroa 2.0 improved all the slot handling. XXX:
+			 * Recode.
 			 */
-//			// not very accurate...the containment level of this slot
-//			int depth = 0;
-//
-//			// count items in source item (if it is an container)
-//			for (RPSlot sourceSlot : entity.slots()) {
-//				depth += sourceSlot.();
-//			}
-//
-//			// check the maximum level of contained elements
-//			if ((entity.slots().size() > 0) && (depth > EquipActionConsts.MAX_CONTAINED_DEPTH)) {
-//				logger.warn("maximum contained depth (is: " + depth + " max: " + EquipActionConsts.MAX_CONTAINED_DEPTH
-//				        + ") reached, equip rejected");
-//				return false;
-//			}
+			// // not very accurate...the containment level of this slot
+			// int depth = 0;
+			//
+			// // count items in source item (if it is an container)
+			// for (RPSlot sourceSlot : entity.slots()) {
+			// depth += sourceSlot.();
+			// }
+			//
+			// // check the maximum level of contained elements
+			// if ((entity.slots().size() > 0) && (depth >
+			// EquipActionConsts.MAX_CONTAINED_DEPTH)) {
+			// logger.warn("maximum contained depth (is: " + depth + " max: " +
+			// EquipActionConsts.MAX_CONTAINED_DEPTH
+			// + ") reached, equip rejected");
+			// return false;
+			// }
 		} else {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
 			if ((zone != null) && zone.simpleCollides(entity, x, y)) {
-				logger.warn("object " + entity + " collides with " + x + "x" + y);
+				logger.warn("object " + entity + " collides with " + x + "x"
+						+ y);
 				return false;
 			}
 			// and in reach
-			if (entity.has("x") && entity.has("y") && (entity.squaredDistance(x, y) > 8 * 8)) {
-				logger.warn("object " + entity + " is too far away from " + x + "x" + y);
+			if (entity.has("x") && entity.has("y")
+					&& (entity.squaredDistance(x, y) > 8 * 8)) {
+				logger.warn("object " + entity + " is too far away from " + x
+						+ "x" + y);
 				return false;
 			}
 
@@ -171,8 +182,7 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when this entity and the other is within the given
-	 * distance
+	 * returns true when this entity and the other is within the given distance
 	 */
 	@Override
 	public boolean checkDistance(Entity other, double distance) {
@@ -185,10 +195,10 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * add the entity to the world (specified by the action during
-	 * constuction). Note that you should call isValid(), preCheck(..) and
-	 * checkDistance(..) before adding an item to the world
-	 * 
+	 * add the entity to the world (specified by the action during constuction).
+	 * Note that you should call isValid(), preCheck(..) and checkDistance(..)
+	 * before adding an item to the world
+	 *
 	 * @return true when the item is added, false otherwise
 	 */
 	public boolean addToWorld(Entity entity, Player player) {
@@ -202,22 +212,22 @@ class DestinationObject extends MoveableObject {
 
 			RPSlot rpslot = parent.getSlot(slot);
 
-			if(entity.has("x")) {
+			if (entity.has("x")) {
 				logger.debug("Equipped item had x. Removing");
 				/*
-				 * TODO: Hack!
-				 *  I need to set them to 0,0 so they notice the update
+				 * TODO: Hack! I need to set them to 0,0 so they notice the
+				 * update
 				 */
-				entity.set(0,0);
+				entity.set(0, 0);
 				entity.remove("x");
 			}
-			if(entity.has("y")) {
+			if (entity.has("y")) {
 				logger.debug("Equipped item had y. Removing");
 				/*
-				 * TODO: Hack!
-				 *  I need to set them to 0,0 so they notice the update
+				 * TODO: Hack! I need to set them to 0,0 so they notice the
+				 * update
 				 */
-				entity.set(0,0);
+				entity.set(0, 0);
 				entity.remove("y");
 			}
 
@@ -273,8 +283,7 @@ class DestinationObject extends MoveableObject {
 	}
 
 	/**
-	 * returns true when the rpobject is one of the classes in
-	 * <i>validClasses</i>
+	 * returns true when the rpobject is one of the classes in <i>validClasses</i>
 	 */
 	public boolean checkClass(List<Class> validClasses) {
 		if (parent != null) {

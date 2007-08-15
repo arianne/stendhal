@@ -18,6 +18,6 @@ import marauroa.common.game.RPAction;
 public interface ActionListener {
 
 	/** callback for the registered action */
-	public abstract void onAction(Player player, RPAction action);
+	void onAction(Player player, RPAction action);
 
 }

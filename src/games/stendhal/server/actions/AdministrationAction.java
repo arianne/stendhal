@@ -53,7 +53,8 @@ import marauroa.common.game.Definition.Type;
  */
 public class AdministrationAction implements ActionListener {
 
-	private static final Logger logger = Log4J.getLogger(AdministrationAction.class);
+	private static final Logger logger = Log4J
+			.getLogger(AdministrationAction.class);
 
 	public static final int REQUIRED_ADMIN_LEVEL_FOR_SUPPORT = 100;
 
@@ -105,15 +106,16 @@ public class AdministrationAction implements ActionListener {
 	}
 
 	public static int getLevelForCommand(String command) {
-		Integer val=REQUIRED_ADMIN_LEVELS.get(command);
-		if(val==null) {
+		Integer val = REQUIRED_ADMIN_LEVELS.get(command);
+		if (val == null) {
 			return -1;
 		}
 
 		return val;
 	}
 
-	public static boolean isPlayerAllowedToExecuteAdminCommand(Player player, String command, boolean verbose) {
+	public static boolean isPlayerAllowedToExecuteAdminCommand(Player player,
+			String command, boolean verbose) {
 		// get adminlevel of player and required adminlevel for this command
 		int adminlevel = player.getAdminLevel();
 		Integer required = REQUIRED_ADMIN_LEVELS.get(command);
@@ -122,25 +124,30 @@ public class AdministrationAction implements ActionListener {
 		if (required == null) {
 			logger.error("Unknown command " + command);
 			if (verbose) {
-				player.sendPrivateText("Sorry, command \"" + command + "\" is unknown.");
+				player.sendPrivateText("Sorry, command \"" + command
+						+ "\" is unknown.");
 			}
 			return false;
 		}
 
 		if (adminlevel < required.intValue()) {
 			// not allowed
-			logger.warn("Player " + player.getName() + " with admin level " + adminlevel
-			        + " tried to run admin command " + command + " which requires level " + required + ".");
+			logger.warn("Player " + player.getName() + " with admin level "
+					+ adminlevel + " tried to run admin command " + command
+					+ " which requires level " + required + ".");
 
 			// Notify the player if verbose is set.
 			if (verbose) {
 
 				// is this player an admin at all?
 				if (adminlevel == 0) {
-					player.sendPrivateText("Sorry, you need to be an admin to run \"" + command + "\".");
+					player
+							.sendPrivateText("Sorry, you need to be an admin to run \""
+									+ command + "\".");
 				} else {
-					player.sendPrivateText("Your admin level is only " + adminlevel + ", but a level of " + required
-					        + " is required to run \"" + command + "\".");
+					player.sendPrivateText("Your admin level is only "
+							+ adminlevel + ", but a level of " + required
+							+ " is required to run \"" + command + "\".");
 				}
 			}
 			return false;
@@ -194,16 +201,18 @@ public class AdministrationAction implements ActionListener {
 
 	private void onSupportAnswer(Player player, RPAction action) {
 		if (action.has("target") && action.has("text")) {
-			String message = player.getName() + " answers " + Grammar.suffix_s(action.get("target"))
-			        + " support question: " + action.get("text");
+			String message = player.getName() + " answers "
+					+ Grammar.suffix_s(action.get("target"))
+					+ " support question: " + action.get("text");
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "supportanswer", action.get("target"),
-			        action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"supportanswer", action.get("target"), action.get("text"));
 
 			boolean found = false;
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				if (p.getName().equals(action.get("target"))) {
-					p.sendPrivateText("Support (" + player.getName() + ") tells you: " + action.get("text"));
+					p.sendPrivateText("Support (" + player.getName()
+							+ ") tells you: " + action.get("text"));
 					p.notifyWorldAboutChanges();
 					found = true;
 				}
@@ -214,7 +223,8 @@ public class AdministrationAction implements ActionListener {
 			}
 
 			if (!found) {
-				player.sendPrivateText(action.get("target") + " is not currently logged in.");
+				player.sendPrivateText(action.get("target")
+						+ " is not currently logged in.");
 			}
 		}
 	}
@@ -222,14 +232,16 @@ public class AdministrationAction implements ActionListener {
 	private void onTellEverybody(Player player, RPAction action) {
 		if (action.has("text")) {
 			String message = "Administrator SHOUTS: " + action.get("text");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "tellall", action.get("text"));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"tellall", action.get("text"));
 
 			StendhalRPAction.shout(message);
 		}
 	}
 
 	private void onTeleport(Player player, RPAction action) {
-		if (action.has("target") && action.has("zone") && action.has("x") && action.has("y")) {
+		if (action.has("target") && action.has("zone") && action.has("x")
+				&& action.has("y")) {
 			String name = action.get("target");
 			Player teleported = StendhalRPRuleProcessor.get().getPlayer(name);
 
@@ -256,12 +268,14 @@ public class AdministrationAction implements ActionListener {
 				return;
 			}
 
-			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get().getRPZone(zoneid);
+			StendhalRPZone zone = (StendhalRPZone) StendhalRPWorld.get()
+					.getRPZone(zoneid);
 			int x = action.getInt("x");
 			int y = action.getInt("y");
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleport", action.get("target"),
-			        zone.getID().getID(), Integer.toString(x), Integer.toString(y));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"teleport", action.get("target"), zone.getID().getID(),
+					Integer.toString(x), Integer.toString(y));
 			teleported.teleport(zone, x, y, null, player);
 		}
 	}
@@ -287,13 +301,13 @@ public class AdministrationAction implements ActionListener {
 			int y = teleported.getY();
 
 			player.teleport(zone, x, y, null, player);
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleportto", action.get("target"),
-			        zone.getID().getID(), Integer.toString(x), Integer.toString(y));
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"teleportto", action.get("target"), zone.getID().getID(),
+					Integer.toString(x), Integer.toString(y));
 		}
 	}
 
 	private void onAdminLevel(Player player, RPAction action) {
-		
 
 		if (action.has("target")) {
 
@@ -315,41 +329,46 @@ public class AdministrationAction implements ActionListener {
 				try {
 					newlevel = Integer.parseInt(action.get("newlevel"));
 				} catch (NumberFormatException e) {
-					player.sendPrivateText("The new adminlevel needs to be an Integer");
-					
+					player
+							.sendPrivateText("The new adminlevel needs to be an Integer");
+
 					return;
 				}
 
 				// Check level is on the range
-				int max=0;
+				int max = 0;
 
-				for(int level: REQUIRED_ADMIN_LEVELS.values()) {
-					if(level>max) {
-						max=level;
+				for (int level : REQUIRED_ADMIN_LEVELS.values()) {
+					if (level > max) {
+						max = level;
 					}
 				}
 
 				// If level is beyond max level, just set it to max.
-				if(newlevel>max) {
-					newlevel=max;
+				if (newlevel > max) {
+					newlevel = max;
 				}
 
 				int mylevel = player.getAdminLevel();
 				if (mylevel < REQUIRED_ADMIN_LEVEL_FOR_SUPER) {
-					response = "Sorry, but you need an adminlevel of " + REQUIRED_ADMIN_LEVEL_FOR_SUPER
-					        + " to change adminlevel.";
+					response = "Sorry, but you need an adminlevel of "
+							+ REQUIRED_ADMIN_LEVEL_FOR_SUPER
+							+ " to change adminlevel.";
 
-					/*if (mylevel < oldlevel) {
-					 response = "Sorry, but the adminlevel of " + target.getName() + " is " + oldlevel + ", and your level is only " + mylevel + ".";
-					 } else if (mylevel < newlevel) {
-					 response = "Sorry, you cannot set an adminlevel of " + newlevel + ", because your level is only " + mylevel + ".";
+					/*
+					 * if (mylevel < oldlevel) { response = "Sorry, but the
+					 * adminlevel of " + target.getName() + " is " + oldlevel + ",
+					 * and your level is only " + mylevel + "."; } else if
+					 * (mylevel < newlevel) { response = "Sorry, you cannot set
+					 * an adminlevel of " + newlevel + ", because your level is
+					 * only " + mylevel + ".";
 					 */
 				} else {
 
 					// OK, do the change
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
-							"adminlevel", target.getName(),
-					        "adminlevel", action.get("newlevel"));
+					StendhalRPRuleProcessor.get().addGameEvent(
+							player.getName(), "adminlevel", target.getName(),
+							"adminlevel", action.get("newlevel"));
 					target.put("adminlevel", newlevel);
 					target.update();
 					target.notifyWorldAboutChanges();
@@ -357,7 +376,7 @@ public class AdministrationAction implements ActionListener {
 					response = "Changed adminlevel of " + target.getName()
 							+ " from " + oldlevel + " to " + newlevel + ".";
 					target.sendPrivateText(player.getName()
-							+ " changed your adminlevel from " +  + oldlevel
+							+ " changed your adminlevel from " + +oldlevel
 							+ " to " + newlevel + ".");
 				}
 			}
@@ -365,13 +384,12 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText(response);
 		}
 
-		
 	}
 
 	private void onAlter(Player player, RPAction action) {
-		
 
-		if (action.has("target") && action.has("stat") && action.has("mode") && action.has("value")) {
+		if (action.has("target") && action.has("stat") && action.has("mode")
+				&& action.has("value")) {
 			Entity changed = getTarget(player, action);
 
 			if (changed == null) {
@@ -383,13 +401,16 @@ public class AdministrationAction implements ActionListener {
 			String stat = action.get("stat");
 
 			if (stat.equals("name") && (changed instanceof Player)) {
-				logger.error("DENIED: Admin " + player.getName() + " trying to change player " + action.get("target") + "'s name");
+				logger.error("DENIED: Admin " + player.getName()
+						+ " trying to change player " + action.get("target")
+						+ "'s name");
 				player.sendPrivateText("Sorry, name cannot be changed.");
 				return;
 			}
 
 			if (stat.equals("adminlevel")) {
-				player.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
+				player
+						.sendPrivateText("Use #/adminlevel #<playername> #[<newlevel>] to display or change adminlevel.");
 				return;
 			}
 
@@ -397,17 +418,22 @@ public class AdministrationAction implements ActionListener {
 
 			boolean isNumerical = false;
 
-			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE, stat);
-			if(type==null) {				
-				player.sendPrivateText("Attribute you are altering is not defined in RPClass("+changed.getRPClass().getName()+")");
+			Definition type = clazz.getDefinition(DefinitionClass.ATTRIBUTE,
+					stat);
+			if (type == null) {
+				player
+						.sendPrivateText("Attribute you are altering is not defined in RPClass("
+								+ changed.getRPClass().getName() + ")");
 				return;
 			}
 
-			if ((type.getType() == Type.BYTE) || (type.getType() == Type.SHORT) || (type.getType() == Type.INT)) {
+			if ((type.getType() == Type.BYTE) || (type.getType() == Type.SHORT)
+					|| (type.getType() == Type.INT)) {
 				isNumerical = true;
 			}
 
-			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE, stat)) {
+			if (changed.getRPClass().hasDefinition(DefinitionClass.ATTRIBUTE,
+					stat)) {
 				String value = action.get("value");
 				String mode = action.get("mode");
 
@@ -421,44 +447,55 @@ public class AdministrationAction implements ActionListener {
 						numberValue = changed.getInt(stat) - numberValue;
 					}
 
-					if (stat.equals("hp") && (changed.getInt("base_hp") < numberValue)) {
-						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
-						        + Grammar.suffix_s(action.get("target")) + " HP over its Base HP");
+					if (stat.equals("hp")
+							&& (changed.getInt("base_hp") < numberValue)) {
+						logger.error("DENIED: Admin " + player.getName()
+								+ " trying to set player "
+								+ Grammar.suffix_s(action.get("target"))
+								+ " HP over its Base HP");
 						return;
 					}
 
-					if (stat.equals("hp") && numberValue==0) {
-						logger.error("DENIED: Admin " + player.getName() + " trying to set player "
-						        + Grammar.suffix_s(action.get("target")) + " HP to 0, making it so unkillable.");
+					if (stat.equals("hp") && numberValue == 0) {
+						logger.error("DENIED: Admin " + player.getName()
+								+ " trying to set player "
+								+ Grammar.suffix_s(action.get("target"))
+								+ " HP to 0, making it so unkillable.");
 						return;
 					}
 
 					switch (type.getType()) {
-						case BYTE:
-							if ((numberValue > Byte.MAX_VALUE) || (numberValue < Byte.MIN_VALUE)) {
-								return;
-							}
-							break;
-						case SHORT:
-							if ((numberValue > Short.MAX_VALUE) || (numberValue < Short.MIN_VALUE)) {
-								return;
-							}
-							break;
-						case INT:
-							if ((numberValue > Integer.MAX_VALUE) || (numberValue < Integer.MIN_VALUE)) {
-								return;
-							}
-							break;
+					case BYTE:
+						if ((numberValue > Byte.MAX_VALUE)
+								|| (numberValue < Byte.MIN_VALUE)) {
+							return;
+						}
+						break;
+					case SHORT:
+						if ((numberValue > Short.MAX_VALUE)
+								|| (numberValue < Short.MIN_VALUE)) {
+							return;
+						}
+						break;
+					case INT:
+						if ((numberValue > Integer.MAX_VALUE)
+								|| (numberValue < Integer.MIN_VALUE)) {
+							return;
+						}
+						break;
 					}
 
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "alter", action.get("target"), stat,
-					        Integer.toString(numberValue));
+					StendhalRPRuleProcessor.get().addGameEvent(
+							player.getName(), "alter", action.get("target"),
+							stat, Integer.toString(numberValue));
 					changed.put(stat, numberValue);
 				} else {
 					// Can be only setif value is not a number
 					if (mode.equals("set")) {
-						StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "alter", action.get("target"),
-						        stat, action.get("value"));
+						StendhalRPRuleProcessor.get()
+								.addGameEvent(player.getName(), "alter",
+										action.get("target"), stat,
+										action.get("value"));
 						changed.put(stat, action.get("value"));
 					}
 				}
@@ -468,11 +505,9 @@ public class AdministrationAction implements ActionListener {
 			}
 		}
 
-		
 	}
 
 	private void onAlterCreature(Player player, RPAction action) {
-		
 
 		if (action.has("target") && action.has("text")) {
 			Entity changed = getTarget(player, action);
@@ -490,8 +525,9 @@ public class AdministrationAction implements ActionListener {
 
 			String[] parts = stat.split("/");
 			if (changed instanceof Creature && parts.length == 5) {
-				Creature creature=(Creature)changed;
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "alter", action.get("target"), stat);
+				Creature creature = (Creature) changed;
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						"alter", action.get("target"), stat);
 
 				creature.setName(parts[0]);
 				creature.setATK(Integer.parseInt(parts[1]));
@@ -501,15 +537,12 @@ public class AdministrationAction implements ActionListener {
 
 				creature.update();
 				creature.notifyWorldAboutChanges();
-			} else {
 			}
 		}
 
-		
 	}
 
 	private void onSummon(Player player, RPAction action) {
-		
 
 		if (action.has("creature") && action.has("x") && action.has("y")) {
 			StendhalRPZone zone = player.getZone();
@@ -517,23 +550,27 @@ public class AdministrationAction implements ActionListener {
 			int y = action.getInt("y");
 
 			if (!zone.collides(player, x, y)) {
-				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+				EntityManager manager = StendhalRPWorld.get().getRuleManager()
+						.getEntityManager();
 				String type = action.get("creature");
 
 				Entity entity = null;
 				// Is the entity a creature
 				if (manager.isCreature(type)) {
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
+					StendhalRPRuleProcessor.get().addGameEvent(
+							player.getName(), "summon", type);
 					entity = new RaidCreature(manager.getCreature(type));
 					StendhalRPRuleProcessor.get().addNPC((Creature) entity);
 				} else if (manager.isItem(type)) {
-					StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summon", type);
+					StendhalRPRuleProcessor.get().addGameEvent(
+							player.getName(), "summon", type);
 					entity = manager.getItem(type);
 				}
 
-				if(entity==null) {
+				if (entity == null) {
 					logger.info("onSummon: Entity \"" + type + "\" not found.");
-					player.sendPrivateText("onSummon: Entity \"" + type + "\" not found.");
+					player.sendPrivateText("onSummon: Entity \"" + type
+							+ "\" not found.");
 					return;
 				}
 
@@ -543,11 +580,9 @@ public class AdministrationAction implements ActionListener {
 			}
 		}
 
-		
 	}
 
 	private void onSummonAt(Player player, RPAction action) {
-		
 
 		if (action.has("target") && action.has("slot") && action.has("item")) {
 			String name = action.get("target");
@@ -561,25 +596,30 @@ public class AdministrationAction implements ActionListener {
 
 			String slotName = action.get("slot");
 			if (!changed.hasSlot(slotName)) {
-				logger.debug("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
-				player.sendPrivateText("Player \"" + name + "\" does not have an RPSlot named \"" + slotName + "\".");
+				logger.debug("Player \"" + name
+						+ "\" does not have an RPSlot named \"" + slotName
+						+ "\".");
+				player.sendPrivateText("Player \"" + name
+						+ "\" does not have an RPSlot named \"" + slotName
+						+ "\".");
 				return;
 			}
 
-			EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+			EntityManager manager = StendhalRPWorld.get().getRuleManager()
+					.getEntityManager();
 			String type = action.get("item");
 
 			// Is the entity an item
 			if (manager.isItem(type)) {
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "summonat", changed.getName(),
-				        slotName, type);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						"summonat", changed.getName(), slotName, type);
 				Item item = manager.getItem(type);
 
 				if (action.has("amount") && (item instanceof StackableItem)) {
 					((StackableItem) item).setQuantity(action.getInt("amount"));
 				}
 
-				if (! changed.equip(slotName, item)) {
+				if (!changed.equip(slotName, item)) {
 					player.sendPrivateText("The slot is full.");
 				}
 			} else {
@@ -588,32 +628,33 @@ public class AdministrationAction implements ActionListener {
 
 		}
 
-		
 	}
 
 	private void onInvisible(Player player, RPAction action) {
-		
 
 		if (player.has("invisible")) {
 			player.remove("invisible");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "off");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"invisible", "off");
 		} else {
 			player.put("invisible", "");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "on");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"invisible", "on");
 		}
-		
+
 	}
 
 	private void onGhostMode(Player player, RPAction action) {
-		
 
 		if (player.has("ghostmode")) {
 			player.remove("ghostmode");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "off");
-			
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"ghostmode", "off");
+
 			player.remove("invisible");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "off");
-			
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"invisible", "off");
+
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOnline(player.getName());
 			}
@@ -623,10 +664,12 @@ public class AdministrationAction implements ActionListener {
 			 * When we enter ghostmode we want our player to be also invisible.
 			 */
 			player.put("invisible", "");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "invisible", "on");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"invisible", "on");
 
 			player.put("ghostmode", "");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "ghostmode", "on");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"ghostmode", "on");
 
 			for (Player p : StendhalRPRuleProcessor.get().getPlayers()) {
 				p.notifyOffline(player.getName());
@@ -635,24 +678,23 @@ public class AdministrationAction implements ActionListener {
 
 		player.notifyWorldAboutChanges();
 
-		
 	}
 
 	private void onTeleClickMode(Player player, RPAction action) {
-		
 
 		if (player.has("teleclickmode")) {
 			player.remove("teleclickmode");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleclickmode", "off");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"teleclickmode", "off");
 		} else {
 			player.put("teleclickmode", "");
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "teleclickmode", "on");
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"teleclickmode", "on");
 		}
-		
+
 	}
 
 	private void onInspect(Player player, RPAction action) {
-		
 
 		Entity target = getTarget(player, action);
 
@@ -669,20 +711,26 @@ public class AdministrationAction implements ActionListener {
 
 			// It would be nice if the entity's type would be shown, but I don't
 			// know if the type attribute is mandatory.
-			//st.append("Inspected " + inspected.get("type") + " is called " + inspected.getName() + " and has attributes:");
-			st.append("Inspected entity is called \"" + inspected.getName() + "\" and has the following attributes:");
-			//			st.append(target.toString());
-			//			st.append("\n===========================\n");
+			// st.append("Inspected " + inspected.get("type") + " is called " +
+			// inspected.getName() + " and has attributes:");
+			st.append("Inspected entity is called \"" + inspected.getName()
+					+ "\" and has the following attributes:");
+			// st.append(target.toString());
+			// st.append("\n===========================\n");
 			st.append("\nID:     " + inspected.getID());
-			st.append("\nATK:    " + inspected.getATK() + "(" + inspected.getATKXP() + ")");
-			st.append("\nDEF:    " + inspected.getDEF() + "(" + inspected.getDEFXP() + ")");
-			st.append("\nHP:     " + inspected.getHP() + " / " + inspected.getBaseHP());
+			st.append("\nATK:    " + inspected.getATK() + "("
+					+ inspected.getATKXP() + ")");
+			st.append("\nDEF:    " + inspected.getDEF() + "("
+					+ inspected.getDEFXP() + ")");
+			st.append("\nHP:     " + inspected.getHP() + " / "
+					+ inspected.getBaseHP());
 			st.append("\nXP:     " + inspected.getXP());
 			st.append("\nLevel:  " + inspected.getLevel());
 
 			st.append("\nequips");
 			for (RPSlot slot : inspected.slots()) {
-				if (slot.getName().equals("!buddy") || slot.getName().equals("!ignore")) {
+				if (slot.getName().equals("!buddy")
+						|| slot.getName().equals("!ignore")) {
 					continue;
 				}
 				st.append("\n    Slot " + slot.getName() + ": ");
@@ -703,7 +751,8 @@ public class AdministrationAction implements ActionListener {
 							item = object.get("name");
 						}
 						if (object instanceof StackableItem) {
-							st.append("[" + item + " Q=" + object.get("quantity") + "], ");
+							st.append("[" + item + " Q="
+									+ object.get("quantity") + "], ");
 						} else {
 							st.append("[" + item + "], ");
 						}
@@ -711,15 +760,15 @@ public class AdministrationAction implements ActionListener {
 				}
 			}
 		} else {
-			st.append("Inspected entity has id " + action.getInt("targetid") + " and has attributes:\r\n");
+			st.append("Inspected entity has id " + action.getInt("targetid")
+					+ " and has attributes:\r\n");
 			st.append(target.toString());
 		}
 		player.sendPrivateText(st.toString());
-		
+
 	}
 
 	private void onDestroy(Player player, RPAction action) {
-		
 
 		Entity inspected = getTarget(player, action);
 
@@ -755,17 +804,19 @@ public class AdministrationAction implements ActionListener {
 		if (inspected.has("name")) {
 			name = inspected.get("name");
 		}
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "removed", name,
-		        StendhalRPWorld.get().getRPZone(inspected.getID()).getID().getID(), Integer.toString(inspected.getX()),
-		        Integer.toString(inspected.getY()));
+		StendhalRPRuleProcessor.get().addGameEvent(
+				player.getName(),
+				"removed",
+				name,
+				StendhalRPWorld.get().getRPZone(inspected.getID()).getID()
+						.getID(), Integer.toString(inspected.getX()),
+				Integer.toString(inspected.getY()));
 
 		player.sendPrivateText("Removed entity " + action.get("targetid"));
 
-		
 	}
 
 	private void onJail(Player player, RPAction action) {
-		
 
 		if (action.has("target") && action.has("minutes")) {
 			String target = action.get("target");
@@ -775,8 +826,8 @@ public class AdministrationAction implements ActionListener {
 			}
 			try {
 				int minutes = action.getInt("minutes");
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "jail", target,
-				        Integer.toString(minutes), reason);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						"jail", target, Integer.toString(minutes), reason);
 				Jail.get().imprison(target, player, minutes, reason);
 			} catch (NumberFormatException e) {
 				player.sendPrivateText("Usage: /jail name minutes reason");
@@ -785,11 +836,9 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText("Usage: /jail name minutes reason");
 		}
 
-		
 	}
 
 	private void onGag(Player player, RPAction action) {
-		
 
 		if (action.has("target") && action.has("minutes")) {
 			String target = action.get("target");
@@ -799,8 +848,8 @@ public class AdministrationAction implements ActionListener {
 			}
 			try {
 				int minutes = action.getInt("minutes");
-				StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "gag", target,
-				        Integer.toString(minutes), reason);
+				StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+						"gag", target, Integer.toString(minutes), reason);
 				GagManager.get().gag(target, player, minutes, reason);
 			} catch (NumberFormatException e) {
 				player.sendPrivateText("Usage: /gag name minutes reason");
@@ -809,7 +858,6 @@ public class AdministrationAction implements ActionListener {
 			player.sendPrivateText("Usage: /gag name minutes reason");
 		}
 
-		
 	}
 
 	/**
@@ -846,7 +894,8 @@ public class AdministrationAction implements ActionListener {
 		if (id != null) {
 			StendhalRPZone zone = player.getZone();
 
-			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone.getID().getID());
+			RPObject.ID oid = new RPObject.ID(Integer.parseInt(id), zone
+					.getID().getID());
 			if (zone.has(oid)) {
 				RPObject object = zone.get(oid);
 				if (object instanceof Entity) {

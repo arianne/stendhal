@@ -18,7 +18,6 @@ import marauroa.common.game.RPAction;
 
 public class BuddyAction implements ActionListener {
 
-
 	public static void register() {
 		BuddyAction buddy = new BuddyAction();
 		StendhalRPRuleProcessor.register("addbuddy", buddy);
@@ -42,20 +41,19 @@ public class BuddyAction implements ActionListener {
 	private void onAddBuddy(Player player, RPAction action) {
 		String who = action.get("target");
 		String online = "0";
-		Player buddy=StendhalRPRuleProcessor.get().getPlayer(who);
-		if ( buddy!= null && !buddy.isGhost()) {
+		Player buddy = StendhalRPRuleProcessor.get().getPlayer(who);
+		if (buddy != null && !buddy.isGhost()) {
 			online = "1";
 		}
 		player.setKeyedSlot("!buddy", "_" + who, online);
 
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "add", who);
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy",
+				"add", who);
 	}
 
 	private void onIgnore(Player player, RPAction action) {
 		int duration;
 		String reason;
-
-
 
 		if (action.has("target")) {
 			String who = action.get("target");
@@ -77,37 +75,34 @@ public class BuddyAction implements ActionListener {
 			}
 		}
 
-
 	}
 
 	private void onUnignore(Player player, RPAction action) {
-
 
 		if (action.has("target")) {
 			String who = action.get("target");
 
 			if (player.removeIgnore(who)) {
-				player.sendPrivateText(who + " was removed from your ignore list.");
+				player.sendPrivateText(who
+						+ " was removed from your ignore list.");
 			}
 		}
-
 
 	}
 
 	private void onRemoveBuddy(Player player, RPAction action) {
-
 
 		if (action.has("target")) {
 			String who = action.get("target");
 
 			player.setKeyedSlot("!buddy", "_" + who, null);
 
-			StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "buddy", "remove", who);
+			StendhalRPRuleProcessor.get().addGameEvent(player.getName(),
+					"buddy", "remove", who);
 
 			// TEMP! Supreceeded by /unignore
 			player.removeIgnore(who);
 		}
-
 
 	}
 }

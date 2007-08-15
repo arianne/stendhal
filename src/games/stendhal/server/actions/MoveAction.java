@@ -40,7 +40,6 @@ public class MoveAction implements ActionListener {
 
 	public void onAction(Player player, RPAction action) {
 
-
 		String type = action.get("type");
 
 		if (type.equals("move")) {
@@ -56,14 +55,15 @@ public class MoveAction implements ActionListener {
 		RPEntity tostop;
 
 		StopPushAction(RPEntity entity) {
-			tostop=entity;
+			tostop = entity;
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
 			tostop.stop();
 			tostop.notifyWorldAboutChanges();
-        }
+		}
 	}
+
 	private void push(Player player, RPAction action) {
 		if (action.has("target")) {
 			int targetObject = action.getInt("target");
@@ -75,19 +75,19 @@ public class MoveAction implements ActionListener {
 				/*
 				 * If object is a NPC we ignore the push action.
 				 */
-				if(object instanceof SpeakerNPC) {
+				if (object instanceof SpeakerNPC) {
 					return;
 				}
 
 				if (object instanceof RPEntity) {
-					RPEntity entity=(RPEntity)object;
-					if(player.canPush(entity) && player.nextTo(entity)) {
-						Direction dir=player.getDirectionToward(entity);
+					RPEntity entity = (RPEntity) object;
+					if (player.canPush(entity) && player.nextTo(entity)) {
+						Direction dir = player.getDirectionToward(entity);
 
-						int x=entity.getX()+dir.getdx();
-						int y=entity.getY()+dir.getdy();
+						int x = entity.getX() + dir.getdx();
+						int y = entity.getY() + dir.getdy();
 
-						if(!zone.collides(entity, x, y)) {
+						if (!zone.collides(entity, x, y)) {
 							entity.set(x, y);
 							entity.notifyWorldAboutChanges();
 							player.onPush(entity);
@@ -96,15 +96,14 @@ public class MoveAction implements ActionListener {
 				}
 			}
 		}
-    }
+	}
 
 	private void move(Player player, RPAction action) {
 
-
 		if (action.has("dir")) {
-			int dirval;
+			int dirval = action.getInt("dir");
 
-			if ((dirval = action.getInt("dir")) < 0) {
+			if (dirval < 0) {
 				player.removeClientDirection(Direction.build(-dirval));
 			} else {
 				player.addClientDirection(Direction.build(dirval));
@@ -116,14 +115,13 @@ public class MoveAction implements ActionListener {
 		TutorialNotifier.move(player);
 		player.notifyWorldAboutChanges();
 
-
 	}
 
 	private void moveTo(Player player, RPAction action) {
 
-
 		if (!player.getZone().isMoveToAllowed()) {
-			player.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
+			player
+					.sendPrivateText("Mouse movement is not possible here. Use you keyboard");
 			return;
 		}
 
@@ -134,12 +132,12 @@ public class MoveAction implements ActionListener {
 		if (action.has("x") && action.has("y")) {
 			int x = action.getInt("x");
 			int y = action.getInt("y");
-			if(!player.has("teleclickmode")) {
-				//Walk
+			if (!player.has("teleclickmode")) {
+				// Walk
 				List<Node> path = Path.searchPath(player, x, y - 2);
 				player.setPath(new FixedPath(path, false));
 			} else {
-				//Teleport
+				// Teleport
 				StendhalRPZone zone = player.getZone();
 				player.teleport(zone, x, y, null, null);
 			}
@@ -147,7 +145,6 @@ public class MoveAction implements ActionListener {
 
 		player.applyClientDirection(false);
 		player.notifyWorldAboutChanges();
-
 
 	}
 }

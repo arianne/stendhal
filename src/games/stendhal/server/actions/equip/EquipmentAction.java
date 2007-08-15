@@ -29,35 +29,31 @@ import marauroa.common.Logger;
 import marauroa.common.game.RPAction;
 
 /**
- * This listener handles all entity movements from a slot to
- * either another slot or the ground.
- *  
- *  The source can be:
- *    baseitem   - object id of the item which should be moved
- *    
- *  (optional, only when the source is inside a slot)    
- *    baseobject - (only when the item is in a slot) object id of the object containing the slot where the item is in
- *    baseslot   - (only when the item is in a slot) slot name where the item is in
- *  (/optional)    
- *    
- *    
- *  The target can be either an 'equip':
- *    type         - "equip"
- *    targetobject - object id of the container object 
- *    targetslot   - slot name where the item should be moved to
- *    
- *  or a 'drop':
- *    type         - "drop"
- *    x            - the x-coordinate on the ground  
- *    y            - the y-coordinate on the ground  
+ * This listener handles all entity movements from a slot to either another slot
+ * or the ground.
+ *
+ * The source can be: baseitem - object id of the item which should be moved
+ *
+ * (optional, only when the source is inside a slot) baseobject - (only when the
+ * item is in a slot) object id of the object containing the slot where the item
+ * is in baseslot - (only when the item is in a slot) slot name where the item
+ * is in (/optional)
+ *
+ *
+ * The target can be either an 'equip': type - "equip" targetobject - object id
+ * of the container object targetslot - slot name where the item should be moved
+ * to
+ *
+ * or a 'drop': type - "drop" x - the x-coordinate on the ground y - the
+ * y-coordinate on the ground
  */
 public class EquipmentAction implements ActionListener {
 
 	static final Logger logger = Log4J.getLogger(EquipmentAction.class);
 
 	/** the list of valid container classes */
-	private static final Class[] validContainerClasses = new Class[] { Player.class, Chest.class, Corpse.class };
-
+	private static final Class[] validContainerClasses = new Class[] {
+			Player.class, Chest.class, Corpse.class };
 
 	/** List of the valid container classes for easy access */
 	private List<Class> validContainerClassesList;
@@ -79,7 +75,7 @@ public class EquipmentAction implements ActionListener {
 	public void onAction(Player player, RPAction action) {
 
 		// HACK: No item transfer in jail (we don't want a jailed player to
-		//       create a new free character and give it all items.
+		// create a new free character and give it all items.
 		if (player.getZone().getID().getID().endsWith("_jail")) {
 			player.sendPrivateText("For security reasons, items may not be moved around in jail.");
 			return;
@@ -95,19 +91,19 @@ public class EquipmentAction implements ActionListener {
 	/** callback for the equip action */
 	private void onEquip(Player player, RPAction action) {
 		// get source and check it
-		logger.debug("Checking source object conditions: "+action);
+		logger.debug("Checking source object conditions: " + action);
 		SourceObject source = new SourceObject(action, player);
-		if (!source.isValid()) { 
+		if (!source.isValid()) {
 			logger.debug("Source is not valid");
 			return;
 		}
 
-		if(!source.checkDistance(player, EquipActionConsts.MAXDISTANCE)) {
+		if (!source.checkDistance(player, EquipActionConsts.MAXDISTANCE)) {
 			logger.debug("Source is not valid: source too far from player.");
 			return;
 		}
 
-		if(!source.checkClass(validContainerClassesList)) {
+		if (!source.checkClass(validContainerClassesList)) {
 			logger.debug("Source is not valid: Not valid class");
 			return;
 		}
@@ -124,27 +120,33 @@ public class EquipmentAction implements ActionListener {
 
 		logger.debug("Checking minimum level");
 		// check minimum level
-		if (entity.has("min_level") && player.getLevel() < entity.getInt("min_level")) {
-			player.sendPrivateText("You are not experienced enough to use this " + itemName);
+		if (entity.has("min_level")
+				&& player.getLevel() < entity.getInt("min_level")) {
+			player.sendPrivateText("You are not experienced enough to use this "
+							+ itemName);
 			return;
 		}
 
 		logger.debug("Checking if entity is bound");
-		if (entity.has("bound") && !player.getName().equals(entity.get("bound"))) {
-			player.sendPrivateText("This " + itemName + " is a special reward for " + entity.get("bound")
-			        + ". You do not deserve to use it.");
+		if (entity.has("bound")
+				&& !player.getName().equals(entity.get("bound"))) {
+			player.sendPrivateText("This " + itemName
+					+ " is a special reward for " + entity.get("bound")
+					+ ". You do not deserve to use it.");
 			return;
 		}
 
 		logger.debug("Checking destination");
 		// get destination and check it
 		DestinationObject dest = new DestinationObject(action, player);
-		if (!dest.isValid() || !dest.checkDistance(player, EquipActionConsts.MAXDISTANCE) || !dest.checkClass(validContainerClassesList)) {
+		if (!dest.isValid()
+				|| !dest.checkDistance(player, EquipActionConsts.MAXDISTANCE)
+				|| !dest.checkClass(validContainerClassesList)) {
 			// destination is not valid
 			logger.debug("Destination is not valid");
 			return;
 		}
-		
+
 		logger.debug("Equip action agreed");
 
 		// looks good
@@ -153,7 +155,9 @@ public class EquipmentAction implements ActionListener {
 		if (entity instanceof StackableItem) {
 			amount = ((StackableItem) entity).getQuantity();
 		}
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "equip",
+				itemName, source.getSlot(), dest.getSlot(),
+				Integer.toString(amount));
 
 		player.updateItemAtkDef();
 	}
@@ -161,15 +165,17 @@ public class EquipmentAction implements ActionListener {
 	private void onDrop(Player player, RPAction action) {
 		// get source and check it
 		SourceObject source = new SourceObject(action, player);
-		if (!source.isValid() || !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
-		        || !source.checkClass(validContainerClassesList)) {
+		if (!source.isValid()
+				|| !source.checkDistance(player, EquipActionConsts.MAXDISTANCE)
+				|| !source.checkClass(validContainerClassesList)) {
 			// source is not valid
 			return;
 		}
 
 		// get destination and check it
 		DestinationObject dest = new DestinationObject(action, player);
-		if (!dest.isValid() || !dest.checkDistance(player, 5.0) || !dest.checkClass(validContainerClassesList)) {
+		if (!dest.isValid() || !dest.checkDistance(player, 5.0)
+				|| !dest.checkClass(validContainerClassesList)) {
 			logger.warn("destination is invalid. action is: " + action);
 			// destination is not valid
 			return;
@@ -182,16 +188,19 @@ public class EquipmentAction implements ActionListener {
 		} else if (entity instanceof Item) {
 			itemName = "item";
 		}
-		
+
 		source.moveTo(dest, player);
 		if (entity.has("bound")) {
-			player.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in " + (Item.DEGRADATION_TIMEOUT / 60) + " minutes, as all items do. But in this case there is no way to restore it.");
+			player
+					.sendPrivateText("You put a valuable item on the ground. Please note that it will expire in "
+							+ (Item.DEGRADATION_TIMEOUT / 60)
+							+ " minutes, as all items do. But in this case there is no way to restore it.");
 		}
 		int amount = source.getQuantity();
-		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop", itemName, source.getSlot(), dest.getSlot(), Integer.toString(amount));
+		StendhalRPRuleProcessor.get().addGameEvent(player.getName(), "drop",
+				itemName, source.getSlot(), dest.getSlot(),
+				Integer.toString(amount));
 		player.updateItemAtkDef();
 	}
-
-
 
 }

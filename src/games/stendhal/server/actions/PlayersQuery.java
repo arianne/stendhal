@@ -41,8 +41,8 @@ public class PlayersQuery implements ActionListener {
 
 	public void onWho(Player player, RPAction action) {
 
-
-		final int REQUIRED_LEVEL_TO_SEE_GHOST=AdministrationAction.getLevelForCommand("ghostmode");
+		final int REQUIRED_LEVEL_TO_SEE_GHOST = AdministrationAction
+				.getLevelForCommand("ghostmode");
 
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (player.has("title")) {
@@ -51,22 +51,32 @@ public class PlayersQuery implements ActionListener {
 		rules.addGameEvent(player.getName(), "who");
 
 		StringBuilder online = new StringBuilder();
-		int amount=0;
+		int amount = 0;
 		for (Player p : rules.getPlayers()) {
-			if(!p.isGhost() || player.getAdminLevel()>REQUIRED_LEVEL_TO_SEE_GHOST) {
+			if (!p.isGhost()
+					|| player.getAdminLevel() > REQUIRED_LEVEL_TO_SEE_GHOST) {
 				amount++;
 			}
 		}
 
-		online.append( amount+ " Players online: ");
+		online.append(amount + " Players online: ");
 		for (Player p : getSortedPlayers()) {
-			if(!p.isGhost()  || player.getAdminLevel()>REQUIRED_LEVEL_TO_SEE_GHOST ) {
-				String playername=p.getName();
+			if (!p.isGhost()
+					|| player.getAdminLevel() > REQUIRED_LEVEL_TO_SEE_GHOST) {
+				String playername = p.getName();
 				if (p.has("title")) {
-					playername=p.get("title");
+					playername = p.get("title");
 				}
 
-				online.append(playername + "(" + (p.isGhost()?"!":"")+ p.getLevel() + ") ");
+				online.append(playername);
+
+				if (p.isGhost()) {
+					online.append("(!");
+				} else {
+					online.append("(");
+				}
+				online.append(p.getLevel());
+				online.append(") ");
 			}
 		}
 		player.sendPrivateText(online.toString());
@@ -93,7 +103,6 @@ public class PlayersQuery implements ActionListener {
 
 	public void onWhere(Player player, RPAction action) {
 
-
 		StendhalRPRuleProcessor rules = StendhalRPRuleProcessor.get();
 		if (action.has("target")) {
 			String whoName = action.get("target");
@@ -102,19 +111,21 @@ public class PlayersQuery implements ActionListener {
 
 			Player who = rules.getPlayer(whoName);
 			if (who != null && !who.isGhost()) {
-				player.sendPrivateText(who.getName() + " is in " + who.get("zoneid") + " at (" + who.getX() + ","
-				        + who.getY() + ")");
+				player.sendPrivateText(who.getName() + " is in "
+						+ who.get("zoneid") + " at (" + who.getX() + ","
+						+ who.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else if (whoName.equals("sheep") && player.hasSheep()) {
 				Sheep sheep = player.getSheep();
-				player.sendPrivateText("Your sheep is in " + sheep.get("zoneid") + " at (" + sheep.getX() + ","
-				        + sheep.getY() + ")");
+				player.sendPrivateText("Your sheep is in "
+						+ sheep.get("zoneid") + " at (" + sheep.getX() + ","
+						+ sheep.getY() + ")");
 				player.notifyWorldAboutChanges();
 			} else {
-				player.sendPrivateText("No player named \"" + action.get("target") + "\" is currently logged in.");
+				player.sendPrivateText("No player named \""
+						+ action.get("target") + "\" is currently logged in.");
 			}
 		}
-
 
 	}
 }
