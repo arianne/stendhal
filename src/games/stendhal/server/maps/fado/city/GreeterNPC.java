@@ -44,7 +44,7 @@ public class GreeterNPC implements ZoneConfigurator {
 	//
 
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC GreeterNPC = new SpeakerNPC("Xhiphin Zohos") {
+		SpeakerNPC greeterNPC = new SpeakerNPC("Xhiphin Zohos") {
 
 			@Override
 			protected void createPath() {
@@ -69,12 +69,12 @@ public class GreeterNPC implements ZoneConfigurator {
 				addGoodbye("Bye.");
 			}
 		};
-		npcs.add(GreeterNPC);
-		zone.assignRPObjectID(GreeterNPC);
-		GreeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
-		GreeterNPC.set(39, 28);
-		GreeterNPC.initHP(1000);
-		zone.add(GreeterNPC);
+		npcs.add(greeterNPC);
+		zone.assignRPObjectID(greeterNPC);
+		greeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
+		greeterNPC.set(39, 28);
+		greeterNPC.initHP(1000);
+		zone.add(greeterNPC);
 	}
 
 }

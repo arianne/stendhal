@@ -12,7 +12,7 @@ import java.util.Map;
 
 /**
  * Dressing rooms at fado hotel
- * 
+ *
  * @author kymara
  */
 public class BrideAssistantNPC implements ZoneConfigurator {
@@ -42,7 +42,7 @@ public class BrideAssistantNPC implements ZoneConfigurator {
 				addJob("I assist brides with getting dressed for their wedding.");
 				addHelp("Just tell me if you want to #wear #a #gown for your wedding.");
 				addQuest("You don't want to be thinking about that kind of thing ahead of your big day!");
-				addReply("gown","Every bride needs a beautiful wedding dress! It's a charge of 100 money if you want to #wear #a #gown.");
+				addReply("gown", "Every bride needs a beautiful wedding dress! It's a charge of 100 money if you want to #wear #a #gown.");
 				addGoodbye("Have a lovely time!");
 
 				Map<String, Integer> priceList = new HashMap<String, Integer>();

@@ -39,7 +39,7 @@ public class TellerNPC implements ZoneConfigurator {
 	//
 
 	private void buildNPC(StendhalRPZone zone, Map<String, String> attributes) {
-		SpeakerNPC BankNPC = new SpeakerNPC("Yance") {
+		SpeakerNPC bankNPC = new SpeakerNPC("Yance") {
 
 			@Override
 			protected void createPath() {
@@ -58,11 +58,11 @@ public class TellerNPC implements ZoneConfigurator {
 			}
 		};
 
-		npcs.add(BankNPC);
-		zone.assignRPObjectID(BankNPC);
-		BankNPC.put("class", "youngnpc");
-		BankNPC.set(15, 1);
-		BankNPC.initHP(1000);
-		zone.add(BankNPC);
+		npcs.add(bankNPC);
+		zone.assignRPObjectID(bankNPC);
+		bankNPC.put("class", "youngnpc");
+		bankNPC.set(15, 1);
+		bankNPC.initHP(1000);
+		zone.add(bankNPC);
 	}
 }
