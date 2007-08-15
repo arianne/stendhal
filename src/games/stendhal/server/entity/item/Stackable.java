@@ -14,21 +14,21 @@ package games.stendhal.server.entity.item;
 
 /**
  * this interface tags all items which are stackable.
- * 
+ *
  * @author mtotz
  */
 public interface Stackable {
 
 	/** returns the quantity */
-	public int getQuantity();
+	int getQuantity();
 
 	/** sets the quantity */
-	public void setQuantity(int amount);
+	void setQuantity(int amount);
 
 	/** adds the quantity of the other Stackable to this */
-	public int add(Stackable other);
+	int add(Stackable other);
 
 	/** returns true when both stackables are of the same type and can be merged */
-	public boolean isStackable(Stackable other);
+	boolean isStackable(Stackable other);
 
 }

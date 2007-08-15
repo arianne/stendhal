@@ -35,7 +35,7 @@ public class Token extends Item {
 		 *
 		 * @param player the player moving it
 		 */
-		public void onTokenMoved(Player player);
+		void onTokenMoved(Player player);
 	}
 
 	/**
