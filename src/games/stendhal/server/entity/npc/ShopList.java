@@ -3,6 +3,7 @@ package games.stendhal.server.entity.npc;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Singleton class that contains inventory and prices of NPC stores.
@@ -23,7 +24,7 @@ public class ShopList {
 		shops.add("food&drinks", "ham", 80);
 
 		shops.add("buyfood", "cheese", 5);
-		shops.add("buyfood", "meat", 10);		
+		shops.add("buyfood", "meat", 10);
 		shops.add("buyfood", "spinach", 15);
 		shops.add("buyfood", "ham", 20);
 		shops.add("buyfood", "flour", 25);
@@ -89,7 +90,7 @@ public class ShopList {
 		shops.add("buyiron", "iron", 75);
 
 		shops.add("buygrain", "grain", 1);
-		
+
 		shops.add("sellrings", "engagement_ring", 5000);
 		// gold and gemstones
 		shops.add("buyprecious", "gold_bar", 250);
@@ -133,7 +134,7 @@ public class ShopList {
 		shops.add("buyrare3", "shadow_legs", 5000);
 		shops.add("buyrare3", "golden_armor", 7000);
 		shops.add("buyrare3", "shadow_armor", 9000);
-		shops.add("buyrare3", "golden_shield", 10000);	
+		shops.add("buyrare3", "golden_shield", 10000);
 		shops.add("buyrare3", "shadow_shield", 15000);
 
 		// less rare armor shop (kobold city -  kobolds drop some of these things)
@@ -145,7 +146,7 @@ public class ShopList {
 		shops.add("buystuff2", "unicorn_shield", 125);
 		shops.add("buystuff2", "viking_helmet", 250);
 
-		shops.add("sellstuff2", "leather_boots", 50);		
+		shops.add("sellstuff2", "leather_boots", 50);
 		shops.add("sellstuff2", "studded_helmet", 60);
 		shops.add("sellstuff2", "studded_shield", 80);
 		shops.add("sellstuff2", "sword", 90);
@@ -176,7 +177,7 @@ public class ShopList {
 		shops.add("boots&helm", "shadow_helmet", 4000);
 		shops.add("boots&helm", "horned_golden_helmet", 5000);
 		shops.add("boots&helm", "chaos_helmet", 6000);
-		shops.add("boots&helm", "magic_chain_helmet", 8000);		
+		shops.add("boots&helm", "magic_chain_helmet", 8000);
 		shops.add("boots&helm", "black_helmet", 10000);
 
 		// buy axes (woodcutter)
@@ -184,7 +185,7 @@ public class ShopList {
 		shops.add("buyaxe", "golden_twoside_axe", 4000);
 		shops.add("buyaxe", "magic_twoside_axe", 6000);
 		shops.add("buyaxe", "durin_axe", 8000);
-		shops.add("buyaxe", "black_scythe", 9000);		
+		shops.add("buyaxe", "black_scythe", 9000);
                 shops.add("buyaxe", "chaos_axe", 10000);
                 shops.add("buyaxe", "black_halberd", 12000);
 
@@ -195,13 +196,13 @@ public class ShopList {
 		shops.add("buychaos", "chaos_armor", 20000);
 	}
 
-	static private ShopList instance;
+	private static ShopList instance;
 
 	/**
 	 * Returns the Singleton instance.
 	 * @return The instance
 	 */
-	static public ShopList get() {
+	public static ShopList get() {
 		if (instance == null) {
 			instance = new ShopList();
 		}
@@ -223,8 +224,8 @@ public class ShopList {
 
 		StringBuffer sb = new StringBuffer(header + "\n");
 
-		for (String item : items.keySet()) {
-			sb.append(item + " \t" + items.get(item) + "\n");
+		for (Entry<String, Integer> entry : items.entrySet()) {
+			sb.append(entry.getKey() + " \t" + entry.getValue() + "\n");
 		}
 
 		return sb.toString();
