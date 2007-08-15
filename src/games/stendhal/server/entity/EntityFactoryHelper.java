@@ -77,7 +77,7 @@ public class EntityFactoryHelper {
 			/*
 			 * Sync the internal state
 			 */
-			if(!attributes.isEmpty()) {
+			if (!attributes.isEmpty()) {
 				entity.update();
 			}
 		}
