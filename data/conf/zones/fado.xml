@@ -100,7 +100,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
            </entity>
            
            <entity x="2" y="8">
-             <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+             <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
                <parameter name="width">5</parameter>
                <parameter name="height">2</parameter>
              </implementation>
@@ -113,7 +113,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
            </entity>
            
            <entity x="2" y="12">
-             <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+             <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
                <parameter name="width">5</parameter>
                <parameter name="height">2</parameter>
              </implementation>
@@ -126,7 +126,7 @@ You'll definitely need a wedding ring. Come here to get yours cast once you are 
            </entity>
            
            <entity x="2" y="16">
-             <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+             <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
                <parameter name="width">5</parameter>
                <parameter name="height">2</parameter>
              </implementation>

@@ -243,7 +243,7 @@ West: Semos
     </entity>
 <!--
     <entity x="3" y="13">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">3</parameter>
      </implementation>
@@ -256,7 +256,7 @@ West: Semos
     </entity>
 <!--
     <entity x="5" y="13">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">3</parameter>
      </implementation>
@@ -270,7 +270,7 @@ West: Semos
     </entity>
 <!--
     <entity x="10" y="13">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">3</parameter>
      </implementation>

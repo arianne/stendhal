@@ -785,7 +785,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="2" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -796,7 +796,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="8" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -807,7 +807,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="14" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -818,7 +818,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="20" y="3">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -829,7 +829,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="2" y="10">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -840,7 +840,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="8" y="10">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -851,7 +851,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="14" y="10">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>
@@ -862,7 +862,7 @@ Holy mackerel! These chips are tasty.
     </entity>
 <!--
     <entity x="20" y="10">
-     <implementation class-name="games.stendhal.server.entity.OnePlayerArea">
+     <implementation class-name="games.stendhal.server.entity.area.OnePlayerArea">
       <parameter name="width">1</parameter>
       <parameter name="height">4</parameter>
      </implementation>

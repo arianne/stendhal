@@ -4,13 +4,15 @@
  * $Id$
  */
 
-package games.stendhal.server.entity;
+package games.stendhal.server.entity.area;
 
 //
 //
 
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.area.AreaEntity;
+import games.stendhal.server.entity.ActiveEntity;
+import games.stendhal.server.entity.Entity;
+import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.MovementListener;
 
