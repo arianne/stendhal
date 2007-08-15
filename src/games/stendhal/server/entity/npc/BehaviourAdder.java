@@ -15,10 +15,10 @@ class BehaviourAdder {
 
 	private static final Logger logger = Log4J.getLogger(BehaviourAdder.class);
 
-	private Engine engine ;
+	private Engine engine;
 
 	@Deprecated
-	private SpeakerNPC speakerNPC ;
+	private SpeakerNPC speakerNPC;
 
 	/**
 	 * creats a BehaviourAdder

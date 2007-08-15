@@ -26,8 +26,7 @@ import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 
 /**
- * Represents the behaviour of a NPC who is able to sell items
- * to a player.
+ * Represents the behaviour of a NPC who is able to sell items to a player.
  */
 public class SellerBehaviour extends MerchantBehaviour {
 
@@ -44,19 +43,23 @@ public class SellerBehaviour extends MerchantBehaviour {
 	/**
 	 * Creates a new SellerBehaviour with a pricelist.
 	 *
-	 * @param priceList list of item names and their prices
+	 * @param priceList
+	 *            list of item names and their prices
 	 */
 	public SellerBehaviour(Map<String, Integer> priceList) {
 		super(priceList);
 	}
 
 	/**
-	 * Transacts the sale that has been agreed on earlier via
-	 * setChosenItem() and setAmount().
-	 * @param seller The NPC who sells
-	 * @param player The player who buys
-	 * @return true iff the transaction was successful, that is when the
-	 *              player was able to equip the item(s).
+	 * Transacts the sale that has been agreed on earlier via setChosenItem()
+	 * and setAmount().
+	 *
+	 * @param seller
+	 *            The NPC who sells
+	 * @param player
+	 *            The player who buys
+	 * @return true iff the transaction was successful, that is when the player
+	 *         was able to equip the item(s).
 	 */
 	@Override
 	protected boolean transactAgreedDeal(SpeakerNPC seller, Player player) {
@@ -74,11 +77,12 @@ public class SellerBehaviour extends MerchantBehaviour {
 		if (item instanceof StackableItem) {
 			((StackableItem) item).setQuantity(getAmount());
 		} else {
-			if(getAmount()!=1) {
-				player.sendPrivateText("You can only buy StackableItems in amounts bigger than 1. Setting amount to 1.");
+			if (getAmount() != 1) {
+				player
+						.sendPrivateText("You can only buy StackableItems in amounts bigger than 1. Setting amount to 1.");
 			}
-			
-			setAmount(1);			
+
+			setAmount(1);
 		}
 
 		item.put("zoneid", player.get("zoneid"));
@@ -91,7 +95,8 @@ public class SellerBehaviour extends MerchantBehaviour {
 				seller.say("Congratulations! Here is your " + chosenItem + "!");
 				return true;
 			} else {
-				seller.say("Sorry, but you cannot equip the " + chosenItem + ".");
+				seller.say("Sorry, but you cannot equip the " + chosenItem
+						+ ".");
 				return false;
 			}
 		} else {

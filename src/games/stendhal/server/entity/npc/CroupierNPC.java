@@ -1,6 +1,5 @@
 package games.stendhal.server.entity.npc;
 
-import marauroa.common.Pair;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.entity.item.Dice;
 import games.stendhal.server.entity.item.Item;
@@ -10,6 +9,8 @@ import games.stendhal.server.util.Area;
 
 import java.awt.Rectangle;
 import java.util.List;
+
+import marauroa.common.Pair;
 
 public abstract class CroupierNPC extends SpeakerNPC {
 

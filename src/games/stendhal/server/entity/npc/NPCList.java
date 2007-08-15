@@ -23,7 +23,7 @@ public class NPCList {
 	 *
 	 * @return The instance
 	 */
-	static public NPCList get() {
+	public static NPCList get() {
 		if (instance == null) {
 			instance = new NPCList();
 		}
@@ -35,7 +35,7 @@ public class NPCList {
 	}
 
 	/**
-	 * Returns the NPC with the given name. 
+	 * Returns the NPC with the given name.
 	 * @param name The NPC's name
 	 * @return The NPC, or null if there is no NPC with this name
 	 */
@@ -47,7 +47,7 @@ public class NPCList {
 	 * Checks whether an NPC with the given name exists.
 	 *
 	 * @param name The NPC's name
-	 * @return true iff an NPC with the given name exists 
+	 * @return true iff an NPC with the given name exists
 	 */
 	public boolean has(String name) {
 		return contents.containsKey(name);

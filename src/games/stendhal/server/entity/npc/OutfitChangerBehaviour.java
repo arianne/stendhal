@@ -38,7 +38,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 	private int endurance;
 
 	private String wearOffMessage;
-	
+
 	// TODO: make this persistent, e.g. by replacing this list with one
 	// quest slot reserved for each OutfitChangerBehaviour.
 	private List<String> namesOfPlayersWithWornOffOutfits;
@@ -70,11 +70,11 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 				new Outfit(0, 82, null, null),
 				new Outfit(0, 83, null, null),
 				new Outfit(0, 84, null, null)));
-		
+
 		// wedding dress for brides
 		// it seems this must be an array as list even though it's only one item
 		outfitTypes.put("gown", Arrays.asList(new Outfit(null, null, 88, null)));
-		
+
 //		// wedding suit for grooms
 		// it seems this must be an array as list even though it's only one item
 		outfitTypes.put("suit", Arrays.asList(new Outfit(null, null, 87, null)));
@@ -133,30 +133,33 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			return false;
 		}
 	}
-	class OutwearClothes implements TurnListener{
-		WeakReference<Player> ref ;
+	class OutwearClothes implements TurnListener {
+		WeakReference<Player> ref;
 		String name;
 		public OutwearClothes(Player player) {
 			ref = new WeakReference<Player>(player);
-			name= player.getName();
+			name = player.getName();
 		}
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof OutwearClothes) {
-				OutwearClothes new_name = (OutwearClothes)obj ;
-				return ref.get()==new_name.ref.get();
-			}else{
+				OutwearClothes newName = (OutwearClothes) obj;
+				return ref.get() == newName.ref.get();
+			} else {
 				return false;
 			}
-			
+
 		}
 		@Override
 		public int hashCode() {
-			return ref.get()== null? 0 : ref.get().hashCode();
+			if (ref.get() == null) {
+				return 0;
+			}
+			return ref.get().hashCode();
 		}
-		
+
 		public void onTurnReached(int currentTurn, String message) {
-			
+
 			if (ref.get() != null) {
 				onWornOff(ref.get());
 			} else {
@@ -166,7 +169,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 			}
 		}
 
-	
+
 	}
 	/**
 	 * Tries to get back the bought/lent outfit and give the player
@@ -235,7 +238,7 @@ public class OutfitChangerBehaviour extends MerchantBehaviour implements  LoginL
 		}
 	}
 
-	
+
 	public void onLoggedIn(Player player) {
 		if (namesOfPlayersWithWornOffOutfits.contains(player.getName())) {
 			onWornOff(player);
