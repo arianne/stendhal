@@ -106,12 +106,12 @@ public class ConsumableItem extends StackableItem implements UseListener,
 			}
 
 			if (!user.nextTo((Entity) base)) {
-				user.sendPrivateText("Consumable item is too far");
+				user.sendPrivateText("The consumable item is too far away");
 				return false;
 			}
 		} else {
 			if (!nextTo(user)) {
-				user.sendPrivateText("Consumable item is too far");
+				user.sendPrivateText("The consumable item is too far away");
 				return false;
 			}
 		}
