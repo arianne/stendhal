@@ -31,7 +31,7 @@ public class Fire extends Entity implements UseListener {
 	}
 
 	public boolean onUsed(RPEntity user) {
-		user.sendPrivateText("No good idea!");
+		user.sendPrivateText("Not a good idea!");
 		return true;
 	}
 }
