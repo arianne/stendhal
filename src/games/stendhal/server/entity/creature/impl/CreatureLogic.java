@@ -176,8 +176,6 @@ public class CreatureLogic {
 				        + creature.getX(), next.getY() + creature.getY(), 1.0, 1.0)));
 			}
 		}
-		long time2 = System.nanoTime() - time;
-
 		if (logger.isDebugEnabled()) {
 			logger.debug(creature.getIDforDebug() + " Path is: " + nodes);
 		}
@@ -185,7 +183,7 @@ public class CreatureLogic {
 
 		if (Debug.CREATURES_DEBUG_SERVER) {
 			debug.append("generatepatrolpath;");
-			debug.append(time2);
+			debug.append(System.nanoTime() - time);
 			debug.append('|');
 		}
 	}
@@ -495,7 +493,7 @@ public class CreatureLogic {
 		 * Counter%2 makes that processing is split on turns so not all the creatures do it on the same one.
 		 * TODO: Improve this in a event oriented way.
 		 */
-		if (turnToThink++ % 2 == (counter%2)) {
+		if (turnToThink++ % 2 == (counter % 2)) {
 
 			if (!logicSleep()) {
 				return;
