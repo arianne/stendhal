@@ -276,11 +276,11 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 */
 	protected static void configurePortal(StendhalRPZone zone, PortalDesc pdesc) {
-		String className;
+		String className = pdesc.getImplementation();
 		Portal portal;
 		Object reference;
 
-		if ((className = pdesc.getImplementation()) == null) {
+		if (className == null) {
 			/*
 			 * Default implementation
 			 */
@@ -288,7 +288,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 		}
 
 		try {
-			if ((portal = (Portal) EntityFactoryHelper.create(className, pdesc.getParameters(), pdesc.getAttributes())) == null) {
+			portal = (Portal) EntityFactoryHelper.create(className, pdesc.getParameters(), pdesc.getAttributes());
+			if (portal == null) {
 				logger.warn("Unable to create portal: " + className);
 
 				return;
@@ -298,8 +299,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			portal.set(pdesc.getX(), pdesc.getY());
 			portal.setIdentifier(pdesc.getReference());
-
-			if ((reference = pdesc.getDestinationReference()) != null) {
+			reference = pdesc.getDestinationReference();
+			if (reference  != null) {
 				portal.setDestination(pdesc.getDestinationZone(), reference);
 			}
 
@@ -331,16 +332,18 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *
 	 */
 	protected static void configureEntity(StendhalRPZone zone, EntityDesc edesc) {
-		String className;
+		String className=edesc.getImplementation();
 		Entity entity;
-		if ((className = edesc.getImplementation()) == null) {
+
+		if (className  == null) {
 			logger.error("Entity without factory at " + zone.getID().getID() + "[" + edesc.getX() + "," + edesc.getY()
 			        + "]");
 			return;
 		}
 
 		try {
-			if ((entity = EntityFactoryHelper.create(className, edesc.getParameters(), edesc.getAttributes())) == null) {
+			entity = EntityFactoryHelper.create(className, edesc.getParameters(), edesc.getAttributes());
+			if (entity == null) {
 				logger.warn("Unable to create entity: " + className);
 
 				return;
@@ -411,12 +414,13 @@ public class ZonesXMLLoader extends DefaultHandler {
 		if (qName.equals("zones")) {
 			// Ignore
 		} else if (qName.equals("zone")) {
-			if ((zone = attrs.getValue("name")) == null) {
+			zone = attrs.getValue("name");
+			if ( zone == null) {
 				logger.warn("Unnamed zone");
 				return;
 			}
-
-			if ((file = attrs.getValue("file")) == null) {
+			file = attrs.getValue("file");
+			if (file == null) {
 				logger.warn("Zone [" + zone + "] without 'file' attribute");
 				return;
 			}
@@ -424,7 +428,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 			/**
 			 * Interior zones don't have levels (why not?)
 			 */
-			if ((s = attrs.getValue("level")) == null) {
+			s = attrs.getValue("level");
+			if (s == null) {
 				level = ZoneDesc.UNSET;
 				x = ZoneDesc.UNSET;
 				y = ZoneDesc.UNSET;
@@ -435,8 +440,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 					logger.warn("Zone [" + zone + "] has invalid level: " + s);
 					return;
 				}
-
-				if ((s = attrs.getValue("x")) == null) {
+				s = attrs.getValue("x");
+				if (s == null) {
 					logger.warn("Zone [" + zone + "] without x coordinate");
 					return;
 				}
@@ -447,8 +452,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 					logger.warn("Zone [" + zone + "] has invalid x coordinate: " + s);
 					return;
 				}
-
-				if ((s = attrs.getValue("y")) == null) {
+				s = attrs.getValue("y");
+				if (s == null) {
 					logger.warn("Zone [" + zone + "] without y coordinate");
 					return;
 				}
@@ -465,14 +470,16 @@ public class ZonesXMLLoader extends DefaultHandler {
 		} else if (qName.equals("title")) {
 			content.setLength(0);
 		} else if (qName.equals("configurator")) {
-			if ((s = attrs.getValue("class-name")) == null) {
+			s = attrs.getValue("class-name");
+			if (s == null) {
 				logger.warn("Configurator without class-name");
 			} else {
 				cdesc = new ConfiguratorDesc(s);
 				scope = SCOPE_CONFIGURATOR;
 			}
 		} else if (qName.equals("entity")) {
-			if ((s = attrs.getValue("x")) == null) {
+			s = attrs.getValue("x");
+			if ( s == null) {
 				logger.warn("Entity without 'x' coordinate");
 				return;
 			}
@@ -483,8 +490,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				logger.warn("Invalid entity 'x' coordinate: " + s);
 				return;
 			}
-
-			if ((s = attrs.getValue("y")) == null) {
+			s = attrs.getValue("y");
+			if (s == null) {
 				logger.warn("Entity without 'y' coordinate");
 				return;
 			}
@@ -499,7 +506,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 			edesc = new EntityDesc(x, y);
 			scope = SCOPE_ENTITY;
 		} else if (qName.equals("portal")) {
-			if ((s = attrs.getValue("x")) == null) {
+			s = attrs.getValue("x");
+			if (s == null) {
 				logger.warn("Portal without 'x' coordinate");
 				return;
 			}
@@ -510,8 +518,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				logger.warn("Invalid portal 'x' coordinate: " + s);
 				return;
 			}
-
-			if ((s = attrs.getValue("y")) == null) {
+			s = attrs.getValue("y");
+			if (s == null) {
 				logger.warn("Portal without 'y' coordinate");
 				return;
 			}
@@ -522,8 +530,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 				logger.warn("Invalid portal 'y' coordinate: " + s);
 				return;
 			}
-
-			if ((s = attrs.getValue("ref")) == null) {
+			s = attrs.getValue("ref");
+			if (s == null) {
 				logger.warn("Portal without 'ref' value");
 				return;
 			}
@@ -539,24 +547,28 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			pdesc = new PortalDesc(x, y, reference);
 			scope = SCOPE_PORTAL;
-
-			if ((s = attrs.getValue("replacing")) != null) {
+			s = attrs.getValue("replacing");
+			if (s != null) {
 				pdesc.setReplacing(s.equals("true"));
 			}
 		} else if (qName.equals("attribute")) {
-			if ((attrName = attrs.getValue("name")) == null) {
+
+			attrName = attrs.getValue("name");
+			if (attrName == null) {
 				logger.warn("Unnamed attribute");
 			} else {
 				content.setLength(0);
 			}
 		} else if (qName.equals("parameter")) {
-			if ((paramName = attrs.getValue("name")) == null) {
+			paramName = attrs.getValue("name");
+			if (paramName == null) {
 				logger.warn("Unnamed parameter");
 			} else {
 				content.setLength(0);
 			}
 		} else if (qName.equals("implementation")) {
-			if ((s = attrs.getValue("class-name")) == null) {
+			s = attrs.getValue("class-name");
+			if (s == null) {
 				logger.warn("Implmentation without class-name");
 			} else if (pdesc != null) {
 				pdesc.setImplementation(s);
@@ -564,12 +576,13 @@ public class ZonesXMLLoader extends DefaultHandler {
 				edesc.setImplementation(s);
 			}
 		} else if (qName.equals("destination")) {
-			if ((zone = attrs.getValue("zone")) == null) {
+			zone = attrs.getValue("zone");
+			if (zone == null) {
 				logger.warn("Portal destination without zone");
 				return;
 			}
-
-			if ((s = attrs.getValue("ref")) == null) {
+			s = attrs.getValue("ref");
+			if (s == null) {
 				logger.warn("Portal dest without 'ref' value");
 				return;
 			}

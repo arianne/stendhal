@@ -135,12 +135,11 @@ public class ZoneGroupsXMLLoader extends DefaultHandler {
 
 	@Override
 	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
-		String s;
-
 		if (qName.equals("zone-groups")) {
 			// Ignore
 		} else if (qName.equals("zone-group")) {
-			if ((s = attrs.getValue("uri")) == null) {
+			String s = attrs.getValue("uri");
+			if (s == null) {
 				logger.warn("Zone group without 'uri'");
 			} else {
 				try {

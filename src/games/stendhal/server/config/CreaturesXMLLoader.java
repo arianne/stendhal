@@ -30,7 +30,8 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	private static CreaturesXMLLoader instance;
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(CreaturesXMLLoader.class);
+	private static final Logger logger = Log4J
+			.getLogger(CreaturesXMLLoader.class);
 
 	private String name;
 
@@ -115,14 +116,16 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			// Parse the input
 			SAXParser saxParser = factory.newSAXParser();
 
-			InputStream is = getClass().getClassLoader().getResourceAsStream(ref);
+			InputStream is = getClass().getClassLoader().getResourceAsStream(
+					ref);
 
 			if (is == null) {
 				is = new File(ref).toURL().openStream();
 			}
 
 			if (is == null) {
-				throw new FileNotFoundException("cannot find resource '" + ref + "' in classpath");
+				throw new FileNotFoundException("cannot find resource '" + ref
+						+ "' in classpath");
 			}
 			saxParser.parse(is, this);
 		} catch (ParserConfigurationException t) {
@@ -145,7 +148,8 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	}
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName,
+			Attributes attrs) {
 		text = "";
 		if (qName.equals("creature")) {
 			name = attrs.getValue("name");
@@ -160,7 +164,7 @@ public class CreaturesXMLLoader extends DefaultHandler {
 			clazz = attrs.getValue("class");
 			subclass = attrs.getValue("subclass");
 
-			tileid = "../../tileset/logic/creature/"+attrs.getValue("tileid");
+			tileid = "../../tileset/logic/creature/" + attrs.getValue("tileid");
 		} else if (qName.equals("level")) {
 			level = Integer.parseInt(attrs.getValue("value"));
 		} else if (qName.equals("experience")) {
@@ -211,10 +215,11 @@ public class CreaturesXMLLoader extends DefaultHandler {
 					range = range.replace("]", "");
 					String[] amount = range.split(",");
 
-					dropsItems.add(new DropItem(name, probability, Integer.parseInt(amount[0]), Integer
-					        .parseInt(amount[1])));
+					dropsItems.add(new DropItem(name, probability, Integer
+							.parseInt(amount[0]), Integer.parseInt(amount[1])));
 				} else {
-					dropsItems.add(new DropItem(name, probability, Integer.parseInt(range)));
+					dropsItems.add(new DropItem(name, probability, Integer
+							.parseInt(range)));
 				}
 			}
 		} else if (qName.equals("attributes")) {
@@ -246,12 +251,14 @@ public class CreaturesXMLLoader extends DefaultHandler {
 	@Override
 	public void endElement(String namespaceURI, String sName, String qName) {
 		if (qName.equals("creature")) {
-			if(!tileid.contains(":")) {
-				logger.error("Corrupt XML file: Bad tileid for creature("+name+")");
+			if (!tileid.contains(":")) {
+				logger.error("Corrupt XML file: Bad tileid for creature("
+						+ name + ")");
 				return;
 			}
 
-			DefaultCreature creature = new DefaultCreature(clazz, subclass, name, tileid);
+			DefaultCreature creature = new DefaultCreature(clazz, subclass,
+					name, tileid);
 			creature.setRPStats(hp, atk, def, speed);
 			creature.setLevel(level, xp);
 			creature.setSize(sizeWidth, sizeHeight);
