@@ -50,7 +50,7 @@ public class Bootstrap {
 		}
 
 		@Override
-		protected synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+		protected synchronized Class loadClass(String name, boolean resolve) throws ClassNotFoundException {
 			ClassLoader parent = super.getParent();
 			Class clazz = findLoadedClass(name);
 			if (clazz == null) {
@@ -202,7 +202,7 @@ public class Bootstrap {
 				}
 
 				// start update handling
-				Class<?> clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
+				Class clazz = classLoader.loadClass("games.stendhal.client.update.UpdateManager");
 				Method method = clazz.getMethod("process", String.class, Properties.class, Boolean.class);
 				method.invoke(clazz.newInstance(), jarFolder, bootProp, initialDownload);
 			} catch (SecurityException e) {
@@ -236,7 +236,7 @@ public class Bootstrap {
 
 			try {
 				ClassLoader classLoader = createClassloader();
-				Class<?> clazz = classLoader.loadClass(className);
+				Class clazz = classLoader.loadClass(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Throwable e) {
@@ -297,7 +297,7 @@ public class Bootstrap {
 			// self build client, do not try to update it
 			System.err.println("Self build client, starting without update .jar-files");
 			try {
-				Class<?> clazz = Class.forName(className);
+				Class clazz = Class.forName(className);
 				Method method = clazz.getMethod("main", args.getClass());
 				method.invoke(null, (Object) args);
 			} catch (Exception err) {

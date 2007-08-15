@@ -77,8 +77,8 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 						}
 					}
 				});
-				
-				
+
+
 		npc.add(ConversationStates.SERVICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,

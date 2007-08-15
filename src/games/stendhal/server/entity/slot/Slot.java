@@ -15,7 +15,7 @@ public interface Slot {
 	 * @param entity Entity which may be able to reach this slot
 	 * @return true, if it is reachable, false otherwise
 	 */
-	public boolean isReachableForTakingThingsOutOfBy(Entity entity);
+	boolean isReachableForTakingThingsOutOfBy(Entity entity);
 
 
 	/**
@@ -24,13 +24,13 @@ public interface Slot {
 	 * @param entity Entity which may be able to reach this slot
 	 * @return true, if it is reachable, false otherwise
 	 */
-	public boolean isReachableForThrowingThingsIntoBy(Entity entity);
+	boolean isReachableForThrowingThingsIntoBy(Entity entity);
 
 	/**
 	 * Can this slot contain items?
 	 *
-	 * @return true, if it can contains items, false otherwise 
+	 * @return true, if it can contains items, false otherwise
 	 */
-	public boolean isItemSlot();
+	boolean isItemSlot();
 
 }

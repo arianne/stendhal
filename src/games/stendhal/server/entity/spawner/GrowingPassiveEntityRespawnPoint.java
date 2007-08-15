@@ -24,15 +24,17 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.Definition.Type;
 
 /**
- * This respwan point has to be "used" to get the item. After that,
- * it will slowly regrow; there are several regrowing
- * steps in which the graphics will change to show the progress.
- * 
+ * This respwan point has to be "used" to get the item. After that, it will
+ * slowly regrow; there are several regrowing steps in which the graphics will
+ * change to show the progress.
+ *
  * @author daniel, hendrik
  */
-public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityRespawnPoint {
+public abstract class GrowingPassiveEntityRespawnPoint extends
+		PassiveEntityRespawnPoint {
 
-	private static Logger logger = Log4J.getLogger(GrowingPassiveEntityRespawnPoint.class);
+	private static Logger logger = Log4J
+			.getLogger(GrowingPassiveEntityRespawnPoint.class);
 
 	/** How long it takes for one regrowing step */
 	private static final int GROWING_RATE = 3000;
@@ -49,7 +51,8 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		grainFieldClass.addAttribute("ripeness", Type.BYTE);
 	}
 
-	private void init(String clazz, String actionName, int maxRipeness, int width, int height) {
+	private void init(String clazz, String actionName, int maxRipeness,
+			int width, int height) {
 		this.maxRipeness = maxRipeness;
 		setRPClass("growing_entity_spawner");
 		put("type", "growing_entity_spawner");
@@ -61,15 +64,16 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 		setHeight(height);
 	}
 
-	public GrowingPassiveEntityRespawnPoint(RPObject object, String type, String actionName, int maxRipeness,
-	        int width, int height) {
+	public GrowingPassiveEntityRespawnPoint(RPObject object, String type,
+			String actionName, int maxRipeness, int width, int height) {
 		super(object, type, GROWING_RATE);
 		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
 		update();
 	}
 
-	public GrowingPassiveEntityRespawnPoint(String type, String actionName, int maxRipeness, int width, int height) {
+	public GrowingPassiveEntityRespawnPoint(String type, String actionName,
+			int maxRipeness, int width, int height) {
 		super(type, GROWING_RATE);
 		setResistance(30);
 		init(type, actionName, maxRipeness, width, height);
@@ -96,10 +100,10 @@ public abstract class GrowingPassiveEntityRespawnPoint extends PassiveEntityResp
 	protected void growNewFruit() {
 		if (ripeness < maxRipeness) {
 			setRipeness(ripeness + 1);
-			
-			logger.info("Grow "+ripeness+" up to "+maxRipeness);
+
+			logger.info("Grow " + ripeness + " up to " + maxRipeness);
 			TurnNotifier.get().notifyInTurns(getRandomTurnsForRegrow(), this);
-			
+
 			notifyWorldAboutChanges();
 		}
 	}

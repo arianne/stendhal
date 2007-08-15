@@ -24,33 +24,34 @@ import marauroa.common.game.RPObject;
  *
  * @author hendrik
  */
-public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements UseListener {
+public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
+		UseListener {
 	private String vegetableName;
 
 	public VegetableGrower(RPObject object, String name) {
-		super(object, "items/grower/"+name+"_grower", "Pick", 1, 1, 1);
-		vegetableName=name;
+		super(object, "items/grower/" + name + "_grower", "Pick", 1, 1, 1);
+		vegetableName = name;
 		update();
 	}
 
 	public VegetableGrower(String name) {
-		super("items/grower/"+name+"_grower", "Pick", 1, 1, 1);
-		vegetableName=name;
+		super("items/grower/" + name + "_grower", "Pick", 1, 1, 1);
+		vegetableName = name;
 	}
 
 	@Override
 	public String describe() {
 		String text;
 		switch (getRipeness()) {
-			case 0:
-				text = "You see a planted "+vegetableName+" seed.";
-				break;
-			case 1:
-				text = "You see a ripe "+vegetableName+".";
-				break;
-			default:
-				text = "You see an unripe "+vegetableName+".";
-				break;
+		case 0:
+			text = "You see a planted " + vegetableName + " seed.";
+			break;
+		case 1:
+			text = "You see a ripe " + vegetableName + ".";
+			break;
+		default:
+			text = "You see an unripe " + vegetableName + ".";
+			break;
 		}
 		return text;
 	}
@@ -62,11 +63,13 @@ public class VegetableGrower extends GrowingPassiveEntityRespawnPoint implements
 		if (entity.nextTo(this)) {
 			if (getRipeness() == 1) {
 				onFruitPicked(null);
-				Item grain = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(vegetableName);
+				Item grain = StendhalRPWorld.get().getRuleManager()
+						.getEntityManager().getItem(vegetableName);
 				entity.equip(grain, true);
 				return true;
 			} else if (entity instanceof Player) {
-				((Player) entity).sendPrivateText("This "+vegetableName+" is not yet ripe enough to pick.");
+				((Player) entity).sendPrivateText("This " + vegetableName
+						+ " is not yet ripe enough to pick.");
 
 			}
 		}

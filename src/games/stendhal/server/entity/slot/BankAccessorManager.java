@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class BankAccessorManager {
 	private static BankAccessorManager instance;
-	private HashMap<Banks, List<Entity>> accessors ;
+	private HashMap<Banks, List<Entity>> accessors;
 
 	private BankAccessorManager() {
 		// hide constructor; Singleton patern
