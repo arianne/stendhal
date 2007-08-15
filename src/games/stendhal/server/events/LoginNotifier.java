@@ -66,7 +66,7 @@ public class LoginNotifier {
 	 * @param player the player who logged in
 	 */
 	public void onPlayerLoggedIn(Player player) {
-		for (LoginListener listener: listeners) {
+		for (LoginListener listener : listeners) {
 			listener.onLoggedIn(player);
 		}
 	}

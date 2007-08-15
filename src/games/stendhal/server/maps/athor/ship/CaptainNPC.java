@@ -59,7 +59,7 @@ public class CaptainNPC extends SpeakerNPCFactory {
 								.getCurrentDescription());
 					}
 				});
-		
+
 		AthorFerry.get().addListener(
 				(AthorFerry.FerryAnnouncerNPC) npc);
 	}

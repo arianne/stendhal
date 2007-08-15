@@ -33,15 +33,15 @@ public class CookNPC extends SpeakerNPCFactory {
 		npc.addGreeting("Ahoy! Welcome to the galley!");
 		npc.addJob("I'm running the galley on this ship. I #offer fine foods for the passengers and alcohol for the crew.");
 		npc.addHelp("The crew mates drink beer and grog all day. But if you want some more exclusive drinks, go to the cocktail bar at Athor beach.");
-		
+
 		Map<String, Integer> offerings = new HashMap<String, Integer>();
 		offerings.put("beer", 10);
 		offerings.put("wine", 15);
-		// more expensive than in normal taverns 
+		// more expensive than in normal taverns
 		offerings.put("ham", 100);
 		offerings.put("pie", 150);
 		npc.addSeller(new SellerBehaviour(offerings));
-		
+
 		npc.addGoodbye();
 		AthorFerry.get().addListener(
 				(AthorFerry.FerryAnnouncerNPC) npc);

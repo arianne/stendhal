@@ -26,7 +26,7 @@ public interface MovementListener {
 	 *
 	 * @return	A rectangular area.
 	 */
-	public Rectangle2D getArea();
+	Rectangle2D getArea();
 
 	/**
 	 * Invoked when an entity enters the object area.
@@ -36,7 +36,7 @@ public interface MovementListener {
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY);
+	void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY);
 
 	/**
 	 * Invoked when an entity leaves the object area.
@@ -47,7 +47,7 @@ public interface MovementListener {
 	 * @param	oldY		The old Y coordinate.
 	 *
 	 */
-	public void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY);
+	void onExited(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY);
 
 	/**
 	 * Invoked when an entity moves while over the object area.
@@ -59,5 +59,5 @@ public interface MovementListener {
 	 * @param	newX		The new X coordinate.
 	 * @param	newY		The new Y coordinate.
 	 */
-	public void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY);
+	void onMoved(ActiveEntity entity, StendhalRPZone zone, int oldX, int oldY, int newX, int newY);
 }

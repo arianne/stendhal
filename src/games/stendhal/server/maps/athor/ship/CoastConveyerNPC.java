@@ -67,15 +67,15 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 						} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
 							npc.say("Do ye really want me to take ye to the island with me skiff?");
 							npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
-						} else{
+						} else {
 							npc.say(AthorFerry.get()
 								.getCurrentDescription()
 								+ " Ye can only get off the boat when it's anchored near a harbor.");
 						}
 					}
 				});
-				
-				
+
+
 		npc.add(ConversationStates.SERVICE_OFFERED,
 				ConversationPhrases.YES_MESSAGES,
 				null,

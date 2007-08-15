@@ -12,5 +12,5 @@ public interface UseListener {
 	 *
 	 * @param user the RPEntity who uses the object
 	 */
-	public boolean onUsed(RPEntity user);
+	boolean onUsed(RPEntity user);
 }

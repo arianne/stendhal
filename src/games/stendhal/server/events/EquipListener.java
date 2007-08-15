@@ -14,6 +14,6 @@ public interface EquipListener {
 	 * @param slot name of slot
 	 * @return true, if it can be equipped; false otherwise
 	 */
-	public boolean canBeEquippedIn(String slot);
+	boolean canBeEquippedIn(String slot);
 
 }
