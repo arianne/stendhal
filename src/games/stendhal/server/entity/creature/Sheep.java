@@ -18,8 +18,6 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.spawner.SheepFood;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPClass;
@@ -28,8 +26,8 @@ import marauroa.common.game.SyntaxException;
 import marauroa.common.game.Definition.Type;
 
 /**
- * A sheep is a domestic animal that can be owned by a player.
- * It eats berries from bushes and can be sold.
+ * A sheep is a domestic animal that can be owned by a player. It eats berries
+ * from bushes and can be sold.
  */
 /**
  * @author Daniel Herding
@@ -40,36 +38,33 @@ public class Sheep extends DomesticAnimal {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sheep.class);
 
-
-
 	/**
 	 * The amount of hunger that indicates hungry.
 	 */
-	protected static final int	HUNGER_HUNGRY		= 50;
+	protected static final int HUNGER_HUNGRY = 50;
 
 	/**
 	 * The amount of hunger that indicates extremely hungry.
 	 */
-	protected static final int	HUNGER_EXTREMELY_HUNGRY	= 500;
+	protected static final int HUNGER_EXTREMELY_HUNGRY = 500;
 
 	/**
 	 * The amount of hunger that indicates starvation.
 	 */
-	protected static final int	HUNGER_STARVATION	= 1000;
-
+	protected static final int HUNGER_STARVATION = 1000;
 
 	/**
 	 * The weight at which the sheep will stop eating.
 	 */
-	final public int MAX_WEIGHT = 100;
+	public final int MAX_WEIGHT = 100;
 
-	final private static int HP = 30;
+	private static final int HP = 30;
 
-	final private static int ATK = 5;
+	private static final int ATK = 5;
 
-	final private static int DEF = 15;
+	private static final int DEF = 15;
 
-	final private static int XP = 0;
+	private static final int XP = 0;
 
 	/**
 	 * Random timing offset to give sheep non-synchronized reactions.
@@ -90,6 +85,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new wild Sheep.
+	 *
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep() {
@@ -98,6 +94,7 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Creates a new Sheep that is owned by a player.
+	 *
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(Player owner) {
@@ -117,10 +114,12 @@ public class Sheep extends DomesticAnimal {
 	}
 
 	/**
-	 * Creates a Sheep based on an existing sheep RPObject, and assigns it to
-	 * a player.
+	 * Creates a Sheep based on an existing sheep RPObject, and assigns it to a
+	 * player.
+	 *
 	 * @param object
-	 * @param owner The player who should own the sheep
+	 * @param owner
+	 *            The player who should own the sheep
 	 * @throws AttributeNotFoundException
 	 */
 	public Sheep(RPObject object, Player owner) {
@@ -138,7 +137,9 @@ public class Sheep extends DomesticAnimal {
 
 	/**
 	 * Is called when the sheep dies. Removes the dead sheep from the owner.
-	 * @param killer The entity who caused the death
+	 *
+	 * @param killer
+	 *            The entity who caused the death
 	 */
 	@Override
 	public void onDead(Entity killer) {
@@ -146,7 +147,8 @@ public class Sheep extends DomesticAnimal {
 			if (owner.hasSheep()) {
 				owner.removeSheep(this);
 			} else {
-				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by " + owner);
+				logger.warn("INCOHERENCE: Sheep " + this + " isn't owned by "
+						+ owner);
 			}
 		} else {
 			StendhalRPRuleProcessor.get().removeNPC(this);
@@ -155,11 +157,11 @@ public class Sheep extends DomesticAnimal {
 		super.onDead(killer);
 	}
 
-
 	/**
 	 * Set the owner.
 	 *
-	 * @param	owner		The new owner (or <code>null</code>).
+	 * @param owner
+	 *            The new owner (or <code>null</code>).
 	 */
 	@Override
 	public void setOwner(Player owner) {
@@ -173,13 +175,14 @@ public class Sheep extends DomesticAnimal {
 		clearPath();
 	}
 
-
 	/**
-	 * Returns the SheepFood that is nearest to the sheep's current position.
-	 * If there is no SheepFood within the given range, returns none.
-	 * @param range The maximum distance to a SheepFood
-	 * @return The nearest SheepFood, or null if there is none within the
-	 *         given range
+	 * Returns the SheepFood that is nearest to the sheep's current position. If
+	 * there is no SheepFood within the given range, returns none.
+	 *
+	 * @param range
+	 *            The maximum distance to a SheepFood
+	 * @return The nearest SheepFood, or null if there is none within the given
+	 *         range
 	 */
 	private SheepFood getNearestFood(double range) {
 		// This way we save several sqrt operations
@@ -201,29 +204,28 @@ public class Sheep extends DomesticAnimal {
 		return chosen;
 	}
 
-
 	/**
 	 * Called when the sheep is hungry.
 	 *
-	 * @return	<code>true</code> if the sheep is hunting for food.
+	 * @return <code>true</code> if the sheep is hunting for food.
 	 */
 	protected boolean onHungry() {
 		boolean hunting = "food".equals(getIdea());
 
 		/*
-		 * Will try to eat if one of...
-		 *  - Food already on the mind and not moving (collision?)
-		 *  - Food not on the mind and hunger pains (every 10)
+		 * Will try to eat if one of... - Food already on the mind and not
+		 * moving (collision?) - Food not on the mind and hunger pains (every
+		 * 10)
 		 */
-		if(hunting) {
-			if(!stopped()) {
+		if (hunting) {
+			if (!stopped()) {
 				return true;
 			}
 		} else {
 			/*
 			 * Only do something on occational hunger pains
 			 */
-			if((hunger % 10) != 0) {
+			if ((hunger % 10) != 0) {
 				return false;
 			}
 		}
@@ -233,7 +235,7 @@ public class Sheep extends DomesticAnimal {
 		 */
 		SheepFood food = getNearestFood(6);
 
-		if(food != null) {
+		if (food != null) {
 			hunting = true;
 
 			if (nextTo(food)) {
@@ -246,16 +248,15 @@ public class Sheep extends DomesticAnimal {
 				logger.debug("Sheep moves to food");
 				setIdea("food");
 				setMovement(food, 0, 0, 20);
-				//setAsynchonousMovement(food,0,0);
+				// setAsynchonousMovement(food,0,0);
 			}
-		} else if(hunting) {
+		} else if (hunting) {
 			setIdea(null);
 			hunting = false;
 		}
 
 		return hunting;
 	}
-
 
 	/**
 	 * Called when the sheep is idle.
@@ -274,7 +275,7 @@ public class Sheep extends DomesticAnimal {
 				logger.debug("Sheep sleeping");
 
 				// TODO: Add 'sleep' idea?
-				//setIdea("sleep");
+				// setIdea("sleep");
 				setIdea(null);
 			}
 		} else if (((turn % 10) == 0) && (hunger >= HUNGER_EXTREMELY_HUNGRY)) {
@@ -287,11 +288,11 @@ public class Sheep extends DomesticAnimal {
 		} else if (!nextTo(owner)) {
 			moveToOwner();
 		} else {
-			if((turn % 100) == 0) {
+			if ((turn % 100) == 0) {
 				logger.debug("Sheep is bored");
 
 				// TODO: Add 'curious' idea?
-				//setIdea("curious");
+				// setIdea("curious");
 				setRandomPathFrom(owner.getX(), owner.getY(), 10);
 				setSpeed(getBaseSpeed());
 			} else {
@@ -301,12 +302,11 @@ public class Sheep extends DomesticAnimal {
 		}
 	}
 
-
 	/**
 	 * Called when the sheep is starving.
 	 */
 	protected void onStarve() {
-		if(weight > 0) {
+		if (weight > 0) {
 			setWeight(weight - 1);
 		} else {
 			damage(1, "starvation");
@@ -315,11 +315,11 @@ public class Sheep extends DomesticAnimal {
 		hunger /= 2;
 	}
 
-
 	/**
 	 * Let the sheep eat some food.
 	 *
-	 * @param	food		The food to eat.
+	 * @param food
+	 *            The food to eat.
 	 */
 	private void eat(SheepFood food) {
 		int amount = food.getAmount();
@@ -336,7 +336,6 @@ public class Sheep extends DomesticAnimal {
 		}
 	}
 
-
 	//
 	// RPEntity
 	//
@@ -351,19 +350,20 @@ public class Sheep extends DomesticAnimal {
 		/*
 		 * Allow owner to call sheep (will override other reactions)
 		 */
-		if ((owner != null) && owner.has("text") && owner.get("text").contains("sheep")) {
+		if ((owner != null) && owner.has("text")
+				&& owner.get("text").contains("sheep")) {
 			moveToOwner();
-		} else if(stopped()) {
+		} else if (stopped()) {
 			/*
 			 * Hungry?
 			 */
-			if((hunger < HUNGER_HUNGRY) || !onHungry()) {
+			if ((hunger < HUNGER_HUNGRY) || !onHungry()) {
 				/*
 				 * If not hunting for food, do other things
 				 */
 				onIdle();
 			}
-		} else if(hunger >= HUNGER_EXTREMELY_HUNGRY) {
+		} else if (hunger >= HUNGER_EXTREMELY_HUNGRY) {
 			onHungry();
 		}
 
@@ -376,12 +376,11 @@ public class Sheep extends DomesticAnimal {
 
 		// TODO: Move to upper level logic()?, as it really seems to
 		// apply to all RPEntity's.
-			applyMovement();
+		applyMovement();
 
 		notifyWorldAboutChanges();
 
 	}
-
 
 	//
 	// Entity
@@ -389,7 +388,8 @@ public class Sheep extends DomesticAnimal {
 
 	@Override
 	public String describe() {
-		String text = "You see a sheep; it looks like it weighs about " + weight + ".";
+		String text = "You see a sheep; it looks like it weighs about "
+				+ weight + ".";
 		if (hasDescription()) {
 			text = getDescription();
 		}
