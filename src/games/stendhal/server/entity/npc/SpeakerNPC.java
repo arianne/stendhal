@@ -157,7 +157,7 @@ public class SpeakerNPC extends NPC {
 	 * @param name The NPC's name. Please note that names should be unique.
 	 */
 	public SpeakerNPC(String name) {
-		BASE_SPEED=0.2;
+		baseSpeed = 0.2;
 		createPath();
 
 		lastMessageTurn = 0;
@@ -315,7 +315,7 @@ public class SpeakerNPC extends NPC {
 				setAttending(null);
 			}
 			if (hasPath()) {
-				setSpeed(BASE_SPEED);
+				setSpeed(baseSpeed);
 			}
 			applyMovement();
 		} else if (attending != null) {

@@ -109,7 +109,7 @@ public class Sheep extends DomesticAnimal {
 		setDEF(DEF);
 		setXP(XP);
 		initHP(HP);
-		BASE_SPEED=0.25;
+		baseSpeed = 0.25;
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
 		update();
@@ -128,7 +128,7 @@ public class Sheep extends DomesticAnimal {
 
 		setRPClass("sheep");
 		put("type", "sheep");
-		BASE_SPEED=0.25;
+		baseSpeed = 0.25;
 		hunger = 0;
 		timingAdjust = Rand.rand(10);
 

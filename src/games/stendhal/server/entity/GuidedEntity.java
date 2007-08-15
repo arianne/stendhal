@@ -11,9 +11,7 @@ package games.stendhal.server.entity;
 
 import games.stendhal.server.pathfinder.FixedPath;
 
-
 import games.stendhal.server.pathfinder.EntityGuide;
-
 
 import marauroa.common.game.RPObject;
 
@@ -21,14 +19,15 @@ import marauroa.common.game.RPObject;
  * An entity that has speed/direction and is guided via a Path.
  */
 public abstract class GuidedEntity extends ActiveEntity {
-	protected double BASE_SPEED ;
+	protected double baseSpeed;
+
 	private EntityGuide guide = new EntityGuide();
 
 	/**
 	 * Create a guided entity.
 	 */
 	public GuidedEntity() {
-		BASE_SPEED = 0;
+		baseSpeed = 0;
 		guide.guideMe(this);
 	}
 
@@ -40,7 +39,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 */
 	public GuidedEntity(final RPObject object) {
 		super(object);
-		BASE_SPEED=0;
+		baseSpeed = 0;
 		guide.guideMe(this);
 		update();
 	}
@@ -54,8 +53,8 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 *
 	 * @return The normal speed when moving.
 	 */
-	final public double getBaseSpeed(){
-		return BASE_SPEED;
+	public final double getBaseSpeed() {
+		return baseSpeed;
 
 	}
 
@@ -86,8 +85,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 		}
 	}
 
-
-	public final void setTempPath(final FixedPath path){
+	public final void setTempPath(final FixedPath path) {
 		if ((path != null) && !path.isFinished()) {
 			setSpeed(getBaseSpeed());
 			guide.path = path;
@@ -116,7 +114,6 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return (guide.path != null);
 	}
 
-
 	public int getPathsize() {
 		return guide.getPathsize();
 	}
@@ -125,7 +122,7 @@ public abstract class GuidedEntity extends ActiveEntity {
 	 * Is the path a loop.
 	 */
 	public boolean isPathLoop() {
-		return (guide.path  != null) ? guide.path .isLoop() : false;
+		return (guide.path != null) ? guide.path.isLoop() : false;
 	}
 
 	/**
@@ -163,16 +160,14 @@ public abstract class GuidedEntity extends ActiveEntity {
 		return guide.followPath(this);
 	}
 
-public 	EntityGuide getGuide() {
+	public EntityGuide getGuide() {
 		return guide;
 	}
 
-@Override
-protected void handleObjectCollision() {
-	stop();
-	clearPath();
-}
-
-
+	@Override
+	protected void handleObjectCollision() {
+		stop();
+		clearPath();
+	}
 
 }

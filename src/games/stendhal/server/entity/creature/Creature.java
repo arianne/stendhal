@@ -129,7 +129,7 @@ public class Creature extends NPC {
 	public Creature(Creature copy) {
 		this();
 
-		this.BASE_SPEED = copy.BASE_SPEED;
+		this.baseSpeed = copy.baseSpeed;
 		setWidth((int) copy.getWidth());
 		setHeight((int) copy.getHeight());
 
@@ -217,7 +217,7 @@ public class Creature extends NPC {
 	        List<String> noises, int respawnTime, String description) {
 		this();
 
-		this.BASE_SPEED = baseSpeed;
+		this.baseSpeed = baseSpeed;
 
 		setWidth(width);
 		setHeight(height);

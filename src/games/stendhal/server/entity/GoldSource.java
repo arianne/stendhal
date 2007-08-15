@@ -110,7 +110,6 @@ public class GoldSource extends Entity implements UseListener {
 		grower.isA("entity");
 	}
 
-
 	/**
 	 * Decides randomly if a prospecting action should be successful.
 	 *

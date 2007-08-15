@@ -78,7 +78,7 @@ public class Cat extends Pet {
 		setRPClass("cat");
 		put("type", "cat");
 		put("title", "cat");
-		BASE_SPEED = 0.9;
+		baseSpeed = 0.9;
 
 		update();
 		logger.debug("Created Cat: " + this);
@@ -96,7 +96,7 @@ public class Cat extends Pet {
 
 		setRPClass("cat");
 		put("type", "cat");
-		BASE_SPEED = 0.9;
+		baseSpeed = 0.9;
 		update();
 		logger.debug("Created Cat: " + this);
 	}

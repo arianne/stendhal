@@ -240,7 +240,7 @@ public class Player extends RPEntity {
 
 		// Beginner's luck (unless overriden by update)
 		karma = 10.0;
-		BASE_SPEED=1.0;
+		baseSpeed=1.0;
 		update();
 	}
 

@@ -86,7 +86,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public Pet(Player owner) {
 		super(owner);
-		BASE_SPEED= 0.5;
+		baseSpeed= 0.5;
 
 
 		setATK(ATK);
@@ -108,7 +108,7 @@ public abstract class Pet extends DomesticAnimal {
 	 */
 	public Pet(RPObject object, Player owner) {
 		super(object, owner);
-		BASE_SPEED= 0.5;
+		baseSpeed= 0.5;
 		hunger = 0;
 	}
 
