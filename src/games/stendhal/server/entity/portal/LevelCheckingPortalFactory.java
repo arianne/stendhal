@@ -23,7 +23,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * @return	The level.
 	 * @throws	IllegalArgumentException If the level attribute is invalid.
 	 */
-	protected int getMaximumLevel(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getMaximumLevel(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("maximum-level", LevelCheckingPortal.DEFAULT_MAX);
 	}
 
@@ -34,7 +34,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * @return	The level.
 	 * @throws	IllegalArgumentException If the level attribute is invalid.
 	 */
-	protected int getMinimumLevel(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getMinimumLevel(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("maximum-level", LevelCheckingPortal.DEFAULT_MIN);
 	}
 
@@ -59,7 +59,7 @@ public class LevelCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * @see		LevelCheckingPortal
 	 */
 	@Override
-	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) {
 		return new LevelCheckingPortal(getMinimumLevel(ctx), getMaximumLevel(ctx));
 	}
 }

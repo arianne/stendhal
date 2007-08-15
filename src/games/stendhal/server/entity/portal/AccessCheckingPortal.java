@@ -94,8 +94,8 @@ public abstract class AccessCheckingPortal extends Portal {
 		/**
 		 * The user to send to.
 		 */
-		final protected RPEntity user;
-		final private String text;
+		protected final RPEntity user;
+		private final String text;
 
 		/**
 		 * Create a message sending turn listener.

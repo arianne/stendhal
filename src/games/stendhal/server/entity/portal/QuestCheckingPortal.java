@@ -43,7 +43,7 @@ public class QuestCheckingPortal extends AccessCheckingPortal {
 	 */
 	@Override
 	protected boolean isAllowed(RPEntity user) {
-		if(user instanceof Player) {
+		if (user instanceof Player) {
 			return ((Player) user).hasQuest(questslot);
 		} else {
 			return false;

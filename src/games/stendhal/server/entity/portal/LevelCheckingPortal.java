@@ -83,11 +83,12 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	protected boolean isAllowed(RPEntity user) {
 		int level = user.getLevel();
 
-		if((level < minLevel) || (level > maxLevel)) {
+		if ((level < minLevel) || (level > maxLevel)) {
 			return false;
-		} else {
-			return true;
 		}
+
+		return true;
+
 	}
 
 
@@ -99,7 +100,7 @@ public class LevelCheckingPortal extends AccessCheckingPortal {
 	 */
 	@Override
 	protected void rejected(RPEntity user) {
-		if(rejectMessage != null) {
+		if (rejectMessage != null) {
 			super.rejected(user);
 		} else if (user.getLevel() < minLevel) {
 			sendMessage(user, "I am to weak to use this portal.");

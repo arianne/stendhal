@@ -30,7 +30,7 @@ public abstract class AccessCheckingPortalFactory implements ConfigurableFactory
 	 * @throws	IllegalArgumentException
 	 *				If the class attribute is missing.
 	 */
-	protected abstract AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException;
+	protected abstract AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx);
 
 
 	/**
@@ -40,7 +40,7 @@ public abstract class AccessCheckingPortalFactory implements ConfigurableFactory
 	 * @return	The rejected message, or <code>null</code> if none.
 	 * @throws	IllegalArgumentException If the class attribute is missing.
 	 */
-	protected String getRejectedMessage(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getRejectedMessage(ConfigurableFactoryContext ctx) {
 		return ctx.getString("rejected", null);
 	}
 
@@ -64,12 +64,12 @@ public abstract class AccessCheckingPortalFactory implements ConfigurableFactory
 	 *
 	 * @see		KeyedPortal
 	 */
-	public Object create(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) {
 		AccessCheckingPortal portal = createPortal(ctx);
 
 		String message = getRejectedMessage(ctx);
 
-		if(message != null) {
+		if (message != null) {
 			portal.setRejectedMessage(message);
 		}
 

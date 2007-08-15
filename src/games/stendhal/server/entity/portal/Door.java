@@ -151,7 +151,12 @@ public abstract class Door extends Portal implements TurnListener {
 		if (hasDescription()) {
 			text = getDescription();
 		}
-		text += " It is " + (isOpen() ? "open" : "closed") + ".";
+		if (isOpen()) {
+			text += " It is open.";
+		} else {
+			text += " It is closed.";
+		}
+
 		return (text);
 	}
 

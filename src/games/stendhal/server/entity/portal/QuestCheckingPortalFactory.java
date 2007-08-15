@@ -27,7 +27,7 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * @return	The quest name.
 	 * @throws	IllegalArgumentException If the quest attribute is missing.
 	 */
-	protected String getQuest(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected String getQuest(ConfigurableFactoryContext ctx) {
 		return ctx.getRequiredString("quest");
 	}
 
@@ -52,7 +52,7 @@ public class QuestCheckingPortalFactory extends AccessCheckingPortalFactory {
 	 * @see		LevelCheckingPortal
 	 */
 	@Override
-	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected AccessCheckingPortal createPortal(ConfigurableFactoryContext ctx) {
 		return new QuestCheckingPortal(getQuest(ctx));
 	}
 }
