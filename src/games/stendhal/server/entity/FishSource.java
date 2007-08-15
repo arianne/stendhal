@@ -38,8 +38,8 @@ public class FishSource extends Entity implements UseListener {
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Fisher) {
-				Fisher new_name = (Fisher) obj;
-				return playerRef.get() == new_name.playerRef.get();
+				Fisher newName = (Fisher) obj;
+				return playerRef.get() == newName.playerRef.get();
 			} else {
 				return false;
 			}
