@@ -343,7 +343,7 @@ lion_shield_+1 enhanced_lion_shield
 		}
 	}
 
-	final static public String DEFAULT_ENTRY_ZONE="int_semos_townhall";
+	public static final String DEFAULT_ENTRY_ZONE = "int_semos_townhall";
 
 	/**
 	 * Places the player (and his/her sheep if there is one) into the world on login
