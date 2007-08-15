@@ -20,11 +20,10 @@ import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 
 /**
- * This class is responsible of keeping players who have misbehaved
- * in a special jail area where they can't do any harm.
- * The misbehaving player will be automatically released after a
- * specified number of minutes.
- * 
+ * This class is responsible of keeping players who have misbehaved in a special
+ * jail area where they can't do any harm. The misbehaving player will be
+ * automatically released after a specified number of minutes.
+ *
  * @author daniel
  */
 public class Jail implements LoginListener {
@@ -32,32 +31,34 @@ public class Jail implements LoginListener {
 	private final class Jailer implements TurnListener {
 		@Override
 		public boolean equals(Object obj) {
-			if (obj instanceof Jailer){
+			if (obj instanceof Jailer) {
 				Jailer other = (Jailer) obj;
 				return _name.equals(other._name);
 			}
-			
+
 			return false;
 		}
+
 		@Override
 		public int hashCode() {
-		
+
 			return _name.hashCode();
 		}
+
 		String _name;
 
 		private Jailer(String name) {
-			
+
 			_name = name;
 		}
 
 		public void onTurnReached(int currentTurn, String message) {
-			
+
 			if (!release(_name)) {
 				// The player has logged out. Release him when he logs in again.
 				namesOfPlayersToRelease.add(_name);
 			}
-			
+
 		}
 	}
 
@@ -66,23 +67,16 @@ public class Jail implements LoginListener {
 	/** The Singleton instance */
 	private static Jail instance;
 
-	private static List<Point> cellEntryPoints = Arrays.asList(
-			new Point(3, 2),
+	private static List<Point> cellEntryPoints = Arrays.asList(new Point(3, 2),
 			new Point(8, 2),
-	        // elf cell new Point(13, 2),
-	        new Point(18, 2),
-	        new Point(23, 2),
-	        new Point(28, 2),
-	        new Point(8, 11),
-	        new Point(13, 11),
-	        new Point(18, 11),
-	        new Point(23, 11),
-	        new Point(28, 11));
+			// elf cell new Point(13, 2),
+			new Point(18, 2), new Point(23, 2), new Point(28, 2), new Point(8,
+					11), new Point(13, 11), new Point(18, 11),
+			new Point(23, 11), new Point(28, 11));
 
-	private static Rectangle[] cellBlocks = {
-			new Rectangle(1, 1, 30, 3),
+	private static Rectangle[] cellBlocks = { new Rectangle(1, 1, 30, 3),
 			new Rectangle(7, 10, 30, 12) };
-	
+
 	// TODO: make this persistent, e.g. by replacing this list with a
 	// quest slot reserved for jail.
 	private List<String> namesOfPlayersToRelease;
@@ -98,7 +92,7 @@ public class Jail implements LoginListener {
 		}
 		return instance;
 	}
-	
+
 	// singleton
 	private Jail() {
 		namesOfPlayersToRelease = new ArrayList<String>();
@@ -106,13 +100,18 @@ public class Jail implements LoginListener {
 	}
 
 	/**
-	 * @param criminalName The name of the player who should be jailed
-	 * @param policeman The name of the admin who wants to jail the criminal
-	 * @param minutes The duration of the sentence
+	 * @param criminalName
+	 *            The name of the player who should be jailed
+	 * @param policeman
+	 *            The name of the admin who wants to jail the criminal
+	 * @param minutes
+	 *            The duration of the sentence
 	 */
-	public void imprison(final String criminalName, Player policeman, int minutes, String reason) {
+	public void imprison(final String criminalName, Player policeman,
+			int minutes, String reason) {
 		StendhalRPWorld world = StendhalRPWorld.get();
-		final Player criminal = StendhalRPRuleProcessor.get().getPlayer(criminalName);
+		final Player criminal = StendhalRPRuleProcessor.get().getPlayer(
+				criminalName);
 
 		if (criminal == null) {
 			String text = "Player " + criminalName + " not found";
@@ -135,21 +134,23 @@ public class Jail implements LoginListener {
 		while (!successful) {
 			// repeat until we find a free cell
 			Point cell = Rand.rand(cellEntryPoints);
-			successful = criminal.teleport(jail, cell.x, cell.y, Direction.DOWN, policeman);
+			successful = criminal.teleport(jail, cell.x, cell.y,
+					Direction.DOWN, policeman);
 		}
-		policeman.sendPrivateText("You have jailed " + criminalName
-				+ " for " + minutes + " minutes. Reason: " + reason + ".");
-		criminal.sendPrivateText("You have been jailed by " + policeman.getName()
-				+ " for " + minutes + " minutes. Reason: " + reason + ".");
+		policeman.sendPrivateText("You have jailed " + criminalName + " for "
+				+ minutes + " minutes. Reason: " + reason + ".");
+		criminal.sendPrivateText("You have been jailed by "
+				+ policeman.getName() + " for " + minutes
+				+ " minutes. Reason: " + reason + ".");
 		ChatAction.sendMessageToSupporters("JailKeeper", policeman.getName()
-				+ " jailed " + criminalName
-				+ " for " + minutes + " minutes. Reason: " + reason + ".");
+				+ " jailed " + criminalName + " for " + minutes
+				+ " minutes. Reason: " + reason + ".");
 
 		TurnNotifier.get().dontNotify(new Jailer(criminalName));
 
 		// Set a timer so that the inmate is automatically released after
 		// serving his sentence. We're using the TurnNotifier; we use
-		// 
+		//
 		// NOTE: The player won't be automatically released if the
 		// server is restarted before the player could be released.
 		TurnNotifier.get().notifyInSeconds(minutes * 60,
@@ -157,10 +158,11 @@ public class Jail implements LoginListener {
 	}
 
 	/**
-	 * Releases an inmate and teleports him to Semos city, but only if
-	 * he is still in jail.
+	 * Releases an inmate and teleports him to Semos city, but only if he is
+	 * still in jail.
 	 *
-	 * @param inmateName the name of the inmate who should be released
+	 * @param inmateName
+	 *            the name of the inmate who should be released
 	 * @return true if the player has not logged out before he was released
 	 */
 	public boolean release(String inmateName) {
@@ -181,7 +183,8 @@ public class Jail implements LoginListener {
 			StendhalRPZone semosCity = (StendhalRPZone) world.getRPZone(zoneid);
 
 			inmate.teleport(semosCity, 6, 3, Direction.RIGHT, null);
-			inmate.sendPrivateText("Your sentence is over. You can walk out now.");
+			inmate
+					.sendPrivateText("Your sentence is over. You can walk out now.");
 			logger.debug("Player " + inmateName + "released from jail.");
 		}
 		return true;
@@ -190,7 +193,8 @@ public class Jail implements LoginListener {
 	/**
 	 * Is player in a jail cell? Ignores visitors outside of cells.
 	 *
-	 * @param inmate player to check
+	 * @param inmate
+	 *            player to check
 	 * @return true, if it is in jail, false otherwise.
 	 */
 	public static boolean isInJail(Player inmate) {

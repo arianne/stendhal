@@ -13,10 +13,11 @@ import marauroa.common.crypto.RSAKey;
 public class GenerateINI {
 
 	/** Where data is read from */
-	private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	private static BufferedReader in = new BufferedReader(
+			new InputStreamReader(System.in));
 
 	/** The name of the output file */
-	final static String FILENAME = "server.ini";
+	static final String FILENAME = "server.ini";
 
 	/**
 	 * reads a String from the input. When no String is choosen the defaultValue
@@ -28,7 +29,8 @@ public class GenerateINI {
 	 *            if no value is written.
 	 * @return the string readed or default if none was read.
 	 */
-	public static String getStringWithDefault(BufferedReader input, String defaultValue) {
+	public static String getStringWithDefault(BufferedReader input,
+			String defaultValue) {
 		String ret = "";
 		try {
 			ret = input.readLine();
@@ -36,11 +38,13 @@ public class GenerateINI {
 			e.printStackTrace();
 			System.exit(1);
 		}
-
-		if (ret.length() == 0 && defaultValue != null) {
-			ret = defaultValue;
+		if (ret != null) {
+			if (ret.length() == 0 && defaultValue != null) {
+				ret = defaultValue;
+			}
 		}
 		return ret;
+
 	}
 
 	/**
@@ -50,7 +54,8 @@ public class GenerateINI {
 	 * @param input
 	 *            the input stream, usually System.in
 	 */
-	public static String getStringWithoutDefault(BufferedReader input, String errorMessage) {
+	public static String getStringWithoutDefault(BufferedReader input,
+			String errorMessage) {
 		String ret = "";
 		try {
 			ret = input.readLine();
@@ -59,7 +64,7 @@ public class GenerateINI {
 			System.exit(1);
 		}
 
-		if (ret==null||ret.length() == 0) {
+		if (ret == null || ret.length() == 0) {
 			System.out.println(errorMessage);
 			System.out.println("Terminating...");
 			System.exit(1);
@@ -75,8 +80,10 @@ public class GenerateINI {
 	 * @return *T*he string, with first letter is upper case.
 	 */
 	public static String uppcaseFirstLetter(String source) {
-		return (source.length() > 0) ? Character.toUpperCase(source.charAt(0))
-		        + source.substring(1) : source;
+		if (source.length() > 0) {
+			return  Character.toUpperCase(source.charAt(0))	+ source.substring(1);
+		}
+		return  source;
 	}
 
 	private static String gameName;
@@ -115,14 +122,18 @@ public class GenerateINI {
 
 		System.out.println("Using \"" + databaseName + "\" as database name\n");
 		System.out.println("Using \"" + databaseHost + "\" as database host\n");
-		System.out.println("Using \"" + databaseUsername + "\" as database user\n");
-		System.out.println("Using \"" + databasePassword + "\" as database user password\n");
+		System.out.println("Using \"" + databaseUsername
+				+ "\" as database user\n");
+		System.out.println("Using \"" + databasePassword
+				+ "\" as database user password\n");
 
-		System.out.println("In order to make efective these options please run:");
+		System.out
+				.println("In order to make efective these options please run:");
 		System.out.println("# mysql");
 		System.out.println("  create database " + databaseName + ";");
-		System.out.println("  grant all on " + databaseName + ".* to " + databaseUsername
-		        + "@localhost identified by '" + databasePassword + "';");
+		System.out.println("  grant all on " + databaseName + ".* to "
+				+ databaseUsername + "@localhost identified by '"
+				+ databasePassword + "';");
 		System.out.println("  exit");
 
 		tcpPort = getTCPPort();
@@ -147,7 +158,8 @@ public class GenerateINI {
 	}
 
 	private static String getRSAKeyBits() {
-		System.out.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
+		System.out
+				.print("Write size for the RSA key of the server. Be aware that a key bigger than 1024 could be very long to create [512]: ");
 		String keySize = getStringWithDefault(in, "512");
 		return keySize;
 	}
@@ -183,7 +195,8 @@ public class GenerateINI {
 		out.println("factory_implementation=marauroa.server.game.rp.RPObjectFactory");
 		out.println();
 		out.println("# Database information. Edit to match your configuration.");
-		out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/" + databaseName);
+		out.println("jdbc_url=jdbc:mysql://" + databaseHost + "/"
+				+ databaseName);
 		out.println("jdbc_class=com.mysql.jdbc.Driver");
 		out.println("jdbc_user=" + databaseUsername);
 		out.println("jdbc_pwd=" + databasePassword);
@@ -204,7 +217,8 @@ public class GenerateINI {
 		out.println();
 		out.println("# Extensions configured on the server. Enable at will.");
 		out.println("#server_extension=groovy,http");
-		out.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
+		out
+				.println("#groovy=games.stendhal.server.scripting.StendhalGroovyRunner");
 		out.println("#http=games.stendhal.server.StendhalHttpServer");
 		out.println("#http.port=8080");
 		out.println();
@@ -215,13 +229,15 @@ public class GenerateINI {
 
 	protected static String getDatabasePassword() {
 		System.out.print("Write value of the database user password: ");
-		String databasepassword = getStringWithoutDefault(in, "Please enter a database password");
+		String databasepassword = getStringWithoutDefault(in,
+				"Please enter a database password");
 		return databasepassword;
 	}
 
 	protected static String getDatabaseUsername() {
 		System.out.print("Write name of the database user: ");
-		String databaseuser = getStringWithoutDefault(in, "Please enter a database user");
+		String databaseuser = getStringWithoutDefault(in,
+				"Please enter a database user");
 		return databaseuser;
 	}
 

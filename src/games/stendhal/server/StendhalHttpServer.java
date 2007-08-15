@@ -4,11 +4,11 @@
  *  @author intensifly
  *  See the sample website in the web directory and the README file
  *  in this directory on how to use this extension.
- *  
+ *
  *  Download the latest simple.jar from sourceforge and add it to
  *  the classpath of marauroa / stendhal. Development was done and
  *  tested with simple-3.1.1.jar.
- *  
+ *
  *  Enable the StendhalServerExtension in the marauroa.ini file:
  # load StendhalServerExtension(s)
  groovy=games.stendhal.server.scripting.StendhalGroovyRunner
@@ -55,26 +55,26 @@ public class StendhalHttpServer extends StendhalServerExtension implements Proto
 	/** what to do with the http request if we don't handle it ourselves * */
 	private ProtocolHandler handler;
 
-	/** our context to retrieve files * */
-	static Context dataContext;
+//	/** our context to retrieve files * */
+//	static Context dataContext;
 
 	/** the port where we listen to http * */
-	static int PORT;
+	private static int PORT;
 
 	/** default expiration time * */
-	static int EXPIRES = 300000; // 5 minutes
+	private static final int EXPIRES = 300000; // 5 minutes
 
 	/** GroovyScriptEngine * */
-	static GroovyScriptEngine scriptEngine;
+	private static GroovyScriptEngine scriptEngine;
 
 	/** Context to retrieve Groovy scripts * */
-	static Context scriptContext;
+	private static Context scriptContext;
 
 	/** Context to retrieve files * */
-	static Context fileContext;
+	private static Context fileContext;
 
 	/** GroovyVariableBinding * */
-	static Binding scriptBinding;
+	private static Binding scriptBinding;
 
 	/** initialize the server with the game object connection * */
 	public StendhalHttpServer() {
@@ -176,7 +176,7 @@ public class StendhalHttpServer extends StendhalServerExtension implements Proto
 		out.print(s.toString());
 	}
 
-	public static abstract class IncludableView extends View {
+	public abstract static class IncludableView extends View {
 
 		public IncludableView(Context context) {
 			super(context);

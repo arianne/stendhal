@@ -1,4 +1,3 @@
-
 package games.stendhal.server;
 
 import games.stendhal.server.config.QuestsXMLLoader;
@@ -14,12 +13,13 @@ import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
 /**
- * Loads and manages all quests 
+ * Loads and manages all quests
  */
 public class StendhalQuestSystem {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(StendhalQuestSystem.class);
+	private static final Logger logger = Log4J
+			.getLogger(StendhalQuestSystem.class);
 
 	private List<IQuest> quests = new LinkedList<IQuest>();
 
@@ -48,7 +48,7 @@ public class StendhalQuestSystem {
 		loadQuest("BeerForHayunn");
 		loadQuest("Blackjack");
 		loadQuest("Campfire");
-		//loadQuest("CarmenCataclysm");
+		// loadQuest("CarmenCataclysm");
 		loadQuest("CleanStorageSpace");
 		loadQuest("CloakCollector");
 		loadQuest("CloaksForBario");
@@ -56,13 +56,13 @@ public class StendhalQuestSystem {
 		loadQuest("DailyItemQuest");
 		loadQuest("DailyMonsterQuest");
 		loadQuest("DiceGambling");
-		//loadQuest("DiogenesCataclysm");
+		// loadQuest("DiogenesCataclysm");
 		loadQuest("ElfPrincess");
 		loadQuest("FindGhosts");
 		loadQuest("FishermansLicenseQuiz");
 		loadQuest("FishermansLicenseCollector");
 		loadQuest("HatForMonogenes");
-		//loadQuest("HayunnCataclysm");
+		// loadQuest("HayunnCataclysm");
 		loadQuest("HungryJoshua");
 		loadQuest("IntroducePlayers");
 		loadQuest("JailedDwarf");
@@ -72,7 +72,7 @@ public class StendhalQuestSystem {
 		loadQuest("KanmararnSoldiers");
 		loadQuest("KillDarkElves");
 		loadQuest("Marriage");
-		//loadQuest("MonogenesCataclysm");
+		// loadQuest("MonogenesCataclysm");
 		// loadQuest("MeetBunny");
 		loadQuest("MeetHackim");
 		loadQuest("McPeglegIOU");
@@ -83,7 +83,7 @@ public class StendhalQuestSystem {
 		// loadQuest("MeetSanta");
 		loadQuest("MeetZynn");
 		loadQuest("NewsFromHackim");
-		//loadQuest("NomyrCataclysm");
+		// loadQuest("NomyrCataclysm");
 		loadQuest("ObsidianKnife");
 		loadQuest("PizzaDelivery");
 		loadQuest("PlinksToy");
@@ -106,10 +106,12 @@ public class StendhalQuestSystem {
 
 	private boolean loadQuest(String name) {
 		try {
-			Class questClass = Class.forName("games.stendhal.server.maps.quests." + name);
+			Class questClass = Class
+					.forName("games.stendhal.server.maps.quests." + name);
 
 			if (!IQuest.class.isAssignableFrom(questClass)) {
-				logger.error("Class " + name + " doesn't implement IQuest interface.");
+				logger.error("Class " + name
+						+ " doesn't implement IQuest interface.");
 				return false;
 			}
 
@@ -169,11 +171,12 @@ public class StendhalQuestSystem {
 
 		return sb.toString();
 	}
-	public String listQuest(Player player,String questName) {
+
+	public String listQuest(Player player, String questName) {
 		StringBuilder sb = new StringBuilder();
 		for (IQuest quest : quests) {
-			if (quest.getName().equals(questName)){
-				dumpQuest(sb, quest, player);	
+			if (quest.getName().equals(questName)) {
+				dumpQuest(sb, quest, player);
 			}
 		}
 		return sb.toString();

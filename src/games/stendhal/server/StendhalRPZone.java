@@ -51,14 +51,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObjectInvalidException;
-import marauroa.common.game.RPObjectNotFoundException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.net.OutputSerializer;
 import marauroa.common.net.message.TransferContent;
@@ -80,7 +76,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * The sheep foods in the zone.
 	 */
-	private List<SheepFood>		sheepFoods;
+	private List<SheepFood> sheepFoods;
 
 	private List<CreatureRespawnPoint> respawnPoints;
 
@@ -99,17 +95,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	private boolean moveToAllowed = true;
 
-
 	/**
 	 * Objects that implement MovementListener.
 	 */
 	private List<MovementListener> movementListeners;
 
 	/**
-	 * A set of all items that are lying on the ground in this zone.
-	 * This set is currently only used for plant growers, and these
-	 * might be changed so that this set is no longer needed,
-	 * so try to avoid using it.
+	 * A set of all items that are lying on the ground in this zone. This set is
+	 * currently only used for plant growers, and these might be changed so that
+	 * this set is no longer needed, so try to avoid using it.
 	 */
 	private Set<Item> itemsOnGround;
 
@@ -163,14 +157,15 @@ public class StendhalRPZone extends MarauroaRPZone {
 		// do nothing
 	}
 
-
 	/**
 	 * Get blood (if any) at a specified zone position.
 	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 *
-	 * @return	The blood, or <code>null</code>.
+	 * @return The blood, or <code>null</code>.
 	 */
 	public Blood getBlood(final int x, final int y) {
 		for (Blood blood : bloods) {
@@ -181,7 +176,6 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		return null;
 	}
-
 
 	public List<NPC> getNPCList() {
 		return npcs;
@@ -204,10 +198,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Get the portal (if any) at a specified zone position.
 	 *
-	 * @param	x		The X coordinate.
-	 * @param	y		The Y coordinate.
+	 * @param x
+	 *            The X coordinate.
+	 * @param y
+	 *            The Y coordinate.
 	 *
-	 * @return	The portal, or <code>null</code>.
+	 * @return The portal, or <code>null</code>.
 	 */
 	public Portal getPortal(int x, int y) {
 		for (Portal portal : portals) {
@@ -222,7 +218,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Get the list of sheep foods in the zone.
 	 *
-	 * @return	The list of sheep foods.
+	 * @return The list of sheep foods.
 	 */
 	public List<SheepFood> getSheepFoodList() {
 		return sheepFoods;
@@ -232,9 +228,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return respawnPoints;
 	}
 
-
 	/**
-	 * @deprecated	Use add(CreatureRespawnPoint).
+	 * @deprecated Use add(CreatureRespawnPoint).
 	 */
 	@Deprecated
 	public void addRespawnPoint(CreatureRespawnPoint point) {
@@ -244,10 +239,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Add a creature respawn point to the zone.
 	 *
-	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use
-	 * normal add().
+	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
+	 * add().
 	 *
-	 * @param	point		The respawn point.
+	 * @param point
+	 *            The respawn point.
 	 */
 	public void add(CreatureRespawnPoint point) {
 		respawnPoints.add(point);
@@ -256,10 +252,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Remove a creature respawn point from the zone.
 	 *
-	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use
-	 * normal remove().
+	 * TODO: Make CreatureRespawnPoint a sub-class of Entity and use normal
+	 * remove().
 	 *
-	 * @param	point		The respawn point.
+	 * @param point
+	 *            The respawn point.
 	 */
 	public void remove(CreatureRespawnPoint point) {
 		respawnPoints.remove(point);
@@ -290,39 +287,40 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	public void addLayer(String name, LayerDefinition layer) throws IOException {
-		byte[] byteContents=layer.encode();
+		byte[] byteContents = layer.encode();
 		addToContent(name, byteContents);
 	}
 
-	public void addTilesets(String name, List<TileSetDefinition> tilesets) throws IOException {
+	public void addTilesets(String name, List<TileSetDefinition> tilesets)
+			throws IOException {
 		/*
 		 * Serialize the tileset data to send it to client.
 		 */
 		ByteArrayOutputStream array = new ByteArrayOutputStream();
-		OutputSerializer out=new OutputSerializer(array);
+		OutputSerializer out = new OutputSerializer(array);
 
-		int amount=0;
+		int amount = 0;
 
-		for(TileSetDefinition set: tilesets) {
-			if(!set.getSource().contains("logic/")) {
+		for (TileSetDefinition set : tilesets) {
+			if (!set.getSource().contains("logic/")) {
 				amount++;
 			}
 
 		}
 
 		out.write(amount);
-		for(TileSetDefinition set: tilesets) {
-			if(!set.getSource().contains("logic/")) {
+		for (TileSetDefinition set : tilesets) {
+			if (!set.getSource().contains("logic/")) {
 				set.writeObject(out);
 			}
 		}
 
 		addToContent(name, array.toByteArray());
-    }
+	}
 
 	/**
-	 * Creates a new TransferContent for the specified data and adds it
-	 * to the contents list.
+	 * Creates a new TransferContent for the specified data and adds it to the
+	 * contents list.
 	 */
 	private void addToContent(String name, byte[] byteContents) {
 		TransferContent content = new TransferContent();
@@ -335,12 +333,14 @@ public class StendhalRPZone extends MarauroaRPZone {
 		contents.add(content);
 	}
 
-	public void addCollisionLayer(String name, LayerDefinition collisionLayer) throws IOException {
+	public void addCollisionLayer(String name, LayerDefinition collisionLayer)
+			throws IOException {
 		addToContent(name, collisionLayer.encode());
 		collisionMap.setCollisionData(collisionLayer);
 	}
 
-	public void addProtectionLayer(String name, LayerDefinition protectionLayer) throws IOException {
+	public void addProtectionLayer(String name, LayerDefinition protectionLayer)
+			throws IOException {
 		protectionMap.setCollisionData(protectionLayer);
 	}
 
@@ -371,13 +371,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return interior;
 	}
 
-
 	/**
 	 * Determine if this zone overlaps an area in global coordinates.
 	 *
-	 * @param	area		The area (in global coordinate space).
+	 * @param area
+	 *            The area (in global coordinate space).
 	 *
-	 * @return	<code>true</code> if the area overlaps.
+	 * @return <code>true</code> if the area overlaps.
 	 */
 	public boolean contains(Rectangle2D area) {
 		Rectangle2D zone = new Rectangle(x, y, getWidth(), getHeight());
@@ -385,25 +385,27 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return zone.intersects(area);
 	}
 
-
 	/**
 	 * Populate a zone based on it's map content.
 	 *
 	 * XXX - This should be moved to the zone loader or something.
 	 */
-	public void populate(LayerDefinition objectsLayer) throws IOException, RPObjectInvalidException {
+	public void populate(LayerDefinition objectsLayer) throws IOException {
 		/* We build the layer data */
 		objectsLayer.build();
 
-		for(int y=0;y<objectsLayer.getHeight();y++) {
-			for(int x=0;x<objectsLayer.getWidth();x++) {
+		for (int y = 0; y < objectsLayer.getHeight(); y++) {
+			for (int x = 0; x < objectsLayer.getWidth(); x++) {
 				int value = objectsLayer.getTileAt(x, y);
-				if(value>0) {
+				if (value > 0) {
 					/*
-					 * When the value is 0, it means that there is no tile at that point.
+					 * When the value is 0, it means that there is no tile at
+					 * that point.
 					 */
-					TileSetDefinition tileset=objectsLayer.getTilesetFor(value);
-					createEntityAt(tileset.getSource(),value-tileset.getFirstGid(),x,y);
+					TileSetDefinition tileset = objectsLayer
+							.getTilesetFor(value);
+					createEntityAt(tileset.getSource(), value
+							- tileset.getFirstGid(), x, y);
 				}
 			}
 		}
@@ -411,138 +413,157 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Create a map entity as a given coordinate.
-	 * @param clazz the clazz of entity we are loading.<br>
-	 *        It is related to the way entities are stored in tilesets now.
+	 *
+	 * @param clazz
+	 *            the clazz of entity we are loading.<br>
+	 *            It is related to the way entities are stored in tilesets now.
 	 *
 	 *
 	 */
 	protected void createEntityAt(String clazz, int type, int x, int y) {
-		logger.debug("creating "+clazz+":"+type+" at "+x+","+y);
+		logger.debug("creating " + clazz + ":" + type + " at " + x + "," + y);
 
 		try {
-			if(clazz.contains("logic/portal")) {
+			if (clazz.contains("logic/portal")) {
 				switch (type) {
-					case 0: /* Entry point */
-					case 1: /* Zone change */
-						setEntryPoint(x, y);
-						break;
+				case 0: /* Entry point */
+				case 1: /* Zone change */
+					setEntryPoint(x, y);
+					break;
 
-					case 5: /* one way portal destination */
-					case 2: /* portal stairs up */
-					case 3: /* portal stairs down */
-						createLevelPortalAt(type, x, y);
-						break;
-					case 4: /* portal */
-						break;
-					case 6: /* door */
-						try {
-							StendhalRPWorld.get().createHouse(this, x, y);
-							numHouses++;
-						} catch (Exception e) {
-							logger.error("Error adding house to " + this, e);
-						}
-						break;
+				case 5: /* one way portal destination */
+				case 2: /* portal stairs up */
+				case 3: /* portal stairs down */
+					createLevelPortalAt(type, x, y);
+					break;
+				case 4: /* portal */
+					break;
+				case 6: /* door */
+					try {
+						StendhalRPWorld.get().createHouse(this, x, y);
+						numHouses++;
+					} catch (Exception e) {
+						logger.error("Error adding house to " + this, e);
+					}
+					break;
 				}
-			} else if(clazz.contains("sheep.png")) {
+			} else if (clazz.contains("sheep.png")) {
 				Sheep sheep = new Sheep();
 				assignRPObjectID(sheep);
 				sheep.setX(x);
 				sheep.setY(y);
 				add(sheep);
-			} else if(clazz.contains("logic/creature")) {
+			} else if (clazz.contains("logic/creature")) {
 				// get the default EntityManager
-				EntityManager manager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+				EntityManager manager = StendhalRPWorld.get().getRuleManager()
+						.getEntityManager();
 
 				// Is the entity a creature
 				if (manager.isCreature(clazz, type)) {
 					Creature creature = manager.getCreature(clazz, type);
-					CreatureRespawnPoint point = new CreatureRespawnPoint(this, x, y, creature, 1);
+					CreatureRespawnPoint point = new CreatureRespawnPoint(this,
+							x, y, creature, 1);
 					add(point);
 				} else {
-					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
+					logger.error("Unknown Entity (class/type: " + clazz + ":"
+							+ type + ") at (" + x + "," + y + ") of " + getID()
+							+ " found");
 				}
-			} else if(clazz.contains("logic/item")) {
+			} else if (clazz.contains("logic/item")) {
 				PassiveEntityRespawnPoint plantGrower = null;
 
-				if(clazz.contains("arandula")) {
+				if (clazz.contains("arandula")) {
 					plantGrower = new PassiveEntityRespawnPoint("arandula", 400);
-				} else if(clazz.contains("corn")) {
+				} else if (clazz.contains("corn")) {
 					plantGrower = new GrainField();
-				} else if(clazz.contains("mushroom")) {
-					switch(type) {
-						case 0:
-							plantGrower = new PassiveEntityRespawnPoint("button_mushroom", 500);
-							break;
-						case 1:
-							plantGrower = new PassiveEntityRespawnPoint("porcini", 1000);
-							break;
-						case 2:
-							plantGrower = new PassiveEntityRespawnPoint("toadstool", 1000);
-							break;
+				} else if (clazz.contains("mushroom")) {
+					switch (type) {
+					case 0:
+						plantGrower = new PassiveEntityRespawnPoint(
+								"button_mushroom", 500);
+						break;
+					case 1:
+						plantGrower = new PassiveEntityRespawnPoint("porcini",
+								1000);
+						break;
+					case 2:
+						plantGrower = new PassiveEntityRespawnPoint(
+								"toadstool", 1000);
+						break;
 					}
-				} else if(clazz.contains("resources")) {
-					switch(type) {
-						case 0:
-							plantGrower = new PassiveEntityRespawnPoint("wood", 1500);
-							break;
-						case 1:
-							plantGrower = new PassiveEntityRespawnPoint("iron_ore", 3000);
-							// TODO: This is only a workaround. We should find a better name
-							// than "plant grower", as we're also using them for resources,
-							// teddies and whatever. We should also consider making them
-							// non-clickable.
-							plantGrower.setDescription("You see a small vein of iron ore.");
-							break;
+				} else if (clazz.contains("resources")) {
+					switch (type) {
+					case 0:
+						plantGrower = new PassiveEntityRespawnPoint("wood",
+								1500);
+						break;
+					case 1:
+						plantGrower = new PassiveEntityRespawnPoint("iron_ore",
+								3000);
+						// TODO: This is only a workaround. We should find a
+						// better name
+						// than "plant grower", as we're also using them for
+						// resources,
+						// teddies and whatever. We should also consider making
+						// them
+						// non-clickable.
+						plantGrower
+								.setDescription("You see a small vein of iron ore.");
+						break;
 					}
-				} else if(clazz.contains("sheepfood")) {
+				} else if (clazz.contains("sheepfood")) {
 					plantGrower = new SheepFood();
-				} else if(clazz.contains("vegetable")) {
-					switch(type) {
-						case 0:
-							plantGrower = new PassiveEntityRespawnPoint("apple", 500);
-							break;
-						case 1:
-							plantGrower = new VegetableGrower("carrot");
-							break;
-						case 2:
-							plantGrower = new PassiveEntityRespawnPoint("salad", 1500);
-							break;
-						case 3:
-							plantGrower = new VegetableGrower("broccoli");
-							break;
-						case 4:
-							plantGrower = new VegetableGrower("cauliflower");
-							break;
-						case 5:
-							plantGrower = new VegetableGrower("chinese_cabbage");
-							break;
-						case 6:
-							plantGrower = new VegetableGrower("leek");
-							break;
-						case 7:
-							plantGrower = new VegetableGrower("onion");
-							break;
-						case 8:
-							plantGrower = new VegetableGrower("courgette");
-							break;
-						case 9:
-							plantGrower = new PassiveEntityRespawnPoint("spinach", 1500);
-							break;
-						case 10:
-							plantGrower = new VegetableGrower("collard");
-							break;
+				} else if (clazz.contains("vegetable")) {
+					switch (type) {
+					case 0:
+						plantGrower = new PassiveEntityRespawnPoint("apple",
+								500);
+						break;
+					case 1:
+						plantGrower = new VegetableGrower("carrot");
+						break;
+					case 2:
+						plantGrower = new PassiveEntityRespawnPoint("salad",
+								1500);
+						break;
+					case 3:
+						plantGrower = new VegetableGrower("broccoli");
+						break;
+					case 4:
+						plantGrower = new VegetableGrower("cauliflower");
+						break;
+					case 5:
+						plantGrower = new VegetableGrower("chinese_cabbage");
+						break;
+					case 6:
+						plantGrower = new VegetableGrower("leek");
+						break;
+					case 7:
+						plantGrower = new VegetableGrower("onion");
+						break;
+					case 8:
+						plantGrower = new VegetableGrower("courgette");
+						break;
+					case 9:
+						plantGrower = new PassiveEntityRespawnPoint("spinach",
+								1500);
+						break;
+					case 10:
+						plantGrower = new VegetableGrower("collard");
+						break;
 					}
 
-				} else if(clazz.contains("sign")) {
+				} else if (clazz.contains("sign")) {
 					/*
-					 * Ignore signs.
-					 * The way to go is XML.
+					 * Ignore signs. The way to go is XML.
 					 */
 					return;
 				}
 
-				if(plantGrower==null) {
-					logger.error("Unknown Entity (class/type: " +clazz+":"+type + ") at (" + x + "," + y + ") of " + getID() + " found");
+				if (plantGrower == null) {
+					logger.error("Unknown Entity (class/type: " + clazz + ":"
+							+ type + ") at (" + x + "," + y + ") of " + getID()
+							+ " found");
 					return;
 				}
 
@@ -556,7 +577,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 			}
 		} catch (Exception e) {
-			logger.error("error creating entity " + type + " at (" + x + "," + y + ")", e);
+			logger.error("error creating entity " + type + " at (" + x + ","
+					+ y + ")", e);
 		}
 	}
 
@@ -619,7 +641,9 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 			}
 
-			Portal target = zone.getPortal(portal.getX() + getX() - zone.getX(), portal.getY() + getY() - zone.getY());
+			Portal target = zone.getPortal(
+					portal.getX() + getX() - zone.getX(), portal.getY()
+							+ getY() - zone.getY());
 
 			if (target == null) {
 				continue;
@@ -633,7 +657,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 			}
 
 			if (type != 5) {
-				portal.setDestination(zone.getID().getID(), zone.assignPortalID(target));
+				portal.setDestination(zone.getID().getID(), zone
+						.assignPortalID(target));
 			}
 
 			target.setDestination(getID().getID(), portal.getIdentifier());
@@ -678,30 +703,32 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	@Override
-	public synchronized void add(RPObject object) throws RPObjectInvalidException {
+	public synchronized void add(RPObject object) {
 		add(object, null);
 	}
 
 	/**
 	 * Adds an object to the ground.
 	 *
-	 * The player parameter can be used to create special items that react
-	 * when they are dropped on the ground by a player.
+	 * The player parameter can be used to create special items that react when
+	 * they are dropped on the ground by a player.
 	 *
-	 * @param object The object that should be added to the zone
-	 * @param player The player who put the object on the ground, or null
-	 *               if the object wasn't carried by a player before
+	 * @param object
+	 *            The object that should be added to the zone
+	 * @param player
+	 *            The player who put the object on the ground, or null if the
+	 *            object wasn't carried by a player before
 	 * @throws RPObjectInvalidException
 	 */
-	public synchronized void add(RPObject object, Player player) throws RPObjectInvalidException {
+	public synchronized void add(RPObject object, Player player) {
 		super.add(object);
 
 		/*
-		 * This check is to avoid PassiveEntityRespawnPoint to make items grown and zone to
-		 * make them dissappear.
-		 * FIXME: Change later to a proper event based system.
+		 * This check is to avoid PassiveEntityRespawnPoint to make items grown
+		 * and zone to make them dissappear. FIXME: Change later to a proper
+		 * event based system.
 		 */
-		if (object instanceof Item && player!=null) {
+		if (object instanceof Item && player != null) {
 			Item item = (Item) object;
 			item.onPutOnGround(player);
 			itemsOnGround.add(item);
@@ -710,7 +737,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Eventually move to <Entity>.onAdded().
 		 */
-		if(object instanceof PassiveEntityRespawnPoint) {
+		if (object instanceof PassiveEntityRespawnPoint) {
 			plantGrowers.add((PassiveEntityRespawnPoint) object);
 		}
 
@@ -740,7 +767,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	@Override
-	public synchronized RPObject remove(RPObject.ID id) throws RPObjectNotFoundException {
+	public synchronized RPObject remove(RPObject.ID id) {
 		RPObject object = get(id);
 
 		if (object instanceof Entity) {
@@ -761,7 +788,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		/*
 		 * Eventually move to <Entity>.onRemoved().
 		 */
-		if(object instanceof PassiveEntityRespawnPoint) {
+		if (object instanceof PassiveEntityRespawnPoint) {
 			plantGrowers.remove(object);
 		}
 
@@ -780,12 +807,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 			sheepFoods.remove(object);
 		} else if (object instanceof SpeakerNPC) {
 			/*
-			 * BUG: I am not sure this works as expected as npcs
-			 * list is loaded just once on startup and never
-			 * used again, so these removes are useless IMHO.
+			 * BUG: I am not sure this works as expected as npcs list is loaded
+			 * just once on startup and never used again, so these removes are
+			 * useless IMHO.
 			 *
-			 * TODO: Move NPC (and all entity) handling to
-			 * zone scoped/managed/dispatched.
+			 * TODO: Move NPC (and all entity) handling to zone
+			 * scoped/managed/dispatched.
 			 */
 			npcs.remove(object);
 		} else if (object instanceof Portal) {
@@ -803,7 +830,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		return object;
 	}
 
-	public synchronized RPObject remove(RPObject object) throws RPObjectNotFoundException {
+	public synchronized RPObject remove(RPObject object) {
 		if (object.isContained()) {
 			// We modify the base container if the object change.
 			RPObject base = object.getContainer();
@@ -838,13 +865,17 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Checks if there is a collision on the airline between 2 positions.
-	 * Only the collision map will be used.
+	 * Checks if there is a collision on the airline between 2 positions. Only
+	 * the collision map will be used.
 	 *
-	 * @param x1 x value of position 1
-	 * @param y1 y value of position 1
-	 * @param x2 x value of position 2
-	 * @param y2 y value of position 2
+	 * @param x1
+	 *            x value of position 1
+	 * @param y1
+	 *            y value of position 1
+	 * @param x2
+	 *            x value of position 2
+	 * @param y2
+	 *            y value of position 2
 	 * @return true if there is a collision
 	 */
 	public boolean collidesOnLine(int x1, int y1, int x2, int y2) {
@@ -866,9 +897,13 @@ public class StendhalRPZone extends MarauroaRPZone {
 	 * Checks whether the given entity would be able to stand at the given
 	 * position, or if it would collide with the collision map or with another
 	 * entity.
-	 * @param entity The entity that would stand on the given position
-	 * @param x The x coordinate of the position where the entity would stand
-	 * @param y The y coordinate of the position where the entity would stand
+	 *
+	 * @param entity
+	 *            The entity that would stand on the given position
+	 * @param x
+	 *            The x coordinate of the position where the entity would stand
+	 * @param y
+	 *            The y coordinate of the position where the entity would stand
 	 * @return true iff the entity could stand on the given position
 	 * @throws AttributeNotFoundException
 	 */
@@ -878,17 +913,22 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Checks whether the given entity would be able to stand at the given
-	 * position, or if it would collide with the collision map or
-	 * (if <i>checkObjects</i> is enabled) with another entity.
-	 * @param entity The entity that would stand on the given position
-	 * @param x The x coordinate of the position where the entity would stand
-	 * @param y The y coordinate of the position where the entity would stand
-	 * @param checkObjects If false, only the collision map will be used.
+	 * position, or if it would collide with the collision map or (if
+	 * <i>checkObjects</i> is enabled) with another entity.
+	 *
+	 * @param entity
+	 *            The entity that would stand on the given position
+	 * @param x
+	 *            The x coordinate of the position where the entity would stand
+	 * @param y
+	 *            The y coordinate of the position where the entity would stand
+	 * @param checkObjects
+	 *            If false, only the collision map will be used.
 	 * @return true iff the entity could stand on the given position
 	 * @throws AttributeNotFoundException
 	 */
-	public synchronized boolean collides(Entity entity, double x, double y, boolean checkObjects)
-	        {
+	public synchronized boolean collides(Entity entity, double x, double y,
+			boolean checkObjects) {
 		Rectangle2D area = entity.getArea(x, y);
 
 		if (collisionMap.collides(area)) {
@@ -905,7 +945,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 	public boolean collidesObjects(Entity entity, Rectangle2D area) {
 		// For every other object in this zone, check whether it's in the
 		// way.
-		return getCollidingObject(entity, area)!=null;
+		return getCollidingObject(entity, area) != null;
 	}
 
 	private Entity getCollidingObject(Entity entity, Rectangle2D area) {
@@ -916,8 +956,10 @@ public class StendhalRPZone extends MarauroaRPZone {
 			if (otherEntity.isObstacle(entity)) {
 				// There is something the entity couldn't stand upon.
 				// Check if it's in the way.
-				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity.getY());
-				if (area.intersects(otherArea) && !entity.getID().equals(otherEntity.getID())) {
+				otherEntity.getArea(otherArea, otherEntity.getX(), otherEntity
+						.getY());
+				if (area.intersects(otherArea)
+						&& !entity.getID().equals(otherEntity.getID())) {
 					return otherEntity;
 				}
 			}
@@ -933,7 +975,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 		for (RPObject other : objects.values()) {
 			Entity otherEntity = (Entity) other;
 
-			Rectangle2D rect = otherEntity.getArea(otherEntity.getX(), otherEntity.getY());
+			Rectangle2D rect = otherEntity.getArea(otherEntity.getX(),
+					otherEntity.getY());
 			if (rect.contains(x, y)) {
 				return otherEntity;
 			}
@@ -944,9 +987,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Notify anything interested in when an entity entered.
 	 *
-	 * @param	entity		The entity that entered.
-	 * @param	newX		The new X coordinate.
-	 * @param	newY		The new Y coordinate.
+	 * @param entity
+	 *            The entity that entered.
+	 * @param newX
+	 *            The new X coordinate.
+	 * @param newY
+	 *            The new Y coordinate.
 	 */
 	public void notifyEntered(ActiveEntity entity, int newX, int newY) {
 		Rectangle2D eArea;
@@ -963,9 +1009,12 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Notify anything interested in when an entity exited.
 	 *
-	 * @param	entity		The entity that moved.
-	 * @param	oldX		The old X coordinate.
-	 * @param	oldY		The old Y coordinate.
+	 * @param entity
+	 *            The entity that moved.
+	 * @param oldX
+	 *            The old X coordinate.
+	 * @param oldY
+	 *            The old Y coordinate.
 	 */
 	public void notifyExited(ActiveEntity entity, int oldX, int oldY) {
 		Rectangle2D eArea;
@@ -982,13 +1031,19 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Notify anything interested that an entity moved.
 	 *
-	 * @param	entity		The entity that moved.
-	 * @param	oldX		The old X coordinate.
-	 * @param	oldY		The old Y coordinate.
-	 * @param	newX		The new X coordinate.
-	 * @param	newY		The new Y coordinate.
+	 * @param entity
+	 *            The entity that moved.
+	 * @param oldX
+	 *            The old X coordinate.
+	 * @param oldY
+	 *            The old Y coordinate.
+	 * @param newX
+	 *            The new X coordinate.
+	 * @param newY
+	 *            The new Y coordinate.
 	 */
-	public void notifyMovement(ActiveEntity entity, int oldX, int oldY, int newX, int newY) {
+	public void notifyMovement(ActiveEntity entity, int oldX, int oldY,
+			int newX, int newY) {
 		Rectangle2D area;
 		Rectangle2D oeArea;
 		Rectangle2D neArea;
@@ -1026,10 +1081,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Register a movement listener for notification. Eventually create
-	 * a macro-block hash to cut down on listeners to check.
+	 * Register a movement listener for notification. Eventually create a
+	 * macro-block hash to cut down on listeners to check.
 	 *
-	 * @param	listener	A movement listener to register.
+	 * @param listener
+	 *            A movement listener to register.
 	 */
 	public void addMovementListener(MovementListener listener) {
 		movementListeners.add(listener);
@@ -1038,7 +1094,8 @@ public class StendhalRPZone extends MarauroaRPZone {
 	/**
 	 * Unregister a movement listener from notification.
 	 *
-	 * @param	listener	A movement listener to unregister.
+	 * @param listener
+	 *            A movement listener to unregister.
 	 */
 	public void removeMovementListener(MovementListener listener) {
 		movementListeners.remove(listener);
@@ -1051,33 +1108,30 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	/**
 	 * Returns a set of all items that are lying on the ground in this zone.
-	 * This set is currently only used for plant growers, and these
-	 * might be changed so that this set is no longer needed,
-	 * so try to avoid using it.
+	 * This set is currently only used for plant growers, and these might be
+	 * changed so that this set is no longer needed, so try to avoid using it.
 	 */
 	public Set<Item> getItemsOnGround() {
 		return itemsOnGround;
 	}
 
-
 	/**
 	 * Gets all players in this zone.
 	 *
-	 * @return	A list of all players.
+	 * @return A list of all players.
 	 */
 	public List<Player> getPlayers() {
 		return players;
 	}
 
-
-//	public void addPlayerAndFriends(RPEntity player) {
-//		playersAndFriends.add(player);
-//	}
+	// public void addPlayerAndFriends(RPEntity player) {
+	// playersAndFriends.add(player);
+	// }
 
 	/**
-	 * Gets all players in this zone, as well as friendly entities
-	 * such as sheep. These are the targets (enemies) for wild
-	 * creatures such as orcs.
+	 * Gets all players in this zone, as well as friendly entities such as
+	 * sheep. These are the targets (enemies) for wild creatures such as orcs.
+	 *
 	 * @return a list of all players and friendly entities
 	 */
 	public List<RPEntity> getPlayerAndFriends() {
@@ -1094,10 +1148,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Sets the flag whether magic scrolls for teleportation may
-	 * be uses in this zone.
+	 * Sets the flag whether magic scrolls for teleportation may be uses in this
+	 * zone.
 	 *
-	 * @param teleportAllowed true, if teleportion is possible, false otherwise
+	 * @param teleportAllowed
+	 *            true, if teleportion is possible, false otherwise
 	 */
 	public void setTeleportAllowed(boolean teleportAllowed) {
 		this.teleportAllowed = teleportAllowed;
@@ -1113,10 +1168,11 @@ public class StendhalRPZone extends MarauroaRPZone {
 	}
 
 	/**
-	 * Sets the flag whether moveto (mouse movement using pathfinding) is possible
-	 * in this zone.
+	 * Sets the flag whether moveto (mouse movement using pathfinding) is
+	 * possible in this zone.
 	 *
-	 * @param moveToAllowed true, if it is possible, false otherwise
+	 * @param moveToAllowed
+	 *            true, if it is possible, false otherwise
 	 */
 	public void setMoveToAllowed(boolean moveToAllowed) {
 		this.moveToAllowed = moveToAllowed;
@@ -1135,20 +1191,20 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 		i++;
 
-		if (Debug.SHOW_LIST_SIZES && i%1000==0) {
-			StringBuffer os=new StringBuffer("Name: "+this.getID());
-			os.append("blood: "+bloods.size()+"\n");
-			os.append("itemsOnGround: "+itemsOnGround.size()+"\n");
-			os.append("movementListeners: "+movementListeners.size()+"\n");
-			os.append("npcs: "+npcs.size()+"\n");
-			os.append("plantGrowers: "+plantGrowers.size()+"\n");
-			os.append("players: "+players.size()+"\n");
-			os.append("playersAndFriends: "+playersAndFriends.size()+"\n");
-			os.append("portals: "+portals.size()+"\n");
-			os.append("respawnPoints: "+respawnPoints.size()+"\n");
-			os.append("sheepFoods: "+sheepFoods.size()+"\n");
-			os.append("objects: "+objects.size()+"\n");
+		if (Debug.SHOW_LIST_SIZES && i % 1000 == 0) {
+			StringBuffer os = new StringBuffer("Name: " + this.getID());
+			os.append("blood: " + bloods.size() + "\n");
+			os.append("itemsOnGround: " + itemsOnGround.size() + "\n");
+			os.append("movementListeners: " + movementListeners.size() + "\n");
+			os.append("npcs: " + npcs.size() + "\n");
+			os.append("plantGrowers: " + plantGrowers.size() + "\n");
+			os.append("players: " + players.size() + "\n");
+			os.append("playersAndFriends: " + playersAndFriends.size() + "\n");
+			os.append("portals: " + portals.size() + "\n");
+			os.append("respawnPoints: " + respawnPoints.size() + "\n");
+			os.append("sheepFoods: " + sheepFoods.size() + "\n");
+			os.append("objects: " + objects.size() + "\n");
 			logger.info(os);
-		}	}
-
+		}
+	}
 }

@@ -61,7 +61,6 @@ import marauroa.common.game.CharacterResult;
 import marauroa.common.game.IRPZone;
 import marauroa.common.game.RPAction;
 import marauroa.common.game.RPObject;
-import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Result;
 import marauroa.server.game.Statistics;
@@ -120,7 +119,12 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 	public static void register(String action, ActionListener actionClass) {
 		if (actionsMap.get(action) != null) {
-			logger.error("Registering twice (previous was "+actionsMap.get(action).getClass()+") the same action handler: " + action+ " with "+actionClass.getClass());
+			logger.error("Registering twice (previous was "
+					+ actionsMap.get(action).getClass()
+					+ ") the same action handler: "
+					+ action
+					+ " with "
+					+ actionClass.getClass());
 		}
 		actionsMap.put(action, actionClass);
 	}
@@ -278,9 +282,8 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	public boolean checkGameVersion(String game, String version) {
 		if (game.equals("stendhal")) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	private boolean isValidUsername(String username) {
@@ -360,9 +363,9 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			/*
 			 * If player has the title attribute, it replaces name.
 			 */
-			String playername=player.getName();
+			String playername = player.getName();
 			if (player.has("title")) {
-				playername=player.get("title");
+				playername = player.get("title");
 			}
 
 			if (playername.equals(name)) {
@@ -409,10 +412,10 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 	}
 
 	/** Notify it when a new turn happens */
-	synchronized public void beginTurn() {
+	public synchronized void beginTurn() {
 		long start = System.nanoTime();
 
-		if (Debug.SHOW_LIST_SIZES && rpman.getTurn()%1000==0) {
+		if (Debug.SHOW_LIST_SIZES && rpman.getTurn() % 1000 == 0) {
 			int creatures = 0;
 			for (CreatureRespawnPoint point : respawnPoints) {
 				creatures += point.size();
@@ -424,18 +427,18 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 				objects += zone.size();
 			}
 
-			StringBuffer os=new StringBuffer();
-			os.append("entityToKill: "+entityToKill.size()+"\n");
-			os.append("npcs: "+npcs.size()+"\n");
-			os.append("npcsToAdd: "+npcsToAdd.size()+"\n");
-			os.append("npcsToRemove: "+npcsToRemove.size()+"\n");
-			os.append("plantGrowers: "+plantGrowers.size()+"\n");
-			os.append("players: "+players.size()+"\n");
-			os.append("playersRmText: "+playersRmText.size()+"\n");
-			os.append("playersRmPrivateText: "+playersRmPrivateText.size()+"\n");
-			os.append("respawnPoints: "+respawnPoints.size()+"\n");
-			os.append("creatures: "+creatures+"\n");
-			os.append("objects: "+objects+"\n");
+			StringBuffer os = new StringBuffer();
+			os.append("entityToKill: " + entityToKill.size() + "\n");
+			os.append("npcs: " + npcs.size() + "\n");
+			os.append("npcsToAdd: " + npcsToAdd.size() + "\n");
+			os.append("npcsToRemove: " + npcsToRemove.size() + "\n");
+			os.append("plantGrowers: " + plantGrowers.size() + "\n");
+			os.append("players: " + players.size() + "\n");
+			os.append("playersRmText: " + playersRmText.size() + "\n");
+			os.append("playersRmPrivateText: " + playersRmPrivateText.size() + "\n");
+			os.append("respawnPoints: " + respawnPoints.size() + "\n");
+			os.append("creatures: " + creatures + "\n");
+			os.append("objects: " + objects + "\n");
 			logger.info(os);
 		}
 
@@ -495,7 +498,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	synchronized public void endTurn() {
+	public synchronized void endTurn() {
 		long start = System.nanoTime();
 		int currentTurn = getTurn();
 		try {
@@ -514,19 +517,19 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	synchronized public boolean onInit(RPObject object) throws RPObjectInvalidException {
+	public synchronized boolean onInit(RPObject object) {
 		try {
-			PlayerEntry entry=PlayerEntryContainer.getContainer().get(object);
+			PlayerEntry entry = PlayerEntryContainer.getContainer().get(object);
 
 			Player player = Player.create(object);
 			// TODO: This is a hack, it should use instead RPObjectFactory.
-			entry.object=player;
+			entry.object = player;
 
 			playersRmText.add(player);
 			playersRmPrivateText.add(player);
 			players.add(player);
 
-			if(!player.isGhost()) {
+			if (!player.isGhost()) {
 				// Notify other players about this event
 				for (Player p : getPlayers()) {
 					p.notifyOnline(player.getName());
@@ -540,12 +543,13 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 
 			return true;
 		} catch (Exception e) {
-			logger.error("There has been a severe problem loading player " + object.get("#db_id"), e);
+			logger.error("There has been a severe problem loading player "
+					+ object.get("#db_id"), e);
 			return false;
 		}
 	}
 
-	synchronized public boolean onExit(RPObject object) {
+	public synchronized boolean onExit(RPObject object) {
 		try {
 			Player player = (Player) object;
 			if (wasKilled(player)) {
@@ -570,7 +574,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 		}
 	}
 
-	synchronized public void onTimeout(RPObject object) {
+	public synchronized void onTimeout(RPObject object) {
 		/*
 		 * TODO: Check new syntax of onTimeout.
 		 *  It is expected to kickout the player, it can't fail.
@@ -583,7 +587,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			return new AccountResult(Result.FAILED_EXCEPTION, username);
 		}
 
-		JDBCDatabase database=(JDBCDatabase) DatabaseFactory.getDatabase();
+		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 		try {
 			trans.begin();
@@ -609,7 +613,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
     }
 
 	public CharacterResult createCharacter(String username, String character, RPObject template) {
-		JDBCDatabase database=(JDBCDatabase) DatabaseFactory.getDatabase();
+		JDBCDatabase database = (JDBCDatabase) DatabaseFactory.getDatabase();
 		Transaction trans = database.getTransaction();
 
 		try {
@@ -663,7 +667,7 @@ public class StendhalRPRuleProcessor implements IRPRuleProcessor {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			logger.error("Can't create character",e);
+			logger.error("Can't create character", e);
 			TestHelper.fail();
 			return new CharacterResult(Result.FAILED_EXCEPTION, character, template);
 		}
