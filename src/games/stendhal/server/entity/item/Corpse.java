@@ -33,7 +33,8 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPSlot;
 import marauroa.common.game.Definition.Type;
 
-public class Corpse extends PassiveEntity implements TurnListener, EquipListener {
+public class Corpse extends PassiveEntity implements TurnListener,
+		EquipListener {
 
 	private static final Logger logger = Log4J.getLogger(Corpse.class);
 
@@ -42,7 +43,8 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	private static final int MAX_STAGE = 5; // number of degradation steps
 
-	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT / MAX_STAGE;
+	private static final int DEGRADATION_STEP_TIMEOUT = DEGRADATION_TIMEOUT
+			/ MAX_STAGE;
 
 	private int stage;
 
@@ -64,12 +66,16 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		int width = 1;
 		int height = 1;
 
-		if (clazz.equals("giant_animal") || clazz.equals("giant_human") || clazz.equals("huge_animal")) {
-			width=height=2;
+		if (clazz.equals("giant_animal") || clazz.equals("giant_human")
+				|| clazz.equals("huge_animal")) {
+			width = 2;
+			height = 2;
 		} else if (clazz.equals("mythical_animal") || clazz.equals("boss")) {
-			width=height=6;
+			width = 6;
+			height = 6;
 		} else if (clazz.equals("enormous_creature")) {
-			width=height=16;
+			width = 16;
+			height = 16;
 		}
 
 		setWidth(width);
@@ -91,17 +97,18 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 		RPSlot slot = new LootableSlot(this);
 
-		//BUG: Capacity is set at RPClass.
-		//slot.setCapacity(4);
+		// BUG: Capacity is set at RPClass.
+		// slot.setCapacity(4);
 		addSlot(slot);
 	}
-
 
 	/**
 	 * Create a corpse.
 	 *
-	 * @param	victim		The killed entity.
-	 * @param	killer		The killer entity.
+	 * @param victim
+	 *            The killed entity.
+	 * @param killer
+	 *            The killer entity.
 	 *
 	 *
 	 */
@@ -112,8 +119,10 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	/**
 	 * Create a corpse.
 	 *
-	 * @param	victim		The killed entity.
-	 * @param	killerName	The killer name.
+	 * @param victim
+	 *            The killed entity.
+	 * @param killerName
+	 *            The killer name.
 	 *
 	 *
 	 */
@@ -132,8 +141,9 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		if ((killerName != null) && (victim instanceof Player)) {
 			put("name", victim.getName());
 			put("killer", killerName);
-		} else if(has("killer")) {
-			logger.error("Corpse: (" + victim + ") with null killer: (" + killerName + ")");
+		} else if (has("killer")) {
+			logger.error("Corpse: (" + victim + ") with null killer: ("
+					+ killerName + ")");
 			remove("killer");
 		}
 
@@ -141,7 +151,7 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		// than 2x2.
 		//
 		// TODO: decideSize() has been called, width/height are set.
-		//       Center corpse area on victim area.
+		// Center corpse area on victim area.
 		Rectangle2D rect = victim.getArea();
 		setX((int) Math.round(rect.getCenterX() - 1));
 		setY((int) Math.round(rect.getCenterY() - 1));
@@ -153,7 +163,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 		RPSlot slot = new LootableSlot(this);
 		addSlot(slot);
 	}
-
 
 	//
 	// Corpse
@@ -197,7 +206,6 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 			if (isContained()) {
 				// We modify the base container if the object change.
 
-
 				StendhalRPWorld.get().modify(getBase());
 
 				getContainerSlot().remove(this.getID());
@@ -213,15 +221,16 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 	/**
 	 * Set to false to stop degrading. (Some corpse are used in quests).
 	 *
-	 * @param isDegrading true, if degrading, false otherwise
+	 * @param isDegrading
+	 *            true, if degrading, false otherwise
 	 */
 	public void setDegrading(boolean isDegrading) {
 		this.isDegrading = isDegrading;
 	}
 
 	/**
-	 * Sets the current degrading state. Set it to MAX_STAGE
-	 * will remove the corpse.
+	 * Sets the current degrading state. Set it to MAX_STAGE will remove the
+	 * corpse.
 	 *
 	 * @param newStage
 	 */
@@ -259,7 +268,8 @@ public class Corpse extends PassiveEntity implements TurnListener, EquipListener
 
 	@Override
 	public String describe() {
-		String[] stageText = { "new", "fresh", "cold", "slightly rotten", "rotten", "very rotten" };
+		String[] stageText = { "new", "fresh", "cold", "slightly rotten",
+				"rotten", "very rotten" };
 		String text = "You see the " + stageText[stage] + " corpse of ";
 		if (hasDescription()) {
 			text = getDescription();

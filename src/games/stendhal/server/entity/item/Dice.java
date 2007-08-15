@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class Dice extends Item {
 
-	private static int NUMBER_OF_DICE = 3;
+	private static final int NUMBER_OF_DICE = 3;
 
 	private int[] topFaces;
 
@@ -44,7 +44,8 @@ public class Dice extends Item {
 	/**
 	 * copy constructor
 	 *
-	 * @param item item to copy
+	 * @param item
+	 *            item to copy
 	 */
 	public Dice(Dice item) {
 		super(item);
@@ -57,14 +58,14 @@ public class Dice extends Item {
 	}
 
 	/**
-	 * When the player gets the dice, then disconnects and reconnects,
-	 * the CroupierNPC is lost. That's why we store the croupier's name
-	 * in the item's infostring. This method will read out that infostring
-	 * and set the croupier to the NPC with that name.
+	 * When the player gets the dice, then disconnects and reconnects, the
+	 * CroupierNPC is lost. That's why we store the croupier's name in the
+	 * item's infostring. This method will read out that infostring and set the
+	 * croupier to the NPC with that name.
 	 *
-	 * I tried to do this in the constructor, but somehow it didn't work:
-	 * the item somehow seems to not have an infostring while the constructor
-	 * is running.
+	 * I tried to do this in the constructor, but somehow it didn't work: the
+	 * item somehow seems to not have an infostring while the constructor is
+	 * running.
 	 */
 	private void updateCroupierNPC() {
 		if ((croupierNPC == null) && has("infostring")) {
@@ -114,12 +115,13 @@ public class Dice extends Item {
 	@Override
 	public String describe() {
 
-		return "You see a set of dice. The top faces are " + getTopFacesString() + ".";
+		return "You see a set of dice. The top faces are "
+				+ getTopFacesString() + ".";
 	}
 
 	@Override
 	public StendhalRPZone getZone() {
-		if (croupierNPC!=null){
+		if (croupierNPC != null) {
 			return croupierNPC.getZone();
 		}
 		return super.getZone();

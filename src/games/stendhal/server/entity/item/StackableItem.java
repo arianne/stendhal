@@ -78,7 +78,7 @@ public class StackableItem extends Item implements Stackable {
 		if (quantity <= 0 || amountToSplitOff <= 0) {
 			return null;
 		}
-		
+
 		if (quantity >= amountToSplitOff) {
 			StackableItem newItem = (StackableItem) StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(
 			        get("name"));
@@ -126,16 +126,15 @@ public class StackableItem extends Item implements Stackable {
 
 	public boolean isStackable(Stackable other) {
 		StackableItem otheri = (StackableItem) other;
-		
+
 		if (!getItemClass().equals(otheri.getItemClass()) || !getItemSubclass().equals(otheri.getItemSubclass())) {
 			return false;
 		}
-		
+
 		// TODO: look at InfoStringScroll.java
-		
+
 		String[] importantAttributes = new String[]{"infostring", "description", "bound", "persistent", "amount", "frequency", "regen", "atk", "range"};
-		for (String iAtt : importantAttributes)
-		{
+		for (String iAtt : importantAttributes)	{
 			if (!has(iAtt) && !otheri.has(iAtt)) {
 				continue;
 			}

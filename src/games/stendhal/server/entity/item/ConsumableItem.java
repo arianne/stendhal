@@ -22,18 +22,20 @@ import java.util.Map;
 import marauroa.common.game.RPObject;
 
 /*
- * represents everything that can be consumed by RPentity.
- * Including food, poison, antidote ..
+ * represents everything that can be consumed by RPentity. Including food,
+ * poison, antidote ..
  *
  * Note: this class has a natural ordering that is inconsistent with equals.
  *
  */
-public class ConsumableItem extends StackableItem implements UseListener ,Comparable<ConsumableItem>{
+public class ConsumableItem extends StackableItem implements UseListener,
+		Comparable<ConsumableItem> {
 
 	/** How much of this item has not yet been consumed. */
 	private int left;
 
-	public ConsumableItem(String name, String clazz, String subclass, Map<String, String> attributes) {
+	public ConsumableItem(String name, String clazz, String subclass,
+			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		left = getAmount();
 	}
@@ -41,13 +43,13 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 	/**
 	 * copy constructor
 	 *
-	 * @param item item to copy
+	 * @param item
+	 *            item to copy
 	 */
 	public ConsumableItem(ConsumableItem item) {
 		super(item);
 		this.left = item.left;
 	}
-
 
 	public int getAmount() {
 		return getInt("amount");
@@ -63,6 +65,7 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 
 	/**
 	 * Consumes a part of this item.
+	 *
 	 * @return The amount that has been consumed
 	 */
 	public int consume() {
@@ -80,6 +83,7 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 
 	/**
 	 * Checks whether this item has already been fully consumed.
+	 *
 	 * @return true iff this item has been consumed
 	 */
 	public boolean consumed() {
@@ -87,10 +91,10 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 	}
 
 	/**
-	 * verifies item is near to player.
-	 * if so splits one single item of and calls consumeItem of the player
+	 * verifies item is near to player. if so splits one single item of and
+	 * calls consumeItem of the player
 	 *
-	 **/
+	 */
 	public boolean onUsed(RPEntity user) {
 		Player player = (Player) user;
 		if (isContained()) {
@@ -118,11 +122,13 @@ public class ConsumableItem extends StackableItem implements UseListener ,Compar
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	public int compareTo(ConsumableItem other) {
 
-		float result=(float)other.getRegen()/(float)other.getFrecuency()-(float)getRegen()/(float)getFrecuency();
-		return (int)Math.signum(result);
+		float result = (float) other.getRegen() / (float) other.getFrecuency()
+				- (float) getRegen() / (float) getFrecuency();
+		return (int) Math.signum(result);
 	}
 }
