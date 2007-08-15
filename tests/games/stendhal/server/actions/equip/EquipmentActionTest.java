@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 /**
  * Test cases for drop
  *
@@ -19,6 +18,7 @@ import org.junit.Test;
  */
 public class EquipmentActionTest {
 	private static final String ZONE_NAME = "0_semos_city";
+
 	private static final String ZONE_CONTENT = "Level 0/semos/city.tmx";
 
 	/**
@@ -57,6 +57,7 @@ public class EquipmentActionTest {
 
 	/**
 	 * initialize the world
+	 *
 	 * @throws Exception
 	 */
 	@BeforeClass
@@ -79,7 +80,8 @@ public class EquipmentActionTest {
 
 		EquipmentAction action = new EquipmentAction();
 		action.onAction(player, drop);
-		Assert.assertTrue("error message on invalid slot", player.getPrivateText() != null);
+		Assert.assertTrue("error message on invalid slot", player
+				.getPrivateText() != null);
 	}
 
 	@Test
@@ -87,7 +89,7 @@ public class EquipmentActionTest {
 
 		MockPlayer player = new MockPlayer();
 		player.addSlot(new RPSlot("bag"));
-player.setName("bob");
+		player.setName("bob");
 		RPAction drop = new RPAction();
 		drop.put("type", "drop");
 		drop.put("baseobject", player.getID().getObjectID());
@@ -101,6 +103,7 @@ player.setName("bob");
 		action.onAction(player, drop);
 		System.err.println(player.getPrivateText());
 
-		Assert.assertTrue("error message on invalid item", player.getPrivateText() != null);
+		Assert.assertTrue("error message on invalid item", player
+				.getPrivateText() != null);
 	}
 }

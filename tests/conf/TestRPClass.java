@@ -6,18 +6,17 @@ import marauroa.common.game.RPClass;
 
 import org.junit.Test;
 
-
 public class TestRPClass {
-	
+
 	@Test
-	public void subclass(){
+	public void subclass() {
 		RPClass rpsuper = new RPClass("super");
 		assertTrue(rpsuper.subclassOf("super"));
-		RPClass sub= new RPClass("sub");
+		RPClass sub = new RPClass("sub");
 		assertFalse(sub.subclassOf(("super")));
 		sub.isA("super");
 		assertTrue(sub.subclassOf(("super")));
-		
+
 	}
 
 }

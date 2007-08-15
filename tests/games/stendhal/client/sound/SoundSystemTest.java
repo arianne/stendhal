@@ -34,12 +34,12 @@ public class SoundSystemTest {
 
 	@Ignore
 	public final void testPlaySoundIntern() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testPlaySoundStringInt() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
@@ -54,17 +54,17 @@ public class SoundSystemTest {
 
 	@Ignore
 	public final void testPlayMapSound() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testPlayAmbientSound() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testStopAmbientSound() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
@@ -74,23 +74,23 @@ public class SoundSystemTest {
 
 	@Ignore
 	public final void testGetSoundClip() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testStartSoundCycle() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testStopSoundCycle() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public final void testContains() {
 		assertFalse(SoundSystem.get().contains(""));
-		//TODO: create test for finding one
+		// TODO: create test for finding one
 
 	}
 
@@ -140,21 +140,25 @@ public class SoundSystemTest {
 	@Test
 	public final void testisValidEntry() {
 
-		assertFalse("value has comma x", SoundSystem.get().isValidEntry(",x", ""));
-		assertFalse("key does not start with sfx name has point", SoundSystem.get().isValidEntry("", "."));
-		assertTrue("key does  start with sfx name has point", SoundSystem.get().isValidEntry("sfx.", "."));
-		assertTrue("value has comma x and name has point", SoundSystem.get().isValidEntry("sfx.,x", "."));
+		assertFalse("value has comma x", SoundSystem.get().isValidEntry(",x",
+				""));
+		assertFalse("key does not start with sfx name has point", SoundSystem
+				.get().isValidEntry("", "."));
+		assertTrue("key does  start with sfx name has point", SoundSystem.get()
+				.isValidEntry("sfx.", "."));
+		assertTrue("value has comma x and name has point", SoundSystem.get()
+				.isValidEntry("sfx.,x", "."));
 
 	}
 
 	@Ignore
 	public final void testTransferData() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
 	public final void testZoneEntered() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore
@@ -164,7 +168,7 @@ public class SoundSystemTest {
 
 	@Ignore
 	public final void testZoneLeft() {
-		fail("Not yet implemented"); 
+		fail("Not yet implemented");
 	}
 
 	@Ignore

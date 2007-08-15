@@ -20,7 +20,7 @@ import org.junit.Test;
 
 /**
  * TestClass for Class DbValues
- *
+ * 
  */
 public class DBValuesTest {
 
@@ -32,7 +32,6 @@ public class DBValuesTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	
 	@Test
 	public final void testGetDBValue() {
 		assertEquals(Float.NEGATIVE_INFINITY, DBValues.getDBValue(-1));

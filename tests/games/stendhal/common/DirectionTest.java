@@ -52,7 +52,8 @@ public class DirectionTest {
 		assertEquals(Direction.LEFT, Direction.RIGHT.oppositeDirection());
 		assertEquals(Direction.RIGHT, Direction.LEFT.oppositeDirection());
 		assertEquals(Direction.STOP, Direction.STOP.oppositeDirection());
-		assertEquals(Direction.UP, Direction.UP.oppositeDirection().oppositeDirection());
+		assertEquals(Direction.UP, Direction.UP.oppositeDirection()
+				.oppositeDirection());
 	}
 
 }

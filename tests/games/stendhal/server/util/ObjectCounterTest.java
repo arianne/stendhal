@@ -1,6 +1,6 @@
 package games.stendhal.server.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Map;
 
@@ -18,31 +18,30 @@ public class ObjectCounterTest {
 	public void tearDown() throws Exception {
 	}
 
-	
 	@Test
 	public final void testAdd() {
-		ObjectCounter<String> ocString= new ObjectCounter<String>();
-		String bla= "bla";
-		String Blub="blub";
+		ObjectCounter<String> ocString = new ObjectCounter<String>();
+		String bla = "bla";
+		String blub = "blub";
 		ocString.add(bla);
-		Map<String, Integer> resmap=ocString.getMap();
-		assertEquals(1,resmap.get(bla));
+		Map<String, Integer> resmap = ocString.getMap();
+		assertEquals(1, resmap.get(bla));
 		ocString.add(bla);
-		resmap=ocString.getMap();
-		assertEquals(2,resmap.get(bla));
+		resmap = ocString.getMap();
+		assertEquals(2, resmap.get(bla));
 		ocString.add(bla);
-		resmap=ocString.getMap();
-		assertEquals(3,resmap.get(bla));
-		assertEquals(null,resmap.get(Blub));
-		ocString.add(Blub);
-		resmap=ocString.getMap();
-		assertEquals(3,resmap.get(bla));
-		assertEquals(1,resmap.get(Blub));
+		resmap = ocString.getMap();
+		assertEquals(3, resmap.get(bla));
+		assertEquals(null, resmap.get(blub));
+		ocString.add(blub);
+		resmap = ocString.getMap();
+		assertEquals(3, resmap.get(bla));
+		assertEquals(1, resmap.get(blub));
 		ocString.clear();
-		resmap=ocString.getMap();
-		assertEquals(null,resmap.get(bla));
-		assertEquals(null,resmap.get(Blub));
-		
+		resmap = ocString.getMap();
+		assertEquals(null, resmap.get(bla));
+		assertEquals(null, resmap.get(blub));
+
 	}
 
 }

@@ -12,11 +12,10 @@ import org.junit.Test;
 
 public class HearingAreaTest {
 
-
 	@Before
 	public void setUp() throws Exception {
-		
-		HearingArea.set(0,0);
+
+		HearingArea.set(0, 0);
 		User.setNull();
 	}
 
@@ -25,20 +24,28 @@ public class HearingAreaTest {
 		runContainTests();
 		new User();
 		runContainTests();
-		
+
 	}
 
 	private void runContainTests() {
 		assertTrue("both in ", HearingArea.contains(0, 0));
 		assertFalse("both out", HearingArea.contains(100, 100));
-		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", HearingArea.contains(HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", HearingArea.contains(-HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
-		assertFalse("edge does not belong", HearingArea.contains(HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
-		assertTrue("inner edge belongs", HearingArea.contains(-(HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", HearingArea.contains(-(HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
-		assertTrue("inner edge belongs", HearingArea.contains((HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
+		assertFalse("edge does not belong", HearingArea.contains(
+				-HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", HearingArea.contains(
+				HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", HearingArea.contains(
+				-HearingArea.HEARINGDIST, HearingArea.HEARINGDIST));
+		assertFalse("edge does not belong", HearingArea.contains(
+				HearingArea.HEARINGDIST, -HearingArea.HEARINGDIST));
+		assertTrue("inner edge belongs", HearingArea.contains(
+				-(HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", HearingArea.contains(
+				(HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", HearingArea.contains(
+				-(HearingArea.HEARINGDIST - 1), (HearingArea.HEARINGDIST - 1)));
+		assertTrue("inner edge belongs", HearingArea.contains(
+				(HearingArea.HEARINGDIST - 1), -(HearingArea.HEARINGDIST - 1)));
 		assertFalse("x in , y out", HearingArea.contains(0, 100));
 		assertFalse("x out y in", HearingArea.contains(100, 10));
 	}
@@ -55,8 +62,6 @@ public class HearingAreaTest {
 		assertTrue("both in", HearingArea.contains(20, 20));
 	}
 
-	
-
 	@Test
 	public void getAsRect() {
 		int centerX = 1;
@@ -67,25 +72,29 @@ public class HearingAreaTest {
 		assertEquals(-HearingArea.HEARINGDIST + centerY, (int) rect.getMinY());
 		assertEquals(HearingArea.HEARINGDIST + centerX, (int) rect.getMaxX());
 		assertEquals(HearingArea.HEARINGDIST + centerY, (int) rect.getMaxY());
-new User();
+		new User();
 		rect = HearingArea.getAsRect();
-		assertEquals(-HearingArea.HEARINGDIST + User.get().getX(), rect.getMinX());
-		assertEquals(-HearingArea.HEARINGDIST + User.get().getY(),  rect.getMinY());
-		assertEquals(HearingArea.HEARINGDIST + User.get().getX(), rect.getMaxX());
-		assertEquals(HearingArea.HEARINGDIST + User.get().getY(),  rect.getMaxY());
-		
+		assertEquals(-HearingArea.HEARINGDIST + User.get().getX(), rect
+				.getMinX());
+		assertEquals(-HearingArea.HEARINGDIST + User.get().getY(), rect
+				.getMinY());
+		assertEquals(HearingArea.HEARINGDIST + User.get().getX(), rect
+				.getMaxX());
+		assertEquals(HearingArea.HEARINGDIST + User.get().getY(), rect
+				.getMaxY());
+
 	}
-	
+
 	@Test
 	public void getAsRectSetDouble() {
 		double centerX = 1;
 		double centerY = 5;
 		HearingArea.set(centerX, centerY);
-		
+
 		Rectangle2D rect = HearingArea.getAsRect();
-		assertEquals(-HearingArea.HEARINGDIST + centerX,  rect.getMinX());
-		assertEquals(-HearingArea.HEARINGDIST + centerY,  rect.getMinY());
-		assertEquals(HearingArea.HEARINGDIST + centerX,  rect.getMaxX());
-		assertEquals(HearingArea.HEARINGDIST + centerY,  rect.getMaxY());
+		assertEquals(-HearingArea.HEARINGDIST + centerX, rect.getMinX());
+		assertEquals(-HearingArea.HEARINGDIST + centerY, rect.getMinY());
+		assertEquals(HearingArea.HEARINGDIST + centerX, rect.getMaxX());
+		assertEquals(HearingArea.HEARINGDIST + centerY, rect.getMaxY());
 	}
 }

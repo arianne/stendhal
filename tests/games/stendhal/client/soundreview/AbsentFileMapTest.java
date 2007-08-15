@@ -16,10 +16,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class AbsentFileMapTest {
-     private AbsentFileMap afm;
+	private AbsentFileMap afm;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+
 	}
 
 	@AfterClass
@@ -29,12 +30,12 @@ public class AbsentFileMapTest {
 
 	@Before
 	public void setUp() throws Exception {
-		afm= new AbsentFileMap();
+		afm = new AbsentFileMap();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		afm= null;
+		afm = null;
 	}
 
 	@Test
@@ -44,7 +45,7 @@ public class AbsentFileMapTest {
 
 	@Test
 	public void testContainsKey() {
-		
+
 		assertFalse(afm.containsKey(new Object()));
 	}
 
@@ -74,12 +75,12 @@ public class AbsentFileMapTest {
 		assertNull(afm.keySet());
 	}
 
-	@Test (expected=IllegalStateException.class)
+	@Test(expected = IllegalStateException.class)
 	public void testPut() {
-		afm.put("testkey",new byte[1]);
+		afm.put("testkey", new byte[1]);
 	}
 
-	@Test (expected=IllegalStateException.class)
+	@Test(expected = IllegalStateException.class)
 	public void testPutAll() {
 		afm.putAll(new HashMap<String, byte[]>());
 	}

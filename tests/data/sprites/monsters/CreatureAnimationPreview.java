@@ -21,7 +21,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes jPanel
-	 *
+	 * 
 	 * @return javax.swing.JPanel
 	 */
 	private JPanel getJPanel() {
@@ -39,7 +39,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes imageViewerSwing
-	 *
+	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
 	private ImageViewerSwing getImageViewerSwing() {
@@ -53,7 +53,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes imageViewerSwing1
-	 *
+	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
 	private ImageViewerSwing getImageViewerSwing1() {
@@ -67,7 +67,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes imageViewerSwing2
-	 *
+	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
 	private ImageViewerSwing getImageViewerSwing2() {
@@ -81,7 +81,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes imageViewerSwing3
-	 *
+	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
 	private ImageViewerSwing getImageViewerSwing3() {
@@ -95,7 +95,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes imageViewerSwing4
-	 *
+	 * 
 	 * @return data.sprites.monsters.ImageViewerSwing
 	 */
 	private ImageViewerSwing getImageViewerSwing4() {
@@ -131,11 +131,11 @@ public class CreatureAnimationPreview {
 
 	private ImageViewerSwing imageViewerSwing4;
 
-	private AnimationRunner[] animations ;
+	private AnimationRunner[] animations;
 
 	/**
 	 * This method initializes jFrame
-	 *
+	 * 
 	 * @return javax.swing.JFrame
 	 */
 	private JFrame getJFrame() {
@@ -179,7 +179,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes jSplitPane
-	 *
+	 * 
 	 * @return javax.swing.JSplitPane
 	 */
 	private JSplitPane getJSplitPane() {
@@ -194,7 +194,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes jScrollPane
-	 *
+	 * 
 	 * @return javax.swing.JScrollPane
 	 */
 	private JScrollPane getJScrollPane() {
@@ -207,7 +207,7 @@ public class CreatureAnimationPreview {
 
 	/**
 	 * This method initializes jTree
-	 *
+	 * 
 	 * @return data.sprites.monsters.FileTree
 	 */
 	private FileTree getJTree() {
@@ -256,7 +256,6 @@ public class CreatureAnimationPreview {
 									e1.printStackTrace();
 									return;
 								}
-
 
 								getImageViewerSwing1().setImage(buf);
 								if (animations == null) {

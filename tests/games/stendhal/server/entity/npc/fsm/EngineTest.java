@@ -19,8 +19,10 @@ public class EngineTest {
 	@Test
 	public void testGetFreeState() {
 		Engine en = new Engine(new SpeakerNPC("bob"));
-		assertEquals("creates an integer for a free state", 1, en.getFreeState());
-		assertEquals("creates the next integer for a free state", 2, en.getFreeState());
+		assertEquals("creates an integer for a free state", 1, en
+				.getFreeState());
+		assertEquals("creates the next integer for a free state", 2, en
+				.getFreeState());
 	}
 
 	@Test

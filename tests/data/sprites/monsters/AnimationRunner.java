@@ -1,54 +1,56 @@
 package data.sprites.monsters;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
-
-public class AnimationRunner implements ActionListener  {
+public class AnimationRunner implements ActionListener {
 	Timer timer;
+
 	BufferedImage[] frames;
-	ImageViewerSwing ivs ;
+
+	ImageViewerSwing ivs;
 
 	int currentframe;
+
 	private int number_of_frames;
+
 	public AnimationRunner(ImageViewerSwing ivs) {
 
-	    this.ivs = ivs;
+		this.ivs = ivs;
 
-        timer = new Timer(200, this);
+		timer = new Timer(200, this);
 	}
-        //Set up the components in the GUI.
 
-    public synchronized void startAnimation(BufferedImage[] frames) {
-    	this.frames= frames;
-    	 number_of_frames = frames.length;
-        timer.start();
+	// Set up the components in the GUI.
 
+	public synchronized void startAnimation(BufferedImage[] frames) {
+		this.frames = frames;
+		number_of_frames = frames.length;
+		timer.start();
 
-    }
-    public synchronized void stopAnimation() {
+	}
 
-        timer.stop();
+	public synchronized void stopAnimation() {
 
+		timer.stop();
 
+	}
 
-
-}
 	public void actionPerformed(ActionEvent e) {
 		ivs.setImage(frames[currentframe]);
 		currentframe++;
 
-		if (currentframe==number_of_frames){
-			currentframe=0;
+		if (currentframe == number_of_frames) {
+			currentframe = 0;
 		}
 
 	}
-	public void tearDown(){
+
+	public void tearDown() {
 		timer.removeActionListener(this);
-		timer=null;
+		timer = null;
 	}
-    }
+}

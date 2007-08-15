@@ -33,26 +33,26 @@ public class SoundTest {
 
 	@Test
 	public void testSoundStringIntInt() {
-		new Sound("bla",0,0);
+		new Sound("bla", 0, 0);
 	}
 
 	@Test
 	public void testSoundStringIntIntBoolean() {
-		new Sound("bla",0,0,true);
-		
+		new Sound("bla", 0, 0, true);
+
 	}
 
 	@Test
 	public void testPlay() {
 		SoundMaster sm = new SoundMaster();
 		sm.init();
-	    Sound valid =new Sound("chicken-mix",0,0);
+		Sound valid = new Sound("chicken-mix", 0, 0);
 		assertNull(valid.play());
-		valid= new Sound("chicken-mix",1,1);
-		assertNotNull("this sound exists",valid);
+		valid = new Sound("chicken-mix", 1, 1);
+		assertNotNull("this sound exists", valid);
 		new User();
 		assertNotNull(valid.play());
-		Sound invalid = new Sound("bla",1,1);
+		Sound invalid = new Sound("bla", 1, 1);
 		assertNull(invalid.play());
 	}
 

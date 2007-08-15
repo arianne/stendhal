@@ -1,6 +1,5 @@
 package games.stendhal.server.maps.quests;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -29,11 +28,12 @@ public class CleanStorageSpaceTest {
 		MockStendhalRPRuleProcessor.get();
 		MockStendlRPWorld.get();
 		HousewifeNPC eonna = new HousewifeNPC();
-		eonna.configureZone(new StendhalRPZone("testzone"),null);
+		eonna.configureZone(new StendhalRPZone("testzone"), null);
 
 		CleanStorageSpace cf = new CleanStorageSpace();
 		cf.addToWorld();
 	}
+
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 
@@ -42,7 +42,7 @@ public class CleanStorageSpaceTest {
 	@Test
 	public void testHiAndbye() {
 		Player player;
-		player= new Player(new RPObject());
+		player = new Player(new RPObject());
 		PlayerHelper.addEmptySlots(player);
 
 		SpeakerNPC npc = NPCList.get().get("Eonna");
@@ -56,7 +56,8 @@ public class CleanStorageSpaceTest {
 		assertEquals("I'm just a regular housewife.", npc.get("text"));
 		en.step(player, "help");
 		assertTrue(npc.isTalking());
-		assertEquals("I don't think I can help you with anything.", npc.get("text"));
+		assertEquals("I don't think I can help you with anything.", npc
+				.get("text"));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
@@ -65,7 +66,7 @@ public class CleanStorageSpaceTest {
 	@Test
 	public void doQuest() {
 		Player player;
-		player= new Player(new RPObject());
+		player = new Player(new RPObject());
 
 		PlayerHelper.addEmptySlots(player);
 
@@ -77,12 +78,18 @@ public class CleanStorageSpaceTest {
 		assertEquals("Hi there, young hero.", npc.get("text"));
 		en.step(player, "task");
 		assertTrue(npc.isTalking());
-		assertEquals("My #basement is absolutely crawling with rats. Will you help me?", npc.get("text"));
+		assertEquals(
+				"My #basement is absolutely crawling with rats. Will you help me?",
+				npc.get("text"));
 		en.step(player, "basement");
 		assertTrue(npc.isTalking());
-		assertEquals("Yes, it's just down the stairs, over there. A whole bunch of nasty-looking rats; I think I saw a snake as well! You should be careful... still want to help me?", npc.get("text"));
+		assertEquals(
+				"Yes, it's just down the stairs, over there. A whole bunch of nasty-looking rats; I think I saw a snake as well! You should be careful... still want to help me?",
+				npc.get("text"));
 		en.step(player, "yes");
-		assertEquals("Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!", npc.get("text"));
+		assertEquals(
+				"Oh, thank you! I'll wait up here, and if any try to escape I'll hit them with the broom!",
+				npc.get("text"));
 		en.step(player, "bye");
 		assertFalse(npc.isTalking());
 		assertEquals("Bye.", npc.get("text"));
@@ -94,7 +101,7 @@ public class CleanStorageSpaceTest {
 		assertTrue(npc.isTalking());
 		assertEquals("A hero at last! Thank you!", npc.get("text"));
 
-		assertEquals("done",player.getQuest("clean_storage"));
+		assertEquals("done", player.getQuest("clean_storage"));
 	}
 
 }

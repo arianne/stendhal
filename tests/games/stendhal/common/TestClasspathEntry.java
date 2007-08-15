@@ -11,7 +11,8 @@ public class TestClasspathEntry {
 	public void testParsingSimpleJar() {
 		String test = "stendhal-0.54.jar";
 		ClasspathEntry ce = new ClasspathEntry(test);
-		Assert.assertEquals(test + " filename", "stendhal-0.54.jar", ce.getFilename());
+		Assert.assertEquals(test + " filename", "stendhal-0.54.jar", ce
+				.getFilename());
 		Assert.assertEquals(test + " type", "stendhal", ce.getType());
 		Assert.assertEquals(test + " version", "0.54", ce.getVersion());
 	}
@@ -20,7 +21,8 @@ public class TestClasspathEntry {
 	public void testParsingJarInFolder() {
 		String test = "/tmp/stendhal-0.54.jar";
 		ClasspathEntry ce = new ClasspathEntry(test);
-		Assert.assertEquals(test + " filename", "/tmp/stendhal-0.54.jar", ce.getFilename());
+		Assert.assertEquals(test + " filename", "/tmp/stendhal-0.54.jar", ce
+				.getFilename());
 		Assert.assertEquals(test + " type", "stendhal", ce.getType());
 		Assert.assertEquals(test + " version", "0.54", ce.getVersion());
 	}
