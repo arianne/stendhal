@@ -126,7 +126,7 @@ public class HungryJoshua extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"So you'd just let him starve! I'll have to hope someone else is more charitable.",
@@ -221,7 +221,7 @@ public class HungryJoshua extends AbstractQuest {
 
 		/** Complete the quest */
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("joshua", "Joshua"),
+				"Joshua",
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC npc) {

@@ -46,18 +46,18 @@ import java.util.List;
 public class ObsidianKnife extends AbstractQuest {
 
 	private static final int REQUIRED_FOOD = 100;
-	
+
 	private static final List<String> FOOD_LIST =  Arrays.asList("ham", "meat", "cheese" );
-	
+
 	private static final int REQUIRED_DAYS = 3;
-	
+
 	private static final int REQUIRED_MINUTES = 10;
 
 	private static final String QUEST_SLOT = "obsidian_knife";
 
 	private static final String FISH = "cod";
-	
-	private static final List<String> NAMES = Arrays.asList("Alrak", "alrak");
+
+	private static final String NAME = "Alrak";
 
 	@Override
 	public void init(String name) {
@@ -222,10 +222,9 @@ private void getBookStep() {
 			ConversationStates.QUESTION_1,
 			"You're in luck! Ognir brought it back just last week. Now, who is it for?",
 			null);
-	
-for (String name : NAMES) {	
+
 	npc.add(ConversationStates.QUESTION_1,
-			name,
+			NAME,
 			null,
 		    ConversationStates.QUESTION_1,
 		    null,
@@ -240,14 +239,13 @@ for (String name : NAMES) {
 				}
 			}
 		);
-	}
 
  // player says something which isn't the dwarf's name.
  npc.add(ConversationStates.QUESTION_1, "",
 	new SpeakerNPC.ChatCondition() {
 	    @Override
 		public boolean fire(Player player, String text, SpeakerNPC npc) {
-		return !NAMES.contains(text);
+		return !text.equalsIgnoreCase(NAME);
 	    }
 	},
 	ConversationStates.QUESTION_1, "Hm, you better check who it's really for.", null);

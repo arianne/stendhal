@@ -71,7 +71,7 @@ public class ClubOfThorns extends AbstractQuest {
 				});
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
+				ConversationPhrases.NO_MESSAGES,
 				null,
 				ConversationStates.ATTENDING,
 				"Ugg! i want hooman make #task, kill!",
@@ -96,7 +96,7 @@ public class ClubOfThorns extends AbstractQuest {
 		// the player returns after having started the quest.
 		// Saman checks if kill was made
 		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("kill", "Kill"),
+				"kill",
 				new SpeakerNPC.ChatCondition() {
 					@Override
 					public boolean fire(Player player, String text, SpeakerNPC engine) {

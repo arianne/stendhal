@@ -137,7 +137,7 @@ public class ElfPrincess extends AbstractQuest {
 private void bringFlowerStep() {
 	SpeakerNPC npc = npcs.get("Tywysoga");
 	npc.add(ConversationStates.ATTENDING,
-		Arrays.asList("rhosyd", "flower", "Rhosyd"),		        
+		Arrays.asList("flower", "Rhosyd"),
 	        new SpeakerNPC.ChatCondition() {
 		        @Override
 		        public boolean fire(Player player, String text, SpeakerNPC npc) {
@@ -163,7 +163,7 @@ private void bringFlowerStep() {
 	         }
 	        );
 	npc.add(ConversationStates.ATTENDING,
-			Arrays.asList("rhosyd", "flower", "Rhosyd"),
+			Arrays.asList("flower", "Rhosyd"),
 	        new SpeakerNPC.ChatCondition() {
 		        @Override
 		        public boolean fire(Player player, String text, SpeakerNPC npc) {
