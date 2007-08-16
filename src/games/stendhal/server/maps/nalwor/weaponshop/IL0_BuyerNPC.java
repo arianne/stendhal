@@ -62,8 +62,12 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
 				        ConversationStates.ATTENDING,
 				        "You think I'd trust a human with anything important? You're wrong!", null);
-				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")), false); //why does this false go here? what is it?
-				addGoodbye("Bye - be careful not to annoy the other elves as much");
+
+				// Why does this false go here? What is it? -- addBuyer() adds an FSM trigger
+				// to "offer" listing all items the player can sell. But "offer" should refer to
+				// the blackboard, so do not make addBuyer() add "offer".
+				addBuyer(new BuyerBehaviour(shops.get("elfbuyrare")), false);
+				addGoodbye("Bye - be careful not to annoy the other elves as much.");
 			}
 		};
 		npc.setDescription("You see Elodrin, a mean looking elf.");
