@@ -819,10 +819,6 @@ public class Player extends RPEntity {
 		return getInt("adminlevel");
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1.0, getInt("width"), getInt("height"));
-	}
 
 	@Override
 	public void onAttacked(Entity attacker, boolean keepAttacking) {

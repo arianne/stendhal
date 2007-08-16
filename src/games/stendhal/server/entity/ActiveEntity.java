@@ -100,7 +100,7 @@ public abstract class ActiveEntity extends Entity {
 			handleSimpleCollission(nx,ny);
 			return;
 		}
-		Portal p = zone.getPortal(nx, ny+1);
+		Portal p = zone.getPortal(nx, ny);
 		if (  p  != null){
 		 if (handlePortal(p)) {
 			 return;

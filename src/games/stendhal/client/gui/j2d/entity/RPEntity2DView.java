@@ -157,10 +157,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		 * X alignment centered, Y alignment bottom
 		 */
 		xoffset = (ewidth - swidth) / 2.0;
-
-		// TODO: Fix (y+1 entity hack is causing interference)
-		//yoffset = sheight - eheight;
-		yoffset = 0.0;
+		yoffset = eheight - sheight;
 	}
 
 

@@ -1058,7 +1058,7 @@ public abstract class RPEntity extends GuidedEntity {
 			StendhalRPZone zone = getZone();
 			zone.assignRPObjectID(item);
 			item.setX(getX());
-			item.setY(getY() + 1);
+			item.setY(getY());
 			zone.add(item);
 			return true;
 		}

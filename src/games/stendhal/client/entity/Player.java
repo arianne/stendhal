@@ -74,21 +74,6 @@ public class Player extends RPEntity {
 
 
 	//
-	// Entity
-	//
-
-	/**
-	 * Get the area the entity occupies.
-	 *
-	 * @return	A rectange (in world coordinate units).
-	 */
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(getX(), getY() + 1.0, getWidth(), getHeight());
-	}
-
-
-	//
 	// RPObjectChangeListener
 	//
 

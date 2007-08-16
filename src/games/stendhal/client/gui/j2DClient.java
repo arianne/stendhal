@@ -765,7 +765,7 @@ public class j2DClient extends StendhalUI {
 				if (e.isAltGraphDown()) {
 					User user = User.get();
 
-					EntityView view = screen.getEntityViewAt(user.getX() + direction.getdx(), user.getY() + direction.getdy() + 1);
+					EntityView view = screen.getEntityViewAt(user.getX() + direction.getdx(), user.getY() + direction.getdy());
 
 					if (view != null) {
 						Entity entity = view.getEntity();

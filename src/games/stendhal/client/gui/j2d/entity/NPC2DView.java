@@ -43,6 +43,27 @@ public class NPC2DView extends RPEntity2DView {
 	//
 
 	/**
+	 * Calculate sprite image offset.
+	 *
+	 * @param	swidth		The sprite width (in world units).
+	 * @param	sheight		The sprite height (in world units).
+	 * @param	ewidth		The entity width (in world units).
+	 * @param	eheight		The entity height (in world units).
+	 */
+	@Override
+	protected void calculateOffset(final double swidth, final double sheight, final double ewidth, final double eheight) {
+		/*
+		 * X alignment centered, Y alignment bottom
+		 */
+		xoffset = (ewidth - swidth) / 2.0;
+
+		// TODO: Fix (y+1 entity hack is causing interference)
+		//yoffset = eheight - sheight;
+		yoffset = 0.0;
+	}
+
+
+	/**
 	 * Get the full directional animation tile set for this entity.
 	 *
 	 * @return	A tile sprite containing all animation images.

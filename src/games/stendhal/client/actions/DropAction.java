@@ -42,7 +42,7 @@ class DropAction implements SlashAction  {
 				drop.put("baseobject",User.get().getObjectID());
 				drop.put("baseslot", slotName);
 				drop.put("x", (int)User.get().getX());
-				drop.put("y", (int)User.get().getY() + 1);
+				drop.put("y", (int)User.get().getY());
 				drop.put("quantity", quantity);
 				drop.put("baseitem", itemID);
 	

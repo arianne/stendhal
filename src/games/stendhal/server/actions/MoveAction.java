@@ -134,7 +134,7 @@ public class MoveAction implements ActionListener {
 			int y = action.getInt("y");
 			if (!player.has("teleclickmode")) {
 				// Walk
-				List<Node> path = Path.searchPath(player, x, y - 2);
+				List<Node> path = Path.searchPath(player, x, y);
 				player.setPath(new FixedPath(path, false));
 			} else {
 				// Teleport

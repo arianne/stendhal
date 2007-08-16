@@ -164,7 +164,7 @@ public class Minimap extends WtPanel {
 	 */
 	private void updatePosition() {
 		playerX = player.getX();
-		playerY = player.getY() + 1.0;
+		playerY = player.getY();
 
 		updateView();
 	}
@@ -246,7 +246,7 @@ public class Minimap extends WtPanel {
 				Player aPlayer = (Player) entity;
 
 				if(!aPlayer.isGhostMode()) {
-					drawCross(vg, (int) ((aPlayer.getX() * scale) + 0.5), (int) (((aPlayer.getY() + 1.0) * scale) + 0.5), Color.WHITE);
+					drawCross(vg, (int) ((aPlayer.getX() * scale) + 0.5), (int) ((aPlayer.getY() * scale) + 0.5), Color.WHITE);
 				}
 			} else if( entity instanceof Portal) {
 				Portal portal = (Portal) entity;
@@ -375,7 +375,7 @@ public class Minimap extends WtPanel {
 
 		// Now we have the world destination coords
 		int go_toX = (p.x + panx - 4) / scale;
-		int go_toY = (p.y + pany - scale - 18) / scale;
+		int go_toY = (p.y + pany - 4) / scale;
 
 		RPAction action = new RPAction();
 		action.put("type", "moveto");
