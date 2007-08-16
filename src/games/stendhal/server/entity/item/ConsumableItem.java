@@ -14,6 +14,8 @@ package games.stendhal.server.entity.item;
 
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.item.consumption.Feeder;
+import games.stendhal.server.entity.item.consumption.FeederFactory;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.events.UseListener;
 
@@ -33,11 +35,12 @@ public class ConsumableItem extends StackableItem implements UseListener,
 
 	/** How much of this item has not yet been consumed. */
 	private int left;
-
+	Feeder feeder;
 	public ConsumableItem(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		super(name, clazz, subclass, attributes);
 		left = getAmount();
+		feeder = FeederFactory.get(this);
 	}
 
 	/**
@@ -49,6 +52,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 	public ConsumableItem(ConsumableItem item) {
 		super(item);
 		this.left = item.left;
+		this.feeder = item.feeder;
 	}
 
 	public int getAmount() {
@@ -115,7 +119,7 @@ public class ConsumableItem extends StackableItem implements UseListener,
 				return false;
 			}
 		}
-		player.consumeItem((ConsumableItem) splitOff(1));
+		feeder.feed(this, player);
 		player.notifyWorldAboutChanges();
 		return true;
 	}

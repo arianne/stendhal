@@ -30,12 +30,8 @@ import games.stendhal.server.entity.item.ConsumableItem;
 import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.entity.item.StackableItem;
-import games.stendhal.server.events.TurnListener;
-import games.stendhal.server.events.TurnNotifier;
 import games.stendhal.server.events.TutorialNotifier;
 
-import java.awt.geom.Rectangle2D;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -1029,43 +1025,6 @@ public class Player extends RPEntity {
 
 	}
 
-	private static class AntidoteEater implements TurnListener {
-
-		WeakReference<Player> ref;
-
-		public AntidoteEater(Player player) {
-			ref = new WeakReference<Player>(player);
-		}
-
-		public void onTurnReached(int currentTurn, String message) {
-			if (ref.get() == null) {
-				return;
-			}
-			ref.get().isImmune = false;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == null) {
-				return false;
-			}
-			if (obj instanceof AntidoteEater) {
-				AntidoteEater other = (AntidoteEater) obj;
-				return ref.get() == other.ref.get();
-
-			} else {
-				return false;
-			}
-
-		}
-
-		@Override
-		public int hashCode() {
-
-			return ref.hashCode();
-		}
-	}
-
 	public static class NoSheepException extends RuntimeException {
 
 		private static final long serialVersionUID = -6689072547778842040L;
@@ -1414,38 +1373,19 @@ public class Player extends RPEntity {
 		return itemsToConsume.size() > 5;
 	}
 
-	public void consumeItem(ConsumableItem item) {
-		if (item.getQuantity() > 1) {
-			throw new IllegalArgumentException(
-					"consumeItem can only take one item at a time");
-		}
 
-		if ((item.getRegen() > 0) && isFull()
-				&& !item.getName().contains("potion")) {
-			sendPrivateText("You can't consume anymore");
-			return;
-		}
+	public void eat(ConsumableItem item) {
+		put("eating", 0);
+		itemsToConsume.add(item);
+	}
 
-		logger.debug("Consuming item: " + item.getAmount());
-		if (item.getRegen() > 0) {
-			put("eating", 0);
-			itemsToConsume.add(item);
-		} else if (item.getRegen() == 0) { // if regen==0, it's an antidote
-			poisonToConsume.clear();
-			isImmune = true;
-			// set a timer to remove the immunity effect after some time
-			TurnNotifier notifier = TurnNotifier.get();
-			// first remove all effects from previously used immunities to
-			// restart the timer
-			TurnListener tl = new AntidoteEater(this);
-			notifier.dontNotify(tl);
-			notifier.notifyInTurns(item.getAmount(), tl);
-		} else if (!isImmune) {
-			// Player was poisoned and is currently not immune
-			poisonToConsume.add(item);
-		}
-		Collections.sort(itemsToConsume);
-
+	public void setImmune() {
+		poisonToConsume.clear();
+		isImmune = true;
+	}
+	public void removeImmunity() {
+		isImmune = false;
+		sendPrivateText("you are not immune anymore");
 	}
 
 	public void consume(int turn) {
@@ -1829,5 +1769,6 @@ public class Player extends RPEntity {
 		// TODO: Sentence here.
 		return "";
 	}
+
 
 }
