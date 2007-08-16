@@ -34,7 +34,7 @@ class BehaviourAdder {
 	public void addSeller(final SellerBehaviour behaviour, boolean offer) {
 
 		if (offer) {
-			engine.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I sell "
+			engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "I sell "
 			        + Grammar.enumerateCollection(behaviour.dealtItems()) + ".", null);
 		}
 
@@ -53,13 +53,13 @@ class BehaviourAdder {
 					        try {
 						        amount = Integer.parseInt(words[1].trim());
 					        } catch (NumberFormatException e) {
-						        engine.say("Sorry, i did not understand you.");
+						        engine.say("Sorry, I did not understand you.");
 						        engine.setCurrentState(ConversationStates.ATTENDING);
 						        return;
 					        }
-					        item = words[2].trim();
+					        item = words[2].trim().toLowerCase();
 				        } else if (words.length > 1) {
-					        item = words[1].trim();
+					        item = words[1].trim().toLowerCase();
 				        }
 
 				        // find out if the NPC sells this item, and if so,
@@ -110,7 +110,7 @@ class BehaviourAdder {
 	public void addBuyer(final BuyerBehaviour behaviour, boolean offer) {
 
 		if (offer) {
-			engine.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I buy "
+			engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "I buy "
 			        + Grammar.enumerateCollection(behaviour.dealtItems()) + ".", null);
 		}
 
@@ -128,13 +128,13 @@ class BehaviourAdder {
 					        try {
 						        amount = Integer.parseInt(words[1].trim());
 					        } catch (NumberFormatException e) {
-						        engine.say("Sorry, i did not understand you.");
+						        engine.say("Sorry, I did not understand you.");
 						        engine.setCurrentState(ConversationStates.ATTENDING);
 						        return;
 					        }
-					        item = words[2].trim();
+					        item = words[2].trim().toLowerCase();
 				        } else if (words.length > 1) {
-					        item = words[1].trim();
+					        item = words[1].trim().toLowerCase();
 				        }
 
 				        if (behaviour.hasItem(item)) {
@@ -177,7 +177,7 @@ class BehaviourAdder {
 	public void addHealer(int cost) {
 		final HealerBehaviour healerBehaviour = new HealerBehaviour(cost);
 
-		engine.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "I can #heal you.", null);
+		engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "I can #heal you.", null);
 
 		engine.add(ConversationStates.ATTENDING, "heal", null, ConversationStates.HEAL_OFFERED, null,
 		        new SpeakerNPC.ChatAction() {
@@ -239,7 +239,7 @@ class BehaviourAdder {
 	        final boolean canReturn) {
 
 		if (offer) {
-			engine.add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING, "You can #" + command
+			engine.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES, null, ConversationStates.ATTENDING, "You can #" + command
 			        + " " + Grammar.enumerateCollection(behaviour.dealtItems()) + ".", null);
 		}
 
@@ -255,7 +255,7 @@ class BehaviourAdder {
 				        String item = null;
 				        // we ignore any amounts
 				        if (words.length > 1) {
-					        item = words[words.length - 1].trim();
+					        item = words[words.length - 1].trim().toLowerCase();
 				        } else if (behaviour.dealtItems().size() == 1) {
 				        	// The NPC only offers one type of outfit, so
 				        	// it's clear what the player wants.

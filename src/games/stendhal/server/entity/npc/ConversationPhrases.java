@@ -18,6 +18,8 @@ public class ConversationPhrases {
 
 	public static final List<String> QUEST_MESSAGES = Arrays.asList("task", "quest", "favor", "favour");
 
+	public static final List<String> OFFER_MESSAGES = Arrays.asList("offer");
+
 	public static final List<String> YES_MESSAGES = Arrays.asList("yes", "ok");
 
 	public static final List<String> NO_MESSAGES = Arrays.asList("no");
