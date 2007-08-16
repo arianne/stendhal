@@ -6339,7 +6339,7 @@
       <def value="35"/>
       <hp value="700"/>
       <speed value="0.4"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="90"/>
     <experience value="8190"/>
@@ -6855,7 +6855,7 @@
       <def value="32"/>
       <hp value="1200"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,2"/>
     </attributes>
     <level value="110"/>
     <experience value="14400"/>
