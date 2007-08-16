@@ -42,8 +42,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.Definition;
@@ -571,9 +569,9 @@ public class Creature extends NPC {
 		List<Item> list = new LinkedList<Item>();
 
 		for (DropItem dropped : dropsItems) {
-			double probability = Rand.rand(1000000)/10000.0;
+			double probability = Rand.rand(1000000) / 10000.0;
 
-			if (probability <= (dropped.probability/SERVER_DROP_GENEROSITY)) {
+			if (probability <= (dropped.probability / SERVER_DROP_GENEROSITY)) {
 				Item item = manager.getItem(dropped.name);
 				if (item == null) {
 					logger.error("Unable to create item: " + dropped.name);
