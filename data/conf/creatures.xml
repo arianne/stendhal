@@ -4201,7 +4201,7 @@
       <def value="27"/>
       <hp value="300"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="50"/>
     <experience value="1750"/>
@@ -4470,7 +4470,7 @@
       <def value="31"/>
       <hp value="400"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="2,2"/>
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
@@ -4504,7 +4504,7 @@
       <def value="27"/>
       <hp value="400"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="55"/>
     <experience value="2210"/>
@@ -5491,7 +5491,7 @@
       <def value="35"/>
       <hp value="900"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="70"/>
     <experience value="4130"/>
@@ -6339,7 +6339,7 @@
       <def value="35"/>
       <hp value="700"/>
       <speed value="0.4"/>
-      <size value="3,3"/>
+      <size value="2,2"/>
     </attributes>
     <level value="90"/>
     <experience value="8190"/>
@@ -6855,7 +6855,7 @@
       <def value="32"/>
       <hp value="1200"/>
       <speed value="1.0"/>
-      <size value="3,2"/>
+      <size value="2,2"/>
     </attributes>
     <level value="110"/>
     <experience value="14400"/>
@@ -6885,7 +6885,7 @@
       <def value="30"/>
       <hp value="1200"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="2,2"/>
     </attributes>
     <level value="110"/>
     <experience value="14400"/>
@@ -6947,7 +6947,7 @@
       <def value="32"/>
       <hp value="1100"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="116"/>
     <experience value="16100"/>
@@ -7048,7 +7048,7 @@
       <def value="35"/>
       <hp value="1200"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="125"/>
     <experience value="20700"/>
@@ -7113,7 +7113,7 @@
       <def value="35"/>
       <hp value="1800"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="135"/>
     <experience value="25900"/>
@@ -7184,7 +7184,7 @@
       <def value="35"/>
       <hp value="1900"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="139"/>
     <experience value="26100"/>
@@ -7243,7 +7243,7 @@
       <def value="36"/>
       <hp value="2000"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="144"/>
     <experience value="30800"/>
@@ -7279,7 +7279,7 @@
       <def value="39"/>
       <hp value="2022"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="145"/>
     <experience value="31900"/>
@@ -7352,7 +7352,7 @@
       <def value="40"/>
       <hp value="2418"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="2,2"/>
     </attributes>
     <level value="160"/>
     <experience value="42500"/>
@@ -7411,7 +7411,7 @@
       <def value="41"/>
       <hp value="2702"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="170"/>
     <experience value="50800"/>
@@ -7442,7 +7442,7 @@
       <def value="41"/>
       <hp value="1700"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="2,2"/>
     </attributes>
     <level value="175"/>
     <experience value="55300"/>
@@ -7509,7 +7509,7 @@
       <def value="43"/>
       <hp value="3500"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="195"/>
     <experience value="75300"/>
@@ -7542,7 +7542,7 @@
       <def value="44"/>
       <hp value="2900"/>
       <speed value="1.0"/>
-      <size value="6,8"/>
+      <size value="6,6"/>
     </attributes>
     <level value="200"/>
     <experience value="82000"/>
@@ -7573,7 +7573,7 @@
       <def value="44"/>
       <hp value="3042"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="210"/>
     <experience value="90000"/>
@@ -7609,7 +7609,7 @@
       <def value="45"/>
       <hp value="4362"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="2,2"/>
     </attributes>
     <level value="220"/>
     <experience value="108000"/>
@@ -7648,7 +7648,7 @@
       <def value="45"/>
       <hp value="4742"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="230"/>
     <experience value="123000"/>
@@ -7684,7 +7684,7 @@
       <def value="53"/>
       <hp value="5800"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="300"/>
     <experience value="270000"/>
@@ -7758,7 +7758,7 @@
       <def value="56"/>
       <hp value="12000"/>
       <speed value="1.0"/>
-      <size value="3,4"/>
+      <size value="3,3"/>
     </attributes>
     <level value="400"/>
     <experience value="623000"/>
