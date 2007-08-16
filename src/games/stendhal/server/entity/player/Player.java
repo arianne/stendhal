@@ -42,6 +42,7 @@ import java.util.Random;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+import marauroa.common.Pair;
 import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObjectInvalidException;
 import marauroa.common.game.RPSlot;
@@ -910,6 +911,7 @@ public class Player extends RPEntity {
 	protected void dropItemsOn(Corpse corpse) {
 		// drop at least 1 and at most 4 items
 		int maxItemsToDrop = Rand.rand(4);
+		List<Pair<RPObject, RPSlot>> objects = new LinkedList<Pair<RPObject, RPSlot>>();
 
 		for (String slotName : CARRYING_SLOTS) {
 			if (!hasSlot(slotName)) {
@@ -920,61 +922,44 @@ public class Player extends RPEntity {
 
 				// a list that will contain the objects that will
 				// be dropped.
-				List<RPObject> objects = new LinkedList<RPObject>();
 
 				// get a random set of items to drop
 				for (RPObject objectInSlot : slot) {
-					if (maxItemsToDrop == 0) {
-						break;
-					}
-
 					// don't drop special quest rewards as there is no way to
 					// get them again
 					if (objectInSlot.has("bound")) {
 						continue;
 					}
-
-					if (Rand.throwCoin() == 1) {
-						objects.add(objectInSlot);
-						maxItemsToDrop--;
+						objects.add(new Pair<RPObject, RPSlot>(objectInSlot, slot));
 					}
-				}
-
-				// now actually drop them
-				for (RPObject object : objects) {
-					if (object instanceof StackableItem) {
-						StackableItem item = (StackableItem) object;
-
-						// We won't drop the full quantity, but only a
-						// percentage.
-						// Get a random percentage between 26 % and 75 % to drop
-						double percentage = (Rand.rand(50) + 25) / 100.0;
-						int quantityToDrop = (int) Math.round(item
-								.getQuantity()
-								* percentage);
-
-						if (quantityToDrop > 0) {
-							StackableItem itemToDrop = item
-									.splitOff(quantityToDrop);
-							corpse.add(itemToDrop);
-						}
-					} else if (object instanceof PassiveEntity) {
-						slot.remove(object.getID());
-
-						corpse.add((PassiveEntity) object);
-						maxItemsToDrop--;
-					}
-
-					if (corpse.isFull()) {
-						// This shouldn't happen because we have only chosen
-						// 4 items, and corpses can handle this.
-						return;
-					}
-				}
 			}
+		}
+		Collections.shuffle(objects);
 
-			if (maxItemsToDrop == 0) {
-				return;
+		for (int i = 0; i < maxItemsToDrop; i++) {
+			if (!objects.isEmpty()) {
+				Pair<RPObject, RPSlot> object = objects.remove(0);
+				if (object.first() instanceof StackableItem) {
+					StackableItem item = (StackableItem) object.first();
+
+					// We won't drop the full quantity, but only a
+					// percentage.
+					// Get a random percentage between 26 % and 75 % to drop
+					double percentage = (Rand.rand(50) + 25) / 100.0;
+					int quantityToDrop = (int) Math.round(item
+							.getQuantity()
+							* percentage);
+
+					if (quantityToDrop > 0) {
+						StackableItem itemToDrop = item
+								.splitOff(quantityToDrop);
+						corpse.add(itemToDrop);
+					}
+				} else if (object.first() instanceof PassiveEntity) {
+					object.second().remove(object.first().getID());
+
+					corpse.add((PassiveEntity) object.first());
+				}
 			}
 		}
 	}

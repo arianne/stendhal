@@ -987,7 +987,7 @@ public abstract class RPEntity extends GuidedEntity {
 		}
 	}
 
-	abstract protected void dropItemsOn(Corpse corpse);
+	protected abstract void dropItemsOn(Corpse corpse);
 
 	/** Return true if this entity is attacked */
 	public boolean isAttacked() {
