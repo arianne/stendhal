@@ -7,22 +7,20 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.item.Item;
 import games.stendhal.server.StendhalRPWorld;
 
-import java.util.Arrays;
-
 /**
  * QUEST: Club of Thorns
  *
  * PARTICIPANTS:
  * - Orc Saman
- * 
+ *
  * STEPS:
  * - Orc Saman asks you to kill mountain orc chief in prison for revenge
  * - Go kill mountain orc chief in prison using key given by Saman to get in
  * - Return and you get Club of Thorns as reward
- * 
+ *
  * REWARD:
  * - 1000 XP
- * 
+ *
  * REPETITIONS:
  * - None.
  */
@@ -64,8 +62,8 @@ public class ClubOfThorns extends AbstractQuest {
 						player.addKarma(6.0);
 						player.setQuest("club_thorns", "start");
 						player.removeKill("mountain_orc_chief");
-						Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("kotoch_prison_key");				
-						player.equip(key, true);	    	
+						Item key = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("kotoch_prison_key");
+						player.equip(key, true);
 
 					}
 				});
@@ -115,7 +113,7 @@ public class ClubOfThorns extends AbstractQuest {
 							player.addXP(1000);
 							Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("club_of_thorns");
 							item.put("bound", player.getName());
-							player.equip(item, true);	    	
+							player.equip(item, true);
 							player.setQuest("club_thorns", "done");
 							engine.setCurrentState(ConversationStates.ATTENDING);
 						} else {
@@ -123,7 +121,7 @@ public class ClubOfThorns extends AbstractQuest {
 						}
 					}
 				});
-		
+
 
 	}
 
