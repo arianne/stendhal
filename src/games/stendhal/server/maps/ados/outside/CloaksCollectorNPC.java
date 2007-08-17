@@ -62,7 +62,7 @@ public class CloaksCollectorNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addJob("There is a quite high unemployment rate down here.");
-				addHelp("I have heard rumors that mysterious creatures with blue cloaks are haunting the swamp south of here.");
+				addHelp("I have heard rumors that an elven city lies South West of here, in a vast forest. The locals call it Nalwor.");
 				addGoodbye();
 				// remaining behaviour is defined in maps.quests.CloaksForBario.
 			}
