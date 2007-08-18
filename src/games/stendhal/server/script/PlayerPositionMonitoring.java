@@ -23,9 +23,9 @@ public class PlayerPositionMonitoring extends ScriptImpl {
 		//5 10 15  30  60 120, 300
 		private final int[] INTERVALS = new int[] { 5, 5, 5, 15, 30, 60, 280 };
 
-		private Player admin ;
+		private Player admin;
 
-		private int counter ;
+		private int counter;
 
 		/**
 		 * creates a new PlayerPositionListener

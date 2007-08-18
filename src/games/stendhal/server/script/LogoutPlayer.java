@@ -29,17 +29,17 @@ public class LogoutPlayer extends ScriptImpl {
 			admin.sendPrivateText("/script LogoutPlayer.class <playername> logs a player out");
 			return;
 		}
-		
+
 		try {
 			//see processLogoutEvent in marauroa-1.34/src/marauroa/server/game/GameServerManager.java
-			
+
 			PlayerEntryContainer playerContainer = PlayerEntryContainer.getContainer();
-			PlayerEntry entry=playerContainer.get(args.get(0));
-			if(entry==null) {
+			PlayerEntry entry = playerContainer.get(args.get(0));
+			if (entry == null) {
 				admin.sendPrivateText(args.get(0) + " not found");
 				return;
 			}
-			
+
 			Player player = (Player) entry.object;
 			StendhalRPRuleProcessor.get().getRPManager().disconnectPlayer(player);
 			admin.sendPrivateText(args.get(0) + " has been logged out");

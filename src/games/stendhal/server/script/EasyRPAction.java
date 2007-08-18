@@ -10,9 +10,9 @@ import marauroa.common.game.RPAction;
 
 /**
  * For testing purposes
- * 
+ *
  * /script EasyRPAction.class type moveto x 1 y 1
- * 
+ *
  */
 
 public class EasyRPAction extends ScriptImpl {
@@ -28,8 +28,7 @@ public class EasyRPAction extends ScriptImpl {
 
 		RPAction action = new RPAction();
 
-		for(int i = 0; i < (args.size() / 2); i++)
-		{
+		for (int i = 0; i < (args.size() / 2); i++) {
 			action.put(args.get(i * 2), args.get(i * 2 + 1));
 		}
 

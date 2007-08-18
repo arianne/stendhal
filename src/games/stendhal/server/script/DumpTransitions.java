@@ -24,7 +24,7 @@ public class DumpTransitions extends ScriptImpl {
 
 	private static Logger logger = Log4J.getLogger(DumpTransitions.class);
 
-	private StringBuilder dumpedTable ;
+	private StringBuilder dumpedTable;
 
 	@Override
 	public void execute(Player admin, List<String> args) {

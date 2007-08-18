@@ -28,7 +28,7 @@ import marauroa.common.Log4J;
  */
 public class Debuggera extends ScriptImpl {
 
-	boolean debuggeraEnabled;
+//	boolean debuggeraEnabled;
 
 	class AdminCondition extends SpeakerNPC.ChatCondition {
 		@Override
@@ -38,7 +38,7 @@ public class Debuggera extends ScriptImpl {
 	}
 
 	class DebuggeraEnablerAction extends SpeakerNPC.ChatAction {
-		boolean enabled ;
+		boolean enabled;
 
 		public DebuggeraEnablerAction(boolean enable) {
 			this.enabled = enable;
@@ -114,7 +114,7 @@ public class Debuggera extends ScriptImpl {
 //
 //		private int destIdx = 0;
 
-		private int counter ;
+		private int counter;
 
 		private int inversedSpeed = 3;
 
@@ -163,12 +163,12 @@ public class Debuggera extends ScriptImpl {
 							StendhalRPZone zone = sandbox.getZone(player);
 							int x = player.getX();
 							int y = player.getY();
-							int[][] tele_offsets = {{7,7},{7,-7},{-7,7},{-7,-7}};
+							int[][] tele_offsets = {{7, 7}, {7, -7}, {-7, 7}, {-7, -7}};
 							Random random = new Random();
 
-							for(int i = 0; i < 3; i++) {
+							for (int i = 0; i < 3; i++) {
 								int r = random.nextInt(tele_offsets.length);
-								if(player.teleport(zone, x + tele_offsets[r][0], y + tele_offsets[r][1], null, null)) {
+								if (player.teleport(zone, x + tele_offsets[r][0], y + tele_offsets[r][1], null, null)) {
 									break;
 								}
 							}
@@ -234,17 +234,17 @@ public class Debuggera extends ScriptImpl {
 				String zoneName = zones.get(counter);
 				StendhalRPZone zone = StendhalRPWorld.get().getZone(zoneName);
 
-				int[][] tele_xy = {{5,5},{50,50},{20,20},{100,100},{100,5}};
-				boolean found_spot = false;
+				int[][] tele_xy = {{5, 5}, {50, 50}, {20, 20}, {100, 100}, {100, 5}};
+				boolean foundSpot = false;
 
-				for(int i = 0; i < tele_xy.length; i++) {
-					if(player.teleport(zone, tele_xy[i][0], tele_xy[i][1], null, null)) {
+				for (int i = 0; i < tele_xy.length; i++) {
+					if (player.teleport(zone, tele_xy[i][0], tele_xy[i][1], null, null)) {
 						player.sendPrivateText("Welcome in " + zoneName);
-						found_spot = true;
+						foundSpot = true;
 						break;
 					}
 				}
-				if(!found_spot) {
+				if (!foundSpot) {
 					player.sendPrivateText("Sorry, did not find a free spot in " + zoneName);
 				}
 			} catch (Exception e) {

@@ -89,7 +89,7 @@ public class BetManager extends ScriptImpl implements TurnListener {
 		String itemName;
 
 		/** amount */
-		int amount ;
+		int amount;
 
 		/**
 		 * converts the bet into a string

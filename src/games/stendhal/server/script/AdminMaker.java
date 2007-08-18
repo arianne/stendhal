@@ -49,8 +49,7 @@ public class AdminMaker extends ScriptImpl {
 			}
 
 			//Don't give more XP than needed when near/at max
-			if(level + xlevel > Level.maxLevel())
-			{
+			if (level + xlevel > Level.maxLevel()) {
 				xlevel = Level.maxLevel() - level;
 			}
 
@@ -103,11 +102,11 @@ public class AdminMaker extends ScriptImpl {
 	protected class TeleportAction extends SpeakerNPC.ChatAction {
 
 		private final List<Destination> DESTINATIONS = Arrays.asList(
-			new Destination("0_nalwor_city",88,85),
-			new Destination("-2_orril_dungeon",106,21),
-			new Destination("-1_semos_mine_nw",122,91),
-			new Destination("-6_kanmararn_city",33,52),
-			new Destination("-2_ados_outside_nw",28,4)
+			new Destination("0_nalwor_city", 88, 85),
+			new Destination("-2_orril_dungeon", 106, 21),
+			new Destination("-1_semos_mine_nw", 122, 91),
+			new Destination("-6_kanmararn_city", 33, 52),
+			new Destination("-2_ados_outside_nw", 28, 4)
 		);
 
 		private static final String TELE_QUEST_SLOT = "AdminMakerTele";
@@ -118,13 +117,13 @@ public class AdminMaker extends ScriptImpl {
 
 			//pick a Destination
 			int i;
-			if(player.hasQuest(TELE_QUEST_SLOT)) {
+			if (player.hasQuest(TELE_QUEST_SLOT)) {
 				i = Integer.parseInt(player.getQuest(TELE_QUEST_SLOT));
 			} else {
 				i = new Random().nextInt(DESTINATIONS.size());
 			}
 			i++;
-			if(i >= DESTINATIONS.size()) {
+			if (i >= DESTINATIONS.size()) {
 				i = 0;
 			}
 			player.setQuest(TELE_QUEST_SLOT, "" + i);
@@ -132,7 +131,7 @@ public class AdminMaker extends ScriptImpl {
 
 			//Teleport
 			StendhalRPZone zone = StendhalRPWorld.get().getZone(picked.zone);
-			if(!player.teleport(zone, picked.x, picked.y, null, player)) {
+			if (!player.teleport(zone, picked.x, picked.y, null, player)) {
 				logger.error("AdminMaker random teleport failed, " + picked.zone + " " + picked.x + " " + picked.y);
 				return false;
 			}
@@ -159,9 +158,9 @@ public class AdminMaker extends ScriptImpl {
 			markedScroll.put("infostring", player.getID().getZoneID() + " " + player.getX() + " " + player.getY());
 			markedScroll.put("bound", player.getName());
 
-			if(player.equip(markedScroll, false)) {
+			if (player.equip(markedScroll, false)) {
 				//Teleport
-				if(RandomTeleport(player)) {
+				if (RandomTeleport(player)) {
 					//todo: priv msg doesn't work
 					player.sendPrivateText(player.getName() + " use the scroll to come back here. Use /teleport <playername> <zonename> <x> <y> to beam to a different place.");
 				} else {

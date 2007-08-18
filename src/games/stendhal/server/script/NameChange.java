@@ -8,7 +8,7 @@ import java.util.List;
 import marauroa.common.Configuration;
 
 /**
- * Makes client display a fake player name by changing the title attribute. 
+ * Makes client display a fake player name by changing the title attribute.
  *If args[0] equals remove, the original name is reset. Can only be used to  *chage the name of the player running the script.
  *
  * @author timothyb89
@@ -21,8 +21,8 @@ public class NameChange extends ScriptImpl {
 
 		// check configuration
 		try {
-	        if (!Configuration.getConfiguration().has(CONFIG_KEY) 
-	        	|| Boolean.parseBoolean(Configuration.getConfiguration().get(CONFIG_KEY)) == false) {
+	        if (!Configuration.getConfiguration().has(CONFIG_KEY)
+	        	|| !Boolean.parseBoolean(Configuration.getConfiguration().get(CONFIG_KEY))) {
 	        	admin.sendPrivateText("This script is disabled in the server configuration file key " + CONFIG_KEY);
 	        	return;
 	        }
