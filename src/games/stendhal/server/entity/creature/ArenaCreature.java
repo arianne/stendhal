@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ArenaCreature extends Creature {
 
-	private Shape arena ;
+	private Shape arena;
 
 	/**
 	 * ArenaCreature

@@ -71,7 +71,7 @@ public class DeathMatchCreature extends Creature {
 	 * @return number of points to reward
 	 */
 	public int getDMPoints() {
-		return points ;
+		return points;
 	}
 
 }

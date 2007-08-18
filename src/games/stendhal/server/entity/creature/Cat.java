@@ -14,8 +14,6 @@ package games.stendhal.server.entity.creature;
 
 import games.stendhal.server.entity.player.Player;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPClass;

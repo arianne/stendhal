@@ -17,8 +17,6 @@ import games.stendhal.server.entity.item.Corpse;
 import games.stendhal.server.entity.item.Food;
 import games.stendhal.server.entity.player.Player;
 
-import javax.management.AttributeNotFoundException;
-
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 import marauroa.common.game.RPObject;
