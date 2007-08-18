@@ -29,13 +29,14 @@ import marauroa.common.Logger;
 
 /**
  * entity manager for the default ruleset
- * 
+ *
  * @author Matthias Totz
  */
 public class DefaultEntityManager implements EntityManager {
 
 	/** the logger instance. */
-	private static final Logger logger = Log4J.getLogger(DefaultEntityManager.class);
+	private static final Logger logger = Log4J
+			.getLogger(DefaultEntityManager.class);
 
 	/** the singleton instance, lazy initialisation */
 	private static DefaultEntityManager manager;
@@ -77,7 +78,7 @@ public class DefaultEntityManager implements EntityManager {
 				classToItem.put(clazz, item);
 			}
 		} catch (org.xml.sax.SAXException e) {
-			logger.error("items.xml could not be loaded",e);
+			logger.error("items.xml could not be loaded", e);
 		}
 
 		// Build the creatures tables
@@ -86,7 +87,8 @@ public class DefaultEntityManager implements EntityManager {
 
 		try {
 			CreaturesXMLLoader loader = CreaturesXMLLoader.get();
-			List<DefaultCreature> creatures = loader.load("data/conf/creatures.xml");
+			List<DefaultCreature> creatures = loader
+					.load("data/conf/creatures.xml");
 
 			for (DefaultCreature creature : creatures) {
 				String id = creature.getTileId();
@@ -97,7 +99,8 @@ public class DefaultEntityManager implements EntityManager {
 				}
 
 				if (!creature.verifyItems(this)) {
-					logger.warn("Items dropped by creature name: " + clazz + " doesn't exists");
+					logger.warn("Items dropped by creature name: " + clazz
+							+ " doesn't exists");
 				}
 
 				classToCreature.put(clazz, creature);
@@ -130,7 +133,8 @@ public class DefaultEntityManager implements EntityManager {
 		}
 
 		if (!creature.verifyItems(this)) {
-			logger.warn("Items dropped by creature name: " + clazz + " doesn't exists");
+			logger.warn("Items dropped by creature name: " + clazz
+					+ " doesn't exists");
 		}
 
 		classToCreature.put(clazz, creature);
@@ -165,7 +169,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -194,7 +198,7 @@ public class DefaultEntityManager implements EntityManager {
 	 * returns the creature or <code>null</code> if the id is unknown
 	 */
 	public Creature getCreature(String tileset, int id) {
-		String clazz = idToClass.get(tileset+":"+id);
+		String clazz = idToClass.get(tileset + ":" + id);
 		if (clazz == null) {
 			return null;
 		}
@@ -204,7 +208,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the creature or <code>null</code> if the clazz is unknown
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
@@ -227,7 +231,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** return true if the Entity is a creature */
 	public boolean isCreature(String tileset, int id) {
-		String clazz = idToClass.get(tileset+":"+id);
+		String clazz = idToClass.get(tileset + ":" + id);
 		if (clazz == null) {
 			return false;
 		}
@@ -253,7 +257,7 @@ public class DefaultEntityManager implements EntityManager {
 
 	/**
 	 * returns the item or <code>null</code> if the clazz is unknown
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if clazz is <code>null</code>
 	 */
