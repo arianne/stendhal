@@ -389,7 +389,7 @@ public class j2DClient extends StendhalUI {
 		frame.toFront();
 
 		// create the baseframe
-		baseframe = new WtBaseframe(screen);
+		baseframe = new WtBaseframe(SCREEN_WIDTH, SCREEN_HEIGHT);
 		// register native event handler
 		canvas.addMouseListener(baseframe);
 		canvas.addMouseMotionListener(baseframe);

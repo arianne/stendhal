@@ -105,10 +105,10 @@ public class Creature2DView extends RPEntity2DView {
 
 
 	protected void drawPath(final Graphics2D g2d, final List<Node> path, final int delta) {
-		Point p1 = screen.convertWorldToScreen(getX(), getY());
+		Point p1 = screen.convertWorldToScreenView(getX(), getY());
 
 		for (Node node : path) {
-			Point p2 = screen.convertWorldToScreen(node.x, node.y);
+			Point p2 = screen.convertWorldToScreenView(node.x, node.y);
 
 			g2d.drawLine(p1.x + delta, p1.y + delta, p2.x + delta, p2.y + delta);
 			p1 = p2;

@@ -161,7 +161,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			changed = false;
 		}
 
-		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
+		Rectangle r = screen.convertWorldToScreenView(getDrawnArea());
 
 		if(isContained()) {
 			r.setLocation(0, 0);
@@ -199,7 +199,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			g2d.drawRect(x, y, width, height);
 
 			g2d.setColor(Color.green);
-			g2d.draw(screen.convertWorldToScreen(entity.getArea()));
+			g2d.draw(screen.convertWorldToScreenView(entity.getArea()));
 		}
 	}
 
@@ -239,7 +239,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param	g2d		The graphics to drawn on.
 	 */
 	public void drawTop(final Graphics2D g2d) {
-		Rectangle r = screen.convertWorldToScreen(getDrawnArea());
+		Rectangle r = screen.convertWorldToScreenView(getDrawnArea());
 
 		if(isContained()) {
 			r.setLocation(0, 0);

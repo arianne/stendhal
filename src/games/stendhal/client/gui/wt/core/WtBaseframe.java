@@ -18,8 +18,6 @@
 
 package games.stendhal.client.gui.wt.core;
 
-import games.stendhal.client.GameScreen;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -64,9 +62,14 @@ public class WtBaseframe extends WtPanel implements MouseListener, MouseMotionLi
 	/** the time at which a mouse button was last pressed */
 	private long timeOfLastMousePress = System.currentTimeMillis();
 
-	/** Creates the Frame from the given GameScreen instance */
-	public WtBaseframe(GameScreen screen) {
-		super("baseframe", 0, 0, screen.getWidthInPixels(), screen.getHeightInPixels());
+	/**
+	 * Create the root Wt frame.
+	 *
+	 * @param	width		The frame width (in pixels).
+	 * @param	height		The frame height (in pixels).
+	 */
+	public WtBaseframe(int width, int height) {
+		super("baseframe", 0, 0, width, height);
 		setFrame(false);
 		setTitleBar(false);
 		setMinimizeable(false);

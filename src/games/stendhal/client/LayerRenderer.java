@@ -48,8 +48,8 @@ public abstract class LayerRenderer {
 	public void draw(GameScreen screen) {
 		int x = (int) screen.getViewX();
 		int y = (int) screen.getViewY();
-		int w = (int) screen.getWidth();
-		int h = (int) screen.getHeight();
+		int w = (int) screen.getViewWidth();
+		int h = (int) screen.getViewHeight();
 
 		draw(screen, x, y, w, h);
 	}

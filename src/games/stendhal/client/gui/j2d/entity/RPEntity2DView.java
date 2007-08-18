@@ -431,7 +431,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	@Override
 	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
-		Rectangle srect = screen.convertWorldToScreen(entity.getArea());
+		Rectangle srect = screen.convertWorldToScreenView(entity.getArea());
 
 		if (rpentity.isBeingAttacked()) {
 			// Draw red box around

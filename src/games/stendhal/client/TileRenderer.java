@@ -423,7 +423,7 @@ public class TileRenderer extends LayerRenderer {
 		}
 
 		Graphics g = screen.expose();
-		Point p = screen.convertWorldToScreen(x, y);
+		Point p = screen.convertWorldToScreenView(x, y);
 
 		int sy = p.y;
 

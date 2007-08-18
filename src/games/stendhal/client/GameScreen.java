@@ -154,11 +154,6 @@ public class GameScreen {
 	 */
 	private int	speed;
 
-	/**
-	 * Whether the internal state is valid
-	 */
-	//private boolean valid;
-
 
 	static {
 		offlineIcon = SpriteStore.get().getSprite("data/gui/offline.png");
@@ -190,23 +185,13 @@ public class GameScreen {
 	}
 
 	/** Returns screen width in world units */
-	public double getWidth() {
+	public double getViewWidth() {
 		return sw / SIZE_UNIT_PIXELS;
 	}
 
 	/** Returns screen height in world units */
-	public double getHeight() {
+	public double getViewHeight() {
 		return sh / SIZE_UNIT_PIXELS;
-	}
-
-	/** Returns screen width in pixels */
-	public int getWidthInPixels() {
-		return sw;
-	}
-
-	/** Returns screen height in pixels */
-	public int getHeightInPixels() {
-		return sh;
 	}
 
 	public GameScreen(StendhalClient client, BufferStrategy strategy, int sw, int sh) {
@@ -230,11 +215,6 @@ public class GameScreen {
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
-
-
-//	public void invalidate() {
-//		valid = false;
-//	}
 
 
 	/** Prepare screen for the next frame to be rendered and move it if needed */
@@ -290,8 +270,8 @@ public class GameScreen {
 			return;
 		}
 
-		int sx = convertWorldXToScreen(x) + (SIZE_UNIT_PIXELS / 2);
-		int sy = convertWorldYToScreen(y) + (SIZE_UNIT_PIXELS / 2);
+		int sx = convertWorldXToScreenView(x) + (SIZE_UNIT_PIXELS / 2);
+		int sy = convertWorldYToScreenView(y) + (SIZE_UNIT_PIXELS / 2);
 
 		if((sx < 0) || (sx >= sw) || (sy < -SIZE_UNIT_PIXELS) || (sy > sh)) {
 			/*
@@ -444,34 +424,34 @@ public class GameScreen {
 
 		int x = (int) getViewX();
 		int y = (int) getViewY();
-		int w = (int) getWidth();
-		int h = (int) getHeight();
+		int w = (int) getViewWidth();
+		int h = (int) getViewHeight();
 
 		/*
 		 * End of the world (map falls short of the view)?
 		 */
-		int px = convertWorldXToScreen(Math.max(x, 0));
+		int px = convertWorldXToScreenView(Math.max(x, 0));
 
 		if(px > 0) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, px, sh);
 		}
 
-		px = convertWorldXToScreen(Math.min(x + w, ww));
+		px = convertWorldXToScreenView(Math.min(x + w, ww));
 
 		if(px < sw) {
 			g.setColor(Color.black);
 			g.fillRect(px, 0, sw - px, sh);
 		}
 
-		int py = convertWorldYToScreen(Math.max(y, 0));
+		int py = convertWorldYToScreenView(Math.max(y, 0));
 
 		if(py > 0) {
 			g.setColor(Color.black);
 			g.fillRect(0, 0, sw, py);
 		}
 
-		py = convertWorldYToScreen(Math.min(y + h, wh));
+		py = convertWorldYToScreenView(Math.min(y + h, wh));
 
 		if(py < sh) {
 			g.setColor(Color.black);
@@ -550,14 +530,13 @@ public class GameScreen {
 		}
 	}
 
-
 	/**
 	 * Get the view X world coordinate.
 	 *
 	 * @return	The X coordinate of the left side.
 	 */
 	public double getViewX() {
-		return (double) svx / SIZE_UNIT_PIXELS;
+		return (double) getScreenViewX() / SIZE_UNIT_PIXELS;
 	}
 
 	/**
@@ -566,7 +545,7 @@ public class GameScreen {
 	 * @return	The Y coordinate of the left side.
 	 */
 	public double getViewY() {
-		return (double) svy / SIZE_UNIT_PIXELS;
+		return (double) getScreenViewY() / SIZE_UNIT_PIXELS;
 	}
 
 	/**
@@ -692,7 +671,7 @@ public class GameScreen {
 	 */
 	public void clear() {
 		g.setColor(Color.black);
-		g.fillRect(0, 0, getWidthInPixels(), getHeightInPixels());
+		g.fillRect(0, 0, getScreenViewWidth(), getScreenViewHeight());
 	}
 
 	/**
@@ -821,36 +800,36 @@ public class GameScreen {
 
 	/** Translate to screen coordinates the given world coordinate */
 	public Point2D invtranslate(Point2D point) {
-		return convertWorldToScreen(point.getX(), point.getY());
+		return convertWorldToScreenView(point.getX(), point.getY());
 	}
 
 
 	/**
-	 * Convert world X coordinate to screen coordinate.
+	 * Convert world X coordinate to screen view coordinate.
 	 *
 	 * @param	wx		World X coordinate.
 	 *
 	 * @return	Screen X coordinate (in integer value).
 	 */
-	public int convertWorldXToScreen(double wx) {
-		return (int) (wx * SIZE_UNIT_PIXELS) - svx;
+	public int convertWorldXToScreenView(double wx) {
+		return convertWorldToScreen(wx) - svx;
 	}
 
 
 	/**
-	 * Convert world Y coordinate to screen coordinate.
+	 * Convert world Y coordinate to screen view coordinate.
 	 *
 	 * @param	wy		World Y coordinate.
 	 *
 	 * @return	Screen Y coordinate (in integer value).
 	 */
-	public int convertWorldYToScreen(double wy) {
-		return (int) (wy * SIZE_UNIT_PIXELS) - svy;
+	public int convertWorldYToScreenView(double wy) {
+		return convertWorldToScreen(wy) - svy;
 	}
 
 
 	/**
-	 * Convert world coordinates to screen coordinates.
+	 * Convert world coordinates to screen view coordinates.
 	 *
 	 * This does have some theorical range limits. Assuming a tile size
 	 * of 256x256 pixels (very high def), world coordinates are limited
@@ -861,12 +840,12 @@ public class GameScreen {
 	 * @param	wx		World X coordinate.
 	 * @param	wy		World Y coordinate.
 	 *
-	 * @return	Screen coordinates (in integer values).
+	 * @return	Screen view coordinates (in integer values).
 	 */
-	public Point convertWorldToScreen(double wx, double wy) {
+	public Point convertWorldToScreenView(double wx, double wy) {
 		return new Point(
-			convertWorldXToScreen(wx),
-			convertWorldYToScreen(wy));
+			convertWorldXToScreenView(wx),
+			convertWorldYToScreenView(wy));
 	}
 
 
@@ -877,8 +856,8 @@ public class GameScreen {
 	 *
 	 * @return	Screen rectangle (in integer values).
 	 */
-	public Rectangle convertWorldToScreen(Rectangle2D wrect) {
-		return convertWorldToScreen(wrect.getX(), wrect.getY(), wrect.getWidth(), wrect.getHeight());
+	public Rectangle convertWorldToScreenView(Rectangle2D wrect) {
+		return convertWorldToScreenView(wrect.getX(), wrect.getY(), wrect.getWidth(), wrect.getHeight());
 	}
 
 
@@ -892,10 +871,10 @@ public class GameScreen {
 	 *
 	 * @return	Screen rectangle (in integer values).
 	 */
-	public Rectangle convertWorldToScreen(double wx, double wy, double wwidth, double wheight) {
+	public Rectangle convertWorldToScreenView(double wx, double wy, double wwidth, double wheight) {
 		return new Rectangle(
-			convertWorldXToScreen(wx),
-			convertWorldYToScreen(wy),
+			convertWorldXToScreenView(wx),
+			convertWorldYToScreenView(wy),
 			(int) (wwidth * SIZE_UNIT_PIXELS),
 			(int) (wheight * SIZE_UNIT_PIXELS));
 	}
@@ -932,7 +911,7 @@ public class GameScreen {
 
 	/** Draw a sprite in screen given its world coordinates */
 	public void draw(Sprite sprite, double wx, double wy) {
-		Point p = convertWorldToScreen(wx, wy);
+		Point p = convertWorldToScreenView(wx, wy);
 
 		if (sprite != null) {
 			int spritew = sprite.getWidth() + 2;
@@ -1216,6 +1195,58 @@ public class GameScreen {
 		}
 
 		return new ImageSprite(image);
+	}
+
+
+	//
+	// <GameScreen2D>
+	//
+
+	/**
+	 * Convert a world unit value to a screen unit value.
+	 *
+	 * @param	w		World value.
+	 *
+	 * @return	A screen value (in pixels).
+	 */
+	public int convertWorldToScreen(double w) {
+		return (int) (w * SIZE_UNIT_PIXELS);
+	}
+
+	/**
+	 * Get the view height in pixels.
+	 *
+	 * @return	The view height.
+	 */
+	public int getScreenViewHeight() {
+		return sh;
+	}
+
+	/**
+	 * Get the view width in pixels.
+	 *
+	 * @return	The view width.
+	 */
+	public int getScreenViewWidth() {
+		return sw;
+	}
+
+	/**
+	 * Get the view X screen coordinate.
+	 *
+	 * @return	The X coordinate of the left side.
+	 */
+	public int getScreenViewX() {
+		return svx;
+	}
+
+	/**
+	 * Get the view Y screen coordinate.
+	 *
+	 * @return	The Y coordinate of the left side.
+	 */
+	public int getScreenViewY() {
+		return svy;
 	}
 
 	//
