@@ -522,8 +522,8 @@ public class GameScreen {
 		textsToRemove.clear();
 
 		try {
-			for (Text entity : texts) {
-				entity.draw(this);
+			for (Text text : texts) {
+				text.draw(this);
 			}
 		} catch (ConcurrentModificationException e) {
 			logger.error("cannot draw text", e);
@@ -618,33 +618,62 @@ public class GameScreen {
 	 *
 	 */
 	public void addText(double x, double y, String text, Color color, boolean isTalking) {
+		Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
+
+		int sx = convertWorldToScreen(x);
+		int sy = convertWorldToScreen(y);
+
+		if (isTalking) {
+			// Point alignment: left, bottom
+			sy -= sprite.getHeight();
+		} else { 
+			// Point alignment: left-right centered, bottom
+			sx -= (sprite.getWidth() / 2);
+			sy -= sprite.getHeight();
+                }
+
+
+		/*
+		 * Try to keep the text on screen.
+		 * This could mess up the "talk" origin positioning.
+		 */
+		if(sx < 0) {
+			sx = 0;
+		} else {
+			int max = getScreenWidth() - sprite.getWidth();
+
+			if(sx > max) {
+				sx = max;
+			}
+		}
+
+		if(sy < 0) {
+			sy = 0;
+		} else {
+			int max = getScreenHeight() - sprite.getHeight();
+
+			if(sy > max) {
+				sy = max;
+			}
+		}
+
+
 		boolean found = true;
 
 		while (found == true) {
 			found = false;
+
 			for (Text item : texts) {
-				if ((item.getX() == x) && (item.getY() == y)) {
+				if ((item.getX() == sx) && (item.getY() == sy)) {
 					found = true;
-					y += 0.5;
+					sy += (SIZE_UNIT_PIXELS / 2);
 					break;
 				}
 			}
 		}
 
-		Text entity = new Text(text, x, y, color, isTalking);
-		texts.add(entity);
-	}
-
-
-	/**
-	 * Add a text bubble.
-	 *
-	 *
-	 *
-	 */
-	public void addText(double x, double y, Sprite sprite, long persistTime) {
-		Text entity = new Text(sprite, x, y, persistTime);
-		texts.add(entity);
+		texts.add(new Text(sprite, sx, sy,
+			Math.max(Text.STANDARD_PERSISTENCE_TIME, text.length() * Text.STANDARD_PERSISTENCE_TIME / 50)));
 	}
 
 
@@ -779,11 +808,14 @@ public class GameScreen {
 	public Text getTextAt(double x, double y) {
 		ListIterator<Text> it = texts.listIterator(texts.size());
 
-		while (it.hasPrevious()) {
-			Text entity = it.previous();
+		int sx = convertWorldToScreen(x);
+		int sy = convertWorldToScreen(y);
 
-			if (entity.getDrawedArea().contains(x, y)) {
-				return entity;
+		while (it.hasPrevious()) {
+			Text text = it.previous();
+
+			if (text.getArea().contains(sx, sy)) {
+				return text;
 			}
 		}
 
@@ -1211,6 +1243,24 @@ public class GameScreen {
 	 */
 	public int convertWorldToScreen(double w) {
 		return (int) (w * SIZE_UNIT_PIXELS);
+	}
+
+	/**
+	 * Get the full screen height in pixels.
+	 *
+	 * @return	The height.
+	 */
+	public int getScreenHeight() {
+		return convertWorldToScreen(wh);
+	}
+
+	/**
+	 * Get the full screen width in pixels.
+	 *
+	 * @return	The width.
+	 */
+	public int getScreenWidth() {
+		return convertWorldToScreen(ww);
 	}
 
 	/**

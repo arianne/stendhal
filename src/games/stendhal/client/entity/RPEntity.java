@@ -530,7 +530,9 @@ public abstract class RPEntity extends ActiveEntity {
 
 		StendhalClient.get().generateWhoPlayers(text);
 		StendhalUI.get().addEventLine(text, type);
-		GameScreen.get().addText(getX(), getY(), text.replace("|", ""), type, false);
+
+		// TODO: Position based on visual part
+		GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(), text.replace("|", ""), type, false);
 	}
 
 	// When this entity stops attacking
@@ -583,8 +585,9 @@ public abstract class RPEntity extends ActiveEntity {
 				line = line + " ...";
 			}
 
+			// TODO: Position based on visual part
 			GameScreen.get().addText(
-				getX(), getY(), line, NotificationType.NORMAL, true);
+				getX() + getWidth(), getY(), line, NotificationType.NORMAL, true);
 		}
 	}
 
@@ -1079,8 +1082,10 @@ public abstract class RPEntity extends ActiveEntity {
 			if (distanceToUser() < 15 * 15) {
 				String text = getTitle() + " reaches Level " + getLevel();
 
-				GameScreen.get().addText(getX(), getY(), GameScreen.get().createString(text, NotificationType.SIGNIFICANT_POSITIVE), 0);
 				StendhalUI.get().addEventLine(text, NotificationType.SIGNIFICANT_POSITIVE);
+
+				// TODO: Position based on visual part
+				GameScreen.get().addText(getX() + (getWidth() / 2.0), getY(), text, NotificationType.SIGNIFICANT_POSITIVE, false);
 			}
 		}
 	}

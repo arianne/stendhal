@@ -17,6 +17,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.sprite.SpriteStore;
 
+import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 /**
@@ -150,8 +151,11 @@ public class Sign2DView extends Entity2DView {
 			case READ:
 				String text = sign.getText();
 
+				Rectangle2D area = getDrawnArea();
+
 				GameScreen.get().addText(
-					sign.getX(), sign.getY(), text, NotificationType.RESPONSE, false);
+					area.getCenterX(), area.getMinY(),
+					text, NotificationType.RESPONSE, false);
 
 				if (text.contains("\n")) {
 					// The sign's text has multiple lines. Add a linebreak after

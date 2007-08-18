@@ -15,102 +15,53 @@ package games.stendhal.client.gui.j2d;
 import games.stendhal.client.GameScreen;
 import games.stendhal.client.sprite.Sprite;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 public class Text {
-	private static final long STANDARD_PERSISTENCE_TIME = 5000;
+	public static final long STANDARD_PERSISTENCE_TIME = 5000;
 
-	private double x;
+	private int x;
 
-	private double y;
+	private int y;
 
-	private double tx;
+	private Sprite sprite;
 
-	private double ty;
+	private long removeTime;
 
-	private Sprite textImage;
 
-	private long textImageTime;
+	public Text(final Sprite sprite, final int x, final int y, final long persistTime) {
+		this.sprite = sprite;
+		this.x = x;
+		this.y = y;
 
-	private long textPersistTime;
-
-	private String text;
-
-	public Text(final Sprite textSprite, final double x, final double y, final long persistTime) {
-		textImage = textSprite;
-		textImageTime = System.currentTimeMillis();
-			 
 		if (persistTime == 0) {
-			textPersistTime = STANDARD_PERSISTENCE_TIME;
+			removeTime = System.currentTimeMillis() + STANDARD_PERSISTENCE_TIME;
 		} else {
-			textPersistTime= persistTime;
+			removeTime = System.currentTimeMillis() + persistTime;
 		}
-
-		// Speech bubbles should be top right of speaker intensifly@gmx.com
-		// this.tx=x+0.7-(textImage.getWidth()/((float)GameScreen.SIZE_UNIT_PIXELS*2.0f));
-		this.tx = x + 1;
-
-		// this.ty=y-0.5;
-		this.ty = y;
-		this.x = x;
-		this.y = y;
 	}
 
-	public Text(final String text, final double x, final double y, final Color color, final boolean isTalking) {
-
-		// Speech bubbles will only be drawn if there's a background color
-		// intensifly@gmx.com
-		textImage = GameScreen.get().createTextBox(text, 240, color, Color.white, isTalking);
-		textImageTime = System.currentTimeMillis();
-		textPersistTime = Math.max(STANDARD_PERSISTENCE_TIME, text.length() * STANDARD_PERSISTENCE_TIME / 50);
-
-		if (isTalking) {
-			// Speech bubbles should be top right of speaker intensifly@gmx.com
-			this.tx = x + 1;
-			this.ty = y;
-
-		} else {
-			this.tx = x + 0.7 - (textImage.getWidth() / (GameScreen.SIZE_UNIT_PIXELS * 2.0f));
-			this.ty = y + 1.5;
-		}
-
-		this.x = x;
-		this.y = y;
-		this.text = text;
-	}
 
 	public void draw(final GameScreen screen) {
-		screen.draw(textImage, tx, ty);
+		screen.drawInScreen(sprite, x - screen.getScreenViewX(), y - screen.getScreenViewY());
 
-		if (System.currentTimeMillis() - textImageTime > textPersistTime) {
+		if (System.currentTimeMillis() >= removeTime) {
 			screen.removeText(this);
 		}
 	}
 
 
-	public Rectangle2D getDrawedArea() {
-		return new Rectangle.Double(tx, ty, (double) textImage.getWidth() / GameScreen.SIZE_UNIT_PIXELS,
-		        (double) textImage.getHeight() / GameScreen.SIZE_UNIT_PIXELS);
+	public Rectangle getArea() {
+		return new Rectangle(x, y, sprite.getWidth(), sprite.getHeight());
 	}
 
-	public double getX() {
+	public int getX() {
 		return x;
 	}
 
 
-	public double getY() {
+	public int getY() {
 		return y;
-	}
-
-
-	//
-	// Object
-	//
-
-	@Override
-	public String toString() {
-		return text;
 	}
 }
