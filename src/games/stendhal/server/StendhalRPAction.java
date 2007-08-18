@@ -168,10 +168,9 @@ public class StendhalRPAction {
 		// TODO: docu
 		float armor = defender.getItemDef();
 		int targetDef = defender.getDEF();
-		float maxDefenderComponent = 0.6f * targetDef * targetDef + armor
-				* targetDef;
+		double maxDefenderComponent = (0.6f * targetDef + armor) * (10 + 0.5f * defender.getLevel());
 
-		float defenderComponent = (Rand.roll1D100() / 100.0f)
+		double  defenderComponent = (Rand.roll1D100() / 100.0f)
 				* maxDefenderComponent;
 
 		/*
