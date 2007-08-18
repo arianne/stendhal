@@ -37,8 +37,8 @@ public class WellSource extends Entity implements UseListener {
 		@Override
 		public boolean equals(Object obj) {
 			if (obj instanceof Wisher) {
-				Wisher new_name = (Wisher) obj;
-				return playerRef.get() == new_name.playerRef.get();
+				Wisher wisher = (Wisher) obj;
+				return playerRef.get() == wisher.playerRef.get();
 			} else {
 				return false;
 			}
@@ -106,13 +106,13 @@ public class WellSource extends Entity implements UseListener {
 	/**
 	 * The chance that wishing is successful.
 	 */
-	private final static double FINDING_PROBABILITY = 0.05;
+	private static final double FINDING_PROBABILITY = 0.05;
 
 	/**
 	 * How long it takes to wish at a well (in seconds) TODO: randomize this
 	 * number a bit.
 	 */
-	private final static int DURATION = 10;
+	private static final int DURATION = 10;
 
 	public WellSource() {
 		setDescription("You see a wishing well. Something in it catches your eye.");
