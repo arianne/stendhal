@@ -1062,7 +1062,7 @@
     </equips>
     <ai>
       <says>
-        <noise value="They're always after me Lucky Charms!!"/>
+        <noise value="They're always after my Lucky Charms!!"/>
         <noise value="Clovers and rainbows... stars and horseshoes..."/>
       </says>
       <profile name="brave"/>
@@ -4004,7 +4004,7 @@
     </equips>
     <ai>
       <says>
-        <noise value="I always get my prey"/>
+        <noise value="I always get my prey!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -5473,7 +5473,7 @@
     </equips>
     <ai>
       <says>
-        <noise value="We will never return to the light"/>
+        <noise value="We will never return to the light!"/>
       </says>
       <profile name="brave"/>
       <profile name="offensive"/>
@@ -7703,7 +7703,7 @@
     <ai>
       <says>
         <noise value="Your time to die has come!"/>
-        <noise value="Say goodbye to this world"/>
+        <noise value="Say goodbye to this world!"/>
       </says>
       <profile name="brave"/>
       <profile name="animal"/>
