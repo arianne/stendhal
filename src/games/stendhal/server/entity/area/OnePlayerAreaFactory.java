@@ -22,41 +22,33 @@ public class OnePlayerAreaFactory implements ConfigurableFactory {
 	 *
 	 * @param	ctx		The configuration context.
 	 * @return	The height, 1 if unspecified.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getHeight(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getHeight(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("height", 1);
 	}
-	
+
 	/**
 	 * Extract the width from context
 	 *
 	 * @param	ctx		The configuration context.
 	 * @return	The width, 1 if unspecified.
-	 * @throws	IllegalArgumentException If the attribute is invalid.
 	 */
-	protected int getWidth(ConfigurableFactoryContext ctx) throws IllegalArgumentException {
+	protected int getWidth(ConfigurableFactoryContext ctx) {
 		return ctx.getInt("width", 1);
 	}
 
 
 	/**
 	 * Create a damaging area.
-	 * 
+	 *
 	 * @param ctx
 	 *            Configuration context.
-	 * 
+	 *
 	 * @return A OnePlayerArea.
-	 * 
-	 * @throws IllegalArgumentException
-	 *             If there is a problem with the attributes. The exception
-	 *             message should be a value sutable for meaningful user
-	 *             interpretation.
-	 * 
+	 *
 	 * @see OnePlayerArea
 	 */
-	public Object create(ConfigurableFactoryContext ctx)
-			throws IllegalArgumentException {
+	public Object create(ConfigurableFactoryContext ctx) {
 		return new OnePlayerArea(getWidth(ctx), getHeight(ctx));
 	}
 }
