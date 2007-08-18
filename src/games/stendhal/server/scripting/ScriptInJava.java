@@ -23,9 +23,9 @@ public class ScriptInJava extends ScriptingSandbox {
 
 	private static Logger logger = Log4J.getLogger(ScriptInJava.class);
 
-	private Script script ;
+	private Script script;
 
-	private String classname ;
+	private String classname;
 
 	/**
 	 * Creates a new script written in Java.
@@ -49,8 +49,8 @@ public class ScriptInJava extends ScriptingSandbox {
 	 * @throws InvocationTargetException
 	 * @throws InstantiationException
 	 */
-	private void newInstance() throws MalformedURLException, ClassNotFoundException, SecurityException,
-	        NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException,
+	private void newInstance() throws MalformedURLException, ClassNotFoundException,
+	        NoSuchMethodException, IllegalAccessException, InvocationTargetException,
 	        InstantiationException {
 		// Create new class loader
 		// with current dir as CLASSPATH

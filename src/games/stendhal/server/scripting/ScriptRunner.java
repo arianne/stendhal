@@ -33,7 +33,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	private static final Logger logger = Log4J.getLogger(ScriptRunner.class);
 
 	/**
-	 * Constructor for StendhalGroovyRunner 
+	 * Constructor for StendhalGroovyRunner
 	 *
 	 */
 	public ScriptRunner() {
@@ -85,7 +85,9 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 
 		// unloading
 		if ("load".equals(mode) || "remove".equals(mode) || "unload".equals(mode)) {
-			if ((script = scripts.remove(name)) != null) {
+
+			script = scripts.remove(name);
+			if (script != null) {
 				script.unload(player, args);
 				ret = true;
 			}
@@ -129,7 +131,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 	}
 
 	public void onAction(Player player, RPAction action) {
-		
+
 
 		if (!AdministrationAction.isPlayerAllowedToExecuteAdminCommand(player, "script", true)) {
 			return;
@@ -198,7 +200,7 @@ public class ScriptRunner extends StendhalServerExtension implements ActionListe
 			}
 		}
 		player.sendPrivateText(text);
-		
+
 	}
 
 }

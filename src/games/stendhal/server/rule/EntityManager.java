@@ -15,24 +15,23 @@ import java.util.Collection;
 
 /**
  * Ruleset Interface for resolving Entities in Stendhal.
- * 
+ *
  * @author Matthias Totz
  */
 public interface EntityManager {
 	/**
 	 * returns the entity or <code>null</code> if the class is unknown
-	 * 
+	 *
 	 * @param clazz
-	 *            the creature class
+	 *            the creature class, must not be <code>null</code>
 	 * @return the entity or <code>null</code>
-	 * @throws NullPointerException
-	 *             if clazz is <code>null</code>
+	 *
 	 */
-	Entity getEntity(String clazz) throws NullPointerException;
+	Entity getEntity(String clazz);
 
 	/**
 	 * return true if the Entity is a creature
-	 * 
+	 *
 	 * @param id
 	 *            the tile id
 	 * @return true if it is a creature, false otherwise
@@ -41,34 +40,32 @@ public interface EntityManager {
 
 	/**
 	 * return true if the Entity is a creature
-	 * 
+	 *
 	 * @param clazz
-	 *            the creature class
+	 *            the creature class, must not be <code>null</code>
 	 * @return true if it is a creature, false otherwise
-	 * @throws NullPointerException
-	 *             if clazz is <code>null</code>
+	 *
 	 */
-	boolean isCreature(String clazz) throws NullPointerException;
+	boolean isCreature(String clazz);
 
 	/**
 	 * return true if the Entity is a Item
-	 * 
+	 *
 	 * @param clazz
-	 *            the Item class
+	 *            the Item class, must not be <code>null</code>
 	 * @return true if it is a Item, false otherwise
-	 * @throws NullPointerException
-	 *             if clazz is <code>null</code>
+	 *
 	 */
-	boolean isItem(String clazz) throws NullPointerException;
+	boolean isItem(String clazz);
 
 	/**
 	 * returns a list of all Creatures that are used at least once
 	 */
-	public Collection<Creature> getCreatures();
+	Collection<Creature> getCreatures();
 
 	/**
 	 * returns the creature or <code>null</code> if the id is unknown.
-	 * 
+	 *
 	 * @param id
 	 *            the tile id
 	 * @return the creature or <code>null</code>
@@ -77,28 +74,26 @@ public interface EntityManager {
 
 	/**
 	 * returns the creature or <code>null</code> if the clazz is unknown
-	 * 
+	 *
 	 * @param clazz
-	 *            the creature class
+	 *            the creature class, must not be <code>null</code>
 	 * @return the creature or <code>null</code>
-	 * @throws NullPointerException
-	 *             if clazz is <code>null</code>
+	 *
 	 */
-	Creature getCreature(String clazz) throws NullPointerException;
+	Creature getCreature(String clazz);
 
 	/**
 	 * returns a list of all Items that are being used at least once
 	 */
-	public Collection<Item> getItems();
+	Collection<Item> getItems();
 
 	/**
 	 * returns the item or <code>null</code> if the clazz is unknown
-	 * 
+	 *
 	 * @param clazz
-	 *            the item class
+	 *            the item class, must not be <code>null</code>
 	 * @return the item or <code>null</code>
-	 * @throws NullPointerException
-	 *             if clazz is <code>null</code>
+	 *
 	 */
-	Item getItem(String clazz) throws NullPointerException;
+	Item getItem(String clazz);
 }

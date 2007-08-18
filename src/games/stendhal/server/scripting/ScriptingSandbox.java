@@ -33,7 +33,7 @@ public abstract class ScriptingSandbox {
 
 	private StendhalRPZone zone;
 
-	private String filename ;
+	private String filename;
 
 	private static final Logger logger = Log4J.getLogger(ScriptingSandbox.class);
 
@@ -57,7 +57,7 @@ public abstract class ScriptingSandbox {
 
 	public StendhalRPZone addZone(String name, String content) {
 		try {
-			zone = StendhalRPWorld.get().addArea(name,content);
+			zone = StendhalRPWorld.get().addArea(name, content);
 			logger.info(filename + " added area: " + name);
 		} catch (Exception e) {
 			logger.error("Exception while tyring to add area: " + e);

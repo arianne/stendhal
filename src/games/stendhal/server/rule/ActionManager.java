@@ -17,13 +17,13 @@ import games.stendhal.server.entity.item.Item;
 
 /**
  * Ruleset Interface for processing actions in Stendhal.
- * 
+ *
  * @author Matthias Totz
  */
 public interface ActionManager {
 
 	/** PRE 0.40 */
-	public String getSlotNameToEquip(RPEntity entity, Item item);
+	String getSlotNameToEquip(RPEntity entity, Item item);
 
-	public boolean onEquip(RPEntity entity, String slotName, Item item);
+	boolean onEquip(RPEntity entity, String slotName, Item item);
 }

@@ -18,7 +18,7 @@ public interface Script {
 	 * @param args    the arguments the admin specified or <code>null</code> on server start.
 	 * @param sandbox all modifications to the game must be done using this object in order for the script to be unloadable
 	 */
-	public void load(Player admin, List<String> args, ScriptingSandbox sandbox);
+	void load(Player admin, List<String> args, ScriptingSandbox sandbox);
 
 	/**
 	 * Unloads the script
@@ -26,7 +26,7 @@ public interface Script {
 	 * @param admin   the admin who load it or <code>null</code> on server start.
 	 * @param args    the arguments the admin specified or <code>null</code> on server start.
 	 */
-	public void unload(Player admin, List<String> args);
+	void unload(Player admin, List<String> args);
 
 	/**
 	 * Execution of this script
@@ -34,5 +34,5 @@ public interface Script {
 	 * @param admin   the admin who load it or <code>null</code> on server start.
 	 * @param args    the arguments the admin specified or <code>null</code> on server start.
 	 */
-	public void execute(Player admin, List<String> args);
+	void execute(Player admin, List<String> args);
 }
