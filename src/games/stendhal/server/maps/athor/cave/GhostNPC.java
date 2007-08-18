@@ -89,13 +89,12 @@ public class GhostNPC implements ZoneConfigurator {
 			    			List<String> list = Arrays.asList(npcDoneText[0].split(";"));
 						    if (!list.contains(npc.getName())) {
 							    player.setQuest("find_ghosts", npcDoneText[0]
-									    + ";" + npc.getName() + ":" +
-									    npcDoneText[1]);
-							    npc.say("Remember my name ... " + npc.getName() +
-							            " ... " + npc.getName() + " ...");
+									    + ";" + npc.getName() + ":"
+									    +  npcDoneText[1]);
+							    npc.say("Remember my name ... " + npc.getName()
+							    		+ " ... " + npc.getName() + " ...");
 							    player.addXP(100);
-							}    
-							else {
+							} else {
 							    npc.say("Please, let the dead rest in peace");
 							}
 						}

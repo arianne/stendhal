@@ -33,10 +33,10 @@ public class LifeguardNPC extends SpeakerNPCFactory {
 		requiredResources.put("kokuda", 1);
 		requiredResources.put("minor_potion", 1);
 
-		ProducerBehaviour behaviour_mix = new ProducerBehaviour("david_mix_cream",
+		ProducerBehaviour mixerBehaviour = new ProducerBehaviour("david_mix_cream",
 				"mix", "suntan_cream", requiredResources, 10 * 60);
 
-		npc.addProducer(behaviour_mix, "Hallo!");
+		npc.addProducer(mixerBehaviour, "Hallo!");
 
 		npc.addReply(
 		        Arrays.asList("suntan", "cream", "suntan_cream"),

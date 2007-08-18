@@ -29,7 +29,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 
 		private static long lastShoutTime;
 
-		private String cryForHelp ;
+		private String cryForHelp;
 
 		/**
 		 * An attackable creature that will cause Katinka to shout if it
