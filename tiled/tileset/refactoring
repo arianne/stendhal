@@ -194,8 +194,8 @@ k*/ground/rock/pebbles.png
 ./ground/water/channels_icy.png
 ./ground/water/dungeon_water.png
 ./ground/water/golden_shimmery.png
-k/ground/water/golden_waterfall.png
-./ground/water/golden_whirlpool.png
+k*/ground/water/golden_waterfall.png
+k*/ground/water/golden_whirlpool.png
 k*/ground/water/pool.png
 k*/ground/water/pool_corners.png
 ./ground/water/pool_grassy.png
