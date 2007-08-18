@@ -198,12 +198,6 @@ public class CreatureLogic {
 		if (creature.hasPath()) {
 			creature.followPath();
 		}
-		if (Debug.CREATURES_DEBUG_SERVER) {
-//			debug.append("patrol;");
-//			// TODO: Adapt for opaque 'Path' object
-//			debug.append(creature.pathToString());
-//			debug.append('|');
-		}
 	}
 
 	/**
@@ -248,15 +242,7 @@ public class CreatureLogic {
 
 		waitRounds = 0; // clear waitrounds
 		aiState = AiState.APPROACHING_MOVING_TARGET; // update ai state
-		if (Debug.CREATURES_DEBUG_SERVER) {
-//			List path = creature.getPathList();
-//			if (path != null) {
-//				debug.append("targetmoved;");
-//				// TODO: Adapt for opaque 'Path' objects
-//				debug.append(creature.pathToString());
-//				debug.append("|");
-//			}
-		}
+
 	}
 
 	/**
@@ -450,12 +436,7 @@ public class CreatureLogic {
 				creature.stopAttack();
 				creature.stop();
 				waitRounds = WAIT_ROUNDS_BECAUSE_TARGET_IS_BLOCKED;
-			} else {
-//				if (Debug.CREATURES_DEBUG_SERVER) {
-//					debug.append(';');
-//					// TODO: Adapt for opaque 'Path' object
-//					debug.append(creature.getPathList());
-//				}
+
 			}
 		}
 

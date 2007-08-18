@@ -17,7 +17,7 @@ import games.stendhal.server.entity.GuidedEntity;
  */
 public class EntityGuide {
 
-	public void guideMe(GuidedEntity ge){
+	public void guideMe(GuidedEntity ge) {
 	}
 
 	/**

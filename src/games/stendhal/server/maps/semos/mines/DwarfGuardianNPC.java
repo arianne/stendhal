@@ -16,14 +16,18 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 	/**
 	 * Configure a zone.
 	 *
-	 * @param	zone		The zone to be configured.
-	 * @param	attributes	Configuration attributes.
+	 * @param zone
+	 *            The zone to be configured.
+	 * @param attributes
+	 *            Configuration attributes.
 	 */
-	public void configureZone(StendhalRPZone zone, Map<String, String> attributes) {
+	public void configureZone(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		buildMineArea(zone, attributes);
 	}
 
-	private void buildMineArea(StendhalRPZone zone, Map<String, String> attributes) {
+	private void buildMineArea(StendhalRPZone zone,
+			Map<String, String> attributes) {
 		SpeakerNPC npc = new SpeakerNPC("Phalk") {
 
 			@Override
@@ -35,12 +39,13 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			protected void createDialog() {
 				addGreeting(null, new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
-						String reply="There is something huge there! Everyone is very nervous. ";
-						if(player.getLevel()<60) {
-							reply+=" You are too weak to enter there.";
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
+						String reply = "There is something huge there! Everyone is very nervous. ";
+						if (player.getLevel() < 60) {
+							reply += " You are too weak to enter there.";
 						} else {
-							reply+=" Be careful.";
+							reply += " Be careful.";
 						}
 						engine.say(reply);
 					}
@@ -56,7 +61,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 				if (!player.hasQuest("PhalkFirstChat")) {
 					player.setQuest("PhalkFirstChat", "done");
 					player.addXP(500);
-					engine.listenTo(player, "hi");					
+					engine.listenTo(player, "hi");
 				}
 			}
 		});

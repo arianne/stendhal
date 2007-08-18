@@ -25,7 +25,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 
 	private SpeakerNPC buildSemosHouseArea() {
 
-	    SpeakerNPC rose = new SpeakerNPC("Rose Leigh"){
+	    SpeakerNPC rose = new SpeakerNPC("Rose Leigh") {
 	                @Override
 			protected void createPath() {
 				// npc does not move

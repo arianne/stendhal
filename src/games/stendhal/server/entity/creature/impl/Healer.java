@@ -8,7 +8,7 @@ class Healer extends Healingbehaviour {
 	private int frequency;
 
 	public Healer(String healingProfile) {
-		String[] healingAttributes =healingProfile.split(",");
+		String[] healingAttributes = healingProfile.split(",");
 		amount = Integer.parseInt(healingAttributes[0]);
 		frequency = Integer.parseInt(healingAttributes[1]);
 	}

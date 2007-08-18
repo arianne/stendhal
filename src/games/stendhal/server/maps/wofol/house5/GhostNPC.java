@@ -52,7 +52,7 @@ public class GhostNPC implements ZoneConfigurator {
 				nodes.add(new Node(3, 4));
 				setPath(new FixedPath(nodes, true));
 			}
-			
+
 			@Override
 		    protected void createDialog() {
 			    add(ConversationStates.IDLE,
@@ -71,14 +71,13 @@ public class GhostNPC implements ZoneConfigurator {
 			    			String[] npcDoneText = npcQuestText.split(":");
 			    			List<String> list = Arrays.asList(npcDoneText[0].split(";"));
 						    if (!list.contains(npc.getName())) {
-							    player.setQuest("find_ghosts", npcDoneText[0]
-									    + ";" + npc.getName() + ":" +
-									    npcDoneText[1]);
-							    npc.say("Remember my name ... " + npc.getName() +
-							            " ... " + npc.getName() + " ...");
+							    player.setQuest("find_ghosts", npcDoneText[0] + ";"
+													+ npc.getName() + ":"
+													+ npcDoneText[1]);
+							    npc.say("Remember my name ... " + npc.getName()
+							    		+ " ... " + npc.getName() + " ...");
 							    player.addXP(100);
-							}    
-							else {
+							} else {
 							    npc.say("Let the dead rest in peace");
 							}
 						}

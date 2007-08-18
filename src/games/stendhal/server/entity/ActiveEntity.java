@@ -80,10 +80,10 @@ public abstract class ActiveEntity extends Entity {
 	 */
 	public void applyMovement() {
 		//even if we could we would not move;
-		if (speed== 0) {
+		if (speed == 0) {
 			return;
 		}
-		if (direction== Direction.STOP) {
+		if (direction == Direction.STOP) {
 			return;
 		}
 
@@ -96,27 +96,27 @@ public abstract class ActiveEntity extends Entity {
 
 
 		StendhalRPZone zone = getZone();
-		if (zone.simpleCollides(this, nx, ny)){
-			handleSimpleCollission(nx,ny);
+		if (zone.simpleCollides(this, nx, ny)) {
+			handleSimpleCollission(nx, ny);
 			return;
 		}
 		Portal p = zone.getPortal(nx, ny);
-		if (  p  != null){
+		if (p != null) {
 		 if (handlePortal(p)) {
 			 return;
 		 }
 		}
 
 
-		if (isGhost()){
-			if (isMoveCompleted()){
+		if (isGhost()) {
+			if (isMoveCompleted()) {
 			move(x, y, nx, ny);
 			return;
 			}
 		}
 		boolean collision = zone.collidesObjects(this, this.getArea(nx, ny));
 
-		if (!collision ) {
+		if (!collision) {
 			if (!isMoveCompleted()) {
 				logger.debug(get("type") + ") move not completed");
 				return;
@@ -152,7 +152,7 @@ public abstract class ActiveEntity extends Entity {
 
 
 	private boolean handlePortal(Portal portal) {
-		if(isZoneChangeAllowed()){
+		if (isZoneChangeAllowed()) {
 			logger.debug("Using portal " + portal);
 		 return portal.onUsed((RPEntity) this);
 		}
@@ -167,15 +167,15 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 */
 	protected void handleSimpleCollission(int nx, int ny) {
-		if (isZoneChangeAllowed()){
+		if (isZoneChangeAllowed()) {
 			if (getZone().leavesZone(this, nx, ny)) {
 				handleLeaveZone(nx, ny);
 				return;
 			}
 		}
- if (isGhost()){
+ if (isGhost()) {
 	 move(getX(), getY(), nx, ny);
- }else{
+ } else {
 		setCollides(true);
  }
 }
@@ -209,7 +209,7 @@ public abstract class ActiveEntity extends Entity {
 	 * @param entity
 	 *            The entity to face toward.
 	 */
-	final public void faceToward(final Entity entity) {
+	public final void faceToward(final Entity entity) {
 		setDirection(getDirectionToward(entity));
 	}
 
@@ -239,7 +239,7 @@ public abstract class ActiveEntity extends Entity {
 	 *
 	 * @return A facing direction.
 	 */
-	final public Direction getDirectionToward(final Entity entity) {
+	public final Direction getDirectionToward(final Entity entity) {
 		return getDirectionToward(entity.getArea());
 	}
 
@@ -397,7 +397,7 @@ public abstract class ActiveEntity extends Entity {
 		return (speed == 0.0);
 	}
 
-	final public void faceto(int x, int y) {
+	public final void faceto(int x, int y) {
 		int rndx = x - getX();
 		int rndy = y - getY();
 

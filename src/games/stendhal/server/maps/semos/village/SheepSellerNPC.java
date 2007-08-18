@@ -71,7 +71,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 							seller.say("Hmm... I just don't think you're cut out for taking care of a whole flock of sheep at once.");
 							return false;
 						} else if (!player.hasSheep()) {
-							if (! player.drop("money", getCharge(player))) {
+							if (!player.drop("money", getCharge(player))) {
 								seller.say("You don't seem to have enough money.");
 								return false;
 							}
