@@ -61,13 +61,10 @@ public abstract class Entity extends RPObject {
 		// Some things may have a textual description
 		entity.addAttribute("description", Type.LONG_STRING, Definition.HIDDEN);
 
-		// TODO: Try to remove this attribute later
+		// TODO: Try to remove this attribute later (at DB reset?)
 		entity.addAttribute("type", Type.STRING);
 
-		/*
-		 * Entity is an obstacle.
-		 * Replaced by resistance (short lived).
-		 */
+		// TODO: Obsolete - Remove _right_before_ DB reset
 		entity.addAttribute("obstacle", Type.FLAG, Definition.VOLATILE);
 
 		/**
@@ -150,16 +147,11 @@ public abstract class Entity extends RPObject {
 
 		if (has("resistance")) {
 			resistance = getInt("resistance");
+		}
 
-			// TODO: Remove after 2007-08-15
-			if (resistance > 95) {
-				put("obstacle", "");
-			} else if (has("obstacle")) {
-				remove("obstacle");
-			}
-		} else {
-			resistance = has("obstacle") ? 100 : 0;
-			put("resistance", resistance);
+		// TODO: Remove after 2007-10-17 (or DB reset)
+		if(has("obstacle")) {
+			remove("obstacle");
 		}
 	}
 
@@ -621,13 +613,11 @@ public abstract class Entity extends RPObject {
 	 * @return description from the players point of view
 	 */
 	public String describe() {
-		String ret = "You see ";
 		if (hasDescription()) {
-			return (getDescription());
+			return getDescription();
 		}
 
-		ret += getDescriptionName(false);
-		return (ret + ".");
+		return "You see " + getDescriptionName(false) + ".";
 	}
 
 	/**
@@ -700,13 +690,6 @@ public abstract class Entity extends RPObject {
 	public void setResistance(int resistance) {
 		this.resistance = resistance;
 		put("resistance", resistance);
-
-		// TODO: Remove after 2007-08-15
-		if (resistance > 95) {
-			put("obstacle", "");
-		} else if (has("obstacle")) {
-			remove("obstacle");
-		}
 	}
 
 	/**
