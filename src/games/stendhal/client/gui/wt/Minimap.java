@@ -334,53 +334,17 @@ public class Minimap extends WtPanel {
 
 	@Override
 	public synchronized boolean onMouseDoubleClick(Point p) {
+		// TODO: Check that titlebar height is calculated correctly.
+		// The p.y seems higher than it should after adjustment.
+
 		/*
-		 * Missing required data?
+		 * Move the player to the coordinates
 		 */
-		if ((player == null) || (image == null)) {
-			return false;
-		}
-
-		// Move the player to p
-
-		// first calculate the world destination coords
-		int panx = 0;
-		int pany = 0;
-
-		int w = image.getWidth();
-		int h = image.getHeight();
-
-		int xpos = (int) (playerX * scale) - width / 2;
-		int ypos = (int) (playerY * scale) - width / 2;
-
-		if (w > width) {
-			// need to pan width
-			if ((xpos + width) > w) {
-				// x is at the screen border
-				panx = w - width;
-			} else if (xpos > 0) {
-				panx = xpos;
-			}
-		}
-
-		if (h > height) {
-			// need to pan height
-			if ((ypos + height) > h) {
-				// y is at the screen border
-				pany = h - height;
-			} else if (ypos > 0) {
-				pany = ypos;
-			}
-		}
-
-		// Now we have the world destination coords
-		int go_toX = (p.x + panx - 4) / scale;
-		int go_toY = (p.y + pany - 4) / scale;
-
 		RPAction action = new RPAction();
 		action.put("type", "moveto");
-		action.put("x", go_toX);
-		action.put("y", go_toY);
+		action.put("x", (p.x + panx - getClientX()) / scale);
+		action.put("y", ((p.y + pany - getClientY()) / scale) - 1);
+
 		client.send(action);
 		return true;
 	}
