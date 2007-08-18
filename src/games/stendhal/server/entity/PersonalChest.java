@@ -70,11 +70,10 @@ public class PersonalChest extends Chest {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	private RPObject cloneItem(RPObject item) throws SecurityException,
-			NoSuchMethodException, IllegalArgumentException,
-			InstantiationException, IllegalAccessException,
+	private RPObject cloneItem(RPObject item) throws
+			NoSuchMethodException, InstantiationException, IllegalAccessException,
 			InvocationTargetException {
-		Class<?> clazz = item.getClass();
+		Class< ? > clazz = item.getClass();
 		Constructor ctor = clazz.getConstructor(clazz);
 		Item clone = (Item) ctor.newInstance(item);
 		return clone;

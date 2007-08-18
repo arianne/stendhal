@@ -43,22 +43,20 @@ public class EntityFactoryHelper {
 	public static Entity create(String className,
 			Map<String, String> parameters, Map<String, String> attributes)
 			throws IllegalArgumentException {
-		ConfigurableFactory factory;
-		Object obj;
-		Entity entity;
-		factory = ConfigurableFactoryHelper.getFactory(className);
+
+		ConfigurableFactory	factory = ConfigurableFactoryHelper.getFactory(className);
 		if (factory == null) {
 			return null;
 		}
 
-		obj = factory.create(new ConfigurableFactoryContext(parameters));
+		Object obj = factory.create(new ConfigurableFactoryContext(parameters));
 
 		if (!(obj instanceof Entity)) {
 			throw new IllegalArgumentException(obj.getClass().getName()
 					+ " is not an instance of Entity");
 		}
 
-		entity = (Entity) obj;
+		Entity entity = (Entity) obj;
 
 		/*
 		 * Apply optional attributes

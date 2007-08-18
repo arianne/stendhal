@@ -150,7 +150,7 @@ public abstract class Entity extends RPObject {
 		}
 
 		// TODO: Remove after 2007-10-17 (or DB reset)
-		if(has("obstacle")) {
+		if (has("obstacle")) {
 			remove("obstacle");
 		}
 	}
