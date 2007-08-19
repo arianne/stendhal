@@ -46,17 +46,17 @@ public class NPC2DView extends RPEntity2DView {
 	/**
 	 * Calculate sprite image offset.
 	 *
-	 * @param	swidth		The sprite width (in world units).
-	 * @param	sheight		The sprite height (in world units).
-	 * @param	ewidth		The entity width (in world units).
-	 * @param	eheight		The entity height (in world units).
+	 * @param	swidth		The sprite width (in pixels).
+	 * @param	sheight		The sprite height (in pixels).
+	 * @param	ewidth		The entity width (in pixels).
+	 * @param	eheight		The entity height (in pixels).
 	 */
 	@Override
-	protected void calculateOffset(final double swidth, final double sheight, final double ewidth, final double eheight) {
+	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
 		/*
 		 * X alignment centered, Y alignment bottom
 		 */
-		xoffset = (int) ((ewidth - swidth) / 2.0 * GameScreen.SIZE_UNIT_PIXELS);
+		xoffset = (ewidth - swidth) / 2;
 
 		// TODO: Fix (y+1 entity hack is causing interference)
 		yoffset = 0;

@@ -147,17 +147,17 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * Calculate sprite image offset.
 	 * Sub-classes may override this to change alignment.
 	 *
-	 * @param	swidth		The sprite width (in world units).
-	 * @param	sheight		The sprite height (in world units).
-	 * @param	ewidth		The entity width (in world units).
-	 * @param	eheight		The entity height (in world units).
+	 * @param	swidth		The sprite width (in pixels).
+	 * @param	sheight		The sprite height (in pixels).
+	 * @param	ewidth		The entity width (in pixels).
+	 * @param	eheight		The entity height (in pixels).
 	 */
-	protected void calculateOffset(final double swidth, final double sheight, final double ewidth, final double eheight) {
+	protected void calculateOffset(final int swidth, final int sheight, final int ewidth, final int eheight) {
 		/*
 		 * X alignment centered, Y alignment bottom
 		 */
-		xoffset = (int) (((ewidth - swidth) / 2.0) * GameScreen.SIZE_UNIT_PIXELS);
-		yoffset = (int) ((eheight - sheight) * GameScreen.SIZE_UNIT_PIXELS);
+		xoffset = (ewidth - swidth) / 2;
+		yoffset = eheight - sheight;
 	}
 
 
@@ -373,7 +373,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		buildSprites(map, tiles, wwidth, wheight);
 
 		Rectangle2D area = rpentity.getArea();
-		calculateOffset(wwidth, wheight, area.getWidth(), area.getHeight());
+		calculateOffset(width, height, (int) (area.getWidth() * GameScreen.SIZE_UNIT_PIXELS), (int) (area.getHeight() * GameScreen.SIZE_UNIT_PIXELS));
 	}
 
 
