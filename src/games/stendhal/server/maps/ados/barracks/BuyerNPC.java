@@ -55,8 +55,8 @@ public class BuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createDialog() {
 				addGreeting("Greetings. Have you come to enlist as a soldier?");
-				addReply("yes","Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
-				addReply("no","Good! You wouldn't have fit in here anyway.");
+				addReply("yes", "Huh! Well I don't let your type enlist! Perhaps you want to #offer some of that armor instead...");
+				addReply("no", "Good! You wouldn't have fit in here anyway.");
 				addJob("I'm looking after the weaponry here. We're running low. I see you have some armor you might #offer though.");
 				addHelp("I buy armor for the barracks here, make me an #offer.");
 				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
@@ -64,7 +64,7 @@ public class BuyerNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, ConversationPhrases.QUEST_MESSAGES, null,
 				        ConversationStates.ATTENDING,
 				        "Oh, thanks but no thanks. I don't need anything.", null);
-				addBuyer(new BuyerBehaviour(shops.get("buyrare3")), false); 
+				addBuyer(new BuyerBehaviour(shops.get("buyrare3")), false);
 				addGoodbye("Goodbye, comrade.");
 			}
 		};

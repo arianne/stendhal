@@ -75,13 +75,12 @@ public class KidGhostNPC implements ZoneConfigurator {
 			    			List<String> list = Arrays.asList(npcDoneText[0].split(";"));
 						    if (!list.contains(npc.getName())) {
 							    player.setQuest("find_ghosts", npcDoneText[0]
-									    + ";" + npc.getName() + ":" +
-									    npcDoneText[1]);
+									    + ";" + npc.getName()
+									    + ":" +  npcDoneText[1]);
 							    npc.say("Hello! Hardly anyone speaks to me. The other children pretend I don't exist. I hope you remember me.");
 							    player.addXP(100);
 							    player.addKarma(10);
-							}    
-							else {
+							} else {
 							    npc.say("Hello again. I'm glad you remember me. I'll just keep walking here till I have someone to play with.");
 							}
 						}
@@ -96,7 +95,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(ghost);
 		ghost.put("class", "kid7npc");
 		// He is a ghost so he is see through
-		ghost.put("visibility",50);
+		ghost.put("visibility", 50);
 		ghost.set(34, 120);
 		// He has low HP
 		ghost.initHP(30);
