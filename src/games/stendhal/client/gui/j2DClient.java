@@ -88,7 +88,7 @@ public class j2DClient extends StendhalUI {
 	protected final static Color COLOR_PRIVMSG = Color.darkGray;
 	protected final static Color COLOR_RESPONSE = new Color(0x006400);
 	protected final static Color COLOR_SIGNIFICANT_NEGATIVE	= Color.pink;
-	protected final static Color COLOR_SIGNIFICANT_POSITIVE	= Color.cyan;
+	protected final static Color COLOR_SIGNIFICANT_POSITIVE	= new Color(65, 105, 225);
 	protected final static Color COLOR_TUTORIAL = new Color(172, 0, 172);
 
 	private static final long serialVersionUID = 3356310866399084117L;
