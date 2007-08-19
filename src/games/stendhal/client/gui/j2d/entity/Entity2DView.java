@@ -69,6 +69,11 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	private boolean		changed;
 
 	/**
+	 * The position value changed.
+	 */
+	protected boolean	positionChanged;
+
+	/**
 	 * Model values affecting visual representation changed.
 	 */
 	protected boolean	representationChanged;
@@ -83,6 +88,16 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 */
 	protected boolean	visibilityChanged;
 
+	/**
+	 * The screen X coordinate.
+	 */
+	protected int		x;
+
+	/**
+	 * The screen Y coordinate.
+	 */
+	protected int		y;
+
 
 	/**
 	 * Create a 2D view of an entity.
@@ -95,10 +110,14 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 		// TODO: Pass this in
 		screen = GameScreen.get();
 
+		x = 0;
+		y = 0;
+
 		entityComposite = AlphaComposite.SrcOver;
 		contained = false;
 		animatedChanged = false;
 		changed = true;
+		positionChanged = true;
 		visibilityChanged = true;
 		representationChanged = true;
 
@@ -288,10 +307,7 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @return	The area this draws in.
 	 */
 	public Rectangle getArea() {
-		return new Rectangle(
-			screen.convertWorldToScreen(getX()) + getXOffset(),
-			screen.convertWorldToScreen(getY()) + getYOffset(),
-			getWidth(), getHeight());
+		return new Rectangle(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
 	}
 
 
@@ -378,10 +394,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the entity's X coordinate.
 	 *
-	 * @return	The X coordinate.
+	 * @return	The X coordinate (in pixels).
 	 */
-	protected double getX() {
-		return entity.getX();
+	protected int getX() {
+		return x;
 	}
 
 
@@ -398,10 +414,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the entity's Y coordinate.
 	 *
-	 * @return	The Y coordinate.
+	 * @return	The Y coordinate (in pixels).
 	 */
-	protected double getY() {
-		return entity.getY();
+	protected int getY() {
+		return y;
 	}
 
 
@@ -533,6 +549,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			representationChanged = false;
 		}
 
+		if(positionChanged) {
+			x = screen.convertWorldToScreen(entity.getX());
+			y = screen.convertWorldToScreen(entity.getY());
+			positionChanged = false;
+		}
+
 		if(visibilityChanged) {
 			entityComposite = getComposite();
 			visibilityChanged = false;
@@ -561,6 +583,8 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 		if(property == Entity.PROP_ANIMATED) {
 			animatedChanged = true;
+		} else if(property == Entity.PROP_POSITION) {
+			positionChanged = true;
 		} else if(property == Entity.PROP_TYPE) {
 			representationChanged = true;
 		} else if(property == Entity.PROP_VISIBILITY) {
