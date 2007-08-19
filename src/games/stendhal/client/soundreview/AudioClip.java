@@ -59,43 +59,50 @@ public class AudioClip {
 
 	/**
 	 * creates the audio clip
-	 * @param mixer the Mixer instance to be used
-	 * @param name the name of the audio clip
-	 * @param audioData the audio data 
-	 * @param volume   the loudness 0..100
-	 * @throws IOException 
-	 * @throws UnsupportedAudioFileException 
+	 * 
+	 * @param mixer
+	 *            the Mixer instance to be used
+	 * @param name
+	 *            the name of the audio clip
+	 * @param audioData
+	 *            the audio data
+	 * @param volume
+	 *            the loudness 0..100
+	 * @throws IOException
+	 * @throws UnsupportedAudioFileException
 	 */
-	public AudioClip(Mixer mixer,  byte[] audioData, int volume) throws UnsupportedAudioFileException, IOException {
+	public AudioClip(Mixer mixer, byte[] audioData, int volume)
+			throws UnsupportedAudioFileException, IOException {
 		this.volume = volume;
 		this.mixer = mixer;
-		
 
-		
-			AudioInputStream audioInputStream;
-           audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
-            
-			this.audioData = audioData;
-			format = audioInputStream.getFormat();
+		AudioInputStream audioInputStream;
+		audioInputStream = AudioSystem
+				.getAudioInputStream(new ByteArrayInputStream(audioData));
 
-			if (!mixer.isLineSupported(new DataLine.Info(Clip.class, audioInputStream.getFormat()))) {
-				logger.error("format is not supported(" + audioInputStream.getFormat() + ")");
-				supported = false;
-				return;
-			}
+		this.audioData = audioData;
+		format = audioInputStream.getFormat();
 
-			supported = true;
+		if (!mixer.isLineSupported(new DataLine.Info(Clip.class,
+				audioInputStream.getFormat()))) {
+			logger.error("format is not supported("
+					+ audioInputStream.getFormat() + ")");
+			supported = false;
+			return;
+		}
 
-			float frameRate = audioInputStream.getFormat().getFrameRate();
-			long frames = audioInputStream.getFrameLength();
+		supported = true;
 
-			if ((frameRate != AudioSystem.NOT_SPECIFIED) && (frames != AudioSystem.NOT_SPECIFIED)) {
-				length = (int) (frames / frameRate * 1000);
-			} else {
-				length = 0;
-			}
-            
-		
+		float frameRate = audioInputStream.getFormat().getFrameRate();
+		long frames = audioInputStream.getFrameLength();
+
+		if ((frameRate != AudioSystem.NOT_SPECIFIED)
+				&& (frames != AudioSystem.NOT_SPECIFIED)) {
+			length = (int) (frames / frameRate * 1000);
+		} else {
+			length = 0;
+		}
+
 	}
 
 	/**
@@ -119,11 +126,14 @@ public class AudioClip {
 	 * @throws UnsupportedAudioFileException
 	 * @throws LineUnavailableException
 	 */
-	public Clip openLine() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public Clip openLine() throws UnsupportedAudioFileException, IOException,
+			LineUnavailableException {
 		if (supported) {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new ByteArrayInputStream(audioData));
+			AudioInputStream audioInputStream = AudioSystem
+					.getAudioInputStream(new ByteArrayInputStream(audioData));
 
-			DataLine.Info info = new DataLine.Info(Clip.class, audioInputStream.getFormat());
+			DataLine.Info info = new DataLine.Info(Clip.class, audioInputStream
+					.getFormat());
 			if (!mixer.isLineSupported(info)) {
 				return null;
 			}
@@ -132,22 +142,28 @@ public class AudioClip {
 				line.open(audioInputStream);
 				return line;
 			} catch (LineUnavailableException e) {
-				logger.debug("audioclip cannot be played, no free lines available");
+				logger
+						.debug("audioclip cannot be played, no free lines available");
 			}
 		}
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return this.getClass().getName() + ": "
-		        + (!supported ? "(format not supported by " + mixer.getMixerInfo().getDescription() + ") " : "")
-		        + format;
+		return this.getClass().getName()
+				+ ": "
+				+ (!supported ? "(format not supported by "
+						+ mixer.getMixerInfo().getDescription() + ") " : "")
+				+ format;
 	}
-	public void stop(){
+
+	public void stop() {
 		line.close();
 	}
 

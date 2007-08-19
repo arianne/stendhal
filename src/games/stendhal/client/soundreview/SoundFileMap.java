@@ -9,12 +9,13 @@ import java.util.Set;
 public class SoundFileMap implements Map<String, byte[]>, Nullable {
 
 	private Map<String, byte[]> fileMap = new AbsentFileMap();
+
 	SoundFileReader sfr;
-	
+
 	public SoundFileMap() {
 		sfr = new SoundFileReader();
 		sfr.init();
-    }
+	}
 
 	public void clear() {
 		fileMap.clear();
@@ -35,16 +36,16 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 	}
 
 	public byte[] get(Object key) {
-        byte[] byteArray = fileMap.get(key);
-        if (byteArray==null){
-        	
-        	byteArray = sfr.getData((String) key);
-        	if (byteArray!=null) {
+		byte[] byteArray = fileMap.get(key);
+		if (byteArray == null) {
+
+			byteArray = sfr.getData((String) key);
+			if (byteArray != null) {
 				put((String) key, byteArray);
-//        	else
-//        		System.out.println(key+ "not found in filesystem");
+				// else
+				// System.out.println(key+ "not found in filesystem");
 			}
-        }
+		}
 		return byteArray;
 	}
 
@@ -63,7 +64,8 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 		try {
 			return fileMap.put(key, value);
 		} catch (IllegalStateException e) {
-			fileMap = Collections.synchronizedMap(new HashMap<String, byte[]>());
+			fileMap = Collections
+					.synchronizedMap(new HashMap<String, byte[]>());
 			return fileMap.put(key, value);
 		}
 	}
@@ -72,7 +74,8 @@ public class SoundFileMap implements Map<String, byte[]>, Nullable {
 		try {
 			fileMap.putAll(t);
 		} catch (IllegalStateException e) {
-			fileMap = Collections.synchronizedMap(new HashMap<String, byte[]>());
+			fileMap = Collections
+					.synchronizedMap(new HashMap<String, byte[]>());
 			fileMap.putAll(t);
 		}
 

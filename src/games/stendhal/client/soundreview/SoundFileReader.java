@@ -16,17 +16,14 @@ public class SoundFileReader {
 	/** expected location of the sound definition file (classloader). */
 	public static final String STORE_PROPERTYFILE = "data/sounds/";
 
-
-
 	static Properties soundprops;
 
 	public SoundFileReader() {
-		
 
 	}
 
 	public void init() {
-		init(STORE_PROPERTYFILE+"stensounds.properties");
+		init(STORE_PROPERTYFILE + "stensounds.properties");
 
 	}
 
@@ -35,9 +32,11 @@ public class SoundFileReader {
 		soundprops = loadSoundProperties(soundprops, propertyfile);
 
 	}
-	public void initWithXml(){
-		
+
+	public void initWithXml() {
+
 	}
+
 	/**
 	 * Obtains a resource input stream. Fetches currently from the main
 	 * program's classloader.
@@ -53,9 +52,12 @@ public class SoundFileReader {
 		}
 		return url.openStream();
 	}
+
 	/**
-	 * @param prop the Property Object to load to
-	 * @param url the Propertyfile
+	 * @param prop
+	 *            the Property Object to load to
+	 * @param url
+	 *            the Propertyfile
 	 * @return Properties with name of the sound files
 	 */
 	public static Properties loadSoundProperties(Properties prop, String url) {
@@ -76,7 +78,7 @@ public class SoundFileReader {
 
 	byte[] getData(String soundname) {
 		byte[] data;
-		
+
 		String soundbase = SoundFileReader.soundprops.getProperty("soundbase");
 		if (soundbase == null) {
 			return null;
@@ -97,11 +99,12 @@ public class SoundFileReader {
 			transferData(in, bout, 4096);
 			in.close();
 		} catch (IOException e) {
-			Log4J.getLogger(SoundFileReader.class).error("could not open soundfile " + filename);
+			Log4J.getLogger(SoundFileReader.class).error(
+					"could not open soundfile " + filename);
 			return null;
 		}
 		data = bout.toByteArray();
-		
+
 		return data;
 	}
 
@@ -114,7 +117,8 @@ public class SoundFileReader {
 	 * @param bufferSize
 	 * @throws java.io.IOException
 	 */
-	static void transferData(InputStream input, OutputStream output, int bufferSize) throws java.io.IOException {
+	static void transferData(InputStream input, OutputStream output,
+			int bufferSize) throws java.io.IOException {
 		byte[] buffer = new byte[bufferSize];
 		int len;
 

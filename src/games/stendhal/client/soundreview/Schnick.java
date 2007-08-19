@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
+
 //TODO: delete me when new soundsystem works
 public class Schnick {
 	private static final Logger logger = Log4J.getLogger(Schnick.class);
@@ -31,50 +32,50 @@ public class Schnick {
 	/**
 	 * @param args
 	 */
-	
+
 	public static void main(String[] args) {
 		Map<String, String[]> soundArray = new HashMap<String, String[]>();
-		String [] buh = {"bah","beh"};
+		String[] buh = { "bah", "beh" };
 		soundArray.put("hüp", buh);
 		SoundMaster sm = new SoundMaster();
 		sm.init();
 		Thread th = new Thread(sm);
 		th.start();
 		SoundMaster.play("hammer-1.wav");
-		SoundMaster.play("evillaugh-3.wav",true);
-	//	System.out.print(true);
+		SoundMaster.play("evillaugh-3.wav", true);
+		// System.out.print(true);
 	}
 
-	 static void loadFromPropertiesintoXML() {
-	    Properties prop=new Properties();
-	    try {
-	        prop.load(getResourceStream("data/sounds/stensounds.properties"));
-	    } catch (IOException e) {
-	        logger.error(e, e);
-	    }
-
-	    try {
-	        prop.storeToXML(new FileOutputStream(new File("data/sounds/stensounds.xml")),"autmatic");
-	    } catch (FileNotFoundException e) {
-	        logger.error(e, e);
-	    } catch (IOException e) {
-	        logger.error(e, e);
-	    }
-    }
-
-	 static void loadPropertiesFromXML() {
-	    Properties prop=new Properties();
+	static void loadFromPropertiesintoXML() {
+		Properties prop = new Properties();
 		try {
-	        prop.loadFromXML(new FileInputStream(new File("data/sounds/stensounds.xml")));
-        } catch (InvalidPropertiesFormatException e) {
-	        logger.error(e, e);
-        } catch (FileNotFoundException e) {
-	        logger.error(e, e);
-        } catch (IOException e) {
-        	logger.error(e, e);
-        }
-    }
+			prop.load(getResourceStream("data/sounds/stensounds.properties"));
+		} catch (IOException e) {
+			logger.error(e, e);
+		}
 
-	
+		try {
+			prop.storeToXML(new FileOutputStream(new File(
+					"data/sounds/stensounds.xml")), "autmatic");
+		} catch (FileNotFoundException e) {
+			logger.error(e, e);
+		} catch (IOException e) {
+			logger.error(e, e);
+		}
+	}
+
+	static void loadPropertiesFromXML() {
+		Properties prop = new Properties();
+		try {
+			prop.loadFromXML(new FileInputStream(new File(
+					"data/sounds/stensounds.xml")));
+		} catch (InvalidPropertiesFormatException e) {
+			logger.error(e, e);
+		} catch (FileNotFoundException e) {
+			logger.error(e, e);
+		} catch (IOException e) {
+			logger.error(e, e);
+		}
+	}
+
 }
-
