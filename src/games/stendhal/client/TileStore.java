@@ -101,7 +101,7 @@ public class TileStore implements Tileset {
 		 * Strip off leading path info
 		 * TODO: Remove this earlier in the stage (server side?)
 		 */
-		if(ref.startsWith("../../")) {
+		if (ref.startsWith("../../")) {
 			ref = ref.substring(6);
 		}
 
@@ -110,21 +110,21 @@ public class TileStore implements Tileset {
 		 */
 		int mapsize = tiles.size();
 
-		if(mapsize > baseindex) {
+		if (mapsize > baseindex) {
 			logger.error("Tileset base index mismatch (" + mapsize + " > " + baseindex + "): " + ref);
-		} else if(mapsize < baseindex) {
+		} else if (mapsize < baseindex) {
 			logger.debug("Tileset base index mismatch (" + mapsize + " < " + baseindex + "): " + ref);
 			/*
 			 * Pad missing entries
 			 */
-			for(int i = mapsize; i < baseindex; i++) {
+			for (int i = mapsize; i < baseindex; i++) {
 				tiles.add(null);
 			}
 		}
 
 		Tileset tileset = tilesetsLoaded.get(ref);
 
-		if(tileset == null) {
+		if (tileset == null) {
 			tileset = new SpriteTileset(store, baseFolder + ref);
 			tilesetsLoaded.put(ref, tileset);
 		}
@@ -133,7 +133,7 @@ public class TileStore implements Tileset {
 
 		tiles.ensureCapacity(baseindex + size);
 
-		for(int i = 0; i < size; i++) {
+		for (int i = 0; i < size; i++) {
 			tiles.add(tileset.getSprite(i));
 		}
 
@@ -142,11 +142,11 @@ public class TileStore implements Tileset {
 		 */
 		TilesetAnimationMap tsam = animationMap.get(ref);
 
-		if(tsam != null) {
-			for(int i = 0; i < size; i++) {
+		if (tsam != null) {
+			for (int i = 0; i < size; i++) {
 				Sprite sprite = tsam.getSprite(tileset, i);
 
-				if(sprite != null) {
+				if (sprite != null) {
 					tiles.set(baseindex + i, sprite);
 				}
 			}
@@ -163,10 +163,10 @@ public class TileStore implements Tileset {
 	 * @throws	ClassNotFoundException
 	 */
 	public void addTilesets(InputSerializer in) throws IOException, ClassNotFoundException {
-		int amount=in.readInt();
+		int amount = in.readInt();
 
-		for(int i=0;i<amount;i++) {
-			TileSetDefinition tileset=(TileSetDefinition) in.readObject(new TileSetDefinition(null, -1));
+		for (int i = 0; i < amount; i++) {
+			TileSetDefinition tileset = (TileSetDefinition) in.readObject(new TileSetDefinition(null, -1));
 			add(tileset);
 		}
 	}
@@ -180,7 +180,7 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap createAnimationMap() {
 		TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		URL url = SpriteStore.get().getResourceURL(baseFolder+"tileset/animation.seq");
+		URL url = SpriteStore.get().getResourceURL(baseFolder + "tileset/animation.seq");
 
 		if (url != null) {
 			try {
@@ -191,7 +191,7 @@ public class TileStore implements Tileset {
 				} finally {
 					in.close();
 				}
-			} catch(IOException ex) {
+			} catch (IOException ex) {
 				logger.error("Error loading tileset animation map", ex);
 			}
 		}
@@ -240,14 +240,14 @@ public class TileStore implements Tileset {
 	 * @return	A sprite, or <code>null</code> if no mapped sprite.
 	 */
 	public Sprite getSprite(final int index) {
-		if(index >= tiles.size()) {
+		if (index >= tiles.size()) {
 			logger.error("Accessing unassigned sprite at: " + index);
 			return store.getEmptySprite();
 		}
 
 		Sprite sprite = tiles.get(index);
 
-		if(sprite == null) {
+		if (sprite == null) {
 			logger.error("Accessing unassigned sprite at: " + index);
 			return store.getEmptySprite();
 		}
