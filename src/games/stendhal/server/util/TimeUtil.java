@@ -79,10 +79,10 @@ public class TimeUtil {
 	 *		the amount was too small to apply.
 	 */
 	protected static boolean approxUnit(StringBuffer sbuf, int amount, int size, String name) {
-		int count;
+		int count = amount / size;
 		int remainder;
 
-		if ((count = amount / size) == 0) {
+		if (count  == 0) {
 			return false;
 		}
 
@@ -166,12 +166,10 @@ public class TimeUtil {
 	 * @param	forceSeconds	Show seconds even if over a minute.
 	 */
 	public static void timeUntil(StringBuffer sbuf, int seconds, boolean forceSeconds) {
-		boolean appended;
-		int count;
+		boolean appended = false;
+		int count = seconds / SECONDS_IN_WEEK;
 
-		appended = false;
-
-		if ((count = seconds / SECONDS_IN_WEEK) != 0) {
+		if (count != 0) {
 			seconds -= (count * SECONDS_IN_WEEK);
 
 			sbuf.append(count);
@@ -181,7 +179,8 @@ public class TimeUtil {
 			appended = true;
 		}
 
-		if ((count = seconds / SECONDS_IN_DAY) != 0) {
+		count = seconds / SECONDS_IN_DAY;
+		if (count != 0) {
 			seconds -= (count * SECONDS_IN_DAY);
 
 			if (appended) {
@@ -194,8 +193,8 @@ public class TimeUtil {
 			sbuf.append(' ');
 			sbuf.append(Grammar.plnoun(count, "day"));
 		}
-
-		if ((count = seconds / SECONDS_IN_HOUR) != 0) {
+		count = seconds / SECONDS_IN_HOUR;
+		if (count != 0) {
 			seconds -= (count * SECONDS_IN_HOUR);
 
 			if (appended) {
@@ -208,8 +207,8 @@ public class TimeUtil {
 			sbuf.append(' ');
 			sbuf.append(Grammar.plnoun(count, "hour"));
 		}
-
-		if ((count = seconds / SECONDS_IN_MINUTE) != 0) {
+		count = seconds / SECONDS_IN_MINUTE;
+		if (count != 0) {
 			seconds -= (count * SECONDS_IN_MINUTE);
 
 			if (appended) {

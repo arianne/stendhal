@@ -33,7 +33,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 	/** was the parsing completed */
 	private boolean finished;
 
-	private String error ;
+	private String error;
 
 	/**
 	 * creates a new WikipeidaAccess
@@ -146,7 +146,7 @@ public class WikipediaAccess extends DefaultHandler implements Runnable {
 		try {
 			parse();
 		} catch (Exception e) {
-			// ignore as they are alread logged in the parse()-method itself
+			// ignore as they are already logged in the parse()-method itself
 		}
 	}
 

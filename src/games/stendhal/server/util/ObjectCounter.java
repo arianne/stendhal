@@ -39,7 +39,7 @@ public class ObjectCounter<K> {
 		if (in == null) {
 			in = Integer.valueOf(1);
 		} else {
-			in += Integer.valueOf(1) ;
+			in += Integer.valueOf(1);
 		}
 		counter.put(o, in);
 	}
