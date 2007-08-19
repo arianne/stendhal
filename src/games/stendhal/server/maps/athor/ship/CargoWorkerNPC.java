@@ -3,6 +3,7 @@ package games.stendhal.server.maps.athor.ship;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
+import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,25 +13,7 @@ import java.util.Map;
 public class CargoWorkerNPC extends SpeakerNPCFactory {
 
 	@Override
-	protected SpeakerNPC instantiate(String name) {
-		// The NPC is defined as a ferry announcer because he notifies
-		// passengers when the ferry arrives or departs.
-		SpeakerNPC npc = new AthorFerry.FerryAnnouncerNPC(name) {
-			@Override
-			public void onNewFerryState(int status) {
-				if (status == AthorFerry.ANCHORED_AT_MAINLAND
-						|| status == AthorFerry.ANCHORED_AT_ISLAND) {
-					say("Attention: We have arrived!");
-				} else {
-					say("Attention: We have set sail!");
-				}
-			}
-		};
-		return npc;
-	}
-
-	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	protected void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Ahoy! Nice to see you in the cargo hold!");
 		npc.addJob("I'm taking care of the cargo. My job would be much easier without all these #rats.");
 		npc.addHelp("You could earn some money if you'd #offer me something to poison these damn #rats.");
@@ -45,9 +28,24 @@ public class CargoWorkerNPC extends SpeakerNPCFactory {
 		offerings.put("mega_poison", 500);
 		offerings.put("disease_poison", 2000);
 		npc.addBuyer(new BuyerBehaviour(offerings));
-		
+
 		npc.addGoodbye("Please kill some rats on your way up!");
-		AthorFerry.get().addListener(
-				(AthorFerry.FerryAnnouncerNPC) npc);
+		new AthorFerry.FerryListener() {
+
+			@Override
+			public void onNewFerryState(Status status) {
+				switch (status) {
+				case ANCHORED_AT_MAINLAND:
+				case ANCHORED_AT_ISLAND:
+					npc.say("Attention: We have arrived!");
+					break;
+
+				default:
+					npc.say("Attention: We have set sail!");
+					break;
+				}
+
+			}
+			};
 	}
 }

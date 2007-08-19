@@ -1,38 +1,37 @@
 package games.stendhal.server.maps.athor.ship;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 import java.util.Arrays;
 
 /** Factory for cargo worker on Athor Ferry */
 public class CoastConveyerNPC extends SpeakerNPCFactory {
+	static StendhalRPZone islandDocksZone;
+	static StendhalRPZone mainlandDocksZone;
 
-	@Override
-	protected SpeakerNPC instantiate(String name) {
-		// The NPC is defined as a ferry announcer because he notifies
-		// passengers when the ferry arrives or departs.
-		SpeakerNPC npc = new AthorFerry.FerryAnnouncerNPC(name) {
-			@Override
-			public void onNewFerryState(int status) {
-				if (status == AthorFerry.ANCHORED_AT_MAINLAND) {
-					say("Attention: The ferry has arrived at the mainland! You can now #disembark.");
-				} else if (status == AthorFerry.ANCHORED_AT_ISLAND) {
-					say("Attention: The ferry has arrived at the island! You can now #disembark.");
-				} else  {
-					say("Attention: The ferry has set sail.");
-				}
-			}
-		};
-		return npc;
+	private StendhalRPZone getIslandDockZone() {
+		if (islandDocksZone == null) {
+
+			islandDocksZone = StendhalRPWorld.get().getZone("0_athor_island");
+		}
+
+		return islandDocksZone;
 	}
 
+
+	protected Status ferryState;
+
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	protected void createDialog(final SpeakerNPC npc) {
 		npc.addGoodbye("Goodbye!"); //TODO: sailor-style language
 		npc.addGreeting("Ahoy, Matey! How can I #help you?");
 		npc.addHelp("Ye can #disembark, but only when we're anchored a harbor. Just ask me for the #status if ye have no idea where we are.");
@@ -46,8 +45,7 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						npc.say(AthorFerry.get()
-								.getCurrentDescription());
+						npc.say(ferryState.toString());
 					}
 				});
 
@@ -60,20 +58,23 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						AthorFerry ferry = AthorFerry.get();
-						if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
+						switch (ferryState) {
+						case ANCHORED_AT_MAINLAND:
 							npc.say("Do ye really want me to take ye to the mainland with me skiff?");
 							npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
-						} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
+							break;
+						case ANCHORED_AT_ISLAND:
 							npc.say("Do ye really want me to take ye to the island with me skiff?");
 							npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
-						} else {
-							npc.say(AthorFerry.get()
-								.getCurrentDescription()
+							break;
+
+						default:
+							npc.say(ferryState.toString()
 								+ " Ye can only get off the boat when it's anchored near a harbor.");
+
 						}
-					}
-				});
+				}
+			});
 
 
 		npc.add(ConversationStates.SERVICE_OFFERED,
@@ -84,16 +85,21 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						AthorFerry ferry = AthorFerry.get();
-						if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
-							ferry.disembarkToMainland(player);
+						switch (ferryState) {
+						case ANCHORED_AT_MAINLAND:
+							player.teleport(getMainlandDocksZone(), 100, 100, Direction.LEFT, null);
 							npc.setCurrentState(ConversationStates.IDLE);
-						} else if (ferry.getState() == AthorFerry.ANCHORED_AT_ISLAND) {
-							ferry.disembarkToIsland(player);
+							break;
+						case ANCHORED_AT_ISLAND:
+							player.teleport(getIslandDockZone(), 16, 89, Direction.LEFT, null);
 							npc.setCurrentState(ConversationStates.IDLE);
-						} else {
+							break;
+
+						default:
 							npc.say("Too bad! The ship has already set sail.");
+
 						}
+
 					}
 				});
 
@@ -102,7 +108,31 @@ public class CoastConveyerNPC extends SpeakerNPCFactory {
 				null,
 				ConversationStates.ATTENDING,
 				"Aye, matey!", null);
-		AthorFerry.get().addListener(
-				(AthorFerry.FerryAnnouncerNPC) npc);
+		new AthorFerry.FerryListener() {
+
+			@Override
+			public void onNewFerryState(Status status) {
+				ferryState = status;
+				switch (status) {
+				case ANCHORED_AT_MAINLAND:
+					npc.say("Attention: The ferry has arrived at the mainland! You can now #disembark.");
+					break;
+				case ANCHORED_AT_ISLAND:
+					npc.say("Attention: The ferry has arrived at the island! You can now #disembark.");
+					break;
+				default:
+					npc.say("Attention: The ferry has set sail.");
+					break;
+				}
+
+			}
+			};
+	}
+
+	private static StendhalRPZone getMainlandDocksZone() {
+		if (mainlandDocksZone == null) {
+			mainlandDocksZone = StendhalRPWorld.get().getZone("0_ados_coast_s_w2");
+		}
+		return mainlandDocksZone;
 	}
 }

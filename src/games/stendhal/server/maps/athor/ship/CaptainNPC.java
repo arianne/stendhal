@@ -6,27 +6,18 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
+import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
 
 /** Factory for the captain of Athor Ferry */
 public class CaptainNPC extends SpeakerNPCFactory {
 
+Status ferrystate;
 	@Override
 	protected SpeakerNPC instantiate(String name) {
 		// The NPC is defined as a ferry announcer because he notifies
 		// passengers when the ferry arrives or departs.
-		SpeakerNPC npc = new AthorFerry.FerryAnnouncerNPC(name) {
-			@Override
-			public void onNewFerryState(int status) {
-				if (status == AthorFerry.ANCHORED_AT_MAINLAND
-						|| status == AthorFerry.ANCHORED_AT_ISLAND) {
-					// capital letters symbolize screaming
-					say("LET GO ANCHOR!");
-				} else  {
-					say("ANCHORS AWEIGH! SET SAIL!");
-				}
-				// Turn back to the wheel
-				setDirection(Direction.DOWN);
-			}
+		SpeakerNPC npc = new SpeakerNPC(name) {
+
 
 			@Override
 			protected void onGoodbye(Player player) {
@@ -38,7 +29,7 @@ public class CaptainNPC extends SpeakerNPCFactory {
 	}
 
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	protected void createDialog(final SpeakerNPC npc) {
 		npc.addGreeting("Yo-ho-ho, me bucko!");
 		npc.addGoodbye("So long...");
 		// if you can make up a help message that is more helpful to the,
@@ -55,12 +46,31 @@ public class CaptainNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						npc.say(AthorFerry.get()
-								.getCurrentDescription());
+						npc.say(ferrystate.toString());
+								//.getCurrentDescription());
 					}
 				});
 
-		AthorFerry.get().addListener(
-				(AthorFerry.FerryAnnouncerNPC) npc);
+		new AthorFerry.FerryListener() {
+
+			@Override
+			public void onNewFerryState(Status status) {
+				ferrystate = status;
+					switch (status) {
+					case ANCHORED_AT_MAINLAND:
+					case ANCHORED_AT_ISLAND:
+						// capital letters symbolize shouting
+						npc.say("LET GO ANCHOR!");
+						break;
+
+					default:
+						npc.say("ANCHORS AWEIGH! SET SAIL!");
+						break;
+					}
+					// Turn back to the wheel
+					npc.setDirection(Direction.DOWN);
+
+			}
+			};
 	}
 }

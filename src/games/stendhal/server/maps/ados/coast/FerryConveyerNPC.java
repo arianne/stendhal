@@ -1,5 +1,8 @@
 package games.stendhal.server.maps.ados.coast;
 
+import games.stendhal.common.Direction;
+import games.stendhal.server.StendhalRPWorld;
+import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
@@ -7,6 +10,8 @@ import games.stendhal.server.entity.npc.SpeakerNPCFactory;
 import games.stendhal.server.entity.npc.SpeakerNPC.ChatAction;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.athor.ship.AthorFerry;
+import games.stendhal.server.maps.athor.ship.AthorFerry.Status;
+
 
 import java.util.Arrays;
 
@@ -16,25 +21,17 @@ import java.util.Arrays;
  */
 public class FerryConveyerNPC extends SpeakerNPCFactory {
 
-	@Override
-	protected SpeakerNPC instantiate(String name) {
-		// The NPC is defined as a ferry announcer because he notifies
-		// passengers when the ferry arrives or departs.
-		SpeakerNPC npc = new AthorFerry.FerryAnnouncerNPC(name) {
-			@Override
-			public void onNewFerryState(int status) {
-				if (status == AthorFerry.ANCHORED_AT_MAINLAND) {
-					say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
-				} else if (status == AthorFerry.DRIVING_TO_ISLAND) {
-					say("Attention: The ferry has taken off. You can no longer board it.");
-				}
-			}
-		};
-		return npc;
-	}
+	protected Status ferrystate;
+	private static StendhalRPZone shipZone;
 
+	public static StendhalRPZone getShipZone() {
+		if (shipZone == null) {
+			shipZone = StendhalRPWorld.get().getZone("0_athor_ship_w2");
+		}
+		return shipZone;
+	}
 	@Override
-	protected void createDialog(SpeakerNPC npc) {
+	protected void createDialog(final SpeakerNPC npc) {
 		npc.addGoodbye("Goodbye!");
 		npc.addGreeting("Welcome to the #ferry service to #Athor #island! How can I #help you?");
 		npc.addHelp("You can #board the #ferry for only "
@@ -51,8 +48,7 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						npc.say(AthorFerry.get()
-								.getCurrentDescription());
+						npc.say(ferrystate.toString());
 					}
 				});
 
@@ -65,14 +61,12 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
-						AthorFerry ferry = AthorFerry.get();
-						if (ferry.getState() == AthorFerry.ANCHORED_AT_MAINLAND) {
+						if (ferrystate == Status.ANCHORED_AT_MAINLAND) {
 							npc.say("In order to board the ferry, you have to pay " + AthorFerry.PRICE
 						+ " gold. Do you want to pay?");
 							npc.setCurrentState(ConversationStates.SERVICE_OFFERED);
 						} else {
-							npc.say(AthorFerry.get()
-								.getCurrentDescription()
+							npc.say(ferrystate.toString()
 								+ " You can only board the ferry when it's anchored at the mainland.");
 						}
 					}
@@ -88,7 +82,8 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 					public void fire(Player player, String text,
 							SpeakerNPC npc) {
 						if (player.drop("money", AthorFerry.PRICE)) {
-							AthorFerry.get().boardFerry(player);
+							player.teleport(getShipZone(), 27, 33, Direction.LEFT, null);
+
 						} else {
 							npc.say("Hey! You don't have enough money!");
 						}
@@ -102,7 +97,25 @@ public class FerryConveyerNPC extends SpeakerNPCFactory {
 				"You don't know what you're missing, landlubber!",
 				null);
 
-		AthorFerry.get().addListener(
-				(AthorFerry.FerryAnnouncerNPC) npc);
+
+				new AthorFerry.FerryListener() {
+
+
+					@Override
+					public void onNewFerryState(Status status) {
+						ferrystate = status;
+						switch (status) {
+
+						case ANCHORED_AT_MAINLAND:
+							npc.say("Attention: The ferry has arrived at this coast! You can now #board the ship.");
+							break;
+						case DRIVING_TO_ISLAND:
+							npc.say("Attention: The ferry has taken off. You can no longer board it.");
+							break;
+						default:
+							break;
+						}
+					}
+					};
 	}
 }
