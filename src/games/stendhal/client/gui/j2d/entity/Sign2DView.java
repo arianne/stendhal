@@ -17,7 +17,7 @@ import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.Sign;
 import games.stendhal.client.sprite.SpriteStore;
 
-import java.awt.geom.Rectangle2D;
+import java.awt.Rectangle;
 import java.util.List;
 
 /**
@@ -151,10 +151,10 @@ public class Sign2DView extends Entity2DView {
 			case READ:
 				String text = sign.getText();
 
-				Rectangle2D area = getDrawnArea();
+				Rectangle area = getArea();
 
 				GameScreen.get().addText(
-					area.getCenterX(), area.getMinY(),
+					area.x + (area.width / 2), area.y,
 					text, NotificationType.RESPONSE, false);
 
 				if (text.contains("\n")) {

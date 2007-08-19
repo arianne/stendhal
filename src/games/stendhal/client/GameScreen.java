@@ -617,11 +617,36 @@ public class GameScreen {
 	 *
 	 *
 	 */
-	public void addText(double x, double y, String text, Color color, boolean isTalking) {
-		Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
+	public void addText(final double x, final double y, final String text, final Color color, final boolean talking) {
+		addText(convertWorldToScreen(x), convertWorldToScreen(y), text, color, talking);
+	}
 
-		int sx = convertWorldToScreen(x);
-		int sy = convertWorldToScreen(y);
+
+	/**
+	 * Add a text bubble.
+	 *
+	 * @param	sx		The screen X coordinate.
+	 * @param	sy		The screen Y coordinate.
+	 * @param	text		The text.
+	 * @param	type		The type of notification text.
+	 * @param	talking		Is it is a talking text bubble.
+	 */
+	public void addText(final int sx, final int sy, final String text, final NotificationType type, final boolean talking) {
+		addText(sx, sy, text, getNotificationColor(type), talking);
+	}
+
+
+	/**
+	 * Add a text bubble.
+	 *
+	 * @param	sx		The screen X coordinate.
+	 * @param	sy		The screen Y coordinate.
+	 * @param	text		The text.
+	 * @param	color		The text color.
+	 * @param	talking		Is it is a talking text bubble.
+	 */
+	public void addText(int sx, int sy, final String text, final Color color, final boolean isTalking) {
+		Sprite sprite = createTextBox(text, 240, color, Color.white, isTalking);
 
 		if (isTalking) {
 			// Point alignment: left, bottom
@@ -740,12 +765,15 @@ public class GameScreen {
 		/*
 		 * Now the visual entity areas
 		 */
+		int sx = convertWorldToScreen(x);
+		int sy = convertWorldToScreen(y);
+
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
 			Entity2DView view = it.previous();
 
-			if (view.getDrawnArea().contains(x, y)) {
+			if (view.getArea().contains(sx, sy)) {
 				return view;
 			}
 		}
@@ -783,13 +811,16 @@ public class GameScreen {
 		/*
 		 * Now the visual entity areas
 		 */
+		int sx = convertWorldToScreen(x);
+		int sy = convertWorldToScreen(y);
+
 		it = views.listIterator(views.size());
 
 		while (it.hasPrevious()) {
 			Entity2DView view = it.previous();
 
 			if(view.isMovable()) {
-				if (view.getDrawnArea().contains(x, y)) {
+				if (view.getArea().contains(sx, sy)) {
 					return view;
 				}
 			}
@@ -1314,13 +1345,13 @@ public class GameScreen {
 			rv = view1.getZIndex() - view2.getZIndex();
 
 			if(rv == 0) {
-				Rectangle2D area1 = view1.getDrawnArea();
-				Rectangle2D area2 = view2.getDrawnArea();
+				Rectangle area1 = view1.getArea();
+				Rectangle area2 = view2.getArea();
 
-				rv = (int) ((area1.getMaxY() - area2.getMaxY()) * 10.0);
+				rv = (area1.y + area1.height) - (area2.y + area2.height);
 
 				if(rv == 0) {
-					rv = (int) ((area1.getMinX() - area2.getMinX()) * 10.0);
+					rv = area1.x - area2.x;
 				}
 			}
 

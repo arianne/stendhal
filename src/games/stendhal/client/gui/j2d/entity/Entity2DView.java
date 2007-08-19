@@ -161,12 +161,17 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 			changed = false;
 		}
 
-		Rectangle r = screen.convertWorldToScreenView(getDrawnArea());
+		Rectangle r = getArea();
 
 		if(isContained()) {
 			r.setLocation(0, 0);
-		} else if(!screen.isInScreen(r)) {
-			return;
+		} else {
+			r.x -= screen.getScreenViewX();
+			r.y -= screen.getScreenViewY();
+
+			if(!screen.isInScreen(r)) {
+				return;
+			}
 		}
 
 		Composite oldComposite = g2d.getComposite();
@@ -239,12 +244,17 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param	g2d		The graphics to drawn on.
 	 */
 	public void drawTop(final Graphics2D g2d) {
-		Rectangle r = screen.convertWorldToScreenView(getDrawnArea());
+		Rectangle r = getArea();
 
 		if(isContained()) {
 			r.setLocation(0, 0);
-		} else if(!screen.isInScreen(r)) {
-			return;
+		} else {
+			r.x -= screen.getScreenViewX();
+			r.y -= screen.getScreenViewY();
+
+			if(!screen.isInScreen(r)) {
+				return;
+			}
 		}
 
 		Composite oldComposite = g2d.getComposite();
@@ -268,6 +278,20 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	 * @param	height		The drawn entity height.
 	 */
 	protected void drawTop(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
+	}
+
+
+	/**
+	 * Get the screen area this is drawn in.
+	 * NOTE: This only covers the area for the main sprite.
+	 *
+	 * @return	The area this draws in.
+	 */
+	public Rectangle getArea() {
+		return new Rectangle(
+			screen.convertWorldToScreen(getX()) + getXOffset(),
+			screen.convertWorldToScreen(getY()) + getYOffset(),
+			getWidth(), getHeight());
 	}
 
 
@@ -312,23 +336,12 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
-	 * Get the 2D area that is drawn in.
-	 * NOTE: This only covers the area for the main sprite.
-	 *
-	 * @return	The 2D area this draws in.
-	 */
-	public Rectangle2D getDrawnArea() {
-		return new Rectangle.Double(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
-	}
-
-
-	/**
 	 * Get the height.
 	 *
-	 * @return	The height (in world units).
+	 * @return	The height (in pixels).
 	 */
-	public double getHeight() {
-		return 1.0;
+	public int getHeight() {
+		return GameScreen.SIZE_UNIT_PIXELS;
 	}
 
 
@@ -355,10 +368,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the width.
 	 *
-	 * @return	The width (in world units).
+	 * @return	The width (in pixels).
 	 */
-	public double getWidth() {
-		return 1.0;
+	public int getWidth() {
+		return GameScreen.SIZE_UNIT_PIXELS;
 	}
 
 
@@ -375,10 +388,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the X offset alignment adjustment.
 	 *
-	 * @return	The X offset (in world units).
+	 * @return	The X offset (in pixels).
 	 */
-	protected double getXOffset() {
-		return 0.0;
+	protected int getXOffset() {
+		return 0;
 	}
 
 
@@ -395,10 +408,10 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 	/**
 	 * Get the Y offset alignment adjustment.
 	 *
-	 * @return	The Y offset (in world units).
+	 * @return	The Y offset (in pixels).
 	 */
-	protected double getYOffset() {
-		return 0.0;
+	protected int getYOffset() {
+		return 0;
 	}
 
 

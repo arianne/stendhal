@@ -204,8 +204,8 @@ public class Creature2DView extends RPEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map, final Sprite tiles, final double width, final double height) {
-		this.width = width;
-		this.height = height;
+		this.width = (int) (width * GameScreen.SIZE_UNIT_PIXELS);
+		this.height = (int) (height * GameScreen.SIZE_UNIT_PIXELS);
 
 		super.buildSprites(map, tiles, width, height);
 	}

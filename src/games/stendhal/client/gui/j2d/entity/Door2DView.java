@@ -38,22 +38,22 @@ public class Door2DView extends StateEntity2DView {
 	/*
 	 * The drawing X offset from the entity position.
 	 */
-	protected double	xoffset;
+	protected int		xoffset;
 
 	/*
 	 * The drawing Y offset from the entity position.
 	 */
-	protected double	yoffset;
+	protected int		yoffset;
 
 	/*
 	 * The drawn width.
 	 */
-	protected double	width;
+	protected int		width;
 
 	/*
 	 * The drawn height.
 	 */
-	protected double	height;
+	protected int		height;
 
 	/**
 	 * The door entity.
@@ -71,10 +71,10 @@ public class Door2DView extends StateEntity2DView {
 
 		this.door = door;
 
-		xoffset = 0.0;
-		yoffset = 0.0;
-		width = 1.0;
-		height = 1.0;
+		xoffset = 0;
+		yoffset = 0;
+		width = GameScreen.SIZE_UNIT_PIXELS;
+		height = GameScreen.SIZE_UNIT_PIXELS;
 	}
 
 
@@ -94,27 +94,30 @@ public class Door2DView extends StateEntity2DView {
 		SpriteStore store = SpriteStore.get();
 
 		if(name == null) {
-			Sprite emptySprite = store.getEmptySprite();
+			width = GameScreen.SIZE_UNIT_PIXELS;
+			height = GameScreen.SIZE_UNIT_PIXELS;
 
-			width = 1.0;
-			height = 1.0;
+			xoffset = 0;
+			yoffset = 0;
 
-			xoffset = 0.0;
-			yoffset = 0.0;
+			Sprite emptySprite = store.getEmptySprite(width, height);
 
 			map.put(STATE_OPEN, emptySprite);
 			map.put(STATE_CLOSED, emptySprite);
 		} else {
 			Sprite tiles = store.getSprite(translate(name));
 
-			width = (double) tiles.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
-			height = (double) tiles.getHeight() / GameScreen.SIZE_UNIT_PIXELS / 2.0;
+			width = tiles.getWidth();
+			height = tiles.getHeight() / 2;
 
-			xoffset = -(width - 1.0) / 2.0;
-			yoffset = -(height - 1.0) / 2.0;
+			xoffset = (GameScreen.SIZE_UNIT_PIXELS - width) / 2;
+			yoffset = (GameScreen.SIZE_UNIT_PIXELS - height) / 2;
 
-			map.put(STATE_OPEN, store.getSprite(tiles, 0, 0, width, height));
-			map.put(STATE_CLOSED, store.getSprite(tiles, 0, 1, width, height));
+			double wwidth = (double) width / GameScreen.SIZE_UNIT_PIXELS;
+			double wheight = (double) height / GameScreen.SIZE_UNIT_PIXELS;
+
+			map.put(STATE_OPEN, store.getSprite(tiles, 0, 0, wwidth, wheight));
+			map.put(STATE_CLOSED, store.getSprite(tiles, 0, 1, wwidth, wheight));
 		}
 	}
 
@@ -156,10 +159,10 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Get the height.
 	 *
-	 * @return	The height in tile units.
+	 * @return	The height (in pixels).
 	 */
 	@Override
-	public double getHeight() {
+	public int getHeight() {
 		return height;
 	}
 
@@ -167,10 +170,10 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Get the width.
 	 *
-	 * @return	The width in tile units.
+	 * @return	The width (in pixels).
 	 */
 	@Override
-	public double getWidth() {
+	public int getWidth() {
 		return width;
 	}
 
@@ -178,10 +181,10 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Get the X offset alignment adjustment.
 	 *
-	 * @return	The X offset (in world units).
+	 * @return	The X offset (in pixels).
 	 */
 	@Override
-	protected double getXOffset() {
+	protected int getXOffset() {
 		return xoffset;
 	}
 
@@ -189,10 +192,10 @@ public class Door2DView extends StateEntity2DView {
 	/**
 	 * Get the Y offset alignment adjustment.
 	 *
-	 * @return	The Y offset (in world units).
+	 * @return	The Y offset (in pixels).
 	 */
 	@Override
-	protected double getYOffset() {
+	protected int getYOffset() {
 		return yoffset;
 	}
 

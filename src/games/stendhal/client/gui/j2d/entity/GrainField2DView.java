@@ -58,32 +58,6 @@ public class GrainField2DView extends StateEntity2DView {
 
 
 	//
-	// GrainField2DView
-	//
-
-	/**
-	 * Get the height.
-	 *
-	 * @return	The height in tile units.
-	 */
-	@Override
-    public double getHeight() {
-		return grainField.getHeight();
-	}
-
-
-	/**
-	 * Get the width.
-	 *
-	 * @return	The width in tile units.
-	 */
-	@Override
-    public double getWidth() {
-		return grainField.getWidth();
-	}
-
-
-	//
 	// StateEntity2DView
 	//
 
@@ -94,8 +68,8 @@ public class GrainField2DView extends StateEntity2DView {
 	 */
 	@Override
 	protected void buildSprites(final Map<Object, Sprite> map) {
-		double	height;
-		double	width;
+		int	height;
+		int	width;
 		String	clazz;
 
 
@@ -113,7 +87,7 @@ public class GrainField2DView extends StateEntity2DView {
 		Sprite tiles = store.getSprite(translate(clazz));
 
 		states = grainField.getMaximumRipeness() + 1;
-		int imageStates = tiles.getHeight() / (int) (GameScreen.SIZE_UNIT_PIXELS * height);
+		int imageStates = tiles.getHeight() / height;
 
 		if(imageStates != states) {
 			logger.warn("State count mismatch: " + imageStates + " != " + states);
@@ -123,8 +97,11 @@ public class GrainField2DView extends StateEntity2DView {
 			}
 		}
 
+		double wheight = (double) height / GameScreen.SIZE_UNIT_PIXELS;
+		double wwidth = (double) width / GameScreen.SIZE_UNIT_PIXELS;
+
 		for(int i = 0; i < states; i++) {
-			map.put(new Integer(i), store.getSprite(tiles, 0, i, width, height));
+			map.put(new Integer(i), store.getSprite(tiles, 0, i, wwidth, wheight));
 		}
 	}
 
@@ -155,6 +132,28 @@ public class GrainField2DView extends StateEntity2DView {
 		list.add(ActionType.HARVEST.getRepresentation());
 
 		super.buildActions(list);
+	}
+
+
+	/**
+	 * Get the height.
+	 *
+	 * @return	The height (in pixels).
+	 */
+	@Override
+	public int getHeight() {
+		return (int) (grainField.getHeight() * GameScreen.SIZE_UNIT_PIXELS);
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width (in pixels).
+	 */
+	@Override
+	public int getWidth() {
+		return (int) (grainField.getWidth() * GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 

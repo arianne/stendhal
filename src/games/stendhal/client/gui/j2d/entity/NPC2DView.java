@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.OutfitStore;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.entity.NPC;
@@ -55,11 +56,10 @@ public class NPC2DView extends RPEntity2DView {
 		/*
 		 * X alignment centered, Y alignment bottom
 		 */
-		xoffset = (ewidth - swidth) / 2.0;
+		xoffset = (int) ((ewidth - swidth) / 2.0 * GameScreen.SIZE_UNIT_PIXELS);
 
 		// TODO: Fix (y+1 entity hack is causing interference)
-		//yoffset = eheight - sheight;
-		yoffset = 0.0;
+		yoffset = 0;
 	}
 
 

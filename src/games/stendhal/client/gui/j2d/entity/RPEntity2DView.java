@@ -70,22 +70,22 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/*
 	 * The drawn height.
 	 */
-	protected double	height;
+	protected int		height;
 
 	/*
 	 * The drawn width.
 	 */
-	protected double	width;
+	protected int		width;
 
 	/**
 	 * The X alignment offset.
 	 */
-	protected double	xoffset;
+	protected int		xoffset;
 
 	/**
 	 * The Y alignment offset.
 	 */
-	protected double	yoffset;
+	protected int		yoffset;
 
 
 	static {
@@ -118,8 +118,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		titleSprite = createTitleSprite();
 		titleChanged = false;
 
-		xoffset = 0.0;
-		yoffset = 0.0;
+		xoffset = 0;
+		yoffset = 0;
 	}
 
 
@@ -156,8 +156,8 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		/*
 		 * X alignment centered, Y alignment bottom
 		 */
-		xoffset = (ewidth - swidth) / 2.0;
-		yoffset = eheight - sheight;
+		xoffset = (int) (((ewidth - swidth) / 2.0) * GameScreen.SIZE_UNIT_PIXELS);
+		yoffset = (int) ((eheight - sheight) * GameScreen.SIZE_UNIT_PIXELS);
 	}
 
 
@@ -314,17 +314,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
-	 * Get the height.
-	 *
-	 * @return	The height in tile units.
-	 */
-	@Override
-    public double getHeight() {
-		return height;
-	}
-
-
-	/**
 	 * Get the number of tiles in the X axis of the base sprite.
 	 *
 	 * @return	The number of tiles.
@@ -341,17 +330,6 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 */
 	protected int getTilesY() {
 		return 4;
-	}
-
-
-	/**
-	 * Get the width.
-	 *
-	 * @return	The width in tile units.
-	 */
-	@Override
-    public double getWidth() {
-		return width;
 	}
 
 
@@ -376,7 +354,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	 * @param	map		The map to populate.
 	 */
 	@Override
-    protected void buildSprites(final Map<Object, Sprite> map) {
+	protected void buildSprites(final Map<Object, Sprite> map) {
 		Sprite tiles = getAnimationSprite();
 
 		double tw = (double) tiles.getWidth() / getTilesX();
@@ -386,13 +364,16 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 		 * Round to the nearest 0.5 world units to adjust for
 		 * slightly wrong sized PNG files.
 		 */
-		width = Math.round(tw / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
-		height = Math.round(th / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
+		double wwidth = Math.round(tw / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
+		double wheight = Math.round(th / GameScreen.SIZE_UNIT_PIXELS * 2.0) / 2.0;
 
-		buildSprites(map, tiles, width, height);
+		width = (int) (wwidth * GameScreen.SIZE_UNIT_PIXELS);
+		height = (int) (wheight * GameScreen.SIZE_UNIT_PIXELS);
+
+		buildSprites(map, tiles, wwidth, wheight);
 
 		Rectangle2D area = rpentity.getArea();
-		calculateOffset(width, height, area.getWidth(), area.getHeight());
+		calculateOffset(wwidth, wheight, area.getWidth(), area.getHeight());
 	}
 
 
@@ -559,6 +540,17 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
+	 * Get the height.
+	 *
+	 * @return	The height (in pixels).
+	 */
+	@Override
+	public int getHeight() {
+		return height;
+	}
+
+
+	/**
 	 * Get the entity's visibility.
 	 *
 	 * @return	The visibility value (0-100).
@@ -581,12 +573,23 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 
 	/**
-	 * Get the X offset alignment adjustment.
+	 * Get the width.
 	 *
-	 * @return	The X offset (in world units).
+	 * @return	The width (in pixels).
 	 */
 	@Override
-	protected double getXOffset() {
+	public int getWidth() {
+		return width;
+	}
+
+
+	/**
+	 * Get the X offset alignment adjustment.
+	 *
+	 * @return	The X offset (in pixels).
+	 */
+	@Override
+	protected int getXOffset() {
 		return xoffset;
 	}
 
@@ -594,10 +597,10 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	/**
 	 * Get the Y offset alignment adjustment.
 	 *
-	 * @return	The Y offset (in world units).
+	 * @return	The Y offset (in pixels).
 	 */
 	@Override
-	protected double getYOffset() {
+	protected int getYOffset() {
 		return yoffset;
 	}
 

@@ -32,12 +32,12 @@ public class Corpse2DView extends Entity2DView {
 	/**
 	 * The corpse height.
 	 */
-	private double		height;
+	private int		height;
 
 	/**
 	 * The corpse width.
 	 */
-	private double		width;
+	private int		width;
 
 	/**
 	 * The slot content inspector.
@@ -60,34 +60,8 @@ public class Corpse2DView extends Entity2DView {
 
 		this.corpse = corpse;
 
-		height = 1.0;
-		width = 1.0;
-	}
-
-
-	//
-	// Corpse2DView
-	//
-
-	/**
-	 * Get the height.
-	 *
-	 * @return	The height in tile units.
-	 */
-	@Override
-    public double getHeight() {
-		return height;
-	}
-
-
-	/**
-	 * Get the width.
-	 *
-	 * @return	The width in tile units.
-	 */
-	@Override
-    public double getWidth() {
-		return width;
+		height = GameScreen.SIZE_UNIT_PIXELS;
+		width = GameScreen.SIZE_UNIT_PIXELS;
 	}
 
 
@@ -137,10 +111,32 @@ public class Corpse2DView extends Entity2DView {
 
 		Sprite sprite = SpriteStore.get().getSprite(translate(corpseType));
 
-		width = (double) sprite.getWidth() / GameScreen.SIZE_UNIT_PIXELS;
-		height = (double) sprite.getHeight() / GameScreen.SIZE_UNIT_PIXELS;
+		width = sprite.getWidth();
+		height = sprite.getHeight();
 
 		setSprite(sprite);
+	}
+
+
+	/**
+	 * Get the height.
+	 *
+	 * @return	The height (in pixels).
+	 */
+	@Override
+	public int getHeight() {
+		return height;
+	}
+
+
+	/**
+	 * Get the width.
+	 *
+	 * @return	The width (in pixels).
+	 */
+	@Override
+	public int getWidth() {
+		return width;
 	}
 
 
