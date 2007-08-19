@@ -104,7 +104,7 @@ public abstract class RPEntity extends GuidedEntity {
 	 * against very weak creatures, they only gain atk and def xp for so many
 	 * turns after they have actually been damaged by the enemy.
 	 */
-	private static int TURNS_WHILE_FIGHT_XP_INCREASES = StendhalRPWorld.get()
+	private static final int TURNS_WHILE_FIGHT_XP_INCREASES = StendhalRPWorld.get()
 			.getTurnsInSeconds(12);
 
 	/**
@@ -294,17 +294,17 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The amount actually healed.
 	 */
 	public int heal(int amount, boolean tell) {
-		int hp = getHP();
-		int given = Math.min(amount, getBaseHP() - hp);
+		int tempHp = getHP();
+		int given = Math.min(amount, getBaseHP() - tempHp);
 
 		if (given != 0) {
-			hp += given;
+			tempHp += given;
 
 			if (tell) {
 				put("heal", given);
 			}
 
-			setHP(hp);
+			setHP(tempHp);
 		}
 
 		return given;
@@ -752,11 +752,11 @@ public abstract class RPEntity extends GuidedEntity {
 	 * @return The damage actually taken (in case HP was < amount).
 	 */
 	protected int damage(final int amount) {
-		int hp = getHP();
-		int taken = Math.min(amount, hp);
+		int tempHp = getHP();
+		int taken = Math.min(amount, tempHp);
 
-		hp -= taken;
-		setHP(hp);
+		tempHp -= taken;
+		setHP(tempHp);
 
 		return taken;
 	}
@@ -834,10 +834,10 @@ public abstract class RPEntity extends GuidedEntity {
 			}
 
 			if (logger.isDebugEnabled()) {
-				String name = killer.has("name") ? killer.get("name") : killer
+				String killName = killer.has("name") ? killer.get("name") : killer
 						.get("type");
 
-				logger.debug(name + " did " + damageDone + " of "
+				logger.debug(killName + " did " + damageDone + " of "
 						+ totalDamageReceived + ". Reward was " + xpReward);
 			}
 
