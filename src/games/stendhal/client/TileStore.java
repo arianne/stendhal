@@ -164,7 +164,7 @@ public class TileStore implements Tileset {
 	 */
 	public void addTilesets(InputSerializer in) throws IOException, ClassNotFoundException {
 		int amount=in.readInt();
-		
+
 		for(int i=0;i<amount;i++) {
 			TileSetDefinition tileset=(TileSetDefinition) in.readObject(new TileSetDefinition(null, -1));
 			add(tileset);
@@ -180,9 +180,9 @@ public class TileStore implements Tileset {
 	protected static TilesetGroupAnimationMap createAnimationMap() {
 		TilesetGroupAnimationMap map = new TilesetGroupAnimationMap();
 
-		URL url = SpriteStore.get().getResourceURL("data/tileset/animation.seq");
+		URL url = SpriteStore.get().getResourceURL(baseFolder+"tileset/animation.seq");
 
-		if(url != null) {
+		if (url != null) {
 			try {
 				InputStream in = url.openStream();
 
