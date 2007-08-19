@@ -26,36 +26,48 @@ import java.util.List;
 import marauroa.common.game.IRPZone;
 
 /**
- * A quest where the player has to invert an arrow build out of stones
- * by moving only up to 3 tokens.
- *
+ * A quest where the player has to invert an arrow build out of stones by moving
+ * only up to 3 tokens.
+ * 
  * @author hendrik
  */
 // TODO: split this class, it does too many different things
-public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListener, LoginListener {
+public class ReverseArrow extends AbstractQuest implements
+		Token.TokenMoveListener, LoginListener {
 
 	// constants
 	private static final String QUEST_SLOT = "reverse_arrow";
+
 	private static final String ZONE_NAME = "int_ados_reverse_arrow";
+
 	/** Time (in Seconds) to solve the puzzle */
 	private static final int TIME = 60;
+
 	/** Possible number of moves to solve the puzzle */
 	private static final int MAX_MOVES = 3;
+
 	/** Horizontal position of the upper left token at the beginning */
 	private static final int OFFSET_X = 15;
+
 	/** Vertical position of the upper left token at the beginning */
 	private static final int OFFSET_Y = 10;
 
 	// "static" data
-	protected StendhalRPZone zone ;
+	protected StendhalRPZone zone;
+
 	protected SpeakerNPC npc;
-	protected List<Token> tokens ;
-	private OnePlayerRoomDoor door ;
+
+	protected List<Token> tokens;
+
+	private OnePlayerRoomDoor door;
+
 	private StendhalRPZone entranceZone;
 
 	// quest instance data
-	private int moveCount ;
+	private int moveCount;
+
 	protected Player player;
+
 	private Timer timer;
 
 	/**
@@ -65,7 +77,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 		/**
 		 * Is the task solved?
-		 *
+		 * 
 		 * @return true on success, false on failure
 		 */
 		private boolean checkBoard() {
@@ -88,8 +100,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					return d;
 				}
 			});
-			//     0
-			//   1 2 3
+			// 0
+			// 1 2 3
 			// 4 5 6 7 8
 
 			// get the position of the topmost token
@@ -99,7 +111,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			// check first row
 			for (int i = 1; i <= 3; i++) {
 				Token token = tokens.get(i);
-				if ((token.getX() != topX - 1 + (i - 1)) || (token.getY() != topY + 1)) {
+				if ((token.getX() != topX - 1 + (i - 1))
+						|| (token.getY() != topY + 1)) {
 					return false;
 				}
 			}
@@ -107,7 +120,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 			// check second row
 			for (int i = 4; i <= 8; i++) {
 				Token token = tokens.get(i);
-				if ((token.getX() != topX - 2 + (i - 4)) || (token.getY() != topY + 2)) {
+				if ((token.getX() != topX - 2 + (i - 4))
+						|| (token.getY() != topY + 2)) {
 					return false;
 				}
 			}
@@ -123,24 +137,27 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					npc.say("Congratulations, you solved the quiz.");
 					StackableItem money = (StackableItem) StendhalRPWorld.get()
-							.getRuleManager().getEntityManager()
-							.getItem("money");
+							.getRuleManager().getEntityManager().getItem(
+									"money");
 					money.setQuantity(50);
 					player.equip(money);
 					player.addXP(100);
 				} else {
-					npc.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
+					npc
+							.say("Congratulations, you solved the quiz again. But unfortunatelly I don't have any further rewards for you.");
 				}
 				player.setQuest(QUEST_SLOT, "done");
 			} else {
 				if (!player.isQuestCompleted(QUEST_SLOT)) {
 					player.setQuest(QUEST_SLOT, "failed");
 				}
-				npc.say("I am sorry. This does not look like an arrow pointing upwards to me.");
+				npc
+						.say("I am sorry. This does not look like an arrow pointing upwards to me.");
 			}
 
 			// teleport the player out
-			TurnNotifier.get().notifyInTurns(6, new FinishNotifier(true, player)); // 2 seconds
+			TurnNotifier.get().notifyInTurns(6,
+					new FinishNotifier(true, player)); // 2 seconds
 		}
 	}
 
@@ -149,11 +166,14 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 */
 	protected class FinishNotifier implements TurnListener {
 		private boolean reset;
+
 		private Player player;
+
 		public FinishNotifier(boolean reset, Player player) {
 			this.player = player;
 			this.reset = reset;
 		}
+
 		/**
 		 * invoked shortly after the player did his job.
 		 */
@@ -163,20 +183,24 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	}
 
 	/**
-	 * Tells the player the remaining time and teleports him out if the
-	 * task is not completed in time.
+	 * Tells the player the remaining time and teleports him out if the task is
+	 * not completed in time.
 	 */
 	class Timer implements TurnListener {
 		private Player timerPlayer;
+
 		/**
 		 * Starts a teleport-out-timer
-		 *
-		 * @param player the player who started the timer
+		 * 
+		 * @param player
+		 *            the player who started the timer
 		 */
 		protected Timer(Player player) {
 			timerPlayer = player;
 		}
+
 		private int counter = TIME;
+
 		public void onTurnReached(int currentTurn, String message) {
 			// check that the player is still in game and stop the timer
 			// in case the player is not playing anymore.
@@ -190,11 +214,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					if (counter > 0) {
 						npc.say("You have " + counter + " seconds left.");
 						counter = counter - 10;
-						TurnNotifier.get().notifyInTurns(10*3, this);
+						TurnNotifier.get().notifyInTurns(10 * 3, this);
 					} else {
 						// teleport the player out
 						npc.say("Sorry, your time is up.");
-						TurnNotifier.get().notifyInTurns(1, new FinishNotifier(true, player)); // need to do this on the next turn
+						TurnNotifier.get().notifyInTurns(1,
+								new FinishNotifier(true, player)); // need to
+																	// do this
+																	// on the
+																	// next turn
 					}
 				}
 			}
@@ -202,8 +230,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	}
 
 	/**
-	 * A special door that only lets one player in at a time, and
-	 * that notifies this script on sucessful usage.
+	 * A special door that only lets one player in at a time, and that notifies
+	 * this script on sucessful usage.
 	 */
 	class NotifyingDoor extends OnePlayerRoomDoor {
 		NotifyingDoor(String clazz) {
@@ -213,7 +241,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		@Override
 		public boolean onUsed(RPEntity user) {
 			boolean success;
-			success= super.onUsed(user);
+			success = super.onUsed(user);
 			start((Player) user);
 			return success;
 		}
@@ -232,12 +260,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	/**
 	 * creates a token and adds it to the world
-	 *
-	 * @param x x-position
-	 * @param y y-position
+	 * 
+	 * @param x
+	 *            x-position
+	 * @param y
+	 *            y-position
 	 */
 	private void addTokenToWorld(int x, int y) {
-		EntityManager entityManager = StendhalRPWorld.get().getRuleManager().getEntityManager();
+		EntityManager entityManager = StendhalRPWorld.get().getRuleManager()
+				.getEntityManager();
 		Token token = (Token) entityManager.getItem("token");
 		zone.assignRPObjectID(token);
 		token.set(x, y);
@@ -252,8 +283,8 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 	 */
 	private void addAllTokens() {
 		// 0 1 2 3 4
-		//   5 6 7
-		//     8
+		// 5 6 7
+		// 8
 		tokens = new LinkedList<Token>();
 		for (int i = 0; i < 5; i++) {
 			addTokenToWorld(OFFSET_X + i, OFFSET_Y);
@@ -299,16 +330,21 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
 						if (!player.isQuestCompleted(QUEST_SLOT)) {
-							engine.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
+							engine
+									.say("Hi, welcome to our small game. Your task is to let this arrow point upwards, by moving up to three tokens.");
 						} else {
-							engine.say("Hi again " + player.getName() + ". I rembemer that you solved this problem already. You can do it again, of course.");
+							engine
+									.say("Hi again "
+											+ player.getName()
+											+ ". I rembemer that you solved this problem already. You can do it again, of course.");
 						}
 					}
 				});
 				addHelp("You have to stand next to a token in order to move it.");
 				addJob("I am the supervisor for this task.");
 				addGoodbye("It was nice to meet you.");
-				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within " + TIME + " seconds.");
+				addQuest("Your task in this game is to revert the direction of this arrow moving only 3 tokens within "
+						+ TIME + " seconds.");
 			}
 		};
 		npcs.add(npc);
@@ -329,7 +365,7 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		door.setX(95);
 		door.setY(101);
 		door.setIdentifier(new Integer((0)));
-		door.setDestination(ZONE_NAME,new Integer( 0));
+		door.setDestination(ZONE_NAME, new Integer(0));
 		door.open();
 		entranceZone.add(door);
 
@@ -338,14 +374,15 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 		exit.setX(17);
 		exit.setY(20);
 		exit.setIdentifier(new Integer(0));
-		exit.setDestination(entranceZoneName,new Integer( 0));
+		exit.setDestination(entranceZoneName, new Integer(0));
 		zone.add(exit);
 
 		Sign sign = new Sign();
 		entranceZone.assignRPObjectID(sign);
 		sign.setX(96);
 		sign.setY(102);
-		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
+		sign
+				.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
 		entranceZone.add(sign);
 	}
 
@@ -356,16 +393,19 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	/**
 	 * The player moved a token
-	 *
-	 * @param player Player
+	 * 
+	 * @param player
+	 *            Player
 	 */
 	public void onTokenMoved(Player player) {
 		moveCount++;
 		if (moveCount < MAX_MOVES) {
 			npc.say("This was your " + Grammar.ordered(moveCount) + " move.");
 		} else if (moveCount == MAX_MOVES) {
-			npc.say("This was your " + Grammar.ordered(moveCount) + " and final move. Let me check your work.");
-			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck()); // 2 seconds
+			npc.say("This was your " + Grammar.ordered(moveCount)
+					+ " and final move. Let me check your work.");
+			TurnNotifier.get().notifyInTurns(6, new ReverseArrowCheck()); // 2
+																			// seconds
 			if (timer != null) {
 				TurnNotifier.get().dontNotify(timer);
 			}
@@ -376,8 +416,9 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	/**
 	 * A player entered the zone
-	 *
-	 * @param player Player
+	 * 
+	 * @param player
+	 *            Player
 	 */
 	public void start(Player player) {
 		IRPZone playerZone = player.getZone();
@@ -394,16 +435,19 @@ public class ReverseArrow extends AbstractQuest implements Token.TokenMoveListen
 
 	/**
 	 * Finishes the quest and teleports the player out.
-	 *
-	 * @param reset  reset it for the next player (set to false on login)
-	 * @param player the player to teleport out
+	 * 
+	 * @param reset
+	 *            reset it for the next player (set to false on login)
+	 * @param player
+	 *            the player to teleport out
 	 */
 	protected void finish(boolean reset, Player player) {
 		if (player != null) {
 			IRPZone playerZone = player.getZone();
 
 			if (playerZone.equals(zone)) {
-				player.teleport(entranceZone, door.getX(), door.getY() + 1, Direction.DOWN, player);
+				player.teleport(entranceZone, door.getX(), door.getY() + 1,
+						Direction.DOWN, player);
 			}
 		}
 		if (reset) {

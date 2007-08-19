@@ -12,26 +12,22 @@ import games.stendhal.server.entity.player.Player;
 
 /**
  * QUEST: Meet Santa anywhere around the World.
- *
- * PARTICIPANTS:
- * - Santa Claus
- *
- * STEPS:
- * - Find Santa
- * - Say hi
- * - Get reward
- *
- * REWARD:
- * - a present which can be opend to obtain a random good reward:
- *   food, money, potions, items, etc...
- *
- * REPETITIONS:
- * - None
+ * 
+ * PARTICIPANTS: - Santa Claus
+ * 
+ * STEPS: - Find Santa - Say hi - Get reward
+ * 
+ * REWARD: - a present which can be opend to obtain a random good reward: food,
+ * money, potions, items, etc...
+ * 
+ * REPETITIONS: - None
  */
 public class MeetSanta extends AbstractQuest {
 	private static final String QUEST_SLOT = "meet_santa_07";
+
 	/** the Santa NPC */
 	protected SpeakerNPC santa;
+
 	private StendhalRPZone zone;
 
 	@Override
@@ -49,23 +45,30 @@ public class MeetSanta extends AbstractQuest {
 
 			@Override
 			protected void createDialog() {
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-					new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
-					ConversationStates.ATTENDING, "Hi again.", null);
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.QuestCompletedCondition(
+								QUEST_SLOT), ConversationStates.ATTENDING,
+						"Hi again.", null);
 
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-					new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
-					ConversationStates.ATTENDING, null,
-					new SpeakerNPC.ChatAction() {
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.QuestNotCompletedCondition(
+								QUEST_SLOT), ConversationStates.ATTENDING,
+						null, new SpeakerNPC.ChatAction() {
 
-						@Override
-						public void fire(Player player, String text, SpeakerNPC engine) {
-							Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("present");
-							engine.say("Merry Christmas! I have a present for you.");
-							player.equip(item, true);
-							player.setQuest(QUEST_SLOT, "done");
-						}
-				});
+							@Override
+							public void fire(Player player, String text,
+									SpeakerNPC engine) {
+								Item item = StendhalRPWorld.get()
+										.getRuleManager().getEntityManager()
+										.getItem("present");
+								engine
+										.say("Merry Christmas! I have a present for you.");
+								player.equip(item, true);
+								player.setQuest(QUEST_SLOT, "done");
+							}
+						});
 
 				addJob("I am Santa Claus! Where have you been in these years?");
 				addGoodbye();

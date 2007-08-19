@@ -32,7 +32,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 
 	private StendhalRPZone zone;
 
-	private Area arena ;
+	private Area arena;
 
 	private DeathmatchInfo deathmatchInfo;
 
@@ -52,15 +52,21 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 
 	/**
 	 * show the player the potential prize
-	 *
-	 * @param x x-position of legs
-	 * @param y y-position of legs
+	 * 
+	 * @param x
+	 *            x-position of legs
+	 * @param y
+	 *            y-position of legs
 	 */
 	public void createLegs(int x, int y) {
-		Item legs = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("golden_legs"); // we are using these until better ones are found/commitited. TODO: trophy_legs
+		Item legs = StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem("golden_legs"); // we are using these until better
+											// ones are found/commitited. TODO:
+											// trophy_legs
 		zone.assignRPObjectID(legs);
 		legs.put("def", "10");
-	    legs.setDescription("This is the grand prize for the Battle Arena winners.");
+		legs
+				.setDescription("This is the grand prize for the Battle Arena winners.");
 		legs.setX(x);
 		legs.setY(y);
 		legs.put("persistent", 1);
@@ -81,48 +87,67 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 
 				// player is outside the fence
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.Not(
-				        new StandardInteraction.PlayerInAreaCondition(arena)), ConversationStates.INFORMATION_1,
-				        "Welcome to the Fado Battle Arena! Please talk to #Thonatun if you want to join", null);
-				add(ConversationStates.INFORMATION_1, "Thontun", null, ConversationStates.INFORMATION_1,
-				        "Thonatun is the official Battle Arena. He should be wandering around in this building.", null);
+				add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.Not(
+								new StandardInteraction.PlayerInAreaCondition(
+										arena)),
+						ConversationStates.INFORMATION_1,
+						"Welcome to the Fado Battle Arena! Please talk to #Thonatun if you want to join",
+						null);
+				add(
+						ConversationStates.INFORMATION_1,
+						"Thontun",
+						null,
+						ConversationStates.INFORMATION_1,
+						"Thonatun is the official Battle Arena. He should be wandering around in this building.",
+						null);
 
 				// player is inside
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				        new StandardInteraction.PlayerInAreaCondition(arena), ConversationStates.ATTENDING,
-				        "Welcome to Fado Battle Arena! Do you need #help?", null);
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.PlayerInAreaCondition(arena),
+						ConversationStates.ATTENDING,
+						"Welcome to Fado Battle Arena! Do you need #help?",
+						null);
 				addJob("I'm the battle arena assistant. Tell me if you need #help with anything.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
 				addGoodbye("I hope you enjoy the Battle Arena!");
 
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("everything", "appears"),
-				        ConversationStates.ATTENDING,
-				        "Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("everything", "appears"),
+						ConversationStates.ATTENDING,
+						"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
+						null);
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("prize", "legs"),
-				        ConversationStates.ATTENDING,
-				        "If you win the Battle Arena, we reward you with some legs. Each #victory will strengthen it.",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("prize", "legs"),
+						ConversationStates.ATTENDING,
+						"If you win the Battle Arena, we reward you with some legs. Each #victory will strengthen it.",
+						null);
 
 				// 'start' command will start spawning creatures
-				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null,
-				        ConversationStates.IDLE, null, new StartAction(deathmatchInfo));
+				add(ConversationStates.ATTENDING, Arrays.asList("start", "go",
+						"fight"), null, ConversationStates.IDLE, null,
+						new StartAction(deathmatchInfo));
 
-				// 'victory' command will scan, if all creatures are killed and reward the player
-				add(ConversationStates.ATTENDING, Arrays.asList("victory", "done", "yay"), null,
-				        ConversationStates.ATTENDING, null, new DoneAction());
+				// 'victory' command will scan, if all creatures are killed and
+				// reward the player
+				add(ConversationStates.ATTENDING, Arrays.asList("victory",
+						"done", "yay"), null, ConversationStates.ATTENDING,
+						null, new DoneAction());
 
 				// 'leave' command will send the victorious player home
-				add(ConversationStates.ATTENDING, Arrays.asList("leave", "home"), null, ConversationStates.ATTENDING,
-				        null, new LeaveAction());
+				add(ConversationStates.ATTENDING, Arrays
+						.asList("leave", "home"), null,
+						ConversationStates.ATTENDING, null, new LeaveAction());
 
 				// 'bail' command will teleport the player out of it
-				add(ConversationStates.ANY, Arrays.asList("bail", "flee", "run", "exit"), null,
-				        ConversationStates.ATTENDING, null, new BailAction());
+				add(ConversationStates.ANY, Arrays.asList("bail", "flee",
+						"run", "exit"), null, ConversationStates.ATTENDING,
+						null, new BailAction());
 			}
 		};
 
@@ -146,13 +171,29 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 
 				// player is outside the fence
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.Not(
-				        new StandardInteraction.PlayerInAreaCondition(arena)), ConversationStates.INFORMATION_1,
-				        "Welcome to the Fado Battle Arena! Please talk to #Brutus if you want to join", null);
-				add(ConversationStates.INFORMATION_1, "Brutus", null, ConversationStates.INFORMATION_1,
-				        "Brutus is the official Battle Arena recruiter. He should be wandering around in this building. Maybe you could check the basement.", null);
-				add(ConversationStates.INFORMATION_1, "Thonatun", null, ConversationStates.INFORMATION_1,
-				        "Thonaton is the official Battle Arena manager. He usually stays in the arena to help the fighters.", null);
+				add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.Not(
+								new StandardInteraction.PlayerInAreaCondition(
+										arena)),
+						ConversationStates.INFORMATION_1,
+						"Welcome to the Fado Battle Arena! Please talk to #Brutus if you want to join",
+						null);
+				add(
+						ConversationStates.INFORMATION_1,
+						"Brutus",
+						null,
+						ConversationStates.INFORMATION_1,
+						"Brutus is the official Battle Arena recruiter. He should be wandering around in this building. Maybe you could check the basement.",
+						null);
+				add(
+						ConversationStates.INFORMATION_1,
+						"Thonatun",
+						null,
+						ConversationStates.INFORMATION_1,
+						"Thonaton is the official Battle Arena manager. He usually stays in the arena to help the fighters.",
+						null);
 				addJob("I'm the battle arena assistant. Tell me if you need #help with anything. Talk to #Brutus or #Thonaton if you need anything else.");
 				addHelp("I can't help you too much, but you can talk to Brutus or Thonatun if you need help.");
 				addGoodbye("I hope you enjoy the Battle Arena!");
@@ -172,6 +213,6 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player));
-    }
+	}
 
 }

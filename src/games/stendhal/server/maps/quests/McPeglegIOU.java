@@ -15,10 +15,10 @@ import java.util.List;
  * QUEST: McPegleg's IOU
  * 
  * PARTICIPANTS: - a corpse in kanmararn - McPegleg
- *
+ * 
  * NOTE: The corpse with cointaisn the IOU is created in KanmararnSoldiers.java
- *       Without it this quest cannot be started (so the player won't notice the 
- *       problem at all).
+ * Without it this quest cannot be started (so the player won't notice the
+ * problem at all).
  * 
  * STEPS: - find IOU in a corpse in kanmararn - bring it to McPegleg
  * 
@@ -44,25 +44,29 @@ public class McPeglegIOU extends AbstractQuest {
 
 		SpeakerNPC npc = npcs.get("McPegleg");
 
-		npc.add(ConversationStates.ATTENDING,
-				Arrays.asList("iou", "henry", "charles", "note"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",
+				"charles", "note"),
 				new StandardInteraction.QuestNotCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
-					public void fire(Player player, String text, SpeakerNPC engine) {
+					public void fire(Player player, String text,
+							SpeakerNPC engine) {
 						// from all notes that the player is carrying, try to
 						// find the IOU note
 						List<Item> notes = player.getAllEquipped("note");
 						Item iouNote = null;
 						for (Item note : notes) {
-							if (note.has("infostring") && "charles".equalsIgnoreCase(note.get("infostring"))) {
+							if (note.has("infostring")
+									&& "charles".equalsIgnoreCase(note
+											.get("infostring"))) {
 								iouNote = note;
 								break;
 							}
 						}
 						if (iouNote != null) {
-							engine.say("Where did you get that from? Anyways, here is the money *sighs*");
+							engine
+									.say("Where did you get that from? Anyways, here is the money *sighs*");
 							player.drop(iouNote);
 							StackableItem money = (StackableItem) StendhalRPWorld
 									.get().getRuleManager().getEntityManager()
@@ -72,12 +76,14 @@ public class McPeglegIOU extends AbstractQuest {
 							player.setQuest(QUEST_SLOT, "done");
 							engine.setCurrentState(1);
 						} else {
-							engine.say("I can't see that you got a valid IOU with my signature!");
+							engine
+									.say("I can't see that you got a valid IOU with my signature!");
 						}
 					}
 				});
 
-		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",	"charles", "note"),
+		npc.add(ConversationStates.ATTENDING, Arrays.asList("iou", "henry",
+				"charles", "note"),
 				new StandardInteraction.QuestCompletedCondition(QUEST_SLOT),
 				ConversationStates.ATTENDING,
 				"You already got cash for that damned IOU!", null);

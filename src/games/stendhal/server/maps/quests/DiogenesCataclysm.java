@@ -7,30 +7,37 @@ import games.stendhal.server.entity.npc.StandardInteraction;
 
 /**
  * QUEST: Diogenes and the Cataclysm
- *
- * PARTICIPANTS:
- * - Diogenes
- *
- * STEPS:
- * - Diogenes tells you to ask Carmen what's happening
- *
- * REPETITIONS:
- * - Always
+ * 
+ * PARTICIPANTS: - Diogenes
+ * 
+ * STEPS: - Diogenes tells you to ask Carmen what's happening
+ * 
+ * REPETITIONS: - Always
  */
 public class DiogenesCataclysm extends AbstractQuest {
 
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Diogenes");
 
-		npc.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES, new
-			StandardInteraction.AllwaysTrue(),
-			ConversationStates.ATTENDING, "Greetings. I expect you are wondering what strange things are happening here?", null);
+		npc
+				.add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.AllwaysTrue(),
+						ConversationStates.ATTENDING,
+						"Greetings. I expect you are wondering what strange things are happening here?",
+						null);
 
-		npc.addReply("yes", "So am I, my friend. I expect young Carmen will tell you something."); 
-		npc.addReply("no", "Ah, the folly of youth! You do not look around you with open eyes until it is too late.");
+		npc
+				.addReply("yes",
+						"So am I, my friend. I expect young Carmen will tell you something.");
+		npc
+				.addReply(
+						"no",
+						"Ah, the folly of youth! You do not look around you with open eyes until it is too late.");
 
 	}
+
 	private void step_2() {
 	}
 

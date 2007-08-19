@@ -8,36 +8,31 @@ import java.util.StringTokenizer;
 
 /**
  * A kind of paper chase
- *
+ * 
  * @author hendrik
  */
 public class PaperChase extends AbstractQuest {
 	private static final String QUEST_SLOT = "paper_chase";
 
-	private String[] points = new String[] {
-		"Carmen",
-		"Monogenes",
-		"Hayunn Naratha",
-		//TODO: load groovy before quest are inited (or convert kanmararn.groovy to java) "Henry", // TODO: ignore if groovy is inactive
-		"Margaret",
-		"Balduin",
-		//TODO: load groovy before quest are inited (or convert deathmatch_entry.groovy to java) "Deathmatch Recruiter", // TODO: ignore if groovy is inactive
-		"Katinka",
-		"Haizen",
-		"Bario",
-		"Ceryl",
-		"Nishiya",
-		"Marcus",
-		"Jynath",
-		"Loretta",
-		"Fidorea"
-	};
+	private String[] points = new String[] { "Carmen", "Monogenes",
+			"Hayunn Naratha",
+			// TODO: load groovy before quest are inited (or convert
+			// kanmararn.groovy to java) "Henry", // TODO: ignore if groovy is
+			// inactive
+			"Margaret", "Balduin",
+			// TODO: load groovy before quest are inited (or convert
+			// deathmatch_entry.groovy to java) "Deathmatch Recruiter", // TODO:
+			// ignore if groovy is inactive
+			"Katinka", "Haizen", "Bario", "Ceryl", "Nishiya", "Marcus",
+			"Jynath", "Loretta", "Fidorea" };
 
 	/**
-	 * Handles all normal points in this paper chase (without the first and last one)
+	 * Handles all normal points in this paper chase (without the first and last
+	 * one)
 	 */
 	private class PaperChasePoint extends SpeakerNPC.ChatAction {
 		int idx;
+
 		PaperChasePoint(int idx) {
 			this.idx = idx;
 		}
@@ -55,13 +50,15 @@ public class PaperChase extends AbstractQuest {
 			}
 
 			// analyse quest state
-			StringTokenizer st = new StringTokenizer(questState, ";"); 
+			StringTokenizer st = new StringTokenizer(questState, ";");
 			String nextNPC = st.nextToken();
 			String startTime = st.nextToken();
 
 			// is the player suposed to speak to another NPC?
 			if (!nextNPC.equals(state)) {
-				engine.say("Sorry, you are suposed to talk to " + nextNPC + ".");
+				engine
+						.say("Sorry, you are suposed to talk to " + nextNPC
+								+ ".");
 				return;
 			}
 
@@ -70,7 +67,7 @@ public class PaperChase extends AbstractQuest {
 			String newState = next + ";" + startTime;
 			player.setQuest(QUEST_SLOT, newState);
 		}
-		
+
 	}
 
 	@Override
@@ -79,20 +76,17 @@ public class PaperChase extends AbstractQuest {
 	}
 
 	/**
-	 * Adds the task to the specified NPC.
-	 * Note that the start and end of this quest have to be coded specially.
-	 *
-	 * @param idx index of way point
+	 * Adds the task to the specified NPC. Note that the start and end of this
+	 * quest have to be coded specially.
+	 * 
+	 * @param idx
+	 *            index of way point
 	 */
 	private void addTaskToNPC(int idx) {
 		String state = points[idx];
 		SpeakerNPC npc = npcs.get(state);
-		npc.add(ConversationStates.ATTENDING, 
-					"paper",
-					null,
-					ConversationStates.ATTENDING,
-					null,
-					new PaperChasePoint(idx));
+		npc.add(ConversationStates.ATTENDING, "paper", null,
+				ConversationStates.ATTENDING, null, new PaperChasePoint(idx));
 	}
 
 	@Override
@@ -102,12 +96,13 @@ public class PaperChase extends AbstractQuest {
 		// TODO: add Fidorea to world introducing the quest
 		// TODO: detect using of scrolls
 
-		// add normal way points (without first and last) 
+		// add normal way points (without first and last)
 		for (int i = 0; i < points.length - 1; i++) {
 			addTaskToNPC(i);
 		}
 
-		// TODO: Fidorea doing the post processing of this quest (calc points based on time and level)
+		// TODO: Fidorea doing the post processing of this quest (calc points
+		// based on time and level)
 		// TODO: store and read result (with server restart in mind)
 		// TODO: create sign as Hall of Fame
 	}

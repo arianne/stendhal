@@ -32,7 +32,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 
 	private StendhalRPZone zone;
 
-	private Area arena ;
+	private Area arena;
 
 	private DeathmatchInfo deathmatchInfo;
 
@@ -52,15 +52,19 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 
 	/**
 	 * show the player the potential trophy
-	 *
-	 * @param x x-position of helmet
-	 * @param y y-position of helmet
+	 * 
+	 * @param x
+	 *            x-position of helmet
+	 * @param y
+	 *            y-position of helmet
 	 */
 	public void createHelmet(int x, int y) {
-		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("trophy_helmet");
+		Item helmet = StendhalRPWorld.get().getRuleManager().getEntityManager()
+				.getItem("trophy_helmet");
 		zone.assignRPObjectID(helmet);
 		helmet.put("def", "20");
-		helmet.setDescription("This is the grand prize for Deathmatch winners.");
+		helmet
+				.setDescription("This is the grand prize for Deathmatch winners.");
 		helmet.setX(x);
 		helmet.setY(y);
 		helmet.put("persistent", 1);
@@ -81,48 +85,66 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 			protected void createDialog() {
 
 				// player is outside the fence
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES, new StandardInteraction.Not(
-				        new StandardInteraction.PlayerInAreaCondition(arena)), ConversationStates.INFORMATION_1,
-				        "Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join", null);
-				add(ConversationStates.INFORMATION_1, "Thonatus", null, ConversationStates.INFORMATION_1,
-				        "Thonatus is the official Deathmatch Recrutor. He is in the swamp south west of Ados.", null);
+				add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.Not(
+								new StandardInteraction.PlayerInAreaCondition(
+										arena)),
+						ConversationStates.INFORMATION_1,
+						"Welcome to Ados Deathmatch! Please talk to #Thonatus if you want to join",
+						null);
+				add(
+						ConversationStates.INFORMATION_1,
+						"Thonatus",
+						null,
+						ConversationStates.INFORMATION_1,
+						"Thonatus is the official Deathmatch Recrutor. He is in the swamp south west of Ados.",
+						null);
 
 				// player is inside
-				add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
-				        new StandardInteraction.PlayerInAreaCondition(arena), ConversationStates.ATTENDING,
-				        "Welcome to Ados Deathmatch! Do you need #help?", null);
+				add(ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new StandardInteraction.PlayerInAreaCondition(arena),
+						ConversationStates.ATTENDING,
+						"Welcome to Ados Deathmatch! Do you need #help?", null);
 				addJob("I'm the deathmatch assistant. Tell me, if you need #help on that.");
 				addHelp("Say '#start' when you're ready! Keep killing #everything that #appears. Say 'victory' when you survived.");
 				addGoodbye("I hope you enjoy the Deathmatch!");
 
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("everything", "appears"),
-				        ConversationStates.ATTENDING,
-				        "Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("everything", "appears"),
+						ConversationStates.ATTENDING,
+						"Each round you will face stronger enemies. Defend well, kill them or tell me if you want to #bail!",
+						null);
 				add(
-				        ConversationStates.ATTENDING,
-				        Arrays.asList("trophy", "helm", "helmet"),
-				        ConversationStates.ATTENDING,
-				        "If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.",
-				        null);
+						ConversationStates.ATTENDING,
+						Arrays.asList("trophy", "helm", "helmet"),
+						ConversationStates.ATTENDING,
+						"If you win the deathmatch, we reward you with a trophy helmet. Each #victory will strengthen it.",
+						null);
 
 				// 'start' command will start spawning creatures
-				add(ConversationStates.ATTENDING, Arrays.asList("start", "go", "fight"), null,
-				        ConversationStates.IDLE, null, new StartAction(deathmatchInfo));
+				add(ConversationStates.ATTENDING, Arrays.asList("start", "go",
+						"fight"), null, ConversationStates.IDLE, null,
+						new StartAction(deathmatchInfo));
 
-				// 'victory' command will scan, if all creatures are killed and reward the player
-				add(ConversationStates.ATTENDING, Arrays.asList("victory", "done", "yay"), null,
-				        ConversationStates.ATTENDING, null, new DoneAction());
+				// 'victory' command will scan, if all creatures are killed and
+				// reward the player
+				add(ConversationStates.ATTENDING, Arrays.asList("victory",
+						"done", "yay"), null, ConversationStates.ATTENDING,
+						null, new DoneAction());
 
 				// 'leave' command will send the victorious player home
-				add(ConversationStates.ATTENDING, Arrays.asList("leave", "home"), null, ConversationStates.ATTENDING,
-				        null, new LeaveAction());
+				add(ConversationStates.ATTENDING, Arrays
+						.asList("leave", "home"), null,
+						ConversationStates.ATTENDING, null, new LeaveAction());
 
 				// 'bail' command will teleport the player out of it
-				add(ConversationStates.ANY, Arrays.asList("bail", "flee", "run", "exit"), null,
-				        ConversationStates.ATTENDING, null, new BailAction());
+				add(ConversationStates.ANY, Arrays.asList("bail", "flee",
+						"run", "exit"), null, ConversationStates.ATTENDING,
+						null, new BailAction());
 			}
 		};
 
@@ -138,6 +160,6 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 	public void onLoggedIn(Player player) {
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player));
-    }
+	}
 
 }

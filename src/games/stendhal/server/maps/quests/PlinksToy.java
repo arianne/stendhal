@@ -15,23 +15,16 @@ import java.util.List;
 
 /**
  * QUEST: Plink's Toy
- *
- * PARTICIPANTS:
- * - Plink
- * - some wolves
- *
- * STEPS:
- * - Plink tells you that he got scared by some wolves and
-	 ran away dropping his teddy.
- * - Find the teddy in the Park Of Wolves
- * - Bring it back to Plink
- *
- * REWARD:
- * - a smile
- * - 20 XP
- *
- * REPETITIONS:
- * - None.
+ * 
+ * PARTICIPANTS: - Plink - some wolves
+ * 
+ * STEPS: - Plink tells you that he got scared by some wolves and ran away
+ * dropping his teddy. - Find the teddy in the Park Of Wolves - Bring it back to
+ * Plink
+ * 
+ * REWARD: - a smile - 20 XP
+ * 
+ * REPETITIONS: - None.
  */
 public class PlinksToy extends AbstractQuest {
 
@@ -70,24 +63,25 @@ public class PlinksToy extends AbstractQuest {
 	private void step_1() {
 		SpeakerNPC npc = npcs.get("Plink");
 
-		npc.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new SpeakerNPC.ChatCondition() {
-				@Override
-				public boolean fire(Player player, String text, SpeakerNPC npc) {
-					return !player.isEquipped("teddy") && !player.isQuestCompleted(QUEST_SLOT);
-				}
-			},
-			ConversationStates.QUEST_OFFERED,
-			"*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?",
-			null);
+		npc
+				.add(
+						ConversationStates.IDLE,
+						ConversationPhrases.GREETING_MESSAGES,
+						new SpeakerNPC.ChatCondition() {
+							@Override
+							public boolean fire(Player player, String text,
+									SpeakerNPC npc) {
+								return !player.isEquipped("teddy")
+										&& !player.isQuestCompleted(QUEST_SLOT);
+							}
+						},
+						ConversationStates.QUEST_OFFERED,
+						"*cries* There were wolves in the #park! *sniff* I ran away, but I dropped my #teddy! Please will you get it for me? *sniff* Please?",
+						null);
 
 		npc.add(ConversationStates.QUEST_OFFERED,
-				ConversationPhrases.YES_MESSAGES,
-				null,
-				ConversationStates.IDLE,
-				null,
-				new SpeakerNPC.ChatAction() {
+				ConversationPhrases.YES_MESSAGES, null,
+				ConversationStates.IDLE, null, new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						npc.say("*sniff* Thanks a lot! *smile*");
@@ -95,117 +89,123 @@ public class PlinksToy extends AbstractQuest {
 					}
 				});
 
-		npc.add(ConversationStates.QUEST_OFFERED,
-				"no",
-				null,
+		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
 				ConversationStates.QUEST_OFFERED,
-				"*sniff* But... but... PLEASE! *cries*",
-				null);
+				"*sniff* But... but... PLEASE! *cries*", null);
 
-		npc.add(ConversationStates.QUEST_OFFERED,
-				Arrays.asList("wolf", "wolves"),
-				null,
-				ConversationStates.QUEST_OFFERED,
-				"They came in from the plains, and now they're hanging around the #park over to the east a little ways. I'm not allowed to go near them, they're dangerous.",
-				null);
-		
-		npc.add(ConversationStates.QUEST_OFFERED,
-				"park",
-				null,
-				ConversationStates.QUEST_OFFERED,
-				"My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them! Can you bring my #teddy back?",
-				null);
+		npc
+				.add(
+						ConversationStates.QUEST_OFFERED,
+						Arrays.asList("wolf", "wolves"),
+						null,
+						ConversationStates.QUEST_OFFERED,
+						"They came in from the plains, and now they're hanging around the #park over to the east a little ways. I'm not allowed to go near them, they're dangerous.",
+						null);
 
-		npc.add(ConversationStates.QUEST_OFFERED,
-				"teddy",
-				null,
+		npc
+				.add(
+						ConversationStates.QUEST_OFFERED,
+						"park",
+						null,
+						ConversationStates.QUEST_OFFERED,
+						"My parents told me not to go to the park by myself, but I got lost when I was playing... Please don't tell them! Can you bring my #teddy back?",
+						null);
+
+		npc.add(ConversationStates.QUEST_OFFERED, "teddy", null,
 				ConversationStates.QUEST_OFFERED,
 				"Teddy is my favourite toy! Please will you bring him back?",
 				null);
 	}
-	
+
 	private void step_2() {
 		StendhalRPZone zone = StendhalRPWorld.get().getZone("0_semos_plains_n");
-		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint("teddy", 1500);
+		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint(
+				"teddy", 1500);
 		zone.assignRPObjectID(teddyRespawner);
 		teddyRespawner.setX(107);
 		teddyRespawner.setY(84);
-		teddyRespawner.setDescription("There's a teddy-bear-shaped depression in the sand here.");
+		teddyRespawner
+				.setDescription("There's a teddy-bear-shaped depression in the sand here.");
 		teddyRespawner.setToFullGrowth();
 		zone.add(teddyRespawner);
 
 		StendhalRPRuleProcessor.get().getPlantGrowers().add(teddyRespawner);
 	}
-	
+
 	private void step_3() {
 		SpeakerNPC npc = npcs.get("Plink");
 
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
-						return !player.hasQuest(QUEST_SLOT) && player.isEquipped("teddy");
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						return !player.hasQuest(QUEST_SLOT)
+								&& player.isEquipped("teddy");
 					}
-				},
-				ConversationStates.ATTENDING,
-				null,
+				}, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("teddy");
-						npc.say("You found him! *hugs teddy* Thank you, thank you for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
+						npc
+								.say("You found him! *hugs teddy* Thank you, thank you for bringing it back from that dangerous #Park of #Wolves where I dropped it. *smile*");
 						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
 				});
 
-		npc.add(ConversationStates.IDLE,
-				ConversationPhrases.GREETING_MESSAGES,
+		npc.add(ConversationStates.IDLE, ConversationPhrases.GREETING_MESSAGES,
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
-						return player.hasQuest(QUEST_SLOT) && !player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						return player.hasQuest(QUEST_SLOT)
+								&& !player.isQuestCompleted(QUEST_SLOT)
+								&& player.isEquipped("teddy");
 					}
-				},
-				ConversationStates.ATTENDING,
-				null,
+				}, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
 						player.drop("teddy");
-						npc.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
+						npc
+								.say("You found him! *hugs teddy* Thank you, thank you! *smile*");
 						player.addXP(10);
 						player.setQuest(QUEST_SLOT, "done");
 					}
 				});
 
-		npc.add(ConversationStates.ATTENDING,
-				"teddy",
-				new SpeakerNPC.ChatCondition() {
-					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
-						return !player.isQuestCompleted(QUEST_SLOT) && !player.isEquipped("teddy");
-					}
-				},
-				ConversationStates.ATTENDING,
-				"I lost my teddy in the #park over east, where all those #wolves are hanging about.",
-				null);
+		npc
+				.add(
+						ConversationStates.ATTENDING,
+						"teddy",
+						new SpeakerNPC.ChatCondition() {
+							@Override
+							public boolean fire(Player player, String text,
+									SpeakerNPC npc) {
+								return !player.isQuestCompleted(QUEST_SLOT)
+										&& !player.isEquipped("teddy");
+							}
+						},
+						ConversationStates.ATTENDING,
+						"I lost my teddy in the #park over east, where all those #wolves are hanging about.",
+						null);
 
-		npc.add(ConversationStates.ATTENDING,
-				"teddy",
+		npc.add(ConversationStates.ATTENDING, "teddy",
 				new SpeakerNPC.ChatCondition() {
 					@Override
-					public boolean fire(Player player, String text, SpeakerNPC npc) {
-						return player.isQuestCompleted(QUEST_SLOT) && player.isEquipped("teddy");
+					public boolean fire(Player player, String text,
+							SpeakerNPC npc) {
+						return player.isQuestCompleted(QUEST_SLOT)
+								&& player.isEquipped("teddy");
 					}
-				},
-				ConversationStates.ATTENDING,
-				null,
+				}, ConversationStates.ATTENDING, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text, SpeakerNPC npc) {
-						npc.say("That's not my teddy, I've got him right here! Remember, you found him for me!");
+						npc
+								.say("That's not my teddy, I've got him right here! Remember, you found him for me!");
 					}
 				});
 	}
