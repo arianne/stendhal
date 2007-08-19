@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.orril.river;
+package games.stendhal.server.maps.fado.forest;
 
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.entity.npc.BuyerBehaviour;
