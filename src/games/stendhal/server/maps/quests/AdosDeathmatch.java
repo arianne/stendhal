@@ -43,7 +43,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 	public AdosDeathmatch(String zoneName, StendhalRPZone zone, Area arena) {
 		this.zone = zone;
 		this.arena = arena;
-		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
+		deathmatchInfo = new DeathmatchInfo(arena, zone);
 		zone.setTeleportAllowed(false);
 		DeathmatchInfo.add(deathmatchInfo);
 
@@ -52,7 +52,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 
 	/**
 	 * show the player the potential trophy
-	 * 
+	 *
 	 * @param x
 	 *            x-position of helmet
 	 * @param y

@@ -43,7 +43,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 	public FadoDeathmatch(String zoneName, StendhalRPZone zone, Area arena) {
 		this.zone = zone;
 		this.arena = arena;
-		deathmatchInfo = new DeathmatchInfo(arena, zoneName, zone);
+		deathmatchInfo = new DeathmatchInfo(arena, zone);
 		zone.setTeleportAllowed(false);
 		DeathmatchInfo.add(deathmatchInfo);
 

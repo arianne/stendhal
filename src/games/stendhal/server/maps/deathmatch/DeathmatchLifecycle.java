@@ -47,12 +47,11 @@ public enum DeathmatchLifecycle {
 	 * @return DeathmatchLifecycle
 	 */
 	static DeathmatchLifecycle getFromQuestStateString(String questState) {
-		for (DeathmatchLifecycle deathmatchLifecycle : DeathmatchLifecycle.values()) {
-			if (deathmatchLifecycle.questString.equals(questState)) {
-				return deathmatchLifecycle;
-			}
+		try {
+			return DeathmatchLifecycle.valueOf(questState.toUpperCase());
+		} catch (Exception e) {
+			logger.error("Unknown DeathmatchLifecycle " + questState);
+			return DeathmatchLifecycle.DONE;
 		}
-		logger.error("Unknown DeathmatchLifecycle " + questState);
-		return DeathmatchLifecycle.DONE;
 	}
 }

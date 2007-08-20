@@ -42,8 +42,6 @@ class DeathmatchEngine implements TurnListener {
 
 	private final Area arena;
 
-	private final String zoneName;
-
 	private final StendhalRPZone zone;
 
 	private List<Creature> sortedCreatures = new LinkedList<Creature>();
@@ -61,7 +59,7 @@ class DeathmatchEngine implements TurnListener {
 	public DeathmatchEngine(Player player, DeathmatchInfo deathmatchInfo) {
 		this.player = player;
 		this.arena = deathmatchInfo.getArena();
-		this.zoneName = deathmatchInfo.getZoneName();
+
 		this.zone = deathmatchInfo.getZone();
 		Collection<Creature> creatures = StendhalRPWorld.get().getRuleManager().getEntityManager().getCreatures();
 		sortedCreatures.addAll(creatures);
@@ -140,8 +138,7 @@ class DeathmatchEngine implements TurnListener {
 		if ((questLast != null) && ((new Date()).getTime() - Long.parseLong(questLast) > SPAWN_DELAY)) {
 			int x = player.getX();
 			int y = player.getY();
-			Creature creatureToSpawn = calculateNextCreature(questLevel);
-			DeathMatchCreature mycreature = spawnNewCreature(creatureToSpawn, x, y);
+			DeathMatchCreature mycreature = spawnNewCreature(questLevel, x, y);
 
 			// in case there is not enough space to place the creature, mycreature is null
 			if (mycreature != null) {
@@ -154,6 +151,11 @@ class DeathmatchEngine implements TurnListener {
 		}
 
 		player.setQuest("deathmatch", deathmatchState.toQuestString());
+	}
+
+	private DeathMatchCreature spawnNewCreature(int questLevel, int x, int y) {
+
+		return spawnNewCreature(calculateNextCreature(questLevel), x, y);
 	}
 
 	private void handleBail() {
@@ -180,8 +182,8 @@ class DeathmatchEngine implements TurnListener {
 		}
 
 		// send the player back to the entrance area
-		StendhalRPZone entranceZone = StendhalRPWorld.get().getZone(zoneName);
-		player.teleport(entranceZone, 96, 75, null, player);
+		//StendhalRPZone entranceZone = StendhalRPWorld.get().getZone(zoneName);
+		player.teleport(zone, 96, 75, null, player);
 
 		removePlayersMonsters();
 	}

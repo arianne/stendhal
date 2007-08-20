@@ -17,7 +17,6 @@ public class DeathmatchInfo {
 
 	private final Area arena;
 
-	private final String zoneName;
 
 	private final StendhalRPZone zone;
 
@@ -25,13 +24,11 @@ public class DeathmatchInfo {
 	 * Creates a new DeathmatchInfo
 	 *
 	 * @param arena    combat area
-	 * @param zoneName name of zone
 	 * @param zone     zone
 	 */
-	public DeathmatchInfo(final Area arena, final String zoneName, final StendhalRPZone zone) {
+	public DeathmatchInfo(final Area arena, final StendhalRPZone zone) {
 		super();
 		this.arena = arena;
-		this.zoneName = zoneName;
 		this.zone = zone;
 	}
 
@@ -53,14 +50,6 @@ public class DeathmatchInfo {
 		return zone;
 	}
 
-	/**
-	 * get the zone name
-	 *
-	 * @return name of zone
-	 */
-	public String getZoneName() {
-		return zoneName;
-	}
 
 	/**
 	 * Registers a new deathmatch
