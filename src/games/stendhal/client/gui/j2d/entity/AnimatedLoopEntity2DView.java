@@ -9,6 +9,7 @@ package games.stendhal.client.gui.j2d.entity;
 //
 //
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.Entity;
 import games.stendhal.client.sprite.Sprite;
 import games.stendhal.client.sprite.SpriteStore;
@@ -18,34 +19,12 @@ import games.stendhal.client.sprite.SpriteStore;
  */
 public class AnimatedLoopEntity2DView extends Entity2DView {
 	/**
-	 * The number of frames.
-	 */
-	protected int	frames;
-
-
-	/**
 	 * Create a 2D view of an animated loop visual.
 	 *
 	 * @param	entity		The entity to render.
 	 */
-	public AnimatedLoopEntity2DView(final Entity entity, final int frames) {
+	public AnimatedLoopEntity2DView(final Entity entity) {
 		super(entity);
-
-		this.frames = frames;
-	}
-
-
-	//
-	// AnimatedLoopEntity2DView
-	//
-
-	/**
-	 * Populate animation.
-	 */
-	protected Sprite getAnimatedSprite() {
-		String resource = translate(entity.getType());
-
-		return SpriteStore.get().getAnimatedSprite(resource, 0, frames, 1.0, 1.0, 100L, true);
 	}
 
 
@@ -55,11 +34,27 @@ public class AnimatedLoopEntity2DView extends Entity2DView {
 
 	/**
 	 * Build the visual representation of this entity.
-	 * This the animation sprite.
 	 */
 	@Override
 	protected void buildRepresentation() {
-		setSprite(getAnimatedSprite());
+		SpriteStore store = SpriteStore.get();
+		Sprite sprite = store.getSprite(translate(entity.getType()));
+
+		/*
+		 * Entities are [currently] always 1x1.
+		 * Extra columns are animation.
+		 * Extra rows are ignored.
+		 */
+		int width = sprite.getWidth();
+
+		if(width > GameScreen.SIZE_UNIT_PIXELS) {
+			setSprite(store.getAnimatedSprite(sprite, 0, width / GameScreen.SIZE_UNIT_PIXELS, 1.0, 1.0, 100L, true));
+		} else if(sprite.getHeight() > GameScreen.SIZE_UNIT_PIXELS) {
+			setSprite(store.getSprite(sprite, 0, 0, 1.0, 1.0));
+//			logger.info("WARNING: Multi-row image for: " + entity.getType());
+		} else {
+			setSprite(sprite);
+		}
 	}
 
 

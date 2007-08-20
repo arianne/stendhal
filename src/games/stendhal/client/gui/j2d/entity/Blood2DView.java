@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class Blood2DView extends StateEntity2DView {
 	/**
-	 * The bloo entity.
+	 * The blood entity.
 	 */
 	protected Blood		blood;
 

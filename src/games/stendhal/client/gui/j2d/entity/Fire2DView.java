@@ -13,17 +13,15 @@ import games.stendhal.client.entity.Fire;
 
 /**
  * The 2D view of a fire.
+ * TODO: Remove?
  */
 public class Fire2DView extends AnimatedLoopEntity2DView {
-	private static final int FRAME_COUNT = 2;
-
-
 	/**
 	 * Create a 2D view of fire.
 	 *
 	 * @param	fire		The entity to render.
 	 */
 	public Fire2DView(final Fire fire) {
-		super(fire, FRAME_COUNT);
+		super(fire);
 	}
 }

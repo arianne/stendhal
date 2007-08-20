@@ -20,16 +20,13 @@ import marauroa.common.game.RPAction;
  * The 2D view of a gold source.
  */
 public class WellSource2DView extends AnimatedLoopEntity2DView {
-	private static final int FRAME_COUNT = 32;
-
-
 	/**
 	 * Create a 2D view of a well source.
 	 *
 	 * @param	wellSource	The entity to render.
 	 */
 	public WellSource2DView(final WellSource wellSource) {
-		super(wellSource, FRAME_COUNT);
+		super(wellSource);
 	}
 
 
@@ -44,7 +41,7 @@ public class WellSource2DView extends AnimatedLoopEntity2DView {
 	 * @param	list		The list to populate.
 	 */
 	@Override
-	protected void buildActions(List<String> list) {
+	protected void buildActions(final List<String> list) {
 		list.add(ActionType.WISH.getRepresentation());
 
 		super.buildActions(list);
