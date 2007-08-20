@@ -154,7 +154,7 @@ public class Entity2DViewFactory { // implements EntityViewFactory {
 		register(Corpse.class, Corpse2DView.class);
 		register(Creature.class, Creature2DView.class);
 		register(Door.class, Door2DView.class);
-		register(Fire.class, Fire2DView.class);
+		register(Fire.class, AnimatedLoopEntity2DView.class);
 		register(FishSource.class, FishSource2DView.class);
 		register(GoldSource.class, GoldSource2DView.class);
 		register(GrainField.class, GrainField2DView.class);
