@@ -85,7 +85,7 @@
 	</target>
 
 
-<target name="server_build" depends="init" description="Build JAR file for Stendhal server">
+<target name="server_build" depends="init,checkxml" description="Build JAR file for Stendhal server">
 		<mkdir dir="${build_server}/"/>
 
 		<copy todir="${build_server}/data/conf/" file="data/conf/stendhalcreateaccount.properties"/>
