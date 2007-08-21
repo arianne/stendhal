@@ -88,6 +88,15 @@ tileset/ground/water/channels_grassy.png	5	3:4:5:4
 tileset/ground/water/water.png	0	0:1:2:1
 tileset/ground/water/water.png	1	0:1:2:1
 tileset/ground/water/water.png	2	0:1:2:1
+tileset/ground/water/water.png  3       3:4:5:4
+tileset/ground/water/water.png  4       3:4:5:4
+tileset/ground/water/water.png  5       3:4:5:4
+tileset/ground/water/water.png  6       6:7:8:7
+tileset/ground/water/water.png  7       6:7:8:7
+tileset/ground/water/water.png  8       6:7:8:7
+tileset/ground/water/water.png  9       9:10:11:10
+tileset/ground/water/water.png  10	9:10:11:10
+tileset/ground/water/water.png  11	9:10:11:10
 
 tileset/ground/water/golden_whirlpool.png	0	0:4:8:4
 tileset/ground/water/golden_whirlpool.png	4	0:4:8:4
