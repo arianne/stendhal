@@ -42,18 +42,18 @@ public class KidGhostNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(34, 120));
-				nodes.add(new Node(24, 120));
-				nodes.add(new Node(24, 111));
-				nodes.add(new Node(13, 111));
-				nodes.add(new Node(13, 120));
-				nodes.add(new Node(6, 120));
-				nodes.add(new Node(6, 111));
-				nodes.add(new Node(13, 111));
-				nodes.add(new Node(13, 120));
-				nodes.add(new Node(24, 120));
-				nodes.add(new Node(24, 111));
-				nodes.add(new Node(34, 111));
+				nodes.add(new Node(34, 121));
+				nodes.add(new Node(24, 121));
+				nodes.add(new Node(24, 112));
+				nodes.add(new Node(13, 112));
+				nodes.add(new Node(13, 121));
+				nodes.add(new Node(6, 121));
+				nodes.add(new Node(6, 112));
+				nodes.add(new Node(13, 112));
+				nodes.add(new Node(13, 121));
+				nodes.add(new Node(24, 121));
+				nodes.add(new Node(24, 112));
+				nodes.add(new Node(34, 112));
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override
@@ -89,14 +89,14 @@ public class KidGhostNPC implements ZoneConfigurator {
 
 		};
 		ghost.setDescription("You see a ghostly figure of a small boy.");
-		ghost.setObstacle(false);
+		ghost.setResistance(0);
 
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
 		ghost.put("class", "kid7npc");
 		// He is a ghost so he is see through
-		ghost.put("visibility", 50);
-		ghost.set(34, 120);
+		ghost.setVisibility(50);
+		ghost.set(34, 121);
 		// He has low HP
 		ghost.initHP(30);
 		zone.add(ghost);

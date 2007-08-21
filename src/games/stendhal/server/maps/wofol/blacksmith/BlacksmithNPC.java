@@ -40,12 +40,12 @@ public class BlacksmithNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
+				nodes.add(new Node(22, 8));
 				nodes.add(new Node(22, 7));
-				nodes.add(new Node(22, 6));
-				nodes.add(new Node(17, 6));
-				nodes.add(new Node(17, 1));
-				nodes.add(new Node(8, 1));
-				nodes.add(new Node(8, 7));
+				nodes.add(new Node(17, 7));
+				nodes.add(new Node(17, 2));
+				nodes.add(new Node(8, 2));
+				nodes.add(new Node(8, 8));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -64,7 +64,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 		dwarf.setDescription("You see Alrak, a reclusive dwarf smith.");
 		zone.assignRPObjectID(dwarf);
 		dwarf.put("class", "dwarfnpc");
-		dwarf.set(22, 7);
+		dwarf.set(22, 8);
 		dwarf.initHP(100);
 		npcs.add(dwarf);
 		zone.add(dwarf);

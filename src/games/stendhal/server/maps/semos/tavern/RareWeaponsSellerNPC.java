@@ -42,10 +42,10 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(16, 2));
+				nodes.add(new Node(16, 3));
+				nodes.add(new Node(13, 3));
 				nodes.add(new Node(13, 2));
-				nodes.add(new Node(13, 1));
-				nodes.add(new Node(13, 2));
+				nodes.add(new Node(13, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -76,7 +76,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 		npcs.add(mcpegleg);
 		zone.assignRPObjectID(mcpegleg);
 		mcpegleg.put("class", "pirate_sailornpc");
-		mcpegleg.set(16, 2);
+		mcpegleg.set(16, 3);
 		mcpegleg.initHP(100);
 		zone.add(mcpegleg);
 

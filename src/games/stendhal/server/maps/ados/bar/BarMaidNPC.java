@@ -42,17 +42,17 @@ public class BarMaidNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 26));
-				nodes.add(new Node(3, 26));
-				nodes.add(new Node(3, 12));
-				nodes.add(new Node(20, 12));
-				nodes.add(new Node(20, 17));
-				nodes.add(new Node(28, 17));
-				nodes.add(new Node(28, 6));
-				nodes.add(new Node(12, 6));
-				nodes.add(new Node(12, 12));
-				nodes.add(new Node(3, 12));
-				nodes.add(new Node(3, 26));
+				nodes.add(new Node(8, 27));
+				nodes.add(new Node(3, 27));
+				nodes.add(new Node(3, 13));
+				nodes.add(new Node(20, 13));
+				nodes.add(new Node(20, 18));
+				nodes.add(new Node(28, 18));
+				nodes.add(new Node(28, 7));
+				nodes.add(new Node(12, 7));
+				nodes.add(new Node(12, 13));
+				nodes.add(new Node(3, 13));
+				nodes.add(new Node(3, 27));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -72,9 +72,8 @@ public class BarMaidNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_004_npc");
-		npc.set(8, 26);
+		npc.set(8, 27);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

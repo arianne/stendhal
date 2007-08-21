@@ -32,30 +32,30 @@ public class CloaksCollectorNPC implements ZoneConfigurator {
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
 				// to stove
-				nodes.add(new Node(7, 43));
+				nodes.add(new Node(7, 44));
 				// to table
-				nodes.add(new Node(7, 51));
+				nodes.add(new Node(7, 52));
 				// around couch
-				nodes.add(new Node(14, 56));
-				nodes.add(new Node(22, 56));
+				nodes.add(new Node(14, 57));
+				nodes.add(new Node(22, 57));
 				// into the floor
-				nodes.add(new Node(18, 49));
-				nodes.add(new Node(19, 41));
-				// into the bathroom
-				nodes.add(new Node(39, 41));
-				// into the floor
-				nodes.add(new Node(18, 41));
-				// into the bedroom
-				nodes.add(new Node(18, 28));
-				// to the chest
-				nodes.add(new Node(17, 23));
-				// through the floor
-				nodes.add(new Node(18, 33));
 				nodes.add(new Node(18, 50));
+				nodes.add(new Node(19, 42));
+				// into the bathroom
+				nodes.add(new Node(39, 42));
+				// into the floor
+				nodes.add(new Node(18, 42));
+				// into the bedroom
+				nodes.add(new Node(18, 29));
+				// to the chest
+				nodes.add(new Node(17, 24));
+				// through the floor
+				nodes.add(new Node(18, 34));
+				nodes.add(new Node(18, 51));
 				// back to the kitchen
-				nodes.add(new Node(7, 50));
-				nodes.add(new Node(4, 43));
-				nodes.add(new Node(4, 46));
+				nodes.add(new Node(7, 51));
+				nodes.add(new Node(4, 44));
+				nodes.add(new Node(4, 47));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -71,7 +71,7 @@ public class CloaksCollectorNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "beardmannpc");
-		npc.set(4, 46);
+		npc.set(4, 47);
 		npc.initHP(100);
 		zone.add(npc);
 	}

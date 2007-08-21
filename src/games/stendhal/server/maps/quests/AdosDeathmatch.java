@@ -161,5 +161,4 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player));
 	}
-
 }

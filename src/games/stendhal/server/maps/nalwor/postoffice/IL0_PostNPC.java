@@ -41,19 +41,19 @@ public class IL0_PostNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(11, 2));
-				nodes.add(new Node(16, 2));
-				nodes.add(new Node(16, 7));
-				nodes.add(new Node(11, 7));
-				nodes.add(new Node(11, 4));
-				nodes.add(new Node(7, 4));
-				nodes.add(new Node(7, 1));
-				nodes.add(new Node(3, 1));
-				nodes.add(new Node(3, 4));
-				nodes.add(new Node(3, 1));
-				nodes.add(new Node(7, 1));
-				nodes.add(new Node(7, 4));
-				nodes.add(new Node(11, 4));
+				nodes.add(new Node(11, 3));
+				nodes.add(new Node(16, 3));
+				nodes.add(new Node(16, 8));
+				nodes.add(new Node(11, 8));
+				nodes.add(new Node(11, 5));
+				nodes.add(new Node(7, 5));
+				nodes.add(new Node(7, 2));
+				nodes.add(new Node(3, 2));
+				nodes.add(new Node(3, 5));
+				nodes.add(new Node(3, 2));
+				nodes.add(new Node(7, 2));
+				nodes.add(new Node(7, 5));
+				nodes.add(new Node(11, 5));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -70,9 +70,8 @@ public class IL0_PostNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "postelfnpc");
-		npc.set(11, 2);
+		npc.set(11, 3);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

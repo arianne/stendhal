@@ -35,18 +35,18 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(15, 2));
-				nodes.add(new Node(12, 2));
-				nodes.add(new Node(12, 5));
-				nodes.add(new Node(13, 5));
+				nodes.add(new Node(15, 3));
+				nodes.add(new Node(12, 3));
+				nodes.add(new Node(12, 6));
 				nodes.add(new Node(13, 6));
-				nodes.add(new Node(13, 5));
-				nodes.add(new Node(15, 5));
+				nodes.add(new Node(13, 7));
+				nodes.add(new Node(13, 6));
 				nodes.add(new Node(15, 6));
-				nodes.add(new Node(15, 5));
-				nodes.add(new Node(17, 5));
+				nodes.add(new Node(15, 7));
+				nodes.add(new Node(15, 6));
 				nodes.add(new Node(17, 6));
-				nodes.add(new Node(17, 2));
+				nodes.add(new Node(17, 7));
+				nodes.add(new Node(17, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -95,7 +95,7 @@ public class HistorianGeographerNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "wisemannpc");
-		npc.set(15, 2);
+		npc.set(15, 3);
 		npc.initHP(100);
 		zone.add(npc);
 	}

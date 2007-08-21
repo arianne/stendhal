@@ -84,13 +84,13 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(41, 39));
-				nodes.add(new Node(51, 39));
-				nodes.add(new Node(51, 45));
-				nodes.add(new Node(58, 45));
-				nodes.add(new Node(58, 41));
-				nodes.add(new Node(51, 41));
-				nodes.add(new Node(51, 39));
+				nodes.add(new Node(41, 40));
+				nodes.add(new Node(51, 40));
+				nodes.add(new Node(51, 46));
+				nodes.add(new Node(58, 46));
+				nodes.add(new Node(58, 42));
+				nodes.add(new Node(51, 42));
+				nodes.add(new Node(51, 40));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -105,7 +105,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_007_npc");
-		npc.set(41, 39);
+		npc.set(41, 40);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);

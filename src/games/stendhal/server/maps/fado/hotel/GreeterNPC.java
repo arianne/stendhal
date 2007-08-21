@@ -44,8 +44,8 @@ public class GreeterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(16, 49));
-				nodes.add(new Node(27, 49));
+				nodes.add(new Node(16, 50));
+				nodes.add(new Node(27, 50));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -67,7 +67,7 @@ public class GreeterNPC implements ZoneConfigurator {
 		npcs.add(greeterNPC);
 		zone.assignRPObjectID(greeterNPC);
 		greeterNPC.put("class", "hotelreceptionistnpc");
-		greeterNPC.set(16, 48);
+		greeterNPC.set(16, 50);
 		greeterNPC.initHP(1000);
 		zone.add(greeterNPC);
 	}

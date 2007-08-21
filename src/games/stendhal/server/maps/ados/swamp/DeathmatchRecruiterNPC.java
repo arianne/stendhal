@@ -39,18 +39,18 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> path = new LinkedList<Node>();
-				path.add(new Node(40, 35));
-				path.add(new Node(40, 84));
-				path.add(new Node(53, 84));
-				path.add(new Node(53, 80));
-				path.add(new Node(84, 80));
-				path.add(new Node(84, 56));
-				path.add(new Node(89, 56));
-				path.add(new Node(89, 37));
-				path.add(new Node(72, 37));
-				path.add(new Node(72, 32));
-				path.add(new Node(50, 32));
-				path.add(new Node(50, 35));
+				path.add(new Node(40, 36));
+				path.add(new Node(40, 85));
+				path.add(new Node(53, 85));
+				path.add(new Node(53, 81));
+				path.add(new Node(84, 81));
+				path.add(new Node(84, 57));
+				path.add(new Node(89, 57));
+				path.add(new Node(89, 38));
+				path.add(new Node(72, 38));
+				path.add(new Node(72, 33));
+				path.add(new Node(50, 33));
+				path.add(new Node(50, 36));
 				setPath(new FixedPath(path, true));
 			}
 
@@ -82,11 +82,10 @@ public class DeathmatchRecruiterNPC implements ZoneConfigurator {
 		};
 
 		npc.put("class", "youngsoldiernpc");
-		npc.set(40, 35);
+		npc.set(40, 36);
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
-
 	}
 }

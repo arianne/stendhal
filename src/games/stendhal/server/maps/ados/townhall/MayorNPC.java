@@ -41,16 +41,16 @@ public class MayorNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 9));
-				nodes.add(new Node(8, 9));	
-				nodes.add(new Node(8, 15));	
-				nodes.add(new Node(25, 15));
-				nodes.add(new Node(25, 12));
-				nodes.add(new Node(37, 12));
-				nodes.add(new Node(25, 12));
-				nodes.add(new Node(25, 15));
-				nodes.add(new Node(8, 15));
-				nodes.add(new Node(8, 9));	
+				nodes.add(new Node(3, 10));
+				nodes.add(new Node(8, 10));	
+				nodes.add(new Node(8, 16));	
+				nodes.add(new Node(25, 16));
+				nodes.add(new Node(25, 13));
+				nodes.add(new Node(37, 13));
+				nodes.add(new Node(25, 13));
+				nodes.add(new Node(25, 16));
+				nodes.add(new Node(8, 16));
+				nodes.add(new Node(8, 10));	
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -68,9 +68,8 @@ public class MayorNPC implements ZoneConfigurator {
 		npcs.add(mayor);
 		zone.assignRPObjectID(mayor);
 		mayor.put("class", "badmayornpc");
-		mayor.set(3, 9);
+		mayor.set(3, 10);
 		mayor.initHP(100);
 		zone.add(mayor);
-
 	}
 }

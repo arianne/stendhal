@@ -42,14 +42,14 @@ public class GhostNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(216, 126));
-				nodes.add(new Node(200, 126));
-				nodes.add(new Node(200, 119));
-				nodes.add(new Node(216, 119));
-				nodes.add(new Node(216, 121));
-				nodes.add(new Node(200, 121));
-				nodes.add(new Node(200, 123));
-				nodes.add(new Node(216, 123));
+				nodes.add(new Node(216, 127));
+				nodes.add(new Node(200, 127));
+				nodes.add(new Node(200, 120));
+				nodes.add(new Node(216, 120));
+				nodes.add(new Node(216, 122));
+				nodes.add(new Node(200, 122));
+				nodes.add(new Node(200, 124));
+				nodes.add(new Node(216, 124));
 				setPath(new FixedPath(nodes, true));
 			}
 			
@@ -87,14 +87,14 @@ public class GhostNPC implements ZoneConfigurator {
 			
 		};
 		ghost.setDescription("You see a ghostly figure of a man. He appears to have died in battle.");
-		ghost.setObstacle(false);
+		ghost.setResistance(0);
 
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
 		ghost.put("class", "deadmannpc");
 		// he is a ghost so he is see through
 		ghost.setVisibility(70);
-		ghost.set(216, 126);
+		ghost.set(216, 127);
 		// he has low HP
 		ghost.initHP(30);
 		zone.add(ghost);

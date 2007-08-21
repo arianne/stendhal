@@ -35,22 +35,22 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(95, 119));
-				nodes.add(new Node(95, 112));
-				nodes.add(new Node(101, 112));
-				nodes.add(new Node(101, 107));
-				nodes.add(new Node(95, 107));
-				nodes.add(new Node(95, 103));
-				nodes.add(new Node(90, 103));
-				nodes.add(new Node(90, 106));
-				nodes.add(new Node(89, 106));
-				nodes.add(new Node(89, 112));
-				nodes.add(new Node(77, 112));
-				nodes.add(new Node(77, 109));
-				nodes.add(new Node(87, 109));
-				nodes.add(new Node(87, 112));
-				nodes.add(new Node(92, 112));
-				nodes.add(new Node(92, 119));
+				nodes.add(new Node(95, 120));
+				nodes.add(new Node(95, 113));
+				nodes.add(new Node(101, 113));
+				nodes.add(new Node(101, 108));
+				nodes.add(new Node(95, 108));
+				nodes.add(new Node(95, 104));
+				nodes.add(new Node(90, 104));
+				nodes.add(new Node(90, 107));
+				nodes.add(new Node(89, 107));
+				nodes.add(new Node(89, 113));
+				nodes.add(new Node(77, 113));
+				nodes.add(new Node(77, 110));
+				nodes.add(new Node(87, 110));
+				nodes.add(new Node(87, 113));
+				nodes.add(new Node(92, 113));
+				nodes.add(new Node(92, 120));
 				setPath(new FixedPath(nodes, true));
 
 			}
@@ -156,7 +156,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "girlnpc");
-		npc.set(95, 119);
+		npc.set(95, 120);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		// npc.setSpeed(1.0);

@@ -81,7 +81,7 @@ public class MeetBunny extends AbstractQuest {
 		// start in int_admin_playground
 		zone = StendhalRPWorld.get().getZone("int_admin_playground");
 		zone.assignRPObjectID(bunny);
-		bunny.set(17, 12);
+		bunny.set(17, 13);
 		zone.add(bunny);
 
 		return bunny;
@@ -93,5 +93,4 @@ public class MeetBunny extends AbstractQuest {
 		createbunny();
 		new TeleporterBehaviour(bunny, "*hop* *hop* *hop* Happy Easter!");
 	}
-
 }

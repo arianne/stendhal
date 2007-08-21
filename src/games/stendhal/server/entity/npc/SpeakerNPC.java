@@ -156,10 +156,6 @@ public class SpeakerNPC extends NPC {
 		// do nothing
 	}
 
-	@Override
-	public void getArea(Rectangle2D rect, double x, double y) {
-		rect.setRect(x, y + 1.0, getWidth(), getHeight());
-	}
 
 	/**
 	 * Gets all players that have recently (this turn?) talked and are standing

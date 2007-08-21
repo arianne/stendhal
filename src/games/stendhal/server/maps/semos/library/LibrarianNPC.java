@@ -31,8 +31,8 @@ public class LibrarianNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(28, 11));
-				nodes.add(new Node(28, 20));
+				nodes.add(new Node(28, 12));
+				nodes.add(new Node(28, 21));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -47,7 +47,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "investigatornpc");
-		npc.set(28, 11);
+		npc.set(28, 12);
 		npc.initHP(100);
 		zone.add(npc);
 	}

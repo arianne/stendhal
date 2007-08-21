@@ -40,7 +40,7 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 			protected void createPath() {
 				// TODO: Determine if this is really a 'no path'
 				List<Node> path = new LinkedList<Node>();
-				path.add(new Node(42, 38));
+				path.add(new Node(42, 39));
 				setPath(new FixedPath(path, true));
 			}
 
@@ -72,11 +72,10 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 		};
 
 		npc.put("class", "youngsoldiernpc");
-		npc.set(42, 38);
+		npc.set(42, 39);
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
-
 	}
 }

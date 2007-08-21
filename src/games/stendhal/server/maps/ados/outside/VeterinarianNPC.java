@@ -34,14 +34,14 @@ public class VeterinarianNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(53, 27));
-				nodes.add(new Node(53, 39));
-				nodes.add(new Node(62, 39));
-				nodes.add(new Node(62, 31));
-				nodes.add(new Node(63, 31));
-				nodes.add(new Node(63, 39));
-				nodes.add(new Node(51, 39));
-				nodes.add(new Node(51, 27));
+				nodes.add(new Node(53, 28));
+				nodes.add(new Node(53, 40));
+				nodes.add(new Node(62, 40));
+				nodes.add(new Node(62, 32));
+				nodes.add(new Node(63, 32));
+				nodes.add(new Node(63, 40));
+				nodes.add(new Node(51, 40));
+				nodes.add(new Node(51, 28));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -70,7 +70,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "doctornpc");
-		npc.set(53, 27);
+		npc.set(53, 28);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);

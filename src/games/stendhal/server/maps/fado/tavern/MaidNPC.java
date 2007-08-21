@@ -48,15 +48,15 @@ public class MaidNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(28, 14));
-				nodes.add(new Node(10, 14));
-				nodes.add(new Node(10, 26));
-				nodes.add(new Node(19, 26));
+				nodes.add(new Node(28, 15));
+				nodes.add(new Node(10, 15));
+				nodes.add(new Node(10, 27));
 				nodes.add(new Node(19, 27));
-				nodes.add(new Node(20, 27));
+				nodes.add(new Node(19, 28));
+				nodes.add(new Node(20, 28));
+				nodes.add(new Node(21, 28));
 				nodes.add(new Node(21, 27));
-				nodes.add(new Node(21, 26));
-				nodes.add(new Node(28, 26));
+				nodes.add(new Node(28, 27));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -85,6 +85,5 @@ public class MaidNPC implements ZoneConfigurator {
 		tavernMaid.set(10, 16);
 		tavernMaid.initHP(100);
 		zone.add(tavernMaid);
-
 	}
 }

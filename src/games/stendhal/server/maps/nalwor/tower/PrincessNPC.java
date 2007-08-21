@@ -38,15 +38,15 @@ public class PrincessNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(17, 12));
-				nodes.add(new Node(10, 12));
-				nodes.add(new Node(10, 3));
+				nodes.add(new Node(17, 13));
+				nodes.add(new Node(10, 13));
+				nodes.add(new Node(10, 4));
+				nodes.add(new Node(3, 4));
 				nodes.add(new Node(3, 3));
-				nodes.add(new Node(3, 2));
-				nodes.add(new Node(7, 2));
-				nodes.add(new Node(7, 8));
-				nodes.add(new Node(12, 8));
-				nodes.add(new Node(12, 12));
+				nodes.add(new Node(7, 3));
+				nodes.add(new Node(7, 9));
+				nodes.add(new Node(12, 9));
+				nodes.add(new Node(12, 13));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -64,9 +64,8 @@ public class PrincessNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "elfprincessnpc");
-		npc.set(17, 12);
+		npc.set(17, 13);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

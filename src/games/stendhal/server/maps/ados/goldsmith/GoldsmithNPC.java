@@ -41,23 +41,23 @@ public class GoldsmithNPC implements ZoneConfigurator {
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
 				// to the oven
-				nodes.add(new Node(5, 2));
+				nodes.add(new Node(5, 3));
 				// to a water
-				nodes.add(new Node(5, 8));
-				nodes.add(new Node(4, 8));
+				nodes.add(new Node(5, 9));
+				nodes.add(new Node(4, 9));
 				// to the table
-				nodes.add(new Node(4, 11));
-				nodes.add(new Node(3, 11));
+				nodes.add(new Node(4, 12));
 				nodes.add(new Node(3, 12));
+				nodes.add(new Node(3, 13));
 				// to the bar
-				nodes.add(new Node(8, 12));
-				nodes.add(new Node(8, 9));
-				nodes.add(new Node(14, 9));
+				nodes.add(new Node(8, 13));
+				nodes.add(new Node(8, 10));
+				nodes.add(new Node(14, 10));
 				// towards the shields
-				nodes.add(new Node(14, 4));
-				nodes.add(new Node(18, 4));
+				nodes.add(new Node(14, 5));
+				nodes.add(new Node(18, 5));
 				// to the starting point
-				nodes.add(new Node(18, 2));
+				nodes.add(new Node(18, 3));
 
 				setPath(new FixedPath(nodes, true));
 			}
@@ -94,7 +94,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(goldsmith);
 		goldsmith.put("class", "goldsmithnpc");
 		goldsmith.setDirection(Direction.DOWN);
-		goldsmith.set(18, 2);
+		goldsmith.set(18, 3);
 		goldsmith.initHP(100);
 		zone.add(goldsmith);
 	}

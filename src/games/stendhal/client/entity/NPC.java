@@ -29,17 +29,6 @@ public class NPC extends RPEntity {
 	//
 
 	/**
-	 * Get the ground area this entity occupies.
-	 *
-	 * @return	The physical area.
-	 */
-	@Override
-	public Rectangle2D getArea() {
-		return new Rectangle.Double(getX(), getY() + 1.0, getWidth(), getHeight());
-	}
-
-
-	/**
 	 * Initialize this entity for an object.
 	 *
 	 * @param	object		The object.

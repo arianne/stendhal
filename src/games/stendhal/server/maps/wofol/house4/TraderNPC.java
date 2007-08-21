@@ -41,10 +41,10 @@ public class TraderNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(4, 3));
-				nodes.add(new Node(4, 8));
-				nodes.add(new Node(12, 8));
-				nodes.add(new Node(12, 3));
+				nodes.add(new Node(4, 4));
+				nodes.add(new Node(4, 9));
+				nodes.add(new Node(12, 9));
+				nodes.add(new Node(12, 4));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -78,10 +78,8 @@ public class TraderNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(trader);
 		trader.put("class", "koboldnpc");
-		trader.setX(4);
-		trader.setY(3);
+		trader.set(4, 4);
 		trader.initHP(100);
 		zone.add(trader);
-
 	}
 }

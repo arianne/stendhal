@@ -34,19 +34,19 @@ public class TelepathNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 18));
 				nodes.add(new Node(8, 19));
+				nodes.add(new Node(8, 20));
+				nodes.add(new Node(15, 20));
 				nodes.add(new Node(15, 19));
-				nodes.add(new Node(15, 18));
-				nodes.add(new Node(16, 18));
-				nodes.add(new Node(16, 13));
+				nodes.add(new Node(16, 19));
+				nodes.add(new Node(16, 14));
+				nodes.add(new Node(15, 14));
 				nodes.add(new Node(15, 13));
-				nodes.add(new Node(15, 12));
-				nodes.add(new Node(12, 12));
-				nodes.add(new Node(8, 12));
+				nodes.add(new Node(12, 13));
 				nodes.add(new Node(8, 13));
-				nodes.add(new Node(7, 13));
-				nodes.add(new Node(7, 18));
+				nodes.add(new Node(8, 14));
+				nodes.add(new Node(7, 14));
+				nodes.add(new Node(7, 19));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -81,7 +81,7 @@ public class TelepathNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "floattingladynpc");
-		npc.set(8, 18);
+		npc.set(8, 19);
 		npc.initHP(100);
 		zone.add(npc);
 	}

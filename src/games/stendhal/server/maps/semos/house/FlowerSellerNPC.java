@@ -46,11 +46,9 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 		// start in int_semos_house
 		StendhalRPZone	zone = StendhalRPWorld.get().getZone("int_semos_house");
 		zone.assignRPObjectID(rose);
-		rose.set(5, 5);
+		rose.set(5, 6);
 		zone.add(rose);
 
 		return rose;
 	}
-
-
 }

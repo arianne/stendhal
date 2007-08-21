@@ -37,12 +37,12 @@ public class OrcSamanNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 112));
-				nodes.add(new Node(16, 112));
-				nodes.add(new Node(16, 114));
-				nodes.add(new Node(22, 114));
-				nodes.add(new Node(22, 118));				
-				nodes.add(new Node(8, 118));
+				nodes.add(new Node(8, 113));
+				nodes.add(new Node(16, 113));
+				nodes.add(new Node(16, 115));
+				nodes.add(new Node(22, 115));
+				nodes.add(new Node(22, 119));				
+				nodes.add(new Node(8, 119));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -60,10 +60,8 @@ public class OrcSamanNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "orcsamannpc");
-		npc.set(8,112);
+		npc.set(8, 113);
 		npc.initHP(100);
 		zone.add(npc);
-
-
 	}
 }

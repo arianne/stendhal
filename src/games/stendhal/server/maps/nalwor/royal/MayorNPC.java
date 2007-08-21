@@ -37,17 +37,17 @@ public class MayorNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(9, 22));
-				nodes.add(new Node(13, 22));
-				nodes.add(new Node(13, 24));
-				nodes.add(new Node(17, 24));
-				nodes.add(new Node(17, 22));
-				nodes.add(new Node(21, 22));
-				nodes.add(new Node(21, 26));
-				nodes.add(new Node(17, 26));
-				nodes.add(new Node(17, 24));
-				nodes.add(new Node(13, 24));
-				nodes.add(new Node(13, 22));
+				nodes.add(new Node(9, 23));
+				nodes.add(new Node(13, 23));
+				nodes.add(new Node(13, 25));
+				nodes.add(new Node(17, 25));
+				nodes.add(new Node(17, 23));
+				nodes.add(new Node(21, 23));
+				nodes.add(new Node(21, 27));
+				nodes.add(new Node(17, 27));
+				nodes.add(new Node(17, 25));
+				nodes.add(new Node(13, 25));
+				nodes.add(new Node(13, 23));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -65,9 +65,8 @@ public class MayorNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "elfmayornpc");
-		npc.set(9, 22);
+		npc.set(9, 23);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

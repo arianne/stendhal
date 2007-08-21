@@ -41,12 +41,12 @@ public class TraderNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(2, 13));
 				nodes.add(new Node(2, 14));
-				nodes.add(new Node(3, 14));
+				nodes.add(new Node(2, 15));
 				nodes.add(new Node(3, 15));
-				nodes.add(new Node(5, 15));
-				nodes.add(new Node(5, 13));
+				nodes.add(new Node(3, 16));
+				nodes.add(new Node(5, 16));
+				nodes.add(new Node(5, 14));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -79,10 +79,8 @@ public class TraderNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(xinBlanca);
 		xinBlanca.put("class", "weaponsellernpc");
-		xinBlanca.setX(2);
-		xinBlanca.setY(14);
+		xinBlanca.set(2, 15);
 		xinBlanca.initHP(100);
 		zone.add(xinBlanca);
-
 	}
 }

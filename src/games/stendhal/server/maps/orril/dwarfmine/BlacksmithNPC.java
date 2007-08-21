@@ -42,13 +42,13 @@ public class BlacksmithNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(20, 10));
+				nodes.add(new Node(20, 11));
+				nodes.add(new Node(12, 11));
+				nodes.add(new Node(12, 7));
 				nodes.add(new Node(12, 10));
-				nodes.add(new Node(12, 6));
-				nodes.add(new Node(12, 9));
-				nodes.add(new Node(20, 9));
-				nodes.add(new Node(20, 7));
 				nodes.add(new Node(20, 10));
+				nodes.add(new Node(20, 8));
+				nodes.add(new Node(20, 11));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -76,7 +76,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 		hogart.setDescription("You see Hogart, a retired master dwarf smith.");
 		zone.assignRPObjectID(hogart);
 		hogart.put("class", "olddwarfnpc");
-		hogart.set(20, 10);
+		hogart.set(20, 11);
 		hogart.initHP(100);
 		npcs.add(hogart);
 		zone.add(hogart);

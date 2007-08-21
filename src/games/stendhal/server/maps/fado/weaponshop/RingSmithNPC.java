@@ -44,12 +44,12 @@ public class RingSmithNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(18, 7));
-				nodes.add(new Node(15, 7));
-				nodes.add(new Node(15, 9));
-				nodes.add(new Node(16, 9));
-				nodes.add(new Node(16, 13));
-				nodes.add(new Node(18, 13));
+				nodes.add(new Node(18, 8));
+				nodes.add(new Node(15, 8));
+				nodes.add(new Node(15, 10));
+				nodes.add(new Node(16, 10));
+				nodes.add(new Node(16, 14));
+				nodes.add(new Node(18, 14));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -69,7 +69,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "ringsmithnpc");
-		npc.set(18, 7);
+		npc.set(18, 8);
 		npc.initHP(100);
 		zone.add(npc);
 
@@ -80,6 +80,5 @@ public class RingSmithNPC implements ZoneConfigurator {
 		book.setText(shops.toString("buyprecious", "-- Buying --"));
 		book.setClass("book_red");
 		zone.add(book);
-
 	}
 }

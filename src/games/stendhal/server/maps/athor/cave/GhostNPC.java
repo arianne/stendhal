@@ -42,32 +42,32 @@ public class GhostNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
                                 List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(65, 73));
-				nodes.add(new Node(43, 73));
-				nodes.add(new Node(43, 68));
-				nodes.add(new Node(37, 68));
-				nodes.add(new Node(37, 64));
-				nodes.add(new Node(34, 64));
-				nodes.add(new Node(34, 57));
-				nodes.add(new Node(31, 57));
-				nodes.add(new Node(31, 51));
-				nodes.add(new Node(28, 51));
-				nodes.add(new Node(28, 45));
-				nodes.add(new Node(26, 45));
-				nodes.add(new Node(26, 40));
-				nodes.add(new Node(25, 40));
-				nodes.add(new Node(25, 37));
-				nodes.add(new Node(36, 37));
-				nodes.add(new Node(36, 42));
-				nodes.add(new Node(45, 42));
-				nodes.add(new Node(45, 45));
-				nodes.add(new Node(61, 45));
-				nodes.add(new Node(61, 53));
-				nodes.add(new Node(63, 53));
-				nodes.add(new Node(63, 57));
-				nodes.add(new Node(64, 57));
-				nodes.add(new Node(64, 65));
-				nodes.add(new Node(65, 65));
+				nodes.add(new Node(65, 74));
+				nodes.add(new Node(43, 74));
+				nodes.add(new Node(43, 69));
+				nodes.add(new Node(37, 69));
+				nodes.add(new Node(37, 65));
+				nodes.add(new Node(34, 65));
+				nodes.add(new Node(34, 58));
+				nodes.add(new Node(31, 58));
+				nodes.add(new Node(31, 52));
+				nodes.add(new Node(28, 52));
+				nodes.add(new Node(28, 46));
+				nodes.add(new Node(26, 46));
+				nodes.add(new Node(26, 41));
+				nodes.add(new Node(25, 41));
+				nodes.add(new Node(25, 38));
+				nodes.add(new Node(36, 38));
+				nodes.add(new Node(36, 43));
+				nodes.add(new Node(45, 43));
+				nodes.add(new Node(45, 46));
+				nodes.add(new Node(61, 46));
+				nodes.add(new Node(61, 54));
+				nodes.add(new Node(63, 54));
+				nodes.add(new Node(63, 58));
+				nodes.add(new Node(64, 58));
+				nodes.add(new Node(64, 66));
+				nodes.add(new Node(65, 66));
 				setPath(new FixedPath(nodes, true));
 			}
 			@Override
@@ -103,14 +103,14 @@ public class GhostNPC implements ZoneConfigurator {
 
 		};
 		ghost.setDescription("You see a ghostly figure of a woman.");
-		ghost.setObstacle(false);
+		ghost.setResistance(0);
 
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
 		ghost.put("class", "woman_005_npc");
 		// she is a ghost so she is see through
 		ghost.setVisibility(50);
-		ghost.set(65, 73);
+		ghost.set(65, 74);
 		// she has low HP
 		ghost.initHP(30);
 		zone.add(ghost);

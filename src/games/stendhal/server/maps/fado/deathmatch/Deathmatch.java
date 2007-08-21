@@ -44,7 +44,7 @@ public class Deathmatch implements ZoneConfigurator {
 		Area arena = new Area(zone, shape);
 		FadoDeathmatch deathmatch = new FadoDeathmatch(zoneName, zone, arena);
 		deathmatch.createLegs(27, 40);
-		deathmatch.createNPC("Thonatun", 29, 16);
+		deathmatch.createNPC("Thonatun", 29, 17);
 		
 		
 	}

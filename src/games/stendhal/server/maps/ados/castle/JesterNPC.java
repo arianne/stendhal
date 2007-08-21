@@ -39,15 +39,15 @@ public class JesterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(8, 56));
-				nodes.add(new Node(8, 44));
-				nodes.add(new Node(20, 44));
-				nodes.add(new Node(20, 34));
-				nodes.add(new Node(10, 34));
-				nodes.add(new Node(10, 9));
-				nodes.add(new Node(20, 9));
-				nodes.add(new Node(20, 44));
-				nodes.add(new Node(8, 44));
+				nodes.add(new Node(8, 57));
+				nodes.add(new Node(8, 45));
+				nodes.add(new Node(20, 45));
+				nodes.add(new Node(20, 35));
+				nodes.add(new Node(10, 35));
+				nodes.add(new Node(10, 10));
+				nodes.add(new Node(20, 10));
+				nodes.add(new Node(20, 45));
+				nodes.add(new Node(8, 45));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -68,9 +68,8 @@ public class JesterNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "magic_jesternpc");
-		npc.set(8, 56);
+		npc.set(8, 57);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

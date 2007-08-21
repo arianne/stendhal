@@ -42,8 +42,8 @@ public class SoldierNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> path = new LinkedList<Node>();
-				path.add(new Node(84, 108));
-				path.add(new Node(84, 115));
+				path.add(new Node(84, 109));
+				path.add(new Node(84, 116));
 				setPath(new FixedPath(path, true));
 			}
 
@@ -59,11 +59,10 @@ public class SoldierNPC implements ZoneConfigurator {
 		};
 
 		npc.put("class", "youngsoldiernpc");
-		npc.set(84, 108);
+		npc.set(84, 109);
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
-
 	}
 }

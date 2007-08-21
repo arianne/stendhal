@@ -38,20 +38,20 @@ public class WomanGhostNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 3));
-				nodes.add(new Node(16, 3));
-				nodes.add(new Node(16, 13));
-				nodes.add(new Node(3, 13));
-				nodes.add(new Node(3, 25));
-				nodes.add(new Node(11, 25));
-				nodes.add(new Node(11, 6));
-				nodes.add(new Node(23, 6));
-				nodes.add(new Node(23, 28));
-				nodes.add(new Node(29, 28));
-				nodes.add(new Node(29, 1));
-				nodes.add(new Node(21, 1));
-				nodes.add(new Node(21, 6));
-				nodes.add(new Node(3, 6));
+				nodes.add(new Node(3, 4));
+				nodes.add(new Node(16, 4));
+				nodes.add(new Node(16, 14));
+				nodes.add(new Node(3, 14));
+				nodes.add(new Node(3, 26));
+				nodes.add(new Node(11, 26));
+				nodes.add(new Node(11, 7));
+				nodes.add(new Node(23, 7));
+				nodes.add(new Node(23, 29));
+				nodes.add(new Node(29, 29));
+				nodes.add(new Node(29, 2));
+				nodes.add(new Node(21, 2));
+				nodes.add(new Node(21, 7));
+				nodes.add(new Node(3, 7));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -65,14 +65,14 @@ public class WomanGhostNPC implements ZoneConfigurator {
 			}
 		};
 		woman.setDescription("You see a ghostly figure of a woman. She appears somehow sad.");
-		woman.setObstacle(false);
+		woman.setResistance(0);
 
 		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.put("class", "woman_011_npc");
 		// She is a ghost so she is see through
 		woman.setVisibility(40);
-		woman.set(3, 3);
+		woman.set(3, 4);
 		// She has low HP
 		woman.initHP(30);
 		zone.add(woman);

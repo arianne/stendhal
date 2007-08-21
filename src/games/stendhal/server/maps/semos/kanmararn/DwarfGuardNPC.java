@@ -34,8 +34,8 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(10, 22));
-				nodes.add(new Node(12, 22));
+				nodes.add(new Node(10, 23));
+				nodes.add(new Node(12, 23));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -54,7 +54,7 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "dwarfguardnpc");
-		npc.set(10, 22);
+		npc.set(10, 23);
 		npc.initHP(100);
 		zone.add(npc);
 	}

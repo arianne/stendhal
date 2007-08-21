@@ -202,7 +202,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		};
 
 		npc1.put("class", "darkwizardnpc");
-		npc1.set(33, 40);
+		npc1.set(33, 41);
 		npc1.setDirection(Direction.DOWN);
 		npc1.initHP(100);
 		npcs.add(npc1);
@@ -214,5 +214,4 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		// need to do this on the next turn
 		TurnNotifier.get().notifyInTurns(1, new DealWithLogoutCoward(player));
 	}
-
 }

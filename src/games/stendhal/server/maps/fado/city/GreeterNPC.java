@@ -49,10 +49,10 @@ public class GreeterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(39, 28));
-				nodes.add(new Node(23, 28));
-				nodes.add(new Node(23, 20));
-				nodes.add(new Node(40, 20));
+				nodes.add(new Node(39, 29));
+				nodes.add(new Node(23, 29));
+				nodes.add(new Node(23, 21));
+				nodes.add(new Node(40, 21));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -72,9 +72,8 @@ public class GreeterNPC implements ZoneConfigurator {
 		npcs.add(greeterNPC);
 		zone.assignRPObjectID(greeterNPC);
 		greeterNPC.setOutfit(new Outfit(05, 01, 06, 01));
-		greeterNPC.set(39, 28);
+		greeterNPC.set(39, 29);
 		greeterNPC.initHP(1000);
 		zone.add(greeterNPC);
 	}
-
 }

@@ -38,12 +38,12 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(21, 2));
-				nodes.add(new Node(25, 2));
-				nodes.add(new Node(25, 4));
-				nodes.add(new Node(29, 4));
-				nodes.add(new Node(25, 4));
-				nodes.add(new Node(25, 2));
+				nodes.add(new Node(21, 3));
+				nodes.add(new Node(25, 3));
+				nodes.add(new Node(25, 5));
+				nodes.add(new Node(29, 5));
+				nodes.add(new Node(25, 5));
+				nodes.add(new Node(25, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -59,9 +59,8 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 		npcs.add(ouchit);
 		zone.assignRPObjectID(ouchit);
 		ouchit.put("class", "weaponsellernpc");
-		ouchit.set(21, 2);
+		ouchit.set(21, 3);
 		ouchit.initHP(100);
 		zone.add(ouchit);
-
 	}
 }

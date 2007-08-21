@@ -36,8 +36,8 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(20, 9));
-				nodes.add(new Node(20, 2));
+				nodes.add(new Node(20, 10));
+				nodes.add(new Node(20, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -59,7 +59,7 @@ public class GroomAssistantNPC implements ZoneConfigurator {
 		NPCList.get().add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "executivenpc");
-		npc.set(20, 9);
+		npc.set(20, 10);
 		npc.initHP(100);
 		zone.add(npc);
 	}

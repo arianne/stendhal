@@ -54,10 +54,9 @@ public class RichardStallmanNPC implements ZoneConfigurator {
 		npcs.add(stallman);
 		zone.assignRPObjectID(stallman);
 		stallman.put("class", "richardstallmannpc");
-		stallman.set(26, 10);
+		stallman.set(26, 11);
 		stallman.setDirection(Direction.DOWN);
 		stallman.initHP(100);
 		zone.add(stallman);
-
 	}
 }

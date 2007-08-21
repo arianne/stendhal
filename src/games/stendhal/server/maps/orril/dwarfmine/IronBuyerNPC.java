@@ -44,10 +44,10 @@ public class IronBuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(49, 67));
-				nodes.add(new Node(45, 67));
-				nodes.add(new Node(45, 71));
-				nodes.add(new Node(45, 67));
+				nodes.add(new Node(49, 68));
+				nodes.add(new Node(45, 68));
+				nodes.add(new Node(45, 72));
+				nodes.add(new Node(45, 68));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -65,7 +65,7 @@ public class IronBuyerNPC implements ZoneConfigurator {
 		loretta.setDescription("You see Loretta, an elderly female dwarf. She is working on the mine-cart rails.");
 		zone.assignRPObjectID(loretta);
 		loretta.put("class", "greendwarfnpc");
-		loretta.set(49, 67);
+		loretta.set(49, 68);
 		loretta.initHP(100);
 		zone.add(loretta);
 	}

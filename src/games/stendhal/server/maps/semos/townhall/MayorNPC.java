@@ -35,8 +35,8 @@ public class MayorNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(13, 2));
-				nodes.add(new Node(19, 2));
+				nodes.add(new Node(13, 3));
+				nodes.add(new Node(19, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -50,7 +50,7 @@ public class MayorNPC implements ZoneConfigurator {
 		};
 
 		npc.put("class", "mayornpc");
-		npc.set(13, 2);
+		npc.set(13, 3);
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);

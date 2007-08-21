@@ -38,11 +38,11 @@ public class FishermanNPC implements ZoneConfigurator {
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
 				// from left
-				nodes.add(new Node(3, 2));
+				nodes.add(new Node(3, 3));
 				// to right
-				nodes.add(new Node(12, 2));
+				nodes.add(new Node(12, 3));
 				// to left
-				nodes.add(new Node(3, 2));
+				nodes.add(new Node(3, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -57,7 +57,7 @@ public class FishermanNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(fisherman);
 		fisherman.put("class", "fishermannpc");
 		fisherman.setDirection(Direction.DOWN);
-		fisherman.set(3, 2);
+		fisherman.set(3, 3);
 		fisherman.initHP(100);
 		zone.add(fisherman);
 	}

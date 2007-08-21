@@ -44,13 +44,13 @@ public class WomanNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(3, 3));
-				nodes.add(new Node(16, 3));
-				nodes.add(new Node(16, 6));
+				nodes.add(new Node(3, 4));
+				nodes.add(new Node(16, 4));
+				nodes.add(new Node(16, 7));
+				nodes.add(new Node(3, 7));
 				nodes.add(new Node(3, 6));
-				nodes.add(new Node(3, 5));
-				nodes.add(new Node(5, 5));
-				nodes.add(new Node(5, 3));
+				nodes.add(new Node(5, 6));
+				nodes.add(new Node(5, 4));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -66,7 +66,7 @@ public class WomanNPC implements ZoneConfigurator {
 		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.put("class", "youngwomannpc");
-		woman.set(3, 3);
+		woman.set(3, 4);
 		woman.initHP(100);
 		zone.add(woman);
 	}

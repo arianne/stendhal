@@ -34,11 +34,11 @@ public class HousewifeNPC implements ZoneConfigurator {
 				nodes.add(new Node(4, 12)); // its around the table with
 				// the beers and to the
 				// furnance
-				nodes.add(new Node(15, 12));
-				nodes.add(new Node(15, 12));
-				nodes.add(new Node(15, 8));
-				nodes.add(new Node(10, 8));
-				nodes.add(new Node(10, 12));
+				nodes.add(new Node(15, 13));
+				nodes.add(new Node(15, 13));
+				nodes.add(new Node(15, 9));
+				nodes.add(new Node(10, 9));
+				nodes.add(new Node(10, 13));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -53,9 +53,8 @@ public class HousewifeNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "welcomernpc");
-		npc.set(4, 12);
+		npc.set(4, 13);
 		npc.initHP(100);
 		zone.add(npc);
-	
 	}
 }

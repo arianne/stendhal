@@ -37,12 +37,12 @@ public class GuardNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(62, 104));
-				nodes.add(new Node(63, 104));
-				nodes.add(new Node(64, 104));
-				nodes.add(new Node(65, 104));
-				nodes.add(new Node(64, 104));
-				nodes.add(new Node(63, 104));
+				nodes.add(new Node(62, 105));
+				nodes.add(new Node(63, 105));
+				nodes.add(new Node(64, 105));
+				nodes.add(new Node(65, 105));
+				nodes.add(new Node(64, 105));
+				nodes.add(new Node(63, 105));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -59,7 +59,7 @@ public class GuardNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "recruiter1npc");
-		npc.set(62, 104);
+		npc.set(62, 105);
 		npc.initHP(100);
 		zone.add(npc);
 	}

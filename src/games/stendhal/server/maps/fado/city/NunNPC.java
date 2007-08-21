@@ -56,7 +56,7 @@ public class NunNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(nunnpc);
 		nunnpc.put("class", "nunnpc");
 		nunnpc.setDirection(Direction.RIGHT);
-		nunnpc.set(53, 53);
+		nunnpc.set(53, 54);
 		nunnpc.initHP(100);
 		zone.add(nunnpc);
 	}

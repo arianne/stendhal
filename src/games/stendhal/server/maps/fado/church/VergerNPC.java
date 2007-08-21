@@ -31,12 +31,12 @@ public class VergerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(22, 8));
-				nodes.add(new Node(16, 8));
-				nodes.add(new Node(16, 3));
+				nodes.add(new Node(22, 9));
+				nodes.add(new Node(16, 9));
+				nodes.add(new Node(16, 4));
+				nodes.add(new Node(19, 4));
 				nodes.add(new Node(19, 3));
-				nodes.add(new Node(19, 2));
-				nodes.add(new Node(22, 2));
+				nodes.add(new Node(22, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -56,9 +56,8 @@ public class VergerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "vergernpc");
-		npc.set(22, 8);
+		npc.set(22, 9);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

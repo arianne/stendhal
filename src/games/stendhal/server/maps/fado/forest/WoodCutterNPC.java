@@ -43,16 +43,16 @@ public class WoodCutterNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(55, 83));
-				nodes.add(new Node(68, 83));
-				nodes.add(new Node(68, 83));
-				nodes.add(new Node(68, 70));
-				nodes.add(new Node(57, 70));
+				nodes.add(new Node(55, 84));
+				nodes.add(new Node(68, 84));
+				nodes.add(new Node(68, 84));
+				nodes.add(new Node(68, 71));
+				nodes.add(new Node(57, 71));
+				nodes.add(new Node(57, 76));
 				nodes.add(new Node(57, 75));
-				nodes.add(new Node(57, 74));
-				nodes.add(new Node(53, 74));
-				nodes.add(new Node(53, 81));
-				nodes.add(new Node(55, 81));
+				nodes.add(new Node(53, 75));
+				nodes.add(new Node(53, 82));
+				nodes.add(new Node(55, 82));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -74,9 +74,8 @@ public class WoodCutterNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woodcutternpc");
-		npc.set(55, 83);
+		npc.set(55, 84);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

@@ -43,12 +43,12 @@ public class BuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(45, 48));
-				nodes.add(new Node(29, 48));
-				nodes.add(new Node(29, 56));
-				nodes.add(new Node(45, 56));
-				nodes.add(new Node(19, 56));
-				nodes.add(new Node(19, 48));
+				nodes.add(new Node(45, 49));
+				nodes.add(new Node(29, 49));
+				nodes.add(new Node(29, 57));
+				nodes.add(new Node(45, 57));
+				nodes.add(new Node(19, 57));
+				nodes.add(new Node(19, 49));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -72,7 +72,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "barracksbuyernpc");
-		npc.set(45, 48);
+		npc.set(45, 49);
 		npc.initHP(500);
 		zone.add(npc);
 

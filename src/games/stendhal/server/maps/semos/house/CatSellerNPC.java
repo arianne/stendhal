@@ -36,10 +36,10 @@ public class CatSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(7, 7));
-				nodes.add(new Node(9, 7));
-				nodes.add(new Node(9, 8));
 				nodes.add(new Node(7, 8));
+				nodes.add(new Node(9, 8));
+				nodes.add(new Node(9, 9));
+				nodes.add(new Node(7, 9));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -105,9 +105,8 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_009_npc");
-		npc.set(7, 7);
+		npc.set(7, 8);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

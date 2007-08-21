@@ -35,8 +35,8 @@ public class HealerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(9, 5));
-				nodes.add(new Node(14, 5));
+				nodes.add(new Node(9, 6));
+				nodes.add(new Node(14, 6));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -53,7 +53,7 @@ public class HealerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "welcomernpc");
-		npc.set(9, 5);
+		npc.set(9, 6);
 		npc.initHP(100);
 		zone.add(npc);
 	}

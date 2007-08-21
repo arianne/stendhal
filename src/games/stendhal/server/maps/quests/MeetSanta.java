@@ -81,7 +81,7 @@ public class MeetSanta extends AbstractQuest {
 		// start in int_admin_playground
 		zone = StendhalRPWorld.get().getZone("int_admin_playground");
 		zone.assignRPObjectID(santa);
-		santa.set(17, 12);
+		santa.set(17, 13);
 		zone.add(santa);
 
 		return santa;
@@ -93,5 +93,4 @@ public class MeetSanta extends AbstractQuest {
 		createSanta();
 		new TeleporterBehaviour(santa, "Ho, ho, ho! Merry Christmas!");
 	}
-
 }

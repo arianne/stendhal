@@ -38,16 +38,16 @@ public class WizardNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(7, 1));
-				nodes.add(new Node(7, 3));
-				nodes.add(new Node(13, 3));
-				nodes.add(new Node(13, 8));
-				nodes.add(new Node(9, 8));
-				nodes.add(new Node(9, 7));
-				nodes.add(new Node(9, 8));
-				nodes.add(new Node(2, 8));
-				nodes.add(new Node(2, 2));
 				nodes.add(new Node(7, 2));
+				nodes.add(new Node(7, 4));
+				nodes.add(new Node(13, 4));
+				nodes.add(new Node(13, 9));
+				nodes.add(new Node(9, 9));
+				nodes.add(new Node(9, 8));
+				nodes.add(new Node(9, 9));
+				nodes.add(new Node(2, 9));
+				nodes.add(new Node(2, 3));
+				nodes.add(new Node(7, 3));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -93,9 +93,8 @@ public class WizardNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "wisemannpc");
-		npc.set(7, 1);
+		npc.set(7, 2);
 		npc.initHP(100);
 		zone.add(npc);
-	
 	}
 }

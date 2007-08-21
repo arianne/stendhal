@@ -33,10 +33,10 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(21, 5));
-				nodes.add(new Node(29, 5));
-				nodes.add(new Node(29, 9));
-				nodes.add(new Node(21, 9));
+				nodes.add(new Node(21, 6));
+				nodes.add(new Node(29, 6));
+				nodes.add(new Node(29, 10));
+				nodes.add(new Node(21, 10));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -54,7 +54,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "elegantladynpc");
-		npc.set(21, 5);
+		npc.set(21, 6);
 		npc.initHP(100);
 		zone.add(npc);
 	}

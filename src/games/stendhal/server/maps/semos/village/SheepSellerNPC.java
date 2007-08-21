@@ -51,10 +51,10 @@ public class SheepSellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(33, 44));
-				nodes.add(new Node(33, 42));
-				nodes.add(new Node(23, 42));
-				nodes.add(new Node(23, 44));
+				nodes.add(new Node(33, 45));
+				nodes.add(new Node(33, 43));
+				nodes.add(new Node(23, 43));
+				nodes.add(new Node(23, 45));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -119,9 +119,8 @@ public class SheepSellerNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "sellernpc");
-		npc.set(33, 44);
+		npc.set(33, 45);
 		npc.initHP(100);
 		zone.add(npc);
-
 	}
 }

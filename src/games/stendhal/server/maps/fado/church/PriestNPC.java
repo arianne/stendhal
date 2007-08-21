@@ -57,12 +57,9 @@ public class PriestNPC implements ZoneConfigurator {
 		npcs.add(priest);
 		zone.assignRPObjectID(priest);
 		priest.put("class", "priestnpc");
-		priest.set(11, 4);
+		priest.set(11, 5);
 		priest.setDirection(Direction.DOWN);
 		priest.initHP(100);
 		zone.add(priest);
 	}
-
-
-
 }

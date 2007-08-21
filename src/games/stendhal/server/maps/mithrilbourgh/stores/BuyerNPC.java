@@ -44,13 +44,13 @@ public class BuyerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(10, 3));
+				nodes.add(new Node(10, 4));
+				nodes.add(new Node(10, 8));
+				nodes.add(new Node(15, 8));
+				nodes.add(new Node(15, 2));
+				nodes.add(new Node(3, 2));
+				nodes.add(new Node(3, 7));
 				nodes.add(new Node(10, 7));
-				nodes.add(new Node(15, 7));
-				nodes.add(new Node(15, 1));
-				nodes.add(new Node(3, 1));
-				nodes.add(new Node(3, 6));
-				nodes.add(new Node(10, 6));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -74,7 +74,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "recruiter3npc");
-		npc.set(10, 3);
+		npc.set(10, 4);
 		npc.initHP(100);
 		zone.add(npc);
 
@@ -91,6 +91,5 @@ public class BuyerNPC implements ZoneConfigurator {
 		book2.setText(" -- Buying -- \n golden_helmet\t 3000\n shadow_helmet\t 4000\n horned_golden_helmet 5000\n chaos_helmet\t 6000\n magic_chain_helmet\t 8000\n black_helmet\t 10000");
 		book2.setClass("book_red");
 		zone.add(book2);
-
 	}
 }

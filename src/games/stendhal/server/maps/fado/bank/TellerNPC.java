@@ -44,8 +44,8 @@ public class TellerNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(15, 2));
-				nodes.add(new Node(15, 15));
+				nodes.add(new Node(15, 3));
+				nodes.add(new Node(15, 16));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -61,7 +61,7 @@ public class TellerNPC implements ZoneConfigurator {
 		npcs.add(bankNPC);
 		zone.assignRPObjectID(bankNPC);
 		bankNPC.put("class", "youngnpc");
-		bankNPC.set(15, 1);
+		bankNPC.set(15, 3);
 		bankNPC.initHP(1000);
 		zone.add(bankNPC);
 	}

@@ -61,7 +61,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(oldnpc);
 		oldnpc.setDirection(Direction.DOWN);
 		oldnpc.put("class", "elfbankeroldnpc");
-		oldnpc.set(13, 16);
+		oldnpc.set(13, 17);
 		oldnpc.initHP(100);
 		zone.add(oldnpc);
 	}
@@ -75,12 +75,12 @@ public class IL0_BankNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(26, 29));
-				nodes.add(new Node(16, 29));
+				nodes.add(new Node(26, 30));
 				nodes.add(new Node(16, 30));
+				nodes.add(new Node(16, 31));
+				nodes.add(new Node(17, 31));
 				nodes.add(new Node(17, 30));
-				nodes.add(new Node(17, 29));
-				nodes.add(new Node(26, 29));
+				nodes.add(new Node(26, 30));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -98,7 +98,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(ladynpc);
 		ladynpc.put("class", "elfbankladynpc");
 		ladynpc.setDirection(Direction.DOWN);
-		ladynpc.set(17, 30);
+		ladynpc.set(17, 31);
 		ladynpc.initHP(100);
 		zone.add(ladynpc);
 	}

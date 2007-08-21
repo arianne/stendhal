@@ -40,10 +40,10 @@ public class SeamstressNPC implements ZoneConfigurator {
 			@Override
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
-				nodes.add(new Node(7, 6));
-				nodes.add(new Node(7, 13));
-				nodes.add(new Node(12, 13));
-				nodes.add(new Node(12, 6));
+				nodes.add(new Node(7, 7));
+				nodes.add(new Node(7, 14));
+				nodes.add(new Node(12, 14));
+				nodes.add(new Node(12, 7));
 				setPath(new FixedPath(nodes, true));
 			}
 
@@ -70,10 +70,8 @@ public class SeamstressNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(seamstress);
 		seamstress.put("class", "woman_002_npc");
-		seamstress.setX(7);
-		seamstress.setY(6);
+		seamstress.set(7, 7);
 		seamstress.initHP(100);
 		zone.add(seamstress);
-
 	}
 }
