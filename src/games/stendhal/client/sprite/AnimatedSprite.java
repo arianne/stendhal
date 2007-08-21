@@ -9,6 +9,7 @@ package games.stendhal.client.sprite;
 //
 //
 
+import java.util.Arrays;
 import java.awt.Graphics;
 
 /**
@@ -26,14 +27,14 @@ public class AnimatedSprite implements Sprite {
 	protected boolean	animating;
 
 	/**
-	 * The minimum delay between frames.
+	 * The [minimum] frame durations.
 	 */
-	protected long		delay;
+	protected long []	delays;
 
 	/**
 	 * The current frame index.
 	 */
-	protected int		frameidx;
+	protected int		index;
 
 	/**
 	 * The frame sprites.
@@ -122,16 +123,46 @@ public class AnimatedSprite implements Sprite {
 	 *				the delay is < 0.
 	 */
 	public AnimatedSprite(final Sprite [] frames, final long delay, final boolean animating, final Object reference) throws IllegalArgumentException {
+		this(frames, createDelays(delay, frames.length), animating, reference);
+	}
+
+
+	/**
+	 * Create an animated sprite from a set of frame sprites.
+	 *
+	 * <strong>NOTE: The array of frames/delays passed is not copied,
+	 * and must not be modified while this instance exists (unless you
+	 * are sure you know what you are doing).</strong>
+	 *
+	 * @param	frames		The frames to animate.
+	 * @param	delays		The minimum duration for each frame (in ms).
+	 * @param	animating	If animation is enabled.
+	 * @param	reference	The sprite identifier reference.
+	 *
+	 * @throws	IllegalArgumentException
+	 *				If less than one frame is given, or
+	 *				the delay is < 0.
+	 */
+	public AnimatedSprite(final Sprite [] frames, final long [] delays, final boolean animating, final Object reference) throws IllegalArgumentException {
 		if(frames.length == 0) {
 			throw new IllegalArgumentException("Must have at least one frame");
 		}
 
-		if(delay < 0L) {
-			throw new IllegalArgumentException("Delay < 0");
+		if(delays.length != frames.length) {
+			throw new IllegalArgumentException("Mismatch between number of frame sprites and delays");
+		}
+
+		/*
+		 * Validate delay values
+		 */
+		for(int i = 0; i < delays.length; i++) {
+			if(delays[i] < 0L) {
+				throw new IllegalArgumentException("Delay < 0");
+			}
 		}
 
 		this.frames = frames;
-		this.delay = delay;
+		this.delays = delays;
 		this.animating = animating;
 		this.reference = reference;
 
@@ -145,9 +176,9 @@ public class AnimatedSprite implements Sprite {
 			width = Math.max(width, frame.getWidth());
 		}
 
-		frameidx = 0;
+		index = 0;
 		sprite = frames[0];
-		nextFrame = System.currentTimeMillis() + delay;
+		nextFrame = System.currentTimeMillis() + delays[0];
 	}
 
 
@@ -156,38 +187,32 @@ public class AnimatedSprite implements Sprite {
 	//
 
 	/**
-	 * Get the minimum delay between frames.
+	 * Utility method to convert a single delay to an array of delays
+	 * having that value.
 	 *
-	 * @return	The delay between frames (in ms).
+	 * @param	delay		The delay value.
+	 * @param	count		The size of the array to create.
+	 *
+	 * @return	An array of delays.
 	 */
-	public long getDelay() {
-		return delay;
+	protected static long [] createDelays(final long delay, final int count) {
+		long [] delays = new long[count];
+		Arrays.fill(delays, delay);
+
+		return delays;
 	}
 
 
 	/**
-	 * Update the current frame sprite.
+	 * Get the minimum delays for each frame.
+	 *
+	 * <strong>NOTE: The array of delays returned is not copied, and must
+	 * not be modified.</strong>
+	 *
+	 * @return	The minimum delays for each frame (in ms).
 	 */
-	protected void update() {
-		if(animating) {
-			long now = System.currentTimeMillis();
-
-			if(nextFrame <= now) {
-				if(++frameidx >= frames.length) {
-					if(!loop) {
-						frameidx--;
-						sprite = null;
-						animating = false;
-						return;
-					}
-
-					frameidx = 0;
-				}
-
-				sprite = frames[frameidx];
-				nextFrame = now + delay;
-			}
-		}
+	public long [] getDelays() {
+		return delays;
 	}
 
 
@@ -201,6 +226,16 @@ public class AnimatedSprite implements Sprite {
 	 */
 	public Sprite [] getFrames() {
 		return frames;
+	}
+
+
+	/**
+	 * Get the current frame index.
+	 *
+	 * @return	The current frame index.
+	 */
+	public int getIndex() {
+		return index;
 	}
 
 
@@ -235,9 +270,7 @@ public class AnimatedSprite implements Sprite {
 	 * next frame time.
 	 */
 	public void reset() {
-		frameidx = 0;
-		sprite = frames[0];
-		nextFrame = System.currentTimeMillis() + delay;
+		setIndex(0);
 	}
 
 
@@ -248,6 +281,26 @@ public class AnimatedSprite implements Sprite {
 	 */
 	public void setAnimating(final boolean animating) {
 		this.animating = animating;
+	}
+
+
+	/**
+	 * Set the frame index to a specific value.
+	 *
+	 * @param	index		The index to use.
+	 *
+	 * @throws	ArrayIndexOutOfBoundsException
+	 *				If the index is less than 0 or greater
+	 *				than or equal to the number of frames.
+	 */
+	public void setIndex(final int index) {
+		if((index < 0) || (index >= frames.length)) {
+			throw new ArrayIndexOutOfBoundsException("Invalid index: " + index);
+		}
+
+		this.index = index;
+		sprite = frames[index];
+		nextFrame = System.currentTimeMillis() + delays[index];
 	}
 
 
@@ -281,6 +334,32 @@ public class AnimatedSprite implements Sprite {
 	}
 
 
+	/**
+	 * Update the current frame sprite.
+	 */
+	protected void update() {
+		if(animating) {
+			long now = System.currentTimeMillis();
+
+			if(nextFrame <= now) {
+				if(++index >= frames.length) {
+					if(!loop) {
+						index--;
+						sprite = null;
+						animating = false;
+						return;
+					}
+
+					index = 0;
+				}
+
+				sprite = frames[index];
+				nextFrame = now + delays[index];
+			}
+		}
+	}
+
+
 	//
 	// Sprite
 	//
@@ -292,7 +371,12 @@ public class AnimatedSprite implements Sprite {
 	 * @return	A new copy of the sprite.
 	 */
 	public Sprite copy() {
-		return new AnimatedSprite(getFrames(), getDelay());
+		AnimatedSprite sprite = new AnimatedSprite(getFrames(), getDelays(), isAnimating(), getReference());
+
+		sprite.setLoop(isLoop());
+		sprite.setIndex(getIndex());
+
+		return sprite;
 	}
 
 	/**
