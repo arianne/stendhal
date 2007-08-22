@@ -175,14 +175,14 @@ public class TilesetGroupAnimationMap {
 			/*
 			 * Custom frame duration?
 			 */
-			if((pos = index.indexOf('@')) != -1) {
+			if((pos = frameIndex.indexOf('@')) != -1) {
 				String val = frameIndex.substring(pos + 1);
 				frameIndex = frameIndex.substring(0, pos);
 
 				try {
 					frameDelays[i] = Integer.parseInt(val);
 				} catch(NumberFormatException ex) {
-					logger.error("Invalid delay #" + (i + 1) + ": " + line);
+					logger.error("Invalid delay #" + (i + 1) + " <" + val + ">: " + line);
 					return;
 				}
 	 		} else {
@@ -195,7 +195,7 @@ public class TilesetGroupAnimationMap {
 			try {
 				frameIndexes[i] = Integer.parseInt(frameIndex);
 			} catch(NumberFormatException ex) {
-				logger.error("Invalid frame #" + (i + 1) + ": " + line);
+				logger.error("Invalid frame #" + (i + 1) + " <" + frameIndex + ">: " + line);
 				return;
 			}
 		}

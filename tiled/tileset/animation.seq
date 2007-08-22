@@ -1,38 +1,38 @@
-tileset/plant/flower/daisy_white.png	0	0:2:4:6:6:6:6:6:6:6
-tileset/plant/flower/daisy_white.png	2	2:4:6:0:0:0:0:0:0:0
-tileset/plant/flower/daisy_white.png	4	4:6:0:2:2:2:2:2:2:2
-tileset/plant/flower/daisy_white.png	6	6:0:2:4:4:4:4:4:4:4
-tileset/plant/flower/daisy_white.png	1	1:3:5:7:7:7:7:7:7:7
-tileset/plant/flower/daisy_white.png	3	3:5:7:1:1:1:1:1:1:1
-tileset/plant/flower/daisy_white.png	5	5:7:1:3:3:3:3:3:3:3
-tileset/plant/flower/daisy_white.png	7	7:1:3:5:5:5:5:5:5:5
+tileset/plant/flower/daisy_white.png	0	0:2:4:6@3500
+tileset/plant/flower/daisy_white.png	2	2:4:6:0@3500
+tileset/plant/flower/daisy_white.png	4	4:6:0:2@3500
+tileset/plant/flower/daisy_white.png	6	6:0:2:4@3500
+tileset/plant/flower/daisy_white.png	1	1:3:5:7@3500
+tileset/plant/flower/daisy_white.png	3	3:5:7:1@3500
+tileset/plant/flower/daisy_white.png	5	5:7:1:3@3500
+tileset/plant/flower/daisy_white.png	7	7:1:3:5@3500
 
-tileset/plant/flower/daisy_yellow.png	0	0:2:4:6:6:6:6:6:6:6
-tileset/plant/flower/daisy_yellow.png	2	2:4:6:0:0:0:0:0:0:0
-tileset/plant/flower/daisy_yellow.png	4	4:6:0:2:2:2:2:2:2:2
-tileset/plant/flower/daisy_yellow.png	6	6:0:2:4:4:4:4:4:4:4
-tileset/plant/flower/daisy_yellow.png	1	1:3:5:7:7:7:7:7:7:7
-tileset/plant/flower/daisy_yellow.png	3	3:5:7:1:1:1:1:1:1:1
-tileset/plant/flower/daisy_yellow.png	5	5:7:1:3:3:3:3:3:3:3
-tileset/plant/flower/daisy_yellow.png	7	7:1:3:5:5:5:5:5:5:5
+tileset/plant/flower/daisy_yellow.png	0	0:2:4:6@3500
+tileset/plant/flower/daisy_yellow.png	2	2:4:6:0@3500
+tileset/plant/flower/daisy_yellow.png	4	4:6:0:2@3500
+tileset/plant/flower/daisy_yellow.png	6	6:0:2:4@3500
+tileset/plant/flower/daisy_yellow.png	1	1:3:5:7@3500
+tileset/plant/flower/daisy_yellow.png	3	3:5:7:1@3500
+tileset/plant/flower/daisy_yellow.png	5	5:7:1:3@3500
+tileset/plant/flower/daisy_yellow.png	7	7:1:3:5@3500
 
-tileset/plant/flower/daisy_red.png	0	0:2:4:6:6:6:6:6:6:6
-tileset/plant/flower/daisy_red.png	2	2:4:6:0:0:0:0:0:0:0:0:0
-tileset/plant/flower/daisy_red.png	4	4:6:0:2:2:2:2:2:2:2
-tileset/plant/flower/daisy_red.png	6	6:0:2:4:4:4:4:4:4:4
-tileset/plant/flower/daisy_red.png	1	1:3:5:7:7:7:7:7:7:7
-tileset/plant/flower/daisy_red.png	3	3:5:7:1:1:1:1:1:1:1
-tileset/plant/flower/daisy_red.png	5	5:7:1:3:3:3:3:3:3:3
-tileset/plant/flower/daisy_red.png	7	7:1:3:5:5:5:5:5:5:5
+tileset/plant/flower/daisy_red.png	0	0:2:4:6@3500
+tileset/plant/flower/daisy_red.png	2	2:4:6:0@3500
+tileset/plant/flower/daisy_red.png	4	4:6:0:2@3500
+tileset/plant/flower/daisy_red.png	6	6:0:2:4@3500
+tileset/plant/flower/daisy_red.png	1	1:3:5:7@3500
+tileset/plant/flower/daisy_red.png	3	3:5:7:1@3500
+tileset/plant/flower/daisy_red.png	5	5:7:1:3@3500
+tileset/plant/flower/daisy_red.png	7	7:1:3:5@3500
 
-tileset/plant/flower/daisy_blue.png	0	0:2:4:6:6:6:6:6:6:6
-tileset/plant/flower/daisy_blue.png	2	2:4:6:0:0:0:0:0:0:0
-tileset/plant/flower/daisy_blue.png	4	4:6:0:2:2:2:2:2:2:2
-tileset/plant/flower/daisy_blue.png	6	6:0:2:4:4:4:4:4:4:4
-tileset/plant/flower/daisy_blue.png	1	1:3:5:7:7:7:7:7:7:7
-tileset/plant/flower/daisy_blue.png	3	3:5:7:1:1:1:1:1:1:1
-tileset/plant/flower/daisy_blue.png	5	5:7:1:3:3:3:3:3:3:3
-tileset/plant/flower/daisy_blue.png	7	7:1:3:5:5:5:5:5:5:5
+tileset/plant/flower/daisy_blue.png	0	0:2:4:6@3500
+tileset/plant/flower/daisy_blue.png	2	2:4:6:0@3500
+tileset/plant/flower/daisy_blue.png	4	4:6:0:2@3500
+tileset/plant/flower/daisy_blue.png	6	6:0:2:4@3500
+tileset/plant/flower/daisy_blue.png	1	1:3:5:7@3500
+tileset/plant/flower/daisy_blue.png	3	3:5:7:1@3500
+tileset/plant/flower/daisy_blue.png	5	5:7:1:3@3500
+tileset/plant/flower/daisy_blue.png	7	7:1:3:5@3500
 
 tileset/item/furniture/light/flames.png	0	0:1
 tileset/item/furniture/light/flames.png	1	0:1
@@ -88,15 +88,15 @@ tileset/ground/water/channels_grassy.png	5	3:4:5:4
 tileset/ground/water/water.png	0	0:1:2:1
 tileset/ground/water/water.png	1	0:1:2:1
 tileset/ground/water/water.png	2	0:1:2:1
-tileset/ground/water/water.png  3       3:4:5:4
-tileset/ground/water/water.png  4       3:4:5:4
-tileset/ground/water/water.png  5       3:4:5:4
-tileset/ground/water/water.png  6       6:7:8:7
-tileset/ground/water/water.png  7       6:7:8:7
-tileset/ground/water/water.png  8       6:7:8:7
-tileset/ground/water/water.png  9       9:10:11:10
-tileset/ground/water/water.png  10	9:10:11:10
-tileset/ground/water/water.png  11	9:10:11:10
+tileset/ground/water/water.png	3	3:4:5:4
+tileset/ground/water/water.png	4	3:4:5:4
+tileset/ground/water/water.png	5	3:4:5:4
+tileset/ground/water/water.png	6	6:7:8:7
+tileset/ground/water/water.png	7	6:7:8:7
+tileset/ground/water/water.png	8	6:7:8:7
+tileset/ground/water/water.png	9	9:10:11:10
+tileset/ground/water/water.png	10	9:10:11:10
+tileset/ground/water/water.png	11	9:10:11:10
 
 tileset/ground/water/golden_whirlpool.png	0	0:4:8:4
 tileset/ground/water/golden_whirlpool.png	4	0:4:8:4
@@ -121,19 +121,19 @@ tileset/building/decoration/floor_sparkle.png	*	9:10:11
 tileset/building/decoration/floor_sparkle.png	*	12:13:14
 tileset/building/decoration/floor_sparkle.png	*	15:16:17
 
-tileset/ground/fire/fire_small.png	0	0:0:1:1:2:2:1:1
+tileset/ground/fire/fire_small.png	0@1000	0:1:2:1
 tileset/ground/fire/fire_small.png	1	0:0:1:1:2:2:1:1
 tileset/ground/fire/fire_small.png	2	0:0:1:1:2:2:1:1
 tileset/ground/fire/fire_small.png	3	3:3:4:4:5:5:4:4
 tileset/ground/fire/fire_small.png	4	3:3:4:4:5:5:4:4
 tileset/ground/fire/fire_small.png	5	3:3:4:4:5:5:4:4
 
-tileset/ground/fire/fire.png	0	0:0:9:9:18:18:9:9
-tileset/ground/fire/fire.png	9	0:0:9:9:18:18:9:9
-tileset/ground/fire/fire.png	18	0:0:9:9:18:18:9:9
-tileset/ground/fire/fire.png	1	1:1:10:10:19:19:10:10
-tileset/ground/fire/fire.png	10	1:1:10:10:19:19:10:10
-tileset/ground/fire/fire.png	19	1:1:10:10:19:19:10:10
+tileset/ground/fire/fire.png	0@1000	0:9:18:9
+tileset/ground/fire/fire.png	9@1000	0:9:18:9
+tileset/ground/fire/fire.png	18@1000	0:9:18:9
+tileset/ground/fire/fire.png	1@1000	1:10:19:10
+tileset/ground/fire/fire.png	10@1000	1:10:19:10
+tileset/ground/fire/fire.png	19@1000	1:10:19:10
 tileset/ground/fire/fire.png	2	2:2:11:11:20:20:11:11
 tileset/ground/fire/fire.png	11	2:2:11:11:20:20:11:11
 tileset/ground/fire/fire.png	20	2:2:11:11:20:20:11:11
@@ -160,6 +160,6 @@ tileset/item/furniture/light/dark_torch.png	1	1:3:5:3
 tileset/item/furniture/light/dark_torch.png	3	1:3:5:3
 tileset/item/furniture/light/dark_torch.png	5	1:3:5:3
 
-tileset/ground/water/water_bubbles.png  *       0:1
+tileset/ground/water/water_bubbles.png	*	0:1
 
 tileset/ground/water/whirlpool.png	*	0:1:2:3
