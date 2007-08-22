@@ -194,43 +194,43 @@ public class SevenCherubs extends AbstractQuest {
 		SpeakerNPC npc;
 
 		zone = world.getZone("0_semos_village_w");
-		npc = new CherubNPC("Cherubiel", 48, 59);
+		npc = new CherubNPC("Cherubiel", 48, 60);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_nalwor_city");
-		npc = new CherubNPC("Gabriel", 105, 16);
+		npc = new CherubNPC("Gabriel", 105, 17);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_orril_river_s");
-		npc = new CherubNPC("Ophaniel", 105, 78);
+		npc = new CherubNPC("Ophaniel", 105, 79);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_orril_river_s_w2");
-		npc = new CherubNPC("Raphael", 95, 29);
+		npc = new CherubNPC("Raphael", 95, 30);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_orril_mountain_w2");
-		npc = new CherubNPC("Uriel", 47, 26);
+		npc = new CherubNPC("Uriel", 47, 27);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_semos_mountain_n2_w2");
-		npc = new CherubNPC("Zophiel", 16, 2);
+		npc = new CherubNPC("Zophiel", 16, 3);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
 
 		zone = world.getZone("0_ados_rock");
-		npc = new CherubNPC("Azazel", 67, 23);
+		npc = new CherubNPC("Azazel", 67, 24);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		zone.add(npc);
