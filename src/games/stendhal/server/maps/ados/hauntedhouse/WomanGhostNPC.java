@@ -39,8 +39,8 @@ public class WomanGhostNPC implements ZoneConfigurator {
 			protected void createPath() {
 				List<Node> nodes = new LinkedList<Node>();
 				nodes.add(new Node(3, 4));
-				nodes.add(new Node(16, 4));
-				nodes.add(new Node(16, 14));
+				nodes.add(new Node(13, 4));
+				nodes.add(new Node(13, 14));
 				nodes.add(new Node(3, 14));
 				nodes.add(new Node(3, 26));
 				nodes.add(new Node(11, 26));
