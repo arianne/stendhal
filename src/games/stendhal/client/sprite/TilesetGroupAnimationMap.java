@@ -72,15 +72,16 @@ public class TilesetGroupAnimationMap {
 	/**
 	 * Add a mapping of a tile index to animation frame indexes.
 	 *
-	 * <strong>NOTE: The array of frame indexes passed is not copied,
-	 * and should not be altered after this is called.</strong>
+	 * <strong>NOTE: The array of frame indexes/delays passed is not
+	 * copied, and should not be altered after this is called.</strong>
 	 *
 	 * @param	name		The name of the tileset.
 	 * @param	index		The tile index to map.
 	 * @param	frameIndexes	The indexes of frame tiles.
+	 * @param	frameDelays	The delays of frame tiles.
 	 */
-	public void add(final String name, final int index, final int [] frameIndexes) {
-		acquire(name).add(index, frameIndexes);
+	public void add(final String name, final int index, final int [] frameIndexes, int [] frameDelays) {
+		acquire(name).add(index, frameIndexes, frameDelays);
 	}
 
 
@@ -89,15 +90,16 @@ public class TilesetGroupAnimationMap {
 	 * For each frame, a mapping will be created with the remaining
 	 * indexes as it's frames (in order, starting with it's index).
 	 *
-	 * <strong>NOTE: The array of frame indexes passed is not copied,
-	 * and should not be altered after this is called.</strong>
+	 * <strong>NOTE: The array of frame indexes/delays passed is not
+	 * copied, and should not be altered after this is called.</strong>
 	 *
 	 * @param	name		The name of the tileset.
 	 * @param	index		The tile index to map.
 	 * @param	frameIndexes	The indexes of frame tiles.
+	 * @param	frameDelays	The delays of frame tiles.
 	 */
-	public void add(final String name, final int [] frameIndexes) {
-		acquire(name).add(frameIndexes);
+	public void add(final String name, final int [] frameIndexes, int [] frameDelays) {
+		acquire(name).add(frameIndexes, frameDelays);
 	}
 
 
@@ -109,6 +111,9 @@ public class TilesetGroupAnimationMap {
 	 * @see-also	#load(InputStream)
 	 */
 	protected void addConfig(final String line) {
+		int pos;
+		int defaultDelay;
+
 		StringTokenizer st = new StringTokenizer(line, " \t");
 
 		/*
@@ -131,6 +136,21 @@ public class TilesetGroupAnimationMap {
 
 		String index = st.nextToken();
 
+		if((pos = index.indexOf('@')) != -1) {
+			String val = index.substring(pos + 1);
+			index = index.substring(0, pos);
+
+			try {
+				defaultDelay = Integer.parseInt(val);
+			} catch(NumberFormatException ex) {
+				logger.error("Invalid default delay: " + val);
+				return;
+			}
+	 	} else {
+			defaultDelay = TilesetAnimationMap.DEFAULT_DELAY;
+		}
+
+
 		/*
 		 * Frame indexes
 		 */
@@ -147,10 +167,33 @@ public class TilesetGroupAnimationMap {
 		st = new StringTokenizer(frames, ":");
 
 		int [] frameIndexes = new int[st.countTokens()];
+		int [] frameDelays = new int[frameIndexes.length];
 
 		for(int i = 0; i < frameIndexes.length; i++) {
+			String frameIndex = st.nextToken();
+
+			/*
+			 * Custom frame duration?
+			 */
+			if((pos = index.indexOf('@')) != -1) {
+				String val = frameIndex.substring(pos + 1);
+				frameIndex = frameIndex.substring(0, pos);
+
+				try {
+					frameDelays[i] = Integer.parseInt(val);
+				} catch(NumberFormatException ex) {
+					logger.error("Invalid delay #" + (i + 1) + ": " + line);
+					return;
+				}
+	 		} else {
+				frameDelays[i] = defaultDelay;
+			}
+
+			/*
+			 * Frame index
+			 */
 			try {
-				frameIndexes[i] = Integer.parseInt(st.nextToken());
+				frameIndexes[i] = Integer.parseInt(frameIndex);
 			} catch(NumberFormatException ex) {
 				logger.error("Invalid frame #" + (i + 1) + ": " + line);
 				return;
@@ -161,10 +204,10 @@ public class TilesetGroupAnimationMap {
 		 * Special '*' case for rotated frames?
 		 */
 		if(index.equals("*")) {
-			add(name, frameIndexes);
+			add(name, frameIndexes, frameDelays);
 		} else {
 			try {
-				add(name, Integer.parseInt(index), frameIndexes);
+				add(name, Integer.parseInt(index), frameIndexes, frameDelays);
 			} catch(NumberFormatException ex) {
 				logger.error("Invalid tile index: " + line);
 				return;
@@ -209,7 +252,11 @@ public class TilesetGroupAnimationMap {
 	 * <p>
 	 * Spaces may be any whitespace. The <em>index</em> may also be
 	 * <code>*</code>, which indicates that an entry should be added
-	 * using each frame as a mapped index.
+	 * using each frame as a mapped index. The mapped index or frame
+	 * index(s) maybe be appended by <code>@</code><em>delay</em>,
+	 * where <em>delay</em> is a value in milliseconds of for the
+	 * duration of the frame (or the default for all frames, if
+	 * specificed for mapped index).
 	 *
 	 * @param	in		The input stream.
 	 *

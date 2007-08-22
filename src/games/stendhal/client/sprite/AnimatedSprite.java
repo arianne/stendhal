@@ -29,7 +29,7 @@ public class AnimatedSprite implements Sprite {
 	/**
 	 * The [minimum] frame durations.
 	 */
-	protected long []	delays;
+	protected int []	delays;
 
 	/**
 	 * The current frame index.
@@ -123,7 +123,7 @@ public class AnimatedSprite implements Sprite {
 	 *				the delay is < 0.
 	 */
 	public AnimatedSprite(final Sprite [] frames, final long delay, final boolean animating, final Object reference) throws IllegalArgumentException {
-		this(frames, createDelays(delay, frames.length), animating, reference);
+		this(frames, createDelays((int) delay, frames.length), animating, reference);
 	}
 
 
@@ -143,7 +143,7 @@ public class AnimatedSprite implements Sprite {
 	 *				If less than one frame is given, or
 	 *				the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite [] frames, final long [] delays, final boolean animating, final Object reference) throws IllegalArgumentException {
+	public AnimatedSprite(final Sprite [] frames, final int [] delays, final boolean animating, final Object reference) throws IllegalArgumentException {
 		if(frames.length == 0) {
 			throw new IllegalArgumentException("Must have at least one frame");
 		}
@@ -156,7 +156,7 @@ public class AnimatedSprite implements Sprite {
 		 * Validate delay values
 		 */
 		for(int i = 0; i < delays.length; i++) {
-			if(delays[i] < 0L) {
+			if(delays[i] < 0) {
 				throw new IllegalArgumentException("Delay < 0");
 			}
 		}
@@ -195,8 +195,8 @@ public class AnimatedSprite implements Sprite {
 	 *
 	 * @return	An array of delays.
 	 */
-	protected static long [] createDelays(final long delay, final int count) {
-		long [] delays = new long[count];
+	protected static int [] createDelays(final int delay, final int count) {
+		int [] delays = new int[count];
 		Arrays.fill(delays, delay);
 
 		return delays;
@@ -211,7 +211,7 @@ public class AnimatedSprite implements Sprite {
 	 *
 	 * @return	The minimum delays for each frame (in ms).
 	 */
-	public long [] getDelays() {
+	public int [] getDelays() {
 		return delays;
 	}
 
