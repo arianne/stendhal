@@ -78,7 +78,7 @@ public class SpriteStore {
 	 *
 	 * @return	An animated sprite.
 	 */
-	public AnimatedSprite getAnimatedSprite(String ref, int row, int frameCount, double width, double height, long delay, boolean animating) {
+	public AnimatedSprite getAnimatedSprite(final String ref, final int row, final int frameCount, final double width, final double height, final int delay, final boolean animating) {
 		return getAnimatedSprite(getSprite(ref), row, frameCount, width, height, delay, animating);
 	}
 
@@ -100,7 +100,7 @@ public class SpriteStore {
 	 *
 	 * @return	An animated sprite.
 	 */
-	public AnimatedSprite getAnimatedSprite(Sprite sprite, int row, int frameCount, double width, double height, long delay, boolean animating) {
+	public AnimatedSprite getAnimatedSprite(final Sprite sprite, final int row, final int frameCount, final double width, final double height, final int delay, final boolean animating) {
 		return new AnimatedSprite(getSprites(sprite, row, frameCount, width, height), delay, animating);
 	}
 

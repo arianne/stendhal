@@ -299,7 +299,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 
 		frames[3] = frames[1];
 
-		return new AnimatedSprite(frames, 100L, false);
+		return new AnimatedSprite(frames, 100, false);
 	}
 
 

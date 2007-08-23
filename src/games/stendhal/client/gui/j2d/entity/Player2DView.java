@@ -43,7 +43,7 @@ public class Player2DView extends RPEntity2DView {
 
 
 	static {
-		awaySprite = SpriteStore.get().getAnimatedSprite("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0, 2000L, true);
+		awaySprite = SpriteStore.get().getAnimatedSprite("data/sprites/ideas/away.png", 0, 4, 1.0, 1.0, 2000, true);
 	}
 
 

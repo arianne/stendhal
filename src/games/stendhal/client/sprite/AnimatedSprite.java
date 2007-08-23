@@ -81,7 +81,7 @@ public class AnimatedSprite implements Sprite {
 	 *				If less than one frame is given, or
 	 *				the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite [] frames, final long delay) throws IllegalArgumentException {
+	public AnimatedSprite(final Sprite [] frames, final int delay) throws IllegalArgumentException {
 		this(frames, delay, true);
 	}
 
@@ -101,7 +101,7 @@ public class AnimatedSprite implements Sprite {
 	 *				If less than one frame is given, or
 	 *				the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite [] frames, final long delay, final boolean animating) throws IllegalArgumentException {
+	public AnimatedSprite(final Sprite [] frames, final int delay, final boolean animating) throws IllegalArgumentException {
 		this(frames, delay, true, null);
 	}
 
@@ -122,8 +122,8 @@ public class AnimatedSprite implements Sprite {
 	 *				If less than one frame is given, or
 	 *				the delay is < 0.
 	 */
-	public AnimatedSprite(final Sprite [] frames, final long delay, final boolean animating, final Object reference) throws IllegalArgumentException {
-		this(frames, createDelays((int) delay, frames.length), animating, reference);
+	public AnimatedSprite(final Sprite [] frames, final int delay, final boolean animating, final Object reference) throws IllegalArgumentException {
+		this(frames, createDelays(delay, frames.length), animating, reference);
 	}
 
 
