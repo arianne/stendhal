@@ -373,43 +373,43 @@
   <portal x="73" y="93" ref="pottery_entrance">
    <destination zone="int_nalwor_pottery" ref="entrance_left"/>
   </portal>
-  <portal x="73" y="105" ref="library_entrance">
+  <portal x="73" y="106" ref="library_entrance">
    <destination zone="int_nalwor_library" ref="entrance_left"/>
   </portal>
-  <portal x="88" y="105" ref="jail_entrance">
+  <portal x="88" y="106" ref="jail_entrance">
    <destination zone="int_nalwor_jail" ref="entrance"/>
   </portal>
-  <portal x="38" y="105" ref="inn_entrance_left">
+  <portal x="38" y="106" ref="inn_entrance_left">
    <destination zone="int_nalwor_inn" ref="entrance_left"/>
   </portal>
-  <portal x="46" y="105" ref="inn_entrance_right">
+  <portal x="46" y="106" ref="inn_entrance_right">
    <destination zone="int_nalwor_inn" ref="entrance_right"/>
   </portal>
-  <portal x="38" y="89" ref="postoffice_entrance">
+  <portal x="38" y="90" ref="postoffice_entrance">
    <destination zone="int_nalwor_postoffice" ref="entrance"/>
   </portal>
   <portal x="48" y="82" ref="flowershop_entrance">
    <destination zone="int_nalwor_flowershop" ref="entrance"/>
   </portal>
-  <portal x="59" y="105" ref="weaponshop_entrance">
+  <portal x="59" y="106" ref="weaponshop_entrance">
    <destination zone="int_nalwor_weaponshop" ref="entrance"/>
   </portal>
-  <portal x="38" y="58" ref="royal_entrance">
+  <portal x="38" y="59" ref="royal_entrance">
    <destination zone="int_nalwor_royal_hall" ref="entrance"/>
   </portal>
-  <portal x="36" y="81" ref="house1_entrance">
+  <portal x="36" y="82" ref="house1_entrance">
    <destination zone="int_nalwor_house1" ref="entrance"/>
   </portal>
-  <portal x="79" y="81" ref="house2_entrance">
+  <portal x="79" y="82" ref="house2_entrance">
    <destination zone="int_nalwor_house2" ref="entrance"/>
   </portal>
-  <portal x="59" y="95" ref="house3_entrance">
+  <portal x="59" y="96" ref="house3_entrance">
    <destination zone="int_nalwor_house3" ref="entrance"/>
   </portal>
   <portal x="62" y="85" ref="tower_entrance">
    <destination zone="int_nalwor_tower_0" ref="entrance"/>
   </portal> 
-  <portal x="84" y="81" ref="house4_entrance">
+  <portal x="84" y="82" ref="house4_entrance">
    <destination zone="int_nalwor_house4" ref="entrance"/>
   </portal>
   <portal x="79" y="70" ref="bank_entrance_left">
