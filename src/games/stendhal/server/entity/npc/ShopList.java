@@ -189,11 +189,20 @@ public class ShopList {
                 shops.add("buyaxe", "chaos_axe", 10000);
                 shops.add("buyaxe", "black_halberd", 12000);
 
-                // buy chaos items (scared dwarf)
+                // buy chaos items (scared dwarf, after quest)
                 shops.add("buychaos", "chaos_legs", 8000);
                 shops.add("buychaos", "chaos_sword", 12000);
 		shops.add("buychaos", "chaos_shield", 15000);
 		shops.add("buychaos", "chaos_armor", 20000);
+
+               // buy elvish items (albino elf, after quest)
+                shops.add("buyelvish", "elvish_boots", 300);
+                shops.add("buyelvish", "elvish_legs", 300);
+                shops.add("buyelvish", "elvish_sword", 800);
+                shops.add("buyelvish", "drow_sword", 1200);
+		shops.add("buyelvish", "elvish_cloak", 400);
+		shops.add("buyelvish", "elvish_armor", 400);
+
 	}
 
 	private static ShopList instance;
