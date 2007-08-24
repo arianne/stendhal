@@ -641,6 +641,7 @@ black halberd     12000
 </zone>
 
 <zone name="int_fado_elf_hut_2" file="interiors/fado/elf_hut_2.tmx">
+ <configurator class-name="games.stendhal.server.maps.fado.forest.CraftsmanNPC" />
   <portal x="9" y="19" ref="entrance">
    <destination zone="0_fado_forest_s_e2" ref="hut2_entrance"/>
   </portal>
