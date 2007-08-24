@@ -1370,7 +1370,7 @@ public class Player extends RPEntity {
 	}
 	public void removeImmunity() {
 		isImmune = false;
-		sendPrivateText("you are not immune anymore");
+		sendPrivateText("You are not immune from poison anymore.");
 	}
 
 	public void consume(int turn) {
