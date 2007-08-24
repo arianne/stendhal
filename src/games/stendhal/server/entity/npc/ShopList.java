@@ -46,7 +46,7 @@ public class ShopList {
 		shops.add("scrolls", "empty_scroll", 1200);
 
 		shops.add("fadoscrolls", "fado_city_scroll", 600);
-		shops.add("fadoscrolls", "empty_scroll", 1200);
+		shops.add("fadoscrolls", "empty_scroll", 1400);
 
 		shops.add("nalworscrolls", "nalwor_city_scroll", 400);
 		shops.add("nalworscrolls", "empty_scroll", 1200);
