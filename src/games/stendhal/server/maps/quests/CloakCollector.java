@@ -136,13 +136,12 @@ public class CloakCollector extends AbstractQuest {
 
 		// player is not willing to help
 		npc.add(ConversationStates.QUEST_OFFERED, "no", null,
-				ConversationStates.QUEST_OFFERED, null,
+				ConversationStates.IDLE, null,
 				new SpeakerNPC.ChatAction() {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine.say("Oh ... you're not very friendly");
-						player.setQuest("cloaks_collector", "");
+						engine.say("Oh ... you're not very friendly. Bye then.");
 						player.addKarma(-5.0);
 					}
 				});
@@ -246,6 +245,7 @@ public class CloakCollector extends AbstractQuest {
 										player.setQuest("cloaks_collector",
 												"done");
 										player.notifyWorldAboutChanges();
+										engine.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
 									engine

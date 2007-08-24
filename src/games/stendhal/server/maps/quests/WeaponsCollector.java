@@ -206,6 +206,7 @@ public class WeaponsCollector extends AbstractQuest {
 										player.setQuest("weapons_collector",
 												"done");
 										player.notifyWorldAboutChanges();
+										engine.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
 									engine

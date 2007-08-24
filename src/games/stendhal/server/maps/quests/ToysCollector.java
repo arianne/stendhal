@@ -188,6 +188,7 @@ public class ToysCollector extends AbstractQuest {
 										player.setQuest("toys_collector",
 												"done");
 										player.notifyWorldAboutChanges();
+										engine.setCurrentState(ConversationStates.ATTENDING);
 									}
 								} else {
 									engine
