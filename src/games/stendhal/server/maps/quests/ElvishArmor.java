@@ -19,13 +19,13 @@ import java.util.List;
  *
  * STEPS: - Lupos wants to see every piece of elvish equipment you can bring him
  *
- * REWARD: - XX? - 20000 XP - ability to sell elvish stuff
+ * REWARD: - 10000 XP - 15 Karma - ability to sell elvish stuff and also drow sword
  *
  * REPETITIONS: - None.
  */
 public class ElvishArmor extends AbstractQuest {
 
-	private static final List<String> NEEDEDITEMS = Arrays.asList("elvish_armor", "elvish_legs", "elvish_boots", "elvish_sword", "elvish_cloak", "drow_sword");
+	private static final List<String> NEEDEDITEMS = Arrays.asList("elvish_armor", "elvish_legs", "elvish_boots", "elvish_sword", "elvish_cloak");
 
 	/**
 	 * Returns a list of the names of all items that the given player still has
@@ -185,7 +185,7 @@ public class ElvishArmor extends AbstractQuest {
 									    //			.getName());
 									//	player.equip(blackitem, true);
 										player.addKarma(10.0);
-										player.addXP(20000);
+										player.addXP(10000);
 										engine
 												.say("I will study these! The albino elves owe you a debt of thanks.");
 										player.setQuest("elvish_armor",
@@ -281,8 +281,20 @@ public class ElvishArmor extends AbstractQuest {
 					}
 				}, ConversationStates.QUESTION_1,
 				"As you already know, I seek elvish #equipment.", null);
-	}
+	
 
+	// player returns when the quest is in progress and says offer
+		npc.add(ConversationStates.ATTENDING, ConversationPhrases.OFFER_MESSAGES,
+				new SpeakerNPC.ChatCondition() {
+					@Override
+					public boolean fire(Player player, String text,
+							SpeakerNPC engine) {
+						return player.hasQuest("elvish_armor")
+								&& !player.isQuestCompleted("elvish_armor");
+					}
+				}, ConversationStates.ATTENDING,
+				"I don't think I trust you well enough yet ... ", null);
+	}
 	@Override
 	public void addToWorld() {
 		super.addToWorld();
