@@ -160,10 +160,7 @@ public class DailyItemQuest extends AbstractQuest {
 				player.setQuest("daily_item", "done" + ";" + questLast + ";"
 						+ questCount);
 			} else {
-				engine
-						.say("You didn't fetch a "
-								+ Grammar.a_noun(questKill)
-								+ " yet. Go and get it and say #complete only once you're done.");
+				engine.say("You didn't fetch " + Grammar.a_noun(questKill) + " yet. Go and get it and say #complete only once you're done.");
 			}
 		}
 	}
