@@ -171,6 +171,25 @@ Southeast: Farmhouse
 
  <zone name="0_semos_village_w" level="0" x="500000" y="500000" file="Level 0/semos/village_w.tmx">
   <configurator class-name="games.stendhal.server.maps.semos.village.SheepSellerNPC" />
+
+  <entity x="26" y="41">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <parameter name="text">
+NISHIYA'S SHEEP FARM
+
+Buy sheep from Nishiya to get the best prices!
+    </parameter>
+   </implementation>
+  </entity>
+
+  <entity x="43" y="40">
+   <implementation class-name="games.stendhal.server.entity.Sign">
+    <parameter name="text">
+Talk to Sato about selling your sheep. His prices aren't very good, but unfortunately it's a buyer's market... He pays more for bigger sheep (try to get a weight of at least 100).
+    </parameter>
+   </implementation>
+  </entity>
+
   <entity x="23" y="61">
    <implementation class-name="games.stendhal.server.entity.Sign">
     <parameter name="text">

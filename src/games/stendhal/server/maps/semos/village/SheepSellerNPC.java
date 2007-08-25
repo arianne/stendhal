@@ -32,19 +32,6 @@ public class SheepSellerNPC implements ZoneConfigurator {
 	}
 
 	private void buildSemosVillageArea(StendhalRPZone zone) {
-		// TODO: move these signs to semos.xml
-		Sign sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setPosition(26, 41);
-		sign.setText("NISHIYA'S SHEEP FARM\n\nBuy sheep from Nishiya to get the best prices!");
-		zone.add(sign);
-
-		sign = new Sign();
-		zone.assignRPObjectID(sign);
-		sign.setPosition(43, 40);
-		sign.setText("Talk to Sato about selling your sheep. His prices aren't very good, but unfortunately it's a buyer's market... He pays more for bigger sheep; try to get a weight of at least 100.");
-		zone.add(sign);
-
 		SpeakerNPC npc = new SpeakerNPC("Nishiya") {
 			@Override
 			protected void createPath() {
