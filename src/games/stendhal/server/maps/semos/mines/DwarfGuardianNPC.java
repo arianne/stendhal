@@ -43,9 +43,9 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 							SpeakerNPC engine) {
 						String reply = "There is something huge there! Everyone is very nervous. ";
 						if (player.getLevel() < 60) {
-							reply += " You are too weak to enter there.";
+							reply += "You are too weak to enter there.";
 						} else {
-							reply += " Be careful.";
+							reply += "Be careful.";
 						}
 						engine.say(reply);
 					}
