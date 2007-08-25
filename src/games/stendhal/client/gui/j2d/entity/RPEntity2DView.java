@@ -391,7 +391,7 @@ public abstract class RPEntity2DView extends ActiveEntity2DView {
 	protected void buildActions(final List<String> list) {
 		super.buildActions(list);
 
-		if (rpentity.isBeingAttacked()) {
+		if (rpentity.isBeingAttackedByUser()) {
 			list.add(ActionType.STOP_ATTACK.getRepresentation());
 		} else {
 			list.add(ActionType.ATTACK.getRepresentation());

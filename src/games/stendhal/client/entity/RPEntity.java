@@ -133,9 +133,9 @@ public abstract class RPEntity extends ActiveEntity {
 	protected RPEntity attackTarget;
 
 	/**
-	 * The last entity to attack this entity.
+	 * The entities attacking this entity.
 	 */
-	protected Entity lastAttacker;
+	protected List<Entity> attackers;
 
 	/**
 	 * The type of effect to show.
@@ -159,7 +159,7 @@ public abstract class RPEntity extends ActiveEntity {
 	RPEntity()  {
 		textIndicators = new LinkedList<TextIndicator>();
 		attackTarget = null;
-		lastAttacker = null;
+		attackers = new LinkedList<Entity>();
 	}
 
 
@@ -348,7 +348,17 @@ public abstract class RPEntity extends ActiveEntity {
 	}
 
 	public boolean isBeingAttacked() {
-		return (lastAttacker != null);
+		return !attackers.isEmpty();
+	}
+
+	public boolean isBeingAttackedByUser() {
+		User user = User.get();
+
+		if(user == null) {
+			return false;
+		}
+
+		return attackers.contains(user);
 	}
 
 	public boolean isBeingStruck() {
@@ -412,11 +422,8 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When attacker attacks this entity.
 	public void onAttacked(final Entity attacker) {
-		/*
-		 * Could keep track of all attackers, but right now we only
-		 * need one of them for onDeath() sake
-		 */
-		lastAttacker = attacker;
+		attackers.remove(attacker);
+		attackers.add(attacker);
 	}
 
 	// When this entity blocks the attack by attacker
@@ -542,9 +549,7 @@ public abstract class RPEntity extends ActiveEntity {
 
 	// When attacket stop attacking us
 	public void onStopAttacked(final Entity attacker) {
-		if (attacker == lastAttacker) {
-			lastAttacker = null;
-		}
+		attackers.remove(attacker);
 	}
 
 	// Called when entity says text
@@ -916,7 +921,7 @@ public abstract class RPEntity extends ActiveEntity {
 				}
 
 				if(hp == 0) {
-					onDeath(lastAttacker);
+					onDeath(attackers.isEmpty() ? null : attackers.get(0));
 				}
 			}
 
