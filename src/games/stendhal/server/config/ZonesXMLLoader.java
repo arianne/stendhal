@@ -11,10 +11,11 @@ package games.stendhal.server.config;
 
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
-import games.stendhal.server.entity.Entity;
-import games.stendhal.server.entity.EntityFactoryHelper;
-import games.stendhal.server.entity.portal.Portal;
-import games.stendhal.server.maps.ZoneConfigurator;
+import games.stendhal.server.config.zone.ConfiguratorDescriptor;
+import games.stendhal.server.config.zone.EntitySetupDescriptor;
+import games.stendhal.server.config.zone.PortalSetupDescriptor;
+import games.stendhal.server.config.zone.SetupDescriptor;
+
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
 import games.stendhal.tools.tiled.StendhalMapStructure;
@@ -24,10 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -71,17 +70,17 @@ public class ZonesXMLLoader extends DefaultHandler {
 	/**
 	 * The current configurator descriptor.
 	 */
-	protected ConfiguratorDesc cdesc;
+	protected ConfiguratorDescriptor cdesc;
 
 	/**
 	 * The current entity descriptor.
 	 */
-	protected EntityDesc edesc;
+	protected EntitySetupDescriptor edesc;
 
 	/**
 	 * The current portal descriptor.
 	 */
-	protected PortalDesc pdesc;
+	protected PortalSetupDescriptor pdesc;
 
 	/**
 	 * The current entity attribute name.
@@ -203,10 +202,10 @@ public class ZonesXMLLoader extends DefaultHandler {
 					/*
 					 * Setup Descriptors
 					 */
-					Iterator<ZoneSetupDesc> diter = zdesc.getDescriptors();
+					Iterator<SetupDescriptor> diter = zdesc.getDescriptors();
 
 					while (diter.hasNext()) {
-						diter.next().doSetup(zone);
+						diter.next().setup(zone);
 					}
 				}
 			} catch (Exception ex) {
@@ -230,156 +229,12 @@ public class ZonesXMLLoader extends DefaultHandler {
 	}
 
 	/**
-	 * Configure a zone.
+	 * Load zone data and create a zone from it.
+	 * Most of this should be moved directly into ZoneXMLLoader.
 	 *
 	 *
 	 */
-	protected static void configureZone(StendhalRPZone zone,
-			ConfiguratorDesc cdesc) {
-		String className;
-		Class clazz;
-		Object obj;
-
-		className = cdesc.getClassName();
-
-		/*
-		 * Load class
-		 */
-		try {
-			clazz = Class.forName(className);
-		} catch (ClassNotFoundException ex) {
-			logger.error("Unable to find zone configurator: " + className);
-
-			return;
-		}
-
-		/*
-		 * Create instance
-		 */
-		try {
-			obj = clazz.newInstance();
-		} catch (InstantiationException ex) {
-			logger.error("Error creating zone configurator: " + className, ex);
-
-			return;
-		} catch (IllegalAccessException ex) {
-			logger.error("Error accessing zone configurator: " + className, ex);
-
-			return;
-		}
-
-		/*
-		 * Apply class
-		 */
-		if (obj instanceof ZoneConfigurator) {
-			logger.info("Configuring zone [" + zone.getID().getID()
-					+ "] with: " + className);
-
-			((ZoneConfigurator) obj).configureZone(zone, cdesc.getParameters());
-		} else {
-			logger.warn("Unsupported zone configurator: " + className);
-		}
-	}
-
-	/**
-	 * Configure a portal.
-	 *
-	 *
-	 */
-	protected static void configurePortal(StendhalRPZone zone, PortalDesc pdesc) {
-		String className = pdesc.getImplementation();
-		Portal portal;
-		Object reference;
-
-		if (className == null) {
-			/*
-			 * Default implementation
-			 */
-			className = Portal.class.getName();
-		}
-
-		try {
-			portal = (Portal) EntityFactoryHelper.create(className, pdesc
-					.getParameters(), pdesc.getAttributes());
-			if (portal == null) {
-				logger.warn("Unable to create portal: " + className);
-
-				return;
-			}
-
-			zone.assignRPObjectID(portal);
-
-			portal.setPosition(pdesc.getX(), pdesc.getY());
-			portal.setIdentifier(pdesc.getReference());
-			reference = pdesc.getDestinationReference();
-			if (reference != null) {
-				portal.setDestination(pdesc.getDestinationZone(), reference);
-			}
-
-			if (pdesc.isReplacing()) {
-				Portal oportal = zone.getPortal(pdesc.getX(), pdesc.getY());
-
-				if (oportal != null) {
-					logger.debug("Replacing portal: " + oportal);
-
-					zone.remove(oportal);
-				}
-			}
-
-			// Fix PortalBugs; blocked portals
-			if (zone.simpleCollides(portal, portal.getX(), portal.getY())) {
-				logger.warn("Unblocking blocked portal: " + portal);
-				zone.collisionMap.setCollide(portal.getArea(), false);
-			}
-
-			zone.add(portal);
-		} catch (IllegalArgumentException ex) {
-			logger.error("Error with portal factory", ex);
-		}
-	}
-
-	/**
-	 * Configure a generic entity.
-	 *
-	 *
-	 */
-	protected static void configureEntity(StendhalRPZone zone, EntityDesc edesc) {
-		String className = edesc.getImplementation();
-		Entity entity;
-
-		if (className == null) {
-			logger.error("Entity without factory at " + zone.getID().getID()
-					+ "[" + edesc.getX() + "," + edesc.getY() + "]");
-			return;
-		}
-
-		try {
-			entity = EntityFactoryHelper.create(className, edesc
-					.getParameters(), edesc.getAttributes());
-			if (entity == null) {
-				logger.warn("Unable to create entity: " + className);
-
-				return;
-			}
-
-			zone.assignRPObjectID(entity);
-
-			entity.setPosition(edesc.getX(), edesc.getY());
-
-			zone.add(entity);
-		} catch (IllegalArgumentException ex) {
-			logger.error("Error with entity factory", ex);
-		}
-	}
-
-	/**
-	 * Load zone data and create a zone from it. Most of this should be moved
-	 * directly into ZoneXMLLoader.
-	 *
-	 *
-	 */
-	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata)
-			throws SAXException, IOException {
+	protected StendhalRPZone load(ZoneDesc desc, StendhalMapStructure zonedata) throws SAXException, IOException {
 		String name = desc.getName();
 		StendhalRPZone zone = new StendhalRPZone(name);
 
@@ -418,8 +273,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	//
 
 	@Override
-	public void startElement(String namespaceURI, String lName, String qName,
-			Attributes attrs) {
+	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
 		String s;
 		int level;
 		int x;
@@ -493,7 +347,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			if (s == null) {
 				logger.warn("Configurator without class-name");
 			} else {
-				cdesc = new ConfiguratorDesc(s);
+				cdesc = new ConfiguratorDescriptor(s);
 				scope = SCOPE_CONFIGURATOR;
 			}
 		} else if (qName.equals("entity")) {
@@ -522,7 +376,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 				return;
 			}
 
-			edesc = new EntityDesc(x, y);
+			edesc = new EntitySetupDescriptor(x, y);
 			scope = SCOPE_ENTITY;
 		} else if (qName.equals("portal")) {
 			s = attrs.getValue("x");
@@ -564,7 +418,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 				reference = s;
 			}
 
-			pdesc = new PortalDesc(x, y, reference);
+			pdesc = new PortalSetupDescriptor(x, y, reference);
 			scope = SCOPE_PORTAL;
 			s = attrs.getValue("replacing");
 			if (s != null) {
@@ -737,7 +591,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 		protected int y;
 
-		protected ArrayList<ZoneSetupDesc> descriptors;
+		protected ArrayList<SetupDescriptor> descriptors;
 
 		public ZoneDesc(String name, String file, int level, int x, int y) {
 			this.name = name;
@@ -746,7 +600,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 			this.x = x;
 			this.y = y;
 
-			descriptors = new ArrayList<ZoneSetupDesc>();
+			descriptors = new ArrayList<SetupDescriptor>();
 		}
 
 		//
@@ -757,7 +611,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 * Add a setup descriptor.
 		 *
 		 */
-		public void addDescriptor(ZoneSetupDesc desc) {
+		public void addDescriptor(SetupDescriptor desc) {
 			descriptors.add(desc);
 		}
 
@@ -789,7 +643,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 * Get an iterator of setup descriptors.
 		 *
 		 */
-		public Iterator<ZoneSetupDesc> getDescriptors() {
+		public Iterator<SetupDescriptor> getDescriptors() {
 			return descriptors.iterator();
 		}
 
@@ -827,242 +681,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 		 */
 		public void setTitle(String title) {
 			this.title = title;
-		}
-	}
-
-	/**
-	 * A zone setup descriptor.
-	 */
-	protected abstract static class ZoneSetupDesc {
-
-		protected HashMap<String, String> parameters;
-
-		public ZoneSetupDesc() {
-			parameters = new HashMap<String, String>();
-		}
-
-		//
-		// ZoneSetupDesc
-		//
-
-		public abstract void doSetup(StendhalRPZone zone);
-
-		/**
-		 * Get the parameters.
-		 *
-		 */
-		public Map<String, String> getParameters() {
-			return parameters;
-		}
-
-		/**
-		 * Set a parameters.
-		 *
-		 */
-		public void setParameter(String name, String value) {
-			parameters.put(name, value);
-		}
-	}
-
-	/**
-	 * A zone configurator descriptor.
-	 */
-	protected static class ConfiguratorDesc extends ZoneSetupDesc {
-
-		protected String className;
-
-		public ConfiguratorDesc(String className) {
-			this.className = className;
-		}
-
-		//
-		//
-		//
-
-		/**
-		 * Get the class name.
-		 *
-		 */
-		public String getClassName() {
-			return className;
-		}
-
-		//
-		// ZoneSetupDesc
-		//
-
-		@Override
-		public void doSetup(StendhalRPZone zone) {
-			configureZone(zone, this);
-		}
-	}
-
-	/**
-	 * An entity descriptor.
-	 */
-	protected static class EntityDesc extends ZoneSetupDesc {
-
-		protected int x;
-
-		protected int y;
-
-		protected String className;
-
-		protected HashMap<String, String> attributes;
-
-		public EntityDesc(int x, int y) {
-			this.x = x;
-			this.y = y;
-
-			className = null;
-			attributes = new HashMap<String, String>();
-		}
-
-		//
-		//
-		//
-
-		/**
-		 * Get the attributes.
-		 *
-		 */
-		public Map<String, String> getAttributes() {
-			return attributes;
-		}
-
-		/**
-		 * Get the implementation class name.
-		 *
-		 */
-		public String getImplementation() {
-			return className;
-		}
-
-		/**
-		 * Get the X coordinate.
-		 *
-		 */
-		public int getX() {
-			return x;
-		}
-
-		/**
-		 * Get the Y coordinate.
-		 *
-		 */
-		public int getY() {
-			return y;
-		}
-
-		/**
-		 * Set an attribute.
-		 *
-		 */
-		public void setAttribute(String name, String value) {
-			attributes.put(name, value);
-		}
-
-		/**
-		 * Set the implementation class name.
-		 *
-		 */
-		public void setImplementation(String className) {
-			this.className = className;
-		}
-
-		//
-		// ZoneSetupDesc
-		//
-
-		@Override
-		public void doSetup(StendhalRPZone zone) {
-			configureEntity(zone, this);
-		}
-	}
-
-	/**
-	 * A portal descriptor.
-	 */
-	protected static class PortalDesc extends EntityDesc {
-
-		protected Object reference;
-
-		protected String destinationZone;
-
-		protected Object destinationReference;
-
-		protected boolean replacing;
-
-		public PortalDesc(int x, int y, Object reference) {
-			super(x, y);
-
-			this.reference = reference;
-
-			destinationZone = null;
-			destinationReference = null;
-			replacing = false;
-		}
-
-		//
-		//
-		//
-
-		/**
-		 * Get the destination reference.
-		 *
-		 */
-		public Object getDestinationReference() {
-			return destinationReference;
-		}
-
-		/**
-		 * Get the destination zone.
-		 *
-		 */
-		public String getDestinationZone() {
-			return destinationZone;
-		}
-
-		/**
-		 * Get the reference.
-		 *
-		 */
-		public Object getReference() {
-			return reference;
-		}
-
-		/**
-		 * Determine if existing portals are replaced.
-		 *
-		 */
-		public boolean isReplacing() {
-			return replacing;
-		}
-
-		/**
-		 * Set the destination zone/reference.
-		 *
-		 */
-		public void setDestination(String zone, Object reference) {
-			this.destinationZone = zone;
-			this.destinationReference = reference;
-		}
-
-		/**
-		 * Set whether to replace any existing portal.
-		 *
-		 */
-		public void setReplacing(boolean replacing) {
-			this.replacing = replacing;
-		}
-
-		//
-		// ZoneSetupDesc
-		//
-
-		@Override
-		public void doSetup(StendhalRPZone zone) {
-			configurePortal(zone, this);
 		}
 	}
 }
