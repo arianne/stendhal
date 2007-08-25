@@ -61,7 +61,7 @@ public class TellerNPC implements ZoneConfigurator {
 		npcs.add(bankNPC);
 		zone.assignRPObjectID(bankNPC);
 		bankNPC.put("class", "youngnpc");
-		bankNPC.set(15, 3);
+		bankNPC.setPosition(15, 3);
 		bankNPC.initHP(1000);
 		zone.add(bankNPC);
 	}

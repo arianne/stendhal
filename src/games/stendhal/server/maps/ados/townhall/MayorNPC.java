@@ -68,7 +68,7 @@ public class MayorNPC implements ZoneConfigurator {
 		npcs.add(mayor);
 		zone.assignRPObjectID(mayor);
 		mayor.put("class", "badmayornpc");
-		mayor.set(3, 10);
+		mayor.setPosition(3, 10);
 		mayor.initHP(100);
 		zone.add(mayor);
 	}

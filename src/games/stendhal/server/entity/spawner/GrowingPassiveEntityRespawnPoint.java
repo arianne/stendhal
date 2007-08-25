@@ -60,8 +60,7 @@ public abstract class GrowingPassiveEntityRespawnPoint extends
 		put("action_name", actionName);
 		put("max_ripeness", maxRipeness);
 
-		setWidth(width);
-		setHeight(height);
+		setSize(width, height);
 	}
 
 	public GrowingPassiveEntityRespawnPoint(RPObject object, String type,

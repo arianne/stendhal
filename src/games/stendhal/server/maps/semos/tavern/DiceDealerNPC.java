@@ -53,8 +53,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(ricardo);
 
 		ricardo.put("class", "naughtyteen2npc");
-		ricardo.setX(28);
-		ricardo.setY(4);
+		ricardo.setPosition(28, 4);
 		ricardo.setDirection(Direction.LEFT);
 		ricardo.initHP(100);
 		Rectangle tableArea = new Rectangle(25, 4, 2, 3);

@@ -68,7 +68,7 @@ public class JesterNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "magic_jesternpc");
-		npc.set(8, 57);
+		npc.setPosition(8, 57);
 		npc.initHP(100);
 		zone.add(npc);
 	}

@@ -66,7 +66,7 @@ public class WomanNPC implements ZoneConfigurator {
 		npcs.add(woman);
 		zone.assignRPObjectID(woman);
 		woman.put("class", "youngwomannpc");
-		woman.set(3, 4);
+		woman.setPosition(3, 4);
 		woman.initHP(100);
 		zone.add(woman);
 	}

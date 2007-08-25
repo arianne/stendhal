@@ -105,7 +105,7 @@ public class AnimalKeeperNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_007_npc");
-		npc.set(41, 40);
+		npc.setPosition(41, 40);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);

@@ -70,7 +70,7 @@ public class IL0_PostNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "postelfnpc");
-		npc.set(11, 3);
+		npc.setPosition(11, 3);
 		npc.initHP(100);
 		zone.add(npc);
 	}

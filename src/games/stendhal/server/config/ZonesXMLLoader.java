@@ -309,7 +309,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			zone.assignRPObjectID(portal);
 
-			portal.set(pdesc.getX(), pdesc.getY());
+			portal.setPosition(pdesc.getX(), pdesc.getY());
 			portal.setIdentifier(pdesc.getReference());
 			reference = pdesc.getDestinationReference();
 			if (reference != null) {
@@ -364,7 +364,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 
 			zone.assignRPObjectID(entity);
 
-			entity.set(edesc.getX(), edesc.getY());
+			entity.setPosition(edesc.getX(), edesc.getY());
 
 			zone.add(entity);
 		} catch (IllegalArgumentException ex) {

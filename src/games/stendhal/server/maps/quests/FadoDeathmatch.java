@@ -67,8 +67,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		legs.put("def", "10");
 		legs
 				.setDescription("This is the grand prize for the Battle Arena winners.");
-		legs.setX(x);
-		legs.setY(y);
+		legs.setPosition(x, y);
 		legs.put("persistent", 1);
 		zone.add(legs);
 	}
@@ -152,7 +151,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		};
 
 		npc.put("class", "darkwizardnpc");
-		npc.set(x, y);
+		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);
@@ -202,7 +201,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 		};
 
 		npc1.put("class", "darkwizardnpc");
-		npc1.set(33, 41);
+		npc1.setPosition(33, 41);
 		npc1.setDirection(Direction.DOWN);
 		npc1.initHP(100);
 		npcs.add(npc1);

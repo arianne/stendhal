@@ -146,7 +146,7 @@ public abstract class ActiveEntity extends Entity {
 	}
 
 	private void move(int x, int y, int nx, int ny) {
-		set(nx, ny);
+		setPosition(nx, ny);
 		onMoved(x, y, nx, ny);
 	}
 

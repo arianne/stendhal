@@ -23,8 +23,7 @@ public class CommonChest implements ZoneConfigurator {
 
 		Chest chest = new Chest();
 		zone.assignRPObjectID(chest);
-		chest.setX(44);
-		chest.setY(60);
+		chest.setPosition(44, 60);
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("knife"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("wooden_shield"));
 		chest.add(StendhalRPWorld.get().getRuleManager().getEntityManager().getItem("leather_armor"));

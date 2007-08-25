@@ -212,22 +212,14 @@ class DestinationObject extends MoveableObject {
 
 			RPSlot rpslot = parent.getSlot(slot);
 
-			if (entity.has("x")) {
-				logger.debug("Equipped item had x. Removing");
+			if (entity.has("x") || entity.has("y")) {
+				logger.debug("Equipped item had x/y. Removing");
 				/*
 				 * TODO: Hack! I need to set them to 0,0 so they notice the
 				 * update
 				 */
-				entity.set(0, 0);
+				entity.setPosition(0, 0);
 				entity.remove("x");
-			}
-			if (entity.has("y")) {
-				logger.debug("Equipped item had y. Removing");
-				/*
-				 * TODO: Hack! I need to set them to 0,0 so they notice the
-				 * update
-				 */
-				entity.set(0, 0);
 				entity.remove("y");
 			}
 
@@ -270,8 +262,7 @@ class DestinationObject extends MoveableObject {
 				entity.remove("#db_id");
 			}
 
-			entity.setX(x);
-			entity.setY(y);
+			entity.setPosition(x, y);
 			logger.debug("entity set to " + x + "x" + y);
 
 			zone.assignRPObjectID(entity);

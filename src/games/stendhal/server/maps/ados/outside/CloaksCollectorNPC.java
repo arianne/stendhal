@@ -71,7 +71,7 @@ public class CloaksCollectorNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "beardmannpc");
-		npc.set(4, 47);
+		npc.setPosition(4, 47);
 		npc.initHP(100);
 		zone.add(npc);
 	}

@@ -72,7 +72,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_004_npc");
-		npc.set(8, 27);
+		npc.setPosition(8, 27);
 		npc.initHP(100);
 		zone.add(npc);
 	}

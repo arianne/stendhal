@@ -122,10 +122,8 @@ public class PlinksToy extends AbstractQuest {
 		PassiveEntityRespawnPoint teddyRespawner = new PassiveEntityRespawnPoint(
 				"teddy", 1500);
 		zone.assignRPObjectID(teddyRespawner);
-		teddyRespawner.setX(107);
-		teddyRespawner.setY(84);
-		teddyRespawner
-				.setDescription("There's a teddy-bear-shaped depression in the sand here.");
+		teddyRespawner.setPosition(107, 84);
+		teddyRespawner.setDescription("There's a teddy-bear-shaped depression in the sand here.");
 		teddyRespawner.setToFullGrowth();
 		zone.add(teddyRespawner);
 

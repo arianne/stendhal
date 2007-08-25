@@ -42,7 +42,7 @@ public class WeaponsCollectorNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "oldwizardnpc");
-		npc.set(16, 8);
+		npc.setPosition(16, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);

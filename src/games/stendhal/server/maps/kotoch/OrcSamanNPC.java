@@ -60,7 +60,7 @@ public class OrcSamanNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "orcsamannpc");
-		npc.set(8, 113);
+		npc.setPosition(8, 113);
 		npc.initHP(100);
 		zone.add(npc);
 	}

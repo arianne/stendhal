@@ -78,7 +78,7 @@ public class GoldProspectorNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(bill);
 		bill.put("class", "oldcowboynpc");
-		bill.set(105, 58);
+		bill.setPosition(105, 58);
 		bill.setDirection(Direction.DOWN);
 		bill.initHP(100);
 		zone.add(bill);

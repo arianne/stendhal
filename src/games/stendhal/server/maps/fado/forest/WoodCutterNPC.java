@@ -74,7 +74,7 @@ public class WoodCutterNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woodcutternpc");
-		npc.set(55, 84);
+		npc.setPosition(55, 84);
 		npc.initHP(100);
 		zone.add(npc);
 	}

@@ -94,7 +94,7 @@ public class GoldsmithNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(goldsmith);
 		goldsmith.put("class", "goldsmithnpc");
 		goldsmith.setDirection(Direction.DOWN);
-		goldsmith.set(18, 3);
+		goldsmith.setPosition(18, 3);
 		goldsmith.initHP(100);
 		zone.add(goldsmith);
 	}

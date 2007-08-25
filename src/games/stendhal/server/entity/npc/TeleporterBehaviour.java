@@ -97,7 +97,7 @@ public class TeleporterBehaviour implements TurnListener {
 			y = Rand.rand(zone.getHeight() - 5) + 2;
 			if (!zone.collides(x, y) && !zone.collides(x, y + 1)) {
 				zone.assignRPObjectID(speakerNPC);
-				speakerNPC.set(x, y);
+				speakerNPC.setPosition(x, y);
 				speakerNPC.setDirection(Direction.RIGHT);
 
 				zone.add(speakerNPC);

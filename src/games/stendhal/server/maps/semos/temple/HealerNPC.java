@@ -53,7 +53,7 @@ public class HealerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "welcomernpc");
-		npc.set(9, 6);
+		npc.setPosition(9, 6);
 		npc.initHP(100);
 		zone.add(npc);
 	}

@@ -35,15 +35,13 @@ public class SheepSellerNPC implements ZoneConfigurator {
 		// TODO: move these signs to semos.xml
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setX(26);
-		sign.setY(41);
+		sign.setPosition(26, 41);
 		sign.setText("NISHIYA'S SHEEP FARM\n\nBuy sheep from Nishiya to get the best prices!");
 		zone.add(sign);
 
 		sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setX(43);
-		sign.setY(40);
+		sign.setPosition(43, 40);
 		sign.setText("Talk to Sato about selling your sheep. His prices aren't very good, but unfortunately it's a buyer's market... He pays more for bigger sheep; try to get a weight of at least 100.");
 		zone.add(sign);
 
@@ -81,8 +79,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 							Sheep sheep = new Sheep(player);
 							zone.assignRPObjectID(sheep);
 
-							sheep.setX(seller.getX());
-							sheep.setY(seller.getY() + 2);
+							sheep.setPosition(seller.getX(), seller.getY() + 1);
 
 							StendhalRPWorld.get().add(sheep);
 
@@ -119,7 +116,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "sellernpc");
-		npc.set(33, 45);
+		npc.setPosition(33, 45);
 		npc.initHP(100);
 		zone.add(npc);
 	}

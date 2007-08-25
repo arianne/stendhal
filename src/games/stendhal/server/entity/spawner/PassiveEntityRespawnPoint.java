@@ -124,8 +124,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 			// create a new grown item
 			Item grownItem = world.getRuleManager().getEntityManager().getItem(growingItemName);
 			grownItem.setPlantGrower(this);
-			grownItem.setX(this.getX());
-			grownItem.setY(this.getY());
+			grownItem.setPosition(getX(), getY());
 
 			zone.assignRPObjectID(grownItem);
 			zone.add(grownItem);

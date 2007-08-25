@@ -495,8 +495,7 @@ public class StendhalRPAction {
 				origin.getLevel(), entity_x, entity_y, entity);
 
 		if (zone != null) {
-			entity.setX(entity_x - zone.getX());
-			entity.setY(entity_y - zone.getY());
+			entity.setPosition(entity_x - zone.getX(), entity_y - zone.getY());
 
 			logger.debug(entity.getTitle() + " pos would be (" + entity.getX()
 					+ "," + entity.getY() + ")");
@@ -604,8 +603,7 @@ public class StendhalRPAction {
 								if (!checkPath || !path.isEmpty()) {
 
 									// We found a place!
-									entity.setX(nx);
-									entity.setY(ny);
+									entity.setPosition(nx, ny);
 
 									found = true;
 									break outerLoop; // break all for-loops
@@ -621,8 +619,7 @@ public class StendhalRPAction {
 						+ y + ")");
 			}
 		} else {
-			entity.setX(x);
-			entity.setY(y);
+			entity.setPosition(x, y);
 
 			found = true;
 		}

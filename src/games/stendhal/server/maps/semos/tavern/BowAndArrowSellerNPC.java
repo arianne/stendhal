@@ -59,7 +59,7 @@ public class BowAndArrowSellerNPC implements ZoneConfigurator {
 		npcs.add(ouchit);
 		zone.assignRPObjectID(ouchit);
 		ouchit.put("class", "weaponsellernpc");
-		ouchit.set(21, 3);
+		ouchit.setPosition(21, 3);
 		ouchit.initHP(100);
 		zone.add(ouchit);
 	}

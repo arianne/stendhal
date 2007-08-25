@@ -64,7 +64,7 @@ public class PrincessNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "elfprincessnpc");
-		npc.set(17, 13);
+		npc.setPosition(17, 13);
 		npc.initHP(100);
 		zone.add(npc);
 	}

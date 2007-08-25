@@ -59,12 +59,12 @@ public class Blackjack extends AbstractQuest {
 				.getRuleManager().getEntityManager().getItem("cards");
 		zone.assignRPObjectID(playerCardsItem);
 		zone.add(playerCardsItem);
-		playerCardsItem.set(25, 38);
+		playerCardsItem.setPosition(25, 38);
 		bankCardsItem = (StackableItem) StendhalRPWorld.get().getRuleManager()
 				.getEntityManager().getItem("cards");
 		zone.assignRPObjectID(bankCardsItem);
 		zone.add(bankCardsItem);
-		bankCardsItem.set(27, 38);
+		bankCardsItem.setPosition(27, 38);
 
 		playerStands = false;
 		bankStands = false;
@@ -294,7 +294,7 @@ public class Blackjack extends AbstractQuest {
 
 		zone.assignRPObjectID(ramon);
 		ramon.put("class", "naughtyteen2npc");
-		ramon.set(26, 36);
+		ramon.setPosition(26, 36);
 		ramon.setDirection(Direction.DOWN);
 		ramon.initHP(100);
 		zone.add(ramon);

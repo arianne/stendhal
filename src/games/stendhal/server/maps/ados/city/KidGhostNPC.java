@@ -96,7 +96,7 @@ public class KidGhostNPC implements ZoneConfigurator {
 		ghost.put("class", "kid7npc");
 		// He is a ghost so he is see through
 		ghost.setVisibility(50);
-		ghost.set(34, 121);
+		ghost.setPosition(34, 121);
 		// He has low HP
 		ghost.initHP(30);
 		zone.add(ghost);

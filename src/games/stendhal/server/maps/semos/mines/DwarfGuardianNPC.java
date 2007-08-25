@@ -66,7 +66,7 @@ public class DwarfGuardianNPC implements ZoneConfigurator {
 			}
 		});
 		npc.put("class", "dwarf_guardiannpc");
-		npc.set(118, 26);
+		npc.setPosition(118, 26);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(25);
 		zone.add(npc);

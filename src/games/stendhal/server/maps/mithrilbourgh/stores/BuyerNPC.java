@@ -74,20 +74,20 @@ public class BuyerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "recruiter3npc");
-		npc.set(10, 4);
+		npc.setPosition(10, 4);
 		npc.initHP(100);
 		zone.add(npc);
 
 		// Add a book with the shop offers
 		Sign book = new Sign();
 		zone.assignRPObjectID(book);
-		book.set(12, 3);
+		book.setPosition(12, 3);
 		book.setText(" -- Buying -- \n steel_boots\t 1000\n golden_boots\t 1500\n shadow_boots\t 2000\n stone_boots\t 2500\n chaos_boots\t 4000");
 		book.setClass("book_blue");
 		zone.add(book);
 		Sign book2 = new Sign();
 		zone.assignRPObjectID(book2);
-		book2.set(13, 4);
+		book2.setPosition(13, 4);
 		book2.setText(" -- Buying -- \n golden_helmet\t 3000\n shadow_helmet\t 4000\n horned_golden_helmet 5000\n chaos_helmet\t 6000\n magic_chain_helmet\t 8000\n black_helmet\t 10000");
 		book2.setClass("book_red");
 		zone.add(book2);

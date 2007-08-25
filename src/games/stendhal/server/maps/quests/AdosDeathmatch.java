@@ -65,8 +65,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		helmet.put("def", "20");
 		helmet
 				.setDescription("This is the grand prize for Deathmatch winners.");
-		helmet.setX(x);
-		helmet.setY(y);
+		helmet.setPosition(x, y);
 		helmet.put("persistent", 1);
 		zone.add(helmet);
 	}
@@ -149,7 +148,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 		};
 
 		npc.put("class", "darkwizardnpc");
-		npc.set(x, y);
+		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		npcs.add(npc);

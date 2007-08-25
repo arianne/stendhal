@@ -685,7 +685,7 @@ public abstract class RPEntity extends GuidedEntity {
 
 		if (zone.getBlood(bx, by) == null) {
 			Blood blood = new Blood();
-			blood.set(bx, by);
+			blood.setPosition(bx, by);
 
 			zone.assignRPObjectID(blood);
 			zone.add(blood);
@@ -1057,8 +1057,7 @@ public abstract class RPEntity extends GuidedEntity {
 		if (putOnGroundIfItCannotEquiped) {
 			StendhalRPZone zone = getZone();
 			zone.assignRPObjectID(item);
-			item.setX(getX());
-			item.setY(getY());
+			item.setPosition(getX(), getY());
 			zone.add(item);
 			return true;
 		}

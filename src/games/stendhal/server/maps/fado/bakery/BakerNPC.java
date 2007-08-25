@@ -106,7 +106,7 @@ public class BakerNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(baker);
 		baker.put("class", "bakernpc");
 		baker.setDirection(Direction.DOWN);
-		baker.set(15, 3);
+		baker.setPosition(15, 3);
 		baker.initHP(1000);
 		zone.add(baker);
 	}

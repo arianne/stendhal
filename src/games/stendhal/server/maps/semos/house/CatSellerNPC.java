@@ -67,8 +67,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 							Cat cat = new Cat(player);
 							zone.assignRPObjectID(cat);
 
-							cat.setX(seller.getX());
-							cat.setY(seller.getY() + 2);
+							cat.setPosition(seller.getX(), seller.getY() + 1);
 
 							StendhalRPWorld.get().add(cat);
 
@@ -105,7 +104,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "woman_009_npc");
-		npc.set(7, 8);
+		npc.setPosition(7, 8);
 		npc.initHP(100);
 		zone.add(npc);
 	}

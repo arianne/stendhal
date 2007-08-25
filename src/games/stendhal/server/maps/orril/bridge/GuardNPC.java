@@ -59,7 +59,7 @@ public class GuardNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "recruiter1npc");
-		npc.set(62, 105);
+		npc.setPosition(62, 105);
 		npc.initHP(100);
 		zone.add(npc);
 	}

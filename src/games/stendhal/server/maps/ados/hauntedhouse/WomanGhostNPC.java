@@ -72,7 +72,7 @@ public class WomanGhostNPC implements ZoneConfigurator {
 		woman.put("class", "woman_011_npc");
 		// She is a ghost so she is see through
 		woman.setVisibility(40);
-		woman.set(3, 4);
+		woman.setPosition(3, 4);
 		// She has low HP
 		woman.initHP(30);
 		zone.add(woman);

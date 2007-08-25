@@ -34,10 +34,8 @@ public abstract class AreaEntity extends Entity {
 		setRPClass("area");
 		put("type", "area");
 
-		setWidth(width);
-		setHeight(height);
-
-		setObstacle(false);
+		setSize(width, height);
+		setResistance(0);
 	}
 
 

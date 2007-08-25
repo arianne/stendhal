@@ -50,7 +50,7 @@ public class MayorNPC implements ZoneConfigurator {
 		};
 
 		npc.put("class", "mayornpc");
-		npc.set(13, 3);
+		npc.setPosition(13, 3);
 		npc.initHP(100);
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);

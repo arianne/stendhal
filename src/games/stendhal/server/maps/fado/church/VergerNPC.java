@@ -56,7 +56,7 @@ public class VergerNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "vergernpc");
-		npc.set(22, 9);
+		npc.setPosition(22, 9);
 		npc.initHP(100);
 		zone.add(npc);
 	}

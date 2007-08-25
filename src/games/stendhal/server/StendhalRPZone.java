@@ -281,8 +281,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 
 	public void placeObjectAtEntryPoint(Entity object) {
 		if (entryPoint != null) {
-			object.setX(entryPoint.x);
-			object.setY(entryPoint.y);
+			object.setPosition(entryPoint.x, entryPoint.y);
 		}
 	}
 
@@ -450,8 +449,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 			} else if (clazz.contains("sheep.png")) {
 				Sheep sheep = new Sheep();
 				assignRPObjectID(sheep);
-				sheep.setX(x);
-				sheep.setY(y);
+				sheep.setPosition(x, y);
 				add(sheep);
 			} else if (clazz.contains("logic/creature")) {
 				// get the default EntityManager
@@ -568,8 +566,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 				}
 
 				assignRPObjectID(plantGrower);
-				plantGrower.setX(x);
-				plantGrower.setY(y);
+				plantGrower.setPosition(x, y);
 				add(plantGrower);
 
 				// full fruits on server restart
@@ -601,8 +598,7 @@ public class StendhalRPZone extends MarauroaRPZone {
 		}
 
 		assignRPObjectID(portal);
-		portal.setX(x);
-		portal.setY(y);
+		portal.setPosition(x, y);
 		assignPortalID(portal);
 		add(portal);
 

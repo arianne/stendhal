@@ -54,7 +54,7 @@ public class DwarfGuardNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "dwarfguardnpc");
-		npc.set(10, 23);
+		npc.setPosition(10, 23);
 		npc.initHP(100);
 		zone.add(npc);
 	}

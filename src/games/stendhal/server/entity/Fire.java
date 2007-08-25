@@ -24,10 +24,8 @@ public class Fire extends Entity implements UseListener {
 		setRPClass("fire");
 		put("type", "fire");
 
-		setWidth(width);
-		setHeight(height);
-
-		setObstacle(true);
+		setSize(width, height);
+		setResistance(100);
 	}
 
 	public boolean onUsed(RPEntity user) {

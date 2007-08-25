@@ -72,7 +72,7 @@ public class SevenCherubs extends AbstractQuest {
 			super(name);
 
 			put("class", "angelnpc");
-			set(x, y);
+			setPosition(x, y);
 			initHP(100);
 
 			List<Node> nodes = new LinkedList<Node>();

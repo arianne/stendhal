@@ -61,8 +61,7 @@ public class DisplaceAction implements ActionListener {
 							StendhalRPRuleProcessor.get()
 							        .addGameEvent(player.getName(), "displace", entity.get("type"));
 
-							entity.setX(x);
-							entity.setY(y);
+							entity.setPosition(x, y);
 							entity.notifyWorldAboutChanges();
 							if (entity instanceof Item) {
 								Item item = (Item) entity;

@@ -102,30 +102,48 @@ public abstract class Entity extends RPObject {
 	public Entity(RPObject object) {
 		super(object);
 
+		if (!has("x")) {
+			put("x", 0);
+		}
+
+		if (!has("y")) {
+			put("y", 0);
+		}
+
 		if (!has("width")) {
-			setWidth(1);
+			put("width", 1);
 		}
 
 		if (!has("height")) {
-			setHeight(1);
+			put("height", 1);
 		}
 
 		if (!has("resistance")) {
-			setResistance(100);
+			put("resistance", 100);
 		}
 
 		if (!has("visibility")) {
-			setVisibility(100);
+			put("visibility", 100);
 		}
 
 		update();
 	}
 
 	public Entity() {
+		put("x", 0);
+		put("y", 0);
+
+		x = 0;
+		y = 0;
+
+		put("width", 1);
+		put("height", 1);
+
+		width = 1;
+		height = 1;
+
 		setResistance(100);
 		setVisibility(100);
-		setWidth(1);
-		setHeight(1);
 	}
 
 	public void update() {
@@ -178,34 +196,6 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * Set the entity coordinates.
-	 *
-	 * @param x
-	 *            The X coordinate.
-	 * @param y
-	 *            The Y coordinate.
-	 */
-	public void set(final int x, final int y) {
-		setX(x);
-		setY(y);
-	}
-
-	/**
-	 * Set the entity X coordinate.
-	 *
-	 * @param x
-	 *            The X coordinate.
-	 */
-	public void setX(final int x) {
-		if ((x == this.x) && (x != 0)) {
-			return;
-		}
-
-		this.x = x;
-		put("x", x);
-	}
-
-	/**
 	 * Get the entity name.
 	 *
 	 * @return The entity's name, or <code>null</code> if undefined.
@@ -246,21 +236,6 @@ public abstract class Entity extends RPObject {
 	 */
 	public int getX() {
 		return x;
-	}
-
-	/**
-	 * Set the entity Y coordinate.
-	 *
-	 * @param y
-	 *            The Y coordinate.
-	 */
-	public void setY(final int y) {
-		if ((y == this.y) && (y != 0)) {
-			return;
-		}
-
-		this.y = y;
-		put("y", y);
 	}
 
 	/**
@@ -671,14 +646,23 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
-	 * Set the entity height.
+	 * Set the entity position.
 	 *
-	 * @param height
-	 *            The height (in world units).
+	 * @param x
+	 *            The x position (in world units).
+	 * @param y
+	 *            The y position (in world units).
 	 */
-	protected void setHeight(int height) {
-		this.height = height;
-		put("height", height);
+	public void setPosition(final int x, final int y) {
+		if(this.x != x) {
+			this.x = x;
+			put("x", x);
+		}
+
+		if(this.y != y) {
+			this.y = y;
+			put("y", y);
+		}
 	}
 
 	/**
@@ -693,6 +677,22 @@ public abstract class Entity extends RPObject {
 	}
 
 	/**
+	 * Set the entity size.
+	 *
+	 * @param width
+	 *            The width (in world units).
+	 * @param height
+	 *            The height (in world units).
+	 */
+	protected void setSize(final int width, final int height) {
+		this.width = width;
+		put("width", width);
+
+		this.height = height;
+		put("height", height);
+	}
+
+	/**
 	 * Set the entity's visibility.
 	 *
 	 * @param visibility
@@ -700,16 +700,5 @@ public abstract class Entity extends RPObject {
 	 */
 	public void setVisibility(final int visibility) {
 		put("visibility", visibility);
-	}
-
-	/**
-	 * Set the entity width.
-	 *
-	 * @param width
-	 *            The width (in world units).
-	 */
-	protected void setWidth(int width) {
-		this.width = width;
-		put("width", width);
 	}
 }

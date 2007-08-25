@@ -88,7 +88,7 @@ public class MoveAction implements ActionListener {
 						int y = entity.getY() + dir.getdy();
 
 						if (!zone.collides(entity, x, y)) {
-							entity.set(x, y);
+							entity.setPosition(x, y);
 							entity.notifyWorldAboutChanges();
 							player.onPush(entity);
 						}

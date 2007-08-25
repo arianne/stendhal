@@ -341,8 +341,7 @@ public class StendhalRPWorld extends RPWorld {
 	 */
 	public void createHouse(StendhalRPZone zone, int x, int y) throws Exception {
 		Portal door = new Portal();
-		door.setX(x);
-		door.setY(y);
+		door.setPosition(x, y);
 		Object dest = zone.assignPortalID(door);
 
 		String name = "int_" + zone.getID().getID() + "_house_" + dest;
@@ -354,8 +353,7 @@ public class StendhalRPWorld extends RPWorld {
 		StendhalRPZone house = addArea(name, "interiors/abstract/house_000.tmx");
 		Portal portal = new Portal();
 		portal.setDestination(zone.getID().getID(), dest);
-		portal.setX(7);
-		portal.setY(14);
+		portal.setPosition(7, 14);
 		portal.setIdentifier(Integer.valueOf(0));
 		house.assignRPObjectID(portal);
 		house.add(portal);

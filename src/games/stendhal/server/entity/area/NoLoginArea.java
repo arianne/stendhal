@@ -47,7 +47,7 @@ public class NoLoginArea extends AreaEntity implements LoginListener {
 		if (player.getZone().equals(this.getZone())) {
 			if (this.getArea().contains(player.getX(), player.getY())) {
 				logger.warn("Login in NoLoginArea, moving player to new location");
-				player.set(newX, newY);
+				player.setPosition(newX, newY);
 			}
 		}
 	}

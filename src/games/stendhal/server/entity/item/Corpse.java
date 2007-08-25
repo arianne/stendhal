@@ -78,8 +78,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 			height = 16;
 		}
 
-		setWidth(width);
-		setHeight(height);
+		setSize(width, height);
 	}
 
 	public Corpse(String clazz, int x, int y) {
@@ -89,8 +88,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 
 		decideSize(clazz);
 
-		setX(x);
-		setY(y);
+		setPosition(x, y);
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		stage = 0;
 		put("stage", stage);
@@ -153,8 +151,7 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		// TODO: decideSize() has been called, width/height are set.
 		// Center corpse area on victim area.
 		Rectangle2D rect = victim.getArea();
-		setX((int) Math.round(rect.getCenterX() - 1));
-		setY((int) Math.round(rect.getCenterY() - 1));
+		setPosition((int) Math.round(rect.getCenterX() - 1), (int) Math.round(rect.getCenterY() - 1));
 
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_STEP_TIMEOUT, this);
 		stage = 0;

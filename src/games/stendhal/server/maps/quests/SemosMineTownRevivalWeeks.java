@@ -156,7 +156,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "girlnpc");
-		npc.set(95, 120);
+		npc.setPosition(95, 120);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		// npc.setSpeed(1.0);
@@ -168,10 +168,8 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 				"0_semos_mountain_n2");
 		Sign sign = new Sign();
 		zone.assignRPObjectID(sign);
-		sign.setX(105);
-		sign.setY(114);
-		sign
-				.setText("Because of the missing guard rail it is too dangerous to enter the tower.");
+		sign.setPosition(105, 114);
+		sign.setText("Because of the missing guard rail it is too dangerous to enter the tower.");
 		zone.add(sign);
 	}
 

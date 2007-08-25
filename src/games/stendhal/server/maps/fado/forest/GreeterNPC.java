@@ -78,7 +78,7 @@ public class GreeterNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "albinoelf2npc");
-		npc.set(3, 11);
+		npc.setPosition(3, 11);
 		npc.initHP(100);
 		zone.add(npc);
 	}

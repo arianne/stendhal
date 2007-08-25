@@ -100,7 +100,7 @@ public class FishermansLicenseQuiz extends AbstractQuest {
 
 		zone.assignRPObjectID(fishOnTable);
 		zone.add(fishOnTable);
-		fishOnTable.set(7, 4);
+		fishOnTable.setPosition(7, 4);
 	}
 
 	private long remainingTimeToWait(Player player) {

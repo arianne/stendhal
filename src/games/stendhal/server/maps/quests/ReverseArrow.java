@@ -271,7 +271,7 @@ public class ReverseArrow extends AbstractQuest implements
 				.getEntityManager();
 		Token token = (Token) entityManager.getItem("token");
 		zone.assignRPObjectID(token);
-		token.set(x, y);
+		token.setPosition(x, y);
 		token.put("persistent", 1);
 		token.setTokenMoveListener(this);
 		zone.add(token);
@@ -350,7 +350,7 @@ public class ReverseArrow extends AbstractQuest implements
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "oldwizardnpc"); // TODO change outfit
-		npc.set(20, 8);
+		npc.setPosition(20, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
 		zone.add(npc);
@@ -362,8 +362,7 @@ public class ReverseArrow extends AbstractQuest implements
 		entranceZone = StendhalRPWorld.get().getZone(entranceZoneName);
 		door = new NotifyingDoor("housedoor");
 		entranceZone.assignRPObjectID(door);
-		door.setX(95);
-		door.setY(101);
+		door.setPosition(95, 101);
 		door.setIdentifier(new Integer((0)));
 		door.setDestination(ZONE_NAME, new Integer(0));
 		door.open();
@@ -371,18 +370,15 @@ public class ReverseArrow extends AbstractQuest implements
 
 		Portal exit = new Portal();
 		zone.assignRPObjectID(exit);
-		exit.setX(17);
-		exit.setY(20);
+		exit.setPosition(17, 20);
 		exit.setIdentifier(new Integer(0));
 		exit.setDestination(entranceZoneName, new Integer(0));
 		zone.add(exit);
 
 		Sign sign = new Sign();
 		entranceZone.assignRPObjectID(sign);
-		sign.setX(96);
-		sign.setY(102);
-		sign
-				.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
+		sign.setPosition(96, 102);
+		sign.setText("If the door is closed, you will have to wait a short time until the last player finishes his task.");
 		entranceZone.add(sign);
 	}
 

@@ -93,7 +93,7 @@ public class WizardNPC implements ZoneConfigurator {
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
 		npc.put("class", "wisemannpc");
-		npc.set(7, 2);
+		npc.setPosition(7, 2);
 		npc.initHP(100);
 		zone.add(npc);
 	}

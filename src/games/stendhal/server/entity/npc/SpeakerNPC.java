@@ -138,8 +138,7 @@ public class SpeakerNPC extends NPC {
 		createDialog();
 		put("title_type", "npc");
 
-		setWidth(1);
-		setHeight(1);
+		setSize(1, 1);
 	}
 
 	protected void createPath() {

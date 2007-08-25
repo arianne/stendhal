@@ -227,8 +227,7 @@ public class Player extends RPEntity {
 			put("title_type", "npc");
 		}
 
-		setWidth(1);
-		setHeight(1);
+		setSize(1, 1);
 
 		itemsToConsume = new LinkedList<ConsumableItem>();
 		poisonToConsume = new LinkedList<ConsumableItem>();

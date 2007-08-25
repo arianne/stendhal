@@ -71,7 +71,7 @@ public class WitchNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(npc);
 		npc.put("class", "witchnpc");
-		npc.set(24, 7);
+		npc.setPosition(24, 7);
 		npc.initHP(100);
 		zone.add(npc);
 	}

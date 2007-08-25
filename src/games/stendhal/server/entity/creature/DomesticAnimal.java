@@ -55,11 +55,8 @@ public abstract class DomesticAnimal extends Creature {
 		this.owner = owner;
 		put("title_type", "friend");
 
-		put("x", 0);
-		put("y", 0);
-
-		setWidth(1);
-		setHeight(1);
+		setPosition(0, 0);
+		setSize(1, 1);
 	}
 
 	/**
@@ -73,14 +70,6 @@ public abstract class DomesticAnimal extends Creature {
 
 		if (object.has("title_type")) {
 			put("title_type", object.get("title_type"));
-		}
-
-		if (!has("width")) {
-			setWidth(1);
-		}
-
-		if (!has("height")) {
-			setHeight(1);
 		}
 	}
 

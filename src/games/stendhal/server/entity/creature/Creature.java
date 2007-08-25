@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.entity.creature;
 
+import games.stendhal.common.Level;
 import games.stendhal.common.Rand;
 import games.stendhal.server.StendhalRPRuleProcessor;
 import games.stendhal.server.StendhalRPWorld;
@@ -128,8 +129,7 @@ public class Creature extends NPC {
 		this();
 
 		this.baseSpeed = copy.baseSpeed;
-		setWidth((int) copy.getWidth());
-		setHeight((int) copy.getHeight());
+		setSize((int) copy.getWidth(), (int) copy.getHeight());
 
 		/** Creatures created with this function will share their
 		 *  dropsItems with any other creature of that kind. If you want
@@ -217,8 +217,7 @@ public class Creature extends NPC {
 
 		this.baseSpeed = baseSpeed;
 
-		setWidth(width);
-		setHeight(height);
+		setSize(width, height);
 
 		/** Creatures created with this function will share their
 		 *  dropItems with any other creature of that kind. If you want
@@ -248,6 +247,10 @@ public class Creature extends NPC {
 		setHP(hp);
 
 		setLevel(level);
+
+		if(Level.getLevel(xp) != level) {
+			logger.debug("Wrong level for xp [" + name + "]: " + xp + " -> " + Level.getLevel(xp) + " (!" + level + ")");
+		}
 
 		update();
 
