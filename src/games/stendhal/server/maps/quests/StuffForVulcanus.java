@@ -80,17 +80,17 @@ public class StuffForVulcanus extends AbstractQuest {
 					@Override
 					public void fire(Player player, String text,
 							SpeakerNPC engine) {
-						engine
-								.say("I will need several things: "
-										+ REQUIRED_IRON
-										+ " iron, "
-										+ REQUIRED_WOOD
-										+ " wood logs, "
-										+ REQUIRED_GOLD_BAR
-										+ " gold bars and "
-										+ REQUIRED_GIANT_HEART
-										+ " giant hearts. Come back when you have them in the same #exact order!.");
+						engine.say("I will need several things: "
+							+ REQUIRED_IRON
+							+ " iron, "
+							+ REQUIRED_WOOD
+							+ " wood logs, "
+							+ REQUIRED_GOLD_BAR
+							+ " gold bars and "
+							+ REQUIRED_GIANT_HEART
+							+ " giant hearts. Come back when you have them in the same #exact order!");
 						player.setQuest(QUEST_SLOT, "start;0;0;0;0");
+
 					}
 				});
 		npc
@@ -225,10 +225,10 @@ public class StuffForVulcanus extends AbstractQuest {
 						}
 
 						if (player.hasKilled("giant") && !missingSomething) {
-							engine
-									.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
-											+ REQUIRED_TIME
-											+ " minutes and it will be ready");
+							engine.say("You've brought everything I need to make the immortal sword, and what is more, you are strong enough to handle it. Come back in "
+								+ REQUIRED_TIME
+								+ " minutes and it will be ready.");
+
 							player.setQuest(QUEST_SLOT, "forging;"
 									+ System.currentTimeMillis());
 						} else {
