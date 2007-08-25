@@ -27,9 +27,19 @@ public class AnimatedSprite implements Sprite {
 	protected boolean	animating;
 
 	/**
+	 * The amount of time passed in the cycle.
+	 */
+	protected int		cycleTime;
+
+	/**
 	 * The [minimum] frame durations.
 	 */
 	protected int []	delays;
+
+	/**
+	 * The total duration of a cycle.
+	 */
+	protected int		duration;
 
 	/**
 	 * The current frame index.
@@ -47,9 +57,9 @@ public class AnimatedSprite implements Sprite {
 	protected int		height;
 
 	/**
-	 * The time of the next frame change.
+	 * The time of the last update.
 	 */
-	protected long		nextFrame;
+	protected long		lastUpdate;
 
 	/**
 	 * Whether to loop after last frame.
@@ -153,12 +163,17 @@ public class AnimatedSprite implements Sprite {
 		}
 
 		/*
-		 * Validate delay values
+		 * Validate delay values.
+		 * Calculate total cycle duration.
 		 */
+		duration = 0;
+
 		for(int i = 0; i < delays.length; i++) {
 			if(delays[i] < 0) {
 				throw new IllegalArgumentException("Delay < 0");
 			}
+
+			duration += delays[i];
 		}
 
 		this.frames = frames;
@@ -178,7 +193,9 @@ public class AnimatedSprite implements Sprite {
 
 		index = 0;
 		sprite = frames[0];
-		nextFrame = System.currentTimeMillis() + delays[0];
+
+		cycleTime = 0;
+		lastUpdate = System.currentTimeMillis();
 	}
 
 
@@ -213,6 +230,16 @@ public class AnimatedSprite implements Sprite {
 	 */
 	public int [] getDelays() {
 		return delays;
+	}
+
+
+	/**
+	 * Get the total duration of an animation cycle.
+	 *
+	 * @return	The total duration (in ms).
+	 */
+	public int getDuration() {
+		return duration;
 	}
 
 
@@ -300,7 +327,17 @@ public class AnimatedSprite implements Sprite {
 
 		this.index = index;
 		sprite = frames[index];
-		nextFrame = System.currentTimeMillis() + delays[index];
+
+		/*
+		 * Calculate the time into this frame
+		 */
+		cycleTime = 0;
+
+		for(int i = 0; i < index; i++) {
+			cycleTime += delays[i];
+		}
+
+		lastUpdate = System.currentTimeMillis();
 	}
 
 
@@ -338,25 +375,9 @@ public class AnimatedSprite implements Sprite {
 	 * Update the current frame sprite.
 	 */
 	protected void update() {
-		if(animating) {
-			long now = System.currentTimeMillis();
-
-			if(nextFrame <= now) {
-				if(++index >= frames.length) {
-					if(!loop) {
-						index--;
-						sprite = null;
-						animating = false;
-						return;
-					}
-
-					index = 0;
-				}
-
-				sprite = frames[index];
-				nextFrame = now + delays[index];
-			}
-		}
+		long now = System.currentTimeMillis();
+		update((int) (now - lastUpdate));
+		lastUpdate = now;
 	}
 
 
@@ -467,5 +488,36 @@ public class AnimatedSprite implements Sprite {
 	 */
 	public int getWidth() {
 		return width;
+	}
+
+
+	/**
+	 * Update the current frame sprite.
+	 * <em>Idealy this would be called from a central time manager,
+	 * instead of draw() like now.</em>
+	 *
+	 * @param	delta		The time since last update (in ms).
+	 */
+	public void update(final int delta) {
+		cycleTime += delta;
+		cycleTime %= duration;
+
+		if(animating) {
+			while(cycleTime >= delays[index]) {
+				cycleTime -= delays[index];
+
+				if(++index == frames.length) {
+					index = 0;
+
+					if(!loop) {
+						sprite = null;
+						animating = false;
+						return;
+					}
+				}
+			}
+
+			sprite = frames[index];
+		}
 	}
 }
