@@ -57,8 +57,7 @@ class DestinationObject extends MoveableObject {
 			// is the container a player and not the current one?
 			if ((parent instanceof Player)
 					&& !parent.getID().equals(player.getID())) {
-				logger
-						.warn("trying to drop an item into another players inventory");
+				logger.warn("trying to drop an item into another players inventory");
 				// trying to drop an item into another players inventory
 				return;
 			}
@@ -158,15 +157,13 @@ class DestinationObject extends MoveableObject {
 			logger.debug("entity: " + entity + " zone: " + zone);
 			// check if the destination is free
 			if ((zone != null) && zone.simpleCollides(entity, x, y)) {
-				logger.warn("object " + entity + " collides with " + x + "x"
-						+ y);
+				logger.warn("object " + entity + " collides with " + x + "x" + y);
 				return false;
 			}
+
 			// and in reach
-			if (entity.has("x") && entity.has("y")
-					&& (entity.squaredDistance(x, y) > 8 * 8)) {
-				logger.warn("object " + entity + " is too far away from " + x
-						+ "x" + y);
+			if (!entity.isContained() && (entity.squaredDistance(x, y) > (8 * 8))) {
+				logger.warn("object " + entity + " is too far away from " + x + "," + y);
 				return false;
 			}
 
@@ -212,17 +209,6 @@ class DestinationObject extends MoveableObject {
 
 			RPSlot rpslot = parent.getSlot(slot);
 
-			if (entity.has("x") || entity.has("y")) {
-				logger.debug("Equipped item had x/y. Removing");
-				/*
-				 * TODO: Hack! I need to set them to 0,0 so they notice the
-				 * update
-				 */
-				entity.setPosition(0, 0);
-				entity.remove("x");
-				entity.remove("y");
-			}
-
 			// check if the item can be merged with one already in the slot
 			if (entity instanceof Stackable) {
 				Stackable stackEntity = (Stackable) entity;
@@ -246,7 +232,10 @@ class DestinationObject extends MoveableObject {
 
 			// entity still there?
 			if (entity != null) {
-				// yep, so it is not stacked. simplay add it
+				// Set position to 0,0 (relative to container)
+				entity.setPosition(0, 0);
+
+				// yep, so it is not stacked. simply add it
 				rpslot.add(entity);
 			}
 
@@ -270,6 +259,7 @@ class DestinationObject extends MoveableObject {
 
 			zone.add(entity, player);
 		}
+
 		return true;
 	}
 
@@ -282,5 +272,4 @@ class DestinationObject extends MoveableObject {
 		}
 		return true;
 	}
-
 }
