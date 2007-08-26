@@ -79,7 +79,7 @@ public class KidsNPCs implements ZoneConfigurator {
 			npcs.add(npc);
 
 			zone.assignRPObjectID(npc);
-			npc.put("class", classes[i]);
+			npc.setEntityClass(classes[i]);
 			npc.setPosition(start[i].getX(), start[i].getY());
 			npc.setDirection(Direction.DOWN);
 			npc.initHP(100);

@@ -71,7 +71,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		npc.setDescription("You see Mrotho, guarding over Ados Barracks.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "barracksbuyernpc");
+		npc.setEntityClass("barracksbuyernpc");
 		npc.setPosition(45, 49);
 		npc.initHP(500);
 		zone.add(npc);
@@ -81,7 +81,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(35, 52);
 		blackboard.setText(shops.toString("buyrare3", "-- Required --"));
-		blackboard.setClass("blackboard");
+		blackboard.setEntityClass("blackboard");
 		zone.add(blackboard);
 	}
 }

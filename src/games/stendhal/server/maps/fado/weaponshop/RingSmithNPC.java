@@ -68,7 +68,7 @@ public class RingSmithNPC implements ZoneConfigurator {
 		npc.setDescription("You see Ognir, a friendly bearded chap.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "ringsmithnpc");
+		npc.setEntityClass("ringsmithnpc");
 		npc.setPosition(18, 8);
 		npc.initHP(100);
 		zone.add(npc);
@@ -78,7 +78,8 @@ public class RingSmithNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(book);
 		book.setPosition(12, 14);
 		book.setText(shops.toString("buyprecious", "-- Buying --"));
-		book.setClass("book_red");
+		book.setEntityClass("book_red");
+		book.setResistance(10);
 		zone.add(book);
 	}
 }

@@ -73,7 +73,7 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 		npc.setDescription("You see Elodrin, a mean looking elf.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "elfbuyernpc");
+		npc.setEntityClass("elfbuyernpc");
 		npc.setPosition(4, 5);
 		npc.initHP(100);
 		zone.add(npc);
@@ -83,7 +83,7 @@ public class IL0_BuyerNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(3, 1);
 		blackboard.setText(shops.toString("elfbuyrare", "-- Buying --"));
-		blackboard.setClass("blackboard");
+		blackboard.setEntityClass("blackboard");
 		zone.add(blackboard);
 	}
 }

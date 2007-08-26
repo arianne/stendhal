@@ -103,7 +103,7 @@ public class CatSellerNPC implements ZoneConfigurator {
 		NPCList.get().add(npc);
 
 		zone.assignRPObjectID(npc);
-		npc.put("class", "woman_009_npc");
+		npc.setEntityClass("woman_009_npc");
 		npc.setPosition(7, 8);
 		npc.initHP(100);
 		zone.add(npc);

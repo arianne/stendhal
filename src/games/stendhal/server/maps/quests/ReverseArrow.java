@@ -349,7 +349,7 @@ public class ReverseArrow extends AbstractQuest implements
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "oldwizardnpc"); // TODO change outfit
+		npc.setEntityClass("oldwizardnpc"); // TODO change outfit
 		npc.setPosition(20, 8);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

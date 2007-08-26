@@ -64,7 +64,7 @@ public class MayorNPC implements ZoneConfigurator {
 		npc.setDescription("You see a regal elf. Something about him makes you uneasy.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "elfmayornpc");
+		npc.setEntityClass("elfmayornpc");
 		npc.setPosition(9, 23);
 		npc.initHP(100);
 		zone.add(npc);

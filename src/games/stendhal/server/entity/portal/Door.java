@@ -57,7 +57,7 @@ public abstract class Door extends Portal implements TurnListener {
 	public Door(String clazz) {
 		setRPClass("door");
 		put("type", "door");
-		put("class", clazz);
+		setEntityClass(clazz);
 
 		open = false;
 	}

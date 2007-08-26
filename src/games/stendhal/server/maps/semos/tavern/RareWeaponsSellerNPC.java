@@ -75,7 +75,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 		// Add our new NPC to the game world
 		npcs.add(mcpegleg);
 		zone.assignRPObjectID(mcpegleg);
-		mcpegleg.put("class", "pirate_sailornpc");
+		mcpegleg.setEntityClass("pirate_sailornpc");
 		mcpegleg.setPosition(16, 3);
 		mcpegleg.initHP(100);
 		zone.add(mcpegleg);
@@ -84,7 +84,7 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 		Sign board = new Sign();
 		zone.assignRPObjectID(board);
 		board.setPosition(11, 4);
-		board.setClass("blackboard");
+		board.setEntityClass("blackboard");
 		board.setText(shops.toString("buyrare", "-- Buying --"));
 		zone.add(board);
 	}

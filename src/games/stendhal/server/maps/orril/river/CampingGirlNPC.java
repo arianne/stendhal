@@ -50,7 +50,7 @@ public class CampingGirlNPC implements ZoneConfigurator {
 		npcs.add(sally);
 
 		zone.assignRPObjectID(sally);
-		sally.put("class", "littlegirlnpc");
+		sally.setEntityClass("littlegirlnpc");
 		sally.setPosition(40, 61);
 		sally.setDirection(Direction.RIGHT);
 		sally.initHP(100);

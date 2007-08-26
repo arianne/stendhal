@@ -155,7 +155,7 @@ public class SemosMineTownRevivalWeeks extends AbstractQuest {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "girlnpc");
+		npc.setEntityClass("girlnpc");
 		npc.setPosition(95, 120);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

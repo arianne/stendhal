@@ -30,12 +30,6 @@ public class Sign extends Entity {
 	/** the logger instance. */
 	private static final Logger logger = Log4J.getLogger(Sign.class);
 
-	/**
-	 * Classes of signs that players, NPCs etc. can walk over and where you can
-	 * put items on if they are not placed on a collision tile.
-	 */
-	private static final List<String> NON_OBSTACLE_CLASSES = Arrays.asList(
-			"book_blue", "book_red", "transparent");
 
 	public static void generateRPClass() {
 		try {
@@ -55,7 +49,7 @@ public class Sign extends Entity {
 		setRPClass("sign");
 		put("type", "sign");
 
-		setObstacle(true);
+		setResistance(100);
 	}
 
 	/**
@@ -66,19 +60,5 @@ public class Sign extends Entity {
 	 */
 	public void setText(String text) {
 		put("text", text);
-	}
-
-	/**
-	 * States what type of sign this should be. This defines how it will look
-	 * like in the client.
-	 * 
-	 * @param clazz
-	 *            The sign class, e.g. "default" or "signpost".
-	 */
-	public void setClass(String clazz) {
-		put("class", clazz);
-
-		// TODO: Set directly where setClass() is called
-		setObstacle(!NON_OBSTACLE_CLASSES.contains(clazz));
 	}
 }

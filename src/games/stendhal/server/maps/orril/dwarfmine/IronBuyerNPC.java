@@ -64,7 +64,7 @@ public class IronBuyerNPC implements ZoneConfigurator {
 
 		loretta.setDescription("You see Loretta, an elderly female dwarf. She is working on the mine-cart rails.");
 		zone.assignRPObjectID(loretta);
-		loretta.put("class", "greendwarfnpc");
+		loretta.setEntityClass("greendwarfnpc");
 		loretta.setPosition(49, 68);
 		loretta.initHP(100);
 		zone.add(loretta);

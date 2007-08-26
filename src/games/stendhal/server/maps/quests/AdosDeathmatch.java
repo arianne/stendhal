@@ -147,7 +147,7 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 			}
 		};
 
-		npc.put("class", "darkwizardnpc");
+		npc.setEntityClass("darkwizardnpc");
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

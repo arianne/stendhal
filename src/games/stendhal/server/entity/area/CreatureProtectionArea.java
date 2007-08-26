@@ -57,7 +57,7 @@ public class CreatureProtectionArea extends AreaEntity {
 		super(width, height);
 
 		put("server-only", "");
-		setObstacle(false);
+		setResistance(0);
 
 		this.defaultBlocked = defaultBlocked;
 

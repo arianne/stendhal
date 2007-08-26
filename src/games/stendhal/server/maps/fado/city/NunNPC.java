@@ -54,7 +54,7 @@ public class NunNPC implements ZoneConfigurator {
 		nunnpc.setDescription("You see Sister Benedicta, a holy nun.");
 		npcs.add(nunnpc);
 		zone.assignRPObjectID(nunnpc);
-		nunnpc.put("class", "nunnpc");
+		nunnpc.setEntityClass("nunnpc");
 		nunnpc.setDirection(Direction.RIGHT);
 		nunnpc.setPosition(53, 54);
 		nunnpc.initHP(100);

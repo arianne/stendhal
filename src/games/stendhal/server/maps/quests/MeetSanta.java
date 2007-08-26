@@ -75,7 +75,7 @@ public class MeetSanta extends AbstractQuest {
 			}
 		};
 		npcs.add(santa);
-		santa.put("class", "santaclausnpc");
+		santa.setEntityClass("santaclausnpc");
 		santa.initHP(100);
 
 		// start in int_admin_playground

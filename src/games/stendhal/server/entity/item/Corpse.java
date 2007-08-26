@@ -84,7 +84,8 @@ public class Corpse extends PassiveEntity implements TurnListener,
 	public Corpse(String clazz, int x, int y) {
 		setRPClass("corpse");
 		put("type", "corpse");
-		put("class", clazz);
+
+		setEntityClass(clazz);
 
 		decideSize(clazz);
 
@@ -129,9 +130,9 @@ public class Corpse extends PassiveEntity implements TurnListener,
 		put("type", "corpse");
 
 		if (victim.has("class")) {
-			put("class", victim.get("class"));
+			setEntityClass(victim.get("class"));
 		} else {
-			put("class", victim.get("type"));
+			setEntityClass(victim.get("type"));
 		}
 
 		decideSize(get("class"));

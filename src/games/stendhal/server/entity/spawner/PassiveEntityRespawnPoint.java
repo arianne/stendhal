@@ -70,9 +70,9 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 
 		setRPClass("plant_grower");
 		put("type", "plant_grower");
-		//update();
 
-		setObstacle(false);
+		setResistance(0);
+		//update();
 	}
 
 	public PassiveEntityRespawnPoint(String growingItemName, int meanTurnsForRegrow) {
@@ -83,7 +83,7 @@ public class PassiveEntityRespawnPoint extends Entity implements TurnListener {
 		setRPClass("plant_grower");
 		put("type", "plant_grower");
 
-		setObstacle(false);
+		setResistance(0);
 	}
 
 	public static void generateRPClass() {

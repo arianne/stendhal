@@ -90,7 +90,7 @@ public class GhostNPC implements ZoneConfigurator {
 
 		npcs.add(ghost);
 		zone.assignRPObjectID(ghost);
-		ghost.put("class", "man_000_npc");
+		ghost.setEntityClass("man_000_npc");
 		// he is a ghost so he is see through
 		ghost.setVisibility(50);
 		ghost.setPosition(3, 4);

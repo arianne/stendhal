@@ -58,7 +58,7 @@ public class GuardNPC implements ZoneConfigurator {
 		npc.setDescription("You see a bored looking guard.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "recruiter1npc");
+		npc.setEntityClass("recruiter1npc");
 		npc.setPosition(62, 105);
 		npc.initHP(100);
 		zone.add(npc);

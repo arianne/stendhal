@@ -102,7 +102,7 @@ public class SheepSellerNPC implements ZoneConfigurator {
 		NPCList.get().add(npc);
 
 		zone.assignRPObjectID(npc);
-		npc.put("class", "sellernpc");
+		npc.setEntityClass("sellernpc");
 		npc.setPosition(33, 45);
 		npc.initHP(100);
 		zone.add(npc);

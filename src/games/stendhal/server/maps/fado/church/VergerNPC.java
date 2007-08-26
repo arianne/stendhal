@@ -55,7 +55,7 @@ public class VergerNPC implements ZoneConfigurator {
 		npc.setDescription("You see Lukas, the humble church verger.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "vergernpc");
+		npc.setEntityClass("vergernpc");
 		npc.setPosition(22, 9);
 		npc.initHP(100);
 		zone.add(npc);

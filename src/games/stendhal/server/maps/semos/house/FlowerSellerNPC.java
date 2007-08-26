@@ -40,7 +40,7 @@ public class FlowerSellerNPC implements ZoneConfigurator {
 
 		};
 		npcs.add(rose);
-		rose.put("class", "gypsywomannpc");
+		rose.setEntityClass("gypsywomannpc");
 		rose.initHP(100);
 
 		// start in int_semos_house

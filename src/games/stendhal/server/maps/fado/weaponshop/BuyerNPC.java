@@ -69,7 +69,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		npc.setDescription("You see Yorphin Baos, the friendly shop keeper.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "weaponsellernpc");
+		npc.setEntityClass("weaponsellernpc");
 		npc.setPosition(4, 5);
 		npc.initHP(100);
 		zone.add(npc);
@@ -79,7 +79,7 @@ public class BuyerNPC implements ZoneConfigurator {
 		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(3, 1);
 		blackboard.setText(shops.toString("buyrare2", "-- Buying --"));
-		blackboard.setClass("blackboard");
+		blackboard.setEntityClass("blackboard");
 		zone.add(blackboard);
 	}
 }

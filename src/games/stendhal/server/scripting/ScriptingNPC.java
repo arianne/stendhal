@@ -63,10 +63,6 @@ public class ScriptingNPC extends SpeakerNPC {
 		}
 	}
 
-	public void setClass(String name) {
-		put("class", name);
-	}
-
 	public static class NotQuestCondition extends SpeakerNPC.ChatCondition {
 
 		String quest;

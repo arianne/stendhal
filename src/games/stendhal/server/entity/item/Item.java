@@ -109,8 +109,10 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public Item(String name, String clazz, String subclass,
 			Map<String, String> attributes) {
 		this();
-		put("class", clazz);
-		put("subclass", subclass);
+
+		setEntityClass(clazz);
+		setEntitySubClass(subclass);
+
 		put("name", name);
 
 		if (attributes != null) {

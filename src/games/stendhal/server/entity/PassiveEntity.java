@@ -10,7 +10,7 @@ public abstract class PassiveEntity extends Entity {
 	 * Create a passive entity.
 	 */
 	public PassiveEntity() {
-		setObstacle(false);
+		setResistance(0);
 	}
 
 	/**
@@ -22,6 +22,6 @@ public abstract class PassiveEntity extends Entity {
 	public PassiveEntity(RPObject object) {
 		super(object);
 
-		setObstacle(false);
+		setResistance(0);
 	}
 }

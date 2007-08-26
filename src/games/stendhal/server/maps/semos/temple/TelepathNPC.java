@@ -80,7 +80,7 @@ public class TelepathNPC implements ZoneConfigurator {
 		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
-		npc.put("class", "floattingladynpc");
+		npc.setEntityClass("floattingladynpc");
 		npc.setPosition(8, 19);
 		npc.initHP(100);
 		zone.add(npc);

@@ -61,7 +61,8 @@ public class SeamstressNPC implements ZoneConfigurator {
 				Sign board = new Sign();
 				zone.assignRPObjectID(board);
 				board.setPosition(16, 8);
-				board.setClass("book_blue");
+				board.setEntityClass("book_blue");
+				board.setResistance(10);
 				board.setText(shops.toString("buycloaks", "-- Buying --"));
 				zone.add(board);
 			}
@@ -69,7 +70,7 @@ public class SeamstressNPC implements ZoneConfigurator {
 		npcs.add(seamstress);
 
 		zone.assignRPObjectID(seamstress);
-		seamstress.put("class", "woman_002_npc");
+		seamstress.setEntityClass("woman_002_npc");
 		seamstress.setPosition(7, 7);
 		seamstress.initHP(100);
 		zone.add(seamstress);

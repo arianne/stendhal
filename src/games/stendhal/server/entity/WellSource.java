@@ -119,7 +119,7 @@ public class WellSource extends Entity implements UseListener {
 		setRPClass("well_source");
 		put("type", "well_source");
 
-		setObstacle(false);
+		setResistance(0);
 	}
 
 	public WellSource(RPObject object) {
@@ -128,7 +128,7 @@ public class WellSource extends Entity implements UseListener {
 		setRPClass("well_source");
 		put("type", "well_source");
 
-		setObstacle(false);
+		setResistance(0);
 	}
 
 	public static void generateRPClass() {

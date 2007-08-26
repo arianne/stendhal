@@ -75,7 +75,7 @@ public class MeetBunny extends AbstractQuest {
 			}
 		};
 		npcs.add(bunny);
-		bunny.put("class", "easterbunnynpc");
+		bunny.setEntityClass("easterbunnynpc");
 		bunny.initHP(100);
 
 		// start in int_admin_playground

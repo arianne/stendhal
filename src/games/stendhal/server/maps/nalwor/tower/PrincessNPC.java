@@ -63,7 +63,7 @@ public class PrincessNPC implements ZoneConfigurator {
 		npc.setDescription("You see a beautiful but forlorn High Elf.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "elfprincessnpc");
+		npc.setEntityClass("elfprincessnpc");
 		npc.setPosition(17, 13);
 		npc.initHP(100);
 		zone.add(npc);

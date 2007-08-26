@@ -46,7 +46,7 @@ public class LibrarianNPC implements ZoneConfigurator {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "investigatornpc");
+		npc.setEntityClass("investigatornpc");
 		npc.setPosition(28, 12);
 		npc.initHP(100);
 		zone.add(npc);

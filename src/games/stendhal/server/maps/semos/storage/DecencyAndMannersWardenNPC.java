@@ -53,7 +53,7 @@ public class DecencyAndMannersWardenNPC implements ZoneConfigurator {
 		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
-		npc.put("class", "elegantladynpc");
+		npc.setEntityClass("elegantladynpc");
 		npc.setPosition(21, 6);
 		npc.initHP(100);
 		zone.add(npc);

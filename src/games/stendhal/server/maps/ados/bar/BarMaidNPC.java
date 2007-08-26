@@ -71,7 +71,7 @@ public class BarMaidNPC implements ZoneConfigurator {
 		npc.setDescription("You see a pretty young bar maid.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "woman_004_npc");
+		npc.setEntityClass("woman_004_npc");
 		npc.setPosition(8, 27);
 		npc.initHP(100);
 		zone.add(npc);

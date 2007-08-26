@@ -325,17 +325,6 @@ public abstract class Entity extends RPObject {
 		return (getResistance(entity) > 95);
 	}
 
-	/**
-	 * Set this entity as an obstacle.
-	 *
-	 * TODO: Change calls to setResistance([0|100])
-	 *
-	 * @param obstacle
-	 *            <code>true</code> if an obstacle.
-	 */
-	public void setObstacle(boolean obstacle) {
-		setResistance(obstacle ? 100 : 0);
-	}
 
 	/**
 	 * Calculates the squared distance between the two given rectangles, i.e.
@@ -643,6 +632,24 @@ public abstract class Entity extends RPObject {
 	 */
 	public double getWidth() {
 		return width;
+	}
+
+	/**
+	 * Set the entity class.
+	 *
+	 * @param	clazz		The class name.
+	 */
+	public void setEntityClass(final String clazz) {
+		put("class", clazz);
+	}
+
+	/**
+	 * Set the entity sub-class.
+	 *
+	 * @param	subclazz	The sub-class name.
+	 */
+	public void setEntitySubClass(final String subclazz) {
+		put("subclass", subclazz);
 	}
 
 	/**

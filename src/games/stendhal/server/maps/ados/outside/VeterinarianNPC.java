@@ -69,7 +69,7 @@ public class VeterinarianNPC implements ZoneConfigurator {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "doctornpc");
+		npc.setEntityClass("doctornpc");
 		npc.setPosition(53, 28);
 		//npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

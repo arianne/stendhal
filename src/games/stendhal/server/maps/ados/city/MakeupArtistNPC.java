@@ -58,7 +58,7 @@ public class MakeupArtistNPC implements ZoneConfigurator {
 		};
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "woman_008_npc");
+		npc.setEntityClass("woman_008_npc");
 		npc.setPosition(20, 13);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);

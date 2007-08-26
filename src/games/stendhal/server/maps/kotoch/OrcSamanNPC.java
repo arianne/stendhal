@@ -59,7 +59,7 @@ public class OrcSamanNPC implements ZoneConfigurator {
 		npc.setDescription("You see an Orc Saman.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "orcsamannpc");
+		npc.setEntityClass("orcsamannpc");
 		npc.setPosition(8, 113);
 		npc.initHP(100);
 		zone.add(npc);

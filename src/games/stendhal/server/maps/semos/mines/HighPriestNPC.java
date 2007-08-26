@@ -80,7 +80,8 @@ public class HighPriestNPC implements ZoneConfigurator {
 				}
 			}
 		});
-		npc.put("class", "highpriestnpc");
+
+		npc.setEntityClass("highpriestnpc");
 		npc.setPosition(23, 44);
 		npc.setDirection(Direction.RIGHT);
 		npc.setLevel(390);

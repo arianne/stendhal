@@ -66,7 +66,7 @@ public class BoyNPC implements ZoneConfigurator {
 				}
 			}
 		});
-		npc.put("class", "childnpc");
+		npc.setEntityClass("childnpc");
 		npc.setPosition(13, 38);
 		npc.setDirection(Direction.RIGHT);
 		npc.initHP(100);

@@ -55,7 +55,7 @@ public class JailKeeperNPC implements ZoneConfigurator {
 		npcs.add(npc);
 
 		zone.assignRPObjectID(npc);
-		npc.put("class", "youngsoldiernpc");
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(4, 15);
 		npc.initHP(100);
 		zone.add(npc);

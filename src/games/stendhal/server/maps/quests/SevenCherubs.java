@@ -71,7 +71,7 @@ public class SevenCherubs extends AbstractQuest {
 		public CherubNPC(String name, int x, int y) {
 			super(name);
 
-			put("class", "angelnpc");
+			setEntityClass("angelnpc");
 			setPosition(x, y);
 			initHP(100);
 

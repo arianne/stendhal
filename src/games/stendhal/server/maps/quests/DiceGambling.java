@@ -75,7 +75,7 @@ public class DiceGambling extends AbstractQuest {
 		Sign blackboard = new Sign();
 		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(25, 0);
-		blackboard.setClass("blackboard");
+		blackboard.setEntityClass("blackboard");
 		StringBuffer prizelistBuffer = new StringBuffer("PRIZES:\n");
 		for (int i = 18; i >= 13; i--) {
 			prizelistBuffer.append("\n" + i + ": " + prizes.get(i).first());
@@ -86,7 +86,7 @@ public class DiceGambling extends AbstractQuest {
 		blackboard = new Sign();
 		zone.assignRPObjectID(blackboard);
 		blackboard.setPosition(26, 0);
-		blackboard.setClass("blackboard");
+		blackboard.setEntityClass("blackboard");
 		prizelistBuffer = new StringBuffer("PRIZES:\n");
 		for (int i = 12; i >= 7; i--) {
 			prizelistBuffer.append("\n" + i + ": " + prizes.get(i).first());

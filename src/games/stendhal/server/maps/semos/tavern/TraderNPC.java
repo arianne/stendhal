@@ -63,14 +63,14 @@ public class TraderNPC implements ZoneConfigurator {
 				Sign board = new Sign();
 				zone.assignRPObjectID(board);
 				board.setPosition(2, 11);
-				board.setClass("blackboard");
+				board.setEntityClass("blackboard");
 				board.setText(shops.toString("sellstuff", "-- I sell --"));
 				zone.add(board);
 
 				board = new Sign();
 				zone.assignRPObjectID(board);
 				board.setPosition(3, 11);
-				board.setClass("blackboard");
+				board.setEntityClass("blackboard");
 				board.setText(shops.toString("buystuff", "-- I buy --"));
 				zone.add(board);
 			}
@@ -78,7 +78,7 @@ public class TraderNPC implements ZoneConfigurator {
 		npcs.add(xinBlanca);
 
 		zone.assignRPObjectID(xinBlanca);
-		xinBlanca.put("class", "weaponsellernpc");
+		xinBlanca.setEntityClass("weaponsellernpc");
 		xinBlanca.setPosition(2, 15);
 		xinBlanca.initHP(100);
 		zone.add(xinBlanca);

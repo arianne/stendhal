@@ -52,7 +52,7 @@ public class DiceDealerNPC implements ZoneConfigurator {
 
 		zone.assignRPObjectID(ricardo);
 
-		ricardo.put("class", "naughtyteen2npc");
+		ricardo.setEntityClass("naughtyteen2npc");
 		ricardo.setPosition(28, 4);
 		ricardo.setDirection(Direction.LEFT);
 		ricardo.initHP(100);
@@ -60,6 +60,5 @@ public class DiceDealerNPC implements ZoneConfigurator {
 		
 		zone.add(ricardo);
 		ricardo.setTableArea(tableArea);
-
 	}
 }

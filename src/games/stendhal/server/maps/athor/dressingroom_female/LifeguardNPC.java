@@ -76,7 +76,7 @@ public class LifeguardNPC implements ZoneConfigurator {
 		};
 		NPCList.get().add(pam);
 		zone.assignRPObjectID(pam);
-		pam.put("class", "lifeguardfemalenpc");
+		pam.setEntityClass("lifeguardfemalenpc");
 		pam.setDirection(Direction.LEFT);
 		pam.setPosition(12, 11);
 		pam.initHP(100);

@@ -145,18 +145,16 @@ public class Creature extends NPC {
 
 		this.respawnTime = copy.respawnTime;
 
-		put("class", copy.get("class"));
-		put("subclass", copy.get("subclass"));
-		put("name", copy.get("name"));
+		setEntityClass(copy.get("class"));
+		setEntitySubClass(copy.get("subclass"));
 
-		put("x", 0);
-		put("y", 0);
 		setDescription(copy.getDescription());
 		setATK(copy.getATK());
 		setDEF(copy.getDEF());
 		setXP(copy.getXP());
 		initHP(copy.getBaseHP());
-		setName(copy.getName());
+		setName(copy.get("name"));
+		//setName(copy.getName());
 
 		setLevel(copy.getLevel());
 
@@ -233,8 +231,8 @@ public class Creature extends NPC {
 
 		this.respawnTime = respawnTime;
 
-		put("class", clazz);
-		put("subclass", subclass);
+		setEntityClass(clazz);
+		setEntitySubClass(subclass);
 		put("name", name);
 
 		put("x", 0);

@@ -71,7 +71,7 @@ public class BattleArenaRecruiterNPC implements ZoneConfigurator {
 			}
 		};
 
-		npc.put("class", "youngsoldiernpc");
+		npc.setEntityClass("youngsoldiernpc");
 		npc.setPosition(42, 39);
 		npc.initHP(100);
 		npcs.add(npc);

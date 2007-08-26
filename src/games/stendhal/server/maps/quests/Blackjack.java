@@ -293,7 +293,7 @@ public class Blackjack extends AbstractQuest {
 		npcs.add(ramon);
 
 		zone.assignRPObjectID(ramon);
-		ramon.put("class", "naughtyteen2npc");
+		ramon.setEntityClass("naughtyteen2npc");
 		ramon.setPosition(26, 36);
 		ramon.setDirection(Direction.DOWN);
 		ramon.initHP(100);

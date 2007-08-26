@@ -60,7 +60,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 		npcs.add(oldnpc);
 		zone.assignRPObjectID(oldnpc);
 		oldnpc.setDirection(Direction.DOWN);
-		oldnpc.put("class", "elfbankeroldnpc");
+		oldnpc.setEntityClass("elfbankeroldnpc");
 		oldnpc.setPosition(13, 17);
 		oldnpc.initHP(100);
 		zone.add(oldnpc);
@@ -96,7 +96,7 @@ public class IL0_BankNPC implements ZoneConfigurator {
 		ladynpc.setDescription("You see a pretty female elf in a beautiful dress.");
 		npcs.add(ladynpc);
 		zone.assignRPObjectID(ladynpc);
-		ladynpc.put("class", "elfbankladynpc");
+		ladynpc.setEntityClass("elfbankladynpc");
 		ladynpc.setDirection(Direction.DOWN);
 		ladynpc.setPosition(17, 31);
 		ladynpc.initHP(100);

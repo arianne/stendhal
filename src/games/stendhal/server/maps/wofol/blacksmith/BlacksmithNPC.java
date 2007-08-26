@@ -63,7 +63,7 @@ public class BlacksmithNPC implements ZoneConfigurator {
 
 		dwarf.setDescription("You see Alrak, a reclusive dwarf smith.");
 		zone.assignRPObjectID(dwarf);
-		dwarf.put("class", "dwarfnpc");
+		dwarf.setEntityClass("dwarfnpc");
 		dwarf.setPosition(22, 8);
 		dwarf.initHP(100);
 		npcs.add(dwarf);

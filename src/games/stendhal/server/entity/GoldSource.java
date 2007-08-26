@@ -93,7 +93,7 @@ public class GoldSource extends Entity implements UseListener {
 		setRPClass("gold_source");
 		put("type", "gold_source");
 
-		setObstacle(false);
+		setResistance(0);
 	}
 
 	public GoldSource(RPObject object) {
@@ -102,7 +102,7 @@ public class GoldSource extends Entity implements UseListener {
 		setRPClass("gold_source");
 		put("type", "gold_source");
 
-		setObstacle(false);
+		setResistance(0);
 	}
 
 	public static void generateRPClass() {

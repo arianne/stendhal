@@ -67,7 +67,7 @@ public class JesterNPC implements ZoneConfigurator {
 		npc.setDescription("You see Huckle Rohn, the court jester.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "magic_jesternpc");
+		npc.setEntityClass("magic_jesternpc");
 		npc.setPosition(8, 57);
 		npc.initHP(100);
 		zone.add(npc);

@@ -150,7 +150,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 			}
 		};
 
-		npc.put("class", "darkwizardnpc");
+		npc.setEntityClass("darkwizardnpc");
 		npc.setPosition(x, y);
 		npc.setDirection(Direction.DOWN);
 		npc.initHP(100);
@@ -200,7 +200,7 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 			}
 		};
 
-		npc1.put("class", "darkwizardnpc");
+		npc1.setEntityClass("darkwizardnpc");
 		npc1.setPosition(33, 41);
 		npc1.setDirection(Direction.DOWN);
 		npc1.initHP(100);

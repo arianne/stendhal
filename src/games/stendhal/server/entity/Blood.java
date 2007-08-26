@@ -53,7 +53,7 @@ public class Blood extends PassiveEntity implements TurnListener {
 	public Blood(final String clazz, final int amount) {
 		setRPClass("blood");
 		put("type", "blood");
-		put("class", clazz);
+		setEntityClass(clazz);
 		put("amount", amount);
 
 		TurnNotifier.get().notifyInSeconds(DEGRADATION_TIMEOUT, this);

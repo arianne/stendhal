@@ -69,7 +69,7 @@ public class IL0_PostNPC implements ZoneConfigurator {
 		npc.setDescription("You see a pretty elf girl.");
 		npcs.add(npc);
 		zone.assignRPObjectID(npc);
-		npc.put("class", "postelfnpc");
+		npc.setEntityClass("postelfnpc");
 		npc.setPosition(11, 3);
 		npc.initHP(100);
 		zone.add(npc);
