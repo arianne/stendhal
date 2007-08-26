@@ -52,45 +52,62 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	public static void generateRPClass() {
 		RPClass entity = new RPClass("item");
 		entity.isA("entity");
-		entity.addAttribute("class", Type.STRING); // class, sword/armor/...
-		entity.addAttribute("subclass", Type.STRING); // subclass, long
-														// sword/leather //
-														// armor/...
-		entity.addAttribute("name", Type.STRING); // name of item (ie 'Kings
-													// Sword')
-		entity.addAttribute("atk", Type.SHORT); // Some items have attack values
-		entity.addAttribute("rate", Type.SHORT); // Some items indicate how
-													// often you can attack.
-		entity.addAttribute("def", Type.SHORT); // Some items have defense
-												// values
-		entity.addAttribute("amount", Type.INT); // Some items(food) have
-													// amount of something (a
-													// bottle, a piece of meat).
-		entity.addAttribute("range", Type.SHORT); // Some items (range
-													// weapons, ammunition,
-													// missiles) have a range.
-		entity.addAttribute("regen", Type.INT); // Some items(food) have
-												// regeneration speed
-		entity.addAttribute("frequency", Type.INT); // Some items(food) have
-													// regeneration speed
-		entity.addAttribute("quantity", Type.INT); // Some items(Stackable)
-													// have quantity
-		entity.addAttribute("max_quantity", Type.INT); // Some items
-														// (Stackable) have
-														// maximum quantity
-		entity.addAttribute("min_level", Type.INT); // Some items have minimum
-													// level to prevent spoiling
-													// the fun for new players
-		entity.addAttribute("infostring", Type.STRING); // To store
-														// addAttributeitional
-														// info with an item
-		entity.addAttribute("persistent", Type.SHORT); // Some items have
-														// individual values
-		entity.addAttribute("lifesteal", Type.FLOAT); // Some items have
-														// lifesteal values
-		entity.addAttribute("bound", Type.STRING); // Some items are quest
-													// rewards that other
-													// players don't deserve.
+
+		// class, sword/armor/...
+		entity.addAttribute("class", Type.STRING);
+
+		// subclass, long sword/leather/armor/...
+		entity.addAttribute("subclass", Type.STRING);
+
+		// name of item (ie 'Kings Sword')
+		entity.addAttribute("name", Type.STRING);
+
+		// Some items have attack values
+		entity.addAttribute("atk", Type.SHORT);
+
+		// Some items indicate how often you can attack.
+		entity.addAttribute("rate", Type.SHORT);
+
+		// Some items have defense values
+		entity.addAttribute("def", Type.SHORT);
+
+		// Some items(food) have amount of something
+		// (a bottle, a piece of meat).
+		entity.addAttribute("amount", Type.INT);
+
+		// Some items (range weapons, ammunition, missiles)
+		// have a range.
+		entity.addAttribute("range", Type.SHORT);
+
+		// Some items(food) have regeneration
+		entity.addAttribute("regen", Type.INT);
+
+		// Some items(food) have regeneration speed
+		entity.addAttribute("frequency", Type.INT);
+
+		// Some items(Stackable) have quantity
+		entity.addAttribute("quantity", Type.INT);
+
+		// Some items (Stackable) have maximum quantity
+		entity.addAttribute("max_quantity", Type.INT);
+
+		// Some items have minimum level to prevent spoiling
+		// the fun for new players
+		entity.addAttribute("min_level", Type.INT);
+
+		// To store addAttributeitional info with an item
+		entity.addAttribute("infostring", Type.STRING);
+
+		// Some items have individual values
+		// TODO: Change to FLAG (on DB reset)?
+		entity.addAttribute("persistent", Type.SHORT);
+
+		// Some items have lifesteal values
+		entity.addAttribute("lifesteal", Type.FLOAT);
+
+		// Some items are quest rewards that other players
+		// don't deserve.
+		entity.addAttribute("bound", Type.STRING);
 	}
 
 	/**
@@ -106,8 +123,7 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 	 * @param attributes
 	 *            attributes (like attack). may be empty or <code>null</code>
 	 */
-	public Item(String name, String clazz, String subclass,
-			Map<String, String> attributes) {
+	public Item(String name, String clazz, String subclass, Map<String, String> attributes) {
 		this();
 
 		setEntityClass(clazz);
@@ -121,11 +137,12 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 				put(entry.getKey(), entry.getValue());
 			}
 		}
+
+		update();
 	}
 
 	/** no public 'default' item */
 	private Item() {
-		super();
 		setRPClass("item");
 		put("type", "item");
 		possibleSlots = new LinkedList<String>();
@@ -231,6 +248,21 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 
 		return false;
 	}
+
+
+	/**
+	 * Set the item's persistence.
+	 *
+	 * @param	persistent	If the item's stats are persistent.
+	 */
+	public void setPersistent(boolean persistent) {
+		if(persistent) {
+			put("persistent", 1);
+		} else if(has("persistent")) {
+			remove("persistent");
+		}
+	}
+
 
 	/**
 	 * Checks if the item is of type <i>type</i>
@@ -367,9 +399,9 @@ public class Item extends PassiveEntity implements TurnListener, EquipListener {
 		if (slot == null) {
 			return true; // ground
 		}
-		return possibleSlots.contains(slot)
+
 		// when the slot is called "content", it's a personal chest.
-				|| slot.equals("content");
+		return possibleSlots.contains(slot) || slot.equals("content");
 	}
 
 	public void removeFromWorld() {

@@ -272,7 +272,7 @@ public class ReverseArrow extends AbstractQuest implements
 		Token token = (Token) entityManager.getItem("token");
 		zone.assignRPObjectID(token);
 		token.setPosition(x, y);
-		token.put("persistent", 1);
+		token.setPersistent(true);
 		token.setTokenMoveListener(this);
 		zone.add(token);
 		tokens.add(token);

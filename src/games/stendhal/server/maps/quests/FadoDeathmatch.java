@@ -65,10 +65,9 @@ public class FadoDeathmatch extends AbstractQuest implements LoginListener {
 											// trophy_legs
 		zone.assignRPObjectID(legs);
 		legs.put("def", "10");
-		legs
-				.setDescription("This is the grand prize for the Battle Arena winners.");
+		legs.setDescription("This is the grand prize for the Battle Arena winners.");
 		legs.setPosition(x, y);
-		legs.put("persistent", 1);
+		legs.setPersistent(true);
 		zone.add(legs);
 	}
 

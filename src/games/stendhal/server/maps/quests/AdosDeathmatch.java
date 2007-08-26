@@ -63,10 +63,9 @@ public class AdosDeathmatch extends AbstractQuest implements LoginListener {
 				.getItem("trophy_helmet");
 		zone.assignRPObjectID(helmet);
 		helmet.put("def", "20");
-		helmet
-				.setDescription("This is the grand prize for Deathmatch winners.");
+		helmet.setDescription("This is the grand prize for Deathmatch winners.");
 		helmet.setPosition(x, y);
-		helmet.put("persistent", 1);
+		helmet.setPersistent(true);
 		zone.add(helmet);
 	}
 

@@ -24,7 +24,7 @@ public class DoneAction extends SpeakerNPC.ChatAction {
 		helmet.put("bound", player.getName());
 		helmet.put("def", 1);
 		helmet.put("infostring", player.getName());
-		helmet.put("persistent", 1);
+		helmet.setPersistent(true);
 		helmet.setDescription("This is " + player.getName()
 		        + "'s grand prize for Deathmatch winners. Wear it with pride.");
 		player.equip(helmet, true);

@@ -38,7 +38,7 @@ public class ItemsOnTable implements ZoneConfigurator {
 		Item item = StendhalRPWorld.get().getRuleManager().getEntityManager().getItem(name);
 		zone.assignRPObjectID(item);
 		item.setPosition(x, y);
-		item.put("persistent", 1);
+		item.setPersistent(true);
 		zone.add(item);
 		return item;
 	}
