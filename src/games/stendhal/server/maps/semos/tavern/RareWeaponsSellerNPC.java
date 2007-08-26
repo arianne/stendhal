@@ -79,13 +79,5 @@ public class RareWeaponsSellerNPC implements ZoneConfigurator {
 		mcpegleg.setPosition(16, 3);
 		mcpegleg.initHP(100);
 		zone.add(mcpegleg);
-
-		// Add a blackboard with the shop offers
-		Sign board = new Sign();
-		zone.assignRPObjectID(board);
-		board.setPosition(11, 4);
-		board.setEntityClass("blackboard");
-		board.setText(shops.toString("buyrare", "-- Buying --"));
-		zone.add(board);
 	}
 }

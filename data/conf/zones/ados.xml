@@ -414,6 +414,16 @@ in roaches.
 
   <zone name="int_ados_barracks_0" file="interiors/ados/barracks_0.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.barracks.BuyerNPC"/>
+
+    <entity x="35" y="52">
+     <implementation class-name="games.stendhal.server.entity.ShopSign">
+      <parameter name="shop">buyrare3</parameter>
+      <parameter name="title">-- Required --</parameter>
+     </implementation>
+
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
     <portal x="24" y="58" ref="entrance_left">
      <destination zone="0_ados_wall" ref="barracks_entrance_left"/>
     </portal>
@@ -456,6 +466,17 @@ in roaches.
 
    <zone name="int_ados_sewing_room" file="interiors/ados/sewing_room.tmx">
     <configurator class-name="games.stendhal.server.maps.ados.sewingroom.SeamstressNPC" />
+
+    <entity x="16" y="8">
+     <implementation class-name="games.stendhal.server.entity.ShopSign">
+      <parameter name="shop">buycloaks</parameter>
+      <parameter name="title">-- Buying --</parameter>
+     </implementation>
+
+     <attribute name="class">book_blue</attribute>
+     <attribute name="resistance">10</attribute>
+    </entity>
+
     <portal x="6" y="18" ref="sewing_entrance_left">
      <destination zone="0_ados_city" ref="sewing_entrance"/>
     </portal>

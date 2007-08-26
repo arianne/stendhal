@@ -57,14 +57,6 @@ public class SeamstressNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
 				        "I buy cloaks, because we are short of material to make sails with. The better the material, the more I pay. My notebook on the table has the price list.", null);
 				addGoodbye("Bye, thanks for stepping in.");
-
-				Sign board = new Sign();
-				zone.assignRPObjectID(board);
-				board.setPosition(16, 8);
-				board.setEntityClass("book_blue");
-				board.setResistance(10);
-				board.setText(shops.toString("buycloaks", "-- Buying --"));
-				zone.add(board);
 			}
 		};
 		npcs.add(seamstress);

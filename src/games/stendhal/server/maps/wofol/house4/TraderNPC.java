@@ -59,19 +59,7 @@ public class TraderNPC implements ZoneConfigurator {
 				add(ConversationStates.ATTENDING, "offer", null, ConversationStates.ATTENDING,
 				        "Please look at the each blackboard on the wall to see what I buy and sell at the moment.", null);
 				addGoodbye("Bye, and please don't attack too many of my friends.");
-				Sign board = new Sign();
-				zone.assignRPObjectID(board);
-				board.setPosition(4, 1);
-				board.setEntityClass("blackboard");
-				board.setText(shops.toString("sellstuff2", "-- I sell --"));
-				zone.add(board);
 
-				board = new Sign();
-				zone.assignRPObjectID(board);
-				board.setPosition(6, 1);
-				board.setEntityClass("blackboard");
-				board.setText(shops.toString("buystuff2", "-- I buy --"));
-				zone.add(board);
 			}
 		};
 		npcs.add(trader);

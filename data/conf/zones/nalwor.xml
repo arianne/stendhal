@@ -97,9 +97,19 @@
   
  <zone name="int_nalwor_weaponshop" file="interiors/nalwor/weaponshop.tmx">
   <configurator class-name="games.stendhal.server.maps.nalwor.weaponshop.IL0_BuyerNPC"/>
-   <portal x="3" y="11" ref="entrance">
-    <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
-   </portal>
+
+  <portal x="3" y="11" ref="entrance">
+   <destination zone="0_nalwor_city" ref="weaponshop_entrance"/>
+  </portal>
+
+  <entity x="3" y="1">
+   <implementation class-name="games.stendhal.server.entity.ShopSign">
+    <parameter name="shop">elfbuyrare</parameter>
+    <parameter name="title">-- Buying --</parameter>
+   </implementation>
+
+   <attribute name="class">blackboard</attribute>
+  </entity>
  </zone> 
  
   <zone name="int_nalwor_flowershop" file="interiors/nalwor/flowershop.tmx">

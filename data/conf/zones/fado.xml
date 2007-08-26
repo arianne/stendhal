@@ -215,7 +215,28 @@ Don't want them, no way!
 
   	<zone name="int_fado_weaponshop" file="interiors/fado/weaponshop.tmx">
            <configurator class-name="games.stendhal.server.maps.fado.weaponshop.BuyerNPC"/>
+
+         <entity x="3" y="1">
+           <implementation class-name="games.stendhal.server.entity.ShopSign">
+            <parameter name="shop">buyrare2</parameter>
+            <parameter name="title">-- Buying --</parameter>
+           </implementation>
+
+           <attribute name="class">blackboard</attribute>
+         </entity>      
+
            <configurator class-name="games.stendhal.server.maps.fado.weaponshop.RingSmithNPC"/>
+
+         <entity x="12" y="14">
+           <implementation class-name="games.stendhal.server.entity.ShopSign">
+            <parameter name="shop">buyprecious</parameter>
+            <parameter name="title">-- Buying --</parameter>
+           </implementation>
+
+           <attribute name="class">book_red</attribute>
+           <attribute name="resistance">10</attribute>
+         </entity>      
+
 	   <portal x="5" y="16" ref="entrance">
              <destination zone="0_fado_city" ref="weaponshop_entrance"/>
            </portal>

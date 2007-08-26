@@ -75,13 +75,5 @@ public class BuyerNPC implements ZoneConfigurator {
 		npc.setPosition(45, 49);
 		npc.initHP(500);
 		zone.add(npc);
-
-		// Add a blackboard with the shop offers
-		Sign blackboard = new Sign();
-		zone.assignRPObjectID(blackboard);
-		blackboard.setPosition(35, 52);
-		blackboard.setText(shops.toString("buyrare3", "-- Required --"));
-		blackboard.setEntityClass("blackboard");
-		zone.add(blackboard);
 	}
 }

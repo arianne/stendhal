@@ -598,6 +598,34 @@ Shepherds please note: keep watch for the wolves while searching for berries her
     <configurator class-name="games.stendhal.server.maps.semos.tavern.RichardStallmanNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BarMaidNPC" />
     <configurator class-name="games.stendhal.server.maps.semos.tavern.TraderNPC" />
+
+    <entity x="11" y="4">
+     <implementation class-name="games.stendhal.server.entity.ShopSign">
+      <parameter name="shop">buyrare</parameter>
+      <parameter name="title">-- Buying --</parameter>
+     </implementation>
+
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
+    <entity x="2" y="11">
+     <implementation class-name="games.stendhal.server.entity.ShopSign">
+      <parameter name="shop">sellstuff</parameter>
+      <parameter name="title">-- I sell --</parameter>
+     </implementation>
+
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
+    <entity x="3" y="11">
+     <implementation class-name="games.stendhal.server.entity.ShopSign">
+      <parameter name="shop">buyrare</parameter>
+      <parameter name="title">-- I buy --</parameter>
+     </implementation>
+
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
     <configurator class-name="games.stendhal.server.maps.semos.tavern.DiceDealerNPC" />
 
     <!-- This must be after the NPC configurator -->
@@ -618,6 +646,16 @@ Shepherds please note: keep watch for the wolves while searching for berries her
 
    <zone name="int_semos_tavern_1" file="interiors/semos/tavern_1.tmx">
     <configurator class-name="games.stendhal.server.maps.semos.tavern.RareWeaponsSellerNPC" />
+
+    <entity x="11" y="4">
+     <implementation class-name="games.stendhal.server.entity.ShopSign">
+      <parameter name="shop">buyrare</parameter>
+      <parameter name="title">-- Buying --</parameter>
+     </implementation>
+
+     <attribute name="class">blackboard</attribute>
+    </entity>
+
     <configurator class-name="games.stendhal.server.maps.semos.tavern.BowAndArrowSellerNPC" />
 
     <portal x="4" y="4" ref="downstairs">
@@ -1178,11 +1216,31 @@ Mature sheep wanted: please speak to Sato
  </zone>
 
  <zone name="int_wofol_house4" file="interiors/wofol/house4.tmx">
- <configurator class-name="games.stendhal.server.maps.wofol.house4.TraderNPC" />
   <portal x="7" y="13" ref="entrance">
-     <destination zone="-1_semos_mine_nw" ref="house4_entrance"/>
-   </portal>
+   <destination zone="-1_semos_mine_nw" ref="house4_entrance"/>
+  </portal>
+
+  <configurator class-name="games.stendhal.server.maps.wofol.house4.TraderNPC"/>
+
+  <entity x="4" y="1">
+   <implementation class-name="games.stendhal.server.entity.ShopSign">
+    <parameter name="shop">sellstuff2</parameter>
+    <parameter name="title">-- I sell --</parameter>
+   </implementation>
+
+   <attribute name="class">blackboard</attribute>
+  </entity>
+
+  <entity x="6" y="1">
+   <implementation class-name="games.stendhal.server.entity.ShopSign">
+    <parameter name="shop">buystuff2</parameter>
+    <parameter name="title">-- I buy --</parameter>
+   </implementation>
+
+   <attribute name="class">blackboard</attribute>
+  </entity>
  </zone>
+
  <zone name="int_wofol_house5" file="interiors/wofol/house5.tmx">
  <configurator class-name="games.stendhal.server.maps.wofol.house5.GhostNPC" />
   <portal x="7" y="13" ref="entrance">

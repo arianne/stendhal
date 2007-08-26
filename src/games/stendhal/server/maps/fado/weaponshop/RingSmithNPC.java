@@ -72,14 +72,5 @@ public class RingSmithNPC implements ZoneConfigurator {
 		npc.setPosition(18, 8);
 		npc.initHP(100);
 		zone.add(npc);
-
-		// Add a red book with the things Ognir buys
-		Sign book = new Sign();
-		zone.assignRPObjectID(book);
-		book.setPosition(12, 14);
-		book.setText(shops.toString("buyprecious", "-- Buying --"));
-		book.setEntityClass("book_red");
-		book.setResistance(10);
-		zone.add(book);
 	}
 }
