@@ -781,6 +781,20 @@
     </equipable>
   </item>
 
+  <item name="mainio_boots">
+    <type class="boots" subclass="darkangels_clan_boots" tileid="-1"/>
+    <description>You see a pair of mainio boots. It's hard to believe that boots looking like this would protect your feet so well as they do.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="11"/>
+    </attributes>
+    <weight value="17.0"/>
+    <value value="9317"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="feet"/>
+    </equipable>
+  </item>
+
   <item name="green_thing_boots">
     <type class="boots" subclass="green_dragon_boots" tileid="-1"/>
     <description>You see a pair of green thing boots. They're slimy inside, ewwww.</description>
@@ -1040,6 +1054,20 @@
     <equipable>
       <slot name="bag"/>
       <slot name="cloak"/>
+    </equipable>
+  </item>
+
+  <item name="mainio_cloak">
+    <type class="cloak" subclass="lion_clan_cloak" tileid="-1"/>
+    <description>You see a mainio cloak. It's heavy and thick, giving you a good protection.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="21"/>
+    </attributes>
+    <weight value="6.0"/>
+    <value value="63000"/>
+    <equipable>
+      <slot name="cloak"/>
+      <slot name="bag"/>
     </equipable>
   </item>
 
@@ -2194,13 +2222,13 @@
     <type class="food" subclass="easter_egg" tileid="-1"/>
     <description>You see a lovely chocolate easter egg.</description>
     <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
-      <amount value="250"/>
-      <frequency value="30"/>
+      <amount value="1980"/>
+      <frequency value="10"/>
       <quantity value="1"/>
-      <regen value="15"/>
+      <regen value="30"/>
     </attributes>
     <weight value="1.0"/>
-    <value value="25"/>
+    <value value="1500"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
@@ -2356,6 +2384,20 @@
     </attributes>
     <weight value="15.0"/>
     <value value="19208"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="head"/>
+    </equipable>
+  </item>
+
+  <item name="mainio_helmet">
+    <type class="helmet" subclass="lion_clan_helmet" tileid="-1"/>
+    <description>You see a strange helmet. You can barely see when wearing it, but it protects your head very well.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="16"/>
+    </attributes>
+    <weight value="15.0"/>
+    <value value="39208"/>
     <equipable>
       <slot name="bag"/>
       <slot name="head"/>
@@ -2771,6 +2813,20 @@
     <equipable>
       <slot name="legs"/>
       <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="mainio_legs">
+    <type class="legs" subclass="darkangels_clan_legs" tileid="-1"/>
+    <description>You see a pair of odd looking legs. They are somewhat startling but they give you a good protection.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="10"/>
+    </attributes>
+    <weight value="25.0"/>
+    <value value="7317"/>
+    <equipable>
+      <slot name="bag"/>
+      <slot name="legs"/>
     </equipable>
   </item>
 
@@ -3358,16 +3414,19 @@
 
   <item name="spotted_egg">
     <type class="resource" subclass="spotted_egg" tileid="-1"/>
-    <description>You see a spotted egg. You don't know what it is for.</description>
-    <implementation class-name="games.stendhal.server.entity.item.StackableItem"/>    <attributes>
+    <description>You see a huge spotted egg. They are said to be very delicious.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Food"/>    <attributes>
+      <amount value="1000"/>
+      <frequency value="10"/>
       <quantity value="1"/>
+      <regen value="10"/>
     </attributes>
     <weight value="1.0"/>
     <value value="7500"/>
     <equipable>
-      <slot name="bag"/>
       <slot name="lhand"/>
       <slot name="rhand"/>
+      <slot name="bag"/>
     </equipable>
   </item>
 
@@ -3702,21 +3761,6 @@
     </equipable>
   </item>
 
-  <item name="elvish_shield">
-    <type class="shield" subclass="elvish_shield" tileid="-1"/>
-    <description>You see an elvish shield made of tree leaves.</description>
-    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
-      <def value="28"/>
-    </attributes>
-    <weight value="14.0"/>
-    <value value="153664"/>
-    <equipable>
-      <slot name="lhand"/>
-      <slot name="rhand"/>
-      <slot name="bag"/>
-    </equipable>
-  </item>
-
   <item name="green_dragon_shield">
     <type class="shield" subclass="green_dragon_shield" tileid="-1"/>
     <description>You see an green dragon shield, scaly and strong.</description>
@@ -3755,6 +3799,21 @@
     </attributes>
     <weight value="34.0"/>
     <value value="326592"/>
+    <equipable>
+      <slot name="lhand"/>
+      <slot name="rhand"/>
+      <slot name="bag"/>
+    </equipable>
+  </item>
+
+  <item name="mainio_shield">
+    <type class="shield" subclass="elvish_shield" tileid="-1"/>
+    <description>You see a strange looking shield. You have no idea what it's made of, but it seems to protect you well by distracting your enemies.</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>    <attributes>
+      <def value="37"/>
+    </attributes>
+    <weight value="34.0"/>
+    <value value="365233"/>
     <equipable>
       <slot name="lhand"/>
       <slot name="rhand"/>
