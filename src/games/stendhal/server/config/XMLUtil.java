@@ -37,7 +37,9 @@ public class XMLUtil {
 	/**
 	 * Get all the direct children elements of an element.
 	 *
+	 * @param	parent		The parent element.
 	 *
+	 * @return	A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent) {
 		LinkedList<Element> list = new LinkedList<Element>();
@@ -60,7 +62,10 @@ public class XMLUtil {
 	 * Get all the direct children elements of an element that have a
 	 * specific tag name.
 	 *
+	 * @param	parent		The parent element.
+	 * @param	name		The tag name to match.
 	 *
+	 * @return	A list of Element's.
 	 */
 	public static List<Element> getElements(final Element parent, final String name) {
 		LinkedList<Element> list = new LinkedList<Element>();
@@ -83,6 +88,13 @@ public class XMLUtil {
 	}
 
 
+	/**
+	 * Get the direct text content of an element.
+	 *
+	 * @param	element		The element.
+	 *
+	 * @return	The contained text.
+	 */
 	public static String getText(final Element element) {
 		StringBuffer sbuf = new StringBuffer();
 
@@ -92,6 +104,13 @@ public class XMLUtil {
 	}
 
 
+	/**
+	 * Get the text content of an element.
+	 *
+	 * @param	element		The element.
+	 * @param	sbuf		The buffer to append to.
+	 * @param	decend		Whether to descend into child elements.
+	 */
 	public static void getText(final Element element, final StringBuffer sbuf, final boolean decend) {
 		Node node = element.getFirstChild();
 
@@ -114,11 +133,37 @@ public class XMLUtil {
 	}
 
 
+	/**
+	 * Parse an XML document.
+	 *
+	 * @param	in		The input stream.
+	 *
+	 * @return	A Document.
+	 *
+	 * @throws	SAXException	If there is a parsing error.
+	 * @throws	IOException	If there is an I/O error.
+	 * @throws	IllegalArgumentException
+	 *				If there is a parser configuration
+	 *				error.
+	 */
 	public static Document parse(InputStream in) throws SAXException, IOException {
 		return parse(new InputSource(in));
 	}
 
 
+	/**
+	 * Parse an XML document.
+	 *
+	 * @param	is		The input source.
+	 *
+	 * @return	A Document.
+	 *
+	 * @throws	SAXException	If there is a parsing error.
+	 * @throws	IOException	If there is an I/O error.
+	 * @throws	IllegalArgumentException
+	 *				If there is a parser configuration
+	 *				error.
+	 */
 	public static Document parse(InputSource is) throws SAXException, IOException {
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
