@@ -12,9 +12,13 @@ package games.stendhal.server.config;
 import games.stendhal.server.StendhalRPWorld;
 import games.stendhal.server.StendhalRPZone;
 import games.stendhal.server.config.zone.ConfiguratorDescriptor;
+import games.stendhal.server.config.zone.ConfiguratorXMLReader;
 import games.stendhal.server.config.zone.EntitySetupDescriptor;
+import games.stendhal.server.config.zone.EntitySetupXMLReader;
 import games.stendhal.server.config.zone.PortalSetupDescriptor;
+import games.stendhal.server.config.zone.PortalSetupXMLReader;
 import games.stendhal.server.config.zone.SetupDescriptor;
+import games.stendhal.server.config.zone.SetupXMLReader;
 
 import games.stendhal.tools.tiled.LayerDefinition;
 import games.stendhal.tools.tiled.ServerTMXLoader;
@@ -26,81 +30,38 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.List;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-
 /**
  * Load and configure zones via an XML configuration file.
  */
-public class ZonesXMLLoader extends DefaultHandler {
-
-	protected static final int SCOPE_NONE = 0;
-
-	protected static final int SCOPE_CONFIGURATOR = 1;
-
-	protected static final int SCOPE_PORTAL = 2;
-
-	protected static final int SCOPE_ENTITY = 3;
-
+public class ZonesXMLLoader {
 	/**
 	 * Logger
 	 */
 	private static final Logger logger = Log4J.getLogger(ZonesXMLLoader.class);
 
 	/**
-	 * A list of zone descriptors.
+	 * The ConfiguratorDescriptor XML reader.
 	 */
-	protected LinkedList<ZoneDesc> zoneDescriptors;
+	protected static final SetupXMLReader	configuratorReader = new ConfiguratorXMLReader();
 
 	/**
-	 * The current zone descriptor.
+	 * The EntitySetupDescriptor XML reader.
 	 */
-	protected ZoneDesc zdesc;
+	protected static final SetupXMLReader	entitySetupReader = new EntitySetupXMLReader();
 
 	/**
-	 * The current configurator descriptor.
+	 * The PortalSetupDescriptor XML reader.
 	 */
-	protected ConfiguratorDescriptor cdesc;
-
-	/**
-	 * The current entity descriptor.
-	 */
-	protected EntitySetupDescriptor edesc;
-
-	/**
-	 * The current portal descriptor.
-	 */
-	protected PortalSetupDescriptor pdesc;
-
-	/**
-	 * The current entity attribute name.
-	 */
-	protected String attrName;
-
-	/**
-	 * The current parameter name.
-	 */
-	protected String paramName;
-
-	/**
-	 * The current text content.
-	 */
-	protected StringBuffer content;
-
-	/**
-	 * The current [meaningful] xml tree scope.
-	 */
-	protected int scope;
+	protected static final SetupXMLReader	portalSetupReader = new PortalSetupXMLReader();
 
 	/**
 	 * The zone group file.
@@ -112,8 +73,6 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 */
 	public ZonesXMLLoader(URI uri) {
 		this.uri = uri;
-
-		content = new StringBuffer();
 	}
 
 	//
@@ -156,45 +115,24 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 *             If an I/O error occured.
 	 */
 	protected void load(InputStream in) throws SAXException, IOException {
-		SAXParser saxParser;
-
-		/*
-		 * Use the default (non-validating) parser
-		 */
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-
-		try {
-			saxParser = factory.newSAXParser();
-		} catch (ParserConfigurationException ex) {
-			throw new SAXException(ex);
-		}
-
-		/*
-		 * Parse the XML
-		 */
-		zoneDescriptors = new LinkedList<ZoneDesc>();
-		zdesc = null;
-		cdesc = null;
-		edesc = null;
-		pdesc = null;
-		attrName = null;
-		paramName = null;
-		scope = SCOPE_NONE;
-
-		saxParser.parse(in, this);
+		Document doc = XMLUtil.parse(in);
 
 		/*
 		 * Load each zone
 		 */
-		for (ZoneDesc zdesc : zoneDescriptors) {
+		for(Element element : XMLUtil.getElements(doc.getDocumentElement(), "zone")) {
+			ZoneDesc zdesc = readZone(element);
+
+			if(zdesc == null) {
+				continue;
+			}
+
 			String name = zdesc.getName();
 
 			logger.info("Loading zone: " + name);
 
 			try {
-				StendhalMapStructure zonedata = null;
-				zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER
-						+ zdesc.getFile());
+				StendhalMapStructure zonedata = ServerTMXLoader.load(StendhalRPWorld.MAPS_FOLDER + zdesc.getFile());
 
 				if (verifyMap(zdesc, zonedata)) {
 					StendhalRPZone zone = load(zdesc, zonedata);
@@ -220,8 +158,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	private boolean verifyMap(ZoneDesc zdesc, StendhalMapStructure zonedata) {
 		for (String layer : REQUIRED_LAYERS) {
 			if (!zonedata.hasLayer(layer)) {
-				logger.error("Required layer " + layer + " missing in zone "
-						+ zdesc.getFile());
+				logger.error("Required layer " + layer + " missing in zone " + zdesc.getFile());
 				return false;
 			}
 		}
@@ -250,10 +187,8 @@ public class ZonesXMLLoader extends DefaultHandler {
 			zone.addLayer(name + ".4_roof_add", layer);
 		}
 
-		zone.addCollisionLayer(name + ".collision", zonedata
-				.getLayer("collision"));
-		zone.addProtectionLayer(name + ".protection", zonedata
-				.getLayer("protection"));
+		zone.addCollisionLayer(name + ".collision", zonedata.getLayer("collision"));
+		zone.addProtectionLayer(name + ".protection", zonedata.getLayer("protection"));
 
 		if (desc.isInterior()) {
 			zone.setPosition();
@@ -268,281 +203,115 @@ public class ZonesXMLLoader extends DefaultHandler {
 		return zone;
 	}
 
-	//
-	// ContentHandler
-	//
 
-	@Override
-	public void startElement(String namespaceURI, String lName, String qName, Attributes attrs) {
-		String s;
+	public ZoneDesc readZone(final Element element) {
+		if(!element.hasAttribute("name")) {
+			logger.error("Unnamed zone");
+			return null;
+		}
+
+		String name = element.getAttribute("name");
+
+		if(!element.hasAttribute("file")) {
+			logger.error("Zone [" + name + "] without 'file' attribute");
+			return null;
+		}
+
+		String file = element.getAttribute("file");
+
 		int level;
 		int x;
 		int y;
-		String zone;
-		String file;
-		Object reference;
 
-		if (qName.equals("zones")) {
-			// Ignore
-		} else if (qName.equals("zone")) {
-			zone = attrs.getValue("name");
-			if (zone == null) {
-				logger.warn("Unnamed zone");
-				return;
-			}
-			file = attrs.getValue("file");
-			if (file == null) {
-				logger.warn("Zone [" + zone + "] without 'file' attribute");
-				return;
+		/**
+		 * Interior zones don't have levels (why not?)
+		 */
+		if(!element.hasAttribute("level")) {
+			level = ZoneDesc.UNSET;
+			x = ZoneDesc.UNSET;
+			y = ZoneDesc.UNSET;
+		} else {
+			String s = element.getAttribute("level");
+
+			try {
+				level = Integer.parseInt(s);
+			} catch (NumberFormatException ex) {
+				logger.error("Zone [" + name + "] has invalid level: " + s);
+				return null;
 			}
 
-			/**
-			 * Interior zones don't have levels (why not?)
-			 */
-			s = attrs.getValue("level");
-			if (s == null) {
-				level = ZoneDesc.UNSET;
-				x = ZoneDesc.UNSET;
-				y = ZoneDesc.UNSET;
+			if(!element.hasAttribute("x")) {
+				logger.error("Zone [" + name + "] without x coordinate");
+				return null;
 			} else {
-				try {
-					level = Integer.parseInt(s);
-				} catch (NumberFormatException ex) {
-					logger.warn("Zone [" + zone + "] has invalid level: " + s);
-					return;
-				}
-				s = attrs.getValue("x");
-				if (s == null) {
-					logger.warn("Zone [" + zone + "] without x coordinate");
-					return;
-				}
+				s = element.getAttribute("x");
 
 				try {
 					x = Integer.parseInt(s);
 				} catch (NumberFormatException ex) {
-					logger.warn("Zone [" + zone
-							+ "] has invalid x coordinate: " + s);
-					return;
+					logger.error("Zone [" + name + "] has invalid x coordinate: " + s);
+					return null;
 				}
-				s = attrs.getValue("y");
-				if (s == null) {
-					logger.warn("Zone [" + zone + "] without y coordinate");
-					return;
-				}
+			}
+
+			if(!element.hasAttribute("y")) {
+				logger.error("Zone [" + name + "] without y coordinate");
+				return null;
+			} else {
+				s = element.getAttribute("y");
 
 				try {
 					y = Integer.parseInt(s);
 				} catch (NumberFormatException ex) {
-					logger.warn("Zone [" + zone
-							+ "] has invalid y coordinate: " + s);
-					return;
-				}
-			}
-
-			zdesc = new ZoneDesc(zone, file, level, x, y);
-		} else if (qName.equals("title")) {
-			content.setLength(0);
-		} else if (qName.equals("configurator")) {
-			s = attrs.getValue("class-name");
-			if (s == null) {
-				logger.warn("Configurator without class-name");
-			} else {
-				cdesc = new ConfiguratorDescriptor(s);
-				scope = SCOPE_CONFIGURATOR;
-			}
-		} else if (qName.equals("entity")) {
-			s = attrs.getValue("x");
-			if (s == null) {
-				logger.warn("Entity without 'x' coordinate");
-				return;
-			}
-
-			try {
-				x = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
-				logger.warn("Invalid entity 'x' coordinate: " + s);
-				return;
-			}
-			s = attrs.getValue("y");
-			if (s == null) {
-				logger.warn("Entity without 'y' coordinate");
-				return;
-			}
-
-			try {
-				y = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
-				logger.warn("Invalid entity 'y' coordinate: " + s);
-				return;
-			}
-
-			edesc = new EntitySetupDescriptor(x, y);
-			scope = SCOPE_ENTITY;
-		} else if (qName.equals("portal")) {
-			s = attrs.getValue("x");
-			if (s == null) {
-				logger.warn("Portal without 'x' coordinate");
-				return;
-			}
-
-			try {
-				x = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
-				logger.warn("Invalid portal 'x' coordinate: " + s);
-				return;
-			}
-			s = attrs.getValue("y");
-			if (s == null) {
-				logger.warn("Portal without 'y' coordinate");
-				return;
-			}
-
-			try {
-				y = Integer.parseInt(s);
-			} catch (NumberFormatException ex) {
-				logger.warn("Invalid portal 'y' coordinate: " + s);
-				return;
-			}
-			s = attrs.getValue("ref");
-			if (s == null) {
-				logger.warn("Portal without 'ref' value");
-				return;
-			}
-
-			/*
-			 * For now, treat valid number strings as Integer refs
-			 */
-			try {
-				reference = new Integer(s);
-			} catch (NumberFormatException ex) {
-				reference = s;
-			}
-
-			pdesc = new PortalSetupDescriptor(x, y, reference);
-			scope = SCOPE_PORTAL;
-			s = attrs.getValue("replacing");
-			if (s != null) {
-				pdesc.setReplacing(s.equals("true"));
-			}
-		} else if (qName.equals("attribute")) {
-
-			attrName = attrs.getValue("name");
-			if (attrName == null) {
-				logger.warn("Unnamed attribute");
-			} else {
-				content.setLength(0);
-			}
-		} else if (qName.equals("parameter")) {
-			paramName = attrs.getValue("name");
-			if (paramName == null) {
-				logger.warn("Unnamed parameter");
-			} else {
-				content.setLength(0);
-			}
-		} else if (qName.equals("implementation")) {
-			s = attrs.getValue("class-name");
-			if (s == null) {
-				logger.warn("Implmentation without class-name");
-			} else if (pdesc != null) {
-				pdesc.setImplementation(s);
-			} else if (edesc != null) {
-				edesc.setImplementation(s);
-			}
-		} else if (qName.equals("destination")) {
-			zone = attrs.getValue("zone");
-			if (zone == null) {
-				logger.warn("Portal destination without zone");
-				return;
-			}
-			s = attrs.getValue("ref");
-			if (s == null) {
-				logger.warn("Portal dest without 'ref' value");
-				return;
-			}
-
-			/*
-			 * For now, treat valid number strings as Integer refs
-			 */
-			try {
-				reference = new Integer(s);
-			} catch (NumberFormatException ex) {
-				reference = s;
-			}
-
-			if ((scope == SCOPE_PORTAL) && (pdesc != null)) {
-				pdesc.setDestination(zone, reference);
-			}
-		} else {
-			logger.warn("Unknown XML element: " + qName);
-		}
-	}
-
-	@Override
-	public void endElement(String namespaceURI, String sName, String qName) {
-		if (qName.equals("zone")) {
-			if (zdesc != null) {
-				zoneDescriptors.add(zdesc);
-				zdesc = null;
-			}
-		} else if (qName.equals("title")) {
-			if (zdesc != null) {
-				String s = content.toString().trim();
-
-				if (s.length() != 0) {
-					zdesc.setTitle(s);
-				}
-			}
-		} else if (qName.equals("configurator")) {
-			if (zdesc != null) {
-				if (cdesc != null) {
-					zdesc.addDescriptor(cdesc);
-					cdesc = null;
-				}
-			}
-
-			scope = SCOPE_NONE;
-		} else if (qName.equals("entity")) {
-			if (zdesc != null) {
-				if (edesc != null) {
-					zdesc.addDescriptor(edesc);
-					edesc = null;
-				}
-			}
-
-			scope = SCOPE_NONE;
-		} else if (qName.equals("portal")) {
-			if (zdesc != null) {
-				if (pdesc != null) {
-					zdesc.addDescriptor(pdesc);
-					pdesc = null;
-				}
-			}
-
-			scope = SCOPE_NONE;
-		} else if (qName.equals("attribute")) {
-			if (attrName != null) {
-				if ((scope == SCOPE_PORTAL) && (pdesc != null)) {
-					pdesc.setAttribute(attrName, content.toString().trim());
-				} else if ((scope == SCOPE_ENTITY) && (edesc != null)) {
-					edesc.setAttribute(attrName, content.toString().trim());
-				}
-			}
-		} else if (qName.equals("parameter")) {
-			if (paramName != null) {
-				if ((scope == SCOPE_CONFIGURATOR) && (cdesc != null)) {
-					cdesc.setParameter(paramName, content.toString().trim());
-				} else if ((scope == SCOPE_PORTAL) && (pdesc != null)) {
-					pdesc.setParameter(paramName, content.toString().trim());
-				} else if ((scope == SCOPE_ENTITY) && (edesc != null)) {
-					edesc.setParameter(paramName, content.toString().trim());
+					logger.error("Zone [" + name + "] has invalid y coordinate: " + s);
+					return null;
 				}
 			}
 		}
-	}
 
-	@Override
-	public void characters(char[] buf, int offset, int len) {
-		content.append(buf, offset, len);
+		ZoneDesc desc = new ZoneDesc(name, file, level, x, y);
+
+		/*
+		 * Title element
+		 */
+		List<Element> list = XMLUtil.getElements(element, "title");
+
+		if(!list.isEmpty()) {
+			if(list.size() > 1) {
+				logger.error("Zone [" + name + "] has multiple title elements");
+			}
+
+			desc.setTitle(XMLUtil.getText(list.get(0)).trim());
+		}
+
+		/*
+		 * Setup elements
+		 */
+		for(Element child : XMLUtil.getElements(element)) {
+			String tag = child.getTagName();
+
+			SetupDescriptor setupDesc;
+
+			if(tag.equals("configurator")) {
+				setupDesc = configuratorReader.read(child);
+			} else if(tag.equals("entity")) {
+				setupDesc = entitySetupReader.read(child);
+			} else if(tag.equals("portal")) {
+				setupDesc = portalSetupReader.read(child);
+			} else if(tag.equals("title")) {
+				// Ignore
+				continue;
+			} else {
+				logger.warn("Zone [" + name + "] has unknown element: " + tag);
+				continue;
+			}
+
+			if(setupDesc != null) {
+				desc.addDescriptor(setupDesc);
+			}
+		}
+
+		return desc;
 	}
 
 	//
@@ -553,8 +322,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length != 1) {
-			System.err.println("Usage: java " + ZonesXMLLoader.class.getName()
-					+ " <filename>");
+			System.err.println("Usage: java " + ZonesXMLLoader.class.getName() + " <filename>");
 			System.exit(1);
 		}
 
@@ -563,8 +331,7 @@ public class ZonesXMLLoader extends DefaultHandler {
 		try {
 			loader.load();
 		} catch (org.xml.sax.SAXParseException ex) {
-			System.err.print("Source " + args[0] + ":" + ex.getLineNumber()
-					+ "<" + ex.getColumnNumber() + ">");
+			System.err.print("Source " + args[0] + ":" + ex.getLineNumber() + "<" + ex.getColumnNumber() + ">");
 
 			throw ex;
 		}
