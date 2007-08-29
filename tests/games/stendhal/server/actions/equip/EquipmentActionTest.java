@@ -34,8 +34,7 @@ public class EquipmentActionTest {
 		 */
 		public MockPlayer() {
 			super(new RPObject());
-			setX(10);
-			setY(5);
+			setPosition(10, 5);
 			StendhalRPWorld.get().getRPZone(ZONE_NAME).assignRPObjectID(this);
 			StendhalRPWorld.get().getRPZone(ZONE_NAME).add(this);
 		}

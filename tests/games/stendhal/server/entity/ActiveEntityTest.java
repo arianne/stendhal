@@ -23,7 +23,7 @@ public class ActiveEntityTest {
 	public final void testGetDirectionTowardArea() {
 		ActiveEntity ae = new ActiveEntity() {
 		};
-		ae.set(5, 5);
+		ae.setPosition(5, 5);
 		Rectangle area;
 
 		assertEquals(5, ae.getX());
@@ -53,7 +53,7 @@ public class ActiveEntityTest {
 	public final void testFaceto() {
 		ActiveEntity ae = new ActiveEntity() {
 		};
-		ae.set(5, 5);
+		ae.setPosition(5, 5);
 
 		assertEquals(5, ae.getX());
 		assertEquals(5, ae.getY());
