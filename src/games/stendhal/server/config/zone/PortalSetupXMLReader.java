@@ -31,11 +31,27 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	// PortalSetupXMLReader
 	//
 
+	/**
+	 * Create a portal setup descriptor.
+	 *
+	 * @param	element		The entity setup XML element.
+	 * @param	x		The X coordinate.
+	 * @param	y		The Y coordinate.
+	 * @param	identifier	The portal identifier.
+	 *
+	 * @return	A portal setup descriptor.
+	 */
 	protected PortalSetupDescriptor read(final Element element, final int x, final int y, final Object identifier) {
 		return new PortalSetupDescriptor(x, y, identifier);
 	}
 
 
+	/**
+	 * Read destination information from an XML element.
+	 *
+	 * @param	desc		The descriptor to load.
+	 * @param	element		The XML element.
+	 */
 	protected void readDestination(final PortalSetupDescriptor desc, final Element element) {
 		String zone;
 		Object identifier;
@@ -72,6 +88,13 @@ public class PortalSetupXMLReader extends EntitySetupXMLReader {
 	// EntitySetupXMLReader
 	//
 
+	/**
+	 * Create a setup descriptor from XML data.
+	 *
+	 * @param	element		The descriptor XML element.
+	 *
+	 * @return	A setup descriptor, or <code>null</code> if invalid.
+	 */
 	protected EntitySetupDescriptor read(final Element element, final int x, final int y) {
 		Object identifier;
 

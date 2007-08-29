@@ -31,11 +31,26 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	// EntitySetupXMLReader
 	//
 
+	/**
+	 * Create an entity setup descriptor.
+	 *
+	 * @param	element		The entity setup XML element.
+	 * @param	x		The X coordinate.
+	 * @param	y		The Y coordinate.
+	 *
+	 * @return	An entity setup descriptor.
+	 */
 	protected EntitySetupDescriptor read(final Element element, final int x, final int y) {
 		return new EntitySetupDescriptor(x, y);
 	}
 
 
+	/**
+	 * Read attributes from an XML element.
+	 *
+	 * @param	desc		The descriptor to load.
+	 * @param	element		The XML element.
+	 */
 	protected void readAttributes(final EntitySetupDescriptor desc, final Element element) {
 		List<Element> list = XMLUtil.getElements(element, "attribute");
 
@@ -49,6 +64,12 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	}
 
 
+	/**
+	 * Read implementation information from an XML element.
+	 *
+	 * @param	desc		The descriptor to load.
+	 * @param	element		The XML element.
+	 */
 	protected void readImplementation(final EntitySetupDescriptor desc, final Element element) {
 		if(!element.hasAttribute("class-name")) {
 			logger.error("Implmentation without class-name");
@@ -64,6 +85,13 @@ public class EntitySetupXMLReader extends SetupXMLReader {
 	// SetupXMLReader
 	//
 
+	/**
+	 * Create a setup descriptor from XML data.
+	 *
+	 * @param	element		The descriptor XML element.
+	 *
+	 * @return	A setup descriptor, or <code>null</code> if invalid.
+	 */
 	public SetupDescriptor read(final Element element) {
 		int x;
 		int y;

@@ -28,6 +28,14 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	// ConfiguratorXMLReader
 	//
 
+	/**
+	 * Create a configurator descriptor.
+	 *
+	 * @param	element		The configurator XML element.
+	 * @param	className	The handler class name.
+	 *
+	 * @return	A configurator.
+	 */
 	protected ConfiguratorDescriptor read(final Element element, final String className) {
 		return new ConfiguratorDescriptor(className);
 	}
@@ -37,6 +45,13 @@ public class ConfiguratorXMLReader extends SetupXMLReader {
 	// SetupXMLReader
 	//
 
+	/**
+	 * Create a setup descriptor from XML data.
+	 *
+	 * @param	element		The descriptor XML element.
+	 *
+	 * @return	A setup descriptor, or <code>null</code> if invalid.
+	 */
 	public SetupDescriptor read(final Element element) {
 		if(!element.hasAttribute("class-name")) {
 			logger.error("Implmentation without class-name");
