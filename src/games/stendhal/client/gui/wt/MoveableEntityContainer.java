@@ -12,10 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.gui.wt;
 
+import games.stendhal.client.GameScreen;
 import games.stendhal.client.entity.Entity;
+import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.StackableItem2DView;
 import games.stendhal.client.gui.wt.core.WtDraggable;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 import marauroa.common.game.RPAction;
@@ -32,6 +36,11 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/** The moved object */
 	private Entity entity;
+
+	/**
+	 * The entity view.
+	 */
+	private Entity2DView view;
 
 
 	/**
@@ -88,11 +97,32 @@ public class MoveableEntityContainer implements WtDraggable {
 
 	/** drag started */
 	public boolean dragStarted() {
+		view = GameScreen.get().createView(entity);
+
+		if(view != null) {
+			view.setContained(true);
+
+			/*
+			 * Hide quantity until it can be made context
+			 * sensitive to drag modifiers.
+			 *
+			 * TODO: Find a better way
+			 */
+			if(view instanceof StackableItem2DView) {
+				((StackableItem2DView) view).setShowQuantity(false);
+			}
+		}
+
 		return true;
 	}
 
 	/** drag finished */
 	public boolean dragFinished(Point p) {
+		if(view != null) {
+			view.release();
+			view = null;
+		}
+
 		return true;
 	}
 
@@ -107,6 +137,12 @@ public class MoveableEntityContainer implements WtDraggable {
 	 * draws the entity
 	 */
 	public void drawDragged(Graphics g) {
-		entity.getView().getSprite().draw(g, x, y);
+		if(view != null) {
+			Graphics2D cg = (Graphics2D) g.create();
+
+			cg.translate(x, y);
+			view.draw(cg);
+			cg.dispose();
+		}
 	}
 }

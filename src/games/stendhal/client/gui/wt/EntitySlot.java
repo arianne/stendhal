@@ -147,8 +147,11 @@ public class EntitySlot extends WtPanel implements WtDropTarget {
 		}
 
 		if(entity != null) {
-			view = entity.getView();
-			view.setContained(true);
+			view = GameScreen.get().createView(entity);
+
+			if(view != null) {
+				view.setContained(true);
+			}
 		} else {
 			view = null;
 		}

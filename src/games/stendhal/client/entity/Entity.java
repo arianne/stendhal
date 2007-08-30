@@ -13,8 +13,6 @@
 package games.stendhal.client.entity;
 
 import games.stendhal.client.events.RPObjectChangeListener;
-import games.stendhal.client.gui.j2d.entity.Entity2DViewFactory;
-import games.stendhal.client.gui.j2d.entity.Entity2DView;
 import games.stendhal.client.sound.SoundSystem;
 
 import java.awt.Rectangle;
@@ -140,10 +138,6 @@ public final byte[] ID_Token = new byte[0];
 	 */
 	protected double audibleRange = Double.POSITIVE_INFINITY;
 
-	/**
-	 * The "view" portion of an entity.
-	 */
-	protected Entity2DView	view;
 
 	/**
 	 * Quick work-around to prevent fireMovementEvent() from calling
@@ -219,25 +213,6 @@ public final byte[] ID_Token = new byte[0];
 		for(EntityChangeListener l : listeners) {
 			l.entityChanged(this, property);
 		}
-	}
-
-
-	/**
-	 * Get the on-screen view representation.
-	 * This will create the view if needed.
-	 *
-	 * @return	The view.
-	 */
-	public Entity2DView getView() {
-		if(view == null) {
-			view = createView();
-
-			if(view != null) {
-				view.createRepresentation();
-			}
-		}
-
-		return view;
 	}
 
 
@@ -512,16 +487,6 @@ public final byte[] ID_Token = new byte[0];
 		}
 
 		return null;
-	}
-
-
-	/**
-	 * Transition method. Create the screen view for this entity.
-	 *
-	 * @return	The on-screen view of this entity.
-	 */
-	protected Entity2DView createView() {
-		return Entity2DViewFactory.get().create(this);
 	}
 
 

@@ -12,9 +12,11 @@
  ***************************************************************************/
 package games.stendhal.client;
 
+import games.stendhal.client.entity.Entity;
 import games.stendhal.client.gui.j2DClient;
 import games.stendhal.client.gui.j2d.Text;
 import games.stendhal.client.gui.j2d.entity.Entity2DView;
+import games.stendhal.client.gui.j2d.entity.Entity2DViewFactory;
 import games.stendhal.client.gui.wt.core.WtBaseframe;
 import games.stendhal.client.sprite.ImageSprite;
 import games.stendhal.client.sprite.Sprite;
@@ -46,10 +48,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ConcurrentModificationException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import marauroa.common.Log4J;
 import marauroa.common.Logger;
@@ -100,6 +104,11 @@ public class GameScreen {
 	 * The entity views.
 	 */
 	protected List<Entity2DView>	views;
+
+	/**
+	 * The entity to view map.
+	 */
+	protected Map<Entity, Entity2DView>	entities;
 
 	private static Sprite offlineIcon;
 
@@ -212,6 +221,7 @@ public class GameScreen {
 		texts = new LinkedList<Text>();
 		textsToRemove = new LinkedList<Text>();
 		views = new LinkedList<Entity2DView>();
+		entities = new HashMap<Entity, Entity2DView>();
 
 		g = (Graphics2D) strategy.getDrawGraphics();
 	}
@@ -229,14 +239,43 @@ public class GameScreen {
 
 
 	/**
+	 * Add an entity.
+	 *
+	 * @param	entity		An entity.
+	 */
+	public void addEntity(Entity entity) {
+		Entity2DView view = createView(entity);
+
+		if(view != null) {
+			entities.put(entity, view);
+			addEntityView(view);
+		}
+	}
+
+
+	/**
 	 * Add an entity view.
 	 *
 	 * @param	view		A view.
 	 */
-	public void addEntityView(Entity2DView view) {
+	protected void addEntityView(Entity2DView view) {
 		views.add(view);
 
 		view.setInspector(StendhalUI.get().getInspector());
+	}
+
+
+	/**
+	 * Remove an entity.
+	 *
+	 * @param	entity		An entity.
+	 */
+	public void removeEntity(final Entity entity) {
+		Entity2DView view = entities.remove(entity);
+
+		if(view != null) {
+			removeEntityView(view);
+		}
 	}
 
 
@@ -245,7 +284,8 @@ public class GameScreen {
 	 *
 	 * @param	view		A view.
 	 */
-	public void removeEntityView(Entity2DView view) {
+	protected void removeEntityView(Entity2DView view) {
+		view.release();
 		views.remove(view);
 	}
 
@@ -406,6 +446,11 @@ public class GameScreen {
 		dvy = 0;
 
 		speed = 0;
+	}
+
+
+	public Entity2DView createView(final Entity entity) {
+		return Entity2DViewFactory.get().create(entity);
 	}
 
 

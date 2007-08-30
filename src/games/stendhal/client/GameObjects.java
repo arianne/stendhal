@@ -145,9 +145,6 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Entity entity = EntityFactory.createEntity(object);
 
 		if(entity != null) {
-			// Discard view for now - Just force it's creation
-			entity.getView();
-
 			objects.put(FQID.create(object), entity);
 		}
 
@@ -182,7 +179,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 				 * Only non-contained objects are on screen
 				 */
 				if(!object.isContained()) {
-					GameScreen.get().addEntityView(entity.getView());
+					GameScreen.get().addEntity(entity);
 				}
 
 				logger.debug("added " + entity);
@@ -272,7 +269,7 @@ public class GameObjects implements RPObjectChangeListener, Iterable<Entity> {
 		Entity entity = objects.remove(FQID.create(object));
 
 		if (entity != null) {
-			GameScreen.get().removeEntityView(entity.getView());
+			GameScreen.get().removeEntity(entity);
 			entity.release();
 		}
 	}

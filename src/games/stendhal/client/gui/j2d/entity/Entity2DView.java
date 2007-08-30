@@ -149,15 +149,6 @@ public abstract class Entity2DView implements EntityView, EntityChangeListener {
 
 
 	/**
-	 * Public method to initially create representation.
-	 * TODO: Get rid of need for this.
-	 */
-	public void createRepresentation() {
-		buildRepresentation();
-	}
-
-
-	/**
 	 * Mark this as changed. This will force the <code>update()</code>
 	 * method to be called.
 	 */

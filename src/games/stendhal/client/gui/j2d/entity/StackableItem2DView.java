@@ -36,6 +36,11 @@ public class StackableItem2DView extends Item2DView {
 	 */
 	private Sprite		quantitySprite;
 
+	/**
+	 * Whether to show the quantity.
+	 */
+	protected boolean	showQuantity;
+
 
 	/**
 	 * Create a 2D view of a stackable item.
@@ -48,6 +53,7 @@ public class StackableItem2DView extends Item2DView {
 		this.item = item;
 		quantitySprite = getQuantitySprite();
 		quantityChanged = false;
+		showQuantity = true;
 	}
 
 
@@ -82,6 +88,16 @@ public class StackableItem2DView extends Item2DView {
 	}
 
 
+	/**
+	 * Set whether to show the quantity value.
+	 *
+	 * @param	showQuantity	Whether to show the quantity.
+	 */
+	public void setShowQuantity(final boolean showQuantity) {
+		this.showQuantity = showQuantity;
+	}
+
+
 	//
 	// Entity2DView
 	//
@@ -95,7 +111,7 @@ public class StackableItem2DView extends Item2DView {
 	protected void draw(final Graphics2D g2d, final int x, final int y, final int width, final int height) {
 		super.draw(g2d, x, y, width, height);
 
-		if (quantitySprite != null) {
+		if (showQuantity && (quantitySprite != null)) {
 			/*
 			 * NOTE: This has be calibrated to fit the size of
 			 * an entity slot visual.
